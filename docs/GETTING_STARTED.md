@@ -8,6 +8,19 @@ There are three useful entry points. Pick the one that matches what you want to 
 | Portable core, below | Python 3.11+, Rust and its native build tools | Two policy calls, a recording and exact policy replay |
 | [Live Studio](SHOWCASE.md) | Windows, configured native workers and exact runtime dependencies | Fresh development physics |
 
+## Get the source
+
+In PowerShell, start in the parent directory where you keep projects. On Windows,
+use a short location such as `C:/src`; some historical record names are long.
+
+```powershell
+git clone -c core.longpaths=true https://github.com/Slagathore/LoColemotion.git
+Set-Location .\LoColemotion
+```
+
+That setting belongs to this checkout; it does not change your global Git settings.
+If you downloaded a ZIP instead, extract it to a short path and open that folder.
+
 ## Build the core
 
 Use **PowerShell 7**. Start in the cloned LoColemotion repository. The first build
