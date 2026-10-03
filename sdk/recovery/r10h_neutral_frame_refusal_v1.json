@@ -1,0 +1,58 @@
+{
+  "schema_version": "sporespore_r10h_neutral_frame_refusal_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_native_initialization_refusal",
+    "question_class": "development"
+  },
+  "attempt_id": "3512e13b56ff4a23907ca75b7048dd2b",
+  "source_snapshot": {
+    "head": "a898b08b1d9e5070bd1714363e8906dd34dddd09",
+    "dirty": false,
+    "status": [],
+    "changed_file_bindings": []
+  },
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-3512e13b56ff4a23907ca75b7048dd2b",
+  "supervisor": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-3512e13b56ff4a23907ca75b7048dd2b/supervisor_result.json",
+    "byte_length": 16059,
+    "raw_sha256": "sha256:dcd613d952f4f1c02bdd3cd3a812e77f5edb588663f7ce15bb689f603cca1aa4"
+  },
+  "report": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-3512e13b56ff4a23907ca75b7048dd2b/children/matched_no_kick_continuation/worker_report.json",
+    "byte_length": 7693961,
+    "raw_sha256": "sha256:c083da6fa1a882bbe2dffccc0e35d95fb3a1f597b48fb7b4be4ba2c688b3e658"
+  },
+  "inventory": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10h-neutral-frame-refusal-836bcb6390a644a8a3c874d543c8a16d/inventory.json",
+    "byte_length": 12886,
+    "raw_sha256": "sha256:ce3c6c3a472c5cfa358c5e5be1ffc1df78e4f2a92f85d93c6409ab3ebb7f1a52"
+  },
+  "safety_stages_passed": 29,
+  "safety_tests_passed": 161,
+  "world_build_count": 1,
+  "solver_step_count": 272,
+  "neutral_commands_applied": 0,
+  "v50_commands_applied": 0,
+  "kicked_child_opened": false,
+  "original_native_refusal": "FRAME_INVALID:task_frame_axes_not_orthogonal:forward_lateral",
+  "raw_request": {
+    "raw_sha256": "sha256:b0576e3457313abf9b20b68d564fb0b4eaa64f4c6bbcf0cba2b2bc568ed5a8c5",
+    "byte_length": 5578
+  },
+  "raw_response": {
+    "raw_sha256": "sha256:b9dc3744797201d694a9271c2050284de237ddd85d35eb3f841d8e7f488c23cd",
+    "byte_length": 5712
+  },
+  "forward_lateral_dot_product": -7.143677704934959e-09,
+  "unchanged_core_maximum_absolute_dot_product": 1e-09,
+  "diagnosis": "Adapter start normalizes the binary32 lateral, then separately normalizes its binary32 cross-product forward. Independent binary64 normalization of those quantized axes does not restore orthogonality. The first zero-amplitude BW5R-B command refuses before any neutral motor application. Its exact request and native response remain retained.",
+  "next_step": "Preserve lateral direction and derive the neutral forward by exact component swap/sign before common binary64 normalization; bind the change only to the selected neutral route and prove the exact refused request through the real adapter start and unchanged native core before a distinct full-gate attempt.",
+  "controller_changed": false,
+  "native_runtime_changed": false,
+  "original_refusal_may_be_regraded": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "sdk1_score": "14/20"
+}

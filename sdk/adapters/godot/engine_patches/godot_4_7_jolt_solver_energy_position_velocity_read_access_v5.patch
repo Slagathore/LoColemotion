@@ -1,0 +1,16 @@
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
+index be8e31b74e..5feb86f497 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
++++ b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
+@@ -2766,8 +2766,9 @@ void PhysicsSystem::JobSolvePositionConstraints(PhysicsUpdateContext *ioContext,
+ void PhysicsSystem::JobSolvePositionConstraints(PhysicsUpdateContext *ioContext, PhysicsUpdateContext::Step *ioStep)
+ {
+ #ifdef JPH_ENABLE_ASSERTS
+-	// We fix up position errors
+-	BodyAccess::Grant grant(BodyAccess::EAccess::None, BodyAccess::EAccess::ReadWrite);
++	// Position constraints write positions while SporeSpore energy telemetry reads
++	// velocities immediately before and after each correction.
++	BodyAccess::Grant grant(BodyAccess::EAccess::Read, BodyAccess::EAccess::ReadWrite);
+ 
+ 	// Can only deactivate bodies
+ 	BodyManager::GrantActiveBodiesAccess grant_active(false, true);

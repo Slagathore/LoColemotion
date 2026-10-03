@@ -1,0 +1,202 @@
+{
+  "schema_version": "sporespore_development_v34_recontact_diagnosis_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "post_exposure_retained_data_diagnosis",
+    "question_class": "development"
+  },
+  "source_commit": "ef4636af0eaac60a997d43547178d575ec52b1f9",
+  "selection_rule": "All 400 resumed commands, every increment of every native recontact-hold counter, and every native timeout increment. No episode selection by outcome.",
+  "measured_body_sample_count": 1600,
+  "floor_reference": {
+    "frame_id": "sporespore_state_world_y_up_metres_v1",
+    "geometry_source_sha256": "sha256:4d11f74889c12d6160fd077666406b1a692cda83bc6c41e2b02e75f93a5ec3a1",
+    "height_world_m": 0.0,
+    "schema_version": "sporespore_static_horizontal_floor_reference_v1",
+    "source_instance_id": "a6d42a5bf6964fc0905622250f79d331:kick_passive_recovery_resume:floor:71605159476",
+    "source_kind": "declared_static_horizontal_surface",
+    "surface_id": "floor"
+  },
+  "coordinate_conversion_maximum_axis_difference": 2.2777774064867676e-07,
+  "per_limb": [
+    {
+      "limb": "front_left",
+      "scheduled_swing_command_count": 74,
+      "first_swing_command_local": 1,
+      "last_swing_command_local": 74,
+      "terminal_gait_step": 290.0,
+      "phase_sync_hold_step_count": 77.0,
+      "release_hold_step_count": 2.0,
+      "recontact_hold_step_count": 120.0
+    },
+    {
+      "limb": "front_right",
+      "scheduled_swing_command_count": 21,
+      "first_swing_command_local": 380,
+      "last_swing_command_local": 400,
+      "terminal_gait_step": 290.0,
+      "phase_sync_hold_step_count": 199.0,
+      "release_hold_step_count": 0.0,
+      "recontact_hold_step_count": 0.0
+    },
+    {
+      "limb": "rear_left",
+      "scheduled_swing_command_count": 0,
+      "first_swing_command_local": null,
+      "last_swing_command_local": null,
+      "terminal_gait_step": 290.0,
+      "phase_sync_hold_step_count": 199.0,
+      "release_hold_step_count": 0.0,
+      "recontact_hold_step_count": 0.0
+    },
+    {
+      "limb": "rear_right",
+      "scheduled_swing_command_count": 74,
+      "first_swing_command_local": 202,
+      "last_swing_command_local": 275,
+      "terminal_gait_step": 279.0,
+      "phase_sync_hold_step_count": 111.0,
+      "release_hold_step_count": 2.0,
+      "recontact_hold_step_count": 97.0
+    }
+  ],
+  "recontact_hold_episodes": [
+    {
+      "limb": "front_left",
+      "first_command_local": 76,
+      "last_command_local": 195,
+      "held_command_count": 120,
+      "precommand_native_support_count": 0,
+      "requested_direction_unreachable_count": 120,
+      "unreachable_even_with_unrestricted_planar_joint_angles_count": 32,
+      "unrestricted_planar_reach_lower_bound_m": {
+        "count": 120,
+        "minimum": -0.005704408270808425,
+        "mean": -0.0024866873546377064,
+        "maximum": 0.0018652398895351863,
+        "rms": 0.003640479080904199
+      },
+      "nominal_actual_floor_clearance_m": {
+        "count": 120,
+        "minimum": 0.0005849615142893699,
+        "mean": 0.0062491077911900035,
+        "maximum": 0.014869960182145814,
+        "rms": 0.00776322946502496
+      },
+      "ideal_goal_floor_clearance_m": {
+        "count": 120,
+        "minimum": 0.000470654897158751,
+        "mean": 0.004118369967637267,
+        "maximum": 0.009158448369528449,
+        "rms": 0.005121643957456898
+      },
+      "postcommand_knee_reference_error_rad": {
+        "count": 120,
+        "minimum": 0.00345267029479146,
+        "mean": 0.0831450887336569,
+        "maximum": 0.32175686955451965,
+        "rms": 0.12454222847951911
+      }
+    },
+    {
+      "limb": "rear_right",
+      "first_command_local": 277,
+      "last_command_local": 373,
+      "held_command_count": 97,
+      "precommand_native_support_count": 2,
+      "requested_direction_unreachable_count": 0,
+      "unreachable_even_with_unrestricted_planar_joint_angles_count": 0,
+      "unrestricted_planar_reach_lower_bound_m": {
+        "count": 97,
+        "minimum": -0.017123361703016593,
+        "mean": -0.011435863765187373,
+        "maximum": -0.0073409289698276314,
+        "rms": 0.011880821170325916
+      },
+      "nominal_actual_floor_clearance_m": {
+        "count": 97,
+        "minimum": -5.834867832524293e-06,
+        "mean": 0.005030832043885098,
+        "maximum": 0.018071341437202362,
+        "rms": 0.006715081317346483
+      },
+      "ideal_goal_floor_clearance_m": {
+        "count": 97,
+        "minimum": -2.498970752551344e-09,
+        "mean": -3.9993302770293284e-11,
+        "maximum": 1.1013506356905012e-09,
+        "rms": 5.49986605337242e-10
+      },
+      "postcommand_knee_reference_error_rad": {
+        "count": 97,
+        "minimum": -0.0035399750236469463,
+        "mean": 0.07833410505408839,
+        "maximum": 0.19426878693427732,
+        "rms": 0.09852408633668867
+      }
+    }
+  ],
+  "native_timeouts": [
+    {
+      "limb": "front_left",
+      "command_local_step": 196,
+      "held_steps_before_timeout": 120.0,
+      "gait_step_before": 162.0,
+      "gait_step_after": 163.0
+    }
+  ],
+  "original_false_walking_receipts": [
+    "every_limb_forward_relocation",
+    "every_limb_two_contact_cycles",
+    "minimum_evidence_forward_translation",
+    "minimum_final_forward_translation"
+  ],
+  "original_contact_cycle_count_by_limb": {
+    "front_left": 4,
+    "front_right": 0,
+    "rear_left": 0,
+    "rear_right": 5
+  },
+  "original_forward_advance_m": 0.019951651740741427,
+  "original_terminal_four_contact_recovery": true,
+  "interpretation": "The first landing direction exceeds link reach throughout its 120-step hold. In some samples even arbitrary planar joint angles cannot reach the floor at the measured torso pose. The second landing has a geometrically reachable goal but delayed measured tracking. This distinguishes geometric reach from tracking and explains the recorded schedule delay, not a complete physical causal model.",
+  "next_bounded_work": "Develop a separately versioned reachable-touchdown/support-height proposal using the retained floor and pose contract. Check full leg reach and supported-body compatibility before another native candidate. Preserve joint limits, reference slew, contact rules and official gates; do not solve this negative by rethresholding or extending its consumed horizon.",
+  "geometry_limit": "Nominal capsule surface and ideal hinges omit contact margins and measured joint compliance; positive geometric clearance is not a replacement contact rule. The unrestricted reach bound relaxes joint limits and holds the measured torso fixed. No alternative trajectory or force-aware controller is evaluated.",
+  "tracking_alignment": "Command n uses trace n-1; measured joints at that input are compared to command n-1, not the current target. No terminal next-input pose is invented.",
+  "original_evaluation_changed": false,
+  "physical_cause_proven": false,
+  "alternate_physical_outcome_predicted": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "native_physics_read_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "source_closure": {
+    "path": "sdk/development/recovery_attempts/beb9c66e4c194930b6283fd227613f44.json",
+    "raw_sha256": "sha256:6def9dec1a1c4b6d1884678160d609cb977b90b22a5512d06d60d33498948ea2"
+  },
+  "source_report": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-beb9c66e4c194930b6283fd227613f44/children/kick_passive_recovery_resume/worker_report.json",
+    "byte_length": 285067752,
+    "raw_sha256": "sha256:caee59937ad3f6ba161c4eb2b0ccd8792cf8eedfd4865853109c73dcaa04e63d"
+  },
+  "analysis_sources": [
+    {
+      "path": "sdk/conformance/development_recovery_v34_recontact_diagnosis.py",
+      "raw_sha256": "sha256:c98a1be5f78e987dbe0fab47ad3f2349069b7d4f7396edf6cacacecfbc36f6ba"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v28_contact_geometry.py",
+      "raw_sha256": "sha256:ce65485666b0659551530e0a72019138790c26d405aca69a30b85a958a4673e3"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v32_placement_diagnosis.py",
+      "raw_sha256": "sha256:0c04c214ec0cd90ce6442d4e8ce0a351b20203f21d4da9bf8d2cb8fe1de9142a"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v33_support_tracking_diagnosis.py",
+      "raw_sha256": "sha256:80c91fa7e263aad52265b40476290e36c081a9df9948f66f9db3e6251f1c4286"
+    }
+  ]
+}

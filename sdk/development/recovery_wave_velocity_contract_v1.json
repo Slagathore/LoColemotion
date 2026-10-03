@@ -1,0 +1,63 @@
+{
+  "schema_version": "sporespore_development_recovery_wave_velocity_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V38",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_reference_velocity_v1",
+  "policy_id": "sporespore_balanced_wave_recovery_wave_velocity_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_wave_velocity_profile_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_wave_velocity_memory_v1",
+  "native_actuation_receipt_schema": "sporespore_recovery_wave_velocity_controller_step_receipt_v1",
+  "reference_velocity_mode_id": "bounded_pose_separated_wave_velocity_tracking_v1",
+  "unchanged_swing_lift_mode_id": "phase_only_existing_loaded_peak_swing_lift_v1",
+  "unchanged_stance_support_mode_id": "explicit_floor_joint_feasible_stance_height_reference_slew_v1",
+  "rule": "Keep the current floor/feasible-height geometry, goals, position-reference slew and feedback. Replace only V37's full reference finite-difference feedforward with the bounded change attributable to upstream wave inputs, evaluated twice at the SAME current measured pose, floor, preceding position reference, sample interval and current speed caps. This excludes support-goal catch-up and the direct measured-pose contribution. Suppress feedforward at initialization and whenever either previous or current wave amplitude is zero.",
+  "formula": {
+    "wave_snapshot": "Ordered four-limb nominal directions, smooth knee fractions, scheduled phase steps, plus the zero/nonzero amplitude activation boolean, captured before support composition.",
+    "G": "The unchanged pure support-plane goal calculation, including four-limb feasible-height intersection and per-limb stance participation.",
+    "S": "S(goal,old,cap,dt) = old + clamp(goal-old,-cap*dt,cap*dt).",
+    "actual_reference": "r_new = S(G(current_pose,current_wave), r_previous, current_cap, dt), exactly the unchanged V37 position path.",
+    "comparison_reference": "r_comparison = S(G(current_pose,previous_wave), r_previous, current_cap, dt). Never use the previous measured pose or a different slew origin for this comparison.",
+    "reference_rate": "If initialized, dt>0, and both wave snapshots active: clamp((r_new-r_comparison)/dt,-current_cap,current_cap); otherwise zero.",
+    "geometric_velocity_before_clamp": "8.0*(r_new-q_measured) - 0.65*q_dot_measured + 1.65*reference_rate",
+    "final_motor_velocity": "Existing selected speed clamp and motor direction sign -1.0."
+  },
+  "memory_contract": {
+    "state": "A distinct V38 memory identity, existing support-reference time/positions, and an optional previous wave snapshot.",
+    "initialization": "Previous wave snapshot is absent if and only if the support reference has no previous sample time. First command has dt=0, unchanged neutral references and zero reference rate.",
+    "update": "After each valid command store that command's four upstream wave inputs and activation, including zero-amplitude commands. Do not infer previous amplitude from a new command or reconstruct an upstream wave from the current pose.",
+    "validation": "Closed schema, finite bounded directions/fractions, integral in-cycle phases, boolean activation and exact limb order. Reject missing initialized snapshot, inconsistent time state, crossed identity, malformed or out-of-domain counterfactual geometry. Never silently use V37 feedforward as a fallback."
+  },
+  "required_receipt": "Distinct top-level identity; bounded_pose_separated_wave_velocity_tracking_v1, ordered reference rates, comparison references and enough current/previous wave provenance for independent arithmetic replay. Old policies omit all new optional fields byte-exactly.",
+  "preserve": [
+    "All V37 actual position goals, support-height plans, reference slew, joint limits, gains, speed/force limits and truthful saturation flags.",
+    "Upstream steering, contact gates, scheduled gait, smooth lift and all recovery/standing/prefix behavior.",
+    "All old native profile, memory, transport and receipt bytes; new state belongs only to V38.",
+    "Original evaluator, thresholds, seed partition and physical schedule; 400-command walk, 986-step tail and 1338-step child cap remain unchanged."
+  ],
+  "required_zero_world_checks": [
+    "Static wave: zero proposed feedforward for changing body poses or position-reference catch-up; changing reachable wave: nonzero rate when slew endpoints differ.",
+    "Initialization, activation/deactivation and same-slew-endpoint cases; finite dt, speed limits and truthful output saturation.",
+    "Native 400-saved-input stateless/session exact replay with a chained V38 wave memory, not independent per-row memory resets.",
+    "Same-input V37 comparison: exact actual position goals, reference positions, feasible plans, upstream gates and limits; only declared velocity outputs, new memory and receipt identities may differ.",
+    "Independent reconstruction of every comparison reference, rate and final motor velocity, including raw transport precision.",
+    "Byte-exact predecessor policies and recovery fixtures; explicit nonrunnable component before shared-route integration."
+  ],
+  "risks": [
+    "Upstream nominal directions include steering and optional placement feedback. This is direct support-pose separation, not a pure open-loop phase derivative and not force-aware recovery.",
+    "Counterfactual goals at the same current pose can still encounter near-extension sensitivity and nonlinear clamps. Rate limits do not prove acceleration or native contact stability.",
+    "If both goals hit the same slew endpoint, the rate is zero even while unslewed goals differ; slow tracking or landing holds can therefore remain.",
+    "Removing activation/catch-up feedforward may restore slow startup or landing; the existing position feedback remains but behavior is unproved.",
+    "Saved-state saturation counts are command arithmetic, not a prediction of the next physical trajectory or evidence of superiority."
+  ],
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

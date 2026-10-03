@@ -1,0 +1,94 @@
+{
+  "schema_version": "sporespore_studio_scenario_catalog_v1",
+  "physical_acceptance_authority": false,
+  "title": "Tested and tuned, not a trained neural model",
+  "explanation": "These controllers are deterministic policies. Development iterations tuned their behavior; retained experiments test bounded claims. New bodies and interactions remain exploratory. The sequence below explains the evidence lineage, not an exhaustive training dataset.",
+  "sources": [
+    {
+      "path": "recovery/r10dh_release_gate_adoption_v2.json",
+      "sha256": "b02160d80c1fec22417eb12c8f61e29f41a3a12a397ba349cad5dc3dcddd84e9"
+    },
+    {
+      "path": "recovery/r10dh_held_out_physical_closure_v2.json",
+      "sha256": "29a59b71ca000d1be7cfcd19d38cbe341ed90aecc9b3439f315b2dd05a197003"
+    },
+    {
+      "path": "explorer/showcase_closure_v1.json",
+      "sha256": "babb431b67c6a2391ced76db22ce11d219f5d8ef67f89452c150a792da3185fd"
+    },
+    {
+      "path": "explorer/studio/mujoco_edited_body_observation_v1.json",
+      "sha256": "181f62901a18f42aaa233e78507b9913b9a14b4290b513f7836df2d8ccc38364"
+    },
+    {
+      "path": "explorer/studio/performance_baseline_v1.json",
+      "sha256": "b1a7ea912ec5a97b2592d850093129bf84c2e49125e9a0baca8bc7099a218148"
+    },
+    {
+      "path": "explorer/studio/godot_desktop_interaction_v1.json",
+      "sha256": "3aa2def25da2144b58ef6b22b2d7afdedca60b844d2c87deb24b1de8dd3973b6"
+    }
+  ],
+  "entries": [
+    {
+      "title": "01 | Finite recovery acceptance - Godot / S169",
+      "engine": "godot_jolt",
+      "seed": 169,
+      "phase": 74,
+      "duration": 15,
+      "status": "Retained finite acceptance: six cells, phases 72-74",
+      "story": "The R10DH held-out population contains three fresh matched pairs on exact S169. All six cells were positive. Its prescribed 0.25 N.s kick, controller, runtime and schedule define the accepted scope. Loading this recipe configures a NEW development demonstration; it does not rerun or extend the consumed held-out population. Studio now starts the separate live walking successor, with your choice of kick timing; it does not execute the old recovery schedule.",
+      "source": "recovery/r10dh_release_gate_adoption_v2.json"
+    },
+    {
+      "title": "02 | Stand-up and stabilization - Godot showcase",
+      "engine": "godot_jolt",
+      "seed": 169,
+      "phase": 74,
+      "duration": 15,
+      "status": "Retained interface observation; slow diagnostic route",
+      "story": "The standalone viewer completed real stand-up, the scheduled impulse and continuation through the inherited recovery controller. The controller can select upright stabilization when the state allows it. This is the instrumented route: about 959.5 loop seconds for 17.008 simulated seconds in the retained run. It is not yet the fast interactive Godot route. Loading here starts the current live walking successor, not the historical recovery demonstration.",
+      "source": "explorer/showcase_closure_v1.json"
+    },
+    {
+      "title": "03 | Walk, impulse, terminal hold - Rapier / S169",
+      "engine": "rapier_parry",
+      "seed": 169,
+      "phase": 0,
+      "duration": 27,
+      "status": "Retained interface observation; real-time paced",
+      "story": "The original PH1 route walked, accepted an interactive torso impulse and completed its terminal pose/contact restoration. Retained native loop: 26.433 simulated seconds in 26.427 wall seconds. This route uses direct native impulse application and its own characterized motor mapping. It is a different task from Godot recovery.",
+      "source": "explorer/showcase_closure_v1.json"
+    },
+    {
+      "title": "04 | Earlier walk and hold - MuJoCo / S169",
+      "engine": "mujoco",
+      "seed": 169,
+      "phase": 0,
+      "duration": 30,
+      "status": "Retained MV6 observation; Studio loads exploratory successor",
+      "story": "The original MV6 interface run completed 24.933 simulated seconds in 27.637 native-loop wall seconds, including its terminal hold. Studio now loads the faster exploratory walking loop for this body. The old result remains attached to MV6; it is not transferred to the new loop.",
+      "source": "explorer/showcase_closure_v1.json"
+    },
+    {
+      "title": "05 | Edited-body exploration - MuJoCo / seed 42",
+      "engine": "mujoco",
+      "seed": 42,
+      "phase": 0,
+      "duration": 8,
+      "status": "One audited development observation; no generalization claim",
+      "story": "A previously untested valid generated body completed 960 outer steps and a scheduled 0.25 N.s kick, advancing 0.89217 m in 8 simulated seconds at real-time pace. The first integration exposed stale displayed poses; a fresh successor fixed publication timing and passed the independent trace audit. Loading the recipe prepares a fresh interactive run; apply a kick manually if desired.",
+      "source": "explorer/studio/mujoco_edited_body_observation_v1.json"
+    },
+    {
+      "title": "06 | Live walking and your kicks - Godot / S169",
+      "engine": "godot_jolt",
+      "seed": 169,
+      "phase": 74,
+      "duration": 15,
+      "status": "Audited live desktop interaction; recovery after falling remains open",
+      "story": "A fresh desktop run completed 15 walking seconds, with two user-button impulses applied at the next native step. Button-to-display response was 70 and 82 ms. It advanced 1.003 m, at 0.71 times real time with the viewer running. Stand-up still took 32 seconds. This is ordinary walking feedback, not a get-up controller. Loading starts a fresh exploratory setup and inherits no acceptance.",
+      "source": "explorer/studio/godot_desktop_interaction_v1.json"
+    }
+  ]
+}

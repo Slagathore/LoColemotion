@@ -1,0 +1,404 @@
+{
+  "schema_version": "sporespore_qsdk_r23d3_phase_balanced_preregistration_v1",
+  "status": "stage_zero_preregistered_no_workers_no_physical_authorization",
+  "campaign_id": "QSDK-R23D3-PHASE-BALANCED-BILATERAL-TURN-DEVELOPMENT",
+  "gate_id": "QSDK-R23D3",
+  "release_gate_id": "QSDK-R23",
+  "study_classification": "prospective_two_stage_exact_finite_outcome_exposed_adaptive_development_screen",
+  "purpose": "Test whether R23D2's signed outcome asymmetry depends on commanded-turn onset timing and observed support phase, then run the complete three-engine zero/positive/negative matrix only at a prospectively selected bilateral onset. The screen changes schedule timing and diagnostic retention, not controller policy, host semantics, morphology, force limits, or outcome thresholds.",
+  "lineage": {
+    "predecessor_id": "QSDK-R23D2",
+    "predecessor_closure_path": "sdk/turning/r23d2_physical_closure_v1.json",
+    "predecessor_closure_raw_sha256": "sha256:83fb890445f1355027ff5062c6d9c3f83792f124a9ee3c2561eab85efe249680",
+    "predecessor_status": "closed_consumed_invalid_incomplete_three_engine_aggregate_with_six_bounded_cell_results",
+    "predecessor_identity_reused": false,
+    "predecessor_world_rerun_permitted": false,
+    "r23d2_results_exposed_before_preregistration": true,
+    "controller_changed": false,
+    "fixture_changed": false,
+    "host_profiles_changed": false,
+    "outcome_thresholds_changed": false,
+    "turn_heading_magnitude_changed": false,
+    "turn_duration_changed": false,
+    "turn_onset_timing_changed": true,
+    "diagnostic_retention_changed": true,
+    "godot_failure_projection_changed": true
+  },
+  "disclosed_predecessor_results": {
+    "declared_world_count": 9,
+    "world_attempt_count": 9,
+    "world_build_count": 9,
+    "complete_report_count": 6,
+    "worker_failure_count": 3,
+    "valid_positive_cell_count": 4,
+    "valid_negative_cell_count": 2,
+    "godot_jolt_common_failure_stage": "settlement_complete",
+    "godot_jolt_common_failure_code": "QSDK_R23D2_GJT_SDK_EXECUTION_INVALID",
+    "godot_jolt_physical_trace_completed_count": 3,
+    "godot_jolt_exact_failed_execution_subpredicate_known": false,
+    "godot_jolt_retained_terminal_wave_ticks": {
+      "reference_zero": 2859,
+      "positive_heading": 2891,
+      "negative_heading": 2930
+    },
+    "godot_jolt_inferred_post_settle_controller_step_counts": {
+      "reference_zero": 2620,
+      "positive_heading": 2652,
+      "negative_heading": 2691
+    },
+    "godot_jolt_inference_basis": "retained_terminal_wave_tick_plus_one_minus_frozen_240_tick_settle",
+    "godot_jolt_frozen_expected_controller_step_count": 2992,
+    "godot_jolt_fixed_horizon_mismatch_forensic_hypothesis_supported": true,
+    "godot_jolt_horizon_hypothesis_is_not_a_reconstructed_r23d2_cell_report": true,
+    "rapier_positive_heading_passed": true,
+    "rapier_negative_heading_passed": false,
+    "mujoco_positive_heading_passed": true,
+    "mujoco_negative_heading_passed": false,
+    "rapier_negative_turn_phase_yaw_delta_rad": -2.6130051084181583,
+    "rapier_negative_maximum_tilt_rad": 1.8115031719207764,
+    "rapier_negative_torso_ground_contact_step_count": 2309,
+    "mujoco_negative_turn_phase_yaw_delta_rad": -0.15257912436083565,
+    "mujoco_negative_maximum_tilt_rad": 0.7443183021166428,
+    "mujoco_negative_torso_ground_contact_step_count": 0,
+    "portable_turning_established": false,
+    "bilateral_turning_established": false,
+    "cross_engine_equivalence_established": false
+  },
+  "prospective_hypotheses": {
+    "primary": "At least one of four quarter-cycle-spaced semantic onset timings permits both signed MuJoCo turn arms to remain execution-valid, walk, and produce the commanded yaw sign under the unchanged controller and thresholds.",
+    "mechanism": "If eligibility varies by onset timing and retained onset support state while command/oracle/native-application integrity remains exact, turn-onset support history is a supported development mechanism for R23D2's signed asymmetry.",
+    "null_or_nonselection": "If no onset timing is bilaterally eligible, the selector returns NONE and onset timing alone is not sufficient; a distinct controller successor is required.",
+    "saturation_interpretation": "Steering saturation and instability timing are retained as descriptive diagnostics. They are not a causal conclusion or a post-hoc selection surface.",
+    "godot_implementation_hypothesis": "R23D2's common Godot result was a post-physics execution-summary retention/accounting defect. Retained terminal ticks support, but cannot promote into a reconstructed R23D2 report, the hypothesis that the adaptive contact-gated Godot horizon produced fewer than the hard-coded 2992 controller steps. R23D3 must execute an explicit fixed 2992-step Godot authority horizon and expose every exact observed subpredicate before any Godot cell can be execution-valid."
+  },
+  "fixture": {
+    "descriptor_schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "campaign_seed": 21501,
+    "seed_population_status": "already_outcome_exposed_exact_finite_development_fixture",
+    "fresh_morphology_consumed": false,
+    "physics_hz": 120,
+    "authored_sliding_friction": 0.95,
+    "selected_candidate_id": "BW5R-B",
+    "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "gait_cycle_steps": 360,
+    "ordered_limb_ids": [
+      "rear_left",
+      "front_left",
+      "rear_right",
+      "front_right"
+    ],
+    "nominal_phase_offsets_steps": [0, 90, 180, 270],
+    "initial_perturbation_inherited_unchanged_from_r23d2": true
+  },
+  "stage_a_mujoco_onset_screen": {
+    "stage_id": "mujoco_onset_screen",
+    "engine_id": "mujoco",
+    "engine_family": "MuJoCo",
+    "host_profile_id": "mujoco_s169_per_actuator_force_limited_five_substep_vh5_validated_v1",
+    "purpose": "Use the fastest already-characterized real-physics adapter to identify an exact-finite bilateral onset candidate before spending Godot/Jolt and Rapier worlds.",
+    "onset_candidates": [
+      {
+        "onset_id": "onset_600",
+        "turn_start_semantic_step": 600,
+        "nominal_quarter_cycle_index": 0
+      },
+      {
+        "onset_id": "onset_690",
+        "turn_start_semantic_step": 690,
+        "nominal_quarter_cycle_index": 1
+      },
+      {
+        "onset_id": "onset_780",
+        "turn_start_semantic_step": 780,
+        "nominal_quarter_cycle_index": 2
+      },
+      {
+        "onset_id": "onset_870",
+        "turn_start_semantic_step": 870,
+        "nominal_quarter_cycle_index": 3
+      }
+    ],
+    "signed_arms": [
+      {
+        "arm_id": "positive_heading",
+        "turn_heading_offset_rad": 0.2,
+        "expected_yaw_delta_sign": 1
+      },
+      {
+        "arm_id": "negative_heading",
+        "turn_heading_offset_rad": -0.2,
+        "expected_yaw_delta_sign": -1
+      }
+    ],
+    "ordered_cell_ids": [
+      "mujoco__onset_600__positive_heading",
+      "mujoco__onset_600__negative_heading",
+      "mujoco__onset_690__positive_heading",
+      "mujoco__onset_690__negative_heading",
+      "mujoco__onset_780__positive_heading",
+      "mujoco__onset_780__negative_heading",
+      "mujoco__onset_870__positive_heading",
+      "mujoco__onset_870__negative_heading"
+    ],
+    "declared_cell_count": 8,
+    "declared_world_count": 8,
+    "all_cells_execute_without_outcome_based_early_stop": true,
+    "parallel_execution_permitted": false,
+    "replacement_or_selective_rerun_permitted": false
+  },
+  "stage_a_selector": {
+    "selection_domain": "onset_id",
+    "eligibility_rule": "Both signed cells for the onset are complete execution-valid reports, pass every unchanged turn-walk gate, produce at least 0.01 rad turn-phase yaw magnitude with the commanded sign, and pass the full diagnostic trace contract.",
+    "parsimony_order": [
+      "onset_600",
+      "onset_690",
+      "onset_780",
+      "onset_870"
+    ],
+    "selection_rule": "Select the first eligible onset in parsimony_order; otherwise select NONE.",
+    "none_is_valid_development_result": true,
+    "invalid_is_not_encoded_as_none": true,
+    "selection_authority": "authorize_the_predeclared_stage_b_matrix_only",
+    "controller_promotion_authority": false,
+    "release_authority": false
+  },
+  "stage_b_three_engine_confirmation": {
+    "stage_id": "three_engine_confirmation",
+    "launch_condition": "stage_a_result_is_valid_and_selected_onset_is_not_NONE",
+    "launch_forbidden_if_stage_a_invalid_incomplete_or_valid_none": true,
+    "ordered_engine_ids": [
+      "godot_jolt",
+      "rapier_parry",
+      "mujoco"
+    ],
+    "ordered_arm_ids": [
+      "reference_zero",
+      "positive_heading",
+      "negative_heading"
+    ],
+    "arm_heading_offsets_rad": {
+      "reference_zero": 0.0,
+      "positive_heading": 0.2,
+      "negative_heading": -0.2
+    },
+    "cell_id_template": "{engine_id}__{selected_onset_id}__{arm_id}",
+    "declared_cell_count_if_launched": 9,
+    "declared_world_count_if_launched": 9,
+    "all_nine_cells_execute_without_outcome_based_early_stop": true,
+    "parallel_execution_permitted": false,
+    "replacement_or_selective_rerun_permitted": false,
+    "complete_nine_report_aggregate_required": true,
+    "stage_a_mujoco_reports_are_not_substituted_for_stage_b_mujoco_reports": true
+  },
+  "command_schedule": {
+    "schema_version": "sporespore_qsdk_r23d3_selected_onset_turn_return_v1",
+    "domain": "controller_semantic_step",
+    "controller_semantic_step_count": 2992,
+    "turn_duration_steps": 1200,
+    "reference_recovery_duration_steps": 600,
+    "after_reference_recovery": "hold_reference_heading",
+    "turn_heading_offset_source": "arm.turn_heading_offset_rad",
+    "reference_heading_source": "state.task_frame.reference_yaw_rad",
+    "all_engine_physical_workers_must_execute_exact_fixed_controller_horizon": true,
+    "godot_contact_gated_evidence_termination_must_not_bound_controller_horizon": true,
+    "onset_candidates_are_semantic_timing_interventions_not_claimed_exact_physical_phase_bins": true,
+    "observed_controller_memory_and_support_state_at_onset_required": true
+  },
+  "unchanged_outcome_gates": {
+    "maximum_absolute_requested_or_held_steering_fraction": 0.4,
+    "minimum_absolute_signed_turn_phase_yaw_delta_rad": 0.01,
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "zero_torso_ground_contact_required": true,
+    "zero_controller_errors_required": true,
+    "zero_safe_no_actuation_required": true,
+    "zero_nonfinite_observations_required": true,
+    "zero_actuator_application_mismatches_required": true,
+    "exact_native_application_count_required": true,
+    "recovery_heading_measured_not_thresholded": true
+  },
+  "diagnostic_trace_contract": {
+    "trace_schema_version": "sporespore_qsdk_r23d3_turn_diagnostic_trace_v1",
+    "row_schema_version": "sporespore_qsdk_r23d3_turn_diagnostic_trace_row_v1",
+    "rows_per_complete_cell": 2992,
+    "one_row_per_controller_semantic_step_required": true,
+    "ordered_contiguous_semantic_steps_required": true,
+    "hash_projection": "sha256_canonical_sorted_key_ndjson_rows_v1",
+    "content_addressed_before_terminal_entry_required": true,
+    "terminal_entry_records_trace_raw_sha256_and_byte_length": true,
+    "required_row_fields": [
+      "schema_version",
+      "cell_id",
+      "semantic_step",
+      "segment_id",
+      "desired_heading_offset_rad",
+      "measured_yaw_rad",
+      "desired_heading_error_rad",
+      "yaw_tracking_error_rad",
+      "requested_steering_fraction",
+      "held_steering_fraction",
+      "steering_saturated",
+      "torso_position_world_m",
+      "torso_height_m",
+      "torso_tilt_rad",
+      "torso_ground_contact",
+      "ordered_limb_phase_before",
+      "ordered_foot_contacts_before",
+      "ordered_foot_contacts_after",
+      "validated_portable_command_count",
+      "native_actuation_application_count",
+      "oracle_passed"
+    ],
+    "required_limb_phase_fields": [
+      "limb_id",
+      "gait_step",
+      "local_phase_step",
+      "release_hold_step_count"
+    ],
+    "onset_snapshot_required_fields": [
+      "semantic_step",
+      "ordered_limb_phase_before",
+      "ordered_foot_contacts_before",
+      "torso_position_world_m",
+      "measured_yaw_rad",
+      "requested_steering_fraction",
+      "held_steering_fraction"
+    ],
+    "saturation_definition": "abs(requested_steering_fraction) >= 0.4 or abs(held_steering_fraction) >= 0.4 within 1e-12",
+    "full_trace_is_diagnostic_and_integrity_evidence_not_population_authority": true
+  },
+  "stage_report_contract": {
+    "zero_world_projection_schema_version": "sporespore_qsdk_r23d3_synthetic_cell_projection_v1",
+    "future_physical_report_schema_version": "sporespore_qsdk_r23d3_engine_cell_report_v1",
+    "selector_requires_observed_turn_phase_yaw_delta_rad": true,
+    "signed_yaw_response_recomputed_by_evaluator": true,
+    "production_evaluator_recomputes_every_unchanged_outcome_gate": true,
+    "worker_authored_outcome_pass_bits_are_not_selection_authority": true,
+    "required_outcome_fields": [
+      "walking_gate_passed",
+      "turn_phase_yaw_delta_rad",
+      "signed_yaw_response_passed",
+      "outcome_gate_passed",
+      "failed_gate_ids"
+    ],
+    "future_physical_report_required_measurement_fields": [
+      "final_forward_displacement_m",
+      "turn_phase_yaw_delta_rad",
+      "maximum_absolute_requested_steering_fraction",
+      "maximum_absolute_held_steering_fraction",
+      "maximum_tilt_rad",
+      "minimum_torso_height_m",
+      "contact_cycle_count_by_limb",
+      "torso_ground_contact_step_count",
+      "controller_error_count",
+      "safe_no_actuation_count",
+      "nonfinite_observation_count",
+      "actuator_application_mismatch_count",
+      "controller_semantic_step_count",
+      "validated_portable_command_count",
+      "native_actuation_application_count"
+    ]
+  },
+  "godot_post_world_failure_contract": {
+    "summary_schema_version": "sporespore_qsdk_r23d3_godot_execution_predicate_summary_v1",
+    "retained_on_every_post_world_success_or_failure": true,
+    "required_predicates": [
+      {
+        "predicate_id": "sdk_summary_ok",
+        "source_path": "sdk_authority_summary.ok",
+        "expected_value": true
+      },
+      {
+        "predicate_id": "sdk_failure_code_empty",
+        "source_path": "sdk_authority_summary.failure_code",
+        "expected_value": ""
+      },
+      {
+        "predicate_id": "sdk_step_count",
+        "source_path": "sdk_authority_summary.step_count",
+        "expected_value": 2992
+      },
+      {
+        "predicate_id": "sdk_safe_no_actuation_count",
+        "source_path": "sdk_authority_summary.safe_no_actuation_count",
+        "expected_value": 0
+      },
+      {
+        "predicate_id": "sdk_mismatch_count",
+        "source_path": "sdk_authority_summary.mismatch_count",
+        "expected_value": 0
+      },
+      {
+        "predicate_id": "sdk_validated_command_count",
+        "source_path": "sdk_authority_summary.validated_balanced_wave_command_count",
+        "expected_value": 23936
+      },
+      {
+        "predicate_id": "sdk_native_application_count",
+        "source_path": "sdk_authority_summary.native_actuation_application_count",
+        "expected_value": 23936
+      }
+    ],
+    "each_predicate_retains_expected_observed_passed_and_value_type": true,
+    "raw_sdk_authority_summary_retained": true,
+    "grouped_failure_without_predicate_summary_forbidden": true,
+    "real_shaped_one_field_mutation_canary_per_predicate_required_before_physics": true,
+    "unknown_post_world_failure_requires_raw_summary_and_stage_receipt": true,
+    "fixed_controller_horizon_step_count": 2992,
+    "adaptive_contact_gated_terminal_end_for_controller_trace_forbidden": true,
+    "zero_world_worker_preflight_must_prove_fixed_horizon_configuration_before_fixture_insertion": true,
+    "post_world_fixed_horizon_receipt_required": true
+  },
+  "result_classification": {
+    "valid_selected_stage_a": "All eight stage-A terminal entries are complete and execution-valid and at least one onset is bilaterally eligible under the frozen selector.",
+    "valid_none_stage_a": "All eight stage-A terminal entries are complete and execution-valid but no onset is bilaterally eligible; stage B must not open.",
+    "invalid_or_incomplete_stage_a": "Any stage-A entry is missing, duplicated, reordered, a worker failure, or execution-integrity invalid; stage B must not open.",
+    "valid_positive_complete": "Stage A validly selects an onset and all nine stage-B terminal entries are complete, execution-valid, and pass their unchanged outcome gates.",
+    "valid_negative_complete": "Stage A validly selects an onset and all nine stage-B terminal entries are complete and execution-valid, but at least one unchanged outcome gate fails.",
+    "invalid_or_incomplete_complete": "Stage A selected an onset but any stage-B cell is missing, duplicated, reordered, a worker failure, or execution-integrity invalid.",
+    "none_is_never_an_invalid_sentinel": true
+  },
+  "future_implementation_requirements": {
+    "stage_a_physical_worker_count": 0,
+    "stage_b_physical_worker_count": 0,
+    "production_evaluator_implemented": false,
+    "aggregate_supervisor_implemented": false,
+    "zero_world_godot_execution_predicate_projector_implemented": true,
+    "physical_godot_execution_predicate_projector_implemented": false,
+    "godot_fixed_controller_horizon_physical_worker_implemented": false,
+    "godot_fixed_horizon_zero_world_worker_preflight_implemented": false,
+    "godot_fixed_horizon_required_before_physical_authorization": true,
+    "full_trace_writer_implemented_engine_count": 0,
+    "complete_zero_world_gate_required": true,
+    "all_source_raw_hashes_must_be_git_blob_or_declared_checkout_projection_reproducible": true,
+    "clean_pushed_source_equals_origin_and_live_github_required": true,
+    "source_exact_full_godot_v2_attestation_required": true,
+    "global_locomotion_operation_lock_required": true,
+    "content_addressed_retention_before_consumption_required": true,
+    "serial_execution_required": true,
+    "single_supervisor_attempt_required": true
+  },
+  "authorization": {
+    "physical_execution_authorized": false,
+    "physical_process_launch_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "reason": "Stage zero freezes the question, sequential design, selector, diagnostics, exact Godot accounting projection, fixed 2992-step Godot horizon requirement, and claim boundary before any successor worker or physical authorization exists."
+  },
+  "claim_boundary": {
+    "stage_zero_design_complete": true,
+    "stage_a_result_exists": false,
+    "stage_b_result_exists": false,
+    "command_conditioned_turning": false,
+    "bilateral_signed_turning": false,
+    "portable_basic_turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

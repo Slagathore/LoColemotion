@@ -1,0 +1,153 @@
+{
+  "schema_version": "sporespore_conformance_transitive_historical_audit_contract_v1",
+  "contract_id": "THA1-MATERIAL-PUBLICATION-TRANSITIVE-EXECUTION",
+  "status": "prospective_duplicate_top_level_execution_removal_uncommissioned",
+  "purpose": "Execute the frozen material-publication closure lineage once through its existing BW27P transitive process graph instead of redundantly launching already-covered descendants again from the canonical runner.",
+  "classification": "zero_world_conformance_execution_graph_optimization",
+  "canonical_root": {
+    "audit_path": "tests/test_bw27p_material_profile_publication_closure.ps1",
+    "cap1_duration_seconds": 350.1956976,
+    "world_build_count": 0,
+    "expected_unique_audit_count": 8,
+    "expected_terminal_marker_count": 10
+  },
+  "transitive_graph": [
+    {
+      "parent": "tests/test_bw27p_material_profile_publication_closure.ps1",
+      "ordered_children": [
+        "tests/test_bw27m_material_characterization_closure.ps1",
+        "tests/test_bw24p_material_profile_publication_closure.ps1"
+      ]
+    },
+    {
+      "parent": "tests/test_bw24p_material_profile_publication_closure.ps1",
+      "ordered_children": [
+        "tests/test_bw24m_material_profile_publication_closure.ps1",
+        "tests/test_bw24m_material_characterization_closure.ps1"
+      ]
+    },
+    {
+      "parent": "tests/test_bw24m_material_profile_publication_closure.ps1",
+      "ordered_children": [
+        "tests/test_bw24m_material_characterization_closure.ps1",
+        "tests/test_bw22m_material_profile_publication_closure.ps1"
+      ]
+    },
+    {
+      "parent": "tests/test_bw22m_material_profile_publication_closure.ps1",
+      "ordered_children": [
+        "tests/test_bw22m_material_characterization_closure.ps1",
+        "tests/test_bw20f_material_profile_publication_closure.ps1"
+      ]
+    },
+    {
+      "parent": "tests/test_bw20f_material_profile_publication_closure.ps1",
+      "ordered_children": []
+    }
+  ],
+  "direct_invocations_removed_from_canonical_runner": [
+    {
+      "audit_path": "tests/test_bw24m_material_characterization_closure.ps1",
+      "cap1_duration_seconds": 50.2763239
+    },
+    {
+      "audit_path": "tests/test_bw27m_material_characterization_closure.ps1",
+      "cap1_duration_seconds": 38.2715321
+    },
+    {
+      "audit_path": "tests/test_bw20f_material_profile_publication_closure.ps1",
+      "cap1_duration_seconds": 69.5340215
+    },
+    {
+      "audit_path": "tests/test_bw22m_material_characterization_closure.ps1",
+      "cap1_duration_seconds": 51.2721721
+    },
+    {
+      "audit_path": "tests/test_bw22m_material_profile_publication_closure.ps1",
+      "cap1_duration_seconds": 161.7960704
+    },
+    {
+      "audit_path": "tests/test_bw24m_material_profile_publication_closure.ps1",
+      "cap1_duration_seconds": 152.5506682
+    },
+    {
+      "audit_path": "tests/test_bw24p_material_profile_publication_closure.ps1",
+      "cap1_duration_seconds": 176.6913438
+    }
+  ],
+  "direct_invocations_retained": [
+    {
+      "audit_path": "tests/test_bw20f_material_characterization_closure.ps1",
+      "reason": "The BW20F publication closure does not transitively execute its characterization closure."
+    },
+    {
+      "audit_path": "tests/test_bw27p_material_profile_publication_closure.ps1",
+      "reason": "This is the fail-closed root that executes the declared transitive lineage."
+    }
+  ],
+  "retained_cap1_witness": {
+    "profile_run_id": "20260811T010535Z-8262f853-d3eacc985814473a8a582e5b946532c9",
+    "source_commit": "8262f853d5dc5d59d7ba50f1991eaacc9608c3c4",
+    "audit_ordinal": 24,
+    "audit_duration_seconds": 350.1956976,
+    "stdout_sha256": "sha256:7b0fbb776728530d9716c5a22d880ec18d7b5061c7c053af243670093005e4c1",
+    "stdout_byte_length": 2655,
+    "ordered_terminal_prefixes": [
+      "BW27P-PROFILE HISTORICAL_ATTEMPT_CONTRACT_PASS ",
+      "BW27M_MATERIAL_CLOSURE_PASS ",
+      "BW24M_MATERIAL_CLOSURE_PASS ",
+      "BW22M_MATERIAL_CLOSURE_PASS ",
+      "BW20F_PROFILE_CLOSURE_PASS ",
+      "BW22M_PROFILE_CLOSURE_PASS ",
+      "BW24M_PROFILE_CLOSURE_PASS ",
+      "BW24M_MATERIAL_CLOSURE_PASS ",
+      "BW24P_PROFILE_CLOSURE_PASS ",
+      "BW27P_PROFILE_CLOSURE_PASS "
+    ]
+  },
+  "development_mechanism_observation": {
+    "status": "posthoc_read_only_target_characterization_no_acceptance_authority",
+    "evidence_root_top_level_directory_count": 335,
+    "evidence_root_top_level_file_count": 17,
+    "recursive_attempt_filename_count": 43,
+    "bw27p_attempt_match_count": 1,
+    "first_scan_seconds": 23.5616723,
+    "four_repeat_scan_seconds": [
+      21.3275286,
+      17.9258133,
+      17.1296655,
+      17.5211103
+    ],
+    "four_repeat_total_seconds": 73.9041177,
+    "publication_levels_with_global_recursive_attempt_scan": 4,
+    "directory_cache_did_not_remove_scan_tax": true
+  },
+  "prospective_performance_hypothesis": {
+    "cap1_baseline_no_godot_seconds": 1597.2312833,
+    "sum_of_removed_standalone_cap1_durations_seconds": 700.392132,
+    "estimated_successor_seconds": 896.8391513,
+    "estimated_reduction_percent": 43.8503891,
+    "estimated_speedup_ratio": 1.7809562,
+    "estimate_is_not_acceptance": true,
+    "clean_serialized_successor_measurement_required": true
+  },
+  "required_gates": {
+    "all_graph_sources_must_match_cep1_raw_hashes": true,
+    "retained_cap1_stdout_and_cas_must_verify": true,
+    "terminal_markers_must_match_declared_order_and_cardinality": true,
+    "canonical_runner_must_invoke_root_once": true,
+    "canonical_runner_must_not_directly_invoke_removed_descendants": true,
+    "bw20f_characterization_must_remain_direct": true,
+    "root_failure_must_still_fail_canonical_conformance": true,
+    "full_clean_serialized_conformance_must_pass_before_commissioning": true
+  },
+  "claims": {
+    "transitive_execution_commissioned": false,
+    "historical_audit_waiver_permitted": false,
+    "production_cache_lookup_permitted": false,
+    "production_result_reuse_permitted": false,
+    "physical_execution_authorized": false,
+    "scientific_locomotion_authority": false,
+    "release_authority": false
+  }
+}

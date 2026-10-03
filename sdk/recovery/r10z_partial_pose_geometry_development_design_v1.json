@@ -1,0 +1,68 @@
+{
+  "schema_version": "sporespore_r10z_partial_pose_geometry_development_design_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_design_envelope",
+    "question_class": "development"
+  },
+  "dependencies": [
+    {
+      "path": "sdk/recovery/r10z_support_geometry_diagnosis_v1.json",
+      "byte_length": 37475,
+      "raw_sha256": "sha256:2e5a4f9b7e724a6a6f0a57967359c8e95ddb760d33c7e5d0563bb28c543b8eb5"
+    },
+    {
+      "path": "sdk/recovery/r10z_stance_workspace_component_v1.json",
+      "byte_length": 3719,
+      "raw_sha256": "sha256:87b1d67a8f8d02a92baca33dca951101e4efe28d04049b6587e74056f6034d1d"
+    }
+  ],
+  "problem": "R10Y never loaded the front-right foot to the unchanged distal-support threshold. Both front feet subsequently lost contact while the rear feet and torso carried load. Model geometry places the COM behind the four-foot center hull and eventually makes front contact unreachable at the observed torso pose.",
+  "hypothesis": "A coupled measured-torso pose and foot-placement planner can avoid the incompatible neutral-joint motion by coordinating advance, rise and leveling. The retained ideal path only establishes a kinematic starting point for this hypothesis.",
+  "controller_family": "r10z_partial_pose_geometry",
+  "design_status": "geometry_supported_family_online_controller_specification_pending",
+  "development_kernel_requirements": [
+    "Use actual measured torso pose, joint positions, COM and contact observations. Keep virtual target geometry separate from source observations and task memory.",
+    "Use the production recovery morphology: X forward, Y up, +Z hip/knee axes, zero hip-Y offset, hip +/-1.6 and knee +/-1.1 rad.",
+    "Compute all four foot positions and body-pose feasibility together. Preserve exact limb identifiers and choose continuous knee branches near the measured state.",
+    "Respect the existing 4 rad/s planning bound, selected actuator impulse caps and actual 120 Hz stepping. Native source, energy and task checks remain authoritative.",
+    "Implement an explicitly bounded deterministic online search. Declare its objective, candidate set, contact-loss handling, infeasible-reference behavior, source state and stopping behavior before physical exposure.",
+    "Treat lateral IK residual and absent/weak contacts explicitly. A fixed-foot ideal model is not evidence of contact locking, no slip or source tracking.",
+    "Do not apply virtual torso transforms or direct root forces, torques, teleports, pins or observation rewrites. Only ordinary bounded joint commands may reach the native adapter."
+  ],
+  "offline_model": {
+    "virtual_updates": 389,
+    "worlds": 0,
+    "solver_steps": 0,
+    "goal_height_rule": "0.92 * total_leg_length + foot_radius",
+    "note": "The retained probe is a finite development model, not the finalized online controller. It omits collisions, forces and native tracking; its 0.1483 mm lateral residual is retained."
+  },
+  "preserved": [
+    "R10X and R10Y consumed negative evidence and original API behavior",
+    "Original partial-fall classifier, 0.019293 N s per-foot minimum, success predicates and energy accounting",
+    "240 support / 600 raise / 360 stance / 1200 total partial limits",
+    "Original entry selector, V7 stance and V56 walking semantics"
+  ],
+  "before_native_exposure": [
+    "Specify and implement the bounded online kernel; verify actual retained entries at phases 241, 247, 248 and 249 plus singular, contact-loss, crossed-source and joint-boundary controls without new worlds.",
+    "Integrate a distinct core/ABI/adapter/worker/reader route and immutable DLL-bound candidate; preserve old behavior.",
+    "Declare a fresh single-kick phase-248 development identity, full telemetry and bounded tail, cleanup/publication/replay coverage and complete applicable safety graph.",
+    "Pass that complete graph before the first fresh R10Z physical probe. Do not renew the consumed R10Y source key or population."
+  ],
+  "commissioning": "Only a viable candidate proceeds to prospectively declared additional exposed-phase coverage and fresh paired commissioning. Official qualification, a new held-out population, independent closure and M07 adoption remain separate requirements.",
+  "finite_blockers": [
+    "Viable coupled support/rise controller",
+    "Fresh complete route commissioning",
+    "Official qualification and all-pass fresh held-out decision"
+  ],
+  "online_controller_spec_frozen": false,
+  "controller_implemented": false,
+  "native_route_integrated": false,
+  "launch_enabled": false,
+  "held_out_campaign_declared": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

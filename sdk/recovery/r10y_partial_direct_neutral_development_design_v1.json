@@ -1,0 +1,77 @@
+{
+  "schema_version": "sporespore_r10y_partial_direct_neutral_development_design_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_design",
+    "question_class": "development"
+  },
+  "diagnosis": {
+    "path": "sdk/recovery/r10y_partial_recovery_diagnosis_v1.json",
+    "byte_length": 320136,
+    "raw_sha256": "sha256:3611f3c1136c3b9e9b30da36b9d52efa3f79edab3517fff21d805d426a31b5d5"
+  },
+  "problem": "The original V20 partial support and knee-fold/replant sequence lost upright orientation in all three R10X kicked cells; one failed in support and two failed in rise.",
+  "observations": [
+    "Phase 241 completed partial recovery in 513 steps; its entry forward-axis world-Y component was negative.",
+    "Phases 247-249 entered with a positive forward-axis world-Y component.",
+    "Phase 248 lost upright orientation during support and never satisfied the original distal-support gate.",
+    "Phases 247 and 249 lost upright orientation during raise and never satisfied the original raised-body gate."
+  ],
+  "hypothesis": "Moving continuously from actual joint positions toward neutral standing, without first driving the fixed bent support and mirrored fold/replant waypoints, may preserve upright orientation in these front-high entry states. This is an unproven control hypothesis, not a causal proof from four trajectories.",
+  "controller": {
+    "id": "sporespore_exact_s169_partial_direct_neutral_controller_v21",
+    "support_and_raise": "Use the existing measured_pose_rise_reference arithmetic toward all-zero joint targets in both actual phases. Retain the actual supervisor phase and its phase-step clock; phase transition restarts the 360-command smooth reference from the next measured pose. Do not synthesize a RaiseBody supervisor or rewrite observations.",
+    "reference_ramp_steps": 360,
+    "maximum_target_speed_rad_s": 4.0,
+    "stance_controller": "sporespore_exact_s169_stance_handoff_controller_v7",
+    "standing_predicate": "unchanged original partial_fall::step",
+    "initial_control": "New source-bound R10Y entry API retains the original selector receipt and separately labels the prospective partial control.",
+    "step_control": "New source-bound R10Y step API retains the original task result and validates V21 ownership during support/rise and V7 during stance."
+  },
+  "preserved": [
+    "All original consumed records and original API behavior",
+    "Canonical and upright selector precedence, geometry and entry history",
+    "Partial success thresholds, source validation, energy checks, 240 support / 600 raise / 360 stance / 1200 total limits",
+    "Published motor impulse and speed caps, actual 120 Hz solver step",
+    "Original V7 stance and V56 walking semantics"
+  ],
+  "first_probe": {
+    "kind": "single_kick_noncomparative_development",
+    "seed": 51008,
+    "prefix_phase": 248,
+    "fresh_setup": true,
+    "fresh_kicked_children": 1,
+    "cached_baseline": false,
+    "retained_original_population_reexecuted": false,
+    "attempt_identity": "allocate once after complete applicable safety gate",
+    "rationale": "The exposed support-timeout case covers the new initial control and support phase; continuation will exercise rise and stance if original gates allow. This probe is not sufficient coverage for commissioning or acceptance.",
+    "max_partial_steps": 1200,
+    "full_bounded_tail_required": true,
+    "telemetry": "Retain full existing source observations, applied commands, native calls, original stdout/stderr, finalization and independent native replay.",
+    "launch_enabled": false
+  },
+  "remaining_before_first_probe": [
+    "Implement separate core/ABI/adapter and real launcher/reader integration",
+    "Build and bind the exact successor DLL and immutable candidate profile",
+    "Declare complete diagnostic step/wall limits, publication and cleanup bindings",
+    "Pass real-interface and complete applicable smoke safety checks with affected-path negative controls"
+  ],
+  "commissioning_coverage": [
+    "After the first bounded probe, test the same frozen candidate against the exposed raise failure phase 247 and prior positive partial phase 241 before declaring a full route qualification. These require fresh development identities and prospective declarations.",
+    "Decide whether phase 249 adds coverage for the distinct transient joint-limit violation and asymmetry; record the coverage argument before any additional worlds.",
+    "A successful single-kick diagnostic never substitutes for fresh paired commissioning, complete official qualification, a new held-out population, independent closure and M07 adoption."
+  ],
+  "finite_blockers": [
+    "Partial support/rise control",
+    "Successor real-interface and smoke commissioning",
+    "Full route qualification and fresh all-pass held-out decision"
+  ],
+  "controller_implemented": false,
+  "successor_physics_observed": false,
+  "held_out_campaign_declared": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

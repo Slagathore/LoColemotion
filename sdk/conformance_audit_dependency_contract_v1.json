@@ -1,0 +1,112 @@
+{
+  "schema_version": "sporespore_conformance_audit_dependency_contract_v1",
+  "contract_id": "CAD1-PER-AUDIT-EXTERNAL-DEPENDENCY-MANIFEST",
+  "status": "active_one_complete_audit_reuse_disabled",
+  "purpose": "Replace a global durable-evidence hash with explicit per-audit file, tree, bounded-directory-query, and historical Git-object dependencies while refusing reuse until every audit and every read mechanism is covered.",
+  "authority": {
+    "cep1_inventory_path": "sdk/closure_evidence_mode_inventory.json",
+    "cep1_contract_path": "sdk/closure_evidence_provenance_contract.json",
+    "registry_path": "sdk/conformance_audit_dependency_registry_v1.json",
+    "cep1_audit_count": 167,
+    "registered_audit_count": 1,
+    "complete_audit_count": 1,
+    "unregistered_audit_count": 166
+  },
+  "maintenance_reconciliation": {
+    "reconciliation_id": "CAD1-LCA1-RC8-PREFLIGHT-CEP1-COUNT",
+    "failure_observed": true,
+    "failure_message": "Audit-dependency registry no longer reconciles with CEP1.",
+    "pre_reconciliation_contract_cep1_audit_count": 164,
+    "pre_reconciliation_registry_cep1_audit_count": 164,
+    "observed_cep1_audit_count": 167,
+    "post_reconciliation_contract_cep1_audit_count": 167,
+    "post_reconciliation_registry_cep1_audit_count": 167,
+    "registered_audit_count": 1,
+    "complete_audit_count": 1,
+    "post_reconciliation_unregistered_audit_count": 166,
+    "newly_reconciled_unregistered_audit_paths": [
+      "tests/test_qsdk_r23d62_dependency_closure.ps1",
+      "tests/test_qsdk_r24d8_active_step_snapshot_timing_positive_closure.ps1",
+      "tests/test_qsdk_r24d9_one_hinge_numerical_telemetry_physical_failure_closure.ps1"
+    ],
+    "immutable_prior_reconciliation": {
+      "reconciliation_id": "CAD1-R24D7-POSTCLOSURE-CEP1-COUNT",
+      "pre_reconciliation_contract_cep1_audit_count": 162,
+      "pre_reconciliation_registry_cep1_audit_count": 162,
+      "observed_cep1_audit_count": 164,
+      "post_reconciliation_contract_cep1_audit_count": 164,
+      "post_reconciliation_registry_cep1_audit_count": 164,
+      "post_reconciliation_unregistered_audit_count": 163,
+      "newly_reconciled_unregistered_audit_paths": [
+        "tests/test_qsdk_r24d6_one_hinge_telemetry_zero_world_failure_closure.ps1",
+        "tests/test_qsdk_r24d7_one_hinge_telemetry_physical_failure_closure.ps1"
+      ],
+      "historical_result_or_interpretation_changed": false,
+      "maintenance_process_physical_world_count": 0
+    },
+    "dependency_registration_added_count": 0,
+    "external_evidence_completeness_promoted": false,
+    "cache_lookup_permitted": false,
+    "result_reuse_permitted": false,
+    "historical_result_or_interpretation_changed": false,
+    "maintenance_process_physical_world_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "dependency_shapes": {
+    "file": "One required file, bound by evidence-root-relative path, byte length, and raw SHA-256.",
+    "directory_tree": "One required directory, bound by the ordinal inventory of every descendant file path, byte length, and raw SHA-256.",
+    "directory_query": "A bounded immediate-child name-prefix query with one declared child-file presence and content probe; unrelated prefixes do not invalidate it.",
+    "git_object_set": "An ordered role-to-full-object-ID set read through native Git batch transport, with raw object bytes rehashed to both the declared Git SHA-1 identity and a retained SHA-256 so historical commits and trees cannot be assumed from the current checkout."
+  },
+  "observation_boundary": {
+    "method": "development-only PowerShell command proxies over existing audits",
+    "observed_commands": [
+      "Get-Content",
+      "Get-FileHash",
+      "Get-ChildItem",
+      "Test-Path",
+      "Resolve-Path",
+      "Select-String",
+      "Import-Csv",
+      "Import-Clixml",
+      "Import-PowerShellDataFile"
+    ],
+    "kernel_file_io_trace_attempted": true,
+    "kernel_file_io_trace_available": false,
+    "kernel_file_io_trace_failure": "WPR FileIO start returned access denied before recording in the non-elevated session.",
+    "parent_observation_cannot_prove": [
+      "dotnet_file_api_reads",
+      "module_qualified_cmdlet_bypass",
+      "native_child_process_reads",
+      "nested_powershell_process_reads",
+      "dynamic_dot_source_resolution"
+    ],
+    "observation_alone_authorizes_manifest_completeness": false
+  },
+  "invalidation_rules": {
+    "missing_declared_file_or_tree_fails_closed": true,
+    "path_escape_fails_closed": true,
+    "reparse_point_fails_closed": true,
+    "file_or_tree_content_mutation_changes_digest": true,
+    "matching_directory_query_mutation_changes_digest": true,
+    "unrelated_directory_query_prefix_append_changes_digest": false,
+    "missing_or_wrong_type_git_object_fails_closed": true,
+    "git_object_set_mutation_changes_digest": true,
+    "declared_git_object_raw_bytes_must_recompute_full_object_id": true,
+    "runtime_complete_requires_complete_runtime_profile_binding": true,
+    "registry_must_reconcile_exactly_with_cep1": true,
+    "unregistered_or_incomplete_audit_forbids_reuse": true
+  },
+  "claims": {
+    "external_evidence_inventory_complete": false,
+    "transitive_dependency_key_complete": false,
+    "cache_lookup_permitted": false,
+    "result_reuse_permitted": false,
+    "historical_audit_waiver": false,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "scientific_result": false,
+    "release_authority": false
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "sporespore_retained_trace_lineage_contract_v1",
+  "status": "normative_zero_world_diagnostic_contract",
+  "purpose": "Recompute deterministic mechanism projections from immutable content-addressed locomotion traces without importing an adapter, constructing a model, opening a world, changing an observed verdict, or granting physical authority.",
+  "input_boundary": {
+    "manifest_schema_version": "sporespore_retained_trace_lineage_manifest_v1",
+    "trace_storage_kind": "content_addressed_sha256_payload",
+    "live_attempt_paths_permitted": false,
+    "every_trace_requires_sha256_and_byte_length": true,
+    "every_trace_requires_exact_cell_schema_step_and_phase_identity": true,
+    "phase_order_and_row_counts_are_manifest_bound": true,
+    "nonfinite_numeric_values_are_forbidden": true,
+    "unknown_or_missing_required_fields_fail_closed": true
+  },
+  "canonical_required_fields": [
+    "schema_version",
+    "cell_id",
+    "trace_step",
+    "phase_id",
+    "measured_yaw_rad",
+    "desired_heading_offset_rad",
+    "base_angular_velocity_task_yaw_rad_s",
+    "requested_steering_fraction",
+    "held_steering_fraction",
+    "steering_saturated",
+    "torso_tilt_rad",
+    "torso_height_m",
+    "maximum_absolute_joint_position_error_rad",
+    "ordered_foot_contacts",
+    "torso_ground_contact",
+    "minimum_dynamic_support_margin_availability",
+    "minimum_dynamic_support_margin_m",
+    "ordered_applied_stability_velocity_deltas_rad_s",
+    "ordered_final_canonical_velocities_rad_s"
+  ],
+  "projection_axes": {
+    "convergence": [
+      "phase_yaw_delta_rad",
+      "signed_command_progress_rad",
+      "initial_and_final_heading_error_rad",
+      "minimum_absolute_heading_error_rad",
+      "final_window_heading_error_mean_rad",
+      "final_window_yaw_slope_rad_per_step"
+    ],
+    "contact": [
+      "per_limb_contact_and_loss_counts",
+      "first_and_longest_contact_loss",
+      "all_four_and_zero_foot_contact_counts",
+      "torso_ground_contact_count"
+    ],
+    "authority": [
+      "requested_and_held_magnitude",
+      "saturation_count_and_fraction",
+      "first_saturation_step",
+      "first_held_cap_reach_step",
+      "held_to_requested_ratio"
+    ],
+    "support": [
+      "availability_counts",
+      "minimum_final_and_negative_margin_counts",
+      "first_negative_margin_step"
+    ],
+    "stability": [
+      "maximum_tilt_and_step",
+      "minimum_height_and_step",
+      "maximum_joint_error_and_step",
+      "optional_manifest_bound_multi_window_positive_tilt_rate_projection",
+      "optional_one_scheduler_horizon_projected_tilt_precursor",
+      "observed_guard_reduction_and_floor_lead_without_counterfactual_outcome",
+      "optional_scheduler_derived_steering_floor_hold_projection",
+      "recorded_authority_reopening_counts_without_command_or_physics_recomputation",
+      "optional_scheduler_derived_terminal_response_window_grid",
+      "optional_pairwise_reference_conditioned_response_onset_peak_and_retention",
+      "optional_recorded_command_sign_and_guard_delivery_counts"
+    ],
+    "actuator": [
+      "ordered_stability_correction_extrema_when_available",
+      "ordered_final_command_limit_utilization_only_when_complete_limits_and_commands_are_available",
+      "explicit_unavailable_or_partial_status_otherwise"
+    ]
+  },
+  "comparison_boundary": {
+    "reference_conditioning_requires_one_declared_zero_command_cell_per_group": true,
+    "signed_conditioned_progress_formula": "command_sign * (commanded_phase_yaw_delta_rad - reference_phase_yaw_delta_rad)",
+    "bilateral_separation_formula": "positive_phase_yaw_delta_rad - negative_phase_yaw_delta_rad",
+    "numeric_thresholds_must_be_manifest_bound_with_provenance": true,
+    "analyzer_may_replay_but_may_not_change_a_frozen_threshold": true
+  },
+  "predictive_tilt_diagnosis_boundary": {
+    "finite_difference_windows_must_be_simultaneously_manifest_bound": true,
+    "prediction_horizon_requires_scheduler_or_dimensional_provenance": true,
+    "existing_tilt_thresholds_may_be_replayed_but_not_changed": true,
+    "descriptive_projection_cannot_select_a_window_or_controller": true,
+    "descriptive_projection_cannot_claim_counterfactual_recovery": true,
+    "a_future_state_frame_tilt_rate_observer_requires_its_own_zero_world_contract": true,
+    "fresh_physics_requires_a_distinct_prospective_identity": true
+  },
+  "steering_floor_persistence_diagnosis_boundary": {
+    "hold_duration_grid_must_be_simultaneously_manifest_bound": true,
+    "every_duration_must_be_an_integer_multiple_of_the_declared_scheduler_swing": true,
+    "existing_tilt_and_authority_thresholds_may_be_replayed_but_not_changed": true,
+    "projection_may_mask_recorded_authority_but_may_not_recompute_commands_or_physics": true,
+    "smallest_duration_satisfying_a_declared_replay_property_is_post_outcome_development_information_only": true,
+    "descriptive_projection_cannot_claim_counterfactual_recovery": true,
+    "a_future_stateful_guard_requires_a_new_policy_memory_and_receipt_identity": true,
+    "fresh_physics_requires_a_distinct_prospective_identity": true
+  },
+  "directional_response_measurement_diagnosis_boundary": {
+    "frozen_single_endpoint_must_be_replayed_as_the_one_step_window": true,
+    "whole_swing_terminal_windows_through_one_complete_scheduler_cycle_must_be_reported_simultaneously": true,
+    "trajectory_baseline_must_use_one_complete_precommand_scheduler_cycle": true,
+    "positive_and_negative_response_must_be_conditioned_against_the_synchronized_reference": true,
+    "existing_signed_response_threshold_may_be_replayed_but_not_changed": true,
+    "requested_and_held_steering_sign_delivery_must_be_reported_separately": true,
+    "guard_identity_and_active_rows_must_be_verified_from_recorded_receipts": true,
+    "transient_threshold_crossing_cannot_change_a_frozen_endpoint_verdict": true,
+    "postclosure_window_results_cannot_select_a_successor_estimator_or_controller": true,
+    "fresh_validation_of_any_new_estimator_requires_a_distinct_prospective_identity": true
+  },
+  "output_boundary": {
+    "report_schema_version": "sporespore_retained_trace_lineage_report_v1",
+    "canonical_json_sort_keys": true,
+    "deterministic_for_exact_manifest_source_commit_and_trace_bytes": true,
+    "create_only_output": true,
+    "content_addressed_retention_required_for_durable_use": true,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "claim_limits": {
+    "diagnosis_is_not_campaign_reinterpretation": true,
+    "diagnosis_is_not_candidate_selection": true,
+    "diagnosis_is_not_validation": true,
+    "diagnosis_is_not_equivalence": true,
+    "diagnosis_is_not_release_authority": true
+  }
+}

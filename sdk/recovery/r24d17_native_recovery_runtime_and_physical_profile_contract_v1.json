@@ -1,0 +1,361 @@
+{
+  "schema_version": "sporespore_qsdk_r24d17_native_recovery_runtime_and_physical_profile_contract_v1",
+  "gate_id": "QSDK-R24D17",
+  "authored_local_date": "2026-08-26",
+  "declaration_parent_commit": "7c76aa69b32511c9bcec0c77930f418f41dbc0ed",
+  "status": "prospective_zero_world_source_contract_physics_closed",
+  "question": "Can SporeSpore publish executable exact-s169 native post-step validation surfaces for Godot/Jolt, Rapier/Parry, and MuJoCo, one deterministic engine-neutral recovery-control candidate, and a prospectively selected physical threshold and cohort profile without constructing or stepping a physics world or claiming prone-to-standing?",
+  "question_class": "non_physical_source_conformance_no_physical_question_opened",
+  "physical_question_classification": {
+    "current_gate": "not_applicable_no_physical_question_opened",
+    "future_repeatable_mujoco_development": "development",
+    "future_frozen_native_engine_cohort": "finite_decision",
+    "superiority_question_declared": false,
+    "equivalence_or_non_inferiority_question_declared": false
+  },
+  "scope": {
+    "task_id": "sporespore_canonical_ventral_prone_to_four_foot_stance_v1",
+    "semantics_id": "sporespore_qsdk_r24d2_portable_recovery_semantics_v1",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+    "morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "actuator_profile_id": "sporespore_qsdk_r23d60_selected_s169_actuator_cap_profile_v1",
+    "actuator_profile_sha256": "sha256:b65d41e3f30c42e0a8207f1385fe00daa8f03975f4e266a0bd0867970f674964",
+    "arbitrary_morphology": false,
+    "continuous_morphology": false,
+    "material_robustness": false,
+    "cross_engine_equivalence": false,
+    "population_inference": false
+  },
+  "native_runtime_bindings": [
+    {
+      "engine": "godot_jolt4_7",
+      "adapter_id": "sporespore_godot_jolt_adapter",
+      "collector_id": "sporespore_godot_jolt_instrumented_v2_recovery_collector_v1",
+      "runtime_profile_id": "godot_4_7_jolt_sporespore_motor_telemetry_active_step_snapshot_v2",
+      "native_substeps_per_outer_step": 1,
+      "complete_channel_count": 10,
+      "stock_runtime_supported": false,
+      "exact_instrumented_runtime_required": true
+    },
+    {
+      "engine": "rapier_parry_native",
+      "adapter_id": "sporespore_rapier3d_adapter",
+      "collector_id": "sporespore_rapier_parry_recovery_collector_v1",
+      "runtime_profile_id": "rapier3d_0_34_parry3d_0_29_native_recovery_v1",
+      "native_substeps_per_outer_step": 1,
+      "complete_channel_count": 10
+    },
+    {
+      "engine": "mujoco_native",
+      "adapter_id": "sporespore_mujoco_adapter",
+      "collector_id": "sporespore_mujoco_recovery_collector_v1",
+      "runtime_profile_id": "mujoco_3_11_native_recovery_v1",
+      "native_substeps_per_outer_step": 5,
+      "complete_channel_count": 10
+    }
+  ],
+  "collector_boundary": {
+    "complete_native_post_step_observation_required": true,
+    "source_measurement_only": true,
+    "missing_measurement_synthesis_permitted": false,
+    "engine_identity_exposed_to_controller": false,
+    "native_worker_owns_sampling": true,
+    "portable_core_owns_strict_validation": true,
+    "current_gate_executes_native_sampling": false,
+    "current_gate_executes_physics": false
+  },
+  "controller_candidate": {
+    "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v1",
+    "policy_engine_inputs": [],
+    "engine_specific_policy_branch_count": 0,
+    "confirm_prone_action": "no_actuation",
+    "establish_distal_support_ordered_target_positions_rad": [
+      0.6,
+      1.05,
+      0.6,
+      1.05,
+      -0.6,
+      1.05,
+      -0.6,
+      1.05
+    ],
+    "raise_body_interpolation": "binary64_smoothstep_from_distal_support_to_zero_joint_stance",
+    "raise_body_ramp_steps": 360,
+    "stance_handoff_action": "request_stance_owner_without_recovery_command",
+    "matched_zero_action": "no_actuation",
+    "fallback_controller_permitted": false,
+    "physical_viability_proven": false,
+    "prone_to_standing_proven": false
+  },
+  "geometry_and_weight_provenance": {
+    "source": "exact compiled qdr05 s169 morphology and the fixed 120 Hz recovery outer step",
+    "total_mass_kg": 4.72,
+    "gravity_m_s2": 9.81,
+    "nominal_stance_torso_center_height_m": 0.4399487227648385,
+    "nominal_static_per_foot_outer_step_impulse_ns": 0.096465,
+    "nominal_stance_potential_energy_j": 20.37103369992487,
+    "empirical_recovery_outcome_used": false,
+    "br13_numeric_threshold_used": false
+  },
+  "threshold_profile": {
+    "profile_id": "sporespore_exact_s169_recovery_development_thresholds_v1",
+    "selection_timing": "before_any_r24d17_physical_outcome",
+    "post_outcome_rethresholding_permitted": false,
+    "thresholds": [
+      {
+        "threshold_id": "entry_prone_height_ratio_max",
+        "value": 0.25,
+        "unit": "ratio_of_nominal_stance_torso_center_height",
+        "provenance": "product entry definition bounded by exact s169 geometry",
+        "adequacy": "The 0.10998718069120962 m ceiling is above the 0.06 m torso half-height expected for ordinary ventral contact while remaining far below nominal stance. Ventral contact is independently required, so this threshold is not a pose-label surrogate."
+      },
+      {
+        "threshold_id": "entry_torso_up_dot_max",
+        "value": 1.0,
+        "unit": "dimensionless",
+        "provenance": "canonical ventral-contact task geometry",
+        "adequacy": "A belly-down torso may retain local-up alignment with world-up; this field is therefore a finite sanity bound rather than the discriminating entry gate. Low height plus measured torso ventral contact carry the entry classification."
+      },
+      {
+        "threshold_id": "entry_prone_confirm_steps",
+        "value": 12,
+        "unit": "outer_steps",
+        "provenance": "0.1 second product dwell at 120 Hz",
+        "adequacy": "Twelve consecutive native post-step measurements reject a one-frame contact transient without making a repeatability or population claim."
+      },
+      {
+        "threshold_id": "entry_initial_state_match_tolerance",
+        "value": "exact_initializer_manifest_sha256_and_canonical_pre_step_state_sha256_equality_within_each_engine_pair",
+        "unit": "typed_identity_rule",
+        "provenance": "matched-zero causal control requirement",
+        "adequacy": "Exact content identity is stricter and more auditable than an outcome-selected numeric tolerance for a deterministic initializer."
+      },
+      {
+        "threshold_id": "distal_bearing_minimum_impulse_ns",
+        "value": 0.019293,
+        "unit": "newton_second",
+        "provenance": "20 percent of the exact 4.72 kg s169 nominal per-foot static outer-step impulse at 9.81 m/s2 and 120 Hz",
+        "adequacy": "It requires a material measured unilateral bearing contribution from every foot while allowing load redistribution during recovery; it is not learned from a recovery result."
+      },
+      {
+        "threshold_id": "minimum_com_height_gain_m",
+        "value": 0.22,
+        "unit": "meter",
+        "provenance": "approximately one half of the exact 0.4399487227648385 m nominal stance torso-center height",
+        "adequacy": "A 0.22 m whole-system COM rise demands substantial lifting and cannot be satisfied by contact relabeling or a small pose oscillation."
+      },
+      {
+        "threshold_id": "stance_height_ratio_min",
+        "value": 0.75,
+        "unit": "ratio_of_nominal_stance_torso_center_height",
+        "provenance": "product terminal stance requirement",
+        "adequacy": "The resulting 0.3299615420736289 m floor permits flexed stance while remaining sharply separated from ventral prone height."
+      },
+      {
+        "threshold_id": "stance_torso_up_dot_min",
+        "value": 0.95,
+        "unit": "dimensionless",
+        "provenance": "product terminal orientation requirement",
+        "adequacy": "It limits terminal torso tilt to about 18.2 degrees without presuming an engine-specific pose label."
+      },
+      {
+        "threshold_id": "minimum_nonfoot_clearance_m",
+        "value": 0.005,
+        "unit": "meter",
+        "provenance": "five millimeter product clearance requirement",
+        "adequacy": "A strictly positive 5 mm measured clearance distinguishes terminal release from contact disappearance caused only by zero impulse or relabeling."
+      },
+      {
+        "threshold_id": "maximum_forbidden_contact_impulse_ns",
+        "value": 0.0,
+        "unit": "newton_second",
+        "provenance": "canonical terminal task forbids nonfoot support",
+        "adequacy": "Exact zero preserves the no-cheat terminal rule; clearance is evaluated separately so zero impulse cannot alone establish absence."
+      },
+      {
+        "threshold_id": "maximum_terminal_linear_speed_m_s",
+        "value": 0.1,
+        "unit": "meter_per_second",
+        "provenance": "product stable-stance requirement",
+        "adequacy": "The bound requires slow terminal translation throughout the dwell and is frozen before outcome; it supports only the declared finite cells."
+      },
+      {
+        "threshold_id": "maximum_terminal_angular_speed_rad_s",
+        "value": 0.2,
+        "unit": "radian_per_second",
+        "provenance": "product stable-stance requirement",
+        "adequacy": "The bound requires slow terminal rotation throughout the dwell and is frozen before outcome; it supports only the declared finite cells."
+      },
+      {
+        "threshold_id": "stance_dwell_steps",
+        "value": 60,
+        "unit": "outer_steps",
+        "provenance": "0.5 second product dwell at 120 Hz",
+        "adequacy": "Sixty consecutive terminal frames require persistence beyond a transient crossing without implying long-horizon robustness."
+      },
+      {
+        "threshold_id": "per_phase_timeout_steps",
+        "value": {
+          "confirm_prone": 60,
+          "establish_distal_support": 240,
+          "raise_body": 600,
+          "stance_handoff": 120,
+          "stance_dwell": 240
+        },
+        "unit": "outer_steps",
+        "provenance": "fixed product latency budgets of 0.5, 2, 5, 1, and 2 seconds at 120 Hz",
+        "adequacy": "Every phase has a finite prospective failure deadline; no result can extend its own horizon."
+      },
+      {
+        "threshold_id": "total_timeout_steps",
+        "value": 1200,
+        "unit": "outer_steps",
+        "provenance": "10 second product task budget at 120 Hz",
+        "adequacy": "The global deadline bounds all phase retries and keeps every future physical cell finite."
+      },
+      {
+        "threshold_id": "maximum_energy_balance_residual_j",
+        "value": 0.25,
+        "unit": "joule",
+        "provenance": "rounded 1.2 percent of the exact 20.37103369992487 J nominal stance potential-energy scale",
+        "adequacy": "The small nonzero accounting tolerance detects missing work or hidden intervention at the declared exact fixture scale without claiming universal numerical equivalence."
+      }
+    ]
+  },
+  "cohort_profile": {
+    "seed_derivation": "sha256_utf8_label_first_u32_big_endian_bitand_0x7fffffff",
+    "initial_states": [
+      {"initial_state_id": "exact_s169_ventral_prone_nominal_v1", "torso_roll_rad": 0.0},
+      {"initial_state_id": "exact_s169_ventral_prone_roll_positive_v1", "torso_roll_rad": 0.035},
+      {"initial_state_id": "exact_s169_ventral_prone_roll_negative_v1", "torso_roll_rad": -0.035}
+    ],
+    "development": {
+      "cohort_id": "sporespore_exact_s169_recovery_repeatable_development_cohort_v1",
+      "question_class": "development",
+      "engine": "mujoco_native",
+      "cell_count": 3,
+      "repeatable_and_outcome_exposed": true,
+      "cells": [
+        {
+          "cell_id": "development_nominal",
+          "initial_state_id": "exact_s169_ventral_prone_nominal_v1",
+          "seed_label": "QSDK-R24D17/development/nominal",
+          "seed_sha256": "sha256:c35325212e3227572f07779f9c9e3e90e405183e3194b715f3929feb34d30dc5",
+          "seed": 1129522465
+        },
+        {
+          "cell_id": "development_roll_positive",
+          "initial_state_id": "exact_s169_ventral_prone_roll_positive_v1",
+          "seed_label": "QSDK-R24D17/development/roll-positive",
+          "seed_sha256": "sha256:52f44a2b758c45fd74fc0c36f4ff33b7d794729ebca16b6a0fc305a812c23004",
+          "seed": 1391741483
+        },
+        {
+          "cell_id": "development_roll_negative",
+          "initial_state_id": "exact_s169_ventral_prone_roll_negative_v1",
+          "seed_label": "QSDK-R24D17/development/roll-negative",
+          "seed_sha256": "sha256:2519457824c0fb094c3bcd6d7151211dca1034117e2edbbb447c192e6226b224",
+          "seed": 622413176
+        }
+      ],
+      "adequacy": "The nominal and symmetric approximately two-degree roll cells are adequate only to expose gross controller and integration defects during repeatable development. They are not a repeatability, robustness, or population sample."
+    },
+    "held_out": {
+      "cohort_id": "sporespore_exact_s169_recovery_native_held_out_cohort_v1",
+      "question_class": "finite_decision",
+      "engine_count": 3,
+      "cells_per_engine": 3,
+      "cell_count": 9,
+      "candidate_and_matched_zero_required_per_cell": true,
+      "development_access_permitted": false,
+      "cells": [
+        {"cell_id": "heldout_godot_nominal", "engine": "godot_jolt4_7", "initial_state_id": "exact_s169_ventral_prone_nominal_v1", "seed_label": "QSDK-R24D17/heldout/godot/nominal", "seed_sha256": "sha256:d0f1fe2504700e8a2ca1594e200d939e8e7110a1c7d6ce288530fd44a6dac699", "seed": 1358036517},
+        {"cell_id": "heldout_godot_roll_positive", "engine": "godot_jolt4_7", "initial_state_id": "exact_s169_ventral_prone_roll_positive_v1", "seed_label": "QSDK-R24D17/heldout/godot/roll-positive", "seed_sha256": "sha256:1e9d9f95887cd18846193b941aa6a0d04f04404ceda854cb90db24526ebbd1b2", "seed": 513646485},
+        {"cell_id": "heldout_godot_roll_negative", "engine": "godot_jolt4_7", "initial_state_id": "exact_s169_ventral_prone_roll_negative_v1", "seed_label": "QSDK-R24D17/heldout/godot/roll-negative", "seed_sha256": "sha256:fb2ab9278888da462380dfbb56a54304fe91ff3644b93a201117270bdcdaf303", "seed": 2066397479},
+        {"cell_id": "heldout_rapier_nominal", "engine": "rapier_parry_native", "initial_state_id": "exact_s169_ventral_prone_nominal_v1", "seed_label": "QSDK-R24D17/heldout/rapier/nominal", "seed_sha256": "sha256:f76e745b075bc6f936dab851d0cb07bf74ea7d271352e9b91be94d45d26bf008", "seed": 2003727451},
+        {"cell_id": "heldout_rapier_roll_positive", "engine": "rapier_parry_native", "initial_state_id": "exact_s169_ventral_prone_roll_positive_v1", "seed_label": "QSDK-R24D17/heldout/rapier/roll-positive", "seed_sha256": "sha256:529e1ee33b91cd43870ce978e976a6d25da3f134422c6dbd9c07c3de0ba8faf9", "seed": 1386094307},
+        {"cell_id": "heldout_rapier_roll_negative", "engine": "rapier_parry_native", "initial_state_id": "exact_s169_ventral_prone_roll_negative_v1", "seed_label": "QSDK-R24D17/heldout/rapier/roll-negative", "seed_sha256": "sha256:693732a77ee7cce9fafb0156c8a0df9012c0ab46c9d16998d4ab2cb2c83af8df", "seed": 1765225127},
+        {"cell_id": "heldout_mujoco_nominal", "engine": "mujoco_native", "initial_state_id": "exact_s169_ventral_prone_nominal_v1", "seed_label": "QSDK-R24D17/heldout/mujoco/nominal", "seed_sha256": "sha256:388d6f905dbb7c0ea5a19067fcecc530e1bbc6d13594cec15d97c216e1511150", "seed": 948793232},
+        {"cell_id": "heldout_mujoco_roll_positive", "engine": "mujoco_native", "initial_state_id": "exact_s169_ventral_prone_roll_positive_v1", "seed_label": "QSDK-R24D17/heldout/mujoco/roll-positive", "seed_sha256": "sha256:b0c1146ac50bc3083be3f11186b8d357192df31f82c96d674f1cdad8c15f9a7b", "seed": 817960042},
+        {"cell_id": "heldout_mujoco_roll_negative", "engine": "mujoco_native", "initial_state_id": "exact_s169_ventral_prone_roll_negative_v1", "seed_label": "QSDK-R24D17/heldout/mujoco/roll-negative", "seed_sha256": "sha256:3f2ca987d56c4ac623c86ad57a4511e0d34f1c374d4c2d89e1c20b5c8bbbf3c7", "seed": 1059891591}
+      ],
+      "adequacy": "One nominal and two symmetric perturbation cells in each genuine native engine can answer only the frozen nine-cell conjunction. They cannot estimate rates, robustness, arbitrary morphology, materials, or cross-engine equivalence."
+    }
+  },
+  "zero_world_gate": {
+    "complete_before_physics": true,
+    "required_engine_identities": 3,
+    "required_capability_channels_per_engine": 10,
+    "required_core_positive_identities": 3,
+    "required_engine_neutral_command_digest_conjunction": true,
+    "required_matched_zero_no_command": true,
+    "required_stance_handoff_no_recovery_command": true,
+    "required_mutation_refusals": [
+      "wrong_runtime_profile",
+      "wrong_capability_digest",
+      "synthetic_source_kind",
+      "missing_source_measurement",
+      "nonfinite_measurement",
+      "nonzero_external_intervention",
+      "wrong_native_substep_count",
+      "published_actuator_budget_exceeded",
+      "unregistered_controller"
+    ],
+    "ghost_definition": "A development ghost may build and load each language surface, instantiate the SDK, and execute only enough calls to prove schema transport and fail-closed routing. It does not predict a physics result and need not run a full seeded world.",
+    "official_qualification_must_start_clean_pushed": true,
+    "official_qualification_run_count": 1,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0
+  },
+  "source_inventory": [
+    "sdk/core/src/recovery_runtime.rs",
+    "sdk/core/src/recovery.rs",
+    "sdk/core/src/ffi.rs",
+    "sdk/core/src/lib.rs",
+    "sdk/include/sporespore_locomotion.h",
+    "sdk/python/sporespore_locomotion.py",
+    "sdk/python/test_ctypes_smoke.py",
+    "sdk/adapters/godot/src/lib.rs",
+    "sdk/adapters/godot/gdscript/recovery_runtime.gd",
+    "tests/test_sdk_qsdk_r24d17_godot_recovery_runtime_zero_world.gd",
+    "sdk/adapters/rapier/src/recovery_runtime.rs",
+    "sdk/adapters/rapier/src/recovery_capability.rs",
+    "sdk/adapters/rapier/src/lib.rs",
+    "sdk/adapters/mujoco/sporespore_mujoco_adapter/recovery_runtime.py",
+    "sdk/adapters/mujoco/sporespore_mujoco_adapter/recovery_capability.py",
+    "sdk/adapters/mujoco/test_recovery_runtime.py",
+    "tests/test_qsdk_r24d17_native_recovery_runtime_source.py",
+    "sdk/run_qsdk_r24d17_native_recovery_runtime_zero_world.ps1",
+    "sdk/versioning/c_abi_manifest_v1.json",
+    "sdk/versioning/schema_registry_v1.json",
+    "sdk/versioning/test_conformance.py",
+    "sdk/recovery/r24d1_canonical_prone_to_standing_design_v1.json",
+    "sdk/recovery/r24d2_portable_recovery_semantics_v1.json",
+    "sdk/recovery/r24d16_godot_jolt_profile_scoped_recovery_capability_qualification_closure_v1.json"
+  ],
+  "physical_opening_conditions": [
+    "R24D17 exact source is committed and pushed",
+    "R24D17 complete zero-world qualification passes once from that exact clean-pushed source",
+    "the qualification is separately adopted by an immutable closure",
+    "a distinct prospective physical development declaration binds the exact controller, thresholds, initializer, development cells, runtime identities, evaluator, and evidence root",
+    "all development cells remain separate from the held-out finite-decision cells"
+  ],
+  "claim_boundary": {
+    "native_collector_validation_surfaces_implemented": true,
+    "deterministic_controller_candidate_implemented": true,
+    "physical_threshold_profile_selected": true,
+    "cohorts_selected": true,
+    "native_runtime_collection_executed": false,
+    "physical_question_opened": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "cross_engine_recovery_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "sdk1_milestone_advanced": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

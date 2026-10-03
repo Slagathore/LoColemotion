@@ -1,0 +1,326 @@
+{
+  "schema_version": "sporespore_portable_api_contract_v1",
+  "contract_id": "sporespore_portable_core_c_abi_python_surface_v1",
+  "status": "source_implemented_pending_clean_room_candidate_validation",
+  "release_gate_id": "QSDK-R01",
+  "sdk_version": "0.1.0",
+  "abi_generation": 1,
+  "requires_clean_room_candidate": true,
+  "ledger_scope": {
+    "subsystem": "release",
+    "engine_scope": "engine_neutral",
+    "authority_mode": "zero_world_source_and_package_conformance",
+    "question_class": "development"
+  },
+  "public_surfaces": {
+    "guide": "portable_api/README.md",
+    "rust_crate": "core/Cargo.toml",
+    "rust_ffi": "core/src/ffi.rs",
+    "c_header": "include/sporespore_locomotion.h",
+    "python_binding": "python/sporespore_locomotion.py",
+    "python_dynamic_library_smoke": "python/test_ctypes_smoke.py",
+    "surface_auditor": "portable_api/conformance.py",
+    "surface_negative_controls": "portable_api/test_conformance.py",
+    "runner": "run_portable_api_conformance.ps1",
+    "package_source_inventory": "release/quadruped_package_source_inventory_v1.json",
+    "source_validation_manifest": "portable_api/portable_api_validation_manifest.json"
+  },
+  "rust_artifact_contract": {
+    "package_name": "sporespore-locomotion-core",
+    "library_name": "sporespore_locomotion_core",
+    "crate_types": [
+      "rlib",
+      "staticlib",
+      "cdylib"
+    ]
+  },
+  "c_abi_proof_model": {
+    "header_declarations_are_compared_by_exact_normalized_primitive_signature": true,
+    "every_declared_symbol_must_resolve_from_the_real_dynamic_library": true,
+    "every_declared_symbol_is_invoked_through_its_frozen_ctypes_signature": true,
+    "caller_owned_buffer_protocol_is_probed_with_valid_pointers_and_invalid_json": true,
+    "output_only_calls_must_complete_with_valid_success_json": true,
+    "python_end_to_end_suite_uses_the_real_dynamic_library": true,
+    "native_c_compiler_is_required": false,
+    "reason_native_c_compiler_is_not_required": "The frozen C header is checked against Rust by primitive signature, while CPython ctypes independently loads and invokes every exported C symbol using the same primitive ABI."
+  },
+  "signature_groups": [
+    {
+      "group_id": "version",
+      "symbols": [
+        "ss_version"
+      ],
+      "rust": {
+        "parameters": [],
+        "return": "*const c_char"
+      },
+      "c": {
+        "parameters": [],
+        "return": "const char*"
+      },
+      "python_ctypes": {
+        "argtypes": [],
+        "restype": "c_char_p"
+      }
+    },
+    {
+      "group_id": "json_input_caller_owned_output",
+      "symbols": [
+        "ss_canonicalize_json",
+        "ss_compile_bounded_quadruped_json",
+        "ss_compile_recovery_morphology_v1_json",
+        "ss_resolve_actuator_cap_profile_v1_json",
+        "ss_recovery_initialize_v1_json",
+        "ss_recovery_initialize_v2_json",
+        "ss_recovery_step_v1_json",
+        "ss_recovery_step_v2_json",
+        "ss_recovery_step_v3_json",
+        "ss_recovery_step_v4_json",
+        "ss_recovery_step_v5_json",
+        "ss_recovery_evaluate_trace_v1_json",
+        "ss_recovery_evaluate_trace_v2_json",
+        "ss_recovery_evaluate_trace_v3_json",
+        "ss_recovery_evaluate_trace_v4_json",
+        "ss_recovery_evaluate_trace_v5_json",
+        "ss_recovery_energy_balance_aggregate_v2_json",
+        "ss_recovery_energy_balance_evaluate_v2_json",
+        "ss_recovery_energy_balance_aggregate_v3_json",
+        "ss_recovery_energy_balance_evaluate_v3_json",
+        "ss_recovery_energy_balance_migrate_v1_json",
+        "ss_recovery_collect_native_v1_json",
+        "ss_recovery_collect_native_v2_json",
+        "ss_recovery_collect_native_v3_json",
+        "ss_recovery_plan_control_v1_json",
+        "ss_recovery_plan_control_v2_json",
+        "ss_recovery_plan_control_v3_json",
+        "ss_recovery_plan_stance_control_v1_json",
+        "ss_recovery_plan_stance_control_v2_json",
+        "ss_recovery_plan_stance_control_v3_json",
+        "ss_recovery_plan_stance_control_v4_json",
+        "ss_canonical_velocity_compose_v1_json",
+        "ss_canonical_velocity_host_map_v1_json",
+        "ss_resolve_adaptation_v1_json",
+        "ss_candidate35_profile_json",
+        "ss_candidate35_step_json",
+        "ss_balanced_wave_profile_json",
+        "ss_balanced_wave_policy_profile_json",
+        "ss_balanced_wave_policy_initial_memory_json",
+        "ss_balanced_wave_step_json",
+        "ss_balanced_wave_policy_step_json",
+        "ss_observe_stability_v2_json",
+        "ss_plan_scheduled_load_transfer_v1_json",
+        "ss_plan_scheduled_load_transfer_v2_json",
+        "ss_plan_scheduled_load_transfer_v3_json",
+        "ss_command_centroidal_support_v2_json",
+        "ss_map_endpoint_force_to_joint_v2_json",
+        "ss_map_endpoint_force_to_joint_v3_json",
+        "ss_bound_stability_influence_v2_json",
+        "ss_bound_stability_influence_v3_json"
+      ],
+      "rust": {
+        "parameters": [
+          "*const u8",
+          "usize",
+          "*mut u8",
+          "usize",
+          "*mut usize"
+        ],
+        "return": "c_int"
+      },
+      "c": {
+        "parameters": [
+          "const uint8_t*",
+          "size_t",
+          "uint8_t*",
+          "size_t",
+          "size_t*"
+        ],
+        "return": "ss_status"
+      },
+      "python_ctypes": {
+        "argtypes": [
+          "POINTER(c_uint8)",
+          "c_size_t",
+          "POINTER(c_uint8)",
+          "c_size_t",
+          "POINTER(c_size_t)"
+        ],
+        "restype": "c_int"
+      }
+    },
+    {
+      "group_id": "json_output_only_caller_owned_output",
+      "symbols": [
+        "ss_recovery_development_profile_v1_json",
+        "ss_gq15_domain_certificate_json",
+        "ss_candidate35_initial_memory_json",
+        "ss_balanced_wave_initial_memory_json"
+      ],
+      "rust": {
+        "parameters": [
+          "*mut u8",
+          "usize",
+          "*mut usize"
+        ],
+        "return": "c_int"
+      },
+      "c": {
+        "parameters": [
+          "uint8_t*",
+          "size_t",
+          "size_t*"
+        ],
+        "return": "ss_status"
+      },
+      "python_ctypes": {
+        "argtypes": [
+          "POINTER(c_uint8)",
+          "c_size_t",
+          "POINTER(c_size_t)"
+        ],
+        "restype": "c_int"
+      }
+    },
+    {
+      "group_id": "policy_session_create",
+      "symbols": [
+        "ss_balanced_wave_policy_session_create_json"
+      ],
+      "rust": {
+        "parameters": [
+          "*const u8",
+          "usize",
+          "*mut u64"
+        ],
+        "return": "c_int"
+      },
+      "c": {
+        "parameters": [
+          "const uint8_t*",
+          "size_t",
+          "uint64_t*"
+        ],
+        "return": "ss_status"
+      },
+      "python_ctypes": {
+        "argtypes": [
+          "POINTER(c_uint8)",
+          "c_size_t",
+          "POINTER(c_uint64)"
+        ],
+        "restype": "c_int"
+      }
+    },
+    {
+      "group_id": "policy_session_step",
+      "symbols": [
+        "ss_balanced_wave_policy_session_step_json"
+      ],
+      "rust": {
+        "parameters": [
+          "u64",
+          "*const u8",
+          "usize",
+          "*mut u8",
+          "usize",
+          "*mut usize"
+        ],
+        "return": "c_int"
+      },
+      "c": {
+        "parameters": [
+          "uint64_t",
+          "const uint8_t*",
+          "size_t",
+          "uint8_t*",
+          "size_t",
+          "size_t*"
+        ],
+        "return": "ss_status"
+      },
+      "python_ctypes": {
+        "argtypes": [
+          "c_uint64",
+          "POINTER(c_uint8)",
+          "c_size_t",
+          "POINTER(c_uint8)",
+          "c_size_t",
+          "POINTER(c_size_t)"
+        ],
+        "restype": "c_int"
+      }
+    },
+    {
+      "group_id": "policy_session_destroy",
+      "symbols": [
+        "ss_balanced_wave_policy_session_destroy"
+      ],
+      "rust": {
+        "parameters": [
+          "u64"
+        ],
+        "return": "c_int"
+      },
+      "c": {
+        "parameters": [
+          "uint64_t"
+        ],
+        "return": "ss_status"
+      },
+      "python_ctypes": {
+        "argtypes": [
+          "c_uint64"
+        ],
+        "restype": "c_int"
+      }
+    }
+  ],
+  "source_conformance_cells": [
+    "P0_contract_and_required_package_surfaces",
+    "P1_rust_cdylib_staticlib_and_rlib_artifact_contract",
+    "P2_exact_rust_c_header_python_signature_parity",
+    "P3_real_dynamic_library_exports_every_declared_symbol",
+    "P4_portable_core_rust_unit_conformance",
+    "P5_python_ctypes_end_to_end_conformance",
+    "P6_surface_mutation_negative_controls",
+    "P7_package_source_projection_and_claim_boundary"
+  ],
+  "surface_test_contract": {
+    "current_source_positive_control_count": 1,
+    "deliberate_mutation_negative_control_count": 10,
+    "total_surface_unit_test_count": 11
+  },
+  "clean_room_acceptance": {
+    "package_manifest_required": true,
+    "not_for_distribution_marker_required": true,
+    "candidate_authorization_report_required": true,
+    "candidate_authorization_report_hash_must_match_package_manifest": true,
+    "candidate_authorization_source_commit_must_match_package_manifest": true,
+    "candidate_authorization_report_must_be_outside_package_and_source": true,
+    "source_repository_metadata_forbidden": true,
+    "symbolic_links_and_reparse_points_forbidden": true,
+    "unlisted_package_files_forbidden": true,
+    "all_package_file_hashes_must_match": true,
+    "all_required_portable_api_paths_must_be_packaged": true,
+    "build_and_all_conformance_cells_must_run_from_package_root": true,
+    "build_artifacts_must_be_created_inside_package": true,
+    "library_override_forbidden": true,
+    "retained_source_report_library_override_forbidden": true,
+    "report_must_be_retained_outside_package_and_source": true,
+    "world_build_count_must_equal": 0,
+    "solver_step_count_must_equal": 0,
+    "physical_acceptance_authority_must_equal": false
+  },
+  "claim_boundary": {
+    "source_conformance_runner_implemented": true,
+    "source_conformance_report_required": true,
+    "clean_room_candidate_validated": false,
+    "r01_passed": false,
+    "sdk1_m01_passed": false,
+    "release_authorized": false,
+    "publication_authorized": false,
+    "walking_acceptance": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

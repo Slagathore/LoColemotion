@@ -1,0 +1,19 @@
+{
+  "schema_version": "sporespore_recovery_candidate_stance_profiles_v2",
+  "preserved_predecessor": "sdk/core/contracts/recovery_candidate_stance_profiles_v1.json",
+  "profiles": [
+    {
+      "ledger_scope": {"subsystem": "recovery", "engine_scope": "engine_neutral", "authority_mode": "prospective_development_controller", "question_class": "development"},
+      "recovery_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v16",
+      "controller_id": "sporespore_exact_s169_stance_handoff_controller_v3",
+      "profile_id": "sporespore_exact_s169_flexed_under_hip_stance_v1",
+      "response_time_s": 0.1,
+      "geometry_rule_id": "two_link_sagittal_endpoint_under_hip_v1",
+      "target_knee_angle_rad": -0.25,
+      "rule": "Keep V15 measured-position relaxation and existing speed/impulse caps. Set every knee goal to -0.25 rad and each hip goal to -atan2(lower_fraction*sin(knee), upper_fraction+lower_fraction*cos(knee)), so the ideal sagittal foot center remains under its hip. Do not alter observations, standing gates or phase timeouts.",
+      "parameter_basis": "Prospective modest flexion: about 14.3 degrees at the knee. In the exact S169 ideal two-link geometry this shortens the leg by about 2.7 mm and gives a nonzero first-order knee-to-foot-height derivative, unlike the fully straight goal. No optimum, load balance, clearance, native stability or behavioral improvement is proved by that geometry.",
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    }
+  ]
+}

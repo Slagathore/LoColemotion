@@ -1,0 +1,23 @@
+{
+  "schema_version": "sporespore_development_recovery_support_hold_posture_contract_v1",
+  "ledger_scope": {"subsystem": "recovery", "engine_scope": "core", "authority_mode": "prospective_development_controller_contract", "question_class": "development"},
+  "component_id": "V44",
+  "policy_id": "sporespore_balanced_wave_recovery_support_hold_posture_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_support_progression_v1",
+  "source_attempt": "b72c4d6447704de49bbc6c348c0f8ff0",
+  "source_report_sha256": "sha256:c10bffdd83cb274a5d32b28dddb27d470d2e19a13647026cd45abeb30d5abd51",
+  "question": "During a finite support hold, does requesting a four-foot upright support posture instead of retaining the walking swing lift arrest the tilt and restore actual stance support, without preventing subsequent walking?",
+  "controlled_change": "Only the new V44 policy, and only when the unchanged V43 guard holds progression, selects the existing floor-upright support reference for all four limbs and sets reference knee-lift fractions to zero. Preserve each scheduled phase and nominal leg direction. Keep existing joint projection, floor/height feasibility arithmetic, reference slew, contact-selected reference rates, gains, damping and final motor limits. This requests support; it does not assert contact or static equilibrium.",
+  "comparison_and_memory": "Apply the same current hold mode to both current-wave and prior-wave reference evaluations. Do not interpret a hold-mode switch as walking-wave feedforward. Store the original scheduled wave in reference memory. Record the effective no-lift reference and same-mode comparison waves separately. Keep actual observations, ordinary stance-latch choices, gait clocks, gate counters and guard lifecycle unchanged. A support-posture selection for a swing limb must not create a stance latch or a supporting-contact observation.",
+  "limits": "No new gain, contact threshold, target-height offset, timeout or acceptance threshold. Keep the inherited three-clear-observation release dwell and 120-held-command refusal. Restoring support, repeating a hold, increased motor clipping, renewed support loss on release and lack of forward progress remain empirical possibilities. Fixed-pose geometry is not another rollout. Force-aware recovery remains outside this candidate.",
+  "verification": [
+    "Run the complete core tests and preserve the six unchanged recovery fixtures. Cover first-command slew coincidence, changed held goals, unchanged non-held commands, clear dwell, release, re-entry, invalid/crossed input and finite safe-zero refusal.",
+    "Use every available V43 precommand input through both actual native interfaces. Independently reconstruct the goal, reference and motor arithmetic. Report one-command substitution and chained reference memory separately; never call either a new physical trajectory.",
+    "Byte-compare all 176 original V43 responses and the established 4800 older-policy responses. Preserve the original incomplete attempt and the failed first synthetic assertion.",
+    "Publish a component-only profile that the physical selector refuses. A distinct shared-route integration, fresh source binding including native-failure retention, complete applicable safety gate and clean pushed prospective freeze must precede a new physical attempt."
+  ],
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

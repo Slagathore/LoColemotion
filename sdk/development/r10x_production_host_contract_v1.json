@@ -1,0 +1,38 @@
+{
+  "schema_version": "sporespore_r10x_production_host_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_campaign_host",
+    "question_class": "finite decision"
+  },
+  "canonical_python": "C:/Program Files/Python311/python.exe",
+  "canonical_powershell": "C:/Program Files/PowerShell/7/pwsh.exe",
+  "lane_deadlines_seconds": {
+    "production_interface_probe": 120,
+    "production_gate": 30000,
+    "production_campaign": {
+      "development_ghost": 39720,
+      "held_out_finite_decision": 24120
+    }
+  },
+  "budget_basis": {
+    "complete_gate_ceiling": 30000,
+    "unchanged_per_physical_child": 1740,
+    "unchanged_per_native_replay": 900,
+    "per_replay_wrapper": 960,
+    "per_pair_audit": 1800,
+    "campaign_audit": 1800,
+    "terminal_publication": 120,
+    "held_out_authority_and_bookkeeping": 600,
+    "ghost_derivation": "30000 gate + 2*1740 children + 2*960 replay wrappers + 1800 pair audit + 1800 campaign audit + 720 publication/bookkeeping = 39720",
+    "held_out_derivation": "6*1740 children + 6*960 replay wrappers + 3*1800 pair audits + 1800 campaign audit + 720 publication/bookkeeping = 24120"
+  },
+  "full_stage_graph_must_fit_gate_ceiling": true,
+  "qualification_status": "complete_graph_and_original_workflow_qualification_required",
+  "automatic_restart": false,
+  "automatic_resume": false,
+  "physical_launch_requires_complete_gate_live_owned_host_and_clean_pushed_freeze": true,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

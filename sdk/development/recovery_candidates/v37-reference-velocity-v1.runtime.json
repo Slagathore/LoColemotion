@@ -1,0 +1,514 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_runtime_binding_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "development_runtime_artifact_binding",
+    "question_class": "development"
+  },
+  "build_source_parent_commit": "a24d2be8001aaa1908880d65de87bb9be5db260e",
+  "build_stages": [
+    {
+      "stage": "core_tests",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+        "--release",
+        "-p",
+        "sporespore-locomotion-core",
+        "--lib"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 87.95299999997951
+    },
+    {
+      "stage": "fixtures",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+        "--release",
+        "-p",
+        "sporespore-locomotion-core",
+        "--lib",
+        "v20_public_json_buffer_and_exported_native_shaped_fixtures",
+        "--",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.7030000002123415
+    },
+    {
+      "stage": "adapter",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+        "--release",
+        "-p",
+        "sporespore-godot-adapter"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 62.26599999982864
+    }
+  ],
+  "rustc_version": "rustc 1.97.0 (2d8144b78 2026-07-07)\nbinary: rustc\ncommit-hash: 2d8144b7880597b6e6d3dfd63a9a9efae3f533d3\ncommit-date: 2026-07-07\nhost: x86_64-pc-windows-msvc\nrelease: 1.97.0\nLLVM version: 22.1.6",
+  "cargo_version": "cargo 1.97.0 (c980f4866 2026-06-30)",
+  "runtime": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/sporespore_godot_adapter.dll",
+    "byte_length": 8351744,
+    "raw_sha256": "sha256:16e557c405004ce536718d16c62d9500696772a8ccbb2ee141813c10d3a06c82"
+  },
+  "local_build_path": "sdk/target/development-candidate-v37-reference-velocity-v1/release/sporespore_godot_adapter.dll",
+  "source_files": [
+    {
+      "path": "sdk/adapters/godot/Cargo.toml",
+      "byte_length": 404,
+      "raw_sha256": "sha256:138d3cb4b8e15c56642bb08991d00ca291e14ac5d6af3b1f004332aef28dd731"
+    },
+    {
+      "path": "sdk/adapters/godot/src/lib.rs",
+      "byte_length": 57646,
+      "raw_sha256": "sha256:f5afadf1730210367c58aae74e97fe3efbcf1efb4db0103eb1fe9429fc699d45"
+    },
+    {
+      "path": "sdk/balanced_wave_selected_policy.json",
+      "byte_length": 4935,
+      "raw_sha256": "sha256:8e111aa9a0b3c7182d4bd7021f6652c50e9d678ff95a6d06d5056e94f7e299b6"
+    },
+    {
+      "path": "sdk/Cargo.lock",
+      "byte_length": 19887,
+      "raw_sha256": "sha256:5256c3872e753693ea18bfb9a97ee47a3cbda56cedde7980f84dd7235d8247db"
+    },
+    {
+      "path": "sdk/Cargo.toml",
+      "byte_length": 83,
+      "raw_sha256": "sha256:bb38b6151b190e2948b679ee5fad813e38f393e4cb8e940e1170203816870cb3"
+    },
+    {
+      "path": "sdk/conformance/golden/candidate35_gq15_v1.json",
+      "byte_length": 6329,
+      "raw_sha256": "sha256:468d6465d50fc160f59bcacb371e8d5b5e44504336072c35639c4e98c43e9f09"
+    },
+    {
+      "path": "sdk/conformance/golden/stability_v2_gdscript_oracle_v1.json",
+      "byte_length": 4591,
+      "raw_sha256": "sha256:63634ed86ee1514a93df56a7ae89936c07d4e2d4fe339eabdf387c73166ba8e8"
+    },
+    {
+      "path": "sdk/core/build.rs",
+      "byte_length": 1893,
+      "raw_sha256": "sha256:8e2d134f5092d4b6266fb147455babb415d378de97fa1959e2abb9d53fdbd08c"
+    },
+    {
+      "path": "sdk/core/Cargo.toml",
+      "byte_length": 602,
+      "raw_sha256": "sha256:695e860ead75e0a5791a88b8a7dc8f21b74fcec89299841951112cce137a15a1"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v1.json",
+      "byte_length": 1330,
+      "raw_sha256": "sha256:d21ac722cbff4e661a2797b34517ac0e97adb6b4dc742edb5021c3da8344d7c1"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v2.json",
+      "byte_length": 1534,
+      "raw_sha256": "sha256:fdd0647e30157d3afadc2c2376e0f9f70f8eeb9db614dd059fdc0855c1ae90b7"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v3.json",
+      "byte_length": 1656,
+      "raw_sha256": "sha256:a9d30289c02ba286e441c046a8f9ae3790c263ba9ad20d86a55beb67d1bb3c2d"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v4.json",
+      "byte_length": 1238,
+      "raw_sha256": "sha256:299215f287de24b3415aaee78e71c35dd795068e407f02bef8e023402a3d9987"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v5.json",
+      "byte_length": 1415,
+      "raw_sha256": "sha256:ea027657da723cf1e23aae22adac241e171fa4bbb340d386b78429f73285b2f3"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v6.json",
+      "byte_length": 3120,
+      "raw_sha256": "sha256:c9bd70c6c85b5b8657536411c8550c20974644efc539f6a406559f895217c800"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_interfaces_v1.json",
+      "byte_length": 985,
+      "raw_sha256": "sha256:322dfb08e8c8ccca74aeb9dc8ae85c80b0b490880605d149677b0c366f6ea35d"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_v22_retained_support_fixture_v1.json",
+      "byte_length": 31081,
+      "raw_sha256": "sha256:f80ff301ea0698c7aec58f0ea807c8d5dc6a3bf02d94ea8dfcec08ffde1cd6b2"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_v25_retained_walking_handoff_fixture_v1.json",
+      "byte_length": 3230,
+      "raw_sha256": "sha256:dd84095c234912b4638f0e309809d6fcc459e44971cb694ed4a93a09266a4f7a"
+    },
+    {
+      "path": "sdk/core/src/actuator_profile.rs",
+      "byte_length": 24016,
+      "raw_sha256": "sha256:c5a175f0783e0004b4012e803d2d254c3448b2d52b88daeefc23cf746d499795"
+    },
+    {
+      "path": "sdk/core/src/adaptation.rs",
+      "byte_length": 55830,
+      "raw_sha256": "sha256:422f3cc362b04b399884fd2f9f3139cfbf0a1baeff043e17c3344f739166c580"
+    },
+    {
+      "path": "sdk/core/src/canonical.rs",
+      "byte_length": 9197,
+      "raw_sha256": "sha256:83ab1b94d0127b18f45476afc3745b67fe14c7be2917e4edd77a7c38f519e07f"
+    },
+    {
+      "path": "sdk/core/src/canonical_actuation.rs",
+      "byte_length": 53283,
+      "raw_sha256": "sha256:af4fcb7afdf3f74942a322ab1bb6d814b8e78d05825e6c622dc0973a7206bedb"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "byte_length": 98014,
+      "raw_sha256": "sha256:bd017c822c038152fc215cfa3778689aa953d65afd183aca071fa8b83c1d9203"
+    },
+    {
+      "path": "sdk/core/src/coverage.rs",
+      "byte_length": 14852,
+      "raw_sha256": "sha256:69e2cc1386601ec5f3982edd937c3cd65bc19a89d07c48c8048e3678f67cb0be"
+    },
+    {
+      "path": "sdk/core/src/ffi.rs",
+      "byte_length": 125071,
+      "raw_sha256": "sha256:f9683ee70c809bb63549838546e1ee6ef29e018f35cbef486632bff1ed3e3d13"
+    },
+    {
+      "path": "sdk/core/src/lib.rs",
+      "byte_length": 19186,
+      "raw_sha256": "sha256:5acdea60c443efbe848f162ee4584b343f8772ac0c3e04b01fac5c04b2b05f2e"
+    },
+    {
+      "path": "sdk/core/src/protocol.rs",
+      "byte_length": 38404,
+      "raw_sha256": "sha256:d7f6e70e1466d0a3c3030e64e89509cbd1852accb74cdaed9b2597e4c92eb0c9"
+    },
+    {
+      "path": "sdk/core/src/quadruped.rs",
+      "byte_length": 17849,
+      "raw_sha256": "sha256:e81d10100d5e18b4bb2aef2982562303ae1a90ccfa3656ff938d193f8d9a95d0"
+    },
+    {
+      "path": "sdk/core/src/recovery/passive_entry/native_epoch.rs",
+      "byte_length": 4718,
+      "raw_sha256": "sha256:738c424454c3d9249b8ba6604437ab337cfb0dde203fa194570aa893edef3035"
+    },
+    {
+      "path": "sdk/core/src/recovery/passive_entry.rs",
+      "byte_length": 15481,
+      "raw_sha256": "sha256:a178c175f571564f12205c91af2ac0279f13c97b387a811396645559bbd8dbb9"
+    },
+    {
+      "path": "sdk/core/src/recovery/tests/passive_entry_tests.rs",
+      "byte_length": 24391,
+      "raw_sha256": "sha256:a22296200a54ac1707255f3ec9647f6d4ee0e0b4399400cf7b1120ef4f5e3ba1"
+    },
+    {
+      "path": "sdk/core/src/recovery.rs",
+      "byte_length": 247157,
+      "raw_sha256": "sha256:0bf910eea03e3d01dc80ab7600f057ebb5a3f5901b155ead1769bad5a77a84d1"
+    },
+    {
+      "path": "sdk/core/src/recovery_bounded_support_tests.rs",
+      "byte_length": 13604,
+      "raw_sha256": "sha256:6832d7cf66eb68297b85a12a0d257f68e87010238fe0172c3a55e989aab61c1f"
+    },
+    {
+      "path": "sdk/core/src/recovery_energy.rs",
+      "byte_length": 37283,
+      "raw_sha256": "sha256:97e2b1bb56fb14c32a0a5ca6f2fb843a4251295e6e955762bda14c84ec9db2da"
+    },
+    {
+      "path": "sdk/core/src/recovery_energy_v3.rs",
+      "byte_length": 18108,
+      "raw_sha256": "sha256:e8287ba5cf585b505adb20778e67b12c1373d06b88fc152910be7866f2493b4a"
+    },
+    {
+      "path": "sdk/core/src/recovery_feasible_support.rs",
+      "byte_length": 7890,
+      "raw_sha256": "sha256:3cadeb57f1152adcf1d3652f68504855328c13db1a633013bc101c8bf1db5ee2"
+    },
+    {
+      "path": "sdk/core/src/recovery_feasible_support_tests.rs",
+      "byte_length": 7617,
+      "raw_sha256": "sha256:b2eefc6e74505a31e94e005058049b56ff5fcaa8056aaabaac11c5d27f46d0b0"
+    },
+    {
+      "path": "sdk/core/src/recovery_floor_reference.rs",
+      "byte_length": 3284,
+      "raw_sha256": "sha256:a130458df7e8946acaee6d218a4f0d3f16299976f3027eec114fed82f54f415b"
+    },
+    {
+      "path": "sdk/core/src/recovery_floor_support_tests.rs",
+      "byte_length": 10986,
+      "raw_sha256": "sha256:38127c96f36e06f1e3f0875e53220cb8a78dd0476de42aaa4457cdd0e059ba2b"
+    },
+    {
+      "path": "sdk/core/src/recovery_morphology.rs",
+      "byte_length": 24992,
+      "raw_sha256": "sha256:9782f1956f381393b4e557dcf12fc283c3d5770af7bc4e000333771c262752e8"
+    },
+    {
+      "path": "sdk/core/src/recovery_reference_velocity_tests.rs",
+      "byte_length": 7762,
+      "raw_sha256": "sha256:12465a7700f2f33753d53a479347172017a84e719ea5245dfcbc0fb550e4c32a"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/passive_entry_collection.rs",
+      "byte_length": 3194,
+      "raw_sha256": "sha256:4cc0b85bcc7d2f5f5532dd8dd3efbd904afe01f39145f6707d6e544e95fe3e04"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/coordinated_support_control_tests.rs",
+      "byte_length": 6985,
+      "raw_sha256": "sha256:a2d38f754381b785a74d281d9940dd11d8b548cac5ad8cee6eae5ae1a50cc1b0"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/damped_neutral_stance_control_tests.rs",
+      "byte_length": 8436,
+      "raw_sha256": "sha256:0623f0f2aa6b15baeb60569351d17478567fe4ef269213b18a39f7a0c0ac6c2f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/damped_stance_control_tests.rs",
+      "byte_length": 8367,
+      "raw_sha256": "sha256:60754ccb8bde5968da0cfb207fd64db9136a934913134dbaa76717679cbd8edd"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/flexed_stance_control_tests.rs",
+      "byte_length": 7063,
+      "raw_sha256": "sha256:c05c04e584e3494909f374ab541c1b296c0ad18814fe344b025f095e1583d211"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/knee_fold_replant_control_tests.rs",
+      "byte_length": 11024,
+      "raw_sha256": "sha256:9e66afbbbacd26a0869df102f245a3e73944b17de18fcc0e3de0a90f226d7bc6"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/knees_before_lift_control_tests.rs",
+      "byte_length": 7957,
+      "raw_sha256": "sha256:0c42f88262ea7519b654544ae01e513e61554e27fc2d5fde2a75e385ff8a892b"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/matched_foot_reach_control_tests.rs",
+      "byte_length": 9229,
+      "raw_sha256": "sha256:f4fc7deb4df8115ec18650a31c9a70f30fc18f3ca3ebe733104d6cc0d55acd3f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/measured_pose_rise_control_tests.rs",
+      "byte_length": 8753,
+      "raw_sha256": "sha256:a7734e68e1be0130911139e4404728a1788d2c53fec74d4570fbf0d3ec7f448f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/passive_entry_collection_tests.rs",
+      "byte_length": 7630,
+      "raw_sha256": "sha256:15528e77cb45543c8c20f227a56a25e88e598c9ac4623b135b534aabf1df0dda"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/ramped_neutral_stance_control_tests.rs",
+      "byte_length": 10824,
+      "raw_sha256": "sha256:8a58750a81a29a9ff4dbd9021ab40dd9df233e91374948b6eb8a39527602466a"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/rearward_fold_control_tests.rs",
+      "byte_length": 13225,
+      "raw_sha256": "sha256:40fb5e2a4675f4c8fcfed7c68112b79f597767b516cfd014b0d9c84cb877e584"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/smooth_stance_control_tests.rs",
+      "byte_length": 8856,
+      "raw_sha256": "sha256:cb061069e522174bb2eacb975dd26c40740deb664fc9a7f3676feefb2d686448"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/support_waypoint_rise_control_tests.rs",
+      "byte_length": 9716,
+      "raw_sha256": "sha256:a4fb14d664a1fdb6cc843607530e3815e3d78237b0c3d84fa0fa7c12638235c6"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/world_vertical_support_control_tests.rs",
+      "byte_length": 12687,
+      "raw_sha256": "sha256:2aab1570a96b1d1344fcd84f060cc45662324422cd8535de0ca81aaef6e63059"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime.rs",
+      "byte_length": 270277,
+      "raw_sha256": "sha256:08fa660400efa18ee90099406390ee0261e239e98d9e66523b0629a2b5cc35ac"
+    },
+    {
+      "path": "sdk/core/src/recovery_smooth_swing_tests.rs",
+      "byte_length": 7976,
+      "raw_sha256": "sha256:29c080b89fc981e38c61314d7ff322b99a79a6b2cb1299d2d3667bcb854d865b"
+    },
+    {
+      "path": "sdk/core/src/recovery_support_plane.rs",
+      "byte_length": 19482,
+      "raw_sha256": "sha256:217145310653c569149594547a706688215ee587ee1488a78f0ed3bbe6283d43"
+    },
+    {
+      "path": "sdk/core/src/recovery_swing_end_recontact_tests.rs",
+      "byte_length": 7426,
+      "raw_sha256": "sha256:f7db891d5d071282b4c842ef3788045a8315f6a15c1a495b6e8badbf23c6aac0"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "byte_length": 154964,
+      "raw_sha256": "sha256:17a92151fe340bee95acffbc575e94a91bd7a5a262a7f38fe958161c1e0c28e1"
+    },
+    {
+      "path": "sdk/core/src/scheduler.rs",
+      "byte_length": 8038,
+      "raw_sha256": "sha256:2bcfddfcafa9221e8852181a5c56ea32624aaf4f8e8cabe37489538b6f9e119d"
+    },
+    {
+      "path": "sdk/core/src/schema.rs",
+      "byte_length": 16861,
+      "raw_sha256": "sha256:63baba3e1ebc2ae9db7c0e7bd4aa788fb609b41d7c77febe2b32155fe8c32a66"
+    },
+    {
+      "path": "sdk/core/src/stability.rs",
+      "byte_length": 225629,
+      "raw_sha256": "sha256:4181580b3a08b6b684a474e8cd3b24605858276cad9a948ba4afaf3a1b678ad1"
+    },
+    {
+      "path": "sdk/development_recovery_entry_initialization_diagnosis_v1.json",
+      "byte_length": 3631,
+      "raw_sha256": "sha256:c4b04809a8124800cb66e7c6eea48059c6b320efc2c1cfb21ed46bf4a2e3a665"
+    },
+    {
+      "path": "sdk/include/sporespore_locomotion.h",
+      "byte_length": 15198,
+      "raw_sha256": "sha256:8010a9442f68b4ec1c617870b06c28d6d8fcfdbdd8e9378297df39e61ae425c8"
+    },
+    {
+      "path": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+      "byte_length": 20125,
+      "raw_sha256": "sha256:9dc6bbbe0b7e003d167b9f29ee7d33e1ae52281f86131e8c7d07646a1f0d8e22"
+    }
+  ],
+  "compiled_fixtures": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/fixtures.stdout.log",
+    "byte_length": 343942,
+    "raw_sha256": "sha256:0184ce6beaf3457df4b8d149652b6423ae1ad87eb0f1ef9e9e09b463bb3b84f7"
+  },
+  "core_test_count": 318,
+  "build_evidence_files": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/adapter.execution.json",
+      "byte_length": 398,
+      "raw_sha256": "sha256:50a24ef4e3e49f634a2f339117bf0ce4315f66d1582c3258a71410b408faa1bf"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/adapter.stderr.log",
+      "byte_length": 269,
+      "raw_sha256": "sha256:ed98c8e9da18f5145aa9262aec4564083e530b15727ac709a4ac224a17c74c41"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/adapter.stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/compiler_cache.json",
+      "byte_length": 1295,
+      "raw_sha256": "sha256:3c2f5c6f88f314fc755da22c692248c9f0492399ad42693885321c4be31c488a"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/core_tests.execution.json",
+      "byte_length": 416,
+      "raw_sha256": "sha256:aafad7a117e180b240785a4004f6d3a3e94af82abffb0ff02707dfbd011ef71c"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/core_tests.stderr.log",
+      "byte_length": 365,
+      "raw_sha256": "sha256:ae7868ce42b028ab7b4edb658ede00520a924d6ca779c1ca1bd9cd5876e1628b"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/core_tests.stdout.log",
+      "byte_length": 33785,
+      "raw_sha256": "sha256:8c70b45cdae4f1653b387d3aaa16449f54d2bccec33cad1646aa5977e951fe22"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/fixtures.execution.json",
+      "byte_length": 513,
+      "raw_sha256": "sha256:636e3da54299d5f0b60c861919568f9eebde5fd881620544ec4a24b2d11f8791"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/fixtures.stderr.log",
+      "byte_length": 265,
+      "raw_sha256": "sha256:5b4ee0840577fb134596c9129db42ac1876aed9f922533b76db5b9b170391ae8"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/fixtures.stdout.log",
+      "byte_length": 343942,
+      "raw_sha256": "sha256:0184ce6beaf3457df4b8d149652b6423ae1ad87eb0f1ef9e9e09b463bb3b84f7"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-522717e764ef4c44943422d6c1d403ee/source_snapshot.json",
+      "byte_length": 394637,
+      "raw_sha256": "sha256:7934229c21272f73e8ed634dd3e0583167aa4742b81225d09d3ee7905a79c05a"
+    }
+  ],
+  "default_godot_extension_changed": false,
+  "old_pinned_adapter_overwritten": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "qualification_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "compiler_cache": {
+    "key": "5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+    "inputs": {
+      "schema_version": "sporespore_development_compiler_cache_v1",
+      "build_profile": "release",
+      "rustc_version": "rustc 1.97.0 (2d8144b78 2026-07-07)\nbinary: rustc\ncommit-hash: 2d8144b7880597b6e6d3dfd63a9a9efae3f533d3\ncommit-date: 2026-07-07\nhost: x86_64-pc-windows-msvc\nrelease: 1.97.0\nLLVM version: 22.1.6",
+      "cargo_version": "cargo 1.97.0 (c980f4866 2026-06-30)",
+      "build_environment": {
+        "RUSTFLAGS": null,
+        "CARGO_ENCODED_RUSTFLAGS": null,
+        "RUSTC": null,
+        "RUSTC_WRAPPER": null,
+        "RUSTC_WORKSPACE_WRAPPER": null,
+        "CARGO_BUILD_TARGET": null,
+        "CARGO_INCREMENTAL": null,
+        "PATH": "sha256:86d1749c09b50a2a900a6e3a324b7c2fac658299c4a44104075d792302100709",
+        "LIB": null,
+        "LIBPATH": null,
+        "INCLUDE": null,
+        "CC": null,
+        "CXX": null,
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "LDFLAGS": null
+      },
+      "repository_cargo_configurations": []
+    },
+    "qualification_or_test_evidence_reused": false,
+    "compilation_directory": "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+    "directory_existed_before_build": true
+  }
+}

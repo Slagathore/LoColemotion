@@ -1,0 +1,108 @@
+{
+  "schema_version": "sporespore_cross_engine_c6_host_characterization_r2_preregistration_v1",
+  "campaign_id": "C6-HOST-CHARACTERIZATION-R2",
+  "gate_id": "C6-HC1-R2",
+  "status": "frozen_before_first_c6_hc1_r2_physics_world",
+  "recorded_utc": "2026-07-30T13:25:53.0148072Z",
+  "implementation_parent_commit": "f54375ad1a4ba3d1e02c01b77983c3879e110bf4",
+  "purpose": "Correct only the C6-HC1-R1 MuJoCo actuator integrator by adopting the engine-documented implicitfast path for position-actuator kv damping.",
+  "base_preregistration": {
+    "path": "sdk/cross_engine_c6_host_characterization_preregistration.json",
+    "raw_sha256": "sha256:2ff51bc87745d84f2d4d0521005098ead3bef20e691b25f9f49c0cf7eadade8e"
+  },
+  "r1_preregistration": {
+    "path": "sdk/cross_engine_c6_host_characterization_r1_preregistration.json",
+    "raw_sha256": "sha256:a5ebb5c3fa827ec6d4952326f63ef68a87134d2cea71186ca15bd3174df84e11",
+    "all_material_cells_unchanged": true,
+    "shared_actuator_geometry_mass_inertia_targets_impulse_limits_gains_timestep_and_observation_steps_unchanged": true
+  },
+  "r1_closure": {
+    "path": "sdk/cross_engine_c6_host_characterization_r1_closure.json",
+    "raw_sha256": "sha256:c4fac9d63428e747ac052169d97b344e2b774ce728f1a368f3e842f70248da12",
+    "source_commit": "f54375ad1a4ba3d1e02c01b77983c3879e110bf4",
+    "rapier_report_sha256": "sha256:e706f53c1f7cc4658de5601728a571be695a294c25bcbe39955b1c7c585607dd",
+    "mujoco_report_sha256": "sha256:156c76457a0f0d630cf98cf4eab11ebea1bd939b15c0d7bcf6be7a2f41b7a0cc",
+    "same_identity_rerun_forbidden": true
+  },
+  "correction": {
+    "classification": "fixture_correction_not_threshold_policy_gain_or_inertia_change",
+    "predecessor_defect": "MuJoCo position-actuator kv damping was integrated with explicit Euler on the aligned low-inertia cube despite the engine documentation recommending implicitfast or implicit.",
+    "rapier": {
+      "integrator_unchanged": true,
+      "all_fixture_inputs_unchanged": true
+    },
+    "mujoco_material": {
+      "integrator": "Euler",
+      "all_fixture_inputs_unchanged": true
+    },
+    "mujoco_actuator": {
+      "predecessor_integrator": "Euler",
+      "successor_integrator": "implicitfast",
+      "documentation_basis": "MuJoCo position-actuator kv is actuator-applied damping; implicitfast or implicit is recommended.",
+      "all_other_fixture_inputs_unchanged": true
+    }
+  },
+  "unchanged_actuator_fixture": {
+    "shape": "cuboid",
+    "half_extents_m": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "mass_kg": 1.0,
+    "mass_properties_source": "shape_derived_from_nonzero_mass_collider",
+    "expected_principal_angular_inertia_kg_m2": [
+      0.02666666666666667,
+      0.02666666666666667,
+      0.02666666666666667
+    ],
+    "target_positions_rad": [
+      -0.4,
+      0.4
+    ],
+    "maximum_step_impulses_nms": [
+      0.05,
+      0.25
+    ],
+    "stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "timestep_s": 0.008333333333333333,
+    "observation_steps": 240,
+    "maximum_final_position_error_rad": 0.02
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "perfect_synthetic_zero_failure_result_must_pass_full_integrity_gate": true,
+    "nonzero_failure_canary_must_fail_full_integrity_gate": true,
+    "preflight_world_build_count": 0,
+    "preflight_scene_insertion_count": 0,
+    "preflight_physics_state_mutation_count": 0
+  },
+  "execution_contract": {
+    "both_hosts_required": true,
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_per_host_and_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "early_stop_forbidden": true,
+    "all_declared_material_cells_required": true,
+    "all_declared_actuator_cells_required": true,
+    "host_specific_results_may_differ": true,
+    "bit_identical_trajectory_required": false
+  },
+  "claims": {
+    "rapier_material_characterization": false,
+    "rapier_actuator_characterization": false,
+    "mujoco_material_characterization": false,
+    "mujoco_actuator_characterization": false,
+    "controller_policy_authority": false,
+    "selected_policy_physical_authority": false,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "material_robustness": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

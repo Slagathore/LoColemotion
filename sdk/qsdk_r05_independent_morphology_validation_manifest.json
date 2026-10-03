@@ -1,0 +1,86 @@
+{
+  "schema_version": "sporespore_qsdk_r05_independent_morphology_validation_manifest_v1",
+  "gate_id": "QSDK-R05",
+  "campaign_id": "QSDK-R05",
+  "status": "rejected_complete_result",
+  "accepted": false,
+  "source": {
+    "commit": "815748c326f958ab1a8c80a1558781a774d9300f",
+    "remote": "origin/main",
+    "clean": true,
+    "matches_origin_main": true
+  },
+  "report": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r05-815748c\\report.json",
+    "sha256": "sha256:2135633c9d1d987e97b15f1ae4c1166b08760e2e428f5549f5eee03ee22c1ae8",
+    "schema_version": "sporespore_qsdk_r05_independent_morphology_report_v1"
+  },
+  "completeness": {
+    "expected_world_count": 36,
+    "observed_world_count": 36,
+    "complete_receipt_count": 36,
+    "timed_out_count": 0,
+    "receipt_parse_failure_count": 0,
+    "cell_directory_count": 36,
+    "verified_runtime_artifact_count": 110,
+    "verified_source_file_count": 8,
+    "referenced_hash_failure_count": 0,
+    "early_stop_used": false
+  },
+  "outcome": {
+    "harness_pass_count": 0,
+    "walking_pass_count": 0,
+    "integrity_pass_count": 0,
+    "failure_count": 36,
+    "r05_passed": false,
+    "same_selected_policy_independent_morphology_evidence": false
+  },
+  "primary_rejection": {
+    "failure_code": "SELECTED_BALANCED_WAVE_FULL_AUTHORITY_START_FORBIDDEN",
+    "declared_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "observed_controller_policy_id": "g4_gq15_candidate35_v5",
+    "observed_controller_identity_count": 36,
+    "native_sdk_exclusive_post_settle_actuation_false_count": 36,
+    "sdk_step_count": 0,
+    "native_motor_write_count": 0,
+    "legacy_post_settle_motor_writes_nonzero": true,
+    "source_path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+    "source_rule": "Adapter start rejects balanced-wave policies when actuation authority is enabled outside stability_contribution_overlay.",
+    "interpretation": "The complete result is a valid rejection of the declared policy-authority experiment, not independent physical evidence for BW5R-B."
+  },
+  "additional_false_gate_counts": {
+    "bounded_lateral_drift": 5,
+    "contact_gating_completed_without_timeout": 2,
+    "bounded_tilt": 1,
+    "bounded_torso_height": 1,
+    "bounded_yaw_drift": 1,
+    "every_limb_forward_relocation": 1,
+    "every_limb_two_contact_cycles": 1,
+    "terminal_four_contact_recovery": 1,
+    "zero_torso_contact": 1
+  },
+  "successor_interlock": {
+    "technical_gate_id": "QSDK-R05A",
+    "physical_campaign_id": "QSDK-R05B",
+    "required_before_any_successor_world": [
+      "The exact Godot/Jolt adapter start accepts BW5R-B with post_settle_full actuation authority in a zero-world receipt.",
+      "The adapter manifest reports the selected controller identity, full authority scope, and actuation authority true.",
+      "The complete production integrity gate consumes that real adapter-start receipt rather than policy semantics alone.",
+      "The successor physical campaign uses previously unopened morphologies and fresh seeds; QSDK-R05 cells are not reused as independent validation."
+    ]
+  },
+  "claim_boundary": {
+    "finite_population_only": true,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "running": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

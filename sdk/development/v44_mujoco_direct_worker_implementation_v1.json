@@ -1,0 +1,104 @@
+{
+  "schema_version": "sporespore_v44_mujoco_direct_worker_implementation_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": [
+      "mujoco"
+    ],
+    "authority_mode": "development_diagnostic_only",
+    "question_class": "development"
+  },
+  "status": "implemented_zero_world_gate_passed_no_world_yet",
+  "implementation": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore\\sdk\\conformance\\development_v44_mujoco_replay.py",
+    "byte_length": 30244,
+    "sha256": "sha256:3c379931c5c92f828f8f701ebce5c1e8affffeb6c90ecfaccb6ae9b62f9a54bf"
+  },
+  "tests": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore\\tests\\test_development_v44_mujoco_replay.py",
+    "byte_length": 13737,
+    "sha256": "sha256:7d702ff1c5d2e0f14b29f5107a0a4a1b26d9ad5cb94698e13571399aac923654"
+  },
+  "retained_invalid_attempt": {
+    "attempt_id": "bd34f81049f64d9aa40dbd33625717e0",
+    "source_commit": "40268d604c68ed65f793acf59922ba4e57cb5246",
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0",
+    "status": "consumed_invalid_before_model_construction",
+    "reason": "Windows venv redirector inserted a process; worker rejected CHILD_OWNER before build_input or MjModel.",
+    "model_construction_count": 0,
+    "solver_step_count": 0,
+    "artifacts": [
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0\\preflight.json",
+        "byte_length": 59951,
+        "sha256": "sha256:5aeda16604eac5e0d0ab535157cf769e114a11350e5163e8d1b49d20ef6d91c9"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0\\input.json",
+        "byte_length": 7397003,
+        "sha256": "sha256:a34cee1ffb1b959335f374f809cc79c2c59d26d042684b3c4e8f251fecd58d1a"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0\\ticket.json",
+        "byte_length": 60079,
+        "sha256": "sha256:85333941ef165642f940cbf9068ca4840769b274cfddd60c981711c4aab267dc"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0\\worker-launch.json",
+        "byte_length": 382,
+        "sha256": "sha256:aa256d1f446550c105138e74ce9ed90f31d29cc5322a34523b2c84fb72bd7c64"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0\\worker-exit.json",
+        "byte_length": 83,
+        "sha256": "sha256:310d1d19321ddbadcaf2487487f52126da9008f41ee00e638e378f89f2796d8d"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0\\worker.stderr",
+        "byte_length": 1061,
+        "sha256": "sha256:b9a12142c03966f5f7838a769d23ed8cd3c9f336bc09611e226208b353c575dd"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd34f81049f64d9aa40dbd33625717e0\\supervisor.json",
+        "byte_length": 1168,
+        "sha256": "sha256:b719ec1ba6c47bcdbe1b4c5ab5b9c79604256edd00f7a73a6c2c610d0262b4d8"
+      }
+    ]
+  },
+  "fix": "Spawn the bound base interpreter directly with explicitly selected venv packages and disabled user site; Popen.pid and getppid now describe the actual worker. Timeout kills the actual child, not a redirector. New real-process positive control proves PID, parent, executable, and MuJoCo module identity.",
+  "gate": {
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd2b21f7d0884de986744f7b6d26c90c",
+    "test_count": 12,
+    "artifacts": [
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd2b21f7d0884de986744f7b6d26c90c\\preflight.json",
+        "byte_length": 60205,
+        "sha256": "sha256:f6a117a149805e4c11bdd69eb422dd4959a2006922dc53d3febd11b1f07c5c22"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd2b21f7d0884de986744f7b6d26c90c\\gate-exit.json",
+        "byte_length": 83,
+        "sha256": "sha256:b3480f7bfdc38ef76abde6d68890eafb1bc30aeea8c0fe23ba22b3838cb1a90a"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd2b21f7d0884de986744f7b6d26c90c\\gate.stdout",
+        "byte_length": 0,
+        "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd2b21f7d0884de986744f7b6d26c90c\\gate.stderr",
+        "byte_length": 1863,
+        "sha256": "sha256:d0ec70f7ffe40cd8239ba2d620c92488facdf4fec59499575df0e4a27bec7765"
+      },
+      {
+        "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\development-v44-mujoco-replay-bd2b21f7d0884de986744f7b6d26c90c\\supervisor.json",
+        "byte_length": 290,
+        "sha256": "sha256:c1fef23d35cab68d31aaeb46e45821daf5de7c59a88a313d8c89d3da05df97de"
+      }
+    ]
+  },
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "behavior_claimed": false,
+  "equivalence_claimed": false
+}

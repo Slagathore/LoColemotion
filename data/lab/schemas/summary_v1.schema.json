@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/summary_v1.schema.json",
+  "title": "SporeSpore lab run summary v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "termination",
+    "evidence_validity",
+    "hypothesis_result",
+    "promotion",
+    "frame_count",
+    "runtime_note_count",
+    "metrics"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.summary.v1"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+    },
+    "termination": {
+      "enum": ["completed", "timed_out", "aborted", "crashed"]
+    },
+    "evidence_validity": {
+      "enum": ["valid", "invalid", "partial"]
+    },
+    "hypothesis_result": {
+      "enum": ["supported", "contradicted", "inconclusive"]
+    },
+    "promotion": {
+      "enum": ["pass", "fail", "not_evaluated"]
+    },
+    "frame_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "runtime_note_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "first_frame_id": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "last_frame_id": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/metric"
+      }
+    },
+    "failure_codes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]{1,95}$"
+      },
+      "uniqueItems": true
+    },
+    "gate_results": {
+      "type": "object"
+    },
+    "completed_utc": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metric_id",
+        "value",
+        "unit",
+        "availability",
+        "aggregation_id",
+        "aggregation_version"
+      ],
+      "properties": {
+        "metric_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+        },
+        "value": {
+          "type": ["number", "null"]
+        },
+        "unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "availability": {
+          "enum": ["derived", "unavailable", "invalid"]
+        },
+        "source_stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*\\.jsonl$"
+        },
+        "source_frame_range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": ["integer", "null"],
+            "minimum": 0
+          }
+        },
+        "source_event_range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": ["integer", "null"],
+            "minimum": 0
+          }
+        },
+        "source_field": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "source_operands": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/source_operand"
+          }
+        },
+        "recompute_absolute_tolerance": {
+          "type": "number",
+          "minimum": 0
+        },
+        "aggregation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aggregation_version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "target_value": {
+          "type": ["number", "null"]
+        }
+      }
+    },
+    "source_operand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stream",
+        "frame_range",
+        "field",
+        "run_id"
+      ],
+      "properties": {
+        "stream": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*\\.jsonl$"
+        },
+        "frame_range": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "field": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+        }
+      }
+    }
+  }
+}

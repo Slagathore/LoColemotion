@@ -1,0 +1,145 @@
+{
+  "schema_version": "sporespore_qsdk_r24d19_mujoco_native_recovery_development_invalid_closure_v1",
+  "gate_id": "QSDK-R24D19",
+  "campaign_id": "QSDK-R24D19-MUJOCO-NATIVE-RECOVERY-ROUTE-DEVELOPMENT-GHOST",
+  "closed_local_date": "2026-08-26",
+  "status": "closed_retained_invalid_integration_result_no_behavior_interpretation",
+  "question_class": "development",
+  "source_commit": "82bb733a73daf2d1f3aca36fd7cbc3ba3ea0083a",
+  "contract_path": "sdk/recovery/r24d19_public_profile_validator_successor_contract_v1.json",
+  "contract_raw_sha256": "sha256:f8ffeeec9fd21f9b06d09d831c301de99c11590189627f57cd479cb7cc86674a",
+  "qualification": {
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d19-qualification-20260827T034033936Z-82bb733a",
+    "receipt_path": "qualification_receipt.json",
+    "receipt_raw_sha256": "sha256:3966e7679f59419314ed594a966d015d2ad712ad10b93cc9814ecb589dc27c9a",
+    "passed": true,
+    "source_commit": "82bb733a73daf2d1f3aca36fd7cbc3ba3ea0083a",
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false
+  },
+  "physical_attempt": {
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d19-mujoco-recovery-ghost-20260827T034043484Z-82bb733a",
+    "selected_cell_id": "development_nominal",
+    "selected_seed": 1129522465,
+    "selected_horizon_steps_per_arm": 14,
+    "held_out_cell_access_count": 0,
+    "held_out_selector_invocation_count": 0,
+    "candidate_arm_entered": true,
+    "matched_zero_arm_entered": false,
+    "model_construction_count": 1,
+    "public_profile_binding_completed": true,
+    "data_construction_count": 1,
+    "world_attempt_count": 1,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "initializer_executed": false,
+    "native_observation_collected": false,
+    "controller_command_planned": false,
+    "controller_command_applied": false,
+    "portable_paired_evaluation_executed": false,
+    "route_coverage_passed": false,
+    "result_class": "invalid_integration_result",
+    "error_type": "NativeRecoveryRouteError",
+    "error": "QSDK_R24D19_MODEL_TIMESTEP_MISMATCH",
+    "execution_count_inference": "The retained stack and exact constructor order show that MjModel.from_xml_string, the public physical-binding readback, MjData construction, and native ID mapping completed before validate_public_profile_model_identity_v2 raised on its timestep predicate. No initializer, mj_forward, mj_step1, mj_step2, collector, controller, matched-zero arm, or evaluator call was reached.",
+    "execution_count_inference_is_direct_runtime_counter": false
+  },
+  "retained_artifacts": [
+    {
+      "path": "attempt_reservation.json",
+      "byte_length": 1740,
+      "raw_sha256": "sha256:f7fde5e1bccecfa62eddf765247227cb900d72db4fb429527ca8e76e857ad933"
+    },
+    {
+      "path": "invalid_result.json",
+      "byte_length": 2688,
+      "raw_sha256": "sha256:a26c3fe467a397b52312ff5fa1094dd1bf75c2637b1bd9bbde6c9dee7df9d4b0"
+    },
+    {
+      "path": "operation_lock.json",
+      "byte_length": 381,
+      "raw_sha256": "sha256:73aef175370a108a98b0d9252533083c41715c667e3d286fd80898bac765f593"
+    },
+    {
+      "path": "supervisor_completion.json",
+      "byte_length": 942,
+      "raw_sha256": "sha256:5e94f7d4fb1b43044b62b7fa0a15fc5c7a0a473b6c1f9ccd824e881daa070846"
+    },
+    {
+      "path": "worker_stderr.log",
+      "byte_length": 2716,
+      "raw_sha256": "sha256:09dc08ffb8bfafdfc482abe5cc01aec2feabac7980f71a8b4239a3c1a4d9a0f4"
+    },
+    {
+      "path": "worker_stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "observed_cause": {
+    "class": "model_timestep_identity_recomposition_mismatch",
+    "description": "The repaired public actuator-profile validator passed far enough to evaluate the genuine model timestep. The production XML authors timestep from base.INTERNAL_DT_S, whose binary64 value is 1/600 rounded once. The R24D19 predicate independently recomputed (1/120)/5, which rounds one binary64 ULP lower. Exact identity therefore rejected the correct production model before initialization.",
+    "production_timestep_authority": "base.INTERNAL_DT_S",
+    "production_timestep_decimal": 0.0016666666666666668,
+    "production_timestep_binary64_hex": "0x1.b4e81b4e81b4fp-10",
+    "recomputed_predicate_decimal": 0.0016666666666666666,
+    "recomputed_predicate_binary64_hex": "0x1.b4e81b4e81b4ep-10",
+    "binary64_ulp_distance": 1,
+    "physical_model_rejected_was_correctly_authored": true,
+    "public_profile_force_vector_accepted_before_error": true,
+    "physics_behavior_failure": false,
+    "threshold_failure": false,
+    "selector_failure": false,
+    "evaluator_failure": false,
+    "result_interpretation_rewritten": false
+  },
+  "decision": {
+    "r24d19_result": "invalid_and_retained",
+    "r24d19_may_be_rerun": false,
+    "same_source_may_be_reused": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "sdk1_milestone_advanced": false,
+    "sdk1_completed_steps": 11,
+    "sdk1_total_steps": 20,
+    "full_program_completed_steps": 11,
+    "full_program_total_steps": 25
+  },
+  "next_boundary": {
+    "gate_id": "QSDK-R24D20",
+    "question_class": "development",
+    "work": "replace_only_the_independently_recomposed_timestep_predicate_with_exact_base_INTERNAL_DT_S_identity_bind_the_zero_world_positive_fixture_to_the_production_XML_value_add_a_one_ULP_timestep_mutation_control_then_requalify_and_run_the_same_small_paired_route_coverage_ghost_as_a_distinct_successor",
+    "controller_changed": false,
+    "thresholds_changed": false,
+    "margins_changed": false,
+    "selector_changed": false,
+    "cell_changed": false,
+    "seed_changed": false,
+    "horizon_changed": false,
+    "initializer_changed": false,
+    "host_mapping_changed": false,
+    "evaluator_changed": false,
+    "held_out_cells_remain_sealed": true
+  },
+  "claim_boundary": {
+    "complete_zero_world_gate_passed": true,
+    "physical_question_opened": true,
+    "public_profile_validator_force_range_path_reached": true,
+    "valid_physical_behavior_result_observed": false,
+    "native_route_coverage_proven": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "repeatability_rate_claimed": false,
+    "population_claimed": false,
+    "held_out_validation_claimed": false,
+    "cross_engine_recovery_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "closure_audit_path": "tests/test_qsdk_r24d19_mujoco_native_recovery_development_invalid_closure.py"
+}

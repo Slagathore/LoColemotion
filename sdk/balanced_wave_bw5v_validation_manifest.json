@@ -1,0 +1,126 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw5v_validation_manifest_v1",
+  "status": "frozen_before_first_bw5v_validation_world",
+  "freeze_parent_commit": "e76477be61d90829dab0eb70a89505d521e7f8a5",
+  "development_data_only": true,
+  "independent_validation": true,
+  "cold_acceptance": false,
+  "selected_policy": {
+    "candidate_id": "BW5R-B",
+    "policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "runtime_profile_digest": "sha256:e02fa9c7599cffe8b331f7d8c10b6cc4dbffe7408e319169c09cbcb7d9b3890e",
+    "manifest_path": "sdk/balanced_wave_selected_policy.json"
+  },
+  "prerequisite_evidence": {
+    "material_characterization": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw5v-material-characterization-2a5eb94\\report.json",
+      "sha256": "a99a7f2aa9798d26c7a4df9e9b218a5979195eb05dc97b02cd36a5dc21d45d84",
+      "source_commit": "2a5eb94dca81a8c638e31a0d7c9692c270b44ca6",
+      "schema_version": "sporespore_balanced_wave_bw5v_material_characterization_report_v1",
+      "accepted": true,
+      "observed_world_count": 10,
+      "passed_gate_count": 19
+    },
+    "material_profile_publication": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw5v-material-profiles-e76477b\\report.json",
+      "sha256": "2430c1a77d7007c13c3a5262e19fba7693154ba40ea61aa3d1cf601844a2a37c",
+      "source_commit": "e76477be61d90829dab0eb70a89505d521e7f8a5",
+      "schema_version": "sporespore_godot_jolt_material_profile_report_v1",
+      "accepted": true,
+      "observed_world_count": 0,
+      "passed_gate_count": 32
+    }
+  },
+  "profiles": [
+    {
+      "profile_id": "godot_jolt_bw5v_mu005_v1",
+      "profile_digest": "sha256:5634e67fc0b675da4643e7fa54004d31da44c1313fd6cee3cf6ea5a8d003aed0",
+      "authored_friction": 0.05,
+      "characterized_friction_coefficient": 0.05,
+      "minimum_lower_empirical_ratio": 0.051014061933156406
+    },
+    {
+      "profile_id": "godot_jolt_bw5v_mu065_v1",
+      "profile_digest": "sha256:4d84c99d74ddf70cbbd9640ec074bd122dd9cf76f2949e884eb6569a4520e527",
+      "authored_friction": 0.65,
+      "characterized_friction_coefficient": 0.63,
+      "minimum_lower_empirical_ratio": 0.6374671361558075
+    },
+    {
+      "profile_id": "godot_jolt_bw5v_mu130_v1",
+      "profile_digest": "sha256:3c4146e4c539406982d8d991f7dccf5d938f1f5077e3f0964b33ea9e12740082",
+      "authored_friction": 1.3,
+      "characterized_friction_coefficient": 1.0,
+      "minimum_lower_empirical_ratio": 1.3011857646200224
+    }
+  ],
+  "matrix": {
+    "seeds": [19501, 19502, 19503],
+    "ordered_cell_ids": [
+      "validation_mu005_s19501_treatment",
+      "validation_mu005_s19501_control",
+      "validation_mu005_s19502_treatment",
+      "validation_mu005_s19503_treatment",
+      "validation_mu065_s19501_treatment",
+      "validation_mu065_s19501_control",
+      "validation_mu065_s19502_treatment",
+      "validation_mu065_s19503_treatment",
+      "validation_mu130_s19501_treatment",
+      "validation_mu130_s19501_control",
+      "validation_mu130_s19502_treatment",
+      "validation_mu130_s19503_treatment"
+    ],
+    "expected_treatment_world_count": 9,
+    "expected_control_world_count": 3,
+    "expected_causal_pair_count": 3,
+    "expected_world_count": 12,
+    "exposure_steps": 1514,
+    "expected_base_commands_and_motor_writes_per_treatment": 12112,
+    "control_seed": 19501,
+    "minimum_terminal_pair_separation_m": 0.00001
+  },
+  "gate_contract": {
+    "expected_gate_count": 22,
+    "preflight_gate_count": 3,
+    "per_world_execution_integrity_gate_count": 12,
+    "aggregate_gate_count": 7,
+    "aggregate_gates": [
+      "exact_role_cardinality",
+      "zero_infrastructure_or_integrity_failures",
+      "nonzero_stability_influence_in_all_treatments",
+      "all_treatments_pass_ordinary_walking_gates",
+      "all_controls_pass_shadow_gates",
+      "all_matched_pairs_retain_identity_and_nonzero_terminal_separation",
+      "all_broader_claims_remain_false"
+    ],
+    "pass_rule": "22/22 gates, 12/12 worlds, 9/9 treatments, 3/3 controls, and 3/3 causal pairs",
+    "averaging_forbidden": true,
+    "failed_cell_replacement_forbidden": true,
+    "post_result_gate_edit_forbidden": true,
+    "first_result_is_final_for_this_source_identity": true
+  },
+  "cold_reservation_interlock": {
+    "authored_friction_values": [0.12, 0.48, 0.95, 1.5],
+    "campaign_seeds": [20001, 20002, 20003],
+    "remains_unopened_during_bw5v_validation": true,
+    "new_characterization_profile_publication_and_manifest_required": true
+  },
+  "claims": {
+    "bw5v_independent_validation_authority": true,
+    "walking_acceptance": false,
+    "material_robustness": false,
+    "arbitrary_material_robustness": false,
+    "continuous_friction_coverage": false,
+    "balance_improvement": false,
+    "physical_balance_recovery": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_fault_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "schema": "sporespore.lab.br12_knowledge_admission_manifest.v1",
+  "manifest_id": "BR12_POSE_RECOVERY_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_admit_recommended_observation_only_br12_knowledge",
+  "authorization_instruction": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations. complete the bootstraps if possible. but if you absolutely require my input for something thats a design choice that hasnt been decided yet, then defer it and build around it - if possible.",
+  "decision": {
+    "decision_id": "BR12_POSE_RECOVERY_FEASIBILITY_DECISION_V1",
+    "decision_sha256": "sha256:224f0e1fed6b5016bec69e6f6628d8ca0c8473cb9ff798dcbe1430818d003463"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "VALIDATED_CREATURE_GUIDANCE_CONSUMER",
+      "CERTIFIED_MORPHOLOGY_TERRAIN_TRANSFER",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "BR12.0.body_region_roles_and_labeled_box.v1",
+      "cell_id": "BR12.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br12_0_body_region_roles_and_labeled_box.v1.json",
+      "program_id": "BR12_POSE_RECOVERY_0_ROLES_ORACLE_V1",
+      "authoring": {
+        "title": "The certified registry and oracle preserve semantic body orientation",
+        "claim": "In the exact certified BR12.0 fixtures, the strict registry preserves declared semantic body-region contact roles, distinguishes steady stance from temporary recovery support, rejects duplicate identities, invalid support policy, and guidance authority, while the labeled-box oracle fixes the authored +X right, +Y up, -Z forward basis, preserves orthonormal handedness, and fails closed on invalid or nonfinite evidence.",
+        "scope": "Only the exact body-region role registry, support policy, labeled-box basis convention, validation tolerances, engine, source, and BR12.0 program scope certified by br12_20260723T211754Z_0ace3791.",
+        "mechanism": "A sealed semantic registry describes how observed body regions may be interpreted as support. A separate pure basis oracle maps authored labeled-box axes into a validated right-handed orientation without applying mechanics.",
+        "applicability": [
+          "Checking semantic body-region support-role configuration",
+          "Checking the exact labeled-box right, up, and forward basis before pose classification"
+        ],
+        "failure_boundaries": [
+          "Role and basis interpretation is observation metadata and does not create or retain physical contact",
+          "Temporary ventral recovery support is not steady stance",
+          "No controller, dynamic recovery, getting up, free 3D standing or bracing, gait, walking, repair, or guidance is established"
+        ],
+        "morphology_tags": [
+          "pose_recovery",
+          "body_region_roles",
+          "labeled_box_basis",
+          "observer_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How labeled regions and support policies should be authored for arbitrary creature morphology",
+          "Which basis tolerances remain suitable for noisier runtime observations"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR12.1.profile_specific_pose_classifier.v1",
+      "cell_id": "BR12.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br12_1_profile_specific_pose_classifier.v1.json",
+      "program_id": "BR12_POSE_RECOVERY_1_CLASSIFIER_V1",
+      "authoring": {
+        "title": "The certified classifier preserves canonical pose ambiguity",
+        "claim": "In the exact certified BR12.1 fixtures, the deterministic profile-specific classifier combines declared labeled-box orientation and required semantic support contact to classify only upright, prone, supine, left-side, and right-side canonical poses, and returns unknown for ambiguous, conflicting, incomplete, invalid, or nonfinite evidence without granting actuation, repair, or guidance authority.",
+        "scope": "Only the exact canonical pose set, labeled-box bases, orientation thresholds, semantic support-contact requirements, unknown behavior, engine, source, and BR12.1 program scope certified by br12_20260723T211754Z_0ace3791.",
+        "mechanism": "The pure classifier scores only preregistered pose profiles against validated orientation and contact evidence. It emits a pose label or unknown and has no mechanics output.",
+        "applicability": [
+          "Classifying the five exact certified labeled-box canonical poses",
+          "Preserving unknown when canonical-pose evidence conflicts or is insufficient"
+        ],
+        "failure_boundaries": [
+          "Unknown must not be guessed into the nearest canonical pose",
+          "A classified fallen pose is not evidence that a recovery can execute",
+          "No controller, physical self-righting, getting up, free 3D recovery, gait, walking, repair, or guidance is established"
+        ],
+        "morphology_tags": [
+          "pose_recovery",
+          "canonical_pose_classifier",
+          "ambiguity_preservation",
+          "observer_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Which pose profiles and thresholds transfer to non-box creature morphologies",
+          "How runtime sensor noise should be filtered without erasing genuine ambiguity"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR12.2.semantic_recovery_profile.v1",
+      "cell_id": "BR12.2",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br12_2_semantic_recovery_profile.v1.json",
+      "program_id": "BR12_POSE_RECOVERY_2_PROFILE_MATCH_V1",
+      "authoring": {
+        "title": "The certified recovery profile addresses anatomy by semantic role",
+        "claim": "In the exact certified BR12.2 fixtures, the strict recovery profile references anatomy through semantic roles rather than limb indices, binds one exact prone static-feasibility sequence, names every missing required role, rejects duplicates and unknown roles, and exposes no controller, command, contact-creation, repair, or guidance channel.",
+        "scope": "Only the exact prone recovery-profile identifier, semantic role vocabulary, required-role set, phase descriptions, missing-role failures, engine, source, and BR12.2 program scope certified by br12_20260723T211754Z_0ace3791.",
+        "mechanism": "A declarative recovery profile binds planning phases to semantic anatomy requirements. Validation either returns the exact role mapping or a named infeasible result before actuation.",
+        "applicability": [
+          "Checking whether the exact prone planning profile has every required semantic anatomy role",
+          "Producing named missing-role reasons before static feasibility analysis"
+        ],
+        "failure_boundaries": [
+          "Semantic role matching does not select actuators or issue commands",
+          "A complete role match is not static or dynamic feasibility proof",
+          "No physical self-righting, getting up, stance handoff, gait, walking, repair, or guidance is established"
+        ],
+        "morphology_tags": [
+          "pose_recovery",
+          "semantic_anatomy_roles",
+          "recovery_profile",
+          "planner_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Which canonical morphology should instantiate the first BR13 physical profile",
+          "Which alternative profiles are needed for supine and side poses"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR12.3.static_recovery_feasibility.v1",
+      "cell_id": "BR12.3",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br12_3_static_recovery_feasibility.v1.json",
+      "program_id": "BR12_POSE_RECOVERY_3_STATIC_FEASIBILITY_V1",
+      "authoring": {
+        "title": "The certified analyzer rejects statically infeasible recovery phases",
+        "claim": "In the exact certified BR12.3 fixtures, the digest-bound analyzer evaluates conservative static torque, power, structural, friction, and reach margins for one exact semantic-role recovery profile, names underpowered, overloaded, slipping, unreachable, and anatomically incomplete phases before actuation, and treats feasible as a planning-screen result rather than dynamic recovery evidence.",
+        "scope": "Only the exact recovery profile, anatomy-role mapping, phase loads, conservative margins, torque, power, structural, friction, and reach equations, thresholds, engine, source, and BR12.3 program scope certified by br12_20260723T211754Z_0ace3791.",
+        "mechanism": "The pure analyzer evaluates preregistered static inequalities for each declared phase and returns named margins and failure reasons. It emits no command, wrench, joint target, or contact operation.",
+        "applicability": [
+          "Rejecting obviously underpowered, overloaded, slipping, unreachable, or incomplete phases before actuation",
+          "Recording exact static feasibility margins for one certified semantic-role recovery profile"
+        ],
+        "failure_boundaries": [
+          "Static feasibility does not prove dynamic execution, stability, contact transitions, or stance handoff",
+          "The analyzer contains no controller, actuation, contact creation, maintenance, or external assistance",
+          "No physical self-righting, getting up, free 3D recovery, gait, walking, creature repair, or automatic guidance is established"
+        ],
+        "morphology_tags": [
+          "pose_recovery",
+          "static_feasibility",
+          "pre_actuation_gate",
+          "planner_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Whether a dynamically executed BR13 maneuver succeeds despite passing every static screen",
+          "How transient momentum, impact, compliance, and scaffold reaction alter physical recovery feasibility",
+          "Which recovery controller and stance-handoff contract should be certified separately"
+        ],
+        "supersedes": []
+      }
+    }
+  ]
+}

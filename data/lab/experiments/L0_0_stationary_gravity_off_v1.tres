@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="ExperimentSpec" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/lab/experiment_spec.gd" id="1_spec"]
+
+[resource]
+script = ExtResource("1_spec")
+experiment_id = &"L0_0_STATIONARY_GRAVITY_OFF"
+hypothesis_id = &"H_L0_0_NO_INVENTED_MOTION"
+fixture_id = &"stationary_body_v1"
+fixture_version = 1
+controller_id = &"none"
+observer_profile_id = &"full_contacts_v1"
+required_observer_channels = Array[StringName]([&"body_transform", &"linear_velocity", &"angular_velocity", &"mass", &"contacts", &"contact_impulses"])
+duration_ticks = 60
+warmup_ticks = 0
+physics_ticks_per_second = 60
+root_seed = 42
+body_parameters = {
+"angular_damp_s1": 0.0,
+"gravity_scale": 0.0,
+"initial_position_m": Vector3(0.25, 1.75, -0.5),
+"initial_velocity_m_s": Vector3(0, 0, 0),
+"linear_damp_s1": 0.0,
+"mass_kg": 2.0
+}
+fixture_parameters = {
+"contact_cap": 32
+}
+gate_parameters = {
+"external_work_j": 0.0,
+"max_position_error_m": 0.0000001,
+"max_velocity_error_m_s": 0.0000001,
+"total_contact_count": 0
+}
+forbidden_scaffolds = Array[StringName]([&"controller_root_force", &"pose_write_after_release"])
+metadata = {
+"claim_scope": "isolated_body_stationary_truth_only"
+}

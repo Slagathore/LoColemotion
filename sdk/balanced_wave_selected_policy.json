@@ -1,0 +1,102 @@
+{
+  "schema_version": "sporespore_balanced_wave_selected_policy_v1",
+  "status": "frozen_after_bw5r_development_before_new_validation",
+  "development_selection_authority": true,
+  "selected_candidate_id": "BW5R-B",
+  "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+  "selected_candidate_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+  "selected_profile": {
+    "schema_version": "sporespore_balanced_wave_filtered_profile_v1",
+    "runtime_profile_sha256": "sha256:e02fa9c7599cffe8b331f7d8c10b6cc4dbffe7408e319169c09cbcb7d9b3890e",
+    "heading_gain_formula": "1.0 / torso_length_scale",
+    "yaw_error_stride_gain_per_rad": 1.3,
+    "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+    "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+    "anchor_error_guard_activation_fraction": 0.8,
+    "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+    "steering_feedback_update_interval_steps": 1,
+    "maximum_steering_fraction_delta_per_step": null,
+    "steering_low_pass_time_constant_cycle_fraction": 0.0625,
+    "branch_surfaces": []
+  },
+  "selection_report": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw5r-selection-d17b77a\\report.json",
+    "sha256": "d2819d1bca45592fe54f1fc22cd2ad19d64fb3cd9eafd8ad848601338f8b50fc",
+    "source_commit": "d17b77afefddb19ae401f3f8f2e8b3b7708a02e6",
+    "input_report_count": 15,
+    "observed_world_count": 174,
+    "selection_mode": "complete_preregistered_lexicographic_selection",
+    "deciding_metric": "all_opened_nonzero_material_treatment_nonwalk_count",
+    "early_stop_triggered": false,
+    "complete_matrix_per_candidate": true,
+    "genuinely_new_validation_required": true,
+    "new_cold_material_acceptance_required": true
+  },
+  "candidate_scores_lexicographic": [
+    {
+      "candidate_id": "BW5R-A",
+      "infrastructure_and_integrity_failure_count": 0,
+      "opened_bw4_treatment_nonwalk_count": 0,
+      "all_opened_nonzero_material_treatment_nonwalk_count": 3,
+      "opened_validation_treatment_nonwalk_count": 0,
+      "opened_counterexample_nonwalk_count": 0,
+      "reference_treatment_nonwalk_count": 0,
+      "aggregate_cumulative_absolute_cross_track_error_m_s": 17.487532761979118,
+      "maximum_absolute_task_frame_lateral_displacement_m": 0.17351564764976501,
+      "aggregate_walking_gate_failure_count": 4
+    },
+    {
+      "candidate_id": "BW5R-B",
+      "infrastructure_and_integrity_failure_count": 0,
+      "opened_bw4_treatment_nonwalk_count": 0,
+      "all_opened_nonzero_material_treatment_nonwalk_count": 2,
+      "opened_validation_treatment_nonwalk_count": 0,
+      "opened_counterexample_nonwalk_count": 0,
+      "reference_treatment_nonwalk_count": 0,
+      "aggregate_cumulative_absolute_cross_track_error_m_s": 16.493534018563054,
+      "maximum_absolute_task_frame_lateral_displacement_m": 0.20609450340270996,
+      "aggregate_walking_gate_failure_count": 3
+    },
+    {
+      "candidate_id": "BW5R-C",
+      "infrastructure_and_integrity_failure_count": 0,
+      "opened_bw4_treatment_nonwalk_count": 1,
+      "all_opened_nonzero_material_treatment_nonwalk_count": 4,
+      "opened_validation_treatment_nonwalk_count": 0,
+      "opened_counterexample_nonwalk_count": 0,
+      "reference_treatment_nonwalk_count": 1,
+      "aggregate_cumulative_absolute_cross_track_error_m_s": 17.638382423838728,
+      "maximum_absolute_task_frame_lateral_displacement_m": 0.13663965463638306,
+      "aggregate_walking_gate_failure_count": 6
+    }
+  ],
+  "selection_history": [
+    {
+      "candidate_id": "BW2R-C",
+      "policy_id": "sporespore_balanced_wave_bw2r_c_v1",
+      "policy_digest": "sha256:709aacc898e62a0c1902a04a201006f5501934562cabec4b68c1613811ae0ad0",
+      "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw2r-selection-924aa44\\report.json",
+      "report_sha256": "038e30c3a044ae5b01a0e6d440de6a12931bc7a1fae534c4eb86570784e92ea0",
+      "source_commit": "924aa4427d59c7e92da7d17dec76a25f581c02bb",
+      "superseded_by": "BW5R-B"
+    },
+    {
+      "candidate_id": "BW2-C",
+      "policy_id": "sporespore_balanced_wave_bw2_c_v1",
+      "policy_digest": "sha256:367e944b33384d8685d746dca0a864cfa33ca013846636236512641456d51ad3",
+      "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw2-selection-4c42c2d\\report.json",
+      "report_sha256": "f307a8e51054a98a75fb580a54299f030700a11d22d1801196ff2719fe85d4ea",
+      "source_commit": "4c42c2d4f9e0365e5dcc9504f605deca9a419e6d",
+      "superseded_by": "BW2R-C"
+    }
+  ],
+  "claims": {
+    "walking_acceptance": false,
+    "material_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

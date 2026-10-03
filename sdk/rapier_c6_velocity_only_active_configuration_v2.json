@@ -1,0 +1,127 @@
+{
+  "schema_version": "sporespore_rapier_c6_velocity_only_active_configuration_v2",
+  "status": "active_semantic_integration_after_positive_vh1_and_zero_world_live_gate",
+  "adapter_id": "sporespore_rapier3d_adapter",
+  "host": {
+    "engine": "rapier3d",
+    "engine_version": "0.34.0",
+    "outer_timestep_s": 0.008333333767950535,
+    "solver_iterations": 16,
+    "num_internal_pgs_iterations": 3,
+    "num_internal_stabilization_iterations": 5
+  },
+  "predecessor_configuration": {
+    "path": "sdk/rapier_c6_force_based_active_configuration.json",
+    "raw_sha256": "dc1eb57df75a41cb5ab80c45e537e7bd0974df0ac9cc7d738e24f08daaf60737",
+    "retained_immutable_for_closed_campaigns": true,
+    "generic_c2_c5_conformance_configuration_remains_valid": true,
+    "combined_pd_locomotion_entrypoints_are_not_v4_live_entrypoints": true
+  },
+  "authorities": {
+    "velocity_only_host_characterization": {
+      "path": "sdk/rapier_c6_force_based_velocity_only_host_characterization_vh1_closure.json",
+      "raw_sha256": "d94b20ef4767479172408c1dfbd0b7f66e18e3f4bc8b9d8d84193fc157d284aa",
+      "campaign_id": "C6-RAPIER-FORCE-BASED-VELOCITY-ONLY-HOST-CHARACTERIZATION-VH1",
+      "gate_id": "C6-RAP-HC-VH1",
+      "exact_finite_velocity_only_host_characterization_passed": true
+    },
+    "live_integration": {
+      "path": "sdk/rapier_c6_velocity_only_live_integration_v1.json",
+      "raw_sha256": "7c4c7435ca02f30073d5a33fce162fef67a461340ae609225b096abe59f88507",
+      "status": "implemented_and_zero_world_integrity_gated",
+      "world_build_count": 0,
+      "physical_acceptance_authority": false
+    }
+  },
+  "active_v4_profile": {
+    "canonical_semantics_version": "sporespore_locomotion_semantics_v4",
+    "canonical_profile_id": "sporespore_complete_closed_loop_canonical_velocity_v1",
+    "host_profile_id": "rapier_force_based_velocity_only_v1",
+    "portable_controller_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+    "bw19v_global_requested_correction_scale": 0.5,
+    "portable_support_contribution_retained": true,
+    "motor_model": "ForceBased",
+    "native_mode": "velocity_only",
+    "native_position_stiffness_nm_per_rad": 0.0,
+    "damping_nm_s_per_rad": 10.0,
+    "builder_readback_required": true,
+    "mutable_update_readback_required": true,
+    "maximum_force_has_no_hidden_margin": true,
+    "small_step_impulse_limit_checked": true
+  },
+  "active_v4_surfaces": [
+    {
+      "path": "sdk/adapters/rapier/src/velocity_only_live_integration.rs",
+      "role": "shared motor configuration and whole zero-world gate"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_composition.rs",
+      "role": "canonical-space BW15F-B plus BW19V composition"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/locomotion.rs",
+      "role": "prospective v4 robot construction, application, settle, and impulse enforcement"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/lib.rs",
+      "role": "v2 capability manifest"
+    },
+    {
+      "path": "sdk/run_rapier_c6_velocity_only_live_integration_preflight.ps1",
+      "role": "normal-pipeline zero-world executable gate"
+    }
+  ],
+  "entrypoint_contract": {
+    "robot_constructor": "build_bw19v_velocity_only_v4_robot",
+    "composition": "compose_bw19v_step_v4",
+    "host_application": "apply_bw19v_velocity_only_v4_actuation",
+    "settle": "hold_velocity_only_v4_zero_and_step",
+    "shared_builder": "build_velocity_only_joint_v1",
+    "shared_mutable_update": "update_velocity_only_motor_v1",
+    "old_mixed_space_projection_may_be_applied": false,
+    "old_combined_pd_application_may_be_called_by_a_v4_campaign": false
+  },
+  "generic_conformance_boundary": {
+    "c4_position_velocity_motor_fixture_is_not_reclassified_as_v4_locomotion": true,
+    "c2_c5_physical_fixtures_remain_generic_adapter_conformance": true,
+    "generic_conformance_does_not_authorize_selected_policy_locomotion": true
+  },
+  "historical_exclusions": {
+    "closed_campaign_modules_keep_experiment_local_motor_profiles": true,
+    "modules": [
+      "sdk/adapters/rapier/src/characterization.rs",
+      "sdk/adapters/rapier/src/force_based_characterization.rs",
+      "sdk/adapters/rapier/src/force_based_load_response.rs",
+      "sdk/adapters/rapier/src/force_based_convergence_window.rs",
+      "sdk/adapters/rapier/src/force_based_solver_phase_development.rs",
+      "sdk/adapters/rapier/src/force_based_selected_configuration_validation.rs",
+      "sdk/adapters/rapier/src/force_based_velocity_only_characterization.rs",
+      "sdk/adapters/rapier/src/bw19v_commissioning.rs",
+      "sdk/adapters/rapier/src/bw19v_early_horizon_development.rs"
+    ],
+    "frozen_preregistrations_closures_and_reports_were_not_rewritten": true
+  },
+  "claim_boundary": {
+    "rapier_v4_live_adapter_semantic_integration": true,
+    "rapier_v4_selected_policy_world_executed": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "walking_acceptance": false,
+    "cross_engine_selected_policy_equivalence": false,
+    "friction_or_material_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  },
+  "next_allowed_work": {
+    "distinct_v4_early_horizon_screen_may_be_preregistered": true,
+    "complete_prospectively_frozen_synthetic_gate_required_before_any_world": true,
+    "physical_execution_requires_clean_pushed_source": true,
+    "screen_must_call_only_the_declared_v4_entrypoints": true,
+    "screen_must_retain_exact_bw19v_scale_0_5_and_portable_support_contribution": true,
+    "screen_is_development_evidence_not_locomotion_acceptance": true,
+    "vh1_must_not_be_rerun_or_reinterpreted": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "sporespore_development_recovery_support_progression_contract_v1",
+  "ledger_scope": {"subsystem": "recovery", "engine_scope": "core", "authority_mode": "prospective_development_controller_contract", "question_class": "development"},
+  "component_id": "V43",
+  "policy_id": "sporespore_balanced_wave_recovery_support_progression_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_stance_latched_upright_v1",
+  "source_diagnosis": {"path": "sdk/development/recovery_v42_relocation_diagnosis_v1.json", "raw_sha256": "sha256:f114183dd6403152a0da2f863ede3ee9a30a4257dfd8c3074494cdca963a102d"},
+  "question": "Does holding scheduled swing progression during truthful stance-support loss prevent unsupported scheduling without preventing recontact or worsening walking?",
+  "controlled_change": "Preview the unchanged shared scheduler's next limb clocks and gate counters. On active waves, if any current or proposed phase is 0..72 and any proposed-stance phase 73..359 lacks explicit present-and-bearing contact, hold all four gait clocks and gate counters at their incoming values. Preserve the parent's explicit evidence-limit mode transition. Continue the ordinary steering update, V42 reference/latch math and bounded joint commands at the held phases. No measured body or contact substitution, controller gain, cap, or force estimate.",
+  "hold_lifecycle": "A fresh clear state proceeds immediately. A held state requires three consecutive clear observations before resuming; an interrupted clear dwell resets to zero. Count each held command, including the first two clear-dwell commands. Permit at most 120 held commands; another required hold returns safe no actuation, an explicit support_progression_hold_timeout and unchanged input memory. A ready third clear sample may release at the limit. Inactive waves or absence of any current/proposed swing disable/reset this interlock. Runtime semantic-step and sample-time progression still apply while gait clocks are held.",
+  "parameter_provenance": "Three clear samples and 120 held commands reuse the existing scheduler's MINIMUM_GATE_DWELL_STEPS and MAXIMUM_GATE_HOLD_STEPS as prospective engineering limits. They are not tuned from V42's outcomes, contact thresholds, guarantees of stability or changes to any acceptance criterion.",
+  "memory_receipts": "Distinct V43 policy/profile/memory/actuation identities. Optional support_progression memory is required only by V43: held_steps and clear_dwell_steps, initially zero, with checked domains. Older policies omit it and refuse crossed data. Every successful V43 command retains incoming/proposed/selected phases, original contact observations, required stance limbs, missing support, hold choice, limits and incoming/next counters. Missing, malformed, contradictory or crossed inputs refuse without modifying input memory.",
+  "verification": [
+    "Core tests cover phase 0/72/73/wrap, missing/present-nonbearing support, hold, interrupted three-sample release, zero amplitude, 120-command limit, malformed memory, original gate behavior and finite nonzero motor commands during holds.",
+    "Actual native exported interfaces consume every original V42 input for one-command checks. A separately reported chained-memory check must stop at the first refusal, if any, preserving it rather than splicing or resetting the sequence. No saved input check predicts a new trajectory.",
+    "Byte-compare older policies against the immutable V42 runtime and preserve all six recovery fixtures. Validate stateful/stateless agreement and independently reconstruct decision, phases and bounded command math.",
+    "Component profile is non-runnable. Shared worker/reader integration and the complete applicable safety gate precede any separately selected fresh physical attempt. Do not clone the harness, extend V42, change its evaluator or promote a development result."
+  ],
+  "risks": "A phase hold may fail to restore support, prolong a missing contact, reduce forward progress, alter steering or cause a bounded refusal. The inherited upright reference can remain geometrically inappropriate for a missing foot. An initial swing already in progress is held, not undone. Force-aware whole-body recovery and successful three-engine kick recovery remain unproved.",
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

@@ -1,0 +1,85 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "v23-clocked-walking-warmup-v1": {
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v18",
+      "runtime_sha256": "sha256:46bf61bd903b152dcb0330f15b12f30c0ede02bf5456434a85f716bca567b077",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 986,
+        "maximum_steps_per_child": 1338
+      },
+      "coverage_basis": {
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "original_tail_steps": 480,
+        "stance_steps_observed": 124,
+        "existing_stance_timeout_steps": 240,
+        "walking_probe_steps": 30,
+        "tail_derivation": "480 + (240 - 124) + 30 + 360 = 986",
+        "resource_derivation": "320 + 30 + 2 + 986 = 1338",
+        "threshold_source": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+        "motion_equality_test": "recovery_runtime::tests::world_vertical_support_control_tests::v18_preserves_profile_limits_and_all_other_phase_commands",
+        "frame_diagnosis_source_attempt": "sdk/development/recovery_attempts/5436af3ddcad48dda0f2450ce0a9dd7b.json",
+        "frame_diagnosis_report_sha256": "sha256:2ec328e3dac08ff9457c485e49f8a1820756117f45967d7904cc8d444004b7f7",
+        "additional_walking_warmup_steps": 360,
+        "walking_entry_diagnosis_source_attempt": "sdk/development/recovery_attempts/88d86686f4d1421286b59eb03c7d8115.json",
+        "walking_entry_diagnosis_report_sha256": "sha256:24956143e994127fbf071ca30c9de05bec5ec6f0204fe87412fe2e1ce681073c",
+        "command_probe_test": "tests/test_development_recovery_walking_entry.py",
+        "entry_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+        "contact_diagnosis_source_attempt": "sdk/development/recovery_attempts/013cf8e4b52a46e89e68336d4edb3203.json",
+        "contact_diagnosis_report_sha256": "sha256:6e0ddb1cd4e92c9b118d4ffa0d1a31d312b672b59d6e84278b9d12c2d1a84bdc",
+        "contact_contract": "sdk/development/recovery_walking_contact_contract_v1.json",
+        "native_contact_diagnosis_source_attempt": "sdk/development/recovery_attempts/a6ee7a70d3f4412f9ade65ab44e4148c.json",
+        "native_contact_diagnosis_report_sha256": "sha256:6f07a600d793d9e35ef08a4d9fcbad5424190d97e5f440c183b6cf721a499ea5",
+        "native_contact_contract": "sdk/development/recovery_native_walking_contact_contract_v1.json",
+        "new_controller_preserves_existing_limits_and_later_phase_commands": true,
+        "support_diagnosis_source_attempt": "sdk/development/recovery_attempts/0b50a7ac1bc34180ac714bf950d2510b.json",
+        "support_diagnosis_report_sha256": "sha256:7f6efca7774ad6b417a43c970417b72bd0a12e599af182bf813fb4f99ae1b5fb",
+        "support_fixture": "sdk/core/contracts/recovery_v22_retained_support_fixture_v1.json",
+        "support_fixture_sha256": "sha256:f80ff301ea0698c7aec58f0ea807c8d5dc6a3bf02d94ea8dfcec08ffde1cd6b2",
+        "clocked_warmup_diagnosis_source_attempt": "sdk/development/recovery_attempts/51f490ed6eac47c4afc1b9b691103d83.json",
+        "clocked_warmup_diagnosis_report_sha256": "sha256:9022960086c6051ebf1176650aec22d0dfef0a660ce3ae5cf8ac3f53a7f5c503",
+        "clocked_warmup_contract": "sdk/development/recovery_clocked_walking_entry_contract_v1.json"
+      },
+      "coverage_adequacy": "One development seed 40200 and one fresh kicked child; unchanged V22 runtime, controller, stance, walking policy, initial phase, ramp, frame, native contact inputs and bounds. Only resumed-walking phase progression changes: local steps 1-360 clocked, 361 onward contact_gated, with continuous controller memory and no reset. This isolates a bounded startup-schedule alternative, not the normal launcher's separate 112-step evidence alignment or full startup. V22 actual commands show a late front-left recontact hold and coupled phase-skew holds after earlier ramp holds; this motivates, but does not causally establish, the alternative. The initial target jump settles near level before later tilt, so no pose blend is selected. The diagnostic retains all commands, real contacts, body states and independently replays the mode boundary if reached. No new native read, force input, threshold, horizon, baseline, comparison or guaranteed complete gait cycles. An earlier recovery failure leaves warmup and transition unexercised.",
+      "uncovered_paths": [
+        "guaranteed recovery or walking completion",
+        "guaranteed two complete contact cycles per limb",
+        "pose-matched or force-aware handoff",
+        "full official walking horizon",
+        "matched comparison",
+        "held-out behavior",
+        "cross-engine effects",
+        "force-aware recovery",
+        "formal acceptance of corrected recovery walking contact semantics",
+        "formal acceptance of the native contact input translation",
+        "terrain-normal matching or arbitrary ground geometry",
+        "ideal-hinge endpoint equality as proof of native load or support",
+        "causal attribution of V22 late tilt or gait holds",
+        "normal launcher's separate 112-step evidence alignment and whole startup schedule",
+        "guaranteed exercise of the clocked-to-contact-gated transition after recovery"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "one_cycle_ramp_clocked_then_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1"
+    }
+  }
+}
+

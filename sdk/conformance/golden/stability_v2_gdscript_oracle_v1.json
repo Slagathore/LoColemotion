@@ -1,0 +1,130 @@
+{
+  "schema_version": "sporespore_stability_v2_gdscript_oracle_v1",
+  "oracle_sources": [
+    {
+      "path": "scripts/lab/mechanics/spatial_support_margin_observer.gd",
+      "source_commit": "78ad74bed7c45fa4e2747957cfea56a9f04c0150"
+    },
+    {
+      "path": "scripts/lab/mechanics/spatial_dynamic_support_observer.gd",
+      "source_commit": "776d1ea62a2f7337d2c70985de7cec5a879b4759"
+    },
+    {
+      "path": "scripts/lab/mechanics/spatial_centroidal_support_controller.gd",
+      "source_commit": "325ccbae15d56a430ae4f859d83e5cef047f7def"
+    }
+  ],
+  "comparison_tolerances": {
+    "rust_binary64_absolute": 1e-12,
+    "godot_binary32_vector_absolute": 1e-6,
+    "godot_binary32_force_absolute": 1e-5
+  },
+  "observer_fixture": {
+    "gravity_m_s2": 9.8,
+    "bodies": [
+      {
+        "body_id": "body_a",
+        "mass_kg": 1.0,
+        "position_world_m": [-0.3, 0.4, 0.0],
+        "linear_velocity_world_m_s": [-0.1, 0.0, 0.0]
+      },
+      {
+        "body_id": "body_b",
+        "mass_kg": 3.0,
+        "position_world_m": [0.1, 0.4, 0.0],
+        "linear_velocity_world_m_s": [0.3, 0.0, 0.0]
+      }
+    ],
+    "support_points_world_m": [
+      [-1.0, 0.0, -1.0],
+      [1.0, 0.0, -1.0],
+      [0.0, 0.0, 1.0]
+    ],
+    "expected": {
+      "whole_system_mass_kg": 4.0,
+      "center_of_mass_world_m": [0.0, 0.4, 0.0],
+      "center_of_mass_velocity_world_m_s": [0.2, 0.0, 0.0],
+      "minimum_signed_static_margin_m": 0.4472135954999579,
+      "linearized_natural_frequency_rad_s": 4.949747468305833,
+      "linearized_capture_point_world_m": [0.040406101782088436, 0.4, 0.0],
+      "linearized_capture_margin_m": 0.4110732793837479,
+      "support_centroid_world_m": [0.0, 0.0, -0.3333333333333333]
+    }
+  },
+  "centroidal_fixture": {
+    "request": {
+      "schema_version": "spatial_centroidal_support_request_v1",
+      "tick": 0,
+      "whole_system_mass_kg": 8.0,
+      "gravity_m_s2": 9.8,
+      "center_of_mass_world_m": [0.09, 0.38625, -0.09],
+      "center_of_mass_velocity_world_m_s": [0.0, 0.0, 0.0],
+      "target_center_of_mass_world_m": [0.09, 0.38625, -0.09],
+      "torso_roll_rad": 0.0,
+      "torso_pitch_rad": 0.0,
+      "torso_roll_rate_rad_s": 0.0,
+      "torso_pitch_rate_rad_s": 0.0,
+      "horizontal_position_gain_n_per_m": 160.0,
+      "horizontal_velocity_gain_ns_per_m": 24.0,
+      "vertical_position_gain_n_per_m": 200.0,
+      "vertical_velocity_gain_ns_per_m": 30.0,
+      "roll_position_gain_nm_per_rad": 30.0,
+      "roll_velocity_gain_nm_s_per_rad": 4.0,
+      "pitch_position_gain_nm_per_rad": 30.0,
+      "pitch_velocity_gain_nm_s_per_rad": 4.0,
+      "maximum_horizontal_force_n": 30.0,
+      "maximum_vertical_correction_n": 20.0,
+      "maximum_roll_pitch_moment_nm": 6.0,
+      "declared_supported_weight_fraction": 1.0,
+      "friction_coefficient": 0.6,
+      "minimum_normal_force_n": 0.0,
+      "maximum_normal_force_n": 39.2,
+      "nominal_support_count": 4,
+      "feasibility_tolerance": 0.00001,
+      "support_contacts": [
+        {
+          "contact_id": "front_left",
+          "point_world_m": [-0.22, 0.0, -0.22]
+        },
+        {
+          "contact_id": "rear_left",
+          "point_world_m": [0.22, 0.0, -0.22]
+        },
+        {
+          "contact_id": "rear_right",
+          "point_world_m": [0.22, 0.0, 0.22]
+        }
+      ]
+    },
+    "expected": {
+      "feasible": true,
+      "desired_vertical_force_n": 78.4,
+      "normal_force_sum_n": 78.4,
+      "joint_task_vertical_delta_sum_n": -19.6,
+      "maximum_force_residual_n": 0.000001,
+      "maximum_roll_pitch_moment_residual_nm": 0.000001
+    }
+  },
+  "joint_map_fixture": {
+    "joint_axis_world_unit": [0.0, 0.0, 1.0],
+    "joint_anchor_world_m": [0.0, 0.0, 0.0],
+    "endpoint_world_m": [0.0, -0.5, 0.0],
+    "endpoint_task_force_command_world_n": [2.0, 0.0, 0.0],
+    "expected": {
+      "linear_jacobian_column_world_m": [0.5, 0.0, 0.0],
+      "generalized_torque_command_nm": 1.0
+    }
+  },
+  "required_nonclaims": {
+    "linearized_capture_model_only": true,
+    "articulated_capture_guarantee_available": false,
+    "per_foot_measured_load_allocation_available": false,
+    "contact_presence_is_bearing_measurement": false,
+    "per_contact_values_are_commands_not_measurements": true,
+    "measured_joint_torque_available": false,
+    "actuator_response_characterized": false,
+    "adapter_actuation_applied": false,
+    "physics_state_modified": false,
+    "physical_acceptance_authority": false
+  }
+}

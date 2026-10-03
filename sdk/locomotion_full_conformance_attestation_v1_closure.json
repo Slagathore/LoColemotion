@@ -1,0 +1,103 @@
+{
+  "schema_version": "sporespore_full_godot_conformance_attestation_v1_closure_v1",
+  "status": "closed_infrastructure_invalid_postpublication_timestamp_roundtrip",
+  "artifact_id": "FULL-GODOT-CONFORMANCE-ATTESTATION-V1-A1",
+  "closed_source_commit": "3a52c764adfcf494cf9d2b13ca9d0fa4a6b41a35",
+  "closed_source_tree_git_oid": "f3899e1dc57f184acdc67d5f1cf6e634c970f45f",
+  "full_suite": {
+    "process_exit_code": 0,
+    "canonical_terminal_marker": "SDK C0/C1 conformance passed.",
+    "started_utc": "2026-08-02T13:37:00.8270269Z",
+    "completed_utc": "2026-08-02T13:51:05.5187075Z",
+    "recorded_duration_seconds": 844.6916806,
+    "one_shot_physical_campaign_executed": false,
+    "new_scientific_outcome_exposed": false
+  },
+  "retained_attestation": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/full-godot-conformance-3a52c764-20260802T133643Z/attestation.json",
+    "raw_sha256": "6c638a8e0dca553063add361d0c1630c78fcbf2d2d54e9c5f9cba6fe6026d9c0",
+    "byte_length": 3264,
+    "schema_version": "sporespore_full_godot_conformance_attestation_v1",
+    "source_commit": "3a52c764adfcf494cf9d2b13ca9d0fa4a6b41a35",
+    "source_tree_git_oid": "f3899e1dc57f184acdc67d5f1cf6e634c970f45f",
+    "godot_executable_sha256": "sha256:c5fc2d0bb24826a6757fa1e6bf2991effb294859c7dd03d09a122ef217484896",
+    "godot_version": "4.7.stable.mono.official.5b4e0cb0f"
+  },
+  "source_bindings": [
+    {
+      "path": "sdk/run_conformance.ps1",
+      "raw_sha256": "sha256:ca631a4c158c539019b29bcde94ab16607c26ab2ba12c6fb8ac7bfdad46db398",
+      "git_blob_oid": "28a456dada79b02f141898e47c4f6d2b5be471a1"
+    },
+    {
+      "path": "sdk/locomotion_operation_lock.ps1",
+      "raw_sha256": "sha256:105964dfcd3fdf0a4aca27cb369e2714d7ec0cc8bf7e0204e559f85567fa3e31",
+      "git_blob_oid": "e819d040673b4db4b37a178cdd2e03e1500ace46"
+    },
+    {
+      "path": "sdk/locomotion_full_conformance_attestation.ps1",
+      "raw_sha256": "sha256:0a9d07ac489550585137c36872b2ada7c13dbdc9edd2f0803af64cf18084899c",
+      "git_blob_oid": "e24d64fb51212828dc4b3cedb3ba1692d872db5f"
+    },
+    {
+      "path": "sdk/locomotion_operation_attestation_contract.json",
+      "raw_sha256": "sha256:5b90e0427a7f618d2fbc99474eeedcd13b0aa2b83b5f8b7ebd9f69b34fbace2e",
+      "git_blob_oid": "e731d49929279609b59854a1c2cbb276b8aed9c5"
+    }
+  ],
+  "postpublication_verification": {
+    "ok": false,
+    "failure_codes": [
+      "FULL_GODOT_CONFORMANCE"
+    ],
+    "mechanism": "PowerShell 7.6.0-preview.6 ConvertFrom-Json materialized the ISO timestamp strings as System.DateTime. The v1 verifier cast those values to culture-formatted strings before reparsing, discarding fractional seconds and changing timezone representation.",
+    "recomputed_duration_seconds": 845.0,
+    "recorded_duration_seconds": 844.6916806,
+    "absolute_difference_seconds": 0.3083194,
+    "allowed_difference_seconds": 0.001,
+    "production_lock_released_after_completion": true,
+    "postcompletion_physical_role_acquired": true,
+    "postcompletion_physical_role_released": true
+  },
+  "unbound_interpreter_observation": {
+    "why_unbound_is_a_defect": "The v1 artifact bound Godot and source but did not bind the PowerShell publisher/verifier runtime whose JSON semantics caused the failure.",
+    "executable_path": "C:/Program Files/PowerShell/7-preview/pwsh.exe",
+    "executable_sha256": "sha256:ab01263f184a0da3612974e5f5c46d75c4e1af1f23919d23c0f46a2cab275af5",
+    "version": "7.6.0-preview.6",
+    "edition": "Core",
+    "process_architecture": "X64"
+  },
+  "immutable_disposition": {
+    "attestation_valid": false,
+    "full_suite_process_passed": true,
+    "reusable_conformance_authority": false,
+    "physical_launch_authority": false,
+    "same_path_overwrite_allowed": false,
+    "same_source_republication_allowed": false,
+    "locomotion_negative": false,
+    "scientific_campaign_identity_consumed": false
+  },
+  "successor_requirements": {
+    "new_source_commit_required": true,
+    "new_durable_output_path_required": true,
+    "new_attestation_schema_required": "sporespore_full_godot_conformance_attestation_v2",
+    "type_aware_datetime_string_datetimeoffset_handling_required": true,
+    "powershell_executable_version_and_architecture_binding_required": true,
+    "serialized_temporary_file_must_verify_before_atomic_publication": true,
+    "clean_pushed_live_full_godot_rerun_required": true,
+    "postpublication_file_verification_required": true,
+    "operation_lock_cleanup_required": true
+  },
+  "claims": {
+    "new_physical_campaign_executed": false,
+    "new_scientific_outcome_exposed": false,
+    "physical_acceptance_authority": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "material_robustness": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

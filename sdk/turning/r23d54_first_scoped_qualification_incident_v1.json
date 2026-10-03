@@ -1,0 +1,101 @@
+{
+  "schema_version": "sporespore_qsdk_r23d54_first_scoped_qualification_incident_v1",
+  "status": "retained_zero_world_pre_gate_manifest_claim_schema_failure_requires_fresh_clean_push",
+  "campaign_id": "QSDK-R23D54-GODOT-ACTUATOR-PHASE-CHARACTERIZATION-DEVELOPMENT",
+  "gate_id": "QSDK-R23D54",
+  "question_class": "development",
+  "observed_utc": "2026-08-15T01:50:14.4093799Z",
+  "failed_source": {
+    "commit": "be5091cd9dbe6206639df203cf484df51e4167da",
+    "tree_git_oid": "5db7a1223be7f1fa73d744420a72d3ecfe033981",
+    "branch": "main",
+    "origin_main": "be5091cd9dbe6206639df203cf484df51e4167da",
+    "live_github_main": "be5091cd9dbe6206639df203cf484df51e4167da",
+    "worktree_clean_before_and_after": true
+  },
+  "failed_qualification": {
+    "invocation_id": "r23d54-scoped-attestation-be5091c-20260815T014842Z",
+    "requested_output_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r23d54-scoped-attestation-be5091c-20260815T014842Z",
+    "output_root_created": false,
+    "failure_boundary": "campaign_manifest_validation_before_output_root_creation_operation_lock_or_gate_execution",
+    "failure_message": "Campaign-local attestation manifest claim schema drifted.",
+    "process_exit_code": 1,
+    "executed_gate_count": 0,
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physical_attempt_consumed": false,
+    "campaign_local_qualification_passed": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "durable_failure_receipt_available": false,
+    "durable_failure_receipt_absence_reason": "The commissioned parser rejected the manifest before the create-only output boundary was entered; this repository record preserves the observed failure instead."
+  },
+  "failed_manifest": {
+    "path": "sdk/turning/r23d54_campaign_attestation_manifest_v1.json",
+    "raw_sha256": "sha256:cf2ea16a33769dd74bbcb40d287a1ae4d1806df616bce561bee28747123f5e8a",
+    "git_blob_oid": "d640eac3eb60022ad8429c1970f7ec17ce0a7367",
+    "byte_length": 9482,
+    "declared_claim_count": 12,
+    "commissioned_claim_count": 11,
+    "extra_claim_names": ["turning_mechanism_selected"],
+    "missing_claim_names": [],
+    "all_declared_claim_values_false": true
+  },
+  "commissioned_claim_schema": [
+    "campaign_local_qualification_passed",
+    "cold_commissioning_complete",
+    "physical_launch_prerequisite_satisfied",
+    "physical_campaign_executed",
+    "scientific_result",
+    "walking_acceptance",
+    "turning_acceptance",
+    "cross_engine_equivalence",
+    "arbitrary_quadruped_coverage",
+    "release_authority",
+    "physical_acceptance_authority"
+  ],
+  "observed_launcher_runtime": {
+    "powershell_path": "C:/Program Files/PowerShell/7-preview/pwsh.exe",
+    "powershell_raw_sha256": "sha256:ab01263f184a0da3612974e5f5c46d75c4e1af1f23919d23c0f46a2cab275af5",
+    "powershell_byte_length": 294984,
+    "powershell_version": "7.6.0-preview.6",
+    "powershell_edition": "Core",
+    "framework_description": ".NET 10.0.0",
+    "nested_powershell_resolution_was_exactly_this_path": true
+  },
+  "diagnosis": {
+    "manifest_schema_defect": true,
+    "worker_defect": false,
+    "evaluator_defect": false,
+    "supervisor_defect": false,
+    "controller_or_physics_defect": false,
+    "threshold_margin_or_cohort_defect": false,
+    "mechanism": "The R54 manifest added turning_mechanism_selected as a twelfth false claim. The scientific nonclaim is correct, but the commissioned LCA1 manifest grammar requires the exact eleven-key generic claim schema and rejects any extra key before executing gates.",
+    "scientific_interpretation_available": false
+  },
+  "prospective_repair": {
+    "remove_only_schema_foreign_manifest_claim_key": "turning_mechanism_selected",
+    "retain_turning_mechanism_selected_false_in_r23d54_scientific_authorities": true,
+    "bind_this_incident_into_lineage_and_source_freeze": true,
+    "fresh_clean_push_required": true,
+    "entirely_new_create_only_scoped_output_required": true,
+    "fresh_adoption_required": true,
+    "same_failed_source_qualification_rerun_allowed": false,
+    "changes_physical_question": false,
+    "changes_physics_controller_measurement_threshold_seed_cohort_or_world_count": false
+  },
+  "claims": {
+    "declaration_schema_defect_identified": true,
+    "repair_implemented": true,
+    "repair_qualified": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "turning_mechanism_selected": false,
+    "cross_engine_equivalence": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

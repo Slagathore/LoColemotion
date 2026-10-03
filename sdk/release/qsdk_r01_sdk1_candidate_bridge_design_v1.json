@@ -1,0 +1,92 @@
+{
+  "schema_version": "sporespore_qsdk_r01_sdk1_candidate_bridge_design_v1",
+  "design_id": "SPORESPORE-QSDK-R01-SDK1-CANDIDATE-BRIDGE-V1",
+  "status": "implemented_zero_world_bridge_candidate_execution_still_blocked",
+  "ledger_scope": {
+    "subsystem": "release",
+    "engine_scope": "engine_neutral",
+    "authority_mode": "bounded_sdk1_candidate_preparation",
+    "question_class": "development"
+  },
+  "problem": {
+    "summary": "The bounded SDK1 compiler can eventually authorize the 17+3 candidate, but the existing packager and package-side R01 consumer accept only the full-program readiness schema.",
+    "consequence_without_successor": "Even after all 17 SDK1 prerequisite milestones pass, the bounded SDK1 authorization cannot create or validate its nonrelease package.",
+    "not_a_gate_result": true,
+    "not_a_candidate_authorization": true
+  },
+  "preserved_boundaries": {
+    "sdk1_candidate_partition": "17_prerequisite_milestones_plus_3_package_validation_milestones",
+    "package_validation_milestone_ids": [
+      "SDK1-M01",
+      "SDK1-M11",
+      "SDK1-M15"
+    ],
+    "package_validation_gate_ids": [
+      "QSDK-R01",
+      "QSDK-R16",
+      "QSDK-R20"
+    ],
+    "deferred_full_program_gate_ids": [
+      "QSDK-R06",
+      "QSDK-R07",
+      "QSDK-R09",
+      "QSDK-R11",
+      "QSDK-R12",
+      "QSDK-R25"
+    ],
+    "full_program_candidate_path_unchanged": true,
+    "full_program_release_contract_weakened": false,
+    "candidate_is_release": false,
+    "candidate_is_publishable": false,
+    "candidate_has_physical_acceptance_authority": false
+  },
+  "implementation": {
+    "explicit_packager_switch": "Sdk1CleanRoomCandidate",
+    "artifact_role": "sdk1_clean_room_conformance_candidate",
+    "candidate_authority_scope": "bounded_sdk1_17_plus_3",
+    "shared_validator_path": "sdk/release/assert_quadruped_sdk1_candidate_authority.ps1",
+    "packager_path": "sdk/package_quadruped_sdk.ps1",
+    "portable_api_runner_path": "sdk/run_portable_api_conformance.ps1",
+    "developer_experience_runner_path": "sdk/run_developer_experience_conformance.ps1",
+    "package_inventory_path": "sdk/release/quadruped_package_source_inventory_v1.json",
+    "test_path": "tests/test_qsdk_r01_sdk1_candidate_bridge.ps1"
+  },
+  "required_interlocks": [
+    "retained_authorization_is_outside_source_and_candidate",
+    "retained_authorization_passes_exact_sdk1_schema_and_17_plus_3_validation",
+    "all_17_prerequisite_milestones_are_passed",
+    "all_3_package_validation_milestones_are_still_missing",
+    "all_sdk1_candidate_blocker_arrays_are_empty",
+    "six_deferred_full_program_gates_remain_explicitly_out_of_scope",
+    "source_is_clean_and_equals_origin_main",
+    "live_sdk1_compiler_reauthorizes_the_exact_retained_source",
+    "mapping_release_contract_and_support_matrix_hashes_match",
+    "package_and_warning_are_watermarked_nonrelease",
+    "package_manifest_contains_the_exact_tracked_file_population",
+    "package_side_consumers_reject_wrong_scope_or_wrong_authority"
+  ],
+  "qualification_contract": {
+    "positive_shape_fixture_is_not_authority": true,
+    "positive_shape_fixture_must_pass_shared_validator": true,
+    "mutation_refusal_count": 13,
+    "forged_retained_authority_must_fail_live_reauthorization": true,
+    "conflicting_candidate_switches_must_fail": true,
+    "blocked_or_forged_tests_must_create_no_package": true,
+    "physical_execution_permitted": false
+  },
+  "current_boundary": {
+    "candidate_created": false,
+    "candidate_runner_executed": false,
+    "q_sdk_r01_satisfied": false,
+    "sdk1_m01_satisfied": false,
+    "score_change": false,
+    "next_legal_candidate_action": "Wait until the bounded SDK1 compiler reports all 17 prerequisite milestones passed, then retain that exact clean-source authorization before creating one candidate for R01, R16, and R20."
+  },
+  "execution": {
+    "physics_engine_process_count": 0,
+    "physics_model_construction_count": 0,
+    "world_build_count": 0,
+    "native_physics_read_count": 0,
+    "solver_step_count": 0
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D21-REDUCED-YAW-AUTHORITY-GODOT-DEVELOPMENT",
+  "question_class": "development",
+  "declared_physical_world_count": 3,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 1,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 4,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D21-R23D20-IMMUTABLE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d20_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D20_CLOSURE_PASS ",
+      "raw_sha256": "sha256:c9bc696b9a0ba57872be64ad4ee4020eeaceefd37dda71b9f7fb56aac3ddcd5f"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 2,
+      "gate_id": "R23D21-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d21_campaign_roles.ps1",
+      "arguments": [
+        "-Role",
+        "worker",
+        "-Godot",
+        "<canonical-godot>",
+        "-Python",
+        "<python>"
+      ],
+      "terminal_marker_prefix": "QSDK_R23D21_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:9ee528754bb6b22348d58f2697325038e97349de03e51295ccdef4f3ce57ee86"
+    },
+    {
+      "ordinal": 3,
+      "gate_id": "R23D21-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d21_campaign_roles.ps1",
+      "arguments": [
+        "-Role",
+        "evaluator",
+        "-Godot",
+        "<canonical-godot>",
+        "-Python",
+        "<python>"
+      ],
+      "terminal_marker_prefix": "QSDK_R23D21_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:9ee528754bb6b22348d58f2697325038e97349de03e51295ccdef4f3ce57ee86"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D21-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d21_campaign_roles.ps1",
+      "arguments": [
+        "-Role",
+        "supervisor",
+        "-Godot",
+        "<canonical-godot>",
+        "-Python",
+        "<python>"
+      ],
+      "terminal_marker_prefix": "QSDK_R23D21_CAMPAIGN_SUPERVISOR_GATE_PASS ",
+      "raw_sha256": "sha256:9ee528754bb6b22348d58f2697325038e97349de03e51295ccdef4f3ce57ee86"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d21_physical_implementation_contract_v1.json",
+    "raw_sha256": "sha256:06383ef89b525ce0fe724776afaeabf8d26396044854fb82bc59368cb22db24d"
+  },
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "tests/test_sdk_qsdk_r23d21_godot_jolt_physical_worker.gd",
+      "source_raw_sha256": "sha256:753e7b06901881d375e6b2a6148dcff724656bcafb4626cd2c8839f1eccf6e1b",
+      "test_gate_id": "R23D21-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d21_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:9ee528754bb6b22348d58f2697325038e97349de03e51295ccdef4f3ce57ee86"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d21_physical_evaluator.py",
+      "source_raw_sha256": "sha256:5064fd0d6c2c2fafe12d83d504735100e5c9d4f4119df0cd0dcb858b90337dd6",
+      "test_gate_id": "R23D21-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d21_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:9ee528754bb6b22348d58f2697325038e97349de03e51295ccdef4f3ce57ee86"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d21_supervisor.ps1",
+      "source_raw_sha256": "sha256:b02288925cc5d80e6bd703cf7a08388e34226bb856c5387eb565dbbdbb7df949",
+      "test_gate_id": "R23D21-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d21_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:9ee528754bb6b22348d58f2697325038e97349de03e51295ccdef4f3ce57ee86"
+    }
+  ],
+  "source_bindings": [
+    {
+      "path": ".gitattributes",
+      "raw_sha256": "sha256:74b79cdca2f061270e02305772541acaa797fb3a6d859900a227e22890ab0b7e"
+    },
+    {
+      "path": "tests/test_qsdk_r23d20_closure.ps1",
+      "raw_sha256": "sha256:c9bc696b9a0ba57872be64ad4ee4020eeaceefd37dda71b9f7fb56aac3ddcd5f"
+    },
+    {
+      "path": "tests/test_qsdk_r23d21_campaign_roles.ps1",
+      "raw_sha256": "sha256:9ee528754bb6b22348d58f2697325038e97349de03e51295ccdef4f3ce57ee86"
+    },
+    {
+      "path": "sdk/turning/r23d21_physical_implementation_contract_v1.json",
+      "raw_sha256": "sha256:06383ef89b525ce0fe724776afaeabf8d26396044854fb82bc59368cb22db24d"
+    },
+    {
+      "path": "sdk/turning/r23d21_physical_evaluator.py",
+      "raw_sha256": "sha256:5064fd0d6c2c2fafe12d83d504735100e5c9d4f4119df0cd0dcb858b90337dd6"
+    },
+    {
+      "path": "sdk/turning/r23d21_physical_trace.py",
+      "raw_sha256": "sha256:1de6194b020d0905071dc3a945af2221ddc2c11a2cd2952ff7a1fe936ee3a897"
+    },
+    {
+      "path": "sdk/publish_qsdk_r23d21_trace.ps1",
+      "raw_sha256": "sha256:f4c2e7f8597629ae727b83cfa67b8fcb3cbc4386825aa55c140289cbaff042b5"
+    },
+    {
+      "path": "sdk/run_qsdk_r23d21_supervisor.ps1",
+      "raw_sha256": "sha256:b02288925cc5d80e6bd703cf7a08388e34226bb856c5387eb565dbbdbb7df949"
+    },
+    {
+      "path": "sdk/locomotion_campaign_attestation_adoption.ps1",
+      "raw_sha256": "sha256:3e423d34ee9b9c309b67d4e15547dc7044304c89d1bfa417bcf0831ebd037684"
+    },
+    {
+      "path": "sdk/locomotion_campaign_attestation_adoption_contract_v1.json",
+      "raw_sha256": "sha256:5cb7dd7e2de63500d099fe771622ab40928d31af8161f7c007e2973f430e9128"
+    },
+    {
+      "path": "sdk/run_locomotion_campaign_attestation_adoption.ps1",
+      "raw_sha256": "sha256:2f0bf0251cb7aa026ed675b2ff7b4e61ccfabddc46828ea0b217e4bfe481ce21"
+    },
+    {
+      "path": "sdk/turning/r23d21_reduced_yaw_authority_preregistration_v1.json",
+      "raw_sha256": "sha256:1f92e0c9aca4fca44899ba09b22758c2ef3a7787ab673c427670a25cdda460c0"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d21_godot_jolt_physical_worker.gd",
+      "raw_sha256": "sha256:753e7b06901881d375e6b2a6148dcff724656bcafb4626cd2c8839f1eccf6e1b"
+    },
+    {
+      "path": "sdk/turning/r23d20_physical_closure_v1.json",
+      "raw_sha256": "sha256:6ba59e452cbb6ef5f12bae32ae3c068733717020e9bf29781eba3edd5d751982"
+    },
+    {
+      "path": "tests/test_locomotion_campaign_attestation_adoption.ps1",
+      "raw_sha256": "sha256:0a7aece26658ebd69e2c20ab57f258d6b551c2dbf60110bb3abcfe35ee9d19f1"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "raw_sha256": "sha256:7bff41cb16472c3eaa713e29046650a86aea51becd8d8b24f35802e5446cfc57"
+    },
+    {
+      "path": "sdk/core/src/lib.rs",
+      "raw_sha256": "sha256:b522a81fe828de3c2ed7158401274389d81a3dcb9dd0b8497ced22598e392c0c"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "raw_sha256": "sha256:6f188658e54f32489cb1c22a7063c3c5e58e95d622b074e0eef15249097f8a69"
+    },
+    {
+      "path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+      "raw_sha256": "sha256:a0f16fc55df894935fe400eaaa530ede1d1d540d94dc30b46a3bca077cc25312"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "raw_sha256": "sha256:2f9c0f1885f8269e404abf1eb5a4bde61b39a5b5cac9652c1be3f6823c965efa"
+    },
+    {
+      "path": "tests/test_qsdk_r23d21_implementation.ps1",
+      "raw_sha256": "sha256:667205df82b54c8c2f504d8ab7a78909f181fc6553c65f23d4f7a60b225928ba"
+    },
+    {
+      "path": "sdk/turning/test_r23d21_physical_trace.py",
+      "raw_sha256": "sha256:3390f36262df412c33ab18b06c98be0c95fa7d643682c9b9ebfd2cef917ef9ea"
+    }
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

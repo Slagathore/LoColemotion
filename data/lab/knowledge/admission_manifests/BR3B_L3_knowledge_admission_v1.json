@@ -1,0 +1,123 @@
+{
+  "schema": "sporespore.lab.br3b_knowledge_admission_manifest.v1",
+  "manifest_id": "BR3B_L3_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_admit_recommended_observation_only_br3b_knowledge",
+  "authorization_instruction": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations.",
+  "decision": {
+    "decision_id": "BR3B_L3_BASIC_LOADED_FOOT_TRUTH_DECISION_V1",
+    "decision_sha256": "sha256:f607c2b86599b1bc2ef085ff29819edd736ef161c8e5024916fae8b7d753ea85"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "ACCEPTED_ARTICULATED_CONTACT_BEARING_SUPPORT_MILESTONE",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "L3.0.loaded_pad_normal_reconstruction.v1",
+      "cell_id": "L3.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3b_l3_0_loaded_pad_normal.v1.json",
+      "program_id": "BR3B_L3_0_LOADED_PAD_NORMAL_V1",
+      "authoring": {
+        "title": "Whole-system momentum reconstructs the certified centered load on the free unary pad",
+        "claim": "In the exact certified L3.0 free unary pad fixture, whole-system momentum balance reconstructs 19.6, 39.6, 59.6, and 99.6 newtons of total external normal support under the centered 0, 20, 40, and 80 newton imposed-load cells, while the single-manifold raw predicted contact load remains only a bounded cross-check.",
+        "scope": "Only the exact free 2 kg, 0.30 by 0.08 by 0.20 meter unary pad, centered force schedule, force-controlled apply_force carriage boundary, material, timestep, solver configuration, tolerances, and program claim scope certified by br3b_20260723T103240Z_f5f54a58.",
+        "mechanism": "System momentum change minus known gravity and imposed-force impulses isolates the unknown external floor impulse. Dividing its support-normal component by the measured timestep gives aggregate external support load without treating a local solver manifold as a general force sensor.",
+        "applicability": [
+          "Checking aggregate external support on the exact free-pad fixture before constructing an articulated contact-bearing limb",
+          "Preventing local predicted contact impulses from being promoted into an unmeasured general foot load"
+        ],
+        "failure_boundaries": [
+          "The externally imposed force-controlled carriage is not a joint, limb, muscle, or creature body",
+          "The aggregate reconstruction establishes no per-contact, per-foot, or per-toe load allocation and no general contact wrench",
+          "No articulated load-bearing limb, standing, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "unary_pad",
+          "external_load_reconstruction"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How aggregate external support should be allocated among multiple simultaneous feet or contacts",
+          "Whether an articulated actuator can produce and retain the measured support without an imposed carriage force"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L3.1.loaded_pad_shear_breakaway.v1",
+      "cell_id": "L3.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3b_l3_1_loaded_pad_shear.v1.json",
+      "program_id": "BR3B_L3_1_LOADED_PAD_SHEAR_V1",
+      "authoring": {
+        "title": "The certified loaded unary pad brackets friction breakaway at 34 to 36 newtons",
+        "claim": "In the exact certified L3.1 free unary pad fixture with reconstructed 59.6 newtons of normal support and authored friction 0.6, the centered pad holds through 34 newtons of imposed shear and slides at 36 newtons, producing a measured breakaway-ratio bracket of 0.57047 to 0.60403 inside the accepted L1 friction envelope.",
+        "scope": "Only the exact free unary pad, centered 40 newton imposed normal load, 0 to 42 newton shear schedule, authored two-surface friction rule, force-controlled carriage boundary, timestep, solver configuration, thresholds, and program claim scope certified by br3b_20260723T103240Z_f5f54a58.",
+        "mechanism": "Whole-system reconstruction retains the aggregate normal-load denominator while post-step pad kinematics distinguish held and sliding cells. The measured transition is checked against the already accepted L1 friction interval instead of inferring friction from contact presence alone.",
+        "applicability": [
+          "Checking the exact loaded-pad shear threshold before coupling contact to an articulated actuator",
+          "Separating maintained contact from actual tangential holding capacity"
+        ],
+        "failure_boundaries": [
+          "Continuous contact does not by itself establish stable support or bracing",
+          "The result is one free unary pad and does not allocate load among multiple feet, toes, or contact manifolds",
+          "No articulated load-bearing limb, standing, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "unary_pad",
+          "loaded_shear_breakaway"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Loaded breakaway under articulated joint reaction, changing normal load, or nonplanar terrain",
+          "How coupled pressure migration and joint motion alter the measured shear boundary"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L3.2.loaded_pad_pressure_rocking.v1",
+      "cell_id": "L3.2",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3b_l3_2_loaded_pad_rocking.v1.json",
+      "program_id": "BR3B_L3_2_LOADED_PAD_ROCKING_V1",
+      "authoring": {
+        "title": "Predicted pressure reaches the certified edge before the free loaded pad rocks",
+        "claim": "In the exact certified L3.2 free unary pad fixture, the predicted contact-pressure center moves monotonically toward the support edge; the 0.21 meter force-application offset remains supported at 93.1 percent of the edge, while 0.24 meters rocks beyond it, bracketing the analytic 0.2235 meter threshold with a mirrored negative repeat.",
+        "scope": "Only the exact free unary pad geometry and mass, 40 newton imposed normal force, signed application-offset grid, force-controlled carriage boundary, material, timestep, solver configuration, pressure estimator, thresholds, and program claim scope certified by br3b_20260723T103240Z_f5f54a58.",
+        "mechanism": "The offset imposed force contributes a declared moment while gravity acts through the pad center. Their analytic resultant moves toward the finite support edge; predicted contact pressure tracks that movement until the resultant crosses the boundary and the unconstrained pad rocks.",
+        "applicability": [
+          "Checking pressure-edge migration and rocking onset in the exact pad fixture before articulated support experiments",
+          "Distinguishing a near-edge loaded contact from a robust support margin"
+        ],
+        "failure_boundaries": [
+          "The force-controlled carriage is an explicit external load boundary and supplies no hidden balancing moment",
+          "Predicted pressure migration is not a general contact wrench or a per-foot allocator",
+          "No articulated load-bearing limb, standing, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "unary_pad",
+          "pressure_edge",
+          "rocking_threshold"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How articulated joint reaction changes pressure migration and rocking onset",
+          "How distributed or multiple simultaneous contacts alter the finite-support boundary"
+        ],
+        "supersedes": []
+      }
+    }
+  ]
+}

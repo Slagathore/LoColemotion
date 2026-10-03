@@ -1,0 +1,141 @@
+{
+  "schema_version": "sporespore_development_absent_contact_reference_selection_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core_and_godot_jolt",
+    "authority_mode": "post_exposure_development_successor_selection",
+    "question_class": "development"
+  },
+  "component_id": "V40",
+  "source_parent_commit": "a319c2dae31ee2e3364076bf03744ea8604a5780",
+  "source_diagnosis": {
+    "path": "sdk/development/recovery_absent_stance_diagnosis_v1.json",
+    "byte_length": 52094,
+    "raw_sha256": "sha256:6ad31d04e6703630d7b1e939523b8f130c46ec70a1d5d5b3fea3db710f55a79e"
+  },
+  "contract": {
+    "path": "sdk/development/recovery_absent_contact_reference_contract_v1.json",
+    "byte_length": 6570,
+    "raw_sha256": "sha256:d9b4afbe28d6b5d0ae8672000f1d11cab104deba532097059fb5fa7b21599ddb"
+  },
+  "test_source": {
+    "path": "tests/test_development_absent_stance_diagnosis.py",
+    "byte_length": 9272,
+    "raw_sha256": "sha256:5d4dcaa275ecdb1c20d0300f5710de290dd7546d47e616e2b62df65925d2bed8"
+  },
+  "diagnosis_seconds": 2.7045577,
+  "test_stage": {
+    "id": "absent_stance_diagnosis",
+    "passed": true,
+    "test_count": 6,
+    "expected_test_count": 6,
+    "seconds": 6.6756396,
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout": "absent_stance_diagnosis.stdout.log",
+    "stderr": "absent_stance_diagnosis.stderr.log",
+    "stdout_sha256": "15cd00500f3fa7538d9b2690d77109e0b5b42f0eb1e0f357215d89671e56b233",
+    "stderr_sha256": "246542735d16da3cc9530af122f48986f0f23d8812b68b87259c87c154e6d49a"
+  },
+  "source_unchanged_during_analysis_and_tests": true,
+  "retained_population": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550",
+    "file_count": 7,
+    "byte_length": 5866572,
+    "files": [
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550/absent_stance_diagnosis.stderr.log",
+        "byte_length": 1247,
+        "raw_sha256": "sha256:246542735d16da3cc9530af122f48986f0f23d8812b68b87259c87c154e6d49a"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550/absent_stance_diagnosis.stdout.log",
+        "byte_length": 89,
+        "raw_sha256": "sha256:15cd00500f3fa7538d9b2690d77109e0b5b42f0eb1e0f357215d89671e56b233"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550/complete-diagnosis.json",
+        "byte_length": 5793600,
+        "raw_sha256": "sha256:4aca6fcf8ea9ae53460ab9554d640516f98c423ae7b90f63a70d342d16f3d4b4"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550/diagnosis.execution.json",
+        "byte_length": 1290,
+        "raw_sha256": "sha256:0faca8b1a75bb613573bfdabd4a83ac9abf014382c985631f7235283584cf636"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550/diagnosis.stdout-stderr.txt",
+        "byte_length": 52094,
+        "raw_sha256": "sha256:6ad31d04e6703630d7b1e939523b8f130c46ec70a1d5d5b3fea3db710f55a79e"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550/readiness.json",
+        "byte_length": 14335,
+        "raw_sha256": "sha256:0d93f90fbd2072eae2354c0ace43d3c4c67b5c5ca06dc268a68ed9eb6c70a0f5"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v39-stance-88532ddcd8644c259b5d6c7989663550/verification.json",
+        "byte_length": 3917,
+        "raw_sha256": "sha256:2078cb22770d9edb2e267a52c16a91c378a98c111b1527ccff54098cfb768875"
+      }
+    ]
+  },
+  "selection": "Build the distinct V40 absent-contact reference-rate component. Relative to V39, extend only explicit absent-contact full-reference tracking to scheduled stance. Keep supported-contact fallback, positions, gates, gains, caps and memory dynamics unchanged.",
+  "basis": "V39 has 208 unsupported stance limb commands with no speed-clamped motor commands. Moving references and observed tracking lag coexist with some unreachable current-body geometry. The sketch changes 278 joint commands; it is not a predicted physical fix.",
+  "rejected_or_deferred": [
+    {
+      "option": "Raise motor speed limits",
+      "disposition": "not_selected",
+      "reason": "No unsupported stance command is speed-clamped. Delivered impulse sufficiency is not established; do not infer unused force authority."
+    },
+    {
+      "option": "Full-reference tracking also while feet are supported",
+      "disposition": "not_selected",
+      "reason": "Preserve V39 supported-contact behavior; the earlier broader V37 policy had a negative physical trajectory."
+    },
+    {
+      "option": "Treat all missing contacts as a tracking-only problem",
+      "disposition": "rejected_interpretation",
+      "reason": "Some rear-right saved poses cannot reach the floor. A lower prospective body-height plan is not current reach."
+    },
+    {
+      "option": "Extend V39 or remove short contact cycles/terminal failure",
+      "disposition": "forbidden",
+      "reason": "The attempt is consumed and all original outcomes remain immutable."
+    },
+    {
+      "option": "Claim completed two-cycle walking and stopping from the 400-command diagnostic",
+      "disposition": "forbidden",
+      "reason": "A distinct prospective schedule with coverage adequacy must exercise these missing paths before any such claim."
+    }
+  ],
+  "finite_blocker_list": [
+    "Lost stance contact and its effect on foot relocation; V40 is an unproven narrow tracking candidate.",
+    "Current-body reach and coordinated support height remain unresolved; the rate selector does not guarantee reach.",
+    "Second planned cycles, commanded stop/cooldown, full paired commissioning and prospective native acceptance remain unproved."
+  ],
+  "next_work": "Implement and qualify V40 as a non-runnable native component using every saved V39 input and exact predecessor output checks. Then shared route integration, complete applicable safety gate, and a separately declared fresh diagnostic only when ready.",
+  "sdk1_counts": {
+    "total": 20,
+    "passed": 14,
+    "missing": 5,
+    "contradicted": 1,
+    "invalid_proof": 0
+  },
+  "full_program": {
+    "status": "blocked",
+    "required_passed": 14,
+    "required_total": 25,
+    "denominator_changed": false
+  },
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "new_native_controller_call_count": 0,
+  "new_world_build_count": 0,
+  "new_solver_step_count": 0,
+  "new_native_physics_read_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

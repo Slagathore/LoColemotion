@@ -1,0 +1,81 @@
+{
+  "schema_version": "sporespore_r10v_prelaunch_transport_component_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "zero_world_receipt_integer_transport_correction",
+    "question_class": "development"
+  },
+  "auditor": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10v_prelaunch_transport_component.py",
+    "byte_length": 6665,
+    "raw_sha256": "sha256:6461160b55e5cfe9e56bd49f384893019e86a82dafa53e579d808142ac75d761"
+  },
+  "failed_manifest": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-prelaunch-transport-component-55d6510e30a24f4f9211d1c9545fa7a7/failed_manifest.json",
+    "byte_length": 1730765,
+    "raw_sha256": "sha256:acd0367dbc453847460bf17de04b1579065927183e462ddea702f4fc236e6861"
+  },
+  "corrected_manifest": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-prelaunch-transport-component-55d6510e30a24f4f9211d1c9545fa7a7/corrected_manifest.json",
+    "byte_length": 59669,
+    "raw_sha256": "sha256:3332ba66444faa168e52cb76c227abab55ed97a65f3850d74d2859fc817efc64"
+  },
+  "source_archives": [
+    {
+      "key": {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10v_v56_walking_entry_contract_v19.json",
+        "byte_length": 198377,
+        "raw_sha256": "sha256:82323bd38059676c35798e4ae8b0f7a3a69c4dca07b1cd2feb7906cf0b4e61d7"
+      },
+      "directory": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-prelaunch-transport-component-55d6510e30a24f4f9211d1c9545fa7a7/r10v_v56_walking_entry_contract_v19",
+      "snapshot": {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-prelaunch-transport-component-55d6510e30a24f4f9211d1c9545fa7a7/source_before.json",
+        "byte_length": 156,
+        "raw_sha256": "sha256:66d902b5c1865663d1474d96f4205c1175b097412a178dcc9bd31e747679ad5e"
+      }
+    },
+    {
+      "key": {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10v_v56_walking_entry_contract_v20.json",
+        "byte_length": 198596,
+        "raw_sha256": "sha256:f825356d44ba659ee8edc6796cfbd04be6a65f8fd58aaf06c8c03976ce99a158"
+      },
+      "directory": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-prelaunch-transport-component-55d6510e30a24f4f9211d1c9545fa7a7/r10v_v56_walking_entry_contract_v20",
+      "snapshot": {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-r10v-launcher-0413b03e23f24d09b6cbd3e4d04f08cc/source_before.json",
+        "byte_length": 520489,
+        "raw_sha256": "sha256:4cf50ac271e27a964791b9f461a112a4538f1eff688363a716554bdecf17641e"
+      }
+    }
+  ],
+  "observed": {
+    "retained_stage_passes": 66,
+    "retained_test_passes": 258,
+    "original_refusal": "Int64_imported_prehost_receipts_rejected_by_Int32_only_check",
+    "actual_launcher_tests_passed": 5,
+    "prelaunch_positive_cases": 3,
+    "prelaunch_negative_cases": 23,
+    "original_typed_projection_refused": true,
+    "corrected_typed_projection_accepted": true,
+    "source_unchanged": true
+  },
+  "claim_boundary": {
+    "retained_v19_safety_stages_all_passed": true,
+    "retained_v19_prelaunch_passed": false,
+    "current_complete_safety_gate_passed": false,
+    "receipt_integer_transport_corrected": true,
+    "physical_attempt_started": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "controller_or_dll_changed": false,
+    "physical_limits_changed": false,
+    "original_attempt_reclassified": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_score": "14/20",
+    "full_program_score": "14/25"
+  },
+  "interpretation": "All v19 stage tests passed, then the production prelaunch predicate rejected the two verified JSON-imported Int64 receipts. The corrected predicate accepts Int32 and Int64 without coercion, preserving exact values and refusing boolean, floating and textual representations. A diagnostic typed reconstruction of original receipts demonstrates the isolated fix; it does not authorize or resume the original run.",
+  "next": "Fresh complete key, clean pushed freeze and full qualification before a new production invocation may reserve the still-unconsumed pair."
+}

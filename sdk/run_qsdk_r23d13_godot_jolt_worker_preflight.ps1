@@ -1,0 +1,255 @@
+#requires -Version 7.0
+
+[CmdletBinding()]
+param(
+    [string]$Godot = (
+        "C:\Users\Cole\CodeStuff\Misc\Godot\" +
+        "Godot_v4.7-stable_mono_win64_console.exe"
+    )
+)
+$ErrorActionPreference = "Stop"
+Set-StrictMode -Version Latest
+$PSNativeCommandUseErrorActionPreference = $false
+
+$sdkRoot = [IO.Path]::GetFullPath($PSScriptRoot)
+$repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $sdkRoot))
+$workerResource = (
+    "res://tests/test_sdk_qsdk_r23d13_residual_pose_authority_godot_jolt_physical_worker.gd"
+)
+$workerPath = Join-Path $repoRoot (
+    "tests\test_sdk_qsdk_r23d13_residual_pose_authority_godot_jolt_physical_worker.gd"
+)
+$wavePath = Join-Path $repoRoot "scripts\lab\gait\physical_wave_gait_quadruped.gd"
+$handoffPath = Join-Path $repoRoot (
+    "scripts\lab\gait\sdk_godot_jolt_quiescent_taper.gd"
+)
+$compositionPath = Join-Path $repoRoot (
+    "scripts\lab\gait\sdk_godot_jolt_stability_assisted_taper.gd"
+)
+$neutralPath = Join-Path $repoRoot (
+    "scripts\lab\gait\sdk_godot_jolt_neutral_stance.gd"
+)
+$actuationPath = Join-Path $repoRoot (
+    "scripts\lab\gait\sdk_godot_jolt_stability_assisted_taper_actuation.gd"
+)
+$diagnosticsPath = Join-Path $repoRoot (
+	"scripts\lab\gait\sdk_godot_jolt_r23d12_measurement_semantics.gd"
+)
+$authorityPath = Join-Path $repoRoot (
+    "scripts\lab\gait\sdk_godot_jolt_r23d13_residual_pose_authority.gd"
+)
+$campaignId = (
+    "QSDK-R23D13-RESIDUAL-POSE-AUTHORITY-QUIESCENT-TAPER-" +
+    "BILATERAL-TURN-DEVELOPMENT"
+)
+function Assert-R23D13Godot([bool]$Condition, [string]$Message) {
+    if (-not $Condition) { throw $Message }
+}
+
+function Invoke-R23D13Godot {
+    param(
+        [Parameter(Mandatory)][string[]]$UserArguments,
+        [Parameter(Mandatory)][string]$Label
+    )
+    $runRoot = Join-Path $sdkRoot (
+        "target\qsdk-r23d13-godot-preflight\" +
+        [guid]::NewGuid().ToString("N")
+    )
+    $appData = Join-Path $runRoot "appdata"
+    $localAppData = Join-Path $runRoot "localappdata"
+    $logPath = Join-Path $runRoot "$Label.log"
+    [void][IO.Directory]::CreateDirectory($appData)
+    [void][IO.Directory]::CreateDirectory($localAppData)
+    $start = [Diagnostics.ProcessStartInfo]::new()
+    $start.FileName = $Godot
+    $start.WorkingDirectory = $repoRoot
+    $start.UseShellExecute = $false
+    $start.CreateNoWindow = $true
+    $start.RedirectStandardOutput = $true
+    $start.RedirectStandardError = $true
+    $start.Environment["APPDATA"] = $appData
+    $start.Environment["LOCALAPPDATA"] = $localAppData
+    foreach ($argument in @(
+        "--headless",
+        "--path", $repoRoot,
+        "--log-file", $logPath,
+        "--script", $workerResource,
+        "--"
+    ) + $UserArguments) {
+        [void]$start.ArgumentList.Add($argument)
+    }
+    $process = [Diagnostics.Process]::new()
+    $process.StartInfo = $start
+    Assert-R23D13Godot $process.Start() (
+        "QSDK-R23D13 Godot/Jolt process did not start: $Label"
+    )
+    $stdoutTask = $process.StandardOutput.ReadToEndAsync()
+    $stderrTask = $process.StandardError.ReadToEndAsync()
+    $timedOut = -not $process.WaitForExit(60000)
+    if ($timedOut) {
+        $process.Kill($true)
+        $process.WaitForExit()
+    }
+    return [ordered]@{
+        label = $Label
+        exit_code = $process.ExitCode
+        timed_out = $timedOut
+        stdout = $stdoutTask.GetAwaiter().GetResult()
+        stderr = $stderrTask.GetAwaiter().GetResult()
+        log_path = $logPath
+    }
+}
+
+function Get-R23D13GodotMarker {
+    param(
+        [Parameter(Mandatory)][Collections.IDictionary]$Execution,
+        [Parameter(Mandatory)][string]$Prefix
+    )
+    $markers = @(([string]$Execution.stdout -split "\r?\n") | Where-Object {
+        $_.StartsWith($Prefix, [StringComparison]::Ordinal)
+    })
+    Assert-R23D13Godot ($markers.Count -eq 1) (
+        "QSDK-R23D13 expected one $Prefix marker from $($Execution.label)"
+    )
+    return $markers[0].Substring($Prefix.Length) |
+        ConvertFrom-Json -AsHashtable -Depth 100
+}
+
+Assert-R23D13Godot (Test-Path -LiteralPath $Godot -PathType Leaf) (
+    "QSDK-R23D13 Godot executable missing: $Godot"
+)
+foreach ($path in @(
+    $workerPath,
+    $wavePath,
+    $handoffPath,
+    $compositionPath,
+    $neutralPath,
+    $actuationPath,
+    $diagnosticsPath,
+    $authorityPath
+)) {
+    Assert-R23D13Godot (Test-Path -LiteralPath $path -PathType Leaf) (
+        "QSDK-R23D13 Godot/Jolt input missing: $path"
+    )
+}
+Assert-R23D13Godot (
+    (git -C $repoRoot rev-parse --show-toplevel).Trim() -ceq
+        $repoRoot.Replace("\", "/") -and
+    (git -C $repoRoot remote get-url origin).Trim() -ceq
+        "https://github.com/Slagathore/sporespore.git"
+) "QSDK-R23D13 Godot/Jolt repository identity changed"
+$sourceCommit = (git -C $repoRoot rev-parse HEAD).Trim()
+
+foreach ($arm in @("reference_zero", "positive_heading", "negative_heading")) {
+    $execution = Invoke-R23D13Godot -Label $arm -UserArguments @(
+        "--stage", "three_engine_confirmation", "--arm", $arm, "--preflight-only"
+    )
+    $combined = (
+        [string]$execution.stdout +
+        [Environment]::NewLine +
+        [string]$execution.stderr
+    )
+    Assert-R23D13Godot (
+        -not [bool]$execution.timed_out -and
+        [int]$execution.exit_code -eq 0 -and
+        $combined -cnotmatch "(?m)SCRIPT ERROR|Parse Error|ERROR:"
+    ) "QSDK-R23D13 Godot/Jolt preflight failed: $arm; $combined"
+    $receipt = Get-R23D13GodotMarker (
+        $execution
+    ) "QSDK_R23D13_GODOT_JOLT_PREFLIGHT "
+    Assert-R23D13Godot (
+        [string]$receipt.schema_version -ceq
+            "sporespore_qsdk_r23d13_godot_jolt_worker_preflight_v1" -and
+        [string]$receipt.campaign_id -ceq $campaignId -and
+        [string]$receipt.engine_id -ceq "godot_jolt" -and
+        [string]$receipt.arm_id -ceq $arm -and
+        [int]$receipt.fixed_controller_horizon_step_count -eq 2992 -and
+        [int]$receipt.fixed_terminal_quiescent_taper_step_count -eq 900 -and
+        [int]$receipt.fixed_total_trace_step_count -eq 3892 -and
+        [int]$receipt.maximum_active_neutral_acquisition_step_count -eq 540 -and
+        [int]$receipt.minimum_quiescent_taper_step_count -eq 120 -and
+        [int]$receipt.minimum_post_handoff_zero_actuation_step_count -eq 360 -and
+        [int]$receipt.quiescent_taper_oracle_canary_count -eq 5 -and
+        [int]$receipt.quiescent_taper_mutation_control_count -eq 16 -and
+        [int]$receipt.stability_composition_canary_count -eq 7 -and
+        [int]$receipt.stability_composition_mutation_control_count -eq 18 -and
+        [int]$receipt.stability_actuation_bridge_canary_count -eq 3 -and
+        [int]$receipt.diagnostic_valid_canary_count -eq 7 -and
+        [int]$receipt.diagnostic_active_cross_product_count -eq 6 -and
+        [int]$receipt.diagnostic_mutation_control_count -eq 14 -and
+        [bool]$receipt.critical_r23d11_failure_shape_passed -and
+        [bool]$receipt.planner_and_support_margin_availability_are_independent -and
+        [bool]$receipt.residual_pose_authority_enabled -and
+        [bool]$receipt.command_time_feedback_is_previous_completed_step -and
+        [bool]$receipt.canonical_scale_applied_before_host_mapping -and
+        [int]$receipt.production_trace_constructor_canary_count -eq 4 -and
+        [bool]$receipt.native_temporal_mirror -and
+        [bool]$receipt.physical_worker_implemented -and
+        [bool]$receipt.physical_worker_dormant_behind_supervisor_authorization -and
+        [int]$receipt.model_construction_count -eq 0 -and
+        [int]$receipt.world_attempt_count -eq 0 -and
+        [int]$receipt.world_build_count -eq 0 -and
+        -not [bool]$receipt.physical_execution_authorized
+    ) "QSDK-R23D13 Godot/Jolt receipt changed: $arm"
+}
+
+$authorizationEnvironmentNames = @(
+    "SPORESPORE_QSDK_R23D13_FREEZE",
+    "SPORESPORE_QSDK_R23D13_ATTEMPT",
+    "SPORESPORE_QSDK_R23D13_TOKEN",
+    "SPORESPORE_QSDK_R23D13_STAGE",
+    "SPORESPORE_QSDK_R23D13_CELL",
+    "SPORESPORE_QSDK_R23D13_ENGINE",
+    "SPORESPORE_QSDK_R23D13_ATTEMPT_ROOT",
+    "SPORESPORE_QSDK_R23D13_PYTHON",
+    "SPORESPORE_QSDK_R23D13_POWERSHELL"
+)
+$savedAuthorizationEnvironment = @{}
+try {
+    foreach ($name in $authorizationEnvironmentNames) {
+        $savedAuthorizationEnvironment[$name] = [Environment]::GetEnvironmentVariable(
+            $name, "Process"
+        )
+        [Environment]::SetEnvironmentVariable($name, $null, "Process")
+    }
+    $bypass = Invoke-R23D13Godot -Label "physical-refusal" -UserArguments @(
+        "--stage", "three_engine_confirmation", "--arm", "positive_heading",
+        "--source-commit", $sourceCommit
+    )
+} finally {
+    foreach ($name in $authorizationEnvironmentNames) {
+        [Environment]::SetEnvironmentVariable(
+            $name, $savedAuthorizationEnvironment[$name], "Process"
+        )
+    }
+}
+$combined = (
+    [string]$bypass.stdout +
+    [Environment]::NewLine +
+    [string]$bypass.stderr
+)
+Assert-R23D13Godot (
+    -not [bool]$bypass.timed_out -and
+    [int]$bypass.exit_code -ne 0 -and
+    $combined -cnotmatch "(?m)SCRIPT ERROR|Parse Error|ERROR:"
+) "QSDK-R23D13 Godot/Jolt physical refusal failed: $combined"
+$terminal = Get-R23D13GodotMarker (
+    $bypass
+) "QSDK_R23D13_GODOT_JOLT_TERMINAL "
+Assert-R23D13Godot (
+    [string]$terminal.failure_stage -ceq "before_world" -and
+    [string]$terminal.failure_code -ceq
+        "QSDK_R23D13_GJT_PHYSICAL_AUTHORIZATION_REQUIRED" -and
+    [int]$terminal.world_attempt_count -eq 0 -and
+    [int]$terminal.world_build_count -eq 0
+) "QSDK-R23D13 Godot/Jolt physical refusal changed"
+
+Write-Host (
+    "QSDK_R23D13_GODOT_JOLT_NATIVE_ROUTE_PASS identities=3 taper_canaries=5 " +
+    "taper_mutations=16 composition_canaries=7 composition_mutations=18 " +
+    "actuation_canaries=3 diagnostic_canaries=7 diagnostic_cross_product=6 " +
+    "diagnostic_mutations=14 authority_canaries=10 authority_mutations=20 " +
+    "trace_canaries=4 command_time_feedback=True physical_worker=True " +
+    "dormant=True models=0 " +
+    "worlds=0 physical_authority=False"
+)

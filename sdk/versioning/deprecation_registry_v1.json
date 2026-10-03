@@ -1,0 +1,149 @@
+{
+  "schema_version": "sporespore_sdk_deprecation_registry_v1",
+  "sdk_version": "0.1.0",
+  "minimum_notice_minor_releases": 1,
+  "items": [
+    {
+      "surface_kind": "c_abi_symbol",
+      "surface_id": "ss_balanced_wave_profile_json",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "ss_balanced_wave_policy_profile_json",
+      "migration": "Wrap the same descriptor in sporespore_balanced_wave_policy_profile_request_v1 and request sporespore_balanced_wave_v1 to preserve legacy BW2-A semantics.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "c_abi_symbol",
+      "surface_id": "ss_balanced_wave_step_json",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "ss_balanced_wave_policy_step_json",
+      "migration": "balanced_wave_legacy_step_to_named_policy_v1",
+      "automatic_migration_available": true
+    },
+    {
+      "surface_kind": "c_abi_symbol",
+      "surface_id": "ss_plan_scheduled_load_transfer_v1_json",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "ss_plan_scheduled_load_transfer_v3_json",
+      "migration": "Manual policy selection is required because v2/v3 add typed fail-zero and partial-support semantics.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "c_abi_symbol",
+      "surface_id": "ss_plan_scheduled_load_transfer_v2_json",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "ss_plan_scheduled_load_transfer_v3_json",
+      "migration": "Manual policy selection is required because v3 changes partial-support and receipt semantics.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "c_abi_symbol",
+      "surface_id": "ss_map_endpoint_force_to_joint_v2_json",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "ss_map_endpoint_force_to_joint_v3_json",
+      "migration": "Manual construction of the v3 active subset is required; inactive actuators must remain explicit exact zero.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "json_schema",
+      "surface_id": "sporespore_balanced_wave_step_request_v1",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "sporespore_balanced_wave_policy_step_request_v1",
+      "migration": "balanced_wave_legacy_step_to_named_policy_v1",
+      "automatic_migration_available": true
+    },
+    {
+      "surface_kind": "json_schema",
+      "surface_id": "sporespore_plan_scheduled_load_transfer_request_v1",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "sporespore_plan_scheduled_load_transfer_request_v3",
+      "migration": "No automatic transform: the caller must explicitly choose v3 policy and partial-support behavior.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "json_schema",
+      "surface_id": "sporespore_plan_scheduled_load_transfer_request_v2",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "sporespore_plan_scheduled_load_transfer_request_v3",
+      "migration": "No automatic transform: the caller must explicitly choose v3 policy and partial-support behavior.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "json_schema",
+      "surface_id": "sporespore_map_endpoint_force_to_joint_request_v2",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "sporespore_map_endpoint_force_to_joint_request_v3",
+      "migration": "No automatic transform: the caller must provide the v3 active actuator subset and preserve explicit inactive zeros.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "python_method",
+      "surface_id": "balanced_wave_profile",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "balanced_wave_policy_profile",
+      "migration": "Request sporespore_balanced_wave_v1 explicitly to preserve legacy BW2-A semantics.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "python_method",
+      "surface_id": "balanced_wave_step",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "balanced_wave_policy_step",
+      "migration": "balanced_wave_legacy_step_to_named_policy_v1",
+      "automatic_migration_available": true
+    },
+    {
+      "surface_kind": "python_method",
+      "surface_id": "plan_scheduled_load_transfer_v1",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "plan_scheduled_load_transfer_v3",
+      "migration": "Manual policy selection is required because v3 changes fail-zero and partial-support semantics.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "python_method",
+      "surface_id": "plan_scheduled_load_transfer_v2",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "plan_scheduled_load_transfer_v3",
+      "migration": "Manual policy selection is required because v3 changes partial-support semantics.",
+      "automatic_migration_available": false
+    },
+    {
+      "surface_kind": "python_method",
+      "surface_id": "map_endpoint_force_to_joint_v2",
+      "status": "deprecated",
+      "deprecated_since": "0.1.0",
+      "not_before_removal_version": "0.3.0",
+      "replacement": "map_endpoint_force_to_joint_v3",
+      "migration": "Manual construction of the v3 active subset is required.",
+      "automatic_migration_available": false
+    }
+  ],
+  "removed_items": [],
+  "physical_acceptance_authority": false
+}

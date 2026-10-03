@@ -1,0 +1,58 @@
+{
+  "schema_version": "sporespore_qsdk_r23d15_pre_attestation_dependency_count_incident_v1",
+  "status": "closed_retained_pre_attestation_verifier_fixture_failure_no_physics",
+  "campaign_id": "QSDK-R23D15-PRODUCTION-COMPOSITION-RECOVERY-THREE-ENGINE-TURN-CONFIRMATION",
+  "gate_id": "QSDK-R23D15",
+  "source_commit": "4912bb26834cbcfa0d83eb0c5c6b452082a924c8",
+  "source_tree_git_oid": "3f03ff103245a20db78a6456baa8a109359888ea",
+  "attempted_attestation_path": "full-godot-conformance-v2-4912bb26-20260811T125233Z/attestation.json",
+  "attestation_published": false,
+  "failed_stage_id": "authority_and_historical_closures",
+  "elapsed_seconds": 83.2072894,
+  "failure": {
+    "audit_path": "tests/test_conformance_dependency_key.ps1",
+    "message": "CONFORMANCE_DEPENDENCY_KEY live repository candidate was absent, malformed, or over-authoritative",
+    "mechanism": "The CEP1 inventory advanced from 103 to 104 audits and from 102 to 103 unregistered audits when the R23D15 stage-two closure audit was added, but the dependency-key contract and its live-candidate assertion retained the predecessor counts.",
+    "classification": "verifier_fixture_drift_not_scientific_result",
+    "r23d15_physical_identity_consumed": false
+  },
+  "retained_evidence": [
+    {
+      "path": "conformance-runs/20260811T125325Z-4912bb26-20376263a4954a50897dc8cda9d60081/receipt.json",
+      "raw_sha256": "sha256:316904dc8a8a640294700b9c60ece8d41834c30b5bc5e5ca82f4d6ab94f988ca",
+      "byte_length": 12080
+    },
+    {
+      "path": "conformance-runs/20260811T125325Z-4912bb26-20376263a4954a50897dc8cda9d60081/conformance.log",
+      "raw_sha256": "sha256:09f44fa2bf6d360c90ffd366704cbd465a7be909e16a847b31210eae33425e9b",
+      "byte_length": 656
+    },
+    {
+      "path": "conformance-runs/20260811T125325Z-4912bb26-20376263a4954a50897dc8cda9d60081/stages/01-authority_and_historical_closures.json",
+      "raw_sha256": "sha256:8e18f85b145741e6f6f8bdeb941f79e7b48ef820a53482872ed488508bfe7398",
+      "byte_length": 2313
+    }
+  ],
+  "authorized_repair": {
+    "update_conformance_dependency_contract_cep1_audit_count_to": 104,
+    "update_conformance_dependency_contract_unregistered_audit_count_to": 103,
+    "update_live_candidate_assertions_only": true,
+    "controller_or_physics_change_permitted": false,
+    "scientific_threshold_or_question_change_permitted": false,
+    "new_clean_push_and_create_only_attestation_path_required": true
+  },
+  "counts": {
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0
+  },
+  "claims": {
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "finite_three_engine_result_exists": false,
+    "command_conditioned_turning": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false
+  }
+}

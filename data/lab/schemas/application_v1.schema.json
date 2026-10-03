@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/application_v1.schema.json",
+  "title": "SporeSpore executor application receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "application_sequence",
+    "source_kind",
+    "source_record_id",
+    "source_payload_sha256",
+    "operation_id",
+    "executor_call_ordinal",
+    "api",
+    "target_body_id",
+    "arguments",
+    "status",
+    "failure_code"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.application.v1"},
+    "run_id": {"$ref": "#/$defs/stable_id"},
+    "application_sequence": {"type": "integer", "minimum": 0},
+    "source_kind": {"enum": ["command", "intervention"]},
+    "source_record_id": {"$ref": "#/$defs/stable_id"},
+    "source_payload_sha256": {"$ref": "#/$defs/sha256"},
+    "operation_id": {"$ref": "#/$defs/stable_id"},
+    "executor_call_ordinal": {"type": "integer", "minimum": 0},
+    "api": {
+      "enum": [
+        "lab.synthetic_noop",
+        "RigidBody3D.apply_torque",
+        "RigidBody3D.apply_central_impulse"
+      ]
+    },
+    "target_body_id": {"$ref": "#/$defs/stable_id"},
+    "arguments": {
+      "oneOf": [
+        {"$ref": "#/$defs/noop_arguments"},
+        {"$ref": "#/$defs/torque_arguments"},
+        {"$ref": "#/$defs/central_impulse_arguments"}
+      ]
+    },
+    "status": {"enum": ["call_returned", "call_failed"]},
+    "failure_code": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "source_kind": {"const": "command"},
+            "source_record_id": {
+              "type": "string",
+              "pattern": "^command:[0-9]+$"
+            },
+            "api": {"const": "lab.synthetic_noop"},
+            "arguments": {"$ref": "#/$defs/noop_arguments"}
+          }
+        },
+        {
+          "properties": {
+            "source_kind": {"const": "intervention"},
+            "source_record_id": {
+              "type": "string",
+              "pattern": "^intervention:[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            "api": {"const": "lab.synthetic_noop"},
+            "arguments": {"$ref": "#/$defs/noop_arguments"}
+          }
+        },
+        {
+          "properties": {
+            "source_kind": {"const": "command"},
+            "source_record_id": {
+              "type": "string",
+              "pattern": "^command:[0-9]+$"
+            },
+            "api": {"const": "RigidBody3D.apply_torque"},
+            "arguments": {"$ref": "#/$defs/torque_arguments"}
+          }
+        },
+        {
+          "properties": {
+            "source_kind": {"const": "intervention"},
+            "source_record_id": {
+              "type": "string",
+              "pattern": "^intervention:[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            "api": {"const": "RigidBody3D.apply_central_impulse"},
+            "arguments": {"$ref": "#/$defs/central_impulse_arguments"}
+          }
+        }
+      ]
+    },
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "status": {"const": "call_returned"},
+            "failure_code": {"const": null}
+          }
+        },
+        {
+          "properties": {
+            "status": {"const": "call_failed"},
+            "failure_code": {"type": "string", "minLength": 1}
+          }
+        }
+      ]
+    }
+  ],
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    },
+    "noop_arguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {"type": "number"}
+      }
+    },
+    "torque_arguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["torque_world_nm"],
+      "properties": {
+        "torque_world_nm": {"$ref": "#/$defs/vec3"}
+      }
+    },
+    "central_impulse_arguments": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["linear_impulse_world_n_s"],
+      "properties": {
+        "linear_impulse_world_n_s": {"$ref": "#/$defs/vec3"}
+      }
+    }
+  }
+}

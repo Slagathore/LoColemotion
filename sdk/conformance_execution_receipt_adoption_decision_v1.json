@@ -1,0 +1,49 @@
+{
+  "schema_version": "sporespore_conformance_execution_receipt_adoption_decision_v1",
+  "decision_id": "CER1-R23D13-PRODUCTION-REUSE-ADOPTION-D1",
+  "status": "negative_for_single_audit_speed_no_production_reuse",
+  "subject": {
+    "audit_path": "tests/test_qsdk_r23d13_closure.ps1",
+    "cold_equivalence_closure_path": "sdk/conformance_execution_receipt_cold_equivalence_closure_v1.json",
+    "cold_equivalence_closure_id": "CER1-R23D13-CLEAN-COLD-EQUIVALENCE-C1",
+    "decision_source_commit": "4ece6bc0b3fea8124028eddca02f23cefaf22f8d",
+    "decision_source_tree": "c5566faee55aa8c845c247df3192e97dba969054"
+  },
+  "comparison": {
+    "direct_cold_process_seconds": 5.2191931,
+    "verified_read_back_process_seconds": 6.1857223,
+    "read_back_over_direct_ratio": 1.185187,
+    "read_back_slower_seconds": 0.9665292,
+    "read_back_slower_percent": 18.5187,
+    "direct_terminal_marker_reproduced": true,
+    "direct_exit_code": 0,
+    "direct_audit_invocation_count": 1,
+    "read_back_audit_invocation_count": 0,
+    "physics_worlds_opened_by_either_process": 0
+  },
+  "interpretation": {
+    "cold_semantic_equivalence_remains_positive": true,
+    "wrapper_to_wrapper_speedup_remains_true_for_the_commissioning_observation": true,
+    "canonical_single_audit_speedup_established": false,
+    "canonical_single_audit_reuse_is_counterproductive": true,
+    "direct_timing_transcript_was_not_separately_retained": true,
+    "conservative_decision_despite_retention_limit": "do_not_enable_reuse",
+    "next_target_requirement": "Choose an audit whose direct cost materially exceeds exact key plus CAS verification, or amortize one shared dependency computation across a declared batch."
+  },
+  "scheduler_decision": {
+    "keep_r23d13_direct_execution": true,
+    "connect_r23d13_production_lookup": false,
+    "connect_r23d13_production_reuse": false,
+    "permit_historical_audit_waiver": false,
+    "permit_silent_skip": false
+  },
+  "claims": {
+    "performance_adoption_positive": false,
+    "production_cache_lookup_permitted": false,
+    "production_result_reuse_permitted": false,
+    "historical_audit_waiver_permitted": false,
+    "physical_execution_authorized": false,
+    "scientific_locomotion_authority": false,
+    "release_authority": false
+  }
+}

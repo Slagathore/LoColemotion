@@ -1,0 +1,260 @@
+{
+  "schema_version": "sporespore_qsdk_r23d6_implementation_contract_v1",
+  "status": "implementation_complete_zero_world_qualified_pending_clean_push_and_full_attestation",
+  "campaign_id": "QSDK-R23D6-POLICY-COMPATIBLE-TERMINAL-STABILIZED-BILATERAL-TURN-DEVELOPMENT",
+  "gate_id": "QSDK-R23D6",
+  "preregistration_path": "sdk/turning/r23d6_policy_compatible_restoration_preregistration_v1.json",
+  "preregistration_raw_sha256": "sha256:14a7b6dd82a2642bb2f86b4caffdf87573d138e8410855619628c36f2eb63503",
+  "closed_predecessor_path": "sdk/turning/r23d5_physical_closure_v1.json",
+  "closed_predecessor_raw_sha256": "sha256:d45905782e59f20ca6dd88028818fccd37eb2b2964d2af4b0d1a933833e45d40",
+  "workers": [
+    {
+      "engine_id": "mujoco",
+      "stage_scope": [
+        "mujoco_terminal_restoration_screen",
+        "three_engine_confirmation"
+      ],
+      "implementation_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d6_policy_compatible.py",
+      "preflight_path": "sdk/run_qsdk_r23d6_mujoco_worker_preflight.ps1",
+      "pass_marker": "QSDK_R23D6_MUJOCO_WORKER_PASS",
+      "declared_identity_count": 5,
+      "physical_world_count_before_freeze": 0
+    },
+    {
+      "engine_id": "rapier_parry",
+      "stage_scope": [
+        "three_engine_confirmation"
+      ],
+      "implementation_path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced.rs",
+      "binary_entrypoint_path": "sdk/adapters/rapier/src/bin/qsdk_r23d6_policy_compatible.rs",
+      "preflight_path": "sdk/run_qsdk_r23d6_rapier_worker_preflight.ps1",
+      "pass_marker": "QSDK_R23D6_RAPIER_WORKER_PASS",
+      "declared_identity_count": 3,
+      "physical_world_count_before_freeze": 0
+    },
+    {
+      "engine_id": "godot_jolt",
+      "stage_scope": [
+        "three_engine_confirmation"
+      ],
+      "implementation_path": "tests/test_sdk_qsdk_r23d6_policy_compatible_godot_jolt_worker.gd",
+      "terminal_restoration_path": "scripts/lab/gait/sdk_godot_jolt_terminal_restoration.gd",
+      "preflight_path": "sdk/run_qsdk_r23d6_godot_jolt_worker_preflight.ps1",
+      "pass_marker": "QSDK_R23D6_GODOT_JOLT_WORKER_PASS",
+      "declared_identity_count": 3,
+      "physical_world_count_before_freeze": 0
+    }
+  ],
+  "fixed_schedule": {
+    "turning_controller_step_count": 2992,
+    "terminal_restoration_step_count": 540,
+    "passive_zero_actuation_step_count": 240,
+    "total_trace_row_count_per_cell": 3772,
+    "active_native_application_count_per_cell": 28256,
+    "passive_native_application_count_per_cell": 0
+  },
+  "production_evaluator": {
+    "path": "sdk/turning/r23d6_physical_evaluator.py",
+    "worker_authored_outcome_bits_authoritative": false,
+    "recomputes_complete_trace_contract": true,
+    "recomputes_every_execution_outcome_and_restoration_gate": true,
+    "projects_exact_godot_execution_predicates": true,
+    "preserves_valid_selected_valid_none_valid_negative_and_invalid": true
+  },
+  "trace_retention": {
+    "publisher_path": "sdk/publish_qsdk_r23d6_trace.ps1",
+    "content_addressed_before_terminal_entry_required": true,
+    "production_attempt_root_must_be_within_durable_evidence_root": true,
+    "empty_manifest_exact_bytes_utf8_hex": "5b5d0a",
+    "rows_per_complete_cell": 3772,
+    "projected_trace_rows_if_stage_b_launches": 41492
+  },
+  "supervisor": {
+    "path": "sdk/run_qsdk_r23d6_supervisor.ps1",
+    "stage_a_world_count": 2,
+    "stage_a_engine_id": "mujoco",
+    "stage_a_serial_without_outcome_early_stop": true,
+    "stage_b_launch_requires_valid_selected_stage_a": true,
+    "valid_none_or_invalid_stage_a_forbids_stage_b": true,
+    "stage_b_world_count_if_launched": 9,
+    "stage_b_serial_without_outcome_early_stop": true,
+    "stage_a_reports_may_substitute_for_stage_b_mujoco_reports": false,
+    "replacement_or_selective_rerun_permitted": false,
+    "single_supervisor_attempt_required": true,
+    "stage_a_and_conditional_stage_b_share_one_attempt_id": true,
+    "stage_a_authorization_is_immutable_before_first_stage_a_world": true,
+    "stage_b_authorization_is_fresh_immutable_and_created_only_after_valid_selection": true,
+    "stage_a_authorization_is_never_mutated_to_open_stage_b": true,
+    "source_binding_path_composer_exercised_in_preflight": true,
+    "external_runtime_binding_path_resolver_exercised_in_preflight": true,
+    "external_runtime_binding_uses_first_application_match_only": true,
+    "resolved_runtime_paths_used_for_process_launch_and_worker_trace_retention": true,
+    "mutable_lifecycle_status_is_not_duplicated_in_physical_supervisor": true,
+    "evaluator_stdout_stderr_exit_code_and_output_manifest_retained": true,
+    "dependency_manifest_composer_exercised_before_input_cas_and_attempt_authorization": true,
+    "worker_required_sets_are_verified_as_source_binding_subsets": true,
+    "process_stdout_stderr_and_required_engine_log_retained_before_marker_interpretation": true,
+    "shared_terminal_marker_classifier_required": true,
+    "every_launched_process_gets_a_content_addressed_terminal_entry": true
+  },
+  "runtime_freeze": {
+    "schema_version": "sporespore_qsdk_r23d6_physical_freeze_v1",
+    "materialization_path": "sdk/r23d3_reproducible_runtime_materialization.ps1",
+    "generated_only_after_clean_pushed_live_source_equality": true,
+    "generated_outside_git_in_durable_attempt_root": true,
+    "content_addressed_inputs_retained_before_attempt_or_world": true,
+    "source_bindings_hash_raw_checkout_bytes": true,
+    "source_bindings_must_equal_git_blob_bytes": true,
+    "msvc_brepro_required": true,
+    "pdb_alt_path_bare_name_required": true,
+    "cargo_locked_offline_required": true,
+    "full_godot_v2_attestation_required": true,
+    "global_operation_lock_required": true
+  },
+  "source_binding_policy": {
+    "exact_paths": [
+      ".gitattributes",
+      "sdk/Cargo.toml",
+      "sdk/Cargo.lock",
+      "sdk/turning/r23d2_development_contract_v1.json",
+      "sdk/turning/r23d3_physical_closure_v1.json",
+      "sdk/turning/r23d3_phase_balanced_preregistration_v1.json",
+      "sdk/turning/r23d4_terminal_stabilization_preregistration_v1.json",
+      "sdk/turning/r23d4_implementation_contract_v1.json",
+      "sdk/turning/r23d4_terminal_stabilization.py",
+      "sdk/turning/r23d6_policy_compatible_restoration_preregistration_v1.json",
+      "sdk/turning/r23d6_implementation_contract_v1.json",
+      "sdk/turning/r23d5_physical_closure_v1.json",
+      "sdk/turning/r23d6_dependency_closure.ps1",
+      "sdk/turning/r23d6_terminal_marker_classifier.ps1",
+      "sdk/turning/r23d6_physical_evaluator.py",
+      "sdk/turning/test_r23d6_physical_evaluator.py",
+      "sdk/run_qsdk_r23d6_mujoco_worker_preflight.ps1",
+      "sdk/run_qsdk_r23d6_rapier_worker_preflight.ps1",
+      "sdk/run_qsdk_r23d6_godot_jolt_worker_preflight.ps1",
+      "sdk/run_qsdk_r23d6_supervisor.ps1",
+      "sdk/run_qsdk_r23d6_zero_world_gate.ps1",
+      "sdk/publish_qsdk_r23d6_trace.ps1",
+      "sdk/r23d3_reproducible_runtime_materialization.ps1",
+      "sdk/content_addressed_artifact_store.ps1",
+      "sdk/locomotion_operation_lock.ps1",
+      "sdk/locomotion_full_conformance_attestation.ps1",
+      "sdk/locomotion_operation_attestation_contract.json",
+      "sdk/run_conformance.ps1",
+      "sdk/mujoco_c6_bw19v_selected_policy_pose_hold_restoration_mv6_closure.json",
+      "sdk/rapier_c6_bw19v_velocity_only_pose_hold_restoration_ph1_closure.json",
+      "scripts/lab/canonical_json.gd",
+      "scripts/lab/gait/physical_quadruped_proportion_spec.gd",
+      "scripts/lab/gait/physical_quadruped_fixture_spec.gd",
+      "scripts/lab/gait/physical_gait_clock_spec.gd",
+      "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+      "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "scripts/lab/gait/sdk_godot_jolt_material_profiles.gd",
+      "scripts/lab/gait/sdk_godot_jolt_terminal_restoration.gd",
+      "tests/test_sdk_qsdk_r23d3_godot_jolt_worker.gd",
+      "tests/test_sdk_qsdk_r23d6_policy_compatible_godot_jolt_worker.gd",
+      "tests/test_qsdk_r23d6_declaration.ps1",
+      "tests/test_qsdk_r23d6_dependency_and_marker_contract.ps1",
+      "tests/test_qsdk_r23d6_implementation.ps1",
+      "tests/test_qsdk_r23d6_restoration_implementation.ps1",
+      "sdk/adapters/rapier/Cargo.toml",
+      "sdk/adapters/rapier/src/lib.rs",
+      "sdk/adapters/rapier/src/locomotion.rs",
+      "sdk/adapters/rapier/src/bw19v_composition.rs",
+      "sdk/adapters/rapier/src/bw19v_velocity_only_pose_hold_restoration_ph1.rs",
+      "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced.rs",
+      "sdk/adapters/rapier/src/bin/qsdk_r23d6_policy_compatible.rs",
+      "sdk/adapters/mujoco/requirements-lock.txt",
+      "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d2_heading_response.py",
+      "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d3_phase_balanced.py",
+      "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d6_policy_compatible.py",
+      "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d6_policy_compatible_restoration.py",
+      "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_pose_hold_restoration_mv6.py",
+      "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_walking_mv3.py",
+      "sdk/adapters/mujoco/test_qsdk_r23d6_policy_compatible.py",
+      "sdk/adapters/mujoco/test_qsdk_r23d6_policy_compatible_restoration.py",
+      "sdk/python/sporespore_locomotion.py"
+    ],
+    "tracked_prefixes": [
+      "sdk/core/src/"
+    ],
+    "ambient_untracked_or_ignored_files_are_not_source_authority": true,
+    "duplicate_paths_forbidden": true,
+    "empty_prefix_expansion_forbidden": true
+  },
+  "authorization": {
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "opens_only_through_runtime_freeze_plus_single_use_attempt": true
+  },
+  "claims": {
+    "command_conditioned_turning": false,
+    "bilateral_signed_turning": false,
+    "portable_basic_turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "prone_to_standing": false,
+    "release_authorized": false
+  },
+  "dependency_closure": {
+    "manifest_schema_version": "sporespore_qsdk_r23d6_worker_dependency_manifest_v1",
+    "composer_path": "sdk/turning/r23d6_dependency_closure.ps1",
+    "declared_worker_count": 3,
+    "declared_unique_dependency_count": 23,
+    "declared_worker_ids": [
+      "mujoco",
+      "rapier_parry",
+      "godot_jolt"
+    ],
+    "required_dependency_paths_by_worker": {
+      "mujoco": [
+        "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d6_policy_compatible.py",
+        "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d2_heading_response.py",
+        "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d6_policy_compatible_restoration.py",
+        "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_pose_hold_restoration_mv6.py",
+        "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_walking_mv3.py",
+        "sdk/python/sporespore_locomotion.py",
+        "sdk/turning/r23d4_terminal_stabilization.py",
+        "sdk/turning/r23d6_physical_evaluator.py",
+        "sdk/turning/r23d6_policy_compatible_restoration_preregistration_v1.json",
+        "sdk/turning/r23d6_implementation_contract_v1.json",
+        "sdk/publish_qsdk_r23d6_trace.ps1"
+      ],
+      "rapier_parry": [
+        "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced.rs",
+        "sdk/adapters/rapier/src/bw19v_velocity_only_pose_hold_restoration_ph1.rs",
+        "sdk/adapters/rapier/src/bin/qsdk_r23d6_policy_compatible.rs",
+        "sdk/turning/r23d6_policy_compatible_restoration_preregistration_v1.json",
+        "sdk/turning/r23d6_implementation_contract_v1.json",
+        "sdk/turning/r23d6_physical_evaluator.py",
+        "sdk/publish_qsdk_r23d6_trace.ps1"
+      ],
+      "godot_jolt": [
+        "tests/test_sdk_qsdk_r23d6_policy_compatible_godot_jolt_worker.gd",
+        "tests/test_sdk_qsdk_r23d3_godot_jolt_worker.gd",
+        "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+        "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+        "scripts/lab/gait/sdk_godot_jolt_terminal_restoration.gd",
+        "sdk/turning/r23d3_physical_closure_v1.json",
+        "sdk/mujoco_c6_bw19v_selected_policy_pose_hold_restoration_mv6_closure.json",
+        "sdk/rapier_c6_bw19v_velocity_only_pose_hold_restoration_ph1_closure.json",
+        "sdk/turning/r23d2_development_contract_v1.json",
+        "sdk/turning/r23d6_policy_compatible_restoration_preregistration_v1.json",
+        "sdk/turning/r23d6_implementation_contract_v1.json",
+        "sdk/turning/r23d6_physical_evaluator.py",
+        "sdk/publish_qsdk_r23d6_trace.ps1"
+      ]
+    },
+    "supervisor_source_binding_set_must_cover_union": true,
+    "one_removal_negative_control_per_dependency_required": true
+  },
+  "terminal_marker_contract": {
+    "classifier_path": "sdk/turning/r23d6_terminal_marker_classifier.ps1",
+    "classifier_schema_version": "sporespore_qsdk_r23d6_terminal_marker_classifier_v1",
+    "retained_before_marker_interpretation_required": true,
+    "zero_many_mixed_malformed_and_exit_marker_mismatch_fail_closed": true,
+    "process_start_exceptions_and_classifier_failures_still_require_terminal_entry_cas": true
+  }
+}

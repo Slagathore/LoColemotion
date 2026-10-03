@@ -1,0 +1,153 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "cold_commissioning_only",
+  "campaign_id": "LCA1-RC6-R23D55-CANONICAL-RUNNER-RECOMMISSIONING",
+  "question_class": "equivalence_non_inferiority",
+  "declared_physical_world_count": 0,
+  "physical_launch_candidate": false,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 1,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 4,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "LCA1-RC6-R23D17-IMMUTABLE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d17_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D17_CLOSURE_PASS ",
+      "raw_sha256": "sha256:2682db079d6093dcbf231fa9db89674533cb9ea2426c6ac1337834bc711c1a16"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 2,
+      "gate_id": "LCA1-RC6-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_locomotion_campaign_attestation_commissioning_roles.ps1",
+      "arguments": ["-Role", "worker"],
+      "terminal_marker_prefix": "LCA1_COMMISSIONING_WORKER_PASS ",
+      "raw_sha256": "sha256:5f8bb9dcdb39f20a7e848eea252948ee916db886f2ea6cf8f7c67c14d5408b83"
+    },
+    {
+      "ordinal": 3,
+      "gate_id": "LCA1-RC6-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_locomotion_campaign_attestation_commissioning_roles.ps1",
+      "arguments": ["-Role", "evaluator"],
+      "terminal_marker_prefix": "LCA1_COMMISSIONING_EVALUATOR_PASS ",
+      "raw_sha256": "sha256:5f8bb9dcdb39f20a7e848eea252948ee916db886f2ea6cf8f7c67c14d5408b83"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "LCA1-RC6-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_locomotion_campaign_attestation_commissioning_roles.ps1",
+      "arguments": ["-Role", "supervisor"],
+      "terminal_marker_prefix": "LCA1_COMMISSIONING_SUPERVISOR_PASS ",
+      "raw_sha256": "sha256:5f8bb9dcdb39f20a7e848eea252948ee916db886f2ea6cf8f7c67c14d5408b83"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/locomotion_campaign_attestation_v1_recommissioning_rc6_freeze.json",
+    "raw_sha256": "sha256:b412c9e0ea22e0ba47ef77c69cf604d0074d46d3a95bd3cc51c6c52a7f79960c"
+  },
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d17_physical_implementation_contract_v1.json",
+      "source_raw_sha256": "sha256:8adf296bee86a4ec0da39fbd0f42a1015831911ce4ea8dd8c455d960b2f399c8",
+      "test_gate_id": "LCA1-RC6-WORKER-ROLE",
+      "test_path": "tests/test_locomotion_campaign_attestation_commissioning_roles.ps1",
+      "test_raw_sha256": "sha256:5f8bb9dcdb39f20a7e848eea252948ee916db886f2ea6cf8f7c67c14d5408b83"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d17_physical_evaluator.py",
+      "source_raw_sha256": "sha256:46ef6971fb9bf476abf7635db447359bd659c16513861bfc4e1b07a1118b8f40",
+      "test_gate_id": "LCA1-RC6-EVALUATOR-ROLE",
+      "test_path": "tests/test_locomotion_campaign_attestation_commissioning_roles.ps1",
+      "test_raw_sha256": "sha256:5f8bb9dcdb39f20a7e848eea252948ee916db886f2ea6cf8f7c67c14d5408b83"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d17_supervisor.ps1",
+      "source_raw_sha256": "sha256:db71af945257a62aaeab0415a3d4dfd2bb3ca606cab41679e7e6f2e973ded635",
+      "test_gate_id": "LCA1-RC6-SUPERVISOR-ROLE",
+      "test_path": "tests/test_locomotion_campaign_attestation_commissioning_roles.ps1",
+      "test_raw_sha256": "sha256:5f8bb9dcdb39f20a7e848eea252948ee916db886f2ea6cf8f7c67c14d5408b83"
+    }
+  ],
+  "source_bindings": [
+    {"path":".gitattributes","raw_sha256":"sha256:7425a6c7f720b37a5b656b7045524478913f5ccf9cd0ced96df25809baa5d316"},
+    {"path":"sdk/run_conformance.ps1","raw_sha256":"sha256:c02bd9b0fa222958ca475dee4ee264a90e246828fbb60595560fcd58e2318da7"},
+    {"path":"sdk/locomotion_full_conformance_attestation.ps1","raw_sha256":"sha256:b70d00f9b77f46676520d3c39c63882313449376383758484a74690bd389a267"},
+    {"path":"sdk/locomotion_operation_attestation_contract.json","raw_sha256":"sha256:b7723f9c01a27eac5304fc949f0a4676589eb6b171a864978589d9e02df50742"},
+    {"path":"sdk/locomotion_operation_lock.ps1","raw_sha256":"sha256:105964dfcd3fdf0a4aca27cb369e2714d7ec0cc8bf7e0204e559f85567fa3e31"},
+    {"path":"sdk/run_locomotion_campaign_attestation.ps1","raw_sha256":"sha256:266d39236d5f42685054f452809fd320ff2a78caf33bda3e1ba90dfaaea3bf5d"},
+    {"path":"sdk/locomotion_campaign_attestation.ps1","raw_sha256":"sha256:940719b4e8ef856b648504b6df007482f9c6c7710c5355fa1221210121f620fb"},
+    {"path":"sdk/locomotion_campaign_attestation_contract_v1.json","raw_sha256":"sha256:e46121c06afd35d6651be85764a9786d71565199469119c24d2c6b30d201dd56"},
+    {"path":"sdk/content_addressed_artifact_store.ps1","raw_sha256":"sha256:3b10f36e86eeaaac23dfc9b1b4089e8fd13b699e426c622d22360cb2d5cc5d7c"},
+    {"path":"sdk/conformance_authorization_kernel.ps1","raw_sha256":"sha256:b7508050804bd306cdcced038544898a41d9dd3e7b5c3a8f267b70c6ec654533"},
+    {"path":"sdk/conformance_authorization_kernel_contract_v1.json","raw_sha256":"sha256:d4b4e0350c53538911ab4a35724432de6da8ebf526dd831221a81ab00d76111d"},
+    {"path":"sdk/conformance_authorization_kernel_manifest_v1.json","raw_sha256":"sha256:3bce33ab3cca9ef68d9973a467d4ed7682d198973e8e50580f7b586607391a4b"},
+    {"path":"sdk/conformance_runtime_profile_contract_v1.json","raw_sha256":"sha256:40d43047a342e88bd83298c166858c91eaaef4aefcb0b4785ea95713c0f20013"},
+    {"path":"sdk/conformance_runtime_profile_registry_v1.json","raw_sha256":"sha256:f5420eccfa4cd2ba3da23aabc951e519a63821551964a16df037b8b524e0d158"},
+    {"path":"sdk/conformance_runtime_profile.ps1","raw_sha256":"sha256:4ba949de08a7abf898a05c5b0ee556a89cd4bd1c36c6a958b60f0cb70d6b5abb"},
+    {"path":"sdk/conformance_dependency_key.ps1","raw_sha256":"sha256:5498b72352bd0423c46768ed1edd93a354e6c6ca40838d386ca656590f513116"},
+    {"path":"sdk/workbench/experiment_catalog.json","raw_sha256":"sha256:34a3d59eabc3ce19a32d4ceeb7a334b915e7311d15799f98aea7bd9a0582ba4c"},
+    {"path":"tests/test_locomotion_experiment_workbench.ps1","raw_sha256":"sha256:574e17b4ff569ad7d1441b95e3fb8991392e73eec3853104e0fdd4f68bd5d143"},
+    {"path":"sdk/release/quadruped_release_contract.json","raw_sha256":"sha256:4d1dd3b2220535b40c685ec2e4a4be1380dabff7c7cf53aa87ba54b3a6a20cfa"},
+    {"path":"sdk/release/quadruped_support_matrix.json","raw_sha256":"sha256:3f78491c913f5d282d39e5e6972b07ebc3a5ba9e6d4e8642d077466e8ed0ed42"},
+    {"path":"sdk/locomotion_campaign_attestation_v1_recommissioning_rc5_closure.json","raw_sha256":"sha256:acec15e405a7b90ba86591d6ad7248b277836f6a96624e2d4b6e8a52a166df94"},
+    {"path":"tests/test_locomotion_campaign_attestation_v1_recommissioning_rc5_closure.ps1","raw_sha256":"sha256:11defd8f9e1a4227dfde1b97e2702f8131e1b14a991a9dd0eef9d07897429358"},
+    {"path":"sdk/turning/r23d55_godot_live_fixture_actuator_cap_conformance_v1.json","raw_sha256":"sha256:07dde7aafb3cefdd31bf4fa52f2abb231f6783a1d270361776a63041d3583838"},
+    {"path":"tests/test_qsdk_r23d55_live_fixture_actuator_cap_contract.ps1","raw_sha256":"sha256:2e6e54fb8dc1213188991b9710166f1d829470499d0d6bc95832c3ef349ce37f"},
+    {"path":"tests/test_sdk_qsdk_r23d55_godot_live_fixture_actuator_cap_conformance.gd","raw_sha256":"sha256:624f1d39a54af44235e96684f6319f7adc20fe3466ec10224ffd80d211bc69f6"},
+    {"path":"scripts/lab/gait/sdk_godot_jolt_live_fixture_actuator_cap_binding.gd","raw_sha256":"sha256:69dce352146b849329850a95eada169a9e6befad53ab0908d41b523ebdd4660a"},
+    {"path":"scripts/lab/gait/physical_wave_gait_quadruped.gd","raw_sha256":"sha256:0a21165e37044311c3a65e7e8b46b3c00dc9a2057a97c239bdd659c6703ace6a"},
+    {"path":"scripts/lab/gait/sdk_godot_jolt_adapter.gd","raw_sha256":"sha256:d014cea92744812f07e9a3482560eb25b6ca11ad8e4544819e58a71bbef676d3"},
+    {"path":"scripts/lab/gait/physical_quadruped_fixture_spec.gd","raw_sha256":"sha256:e357c432cd20c0e6502ba370e87f08f690cd932c240fcd3ca6a6b9fe33d60a1f"},
+    {"path":"scripts/lab/gait/physical_quadruped_proportion_spec.gd","raw_sha256":"sha256:871c817cf1fa5d884bf3fc37f76d7dd17cfd6ab5b0e553353a1e9cc8a99c3cde"},
+    {"path":"sdk/turning/r23d2_development_contract_v1.json","raw_sha256":"sha256:a33d1ac34856a2358b7a3133495e5b4b7b8e8591f3ec235d903cf68f8684b436"},
+    {"path":"sdk/closure_evidence_provenance_contract.json","raw_sha256":"sha256:f7d9ea77019211005033767b238daa0c71adbcf4c60e715371eb34ca3552d0c2"},
+    {"path":"tests/test_closure_evidence_provenance_contract.ps1","raw_sha256":"sha256:3af2d3fdec2cca4278013968c6caa7d7266a92bbab599e14d02519d0cc16c09d"},
+    {"path":"sdk/closure_evidence_mode_inventory.json","raw_sha256":"sha256:4be25cd67e04a100a5a591d658f8491360c51861af15f76d6a27080bfe1211f1"},
+    {"path":"sdk/audit_closure_evidence_modes.ps1","raw_sha256":"sha256:9a7d945e0e8bd924d0f8347edb6f478eb3fb104d7457a221f391d366c7d8ebcb"},
+    {"path":"tests/test_qsdk_r23d17_closure.ps1","raw_sha256":"sha256:2682db079d6093dcbf231fa9db89674533cb9ea2426c6ac1337834bc711c1a16"},
+    {"path":"tests/test_locomotion_campaign_attestation_commissioning_roles.ps1","raw_sha256":"sha256:5f8bb9dcdb39f20a7e848eea252948ee916db886f2ea6cf8f7c67c14d5408b83"},
+    {"path":"sdk/turning/r23d17_dependency_closure.ps1","raw_sha256":"sha256:0efaeb4a9b4579106e1c3b9fe668f7896a9656851ea71b162b8c451244b81723"},
+    {"path":"sdk/turning/r23d17_physical_implementation_contract_v1.json","raw_sha256":"sha256:8adf296bee86a4ec0da39fbd0f42a1015831911ce4ea8dd8c455d960b2f399c8"},
+    {"path":"sdk/turning/r23d17_physical_evaluator.py","raw_sha256":"sha256:46ef6971fb9bf476abf7635db447359bd659c16513861bfc4e1b07a1118b8f40"},
+    {"path":"sdk/run_qsdk_r23d17_supervisor.ps1","raw_sha256":"sha256:db71af945257a62aaeab0415a3d4dfd2bb3ca606cab41679e7e6f2e973ded635"},
+    {"path":"sdk/turning/r23d17_physical_closure_v1.json","raw_sha256":"sha256:e5e2e65b1221e540fe5b2ec60dbaccbee0bde59a56d3d20edcca39f730467c71"},
+    {"path":"sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d17_physical.py","raw_sha256":"sha256:bcbdf2001aafd745856a1e7011ffc369c411e11929a0f131a5496eeed5d299be"},
+    {"path":"sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d17_physical.rs","raw_sha256":"sha256:70dc72f67c93a263577df1e314e636def07e0a8e553e91d01fdae0647097e981"},
+    {"path":"tests/test_sdk_qsdk_r23d17_godot_jolt_physical_worker.gd","raw_sha256":"sha256:bc5f6713846995b2b2a32fb3bc4faf14b063627e0b7c8cff0078c7a87353038c"},
+    {"path":"tests/test_locomotion_campaign_attestation_v1_recommissioning_rc6_freeze.ps1","raw_sha256":"sha256:443000cd6d290aec91e205e9647f5b0b1187b3cca468f49bf3c220644dee9e5a"},
+    {"path":"sdk/locomotion_campaign_attestation_v1_recommissioning_rc6_freeze.json","raw_sha256":"sha256:b412c9e0ea22e0ba47ef77c69cf604d0074d46d3a95bd3cc51c6c52a7f79960c"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

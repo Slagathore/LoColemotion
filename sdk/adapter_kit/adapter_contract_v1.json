@@ -1,0 +1,185 @@
+{
+  "schema_version": "sporespore_adapter_authoring_contract_v1",
+  "contract_id": "sporespore_engine_adapter_boundary_v1",
+  "sdk_version": "0.1.0",
+  "status": "public_source_contract",
+  "locomotion_semantics": [
+    "sporespore_locomotion_semantics_v1",
+    "sporespore_locomotion_semantics_v2",
+    "sporespore_locomotion_semantics_v3"
+  ],
+  "selected_quadruped_controller": {
+    "candidate_id": "BW5R-B",
+    "policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "profile_request_schema": "sporespore_balanced_wave_policy_profile_request_v1",
+    "step_request_schema": "sporespore_balanced_wave_policy_step_request_v1",
+    "legacy_unnamed_entrypoints_allowed_for_new_adapters": false
+  },
+  "authority_partition": {
+    "portable_core_owns": [
+      "schema_validation",
+      "morphology_compilation",
+      "controller_policy",
+      "semantic_scheduler",
+      "safe_no_actuation_decision",
+      "canonical_controller_receipts"
+    ],
+    "host_adapter_owns": [
+      "physics_world_construction",
+      "host_to_canonical_coordinate_mapping",
+      "ordered_state_observation",
+      "contact_qualification_and_provenance",
+      "canonical_to_host_actuation_mapping",
+      "host_clamping_and_applied_actuation_receipt",
+      "material_and_solver_characterization"
+    ],
+    "forbidden_adapter_authority": [
+      "controller_policy_substitution",
+      "semantic_id_reordering",
+      "root_motion_locomotor_writes",
+      "fabricated_contact_bearing_or_load",
+      "physical_acceptance_self_certification"
+    ]
+  },
+  "canonical_frame": {
+    "coordinate_frame_id": "right_handed_x_forward_y_up_z_right_si_v1",
+    "handedness": "right_handed",
+    "forward_axis": "positive_x",
+    "up_axis": "positive_y",
+    "right_axis": "positive_z",
+    "linear_units": "meter",
+    "angular_units": "radian",
+    "time_units": "second",
+    "force_units": "newton",
+    "torque_units": "newton_meter",
+    "impulse_units": "newton_meter_second",
+    "quaternion_storage": "xyzw",
+    "quaternion_maps": "canonical_body_local_axes_to_canonical_world_axes"
+  },
+  "step_contract": {
+    "semantic_step_type": "unsigned_64",
+    "semantic_steps_strictly_increase": true,
+    "one_state_sample_per_controller_step": true,
+    "state_sample_precedes_controller_step": true,
+    "actuation_applied_at_most_once": true,
+    "previous_applied_actuation_is_strictly_earlier": true,
+    "commands_expire_by_valid_through_step": true,
+    "host_substeps_may_not_create_extra_controller_steps": true,
+    "sample_time_monotonic": true
+  },
+  "required_lifecycle": [
+    "load_and_validate_capability_manifest",
+    "compile_morphology_without_world_authority",
+    "construct_host_world_from_compiled_morphology",
+    "sample_one_ordered_canonical_state_frame",
+    "execute_one_explicit_named_policy_step",
+    "validate_actuation_identity_order_and_expiry",
+    "apply_or_safe_zero_each_actuator_at_most_once",
+    "retain_host_clamping_and_applied_actuation_receipt",
+    "feed_previous_applied_actuation_into_the_next_state"
+  ],
+  "canonical_records": {
+    "morphology_descriptor": "sporespore_bounded_quadruped_descriptor_v1",
+    "compiled_morphology": "sporespore_compiled_morphology_v1",
+    "state_frame": "sporespore_state_frame_v1",
+    "motion_command": "sporespore_motion_command_v2",
+    "actuation_frame": "sporespore_actuation_frame_v1",
+    "adapter_applied_actuation_receipt": "sporespore_adapter_applied_actuation_receipt_v1",
+    "capability_manifest": "sporespore_adapter_capability_manifest_v1"
+  },
+  "ordering": {
+    "authorities": [
+      "compiled_morphology.ordered_body_ids",
+      "compiled_morphology.ordered_joint_ids",
+      "compiled_morphology.ordered_limb_ids",
+      "compiled_morphology.ordered_actuator_ids",
+      "compiled_morphology.ordered_contact_site_ids"
+    ],
+    "host_maps_by_stable_id_before_emitting_arrays": true,
+    "missing_duplicate_unknown_or_reordered_ids_fail_closed": true
+  },
+  "contact_quality": {
+    "unavailable": {
+      "presence": null,
+      "bears_support": null,
+      "normal_load_n": null,
+      "engine_contact_ids_must_be_empty": true
+    },
+    "presence_only": {
+      "presence_required": true,
+      "bears_support": null,
+      "normal_load_n": null
+    },
+    "qualified_bearing": {
+      "presence_required": true,
+      "bears_support_required": true,
+      "normal_load_n": null
+    },
+    "qualified_load": {
+      "presence_required": true,
+      "bears_support_required": true,
+      "normal_load_n_required": true
+    },
+    "raw_multi_shape_impulses_are_additive_per_foot_load": false,
+    "unknown_is_not_zero_or_false": true
+  },
+  "actuation": {
+    "required_mode": "position_velocity",
+    "target_position_uses_clamped_target_position_rad": true,
+    "target_velocity_magnitude_respects_maximum_target_speed_rad_s": true,
+    "host_enforces_compiled_maximum_impulse_nms": true,
+    "host_reports_additional_clamping": true,
+    "safe_no_actuation_requires_zero_velocity_residual_and_safety_contributions": true,
+    "adapter_receipt_digest_algorithm": "sha256_canonical_json_utf8",
+    "adapter_receipt_digest_authority": "ss_canonicalize_json",
+    "direct_base_pose_or_velocity_locomotor_write_allowed": false
+  },
+  "capability_manifest": {
+    "required_top_level_fields": [
+      "schema_version",
+      "adapter_id",
+      "adapter_version",
+      "fixture_role",
+      "locomotion_semantics",
+      "host",
+      "conformance",
+      "observation_capabilities",
+      "actuator_capabilities",
+      "material_characterization",
+      "claims"
+    ],
+    "required_conformance_cells": [
+      "a0_contract",
+      "a1_named_policy",
+      "a2_order_and_time",
+      "a3_applied_feedback",
+      "a4_safe_zero",
+      "a5_negative_paths",
+      "a6_import_boundary"
+    ],
+    "unsupported_capabilities_must_be_false": true,
+    "digest_algorithm": "sha256_canonical_json_utf8",
+    "digest_authority": "ss_canonicalize_json"
+  },
+  "failure_contract": {
+    "malformed_schema": "SCHEMA_INVALID",
+    "nonfinite_value": "NONFINITE_VALUE",
+    "identity_mismatch": "IDENTITY_INVALID",
+    "unsupported_capability": "CAPABILITY_UNSUPPORTED",
+    "invalid_frame": "FRAME_INVALID",
+    "invalid_order": "ORDER_INVALID",
+    "invalid_time": "TIME_INVALID",
+    "invalid_contact": "CONTACT_INVALID",
+    "invalid_actuation": "ACTUATION_INVALID",
+    "invalid_digest": "DIGEST_INVALID",
+    "failure_never_grants_physical_authority": true
+  },
+  "conformance_authority": {
+    "a0_through_a6_prove_adapter_authoring_contract_only": true,
+    "c0_through_c5_require_engine_specific_fixtures": true,
+    "c6_requires_same_policy_physical_locomotion_evidence": true,
+    "adapter_authoring_conformance_grants_c6": false,
+    "adapter_authoring_conformance_grants_walking": false,
+    "adapter_authoring_conformance_grants_physical_acceptance": false
+  }
+}

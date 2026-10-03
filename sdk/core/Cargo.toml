@@ -1,0 +1,22 @@
+[package]
+name = "sporespore-locomotion-core"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license-file = "../LICENSE"
+description = "Engine-neutral deterministic locomotion semantics for SporeSpore"
+
+[lib]
+name = "sporespore_locomotion_core"
+crate-type = ["rlib", "staticlib", "cdylib"]
+
+[dependencies]
+serde = { version = "1.0.228", features = ["derive"] }
+serde_json = { version = "1.0.149", features = ["float_roundtrip"] }
+sha2 = "0.10.9"
+
+[dev-dependencies]
+serde_json = { version = "1.0.149", features = ["float_roundtrip"] }
+
+[build-dependencies]
+serde_json = { version = "1.0.149", features = ["float_roundtrip"] }

@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br13_knowledge_admission_manifest_v1.schema.json",
+  "title": "SporeSpore BR13 observation-only knowledge admission manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "manifest_id",
+    "status",
+    "authorized_by",
+    "authorization_basis",
+    "authorization_instruction",
+    "decision",
+    "guidance_policy",
+    "entries"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br13_knowledge_admission_manifest.v1"
+    },
+    "manifest_id": {
+      "const": "BR13_CANONICAL_GET_UP_KNOWLEDGE_ADMISSION_V1"
+    },
+    "status": {
+      "const": "authorized"
+    },
+    "authorized_by": {
+      "const": "Cole"
+    },
+    "authorization_basis": {
+      "const": "standing_authority_to_admit_recommended_observation_only_br13_knowledge"
+    },
+    "authorization_instruction": {
+      "const": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations. complete the bootstraps if possible. but if you absolutely require my input for something thats a design choice that hasnt been decided yet, then defer it and build around it - if possible."
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "decision_sha256"],
+      "properties": {
+        "decision_id": {
+          "const": "BR13_CONSTRAINED_CANONICAL_GET_UP_DECISION_V1"
+        },
+        "decision_sha256": {
+          "const": "sha256:524363ee5ea52bd4f81c3407dd1e5b895fb56cb6027c5ec7f8a8646ef34db95e"
+        }
+      }
+    },
+    "guidance_policy": {
+      "$ref": "#/$defs/guidance_policy"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,159}$"
+    },
+    "unique_strings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "guidance_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "automatic_creature_guidance_allowed",
+        "automatic_application_allowed",
+        "unlock_requires"
+      ],
+      "properties": {
+        "mode": {
+          "const": "observation_only"
+        },
+        "automatic_creature_guidance_allowed": {
+          "const": false
+        },
+        "automatic_application_allowed": {
+          "const": false
+        },
+        "unlock_requires": {
+          "const": [
+            "VALIDATED_CREATURE_GUIDANCE_CONSUMER",
+            "CERTIFIED_MORPHOLOGY_TERRAIN_TRANSFER",
+            "SEPARATE_GUIDANCE_DECISION"
+          ]
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_id",
+        "cell_id",
+        "knowledge_class",
+        "output_name",
+        "program_id",
+        "authoring"
+      ],
+      "properties": {
+        "entry_id": {
+          "$ref": "#/$defs/stable_id"
+        },
+        "cell_id": {
+          "enum": ["BR13.0", "BR13.2", "BR13.4"]
+        },
+        "knowledge_class": {
+          "const": "milestone_observation"
+        },
+        "output_name": {
+          "type": "string",
+          "pattern": "^br13_[024]_[a-z0-9_]+\\.v1\\.json$"
+        },
+        "program_id": {
+          "pattern": "^BR13_CANONICAL_GET_UP_[024]_[A-Z0-9_]+_V1$"
+        },
+        "authoring": {
+          "$ref": "#/$defs/authoring"
+        }
+      }
+    },
+    "authoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "claim",
+        "scope",
+        "mechanism",
+        "applicability",
+        "failure_boundaries",
+        "morphology_tags",
+        "parameter_effects",
+        "unknowns",
+        "supersedes"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "claim": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        },
+        "mechanism": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 5000
+        },
+        "applicability": {
+          "$ref": "#/$defs/unique_strings"
+        },
+        "failure_boundaries": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/unique_strings"
+            },
+            {
+              "minItems": 1
+            }
+          ]
+        },
+        "morphology_tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stable_id"
+          },
+          "uniqueItems": true
+        },
+        "parameter_effects": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "unknowns": {
+          "$ref": "#/$defs/unique_strings"
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stable_id"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,919 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_runtime_binding_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "development_runtime_artifact_binding",
+    "question_class": "development"
+  },
+  "build_source_parent_commit": "6602d30265b4479a7702831b80063a31a0e97e3c",
+  "build_stages": [
+    {
+      "stage": "core_tests",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-compiler-cache-v1/f378ad79e0346542803a89ba04605a24870325b8318278467066fed09414d6e9",
+        "--release",
+        "-p",
+        "sporespore-locomotion-core",
+        "--lib"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 111.85899999999674
+    },
+    {
+      "stage": "fixtures",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-compiler-cache-v1/f378ad79e0346542803a89ba04605a24870325b8318278467066fed09414d6e9",
+        "--release",
+        "-p",
+        "sporespore-locomotion-core",
+        "--lib",
+        "r10ap_",
+        "--",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.2190000000118744
+    },
+    {
+      "stage": "adapter",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-compiler-cache-v1/f378ad79e0346542803a89ba04605a24870325b8318278467066fed09414d6e9",
+        "--release",
+        "-p",
+        "sporespore-godot-adapter"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 81.96899999999732
+    }
+  ],
+  "rustc_version": "rustc 1.97.0 (2d8144b78 2026-07-07)\nbinary: rustc\ncommit-hash: 2d8144b7880597b6e6d3dfd63a9a9efae3f533d3\ncommit-date: 2026-07-07\nhost: x86_64-pc-windows-msvc\nrelease: 1.97.0\nLLVM version: 22.1.6",
+  "cargo_version": "cargo 1.97.0 (c980f4866 2026-06-30)",
+  "runtime": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/sporespore_godot_adapter.dll",
+    "byte_length": 9934336,
+    "raw_sha256": "sha256:76d05482da331ee4ed423f82672e2bf429222cd0efdeafa2f4f20c50a6023b81"
+  },
+  "local_build_path": "sdk/target/development-candidate-r10ap-progressive-headroom-core-v1/release/sporespore_godot_adapter.dll",
+  "source_files": [
+    {
+      "path": "sdk/adapters/godot/Cargo.toml",
+      "byte_length": 404,
+      "raw_sha256": "sha256:138d3cb4b8e15c56642bb08991d00ca291e14ac5d6af3b1f004332aef28dd731"
+    },
+    {
+      "path": "sdk/adapters/godot/src/lib.rs",
+      "byte_length": 62547,
+      "raw_sha256": "sha256:b38b411f84072f2c7a31feff016fb8e0f8efeae4638314de0447dc43317983ca"
+    },
+    {
+      "path": "sdk/balanced_wave_selected_policy.json",
+      "byte_length": 4935,
+      "raw_sha256": "sha256:8e111aa9a0b3c7182d4bd7021f6652c50e9d678ff95a6d06d5056e94f7e299b6"
+    },
+    {
+      "path": "sdk/Cargo.lock",
+      "byte_length": 19887,
+      "raw_sha256": "sha256:5256c3872e753693ea18bfb9a97ee47a3cbda56cedde7980f84dd7235d8247db"
+    },
+    {
+      "path": "sdk/Cargo.toml",
+      "byte_length": 83,
+      "raw_sha256": "sha256:bb38b6151b190e2948b679ee5fad813e38f393e4cb8e940e1170203816870cb3"
+    },
+    {
+      "path": "sdk/conformance/golden/candidate35_gq15_v1.json",
+      "byte_length": 6329,
+      "raw_sha256": "sha256:468d6465d50fc160f59bcacb371e8d5b5e44504336072c35639c4e98c43e9f09"
+    },
+    {
+      "path": "sdk/conformance/golden/stability_v2_gdscript_oracle_v1.json",
+      "byte_length": 4591,
+      "raw_sha256": "sha256:63634ed86ee1514a93df56a7ae89936c07d4e2d4fe339eabdf387c73166ba8e8"
+    },
+    {
+      "path": "sdk/core/build.rs",
+      "byte_length": 1893,
+      "raw_sha256": "sha256:8e2d134f5092d4b6266fb147455babb415d378de97fa1959e2abb9d53fdbd08c"
+    },
+    {
+      "path": "sdk/core/Cargo.toml",
+      "byte_length": 602,
+      "raw_sha256": "sha256:695e860ead75e0a5791a88b8a7dc8f21b74fcec89299841951112cce137a15a1"
+    },
+    {
+      "path": "sdk/core/contracts/r10aa_retained_support_observations_v2.json",
+      "byte_length": 3166850,
+      "raw_sha256": "sha256:df7a00ce0057539582c12dfb74637a8f5010acc3d5cbdb9ee6447cd3d02ea9d4"
+    },
+    {
+      "path": "sdk/core/contracts/r10ab_retained_partial_observations_v1.json",
+      "byte_length": 13548967,
+      "raw_sha256": "sha256:1bcb42cc9c6132e4157961c01c8b6c34c18318daff1644b4b008dbe8d52663fc"
+    },
+    {
+      "path": "sdk/core/contracts/r10ai_retained_canonical_geometry_input_binding_v2.json",
+      "byte_length": 1617,
+      "raw_sha256": "sha256:fdc2580cc7573561e0e0e07499964dd4ad1c3b8d43812f45484b32991563f556"
+    },
+    {
+      "path": "sdk/core/contracts/r10ai_retained_geometry_input_binding_v1.json",
+      "byte_length": 1134,
+      "raw_sha256": "sha256:c2f74e15849c877ac63af8deffbee7943ed0614024e5b1cedf551805e65197f6"
+    },
+    {
+      "path": "sdk/core/contracts/r10aj_retained_canonical_geometry_input_binding_v1.json",
+      "byte_length": 1093,
+      "raw_sha256": "sha256:c20931e5ba743a85ad2cda2c65ac941a3c8e4d4dd4a2a78a771f9f1b6d8e1921"
+    },
+    {
+      "path": "sdk/core/contracts/r10am_retained_canonical_geometry_input_binding_v1.json",
+      "byte_length": 1319,
+      "raw_sha256": "sha256:b652df3e8e5710a10ce16220f64776150bbe5c5efa664622131ccccfcebd2680"
+    },
+    {
+      "path": "sdk/core/contracts/r10ap_retained_canonical_geometry_input_binding_v1.json",
+      "byte_length": 1622,
+      "raw_sha256": "sha256:4d3f81acadc72c98dd1a796f19ea4abc60c9c6b1dd47de8f9e35cfb73a10f19c"
+    },
+    {
+      "path": "sdk/core/contracts/r10z_retained_partial_entries_v1.json",
+      "byte_length": 84835,
+      "raw_sha256": "sha256:96ae04b6e916a4c4c5f102178700028be2976d905299df60681ecea863aa19d3"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v1.json",
+      "byte_length": 1330,
+      "raw_sha256": "sha256:d21ac722cbff4e661a2797b34517ac0e97adb6b4dc742edb5021c3da8344d7c1"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v2.json",
+      "byte_length": 1534,
+      "raw_sha256": "sha256:fdd0647e30157d3afadc2c2376e0f9f70f8eeb9db614dd059fdc0855c1ae90b7"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v3.json",
+      "byte_length": 1656,
+      "raw_sha256": "sha256:a9d30289c02ba286e441c046a8f9ae3790c263ba9ad20d86a55beb67d1bb3c2d"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v4.json",
+      "byte_length": 1238,
+      "raw_sha256": "sha256:299215f287de24b3415aaee78e71c35dd795068e407f02bef8e023402a3d9987"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v5.json",
+      "byte_length": 1415,
+      "raw_sha256": "sha256:ea027657da723cf1e23aae22adac241e171fa4bbb340d386b78429f73285b2f3"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_candidate_stance_profiles_v6.json",
+      "byte_length": 3120,
+      "raw_sha256": "sha256:c9bd70c6c85b5b8657536411c8550c20974644efc539f6a406559f895217c800"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_interfaces_v1.json",
+      "byte_length": 985,
+      "raw_sha256": "sha256:322dfb08e8c8ccca74aeb9dc8ae85c80b0b490880605d149677b0c366f6ea35d"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_v22_retained_support_fixture_v1.json",
+      "byte_length": 31081,
+      "raw_sha256": "sha256:f80ff301ea0698c7aec58f0ea807c8d5dc6a3bf02d94ea8dfcec08ffde1cd6b2"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_v25_retained_walking_handoff_fixture_v1.json",
+      "byte_length": 3230,
+      "raw_sha256": "sha256:dd84095c234912b4638f0e309809d6fcc459e44971cb694ed4a93a09266a4f7a"
+    },
+    {
+      "path": "sdk/core/src/actuator_profile.rs",
+      "byte_length": 24016,
+      "raw_sha256": "sha256:c5a175f0783e0004b4012e803d2d254c3448b2d52b88daeefc23cf746d499795"
+    },
+    {
+      "path": "sdk/core/src/adaptation.rs",
+      "byte_length": 55830,
+      "raw_sha256": "sha256:422f3cc362b04b399884fd2f9f3139cfbf0a1baeff043e17c3344f739166c580"
+    },
+    {
+      "path": "sdk/core/src/canonical.rs",
+      "byte_length": 9197,
+      "raw_sha256": "sha256:83ab1b94d0127b18f45476afc3745b67fe14c7be2917e4edd77a7c38f519e07f"
+    },
+    {
+      "path": "sdk/core/src/canonical_actuation.rs",
+      "byte_length": 53283,
+      "raw_sha256": "sha256:af4fcb7afdf3f74942a322ab1bb6d814b8e78d05825e6c622dc0973a7206bedb"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "byte_length": 109334,
+      "raw_sha256": "sha256:c6c089690744fee3cebfdf766d57f8cc82dec7812de209ad5833afd2300e036e"
+    },
+    {
+      "path": "sdk/core/src/coverage.rs",
+      "byte_length": 14852,
+      "raw_sha256": "sha256:69e2cc1386601ec5f3982edd937c3cd65bc19a89d07c48c8048e3678f67cb0be"
+    },
+    {
+      "path": "sdk/core/src/ffi.rs",
+      "byte_length": 144890,
+      "raw_sha256": "sha256:337776976db4bfa68d811555cb264e62116f8a08cb75238840e0b5dcf6605fb3"
+    },
+    {
+      "path": "sdk/core/src/joint_pose_entry.rs",
+      "byte_length": 8957,
+      "raw_sha256": "sha256:9ef1cfbd9e85a1c11b7da6207c8130e1af9c0620b53adab4983ebf74fc4e65a8"
+    },
+    {
+      "path": "sdk/core/src/joint_pose_entry_tests.rs",
+      "byte_length": 5704,
+      "raw_sha256": "sha256:7e7d932b0a9ef28987895f74af78159887cfbe2e781717733cb2d2fdbedf4fc7"
+    },
+    {
+      "path": "sdk/core/src/lib.rs",
+      "byte_length": 19736,
+      "raw_sha256": "sha256:fa1cb211545bcd9df2f2cca1eec15f9374b5ff931c364467634a6131cce39bab"
+    },
+    {
+      "path": "sdk/core/src/protocol.rs",
+      "byte_length": 38404,
+      "raw_sha256": "sha256:d7f6e70e1466d0a3c3030e64e89509cbd1852accb74cdaed9b2597e4c92eb0c9"
+    },
+    {
+      "path": "sdk/core/src/quadruped.rs",
+      "byte_length": 17849,
+      "raw_sha256": "sha256:e81d10100d5e18b4bb2aef2982562303ae1a90ccfa3656ff938d193f8d9a95d0"
+    },
+    {
+      "path": "sdk/core/src/recovery/partial_fall.rs",
+      "byte_length": 19879,
+      "raw_sha256": "sha256:3093161f3148c95c615efaa50b2f4c17dbe6f9b8a342ae80367cc36ffccbdeba"
+    },
+    {
+      "path": "sdk/core/src/recovery/passive_entry/native_epoch.rs",
+      "byte_length": 5415,
+      "raw_sha256": "sha256:5ac98a7651980b63b0b48e7b6611578d0a97877cda685957d89fd3283cf828ef"
+    },
+    {
+      "path": "sdk/core/src/recovery/passive_entry.rs",
+      "byte_length": 15481,
+      "raw_sha256": "sha256:a178c175f571564f12205c91af2ac0279f13c97b387a811396645559bbd8dbb9"
+    },
+    {
+      "path": "sdk/core/src/recovery/tests/partial_fall_tests.rs",
+      "byte_length": 13515,
+      "raw_sha256": "sha256:61f73d253a56f56ff5d90775c7b91e9347880ce493ac3846242d92a5b01b4073"
+    },
+    {
+      "path": "sdk/core/src/recovery/tests/passive_entry_tests.rs",
+      "byte_length": 24424,
+      "raw_sha256": "sha256:1211c7a2559fae399862c3851e1718f86fe65e6086da3b31f8c41ba53df55251"
+    },
+    {
+      "path": "sdk/core/src/recovery/tests/upright_recovery_tests.rs",
+      "byte_length": 14332,
+      "raw_sha256": "sha256:b6eeb1f0ed9a38d682e51d743ffbf219565455be23cd9abdc88a7bb09753ec7c"
+    },
+    {
+      "path": "sdk/core/src/recovery/upright_recovery.rs",
+      "byte_length": 18624,
+      "raw_sha256": "sha256:44300f0137e3864f32e709e12e7d911b77d04e5f936f9075ca21388e5eb676c3"
+    },
+    {
+      "path": "sdk/core/src/recovery.rs",
+      "byte_length": 248090,
+      "raw_sha256": "sha256:59c20d394f99e4d2729a856759f87a2ff22a0ff3bc4695b3a5f02a7be25f7bc8"
+    },
+    {
+      "path": "sdk/core/src/recovery_absent_contact_reference_tests.rs",
+      "byte_length": 10986,
+      "raw_sha256": "sha256:7ba10256d4db0ca732de5d84362de353635f2d5db630e746de0dab15de608b18"
+    },
+    {
+      "path": "sdk/core/src/recovery_advancing_body_origin.rs",
+      "byte_length": 8329,
+      "raw_sha256": "sha256:0b21fb87ef3ece1e1973e7cfab01235fcea65898ccfe355946dbc4e9d33d302e"
+    },
+    {
+      "path": "sdk/core/src/recovery_airborne_reference_tests.rs",
+      "byte_length": 10907,
+      "raw_sha256": "sha256:57f03bc2e2067c19b8dd2729404629aeb0f78166d16720608ff17e1e60afd9d3"
+    },
+    {
+      "path": "sdk/core/src/recovery_anchored_body_pose.rs",
+      "byte_length": 16667,
+      "raw_sha256": "sha256:b2a8a1d512749b08a130fea509bce4e9853c4449e8252a67deeba23045c69f03"
+    },
+    {
+      "path": "sdk/core/src/recovery_bounded_stop_velocity.rs",
+      "byte_length": 4781,
+      "raw_sha256": "sha256:6cb8d414525da3dabf645e32601606ebdd9f4cdf068131b590036d9f6ecd58d4"
+    },
+    {
+      "path": "sdk/core/src/recovery_bounded_support_tests.rs",
+      "byte_length": 13604,
+      "raw_sha256": "sha256:6832d7cf66eb68297b85a12a0d257f68e87010238fe0172c3a55e989aab61c1f"
+    },
+    {
+      "path": "sdk/core/src/recovery_energy.rs",
+      "byte_length": 37283,
+      "raw_sha256": "sha256:97e2b1bb56fb14c32a0a5ca6f2fb843a4251295e6e955762bda14c84ec9db2da"
+    },
+    {
+      "path": "sdk/core/src/recovery_energy_v3.rs",
+      "byte_length": 18108,
+      "raw_sha256": "sha256:e8287ba5cf585b505adb20778e67b12c1373d06b88fc152910be7866f2493b4a"
+    },
+    {
+      "path": "sdk/core/src/recovery_extended_preparation.rs",
+      "byte_length": 1192,
+      "raw_sha256": "sha256:656f2d12cafa4fb0787b2ce04a71b6f62d3e2d18ee062fb462c8e2ec37ca343a"
+    },
+    {
+      "path": "sdk/core/src/recovery_extended_preparation_tests.rs",
+      "byte_length": 7984,
+      "raw_sha256": "sha256:b08a5cedcea0ea6a32e597c5e9068460ace14f0851bb0dc7ef3c5f1d9c4bd948"
+    },
+    {
+      "path": "sdk/core/src/recovery_extended_support_transfer.rs",
+      "byte_length": 2314,
+      "raw_sha256": "sha256:aa22c9c4c1b4396ac947fa09245e6f2aa4471f66bc812e06a80e70d69985e111"
+    },
+    {
+      "path": "sdk/core/src/recovery_feasible_support.rs",
+      "byte_length": 7890,
+      "raw_sha256": "sha256:3cadeb57f1152adcf1d3652f68504855328c13db1a633013bc101c8bf1db5ee2"
+    },
+    {
+      "path": "sdk/core/src/recovery_feasible_support_tests.rs",
+      "byte_length": 7617,
+      "raw_sha256": "sha256:b2eefc6e74505a31e94e005058049b56ff5fcaa8056aaabaac11c5d27f46d0b0"
+    },
+    {
+      "path": "sdk/core/src/recovery_floor_reference.rs",
+      "byte_length": 3284,
+      "raw_sha256": "sha256:a130458df7e8946acaee6d218a4f0d3f16299976f3027eec114fed82f54f415b"
+    },
+    {
+      "path": "sdk/core/src/recovery_floor_support_tests.rs",
+      "byte_length": 10986,
+      "raw_sha256": "sha256:38127c96f36e06f1e3f0875e53220cb8a78dd0476de42aaa4457cdd0e059ba2b"
+    },
+    {
+      "path": "sdk/core/src/recovery_initialized_zero_brake.rs",
+      "byte_length": 1100,
+      "raw_sha256": "sha256:87ec386b3f8edfc1f80be721b8481d1627e7a3a7779cb5fc39b16d1e3acb9995"
+    },
+    {
+      "path": "sdk/core/src/recovery_joint_feasible_height.rs",
+      "byte_length": 7543,
+      "raw_sha256": "sha256:7e4ccb921bb28b93469802e20c869c8c3178e8185cd93c260a52aea59207cd61"
+    },
+    {
+      "path": "sdk/core/src/recovery_measured_pose_support.rs",
+      "byte_length": 712,
+      "raw_sha256": "sha256:ea9ef622231548510705e2d7280715851c7ddd9aa1a1c4a4f1f0217ffc33389b"
+    },
+    {
+      "path": "sdk/core/src/recovery_measured_pose_support_tests.rs",
+      "byte_length": 6906,
+      "raw_sha256": "sha256:c217caa56dec8e2249e0ff760bb9d23204b577905d41652956cd6b3a40c1debf"
+    },
+    {
+      "path": "sdk/core/src/recovery_measured_support_transfer.rs",
+      "byte_length": 20285,
+      "raw_sha256": "sha256:0f253386da2032e5e57454c4e31f608667c1ee09d030f1e629244186b0e7a305"
+    },
+    {
+      "path": "sdk/core/src/recovery_measured_support_transfer_tests.rs",
+      "byte_length": 12648,
+      "raw_sha256": "sha256:8cbc315ce8e5abcd8a940ef5f50038b524c3b5ca7475c24fddd08eeebf4ef81f"
+    },
+    {
+      "path": "sdk/core/src/recovery_morphology.rs",
+      "byte_length": 24992,
+      "raw_sha256": "sha256:9782f1956f381393b4e557dcf12fc283c3d5770af7bc4e000333771c262752e8"
+    },
+    {
+      "path": "sdk/core/src/recovery_reference_velocity_tests.rs",
+      "byte_length": 7762,
+      "raw_sha256": "sha256:12465a7700f2f33753d53a479347172017a84e719ea5245dfcbc0fb550e4c32a"
+    },
+    {
+      "path": "sdk/core/src/recovery_remaining_support_release.rs",
+      "byte_length": 695,
+      "raw_sha256": "sha256:0980e6dd5af6bc5dacfd814e23e1f2e0e053f16cd2f18dd6c7fb500085574ccb"
+    },
+    {
+      "path": "sdk/core/src/recovery_remaining_support_release_tests.rs",
+      "byte_length": 2361,
+      "raw_sha256": "sha256:aa163cdff4a06010dedca036a5b259ca68d3771270e1d848a7ae214ae07a31b0"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_concurrent_load_rise_composition.rs",
+      "byte_length": 10236,
+      "raw_sha256": "sha256:3b6ca3d642e474a9f6f0dac88920e7eac5bff5d4a4dfe720b81df6a33a813d04"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_concurrent_load_rise_control.rs",
+      "byte_length": 16799,
+      "raw_sha256": "sha256:962f653f43c683b8495e92fe3f9b9b7a52467caa665f7485820034d6dd1f6152"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_direct_neutral_control.rs",
+      "byte_length": 8111,
+      "raw_sha256": "sha256:d2f201ba62120f4dddb32b56ecf474a0cdacea66ae2c9301a76be62bca413411"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_downward_rise_composition.rs",
+      "byte_length": 10063,
+      "raw_sha256": "sha256:2d2ce3457dd1a8e0f620fdd34b126e93f7bf0037ec2214a8578d10d4ff07913f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_downward_rise_control.rs",
+      "byte_length": 18605,
+      "raw_sha256": "sha256:8901a4deb958c5ed89f3a456ad98c6c33f18b46ab3b6d68fd83f4de5809b2e51"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_fall_control.rs",
+      "byte_length": 9352,
+      "raw_sha256": "sha256:0e05ba765fc9d2cad17e89fd1bd1a86fecfd16f36c1c8b64a89b657d0bc32d02"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_hip_recenter_composition.rs",
+      "byte_length": 10025,
+      "raw_sha256": "sha256:0b32b1201fb52a0068c9bcb2c4b8074b476224e34b821121fbe04a1c09b39de2"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_hip_recenter_control.rs",
+      "byte_length": 5740,
+      "raw_sha256": "sha256:9ec1aa5b5df2d20fcf041566a5c7eb1dc1dd247f5d361c7cb7d592d1e9f93488"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_load_seeking_composition.rs",
+      "byte_length": 10027,
+      "raw_sha256": "sha256:e1d20e304891d02ed97bbd550fb33c3be5d17bc5c5629653e7f51ffcd58c2f08"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_load_seeking_control.rs",
+      "byte_length": 12000,
+      "raw_sha256": "sha256:6aee25f1fe3d34083b406865903d0b9bb8dbc12b8d936d2392d479c59705f63c"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_pose_geometry_composition.rs",
+      "byte_length": 10018,
+      "raw_sha256": "sha256:37080542f14bea64a7ab073e9679226737cad5fb374bde8963f74c99496dd144"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_pose_geometry_control.rs",
+      "byte_length": 14045,
+      "raw_sha256": "sha256:fdc732ba4c0810a53ae89956323312e6244316c75cdbb687377acb68eea2f54d"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_progressive_headroom_composition.rs",
+      "byte_length": 10248,
+      "raw_sha256": "sha256:f7d483015c0f815220430e8beaec3fc07d0a12e3d409a336da4ca28b2665d97b"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_progressive_headroom_control.rs",
+      "byte_length": 19022,
+      "raw_sha256": "sha256:ed3c9102e9cfac52140cc068d677b32a66f3fb8a3f77b87d3beca81673741289"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_support_anchored_composition.rs",
+      "byte_length": 10147,
+      "raw_sha256": "sha256:12d850b58629bdcb36948a88c7ba8b7a9f584b4e0b815fbbab911789f55198b4"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/partial_support_anchored_control.rs",
+      "byte_length": 16024,
+      "raw_sha256": "sha256:446f32713b8cbf0c5464a78403e444ecbd0b9c05b1c3c87f9cbc4784eb691baa"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/passive_entry_collection.rs",
+      "byte_length": 3194,
+      "raw_sha256": "sha256:4cc0b85bcc7d2f5f5532dd8dd3efbd904afe01f39145f6707d6e544e95fe3e04"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/coordinated_support_control_tests.rs",
+      "byte_length": 6985,
+      "raw_sha256": "sha256:a2d38f754381b785a74d281d9940dd11d8b548cac5ad8cee6eae5ae1a50cc1b0"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/damped_neutral_stance_control_tests.rs",
+      "byte_length": 8436,
+      "raw_sha256": "sha256:0623f0f2aa6b15baeb60569351d17478567fe4ef269213b18a39f7a0c0ac6c2f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/damped_stance_control_tests.rs",
+      "byte_length": 8367,
+      "raw_sha256": "sha256:60754ccb8bde5968da0cfb207fd64db9136a934913134dbaa76717679cbd8edd"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/flexed_stance_control_tests.rs",
+      "byte_length": 7063,
+      "raw_sha256": "sha256:c05c04e584e3494909f374ab541c1b296c0ad18814fe344b025f095e1583d211"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/knee_fold_replant_control_tests.rs",
+      "byte_length": 11024,
+      "raw_sha256": "sha256:9e66afbbbacd26a0869df102f245a3e73944b17de18fcc0e3de0a90f226d7bc6"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/knees_before_lift_control_tests.rs",
+      "byte_length": 7957,
+      "raw_sha256": "sha256:0c42f88262ea7519b654544ae01e513e61554e27fc2d5fde2a75e385ff8a892b"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/matched_foot_reach_control_tests.rs",
+      "byte_length": 9229,
+      "raw_sha256": "sha256:f4fc7deb4df8115ec18650a31c9a70f30fc18f3ca3ebe733104d6cc0d55acd3f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/measured_pose_rise_control_tests.rs",
+      "byte_length": 8753,
+      "raw_sha256": "sha256:a7734e68e1be0130911139e4404728a1788d2c53fec74d4570fbf0d3ec7f448f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_concurrent_load_rise_composition_tests.rs",
+      "byte_length": 20763,
+      "raw_sha256": "sha256:212ff5f702deb6e068cc90d08f0de2bd61736ed91eac7736c43828495baeb3b5"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_concurrent_load_rise_control_tests.rs",
+      "byte_length": 9147,
+      "raw_sha256": "sha256:3e6c0c8c3d6e63df09b1b11b6bf254e5950c544590fc2a185613eb3cad0961c4"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_direct_neutral_control_tests.rs",
+      "byte_length": 12017,
+      "raw_sha256": "sha256:d8bac0bca574cd859896a679023dc95f0c97f0bcb8b86d6e354e4373eef8d640"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_downward_rise_composition_tests.rs",
+      "byte_length": 15719,
+      "raw_sha256": "sha256:7a8382089c043e4e6594377827f43e854dd0a039c240fe2f614177ffd31d5535"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_downward_rise_control_tests.rs",
+      "byte_length": 12410,
+      "raw_sha256": "sha256:cb95dc6216c7d66e29eb55afc8efed88b130d85ba1d8154f244e790a007f3ca8"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_fall_control_tests.rs",
+      "byte_length": 11389,
+      "raw_sha256": "sha256:ba9f078d26901258fda8b5a6903ca44f49cf9790324771e0cd62f82ad029e16d"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_hip_recenter_composition_tests.rs",
+      "byte_length": 20960,
+      "raw_sha256": "sha256:396a6c701bcc74c53e03fc739d58558e16297f710b645e887a0554ffd4aa4d4b"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_hip_recenter_control_tests.rs",
+      "byte_length": 4896,
+      "raw_sha256": "sha256:164e5fdda762fbb3d4ac9086a86dfbaa5df03c20d80964effdaeb9bc13ecbf83"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_load_seeking_composition_tests.rs",
+      "byte_length": 15617,
+      "raw_sha256": "sha256:a468e34c309be1ec5f77b2ced7548ac0b3a9efef19a16f0dd65ace87216347dc"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_load_seeking_control_tests.rs",
+      "byte_length": 10889,
+      "raw_sha256": "sha256:ed0abda2192178043df486c3d551f18b8ac96ac26366af3e994b65c7fbe9fdfc"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_pose_geometry_composition_tests.rs",
+      "byte_length": 14651,
+      "raw_sha256": "sha256:9281241466c78b935a8de47698c7a46942bfada2c86a47ec495d6b410099f10c"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_pose_geometry_control_tests.rs",
+      "byte_length": 10411,
+      "raw_sha256": "sha256:14244154c834950df7d81fe28560ea775cd2e686207e7542d492a7d2dcf3f259"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_progressive_headroom_composition_tests.rs",
+      "byte_length": 22362,
+      "raw_sha256": "sha256:e322caaaa3ed77815666be94f5e0c36d3df58200c23f1d1afbaf7b235c575580"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_progressive_headroom_control_tests.rs",
+      "byte_length": 13912,
+      "raw_sha256": "sha256:a924ae5a09f6f840cf0aecbf38874fb5fdb799ff6ff078e39e948086faeb1808"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_support_anchored_composition_tests.rs",
+      "byte_length": 21141,
+      "raw_sha256": "sha256:0192a5f8157c0be5e51e7e3990f0da3e6c42323b72f3bbeff495f7fbc28870bf"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/partial_support_anchored_control_tests.rs",
+      "byte_length": 6358,
+      "raw_sha256": "sha256:cf5358845ad5d8ff59f1df210e729bcd51472547a67b817effe75d94542872f2"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/passive_entry_collection_tests.rs",
+      "byte_length": 7630,
+      "raw_sha256": "sha256:15528e77cb45543c8c20f227a56a25e88e598c9ac4623b135b534aabf1df0dda"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/ramped_neutral_stance_control_tests.rs",
+      "byte_length": 10824,
+      "raw_sha256": "sha256:8a58750a81a29a9ff4dbd9021ab40dd9df233e91374948b6eb8a39527602466a"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/rearward_fold_control_tests.rs",
+      "byte_length": 13225,
+      "raw_sha256": "sha256:40fb5e2a4675f4c8fcfed7c68112b79f597767b516cfd014b0d9c84cb877e584"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/smooth_stance_control_tests.rs",
+      "byte_length": 8856,
+      "raw_sha256": "sha256:cb061069e522174bb2eacb975dd26c40740deb664fc9a7f3676feefb2d686448"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/support_waypoint_rise_control_tests.rs",
+      "byte_length": 9716,
+      "raw_sha256": "sha256:a4fb14d664a1fdb6cc843607530e3815e3d78237b0c3d84fa0fa7c12638235c6"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/upright_direct_rise_control_tests.rs",
+      "byte_length": 8139,
+      "raw_sha256": "sha256:2cf967d3bef221cdf9544772d7336d395a6a19c15e03595eeab6c6c0d78026cc"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/upright_recovery_control_tests.rs",
+      "byte_length": 9301,
+      "raw_sha256": "sha256:5d59bc6f7f0eeeddcb4db3b85bb467ae602d6270081d2d61f2e4a2971c2c5f3f"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/world_vertical_support_control_tests.rs",
+      "byte_length": 12687,
+      "raw_sha256": "sha256:2aab1570a96b1d1344fcd84f060cc45662324422cd8535de0ca81aaef6e63059"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/upright_direct_rise_control.rs",
+      "byte_length": 5116,
+      "raw_sha256": "sha256:2979bc18db5bf6230a7f39915c034f4d3b3d5858fb0c3bb6764049f1d34386a9"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/upright_recovery_control.rs",
+      "byte_length": 6206,
+      "raw_sha256": "sha256:8d0a8817ed2230e66086b8d60c6f3a803e3b852f19e989eb420bcb4f90ff44f5"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime.rs",
+      "byte_length": 277068,
+      "raw_sha256": "sha256:5a6962f027e59192c7de9c914acecc9b5141549814204082656a371683332a3b"
+    },
+    {
+      "path": "sdk/core/src/recovery_smooth_swing_tests.rs",
+      "byte_length": 7976,
+      "raw_sha256": "sha256:29c080b89fc981e38c61314d7ff322b99a79a6b2cb1299d2d3667bcb854d865b"
+    },
+    {
+      "path": "sdk/core/src/recovery_stance_latch_tests.rs",
+      "byte_length": 9558,
+      "raw_sha256": "sha256:7a2250d88c4b3cab597b5e01bf0fc10205e6905598c3b6d8bdcc04d6f6a5a9bb"
+    },
+    {
+      "path": "sdk/core/src/recovery_support_hold_posture.rs",
+      "byte_length": 1466,
+      "raw_sha256": "sha256:59b2652b9b17e54fbe734a89fc49af63912be0d2dad6cd3545c630784839e8f4"
+    },
+    {
+      "path": "sdk/core/src/recovery_support_hold_posture_tests.rs",
+      "byte_length": 7688,
+      "raw_sha256": "sha256:7eaf578a33403cf8413394aa7156605f9e4004a4329abaaf8003140d0a781cb0"
+    },
+    {
+      "path": "sdk/core/src/recovery_support_plane.rs",
+      "byte_length": 46921,
+      "raw_sha256": "sha256:2d06508c9a677061ca08a39045b95fe92608e9df867cd615ed4b51f6f0ce4bf4"
+    },
+    {
+      "path": "sdk/core/src/recovery_support_progression.rs",
+      "byte_length": 5272,
+      "raw_sha256": "sha256:9764160e0badcdb7be36e226dca259e80f68495c4dd580106011a7cc5a9ca4fa"
+    },
+    {
+      "path": "sdk/core/src/recovery_support_progression_tests.rs",
+      "byte_length": 9637,
+      "raw_sha256": "sha256:e9e9047b2e5f2695427b88a3a00f2de6f6d2d1d6ab5345fc97e8a690b0bfe5af"
+    },
+    {
+      "path": "sdk/core/src/recovery_swing_end_recontact_tests.rs",
+      "byte_length": 7426,
+      "raw_sha256": "sha256:f7db891d5d071282b4c842ef3788045a8315f6a15c1a495b6e8badbf23c6aac0"
+    },
+    {
+      "path": "sdk/core/src/recovery_upright_stance_tests.rs",
+      "byte_length": 10895,
+      "raw_sha256": "sha256:6ac0a47b73ef032e30538c6fe2116498e60b0c6b70d01dc4af7b82756d9177dc"
+    },
+    {
+      "path": "sdk/core/src/recovery_wave_velocity_tests.rs",
+      "byte_length": 9369,
+      "raw_sha256": "sha256:311549529f42fd9b63bf8e46569d17aaa3d36fa1140a825fb13f4df1a977ca1c"
+    },
+    {
+      "path": "sdk/core/src/recovery_zero_velocity_brake.rs",
+      "byte_length": 4499,
+      "raw_sha256": "sha256:67b47d85dd4a8ba00d9326bb4eb28a71e5cec3e72b6c18e2c9f2050152f2c2a3"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "byte_length": 181026,
+      "raw_sha256": "sha256:5b9b5256c8479fb928db6152aca27392ea943cdb611cbed569f05e81f944092e"
+    },
+    {
+      "path": "sdk/core/src/scheduler.rs",
+      "byte_length": 8038,
+      "raw_sha256": "sha256:2bcfddfcafa9221e8852181a5c56ea32624aaf4f8e8cabe37489538b6f9e119d"
+    },
+    {
+      "path": "sdk/core/src/schema.rs",
+      "byte_length": 16861,
+      "raw_sha256": "sha256:63baba3e1ebc2ae9db7c0e7bd4aa788fb609b41d7c77febe2b32155fe8c32a66"
+    },
+    {
+      "path": "sdk/core/src/stability.rs",
+      "byte_length": 225629,
+      "raw_sha256": "sha256:4181580b3a08b6b684a474e8cd3b24605858276cad9a948ba4afaf3a1b678ad1"
+    },
+    {
+      "path": "sdk/development_recovery_entry_initialization_diagnosis_v1.json",
+      "byte_length": 3631,
+      "raw_sha256": "sha256:c4b04809a8124800cb66e7c6eea48059c6b320efc2c1cfb21ed46bf4a2e3a665"
+    },
+    {
+      "path": "sdk/include/sporespore_locomotion.h",
+      "byte_length": 19270,
+      "raw_sha256": "sha256:fce83776e8df02e22605b4ba02ef01d1457d731733593c78dc3e2cde2e78640c"
+    },
+    {
+      "path": "sdk/recovery/r10aa_load_seeking_kernel_contract_v1.json",
+      "byte_length": 4192,
+      "raw_sha256": "sha256:06d032a456789adc1e4c3e4aa5d11ce070ff4ee1a48ed3ff397ac020b89a7192"
+    },
+    {
+      "path": "sdk/recovery/r10ab_downward_rise_kernel_contract_v1.json",
+      "byte_length": 4346,
+      "raw_sha256": "sha256:15c5ac7745b208dbbf2533063c97149edf64b05381b49fbc258d8a53f44923af"
+    },
+    {
+      "path": "sdk/recovery/r10ai_concurrent_load_rise_kernel_contract_v1.json",
+      "byte_length": 3767,
+      "raw_sha256": "sha256:fa2e468947e3a33ba7b99cb120c01e9b9852e94e48f7e15265a70f8c3a8c9276"
+    },
+    {
+      "path": "sdk/recovery/r10aj_hip_recenter_kernel_contract_v1.json",
+      "byte_length": 2440,
+      "raw_sha256": "sha256:163aae3a2bc7c682298f0868b4be99e87b5a58854cf925417f020da4db6390ff"
+    },
+    {
+      "path": "sdk/recovery/r10am_support_anchored_kernel_contract_v1.json",
+      "byte_length": 3383,
+      "raw_sha256": "sha256:376d33ccdc5ed43186093260f927986e805980d5596a0e95543dbc94f251f94a"
+    },
+    {
+      "path": "sdk/recovery/r10ap_progressive_headroom_kernel_contract_v1.json",
+      "byte_length": 5227,
+      "raw_sha256": "sha256:e8bbed3faa3ea6f2c8684332f7787687a828b617a68d663ee0fa14ba992e5aa2"
+    },
+    {
+      "path": "sdk/recovery/r10z_pose_geometry_kernel_contract_v2.json",
+      "byte_length": 4694,
+      "raw_sha256": "sha256:6722f779a32383c2588663239d0c938d4053431a666195f20f31181d28c1f510"
+    },
+    {
+      "path": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+      "byte_length": 20125,
+      "raw_sha256": "sha256:9dc6bbbe0b7e003d167b9f29ee7d33e1ae52281f86131e8c7d07646a1f0d8e22"
+    }
+  ],
+  "compiled_fixtures": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/fixtures.stdout.log",
+    "byte_length": 1301495,
+    "raw_sha256": "sha256:8903de8c03b8fa66bd3c362094f29904b421c5133935d47c2aa8c910e8d542e2"
+  },
+  "core_test_count": 510,
+  "build_evidence_files": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/adapter.execution.json",
+      "byte_length": 398,
+      "raw_sha256": "sha256:c68d1e8d0804ff5168b3531c104b004f303cfd7f086a997b8e3a98d7843f3fcd"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/adapter.stderr.log",
+      "byte_length": 269,
+      "raw_sha256": "sha256:39f751a9d2fd0e7bc616c23bb034b2a914fba45866fa3bbc3df7f73e9b2ce9c4"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/adapter.stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/compiler_cache.json",
+      "byte_length": 1295,
+      "raw_sha256": "sha256:1a057dbb2eda2365d4e55fa68584e4fe2d5cf236a301bd413c8fea860a1f0986"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/core_tests.execution.json",
+      "byte_length": 417,
+      "raw_sha256": "sha256:3cc00507fdfea9c51183c631d78974acb90ca91fbb273dc723734eb6aef9e865"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/core_tests.stderr.log",
+      "byte_length": 365,
+      "raw_sha256": "sha256:2ea378bb0ec004b4880ae282466359aa6b85c6d54c7e37ac4962ea8b7f7a9efd"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/core_tests.stdout.log",
+      "byte_length": 59155,
+      "raw_sha256": "sha256:e0304596ab771c061b76c188eff3ba950569ba765518765434ef4bf506535f32"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/fixtures.execution.json",
+      "byte_length": 461,
+      "raw_sha256": "sha256:f227ed322b19fd97c241580458e4686e9f10241cc778840927d08f79b854e205"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/fixtures.stderr.log",
+      "byte_length": 265,
+      "raw_sha256": "sha256:e37ff1f511230a371410ffa15136b3ae5c113d18981590f6737d016c011a7826"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/fixtures.stdout.log",
+      "byte_length": 1301495,
+      "raw_sha256": "sha256:8903de8c03b8fa66bd3c362094f29904b421c5133935d47c2aa8c910e8d542e2"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/source_snapshot.json",
+      "byte_length": 1086293,
+      "raw_sha256": "sha256:2b155c0a2cb5165ed914d40176c7530498cc8c544009bbbe1769a274ab1b838c"
+    }
+  ],
+  "default_godot_extension_changed": false,
+  "old_pinned_adapter_overwritten": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "qualification_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "compiler_cache": {
+    "key": "f378ad79e0346542803a89ba04605a24870325b8318278467066fed09414d6e9",
+    "inputs": {
+      "schema_version": "sporespore_development_compiler_cache_v1",
+      "build_profile": "release",
+      "rustc_version": "rustc 1.97.0 (2d8144b78 2026-07-07)\nbinary: rustc\ncommit-hash: 2d8144b7880597b6e6d3dfd63a9a9efae3f533d3\ncommit-date: 2026-07-07\nhost: x86_64-pc-windows-msvc\nrelease: 1.97.0\nLLVM version: 22.1.6",
+      "cargo_version": "cargo 1.97.0 (c980f4866 2026-06-30)",
+      "build_environment": {
+        "RUSTFLAGS": null,
+        "CARGO_ENCODED_RUSTFLAGS": null,
+        "RUSTC": null,
+        "RUSTC_WRAPPER": null,
+        "RUSTC_WORKSPACE_WRAPPER": null,
+        "CARGO_BUILD_TARGET": null,
+        "CARGO_INCREMENTAL": null,
+        "PATH": "sha256:b2a4f5b3aad9ff516f49706168093226582a9b089ebcdf0dd9afbd527ba7aec1",
+        "LIB": null,
+        "LIBPATH": null,
+        "INCLUDE": null,
+        "CC": null,
+        "CXX": null,
+        "CFLAGS": null,
+        "CXXFLAGS": null,
+        "LDFLAGS": null
+      },
+      "repository_cargo_configurations": []
+    },
+    "qualification_or_test_evidence_reused": false,
+    "compilation_directory": "sdk/target/development-compiler-cache-v1/f378ad79e0346542803a89ba04605a24870325b8318278467066fed09414d6e9",
+    "directory_existed_before_build": true
+  }
+}

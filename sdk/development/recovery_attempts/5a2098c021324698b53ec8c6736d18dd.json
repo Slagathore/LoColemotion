@@ -1,0 +1,759 @@
+{
+  "schema_version": "sporespore_development_recovery_safety_gate_failure_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_zero_world_safety_gate_failure",
+    "question_class": "development"
+  },
+  "status": "closed_consumed_zero_world_safety_gate_failure",
+  "attempt_id": "5a2098c021324698b53ec8c6736d18dd",
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd",
+  "source_snapshot": {
+    "head": "f3fac4e5d6928ade3bf75f69293d650294cbacf7",
+    "dirty": false,
+    "status": [],
+    "changed_file_bindings": []
+  },
+  "failure_code": "SMOKE_SAFETY_GATE_FAILED:candidate_profile",
+  "started_utc": "2026-09-09T13:15:55.876804Z",
+  "completed_utc": "2026-09-09T13:20:28.7074657Z",
+  "completed_test_count": 54,
+  "preceding_passed_test_count": 49,
+  "failed_stage_test_count": 5,
+  "failed_stage_failures": 1,
+  "failed_stage_errors": 0,
+  "failed_test": "test_actual_launcher_and_python_share_both_role_modes_and_gate",
+  "observed_mismatch": {
+    "expected_by_old_test": "test_development_v32_walking_policy.py",
+    "selected_by_launcher": "test_development_v34_floor_adapter.py"
+  },
+  "physical_attempt_started": false,
+  "children": [],
+  "independent_audit": null,
+  "repeat_consumed_attempt_permitted": false,
+  "followup": {
+    "status": "test_only_fixes_verified_pending_fresh_full_gate",
+    "source_parent_commit": "f3fac4e5d6928ade3bf75f69293d650294cbacf7",
+    "source_files": [
+      {
+        "bytes": 9932,
+        "raw_sha256": "sha256:4a82ffb4316a75be439a1d85092659142e943aa61ab14a2987ba1ceafa8f702d",
+        "path": "tests/test_development_recovery_candidate_profile.py"
+      },
+      {
+        "bytes": 8863,
+        "raw_sha256": "sha256:965391715f97cb9cab67eaeabecf3e264d0c16ff296a421b0f448324a44c46f4",
+        "path": "tests/test_development_recovery_candidate_fixture.gd"
+      },
+      {
+        "bytes": 20111,
+        "raw_sha256": "sha256:f4f1520df438b12ca369258f813c0bbd1e006740a5929dc806d4da17f31a74ff",
+        "path": "tests/test_development_passive_entry_worker_hooks.gd"
+      }
+    ],
+    "passed_tests": 28,
+    "stages": [
+      {
+        "id": "candidate_profile",
+        "passed": true,
+        "test_count": 5,
+        "expected_test_count": 5,
+        "seconds": 6.3802043,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "candidate_profile.stdout.log",
+        "stderr": "candidate_profile.stderr.log",
+        "stdout_sha256": "a8583ada938e318a288cc46be3fc506bcd70a17dfcabe24ec811006882b72fcc",
+        "stderr_sha256": "8ef7c3a58159d675b3c270b2851a434a0eff9058e1375f86e671f9dd6d847f1d"
+      },
+      {
+        "id": "candidate_runtime",
+        "passed": true,
+        "test_count": 4,
+        "expected_test_count": 4,
+        "seconds": 26.149272,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "candidate_runtime.stdout.log",
+        "stderr": "candidate_runtime.stderr.log",
+        "stdout_sha256": "3425b5dc846d81ea995b6a6474eeecffd47fc090816b0f9ad27110cda68184f1",
+        "stderr_sha256": "abe1b7093f2aa3ad6949ff3cd59749c366008a988ac0c30893549c9b7bcd7c8c"
+      },
+      {
+        "id": "candidate_transport",
+        "passed": true,
+        "test_count": 7,
+        "expected_test_count": 7,
+        "seconds": 14.4976581,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "candidate_transport.stdout.log",
+        "stderr": "candidate_transport.stderr.log",
+        "stdout_sha256": "4222afb9bb166c9de2af2621a6112ec14694d1c21000add493fa9b1c5bb190e4",
+        "stderr_sha256": "8853fed3d186c520263da1ec161131da284c4ae8a1faa3048a2427606e8abb1e"
+      },
+      {
+        "id": "candidate_reader",
+        "passed": true,
+        "test_count": 8,
+        "expected_test_count": 8,
+        "seconds": 77.7924343,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "candidate_reader.stdout.log",
+        "stderr": "candidate_reader.stderr.log",
+        "stdout_sha256": "9e5283ef2b71839047836e85730f7e1df92b1e96a678366cd2d75e56fb3d05f5",
+        "stderr_sha256": "c4d0a629b5b31480a2684b9492cca1145a9cd9a7dfeb7ee6b76258f5a84eece6"
+      },
+      {
+        "id": "floor_native",
+        "passed": true,
+        "test_count": 4,
+        "expected_test_count": 4,
+        "seconds": 8.0122417,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "floor_native.stdout.log",
+        "stderr": "floor_native.stderr.log",
+        "stdout_sha256": "d534bd88595eece36fc03d7febc1c2e53097f0f5feb9c7c7e5809b193b1f98f3",
+        "stderr_sha256": "a941aafd9059bafb0cc2418dc83be7e8d2b7fa51caf5d56e4c1b158af4dff54e"
+      }
+    ],
+    "fixes": [
+      "Teach the independent launcher test to expect exactly the six V34 floor/adapter checks and four V34 native checks, with all 113 applicable tests still required.",
+      "Supply the exact production base descriptor in the selected V34 synthetic worker-hook configuration before computing its digest and state. Keep the default historical synthetic configuration unchanged. This fixes the whole-report fixture without weakening the floor reader or altering an exported result."
+    ],
+    "retained_intermediate_reader_failure": {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af",
+      "tests": 8,
+      "failures": 4,
+      "errors": 1,
+      "failure_code": "DEVELOPMENT_WALKING_ENTRY_FLOOR_COMPILED_GEOMETRY",
+      "cause": "Synthetic report configuration omitted base_descriptor; the actual production configuration includes it. No physics was attempted.",
+      "exact_changed_source_patch": "tracked_test_fix.patch"
+    },
+    "controller_runtime_schedule_and_criteria_changed": false,
+    "fresh_attempt_identity_required": true,
+    "complete_applicable_gate_required": 113
+  },
+  "evidence_roots": [
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-05877a09b9c84429bbccffdb46bac956",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-07e79eb4cf334dc28970e8164a7c4c2a",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-2a47323ff8dd43a898866447dce5106e",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5",
+    "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156"
+  ],
+  "evidence_files": [
+    {
+      "bytes": 1975,
+      "raw_sha256": "sha256:2720922f73821eeb59b457ba240189a9cdca4802d5b7420f1e28d29f8d98bdd4",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/candidate_profile.stderr.log"
+    },
+    {
+      "bytes": 142,
+      "raw_sha256": "sha256:dda67b401eb8d5830acf56ecaf21b2b9c8707561f8aec4e348cf374818c62805",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/candidate_profile.stdout.log"
+    },
+    {
+      "bytes": 601,
+      "raw_sha256": "sha256:29e6180b93e3483a3a83b7bfd8d0f4e4d2cb245103f7cc6736bf5d71fdd1d0f1",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/context_cache_exact_inputs.stderr.log"
+    },
+    {
+      "bytes": 5160,
+      "raw_sha256": "sha256:a9d4e0769d115c6f5c0792abd708a328c3fb0bd4ef3ec2b5bbcf910bb2aa9d10",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/context_cache_exact_inputs.stdout.log"
+    },
+    {
+      "bytes": 1081,
+      "raw_sha256": "sha256:692da8d6d3e31f9d62793102a2b099e4ea764a1299642a5de38c1abefb28be9f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/context_cache_integration.stderr.log"
+    },
+    {
+      "bytes": 4443,
+      "raw_sha256": "sha256:7e8ed869322fdee62190baa708f0bdc55a38b875b81923becfe76a3a0e38b027",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/context_cache_integration.stdout.log"
+    },
+    {
+      "bytes": 965,
+      "raw_sha256": "sha256:e3f716381a29ec87b5ce3000807c7f28fb69afa986a3c1ede430fef49835bf2d",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/exact_publication.stderr.log"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/exact_publication.stdout.log"
+    },
+    {
+      "bytes": 492,
+      "raw_sha256": "sha256:b7e00908ea63105f99a26aaea8c4c741db3117c4728d257bcadef0df26644f66",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/godot_rust_owner_contract.stderr.log"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/godot_rust_owner_contract.stdout.log"
+    },
+    {
+      "bytes": 1323,
+      "raw_sha256": "sha256:c8c6d55f799bd8fc5b84fd7334f6edf53ad996f3d4d2b9d816f81bdceb67713a",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/owned_process_relationship.stderr.log"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/owned_process_relationship.stdout.log"
+    },
+    {
+      "bytes": 1562,
+      "raw_sha256": "sha256:3ae5fab629400ecb63239fbf35e9d727b92a681391333a75dced1f7c1ba337ff",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/production_publication.stderr.log"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/production_publication.stdout.log"
+    },
+    {
+      "bytes": 1087,
+      "raw_sha256": "sha256:9b7fd0539f99618d011a05f2f7ca82a8123dee10d4b17b2c2f61b98436cf83f9",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/prone_deadline_schedule.stderr.log"
+    },
+    {
+      "bytes": 2227,
+      "raw_sha256": "sha256:eb60fe8194cc4fda98a3cee86b0090e4153721c25708a5c55d2b987ea47be1cd",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/prone_deadline_schedule.stdout.log"
+    },
+    {
+      "bytes": 5774,
+      "raw_sha256": "sha256:ff41f8f4b202f215b1cfd81eed36b92847c405eeffe492a94d216a5584bfb580",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/published_marker.txt"
+    },
+    {
+      "bytes": 873,
+      "raw_sha256": "sha256:fec2424b329559b793ff66dd3ba90c2466b74a5ef163d0e7dae6e4add32b4bb4",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/shared_interface_definitions.stderr.log"
+    },
+    {
+      "bytes": 334,
+      "raw_sha256": "sha256:9f4ec83e11c0c111de68604540ea83768830400a841ef5bad47973ac059282c5",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/shared_interface_definitions.stdout.log"
+    },
+    {
+      "bytes": 553,
+      "raw_sha256": "sha256:9b936199a97b1f51dffbbd21838ec4b3a1905bfb79d252254c11c023f653c5f9",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/smoke_native_safety.stderr.log"
+    },
+    {
+      "bytes": 82036,
+      "raw_sha256": "sha256:122ff9d21ad68e514ff1189a7436fb10ad461f0279f3325e3d7dde2e206f91c9",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/smoke_native_safety.stdout.log"
+    },
+    {
+      "bytes": 624,
+      "raw_sha256": "sha256:3f7f1e40a47eea82b37d3a4e1d3db0d5c4111bd06b61dbb2ca4e18c52f8c56af",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/smoke_reader_controls.stderr.log"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/smoke_reader_controls.stdout.log"
+    },
+    {
+      "bytes": 802,
+      "raw_sha256": "sha256:cbb5c9fca3cbb06a25036b3014a25009e0fd966e04ce5398a43d6cf8b13d08a9",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/step_cost_profile_controls.stderr.log"
+    },
+    {
+      "bytes": 2287,
+      "raw_sha256": "sha256:2d3c413ab3822382e48c966cff28c81db92ac0ad78c5aba87ff70000e8942f51",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/step_cost_profile_controls.stdout.log"
+    },
+    {
+      "bytes": 7044,
+      "raw_sha256": "sha256:659d0f5bfd4ddad786c04511ef750092ffd1431b8f680546e3f2e132f6b31e24",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-5a2098c021324698b53ec8c6736d18dd/supervisor_result.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-05877a09b9c84429bbccffdb46bac956/launcher_False.stderr.txt"
+    },
+    {
+      "bytes": 8725,
+      "raw_sha256": "sha256:5d90e65ea215e963cc9130d8ea22183d5e5f0528311c5bbfb7120cc1f51bdbc6",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-05877a09b9c84429bbccffdb46bac956/launcher_False.stdout.txt"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-05877a09b9c84429bbccffdb46bac956/launcher_True.stderr.txt"
+    },
+    {
+      "bytes": 8692,
+      "raw_sha256": "sha256:9626a46a8e878e9bc5f3f22e1e1d5fc75f8eddabd4d63c384b5f4e70ec33746e",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-05877a09b9c84429bbccffdb46bac956/launcher_True.stdout.txt"
+    },
+    {
+      "bytes": 386,
+      "raw_sha256": "sha256:e080396456a16fcce948157163df93cf5d5565ea9c88c2230472e392a24ba9be",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_profile.json"
+    },
+    {
+      "bytes": 1094,
+      "raw_sha256": "sha256:2243c39a55caab45e73ac046e415bbd22e201a7a53ca4e31ff461f0c1cecab94",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_profile.stderr.log"
+    },
+    {
+      "bytes": 142,
+      "raw_sha256": "sha256:392be569c1a1033e8fd0b843dca407e664157a5bb41b8080b1cfde708eac2724",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_profile.stdout.log"
+    },
+    {
+      "bytes": 384,
+      "raw_sha256": "sha256:b422aef4567f818d37f3f3dec62ac95f5b74d3a2c267f0b0c693d143db0ce676",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_reader.json"
+    },
+    {
+      "bytes": 5826,
+      "raw_sha256": "sha256:38ccab7680af65e21d8536b7b409226b5064e33072a6e8265b7462eb67bcfe90",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_reader.stderr.log"
+    },
+    {
+      "bytes": 4850,
+      "raw_sha256": "sha256:a0f9dedfd4d2c6ef3c4ecae9aebd3ac1d27836899a3bedf5ede1667a71ca78f0",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_reader.stdout.log"
+    },
+    {
+      "bytes": 386,
+      "raw_sha256": "sha256:660c641390645f5e86e0f85a470d0f2b355a9547046903b5bbc8e16902f19088",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_runtime.json"
+    },
+    {
+      "bytes": 866,
+      "raw_sha256": "sha256:e053cc31b3c65dce9dd0b39562ddc79d6ccf7dd919a7e3b76090ad43db16b17d",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_runtime.stderr.log"
+    },
+    {
+      "bytes": 142,
+      "raw_sha256": "sha256:b11417e0ea9a2695bd5345c1661b3def49f2ae3614ba3e8436ef0a89c6683c22",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_runtime.stdout.log"
+    },
+    {
+      "bytes": 392,
+      "raw_sha256": "sha256:af7c9bf0bd694aca376ffd72e5f70d4abe98e415a2d54d273c811ce0f479628d",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_transport.json"
+    },
+    {
+      "bytes": 1521,
+      "raw_sha256": "sha256:2f61d9720992bc8138771c726c59b4dd105a80bf996bd05fbbb2fa9e9b6ee92b",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_transport.stderr.log"
+    },
+    {
+      "bytes": 33987,
+      "raw_sha256": "sha256:4222afb9bb166c9de2af2621a6112ec14694d1c21000add493fa9b1c5bb190e4",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/candidate_transport.stdout.log"
+    },
+    {
+      "bytes": 313,
+      "raw_sha256": "sha256:cca8381ab0b7f8e12a171892107a4cb6e4df98db78ebe36a45682285c11f244b",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/source_snapshot.json"
+    },
+    {
+      "bytes": 2289,
+      "raw_sha256": "sha256:4bd7a266152d529e949ec549ed3e402c85565a4577adcb3aae84c70b61120095",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-4b3a8faa668f416fb06a4893aa7e53af/tracked_test_fix.patch"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-07e79eb4cf334dc28970e8164a7c4c2a/launcher_False.stderr.txt"
+    },
+    {
+      "bytes": 8725,
+      "raw_sha256": "sha256:d85bec9adfbd14f35d9c5efa99569a1269312c2ee97a125a10ad21347442779b",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-07e79eb4cf334dc28970e8164a7c4c2a/launcher_False.stdout.txt"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-07e79eb4cf334dc28970e8164a7c4c2a/launcher_True.stderr.txt"
+    },
+    {
+      "bytes": 8692,
+      "raw_sha256": "sha256:ef548a4f949a935850990f6f4036121bdd1c22e5476de88d0b5785dca795bdc6",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-07e79eb4cf334dc28970e8164a7c4c2a/launcher_True.stdout.txt"
+    },
+    {
+      "bytes": 825,
+      "raw_sha256": "sha256:8239ce625f674905a74090cabcf702e2fc3648904f8246e6cffcf5689d06581b",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/producer.execution.json"
+    },
+    {
+      "bytes": 13709,
+      "raw_sha256": "sha256:6cff0c9b8c92e5df736e847e63f560c8e52ff64a87df41cbb293de95bb31059f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/producer.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/producer.stderr.txt"
+    },
+    {
+      "bytes": 9195128,
+      "raw_sha256": "sha256:382f1f59ba14641345b3b48becbcd70ac914ef7f53223b2922d9008a797e8723",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/producer.stdout.txt"
+    },
+    {
+      "bytes": 107392434,
+      "raw_sha256": "sha256:f9a56695e3a6ef71bc9ccd65f799743aeac1de32c01fadee12303a2ee7aa6e88",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/reader_input.json"
+    },
+    {
+      "bytes": 978,
+      "raw_sha256": "sha256:83b48fcb117127bb8ed8de79c94d9b43e705f5514aa0509a4e0c45bc7a7cb3f5",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/reader.execution.json"
+    },
+    {
+      "bytes": 13709,
+      "raw_sha256": "sha256:6cff0c9b8c92e5df736e847e63f560c8e52ff64a87df41cbb293de95bb31059f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/reader.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/reader.stderr.txt"
+    },
+    {
+      "bytes": 13394,
+      "raw_sha256": "sha256:960823477db289bbaad6672a916517cd9ba2b706d56974dbc001d75822da9395",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/reader.stdout.txt"
+    },
+    {
+      "bytes": 4501184,
+      "raw_sha256": "sha256:9d87db937f2c5935e66b70df90bbe9cd89eb45b1a997e9adbc635e70ac8da067",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/worker_report.json"
+    },
+    {
+      "bytes": 1708,
+      "raw_sha256": "sha256:05428cbfa7a0590eef2d5f96b533c42b809b07cda931b95767b92e352f284cd6",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/passive_entry_replay/execution.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/passive_entry_replay/stderr.txt"
+    },
+    {
+      "bytes": 773,
+      "raw_sha256": "sha256:2b77971561e481d67899afa393bb0089f453edd758e1ad151ebdbb45499b2105",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-454a7d7966dd4c28aa5523709d7de6eb/passive_entry_replay/stdout.txt"
+    },
+    {
+      "bytes": 825,
+      "raw_sha256": "sha256:76668ce4c2199e79a6e9094aa69502e3c57e5df4d78e2ef58c342c39e4a565b5",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/contract.execution.json"
+    },
+    {
+      "bytes": 13709,
+      "raw_sha256": "sha256:6cff0c9b8c92e5df736e847e63f560c8e52ff64a87df41cbb293de95bb31059f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/contract.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/contract.stderr.txt"
+    },
+    {
+      "bytes": 11368,
+      "raw_sha256": "sha256:a29af33c036e11521037f3360db915f41ab633e04f263488c2607d81c5670caf",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/contract.stdout.txt"
+    },
+    {
+      "bytes": 103802,
+      "raw_sha256": "sha256:8261fce5cc276ecb3549f53fc8ae1d027a3f57718d89a5d5a176647b46d9504f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/retained_joint_entry.json"
+    },
+    {
+      "bytes": 653,
+      "raw_sha256": "sha256:c0049ffb4020b40ca5e104f4a27d154a761ae17ccdd5a94e6f360567d46ebc0b",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_reader.execution.json"
+    },
+    {
+      "bytes": 13709,
+      "raw_sha256": "sha256:6cff0c9b8c92e5df736e847e63f560c8e52ff64a87df41cbb293de95bb31059f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_reader.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_reader.stderr.txt"
+    },
+    {
+      "bytes": 439,
+      "raw_sha256": "sha256:ea4c74acc77d320290a1b1d6dcdf52c135814d5d7c2bbc5db469cb9e8ccb05c4",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_reader.stdout.txt"
+    },
+    {
+      "bytes": 665,
+      "raw_sha256": "sha256:ac7cb72b6aa41f192a3f04f2217c410140ef022d2e3ff0e32272375ae7863f82",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_worker.execution.json"
+    },
+    {
+      "bytes": 13709,
+      "raw_sha256": "sha256:6cff0c9b8c92e5df736e847e63f560c8e52ff64a87df41cbb293de95bb31059f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_worker.source_snapshot.json"
+    },
+    {
+      "bytes": 568,
+      "raw_sha256": "sha256:b46a6b6fe314c2f3ab31a529eb5c7e89cf5dbc3b72b71ab39e0f879100e1c3f8",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_worker.stderr.txt"
+    },
+    {
+      "bytes": 205,
+      "raw_sha256": "sha256:04e0932df23f258d4f0947abda46322e594abf2d3757312fb51d7c1ef85feb09",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-34d545dc9a124ed79a11feaad8f58d43/unbound_worker.stdout.txt"
+    },
+    {
+      "bytes": 386,
+      "raw_sha256": "sha256:2b6f790c362bee29aceec953260dcda4be45dc394490ed2548f5792282a45fae",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_profile.json"
+    },
+    {
+      "bytes": 1094,
+      "raw_sha256": "sha256:8ef7c3a58159d675b3c270b2851a434a0eff9058e1375f86e671f9dd6d847f1d",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_profile.stderr.log"
+    },
+    {
+      "bytes": 142,
+      "raw_sha256": "sha256:a8583ada938e318a288cc46be3fc506bcd70a17dfcabe24ec811006882b72fcc",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_profile.stdout.log"
+    },
+    {
+      "bytes": 383,
+      "raw_sha256": "sha256:4af5fd7e3c3aee92eebf72a7b36425b94f3d55144923c5216e6fc2d04a033941",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_reader.json"
+    },
+    {
+      "bytes": 1478,
+      "raw_sha256": "sha256:c4d0a629b5b31480a2684b9492cca1145a9cd9a7dfeb7ee6b76258f5a84eece6",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_reader.stderr.log"
+    },
+    {
+      "bytes": 4743,
+      "raw_sha256": "sha256:9e5283ef2b71839047836e85730f7e1df92b1e96a678366cd2d75e56fb3d05f5",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_reader.stdout.log"
+    },
+    {
+      "bytes": 377,
+      "raw_sha256": "sha256:6ee0ab4767ac07d23e88c8870bc86891d2f83dc705346a17818e78da6b89900c",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_runtime.json"
+    },
+    {
+      "bytes": 866,
+      "raw_sha256": "sha256:abe1b7093f2aa3ad6949ff3cd59749c366008a988ac0c30893549c9b7bcd7c8c",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_runtime.stderr.log"
+    },
+    {
+      "bytes": 142,
+      "raw_sha256": "sha256:3425b5dc846d81ea995b6a6474eeecffd47fc090816b0f9ad27110cda68184f1",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_runtime.stdout.log"
+    },
+    {
+      "bytes": 392,
+      "raw_sha256": "sha256:2e92d5eb354d8c5c38609b2045a6c90250fda97f2dd898a106291c3d5245bbc5",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_transport.json"
+    },
+    {
+      "bytes": 1521,
+      "raw_sha256": "sha256:8853fed3d186c520263da1ec161131da284c4ae8a1faa3048a2427606e8abb1e",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_transport.stderr.log"
+    },
+    {
+      "bytes": 33987,
+      "raw_sha256": "sha256:4222afb9bb166c9de2af2621a6112ec14694d1c21000add493fa9b1c5bb190e4",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/candidate_transport.stdout.log"
+    },
+    {
+      "bytes": 371,
+      "raw_sha256": "sha256:0477445db97258785650ff05ae6a8d804597d0758d84720c0f9e81c1917dccd5",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/floor_native.json"
+    },
+    {
+      "bytes": 903,
+      "raw_sha256": "sha256:a941aafd9059bafb0cc2418dc83be7e8d2b7fa51caf5d56e4c1b158af4dff54e",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/floor_native.stderr.log"
+    },
+    {
+      "bytes": 1983,
+      "raw_sha256": "sha256:d534bd88595eece36fc03d7febc1c2e53097f0f5feb9c7c7e5809b193b1f98f3",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/floor_native.stdout.log"
+    },
+    {
+      "bytes": 737,
+      "raw_sha256": "sha256:41fc58c3130e8ee2abc0cdc009c34174ce272b1dc7e428559d40c92adbdafdaf",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v34-candidate-gate-audit-09626f09a3ae456ba98f4fda7b920874/source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-2a47323ff8dd43a898866447dce5106e/launcher_False.stderr.txt"
+    },
+    {
+      "bytes": 8725,
+      "raw_sha256": "sha256:87fd7bb96a2a0808127541ad2e532121d586c94ff783889cd9f48745bd1abfcd",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-2a47323ff8dd43a898866447dce5106e/launcher_False.stdout.txt"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-2a47323ff8dd43a898866447dce5106e/launcher_True.stderr.txt"
+    },
+    {
+      "bytes": 8692,
+      "raw_sha256": "sha256:50ae970816c82b9183d940a904d918336fd78cf209e953bb0cf2aa582c16004c",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-2a47323ff8dd43a898866447dce5106e/launcher_True.stdout.txt"
+    },
+    {
+      "bytes": 824,
+      "raw_sha256": "sha256:3daf4294b2a9bbc42fc9c5fa6269689a1a0d0dedf214365c152f12ca77779030",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/producer.execution.json"
+    },
+    {
+      "bytes": 52945,
+      "raw_sha256": "sha256:e0fbe6376e0f33b39bc39539a5ce2ed5dd9def7f334dd46a9bf0c8fa6b3e32a2",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/producer.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/producer.stderr.txt"
+    },
+    {
+      "bytes": 9195842,
+      "raw_sha256": "sha256:e959ec775e3375799544b81cb28fe5a84259ddfec1a16fdd2974aec5e8292074",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/producer.stdout.txt"
+    },
+    {
+      "bytes": 107394933,
+      "raw_sha256": "sha256:198fec8aece1a7db50bd290c8f2ecce0b20c5457a915b66458c5539385197434",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/reader_input.json"
+    },
+    {
+      "bytes": 977,
+      "raw_sha256": "sha256:683ae62a861a6ba1b631b32ca880f5e13132268b37cdf0315281804219efe551",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/reader.execution.json"
+    },
+    {
+      "bytes": 52945,
+      "raw_sha256": "sha256:e0fbe6376e0f33b39bc39539a5ce2ed5dd9def7f334dd46a9bf0c8fa6b3e32a2",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/reader.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/reader.stderr.txt"
+    },
+    {
+      "bytes": 17053,
+      "raw_sha256": "sha256:5f225eb7bd740fbf1351782ff13384c4b322a191269c5356499f45797e93a396",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/reader.stdout.txt"
+    },
+    {
+      "bytes": 4501541,
+      "raw_sha256": "sha256:6466754bef2fdbaab6bdc0d9969c1aca9234da48e05f464d935c67f36e15b2a1",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/worker_report.json"
+    },
+    {
+      "bytes": 1710,
+      "raw_sha256": "sha256:a15d19134cba7c15964768fa240d8b3d3bcc5bd3f829eb27f9f5fdb1aff66c87",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/passive_entry_replay/execution.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/passive_entry_replay/stderr.txt"
+    },
+    {
+      "bytes": 2217,
+      "raw_sha256": "sha256:b99c0cd0e7560e1404b10affffd10afaebb0989f767d96d163fd1c7727f44be1",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-replay-6567d3fc8fa843969a48389f39a88ed5/passive_entry_replay/stdout.txt"
+    },
+    {
+      "bytes": 825,
+      "raw_sha256": "sha256:541283bd4c16bd08a4f1f260471400c4457f4f2b0f267809044ae0eb90b8ebc3",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/contract.execution.json"
+    },
+    {
+      "bytes": 52945,
+      "raw_sha256": "sha256:e0fbe6376e0f33b39bc39539a5ce2ed5dd9def7f334dd46a9bf0c8fa6b3e32a2",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/contract.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/contract.stderr.txt"
+    },
+    {
+      "bytes": 11368,
+      "raw_sha256": "sha256:a29af33c036e11521037f3360db915f41ab633e04f263488c2607d81c5670caf",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/contract.stdout.txt"
+    },
+    {
+      "bytes": 103802,
+      "raw_sha256": "sha256:8261fce5cc276ecb3549f53fc8ae1d027a3f57718d89a5d5a176647b46d9504f",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/retained_joint_entry.json"
+    },
+    {
+      "bytes": 640,
+      "raw_sha256": "sha256:5a74111426b1fe9e892e28e5b5f037c9f8f9ac61f71ffb374061fedc79b481a9",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_reader.execution.json"
+    },
+    {
+      "bytes": 52945,
+      "raw_sha256": "sha256:e0fbe6376e0f33b39bc39539a5ce2ed5dd9def7f334dd46a9bf0c8fa6b3e32a2",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_reader.source_snapshot.json"
+    },
+    {
+      "bytes": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_reader.stderr.txt"
+    },
+    {
+      "bytes": 439,
+      "raw_sha256": "sha256:ea4c74acc77d320290a1b1d6dcdf52c135814d5d7c2bbc5db469cb9e8ccb05c4",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_reader.stdout.txt"
+    },
+    {
+      "bytes": 665,
+      "raw_sha256": "sha256:f3666771515b9906c77449facc2ed5623aa01eaf00a56dbeeebf839c5f7efd3b",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_worker.execution.json"
+    },
+    {
+      "bytes": 52945,
+      "raw_sha256": "sha256:e0fbe6376e0f33b39bc39539a5ce2ed5dd9def7f334dd46a9bf0c8fa6b3e32a2",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_worker.source_snapshot.json"
+    },
+    {
+      "bytes": 568,
+      "raw_sha256": "sha256:b46a6b6fe314c2f3ab31a529eb5c7e89cf5dbc3b72b71ab39e0f879100e1c3f8",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_worker.stderr.txt"
+    },
+    {
+      "bytes": 205,
+      "raw_sha256": "sha256:04e0932df23f258d4f0947abda46322e594abf2d3757312fb51d7c1ef85feb09",
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-runtime-32b17bb9f56e477484e0ba2862884156/unbound_worker.stdout.txt"
+    }
+  ],
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "r173_sha256": "sha256:c2d6edf090ab80a55eb8a6996f52984c14c453bf513e9d8d058d81603817425f"
+}

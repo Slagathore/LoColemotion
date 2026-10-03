@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br6a_certification_report_v1.schema.json",
+  "title": "SporeSpore BR6A certification report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "status", "certification", "certification_id", "milestone_id",
+    "claim_boundary", "generated_utc", "source", "engine", "bundle_policy",
+    "report_attestation_policy", "accounting", "cells", "programs",
+    "final_readback", "rail_support_constraints", "capabilities",
+    "does_not_establish"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br6a_certification_report.v1"},
+    "status": {"const": "pass"},
+    "certification": {"const": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT"},
+    "certification_id": {
+      "type": "string",
+      "pattern": "^br6a_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"
+    },
+    "milestone_id": {"const": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT"},
+    "claim_boundary": {
+      "const": "This campaign can certify only the exact L4.0 rigid-strut rail oracle, L4.1 hinged-strut static load curve, and L4.3 two-link vertical-carriage support program scopes named by the source-pinned programs. The Generic6DOF vertical rail is an explicit material scaffold whose vertical axis is unlocked and whose observed reaction is retained; ordinary distal floor contact, paired finite joint torque, aggregate external-load reconstruction, crouch/rise work, the declared downward impulse, and exact infeasibility controls retain their fixture, geometry, mass, timestep, solver, controller, and actuator scopes. It establishes rail-constrained articulated vertical support only, not general per-foot allocation, free-root standing or balance, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance."
+    },
+    "generated_utc": {"type": "string", "format": "date-time"},
+    "source": {"$ref": "#/$defs/source"},
+    "engine": {"$ref": "#/$defs/engine"},
+    "bundle_policy": {"$ref": "#/$defs/bundle_policy"},
+    "report_attestation_policy": {"$ref": "#/$defs/report_attestation_policy"},
+    "accounting": {"$ref": "#/$defs/accounting"},
+    "cells": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/cell"}
+    },
+    "programs": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/program"}
+    },
+    "final_readback": {"$ref": "#/$defs/final_readback"},
+    "rail_support_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rail_type",
+        "vertical_translation_unlocked",
+        "x_z_translation_locked",
+        "all_rotation_locked",
+        "rail_motors_or_springs_enabled",
+        "built_in_joint_motors_enabled",
+        "passive_tissues_enabled",
+        "foot_pin_enabled",
+        "controller_root_rescue_enabled",
+        "ordinary_distal_contact",
+        "aggregate_external_load_reconstruction",
+        "per_foot_allocation_available",
+        "material_rail_reaction_retained",
+        "articulated_rail_support_established"
+      ],
+      "properties": {
+        "rail_type": {"const": "Generic6DOFJoint3D_vertical_translation_only"},
+        "vertical_translation_unlocked": {"const": true},
+        "x_z_translation_locked": {"const": true},
+        "all_rotation_locked": {"const": true},
+        "rail_motors_or_springs_enabled": {"const": false},
+        "built_in_joint_motors_enabled": {"const": false},
+        "passive_tissues_enabled": {"const": false},
+        "foot_pin_enabled": {"const": false},
+        "controller_root_rescue_enabled": {"const": false},
+        "ordinary_distal_contact": {"const": true},
+        "aggregate_external_load_reconstruction": {"const": true},
+        "per_foot_allocation_available": {"const": false},
+        "material_rail_reaction_retained": {"const": true},
+        "articulated_rail_support_established": {"const": true}
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_knowledge_entries", "automatic_creature_guidance_allowed",
+        "general_per_foot_load_allocation", "articulated_rail_constrained_vertical_support",
+        "free_root_standing", "balance", "bracing",
+        "fall_arrest", "getting_up", "walking"
+      ],
+      "properties": {
+        "accepted_knowledge_entries": {"const": 0},
+        "automatic_creature_guidance_allowed": {"const": false},
+        "general_per_foot_load_allocation": {"const": false},
+        "articulated_rail_constrained_vertical_support": {"const": true},
+        "free_root_standing": {"const": false},
+        "balance": {"const": false},
+        "bracing": {"const": false},
+        "fall_arrest": {"const": false},
+        "getting_up": {"const": false},
+        "walking": {"const": false}
+      }
+    },
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "General per-contact, per-foot, or per-toe load allocation",
+          "Free-root standing, balance, or rail-independent support",
+          "A negligible or absent scaffold reaction",
+          "Bracing or fall arrest",
+          "Self-righting or getting up",
+          "Gait, candidate walking, or walking",
+          "Morphology, terrain, complex-foot, or endurance generalization",
+          "Accepted encyclopedia knowledge or automatic creature guidance"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "path": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_root", "commit_sha", "clean_at_start", "clean_at_end",
+        "campaign_path", "campaign_sha256", "source_inventory_sha256",
+        "source_file_count", "br1_inventory_path", "br1_inventory_sha256",
+        "br1_inventory_unchanged"
+      ],
+      "properties": {
+        "repository_root": {"$ref": "#/$defs/path"},
+        "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "clean_at_start": {"const": true},
+        "clean_at_end": {"const": true},
+        "campaign_path": {"$ref": "#/$defs/path"},
+        "campaign_sha256": {"$ref": "#/$defs/sha256"},
+        "source_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "source_file_count": {"type": "integer", "minimum": 1},
+        "br1_inventory_path": {"$ref": "#/$defs/path"},
+        "br1_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "br1_inventory_unchanged": {"const": true}
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executable", "sha256", "version", "fresh_target_process_invocations", "pid_recycle_events_recorded"],
+      "properties": {
+        "executable": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "version": {"const": "4.7.stable.mono.official.5b4e0cb0f"},
+        "fresh_target_process_invocations": {"const": 6},
+        "pid_recycle_events_recorded": {"const": true}
+      }
+    },
+    "bundle_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_schema", "capsule_schema", "metrics_schema", "receipt_schema", "receipt_domain", "trust_mode"],
+      "properties": {
+        "manifest_schema": {"const": "sporespore.lab.manifest.v1"},
+        "capsule_schema": {"const": "sporespore.lab.br6a_l4_evidence_capsule.v1"},
+        "metrics_schema": {"const": "sporespore.lab.br6a_l4_evidence_metrics.v1"},
+        "receipt_schema": {"const": "sporespore.lab.publication_attestation.v1"},
+        "receipt_domain": {"const": "sporespore.lab.publication_attestation.v1"},
+        "trust_mode": {"const": "production"}
+      }
+    },
+    "report_attestation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_schema", "receipt_domain", "trust_mode", "detached", "report_rewrite_after_attestation_forbidden"],
+      "properties": {
+        "receipt_schema": {"const": "sporespore.lab.br6a_certification_report_attestation.v1"},
+        "receipt_domain": {"const": "sporespore.lab.br6a_certification_report_attestation.v1"},
+        "trust_mode": {"const": "production"},
+        "detached": {"const": true},
+        "report_rewrite_after_attestation_forbidden": {"const": true}
+      }
+    },
+    "accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "programs_required", "programs_passed", "replicates_per_program",
+        "bundles_required", "bundles_passed", "assertions_required",
+        "assertions_passed", "milestone_programs", "milestone_assertions",
+        "supplementary_programs", "supplementary_assertions",
+        "integrity_programs", "integrity_assertions"
+      ],
+      "properties": {
+        "programs_required": {"const": 3},
+        "programs_passed": {"const": 3},
+        "replicates_per_program": {"const": 2},
+        "bundles_required": {"const": 6},
+        "bundles_passed": {"const": 6},
+        "assertions_required": {"const": 80},
+        "assertions_passed": {"const": 80},
+        "milestone_programs": {"const": 3},
+        "milestone_assertions": {"const": 80},
+        "supplementary_programs": {"const": 0},
+        "supplementary_assertions": {"const": 0},
+        "integrity_programs": {"const": 0},
+        "integrity_assertions": {"const": 0}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cell_id", "programs_required", "programs_passed", "assertions_per_replicate", "status"],
+      "properties": {
+        "cell_id": {"enum": ["L4.0", "L4.1", "L4.3"]},
+        "programs_required": {"type": "integer", "minimum": 1},
+        "programs_passed": {"type": "integer", "minimum": 1},
+        "assertions_per_replicate": {"type": "integer", "minimum": 1},
+        "status": {"const": "pass"}
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid", "trust_mode", "key_id", "receipt_path", "receipt_sha256"],
+      "properties": {
+        "valid": {"const": true},
+        "trust_mode": {"const": "production"},
+        "key_id": {"$ref": "#/$defs/sha256"},
+        "receipt_path": {"$ref": "#/$defs/path"},
+        "receipt_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "replicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "replicate", "bundle_id", "bundle_path", "manifest_sha256",
+        "checksums_sha256", "capsule_sha256", "metrics_sha256",
+        "source_inventory_sha256", "containment_host_process_id",
+        "target_process_id", "started_utc", "ended_utc", "assertions_passed",
+        "assertion_labels_sha256", "transcript_sha256", "attestation"
+      ],
+      "properties": {
+        "replicate": {"enum": [1, 2]},
+        "bundle_id": {"type": "string", "minLength": 1},
+        "bundle_path": {"$ref": "#/$defs/path"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "checksums_sha256": {"$ref": "#/$defs/sha256"},
+        "capsule_sha256": {"$ref": "#/$defs/sha256"},
+        "metrics_sha256": {"$ref": "#/$defs/sha256"},
+        "source_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "containment_host_process_id": {"type": "integer", "minimum": 1},
+        "target_process_id": {"type": "integer", "minimum": 1},
+        "started_utc": {"type": "string", "format": "date-time"},
+        "ended_utc": {"type": "string", "format": "date-time"},
+        "assertions_passed": {"type": "integer", "minimum": 1},
+        "assertion_labels_sha256": {"$ref": "#/$defs/sha256"},
+        "transcript_sha256": {"$ref": "#/$defs/sha256"},
+        "attestation": {"$ref": "#/$defs/attestation"}
+      }
+    },
+    "reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass", "source_identity_match", "assertion_count_match",
+        "ordered_assertion_labels_match", "both_raw_transcripts_retained",
+        "raw_transcript_identity_required"
+      ],
+      "properties": {
+        "pass": {"const": true},
+        "source_identity_match": {"const": true},
+        "assertion_count_match": {"const": true},
+        "ordered_assertion_labels_match": {"const": true},
+        "both_raw_transcripts_retained": {"const": true},
+        "raw_transcript_identity_required": {"const": false}
+      }
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program_id", "cell_id", "evidence_role", "test",
+        "expected_assertions", "claim_scope", "replicates", "reconciliation"
+      ],
+      "properties": {
+        "program_id": {"type": "string", "pattern": "^BR6A_[A-Z0-9_]+_V1$"},
+        "cell_id": {"type": "string", "minLength": 1},
+        "evidence_role": {"enum": ["milestone", "supplementary", "integrity"]},
+        "test": {"type": "string", "pattern": "^test_(?:lab|experimental)_[A-Za-z0-9_.-]+\\.gd$"},
+        "expected_assertions": {"type": "integer", "minimum": 1},
+        "claim_scope": {"type": "string", "minLength": 1},
+        "replicates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {"$ref": "#/$defs/replicate"}
+        },
+        "reconciliation": {"$ref": "#/$defs/reconciliation"}
+      }
+    },
+    "final_readback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundles_required", "bundles_verified", "receipts_required",
+        "receipts_verified", "source_inventories_verified",
+        "metrics_verified", "target_process_invocations", "unique_target_processes", "pid_recycle_events", "complete_campaign"
+      ],
+      "properties": {
+        "bundles_required": {"const": 6},
+        "bundles_verified": {"const": 6},
+        "receipts_required": {"const": 6},
+        "receipts_verified": {"const": 6},
+        "source_inventories_verified": {"const": 6},
+        "metrics_verified": {"const": 6},
+        "target_process_invocations": {"const": 6},
+        "unique_target_processes": {"type": "integer", "minimum": 1, "maximum": 6},
+        "pid_recycle_events": {"type": "integer", "minimum": 0, "maximum": 5},
+        "complete_campaign": {"const": true}
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": "sporespore_conformance_execution_receipt_contract_v1",
+  "contract_id": "CER1-CONTENT-ADDRESSED-AUDIT-EXECUTION-RECEIPT",
+  "status": "prospective_one_audit_cold_equivalence_uncommissioned",
+  "purpose": "Commission exact executed-versus-read-back equivalence for one already-closed zero-world audit before any receipt may suppress a production invocation.",
+  "candidate_audits": [
+    {
+      "audit_path": "tests/test_qsdk_r23d13_closure.ps1",
+      "expected_terminal_prefix": "QSDK_R23D13_CLOSURE_PASS ",
+      "required_exit_code": 0,
+      "complete_dependency_manifest_required": true,
+      "complete_runtime_profile_required": true,
+      "worlds_opened_by_audit": 0,
+      "historical_worlds_reported_by_marker": 2
+    }
+  ],
+  "input_key": {
+    "audit_dependency_entry_projection": true,
+    "runtime_profile_projection": true,
+    "complete_process_environment_digest": true,
+    "exact_command_and_powershell_executable": true,
+    "receipt_implementation_file_inventory": true,
+    "absolute_repository_root_in_key": false,
+    "source_must_be_clean_and_equal_origin_main_for_production": true
+  },
+  "result_projection": {
+    "required_exit_code": 0,
+    "exact_single_terminal_marker": true,
+    "stdout_representation": "canonical_utf8_lf",
+    "stderr_representation": "canonical_utf8_lf",
+    "stdout_and_stderr_are_content_addressed": true,
+    "failed_execution_is_never_reusable": true
+  },
+  "candidate_storage": {
+    "record_path": "conformance-cache-candidates/v1/<input-key-hex>/record.json",
+    "record_create_only": true,
+    "record_itself_is_content_addressed": true,
+    "output_payloads_are_content_addressed": true,
+    "same_key_different_result_refuses": true
+  },
+  "required_negative_controls": {
+    "input_key_mutation_refuses": true,
+    "record_byte_corruption_refuses": true,
+    "output_payload_corruption_refuses": true,
+    "missing_payload_refuses": true,
+    "failed_exit_refuses_publication": true,
+    "duplicate_terminal_marker_refuses": true,
+    "same_key_second_publication_refuses": true,
+    "read_back_route_never_invokes_audit": true
+  },
+  "commissioning_requirement": {
+    "implementation_must_be_clean_pushed_before_actual_execution": true,
+    "execute_and_read_back_must_run_in_distinct_cold_processes": true,
+    "exact_result_projection_digest_must_match": true,
+    "candidate_record_and_output_cas_must_verify": true,
+    "commissioning_closure_must_be_frozen_before_successor_reuse_authority": true
+  },
+  "claims": {
+    "cold_equivalence_complete": false,
+    "production_cache_lookup_permitted": false,
+    "production_result_reuse_permitted": false,
+    "historical_audit_waiver_permitted": false,
+    "physical_execution_authorized": false,
+    "scientific_authority": false,
+    "release_authority": false
+  }
+}

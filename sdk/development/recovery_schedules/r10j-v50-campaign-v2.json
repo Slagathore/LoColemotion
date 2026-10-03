@@ -1,0 +1,86 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "r10j-v50-campaign-v2": {
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:1e64a75698cb046e33302dc71fad0bd6207da70346427679f3d32b20e9b33c4d",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 3160,
+        "maximum_steps_per_child": 3512
+      },
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "coverage_basis": {
+        "task_contract": "sdk/recovery/r10j_settled_hold_finite_cycle_contract_v1.json",
+        "task_contract_sha256": "sha256:8bf76ff468ce0f51ee773cbd342a6711f0ea765249d95320732e9f94e5584801",
+        "source_closure": "sdk/development/v50_godot_cycle_stop_closure_v1.json",
+        "source_closure_sha256": "sha256:814fcdd31764773984055b788d02618a1086aa379e41a7c0164d550d9709cec7",
+        "maximum_descent_steps": 240,
+        "maximum_canonical_recovery_steps": 1200,
+        "maximum_walking_commands": 1600,
+        "stopping_commands": 120,
+        "settled_commands": 30,
+        "maximum_no_kick_solver_steps": 2552,
+        "maximum_kicked_solver_steps": 3512,
+        "tail_derivation": "Kicked: 240+1200+1600+120=3160. No-kick: 240 ramp+240 hold+1600 walking+120 stop=2200. Add 320 precondition+30 prefix+2 transition steps: 3512 kicked and 2552 no-kick.",
+        "resource_derivation": "320 + 30 + 2 + role-specific tail",
+        "baseline_reused": false,
+        "equal_horizon_effect_claimed": false,
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_attempt_sha256": "sha256:64455211e73de7a2ebbe8d06e973a94276b94c719fcc2d474598112df9fa883f",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "new_controller_preserves_pre_stance_motion_and_limits": true,
+        "motion_equality_test": "recovery_runtime::tests::ramped_neutral_stance_control_tests::v20_preserves_every_pre_stance_command_and_all_limits",
+        "historical_recovery_checkpoint_scope": "Unchanged V20 recovery regression only; no R10I physical result.",
+        "reader_fixture_revision_source": "sdk/recovery/r10g_first_safety_gate_refusal_v1.json",
+        "reader_fixture_revision_source_sha256": "sha256:1061531b5bd3b11d0c05958926b3b4399185e7a8b7c1cdae75049058f517f594",
+        "walking_frame_fixture_revision_source": "sdk/recovery/r10g_walking_frame_safety_gate_refusal_v1.json",
+        "walking_frame_fixture_revision_source_sha256": "sha256:65bd9cdfe04e0e0a7890aff2c79faf54bc682b34108df9ac17c80f06f168bc83",
+        "maximum_neutral_stance_entry_commands": 240,
+        "launcher_gate_fixture_revision_source": "sdk/recovery/r10h_first_safety_gate_refusal_v1.json",
+        "launcher_gate_fixture_revision_source_sha256": "sha256:9b15bb171a644048741c942d82ef29e3d789f9fa20f4e7e98f1bc69a6b839abd",
+        "neutral_frame_revision_source": "sdk/recovery/r10h_neutral_frame_refusal_v1.json",
+        "neutral_frame_revision_source_sha256": "sha256:92052a8606e4770cac1ef1506f66d149c3fcb1bf8c7ec8ea2d3f26f119a59b34",
+        "entry_component": "sdk/recovery/r10i_joint_pose_entry_implementation_v1.json",
+        "entry_component_sha256": "sha256:3929f72955d7f3e58138cdefeaf8e08c73a770c99bd85df3c8f6a8da4de247f1",
+        "entry_diagnostic_closure": "sdk/recovery/r10i_flexed_entry_pair_closure_v1.json",
+        "entry_diagnostic_closure_sha256": "sha256:76363b44a99afe64a85e8588f2a3bbaca4892e8b6808f06f72482156945ccf7e",
+        "hold_design_record": "sdk/recovery/r10j_settled_flexed_hold_design_v1.json",
+        "hold_design_record_sha256": "sha256:f5728c96b1974b6bd5f32f0a7a9de2a8ad22624c2cf4c191eafd3dfce84806d8",
+        "maximum_no_kick_ramp_commands": 240,
+        "maximum_no_kick_hold_commands": 240,
+        "campaign_fixture_refusal": "sdk/recovery/r10j_campaign_first_gate_refusal_v1.json",
+        "campaign_fixture_refusal_sha256": "sha256:cf3d0524f488ea12f894a03f9bf80151540879305c1cf328b164eeb3365fd620"
+      },
+      "coverage_adequacy": "R10J campaign v1 uses the same production launcher, worker, native adapter, complete capture, cold replay, finite evaluator and publication for a fresh seed-40200 pair and, only after the separate committed authority, six held-out cells. Only seed and role select the preregistered prefix fixture; no controller, DLL, task threshold, ramp/hold budget, walking arithmetic or stop change. The original v1 launcher refusal remains unchanged. The repaired production route must pass a fresh complete pair before freeze; component replay does not substitute for that prerequisite. A full finite horizon is needed to exercise the late readiness dwell, every planned foot cycle, the 120-command stop, native session finalization, complete report and independent publication. Shorter smoke cannot cover those late code paths. One development seed with both fresh roles covers these named risks; it gives no held-out, robustness, cross-engine or continuous-coverage evidence. Campaign v2 preserves the consumed 8637f698 zero-world refusal. The measured-body native fixture now receives the exact stage-selected candidate explicitly, and both role suites check its returned profile identity. Campaign, worker, reader and authority bindings select this distinct v2/v4 source revision. No controller, DLL, physical thresholds, ramp, hold, walking schedule or held-out population change; no physical world opened in the failed gate.",
+      "coverage_question": "R10J campaign v1 uses the same production launcher, worker, native adapter, complete capture, cold replay, finite evaluator and publication for a fresh seed-40200 pair and, only after the separate committed authority, six held-out cells. Only seed and role select the preregistered prefix fixture; no controller, DLL, task threshold, ramp/hold budget, walking arithmetic or stop change. The original v1 launcher refusal remains unchanged. The repaired production route must pass a fresh complete pair before freeze; component replay does not substitute for that prerequisite. A full finite horizon is needed to exercise the late readiness dwell, every planned foot cycle, the 120-command stop, native session finalization, complete report and independent publication. Shorter smoke cannot cover those late code paths. One development seed with both fresh roles covers these named risks; it gives no held-out, robustness, cross-engine or continuous-coverage evidence. Campaign v2 preserves the consumed 8637f698 zero-world refusal. The measured-body native fixture now receives the exact stage-selected candidate explicitly, and both role suites check its returned profile identity. Campaign, worker, reader and authority bindings select this distinct v2/v4 source revision. No controller, DLL, physical thresholds, ramp, hold, walking schedule or held-out population change; no physical world opened in the failed gate.",
+      "uncovered_paths": [
+        "held-out acceptance",
+        "cross-engine recovery acceptance",
+        "robustness or equivalence",
+        "arbitrary morphology or terrain"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "r10j_v50_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "r10j_v50_front_left_first_post_interaction_v1",
+      "walking_policy_id": "r10j_v50_settled_hold_route_v1",
+      "walking_policy_contract_sha256": "sha256:df1524f18d54a9384147a5e979c36f86e5b9202f0d89f12585115f452e9e7dcc"
+    }
+  }
+}

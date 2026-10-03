@@ -1,0 +1,1677 @@
+use super::*;
+
+use crate::bw19v_composition::{
+    RapierBw19vCompositionMemory, bw19v_observation_available, compose_bw19v_step,
+};
+use crate::qsdk_r23d11_stability_assisted_taper::{
+    Availability as R23D12Availability, CompositionMemory as R23D12CompositionMemory,
+    MAXIMUM_COMBINED_VELOCITY, MAXIMUM_NEUTRAL_VELOCITY, MAXIMUM_STABILITY_DELTA,
+    MAXIMUM_STABILITY_SLEW, compose_active_step,
+};
+use sporespore_locomotion_core::stability::StabilityInfluenceAvailability;
+use sporespore_locomotion_core::{ScheduledLimbGaitStepV1, observe_stability_v2};
+
+const R23D12_PREREGISTRATION_RAW: &str =
+    include_str!("../../../../turning/r23d12_measurement_semantics_preregistration_v1.json");
+const R23D11_PREREGISTRATION_RAW: &str =
+    include_str!("../../../../turning/r23d11_stability_assisted_taper_preregistration_v1.json");
+const R23D12_IMPLEMENTATION_PATH: &str =
+    "sdk/turning/r23d12_physical_implementation_contract_v1.json";
+const R23D12_CLOSURE_PATH: &str = "sdk/turning/r23d12_physical_closure_v1.json";
+const R23D12_CAMPAIGN_ID: &str =
+    "QSDK-R23D12-INDEPENDENT-PLANNER-AND-SUPPORT-MARGIN-SEMANTICS-BILATERAL-TURN-DEVELOPMENT";
+const R23D12_GATE_ID: &str = "QSDK-R23D12";
+const R23D12_ENGINE_ID: &str = "rapier_parry";
+const R23D12_REPORT_SCHEMA: &str = "sporespore_qsdk_r23d12_engine_cell_report_v1";
+const R23D12_FAILURE_SCHEMA: &str = "sporespore_qsdk_r23d12_worker_failure_v1";
+const R23D12_TRACE_ROW_SCHEMA: &str = "sporespore_qsdk_r23d12_physical_trace_row_v1";
+const R23D12_TRACE_RETENTION_SCHEMA: &str = "sporespore_qsdk_r23d12_trace_retention_v1";
+const R23D12_TRACE_RETENTION_MARKER: &str = "QSDK_R23D12_TRACE_RETENTION ";
+const R23D12_FREEZE_SCHEMA: &str = "sporespore_qsdk_r23d12_physical_freeze_v1";
+const R23D12_ATTEMPT_SCHEMA: &str = "sporespore_qsdk_r23d12_attempt_v1";
+const R23D12_STAGE_ID: &str = "three_engine_confirmation";
+const R23D12_CONTROLLER_STEPS: u64 = 2_992;
+const R23D12_TERMINAL_STEPS: u64 = 900;
+const R23D12_TOTAL_TRACE_STEPS: u64 = R23D12_CONTROLLER_STEPS + R23D12_TERMINAL_STEPS;
+const R23D12_MAXIMUM_ACTIVE_STEPS: u64 = 540;
+const R23D12_MINIMUM_TAPER_STEPS: u64 = 120;
+const R23D12_MINIMUM_PASSIVE_STEPS: u64 = 360;
+const R23D12_SCALE_DENOMINATOR: u64 = 120;
+const R23D12_ACTIVE_MODE: &str = "active_neutral_acquisition";
+const R23D12_TAPER_MODE: &str = "active_quiescent_taper";
+const R23D12_PASSIVE_MODE: &str = "irreversible_zero_actuation_stability";
+const R23D12_CONFIRMED_REASON: &str = "support_pose_quiescence_confirmed";
+const R23D12_DEADLINE_REASON: &str = "deadline_forced_without_quiescence_confirmation";
+const R23D12_COARSE_MAXIMUM_TILT_RAD: f64 = 0.035;
+const R23D12_COARSE_MAXIMUM_JOINT_ERROR_RAD: f64 = 0.32;
+const R23D12_TIGHT_MAXIMUM_TILT_RAD: f64 = 0.01;
+const R23D12_TIGHT_MAXIMUM_JOINT_ERROR_RAD: f64 = 0.2;
+
+const R23D12_FREEZE_PATH_ENV: &str = "SPORESPORE_QSDK_R23D12_FREEZE";
+const R23D12_ATTEMPT_PATH_ENV: &str = "SPORESPORE_QSDK_R23D12_ATTEMPT";
+const R23D12_TOKEN_ENV: &str = "SPORESPORE_QSDK_R23D12_TOKEN";
+const R23D12_STAGE_ENV: &str = "SPORESPORE_QSDK_R23D12_STAGE";
+const R23D12_CELL_ENV: &str = "SPORESPORE_QSDK_R23D12_CELL";
+const R23D12_ENGINE_ENV: &str = "SPORESPORE_QSDK_R23D12_ENGINE";
+const R23D12_ATTEMPT_ROOT_ENV: &str = "SPORESPORE_QSDK_R23D12_ATTEMPT_ROOT";
+const R23D12_PYTHON_ENV: &str = "SPORESPORE_QSDK_R23D12_PYTHON";
+const R23D12_POWERSHELL_ENV: &str = "SPORESPORE_QSDK_R23D12_POWERSHELL";
+
+#[derive(Debug, Clone)]
+struct R23D12Cell {
+    stage_id: String,
+    cell_id: String,
+    arm_id: String,
+    turn_heading_offset_rad: f64,
+}
+
+#[derive(Debug)]
+struct R23D12ObservationFields {
+    measured_yaw_rad: f64,
+    torso_height_m: f64,
+    torso_tilt_rad: f64,
+    torso_ground_contact: bool,
+    ordered_foot_contacts: BTreeMap<String, bool>,
+}
+
+fn r23d12_claims() -> Value {
+    json!({
+        "command_conditioned_turning": false,
+        "bilateral_signed_turning": false,
+        "portable_basic_turning": false,
+        "cross_engine_equivalence": false,
+        "q_sdk_r23_satisfied": false,
+        "prone_to_standing": false,
+        "release_authorized": false,
+        "physical_acceptance_authority": false,
+    })
+}
+
+fn r23d12_cell(stage_id: &str, arm_id: &str) -> Result<R23D12Cell, String> {
+    if stage_id != R23D12_STAGE_ID {
+        return Err(format!("QSDK_R23D12_RAP_STAGE_UNKNOWN:{stage_id}"));
+    }
+    let turn_heading_offset_rad = r23d3_arm_offset(arm_id)
+        .filter(|_| {
+            matches!(
+                arm_id,
+                "reference_zero" | "positive_heading" | "negative_heading"
+            )
+        })
+        .ok_or_else(|| format!("QSDK_R23D12_RAP_ARM_UNKNOWN:{arm_id}"))?;
+    Ok(R23D12Cell {
+        stage_id: stage_id.to_owned(),
+        cell_id: format!("{R23D12_ENGINE_ID}__stability_assisted_taper__{arm_id}"),
+        arm_id: arm_id.to_owned(),
+        turn_heading_offset_rad,
+    })
+}
+
+fn r23d12_contract() -> Result<Value, String> {
+    let successor: Value = serde_json::from_str(R23D12_PREREGISTRATION_RAW)
+        .map_err(|error| format!("QSDK_R23D12_RAP_SUCCESSOR_CONTRACT_JSON_INVALID:{error}"))?;
+    let inherited: Value = serde_json::from_str(R23D11_PREREGISTRATION_RAW)
+        .map_err(|error| format!("QSDK_R23D12_RAP_INHERITED_CONTRACT_JSON_INVALID:{error}"))?;
+    let inherited_boundary = &successor["inherited_unchanged_scientific_contract"];
+    let diagnostic = &successor["prospective_diagnostic_schema"];
+    let topology = &successor["future_physical_topology_if_all_zero_world_stages_pass"];
+    let semantic =
+        crate::qsdk_r23d12_measurement_semantics::run_qsdk_r23d12_rapier_semantics_preflight()?;
+    let policy = &inherited["inherited_temporal_contract"];
+    let composition = &inherited["stability_assisted_composition_contract"];
+    let exact = successor["schema_version"]
+        == "sporespore_qsdk_r23d12_measurement_semantics_preregistration_v1"
+        && successor["campaign_id"] == R23D12_CAMPAIGN_ID
+        && successor["gate_id"] == R23D12_GATE_ID
+        && successor["stage_zero_authority"]["physical_execution_authorized"] == false
+        && inherited_boundary["source_path"]
+            == "sdk/turning/r23d11_stability_assisted_taper_preregistration_v1.json"
+        && inherited_boundary["physics_hz"] == 120
+        && inherited_boundary["turning_controller_semantic_step_count"] == R23D12_CONTROLLER_STEPS
+        && inherited_boundary["terminal_step_count"] == R23D12_TERMINAL_STEPS
+        && diagnostic["successor_trace_schema"] == R23D12_TRACE_ROW_SCHEMA
+        && diagnostic["new_field"] == "minimum_dynamic_support_margin_availability"
+        && diagnostic["planner_availability_may_not_determine_support_margin_availability"] == true
+        && diagnostic["support_margin_availability_may_not_determine_planner_availability"] == true
+        && diagnostic["observation_unavailable_with_measured_finite_margin_is_valid"] == true
+        && topology["stage_b_ordered_engine_ids"][1] == R23D12_ENGINE_ID
+        && topology["stage_b_declared_world_count_if_launched"] == 9
+        && semantic["valid_canary_count"] == 7
+        && semantic["active_cross_product_count"] == 6
+        && semantic["mutation_control_count"] == 14
+        && semantic["critical_r23d11_failure_shape_passed"] == true
+        && inherited["schema_version"]
+            == "sporespore_qsdk_r23d11_stability_assisted_taper_preregistration_v1"
+        && inherited["campaign_id"]
+            == "QSDK-R23D11-SUPPORT-CENTROID-ASSISTED-QUIESCENT-TAPER-BILATERAL-TURN-DEVELOPMENT"
+        && inherited["gate_id"] == "QSDK-R23D11"
+        && inherited["stage_zero_authority"]["physical_execution_authorized"] == false
+        && policy["initial_mode"] == R23D12_ACTIVE_MODE
+        && policy["quiescent_mode"] == R23D12_TAPER_MODE
+        && policy["passive_mode"] == R23D12_PASSIVE_MODE
+        && policy["terminal_step_count"] == R23D12_TERMINAL_STEPS
+        && policy["maximum_active_step_count"] == R23D12_MAXIMUM_ACTIVE_STEPS
+        && policy["minimum_quiescent_taper_step_count"] == R23D12_MINIMUM_TAPER_STEPS
+        && policy["minimum_passive_step_count"] == R23D12_MINIMUM_PASSIVE_STEPS
+        && composition["ordered_actuator_count"] == R23D3_ACTUATOR_COUNT
+        && composition["global_requested_correction_scale"] == 0.5
+        && composition["maximum_absolute_velocity_delta_rad_s"] == MAXIMUM_STABILITY_DELTA
+        && composition["maximum_velocity_delta_slew_per_step_rad_s"] == MAXIMUM_STABILITY_SLEW
+        && composition["neutral_base_velocity_limit_rad_s"] == MAXIMUM_NEUTRAL_VELOCITY
+        && composition["maximum_pre_taper_combined_velocity_magnitude_rad_s"]
+            == MAXIMUM_COMBINED_VELOCITY
+        && policy["coarse_pose_predicate"]
+            == "all_four_contacts and torso_tilt_rad <= 0.035 and maximum_absolute_joint_position_error_rad <= 0.32"
+        && policy["tight_pose_predicate"]
+            == "all_four_contacts and torso_tilt_rad <= 0.01 and maximum_absolute_joint_position_error_rad <= 0.2"
+        && composition["complete_combined_canonical_velocity_tapered_before_host_mapping"] == true
+        && composition["canonical_velocity_composed_once"] == true
+        && composition["host_mapping_applied_once"] == true
+        && policy["mode_reactivation_after_passive_handoff_permitted"] == false
+        && policy["all_900_terminal_steps_execute"] == true;
+    if !exact {
+        return Err("QSDK_R23D12_RAP_CONTRACT_IDENTITY_INVALID".to_owned());
+    }
+    Ok(inherited)
+}
+
+fn r23d12_failure(
+    cell: &R23D12Cell,
+    source_commit: &str,
+    failure_stage: &str,
+    failure_code: &str,
+    world_attempt_count: u64,
+    world_build_count: u64,
+    trace_artifact: Option<Value>,
+) -> Value {
+    json!({
+        "schema_version": R23D12_FAILURE_SCHEMA,
+        "campaign_id": R23D12_CAMPAIGN_ID,
+        "gate_id": R23D12_GATE_ID,
+        "stage_id": cell.stage_id,
+        "cell_id": cell.cell_id,
+        "engine_id": R23D12_ENGINE_ID,
+        "arm_id": cell.arm_id,
+        "turn_heading_offset_rad": cell.turn_heading_offset_rad,
+        "source_commit": source_commit,
+        "failure_stage": failure_stage,
+        "failure_code": failure_code,
+        "world_attempt_count": world_attempt_count,
+        "world_build_count": world_build_count,
+        "trace_artifact": trace_artifact,
+        "claims": r23d12_claims(),
+    })
+}
+
+fn r23d12_source_bindings_exact(freeze: &Value, implementation: &Value) -> bool {
+    let Ok(repo_root) = r23d3_repo_root() else {
+        return false;
+    };
+    let Some(declared) =
+        implementation["dependency_closure"]["required_dependency_paths_by_worker"]
+            [R23D12_ENGINE_ID]
+            .as_array()
+    else {
+        return false;
+    };
+    if declared.is_empty() {
+        return false;
+    }
+    let mut required_paths = BTreeMap::<&str, String>::new();
+    for value in declared {
+        let Some(path) = value.as_str().filter(|path| !path.is_empty()) else {
+            return false;
+        };
+        if required_paths.contains_key(path) {
+            return false;
+        }
+        let Ok(bytes) = fs::read(repo_root.join(path)) else {
+            return false;
+        };
+        required_paths.insert(path, raw_sha256(&bytes));
+    }
+    let Some(bindings) = freeze["source_bindings"].as_array() else {
+        return false;
+    };
+    let mut observed = BTreeMap::<&str, &str>::new();
+    for entry in bindings {
+        let Some(path) = entry["path"].as_str().filter(|path| !path.is_empty()) else {
+            return false;
+        };
+        let Some(digest) = entry["raw_sha256"].as_str().filter(|digest| {
+            digest.strip_prefix("sha256:").is_some_and(|hex| {
+                hex.len() == 64
+                    && hex
+                        .bytes()
+                        .all(|byte| byte.is_ascii_digit() || (b'a'..=b'f').contains(&byte))
+            })
+        }) else {
+            return false;
+        };
+        if observed.insert(path, digest).is_some() {
+            return false;
+        }
+    }
+    required_paths
+        .iter()
+        .all(|(path, digest)| observed.get(path).is_some_and(|value| *value == digest))
+}
+
+fn r23d12_physical_authorization(
+    cell: &R23D12Cell,
+    source_commit: &str,
+) -> Result<std::path::PathBuf, String> {
+    let repo_root = r23d3_repo_root()?;
+    if repo_root.join(R23D12_CLOSURE_PATH).is_file() {
+        return Err("QSDK_R23D12_RAP_CLOSED".to_owned());
+    }
+    let implementation_path = repo_root.join(R23D12_IMPLEMENTATION_PATH);
+    let freeze_path = env::var(R23D12_FREEZE_PATH_ENV).unwrap_or_default();
+    let attempt_path = env::var(R23D12_ATTEMPT_PATH_ENV).unwrap_or_default();
+    let token = env::var(R23D12_TOKEN_ENV).unwrap_or_default();
+    let attempt_root =
+        std::path::PathBuf::from(env::var(R23D12_ATTEMPT_ROOT_ENV).unwrap_or_default());
+    if !implementation_path.is_file()
+        || !std::path::Path::new(&freeze_path).is_file()
+        || !std::path::Path::new(&attempt_path).is_file()
+        || !attempt_root.is_dir()
+        || !valid_lower_hex(&token, 32)
+    {
+        return Err("QSDK_R23D12_RAP_PHYSICAL_AUTHORIZATION_REQUIRED".to_owned());
+    }
+    let implementation_raw = fs::read(&implementation_path)
+        .map_err(|_| "QSDK_R23D12_RAP_IMPLEMENTATION_UNREADABLE".to_owned())?;
+    let implementation: Value = serde_json::from_slice(&implementation_raw)
+        .map_err(|_| "QSDK_R23D12_RAP_IMPLEMENTATION_JSON_INVALID".to_owned())?;
+    let freeze_raw =
+        fs::read(&freeze_path).map_err(|_| "QSDK_R23D12_RAP_FREEZE_UNREADABLE".to_owned())?;
+    let attempt_raw =
+        fs::read(&attempt_path).map_err(|_| "QSDK_R23D12_RAP_ATTEMPT_UNREADABLE".to_owned())?;
+    let freeze: Value = serde_json::from_slice(&freeze_raw)
+        .map_err(|_| "QSDK_R23D12_RAP_FREEZE_JSON_INVALID".to_owned())?;
+    let attempt: Value = serde_json::from_slice(&attempt_raw)
+        .map_err(|_| "QSDK_R23D12_RAP_ATTEMPT_JSON_INVALID".to_owned())?;
+    let production_root = repo_root
+        .parent()
+        .ok_or_else(|| "QSDK_R23D12_RAP_REPO_PARENT_MISSING".to_owned())?
+        .join("SporeSpore_Evidence")
+        .canonicalize()
+        .map_err(|_| "QSDK_R23D12_RAP_EVIDENCE_ROOT_UNREADABLE".to_owned())?;
+    let canonical_attempt_root = attempt_root
+        .canonicalize()
+        .map_err(|_| "QSDK_R23D12_RAP_ATTEMPT_ROOT_UNREADABLE".to_owned())?;
+    if !canonical_attempt_root.starts_with(&production_root) {
+        return Err("QSDK_R23D12_RAP_ATTEMPT_ROOT_NOT_DURABLE".to_owned());
+    }
+    let stage_cells = attempt["ordered_stage_b_cell_ids"]
+        .as_array()
+        .cloned()
+        .unwrap_or_default();
+    let exact = freeze["schema_version"] == R23D12_FREEZE_SCHEMA
+        && freeze["campaign_id"] == R23D12_CAMPAIGN_ID
+        && freeze["gate_id"] == R23D12_GATE_ID
+        && freeze["status"] == "frozen_supervisor_only_physical_authorized"
+        && freeze["preregistration_raw_sha256"]
+            == raw_sha256(R23D12_PREREGISTRATION_RAW.as_bytes())
+        && freeze["implementation_contract_raw_sha256"] == raw_sha256(&implementation_raw)
+        && freeze["source_commit"] == source_commit
+        && freeze["physical_execution_authorized"] == true
+        && r23d12_source_bindings_exact(&freeze, &implementation)
+        && attempt["schema_version"] == R23D12_ATTEMPT_SCHEMA
+        && attempt["campaign_id"] == R23D12_CAMPAIGN_ID
+        && attempt["gate_id"] == R23D12_GATE_ID
+        && attempt["freeze_raw_sha256"] == raw_sha256(&freeze_raw)
+        && attempt["source_commit"] == source_commit
+        && attempt["authorization_token"] == token
+        && attempt["attempt_id"]
+            .as_str()
+            .is_some_and(|value| valid_lower_hex(value, 32))
+        && attempt["physical_execution_authorized"] == true
+        && attempt["single_use_supervisor_authorization"] == true
+        && attempt["source_worktree_clean"] == true
+        && attempt["source_matches_live_github_main"] == true
+        && attempt["operation_lock_held"] == true
+        && attempt["full_godot_attestation_valid"] == true
+        && attempt["content_addressed_inputs_retained"] == true
+        && attempt["one_shot_attempt_unconsumed"] == true
+        && std::path::PathBuf::from(attempt["attempt_root"].as_str().unwrap_or_default())
+            .canonicalize()
+            .is_ok_and(|path| path == canonical_attempt_root)
+        && env::var(R23D12_STAGE_ENV).unwrap_or_default() == cell.stage_id
+        && env::var(R23D12_CELL_ENV).unwrap_or_default() == cell.cell_id
+        && env::var(R23D12_ENGINE_ENV).unwrap_or_default() == R23D12_ENGINE_ID
+        && stage_cells.iter().any(|value| value == &cell.cell_id);
+    if !exact {
+        return Err("QSDK_R23D12_RAP_PHYSICAL_AUTHORIZATION_INVALID".to_owned());
+    }
+    Ok(canonical_attempt_root)
+}
+
+pub fn run_qsdk_r23d12_rapier_preflight_impl(
+    stage_id: &str,
+    arm_id: &str,
+) -> Result<Value, String> {
+    let _contract = r23d12_contract()?;
+    let cell = r23d12_cell(stage_id, arm_id)?;
+    Ok(json!({
+        "schema_version": "sporespore_qsdk_r23d12_rapier_physical_worker_preflight_v1",
+        "campaign_id": R23D12_CAMPAIGN_ID,
+        "gate_id": R23D12_GATE_ID,
+        "stage_id": cell.stage_id,
+        "cell_id": cell.cell_id,
+        "engine_id": R23D12_ENGINE_ID,
+        "arm_id": cell.arm_id,
+        "inherited_r23d11_controller_and_physics": true,
+        "independent_diagnostic_availability_semantics": true,
+        "physical_worker_implemented": true,
+        "physical_worker_dormant_behind_supervisor_authorization": true,
+        "physical_execution_authorized": false,
+        "physical_process_launch_count": 0,
+        "model_construction_count": 0,
+        "world_attempt_count": 0,
+        "world_build_count": 0,
+        "physical_acceptance_authority": false,
+    }))
+}
+
+pub fn run_qsdk_r23d12_rapier_authorization_preflight_impl(
+    stage_id: &str,
+    arm_id: &str,
+    source_commit: &str,
+) -> Result<Value, String> {
+    let _contract = r23d12_contract()?;
+    let cell = r23d12_cell(stage_id, arm_id)?;
+    if !valid_lower_hex(source_commit, 40) {
+        return Err("QSDK_R23D12_RAP_SOURCE_COMMIT_INVALID".to_owned());
+    }
+    r23d12_physical_authorization(&cell, source_commit)?;
+    Ok(json!({
+        "schema_version":
+            "sporespore_qsdk_r23d12_rapier_production_authorization_preflight_v1",
+        "campaign_id": R23D12_CAMPAIGN_ID,
+        "gate_id": R23D12_GATE_ID,
+        "engine_id": R23D12_ENGINE_ID,
+        "stage_id": cell.stage_id,
+        "cell_id": cell.cell_id,
+        "actual_production_authorization_function": "r23d12_physical_authorization",
+        "authorization_passed": true,
+        "returned_before_model": true,
+        "physical_process_launch_count": 0,
+        "model_construction_count": 0,
+        "world_attempt_count": 0,
+        "world_build_count": 0,
+        "physical_acceptance_authority": false,
+    }))
+}
+
+fn r23d12_mode_id(mode: crate::qsdk_r23d10_quiescent_taper::Mode) -> &'static str {
+    use crate::qsdk_r23d10_quiescent_taper::Mode;
+    match mode {
+        Mode::Active => R23D12_ACTIVE_MODE,
+        Mode::Taper => R23D12_TAPER_MODE,
+        Mode::Passive => R23D12_PASSIVE_MODE,
+    }
+}
+
+fn r23d12_handoff_reason(
+    state: &crate::qsdk_r23d10_quiescent_taper::State,
+) -> Option<&'static str> {
+    if state.handoff_after_active_step.is_none() {
+        None
+    } else if state.confirmation_satisfied {
+        Some(R23D12_CONFIRMED_REASON)
+    } else {
+        Some(R23D12_DEADLINE_REASON)
+    }
+}
+
+fn r23d12_ordered_contacts(contacts: &BTreeMap<String, bool>) -> Result<[bool; 4], String> {
+    if contacts.len() != 4 {
+        return Err("QSDK_R23D12_RAP_CONTACT_SHAPE_INVALID".to_owned());
+    }
+    let mut ordered = [false; 4];
+    for (index, limb_id) in ["front_left", "front_right", "rear_left", "rear_right"]
+        .iter()
+        .enumerate()
+    {
+        ordered[index] = *contacts
+            .get(*limb_id)
+            .ok_or_else(|| format!("QSDK_R23D12_RAP_CONTACT_MISSING:{limb_id}"))?;
+    }
+    Ok(ordered)
+}
+
+fn r23d12_observe_taper(
+    state: &crate::qsdk_r23d10_quiescent_taper::State,
+    contacts: &BTreeMap<String, bool>,
+    torso_tilt_rad: f64,
+    maximum_joint_error_rad: f64,
+    native_applications: u64,
+    velocity_scale_numerator: u64,
+    velocity_scale_denominator: u64,
+) -> Result<(crate::qsdk_r23d10_quiescent_taper::State, Value), String> {
+    use crate::qsdk_r23d10_quiescent_taper::{
+        Mode, Observation, coarse, observe_completed_step, tight,
+    };
+    let observation = Observation {
+        contacts: r23d12_ordered_contacts(contacts)?,
+        torso_tilt_rad,
+        maximum_joint_error_rad,
+    };
+    let pre_mode = state.mode;
+    let pre_taper_count = state.taper_step_count;
+    let next = observe_completed_step(
+        state.clone(),
+        observation,
+        usize::try_from(native_applications)
+            .map_err(|_| "QSDK_R23D12_RAP_NATIVE_APPLICATION_COUNT_INVALID".to_owned())?,
+        usize::try_from(velocity_scale_numerator)
+            .map_err(|_| "QSDK_R23D12_RAP_TAPER_NUMERATOR_INVALID".to_owned())?,
+        usize::try_from(velocity_scale_denominator)
+            .map_err(|_| "QSDK_R23D12_RAP_TAPER_DENOMINATOR_INVALID".to_owned())?,
+    )?;
+    let transitioned = next.mode != pre_mode;
+    let taper_reset = pre_mode == Mode::Taper && next.mode == Mode::Active;
+    let handoff_reason = if transitioned && next.mode == Mode::Passive {
+        r23d12_handoff_reason(&next)
+    } else {
+        None
+    };
+    let receipt = json!({
+        "step": state.next_step,
+        "mode": r23d12_mode_id(pre_mode),
+        "all_four_contacts": observation.contacts.into_iter().all(|contact| contact),
+        "torso_tilt_rad": observation.torso_tilt_rad,
+        "maximum_absolute_joint_position_error_rad":
+            observation.maximum_joint_error_rad,
+        "coarse_pose_satisfied": coarse(observation),
+        "tight_pose_satisfied": tight(observation),
+        "pre_step_taper_count": pre_taper_count,
+        "post_step_taper_count": next.taper_step_count,
+        "velocity_scale_numerator": velocity_scale_numerator,
+        "velocity_scale_denominator": velocity_scale_denominator,
+        "native_application_count": native_applications,
+        "transition_after_step": transitioned,
+        "taper_reset_after_step": taper_reset,
+        "next_mode": r23d12_mode_id(next.mode),
+        "handoff_reason": handoff_reason,
+    });
+    Ok((next, receipt))
+}
+
+fn r23d12_taper_outcome(
+    state: &crate::qsdk_r23d10_quiescent_taper::State,
+) -> Result<Value, String> {
+    let result = crate::qsdk_r23d10_quiescent_taper::outcome(state)?;
+    Ok(json!({
+        "next_step": state.next_step,
+        "mode": r23d12_mode_id(result.mode),
+        "taper_step_count": state.taper_step_count,
+        "confirmation_satisfied": result.confirmation_satisfied,
+        "handoff_after_active_step": result.handoff_after_active_step,
+        "first_passive_step": result.first_passive_step,
+        "handoff_reason": r23d12_handoff_reason(state),
+        "active_step_count": result.active_step_count,
+        "passive_step_count": result.passive_step_count,
+        "active_native_application_count": result.active_native_application_count,
+        "passive_native_application_count": result.passive_native_application_count,
+        "taper_reset_count": result.taper_reset_count,
+        "first_post_handoff_contact_loss_step":
+            result.first_post_handoff_contact_loss_step,
+        "post_handoff_contact_loss_step_count":
+            result.post_handoff_contact_loss_step_count,
+        "quiescent_taper_gate_passed": result.passed,
+    }))
+}
+
+fn r23d12_observation_fields(
+    robot: &HostRobot,
+    compiled: &sporespore_locomotion_core::CompiledQuadruped,
+) -> Result<R23D12ObservationFields, String> {
+    let torso = &robot.world.bodies[robot.bodies["torso"]];
+    let up = torso.rotation() * Vector::Y;
+    Ok(R23D12ObservationFields {
+        measured_yaw_rad: yaw_rad(robot),
+        torso_height_m: torso.translation().y as f64,
+        torso_tilt_rad: up.y.clamp(-1.0, 1.0).acos() as f64,
+        torso_ground_contact: robot.torso_ground_contact(),
+        ordered_foot_contacts: r23d8_limb_contacts(robot, compiled)?,
+    })
+}
+
+fn r23d12_maximum_joint_position_error(state: &StateFrame) -> Result<f64, String> {
+    if state.ordered_joint_observations.len() != R23D3_ACTUATOR_COUNT as usize {
+        return Err("QSDK_R23D12_RAP_TERMINAL_OBSERVATION_COUNT".to_owned());
+    }
+    state
+        .ordered_joint_observations
+        .iter()
+        .try_fold(0.0_f64, |maximum, observation| {
+            observation
+                .position_rad
+                .filter(|position| position.is_finite())
+                .map(|position| maximum.max(position.abs()))
+                .ok_or_else(|| {
+                    format!(
+                        "QSDK_R23D12_RAP_TERMINAL_POSITION_INVALID:{}",
+                        observation.joint_id
+                    )
+                })
+        })
+}
+
+struct R23D12StabilityInputs {
+    raw_velocity_deltas_rad_s: Vec<Option<f64>>,
+    availability: R23D12Availability,
+    availability_name: &'static str,
+    support_margin_m: Option<f64>,
+}
+
+struct R23D12StabilityAssistedComposition {
+    host_mapping: sporespore_locomotion_core::VelocityOnlyHostMappingReceiptV1,
+    applied_stability_velocity_deltas_rad_s: Vec<f64>,
+    maximum_absolute_commanded_joint_velocity_rad_s: f64,
+}
+
+fn r23d12_ordered_limb_steps(
+    compiled: &sporespore_locomotion_core::CompiledQuadruped,
+    memory: &BalancedWaveControllerMemory,
+) -> Result<Vec<ScheduledLimbGaitStepV1>, String> {
+    compiled
+        .morphology
+        .ordered_limb_ids
+        .iter()
+        .map(|limb_id| {
+            memory
+                .ordered_limb_memory
+                .iter()
+                .find(|limb| limb.limb_id == *limb_id)
+                .map(|limb| ScheduledLimbGaitStepV1 {
+                    limb_id: limb.limb_id.clone(),
+                    gait_step: limb.gait_step,
+                })
+                .ok_or_else(|| format!("QSDK_R23D12_RAP_LIMB_MEMORY_MISSING:{limb_id}"))
+        })
+        .collect()
+}
+
+fn r23d12_availability(
+    value: StabilityInfluenceAvailability,
+) -> (R23D12Availability, &'static str) {
+    match value {
+        StabilityInfluenceAvailability::Available => (R23D12Availability::Available, "available"),
+        StabilityInfluenceAvailability::ObservationUnavailable => (
+            R23D12Availability::ObservationUnavailable,
+            "observation_unavailable",
+        ),
+        StabilityInfluenceAvailability::UpstreamInfeasible => (
+            R23D12Availability::PlanningInfeasible,
+            "planning_infeasible",
+        ),
+    }
+}
+
+fn r23d12_support_margin(
+    compiled: &sporespore_locomotion_core::CompiledQuadruped,
+    stability_state: &sporespore_locomotion_core::StabilityStateV2,
+) -> Result<Option<f64>, String> {
+    if !bw19v_observation_available(stability_state) {
+        return Ok(None);
+    }
+    let observation = observe_stability_v2(&compiled.morphology, stability_state)
+        .map_err(|error| format!("QSDK_R23D12_RAP_SUPPORT_OBSERVATION_INVALID:{error}"))?;
+    let margin = observation.minimum_dynamic_support_margin_m;
+    if !margin.is_finite() {
+        return Err("QSDK_R23D12_RAP_SUPPORT_MARGIN_NONFINITE".to_owned());
+    }
+    Ok(Some(margin))
+}
+
+fn r23d12_stability_inputs(
+    robot: &HostRobot,
+    compiled: &sporespore_locomotion_core::CompiledQuadruped,
+    base_actuation: &ActuationFrame,
+    memory: &BalancedWaveControllerMemory,
+    semantic_step: u64,
+) -> Result<R23D12StabilityInputs, String> {
+    let stability_state = robot.bw19v_stability_state(compiled, semantic_step)?;
+    let support_margin_m = r23d12_support_margin(compiled, &stability_state)?;
+    let kinematics = robot.bw19v_endpoint_kinematics(compiled, &stability_state)?;
+    let limb_steps = r23d12_ordered_limb_steps(compiled, memory)?;
+    let mut scratch_memory = RapierBw19vCompositionMemory::default();
+    let receipt = compose_bw19v_step(
+        compiled,
+        base_actuation,
+        stability_state,
+        kinematics,
+        limb_steps,
+        &mut scratch_memory,
+    )?;
+    let (availability, availability_name) =
+        r23d12_availability(receipt.scheduled_load_transfer.planning_availability);
+    let raw_velocity_deltas_rad_s = receipt
+        .ordered_commands
+        .iter()
+        .map(|command| command.raw_canonical_velocity_delta_rad_s)
+        .collect::<Vec<_>>();
+    let available = availability == R23D12Availability::Available;
+    if raw_velocity_deltas_rad_s.len() != R23D3_ACTUATOR_COUNT as usize
+        || (available
+            && raw_velocity_deltas_rad_s
+                .iter()
+                .any(|value| value.is_none_or(|number| !number.is_finite())))
+        || (!available && raw_velocity_deltas_rad_s.iter().any(Option::is_some))
+    {
+        return Err("QSDK_R23D12_RAP_STABILITY_INPUTS_INVALID".to_owned());
+    }
+    Ok(R23D12StabilityInputs {
+        raw_velocity_deltas_rad_s,
+        availability,
+        availability_name,
+        support_margin_m,
+    })
+}
+
+fn r23d12_task_velocities(state: &StateFrame) -> Result<[f64; 3], String> {
+    let dot = |vector: Vec3, axis: Vec3| vector.x * axis.x + vector.y * axis.y + vector.z * axis.z;
+    let values = [
+        dot(
+            state.base_twist_world.linear_velocity_m_s,
+            state.task_frame.forward_axis_world_unit,
+        ),
+        dot(
+            state.base_twist_world.linear_velocity_m_s,
+            state.task_frame.lateral_axis_world_unit,
+        ),
+        dot(
+            state.base_twist_world.angular_velocity_rad_s,
+            state.task_frame.up_axis_world_unit,
+        ),
+    ];
+    if values.iter().any(|value| !value.is_finite()) {
+        return Err("QSDK_R23D12_RAP_TASK_VELOCITY_NONFINITE".to_owned());
+    }
+    Ok(values)
+}
+
+#[allow(clippy::too_many_arguments)]
+fn r23d12_compose_stability_assisted_taper(
+    compiled: &sporespore_locomotion_core::CompiledQuadruped,
+    base_actuation: &ActuationFrame,
+    composition: &R23D8NeutralComposition,
+    stability_inputs: &R23D12StabilityInputs,
+    numerator: u64,
+    denominator: u64,
+    semantic_step: u64,
+    memory: &R23D12CompositionMemory,
+) -> Result<(R23D12CompositionMemory, R23D12StabilityAssistedComposition), String> {
+    if denominator != R23D12_SCALE_DENOMINATOR || numerator == 0 || numerator > denominator {
+        return Err("QSDK_R23D12_RAP_TAPER_SCALE_INVALID".to_owned());
+    }
+    let solutions = composition.receipt["ordered_actuator_solutions"]
+        .as_array()
+        .filter(|rows| rows.len() == R23D3_ACTUATOR_COUNT as usize)
+        .ok_or_else(|| "QSDK_R23D12_RAP_TERMINAL_SOLUTIONS_INVALID".to_owned())?;
+    let actuators = &compiled.morphology.morphology_spec.actuators;
+    if actuators.len() != solutions.len()
+        || base_actuation.ordered_commands.len() != solutions.len()
+    {
+        return Err("QSDK_R23D12_RAP_TAPER_ACTUATOR_COUNT_INVALID".to_owned());
+    }
+    let actuator_ids = actuators
+        .iter()
+        .map(|actuator| actuator.actuator_id.clone())
+        .collect::<Vec<_>>();
+    let mut neutral_velocities = Vec::<f64>::with_capacity(solutions.len());
+    for (actuator, solution) in actuators.iter().zip(solutions) {
+        if solution["actuator_id"] != actuator.actuator_id {
+            return Err(format!(
+                "QSDK_R23D12_RAP_TAPER_ACTUATOR_IDENTITY_INVALID:{}",
+                actuator.actuator_id
+            ));
+        }
+        let bounded_velocity = solution["bounded_velocity_rad_s"]
+            .as_f64()
+            .filter(|value| value.is_finite() && value.abs() <= MAXIMUM_NEUTRAL_VELOCITY)
+            .ok_or_else(|| {
+                format!(
+                    "QSDK_R23D12_RAP_TAPER_BOUNDED_VELOCITY_INVALID:{}",
+                    actuator.actuator_id
+                )
+            })?;
+        neutral_velocities.push(bounded_velocity);
+    }
+    let semantic_step_usize = usize::try_from(semantic_step)
+        .map_err(|_| "QSDK_R23D12_RAP_COMPOSITION_STEP_INVALID".to_owned())?;
+    let numerator_usize = usize::try_from(numerator)
+        .map_err(|_| "QSDK_R23D12_RAP_COMPOSITION_NUMERATOR_INVALID".to_owned())?;
+    let denominator_usize = usize::try_from(denominator)
+        .map_err(|_| "QSDK_R23D12_RAP_COMPOSITION_DENOMINATOR_INVALID".to_owned())?;
+    let (next_memory, rows) = compose_active_step(
+        semantic_step_usize,
+        &actuator_ids,
+        &neutral_velocities,
+        &stability_inputs.raw_velocity_deltas_rad_s,
+        stability_inputs.availability,
+        numerator_usize,
+        denominator_usize,
+        memory,
+    )?;
+    if rows.len() != actuators.len() {
+        return Err("QSDK_R23D12_RAP_COMPOSITION_ROW_COUNT_INVALID".to_owned());
+    }
+    let mut ordered_residuals = Vec::<CanonicalVelocityResidualV1>::with_capacity(solutions.len());
+    let mut desired_velocities = BTreeMap::<String, f64>::new();
+    let mut applied_stability_velocity_deltas_rad_s = Vec::with_capacity(rows.len());
+    for ((actuator, source_command), row) in actuators
+        .iter()
+        .zip(&base_actuation.ordered_commands)
+        .zip(&rows)
+    {
+        if source_command.actuator_id != actuator.actuator_id
+            || row.combined_pre_taper.abs() > MAXIMUM_COMBINED_VELOCITY + TOLERANCE
+            || row.fallback_zeroed
+                != (stability_inputs.availability != R23D12Availability::Available)
+        {
+            return Err(format!(
+                "QSDK_R23D12_RAP_TAPER_ACTUATOR_IDENTITY_INVALID:{}",
+                actuator.actuator_id
+            ));
+        }
+        let desired_velocity = row.final_tapered_velocity;
+        let portable_source_velocity = source_command.target_velocity_rad_s
+            * sporespore_locomotion_core::LEGACY_GODOT_HOST_TO_CANONICAL_VELOCITY_SIGN;
+        ordered_residuals.push(CanonicalVelocityResidualV1 {
+            schema_version: sporespore_locomotion_core::CANONICAL_VELOCITY_RESIDUAL_V1_VERSION
+                .to_owned(),
+            actuator_id: actuator.actuator_id.clone(),
+            canonical_velocity_delta_rad_s: desired_velocity - portable_source_velocity,
+            command_not_measurement: true,
+            physical_acceptance_authority: false,
+        });
+        if desired_velocities
+            .insert(actuator.actuator_id.clone(), desired_velocity)
+            .is_some()
+        {
+            return Err("QSDK_R23D12_RAP_TAPER_ACTUATOR_DUPLICATE".to_owned());
+        }
+        applied_stability_velocity_deltas_rad_s.push(row.applied_stability_delta);
+    }
+    let (canonical_actuation, host_mapping) =
+        map_bw19v_velocity_only_v4(compiled, base_actuation, &ordered_residuals)?;
+    let host_profile = VelocityOnlyHostProfileV1::rapier_force_based_velocity_only_target();
+    host_mapping
+        .validate(&compiled.morphology, &canonical_actuation, &host_profile)
+        .map_err(|error| format!("QSDK_R23D12_RAP_TAPER_HOST_MAPPING_INVALID:{error}"))?;
+    let mut maximum_speed = 0.0_f64;
+    for (canonical, host) in canonical_actuation
+        .ordered_commands
+        .iter()
+        .zip(&host_mapping.ordered_commands)
+    {
+        let desired = *desired_velocities
+            .get(&canonical.actuator_id)
+            .ok_or_else(|| {
+                format!(
+                    "QSDK_R23D12_RAP_TAPER_DESIRED_VELOCITY_MISSING:{}",
+                    canonical.actuator_id
+                )
+            })?;
+        if host.actuator_id != canonical.actuator_id
+            || (canonical.combined_canonical_target_velocity_rad_s - desired).abs() > TOLERANCE
+            || (host.host_target_velocity_rad_s - desired).abs() > TOLERANCE
+            || host.native_target_position_rad.is_some()
+        {
+            return Err(format!(
+                "QSDK_R23D12_RAP_TAPER_MAPPING_VALUE_INVALID:{}",
+                canonical.actuator_id
+            ));
+        }
+        maximum_speed = maximum_speed.max(desired.abs());
+    }
+    Ok((
+        next_memory,
+        R23D12StabilityAssistedComposition {
+            host_mapping,
+            applied_stability_velocity_deltas_rad_s,
+            maximum_absolute_commanded_joint_velocity_rad_s: maximum_speed,
+        },
+    ))
+}
+
+fn r23d12_controller_trace_row(
+    cell: &R23D12Cell,
+    trace_step: u64,
+    robot: &HostRobot,
+    compiled: &sporespore_locomotion_core::CompiledQuadruped,
+    native_applications: u64,
+    task_velocities: [f64; 3],
+    stability_inputs: &R23D12StabilityInputs,
+) -> Result<Value, String> {
+    let (phase_id, heading_offset) = if trace_step < TURN_START_STEP {
+        ("reference_warmup", 0.0)
+    } else if trace_step < TURN_END_STEP_EXCLUSIVE {
+        ("commanded_turn", cell.turn_heading_offset_rad)
+    } else if trace_step < DECLARED_SCHEDULE_END_STEP_EXCLUSIVE {
+        ("reference_recovery", 0.0)
+    } else {
+        ("reference_continuation", 0.0)
+    };
+    let observation = r23d12_observation_fields(robot, compiled)?;
+    let applied_stability_deltas = vec![0.0_f64; R23D3_ACTUATOR_COUNT as usize];
+    let diagnostic = crate::qsdk_r23d12_measurement_semantics::validate_physical_diagnostics(
+        true,
+        Some(stability_inputs.availability_name),
+        stability_inputs.support_margin_m,
+        &applied_stability_deltas,
+    )
+    .map_err(|error| format!("QSDK_R23D12_RAP_DIAGNOSTIC_SEMANTICS_INVALID:{error}"))?;
+    Ok(json!({
+        "schema_version": R23D12_TRACE_ROW_SCHEMA,
+        "cell_id": cell.cell_id,
+        "trace_step": trace_step,
+        "phase_id": phase_id,
+        "controller_semantic_step": trace_step,
+        "desired_heading_offset_rad": heading_offset,
+        "measured_yaw_rad": observation.measured_yaw_rad,
+        "torso_height_m": observation.torso_height_m,
+        "torso_tilt_rad": observation.torso_tilt_rad,
+        "torso_ground_contact": observation.torso_ground_contact,
+        "ordered_foot_contacts": observation.ordered_foot_contacts,
+        "base_linear_velocity_task_forward_m_s": task_velocities[0],
+        "base_linear_velocity_task_lateral_m_s": task_velocities[1],
+        "base_angular_velocity_task_yaw_rad_s": task_velocities[2],
+        "minimum_dynamic_support_margin_m":
+            diagnostic["minimum_dynamic_support_margin_m"].clone(),
+        "minimum_dynamic_support_margin_availability":
+            diagnostic["minimum_dynamic_support_margin_availability"].clone(),
+        "stability_planning_availability":
+            diagnostic["stability_planning_availability"].clone(),
+        "ordered_applied_stability_velocity_deltas_rad_s":
+            diagnostic["ordered_applied_stability_velocity_deltas_rad_s"].clone(),
+        "actuator_command_count": R23D3_ACTUATOR_COUNT,
+        "native_actuation_application_count": native_applications,
+        "zero_actuation": false,
+        "command_composition_mode": "balanced_wave_turning_v1",
+        "taper_receipt_present": false,
+        "pre_step_taper_count": Value::Null,
+        "post_step_taper_count": Value::Null,
+        "coarse_pose_satisfied": Value::Null,
+        "tight_pose_satisfied": Value::Null,
+        "velocity_scale_numerator": Value::Null,
+        "velocity_scale_denominator": Value::Null,
+        "transition_after_step": false,
+        "taper_reset_after_step": false,
+        "next_terminal_mode": Value::Null,
+        "handoff_reason": Value::Null,
+        "maximum_absolute_joint_position_error_rad": Value::Null,
+        "maximum_absolute_commanded_joint_velocity_rad_s": Value::Null,
+    }))
+}
+
+#[allow(clippy::too_many_arguments)]
+fn r23d12_terminal_trace_row(
+    cell: &R23D12Cell,
+    trace_step: u64,
+    mode: crate::qsdk_r23d10_quiescent_taper::Mode,
+    taper_receipt: &Value,
+    observation: &R23D12ObservationFields,
+    maximum_joint_error_rad: f64,
+    maximum_commanded_speed_rad_s: Option<f64>,
+    task_velocities: [f64; 3],
+    support_margin_m: Option<f64>,
+    planning_availability: Option<&str>,
+    applied_stability_deltas_rad_s: &[f64],
+) -> Result<Value, String> {
+    use crate::qsdk_r23d10_quiescent_taper::Mode;
+    let active = mode != Mode::Passive;
+    if taper_receipt["mode"] != r23d12_mode_id(mode)
+        || taper_receipt["step"] != trace_step - R23D12_CONTROLLER_STEPS
+        || !maximum_joint_error_rad.is_finite()
+        || maximum_joint_error_rad < 0.0
+        || active != maximum_commanded_speed_rad_s.is_some()
+        || maximum_commanded_speed_rad_s.is_some_and(|speed| !speed.is_finite() || speed < 0.0)
+        || applied_stability_deltas_rad_s.len() != R23D3_ACTUATOR_COUNT as usize
+        || applied_stability_deltas_rad_s
+            .iter()
+            .any(|value| !value.is_finite())
+        || (!active
+            && (planning_availability.is_some()
+                || applied_stability_deltas_rad_s
+                    .iter()
+                    .any(|value| *value != 0.0)))
+    {
+        return Err("QSDK_R23D12_RAP_TERMINAL_TRACE_INPUT_INVALID".to_owned());
+    }
+    let diagnostic = crate::qsdk_r23d12_measurement_semantics::validate_physical_diagnostics(
+        active,
+        planning_availability,
+        support_margin_m,
+        applied_stability_deltas_rad_s,
+    )
+    .map_err(|error| format!("QSDK_R23D12_RAP_DIAGNOSTIC_SEMANTICS_INVALID:{error}"))?;
+    let (phase_id, composition_mode) = match mode {
+        Mode::Active => (
+            "terminal_neutral_acquisition",
+            "stability_assisted_neutral_full_authority_v1",
+        ),
+        Mode::Taper => (
+            "terminal_quiescent_taper",
+            "stability_assisted_neutral_quiescent_taper_v1",
+        ),
+        Mode::Passive => (
+            "terminal_irreversible_zero_actuation",
+            "passive_zero_actuation_v1",
+        ),
+    };
+    Ok(json!({
+        "schema_version": R23D12_TRACE_ROW_SCHEMA,
+        "cell_id": cell.cell_id,
+        "trace_step": trace_step,
+        "phase_id": phase_id,
+        "controller_semantic_step": Value::Null,
+        "desired_heading_offset_rad": 0.0,
+        "measured_yaw_rad": observation.measured_yaw_rad,
+        "torso_height_m": observation.torso_height_m,
+        "torso_tilt_rad": observation.torso_tilt_rad,
+        "torso_ground_contact": observation.torso_ground_contact,
+        "ordered_foot_contacts": observation.ordered_foot_contacts,
+        "base_linear_velocity_task_forward_m_s": task_velocities[0],
+        "base_linear_velocity_task_lateral_m_s": task_velocities[1],
+        "base_angular_velocity_task_yaw_rad_s": task_velocities[2],
+        "minimum_dynamic_support_margin_m":
+            diagnostic["minimum_dynamic_support_margin_m"].clone(),
+        "minimum_dynamic_support_margin_availability":
+            diagnostic["minimum_dynamic_support_margin_availability"].clone(),
+        "stability_planning_availability":
+            diagnostic["stability_planning_availability"].clone(),
+        "ordered_applied_stability_velocity_deltas_rad_s":
+            diagnostic["ordered_applied_stability_velocity_deltas_rad_s"].clone(),
+        "actuator_command_count": if active { R23D3_ACTUATOR_COUNT } else { 0 },
+        "native_actuation_application_count":
+            taper_receipt["native_application_count"].clone(),
+        "zero_actuation": !active,
+        "command_composition_mode": composition_mode,
+        "taper_receipt_present": true,
+        "pre_step_taper_count": taper_receipt["pre_step_taper_count"].clone(),
+        "post_step_taper_count": taper_receipt["post_step_taper_count"].clone(),
+        "coarse_pose_satisfied": taper_receipt["coarse_pose_satisfied"].clone(),
+        "tight_pose_satisfied": taper_receipt["tight_pose_satisfied"].clone(),
+        "velocity_scale_numerator": taper_receipt["velocity_scale_numerator"].clone(),
+        "velocity_scale_denominator": taper_receipt["velocity_scale_denominator"].clone(),
+        "transition_after_step": taper_receipt["transition_after_step"].clone(),
+        "taper_reset_after_step": taper_receipt["taper_reset_after_step"].clone(),
+        "next_terminal_mode": taper_receipt["next_mode"].clone(),
+        "handoff_reason": taper_receipt["handoff_reason"].clone(),
+        "maximum_absolute_joint_position_error_rad": maximum_joint_error_rad,
+        "maximum_absolute_commanded_joint_velocity_rad_s":
+            maximum_commanded_speed_rad_s,
+    }))
+}
+
+fn r23d12_retain_trace(
+    cell: &R23D12Cell,
+    rows: &[Value],
+    attempt_root: &std::path::Path,
+) -> Result<Value, String> {
+    let pending_root = attempt_root.join("pending-traces");
+    fs::create_dir_all(&pending_root)
+        .map_err(|error| format!("QSDK_R23D12_RAP_TRACE_ROOT_CREATE_FAILED:{error}"))?;
+    let rows_path = pending_root.join(format!("{}__{}.rows.json", cell.stage_id, cell.cell_id));
+    let file = fs::OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&rows_path)
+        .map_err(|error| format!("QSDK_R23D12_RAP_TRACE_ROWS_CREATE_FAILED:{error}"))?;
+    serde_json::to_writer(file, rows)
+        .map_err(|error| format!("QSDK_R23D12_RAP_TRACE_ROWS_WRITE_FAILED:{error}"))?;
+    let repo_root = r23d3_repo_root()?;
+    let evaluator_path = repo_root.join("sdk/turning/r23d12_physical_evaluator.py");
+    let python = env::var(R23D12_PYTHON_ENV).unwrap_or_else(|_| "python".to_owned());
+    let powershell = env::var(R23D12_POWERSHELL_ENV).unwrap_or_else(|_| "pwsh".to_owned());
+    let output = std::process::Command::new(python)
+        .current_dir(&repo_root)
+        .arg(&evaluator_path)
+        .arg("retain-trace")
+        .arg("--stage-id")
+        .arg(&cell.stage_id)
+        .arg("--cell-id")
+        .arg(&cell.cell_id)
+        .arg("--rows-json")
+        .arg(&rows_path)
+        .arg("--repo-root")
+        .arg(&repo_root)
+        .arg("--attempt-root")
+        .arg(attempt_root)
+        .arg("--powershell")
+        .arg(powershell)
+        .output()
+        .map_err(|error| format!("QSDK_R23D12_RAP_TRACE_RETAINER_START_FAILED:{error}"))?;
+    let stdout = String::from_utf8_lossy(&output.stdout);
+    let prefix = R23D12_TRACE_RETENTION_MARKER;
+    let markers = stdout
+        .lines()
+        .filter_map(|line| line.strip_prefix(prefix))
+        .collect::<Vec<_>>();
+    if !output.status.success() || markers.len() != 1 {
+        return Err(format!(
+            "QSDK_R23D12_RAP_TRACE_RETENTION_FAILED:{}:{}",
+            output.status,
+            String::from_utf8_lossy(&output.stderr)
+        ));
+    }
+    let receipt: Value = serde_json::from_str(markers[0])
+        .map_err(|error| format!("QSDK_R23D12_RAP_TRACE_RECEIPT_INVALID:{error}"))?;
+    if receipt["schema_version"] != R23D12_TRACE_RETENTION_SCHEMA
+        || receipt["stage_id"] != cell.stage_id
+        || receipt["cell_id"] != cell.cell_id
+        || receipt["retained_before_terminal_entry"] != true
+    {
+        return Err("QSDK_R23D12_RAP_TRACE_RETENTION_RECEIPT_INVALID".to_owned());
+    }
+    Ok(receipt)
+}
+
+pub fn run_qsdk_r23d12_rapier_physical_impl(
+    stage_id: &str,
+    arm_id: &str,
+    source_commit: &str,
+) -> Result<Value, Value> {
+    let cell = r23d12_cell(stage_id, arm_id).map_err(|code| {
+        json!({
+            "schema_version": R23D12_FAILURE_SCHEMA,
+            "campaign_id": R23D12_CAMPAIGN_ID,
+            "gate_id": R23D12_GATE_ID,
+            "stage_id": stage_id,
+            "cell_id": Value::Null,
+            "engine_id": R23D12_ENGINE_ID,
+            "arm_id": arm_id,
+            "turn_heading_offset_rad": Value::Null,
+            "source_commit": source_commit,
+            "failure_stage": "before_world",
+            "failure_code": code,
+            "world_attempt_count": 0,
+            "world_build_count": 0,
+            "trace_artifact": Value::Null,
+            "claims": r23d12_claims(),
+        })
+    })?;
+    let before_world =
+        |code: String| r23d12_failure(&cell, source_commit, "before_world", &code, 0, 0, None);
+    if !valid_lower_hex(source_commit, 40) {
+        return Err(before_world(
+            "QSDK_R23D12_RAP_SOURCE_COMMIT_INVALID".to_owned(),
+        ));
+    }
+    let _contract = r23d12_contract().map_err(&before_world)?;
+    let attempt_root =
+        r23d12_physical_authorization(&cell, source_commit).map_err(&before_world)?;
+    let (_, _, development) = parse_contracts().map_err(&before_world)?;
+    let perturbation = initial_perturbation(&development).map_err(&before_world)?;
+    let _preflight = crate::qsdk_r23d11_stability_assisted_taper::run_qsdk_r23d11_rapier_preflight(
+        stage_id, arm_id,
+    )
+    .map_err(&before_world)?;
+    let (compiled, controller) = compile_boundary().map_err(&before_world)?;
+    let turning_cell = r23d3_cell(R23D8_STAGE_ID, "onset_600", arm_id).map_err(&before_world)?;
+
+    // The native world-attempt counter becomes one immediately before this
+    // sole fixture construction. All authorization and preflight work above is
+    // zero-world and therefore cannot accidentally spend the one-shot cell.
+    let mut robot =
+        build_bw19v_velocity_only_v4_robot_with_friction(&compiled, AUTHORED_FRICTION as f32)
+            .map_err(|code| {
+                r23d12_failure(
+                    &cell,
+                    source_commit,
+                    "world_construction_failed",
+                    &code,
+                    1,
+                    0,
+                    None,
+                )
+            })?;
+    let world_constructed =
+        |code: String| r23d12_failure(&cell, source_commit, "world_constructed", &code, 1, 1, None);
+    apply_initial_perturbation(&mut robot, perturbation).map_err(&world_constructed)?;
+    for _ in 0..SETTLE_STEPS {
+        robot
+            .hold_velocity_only_v4_zero_and_step()
+            .map_err(&world_constructed)?;
+    }
+    let settled_failure = |code: String| {
+        r23d12_failure(
+            &cell,
+            source_commit,
+            "settlement_complete",
+            &code,
+            1,
+            1,
+            None,
+        )
+    };
+
+    let task_origin = robot.torso_position();
+    let reference_heading_rad = yaw_rad(&robot);
+    let initial_contacts = r23d8_limb_contacts(&robot, &compiled).map_err(&settled_failure)?;
+    let mut previous_contacts = initial_contacts.clone();
+    let mut contact_cycles = BTreeMap::<String, u64>::from_iter(
+        initial_contacts.keys().map(|limb_id| (limb_id.clone(), 0)),
+    );
+    let mut memory = BalancedWaveControllerMemory::initial();
+    let mut neutral_stance_activated = false;
+    let mut stability_composition_memory = R23D12CompositionMemory::default();
+    let mut taper_state = crate::qsdk_r23d10_quiescent_taper::State::default();
+    let mut trace_rows = Vec::<Value>::with_capacity(R23D12_TOTAL_TRACE_STEPS as usize);
+
+    let mut controller_error_count = 0_u64;
+    let mut active_safe_no_actuation_count = 0_u64;
+    let mut nonfinite_observation_count = 0_u64;
+    let mut actuator_application_mismatch_count = 0_u64;
+    let mut validated_portable_command_count = 0_u64;
+    let mut native_actuation_application_count = 0_u64;
+    let mut portable_impulse_violation_count = 0_u64;
+    let mut torso_ground_contact_step_count = 0_u64;
+    let terminal_receipt_validation_failure_count = 0_u64;
+    let mut maximum_terminal_active_joint_speed = 0.0_f64;
+    let mut maximum_tilt_rad = 0.0_f64;
+    let mut minimum_torso_height_m = f64::INFINITY;
+    let mut maximum_requested = 0.0_f64;
+    let mut maximum_held = 0.0_f64;
+    let mut turn_start_yaw_rad = None::<f64>;
+    let mut turn_end_yaw_rad = None::<f64>;
+
+    for semantic_step in 0..R23D12_CONTROLLER_STEPS {
+        if semantic_step == PHASE_OFFSET_ACTIVATION_STEP {
+            apply_phase_offset(&mut memory, perturbation.gait_phase_offset_ticks)
+                .map_err(&settled_failure)?;
+        }
+        if semantic_step == CONTACT_GATED_START_STEP {
+            for limb in &mut memory.ordered_limb_memory {
+                limb.evidence_gait_step_limit = Some(limb.gait_step + 1 + 1_440);
+            }
+        }
+        let phase_mode = if semantic_step < CONTACT_GATED_START_STEP {
+            PhaseProgressionMode::Clocked
+        } else {
+            PhaseProgressionMode::ContactGated
+        };
+        let state = physical_state_frame(
+            &robot,
+            &compiled,
+            semantic_step,
+            task_origin,
+            reference_heading_rad,
+        )
+        .map_err(&settled_failure)?;
+        nonfinite_observation_count += u64::from(state_contains_nonfinite(&state));
+        let schedule = r23d3_schedule(&turning_cell, semantic_step, reference_heading_rad);
+        let command = r23d3_motion_command(semantic_step, phase_mode, &schedule);
+        if semantic_step == TURN_START_STEP {
+            turn_start_yaw_rad = Some(yaw_rad(&robot));
+        }
+        let output = controller.step(&memory, &state, &command);
+        controller_error_count += u64::from(
+            output.actuation.receipt.controller_error.is_some()
+                || !output.actuation.failure_codes.is_empty(),
+        );
+        active_safe_no_actuation_count += u64::from(output.actuation.safe_no_actuation);
+        validate_controller_actuation(&compiled, &output.actuation).map_err(&settled_failure)?;
+        if output.actuation.receipt.semantic_step != semantic_step
+            || output.actuation.receipt.command_id != command.command_id
+            || output.actuation.receipt.policy_id != POLICY_ID
+        {
+            return Err(settled_failure(
+                "QSDK_R23D12_RAP_CONTROLLER_IDENTITY_INVALID".to_owned(),
+            ));
+        }
+        let expected =
+            independent_oracle(&state, &command, controller.profile()).map_err(&settled_failure)?;
+        let observed = receipt_values(&output.actuation.receipt);
+        let oracle_failures = predicate_failures(expected, observed);
+        if !oracle_failures.is_empty() {
+            return Err(r23d12_failure(
+                &cell,
+                source_commit,
+                "controller_validation_failed",
+                &format!(
+                    "QSDK_R23D12_RAP_CONTROLLER_RECEIPT_INVALID:{}",
+                    oracle_failures.join(",")
+                ),
+                1,
+                1,
+                None,
+            ));
+        }
+        let stability_inputs =
+            r23d12_stability_inputs(&robot, &compiled, &output.actuation, &memory, semantic_step)
+                .map_err(&settled_failure)?;
+        let (canonical, mapping) =
+            map_bw19v_velocity_only_v4(&compiled, &output.actuation, &zero_residuals(&compiled))
+                .map_err(&settled_failure)?;
+        let host_profile = VelocityOnlyHostProfileV1::rapier_force_based_velocity_only_target();
+        mapping
+            .validate(&compiled.morphology, &canonical, &host_profile)
+            .map_err(|error| {
+                settled_failure(format!("QSDK_R23D12_RAP_HOST_MAPPING_INVALID:{error}"))
+            })?;
+        maximum_requested =
+            maximum_requested.max(output.actuation.receipt.requested_steering_fraction.abs());
+        maximum_held = maximum_held.max(output.actuation.receipt.held_steering_fraction.abs());
+        validated_portable_command_count += output.actuation.ordered_commands.len() as u64;
+        let (applications, impulse_violations) = robot
+            .apply_bw19v_velocity_only_v4_actuation(&mapping)
+            .map_err(&settled_failure)?;
+        native_actuation_application_count += applications;
+        portable_impulse_violation_count += impulse_violations;
+        actuator_application_mismatch_count += u64::from(applications != R23D3_ACTUATOR_COUNT);
+        memory = output.next_memory;
+
+        let observation = r23d12_observation_fields(&robot, &compiled).map_err(&settled_failure)?;
+        nonfinite_observation_count += u64::from(
+            !observation.measured_yaw_rad.is_finite()
+                || !observation.torso_height_m.is_finite()
+                || !observation.torso_tilt_rad.is_finite(),
+        );
+        maximum_tilt_rad = maximum_tilt_rad.max(observation.torso_tilt_rad);
+        minimum_torso_height_m = minimum_torso_height_m.min(observation.torso_height_m);
+        torso_ground_contact_step_count += u64::from(observation.torso_ground_contact);
+        if semantic_step >= CONTACT_GATED_START_STEP {
+            for (limb_id, contact) in &observation.ordered_foot_contacts {
+                if !previous_contacts[limb_id] && *contact {
+                    *contact_cycles.get_mut(limb_id).ok_or_else(|| {
+                        settled_failure(format!(
+                            "QSDK_R23D12_RAP_CONTACT_CYCLE_LIMB_MISSING:{limb_id}"
+                        ))
+                    })? += 1;
+                }
+            }
+        }
+        previous_contacts = observation.ordered_foot_contacts;
+        if semantic_step + 1 == TURN_END_STEP_EXCLUSIVE {
+            turn_end_yaw_rad = Some(yaw_rad(&robot));
+        }
+        let completed_state = physical_state_frame(
+            &robot,
+            &compiled,
+            semantic_step,
+            task_origin,
+            reference_heading_rad,
+        )
+        .map_err(&settled_failure)?;
+        let task_velocities = r23d12_task_velocities(&completed_state).map_err(&settled_failure)?;
+        trace_rows.push(
+            r23d12_controller_trace_row(
+                &cell,
+                semantic_step,
+                &robot,
+                &compiled,
+                applications,
+                task_velocities,
+                &stability_inputs,
+            )
+            .map_err(&settled_failure)?,
+        );
+    }
+
+    for terminal_step in 0..R23D12_TERMINAL_STEPS {
+        let trace_step = R23D12_CONTROLLER_STEPS + terminal_step;
+        let pre_mode = taper_state.mode;
+        let (scale_numerator, scale_denominator) =
+            crate::qsdk_r23d10_quiescent_taper::expected_scale(&taper_state);
+        let scale_numerator = u64::try_from(scale_numerator)
+            .map_err(|_| settled_failure("QSDK_R23D12_RAP_TAPER_NUMERATOR_INVALID".to_owned()))?;
+        let scale_denominator = u64::try_from(scale_denominator)
+            .map_err(|_| settled_failure("QSDK_R23D12_RAP_TAPER_DENOMINATOR_INVALID".to_owned()))?;
+        let active = pre_mode != crate::qsdk_r23d10_quiescent_taper::Mode::Passive;
+        let mut maximum_commanded_speed = None::<f64>;
+        let mut planning_availability = None::<&str>;
+        let mut support_margin_m = None::<f64>;
+        let mut applied_stability_deltas_rad_s = vec![0.0_f64; R23D3_ACTUATOR_COUNT as usize];
+        let applications;
+        if active {
+            let state = physical_state_frame(
+                &robot,
+                &compiled,
+                trace_step,
+                task_origin,
+                reference_heading_rad,
+            )
+            .map_err(&settled_failure)?;
+            nonfinite_observation_count += u64::from(state_contains_nonfinite(&state));
+            let schedule = r23d3_schedule(&turning_cell, trace_step, reference_heading_rad);
+            let command =
+                r23d3_motion_command(trace_step, PhaseProgressionMode::ContactGated, &schedule);
+            let output = controller.step(&memory, &state, &command);
+            controller_error_count += u64::from(
+                output.actuation.receipt.controller_error.is_some()
+                    || !output.actuation.failure_codes.is_empty(),
+            );
+            active_safe_no_actuation_count += u64::from(output.actuation.safe_no_actuation);
+            validate_controller_actuation(&compiled, &output.actuation)
+                .map_err(&settled_failure)?;
+            let expected = independent_oracle(&state, &command, controller.profile())
+                .map_err(&settled_failure)?;
+            let observed = receipt_values(&output.actuation.receipt);
+            let oracle_failures = predicate_failures(expected, observed);
+            if output.actuation.receipt.semantic_step != trace_step
+                || output.actuation.receipt.command_id != command.command_id
+                || output.actuation.receipt.policy_id != POLICY_ID
+                || !oracle_failures.is_empty()
+            {
+                return Err(settled_failure(format!(
+                    "QSDK_R23D12_RAP_TERMINAL_CONTROLLER_INVALID:{}",
+                    oracle_failures.join(",")
+                )));
+            }
+            maximum_requested =
+                maximum_requested.max(output.actuation.receipt.requested_steering_fraction.abs());
+            maximum_held = maximum_held.max(output.actuation.receipt.held_steering_fraction.abs());
+            let stability_inputs =
+                r23d12_stability_inputs(&robot, &compiled, &output.actuation, &memory, trace_step)
+                    .map_err(&settled_failure)?;
+            planning_availability = Some(stability_inputs.availability_name);
+            support_margin_m = stability_inputs.support_margin_m;
+            let first_activation = !neutral_stance_activated;
+            let composition = r23d8_compose_neutral_stance(
+                &compiled,
+                &output.actuation,
+                &state,
+                first_activation,
+            )
+            .map_err(&settled_failure)?;
+            let receipt_failures = r23d8_neutral_receipt_failures(
+                &composition.receipt,
+                &compiled.morphology.ordered_actuator_ids,
+            );
+            if composition.receipt["semantic_step"] != trace_step || !receipt_failures.is_empty() {
+                return Err(settled_failure(format!(
+                    "QSDK_R23D12_RAP_TERMINAL_RECEIPT_INVALID:{}",
+                    receipt_failures.join(",")
+                )));
+            }
+            let solutions = composition.receipt["ordered_actuator_solutions"]
+                .as_array()
+                .filter(|rows| rows.len() == R23D3_ACTUATOR_COUNT as usize)
+                .ok_or_else(|| {
+                    settled_failure("QSDK_R23D12_RAP_TERMINAL_SOLUTIONS_INVALID".to_owned())
+                })?;
+            let (next_composition_memory, scaled) = r23d12_compose_stability_assisted_taper(
+                &compiled,
+                &output.actuation,
+                &composition,
+                &stability_inputs,
+                scale_numerator,
+                scale_denominator,
+                trace_step,
+                &stability_composition_memory,
+            )
+            .map_err(&settled_failure)?;
+            stability_composition_memory = next_composition_memory;
+            applied_stability_deltas_rad_s = scaled.applied_stability_velocity_deltas_rad_s.clone();
+            maximum_terminal_active_joint_speed = maximum_terminal_active_joint_speed
+                .max(scaled.maximum_absolute_commanded_joint_velocity_rad_s);
+            maximum_commanded_speed = Some(scaled.maximum_absolute_commanded_joint_velocity_rad_s);
+            validated_portable_command_count += solutions.len() as u64;
+            let (step_applications, impulse_violations) = robot
+                .apply_bw19v_velocity_only_v4_actuation(&scaled.host_mapping)
+                .map_err(&settled_failure)?;
+            applications = step_applications;
+            native_actuation_application_count += applications;
+            portable_impulse_violation_count += impulse_violations;
+            actuator_application_mismatch_count += u64::from(applications != R23D3_ACTUATOR_COUNT);
+            memory = output.next_memory;
+            neutral_stance_activated = true;
+        } else {
+            robot
+                .hold_velocity_only_v4_zero_and_step()
+                .map_err(&settled_failure)?;
+            applications = 0;
+        }
+
+        let observation = r23d12_observation_fields(&robot, &compiled).map_err(&settled_failure)?;
+        nonfinite_observation_count += u64::from(
+            !observation.measured_yaw_rad.is_finite()
+                || !observation.torso_height_m.is_finite()
+                || !observation.torso_tilt_rad.is_finite(),
+        );
+        maximum_tilt_rad = maximum_tilt_rad.max(observation.torso_tilt_rad);
+        minimum_torso_height_m = minimum_torso_height_m.min(observation.torso_height_m);
+        torso_ground_contact_step_count += u64::from(observation.torso_ground_contact);
+        let completed_state = physical_state_frame(
+            &robot,
+            &compiled,
+            trace_step,
+            task_origin,
+            reference_heading_rad,
+        )
+        .map_err(&settled_failure)?;
+        let task_velocities = r23d12_task_velocities(&completed_state).map_err(&settled_failure)?;
+        if !active {
+            let passive_stability_state = robot
+                .bw19v_stability_state(&compiled, trace_step)
+                .map_err(&settled_failure)?;
+            support_margin_m = r23d12_support_margin(&compiled, &passive_stability_state)
+                .map_err(&settled_failure)?;
+        }
+        let maximum_joint_error =
+            r23d12_maximum_joint_position_error(&completed_state).map_err(&settled_failure)?;
+        let (next_taper_state, taper_receipt) = r23d12_observe_taper(
+            &taper_state,
+            &observation.ordered_foot_contacts,
+            observation.torso_tilt_rad,
+            maximum_joint_error,
+            applications,
+            scale_numerator,
+            scale_denominator,
+        )
+        .map_err(&settled_failure)?;
+        trace_rows.push(
+            r23d12_terminal_trace_row(
+                &cell,
+                trace_step,
+                pre_mode,
+                &taper_receipt,
+                &observation,
+                maximum_joint_error,
+                maximum_commanded_speed,
+                task_velocities,
+                support_margin_m,
+                planning_availability,
+                &applied_stability_deltas_rad_s,
+            )
+            .map_err(&settled_failure)?,
+        );
+        taper_state = next_taper_state;
+    }
+
+    let taper_outcome = r23d12_taper_outcome(&taper_state).map_err(&settled_failure)?;
+    let final_position = robot.torso_position();
+    let final_delta = final_position - task_origin;
+    let task_forward = Vector::new(
+        reference_heading_rad.cos() as f32,
+        0.0,
+        reference_heading_rad.sin() as f32,
+    );
+    let final_forward_displacement_m = final_delta.dot(task_forward) as f64;
+    let turn_phase_yaw_delta_rad = turn_start_yaw_rad
+        .zip(turn_end_yaw_rad)
+        .map(|(start, end)| wrap_angle(end - start))
+        .ok_or_else(|| settled_failure("QSDK_R23D12_RAP_TURN_WINDOW_INCOMPLETE".to_owned()))?;
+    let retention =
+        r23d12_retain_trace(&cell, &trace_rows, &attempt_root).map_err(&settled_failure)?;
+    let report = json!({
+        "schema_version": R23D12_REPORT_SCHEMA,
+        "campaign_id": R23D12_CAMPAIGN_ID,
+        "gate_id": R23D12_GATE_ID,
+        "stage_id": cell.stage_id,
+        "cell_id": cell.cell_id,
+        "engine_id": R23D12_ENGINE_ID,
+        "arm_id": cell.arm_id,
+        "turn_heading_offset_rad": cell.turn_heading_offset_rad,
+        "source_commit": source_commit,
+        "trace_artifact": retention["trace_artifact"].clone(),
+        "trace_summary": retention["trace_summary"].clone(),
+        "execution": {
+            "integrity_passed": true,
+            "worker_failure_code": "",
+            "controller_semantic_step_count": R23D12_CONTROLLER_STEPS,
+            "terminal_quiescent_taper_step_count": R23D12_TERMINAL_STEPS,
+            "validated_portable_command_count": validated_portable_command_count,
+            "native_actuation_application_count": native_actuation_application_count,
+            "post_handoff_native_actuation_application_count":
+                taper_outcome["passive_native_application_count"].clone(),
+            "portable_impulse_violation_count": portable_impulse_violation_count,
+            "world_attempt_count": 1,
+            "world_build_count": 1,
+            "trace_retained_before_terminal_entry": true,
+            "fixed_horizon_configuration_proved_before_fixture_insertion": true,
+        },
+        "measurements": {
+            "final_forward_displacement_m": final_forward_displacement_m,
+            "turn_phase_yaw_delta_rad": turn_phase_yaw_delta_rad,
+            "maximum_absolute_requested_steering_fraction": maximum_requested,
+            "maximum_absolute_held_steering_fraction": maximum_held,
+            "maximum_tilt_rad": maximum_tilt_rad,
+            "minimum_torso_height_m": minimum_torso_height_m,
+            "contact_cycle_count_by_limb": contact_cycles,
+            "torso_ground_contact_step_count": torso_ground_contact_step_count,
+            "controller_error_count": controller_error_count,
+            "active_safe_no_actuation_count": active_safe_no_actuation_count,
+            "nonfinite_observation_count": nonfinite_observation_count,
+            "actuator_application_mismatch_count": actuator_application_mismatch_count,
+            "controller_semantic_step_count": R23D12_CONTROLLER_STEPS,
+            "terminal_quiescent_taper_step_count": R23D12_TERMINAL_STEPS,
+            "validated_portable_command_count": validated_portable_command_count,
+            "native_actuation_application_count": native_actuation_application_count,
+            "post_handoff_native_actuation_application_count":
+                taper_outcome["passive_native_application_count"].clone(),
+            "confirmation_satisfied": taper_outcome["confirmation_satisfied"].clone(),
+            "handoff_after_active_step": taper_outcome["handoff_after_active_step"].clone(),
+            "first_passive_step": taper_outcome["first_passive_step"].clone(),
+            "handoff_reason": taper_outcome["handoff_reason"].clone(),
+            "active_terminal_step_count": taper_outcome["active_step_count"].clone(),
+            "quiescent_taper_step_count": taper_outcome["taper_step_count"].clone(),
+            "passive_terminal_step_count": taper_outcome["passive_step_count"].clone(),
+            "taper_reset_count": taper_outcome["taper_reset_count"].clone(),
+            "active_terminal_native_actuation_application_count":
+                taper_outcome["active_native_application_count"].clone(),
+            "quiescent_taper_gate_passed":
+                taper_outcome["quiescent_taper_gate_passed"].clone(),
+            "first_post_handoff_contact_loss_step":
+                taper_outcome["first_post_handoff_contact_loss_step"].clone(),
+            "post_handoff_contact_loss_step_count":
+                taper_outcome["post_handoff_contact_loss_step_count"].clone(),
+            "terminal_receipt_validation_failure_count":
+                terminal_receipt_validation_failure_count,
+            "maximum_absolute_terminal_active_joint_velocity_rad_s":
+                maximum_terminal_active_joint_speed,
+        },
+        "claims": r23d12_claims(),
+    });
+    serde_json::to_vec(&report).map_err(|error| {
+        r23d12_failure(
+            &cell,
+            source_commit,
+            "cell_report_complete",
+            &format!("QSDK_R23D12_RAP_REPORT_SERIALIZATION_FAILED:{error}"),
+            1,
+            1,
+            Some(retention["trace_artifact"].clone()),
+        )
+    })?;
+    Ok(report)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn physical_worker_preflight_is_dormant_and_inherits_r23d11_physics() {
+        let receipt =
+            run_qsdk_r23d12_rapier_preflight_impl("three_engine_confirmation", "positive_heading")
+                .expect("R23D12 Rapier worker preflight");
+        assert_eq!(receipt["inherited_r23d11_controller_and_physics"], true);
+        assert_eq!(
+            receipt["independent_diagnostic_availability_semantics"],
+            true
+        );
+        assert_eq!(receipt["physical_worker_implemented"], true);
+        assert_eq!(receipt["physical_execution_authorized"], false);
+        assert_eq!(receipt["model_construction_count"], 0);
+        assert_eq!(receipt["world_attempt_count"], 0);
+        assert_eq!(receipt["world_build_count"], 0);
+    }
+
+    #[test]
+    fn production_contract_matches_frozen_composition_and_temporal_identity() {
+        let contract = r23d12_contract().expect("R23D12 contract");
+        assert_eq!(
+            contract["inherited_temporal_contract"]["terminal_step_count"],
+            R23D12_TERMINAL_STEPS
+        );
+        assert_eq!(
+            contract["stability_assisted_composition_contract"]["maximum_pre_taper_combined_velocity_magnitude_rad_s"],
+            MAXIMUM_COMBINED_VELOCITY
+        );
+        assert_eq!(R23D12_TOTAL_TRACE_STEPS, 3_892);
+        assert_eq!(
+            R23D12_TRACE_RETENTION_MARKER,
+            "QSDK_R23D12_TRACE_RETENTION "
+        );
+    }
+
+    #[test]
+    fn stability_is_composed_then_tapered_before_one_rapier_host_mapping() {
+        let (compiled, controller) = compile_boundary().expect("compile boundary");
+        let turning_cell =
+            r23d3_cell(R23D8_STAGE_ID, "onset_600", "positive_heading").expect("cell");
+        let state = synthetic_state_frame(&compiled, heading_quaternion(0.2));
+        let schedule = r23d3_schedule(&turning_cell, 0, state.task_frame.reference_yaw_rad);
+        let command = r23d3_motion_command(0, PhaseProgressionMode::Clocked, &schedule);
+        let output = controller.step(&BalancedWaveControllerMemory::initial(), &state, &command);
+        let neutral = r23d8_compose_neutral_stance(&compiled, &output.actuation, &state, true)
+            .expect("neutral composition");
+        let stability_inputs = R23D12StabilityInputs {
+            raw_velocity_deltas_rad_s: vec![Some(0.04); R23D3_ACTUATOR_COUNT as usize],
+            availability: R23D12Availability::Available,
+            availability_name: "available",
+            support_margin_m: Some(0.01),
+        };
+        let (_, composed) = r23d12_compose_stability_assisted_taper(
+            &compiled,
+            &output.actuation,
+            &neutral,
+            &stability_inputs,
+            60,
+            120,
+            R23D12_CONTROLLER_STEPS,
+            &R23D12CompositionMemory::default(),
+        )
+        .expect("stability-assisted composition");
+        assert!(
+            composed.maximum_absolute_commanded_joint_velocity_rad_s
+                <= (MAXIMUM_NEUTRAL_VELOCITY + MAXIMUM_STABILITY_SLEW) * 0.5 + TOLERANCE
+        );
+        assert!(
+            composed
+                .applied_stability_velocity_deltas_rad_s
+                .iter()
+                .all(|value| (*value - MAXIMUM_STABILITY_SLEW).abs() <= TOLERANCE)
+        );
+        for (host, solution) in composed.host_mapping.ordered_commands.iter().zip(
+            neutral.receipt["ordered_actuator_solutions"]
+                .as_array()
+                .expect("solutions"),
+        ) {
+            let expected = (solution["bounded_velocity_rad_s"]
+                .as_f64()
+                .expect("velocity")
+                + MAXIMUM_STABILITY_SLEW)
+                * 0.5;
+            assert!((host.host_target_velocity_rad_s - expected).abs() <= TOLERANCE);
+            assert!(host.native_target_position_rad.is_none());
+        }
+    }
+}

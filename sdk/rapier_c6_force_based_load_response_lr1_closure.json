@@ -1,0 +1,174 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_load_response_closure_v1",
+  "status": "closed_negative_static_torque_residual",
+  "closed_utc": "2026-07-31T07:58:02Z",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-LOAD-RESPONSE",
+  "gate_id": "C6-RAP-HC-LR1",
+  "experiment_source_commit": "5a91c4dad4b366f27cfe6e2f2b69d24fcc4203c5",
+  "source_was_clean_and_equal_to_origin_main": true,
+  "preregistration": {
+    "path": "sdk/rapier_c6_force_based_load_response_lr1_preregistration.json",
+    "raw_sha256": "975e9205c46b3e718d3484a3e2d9185bddf4cd04da66ce326fc9bd14671dc031",
+    "status": "frozen_before_first_c6_rap_hc_lr1_physics_world",
+    "implementation_parent_commit": "d59800fb196916102e1e20714d7bcd3f21629c91"
+  },
+  "predecessor_fb1": {
+    "closure_path": "sdk/rapier_c6_force_based_host_characterization_closure.json",
+    "closure_raw_sha256": "48a46e3533a45226f8dddab64d962814bd88e3526202d48242b0400ec9d32416",
+    "report_raw_sha256": "5b053de8f9128920ba4b64407a4c3867171579a1aca74aff4e50dfaffa308bd3",
+    "remains_closed_negative": true,
+    "was_not_rerun_rethresholded_or_reclassified": true
+  },
+  "complete_attempt": {
+    "root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-load-response-lr1-5a91c4d",
+    "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-load-response-lr1-5a91c4d\\report.json",
+    "report_sha256": "55a907eb027ca4c5e3d8443fac9869d058ecaa920dc9f299fdadc4c81c2402d7",
+    "stdout_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-load-response-lr1-5a91c4d\\stdout.log",
+    "stdout_sha256": "55a907eb027ca4c5e3d8443fac9869d058ecaa920dc9f299fdadc4c81c2402d7",
+    "stderr_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-load-response-lr1-5a91c4d\\stderr.log",
+    "stderr_sha256": "c34e201077f96ba35af583571bf1a166cf0f2e15b18a058444fe88f53825ccef",
+    "process_exit_code": 1,
+    "world_attempt_count": 8,
+    "world_build_count": 8,
+    "cell_count": 8,
+    "passed_cell_count": 6,
+    "failed_cell_count": 2,
+    "motor_model_readback_count": 8,
+    "motor_model_mismatch_count": 0,
+    "nonfinite_value_count": 0,
+    "step_impulse_limit_violation_count": 0,
+    "load_response_grid_passed": false,
+    "signed_pair_symmetry_passed": true,
+    "maximum_signed_pair_relative_asymmetry": 1.1920771927201991e-7,
+    "arm_magnitude_ordering_passed": true,
+    "solver_iteration_inverse_scaling_passed": true,
+    "maximum_solver_scaling_relative_error": 9.11560781727827e-5,
+    "failure_codes": [
+      "C6_RAP_HC_LR1_passed_cell_count_INVALID",
+      "C6_RAP_HC_LR1_failed_cell_count_INVALID",
+      "C6_RAP_HC_LR1_load_response_grid_passed_INVALID"
+    ]
+  },
+  "failed_cells": [
+    {
+      "cell_id": "arm_0.15_negative_solver_10",
+      "signed_lever_arm_z_m": -0.15000000596046448,
+      "solver_iterations": 10,
+      "final_angle_rad": -0.038202762603759766,
+      "terminal_angular_velocity_rad_s": 0.0058976346626877785,
+      "terminal_motor_impulse_nms": -0.0012241145595908165,
+      "expected_terminal_small_step_impulse_nms": 0.0012241062941029668,
+      "normalized_terminal_impulse_response": 1.0000067949295044,
+      "normalized_static_torque_residual": 0.04028994217514992,
+      "frozen_maximum_normalized_static_torque_residual": 0.02,
+      "response_passed": true,
+      "static_balance_passed": false,
+      "terminal_settle_passed": true,
+      "signed_geometry_passed": true,
+      "force_limit_passed": true,
+      "cell_passed": false
+    },
+    {
+      "cell_id": "arm_0.15_positive_solver_10",
+      "signed_lever_arm_z_m": 0.15000000596046448,
+      "solver_iterations": 10,
+      "final_angle_rad": 0.038202762603759766,
+      "terminal_angular_velocity_rad_s": -0.005897624883800745,
+      "terminal_motor_impulse_nms": 0.0012241146760061383,
+      "expected_terminal_small_step_impulse_nms": 0.0012241062941029668,
+      "normalized_terminal_impulse_response": 1.0000067949295044,
+      "normalized_static_torque_residual": 0.04028994217514992,
+      "frozen_maximum_normalized_static_torque_residual": 0.02,
+      "response_passed": true,
+      "static_balance_passed": false,
+      "terminal_settle_passed": true,
+      "signed_geometry_passed": true,
+      "force_limit_passed": true,
+      "cell_passed": false
+    }
+  ],
+  "technical_disposition": {
+    "explicit_force_based_selection_observed_in_every_cell": true,
+    "source_derived_small_step_impulse_response_worked_for_all_declared_cells": true,
+    "all_normalized_terminal_impulse_responses_inside_frozen_interval": true,
+    "normalized_terminal_impulse_response_observed_minimum": 1.0000048875808716,
+    "normalized_terminal_impulse_response_observed_maximum": 1.0000139474868774,
+    "signed_pair_symmetry_worked": true,
+    "arm_magnitude_ordering_worked": true,
+    "inverse_solver_iteration_scaling_worked": true,
+    "anchor_integrity_worked": true,
+    "small_step_force_limit_worked": true,
+    "terminal_velocity_gate_worked_for_every_cell": true,
+    "static_torque_balance_gate_worked_for_every_cell": false,
+    "static_torque_balance_passed_cell_count": 6,
+    "static_torque_balance_failed_cell_count": 2,
+    "frozen_success_contract_passed": false,
+    "force_based_load_response_characterization_authorized": false,
+    "force_based_host_characterization_authorized": false,
+    "selected_policy_locomotion_evaluated": false,
+    "result_is_not_a_selected_policy_verdict": true
+  },
+  "failure_analysis": {
+    "classification": "retained_outcome_for_distinct_successor_design",
+    "observed_mechanism": "The mirrored 0.15 m, 10-solver-iteration cells ended the frozen 240-step horizon with approximately 4.028994 percent normalized static-torque residual, exceeding the prospective 2 percent gate, even though their absolute terminal angular velocities remained inside the separate 0.01 rad/s settle gate.",
+    "what_worked": "The terminal JointMotor.impulse in all eight cells matched the pinned small-step gravity-load formula to approximately 0.0014 percent or better; signed symmetry, arm ordering, inverse iteration scaling, model readback, force limits, finite-value checks, and anchor integrity all passed.",
+    "what_failed": "The frozen endpoint and static-balance contract was not met by the two low-arm, low-iteration cells, so the all-cells load-response grid and both host-characterization claims fail.",
+    "likely_successor_question": "A distinct successor may prospectively test a source- or dynamics-grounded convergence observation contract, such as a longer fixed horizon or a consecutive-window convergence rule, on fresh cells that were not exposed by LR1.",
+    "may_not_reclassify_lr1": true,
+    "successor_requirements": [
+      "new campaign, gate, source identity, and preregistration",
+      "exclude or explicitly classify every LR1 outcome-exposed arm and solver-iteration cell",
+      "derive the observation or convergence contract before successor physics execution",
+      "retain explicit ForceBased builder and mutable readback",
+      "retain the source-derived small-step impulse response and force-limit gates",
+      "retain signed pairs, multiple loads or lever arms, and solver-iteration coverage",
+      "run the complete zero-world synthetic integrity gate before any successor world"
+    ]
+  },
+  "immutability": {
+    "same_identity_rerun_forbidden": true,
+    "report_rewrite_forbidden": true,
+    "threshold_change_forbidden": true,
+    "failed_cell_deletion_replacement_or_averaging_forbidden": true,
+    "posthoc_pass_reclassification_forbidden": true,
+    "successor_requires_new_identity": true
+  },
+  "next_allowed_work": {
+    "distinct_force_based_convergence_successor_may_be_preregistered": true,
+    "rapier_selected_policy_locomotion_remains_blocked": true,
+    "mujoco_selected_policy_work_may_continue_independently": true,
+    "bw19v_cold_friction_campaign_may_continue_independently": true,
+    "portable_release_policy_unchanged": true
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+      "sha256": "b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+    }
+  ],
+  "claims": {
+    "rapier_force_based_load_response_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

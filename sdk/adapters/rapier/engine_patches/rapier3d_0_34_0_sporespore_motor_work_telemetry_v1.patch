@@ -1,0 +1,416 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index fb3d75a7..ef8511f9 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -97,6 +97,7 @@ simd-stable = [
+     "simba/wide",
+     "simd-is-enabled",
+ ]
++sporespore-motor-work-telemetry = []
+ std = [
+     "alloc",
+     "parry3d/std",
+diff --git a/src/dynamics/joint/generic_joint.rs b/src/dynamics/joint/generic_joint.rs
+index 75ff45f3..e81cbab3 100644
+--- a/src/dynamics/joint/generic_joint.rs
++++ b/src/dynamics/joint/generic_joint.rs
+@@ -160,6 +160,45 @@ impl<N: SimdRealCopy> From<[N; 2]> for JointLimits<N> {
+     }
+ }
+ 
++/// Exact per-outer-step telemetry accumulated by the SporeSpore solver patch.
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++#[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
++#[derive(Copy, Clone, Debug, PartialEq)]
++pub struct JointMotorWorkTelemetry {
++    /// Monotonic publication sequence for active outer solver steps.
++    pub sequence: u64,
++    /// Sum of signed generalized motor impulse in the body2-minus-body1 coordinate.
++    pub generalized_impulse: Real,
++    /// Sum of absolute generalized motor impulse.
++    pub absolute_generalized_impulse: Real,
++    /// Positive work supplied by the motor.
++    pub supplied_work: Real,
++    /// Positive magnitude of work absorbed by the motor.
++    pub absorbed_work: Real,
++    /// Signed net motor work accumulated at every solver application.
++    pub net_work: Real,
++    /// Number of iterative motor-constraint applications observed.
++    pub application_count: u32,
++    /// Number of solver small steps in which this motor constraint was built.
++    pub small_step_count: u32,
++}
++
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++impl Default for JointMotorWorkTelemetry {
++    fn default() -> Self {
++        Self {
++            sequence: 0,
++            generalized_impulse: 0.0,
++            absolute_generalized_impulse: 0.0,
++            supplied_work: 0.0,
++            absorbed_work: 0.0,
++            net_work: 0.0,
++            application_count: 0,
++            small_step_count: 0,
++        }
++    }
++}
++
+ /// A powered motor that drives a joint toward a target position/velocity.
+ ///
+ /// Motors add actuation to joints - they apply forces to make the joint move toward
+@@ -207,6 +246,9 @@ pub struct JointMotor {
+     pub impulse: Real,
+     /// Force-based or acceleration-based motor model.
+     pub model: MotorModel,
++    /// Exact per-outer-step solver work telemetry for the SporeSpore patch.
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    pub sporespore_solver_work: JointMotorWorkTelemetry,
+ }
+ 
+ impl Default for JointMotor {
+@@ -219,6 +261,8 @@ impl Default for JointMotor {
+             max_force: Real::MAX,
+             impulse: 0.0,
+             model: MotorModel::AccelerationBased,
++            #[cfg(feature = "sporespore-motor-work-telemetry")]
++            sporespore_solver_work: JointMotorWorkTelemetry::default(),
+         }
+     }
+ }
+diff --git a/src/dynamics/solver/joint_constraint/any_joint_constraint.rs b/src/dynamics/solver/joint_constraint/any_joint_constraint.rs
+index d08d1ddb..9a2d7758 100644
+--- a/src/dynamics/solver/joint_constraint/any_joint_constraint.rs
++++ b/src/dynamics/solver/joint_constraint/any_joint_constraint.rs
+@@ -16,6 +16,7 @@ pub enum AnyJointConstraintMut<'a> {
+     SimdRigid(&'a mut JointConstraint<SimdReal, SIMD_WIDTH>),
+ }
+ 
++#[cfg_attr(feature = "sporespore-motor-work-telemetry", allow(dead_code))]
+ impl AnyJointConstraintMut<'_> {
+     pub fn remove_bias(&mut self) {
+         match self {
+diff --git a/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs b/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs
+index 9090a856..b0a03d04 100644
+--- a/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs
++++ b/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs
+@@ -43,6 +43,15 @@ pub enum WritebackId {
+     Motor(usize),
+ }
+ 
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++#[derive(Copy, Clone, Debug)]
++pub(crate) struct SporeSporeMotorWorkSample {
++    pub joint_id: JointIndex,
++    pub motor_axis: usize,
++    pub generalized_impulse: Real,
++    pub work: Real,
++}
++
+ // TODO: right now we only use this for impulse_joints.
+ // However, it may actually be a good idea to use this everywhere in
+ // the solver, to avoid fetching data from the rigid-body set
+@@ -337,6 +346,7 @@ impl JointConstraint<Real, 1> {
+         len
+     }
+ 
++    #[cfg_attr(feature = "sporespore-motor-work-telemetry", allow(dead_code))]
+     pub fn solve(&mut self, solver_vels: &mut SolverBodies) {
+         let mut solver_vel1 = solver_vels.get_vel(self.solver_vel1[0]);
+         let mut solver_vel2 = solver_vels.get_vel(self.solver_vel2[0]);
+@@ -347,6 +357,48 @@ impl JointConstraint<Real, 1> {
+         solver_vels.set_vel(self.solver_vel2[0], solver_vel2);
+     }
+ 
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    pub(crate) fn solve_with_sporespore_motor_work(
++        &mut self,
++        solver_vels: &mut SolverBodies,
++    ) -> Option<SporeSporeMotorWorkSample> {
++        let motor_axis = match self.writeback_id {
++            WritebackId::Motor(axis) => Some(axis),
++            _ => None,
++        };
++        let mut solver_vel1 = solver_vels.get_vel(self.solver_vel1[0]);
++        let mut solver_vel2 = solver_vels.get_vel(self.solver_vel2[0]);
++        let relative_velocity_before = self
++            .lin_jac
++            .gdot(solver_vel2.linear - solver_vel1.linear)
++            + self.ang_jac2.gdot(solver_vel2.angular)
++            - self.ang_jac1.gdot(solver_vel1.angular);
++        let constraint_impulse_before = self.impulse;
++
++        self.solve_generic(&mut solver_vel1, &mut solver_vel2);
++
++        let relative_velocity_after = self
++            .lin_jac
++            .gdot(solver_vel2.linear - solver_vel1.linear)
++            + self.ang_jac2.gdot(solver_vel2.angular)
++            - self.ang_jac1.gdot(solver_vel1.angular);
++        let constraint_delta_impulse = self.impulse - constraint_impulse_before;
++        let generalized_impulse = -constraint_delta_impulse;
++        let work = generalized_impulse
++            * (relative_velocity_before + relative_velocity_after)
++            * 0.5;
++
++        solver_vels.set_vel(self.solver_vel1[0], solver_vel1);
++        solver_vels.set_vel(self.solver_vel2[0], solver_vel2);
++
++        motor_axis.map(|motor_axis| SporeSporeMotorWorkSample {
++            joint_id: self.joint_id[0],
++            motor_axis,
++            generalized_impulse,
++            work,
++        })
++    }
++
+     pub fn writeback_impulses(&self, joints_all: &mut [JointGraphEdge]) {
+         let joint = &mut joints_all[self.joint_id[0]].weight;
+         match self.writeback_id {
+diff --git a/src/dynamics/solver/joint_constraint/joint_constraints_set.rs b/src/dynamics/solver/joint_constraint/joint_constraints_set.rs
+index 762a5ac5..87d40e29 100644
+--- a/src/dynamics/solver/joint_constraint/joint_constraints_set.rs
++++ b/src/dynamics/solver/joint_constraint/joint_constraints_set.rs
+@@ -16,12 +16,40 @@ use crate::dynamics::solver::joint_constraint::generic_joint_constraint_builder:
+ use crate::dynamics::solver::joint_constraint::joint_constraint_builder::JointConstraintBuilder;
+ use crate::dynamics::solver::joint_constraint::joint_velocity_constraint::JointConstraint;
+ use crate::dynamics::solver::solver_body::SolverBodies;
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++use crate::dynamics::solver::joint_constraint::joint_velocity_constraint::{
++    SporeSporeMotorWorkSample, WritebackId,
++};
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++use crate::dynamics::JointMotorWorkTelemetry;
+ #[cfg(feature = "simd-is-enabled")]
+ use {
+     crate::dynamics::solver::joint_constraint::joint_constraint_builder::JointConstraintBuilderSimd,
+     crate::math::{SIMD_WIDTH, SimdReal},
+ };
+ 
++#[cfg(all(
++    feature = "sporespore-motor-work-telemetry",
++    feature = "simd-is-enabled"
++))]
++compile_error!(
++    "sporespore-motor-work-telemetry is qualified only for scalar rigid impulse-joint constraints"
++);
++
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++#[derive(Copy, Clone, Debug)]
++struct SporeSporeMotorWorkEntry {
++    joint_id: JointIndex,
++    motor_axis: usize,
++    generalized_impulse: Real,
++    absolute_generalized_impulse: Real,
++    supplied_work: Real,
++    absorbed_work: Real,
++    net_work: Real,
++    application_count: u32,
++    small_step_count: u32,
++}
++
+ pub struct JointConstraintsSet {
+     pub generic_jacobians: DVector,
+     pub two_body_interactions: Vec<usize>,
+@@ -37,6 +65,8 @@ pub struct JointConstraintsSet {
+     pub velocity_constraints_builder: Vec<JointConstraintBuilder>,
+     #[cfg(feature = "simd-is-enabled")]
+     pub simd_velocity_constraints_builder: Vec<JointConstraintBuilderSimd>,
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    sporespore_motor_work: Vec<SporeSporeMotorWorkEntry>,
+ }
+ 
+ impl JointConstraintsSet {
+@@ -54,6 +84,8 @@ impl JointConstraintsSet {
+             generic_velocity_constraints_builder: vec![],
+             #[cfg(feature = "simd-is-enabled")]
+             simd_velocity_constraints_builder: vec![],
++            #[cfg(feature = "sporespore-motor-work-telemetry")]
++            sporespore_motor_work: vec![],
+         }
+     }
+ 
+@@ -96,6 +128,94 @@ impl JointConstraintsSet {
+ }
+ 
+ impl JointConstraintsSet {
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn sporespore_motor_work_entry_mut(
++        entries: &mut Vec<SporeSporeMotorWorkEntry>,
++        joint_id: JointIndex,
++        motor_axis: usize,
++    ) -> &mut SporeSporeMotorWorkEntry {
++        if let Some(index) = entries
++            .iter()
++            .position(|entry| entry.joint_id == joint_id && entry.motor_axis == motor_axis)
++        {
++            return &mut entries[index];
++        }
++        entries.push(SporeSporeMotorWorkEntry {
++            joint_id,
++            motor_axis,
++            generalized_impulse: 0.0,
++            absolute_generalized_impulse: 0.0,
++            supplied_work: 0.0,
++            absorbed_work: 0.0,
++            net_work: 0.0,
++            application_count: 0,
++            small_step_count: 0,
++        });
++        entries
++            .last_mut()
++            .expect("the SporeSpore motor-work entry was just inserted")
++    }
++
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn record_sporespore_motor_work(
++        entries: &mut Vec<SporeSporeMotorWorkEntry>,
++        sample: SporeSporeMotorWorkSample,
++    ) {
++        let entry = Self::sporespore_motor_work_entry_mut(
++            entries,
++            sample.joint_id,
++            sample.motor_axis,
++        );
++        entry.generalized_impulse += sample.generalized_impulse;
++        entry.absolute_generalized_impulse += sample.generalized_impulse.abs();
++        entry.net_work += sample.work;
++        if sample.work >= 0.0 {
++            entry.supplied_work += sample.work;
++        } else {
++            entry.absorbed_work += -sample.work;
++        }
++        entry.application_count = entry.application_count.saturating_add(1);
++    }
++
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn record_sporespore_motor_small_step(
++        entries: &mut Vec<SporeSporeMotorWorkEntry>,
++        joint_id: JointIndex,
++        motor_axis: usize,
++    ) {
++        let entry = Self::sporespore_motor_work_entry_mut(entries, joint_id, motor_axis);
++        entry.small_step_count = entry.small_step_count.saturating_add(1);
++    }
++
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn solve_with_sporespore_motor_work(
++        &mut self,
++        solver_vels: &mut SolverBodies,
++        generic_solver_vels: &mut DVector,
++        remove_bias: bool,
++    ) {
++        for constraint in &mut self.generic_velocity_constraints {
++            if remove_bias {
++                constraint.remove_bias_from_rhs();
++            }
++            constraint.solve(
++                &self.generic_jacobians,
++                solver_vels,
++                generic_solver_vels,
++            );
++        }
++
++        let entries = &mut self.sporespore_motor_work;
++        for constraint in &mut self.velocity_constraints {
++            if remove_bias {
++                constraint.remove_bias_from_rhs();
++            }
++            if let Some(sample) = constraint.solve_with_sporespore_motor_work(solver_vels) {
++                Self::record_sporespore_motor_work(entries, sample);
++            }
++        }
++    }
++
+     pub fn init(
+         &mut self,
+         island_id: usize,
+@@ -119,6 +239,8 @@ impl JointConstraintsSet {
+ 
+         self.clear_constraints();
+         self.clear_builders();
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        self.sporespore_motor_work.clear();
+ 
+         self.interaction_groups.clear_groups();
+         self.interaction_groups.group_joints(
+@@ -295,10 +417,17 @@ impl JointConstraintsSet {
+ 
+     #[profiling::function]
+     pub fn solve(&mut self, solver_vels: &mut SolverBodies, generic_solver_vels: &mut DVector) {
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        {
++            self.solve_with_sporespore_motor_work(solver_vels, generic_solver_vels, false);
++        }
++        #[cfg(not(feature = "sporespore-motor-work-telemetry"))]
++        {
+         let (jac, constraints) = self.iter_constraints_mut();
+         for mut c in constraints {
+             c.solve(jac, solver_vels, generic_solver_vels);
+         }
++        }
+     }
+ 
+     pub fn solve_wo_bias(
+@@ -306,11 +435,18 @@ impl JointConstraintsSet {
+         solver_vels: &mut SolverBodies,
+         generic_solver_vels: &mut DVector,
+     ) {
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        {
++            self.solve_with_sporespore_motor_work(solver_vels, generic_solver_vels, true);
++        }
++        #[cfg(not(feature = "sporespore-motor-work-telemetry"))]
++        {
+         let (jac, constraints) = self.iter_constraints_mut();
+         for mut c in constraints {
+             c.remove_bias();
+             c.solve(jac, solver_vels, generic_solver_vels);
+         }
++        }
+     }
+ 
+     pub fn writeback_impulses(&mut self, joints_all: &mut [JointGraphEdge]) {
+@@ -318,6 +454,21 @@ impl JointConstraintsSet {
+         for mut c in constraints {
+             c.writeback_impulses(joints_all);
+         }
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        for entry in &self.sporespore_motor_work {
++            let motor = &mut joints_all[entry.joint_id].weight.data.motors[entry.motor_axis];
++            let sequence = motor.sporespore_solver_work.sequence.saturating_add(1);
++            motor.sporespore_solver_work = JointMotorWorkTelemetry {
++                sequence,
++                generalized_impulse: entry.generalized_impulse,
++                absolute_generalized_impulse: entry.absolute_generalized_impulse,
++                supplied_work: entry.supplied_work,
++                absorbed_work: entry.absorbed_work,
++                net_work: entry.net_work,
++                application_count: entry.application_count,
++                small_step_count: entry.small_step_count,
++            };
++        }
+     }
+ 
+     #[profiling::function]
+@@ -358,5 +509,19 @@ impl JointConstraintsSet {
+         for builder in &mut self.simd_velocity_constraints_builder {
+             builder.update(params, solver_bodies, &mut self.simd_velocity_constraints);
+         }
++
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        {
++            let entries = &mut self.sporespore_motor_work;
++            for constraint in &self.velocity_constraints {
++                if let WritebackId::Motor(motor_axis) = constraint.writeback_id {
++                    Self::record_sporespore_motor_small_step(
++                        entries,
++                        constraint.joint_id[0],
++                        motor_axis,
++                    );
++                }
++            }
++        }
+     }
+ }

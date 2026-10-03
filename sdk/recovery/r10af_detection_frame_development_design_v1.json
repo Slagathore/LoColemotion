@@ -1,0 +1,115 @@
+{
+  "schema_version": "sporespore_r10af_detection_frame_development_design_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_contact_classification_correction",
+    "question_class": "development"
+  },
+  "source_parent_commit": "beb7e643eb8d4811bd82882ca3039d7d893a4a3c",
+  "question": "Can the unchanged V24 recovery controller complete its finite recovery path when loaded distal contacts are classified in the native contact-detection frame?",
+  "dependencies": [
+    {
+      "path": "sdk/recovery/r10ae_replay_invalid_closure_v1.json",
+      "byte_length": 52052,
+      "raw_sha256": "sha256:2d4c4daca0d85dfcd977af8649a05d87682698ec14dbf8ef32a50badfb9cd4cf"
+    },
+    {
+      "path": "sdk/recovery/r10ae_post_exposure_contact_analysis_v1.json",
+      "byte_length": 29075,
+      "raw_sha256": "sha256:06eb43cf1f8c0f225ad3c9081225474c94ced08e00048260e439a04708fe6be9"
+    },
+    {
+      "path": "sdk/recovery/r10ab_partial_downward_rise_finite_cycle_contract_v2.json",
+      "byte_length": 33651,
+      "raw_sha256": "sha256:bd8bf8b616a80c7f5c2b5070324350c0d8d66e9543f3598bc9edb067982cb83c"
+    },
+    {
+      "path": "sdk/conformance/contact_frame_replay_v2.py",
+      "byte_length": 9294,
+      "raw_sha256": "sha256:e0d2280577f94adcf30c6dba99e5d7331fb116eb3e4271627e7c3bd26cfece17"
+    },
+    {
+      "path": "sdk/conformance/contact_frame_report_v2.py",
+      "byte_length": 5004,
+      "raw_sha256": "sha256:1433f1f28cae671b41c39b60c59d74130cb98a7ad20304645b694993ba0871f3"
+    }
+  ],
+  "controlled_change": {
+    "classification_profile_id": "godot_jolt_distal_contact_detection_frame_v1",
+    "classification_scope": "distal_foot_cap_only",
+    "measurement_frame": "contact_detection_before_integration",
+    "activation_scope": "entire_fresh_world_including_setup_and_prefix",
+    "controller": "unchanged_V24",
+    "walking_policy": "unchanged_V56",
+    "contact_cap_geometry": "unchanged",
+    "classification_tolerance_m": 1e-06,
+    "normal_impulses": "unchanged_native_post_solve",
+    "nonfoot_clearance_geometry": "unchanged_callback_geometry",
+    "torso_ventral_classification": "unchanged_callback_frame",
+    "controller_observation_changed": true,
+    "core_dll_changed": false,
+    "engine_image_changed": false,
+    "evaluator_changed": false,
+    "thresholds_changed": false
+  },
+  "observation_contract": {
+    "source_schema": "sporespore_r10af_godot_detection_frame_contact_source_v1",
+    "callback_coordinates_retained": true,
+    "detection_coordinates_retained": true,
+    "classification_coordinate_field": "classification_position_body_local_m",
+    "matching": [
+      "exact_native_space_step",
+      "body_and_floor_instance_identity",
+      "shape_derived_engine_contact_id",
+      "exact_world_point",
+      "exact_normal_impulse",
+      "unique_complete_loaded_floor_population"
+    ],
+    "refusal": [
+      "stale_or_incomplete_snapshot",
+      "ambiguous_or_missing_match",
+      "unmatched_source_contact",
+      "invalid_frame_transform",
+      "unknown_classification_profile",
+      "changed_or_missing_source_receipt"
+    ],
+    "legacy_selection": "Absent profile retains the existing callback-frame path and exact legacy source schema; any present unknown profile refuses."
+  },
+  "first_probe": {
+    "seed": 64248,
+    "prefix_phase": 248,
+    "seed_label": "R10AF-DETECTION-FRAME-PREFIX-248-V1",
+    "roles": [
+      "kick_passive_recovery_resume"
+    ],
+    "execution_mode": "single_kick_controller_diagnostic_v1",
+    "attempt_limit": 1,
+    "held_out": false,
+    "fresh_setup": true,
+    "baseline_reuse": false,
+    "coverage_adequacy": "One fresh noncomparative child at exposed phase 248 tests the frame correction through startup, setup, kick, recovery, controller terminal or finite walking stop, retention and independent replay. Old R10AE dynamics are diagnostic context only, not a cached comparison baseline."
+  },
+  "limits": {
+    "maximum_world_build_count": 1,
+    "maximum_steps_per_child": 3752,
+    "after_interaction_steps": 3400,
+    "child_wall_time_limit_seconds": 2400,
+    "independent_reader_wall_time_limit_seconds": 1200
+  },
+  "required_before_world": [
+    "Bind a fresh profile, seed guard, host identity, source key, context producer and independent pre-world consumer.",
+    "Integrate production classifier, source retention, controller transport, native and independent Python replay under the explicit successor frame contract.",
+    "Verify native point identity, complete loaded-contact matching, both classification directions, authored float conversion, contact impulse partition, unknown-profile refusal and unchanged legacy output with zero worlds.",
+    "Run the complete applicable safety graph and negative controls at the exact source key, then launch once from a clean pushed prospective freeze under the operation lock."
+  ],
+  "outcome_rules": [
+    "Incomplete capture, ambiguous matching, source drift or replay disagreement is infrastructure-invalid and consumes the attempt.",
+    "A valid controller failure is a diagnostic negative and preserves its exact terminal reason.",
+    "A positive SingleKick is not paired commissioning, a matched effect, robustness, held-out evidence or release acceptance.",
+    "No result renews R10AE seed 63248 or changes its grade."
+  ],
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "sporespore_development_recovery_measured_support_transfer_contract_v1",
+  "ledger_scope": {"subsystem": "recovery", "engine_scope": ["core"], "authority_mode": "prospective_development_controller_contract", "question_class": "development"},
+  "component_id": "V45",
+  "policy_id": "sporespore_balanced_wave_recovery_measured_support_transfer_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_support_hold_posture_v1",
+  "evidence_basis": ["sdk/development/v44_pre_liftoff_diagnosis_closure_v1.json", "sdk/development/v44_mujoco_fixed_command_closure_v1.json"],
+  "question": "Does deliberate measured support transfer before each liftoff prevent stance-foot unloading and permit a complete four-limb walking cycle followed by a bounded settled stop?",
+  "input": "A strict v3 policy-step request adds a versioned measured body frame using existing OrderedBodyStateV2 values for all nine bodies. Bind local semantic step, sample time, capability digest and source-measurement declaration to the walking StateFrame. Validate body order, finite poses/twists and matching torso pose/twist. Compute mass-weighted COM and velocity from these measured body values and the compiled masses. Derive projected capsule endpoints from measured distal poses; these are geometry, not contact observations. Use the unchanged native StateFrame contact truth for bearing. No ideal hinge velocity estimate, synthesized contact or new native engine query is implied.",
+  "preparation": "Identify the next scheduled swing limb and its absolute swing epoch from prospective gait clocks. Before a new epoch is released, hold gait progression, request inherited all-limb upright support without swing lift, and require all four measured contacts plus the declared COM, speed, tilt and angular-speed conditions for six consecutive samples. A separate 240-command preparation cap refuses safely. Preserve the inherited 120-command missing-stance-support interlock and three-clear-sample release rule. Every failure retains memory and requests safe zero.",
+  "support_reference": "Project measured COM and the three remaining measured capsule endpoints into the horizontal plane. Solve the interval of body displacement along the current anatomical forward axis that places COM at least 25 mm inside every edge. Choose the nearest feasible displacement; refuse degenerate or unreachable geometry. Integrate a common hip-direction bias at rate -(4 * displacement_m - 1.5 * measured_forward_com_speed_m_s) / total_leg_length_m, bounded by the declared rate and angle. Apply this bias during preparation and scheduled swing, retaining it during all-stance gaps. Keep the inherited joint projection, floor reference, motor gains and caps. Compare old and current walking waves using the same current bias so a bias change is not counted as wave feedforward. Actual reference slew and measured joint feedback remain active.",
+  "controller_parameters": {
+    "target_triangle_margin_m": 0.025,
+    "minimum_release_triangle_margin_m": 0.020,
+    "maximum_release_horizontal_com_speed_m_s": 0.030,
+    "maximum_release_torso_angular_speed_rad_s": 0.15,
+    "maximum_release_torso_tilt_rad": 0.05,
+    "release_dwell_commands": 6,
+    "maximum_preparation_commands": 240,
+    "maximum_absolute_hip_bias_rad": 0.25,
+    "maximum_hip_bias_rate_rad_s": 0.60,
+    "position_rate_gain_per_s": 4.0,
+    "velocity_damping_factor": 1.5
+  },
+  "first_native_diagnostic": "After complete affected-route zero-world tests, one fresh MuJoCo seed-40200 world may start from the same explicitly bound V44 native-state projection and existing recovery morphology/material/cap route. Use V45 closed-loop feedback through the actual Rust C ABI and native five-substep velocity adapter. This is a development walking diagnostic, not a MuJoCo get-up test, paired comparison or official route. Its distinct launch declaration must freeze a maximum 1600 walking commands and at most 120 additional stopping commands, retain all native substeps and input/output/memory/measurement links, and name exact cycle-completion and stop predicates before launch. No world is selected by this component contract alone.",
+  "verification": [
+    "Complete Rust core tests and unchanged existing controller fixtures; actual stateless and cached-session C ABI checks; absent/null/crossed body frame, wrong clocks, nonfinite body values, wrong order, torso mismatch and safe-zero memory preservation.",
+    "Triangle geometry, signed forward bias, rigid coordinate changes, readiness dwell, new swing epochs, preparation timeout, contact-loss interaction, reference continuity, bounded bias and unchanged old-policy outputs.",
+    "Before any native world: exact source/runtime declaration, construction/readback, direct child ownership and timeout, bounded stepping and cap readback, full retention, independent no-world reader and false-claim negative controls. Use a fresh consumed identity for every physical attempt.",
+    "A Godot recovery-route integration remains a separate affected-path gate after the bounded MuJoCo diagnostic; do not silently apply this policy to V44's retained run or official acceptance schedule."
+  ],
+  "physical_attempt_selected": false,
+  "successful_controller_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

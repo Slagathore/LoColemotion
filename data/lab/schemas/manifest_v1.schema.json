@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/manifest_v1.schema.json",
+  "title": "SporeSpore lab run manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "status",
+    "experiment_id",
+    "schema_set",
+    "recorder_version",
+    "expanded_spec_sha256",
+    "resolved_configuration_sha256",
+    "applied_configuration_sha256",
+    "dirty_worktree",
+    "execution_mode",
+    "reproducibility",
+    "units",
+    "started_utc",
+    "required_artifacts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.manifest.v1"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+    },
+    "status": {
+      "enum": ["RUNNING", "COMPLETE", "ABORTED", "CRASHED"]
+    },
+    "experiment_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "hypothesis_id": {
+      "type": ["string", "null"]
+    },
+    "experiment_resource_path": {
+      "type": "string"
+    },
+    "experiment_resource_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "fixture_id": {
+      "type": "string"
+    },
+    "fixture_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "fixture_resource_path": {
+      "type": "string"
+    },
+    "fixture_resource_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "loaded_resource_hashes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/sha256"
+      }
+    },
+    "schema_set": {
+      "const": "sporespore.lab.schemas.v1"
+    },
+    "recorder_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expanded_spec_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "resolved_configuration_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "applied_configuration_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^(sha256:[a-f0-9]{64})?$"
+    },
+    "git_commit": {
+      "type": "string"
+    },
+    "dirty_worktree": {
+      "type": "boolean"
+    },
+    "dirty_diff_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^(sha256:[a-f0-9]{64})?$"
+    },
+    "execution_mode": {
+      "enum": ["development", "promotion", "development_batch"]
+    },
+    "reproducibility": {
+      "enum": [
+        "clean_committed_source",
+        "partial_dirty_source",
+        "development_batch"
+      ]
+    },
+    "godot_version": {
+      "type": "string"
+    },
+    "godot_commit": {
+      "type": "string"
+    },
+    "physics_backend": {
+      "type": "string"
+    },
+    "physics_backend_adapter": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "physics_ticks_per_second": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "solver_velocity_iterations": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "solver_position_iterations": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "observer_profile": {
+      "type": "string"
+    },
+    "observer_channel_set_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "observer_parity_envelope_id": {
+      "type": ["string", "null"]
+    },
+    "contact_cap_per_body": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "process_isolation": {
+      "enum": [
+        "direct_in_process_development_only",
+        "outer_parent_reserved_fresh_godot_v1"
+      ]
+    },
+    "body_dynamics": {
+      "type": "object"
+    },
+    "joint_dynamics": {
+      "type": "object"
+    },
+    "surface_materials": {
+      "type": "object"
+    },
+    "seed_root": {
+      "type": "integer"
+    },
+    "rng_derivation": {
+      "type": "string"
+    },
+    "rng_streams": {
+      "type": "object"
+    },
+    "scaffolds_allowed": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "scaffolds_forbidden": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "expanded_parameters": {
+      "type": "object"
+    },
+    "comparison_role": {
+      "type": ["string", "null"]
+    },
+    "paired_run_id": {
+      "type": ["string", "null"]
+    },
+    "units": {
+      "const": "SI"
+    },
+    "started_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finalized_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "required_artifacts": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}

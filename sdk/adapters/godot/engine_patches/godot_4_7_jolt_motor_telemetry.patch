@@ -1,0 +1,293 @@
+diff --git a/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp b/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp
+index 2e7d4fd..ccb9b56 100644
+--- a/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp
++++ b/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp
+@@ -377,6 +377,30 @@ float JoltHingeJoint3D::get_applied_torque() const {
+ 	}
+ }
+ 
++bool JoltHingeJoint3D::try_get_motor_telemetry(MotorTelemetry &r_telemetry) const {
++	if (unlikely(_is_fixed()) || jolt_ref == nullptr) {
++		return false;
++	}
++
++	const JPH::HingeConstraint *constraint = static_cast<const JPH::HingeConstraint *>(jolt_ref.GetPtr());
++	const uint64_t sequence = constraint->GetMotorTelemetrySequence();
++	const float solver_step_s = constraint->GetMotorTelemetryStep();
++	if (sequence == 0 || solver_step_s <= 0.0f) {
++		return false;
++	}
++
++	r_telemetry.sequence = sequence;
++	r_telemetry.solver_step_s = solver_step_s;
++	r_telemetry.motor_state = static_cast<int32_t>(constraint->GetMotorTelemetryState());
++	r_telemetry.target_angular_velocity_rad_s = constraint->GetMotorTelemetryTargetAngularVelocity();
++	r_telemetry.min_torque_limit_nm = constraint->GetMotorTelemetryMinTorqueLimit();
++	r_telemetry.max_torque_limit_nm = constraint->GetMotorTelemetryMaxTorqueLimit();
++	r_telemetry.signed_motor_impulse_nms = constraint->GetTotalLambdaMotor();
++	r_telemetry.positive_motor_work_j = constraint->GetPositiveMotorWork();
++	r_telemetry.absorbed_motor_work_j = constraint->GetAbsorbedMotorWork();
++	return true;
++}
++
+ void JoltHingeJoint3D::rebuild() {
+ 	destroy();
+ 
+diff --git a/modules/jolt_physics/joints/jolt_hinge_joint_3d.h b/modules/jolt_physics/joints/jolt_hinge_joint_3d.h
+index cb8635b..912186a 100644
+--- a/modules/jolt_physics/joints/jolt_hinge_joint_3d.h
++++ b/modules/jolt_physics/joints/jolt_hinge_joint_3d.h
+@@ -74,6 +74,18 @@ class JoltHingeJoint3D final : public JoltJoint3D {
+ 	void _motor_limit_changed();
+ 
+ public:
++	struct MotorTelemetry {
++		uint64_t sequence = 0;
++		float solver_step_s = 0.0f;
++		int32_t motor_state = 0;
++		float target_angular_velocity_rad_s = 0.0f;
++		float min_torque_limit_nm = 0.0f;
++		float max_torque_limit_nm = 0.0f;
++		float signed_motor_impulse_nms = 0.0f;
++		float positive_motor_work_j = 0.0f;
++		float absorbed_motor_work_j = 0.0f;
++	};
++
+ 	JoltHingeJoint3D(const JoltJoint3D &p_old_joint, JoltBody3D *p_body_a, JoltBody3D *p_body_b, const Transform3D &p_local_ref_a, const Transform3D &p_local_ref_b);
+ 
+ 	virtual PhysicsServer3D::JointType get_type() const override { return PhysicsServer3D::JOINT_TYPE_HINGE; }
+@@ -92,6 +104,7 @@ public:
+ 
+ 	float get_applied_force() const;
+ 	float get_applied_torque() const;
++	bool try_get_motor_telemetry(MotorTelemetry &r_telemetry) const;
+ 
+ 	virtual void rebuild() override;
+ };
+diff --git a/modules/jolt_physics/jolt_physics_server_3d.cpp b/modules/jolt_physics/jolt_physics_server_3d.cpp
+index 3b68594..1f3e571 100644
+--- a/modules/jolt_physics/jolt_physics_server_3d.cpp
++++ b/modules/jolt_physics/jolt_physics_server_3d.cpp
+@@ -53,6 +53,62 @@
+ #include "spaces/jolt_space_3d.h"
+ #include "spaces/jolt_temp_allocator.h"
+ 
++#include "core/object/class_db.h"
++
++void JoltPhysicsServer3D::_bind_methods() {
++	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("hinge_joint_get_motor_telemetry", "joint"), &JoltPhysicsServer3D::hinge_joint_get_motor_telemetry);
++}
++
++Variant JoltPhysicsServer3D::hinge_joint_get_motor_telemetry(RID p_joint) {
++	JoltPhysicsServer3D *physics_server = get_singleton();
++	if (physics_server == nullptr || (physics_server->on_separate_thread && !physics_server->doing_sync)) {
++		return Variant();
++	}
++
++	JoltJoint3D *joint = physics_server->joint_owner.get_or_null(p_joint);
++	if (joint == nullptr || joint->get_type() != JOINT_TYPE_HINGE) {
++		return Variant();
++	}
++
++	JoltSpace3D *space = joint->get_space();
++	if (space == nullptr || space->is_stepping()) {
++		return Variant();
++	}
++
++	JoltHingeJoint3D::MotorTelemetry motor_telemetry;
++	JoltHingeJoint3D *hinge_joint = static_cast<JoltHingeJoint3D *>(joint);
++	if (!hinge_joint->try_get_motor_telemetry(motor_telemetry)) {
++		return Variant();
++	}
++
++	String motor_state;
++	switch (static_cast<JPH::EMotorState>(motor_telemetry.motor_state)) {
++		case JPH::EMotorState::Off:
++			motor_state = "off";
++			break;
++		case JPH::EMotorState::Velocity:
++			motor_state = "velocity";
++			break;
++		case JPH::EMotorState::Position:
++			motor_state = "position";
++			break;
++	}
++
++	Dictionary result;
++	result["schema"] = "sporespore.godot_jolt_hinge_motor_telemetry.v1";
++	result["telemetry_sequence"] = static_cast<int64_t>(motor_telemetry.sequence);
++	result["solver_step_s"] = motor_telemetry.solver_step_s;
++	result["motor_state"] = motor_state;
++	result["target_angular_velocity_rad_s"] = motor_telemetry.target_angular_velocity_rad_s;
++	result["min_torque_limit_nm"] = motor_telemetry.min_torque_limit_nm;
++	result["max_torque_limit_nm"] = motor_telemetry.max_torque_limit_nm;
++	result["signed_motor_impulse_nms"] = motor_telemetry.signed_motor_impulse_nms;
++	result["positive_motor_work_j"] = motor_telemetry.positive_motor_work_j;
++	result["absorbed_motor_work_j"] = motor_telemetry.absorbed_motor_work_j;
++	result["net_motor_work_j"] = motor_telemetry.positive_motor_work_j - motor_telemetry.absorbed_motor_work_j;
++	return result;
++}
++
+ JoltPhysicsServer3D::JoltPhysicsServer3D(bool p_on_separate_thread) :
+ 		on_separate_thread(p_on_separate_thread) {
+ 	singleton = this;
+diff --git a/modules/jolt_physics/jolt_physics_server_3d.h b/modules/jolt_physics/jolt_physics_server_3d.h
+index a8db19b..876253b 100644
+--- a/modules/jolt_physics/jolt_physics_server_3d.h
++++ b/modules/jolt_physics/jolt_physics_server_3d.h
+@@ -119,13 +119,14 @@ public:
+ 	};
+ 
+ private:
+-	static void _bind_methods() {}
++	static void _bind_methods();
+ 
+ public:
+ 	explicit JoltPhysicsServer3D(bool p_on_separate_thread);
+ 	~JoltPhysicsServer3D();
+ 
+ 	static JoltPhysicsServer3D *get_singleton() { return singleton; }
++	static Variant hinge_joint_get_motor_telemetry(RID p_joint);
+ 
+ 	virtual RID world_boundary_shape_create() override;
+ 	virtual RID separation_ray_shape_create() override;
+diff --git a/modules/jolt_physics/register_types.cpp b/modules/jolt_physics/register_types.cpp
+index 51aadf0..988e65e 100644
+--- a/modules/jolt_physics/register_types.cpp
++++ b/modules/jolt_physics/register_types.cpp
+@@ -36,6 +36,7 @@
+ 
+ #include "core/config/project_settings.h"
+ #include "core/object/callable_mp.h"
++#include "core/object/class_db.h"
+ #include "servers/physics_3d/physics_server_3d_wrap_mt.h"
+ 
+ PhysicsServer3D *create_jolt_physics_server() {
+@@ -56,6 +57,7 @@ void initialize_jolt_physics_module(ModuleInitializationLevel p_level) {
+ 	}
+ 
+ 	jolt_initialize();
++	GDREGISTER_ABSTRACT_CLASS(JoltPhysicsServer3D);
+ 	PhysicsServer3DManager::get_singleton()->register_server("Jolt Physics", callable_mp_static(&create_jolt_physics_server));
+ 	JoltProjectSettings::register_settings();
+ }
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp
+index 86bc828..d5aa794 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp
++++ b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp
+@@ -226,8 +226,35 @@ void HingeConstraint::CalculateMotorConstraintProperties(float inDeltaTime)
+ 	}
+ }
+ 
++float HingeConstraint::GetMotorRelativeAngularVelocity() const
++{
++	return mA1.Dot(mBody2->GetAngularVelocity() - mBody1->GetAngularVelocity());
++}
++
++void HingeConstraint::AccumulateMotorWork(float inAppliedImpulse, float inRelativeAngularVelocityBefore, float inRelativeAngularVelocityAfter)
++{
++	// For J = [0, -a^T, 0, a^T], this is the exact kinetic-energy
++	// change caused by this angular impulse: lambda * (Jv_before +
++	// Jv_after) / 2. Splitting by sign preserves both supplied and
++	// absorbed actuator work without cancellation.
++	float work = inAppliedImpulse * 0.5f * (inRelativeAngularVelocityBefore + inRelativeAngularVelocityAfter);
++	if (work >= 0.0f)
++		mPositiveMotorWork += work;
++	else
++		mAbsorbedMotorWork -= work;
++}
++
+ void HingeConstraint::SetupVelocityConstraint(float inDeltaTime)
+ {
++	++mMotorTelemetrySequence;
++	mMotorTelemetryStep = inDeltaTime;
++	mMotorTelemetryState = mMotorState;
++	mMotorTelemetryTargetAngularVelocity = mTargetAngularVelocity;
++	mMotorTelemetryMinTorqueLimit = mMotorSettings.mMinTorqueLimit;
++	mMotorTelemetryMaxTorqueLimit = mMotorSettings.mMaxTorqueLimit;
++	mPositiveMotorWork = 0.0f;
++	mAbsorbedMotorWork = 0.0f;
++
+ 	// Cache constraint values that are valid until the bodies move
+ 	Mat44 rotation1 = Mat44::sRotation(mBody1->GetRotation());
+ 	Mat44 rotation2 = Mat44::sRotation(mBody2->GetRotation());
+@@ -249,7 +276,10 @@ void HingeConstraint::ResetWarmStart()
+ void HingeConstraint::WarmStartVelocityConstraint(float inWarmStartImpulseRatio)
+ {
+ 	// Warm starting: Apply previous frame impulse
++	float motor_velocity_before = GetMotorRelativeAngularVelocity();
+ 	mMotorConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
++	float motor_velocity_after = GetMotorRelativeAngularVelocity();
++	AccumulateMotorWork(mMotorConstraintPart.GetTotalLambda(), motor_velocity_before, motor_velocity_after);
+ 	mPointConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
+ 	mRotationConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
+ 	mRotationLimitsConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
+@@ -275,6 +305,9 @@ bool HingeConstraint::SolveVelocityConstraint(float inDeltaTime)
+ 	bool motor = false;
+ 	if (mMotorConstraintPart.IsActive())
+ 	{
++		float motor_lambda_before = mMotorConstraintPart.GetTotalLambda();
++		float motor_velocity_before = GetMotorRelativeAngularVelocity();
++
+ 		switch (mMotorState)
+ 		{
+ 		case EMotorState::Off:
+@@ -289,6 +322,10 @@ bool HingeConstraint::SolveVelocityConstraint(float inDeltaTime)
+ 			motor = mMotorConstraintPart.SolveVelocityConstraint(*mBody1, *mBody2, mA1, inDeltaTime * mMotorSettings.mMinTorqueLimit, inDeltaTime * mMotorSettings.mMaxTorqueLimit);
+ 			break;
+ 		}
++
++		float motor_lambda_after = mMotorConstraintPart.GetTotalLambda();
++		float motor_velocity_after = GetMotorRelativeAngularVelocity();
++		AccumulateMotorWork(motor_lambda_after - motor_lambda_before, motor_velocity_before, motor_velocity_after);
+ 	}
+ 
+ 	// Solve point constraint
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h
+index 398ccc1..2413da6 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h
++++ b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h
+@@ -145,11 +145,26 @@ public:
+ 	inline float				GetTotalLambdaRotationLimits() const					{ return mRotationLimitsConstraintPart.GetTotalLambda(); }
+ 	inline float				GetTotalLambdaMotor() const								{ return mMotorConstraintPart.GetTotalLambda(); }
+ 
++	/// Exact discrete work telemetry for the motor constraint part from the last
++	/// velocity-constraint setup. Positive and absorbed work are accumulated for
++	/// every warm-start and iterative motor impulse using the trapezoidal
++	/// generalized velocity across that impulse.
++	inline uint64				GetMotorTelemetrySequence() const						{ return mMotorTelemetrySequence; }
++	inline float				GetMotorTelemetryStep() const							{ return mMotorTelemetryStep; }
++	inline EMotorState			GetMotorTelemetryState() const						{ return mMotorTelemetryState; }
++	inline float				GetMotorTelemetryTargetAngularVelocity() const		{ return mMotorTelemetryTargetAngularVelocity; }
++	inline float				GetMotorTelemetryMinTorqueLimit() const				{ return mMotorTelemetryMinTorqueLimit; }
++	inline float				GetMotorTelemetryMaxTorqueLimit() const				{ return mMotorTelemetryMaxTorqueLimit; }
++	inline float				GetPositiveMotorWork() const							{ return mPositiveMotorWork; }
++	inline float				GetAbsorbedMotorWork() const							{ return mAbsorbedMotorWork; }
++
+ private:
+ 	// Internal helper function to calculate the values below
+ 	void						CalculateA1AndTheta();
+ 	void						CalculateRotationLimitsConstraintProperties(float inDeltaTime);
+ 	void						CalculateMotorConstraintProperties(float inDeltaTime);
++	float						GetMotorRelativeAngularVelocity() const;
++	void						AccumulateMotorWork(float inAppliedImpulse, float inRelativeAngularVelocityBefore, float inRelativeAngularVelocityAfter);
+ 	inline float				GetSmallestAngleToLimit() const;
+ 	inline bool					IsMinLimitClosest() const;
+ 
+@@ -200,6 +215,16 @@ private:
+ 	HingeRotationConstraintPart mRotationConstraintPart;
+ 	AngleConstraintPart			mRotationLimitsConstraintPart;
+ 	AngleConstraintPart			mMotorConstraintPart;
++
++	// Per-setup telemetry. These values do not affect simulation state.
++	uint64						mMotorTelemetrySequence = 0;
++	float						mMotorTelemetryStep = 0.0f;
++	EMotorState				mMotorTelemetryState = EMotorState::Off;
++	float						mMotorTelemetryTargetAngularVelocity = 0.0f;
++	float						mMotorTelemetryMinTorqueLimit = 0.0f;
++	float						mMotorTelemetryMaxTorqueLimit = 0.0f;
++	float						mPositiveMotorWork = 0.0f;
++	float						mAbsorbedMotorWork = 0.0f;
+ };
+ 
+ JPH_NAMESPACE_END

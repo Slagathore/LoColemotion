@@ -1,0 +1,124 @@
+{
+  "schema_version": "sporespore_r10ag_detection_frame_load_seeking_design_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_source_corrected_controller_selection",
+    "question_class": "development"
+  },
+  "source_parent_commit": "69e8916e9c6b6f017ccd36ed6364714d8694a867",
+  "question": "Can existing V23 load-seeking and loaded-rise geometry recover from exposed phase 248 when driven by the corrected native detection-frame contact source?",
+  "dependencies": [
+    {
+      "path": "sdk/recovery/r10af_rise_diagnosis_v1.json",
+      "byte_length": 9930,
+      "raw_sha256": "sha256:f32b55e74f38de369c2370e61fe35e46340f7ad576c97cab85510df39de50c85"
+    },
+    {
+      "path": "sdk/recovery/r10af_detection_frame_diagnostic_closure_v1.json",
+      "byte_length": 133688,
+      "raw_sha256": "sha256:d37ca7b114fd39e9f5db984bafd2b4204c715bba879a63910c2340de243dee33"
+    },
+    {
+      "path": "sdk/recovery/r10aa_first_support_diagnostic_closure_v1.json",
+      "byte_length": 118089,
+      "raw_sha256": "sha256:fcbe7dfe92d87e9b4ab3b08798eb504a2e68b081ebee360c34b6d40e9421a1b8"
+    },
+    {
+      "path": "sdk/recovery/r10aa_load_seeking_kernel_contract_v1.json",
+      "byte_length": 4192,
+      "raw_sha256": "sha256:06d032a456789adc1e4c3e4aa5d11ce070ff4ee1a48ed3ff397ac020b89a7192"
+    },
+    {
+      "path": "sdk/recovery/r10af_detection_frame_development_design_v1.json",
+      "byte_length": 5587,
+      "raw_sha256": "sha256:f0c1b4d290f9217db38fe2bc9f1fafd4d60e3a9be798d1bd099ac4dde6e5aab3"
+    }
+  ],
+  "rationale": "R10AF has exact command mapping but incomplete native tracking and rise. After reproducing 138 loaded plans, ideal propagation stalls under the downward-only filter from both declared exposed poses. The predecessor filter reaches within 0.25 mm of its model height objective in both 600-update paths. This is mathematical feasibility evidence only. R10AA used the earlier callback-frame contact classifier and remains an immutable negative; its outcome is not regraded or used as a matched baseline.",
+  "controlled_change": {
+    "from_controller": "sporespore_exact_s169_partial_downward_rise_controller_v24",
+    "to_controller": "sporespore_exact_s169_partial_load_seeking_controller_v23",
+    "composition": "sporespore_r10aa_partial_load_seeking_v23_v7_composition_v1",
+    "entry_export": "ss_recovery_r10aa_partial_entry_control_v1_json",
+    "step_export": "ss_recovery_r10aa_partial_step_control_v1_json",
+    "loaded_rise": "Select the existing original finite geometry search without V24 downward-only filtering.",
+    "support_establishment": "Exact existing V23 load-seeking behavior.",
+    "weak_support": "Exact existing V23 load-seeking fallback when any of the four original qualified-contact predicates fails.",
+    "terminal": "No command after the original terminal transition.",
+    "core_source_changed": false,
+    "core_dll_rebuild_planned": false,
+    "selected_runtime": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-19b3eef86bc6426abede15544a93696f/sporespore_godot_adapter.dll",
+      "byte_length": 9711616,
+      "raw_sha256": "sha256:729661dfd0936a4858238254fa8429688ad8815c49bda1dc9cd1cc3f6604ba08"
+    },
+    "selected_runtime_interface_verified": false
+  },
+  "preserved": {
+    "contact_profile": "godot_jolt_distal_contact_detection_frame_v1",
+    "contact_source_schema": "sporespore_r10af_godot_detection_frame_contact_source_v1",
+    "contact_activation": "entire fresh world including setup and prefix",
+    "classification_tolerance_m": 1e-06,
+    "minimum_bearing_impulse_ns": 0.019293,
+    "normal_impulses": "native post-solve",
+    "nonfoot_clearance_and_ventral_frame": "original callback frame",
+    "walking": "V56",
+    "prone": "V20",
+    "upright": "V20/V12/V7",
+    "stance": "V7",
+    "partial_phase_limits": {
+      "establish_distal_support": 240,
+      "raise_body": 600,
+      "stance_dwell": 360,
+      "total": 1200
+    },
+    "standing_dwell_samples": 60,
+    "engine_image_changed": false,
+    "actuator_caps_changed": false,
+    "task_thresholds_changed": false,
+    "evaluator_predicates_changed": false
+  },
+  "first_probe": {
+    "seed": 65248,
+    "prefix_phase": 248,
+    "seed_label": "R10AG-DETECTION-FRAME-LOAD-SEEKING-PREFIX-248-V1",
+    "roles": [
+      "kick_passive_recovery_resume"
+    ],
+    "execution_mode": "single_kick_controller_diagnostic_v1",
+    "attempt_limit": 1,
+    "held_out": false,
+    "fresh_setup": true,
+    "baseline_reuse": false,
+    "coverage_adequacy": "One fresh child covers corrected contact collection with selected V23 entry, support, rise, terminal or bounded continuation, retention and both readers at the exposed failure phase. It is noncomparative and does not cover paired commissioning or held-out acceptance."
+  },
+  "limits": {
+    "maximum_world_build_count": 1,
+    "maximum_steps_per_child": 3752,
+    "after_interaction_steps": 3400,
+    "child_wall_time_limit_seconds": 2400,
+    "independent_reader_wall_time_limit_seconds": 1200
+  },
+  "required_before_world": [
+    "Verify V23 entry and step exports in the exact selected DLL using original compiled fixtures and crossed-input refusals; no rebuild or controller change is inferred from an exported name.",
+    "Implement a distinct immutable candidate, schedule, source key, seed guard, selected runtime identity, real worker and report dispatch.",
+    "Exercise V23 ownership and command chain together with the detection-frame source in synthetic full reports, native replay and independent Python replay.",
+    "Bind context producer, independent pre-world consumer, one-use reservation, native world guard and complete affected-path safety graph with negative controls.",
+    "Pass that entire safety graph from the exact clean pushed prospective freeze under the operation lock before the single declared native attempt."
+  ],
+  "decision_rules": [
+    "A valid recovery negative closes this candidate and consumes this development identity. Do not repeatedly tune the same population.",
+    "An infrastructure-invalid result is retained with its exact failure and consumes any exposed population.",
+    "A positive SingleKick still requires fresh paired commissioning, official qualification, fresh held-out acceptance and M07 adoption.",
+    "Mathematical progress with assumed support is not a guarantee of native tracking or load retention. Existing V23 history makes renewed support loss a concrete risk."
+  ],
+  "native_route_integrated": false,
+  "launch_enabled": false,
+  "physical_execution_authorized": false,
+  "held_out_campaign_declared": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

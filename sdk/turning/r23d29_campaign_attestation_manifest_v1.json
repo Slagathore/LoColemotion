@@ -1,0 +1,144 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D29-RAPIER-TWO-SWING-PERSISTENT-PREDICTIVE-STABILITY-GUARDED-STEERING-DEVELOPMENT",
+  "question_class": "development",
+  "declared_physical_world_count": 3,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 2,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 5,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D29-R23D28-IMMUTABLE-PHYSICAL-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d28_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D28_CLOSURE_PASS ",
+      "raw_sha256": "sha256:73954ac3a2abdf67fb5314313a4e1799fecbd099001a9c562398450100f1d2c4"
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "R23D29-R23D28-AUTHORITY-PERSISTENCE-DIAGNOSIS-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d28_authority_persistence_diagnosis_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "R23D28_AUTHORITY_PERSISTENCE_CLOSURE_PASS ",
+      "raw_sha256": "sha256:6e3a460fa43a9ea379c5f554ad88bf9d9bd32ef775a1512bd81ad446b588c826"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 3,
+      "gate_id": "R23D29-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d29_campaign_roles.ps1",
+      "arguments": ["-Role", "worker"],
+      "terminal_marker_prefix": "QSDK_R23D29_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:fab701b3915a01075c8929c0da517ccfe697057f911990d7b23125c66515380c"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D29-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d29_campaign_roles.ps1",
+      "arguments": ["-Role", "evaluator", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D29_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:fab701b3915a01075c8929c0da517ccfe697057f911990d7b23125c66515380c"
+    },
+    {
+      "ordinal": 5,
+      "gate_id": "R23D29-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d29_campaign_roles.ps1",
+      "arguments": ["-Role", "supervisor", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D29_CAMPAIGN_SUPERVISOR_ROLE_PASS ",
+      "raw_sha256": "sha256:fab701b3915a01075c8929c0da517ccfe697057f911990d7b23125c66515380c"
+    }
+  ],
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d29_two_swing_persistent_predictive_stability_guarded_steering_implementation_v1.json",
+      "source_raw_sha256": "sha256:782360b69cca0b4fa4e3d70ee2bffe33dd199bfd953490311d92f8ca48620575",
+      "test_gate_id": "R23D29-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d29_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:fab701b3915a01075c8929c0da517ccfe697057f911990d7b23125c66515380c"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d29_two_swing_persistent_predictive_stability_guarded_steering_evaluator.py",
+      "source_raw_sha256": "sha256:02fe2b4589997916d11e3c74cc9ddc2121bca69c8264d8fbe67af465a10b7148",
+      "test_gate_id": "R23D29-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d29_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:fab701b3915a01075c8929c0da517ccfe697057f911990d7b23125c66515380c"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d29_supervisor.ps1",
+      "source_raw_sha256": "sha256:509a25e63f5f2b952b3f9d129e1c6fe648e44872753a38e5aeb8e60b2e533362",
+      "test_gate_id": "R23D29-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d29_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:fab701b3915a01075c8929c0da517ccfe697057f911990d7b23125c66515380c"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d29_two_swing_persistent_predictive_stability_guarded_steering_implementation_v1.json",
+    "raw_sha256": "sha256:782360b69cca0b4fa4e3d70ee2bffe33dd199bfd953490311d92f8ca48620575"
+  },
+  "source_bindings": [
+    {"path": ".gitattributes", "raw_sha256": "sha256:bcdb02d4917f5dc807c27e76008a1b28e8a4babab670149427938fe31120e41f"},
+    {"path": "sdk/closure_evidence_provenance_contract.json", "raw_sha256": "sha256:c7cb074c008a6e500c1bf2a2676802146ab7cf60c917dc248e40de614c85f1c9"},
+    {"path": "tests/test_closure_evidence_provenance_contract.ps1", "raw_sha256": "sha256:f1584e70cc5e5af5ed9cf3880d60061dd4c9f23f7579f11377fae94647e54217"},
+    {"path": "tests/test_qsdk_r23d28_closure.ps1", "raw_sha256": "sha256:73954ac3a2abdf67fb5314313a4e1799fecbd099001a9c562398450100f1d2c4"},
+    {"path": "tests/test_qsdk_r23d28_authority_persistence_diagnosis_closure.ps1", "raw_sha256": "sha256:6e3a460fa43a9ea379c5f554ad88bf9d9bd32ef775a1512bd81ad446b588c826"},
+    {"path": "tests/test_qsdk_r23d29_campaign_roles.ps1", "raw_sha256": "sha256:fab701b3915a01075c8929c0da517ccfe697057f911990d7b23125c66515380c"},
+    {"path": "tests/test_qsdk_r23d29_implementation.ps1", "raw_sha256": "sha256:e0b3c3c200b46ad64eee6809803e6f1a7739470d8fa3cdf2b6f11b1fb00c210c"},
+    {"path": "sdk/turning/r23d29_two_swing_persistent_predictive_stability_guarded_steering_preregistration_v1.json", "raw_sha256": "sha256:464aa9aa25fc2cc6180e3308e232667589fa359f65e389b90f8aeb7fabe8d411"},
+    {"path": "sdk/turning/r23d29_two_swing_persistent_predictive_stability_guarded_steering_implementation_v1.json", "raw_sha256": "sha256:782360b69cca0b4fa4e3d70ee2bffe33dd199bfd953490311d92f8ca48620575"},
+    {"path": "sdk/turning/r23d29_two_swing_persistent_predictive_stability_guarded_steering_evaluator.py", "raw_sha256": "sha256:02fe2b4589997916d11e3c74cc9ddc2121bca69c8264d8fbe67af465a10b7148"},
+    {"path": "sdk/turning/test_r23d29_two_swing_persistent_predictive_stability_guarded_steering_evaluator.py", "raw_sha256": "sha256:a03074de09b07fed76ae49aa1f13ff97b08729fcbe93f841f71d482449343522"},
+    {"path": "sdk/turning/r23d27_stability_guarded_steering_evaluator.py", "raw_sha256": "sha256:85add60176078af80ca357ee5cd41356b84987a366912b5cbb4cab50c292361b"},
+    {"path": "sdk/run_qsdk_r23d29_supervisor.ps1", "raw_sha256": "sha256:509a25e63f5f2b952b3f9d129e1c6fe648e44872753a38e5aeb8e60b2e533362"},
+    {"path": "sdk/run_qsdk_r23d27_supervisor.ps1", "raw_sha256": "sha256:a3d3d32307ae9694be889869ed07c7844c2fff47b2c59cef9e8c430184022c27"},
+    {"path": "sdk/publish_qsdk_r23d29_trace.ps1", "raw_sha256": "sha256:a414d89708f38b21f0f3c4f93c37dff3d60a6bd870aca72b76acb3581aef428e"},
+    {"path": "sdk/publish_qsdk_r23d27_trace.ps1", "raw_sha256": "sha256:0d0dd84b48e518cd2c27b094abd2172aeab8b07518d94e7516344eb66001c8ad"},
+    {"path": "sdk/core/src/controller.rs", "raw_sha256": "sha256:b296804ab597d62d2cb4e1fdc497505fcc89198793437a8f68f2d568a32925b9"},
+    {"path": "sdk/core/src/lib.rs", "raw_sha256": "sha256:caa42d2f0cd0c12797755e2a8f48145905d8df4d14bdb9e387abae46d8d169e3"},
+    {"path": "sdk/core/src/protocol.rs", "raw_sha256": "sha256:38dcce2bf024d6f33f4fbe2366a878cf3af9005cdb9a7296bae10a4630cf8baa"},
+    {"path": "sdk/core/src/runtime.rs", "raw_sha256": "sha256:6533997031d0a987266caf37ef889ca58ef778cde393be8b04a19f5334463e63"},
+    {"path": "sdk/adapters/rapier/src/lib.rs", "raw_sha256": "sha256:7aa75e479389f26a46d458cdf16e16a0618891806424e15874478267cbd0e267"},
+    {"path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced.rs", "raw_sha256": "sha256:a26eb462cd6f2095b95f5c2bbebbbb07c9aa986c69ca2cd010dafc4189a52711"},
+    {"path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d27_physical.rs", "raw_sha256": "sha256:3d15e544b2920d16ccaaa60d63650210e6179f1c1c039addee4d1a51d9e0b62e"},
+    {"path": "sdk/adapters/rapier/src/bin/qsdk_r23d29_physical.rs", "raw_sha256": "sha256:d120a2b034297919c32d94a62dcdc131efa28e5453f954f1cf027491753ccbf2"},
+    {"path": "sdk/locomotion_campaign_attestation_adoption.ps1", "raw_sha256": "sha256:3e423d34ee9b9c309b67d4e15547dc7044304c89d1bfa417bcf0831ebd037684"},
+    {"path": "sdk/locomotion_campaign_attestation_adoption_contract_v1.json", "raw_sha256": "sha256:5cb7dd7e2de63500d099fe771622ab40928d31af8161f7c007e2973f430e9128"},
+    {"path": "sdk/run_locomotion_campaign_attestation_adoption.ps1", "raw_sha256": "sha256:2f0bf0251cb7aa026ed675b2ff7b4e61ccfabddc46828ea0b217e4bfe481ce21"},
+    {"path": "tests/test_locomotion_campaign_attestation_adoption.ps1", "raw_sha256": "sha256:0a7aece26658ebd69e2c20ab57f258d6b551c2dbf60110bb3abcfe35ee9d19f1"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

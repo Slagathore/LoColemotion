@@ -1,0 +1,111 @@
+{
+  "schema_version": "sporespore_r10i_joint_pose_entry_implementation_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "implemented_zero_world_validated_entry_component",
+    "question_class": "development"
+  },
+  "status": "native_component_implemented_route_integration_pending",
+  "source_parent_commit": "1fb5f7fd9cbf90b3b5f81a02b894f5c4c0c6e411",
+  "native_policy_id": "sporespore_balanced_wave_joint_pose_entry_v1",
+  "native_profile": {
+    "schema_version": "sporespore_balanced_wave_joint_pose_entry_profile_v1",
+    "policy_id": "sporespore_balanced_wave_joint_pose_entry_v1",
+    "torso_length_scale": 1.0041015625,
+    "cross_track_heading_gain_rad_per_m": 0.9959151915969655,
+    "yaw_error_stride_gain_per_rad": 1.3,
+    "cross_track_velocity_heading_gain_rad_per_m_s": 0.35071703894485934,
+    "contact_loaded_swing_knee_activation_start_phase_step": 0,
+    "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+    "anchor_error_guard_activation_fraction": 0.8,
+    "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+    "steering_feedback_update_interval_steps": 1,
+    "steering_low_pass_time_constant_cycle_fraction": 0.0625,
+    "branch_surfaces": [],
+    "controller_authority": true,
+    "physical_acceptance_authority": false
+  },
+  "native_profile_sha256": "sha256:047bae3edc41a619fb2c58be0aca8cd501899a11ad8237ba223ab72aa049e8c2",
+  "runtime_binding": {
+    "path": "sdk/development/recovery_candidates/r10i-joint-pose-entry-core-v1.runtime.json",
+    "byte_length": 24712,
+    "sha256": "sha256:561b5e2c6d3f8d83618bf05c6c374e35f65651311083d44ce30ff39e3c41ed35"
+  },
+  "runtime": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-b0c669037a9b487290877b26d2f6d9a7/sporespore_godot_adapter.dll",
+    "byte_length": 8982016,
+    "raw_sha256": "sha256:1e64a75698cb046e33302dc71fad0bd6207da70346427679f3d32b20e9b33c4d"
+  },
+  "inventory": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10i-entry-implementation-817322cafb2d4878b1f4da5aedf77c30/inventory.json",
+    "byte_length": 5894,
+    "raw_sha256": "sha256:b5fd3cfa86b8d3068d4222ed4539fecf88cb83f3fa77d7bc19c6f457d079cf8c"
+  },
+  "compiled_source_count": 86,
+  "full_core_tests_passed": 366,
+  "focused_core_tests_passed": 4,
+  "native_interface_tests_passed": 3,
+  "v50_raw_native_responses_byte_exact": 1157,
+  "cached_and_stateless_entry_commands_equal": 240,
+  "source_files": [
+    {
+      "path": "sdk/core/src/lib.rs",
+      "byte_length": 19494,
+      "sha256": "sha256:e4c1f702317dae15e67e76c998aac589e4ca66c0b45895dca97ec6c04caaf778"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "byte_length": 107170,
+      "sha256": "sha256:d291df08f3aa09a5e5ffd9eabc1493886d8a797594d00c4739fa7645139aa52e"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "byte_length": 174753,
+      "sha256": "sha256:2d7b8284634ef3efa05ec80beaa77768859781f6a9e4d28f00d9a9ee6cfcdfbe"
+    },
+    {
+      "path": "sdk/core/src/joint_pose_entry.rs",
+      "byte_length": 8957,
+      "sha256": "sha256:9ef1cfbd9e85a1c11b7da6207c8130e1af9c0620b53adab4983ebf74fc4e65a8"
+    },
+    {
+      "path": "sdk/core/src/joint_pose_entry_tests.rs",
+      "byte_length": 5704,
+      "sha256": "sha256:7e7d932b0a9ef28987895f74af78159887cfbe2e781717733cb2d2fdbedf4fc7"
+    },
+    {
+      "path": "tests/test_recovery_joint_pose_entry_native.py",
+      "byte_length": 5499,
+      "sha256": "sha256:e6226e5632202d4d11937bacce2876846dc0abc3b4e465a74c0590d7e9519d96"
+    }
+  ],
+  "preserved_v50_arithmetic_source": {
+    "path": "sdk/core/src/recovery_anchored_body_pose.rs",
+    "byte_length": 15019,
+    "sha256": "sha256:2d9bac47bba0d246b923e7a32be8a66c7fc2b0627d052859e2652e16b32171cf"
+  },
+  "diagnostic_basis": {
+    "path": "sdk/recovery/r10h_stance_entry_pair_closure_v1.json",
+    "byte_length": 24163,
+    "sha256": "sha256:19e4ec93abfe5e49d519c37e80746e5b25c2075ea8aec629e646514384f6bcbf"
+  },
+  "entry_rule": {
+    "initial_reference": "First actual measured joint positions; first command is zero velocity.",
+    "goal": "Positive-knee under-hip inverse kinematics at existing V50 vertical length 0.33 m; refuse unreachable or out-of-bound goals.",
+    "ramp": "smoothstep; intervals=max(1,ceil(1.5*maximum_initial_joint_distance/(0.75/120)))",
+    "maximum_reference_speed_rad_s": 0.75,
+    "maximum_motor_speed_rad_s": 0.75,
+    "maximum_commands": 240,
+    "stationary_motion_required": true,
+    "reference_ramp_completion_is_not_contact_or_settling_evidence": true
+  },
+  "interface_failure": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10i-native-entry-checks-8e81bf47b35b4c0f85257d768112f7dc",
+    "reason": "System Python lacked the MuJoCo import used by the existing numeric-token projection helper; no native call or world. Tests passed under the existing sdk/adapters/mujoco virtual environment."
+  },
+  "new_world_count": 0,
+  "new_solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

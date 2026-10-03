@@ -1,0 +1,94 @@
+{
+  "schema_version": "sporespore_mujoco_warp_supported_subset_contract_v1",
+  "contract_id": "sporespore_mujoco_warp_training_plane_supported_subset_v1",
+  "status": "prospective_zero_world_runtime_preflight_physics_qualification_sealed",
+  "question_class": "development",
+  "purpose": "Establish the exact local MuJoCo Warp runtime and a fail-closed candidate feature subset before any GPU physics, throughput campaign, corpus generation, or training use.",
+  "runtime_pin": {
+    "python": "3.11",
+    "mujoco": "3.11.0",
+    "mujoco_warp": "3.11.0",
+    "warp_lang": "1.16.0",
+    "required_device_kind": "cuda",
+    "observed_local_gpu": "NVIDIA GeForce RTX 4070 Ti",
+    "observed_local_compute_capability": "8.9",
+    "observed_local_vram_mib": 12282
+  },
+  "required_api_surface": {
+    "model_upload": "mujoco_warp.put_model(mjm, batch_sizes=None)",
+    "batched_data_upload": "mujoco_warp.put_data(mjm, mjd, nworld, nconmax, nccdmax, njmax, njmax_nnz, naconmax, naccdmax, nvmax)",
+    "step": "mujoco_warp.step(model, data)",
+    "reset": "mujoco_warp.reset_data(model, data, reset=None)",
+    "cuda_graph_capture_permitted_after_runtime_qualification": true
+  },
+  "candidate_sporespore_feature_subset": {
+    "root_joint_types": ["free"],
+    "articulated_joint_types": ["hinge"],
+    "rigid_geom_types": ["plane", "box", "capsule", "sphere"],
+    "actuation": ["built_in_velocity_actuator", "force_limited_affine_gain_and_bias"],
+    "contact": ["rigid_contact", "elliptic_friction_cone"],
+    "solver": ["newton"],
+    "integrator_candidate_requires_conversion_probe": ["implicitfast_without_midpoint_feature"],
+    "topology_rule": "One uploaded topology per batch; topology-changing morphology uses a distinct bucket and captured graph identity.",
+    "per_world_field_variation_requires_field_level_probe": true,
+    "documentation_support_is_not_sporespore_qualification": true
+  },
+  "explicit_refusals": {
+    "implicitfast_midpoint_feature": true,
+    "pgs_solver": true,
+    "noslip_solver": true,
+    "plugin_actuators": true,
+    "plugin_sensors": true,
+    "flex_training_inputs": true,
+    "warp_differentiability": true,
+    "arbitrary_topology_in_one_batch": true,
+    "undocumented_per_world_field_broadcast": true
+  },
+  "runtime_preflight": {
+    "imports_required": ["mujoco", "mujoco_warp", "warp"],
+    "exact_versions_required": true,
+    "cuda_device_required": true,
+    "api_signatures_required": true,
+    "model_construction_count": 0,
+    "step_invocation_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "future_physics_qualification": {
+    "question_class": "equivalence_non_inferiority",
+    "status": "sealed_pending_distinct_calibration_and_prospective_margin_freeze",
+    "cpu_reference": "ordinary_mujoco_3_11_0",
+    "candidate": "mujoco_warp_3_11_0_cuda",
+    "required_estimands": [
+      "one_step_state_and_actuator_response",
+      "bounded_horizon_contact_event_identity",
+      "bounded_horizon_pose_velocity_and_energy_error",
+      "failure_and_nonfinite_rate",
+      "overflow_and_capacity_rate"
+    ],
+    "margin_provenance": "Margins must be derived from a separately retained repeatability and numerical-sensitivity calibration cohort, justified against downstream training-label use, then frozen before held-out equivalence cells are opened.",
+    "cohort_adequacy": "Topology buckets, morphology/material/task factors, seeds, horizons, contact regimes, capacity limits, and multiplicity handling must be declared before held-out execution.",
+    "calibration_data_may_enter_heldout_validation": false,
+    "training_data_may_enter_heldout_validation": false,
+    "physical_series_open": false
+  },
+  "claims": {
+    "runtime_installed": false,
+    "sporespore_model_conversion_passed": false,
+    "supported_physics_subset_qualified": false,
+    "throughput_measured": false,
+    "training_plane_authorized": false,
+    "training_data_authority": false,
+    "native_mujoco_equivalence": false,
+    "cross_engine_equivalence": false,
+    "scientific_result": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "documentation_provenance": [
+    "https://github.com/google-deepmind/mujoco_warp/blob/main/README.md",
+    "https://mujoco.readthedocs.io/en/stable/mjwarp/index.html",
+    "https://pypi.org/project/mujoco-warp/3.11.0/"
+  ]
+}

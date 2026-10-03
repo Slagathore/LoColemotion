@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/configuration_v1.schema.json",
+  "title": "SporeSpore resolved/applied/observed configuration evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "resolved",
+    "applied",
+    "observed",
+    "resolved_configuration_sha256",
+    "applied_configuration_sha256",
+    "observed_configuration_sha256",
+    "match",
+    "configuration_valid",
+    "errors"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.configuration.v1"},
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+    },
+    "resolved": {"$ref": "#/$defs/resolved_applied"},
+    "applied": {"$ref": "#/$defs/resolved_applied"},
+    "observed": {"$ref": "#/$defs/observed"},
+    "resolved_configuration_sha256": {"$ref": "#/$defs/sha256"},
+    "applied_configuration_sha256": {"$ref": "#/$defs/sha256"},
+    "observed_configuration_sha256": {"$ref": "#/$defs/sha256"},
+    "match": {"type": "boolean"},
+    "configuration_valid": {"type": "boolean"},
+    "errors": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/configuration_error"}
+    },
+    "observer_arms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimal", "full", "contact"],
+      "properties": {
+        "minimal": {"$ref": "#/$defs/arm_configuration"},
+        "full": {"$ref": "#/$defs/arm_configuration"},
+        "contact": {"$ref": "#/$defs/arm_configuration"}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "resolved_applied": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "body_parameters",
+        "fixture_contact_cap",
+        "observer_identity"
+      ],
+      "properties": {
+        "body_parameters": {"$ref": "#/$defs/body_parameters"},
+        "fixture_contact_cap": {"type": "integer", "minimum": 0},
+        "observer_identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "profile_id",
+            "channel_set_sha256",
+            "channel_count",
+            "contacts_enabled",
+            "contact_cap_per_body"
+          ],
+          "properties": {
+            "profile_id": {"type": "string", "minLength": 1},
+            "channel_set_sha256": {"$ref": "#/$defs/sha256"},
+            "channel_count": {"type": "integer", "minimum": 1},
+            "contacts_enabled": {"type": "boolean"},
+            "contact_cap_per_body": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "body_parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mass_kg",
+        "gravity_scale",
+        "initial_position_m",
+        "initial_velocity_m_s",
+        "linear_damp_s1",
+        "angular_damp_s1"
+      ],
+      "properties": {
+        "mass_kg": {"type": "number", "exclusiveMinimum": 0},
+        "gravity_scale": {"type": "number"},
+        "initial_position_m": {"$ref": "#/$defs/vec3"},
+        "initial_velocity_m_s": {"$ref": "#/$defs/vec3"},
+        "linear_damp_s1": {"type": "number", "minimum": 0},
+        "angular_damp_s1": {"type": "number", "minimum": 0}
+      }
+    },
+    "observed": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actual_body_parameters",
+        "actual_fixture_parameters",
+        "observer_profile_id",
+        "observer_adapter_id",
+        "observer_profile_channel_count",
+        "observer_projected_channel_count",
+        "observer_available_channel_count",
+        "observer_channel_availability",
+        "observer_contract_satisfied",
+        "observer_contacts_enabled",
+        "observer_contact_cap_per_body"
+      ],
+      "properties": {
+        "actual_body_parameters": {"$ref": "#/$defs/body_parameters"},
+        "actual_fixture_parameters": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "contact_cap",
+            "contacts_enabled",
+            "effective_contact_cap_per_body"
+          ],
+          "properties": {
+            "contact_cap": {"type": "integer", "minimum": 0},
+            "contacts_enabled": {"type": "boolean"},
+            "effective_contact_cap_per_body": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "observer_profile_id": {"type": "string", "minLength": 1},
+        "observer_adapter_id": {"type": "string", "minLength": 1},
+        "observer_profile_channel_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "observer_projected_channel_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observer_available_channel_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "observer_channel_availability": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/channel_availability"}
+        },
+        "observer_contract_satisfied": {"type": "boolean"},
+        "observer_contacts_enabled": {"type": "boolean"},
+        "observer_contact_cap_per_body": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "channel_availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason", "source"],
+      "properties": {
+        "status": {"enum": ["measured", "derived", "unavailable"]},
+        "reason": {"type": ["string", "null"]},
+        "source": {"type": ["string", "null"]}
+      }
+    },
+    "configuration_error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "path", "message"],
+      "properties": {
+        "code": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "pattern": "^/"},
+        "message": {"type": "string", "minLength": 1},
+        "expected": {},
+        "actual": {},
+        "observer_arm": {"type": "string", "minLength": 1}
+      }
+    },
+    "arm_configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resolved",
+        "applied",
+        "observed",
+        "resolved_configuration_sha256",
+        "applied_configuration_sha256",
+        "observed_configuration_sha256",
+        "match",
+        "configuration_valid",
+        "errors"
+      ],
+      "properties": {
+        "resolved": {"$ref": "#/$defs/resolved_applied"},
+        "applied": {"$ref": "#/$defs/resolved_applied"},
+        "observed": {"$ref": "#/$defs/observed"},
+        "resolved_configuration_sha256": {"$ref": "#/$defs/sha256"},
+        "applied_configuration_sha256": {"$ref": "#/$defs/sha256"},
+        "observed_configuration_sha256": {"$ref": "#/$defs/sha256"},
+        "match": {"type": "boolean"},
+        "configuration_valid": {"type": "boolean"},
+        "errors": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/configuration_error"}
+        }
+      }
+    },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    }
+  }
+}

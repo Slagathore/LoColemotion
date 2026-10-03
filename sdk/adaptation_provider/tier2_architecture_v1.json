@@ -1,0 +1,92 @@
+{
+  "schema_version": "sporespore_tier2_adaptation_architecture_v1",
+  "architecture_id": "sporespore_tier2_candidate_chapter_pipeline_v1",
+  "sdk_version": "0.1.0",
+  "release_gate_id": "QSDK-R22",
+  "trained_provider_required_for_first_public_release": false,
+  "purpose": "Convert retained provider episodes into reviewed successor encyclopedia and provider releases without rewriting a deployed model, live encyclopedia, frozen corpus, or observed campaign.",
+  "record_schemas": {
+    "episode": "sporespore_tier2_episode_v1",
+    "candidate_chapter": "sporespore_tier2_candidate_chapter_v1",
+    "frozen_corpus": "sporespore_tier2_frozen_corpus_v1",
+    "model_candidate": "sporespore_tier2_model_candidate_v1",
+    "qualification": "sporespore_tier2_engine_qualification_v1",
+    "promotion_receipt": "sporespore_tier2_promotion_receipt_v1"
+  },
+  "pipeline": [
+    "retained_raw_episode",
+    "immutable_feature_and_outcome_receipt",
+    "append_only_candidate_lesson_or_counterexample",
+    "reviewed_candidate_chapter",
+    "frozen_train_validation_test_corpus",
+    "new_immutable_provider_model_candidate",
+    "ordinary_cpu_mujoco_rapier_parry_and_godot_jolt_qualification",
+    "new_encyclopedia_release_and_provider_release"
+  ],
+  "episode_requirements": {
+    "provider_request_digest": true,
+    "provider_response_digest": true,
+    "resolution_receipt_digest": true,
+    "morphology_descriptor_digest": true,
+    "task_environment_and_seed_identity": true,
+    "measured_outcome_and_failure_code": true,
+    "successes_and_failures_retained": true,
+    "candidate_only": true,
+    "physical_acceptance_authority": false
+  },
+  "candidate_chapter_requirements": {
+    "append_only": true,
+    "parent_encyclopedia_digest_required": true,
+    "ordered_episode_digests_required": true,
+    "success_and_counterexample_counts_required": true,
+    "may_rewrite_parent": false,
+    "may_promote_itself": false,
+    "may_mutate_deployed_provider": false
+  },
+  "frozen_corpus_requirements": {
+    "prospective_split_plan_required": true,
+    "chapter_digests_required": true,
+    "immutable_after_freeze": true,
+    "observed_results_may_not_change_split": true,
+    "training_artifact_has_physical_authority": false
+  },
+  "model_candidate_requirements": {
+    "model_artifact_digest_required": true,
+    "frozen_corpus_digest_required": true,
+    "base_model_immutable": true,
+    "online_weight_mutation_permitted": false,
+    "deterministic_baseline_fallback_required": true,
+    "physical_acceptance_authority": false
+  },
+  "promotion_requirements": {
+    "training_plane_alone_sufficient": false,
+    "required_qualification_engines": [
+      "godot_jolt",
+      "rapier_parry",
+      "mujoco_cpu"
+    ],
+    "prospective_contract_required": true,
+    "retained_evidence_digest_required": true,
+    "all_required_engines_must_accept": true,
+    "new_encyclopedia_identity_required": true,
+    "new_provider_identity_required": true,
+    "in_place_rewrite_permitted": false
+  },
+  "training_planes": {
+    "mujoco_warp": {
+      "preferred_high_throughput_discovery_plane": true,
+      "gpu_training_hypothesis_authority": true,
+      "cross_engine_release_authority": false
+    }
+  },
+  "tier3_extension": {
+    "required_program_destination": true,
+    "bounded_external_memory_first": true,
+    "immutable_base_model_required": true,
+    "reset_and_rollback_required": true,
+    "durable_lesson_promotion_uses_this_offline_pipeline": true
+  },
+  "world_build_count": 0,
+  "physics_state_modified": false,
+  "physical_acceptance_authority": false
+}

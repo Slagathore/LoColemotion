@@ -1,0 +1,56 @@
+{
+  "schema_version": "sporespore_development_recovery_absent_contact_reference_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V40",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_airborne_reference_v1",
+  "policy_id": "sporespore_balanced_wave_recovery_absent_contact_reference_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_absent_contact_reference_profile_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_absent_contact_reference_memory_v1",
+  "native_actuation_receipt_schema": "sporespore_recovery_absent_contact_reference_controller_step_receipt_v1",
+  "reference_velocity_mode_id": "contact_selected_absent_contact_reference_velocity_tracking_v1",
+  "source_diagnosis": "sdk/development/recovery_absent_stance_diagnosis_v1.json",
+  "source_attempt": "sdk/development/recovery_attempts/681e45b2b4784caba4018cac4e6c2b61.json",
+  "source_report_sha256": "sha256:65c27b92134702e1af871a899e6cec5be796cad5ebc30b42ff81f87e6a8db612",
+  "question": "Does extending existing full-reference velocity tracking to explicitly absent-contact stance improve lost-support tracking without compromising supported-foot posture? Saved-input arithmetic is not an answer about a future trajectory.",
+  "controlled_change": "Relative to V39, remove only the scheduled swing/landing restriction from the full-reference-rate selector. Both contacts explicitly absent, dt>0 and both wave snapshots active remain mandatory. New policy/profile/memory/receipt identities expose this distinct rule. No fitted gains, episode indexes, failure flags or extra sensor are inputs.",
+  "selector": "dt>0 AND previous_wave.active AND current_wave.active AND presence is explicitly false AND bears_support is explicitly false. Current phase remains validated in 0..359 but no longer restricts selection. Both joints of a limb share the choice.",
+  "full_reference_rate": "clamp((actual_bounded_reference-previous_bounded_reference)/dt,-current_cap,current_cap), exactly the V39 formula.",
+  "fallback_rate": "Exactly V39's pose-separated wave rate for every contact-present, ambiguous/non-bearing, initialization, zero-duration or inactive-wave case. Preserve existing invalid-state refusal for contradictory or malformed contacts.",
+  "motor_formula": "Unchanged: 8*(reference-measured_position)-0.65*measured_velocity+1.65*selected_reference_rate, then the existing per-joint speed clamp and host sign -1. Preserve truthful saturation.",
+  "memory_and_receipt": "Reuse V39's floor-bound reference positions, time, previous-wave snapshot and per-limb contact provenance. Distinct identities/mode; no new dynamic state. Retain source step/time/capability, actual full rates, comparison references, chosen rates and per-foot selector for independent replay. The existing airborne_reference receipt field remains an absence-of-contact record, not a scheduled-swing claim.",
+  "preserve": [
+    "All position goals, feasible support-height plans, floor/context provenance, reference slew, gains, speed/force/impulse caps and joint limits.",
+    "Exact V39 velocity outputs for every already-selected swing/landing case and every unselected stance case on identical input and memory.",
+    "Exact V39 same-input gait clocks, contact/recontact/sync gates, dwell and support-reference memory, apart from the distinct schema identity.",
+    "V20 recovery, stance V7, BW5R-B prefix, all earlier policy output bytes and every retained positive/negative/invalid attempt.",
+    "Existing development evaluation, thresholds and explicit no-claim publication. This component contract selects neither a physical attempt nor a schedule extension."
+  ],
+  "required_zero_world_checks": [
+    "Truth table over active/inactive/initialization, dt=0 and positive, phases 0/72/73/359, present/absent/non-bearing and contradictory or malformed contacts.",
+    "All 400 saved V39 inputs through real stateless and stateful exported interfaces with chained memory; exact input precision and no per-row resets.",
+    "Same-input parent comparison of every position, plan, memory, cap and motor command. Differences restricted to the 208 saved unsupported stance limb inputs, selected rates/saturation and explicit new identities/receipt.",
+    "Independent reconstruction of every selected full rate, fallback comparison and final motor velocity, including the compiled-anchor arithmetic at exact full extension.",
+    "Exact older-policy output bytes and recovery fixtures; safe-no-actuation with unchanged memory for invalid floor/contact/time/state inputs.",
+    "A non-runnable component profile first, then shared real adapter/motor ledger/reader/route integration and the complete applicable safety gate before any fresh physical diagnostic."
+  ],
+  "risks_and_remaining_blockers": [
+    "The saved-input sketch changes 278 joint commands and predicts 133 saturated commands versus the observed 82; neither count predicts future physical saturation or success.",
+    "This is moving-target tracking, not a downward-only foot correction. The fixed-pose vertical velocity difference has both signs. Abrupt contact switching can destabilize the body or fragment contact further.",
+    "V37 previously applied full-reference tracking more broadly and had a bad physical result. V40 must preserve V39's supported-contact fallback; this narrower selection is still unproven.",
+    "Rear-right sometimes cannot reach the floor at the current body pose. A nonempty shared height interval describes a possible lower body height, not current contact. This rate change does not solve all reach or whole-body support problems.",
+    "No unsupported stance command hit its declared speed clamp. This does not prove delivered motor impulse/force adequacy; retained maximum impulse settings are not delivered impulse measurements.",
+    "V39's 400-command observation lacks a second complete planned cycle per foot and a commanded stop/cooldown. Separate prospective coverage is required before claiming those paths; do not extend, rerun or regrade V39.",
+    "No general force-aware recovery, superiority, equivalence, robustness or release claim follows from this development component."
+  ],
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

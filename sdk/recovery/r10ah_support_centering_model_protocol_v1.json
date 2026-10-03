@@ -1,0 +1,31 @@
+{
+  "schema_version": "sporespore_r10ah_support_centering_model_protocol_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "prospective_retained_input_mathematical_probe",
+    "question_class": "development"
+  },
+  "source_parent_commit": "35a9953c9f749f0452ecd816a698d15cb36f1a0d",
+  "question": "Can prioritizing horizontal COM support margin before loaded rise avoid an ideal geometric stall on the first and last retained R10AG loaded poses?",
+  "input_scope": "All 110 retained loaded plans for source reconstruction and one-step feasibility; first and last loaded poses for bounded ideal propagation. AG's invalid physical attempt remains unchanged and consumed.",
+  "report_raw_sha256": "sha256:e5f6da423da6eaecd713b09650bc839533d9ca779f62905135e31cd18f434b94",
+  "variants": {
+    "horizontal_only": "Center with 10 candidates: five original scales times two yaw-aligned horizontal directions; fixed torso height and orientation.",
+    "coupled_translation": "Center with 30 candidates: five original scales times two yaw-aligned horizontal directions times negative/zero/positive vertical movement; fixed torso orientation. Vertical movement can satisfy existing leg reach and joint bounds."
+  },
+  "centering_metric": "Minimum signed distance from modeled COM projection to convex-hull edge lines of all four modeled distal endpoints, in world XZ. Outside values are half-plane violations, not Euclidean distance or contact-force measurements.",
+  "model_design_margin": "One authored foot radius, 0.04 * foot_radius_scale metres. This is a candidate planning parameter, never a replacement task threshold.",
+  "centering_selection": "Strictly improve signed support margin; maximize that margin, then minimize absolute vertical displacement, then original geometry cost. Preserve first exact tie. No torso rotation during centering.",
+  "rise_selection": "Once the model margin reaches one foot radius, select the lowest original geometry cost among original cost-decreasing candidates that retain this prospective COM margin.",
+  "preserved_bounds": "Original 0.1 m/s virtual translation, five scales, both analytic IK branches, 4 rad/s and original joint limits, 0.5 mm maximum unactuated lateral residual. Maximum 600 mathematical updates per pose per variant; terminate visibly on no admissible plan.",
+  "assumptions": "Perfect torso/joint tracking, all four native contacts assumed qualified, fixed torso-local COM. No dynamics, friction, contact force, physical task evaluation or causal inference.",
+  "checks": "Reproduce all 110 original loaded plans before interpretation; six synthetic hull/selection controls; source/report bindings unchanged during execution; retain every variant and refusal, including failures.",
+  "controller_implemented": false,
+  "native_route_integrated": false,
+  "new_physical_population_declared": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

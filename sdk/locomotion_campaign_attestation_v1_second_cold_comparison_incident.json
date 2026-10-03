@@ -1,0 +1,85 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_commissioning_incident_v1",
+  "incident_id": "LCA1-SECOND-COLD-COMPARISON-20260812",
+  "status": "closed_negative_native_child_role_markers_absent_from_parent_transcript",
+  "observed_source_identity": {
+    "commit": "b16dbf3f7a71518c7cb49a6bc313ac02c1e8a4b8",
+    "tree_git_oid": "c1c8b57cfa4ea6b75333aba5d64ebd899804db9d",
+    "origin_main": "b16dbf3f7a71518c7cb49a6bc313ac02c1e8a4b8",
+    "live_github_main": "b16dbf3f7a71518c7cb49a6bc313ac02c1e8a4b8",
+    "worktree_clean": true
+  },
+  "cold_full_v2": {
+    "status": "passed_transcript_comparison_failed",
+    "started_utc": "2026-08-11T23:27:16.3892204Z",
+    "completed_utc": "2026-08-12T00:00:25.0088128Z",
+    "duration_seconds": 1988.6179205,
+    "attestation": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\lca1-cold-recommissioning-20260811T232655Z-b16dbf3f\\full-v2-attestation.json",
+      "raw_sha256": "sha256:42713c40269ff8edbe6bf5c230ad4551313c1c3f08196031156db710db8725d8",
+      "byte_length": 3564,
+      "cas_required": false
+    },
+    "run_receipt": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\conformance-runs\\20260811T232715Z-b16dbf3f-3e1f0980407a4f37b985a977d9c8eb1c\\receipt.json",
+      "raw_sha256": "sha256:cf35f47d409c3822d2d71a6df43e388488de048a9bf1d3c282f8bde523e461e4",
+      "byte_length": 17733,
+      "cas_required": true
+    },
+    "full_log": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\conformance-runs\\20260811T232715Z-b16dbf3f-3e1f0980407a4f37b985a977d9c8eb1c\\conformance.log",
+      "raw_sha256": "sha256:fc13e29aaff7261f029accad6c6fb7e21eda0627d8467482d81838473c12c5fc",
+      "byte_length": 240556,
+      "cas_required": true
+    },
+    "stage_count": 8,
+    "failed_stage_count": 0,
+    "terminal_marker_counts": {
+      "QSDK_R23D17_CLOSURE_PASS": 1,
+      "LCA1_COMMISSIONING_WORKER_PASS": 0,
+      "LCA1_COMMISSIONING_EVALUATOR_PASS": 0,
+      "LCA1_COMMISSIONING_SUPERVISOR_PASS": 0
+    },
+    "physical_worlds_opened": 0
+  },
+  "cold_scoped_lca1": {
+    "status": "not_started_after_full_transcript_comparison_failed",
+    "reason": "Fail-closed commissioning stopped before the scoped path because the full transcript still lacked the three required role markers.",
+    "attempted": false,
+    "physical_worlds_opened": 0
+  },
+  "comparison": {
+    "required_subset_marker_count": 4,
+    "matching_full_marker_count": 1,
+    "missing_full_runner_markers": [
+      "LCA1_COMMISSIONING_WORKER_PASS",
+      "LCA1_COMMISSIONING_EVALUATOR_PASS",
+      "LCA1_COMMISSIONING_SUPERVISOR_PASS"
+    ],
+    "failure_class": "native_child_terminal_markers_not_retained_by_parent_transcript",
+    "commissioning_passed": false,
+    "physical_launch_prerequisite_satisfied": false
+  },
+  "mechanism": {
+    "source_declared_all_three_role_invocations": true,
+    "full_run_passed_beyond_role_invocations": true,
+    "role_child_failure_would_have_failed_full_run": true,
+    "retained_role_execution_receipt_exists": false,
+    "conservative_interpretation": "The source-exact control flow is consistent with successful child execution, but direct native-child stdout was not retained by the parent Start-Transcript. Without retained terminal markers, role execution is not accepted for commissioning.",
+    "authorized_repair": "Capture each role child's combined output and exit code, re-emit captured lines through the parent PowerShell host, canary exact marker retention under Start-Transcript, freeze and push, then repeat full and scoped cold paths from the same new source.",
+    "threshold_change_authorized": false,
+    "controller_change_authorized": false,
+    "physical_rerun_authorized_by_incident": false
+  },
+  "claims": {
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

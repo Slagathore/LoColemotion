@@ -1,0 +1,78 @@
+{
+  "schema_version": "sporespore_development_recovery_bounded_support_walking_entry_contract_v1",
+  "profile_id": "bounded_support_joint_bounded_contact_gated_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_command_schedule",
+    "question_class": "development"
+  },
+  "segment_id": "walking_resume",
+  "warmup_steps": 72,
+  "first_full_amplitude_local_step": 73,
+  "first_contact_gated_local_step": 1,
+  "maximum_amplitude": 0.5994550408719347,
+  "phase_progression_entry_profile_id": "normal_one_cycle_amplitude_ramp_with_control_trace_v1",
+  "phase_progression_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "phase_progression_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "amplitude_and_retention_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "amplitude_and_retention_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "normal_launcher_resource": "res://scripts/lab/gait/physical_wave_gait_quadruped.gd",
+  "normal_launcher_raw_sha256": "sha256:80f5197940e971dbff6bba0720eb92d72843386754f327e5c533f3737fdf17eb",
+  "bound_source_files": [
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "raw_sha256": "sha256:3bf519244b5c37be7486e650f48a1b88bcb183d429b4295a5b3cc516e7a4d61c"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "raw_sha256": "sha256:aa0ecfb0e1a56532012128d9179ed1ccb5c351bef29552352bd41494113ad534"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "raw_sha256": "sha256:1d1a49039adf48fa6355361614e77871cbdb2546ad74c2fc5ae9ffe6c148814c"
+    },
+    {
+      "path": "sdk/core/src/recovery_support_plane.rs",
+      "raw_sha256": "sha256:e961c41592f38fe64597f15b57ce7dfa38beac5f99b0dacf4bf5aa4ab009878a"
+    },
+    {
+      "path": "sdk/development/recovery_bounded_support_walking_policy_contract_v1.json",
+      "raw_sha256": "sha256:53e7d68c2f37d0779d992cb5019a93db903cb985d788d29383977b8aecbf62e9"
+    },
+    {
+      "path": "sdk/development/recovery_bounded_support_walking_adapter_integration_v1.json",
+      "raw_sha256": "sha256:b8e010d47560134af3e49a3736363f4151347fbc32830049608becc619f7340d"
+    },
+    {
+      "path": "sdk/development/recovery_bounded_support_walking_start_contract_v1.json",
+      "raw_sha256": "sha256:a8f0f9d3fe644cd6c444cf1352a5eebc97933da54431a515872c8e5ff9e893e4"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_recovery_walking_startup_v1.gd",
+      "raw_sha256": "sha256:092122224ac16307280a0c5cbb34bd75bc8e4601c3d2ef1092bc159a98ccaab8"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_recovery_walking_start_v1.gd",
+      "raw_sha256": "sha256:54ffecaf304f2b8729037c398221dae556891b48991a6fc5b00d6bcad45b0092"
+    }
+  ],
+  "rule": "Preserve initial gait clocks 90, contact gates from command one, 72-command wall-clock amplitude ramp, cap 0.5994550408719347 and swing-end recontact timing. Select the distinct V33 bounded-support policy only on resumed walking. Keep its native neutral-start reference memory and measured-time reference slew, with the existing joint and velocity limits. Prefix BW5R-B, V20 recovery, stance V7, contacts, model, solver, horizon and all evaluators are unchanged.",
+  "parameter_basis": "V32 retained placement diagnosis motivates pose-aware support accommodation; the separate unconstrained plane proposal was rejected for exceeding knee limits and undefined startup. V33 uses all four nominal limb directions to avoid changing the geometric population at gait boundaries, explicitly projects joint-bounded support goals and retains residuals, blends bounded swing goals, and limits reference changes using existing motor speed limits. This does not ensure actual ground contact, body stability or recovery success.",
+  "compatibility_scope": "Distinct native policy, memory and receipt identities with explicit adapter/ledger selection. Complete consecutive native-memory replay remains mandatory. No old record change, baseline reuse, physical threshold change, force-aware claim or support promotion.",
+  "diagnostic_basis": {
+    "source_closure": "sdk/development/recovery_attempts/987a8848999d457a820c078eb9273dbb.json",
+    "source_closure_sha256": "sha256:c686eb6a455941cefeb2435c2972fae01f8a7c9ccce32a48b0134e9c3f1ac91b",
+    "source_report_sha256": "sha256:f85572e993169c913ecd979bc27fc46d377bc835b5db143ec1becb82f41d6830",
+    "placement_diagnosis": "sdk/development/recovery_swing_end_placement_diagnosis_v1.json",
+    "rejected_geometric_proposal": "sdk/development/recovery_stance_plane_feasibility_v1.json",
+    "native_component": "sdk/development/recovery_bounded_support_component_v1.json",
+    "native_component_sha256": "sha256:ed4594ffb946c0fb8bd35310234276d0211fb36bdd64d8d89f30c4cc37e7316e",
+    "physical_outcome_predicted": false,
+    "causal_attribution_proven": false
+  },
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "required_start_profile_id": "bounded_support_front_left_first_resume_v1",
+  "required_walking_policy_id": "sporespore_balanced_wave_recovery_bounded_support_v1"
+}

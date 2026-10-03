@@ -1,0 +1,57 @@
+{
+  "schema_version": "sporespore_development_recovery_smooth_swing_selection_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core_and_godot_jolt",
+    "authority_mode": "post_exposure_development_successor_selection",
+    "question_class": "development"
+  },
+  "selected_successor": "V36",
+  "selected_policy_id": "sporespore_balanced_wave_recovery_smooth_swing_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_feasible_support_v1",
+  "source_diagnosis": {
+    "path": "sdk/development/recovery_feasible_support_step_diagnosis_v1.json",
+    "raw_sha256": "sha256:3a9c815de2e7834f3f4b485cc7995e63b2a71cebbfa4aadfb1bb0a477356a224"
+  },
+  "observed_problem": "All five within-swing native contact releases in V35 coincide with a lower composed knee goal at the next command. The slew-limited reference actually decreases in three, including the first front-left release. The other two references are still rising toward a lagging goal, so a lower goal is not the same as an applied downward reference. The existing formula switches off amplitude*0.40 knee assistance immediately when support disappears. Exact same-input algebra isolates this branch sensitivity; adjacent physical rows also change phase, amplitude and pose. This is a testable command discontinuity, not proof that it causes every short cycle.",
+  "selected_change": "For the new policy only, replace the raw contact-conditioned swing knee target with amplitude*(0.82*1.75+0.40)*sin(pi*phase/72) for 0<=phase<72; use exactly zero at phase 72 and throughout stance. Keep the existing support-knee composition, joint bounds and reference slew. This is continuous in value at the swing endpoints, not a claim of derivative continuity or a new physical clearance guarantee. No contact-history latch or new fitted coefficient is introduced.",
+  "coefficient_provenance": "The 0.82 knee-flexion coefficient, 1.75 scale, 0.40 existing contact assistance, 72-step swing and 1.1-rad knee maximum are the observed native constants/bounds. Peak lift is unchanged from the old loaded swing peak. The existing amplitude cap 1.1/(0.82*1.75+0.40)=0.5994550408719347 is preserved, not increased or fitted to V35's outcome.",
+  "preserved": [
+    "All V35 and older policy identities, outputs, evidence and interpretations",
+    "V20 recovery and stance V7, BW5R-B prefix and same-body handoff",
+    "Front-left first, initial gait clocks 90, 72-command amplitude ramp and existing amplitude cap",
+    "Hip direction, steering, contact observations, release and landing gates, dwell, timeout and phase synchronization",
+    "V35 actual-floor reference, four-limb feasible-height calculation and stance-lowering rule",
+    "First neutral reference, existing joint bounds, reference slew, feedback gains, motor velocity/effort limits and solver settings",
+    "All official and development behavioral evaluators, thresholds and observed cutoffs"
+  ],
+  "prephysical_checks": [
+    "Native phase-only knee formula agrees with the declared endpoints, unchanged peak and all 360 scheduler phases at the existing amplitude cap",
+    "Paired same-input contact toggles do not directly change the raw lift at a fixed scheduled phase; retain and distinguish any scheduler or motor-limit change still caused by contact",
+    "Stateless/session agreement on all retained V35 inputs, exact old-policy compatibility and bounded joint/slew outputs",
+    "Profile-selected real adapter and independent reader agree on the new policy identity and retained receipt; no copied controller implementation in the harness",
+    "The complete applicable smoke safety gate and negative controls pass before any fresh world"
+  ],
+  "next_physical_question": "After native and route integration, declare one fresh non-comparative development SingleKick using the unchanged 400-command resumed-walking diagnostic budget. Observe whether swing fragmentation and first front-left relocation change under the continuous phase-only lift; retain all stance gaps, interval conflicts and original behavioral failures. This selection alone is not a runnable profile or physical authorization.",
+  "risks_and_limits": [
+    "The curve reduces assistance early in loaded swing and preserves more lift after release; native liftoff may be later or landing may be delayed",
+    "The amplitude ramp and body rotation also affect first-step relocation; smoothing lift alone is not a promise of passing 12 mm",
+    "The second first-front-left airborne cycle contains 25.73 mm of ideal joint-change contribution but -18.13 mm of body-rotation contribution in the stated ordered decomposition; this is geometric accounting, not causal separation",
+    "Ten observed cycles do not overlap a scheduled swing or landing; six of those overlap a lowering request and four do not. Do not attribute all stance gaps to lowering",
+    "Excluding swing/landing legs from the saved common-height intersection makes 86 of 94 intervals nonempty but leaves eight empty; this algebra is not selected as a physical fix",
+    "No additional horizon is selected to erase completed short/backward cycles. Rear-left landing and repeated-cycle coverage still need their own coverage argument",
+    "The controller remains kinematic and contact-gated, not force-aware recovery or SDK2 adaptation"
+  ],
+  "finite_remaining_blockers": [
+    {"id": "first_swing", "problem": "Fragmented first front-left swing and insufficient forward relocation", "next_action": "Implement and verify the selected V36 lift-only successor, then a fresh bounded diagnostic"},
+    {"id": "stance_contact", "problem": "Ten dwell-qualified contact interruptions outside scheduled swing/landing", "next_action": "Keep explicit in the next retained observation; do not remove these cycles from the evaluator"},
+    {"id": "height_and_attitude", "problem": "Conflicting leg-height intervals and body rotation that offsets foot advance", "next_action": "Retain all limiting legs and geometry; do not bundle an unqualified support or attitude correction into V36"},
+    {"id": "coverage", "problem": "Rear-left landing and two intended cycles per limb were not exercised by V35's cutoff", "next_action": "Declare additional coverage only when justified; more time cannot repair V35's already-completed failures"}
+  ],
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_authorized": false,
+  "behavioral_threshold_changed": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

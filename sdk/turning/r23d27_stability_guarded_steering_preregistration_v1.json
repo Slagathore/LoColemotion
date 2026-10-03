@@ -1,0 +1,118 @@
+{
+  "schema_version": "sporespore_qsdk_r23d27_stability_guarded_steering_preregistration_v1",
+  "status": "prospective_zero_world_only",
+  "campaign_id": "QSDK-R23D27-RAPIER-STABILITY-GUARDED-STEERING-VALIDATION",
+  "gate_id": "QSDK-R23D27",
+  "study_classification": "prospective_finite_rapier_candidate_validation",
+  "question": "Does one direction-neutral stability-guarded steering policy preserve cap-0.20 walking safety while admitting enough additional authority to pass the unchanged bilateral Rapier turning gate?",
+  "immutable_lineage": {
+    "r23d26_physical_closure": "sdk/turning/r23d26_rapier_steering_cap_closure_v1.json",
+    "r23d26_physical_closure_raw_sha256": "sha256:327432a004ddc706644e2bc427fa8b8c6a93bcdfaac869b0bad15c31c724d23f",
+    "r23d26_trace_diagnosis_closure": "sdk/trace_analysis/r23d26_lineage_diagnosis_closure_v1.json",
+    "r23d26_trace_diagnosis_report_sha256": "sha256:a6aac6576bfab374871e71d410c95e0d4b6c7f11a30c7b993c5d9d987a599dc3",
+    "same_identity_rerun_forbidden": true,
+    "historical_outcomes_reinterpreted": false,
+    "historical_worlds_reused_as_new_cells": false
+  },
+  "mechanism": {
+    "retained_observation": "R23D26 cap 0.20 stayed upright in every arm. Its positive arm was saturated for all 1200 commanded rows but missed the conditioned threshold by 0.002750043513226875 rad; its negative arm passed but reached 0.18924522399902344 rad maximum tilt. Both cap 0.30 commanded arms fell with at least 678 torso-ground-contact rows.",
+    "interpretation": "One shared static cap cannot simultaneously supply the positive near miss and protect the more responsive direction. A direction-neutral guard may admit additional authority only while current torso tilt and support contacts remain inside a declared safe region, then continuously return to the already-stable 0.20 baseline.",
+    "threshold_change": false,
+    "fixture_change": false,
+    "physics_change": false,
+    "engine_identity_input_permitted": false,
+    "command_sign_branch_permitted": false
+  },
+  "candidate_family": {
+    "parent_policy_id": "sporespore_balanced_wave_r23d26_steering_cap_0p20_v1",
+    "behavioral_controller_change_set": [
+      "maximum_steering_fraction:0.20_to_0.28",
+      "minimum_steering_fraction:0.20",
+      "steering_authority_guard_mode_id:tilt_and_contact_steering_authority_guard_v1",
+      "full_authority_maximum_tilt_rad:0.10",
+      "minimum_authority_tilt_rad:0.20",
+      "minimum_support_contact_count:2"
+    ],
+    "level_provenance": "The 0.20 floor is the R23D26 stable candidate. The 0.28 ceiling stays 0.02 below the observed 0.30 fall candidate. The 0.10 full-authority tilt is below both R23D26 cap-0.20 commanded maxima; the 0.20 minimum-authority tilt is the existing active-turn stability boundary. Two contacts are the minimum nondegenerate support count available in the portable StateFrame.",
+    "ordered_candidates": [
+      {
+        "candidate_id": "stability_guarded_0p20_to_0p28",
+        "controller_policy_id": "sporespore_balanced_wave_r23d27_stability_guarded_steering_v1",
+        "minimum_steering_fraction": 0.2,
+        "maximum_steering_fraction": 0.28,
+        "full_authority_maximum_tilt_rad": 0.1,
+        "minimum_authority_tilt_rad": 0.2,
+        "minimum_support_contact_count": 2
+      }
+    ],
+    "engine_specific_gait_logic_permitted": false,
+    "candidate_or_outcome_branching_permitted": false,
+    "direction_neutral_guard_required": true
+  },
+  "frozen_matrix": {
+    "stage_id": "rapier_stability_guarded_steering_validation",
+    "ordered_engine_ids": ["rapier_parry"],
+    "ordered_candidate_ids": ["stability_guarded_0p20_to_0p28"],
+    "ordered_arm_ids": ["reference_zero", "positive_heading", "negative_heading"],
+    "declared_cell_count": 3,
+    "serial_execution_required": true,
+    "all_cells_run_regardless_of_intermediate_outcome": true,
+    "morphology_id": "qsdk_r05_generated_s169",
+    "seed": 21501,
+    "physics_hz": 120,
+    "settlement_step_count": 240,
+    "controller_step_count": 2992,
+    "turn_start_step": 600,
+    "turn_end_step_exclusive": 1800,
+    "desired_heading_offsets_rad_by_arm": {
+      "reference_zero": 0.0,
+      "positive_heading": 0.2,
+      "negative_heading": -0.2
+    }
+  },
+  "frozen_active_turn_gates": {
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "minimum_absolute_signed_turn_phase_yaw_delta_rad": 0.01,
+    "minimum_command_conditioned_yaw_separation_rad": 0.01,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "zero_torso_ground_contact_required": true,
+    "zero_controller_errors_required": true,
+    "zero_nonfinite_observations_required": true,
+    "zero_actuator_application_mismatches_required": true,
+    "terminal_quiescent_taper_required": false,
+    "thresholds_inherited_unchanged_from_r23d26": true
+  },
+  "trace_observability": {
+    "controller_guard_receipt_required_every_row": true,
+    "ordered_final_canonical_velocities_required_every_row": true,
+    "ordered_actuator_velocity_limits_required_every_row": true,
+    "ordered_actuator_count": 8,
+    "limiting_actuator_observable_postclosure": true
+  },
+  "selector": {
+    "candidate_eligibility": "All three cells must be execution-valid and pass every frozen individual and bilateral reference-conditioned gate.",
+    "selected_candidate_is_validation": true,
+    "positive_classification": "valid_complete_positive",
+    "otherwise_classification": "valid_complete_negative"
+  },
+  "evidence": {
+    "complete_zero_world_preflight_required": true,
+    "clean_pushed_source_required": true,
+    "campaign_local_lca1_qualification_required": true,
+    "content_addressed_trace_before_terminal_required": true,
+    "one_world_build_and_attempt_per_cell_required": true,
+    "same_identity_rerun_allowed": false
+  },
+  "claims": {
+    "finite_rapier_candidate_validation": false,
+    "turning_validation": false,
+    "portable_basic_turning": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

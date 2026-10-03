@@ -1,0 +1,333 @@
+{
+  "schema_version": "sporespore_qsdk_r24d51_rapier_discrete_staging_observer_contract_v1",
+  "gate_id": "QSDK-R24D51",
+  "status": "prospective_zero_world_observer_design_implemented_qualification_and_native_wiring_blocked",
+  "authored_parent_commit": "54046523c45cc61a76a77abb6505d81fc8fa314f",
+  "question_class": "development",
+  "physical_question_declared": false,
+  "superiority_question_declared": false,
+  "equivalence_or_non_inferiority_question_declared": false,
+  "population_inference_declared": false,
+  "predecessor": {
+    "gate_id": "QSDK-R24D50",
+    "diagnosis_path": "sdk/recovery/r24d50_rapier_gravity_staging_energy_diagnosis_v1.json",
+    "diagnosis_raw_sha256": "sha256:791ef24fb801132cd002f85797533b2fadc5b190a8ddb25ade0108b02547ebb8",
+    "audit_path": "tests/test_qsdk_r24d50_rapier_gravity_staging_energy_diagnosis.py",
+    "audit_raw_sha256": "sha256:53da707c10f6de8202af75521768f0abacd164732c426bdb8018aa1e93e611b7",
+    "retained_physical_predecessor_path": "sdk/recovery/r24d49_rapier_recovery_energy_v2_development_negative_closure_v1.json",
+    "retained_physical_predecessor_raw_sha256": "sha256:35ac87cb02e85b4d517a6a3901edca35458a22d14ec3981ac44b1385ad2d862d",
+    "historical_result": "r49_valid_complete_development_negative_r50_zero_world_staging_boundary_localized",
+    "same_identity_requalification_permitted": false,
+    "historical_result_rewritten": false,
+    "historical_threshold_rewritten": false,
+    "historical_evaluator_rewritten": false,
+    "historical_interpretation_rewritten": false
+  },
+  "controlled_change": {
+    "changed_surface": "Add a pure ordered observer that independently sums Rapier force-integration kinetic exchange, raw gravitational-potential exchange across position integration, and the endpoint half-step projection exchange.",
+    "new_reusable_measurement_primitive": true,
+    "native_rapier_patch_changed": false,
+    "native_runtime_wiring_changed": false,
+    "engine_neutral_energy_ledger_changed": false,
+    "controller_changed": false,
+    "threshold_changed": false,
+    "margin_changed": false,
+    "selector_changed": false,
+    "evaluator_changed": false,
+    "morphology_changed": false,
+    "initializer_changed": false,
+    "physical_route_executed": false,
+    "historical_trace_changed": false
+  },
+  "supported_design_envelope": {
+    "engine": "rapier3d_0_34_0",
+    "dimension": 3,
+    "native_real_precision": "f32",
+    "adapter_accumulation_precision": "f64_after_native_boundary_readback",
+    "solver_path": "non_parallel_non_simd_scalar_rigid_body_impulse_joint_and_contact_constraints",
+    "outer_timestep_s": 0.008333333333333333,
+    "solver_small_steps_per_outer_step": 16,
+    "maximum_ccd_substeps": 1,
+    "all_supported_bodies_dynamic_and_unlocked": true,
+    "all_supported_body_gravity_scales_equal_one": true,
+    "user_force_and_user_torque_zero": true,
+    "linear_and_angular_damping_zero": true,
+    "gyroscopic_forces_disabled": true,
+    "sleeping_disabled": true,
+    "kinematic_and_multibody_routes_supported": false,
+    "body_count_generic_algebra_is_runtime_capability_claim": false,
+    "native_runtime_capability_established": false
+  },
+  "observer_semantics": {
+    "rule_id": "rapier_discrete_force_position_half_step_staging_exchange_v1",
+    "implementation_path": "sdk/adapters/rapier/src/qsdk_r24d51_discrete_staging_observer.rs",
+    "native_force_boundary": "aggregate_supported_solver_body_kinetic_energy_immediately_before_and_after_force_derived_velocity_increments_are_added_at_each_small_step",
+    "force_integration_kinetic_exchange_formula": "sum_over_ordered_small_steps_of_kinetic_energy_after_force_minus_kinetic_energy_before_force",
+    "raw_gravity_potential_formula": "negative_sum_over_supported_dynamic_bodies_of_mass_times_gravity_scale_times_gravity_dot_world_center_of_mass",
+    "native_position_boundary": "aggregate_raw_gravity_potential_immediately_before_and_after_each_native_integrate_positions_call",
+    "raw_gravity_potential_position_exchange_formula": "sum_over_ordered_small_steps_of_raw_gravity_potential_after_position_minus_raw_gravity_potential_before_position",
+    "rapier_endpoint_potential_formula": "raw_gravity_potential_plus_mass_times_gravity_scale_times_gravity_dot_linear_velocity_times_outer_timestep_divided_by_two",
+    "endpoint_half_step_projection_exchange_formula": "aggregate_endpoint_half_step_projection_after_outer_step_minus_before_outer_step",
+    "signed_discrete_staging_exchange_formula": "force_integration_kinetic_exchange_plus_raw_gravity_potential_position_exchange_plus_endpoint_half_step_projection_exchange",
+    "small_step_population_required": 16,
+    "small_step_order_required": "contiguous_zero_based_native_order",
+    "every_boundary_must_be_source_measured": true,
+    "force_position_and_endpoint_components_retained_separately": true,
+    "mechanical_energy_change_used_as_input": false,
+    "energy_balance_residual_used_as_input": false,
+    "acceptance_threshold_used_as_input": false,
+    "constraint_exchange_used_as_input": false,
+    "controller_or_behavior_result_used_as_input": false
+  },
+  "identity_adequacy": {
+    "supported_rest_argument": "A gravity force kick raises kinetic energy before constraints cancel it; with no position motion and unchanged endpoint velocity, the measured staging term plus the independently measured constraint exchange equals the unchanged endpoint energy.",
+    "free_fall_argument": "Force-boundary kinetic change and raw-potential position change are both retained, then the Rapier endpoint half-step projection is applied once. Their sum equals the endpoint-energy change of the same symplectic small-step trajectory without representing gravity as external physical work a second time.",
+    "moving_vertical_argument": "Upward and downward initial velocity cross-terms cancel between force kinetic exchange and raw potential exchange, leaving the same integrator-specific defect and preserving signs before summation.",
+    "zero_gravity_argument": "Zero gravity makes all three staging components and their signed sum exactly zero.",
+    "sequence_argument": "Exactly sixteen contiguous source-measured small-step records prevent omitted, duplicated, stale, or reordered stage populations from being silently aggregated.",
+    "binary64_control_operation_budget": 1024,
+    "binary64_control_budget_provenance": "Sixty-four elementary binary64 operations per each of sixteen synthetic small steps bounds only analytic-control rounding accumulation; it is not an empirical margin, physical threshold, or runtime acceptance criterion.",
+    "remaining_uncertainty": "This design does not prove that a native patch samples the declared boundaries, that a versioned engine-neutral ledger consumes the new channel, that the retained R49 candidate residual closes, or that recovery succeeds.",
+    "new_behavior_threshold_count": 0,
+    "new_empirical_threshold_count": 0,
+    "new_margin_count": 0,
+    "population_claim_count": 0
+  },
+  "complete_zero_world_gate": {
+    "must_pass_before_physics": true,
+    "official_qualification_must_start_clean_pushed": true,
+    "official_qualification_run_count": 1,
+    "positive_control_count": 5,
+    "mutation_rejection_count": 8,
+    "total_preflight_check_count": 13,
+    "required_positive_controls": [
+      "resting_supported_gravity_kick_and_constraint_cancellation_close",
+      "free_fall_force_position_and_half_step_terms_match_endpoint_change_once",
+      "upward_and_downward_free_fall_preserve_the_same_discrete_defect",
+      "zero_gravity_has_zero_force_position_half_step_and_total_exchange",
+      "all_three_components_are_retained_separately_before_the_signed_sum"
+    ],
+    "mutation_ids": [
+      "omitted_small_step",
+      "duplicated_small_step",
+      "reordered_small_steps",
+      "small_step_not_source_measured",
+      "nonfinite_force_boundary",
+      "nonfinite_position_boundary",
+      "endpoint_not_source_measured",
+      "nonfinite_endpoint_boundary"
+    ],
+    "forced_failure_control": "Omitted, duplicated, and reordered staged records must be refused before aggregation; independently deleting any accepted component fails the analytic endpoint identity and cannot be hidden by an observer residual input because no such input exists.",
+    "fresh_registry_archive_patch_application_check_required": true,
+    "existing_r47_patch_reused_unchanged": true,
+    "patched_rapier_compile_required": true,
+    "parallel_compile_refusal_required": true,
+    "simd_compile_refusal_required": true,
+    "stock_rapier_adapter_compile_required": true,
+    "source_contract_audit_required": true,
+    "worktree_unchanged_required": true,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "physical_execution_authorized": false,
+    "maximum_physical_steps_authorized": 0,
+    "full_seeded_ghost_required": false,
+    "additional_physical_canary_required": false
+  },
+  "qualification_runner": {
+    "script_path": "sdk/run_qsdk_patched_rapier_zero_world_qualification.ps1",
+    "audit_path": "tests/test_qsdk_r24d51_rapier_discrete_staging_observer_source.py",
+    "audit_pass_marker": "QSDK_R24D51_RAPIER_DISCRETE_STAGING_SOURCE_PASS",
+    "pinned_dependency_contract_path": "sdk/recovery/r24d47_rapier_energy_exchange_accounting_contract_v1.json",
+    "pinned_dependency_contract_raw_sha256": "sha256:9c9738da66c413103e8ad9bf60b6c8cde0c46a7fb72cc2d7d56334e3f83e4c13",
+    "adapter_package": "sporespore-rapier-adapter",
+    "adapter_feature": "sporespore-rapier-energy-exchange",
+    "patched_dependency_feature": "sporespore-energy-exchange-telemetry",
+    "preflight_entrypoint": "run_qsdk_r24d51_rapier_discrete_staging_zero_world_qualification",
+    "preflight_terminal_marker": "QSDK_R24D51_RAPIER_DISCRETE_STAGING_ZERO_WORLD ",
+    "qualification_directory_prefix": "qsdk-r24d51-rapier-discrete-staging-qualification-",
+    "development_directory_prefix": "qsdk-r24d51-rapier-discrete-staging-development-",
+    "attempt_schema": "sporespore_qsdk_r24d51_rapier_discrete_staging_zero_world_attempt_v1",
+    "failure_schema": "sporespore_qsdk_r24d51_rapier_discrete_staging_zero_world_failure_v1",
+    "receipt_schema": "sporespore_qsdk_r24d51_rapier_discrete_staging_zero_world_receipt_v1",
+    "isolated_harness_package": "sporespore-r24d51-isolated-harness",
+    "serde_json_version": "1.0.150",
+    "expected_compile_refusals": [
+      {
+        "id": "parallel",
+        "features": [
+          "sporespore-energy-exchange-telemetry",
+          "parallel"
+        ],
+        "expected_marker": "sporespore-energy-exchange-telemetry is qualified only for the sequential scalar solver"
+      },
+      {
+        "id": "simd-stable",
+        "features": [
+          "sporespore-energy-exchange-telemetry",
+          "simd-stable"
+        ],
+        "expected_marker": "sporespore-motor-work-telemetry is qualified only for scalar rigid impulse-joint constraints"
+      }
+    ],
+    "preflight_expectations": [
+      {
+        "json_pointer": "/schema_version",
+        "expected_value": "sporespore_qsdk_r24d51_rapier_discrete_staging_zero_world_qualification_v1"
+      },
+      {
+        "json_pointer": "/question_class",
+        "expected_value": "development"
+      },
+      {
+        "json_pointer": "/qualification_class",
+        "expected_value": "zero_world_discrete_force_position_staging_observer_design"
+      },
+      {
+        "json_pointer": "/rule_id",
+        "expected_contract_json_pointer": "/observer_semantics/rule_id"
+      },
+      {
+        "json_pointer": "/control_count",
+        "expected_contract_json_pointer": "/complete_zero_world_gate/positive_control_count"
+      },
+      {
+        "json_pointer": "/mutation_rejection_count",
+        "expected_contract_json_pointer": "/complete_zero_world_gate/mutation_rejection_count"
+      },
+      {
+        "json_pointer": "/check_count",
+        "expected_contract_json_pointer": "/complete_zero_world_gate/total_preflight_check_count"
+      },
+      {
+        "json_pointer": "/checks_passed",
+        "expected_contract_json_pointer": "/complete_zero_world_gate/total_preflight_check_count"
+      },
+      {
+        "json_pointer": "/mutation_ids",
+        "expected_contract_json_pointer": "/complete_zero_world_gate/mutation_ids"
+      },
+      {
+        "json_pointer": "/accepted_fixtures/supported_rest/small_step_count",
+        "expected_contract_json_pointer": "/supported_design_envelope/solver_small_steps_per_outer_step"
+      },
+      {
+        "json_pointer": "/mechanical_energy_change_used_as_observer_input",
+        "expected_value": false
+      },
+      {
+        "json_pointer": "/energy_balance_residual_used_as_observer_input",
+        "expected_value": false
+      },
+      {
+        "json_pointer": "/acceptance_threshold_used_as_observer_input",
+        "expected_value": false
+      },
+      {
+        "json_pointer": "/native_runtime_wiring_implemented",
+        "expected_value": false
+      },
+      {
+        "json_pointer": "/new_engine_neutral_ledger_mapping_implemented",
+        "expected_value": false
+      },
+      {
+        "json_pointer": "/physical_question_opened",
+        "expected_value": false
+      },
+      {
+        "json_pointer": "/prone_to_standing_claimed",
+        "expected_value": false
+      },
+      {
+        "json_pointer": "/sdk1_milestone_advanced",
+        "expected_value": false
+      }
+    ],
+    "shared_runner_reused": true,
+    "inherited_pinned_dependency_manifest_reused": true,
+    "new_zero_world_runner_added": false,
+    "new_physical_harness_added": false
+  },
+  "claim_boundary": {
+    "pure_staging_observer_design_implemented": true,
+    "supported_rest_analytic_control_passed": true,
+    "free_fall_analytic_control_passed": true,
+    "moving_vertical_and_zero_gravity_controls_passed": true,
+    "topology_and_finiteness_mutations_rejected": true,
+    "pure_staging_observer_design_qualified": false,
+    "native_boundary_telemetry_implemented": false,
+    "native_boundary_telemetry_qualified": false,
+    "engine_neutral_staging_ledger_implemented": false,
+    "retained_r49_residual_recomputed": false,
+    "retained_r49_result_reclassified": false,
+    "controller_behavior_evaluated": false,
+    "prone_to_standing_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "sdk1_milestone_advanced": false,
+    "held_out_cells_remain_sealed": true,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "live_authority_paths": [
+    "sdk/release/quadruped_release_contract.json",
+    "sdk/release/quadruped_support_matrix.json"
+  ],
+  "live_gate_carrier_id": "QSDK-R24D45",
+  "live_gate_expectations": {
+    "r24d51_distinct_zero_world_observer_design_required": false,
+    "r24d51_question_class": "development",
+    "r24d51_physical_question_declared": false,
+    "r24d51_contract_path": "sdk/recovery/r24d51_rapier_discrete_staging_observer_contract_v1.json",
+    "r24d51_source_audit_path": "tests/test_qsdk_r24d51_rapier_discrete_staging_observer_source.py",
+    "r24d51_source_status": "prospective_zero_world_observer_design_implemented_qualification_and_native_wiring_blocked",
+    "r24d51_pure_staging_observer_design_implemented": true,
+    "r24d51_pure_staging_observer_design_qualified": false,
+    "r24d51_native_boundary_telemetry_implemented": false,
+    "r24d51_engine_neutral_staging_ledger_implemented": false,
+    "physical_execution_blocked_pending_r24d51_observer_design": true,
+    "next_gate_id": "QSDK-R24D51",
+    "physical_execution_authorized": false,
+    "maximum_physical_steps_authorized": 0,
+    "held_out_cells_remain_sealed": true,
+    "prone_to_standing_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "source_inventory": [
+    "docs/README.md",
+    "docs/ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md",
+    "docs/SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md",
+    "docs/LOCOMOTION_GROUND_UP_RESEARCH_PROGRAM.md",
+    "docs/LOCOMOTION_ARCHITECTURE.md",
+    "sdk/Cargo.toml",
+    "sdk/Cargo.lock",
+    "sdk/adapters/rapier/Cargo.toml",
+    "sdk/adapters/rapier/src/lib.rs",
+    "sdk/adapters/rapier/src/qsdk_r24d47_energy_exchange_observer.rs",
+    "sdk/adapters/rapier/src/qsdk_r24d51_discrete_staging_observer.rs",
+    "sdk/adapters/rapier/src/bin/qsdk_r24d51_discrete_staging_observer.rs",
+    "sdk/adapters/rapier/engine_patches/rapier3d_0_34_0_sporespore_energy_exchange_telemetry_v2.patch",
+    "sdk/recovery/r24d47_rapier_energy_exchange_accounting_contract_v1.json",
+    "sdk/recovery/r24d49_rapier_recovery_energy_v2_development_negative_closure_v1.json",
+    "sdk/recovery/r24d50_rapier_gravity_staging_energy_diagnosis_v1.json",
+    "sdk/recovery/r24d51_rapier_discrete_staging_observer_contract_v1.json",
+    "sdk/release/quadruped_release_contract.json",
+    "sdk/release/quadruped_support_matrix.json",
+    "sdk/run_qsdk_patched_rapier_zero_world_qualification.ps1",
+    "tests/test_qsdk_r24d50_rapier_gravity_staging_energy_diagnosis.py",
+    "tests/test_qsdk_r24d51_rapier_discrete_staging_observer_source.py"
+  ],
+  "next_boundary": {
+    "status": "freeze_push_then_run_one_clean_zero_world_qualification",
+    "physical_question_declared": false,
+    "physical_execution_authorized": false,
+    "maximum_physical_steps_authorized": 0,
+    "qualification_result_may_change_sdk_score": false,
+    "held_out_cells_remain_sealed": true,
+    "successful_qualification_next_gate_id": "QSDK-R24D52",
+    "successful_qualification_next_work": "declare_and_zero_world_qualify_native_boundary_telemetry_and_a_versioned_engine_neutral_staging_ledger_before_any_short_integration_smoke"
+  }
+}

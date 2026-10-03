@@ -1,0 +1,106 @@
+{
+  "schema_version": "sporespore_qsdk_r23d77_windows_cas_path_identity_conformance_v1",
+  "conformance_id": "QSDK-R23D77-WINDOWS-CAS-PATH-IDENTITY",
+  "status": "prospective_repaired_after_first_clean_pushed_pre_receipt_failure",
+  "question_class": "development",
+  "scope": {
+    "subsystem": "turning/rapier",
+    "question": "Can the frozen R23D65 CAS verifier preserve every non-path check while accepting ordinary and Windows extended-length spellings only when they identify the same existing payload and manifest files?",
+    "threshold": "Exact same-existing-file identity for both payload and manifest, followed by a zero-failure complete frozen verifier replay.",
+    "threshold_provenance": "R23D50 prospectively declared and positively closed os.path.samefile as the CAS identity rule after the same Windows namespace mismatch.",
+    "cohort": "All three exact retained R23D76 Rapier/Parry trace receipts.",
+    "cohort_adequacy": "The diagnosed defect affected the complete three-cell Rapier population and no other engine. Checking all three retained receipts is exhaustive for this software seam; no sampling or population inference is used.",
+    "equivalence_margin": null,
+    "non_inferiority_margin": null,
+    "population_claim": "Only the exact three retained R23D76 Rapier receipts and the successor path-identity implementation are in scope."
+  },
+  "immutable_lineage": {
+    "accepted_semantic_source": {
+      "path": "sdk/turning/r23d50_rapier_cas_path_identity_replay_evaluator.py",
+      "byte_length": 33060,
+      "raw_sha256": "sha256:b068d2426b53e718a6e3ce341b0c103469d85c65f2cecbc29941faeb98022cbf"
+    },
+    "accepted_positive_closure": {
+      "path": "sdk/turning/r23d50_rapier_cas_path_identity_replay_closure_v1.json",
+      "byte_length": 11463,
+      "raw_sha256": "sha256:47bee3d69965e2ffc79fae820223be3bfdfb001fa9fa2d2bc7ee7620ca0e9f48"
+    },
+    "consumed_r23d76_closure": {
+      "path": "sdk/turning/r23d76_production_route_three_engine_turning_validation_closure_v1.json",
+      "byte_length": 49407,
+      "raw_sha256": "sha256:349883f5ff7c4a072c1a5d9ff4253e2aa033223c53540238022f1f550e93af5b"
+    },
+    "frozen_verifier": {
+      "path": "sdk/turning/r23d65_selected_profile_three_engine_turning_validation_evaluator.py",
+      "byte_length": 68294,
+      "raw_sha256": "sha256:7fd4bfd5df23112967096e12fcc257de0806ce331692bf012a62a0867b5a2a55"
+    },
+    "r23d76_official_classification": "invalid_or_incomplete_exact_seed_23197_three_engine_portable_turning",
+    "r23d76_official_failure_code": "R23D65_TRACE_ARTIFACT_CAS_PATH",
+    "r23d76_campaign_and_seed_consumed": true,
+    "r23d76_reclassification_forbidden": true,
+    "same_identity_or_selective_rerun_forbidden": true
+  },
+  "single_permitted_repair": {
+    "implementation_path": "sdk/turning/r23d77_windows_cas_file_identity.py",
+    "algorithm": "Run the complete frozen verifier. Only when its sole failure is R23D65_TRACE_ARTIFACT_CAS_PATH, require os.path.samefile for both recorded-versus-expected existing CAS files, substitute only the expected path spellings in a private entry copy, and rerun the complete frozen verifier.",
+    "modify_r23d50_evaluator": false,
+    "modify_r23d65_evaluator": false,
+    "modify_r23d76_evaluator": false,
+    "modify_r23d76_result": false,
+    "threshold_selector_controller_schedule_or_physics_change": false
+  },
+  "required_zero_world_controls": {
+    "contract_and_lineage_hashes": true,
+    "ordinary_and_extended_same_file_positive": true,
+    "wrong_existing_payload_file_negative": true,
+    "wrong_existing_manifest_file_negative": true,
+    "missing_payload_path_negative": true,
+    "missing_manifest_path_negative": true,
+    "non_path_frozen_failure_passthrough": true,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0
+  },
+  "focused_clean_pushed_check": {
+    "required": true,
+    "retained_rapier_receipt_count": 3,
+    "required_arm_ids": [
+      "reference_zero",
+      "positive_heading",
+      "negative_heading"
+    ],
+    "frozen_verifier_must_reproduce_original_failure_for_each": true,
+    "successor_must_accept_extended_receipt_for_each": true,
+    "ordinary_spelling_must_remain_accepted_for_each": true,
+    "wrong_and_missing_file_controls_required_for_each": true,
+    "complete_payload_and_manifest_bytes_must_be_reverified": true,
+    "behavior_measurement_invoked": false,
+    "physical_world_required": false,
+    "full_seeded_ghost_required": false
+  },
+  "observed_pre_receipt_failure": {
+    "closure_path": "sdk/turning/r23d77_first_focused_check_failure_v1.json",
+    "source_commit": "d40fd27b100aaf1e35502ce660bde22b6d3f54bf",
+    "failure_code": "R23D76_STATUS",
+    "receipt_loaded_count": 0,
+    "trace_byte_read_count": 0,
+    "world_build_count": 0,
+    "same_source_rerun_allowed": false,
+    "exact_repair": "Bind the observed immutable R23D76 closure status literal including its windows_extended namespace."
+  },
+  "claims": {
+    "r23d77_path_identity_seam_closed": false,
+    "r23d76_reclassified": false,
+    "rapier_turning": false,
+    "finite_three_engine_turning": false,
+    "portable_basic_turning": false,
+    "q_sdk_r23_satisfied": false,
+    "cross_engine_equivalence": false,
+    "population_robustness": false,
+    "prone_to_standing": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

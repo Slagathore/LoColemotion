@@ -1,0 +1,382 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br6a_milestone_decision_v1.schema.json",
+  "title": "SporeSpore BR6A milestone decision v1",
+  "description": "An append-only human decision over one exact BR6A certification report. It cannot remove the material rail boundary, admit knowledge, authorize guidance, allocate per-foot load, or broaden the report claim.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "decision_id",
+    "milestone_id",
+    "decision_revision",
+    "status",
+    "decided_by",
+    "authorization",
+    "decided_utc",
+    "evidence_basis",
+    "accepted_contracts",
+    "accepted_capabilities",
+    "supplementary_constraints",
+    "claim_boundary",
+    "excluded_capabilities",
+    "downstream_open",
+    "knowledge_effects",
+    "supersedes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br6a_milestone_decision.v1"
+    },
+    "decision_id": {
+      "const": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT_DECISION_V1"
+    },
+    "milestone_id": {
+      "const": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT"
+    },
+    "decision_revision": {
+      "const": 1
+    },
+    "status": {
+      "enum": ["accepted", "rejected", "retired"]
+    },
+    "decided_by": {
+      "$ref": "#/$defs/decider"
+    },
+    "authorization": {
+      "$ref": "#/$defs/authorization"
+    },
+    "decided_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence_basis": {
+      "$ref": "#/$defs/evidence_basis"
+    },
+    "accepted_contracts": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*_v[0-9]+$"
+      }
+    },
+    "accepted_capabilities": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "supplementary_constraints": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "excluded_capabilities": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "downstream_open": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "knowledge_effects": {
+      "$ref": "#/$defs/knowledge_effects"
+    },
+    "supersedes": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9_]+_DECISION_V[0-9]+$"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "git_sha1": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "nonempty_unique_strings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "decider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "authority", "decision_channel"],
+      "properties": {
+        "id": {
+          "const": "Cole"
+        },
+        "authority": {
+          "const": "project_decider"
+        },
+        "decision_channel": {
+          "const": "direct_conversation"
+        }
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instruction",
+        "interpretation",
+        "review_path",
+        "review_commit_sha",
+        "review_sha256"
+      ],
+      "properties": {
+        "instruction": {
+          "const": "continue the pipeline. i defer to your judgement on what should be accepted. assume i accept whatever it is that you recommend and keep going"
+        },
+        "interpretation": {
+          "const": "delegated_bounded_acceptance_of_recommended_br6a_l4_vertical_rail_leg_support"
+        },
+        "review_path": {
+          "const": "docs/BR6A_L4_MILESTONE_DECISION_REVIEW.md"
+        },
+        "review_commit_sha": {
+          "$ref": "#/$defs/git_sha1"
+        },
+        "review_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "evidence_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_family",
+        "certification_id",
+        "certification_contract_id",
+        "campaign_id",
+        "campaign_sha256",
+        "certification_claim_boundary",
+        "report_schema",
+        "report_status",
+        "report_sha256",
+        "report_bytes",
+        "report_locator",
+        "report_generated_utc",
+        "receipt_schema",
+        "receipt_sha256",
+        "receipt_locator",
+        "receipt_attested_utc",
+        "receipt_key_id",
+        "source_commit_sha",
+        "source_inventory_sha256",
+        "source_file_count",
+        "br1_inventory_sha256",
+        "br1_inventory_unchanged",
+        "engine_version",
+        "engine_sha256",
+        "programs_required",
+        "programs_passed",
+        "replicates_per_program",
+        "bundles_required",
+        "bundles_passed",
+        "assertions_required",
+        "assertions_passed",
+        "milestone_programs",
+        "milestone_assertions",
+        "supplementary_programs",
+        "supplementary_assertions",
+        "integrity_programs",
+        "integrity_assertions",
+        "target_process_invocations",
+        "unique_target_processes",
+        "pid_recycle_events",
+        "receipts_verified",
+        "production_attestation_verified"
+      ],
+      "properties": {
+        "evidence_family": {
+          "const": "br6a_certification_report_v1"
+        },
+        "certification_id": {
+          "type": "string",
+          "pattern": "^br6a_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"
+        },
+        "certification_contract_id": {
+          "const": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT"
+        },
+        "campaign_id": {
+          "const": "BR6A_L4_PROMOTION_CAMPAIGN_V1"
+        },
+        "campaign_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "certification_claim_boundary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "report_schema": {
+          "const": "sporespore.lab.br6a_certification_report.v1"
+        },
+        "report_status": {
+          "const": "pass"
+        },
+        "report_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "report_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "report_locator": {
+          "type": "string",
+          "pattern": "^LabEvidence/BR6A/[A-Za-z0-9_./-]+$"
+        },
+        "report_generated_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "receipt_schema": {
+          "const": "sporespore.lab.br6a_certification_report_attestation.v1"
+        },
+        "receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receipt_locator": {
+          "type": "string",
+          "pattern": "^LabTrust/v1/br6a_certification_reports_v1/receipts/[a-f0-9]{64}\\.json$"
+        },
+        "receipt_attested_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "receipt_key_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_commit_sha": {
+          "$ref": "#/$defs/git_sha1"
+        },
+        "source_inventory_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_file_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "br1_inventory_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "br1_inventory_unchanged": {
+          "const": true
+        },
+        "engine_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "engine_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "programs_required": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "programs_passed": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "replicates_per_program": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bundles_required": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bundles_passed": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "assertions_required": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "assertions_passed": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "milestone_programs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "milestone_assertions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "supplementary_programs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "supplementary_assertions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "integrity_programs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "integrity_assertions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "target_process_invocations": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unique_target_processes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "pid_recycle_events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receipts_verified": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "production_attestation_verified": {
+          "const": true
+        }
+      }
+    },
+    "knowledge_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entries_admitted_by_decision",
+        "automatic_admission",
+        "automatic_creature_guidance_allowed",
+        "development_drafts_remain_non_entries"
+      ],
+      "properties": {
+        "entries_admitted_by_decision": {
+          "const": 0
+        },
+        "automatic_admission": {
+          "const": false
+        },
+        "automatic_creature_guidance_allowed": {
+          "const": false
+        },
+        "development_drafts_remain_non_entries": {
+          "const": true
+        }
+      }
+    }
+  }
+}

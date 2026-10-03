@@ -1,0 +1,94 @@
+{
+  "schema": "sporespore.lab.br3a_development_observation.v1",
+  "entry_id": "L1.7.directed_mass_ratio_stability.draft_v1",
+  "cell_id": "L1.7",
+  "claim_status_ceiling": "development_observation",
+  "admissible_now": false,
+  "admission_blockers": [
+    "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+    "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+    "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+    "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+    "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+  ],
+  "evidence_source": {
+    "test_files": [
+      "res://tests/test_experimental_l1_7_mass_ratio_grid.gd"
+    ],
+    "evidence_grade": "experimental_commissioning_test_report_only",
+    "promotion_grade_bundle_exists": false
+  },
+  "title": "Directed contact-stack stability diverges by mass placement at 32:1 and contact presence cannot certify load transmission",
+  "claim": "For the exact L1.7 fixed-total-2-kg two-box contact stack at 60 Hz across a neutral 1:1 cell and directed ratios 2:1 through 1024:1 in both orientations, physical gates admit heavy-on-top through 16:1 and first reject it at the measured 32:1, while every measured heavy-on-bottom cell through 1024:1 passes; the two directions first diverge at 32:1 and fresh-world repeats reproduce all three boundary classifications. Floor and pair contact fractions stayed 1.0 even in grossly unstable top-heavy cells, and the raw floor impulse tracked the bottom body's own weight rather than the transmitted stack load, for example approximately 0.0215 N raw against approximately 19.667 N reconstructed at top-heavy 1024:1.",
+  "scope": "Two unjointed stacked boxes with fixed total mass 2 kg, masses m_light = M/(1+r) and m_heavy = M*r/(1+r), both stack orientations, 60 Hz Jolt physics, Godot 4.7, fresh SubViewport world per cell with a tagged excluded activation warm-up tick, physical-metric classification with interpolation forbidden.",
+  "mechanism": "The iterative contact solver resolves a heavy body supported by a light one less robustly than the reverse at equal total mass, producing a direction-dependent stability envelope. Contact presence only proves geometric touching; pose, momentum, and load-transmission metrics detect failure that presence misses, and the raw local floor impulse reports the bottom body's local transmission rather than the whole-stack support load.",
+  "applicability": [
+    "Bounding unjointed contact-stack mass ratios for lab fixture design",
+    "Demonstrating that contact-presence checks are insufficient stability evidence"
+  ],
+  "failure_boundaries": [
+    "Does not cover articulated parent/child mass ratios; joints are deferred until L2 joint truth exists",
+    "Does not cover unmeasured ratios between grid cells; interpolation is forbidden",
+    "Does not bound the heavy-on-bottom direction beyond the measured 1024:1 endpoint, which remains open",
+    "Does not establish standing, bracing, fall arrest, getting up, or walking"
+  ],
+  "morphology_tags": [
+    "jolt",
+    "unjointed_contact_stack",
+    "mass_ratio_sweep"
+  ],
+  "parameter_effects": [
+    {
+      "parameter": "/fixture_parameters/heavy_to_light_ratio",
+      "change": "increase along the measured logarithmic grid with heavy on top",
+      "affects": "physical stability classification of the stack",
+      "mechanism": "Higher top-heavy ratios exceed what the iterative contact solve stabilizes, first failing at the measured 32:1 cell",
+      "hinges_on": [
+        "Fixed total mass 2 kg isolating ratio as the single factor",
+        "The fresh-world lifecycle keeping every cell independent"
+      ]
+    },
+    {
+      "parameter": "/fixture_parameters/heavy_body",
+      "change": "flip the heavy body from top to bottom at the same ratio",
+      "affects": "whether a given ratio is accepted",
+      "mechanism": "Mass placement, not ratio alone, decides solver stability; the directions first diverge at the measured 32:1",
+      "hinges_on": [
+        "Both orientations being measured on the same grid"
+      ]
+    }
+  ],
+  "minimal_repair_rules": [
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "A top-heavy unjointed contact stack destabilizes while all contact-presence checks stay green",
+      "diagnosis": "The mass ratio sits beyond the measured top-heavy envelope and presence metrics cannot see the failure",
+      "smallest_change": "Keep top-heavy contact-stack ratios at or below the measured 16:1 cell or place the heavy body on the bottom",
+      "expected_effect": "Pose, momentum, and load-transmission metrics return inside the measured accepted class",
+      "identity_preserved": [
+        "total mass",
+        "body plan"
+      ],
+      "do_not_apply_when": [
+        "The stack is articulated or jointed rather than pure contact",
+        "The ratio or orientation was never measured on this grid"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Articulated parent/child mass-ratio behavior, deferred until after L2 joint truth",
+    "The heavy-on-bottom failure boundary beyond the measured 1024:1 endpoint",
+    "How friction, geometry, and solver configuration shift the divergence ratio"
+  ],
+  "does_not_establish": [
+    "standing",
+    "bracing",
+    "fall_arrest",
+    "getting_up",
+    "walking",
+    "articulated_mass_ratio_envelope",
+    "contact_presence_as_stability_evidence"
+  ],
+  "supersedes": []
+}

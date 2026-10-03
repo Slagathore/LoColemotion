@@ -1,0 +1,109 @@
+{
+  "schema_version": "sporespore_balanced_wave_dynamic_receipt_projection_drp1_run_result_v1",
+  "status": "complete_repeatable_regression_run_invalid_nested_route_schema",
+  "recorded_utc": "2026-08-04T23:36:13.4630640Z",
+  "regression_id": "BW31N-DYNAMIC-RECEIPT-PROJECTION-REGRESSION-DRP1",
+  "gate_id": "DRP1",
+  "run_id": "DRP1-RUN-1-5a7d576a-20260804T223946Z",
+  "source_commit": "5a7d576a47e3e9232928fdbd07c2c359959edaff",
+  "source_was_clean_pushed_and_equal_to_live_github_main": true,
+  "stage_one_freeze": {
+    "path": "sdk/balanced_wave_dynamic_receipt_projection_drp1_freeze.json",
+    "raw_sha256": "19d46d3ac1237f7f483f14d8e4f70de7375fa0919232b6900d91f1e46de2f4e2",
+    "source_binding_count": 28
+  },
+  "execution": {
+    "entrypoint": "sdk/run_conformance.ps1 -DurableAttestationOutput <new durable path>",
+    "full_godot_conformance": true,
+    "top_level_exit_code": 1,
+    "top_level_duration_seconds": 3250.9,
+    "global_operation_lock_released": true,
+    "expected_regression_world_count": 24,
+    "regression_world_build_count": 24,
+    "dynamic_receipt_count": 24,
+    "worker_exit_code_count": 24,
+    "all_cells_present_in_exact_declared_order": true,
+    "complete_evaluator_executed": true,
+    "complete_regression_passed": false,
+    "ordinary_repeatable_regression_test_physics": true,
+    "scientific_campaign": false,
+    "one_shot_identity_consumed": false,
+    "scientific_evidence_retained": false,
+    "cell_retry_or_replacement_count": 0
+  },
+  "evaluation": {
+    "expected_gate_count": 12,
+    "passed_gate_count": 9,
+    "failed_gate_count": 3,
+    "passed_gate_ids": [
+      "exact_noncampaign_identity",
+      "exact_matrix_cardinality_and_order",
+      "route_identity_projection",
+      "candidate_authority_horizon",
+      "pre_authority_exclusion",
+      "challenge_realization",
+      "measurement_acquisition",
+      "candidate_application",
+      "all_scientific_and_release_claims_false"
+    ],
+    "failed_gate_ids": [
+      "shared_final_receipt_schema",
+      "outcome_complete",
+      "common_execution_integrity"
+    ],
+    "walking_observed_count_descriptive_only": null,
+    "walking_count_used_by_evaluator": false,
+    "candidate_or_policy_selected": false
+  },
+  "attestation": {
+    "requested_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/full-godot-conformance-v2-5a7d576a-20260804T223946Z/attestation.json",
+    "published": false,
+    "parent_directory_created": false,
+    "publication_refused_after_conformance_failure": true
+  },
+  "mechanism_diagnosis": {
+    "classification": "source_proven_nested_route_schema_overconstraint",
+    "retained_per_cell_diagnostic_receipts_available": false,
+    "inference_boundary": "The aggregate gate identities and complete world/matrix counts were emitted by the executed frozen evaluator. The route localization below is proven from the exact executed source at source_commit, not from retained per-cell regression evidence.",
+    "shared_contract_required_one_actuation_key_for_both_routes": "sdk_stability_overlay_evidence_actuation",
+    "reference_runtime_actuation_mode": "stability_overlay",
+    "reference_runtime_actuation_key": "sdk_stability_overlay_evidence_actuation",
+    "successor_runtime_actuation_mode": "native_sdk_exclusive_full_post_settle",
+    "successor_runtime_actuation_key": "native_sdk_exclusive_post_settle_actuation",
+    "successor_runtime_key_was_absent_from_shared_nested_schema": true,
+    "shared_overlay_key_was_absent_from_successor_runtime_receipts": true,
+    "schema_failure_forces_outcome_complete_false": true,
+    "outcome_failure_forces_common_integrity_false": true,
+    "common_integrity_failure_forces_worker_nonzero_exit": true,
+    "observed_failed_gate_triad_is_fully_explained": true,
+    "original_bw31n_identity_challenge_and_application_escape_reproduced": false
+  },
+  "successor_requirements": {
+    "preserve_run1_source_freeze_and_result": true,
+    "route_specific_nested_walking_receipt_schemas_required": true,
+    "outer_final_receipt_schema_must_remain_shared": true,
+    "route_specific_actuation_key_must_be_exactly_one_of_overlay_or_full_post_settle": true,
+    "zero_world_gate_must_reject_cross_route_nested_schema_substitution": true,
+    "malformed_receipt_fail_closed_control_must_remain": true,
+    "fresh_clean_pushed_source_freeze_required_before_rerun": true,
+    "same_repeatable_regression_id_may_rerun_after_new_freeze": true,
+    "fresh_validation_seed_use_forbidden": true
+  },
+  "claim_boundary": {
+    "locomotion_negative": false,
+    "walking_acceptance": false,
+    "nuisance_acceptance": false,
+    "candidate_or_policy_selection": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_robustness": false,
+    "turning": false,
+    "self_righting_or_fall_recovery": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

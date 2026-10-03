@@ -1,0 +1,384 @@
+{
+  "schema_version": "sporespore_qsdk_r24d53_rapier_staging_transport_smoke_positive_closure_v1",
+  "gate_id": "QSDK-R24D53",
+  "closed_local_date": "2026-08-30",
+  "closure_status": "closed_valid_complete_live_native_staging_transport_and_portable_v3_mapping_positive_behavior_unassessed",
+  "ledger_scope": "one_exact_r24d53_source_one_nominal_candidate_world_and_two_native_steps_only",
+  "question_class": "development_integration_smoke",
+  "physical_question_declared": true,
+  "behavior_success_required": false,
+  "superiority_question_declared": false,
+  "equivalence_or_non_inferiority_question_declared": false,
+  "population_inference_declared": false,
+  "source": {
+    "commit": "e6bd27c0fc5f2c59e389a1df690436f03f2b4ecb",
+    "parent_commit": "7f25ee2937087b490d0d27ec5740a9342cdd7ec2",
+    "tree": "b5c5918c8dbbe740615ac373c978b280418fa768",
+    "subject": "[recovery/rapier] Repair R53 physical lock role",
+    "qualification_source_commit": "f722b4f64a9df3c10164ad21bcf938a0644ea691",
+    "contract": {
+      "path": "sdk/recovery/r24d53_rapier_staging_transport_smoke_contract_v1.json",
+      "git_blob_oid": "b4540c986ffb74ccd5fc151602838c914c908962",
+      "byte_length": 22634,
+      "raw_sha256": "sha256:6e00f59a64092fe3c08542f4613df3c3815626d92299ebdb66704df6534d4c37"
+    },
+    "transport_module": {
+      "path": "sdk/adapters/rapier/src/qsdk_r24d53_staging_transport_smoke.rs",
+      "git_blob_oid": "4a7f5e5cbebe089460529d8d3297822b32d66c8f",
+      "byte_length": 19487,
+      "raw_sha256": "sha256:25175983016ed1b00e7615126b55407ae806e9a4bcb08e7d1c93c1723fc5206f"
+    },
+    "recovery_route": {
+      "path": "sdk/adapters/rapier/src/qsdk_r24d48_recovery_energy_v2_route.rs",
+      "git_blob_oid": "57295955e4addcb29c309dc22d2bc62e2cafef18",
+      "byte_length": 41503,
+      "raw_sha256": "sha256:a9481e99a6d7f1159d20efff3c735edb5a299ab50076aa591bd43fd934b7dcae"
+    },
+    "physical_runner": {
+      "path": "sdk/run_qsdk_r24d48_rapier_recovery_energy_v2.ps1",
+      "git_blob_oid": "ed8a08461d2a6ba0e13b763cde0df585dc79f5d3",
+      "byte_length": 33121,
+      "raw_sha256": "sha256:e48ea5c355b5b9820e296db136c15bb726b8ec75464633d8d5a7cdc5c0652eea"
+    },
+    "operation_lock": {
+      "path": "sdk/locomotion_operation_lock.ps1",
+      "git_blob_oid": "9e3f356ad11d49d07055d2806d876429cf02052b",
+      "byte_length": 3473,
+      "raw_sha256": "sha256:6c576ebd6c3210c39cc05a9f162039e85fdc58c45ecd19ca91a62a355fa3c826"
+    },
+    "operation_lock_test": {
+      "path": "tests/test_locomotion_operation_lock.ps1",
+      "git_blob_oid": "9263056db5771d1e7cdabefa07ad936caa0c4891",
+      "byte_length": 8436,
+      "raw_sha256": "sha256:aeaea40f3361b2bc417df67acbb6982a461fab00b26ca66954291fd5e7bcda83"
+    },
+    "qualification_closure": {
+      "path": "sdk/recovery/r24d53_rapier_staging_transport_zero_world_qualification_closure_v1.json",
+      "git_blob_oid": "c0f2d8848ae5783a16b4817a95ffd8c0e60ab1a8",
+      "byte_length": 15803,
+      "raw_sha256": "sha256:6177dbbad2ab437e3bd8d9f6b5298ebeb652fd29a5c8f4937f93c313ce841450"
+    },
+    "qualification_closure_audit": {
+      "path": "tests/test_qsdk_r24d53_rapier_staging_transport_zero_world_qualification_closure.py",
+      "git_blob_oid": "cd73ba2e398eb52f9a12731f432b7f7ddd19ea07",
+      "byte_length": 12494,
+      "raw_sha256": "sha256:de902beea31e92d4fe36203a2871d0ff5c2db32801a7328b839d0e59baa7c171"
+    }
+  },
+  "qualification_dependency": {
+    "gate_id": "QSDK-R24D53",
+    "source_commit": "f722b4f64a9df3c10164ad21bcf938a0644ea691",
+    "closure_commit": "7f25ee2937087b490d0d27ec5740a9342cdd7ec2",
+    "closure_status": "closed_complete_zero_world_native_staging_transport_binding_qualified_single_smoke_authorized",
+    "closure_raw_sha256": "sha256:6177dbbad2ab437e3bd8d9f6b5298ebeb652fd29a5c8f4937f93c313ce841450",
+    "runtime_binding_sha256": "sha256:a25bd0f7294db3ce26dd10a008dfc56f5232e08373d3dec4a8fdc5821cc93c0e",
+    "qualification_harness_cargo_lock_sha256": "sha256:772ba48f2578254312b3df938217617dbb0c3fa19ef985f4a4298beff0e50cb4",
+    "official_zero_world_qualification_attempt_count": 1,
+    "same_dependency_toolchain_and_environment_used": true,
+    "complete_zero_world_gate_satisfied": true,
+    "may_be_requalified": false
+  },
+  "pre_attempt_launcher_refusal": {
+    "source_commit": "7f25ee2937087b490d0d27ec5740a9342cdd7ec2",
+    "result": "parameter_binding_validation_refusal_before_operation_lock",
+    "requested_operation_lock_role": "physical_development",
+    "accepted_roles_before_repair": [
+      "conformance",
+      "physical"
+    ],
+    "evidence_root_created": false,
+    "operation_lock_acquired": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "physical_attempt_consumed": false,
+    "repair_source_commit": "e6bd27c0fc5f2c59e389a1df690436f03f2b4ecb",
+    "repair_scope": "accept_physical_development_as_receipt_role_on_the_unchanged_global_serialization_mutex",
+    "qualified_runtime_path_changed": false,
+    "physical_model_changed": false,
+    "physical_question_changed": false
+  },
+  "physical_attempt": {
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d53-rapier-staging-transport-smoke-20260830T053213287Z-e6bd27c0",
+    "started_utc": "2026-08-30T05:32:13.292994Z",
+    "completed_utc": "2026-08-30T05:32:59.8304687Z",
+    "attempt_count_for_exact_source_and_stage": 1,
+    "runtime_binding_sha256": "sha256:a25bd0f7294db3ce26dd10a008dfc56f5232e08373d3dec4a8fdc5821cc93c0e",
+    "environment_sha256": "sha256:fb90512dfc6d14dcaf12a1386fcd42ebaf2f5acd555bca5085b9fe69864af7d2",
+    "attempt": {
+      "path": "physical_attempt.json",
+      "byte_length": 1126,
+      "raw_sha256": "sha256:ae97a81630c2056d3fef1b045a2ea4568505124f623a29ee385fdad4c599b103",
+      "canonical_byte_length": 1125,
+      "canonical_sha256": "sha256:8e8eb74e186fea4ae299a50320b47f3ae4076040c845956fa2fa1314bd92ff52"
+    },
+    "result": {
+      "path": "physical_result.json",
+      "byte_length": 136289,
+      "raw_sha256": "sha256:1f29fc412101b9b6863bddc6a4ccc460d0fe68d5eb3e48b3775b81fca48d5f97",
+      "canonical_byte_length": 136370,
+      "canonical_sha256": "sha256:2bcce83bcc22b433ee2aaced9178ce050c1303f7e35d0c1b99c628e30964e1d5"
+    },
+    "receipt": {
+      "path": "physical_receipt.json",
+      "byte_length": 1426,
+      "raw_sha256": "sha256:5076f62fc78201bd415885caaff4d70e58e95ab053746335ef617dec250a93c3",
+      "canonical_byte_length": 1425,
+      "canonical_sha256": "sha256:ab9ba7bd77a57e384bae2665f9ea33dfca30410dacc7357bd12daf83fa5026c0"
+    },
+    "worker_log": {
+      "path": "01-worker.log",
+      "byte_length": 139048,
+      "raw_sha256": "sha256:f6a75ecc7952d4edb7c939f92621e25e0fc261a9294da8b911fb1bd5ef19e414"
+    },
+    "retained_qualification_cargo_lock": {
+      "path": "isolated-harness/Cargo.lock",
+      "byte_length": 16913,
+      "raw_sha256": "sha256:772ba48f2578254312b3df938217617dbb0c3fa19ef985f4a4298beff0e50cb4"
+    },
+    "model_construction_count": 1,
+    "world_attempt_count": 1,
+    "world_build_count": 1,
+    "solver_step_count": 2,
+    "actual_total_outer_steps": 2,
+    "post_initialization_intervention_count": 0,
+    "physics_state_modified": true,
+    "held_out_cell_access_count": 0,
+    "held_out_selector_invocation_count": 0,
+    "operation_lock_released": true,
+    "retained_tree": {
+      "schema_version": "sporespore_retained_file_tree_manifest_v1",
+      "file_count": 7,
+      "total_byte_length": 296081,
+      "manifest_canonical_byte_length": 987,
+      "manifest_canonical_sha256": "sha256:3d3c30bd1c1f0b7dc67f46e793f8701d1ad3b15a61241b3d370e5332dbfab9d0"
+    }
+  },
+  "observed_transport": {
+    "result": "valid_complete_live_native_staging_transport_positive",
+    "route_id": "sporespore_qsdk_r24d48_rapier_recovery_energy_v2_route_v1",
+    "mapping_profile_id": "rapier_r24d52_native_discrete_staging_energy_v3_mapping_v1",
+    "arm": {
+      "outer_step_count": 2,
+      "native_solver_step_count": 2,
+      "declared_initial_state_sha256": "sha256:c590ca63b3177573b494bb204525e1fdde5af7e727653ac4a7cfe139df5791c9",
+      "final_phase": "confirm_prone",
+      "terminal_failure_code": null,
+      "residuals_j": [
+        0.003585627189722107,
+        0.00715467937012404
+      ],
+      "pose_classes": [
+        "ventral_prone",
+        "ventral_prone"
+      ],
+      "joint_limits_respected": [
+        false,
+        false
+      ],
+      "no_cheat_gate": [
+        true,
+        true
+      ],
+      "safety_gate": [
+        false,
+        false
+      ],
+      "stable_stance_gate": [
+        false,
+        false
+      ],
+      "active_control_count": 0,
+      "runtime_bindings": [
+        "sha256:a25bd0f7294db3ce26dd10a008dfc56f5232e08373d3dec4a8fdc5821cc93c0e",
+        "sha256:a25bd0f7294db3ce26dd10a008dfc56f5232e08373d3dec4a8fdc5821cc93c0e"
+      ]
+    },
+    "staging_sequences": [
+      1,
+      2
+    ],
+    "staging_exchange_j": [
+      0.003586255241316394,
+      0.0035686027258634567
+    ],
+    "cumulative_staging_exchange_j": 0.007154857967179851,
+    "v3_signed_residual_j": -1.7859705581102503e-7,
+    "v3_absolute_residual_j": 1.7859705581102503e-7,
+    "ordered_source_values_sha256": "sha256:b233602e6a70d7b389572fbc21e853dcf3d40f6989f5e21c56c8c0a6c7518165",
+    "ledger_sha256": "sha256:9f364a66c10fe4078e990a1c8c6172b2a4fb7ab5f4c97d3d0cae26ffce4ee731",
+    "native_staging_record_count": 2,
+    "native_small_step_record_count": 32,
+    "in_run_invariant_receipt_count": 2,
+    "all_native_staging_samples_source_measured": true,
+    "all_native_energy_components_finite": true,
+    "all_native_staging_topology_exact": true,
+    "all_native_to_portable_mappings_exact": true,
+    "all_in_run_physical_invariants_passed": true,
+    "v3_threshold_applied": false,
+    "behavior_evaluator_executed": false,
+    "behavior_success_observed": false,
+    "prone_to_standing_observed": false
+  },
+  "decision": {
+    "result": "positive_complete_live_native_staging_transport_and_portable_v3_mapping_observed",
+    "physical_attempt_consumed_for_exact_source": true,
+    "physical_attempt_valid": true,
+    "physical_attempt_complete": true,
+    "physical_attempt_passed": true,
+    "qualified_runtime_binding_consumed_exactly": true,
+    "pre_attempt_launcher_refusal_preserved": true,
+    "pre_attempt_launcher_refusal_consumed_physics": false,
+    "launch_role_alias_repair_qualified": true,
+    "one_world_two_step_budget_exact": true,
+    "live_native_staging_transport_observed": true,
+    "portable_v3_mapping_observed": true,
+    "all_native_staging_samples_source_measured": true,
+    "all_native_energy_components_finite": true,
+    "all_native_staging_topology_exact": true,
+    "all_in_run_physical_invariants_passed": true,
+    "all_retained_evidence_content_addressed": true,
+    "operation_lock_released": true,
+    "r24d53_closed_positive": true,
+    "behavior_success_required": false,
+    "behavior_success_observed": false,
+    "behavior_evaluator_executed": false,
+    "v3_threshold_applied": false,
+    "retained_r49_residual_recomputed": false,
+    "retained_r49_result_reclassified": false,
+    "controller_changed": false,
+    "threshold_changed": false,
+    "margin_changed": false,
+    "selector_changed": false,
+    "evaluator_changed": false,
+    "morphology_changed": false,
+    "initializer_changed": false,
+    "r24d53_exact_source_rerun_permitted": false,
+    "prone_to_standing_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "adequacy_and_limits": {
+    "adequate_for": [
+      "proving_the_exact_clean_pushed_live_equal_r53_launcher_consumed_the_qualified_runtime_binding",
+      "proving_one_native_rapier_recovery_world_executed_exactly_two_solver_steps",
+      "proving_both_complete_sixteen_sample_native_staging_populations_and_endpoints_were_source_measured",
+      "proving_native_staging_sequences_one_and_two_mapped_once_into_the_portable_v3_ledger",
+      "proving_both_existing_r45_in_run_physical_invariant_receipts_passed",
+      "closing_r53_and_declaring_a_distinct_v3_accounted_recovery_behavior_successor"
+    ],
+    "inadequate_for": [
+      "recovery_behavior_success_or_prone_to_standing",
+      "a_v3_energy_acceptance_threshold_or_full_run_energy_bound",
+      "recomputation_or_reclassification_of_r49",
+      "repeatability_or_population_inference",
+      "held_out_validation",
+      "cross_engine_recovery_or_equivalence",
+      "physical_acceptance_or_release"
+    ],
+    "interpretation": "The exact R53 transport smoke passed its narrow live integration criterion. Both complete native staging populations mapped into the separate V3 channel and reduced the two-step accounting residual to the retained unthresholded value. The creature remained in the deliberately unevaluated early confirm-prone phase; this is not standing evidence."
+  },
+  "sdk_status": {
+    "sdk1_milestone_advanced": false,
+    "sdk1_completed_steps": 11,
+    "sdk1_total_steps": 20,
+    "full_program_completed_steps": 11,
+    "full_program_total_steps": 25
+  },
+  "audit_economy": {
+    "common_staged_physical_runner_closure_helper_reused": true,
+    "common_rapier_recovery_energy_v2_arm_helper_reused": true,
+    "common_rapier_staging_transport_v3_helper_added_for_reuse": true,
+    "historical_closure_audit_execution_count": 0,
+    "physical_reexecution_count": 0,
+    "new_campaign_specific_physical_canary_count": 0
+  },
+  "next_boundary": {
+    "gate_id": "QSDK-R24D54",
+    "question_class": "not_yet_declared",
+    "status": "distinct_v3_accounted_rapier_recovery_behavior_declaration_required",
+    "work": "declare_and_preflight_the_smallest_finite_exact_nominal_rapier_recovery_behavior_question_that_consumes_the_live_qualified_v3_staging_ledger",
+    "physical_question_declared": false,
+    "behavior_question_declared": false,
+    "distinct_clean_pushed_source_freeze_required": true,
+    "complete_zero_world_gate_required": true,
+    "maximum_total_outer_steps_authorized": 0,
+    "maximum_model_construction_count": 0,
+    "maximum_world_attempt_count": 0,
+    "maximum_world_build_count": 0,
+    "physical_execution_authorized": false,
+    "full_seeded_ghost_required": false,
+    "additional_physical_canary_required": false,
+    "r24d53_may_be_rerun": false,
+    "r24d49_may_be_rerun_or_rethresholded": false,
+    "held_out_cells_remain_sealed": true,
+    "prone_to_standing_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "claim_boundary": {
+    "official_zero_world_qualification_passed": true,
+    "native_staging_transport_physical_attempt_retained": true,
+    "native_staging_transport_physical_attempt_consumed": true,
+    "native_staging_transport_observed": true,
+    "portable_v3_mapping_observed": true,
+    "all_native_staging_samples_source_measured": true,
+    "all_native_staging_topology_exact": true,
+    "all_in_run_physical_invariants_passed": true,
+    "pre_attempt_launcher_refusal_preserved": true,
+    "r24d53_closed_positive": true,
+    "held_out_cells_remain_sealed": true,
+    "behavior_success_claimed": false,
+    "v3_energy_threshold_claimed": false,
+    "retained_r49_residual_recomputed": false,
+    "retained_r49_result_reclassified": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "repeatability_rate_claimed": false,
+    "population_claimed": false,
+    "held_out_validation_claimed": false,
+    "cross_engine_recovery_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "sdk1_milestone_advanced": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "live_authority_paths": [
+    "sdk/release/quadruped_release_contract.json",
+    "sdk/release/quadruped_support_matrix.json"
+  ],
+  "live_gate_expectations": {
+    "next_gate_id": "QSDK-R24D54",
+    "r24d45_successor_direction": "declare_r24d54_v3_accounted_rapier_recovery_behavior_question",
+    "r24d53_source_status": "closed_valid_complete_live_native_staging_transport_and_portable_v3_mapping_positive_behavior_unassessed",
+    "r24d53_native_staging_transport_implemented": true,
+    "r24d53_zero_world_qualified": true,
+    "r24d53_physical_stage_authorized": false,
+    "r24d53_transport_smoke_attempted": true,
+    "r24d53_transport_smoke_observed": true,
+    "r24d53_physical_evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d53-rapier-staging-transport-smoke-20260830T053213287Z-e6bd27c0",
+    "r24d53_physical_attempt_source_commit": "e6bd27c0fc5f2c59e389a1df690436f03f2b4ecb",
+    "r24d53_physical_attempt_count": 1,
+    "r24d53_native_staging_record_count": 2,
+    "r24d53_native_small_step_record_count": 32,
+    "r24d53_in_run_invariant_receipt_count": 2,
+    "r24d53_portable_v3_mapping_observed": true,
+    "r24d53_v3_signed_residual_j": -1.7859705581102503e-7,
+    "r24d53_behavior_evaluator_executed": false,
+    "r24d53_may_be_rerun": false,
+    "physical_execution_blocked_pending_r24d54_declaration": true,
+    "physical_execution_authorized": false,
+    "maximum_total_outer_steps_authorized": 0,
+    "maximum_physical_steps_authorized": 0,
+    "maximum_model_construction_count": 0,
+    "maximum_world_attempt_count": 0,
+    "maximum_world_build_count": 0,
+    "held_out_cells_remain_sealed": true,
+    "prone_to_standing_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "closure_audit_path": "tests/test_qsdk_r24d53_rapier_staging_transport_smoke_positive_closure.py"
+}

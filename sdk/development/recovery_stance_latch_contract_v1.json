@@ -1,0 +1,49 @@
+{
+  "schema_version": "sporespore_development_recovery_stance_latch_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V42",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_upright_stance_v1",
+  "policy_id": "sporespore_balanced_wave_recovery_stance_latched_upright_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_stance_latched_upright_profile_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_stance_latched_upright_memory_v1",
+  "native_actuation_receipt_schema": "sporespore_recovery_stance_latched_upright_controller_step_receipt_v1",
+  "source_diagnosis": {
+    "path": "sdk/development/recovery_v41_contact_loss_diagnosis_v1.json",
+    "raw_sha256": "sha256:515f8c5cc10daed6bdd513eb6673c67d0c621114192ed876805f8fe6076f007b"
+  },
+  "source_precheck": {
+    "path": "sdk/development/recovery_stance_latch_precheck_v1.json",
+    "raw_sha256": "sha256:422bbafdb53d7b7ec88e51862e64706afcd01e3660febaf953770dc97a1ab683"
+  },
+  "question": "Does retaining an established upright reference choice through its scheduled stance reduce repeated contact/reference switching without preventing recontact or worsening walking? V41's first stance losses and all original behavioral failures remain unexplained by the selector contrast alone.",
+  "controlled_change": "Relative to V41, add four per-limb reference-selection latch bits. Establish a bit only from explicit current supporting contact during an active phase 73..359. Once established, retain that reference choice through the same stance even if actual contact disappears. Do not latch, fabricate, smooth or replace contact observations. No new gain, force estimate, dwell, phase duration, contact threshold, motor cap or physical schedule.",
+  "selector_lifecycle": "Initialize all bits false. The selected bit is active AND phase>72 AND (eligible_previous_latch OR (presence AND bears_support)). Carry is eligible only if the previous wave is present and active, its same-limb phase is >72, and the current phase is not less than the previous phase. Clear on inactive wave, phase 0..72, missing/inactive previous wave or phase wrap; current supporting contact may immediately establish a fresh bit. Same-phase held gait input preserves eligible carry. Use the existing consecutive sample and memory provenance checks; reject missing, malformed, crossed or contradictory inputs rather than infer support.",
+  "unchanged_command_math": "Use V41's measured-pose and floor-upright all-four-leg geometry, measured floor-relative height, joint bounds and reference slew. Hold one CURRENT latch selection mask for current and previous-wave goal computations. Retain V41's actual-contact selector for full-reference versus wave-only feedforward, existing activation/dt behavior, servo gains, host sign and all speed/impulse caps. Only the reference choice and resulting carried target positions differ.",
+  "memory_and_receipt": "Use distinct V42 policy/profile/memory/actuation identities. Add four ordered latch bits with explicit limb identity to V42 reference memory; missing, extra, crossed or nonboolean latch data must refuse. Existing prior-wave memory supplies activation and phase provenance; do not introduce a second gait clock. Ineligible but well-formed incoming bits are cleared by the stated selector lifecycle, not treated as current contact. Expose incoming bits, carry eligibility, actual precommand contacts, previous/current phases, resulting bits, both reference plans and actual selected goals. The original V41 contact-only selector and the V42 stateful selector must never share an indistinguishable receipt. Older policies omit V42-only fields and preserve their serialized output bytes.",
+  "required_verification": [
+    "Verify real stateless and stateful native exports on all 400 original V41 inputs, carrying the actual candidate memory. Independently reconstruct latch lifecycle, same-mask goal comparison, bounded targets, reference rates and motor output.",
+    "Check fresh startup, inactive/activation, phase 72/73/359/wrap, same-phase gait holds, loss/recontact, present-nonbearing contact, and malformed/missing/crossed memory. Include both fresh selection and carried selection with truthful absent contact.",
+    "Preserve V41 and older native output bytes on their original profiles. Keep the original recovery/prefix controllers, physical observations, evaluator, thresholds, schedule and caps unchanged.",
+    "Integrate through the existing profile-driven worker, start/entry receipts, motor ledger, replay reader and runtime binding. Do not duplicate the harness. A component-only profile remains non-runnable until that integration passes.",
+    "Before any new world, pass the complete applicable development safety gate from an exact unchanged source/runtime binding. Use a fresh non-comparative seed-40200 SingleKick identity and the existing 400-command diagnostic tail; retain complete negative or positive results and independent replay. This contract selects the component, not a runnable physical attempt."
+  ],
+  "saved_input_results_and_limits": [
+    "All 400 V41 commands and 3200 motor outputs reconstruct within existing arithmetic allowances; no old evaluation is rerun. On these fixed observations, selection changes are 108 originally and 11 with the proposed latch; 310 additional limb inputs retain upright selection.",
+    "Original speed-clamped joint commands: 246. One-command substitutions with ORIGINAL incoming references: 611. Chained proposed-reference arithmetic: 230, with 865 changed motor commands. Both projections are retained; neither is a new trajectory or evidence of physical improvement.",
+    "Same-mask, same-memory commands are exact in the algebraic comparison. Changed reference carry can alter later commands even when the current mask agrees. All existing joint, slew and speed bounds hold in the saved-input sketch.",
+    "V41 has 50 stance-loss onsets; 36 are not speed-clamped at onset, and 44 are followed by clipping. Removing selector switching cannot be claimed to repair those initial losses, whole-body load transfer, backward foot relocation or terminal contact.",
+    "Holding an upright target while a foot is absent may keep that foot above the floor, delay or prevent recontact, or worsen body posture. The original actual-contact feedforward selector still switches and may itself participate in oscillation. No physical cause, superiority, robustness, acceptance or SDK2 force-aware recovery is claimed.",
+    "Second complete planned cycles, commanded stop/cooldown, paired commissioning, three-engine portability and held-out acceptance remain outside this bounded diagnostic."
+  ],
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

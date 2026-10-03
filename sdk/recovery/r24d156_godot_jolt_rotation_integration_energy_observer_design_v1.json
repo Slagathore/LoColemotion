@@ -1,0 +1,268 @@
+{
+  "schema_version": "sporespore_qsdk_r24d156_godot_jolt_rotation_integration_energy_observer_design_v1",
+  "gate_id": "QSDK-R24D156",
+  "status": "closed_zero_world_rotation_integration_observer_surface_designed_native_extension_required_compilation_pending",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "zero_world_source_design",
+    "question_class": "development"
+  },
+  "question_class": "development",
+  "physical_question_declared": false,
+  "physical_execution_authorized": false,
+  "maximum_world_attempt_count": 0,
+  "maximum_world_build_count": 0,
+  "maximum_physical_steps_authorized": 0,
+  "repository": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore",
+    "origin_url": "https://github.com/Slagathore/sporespore.git",
+    "branch": "main",
+    "implementation_parent_commit": "ce194c7e24a1ed6f87c8b7aa48cbd7d36b0cbbb0"
+  },
+  "bound_predecessor": {
+    "gate_id": "QSDK-R24D155",
+    "path": "sdk/recovery/r24d155_godot_jolt_rotational_staging_boundary_diagnosis_v1.json",
+    "raw_sha256": "sha256:6d56ced147908d7df1e265768830347b3a47791111e34c79bbe65f7ed95117ec",
+    "byte_length": 20947,
+    "role": "immutable_zero_world_structural_gap_diagnosis",
+    "rotational_position_integration_observer_gap_established": true,
+    "rotational_staging_cause_established": false,
+    "same_identity_rerun_permitted": false,
+    "historical_result_rewritten": false,
+    "historical_threshold_rewritten": false,
+    "historical_selector_rewritten": false,
+    "historical_evaluator_rewritten": false,
+    "historical_interpretation_rewritten": false
+  },
+  "source_localization": {
+    "godot_source_commit": "5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88",
+    "godot_source_tag": "4.7-stable",
+    "jolt_source_path": "thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+    "native_job": "PhysicsSystem::JobIntegrateVelocity",
+    "exact_orientation_integration_call": "body.AddRotationStep(body.GetAngularVelocity() * delta_time);",
+    "stage_after": "PhysicsSystem::JobSolveVelocityConstraints",
+    "stage_before": "PhysicsSystem::JobSolvePositionConstraints",
+    "position_update_rule": "jolt_world_axis_angle_left_multiply_then_translation_v1",
+    "mechanical_energy_rule": "half_omega_dot_world_inertia_times_omega_v1",
+    "adapter_only_boundary_available": false,
+    "reason_adapter_only_rejected": "Existing outer-step snapshots include later position-constraint changes, while v4 telemetry exposes no independent pre/post orientation-integration boundary. Subtracting a whole-step residual would violate observer independence.",
+    "native_extension_required": true
+  },
+  "selected_v6_design": {
+    "patch_path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_rotation_integration_energy_telemetry_v6.patch",
+    "patch_mode": "additive_delta_on_exact_v4_plus_v5_source",
+    "telemetry_schema": "sporespore.godot_jolt_solver_energy_exchange_telemetry.v2",
+    "runtime_profile_id": "godot_4_7_jolt_sporespore_solver_energy_exchange_telemetry_v6",
+    "measurement_before": "MeasureSporeSporeEnergy for each dynamic body after velocity clamping and immediately before AddRotationStep",
+    "measurement_after": "MeasureSporeSporeEnergy for the same dynamic body immediately after AddRotationStep and before translation",
+    "aggregation": "per_integration_job_local_accumulation_then_existing_mutex_protected_telemetry_merge",
+    "completeness_rule": "expected_active_body_count_positive_and_observed_equal_expected_and_dynamic_positive_and_invalid_zero_and_exchange_finite",
+    "new_fields": [
+      "rotation_integration_kinetic_exchange_j",
+      "rotation_integration_expected_active_body_count",
+      "rotation_integration_observed_active_body_count",
+      "rotation_integration_dynamic_body_count",
+      "rotation_integration_invalid_body_measurement_count"
+    ],
+    "existing_general_dynamic_observation_count_semantics_changed": false,
+    "existing_general_invalid_measurement_count_semantics_changed": false,
+    "physics_state_write_added": false,
+    "controller_changed": false,
+    "command_changed": false,
+    "threshold_changed": false,
+    "selector_changed": false,
+    "evaluator_changed": false,
+    "mechanical_energy_residual_accepted_as_input": false
+  },
+  "exact_external_source_at_design": {
+    "checkout_path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136",
+    "upstream_commit": "5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88",
+    "pre_v6_diff_raw_sha256": "sha256:c516447591a743c7c98859bd1144b8b27bd52d19589ebc4e57ab14de9583af8f",
+    "pre_v6_diff_byte_length": 59937,
+    "post_v6_diff_raw_sha256": "sha256:4fa2410d302868e0a9e5401d3b469eaff0a8ad5709965d410d2230370783f96a",
+    "post_v6_diff_byte_length": 65654,
+    "v6_reverse_apply_check_passed": true,
+    "diff_check_passed": true,
+    "source_files": [
+      {
+        "path": "modules/jolt_physics/jolt_physics_server_3d.cpp",
+        "git_blob_oid": "1108c54150f9b26e7dd46be8f7160c8815e7bf28"
+      },
+      {
+        "path": "thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+        "git_blob_oid": "e8a61e1a0262235f8910f667c19bbe53f75c3198"
+      },
+      {
+        "path": "thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h",
+        "git_blob_oid": "ac29f3644b44cc11c39f1d4a78b02b15b13a5296"
+      }
+    ],
+    "compilation_attempted": false,
+    "runtime_binding_attempted": false,
+    "runtime_artifact_qualified": false
+  },
+  "source_bindings": [
+    {
+      "path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_exchange_telemetry_v4.patch",
+      "raw_sha256": "sha256:e86f5b0516d513bd3de1f50f49e620e24b74690e3103244d52f42fd0ecf58211",
+      "byte_length": 59240
+    },
+    {
+      "path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_position_velocity_read_access_v5.patch",
+      "raw_sha256": "sha256:75a10628d2202a3bcea4ac671e0321bc9cb866b4ecbd424c74026dbcb5a476d9",
+      "byte_length": 981
+    },
+    {
+      "path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_rotation_integration_energy_telemetry_v6.patch",
+      "raw_sha256": "sha256:6f74357a1520ffb7691e92163228718c98509c5c40ab11fd381082b15635df72",
+      "byte_length": 11726
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/recovery_discrete_staging_observer_v1.gd",
+      "raw_sha256": "sha256:68b1f6000169a23a393faf9eab2024026e65888c809c19134a646d1a15a028f4",
+      "byte_length": 11741
+    },
+    {
+      "path": "sdk/recovery/r24d155_godot_jolt_rotational_staging_boundary_diagnosis_v1.json",
+      "raw_sha256": "sha256:6d56ced147908d7df1e265768830347b3a47791111e34c79bbe65f7ed95117ec",
+      "byte_length": 20947
+    },
+    {
+      "path": "sdk/conformance/rotation_integration_energy_observer.py",
+      "raw_sha256": "sha256:14be1fed5f545c9221254b7fdbfcb634de6b6a4d9af1ae555591115a96fbc6bc",
+      "byte_length": 6942
+    },
+    {
+      "path": "sdk/conformance/r24d156_godot_jolt_rotation_integration_energy_observer_design.py",
+      "raw_sha256": "sha256:281820d5567fe6328faf856c92c5f3c146280f79eed103764d2e6b5f8a27aa11",
+      "byte_length": 6276
+    }
+  ],
+  "source_rules": {
+    "v4_patch_path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_exchange_telemetry_v4.patch",
+    "r148_observer_path": "sdk/adapters/godot/gdscript/recovery_discrete_staging_observer_v1.gd",
+    "v6_patch_path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_rotation_integration_energy_telemetry_v6.patch",
+    "v6_required_token_counts": {
+      "diff --git ": 3,
+      "sporespore.godot_jolt_solver_energy_exchange_telemetry.v2": 1,
+      "godot_4_7_jolt_sporespore_solver_energy_exchange_telemetry_v6": 1,
+      "rotation_before = MeasureSporeSporeEnergy": 1,
+      "body.AddRotationStep": 1,
+      "rotation_after = MeasureSporeSporeEnergy": 1,
+      "mRotationIntegrationKineticExchangeJ": 4,
+      "mRotationIntegrationExpectedActiveBodyCount": 5,
+      "mRotationIntegrationObservedActiveBodyCount": 4,
+      "mRotationIntegrationDynamicBodyCount": 4,
+      "mRotationIntegrationInvalidBodyMeasurementCount": 4
+    },
+    "v6_forbidden_tokens": [
+      "result[\"energy_balance_residual_j\"]",
+      "result[\"acceptance_threshold_j\"]",
+      "result[\"controller_result\"]",
+      "result[\"behavior_result\"]",
+      "GetLinearVelocityUnchecked",
+      "GetAngularVelocityUnchecked",
+      "#undef JPH_ENABLE_ASSERTS"
+    ]
+  },
+  "analytic_controls": {
+    "reference_rule": "K_rot_equals_half_body_omega_dot_principal_inertia_times_body_omega",
+    "jolt_update_rule": "R_post_equals_axis_angle_world_omega_dt_times_R_pre",
+    "invariance_argument": "The left multiplier rotates about world omega, so Q_transpose_times_omega equals omega and body-frame omega is unchanged in exact arithmetic.",
+    "operation_factor": 256,
+    "bound_provenance": "256 times binary64 ulp of max one and the pre/post rotational energies; deterministic implementation-control tolerance only, never a physical acceptance threshold.",
+    "required_positive_cases": [
+      "zero_rotation",
+      "principal_axis",
+      "off_principal_axis"
+    ],
+    "required_forced_failures": [
+      "crossed_sequence",
+      "energy_balance_residual_input"
+    ],
+    "ideal_exchange_expected_zero": true,
+    "native_float32_roundoff_magnitude_established": false,
+    "physical_residual_fraction_explained": false
+  },
+  "qualification_receipt": {
+    "marker": "QSDK_R24D156_ROTATION_INTEGRATION_ENERGY_OBSERVER_DESIGN_PASS",
+    "analytic_positive_case_count": 3,
+    "forced_failure_case_count": 2,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0
+  },
+  "audit_economy": {
+    "shared_rotation_observer_mechanics_added": true,
+    "campaign_binding_is_source_specific_but_compact": true,
+    "historical_closure_audit_execution_count": 0,
+    "new_campaign_specific_physical_canary_count": 0,
+    "full_seeded_ghost_count": 0
+  },
+  "sdk_status": {
+    "sdk1_milestone_advanced": false,
+    "sdk1_completed_steps": 11,
+    "sdk1_total_steps": 20,
+    "full_program_completed_steps": 11,
+    "full_program_total_steps": 25
+  },
+  "claim_boundary": {
+    "exact_native_stage_located": true,
+    "adapter_only_observer_rejected": true,
+    "v6_source_delta_authored": true,
+    "ideal_rotation_energy_invariance_required": true,
+    "native_float32_exchange_measured": false,
+    "rotational_staging_cause_established": false,
+    "energy_balance_physically_corrected": false,
+    "behavior_improvement_claimed": false,
+    "prone_to_standing_claimed": false,
+    "repeatability_claimed": false,
+    "population_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "sdk1_milestone_advanced": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "next_boundary": {
+    "gate_id": "QSDK-R24D157",
+    "ledger_prefix": "[recovery/godot]",
+    "question_class": "development",
+    "work_kind": "cold_native_v6_compile_and_zero_world_binding_qualification_not_yet_executed",
+    "physical_question_declared": false,
+    "physical_execution_authorized": false,
+    "maximum_world_attempt_count": 0,
+    "maximum_world_build_count": 0,
+    "maximum_physical_steps_authorized": 0,
+    "required_first_work": "From this clean-pushed source freeze, compile the exact v6 dependency tree, bind the exact binary pair, and prove schema, completeness, stale/unsafe refusal, field population, and forced-failure controls without constructing a physics world.",
+    "later_route_ghost_default": "Only after R157 passes, declare one development seed and the minimum one-to-two-step native route that exercises the v6 field; a complete valid physics negative is adequate.",
+    "additional_full_seeded_ghost_presumed_required": false,
+    "additional_physical_canary_presumed_required": false,
+    "held_out_cells_remain_sealed": true
+  },
+  "live_authority_projection": {
+    "r24d156_source_status": "closed_zero_world_rotation_integration_observer_surface_designed_native_extension_required_compilation_pending",
+    "r24d156_design_completed": true,
+    "r24d156_physical_execution_authorized": false,
+    "r24d156_model_construction_count": 0,
+    "r24d156_world_attempt_count": 0,
+    "r24d156_world_build_count": 0,
+    "r24d156_solver_step_count": 0,
+    "r24d156_exact_native_stage_located": true,
+    "r24d156_adapter_only_observer_rejected": true,
+    "r24d156_native_extension_required": true,
+    "r24d156_v6_source_delta_authored": true,
+    "r24d156_ideal_rotation_energy_invariance_required": true,
+    "r24d156_native_float32_exchange_measured": false,
+    "r24d156_rotational_staging_cause_established": false,
+    "r24d156_prone_to_standing_claimed": false,
+    "r24d156_sdk1_milestone_advanced": false,
+    "r24d157_cold_compile_and_zero_world_binding_qualification_required": true,
+    "next_gate_id": "QSDK-R24D157"
+  },
+  "live_authority_paths": [
+    "sdk/release/quadruped_release_contract.json",
+    "sdk/release/quadruped_support_matrix.json"
+  ]
+}

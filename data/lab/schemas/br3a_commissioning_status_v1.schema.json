@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br3a_commissioning_status_v1.schema.json",
+  "title": "SporeSpore BR3A commissioning status v1",
+  "description": "Fail-closed development commissioning inventory and promotion-readiness boundary for BR3A L1 contact-engine work.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status_id",
+    "milestone_id",
+    "claim_boundary",
+    "planned_cell_count",
+    "implemented_cell_count",
+    "commissioning_assertion_count",
+    "released_l1_0_assertion_count",
+    "experimental_test_count",
+    "experimental_assertion_count",
+    "cells",
+    "experimental_tests",
+    "report_v2_guard",
+    "promotion",
+    "knowledge",
+    "proven_locomotion",
+    "does_not_establish"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br3a_commissioning_status.v1"},
+    "status_id": {"const": "BR3A_L1_COMMISSIONING_STATUS_V1"},
+    "milestone_id": {"const": "BR3A_L1_ENGINE_CONTACT_TRUTH"},
+    "claim_boundary": {"type": "string", "minLength": 1},
+    "planned_cell_count": {"const": 8},
+    "implemented_cell_count": {"const": 8},
+    "commissioning_assertion_count": {"const": 236},
+    "released_l1_0_assertion_count": {"const": 83},
+    "experimental_test_count": {"const": 8},
+    "experimental_assertion_count": {"const": 153},
+    "cells": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/cell"}
+    },
+    "experimental_tests": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/experimental_test"}
+    },
+    "report_v2_guard": {"$ref": "#/$defs/report_v2_guard"},
+    "promotion": {"$ref": "#/$defs/promotion"},
+    "knowledge": {"$ref": "#/$defs/knowledge"},
+    "proven_locomotion": {"$ref": "#/$defs/proven_locomotion"},
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "resource_path": {
+      "type": "string",
+      "pattern": "^res://[A-Za-z0-9_./-]+$"
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cell_id", "commission_status", "assertion_count", "test_sources"],
+      "properties": {
+        "cell_id": {"pattern": "^L1\\.[0-7]$"},
+        "commission_status": {
+          "enum": ["released_suite_commissioning", "experimental_green"]
+        },
+        "assertion_count": {"type": "integer", "minimum": 1},
+        "test_sources": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/resource_path"}
+        }
+      }
+    },
+    "experimental_test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cell_id", "resource_path", "source_sha256", "expected_passed_assertions"],
+      "properties": {
+        "cell_id": {"pattern": "^L1\\.[1-7]$"},
+        "resource_path": {"$ref": "#/$defs/resource_path"},
+        "source_sha256": {"$ref": "#/$defs/sha256"},
+        "expected_passed_assertions": {"type": "integer", "minimum": 1}
+      }
+    },
+    "report_v2_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_path",
+        "source_sha256",
+        "inventory_id",
+        "test_count",
+        "pattern",
+        "experimental_overlap_expected",
+        "mutation_forbidden"
+      ],
+      "properties": {
+        "resource_path": {"const": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json"},
+        "source_sha256": {"$ref": "#/$defs/sha256"},
+        "inventory_id": {"const": "BR1_REQUIRED_LAB_TESTS_V2"},
+        "test_count": {"const": 62},
+        "pattern": {"const": "test_lab_*.gd"},
+        "experimental_overlap_expected": {"const": 0},
+        "mutation_forbidden": {"const": true}
+      }
+    },
+    "promotion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "formal_status",
+        "ready_for_milestone_decision",
+        "report_family_policy",
+        "blocking_gates",
+        "separate_nonblocking_work"
+      ],
+      "properties": {
+        "formal_status": {"const": "not_accepted"},
+        "ready_for_milestone_decision": {"const": false},
+        "report_family_policy": {"const": "new_br3a_family_do_not_rev_or_broaden_br1_report_v2"},
+        "blocking_gates": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z0-9_]+$"}
+        },
+        "separate_nonblocking_work": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z0-9_]+$"}
+        }
+      }
+    },
+    "knowledge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_br3a_entries",
+        "automatic_creature_guidance_allowed",
+        "admission_blocker"
+      ],
+      "properties": {
+        "accepted_br3a_entries": {"const": 0},
+        "automatic_creature_guidance_allowed": {"const": false},
+        "admission_blocker": {"const": "PROMOTION_GRADE_L1_BUNDLE_PROVENANCE_MISSING"}
+      }
+    },
+    "proven_locomotion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["standing", "bracing", "fall_arrest", "getting_up", "walking"],
+      "properties": {
+        "standing": {"const": false},
+        "bracing": {"const": false},
+        "fall_arrest": {"const": false},
+        "getting_up": {"const": false},
+        "walking": {"const": false}
+      }
+    }
+  }
+}

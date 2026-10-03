@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/intervention_v1.schema.json",
+  "title": "SporeSpore sealed fixture intervention envelope v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["intervention_payload_sha256", "payload"],
+  "properties": {
+    "intervention_payload_sha256": {"$ref": "#/$defs/sha256"},
+    "payload": {
+      "oneOf": [
+        {"$ref": "#/$defs/synthetic_noop"},
+        {"$ref": "#/$defs/central_impulse"}
+      ]
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    },
+    "transition": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "availability_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason"],
+      "properties": {
+        "status": {
+          "enum": [
+            "measured",
+            "derived",
+            "commanded",
+            "unavailable",
+            "invalid"
+          ]
+        },
+        "reason": {"type": ["string", "null"]},
+        "source": {"type": ["string", "null"]}
+      }
+    },
+    "work_availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "/signed_work_j": {"$ref": "#/$defs/availability_descriptor"}
+      }
+    },
+    "synthetic_noop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "run_id",
+        "record_kind",
+        "operation_id",
+        "source_frame_id",
+        "applied_transition",
+        "source",
+        "type",
+        "planned_api",
+        "target_body_id",
+        "allowed",
+        "experiment_phase",
+        "availability"
+      ],
+      "properties": {
+        "schema": {"const": "sporespore.lab.intervention.v1"},
+        "run_id": {"$ref": "#/$defs/stable_id"},
+        "record_kind": {"const": "planned_operation"},
+        "operation_id": {"$ref": "#/$defs/stable_id"},
+        "source_frame_id": {"type": "integer", "minimum": 0},
+        "applied_transition": {"$ref": "#/$defs/transition"},
+        "source": {"type": "string", "minLength": 1},
+        "type": {"const": "synthetic_noop"},
+        "planned_api": {"const": "lab.synthetic_noop"},
+        "target_body_id": {"$ref": "#/$defs/stable_id"},
+        "allowed": {"type": "boolean"},
+        "experiment_phase": {"$ref": "#/$defs/experiment_phase"},
+        "availability": {"$ref": "#/$defs/work_availability"}
+      }
+    },
+    "central_impulse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "run_id",
+        "record_kind",
+        "operation_id",
+        "source_frame_id",
+        "applied_transition",
+        "source",
+        "type",
+        "planned_api",
+        "target_body_id",
+        "linear_impulse_world_n_s",
+        "allowed",
+        "experiment_phase",
+        "availability"
+      ],
+      "properties": {
+        "schema": {"const": "sporespore.lab.intervention.v1"},
+        "run_id": {"$ref": "#/$defs/stable_id"},
+        "record_kind": {"const": "planned_operation"},
+        "operation_id": {"$ref": "#/$defs/stable_id"},
+        "source_frame_id": {"type": "integer", "minimum": 0},
+        "applied_transition": {"$ref": "#/$defs/transition"},
+        "source": {"type": "string", "minLength": 1},
+        "type": {"const": "central_impulse"},
+        "planned_api": {"const": "RigidBody3D.apply_central_impulse"},
+        "target_body_id": {"$ref": "#/$defs/stable_id"},
+        "point_world_m": {
+          "type": ["array", "null"],
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"type": "number"}
+        },
+        "force_world_n": {
+          "type": ["array", "null"],
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"type": "number"}
+        },
+        "torque_world_nm": {
+          "type": ["array", "null"],
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"type": "number"}
+        },
+        "linear_impulse_world_n_s": {"$ref": "#/$defs/vec3"},
+        "angular_impulse_world_n_m_s": {
+          "type": ["array", "null"],
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"type": "number"}
+        },
+        "signed_work_j": {"type": ["number", "null"]},
+        "work_quality": {
+          "enum": ["measured", "derived", "unavailable"]
+        },
+        "allowed": {"type": "boolean"},
+        "experiment_phase": {"$ref": "#/$defs/experiment_phase"},
+        "availability": {"$ref": "#/$defs/work_availability"}
+      }
+    },
+    "experiment_phase": {
+      "enum": [
+        "CONFIGURE",
+        "SPAWN",
+        "SETTLE_SCAFFOLDED",
+        "RELEASE",
+        "WARMUP",
+        "MEASURE",
+        "COOLDOWN",
+        "TERMINATED"
+      ]
+    }
+  }
+}

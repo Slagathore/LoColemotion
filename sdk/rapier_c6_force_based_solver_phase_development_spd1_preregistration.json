@@ -1,0 +1,264 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_solver_phase_development_preregistration_v1",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-SOLVER-PHASE-DEVELOPMENT",
+  "gate_id": "C6-RAP-HC-SPD1",
+  "status": "frozen_before_first_c6_rap_hc_spd1_physics_world",
+  "recorded_utc": "2026-07-31T08:48:54Z",
+  "implementation_parent_commit": "bd3ad00930792209c11ec057ca97213335fc331b",
+  "study_classification": {
+    "class": "exact_finite_cell_configuration_development_screen",
+    "purpose": "Mechanism-isolation and configuration selection for a later independent validation, not host acceptance.",
+    "question": "At the one declared fresh Rapier small-step count and four fresh signed gravity arms, which, if any, of four equal-total-pass PGS/stabilization allocations completes the unchanged CW1 convergence contract most quickly in its worst cell?",
+    "finite_decision": true,
+    "development_screen": true,
+    "superiority_study": false,
+    "noninferiority_or_equivalence_study": false,
+    "population_sampling_process": false,
+    "statistical_effect_margin_required": false,
+    "cohort_size_or_sequential_stopping_argument_required": false,
+    "deterministic_per_cell_convergence_stopping_only": true,
+    "authority_boundary": "The result may select at most one exact solver-phase allocation for a separate validation. It cannot authorize Rapier host characterization, locomotion, cross-engine evidence, or a release claim."
+  },
+  "predecessors": {
+    "cw1_closure": {
+      "path": "sdk/rapier_c6_force_based_convergence_window_cw1_closure.json",
+      "raw_sha256": "df46f8a7982cabcd166a13c2b1f9e67fa606709b97484661d36aba1556e5747c",
+      "status": "closed_negative_low_iteration_convergence_window",
+      "remains_closed_negative": true
+    },
+    "solver_phase_diagnostic": {
+      "path": "sdk/rapier_c6_force_based_cw1_solver_phase_diagnostic.json",
+      "raw_sha256": "bcf35b8edd3d9340ff8680b3e85644dd8565841c000fb94e80a7ad54d9933594",
+      "diagnostic_id": "C6-RAP-HC-CW1-SP-D1",
+      "world_build_count": 0,
+      "causal_mechanism_confirmed": false,
+      "retained_hypothesis": "Equal total joint-constraint pass counts with different pre/post-integration allocations are not source-equivalent and require a prospective physical development screen."
+    }
+  },
+  "freshness_contract": {
+    "outcome_exposed_solver_iterations": [
+      10,
+      12,
+      20,
+      36,
+      40
+    ],
+    "spd1_solver_iterations": 16,
+    "outcome_exposed_signed_lever_arm_magnitudes_m": [
+      0.15,
+      0.2,
+      0.3,
+      0.35,
+      0.4
+    ],
+    "spd1_signed_lever_arms_z_m": [
+      -0.25,
+      0.25,
+      -0.45,
+      0.45
+    ],
+    "no_spd1_physical_cell_was_opened_before_freeze": true,
+    "development_outcomes_may_not_be_reused_as_validation": true
+  },
+  "host_source_semantics": {
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "cargo_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "cargo_lock_path": "sdk/Cargo.lock",
+    "cargo_lock_raw_sha256": "0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+    "upstream_files": [
+      {
+        "path": "src/dynamics/integration_parameters.rs",
+        "raw_sha256": "0e5d5f76e1d569a5f07f1afb00c2858784f5c142eb886d4619652c58eca96498"
+      },
+      {
+        "path": "src/dynamics/joint/motor_model.rs",
+        "raw_sha256": "474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648"
+      },
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "raw_sha256": "69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f"
+      },
+      {
+        "path": "src/dynamics/solver/island_solver.rs",
+        "raw_sha256": "61f7fea43b03e3979a225ddb6632fb8dea5e670e54636c3060057663feccf14a"
+      },
+      {
+        "path": "src/dynamics/solver/velocity_solver.rs",
+        "raw_sha256": "b7bc9274c8ed285b4908c6010f97087f2199704eea0b37bc0e89fac2cda18e1d"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraints_set.rs",
+        "raw_sha256": "12eb1dfe1723a702f5e21b3e4f2c2c59631e8def8abfedb65b52af640298db8a"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs",
+        "raw_sha256": "a05c33a3770aada74587eebbbfae053c682bc014f9d1cd34e19658f64bc6a0a6"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraint_builder.rs",
+        "raw_sha256": "07628f6f865f612db096adb828cf329cf5b55a82d239659b094f0ee214da4ac9"
+      }
+    ],
+    "runner_must_hash_installed_crate_source_before_preflight": true,
+    "source_hash_mismatch_fails_before_any_world": true
+  },
+  "controlled_configuration": {
+    "outer_timestep_s": 0.008333333333333333,
+    "num_solver_iterations": 16,
+    "total_joint_constraint_passes_per_small_step": 8,
+    "candidate_phase_allocations": [
+      {
+        "candidate_id": "SPD1-A",
+        "role": "legacy_phase_control",
+        "num_internal_pgs_iterations": 1,
+        "num_internal_stabilization_iterations": 7,
+        "predeclared_tie_break_rank": 0
+      },
+      {
+        "candidate_id": "SPD1-B",
+        "role": "post_heavy_intermediate",
+        "num_internal_pgs_iterations": 3,
+        "num_internal_stabilization_iterations": 5,
+        "predeclared_tie_break_rank": 1
+      },
+      {
+        "candidate_id": "SPD1-C",
+        "role": "pre_heavy_intermediate",
+        "num_internal_pgs_iterations": 5,
+        "num_internal_stabilization_iterations": 3,
+        "predeclared_tie_break_rank": 2
+      },
+      {
+        "candidate_id": "SPD1-D",
+        "role": "pre_heavy_default_stabilization",
+        "num_internal_pgs_iterations": 7,
+        "num_internal_stabilization_iterations": 1,
+        "predeclared_tie_break_rank": 3
+      }
+    ],
+    "factor_isolation": "Only the pre/post-integration allocation differs between paired candidates. Every candidate has eight total joint-constraint passes per small step."
+  },
+  "physical_grid": {
+    "expected_candidate_count": 4,
+    "expected_cells_per_candidate": 4,
+    "expected_world_count": 16,
+    "mass_kg": 1.0,
+    "shape": "cuboid",
+    "half_extents_m": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "gravity_m_s2": [
+      0.0,
+      -9.8,
+      0.0
+    ],
+    "signed_lever_arms_z_m": [
+      -0.25,
+      0.25,
+      -0.45,
+      0.45
+    ],
+    "target_position_rad": 0.0,
+    "target_velocity_rad_s": 0.0,
+    "position_stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "maximum_motor_force_nm": 6.0
+  },
+  "per_cell_convergence_contract": {
+    "maximum_observation_steps": 1440,
+    "minimum_acceptance_step": 120,
+    "required_consecutive_converged_steps": 60,
+    "normalized_small_step_impulse_response_interval": [
+      0.98,
+      1.02
+    ],
+    "maximum_spring_only_static_residual": 0.01,
+    "maximum_damping_load_fraction": 0.005,
+    "maximum_full_pd_gravity_residual": 0.005,
+    "maximum_anchor_error_m": 0.00001,
+    "step_impulse_tolerance_nms": 0.000001,
+    "signed_geometry_required": true,
+    "force_based_readback_required": true,
+    "finite_values_required": true,
+    "all_predicates_must_hold_on_every_step_of_the_consecutive_window": true,
+    "any_failed_predicate_resets_the_consecutive_window_to_zero": true,
+    "threshold_change_from_cw1": false
+  },
+  "candidate_eligibility_contract": {
+    "all_four_cells_must_complete_the_full_window": true,
+    "exact_world_attempt_build_and_cell_counts_required": true,
+    "zero_motor_model_mismatches_required": true,
+    "zero_nonfinite_values_required": true,
+    "zero_small_step_impulse_limit_violations_required": true,
+    "maximum_signed_pair_relative_asymmetry": 0.005,
+    "arm_magnitude_ordering_required": true
+  },
+  "selector_contract": {
+    "selector_invoked_once_after_all_sixteen_cells": true,
+    "early_stop_across_candidates_forbidden": true,
+    "eligible_candidates_only": true,
+    "primary_score": "minimum maximum convergence_window_end_step across the candidate's four cells",
+    "secondary_score": "minimum sum of convergence_window_end_step across the candidate's four cells",
+    "final_tie_break": "minimum predeclared_tie_break_rank",
+    "maximum_selected_candidate_count": 1,
+    "no_eligible_candidate_means_no_selection": true,
+    "selection_status": "development_configuration_selected_requires_fresh_independent_validation",
+    "selection_is_not_acceptance": true
+  },
+  "threshold_and_grid_provenance": {
+    "unchanged_convergence_thresholds": "All physical response and convergence thresholds are retained unchanged from CW1; no failed threshold is relaxed.",
+    "solver_iteration_count": "Sixteen is a fresh, cost-sensitive development point between the exposed twelve-step failure and the adapter's exposed twenty-step legacy setting. It is outcome-informed development calibration and may not become validation evidence.",
+    "signed_lever_arms": "Magnitudes 0.25 m and 0.45 m are fresh, remain below the six-newton-meter force ceiling at their gravity loads, and provide paired low/high inertia-load cells.",
+    "phase_allocations": "The four odd-valued allocations span the equal-total eight-pass space while retaining at least one pre- and one post-integration pass. Candidate A is the legacy phase control; candidate D retains Rapier's default one stabilization pass.",
+    "selector": "Worst-cell convergence time is primary so a configuration cannot win by averaging away one slow arm; total convergence time and fixed candidate order resolve exact finite ties."
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "default_acceleration_based_canary_must_pass": true,
+    "explicit_force_based_builder_readback_must_pass": true,
+    "mutable_force_based_update_readback_must_pass": true,
+    "perfect_sixteen_cell_traces_must_pass_entire_gate": true,
+    "known_fastest_candidate_must_be_selected": true,
+    "no_eligible_candidate_canary_must_select_none": true,
+    "missing_cell_canary_must_fail": true,
+    "window_gap_canary_must_fail": true,
+    "unequal_total_pass_canary_must_fail": true,
+    "tie_break_canary_must_select_spd1_a": true,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "execution_contract": {
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "all_sixteen_worlds_required_before_selection": true,
+    "retained_negative_report_required_on_no_selection": true,
+    "evidence_must_be_outside_repository_and_beneath_SporeSpore_Evidence": true
+  },
+  "successor_boundary": {
+    "selected_candidate_may_advance_to_new_validation_identity": true,
+    "selected_candidate_may_change_adapter_defaults_before_validation": false,
+    "validation_must_use_fresh_signed_arms": true,
+    "validation_must_preserve_selected_solver_iterations_and_phase_allocation": true,
+    "validation_must_run_complete_zero_world_preflight": true,
+    "development_screen_alone_may_not_unblock_selected_policy": true
+  },
+  "claims": {
+    "rapier_force_based_solver_phase_development_complete": false,
+    "rapier_force_based_static_convergence_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

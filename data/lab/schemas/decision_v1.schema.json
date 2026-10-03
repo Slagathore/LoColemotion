@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/decision_v1.schema.json",
+  "title": "SporeSpore controller decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "decision_id",
+    "source_frame_id",
+    "supervisor_mode"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.decision.v1"},
+    "run_id": {"$ref": "#/$defs/stable_id"},
+    "decision_id": {"type": "integer", "minimum": 0},
+    "source_frame_id": {"type": "integer", "minimum": 0},
+    "supervisor_mode": {"type": "string", "minLength": 1},
+    "detector": {"$ref": "#/$defs/detector"},
+    "candidate_strategies": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/candidate_strategy"}
+    },
+    "selected_strategy": {
+      "type": ["string", "null"],
+      "minLength": 1
+    },
+    "desired_wrench": {"$ref": "#/$defs/desired_wrench"},
+    "allocator": {"$ref": "#/$defs/allocator"},
+    "anti_windup": {"$ref": "#/$defs/anti_windup"},
+    "availability": {"$ref": "#/$defs/decision_availability"}
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    },
+    "nullable_vec3": {
+      "type": ["array", "null"],
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    },
+    "detector": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "static_margin_m": {"type": ["number", "null"]},
+        "static_enter_threshold_m": {"type": ["number", "null"]},
+        "capture_margin_m": {"type": ["number", "null"]},
+        "time_to_boundary_s": {"type": ["number", "null"], "minimum": 0},
+        "urgency_terms": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["static", "capture"],
+          "properties": {
+            "static": {"type": "number"},
+            "capture": {"type": "number"}
+          }
+        }
+      }
+    },
+    "candidate_strategy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "feasible"],
+      "properties": {
+        "id": {"$ref": "#/$defs/stable_id"},
+        "feasible": {"type": "boolean"},
+        "reason": {"type": ["string", "null"]},
+        "score": {"type": ["number", "null"]}
+      }
+    },
+    "desired_wrench": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference_point_world_m",
+        "force_world_n",
+        "moment_world_nm"
+      ],
+      "properties": {
+        "reference_point_world_m": {"$ref": "#/$defs/nullable_vec3"},
+        "force_world_n": {"$ref": "#/$defs/nullable_vec3"},
+        "moment_world_nm": {"$ref": "#/$defs/nullable_vec3"}
+      }
+    },
+    "allocator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["feasible"],
+      "properties": {
+        "feasible": {"type": "boolean"},
+        "arithmetic_residual_norm": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "predicted_feasibility_residual_norm": {
+          "type": ["number", "null"],
+          "minimum": 0
+        }
+      }
+    },
+    "anti_windup": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["active", "reason"],
+      "properties": {
+        "active": {"type": "boolean"},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
+    "availability_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason"],
+      "properties": {
+        "status": {
+          "enum": [
+            "measured",
+            "derived",
+            "commanded",
+            "unavailable",
+            "invalid"
+          ]
+        },
+        "reason": {"type": ["string", "null"]},
+        "source": {"type": ["string", "null"]}
+      }
+    },
+    "decision_availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "detector": {"$ref": "#/$defs/availability_descriptor"},
+        "desired_wrench": {"$ref": "#/$defs/availability_descriptor"},
+        "allocator": {"$ref": "#/$defs/availability_descriptor"},
+        "anti_windup": {"$ref": "#/$defs/availability_descriptor"}
+      }
+    }
+  }
+}

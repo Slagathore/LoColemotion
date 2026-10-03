@@ -1,0 +1,52 @@
+{
+  "schema_version": "sporespore_recovery_startup_reference_velocity_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": [
+      "core"
+    ],
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V50",
+  "policy_id": "sporespore_balanced_wave_recovery_startup_reference_velocity_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_remaining_support_release_v1",
+  "evidence_basis": "sdk/development/v49_godot_cycle_stop_closure_v1.json",
+  "question": "Does easing in the joint-reference feed-forward term during the existing 72-command startup ramp prevent the observed second-command saturated motor impulse and reduce the ensuing rear-foot recoil while preserving complete planned cycles and stopping?",
+  "observed_basis": {
+    "attempt_id": "9ac04c4242964ebfa6b82c49f0b65687",
+    "report_sha256": "sha256:124b002c9a4246a1710ce2a102a3d44369e72c2a5f2ca6294d294777c34f3d7a",
+    "walking_command": 2,
+    "gait_amplitude": 0.0003436947518716618,
+    "rear_motor_targets_at_speed_cap": 4,
+    "first_rear_right_absent_command": 3,
+    "first_rear_left_absent_command": 4,
+    "peak_backward_precommand_com_speed_m_s": -0.21430581042954283,
+    "causal_attribution_proven": false
+  },
+  "change": "For this distinct policy only, multiply the reference-velocity term (1 + measured-rate damping) * reference_rate by smoothstep(clamp((sample_time - initial_sample_time) / (72/120), 0, 1)). Keep position-error feedback and measured-velocity damping active. Preserve the exact historical arithmetic after scale reaches one; no ongoing gain adjustment. Expose the applied scalar in the anchored-body receipt. Old policies omit this field and retain exact arithmetic. No new Rust core component is needed.",
+  "unchanged": [
+    "V49 Cartesian targets, analytic IK, body origin recentering, 72-command body height ramp and gait-amplitude ramp",
+    "all reference slew, motor speed/impulse caps, positive remaining-support preparation, six-command dwell, finite timeout and contact rules",
+    "four measured planned cycles and all-four 120-command stop; old evaluator and observed results",
+    "V20 recovery, pre-stance behavior, historical V46-V49 runtime outputs"
+  ],
+  "parameters": {
+    "startup_intervals": 72,
+    "outer_step_duration_s": 0.008333333333333333,
+    "maximum_scale": 1.0,
+    "minimum_scale": 0.0
+  },
+  "verification": [
+    "actual C ABI and cached session on retained Godot startup measurements",
+    "all first-72 reference targets and memory geometry remain unchanged under identical input; independent motor-equation check",
+    "second-command counterfactual has no speed-clipped motor targets; no physical benefit inferred from retained inputs",
+    "after startup the old command arithmetic returns exactly",
+    "old V49 MuJoCo and Godot responses plus V46-V48 response regressions remain byte exact",
+    "complete applicable launch/reader/negative-control gate before fresh native diagnostic"
+  ],
+  "limitations": "Startup-only velocity reference change. It may trade initial tracking accuracy for reduced impulsive motor commands. It does not directly resolve later required-support contact losses. Measured contacts and all original failed receipts remain visible. Native benefit, recovery acceptance, robustness and equivalence are unproved.",
+  "physical_attempt_selected": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

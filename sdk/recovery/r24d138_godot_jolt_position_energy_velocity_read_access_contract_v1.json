@@ -1,0 +1,254 @@
+{
+  "schema_version": "sporespore_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_contract_v1",
+  "gate_id": "QSDK-R24D138",
+  "status": "prospective_zero_world_native_source_and_runtime_qualification_pending",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_zero_world_native_source_and_runtime_qualification",
+    "question_class": "development"
+  },
+  "question_class": "development",
+  "physical_question_declared": false,
+  "finite_decision_declared": false,
+  "superiority_question_declared": false,
+  "equivalence_or_non_inferiority_question_declared": false,
+  "population_inference_declared": false,
+  "physical_execution_authorized": false,
+  "authored_parent_commit": "1455859df982cf9310aeeef86d915ad8972dd722",
+  "implementation_source_commit": "1455859df982cf9310aeeef86d915ad8972dd722",
+  "authored_source_paths": [
+    "docs/ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md",
+    "docs/LOCOMOTION_ARCHITECTURE.md",
+    "docs/LOCOMOTION_GROUND_UP_RESEARCH_PROGRAM.md",
+    "docs/README.md",
+    "docs/SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md",
+    "sdk/adapters/godot/engine_patches/README.md",
+    "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_position_velocity_read_access_v5.patch",
+    "sdk/conformance/compact_godot_zero_world_qualification.py",
+    "sdk/conformance/r24d138_godot_jolt_position_energy_velocity_read_access.py",
+    "sdk/recovery/r24d138_godot_jolt_position_energy_velocity_read_access_contract_v1.json",
+    "sdk/release/quadruped_release_contract.json",
+    "sdk/release/quadruped_support_matrix.json",
+    "tests/test_sdk_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_zero_world.gd"
+  ],
+  "repository": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore",
+    "origin_url": "https://github.com/Slagathore/sporespore.git",
+    "branch": "main"
+  },
+  "controlled_change": {
+    "diagnosis": "R137's position-solver energy snapshots call checked linear and angular velocity getters while JobSolvePositionConstraints grants velocity access None under JPH_ENABLE_ASSERTS.",
+    "selected_correction": "Grant velocity Read and retain position ReadWrite for the exact position-constraint job.",
+    "velocity_write_authority_added": false,
+    "position_write_authority_changed": false,
+    "assertion_disable_permitted": false,
+    "unchecked_velocity_accessor_permitted": false,
+    "energy_equation_changed": false,
+    "controller_changed": false,
+    "command_changed": false,
+    "threshold_changed": false,
+    "selector_changed": false,
+    "evaluator_changed": false,
+    "historical_result_rewritten": false,
+    "historical_interpretation_rewritten": false
+  },
+  "bound_predecessor": {
+    "gate_id": "QSDK-R24D137",
+    "role": "immutable_consumed_infrastructure_invalid_complete_energy_behavior_attempt",
+    "path": "sdk/recovery/r24d137_godot_jolt_complete_energy_recovery_behavior_physical_closure_v1.json",
+    "raw_sha256": "sha256:9789a84903575a85f7cc5ebbb2082b2e2f8e5af5ba7fed3884c10dbc4420e4d1",
+    "byte_length": 17822,
+    "closure_status": "closed_consumed_invalid_incomplete_complete_energy_raw_negative_native_jolt_velocity_access_right_assertions_no_behavior_inference_r138_required",
+    "native_assertion_failure_line_count": 130608,
+    "fatal_diagnostic_line_count": 261216,
+    "same_identity_rerun_permitted": false,
+    "historical_result_rewritten": false,
+    "historical_threshold_rewritten": false,
+    "historical_selector_rewritten": false,
+    "historical_evaluator_rewritten": false,
+    "historical_interpretation_rewritten": false
+  },
+  "exact_external_source": {
+    "checkout_path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136",
+    "origin_url": "https://github.com/godotengine/godot.git",
+    "upstream_commit": "5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88",
+    "diff_raw_sha256": "sha256:c516447591a743c7c98859bd1144b8b27bd52d19589ebc4e57ab14de9583af8f",
+    "diff_byte_length": 59937,
+    "changed_paths": [
+      "modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp",
+      "modules/jolt_physics/joints/jolt_hinge_joint_3d.h",
+      "modules/jolt_physics/joints/jolt_joint_3d.h",
+      "modules/jolt_physics/jolt_physics_server_3d.cpp",
+      "modules/jolt_physics/jolt_physics_server_3d.h",
+      "modules/jolt_physics/register_types.cpp",
+      "modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp",
+      "modules/jolt_physics/spaces/jolt_contact_listener_3d.h",
+      "modules/jolt_physics/spaces/jolt_space_3d.cpp",
+      "modules/jolt_physics/spaces/jolt_space_3d.h",
+      "thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.cpp",
+      "thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.h",
+      "thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp",
+      "thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h",
+      "thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+      "thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h"
+    ],
+    "bound_patches": [
+      {
+        "path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_exchange_telemetry_v4.patch",
+        "raw_sha256": "sha256:e86f5b0516d513bd3de1f50f49e620e24b74690e3103244d52f42fd0ecf58211",
+        "byte_length": 59240
+      },
+      {
+        "path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_position_velocity_read_access_v5.patch",
+        "raw_sha256": "sha256:75a10628d2202a3bcea4ac671e0321bc9cb866b4ecbd424c74026dbcb5a476d9",
+        "byte_length": 981
+      }
+    ],
+    "source_files": [
+      {
+        "path": "thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+        "raw_sha256": "sha256:3a84167c64031ca08ec8798b2afb6357bf79d1070c25d2c8cb69ac5a564fc2a8",
+        "byte_length": 141599,
+        "git_blob_oid": "5feb86f4975fd3fd3b668b784102c16cd815be8a"
+      }
+    ],
+    "reverse_apply_patch_paths": [
+      "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_position_velocity_read_access_v5.patch"
+    ],
+    "patch_blob_chain": [
+      {
+        "patch_path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_position_velocity_read_access_v5.patch",
+        "index_line": "index be8e31b74e..5feb86f497 100644",
+        "base_v4_blob_oid": "be8e31b74ed74e2627bc82a8117bafce86b8389d",
+        "final_source_path": "thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+        "final_blob_oid": "5feb86f4975fd3fd3b668b784102c16cd815be8a"
+      }
+    ],
+    "expected_mutation_rejection_count": 7
+  },
+  "exact_runtime": {
+    "console_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d138-godot-jolt-position-energy-velocity-read-access/development-runtime-v5/8e07937dcbcc-fc8f7d0bece7/godot.windows.editor.dev.x86_64.console.exe",
+    "console_sha256": "sha256:8e07937dcbccf5f71356df5ac487616eb1f66025d37d73d770f82ffa47a578a0",
+    "console_byte_length": 293376,
+    "engine_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d138-godot-jolt-position-energy-velocity-read-access/development-runtime-v5/8e07937dcbcc-fc8f7d0bece7/godot.windows.editor.dev.x86_64.exe",
+    "engine_sha256": "sha256:fc8f7d0bece7c1d90d16ceb28d6f4ee8b3cd43facafa3494d51c8753a3bdd72b",
+    "engine_byte_length": 188854272,
+    "runtime_profile_id": "godot_4_7_jolt_sporespore_solver_energy_position_velocity_read_access_v5",
+    "runtime_version": "4.7.stable.custom_build.5b4e0cb0f"
+  },
+  "source_inventory": [
+    "docs/ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md",
+    "docs/LOCOMOTION_ARCHITECTURE.md",
+    "docs/LOCOMOTION_GROUND_UP_RESEARCH_PROGRAM.md",
+    "docs/README.md",
+    "docs/SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md",
+    "sdk/adapters/godot/engine_patches/README.md",
+    "sdk/adapters/godot/engine_patches/godot_4_7_jolt_solver_energy_position_velocity_read_access_v5.patch",
+    "sdk/conformance/compact_godot_zero_world_qualification.py",
+    "sdk/conformance/r24d138_godot_jolt_position_energy_velocity_read_access.py",
+    "sdk/recovery/r24d138_godot_jolt_position_energy_velocity_read_access_contract_v1.json",
+    "sdk/release/quadruped_release_contract.json",
+    "sdk/release/quadruped_support_matrix.json",
+    "tests/test_sdk_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_zero_world.gd"
+  ],
+  "workers": [
+    {
+      "id": "r24d138_position_energy_velocity_read_access_source",
+      "path": "tests/test_sdk_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_zero_world.gd",
+      "marker": "QSDK_R24D138_GODOT_JOLT_POSITION_VELOCITY_READ_ACCESS_ZERO_WORLD ",
+      "retain_full_receipt": true,
+      "expected_fields": {
+        "schema_version": "sporespore_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_zero_world_v1",
+        "gate_id": "QSDK-R24D138",
+        "ok": true,
+        "question_class": "development",
+        "runtime_profile_id": "godot_4_7_jolt_sporespore_solver_energy_position_velocity_read_access_v5",
+        "source_access_contract_id": "godot_jolt_r24d138_position_energy_velocity_read_access_v1",
+        "base_patch_bound": true,
+        "delta_patch_bound": true,
+        "position_job_velocity_access": "Read",
+        "position_job_position_access": "ReadWrite",
+        "checked_velocity_accessors_preserved": true,
+        "assertion_disable_added": false,
+        "unchecked_velocity_accessor_added": false,
+        "behavior_semantics_changed": false,
+        "positive_case_count": 5,
+        "forced_failure_case_count": 10,
+        "historical_closure_audits_executed_count": 0,
+        "bespoke_physical_canary_count": 0,
+        "full_seeded_ghost_count": 0,
+        "model_construction_count": 0,
+        "world_attempt_count": 0,
+        "world_build_count": 0,
+        "body_impulse_write_count": 0,
+        "native_readback_count": 0,
+        "solver_step_count": 0,
+        "physics_state_modified": false,
+        "physical_question_opened": false,
+        "prone_to_standing_claimed": false,
+        "physical_acceptance_authority": false,
+        "release_authority": false
+      },
+      "retained_fields": [
+        "schema_version",
+        "gate_id",
+        "ok",
+        "runtime_profile_id",
+        "source_access_contract_id",
+        "position_job_velocity_access",
+        "position_job_position_access",
+        "checked_velocity_accessors_preserved",
+        "assertion_disable_added",
+        "unchecked_velocity_accessor_added",
+        "behavior_semantics_changed",
+        "positive_case_count",
+        "forced_failure_case_count"
+      ]
+    }
+  ],
+  "qualification": {
+    "receipt_schema": "sporespore_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_qualification_receipt_v1",
+    "pass_marker": "QSDK_R24D138_POSITION_ENERGY_VELOCITY_READ_ACCESS_QUALIFICATION_PASS",
+    "fail_marker": "QSDK_R24D138_POSITION_ENERGY_VELOCITY_READ_ACCESS_QUALIFICATION_FAIL",
+    "official_attempt_limit_per_source_commit": 1,
+    "worker_count": 1,
+    "positive_case_count": 5,
+    "forced_failure_case_count": 10,
+    "historical_closure_audits_executed_count": 0,
+    "bespoke_physical_canary_count": 0,
+    "full_seeded_ghost_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_execution_authorized": false
+  },
+  "closure": {
+    "path": "sdk/recovery/r24d138_godot_jolt_position_energy_velocity_read_access_zero_world_qualification_closure_v1.json",
+    "schema": "sporespore_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_zero_world_qualification_closure_v1",
+    "audit_receipt_schema": "sporespore_qsdk_r24d138_godot_jolt_position_energy_velocity_read_access_closure_audit_receipt_v1",
+    "audit_marker": "QSDK_R24D138_POSITION_ENERGY_VELOCITY_READ_ACCESS_CLOSURE_AUDIT_PASS"
+  },
+  "adequacy_and_limits": {
+    "complete_zero_world_gate_required": true,
+    "source_to_patch_to_binary_chain_bound": true,
+    "exact_external_source_diff_bound": true,
+    "narrow_read_only_velocity_authority_proved": true,
+    "velocity_write_authority_proved_absent": true,
+    "assertion_disable_proved_absent": true,
+    "unchecked_accessor_substitution_proved_absent": true,
+    "historical_closure_population_reexecuted": false,
+    "full_seeded_ghost_executed": false,
+    "physical_canary_executed": false,
+    "physical_question_opened": false,
+    "native_assertion_absence_physically_proved": false,
+    "recovery_behavior_observed": false,
+    "prone_to_standing_claimed": false,
+    "population_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "required_next_if_qualified": "Declare one distinct minimal native route ghost that enters the position solver and proves the fatal-diagnostic stream remains empty before another full recovery pair."
+  }
+}

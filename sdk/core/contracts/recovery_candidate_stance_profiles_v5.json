@@ -1,0 +1,18 @@
+{
+  "schema_version": "sporespore_recovery_candidate_stance_profiles_v5",
+  "preserved_predecessor": "sdk/core/contracts/recovery_candidate_stance_profiles_v4.json",
+  "profiles": [
+    {
+      "ledger_scope": {"subsystem": "recovery", "engine_scope": "engine_neutral", "authority_mode": "prospective_development_controller", "question_class": "development"},
+      "recovery_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v19",
+      "controller_id": "sporespore_exact_s169_stance_handoff_controller_v6",
+      "profile_id": "sporespore_exact_s169_damped_walking_neutral_stance_v1",
+      "response_time_s": 0.1,
+      "measured_velocity_damping_gain": 0.5,
+      "rule": "Use the existing zero-joint stance goal, which equals BW5R-B's zero-amplitude pose. Preserve V18 recovery before stance and the current 0.1-second response, 0.5 measured-velocity damping, 0.75 rad/s stance speed cap, impulse caps, gates and timeouts. No geometry_rule_id means the existing STANCE_TARGETS_RAD, not a new angle fit.",
+      "parameter_basis": "A distinct combination: the earlier undamped neutral stance lost foot support; the later damped stance used flexed knees. Test neutral stance with the existing damping and world-vertical recovery, without assuming stability or claiming it explains V23's later losses.",
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    }
+  ]
+}

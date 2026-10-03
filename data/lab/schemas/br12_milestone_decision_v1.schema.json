@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br12_milestone_decision_v1.schema.json",
+  "title": "SporeSpore BR12 bounded milestone decision v1",
+  "description": "Append-only human decision over one exact BR12 certification. It cannot turn static feasibility into dynamic recovery, promote BR12.4, admit knowledge, authorize guidance, or broaden the certified observer/planner claim.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "decision_id",
+    "milestone_id",
+    "decision_revision",
+    "status",
+    "decided_by",
+    "authorization",
+    "decided_utc",
+    "evidence_basis",
+    "accepted_contracts",
+    "accepted_capabilities",
+    "supplementary_constraints",
+    "claim_boundary",
+    "excluded_capabilities",
+    "downstream_open",
+    "knowledge_effects",
+    "supersedes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br12_milestone_decision.v1"
+    },
+    "decision_id": {
+      "const": "BR12_POSE_RECOVERY_FEASIBILITY_DECISION_V1"
+    },
+    "milestone_id": {
+      "const": "BR12_POSE_AND_RECOVERY_FEASIBILITY"
+    },
+    "decision_revision": {
+      "const": 1
+    },
+    "status": {
+      "const": "accepted"
+    },
+    "decided_by": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "authority", "decision_channel"],
+      "properties": {
+        "id": {"const": "Cole"},
+        "authority": {"const": "project_decider"},
+        "decision_channel": {"const": "direct_conversation"}
+      }
+    },
+    "authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instruction",
+        "interpretation",
+        "review_path",
+        "review_commit_sha",
+        "review_sha256"
+      ],
+      "properties": {
+        "instruction": {
+          "const": "continue the pipeline. i defer to your judgement on what should be accepted. assume i accept whatever it is that you recommend and keep going"
+        },
+        "interpretation": {
+          "const": "delegated_bounded_acceptance_of_recommended_br12_pose_and_static_recovery_feasibility"
+        },
+        "review_path": {
+          "const": "docs/BR12_POSE_RECOVERY_MILESTONE_DECISION_REVIEW.md"
+        },
+        "review_commit_sha": {
+          "const": "d98c1b77941fdebe8796b5b2b81671c88f3c3873"
+        },
+        "review_sha256": {
+          "const": "sha256:5bfb8639d6d2a1a7d14c7259ec8170df8c625017a7dbe4317e6ad4ab284a30fe"
+        }
+      }
+    },
+    "decided_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence_basis": {
+      "$ref": "#/$defs/evidence_basis"
+    },
+    "accepted_contracts": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "accepted_capabilities": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "supplementary_constraints": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "claim_boundary": {
+      "const": "BR12 accepts only the exact BR12.0, BR12.1, BR12.2, and BR12.3 program claim scopes in certification br12_20260723T211754Z_0ace3791 at source commit 0ace37912babd34bfc42e24414582e3bf53cb0c8. BR12.4 remains integrity-only. The certification report's verbatim claim boundary, exact semantic body-region roles, labeled-box bases, profile-specific canonical pose set, unknown-on-ambiguity behavior, named missing-anatomy failures, and conservative static torque, power, structural, friction, and reach gates remain controlling. Feasible remains a static planning-screen result, not dynamic execution, physical recovery, stance handoff, or getting-up evidence."
+    },
+    "excluded_capabilities": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "downstream_open": {
+      "$ref": "#/$defs/nonempty_unique_strings"
+    },
+    "knowledge_effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entries_admitted_by_decision",
+        "automatic_admission",
+        "automatic_creature_guidance_allowed",
+        "development_drafts_remain_non_entries"
+      ],
+      "properties": {
+        "entries_admitted_by_decision": {"const": 0},
+        "automatic_admission": {"const": false},
+        "automatic_creature_guidance_allowed": {"const": false},
+        "development_drafts_remain_non_entries": {"const": true}
+      }
+    },
+    "supersedes": {
+      "type": "array",
+      "maxItems": 0
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "nonempty_unique_strings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "evidence_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_family",
+        "certification_id",
+        "certification_contract_id",
+        "campaign_id",
+        "campaign_sha256",
+        "certification_claim_boundary",
+        "report_schema",
+        "report_status",
+        "report_sha256",
+        "report_bytes",
+        "report_locator",
+        "report_generated_utc",
+        "receipt_schema",
+        "receipt_sha256",
+        "receipt_locator",
+        "receipt_attested_utc",
+        "receipt_key_id",
+        "source_commit_sha",
+        "source_inventory_sha256",
+        "source_file_count",
+        "br1_inventory_sha256",
+        "br1_inventory_unchanged",
+        "engine_version",
+        "engine_sha256",
+        "programs_required",
+        "programs_passed",
+        "replicates_per_program",
+        "bundles_required",
+        "bundles_passed",
+        "assertions_required",
+        "assertions_passed",
+        "milestone_programs",
+        "milestone_assertions",
+        "supplementary_programs",
+        "supplementary_assertions",
+        "integrity_programs",
+        "integrity_assertions",
+        "target_process_invocations",
+        "unique_target_processes",
+        "pid_recycle_events",
+        "receipts_verified",
+        "production_attestation_verified"
+      ],
+      "properties": {
+        "evidence_family": {"const": "br12_certification_report_v1"},
+        "certification_id": {"const": "br12_20260723T211754Z_0ace3791"},
+        "certification_contract_id": {"const": "BR12_POSE_AND_RECOVERY_FEASIBILITY"},
+        "campaign_id": {"const": "BR12_POSE_RECOVERY_PROMOTION_CAMPAIGN_V1"},
+        "campaign_sha256": {"const": "sha256:10127cad5f1a180a871d0bd7c8ea992dd3cb22fa2056e1f1a4efeb00d17b8da0"},
+        "certification_claim_boundary": {
+          "const": "This campaign can certify only the exact source-pinned BR12.0 semantic body-region contact-role registry and labeled-box basis-oracle scope; BR12.1 deterministic profile-specific canonical-pose classifier scope; BR12.2 semantic anatomy-role recovery-profile matching scope; and BR12.3 conservative static torque, power, structural, friction, and reach feasibility scope. BR12.4 is integrity-only containment and cannot substitute for a milestone program. The BR12 claim boundary is verbatim: BR12 is observer/planner truth only. It classifies only declared labeled-box canonical poses, preserves ambiguous or invalid evidence as unknown, names missing anatomy, and reports whether one exact profile passes preregistered static inequalities before actuation. A feasible report is not dynamic execution evidence. No BR12 program contains a recovery controller, emits an actuator command, wrench, or joint target, creates or maintains contact, applies external assistance, raises a body, hands off to stance, repairs a creature, or guides one automatically. It establishes no physical self-righting or getting up, free-3D standing or bracing, generalized recovery, gait, or walking."
+        },
+        "report_schema": {"const": "sporespore.lab.br12_certification_report.v1"},
+        "report_status": {"const": "pass"},
+        "report_sha256": {"const": "sha256:8c9179471685a3278950c7dd5648fcf0551901996a68ed702b3261e57bf23bda"},
+        "report_bytes": {"const": 24846},
+        "report_locator": {"const": "LabEvidence/BR12/br12_20260723T211754Z_0ace3791/br12_certification_report.json"},
+        "report_generated_utc": {"const": "2026-07-23T21:19:03.0753864Z"},
+        "receipt_schema": {"const": "sporespore.lab.br12_certification_report_attestation.v1"},
+        "receipt_sha256": {"const": "sha256:0c5767c79bbffe400e9640c3c221961fef5116926ad02821ab13eb067691fc07"},
+        "receipt_locator": {"const": "LabTrust/v1/br12_certification_reports_v1/receipts/bacef86ef15701f795b7926c5cef95d0261e438f4233460c57ef6047268c0c5b.json"},
+        "receipt_attested_utc": {"const": "2026-07-23T21:19:12Z"},
+        "receipt_key_id": {"const": "sha256:89d6e582f28664e93d12085c164cdf8fe40a76b5bfb2e382c9666279cd953a20"},
+        "source_commit_sha": {"const": "0ace37912babd34bfc42e24414582e3bf53cb0c8"},
+        "source_inventory_sha256": {"const": "sha256:f82f6c1941d0a43c8e86d220e9800c70a3229be1c2a36c9a3b7f3737f8378040"},
+        "source_file_count": {"const": 418},
+        "br1_inventory_sha256": {"const": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e"},
+        "br1_inventory_unchanged": {"const": true},
+        "engine_version": {"const": "4.7.stable.mono.official.5b4e0cb0f"},
+        "engine_sha256": {"const": "sha256:baa909d0a905021da80cfc831713e9d3ba4bd0935ac3b93ba4c77dc140cfecc4"},
+        "programs_required": {"const": 5},
+        "programs_passed": {"const": 5},
+        "replicates_per_program": {"const": 2},
+        "bundles_required": {"const": 10},
+        "bundles_passed": {"const": 10},
+        "assertions_required": {"const": 150},
+        "assertions_passed": {"const": 150},
+        "milestone_programs": {"const": 4},
+        "milestone_assertions": {"const": 122},
+        "supplementary_programs": {"const": 0},
+        "supplementary_assertions": {"const": 0},
+        "integrity_programs": {"const": 1},
+        "integrity_assertions": {"const": 28},
+        "target_process_invocations": {"const": 10},
+        "unique_target_processes": {"const": 10},
+        "pid_recycle_events": {"const": 0},
+        "receipts_verified": {"const": 10},
+        "production_attestation_verified": {"const": true}
+      }
+    }
+  }
+}

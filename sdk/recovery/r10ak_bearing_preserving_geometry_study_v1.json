@@ -1,0 +1,88 @@
+{
+  "schema_version": "sporespore_r10ak_bearing_preserving_geometry_study_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "prospective_retained_input_model_study",
+    "question_class": "development"
+  },
+  "source_parent_commit": "9f75b9b0eedbb52e645b2bc14e723eb74ca593ce",
+  "question": "Can exposed weak-foot hip placement preserve currently bearing leg targets while retaining downward geometric motion and bounded joint targets?",
+  "rationale": "R10AJ commands every hip in the same direction, including the load-bearing rear legs; torso motion outweighs front-leg descent. Separate placement of weak feet from commanded motion of loaded legs before another native controller.",
+  "inputs": {
+    "source_report": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-fb38afc4e51649cd96e804265d60c4be/children/kick_passive_recovery_resume/worker_report.json",
+      "raw_sha256": "sha256:4c85be6801b16a7f60d0842dd2295d976bc9f5adb74f7589c525f050bdd373e9"
+    },
+    "section": "r10aj_partial_recovery",
+    "population": "All 600 nonterminal exposed partial samples, in original order. No held-out data.",
+    "expected_samples": 600
+  },
+  "dependencies": [
+    {
+      "path": "sdk/recovery/r10aj_hip_recenter_closure_v1.json",
+      "byte_length": 291057,
+      "raw_sha256": "sha256:58125c6bcf534ea2ba34de6696ddd72445dbad57f92b622f1c78c1ba728e5924"
+    },
+    {
+      "path": "sdk/recovery/r10aj_posture_diagnosis_v1.json",
+      "byte_length": 1532979,
+      "raw_sha256": "sha256:7747c3adc551f1b973fb2ca96d048993cc6cbbfa9b9487ea4305145bb331d765"
+    },
+    {
+      "path": "sdk/conformance/r10aj_hip_recenter_model.py",
+      "byte_length": 3009,
+      "raw_sha256": "sha256:28504782103bec097d1397b6979ed9284e77e37dfb2e4c3a41f0663fe1ab3ee2"
+    }
+  ],
+  "variants": [
+    {
+      "id": "preserve_qualified_bearing",
+      "active_rule": "Recenter only feet failing the unchanged 0.019293 Ns ordinary unilateral support gate."
+    },
+    {
+      "id": "preserve_positive_bearing",
+      "active_rule": "Recenter only feet without an ordinary unilateral positive bearing impulse. Positive bearing is an anchor choice only, never a substitute for qualified support."
+    }
+  ],
+  "geometry": {
+    "hip_model": "Existing independent R10AJ gravity-projected bounded hip recentering with an explicit per-foot active mask.",
+    "knees": "Keep measured angles; retain original bounded limit return if applicable.",
+    "inactive_legs": "Keep both measured joint angles unless explicit bounded authored-limit return is required.",
+    "joint_speed_rad_s": 4.0,
+    "foot_arc_speed_m_s": 0.1,
+    "outer_step_duration_s": 0.008333333333333333,
+    "hip_limit_rad": 1.6,
+    "knee_limit_rad": 1.1
+  },
+  "checks": [
+    "All sample identities and original source report hash match.",
+    "Inactive leg targets preserve the measured pose, including exact reconstruction of the existing active-hip model.",
+    "All generated targets respect original angle and step bounds.",
+    "Record fixed-torso FK displacement and every non-downward active-foot proposal.",
+    "Report active-mask differences, all-inactive states and max per-joint change without ranking physical performance."
+  ],
+  "fixed_body_probe": {
+    "source_selection": "First exposed raising sample with at least one qualified foot and at least one unqualified foot.",
+    "variants": "Both declared masks, frozen at that sample.",
+    "updates": 600,
+    "assumptions": "Exact joint tracking, fixed torso pose, frozen contact mask. This is an optimistic geometry probe; no force, dynamics or contact update.",
+    "stop_rule": "All active hip targets equal the bounded gravity goals within 1e-12 radians, or 600 updates."
+  },
+  "decision_rules": [
+    "Do not select a physical controller based on fixed-torso motion alone.",
+    "A violation is a model failure retained with this identity; any model change after observation uses a distinct study identity.",
+    "Passing constraints supports implementing an explicitly bounded successor only after posture/contact-feedback design is declared.",
+    "Neither a positive bearing mask nor a predicted ground crossing proves support or recovery."
+  ],
+  "claim_boundary": {
+    "controller_selected": false,
+    "controller_changed": false,
+    "new_physical_population_declared": false,
+    "physical_execution_authorized": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

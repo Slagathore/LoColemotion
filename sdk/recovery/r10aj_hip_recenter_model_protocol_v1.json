@@ -1,0 +1,46 @@
+{
+  "schema_version": "sporespore_r10aj_hip_recenter_model_protocol_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "prospective_retained_input_mathematical_probe",
+    "question_class": "development"
+  },
+  "source_parent_commit": "92fa017af3fdb3b1cb06db279598eecd993a48e2",
+  "question": "Can a gravity-aligned hip-only placement command remain geometrically usable on all 600 nonterminal R10AI states, including its 266 zero-feasible-plan fallbacks?",
+  "dependencies": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ai_concurrent_load_rise_closure_v1.json",
+      "byte_length": 268315,
+      "raw_sha256": "sha256:431510bb5e13ba2fc220437ddf85b09f9b5ff971a03dd93365e094867b143a2d"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ai_stall_diagnosis_v1.json",
+      "byte_length": 350111,
+      "raw_sha256": "sha256:2ce6eb54adef7d0ca0e15ea8723538cc1fba36f2a912f6997cb48fd4282ccf11"
+    }
+  ],
+  "report_raw_sha256": "sha256:e439aa623c068815439663dee4c6aa920b8891f8abaee4ef44566b6051089dfc",
+  "input_scope": "All 600 nonterminal retained R10AI partial-recovery plans. Terminal step 601 supplies no motor command and is excluded. No new sensor inputs or held-out cells.",
+  "variants": {
+    "all_hips": "Recenter all four hips toward gravity projected into their sagittal joint planes.",
+    "qualified_only": "Recenter only hips whose original native source meets the original qualified bearing predicate; freeze that mask during model propagation."
+  },
+  "candidate_rule": "Use the exact two-link hip-to-foot angular offset and actual torso orientation to select the nearest equivalent gravity-aligned hip angle, clipped to the original authored hip interval. Keep each measured knee unchanged except explicit return from native overshoot to the authored interval. Bound active hip rotation by min(4 rad/s, 0.1 m/s divided by actual leg radius). A gravity vector normal to the joint plane gives an explicit alignment refusal.",
+  "preserved_bounds": "120 Hz, hip +/-1.6 rad, knee +/-1.1 rad, 4 rad/s total per-joint change. The 0.1 m/s bound applies to active hip arc travel; simultaneous measured knee/hip limit return is separately reported, not hidden as compliant arc motion.",
+  "coverage": "Six independent property/invalid-input unit tests. Reconcile 600 original plan identities and command links. For every variant retain target motion, gravity projection, joint-bound checks and body-fixed foot displacement. Propagate both variants for at most 600 mathematical updates at exposed partial steps 1, 321 and 600, retaining original frozen torso orientation and native support mask.",
+  "selection_rule": "This probe does not select or authorize a physical controller. All variants and boundary failures are retained. A subsequent declared native successor must decide how hip recentering composes with native support supervision and rise/standing phases.",
+  "limitations": [
+    "Fixed-body forward kinematics cannot predict torso motion, friction, contact load or recovery.",
+    "Model foot penetration is a requested motion into a support surface, never evidence of contact force or successful support.",
+    "The 600-update model bound is a development analysis bound and does not change physical deadlines.",
+    "Post-exposure model comparisons establish no matched physical effect."
+  ],
+  "controller_implemented": false,
+  "native_route_integrated": false,
+  "new_physical_population_declared": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

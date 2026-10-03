@@ -1,0 +1,135 @@
+{
+  "schema_version": "sporespore_r10n_zero_velocity_brake_successor_design_v1",
+  "design_id": "r10n_v54_zero_amplitude_motor_brake_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt_with_engine_neutral_native_policy",
+    "authority_mode": "prospective_successor_design",
+    "question_class": "development"
+  },
+  "source_parent_commit": "5847fa382ccddff3bfad3459791c7442151221c3",
+  "status_at_declaration": "declared_not_implemented_no_physical_authority",
+  "release_gate_id": "QSDK-R10",
+  "sdk1_milestone_id": "SDK1-M07",
+  "question": "Can enabled native motors with zero target velocity during zero-amplitude holding complete the unchanged recovery, four-cycle walking and 120-command settled-stop task?",
+  "bound_evidence": [
+    {
+      "path": "sdk/recovery/r10m_phase241_development_pair_closure_v1.json",
+      "byte_length": 1044883,
+      "raw_sha256": "sha256:71f220d7c1fb772e31466c63625f49aa91dba8fbee61fe52ca9ef688d5cdf6f6"
+    },
+    {
+      "path": "sdk/recovery/r10m_stop_motor_diagnosis_v1.json",
+      "byte_length": 35991,
+      "raw_sha256": "sha256:4920b0f5d7b931d6142c75965b1377a61effe360325ff37f18ec9fd76571c031"
+    }
+  ],
+  "observed": {
+    "no_kick_positive": true,
+    "kicked_recovery_and_walking_positive": true,
+    "kicked_settled_stop_positive": false,
+    "kicked_final_consecutive_settled_samples": 11,
+    "required_final_settled_samples": 30,
+    "kicked_failed_final_tail_samples": 11,
+    "all_240_stop_body_foot_references_fixed": true,
+    "all_240_reference_rates_zero": true,
+    "all_1920_stop_motor_commands_nonzero": true,
+    "v53_kicked_clipped_stop_commands": [
+      94,
+      95,
+      96,
+      97
+    ],
+    "all_1920_motor_targets_match_binary32_readback": true,
+    "rear_left_knee_stop85_to105_maximum_recorded_net_impulse_fraction_of_cap": 0.04206991152151646,
+    "causal_attribution_proven": false
+  },
+  "selected_native_policy": {
+    "policy_id": "sporespore_balanced_wave_recovery_zero_velocity_brake_v1",
+    "memory_schema": "sporespore_balanced_wave_recovery_zero_velocity_brake_memory_v1",
+    "profile_schema": "sporespore_balanced_wave_recovery_zero_velocity_brake_profile_v1",
+    "receipt_schema": "sporespore_recovery_zero_velocity_brake_controller_step_receipt_v1",
+    "parent_reference_policy_id": "sporespore_balanced_wave_recovery_extended_support_transfer_v1",
+    "activation": "Valid V54 output with command.gait_amplitude exactly zero, including the first walking-session command. No role, seed, engine, command-number or observed-result selection.",
+    "law": "After unchanged reference generation and validation, set each motor target velocity to zero. Preserve an already-zero value including signed zero. Motors stay enabled through the existing application path with unchanged impulse caps. Preserve requested/clamped position labels, all geometric references, phase progression and controller memory. Record the removed velocity and its delta in an additive native receipt and safety contribution.",
+    "no_caller_numeric_override": true,
+    "refused_requests_remain_no_actuation": true,
+    "walking_nonzero_amplitude_arithmetic_unchanged": true,
+    "existing_policies_byte_exact": true,
+    "zero_target_velocity_is_not_zero_applied_impulse": true,
+    "body_transform_or_velocity_writes": false
+  },
+  "preserved_requirements": {
+    "reference_range_rad": 0.3,
+    "position_gain_per_s": 8.0,
+    "measured_velocity_damping": 0.65,
+    "all_native_joint_motor_and_solver_caps": true,
+    "partial_and_prone_recovery": true,
+    "standing_samples": 60,
+    "planned_cycles": 4,
+    "stop_commands": 120,
+    "final_settled_samples": 30,
+    "maximum_horizontal_com_speed_m_s": 0.03,
+    "maximum_torso_angular_speed_rad_s": 0.15,
+    "maximum_torso_tilt_rad": 0.05,
+    "native_contact_authority": true,
+    "all_role_and_wall_time_limits": true,
+    "whole_walking_envelope": true
+  },
+  "tradeoffs": [
+    {
+      "choice": "Select enabled motors with zero velocity targets at zero gait amplitude",
+      "benefit": "Tests holding without the persistent position/rate feedback velocity requests observed under static references. Native motor reactions remain available within the existing caps; there is no new fitted numeric gain.",
+      "risk": "Joint position error can accumulate and contact or body motion can persist. Startup changes in both roles; copied-input agreement cannot predict physical settling."
+    },
+    {
+      "choice": "Reduce the V53 velocity cap further",
+      "decision": "Not selected. The observed cap failed and the retained result does not identify a better nonzero cap."
+    },
+    {
+      "choice": "Retune position gain or measured-rate damping",
+      "decision": "Deferred. These change the feedback dynamics and need a separately selected hypothesis; native motor braking tests a simpler holding behavior."
+    },
+    {
+      "choice": "Move stop body/foot references or add measured support redistribution",
+      "decision": "Deferred as a distinct successor if braking fails. These alter desired geometry and require their own feasibility, slew and contact evidence."
+    },
+    {
+      "choice": "Lengthen the stop or relax acceptance",
+      "decision": "Not selected. Keep the original 120-command stop, final 30 samples and every contact/motion requirement."
+    }
+  ],
+  "development_population": {
+    "first_attempt": {
+      "seed": 40641,
+      "prefix_phase": 241,
+      "roles": [
+        "matched_no_kick_continuation",
+        "kick_passive_recovery_resume"
+      ],
+      "fresh_children": true
+    },
+    "additional_branch_diagnostic": {
+      "seed": 40643,
+      "prefix_phase": 243,
+      "roles": [
+        "kick_passive_recovery_resume"
+      ],
+      "requires_independently_audited_positive_pair": true
+    },
+    "adequacy": "Phase 241 covers the newly observed complete positive baseline and partial-recovery stopping failure. Phase 243 is a separate required prone diagnostic after a positive pair. Both are exposed development phases; neither is held-out evidence.",
+    "baseline_reused": false
+  },
+  "required_validation": [
+    "Independently reconstruct all 1920 original R10M stop target readbacks, impulse observations and foot-load bindings; reject corrupted source, readback, identity and clock records.",
+    "Build a distinct V54 DLL with the complete native suite; preserve original V53/V52/V51 responses and earlier recovery fixtures byte-for-byte.",
+    "Exercise stateless and fresh-session APIs over both complete original R10M walking inputs, including the initial zero-amplitude command and all 120 stop commands. Verify exact zero targets, enabled-motor application semantics, unchanged nonzero-amplitude outputs, reference/memory identity, finite limits and no-actuation refusals.",
+    "Integrate a distinct R10N route through the actual Godot adapter, worker, report reader, finite evaluator and launcher. Run the complete applicable safety gate and negative controls before any physical child.",
+    "From a clean pushed freeze, run the fresh declared pair. Only an independently audited positive pair enables the fresh phase-243 prone diagnostic.",
+    "After successful development, declare and qualify a new held-out finite decision, retain its one-shot population and independently close and adopt successful evidence into QSDK-R10/M07."
+  ],
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "sdk1_score": "14/20"
+}

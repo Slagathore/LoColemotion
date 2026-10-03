@@ -1,0 +1,292 @@
+{
+  "schema_version": "sporespore_qsdk_r23d2_development_contract_v1",
+  "status": "frozen_supervisor_only_physical_authorized_pending_exact_source_attestation",
+  "campaign_id": "QSDK-R23D2-THREE-ENGINE-HEADING-RESPONSE-DEVELOPMENT",
+  "gate_id": "QSDK-R23D2",
+  "release_gate_id": "QSDK-R23",
+  "study_classification": "exact_finite_outcome_exposed_implementation_recovery_development_screen",
+  "purpose": "Answer the unchanged nine-cell R23D1 heading-response question under a distinct identity while separating valid positives, valid negatives, and invalid or incomplete executions and retaining truthful failure-stage provenance.",
+  "lineage": {
+    "stage_zero_oracle_path": "sdk/turning/r23d2_oracle_preregistration.json",
+    "stage_zero_oracle_sha256": "sha256:4252a8b542de60b656752606e3a1a6eb85c383329125da6f8d9d6c0f4446b464",
+    "stage_zero_source_commit": "d9303df0e16dbbbdb35983f9632b5cfd0ff3061f",
+    "predecessor_contract_path": "sdk/turning/physical_development_contract_v1.json",
+    "predecessor_contract_sha256": "sha256:c7c801477065002f4bf624f0fe70fb289a64c282bc792eb9cb3a159d0db96284",
+    "predecessor_closure_path": "sdk/turning/physical_development_closure_v1.json",
+    "predecessor_closure_sha256": "sha256:022b42ae025abc3ee4eb502ee1857d5b43c1f6bc0e67b7e84c07bd6aa7076717",
+    "predecessor_classification": "closed_consumed_implementation_invalid_incomplete_no_three_engine_result",
+    "predecessor_result_reused": false,
+    "controller_changed": false,
+    "fixture_changed": false,
+    "schedule_changed": false,
+    "thresholds_changed": false,
+    "host_profiles_changed": false,
+    "receipt_oracle_and_failure_provenance_changed": true
+  },
+  "source_contract": {
+    "path": "sdk/turning/heading_command_contract_v1.json",
+    "selected_candidate_id": "BW5R-B",
+    "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "motion_command_schema_version": "sporespore_motion_command_v2",
+    "heading_mode": "absolute_heading_only",
+    "yaw_rate_supported": false
+  },
+  "fixture": {
+    "descriptor_schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "descriptor": {
+      "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+      "morphology_id": "qsdk_r05_generated_s169",
+      "torso_length_scale": 1.0041015625,
+      "torso_width_scale": 1.0031893004115227,
+      "upper_length_fraction": 0.5219571428571428,
+      "hip_span_scale": 0.9856413994169096,
+      "foot_radius_scale": 0.9987180691209617,
+      "front_limb_mass_scale": 0.975022758306782
+    },
+    "physics_hz": 120,
+    "authored_sliding_friction": 0.95,
+    "initial_condition_seed": 21501,
+    "initial_condition_policy": "physical_wave_gait_compile_seeded_initial_perturbation_v1",
+    "initial_perturbation": {
+      "campaign_seed": 21501,
+      "fixture_vertical_clearance_m": 0.000116370123578236,
+      "fixture_yaw_rad": 0.00635678833350539,
+      "initial_linear_velocity_world_m_s": [
+        -0.00314345676451921,
+        0.0,
+        0.00062476983293891
+      ],
+      "initial_torso_angular_velocity_world_rad_s": [
+        -0.00167809403501451,
+        0.00145599897950888,
+        0.000355467665940523
+      ],
+      "gait_phase_offset_ticks": 3
+    },
+    "seed_population_status": "already_outcome_exposed_qsdk_r05a_exact_s169_positive",
+    "population_status": "already_outcome_exposed_exact_finite_development_fixture",
+    "fresh_morphology_consumed": false
+  },
+  "engines": [
+    {
+      "engine_id": "godot_jolt",
+      "engine_family": "Godot/Jolt",
+      "host_profile_id": "jolt_120hz_20v_7p_v1",
+      "worker_contract_path": "sdk/turning/r23d2_godot_jolt_worker_contract_v1.json",
+      "worker_contract_sha256": "sha256:42e24e52dad30eda8a44d052bd56be069d48cd7a78a834e027935c8dc5ddb04d",
+      "zero_world_preflight_path": "sdk/run_qsdk_r23d2_godot_jolt_worker_preflight.ps1",
+      "zero_world_pass_marker": "QSDK_R23D2_GODOT_JOLT_WORKER_PASS",
+      "zero_world_commissioned": true,
+      "physical_implementation_present": true
+    },
+    {
+      "engine_id": "rapier_parry",
+      "engine_family": "Rapier/Parry",
+      "host_profile_id": "rapier_force_based_velocity_only_v1",
+      "worker_contract_path": "sdk/turning/r23d2_rapier_worker_contract_v1.json",
+      "worker_contract_sha256": "sha256:15815f8fe7e167c36bed1ae9c161b5fadec9da1dbf3ddc3c5180f4e016ecdf29",
+      "zero_world_preflight_path": "sdk/run_qsdk_r23d2_rapier_worker_preflight.ps1",
+      "zero_world_pass_marker": "QSDK_R23D2_RAPIER_WORKER_PASS",
+      "zero_world_commissioned": true,
+      "physical_implementation_present": true
+    },
+    {
+      "engine_id": "mujoco",
+      "engine_family": "MuJoCo",
+      "host_profile_id": "mujoco_s169_per_actuator_force_limited_five_substep_vh5_validated_v1",
+      "worker_contract_path": "sdk/turning/r23d2_mujoco_worker_contract_v1.json",
+      "worker_contract_sha256": "sha256:1af7cb45c7de3af9d773701038b75b7b19f7208663eb160c9c13dbe97bcd3184",
+      "zero_world_preflight_path": "sdk/run_qsdk_r23d2_mujoco_worker_preflight.ps1",
+      "zero_world_pass_marker": "QSDK_R23D2_MUJOCO_WORKER_PASS",
+      "zero_world_commissioned": true,
+      "physical_implementation_present": true
+    }
+  ],
+  "arms": [
+    {
+      "arm_id": "reference_zero",
+      "turn_heading_offset_rad": 0.0,
+      "role": "zero_command_straight_walk_compatibility"
+    },
+    {
+      "arm_id": "positive_heading",
+      "turn_heading_offset_rad": 0.2,
+      "role": "positive_signed_heading_response"
+    },
+    {
+      "arm_id": "negative_heading",
+      "turn_heading_offset_rad": -0.2,
+      "role": "negative_signed_heading_response"
+    }
+  ],
+  "cell_matrix": {
+    "engine_count": 3,
+    "arm_count": 3,
+    "declared_cell_count": 9,
+    "worlds_per_cell": 1,
+    "declared_total_world_count": 9,
+    "execution_order": "engine_order_then_arm_order",
+    "parallel_execution_permitted": false,
+    "all_cells_execute_without_early_stop": true,
+    "replacement_or_selective_rerun_permitted": false,
+    "population_inference": false
+  },
+  "command_schedule": {
+    "schema_version": "sporespore_heading_offset_schedule_v1",
+    "schedule_id": "qsdk_r23d1_step_turn_return_v1",
+    "domain": "controller_semantic_step",
+    "reference_heading_source": "state.task_frame.reference_yaw_rad",
+    "minimum_required_controller_step_count": 2400,
+    "segments": [
+      {
+        "segment_id": "reference_warmup",
+        "start_step_inclusive": 0,
+        "end_step_exclusive": 600,
+        "heading_offset_source": "zero"
+      },
+      {
+        "segment_id": "commanded_turn",
+        "start_step_inclusive": 600,
+        "end_step_exclusive": 1800,
+        "heading_offset_source": "arm.turn_heading_offset_rad"
+      },
+      {
+        "segment_id": "reference_recovery",
+        "start_step_inclusive": 1800,
+        "end_step_exclusive": 2400,
+        "heading_offset_source": "zero"
+      }
+    ],
+    "after_last_segment": "hold_reference_heading",
+    "expected_segment_sample_counts": {
+      "reference_warmup": 600,
+      "commanded_turn": 1200,
+      "reference_recovery": 600
+    }
+  },
+  "development_detection_gates": {
+    "maximum_absolute_requested_or_held_steering_fraction": 0.4,
+    "minimum_absolute_signed_turn_phase_yaw_delta_rad": 0.01,
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "zero_torso_ground_contact_required": true,
+    "zero_command_requires_engine_production_straight_walking_gate": true,
+    "turn_arms_require_forward_contact_and_stability_gates": true,
+    "recovery_heading_is_measured_but_not_thresholded": true
+  },
+  "normalized_entry_contract": {
+    "successful_report_schema_version": "sporespore_qsdk_r23d2_engine_cell_report_v1",
+    "worker_failure_schema_version": "sporespore_qsdk_r23d2_worker_failure_v1",
+    "command_validation_schema_version": "sporespore_qsdk_r23d2_command_validation_v1",
+    "normalized_validation_mode": "native_adapter_structure_receipts_and_independent_heading_oracle_v1",
+    "execution_stage_schema_version": "sporespore_qsdk_r23d2_execution_stage_v1",
+    "aggregate_evaluation_schema_version": "sporespore_qsdk_r23d2_aggregate_evaluation_v1",
+    "exactly_one_terminal_entry_per_cell_required": true
+  },
+  "oracle_validation": {
+    "oracle_contract_path": "sdk/turning/r23d2_oracle_preregistration.json",
+    "oracle_contract_sha256": "sha256:4252a8b542de60b656752606e3a1a6eb85c383329125da6f8d9d6c0f4446b464",
+    "oracle_evaluation_schema_version": "sporespore_qsdk_r23d2_oracle_evaluation_v1",
+    "required_receipt_predicates": [
+      "cross_track_error_m",
+      "cross_track_velocity_m_s",
+      "measured_yaw_error_rad",
+      "desired_heading_error_rad",
+      "yaw_tracking_error_rad"
+    ],
+    "all_controller_steps_require_independent_validation": true,
+    "cross_language_evaluation_structural_fields_and_failed_predicates_exact": true,
+    "cross_language_expected_receipt_uses_profile_absolute_tolerance": true,
+    "rejected_projection_canonicalized_before_embedding_and_hashing": true,
+    "raw_heading_offset_equality_used_must_be_false": true,
+    "successful_report_rejected_receipt_count": 0,
+    "successful_report_predicate_failure_count": 0
+  },
+  "failure_provenance": {
+    "required_stage_ids": [
+      "before_world",
+      "world_construction_failed",
+      "world_constructed",
+      "settlement_complete",
+      "controller_validation_failed",
+      "cell_report_complete"
+    ],
+    "world_attempt_count_increment_boundary": "immediately_before_first_native_world_or_model_construction_call",
+    "world_build_count_increment_boundary": "immediately_after_successful_native_world_or_model_construction",
+    "controller_validation_failure_requires_rejected_projection": true,
+    "controller_validation_failure_requires_per_predicate_failures": true,
+    "rejected_projection_embedded_before_exit": true,
+    "supervisor_content_addresses_terminal_entry_before_aggregation": true,
+    "aggregate_sums_worker_attempt_and_build_counts": true,
+    "hardcoded_zero_counts_after_world_attempt_forbidden": true
+  },
+  "result_classification": {
+    "valid_positive": "all nine terminal entries are successful reports, all execution-integrity predicates pass, and every cell passes its unchanged development outcome gates",
+    "valid_negative": "all nine terminal entries are successful reports and execution-integrity predicates pass, but one or more unchanged development outcome gates fail",
+    "invalid_or_incomplete": "any cell is missing, duplicated, reordered, represented by a worker failure, or fails execution-integrity validation",
+    "valid_negative_is_not_implementation_invalid": true,
+    "none_is_not_used_as_invalid_sentinel": true
+  },
+  "production_evaluator": {
+    "implementation_path": "sdk/turning/r23d2_development.py",
+    "test_path": "sdk/turning/test_r23d2_development.py",
+    "preflight_path": "sdk/run_qsdk_r23d2_development_preflight.ps1",
+    "independent_from_closed_r23d1_evaluator": true,
+    "imports_closed_r23d1_evaluator": false,
+    "imports_independent_r23d2_oracle": true
+  },
+  "aggregate_supervisor": {
+    "supervisor_path": "sdk/run_qsdk_r23d2_supervisor.ps1",
+    "audit_path": "tests/test_qsdk_r23d2_supervisor.ps1",
+    "freeze_path": "sdk/turning/r23d2_physical_freeze_v1.json",
+    "reproducible_runtime_materialization_path": "sdk/r23d2_reproducible_runtime_materialization.ps1",
+    "pinned_reproducible_runtime_materialization_before_freeze_validation_required": true,
+    "cargo_target_root_remapped_to_constant_virtual_prefix_required": true,
+    "serial_one_shot_required": true,
+    "content_addressed_retention_before_consumption_required": true,
+    "serial_worker_gate_execution_required": true,
+    "synthetic_cell_entries_content_addressed_before_aggregation": true,
+    "synthetic_projected_world_count": 9,
+    "actual_zero_world_preflight_world_count": 0,
+    "physical_mode_without_complete_authority_must_refuse_before_world": true
+  },
+  "future_physical_freeze_requirements": [
+    "all three physical workers implement the successful report and worker failure schemas",
+    "controller-validation failures embed the rejected projection and exact per-predicate failures before process exit",
+    "the supervisor retains every terminal entry content-addressably before aggregation",
+    "the source inventory binds every worker, evaluator, adapter, contract, runtime artifact, lock, supervisor, and attestation verifier",
+    "the complete zero-world supervisor gate passes from clean pushed source",
+    "clean pushed source equals origin/main and live GitHub main",
+    "a source-exact full-Godot V2 attestation is retained",
+    "the global locomotion operation lock is held",
+    "the sole prospective attempt remains unconsumed"
+  ],
+  "authorization": {
+    "physical_execution_authorized": true,
+    "authorization_scope": "one_supervisor_authored_serial_nine_cell_development_attempt_only",
+    "reason": "The unchanged nine-cell development question, all three physical workers, the independent oracle, the aggregate evaluator, and the complete source/runtime freeze are authorized for one serialized supervisor-authored attempt only. Launch remains operationally blocked until this authorization boundary is cleanly pushed and live, a matching current full-Godot V2 attestation is retained and verified, every input is content-addressed, the global locomotion operation lock is held, and the attempt identity is proven unconsumed.",
+    "physical_process_launch_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "claim_boundary": {
+    "shared_evaluator_implemented": true,
+    "aggregate_supervisor_zero_world_implemented": true,
+    "all_engine_workers_zero_world_commissioned": true,
+    "physical_worker_implementation_count": 3,
+    "physical_workers_complete": true,
+    "development_result_exists": false,
+    "scientific_result_exists": false,
+    "straight_walk_compatibility": false,
+    "command_conditioned_turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

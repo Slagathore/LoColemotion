@@ -1,0 +1,420 @@
+#requires -Version 7.0
+
+$ErrorActionPreference = "Stop"
+$repoRoot = [System.IO.Path]::GetFullPath(
+    (Split-Path -Parent $PSScriptRoot)
+)
+$sdkRoot = Join-Path $repoRoot "sdk"
+. (Join-Path $sdkRoot "experiment_result_integrity.ps1")
+$selector = Join-Path $sdkRoot "compile_balanced_wave_bw18g_selection.ps1"
+$preregistrationPath = Join-Path $sdkRoot (
+    "balanced_wave_bw18g_morphology_development_preregistration.json"
+)
+$tempRoot = Join-Path (
+    [System.IO.Path]::GetTempPath()
+) "sporespore_bw18g_selector_$([Guid]::NewGuid().ToString('N'))"
+
+$candidateIds = @("BW18G-A", "BW18G-B", "BW18G-C", "BW18G-D")
+$stabilityPolicyIds = @(
+    "sporespore_scheduled_load_transfer_bw13p_a_v3",
+    "sporespore_scheduled_load_transfer_bw13p_a_v3",
+    "sporespore_scheduled_load_transfer_bw13p_a_v3",
+    "sporespore_scheduled_load_transfer_bw13p_a_v3"
+)
+$authorityScopes = @(
+    "post_settle_full",
+    "post_settle_full",
+    "post_settle_full",
+    "post_settle_full"
+)
+$globalScales = @(0.0, 0.25, 0.5, 1.0)
+$compositionDigests = @(
+    "sha256:1bbb4e46b3d3e2d70bf17eb86717df19942912280a56e534aa3d47dee2e814e1",
+    "sha256:45826fbec95b544186a2dd9822bb1d641c3359120e900aeda729ba691b927446",
+    "sha256:1707317f2e1c74adcdd5908ea7daf845233afda42d2f08d0b2a9007480bb2e1e",
+    "sha256:8f27e50fa5d6033bf1a5ca69588c246d9a395f331ed6ba4cd405fd69b985641e"
+)
+$controllerPolicyId = "sporespore_balanced_wave_bw15f_b_v1"
+$controllerPolicyDigest = (
+    "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd"
+)
+
+function Assert-Exact {
+    param(
+        [bool]$Condition,
+        [string]$Message
+    )
+    if (-not $Condition) {
+        throw $Message
+    }
+}
+
+function Get-PrefixedSha256 {
+    param([Parameter(Mandatory)][string]$Path)
+    return "sha256:$(
+        (
+            Get-FileHash -Algorithm SHA256 -LiteralPath $Path
+        ).Hash.ToLowerInvariant()
+    )"
+}
+
+function Write-Json {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Path,
+        [Parameter(Mandatory)]
+        [object]$Value
+    )
+    [void][System.IO.Directory]::CreateDirectory(
+        (Split-Path -Parent $Path)
+    )
+    [System.IO.File]::WriteAllText(
+        $Path,
+        (
+            $Value |
+                ConvertTo-Json -Depth 100 |
+                ForEach-Object { $_ + [Environment]::NewLine }
+        ),
+        [System.Text.UTF8Encoding]::new($false)
+    )
+}
+
+function New-Results {
+    param(
+        [int]$WalkingFailureCount,
+        [double]$GlobalScale
+    )
+    $results = [System.Collections.Generic.List[object]]::new()
+    for ($index = 0; $index -lt 36; $index += 1) {
+        $walking = $index -ge $WalkingFailureCount
+        $results.Add(
+            [ordered]@{
+                morphology_id = "synthetic_$index"
+                generator_index = 193 + [math]::Floor($index / 3)
+                campaign_seed = 38101 + ($index % 3)
+                process_exit_code = 0
+                timed_out = $false
+                killed_process_tree = $false
+                duration_seconds = 0.0
+                receipt_parsed = $true
+                receipt_parse_error = ""
+                harness_passed = $true
+                walking_observed = $walking
+                common_execution_integrity = $true
+                mechanism_gate_passed = $true
+                combined_application_gate_passed = $true
+                scale_contract_passed = $true
+                global_requested_correction_scale = $GlobalScale
+                failed_production_walking_gate_count = $(if ($walking) {
+                    0
+                } else {
+                    1
+                })
+                release_timeout_count = 0
+                normalized_absolute_task_frame_lateral_displacement = 0.25
+                cumulative_absolute_cross_track_error_m_s = 0.50
+                receipt = [ordered]@{}
+                transcript_path = "synthetic"
+                transcript_sha256 = "sha256:synthetic"
+                stderr_path = "synthetic"
+                stderr_sha256 = "sha256:synthetic"
+                engine_log_path = "synthetic"
+                engine_log_sha256 = "sha256:synthetic"
+            }
+        )
+    }
+    return @($results)
+}
+
+function New-Report {
+    param(
+        [int]$CandidateIndex,
+        [int]$WalkingFailureCount
+    )
+    $candidateId = $candidateIds[$CandidateIndex]
+    $results = New-Results `
+        -WalkingFailureCount $WalkingFailureCount `
+        -GlobalScale ([double]$globalScales[$CandidateIndex])
+    $metrics = Measure-SporeExperimentResults `
+        -Results $results `
+        -ExpectedCount 36
+    return [ordered]@{
+        schema_version = "sporespore_bw18g_morphology_development_report_v1"
+        campaign_id = "BW18G-MORPHOLOGY-DEVELOPMENT"
+        gate_id = "BW18G"
+        campaign_role = (
+            "four_arm_outcome_exposed_global_portable_residual_scale_development"
+        )
+        candidate_id = $candidateId
+        candidate_composition_digest = $compositionDigests[$CandidateIndex]
+        selected_candidate_id = "BW15F-B"
+        controller_policy_id = $controllerPolicyId
+        controller_policy_digest = $controllerPolicyDigest
+        stability_policy_id = $stabilityPolicyIds[$CandidateIndex]
+        authority_scope = $authorityScopes[$CandidateIndex]
+        global_requested_correction_scale = (
+            [double]$globalScales[$CandidateIndex]
+        )
+        stability_influence_operation = "bound_stability_influence_v3_json"
+        development_complete = $true
+        development_data_only = $true
+        walking_acceptance = $false
+        balance_improvement = $false
+        independent_morphology_validation = $false
+        expected_world_count = 36
+        source = [ordered]@{
+            commit = "synthetic_bw18g_four_arm_source"
+            origin_main_commit = "synthetic_bw18g_four_arm_source"
+            clean = $true
+            matches_origin_main = $true
+        }
+        preregistration = [ordered]@{
+            sha256 = Get-PrefixedSha256 $preregistrationPath
+            status = "frozen_before_first_bw18g_physics_world"
+        }
+        metrics = $metrics
+        results = $results
+        observed_world_count = 36
+        complete_receipt_count = 36
+        harness_pass_count = 36
+        integrity_pass_count = 36
+        full_integrity_preflight = [ordered]@{
+            passed = $true
+        }
+        experiment_result_integrity_preflight = [ordered]@{
+            passed = $true
+            perfect_all_zero_36_cell_matrix_passed = $true
+            perfect_failed_production_walking_gate_count = 0
+            perfect_release_timeout_count = 0
+            nonzero_ordered_dictionary_canary_passed = $true
+            nonzero_canary_failed_production_walking_gate_count = 3
+            nonzero_canary_release_timeout_count = 2
+            nonzero_canary_maximum_normalized_lateral_displacement = 1.25
+            nonzero_canary_aggregate_normalized_lateral_displacement = 1.75
+            nonzero_canary_aggregate_cross_track_error_m_s = 1.0
+        }
+        r05c_closure_preflight = [ordered]@{
+            passed = $true
+        }
+        candidate_authority_preflight = [ordered]@{
+            passed = $true
+            candidate_id = $candidateId
+        }
+        selector_preflight = [ordered]@{
+            passed = $true
+            test_path = "tests/test_bw18g_selector.ps1"
+        }
+        bw18g_entrypoint_preflight = [ordered]@{
+            passed = $true
+            candidate_id = $candidateId
+            cell_count = 36
+            exact_candidate_adapter_start_count = 36
+            exact_declared_policy_runtime_boundary_count = 36
+        }
+        arbitrary_quadruped_coverage = $false
+        continuous_full_volume_coverage = $false
+        material_robustness = $false
+        rough_terrain_robustness = $false
+        external_push_recovery = $false
+        sensor_noise_or_latency_robustness = $false
+        different_physics_engines = $false
+        running = $false
+        completed_engine_neutral_sdk = $false
+        release_authorized = $false
+        physical_acceptance_authority = $false
+    }
+}
+
+function Invoke-Selector {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Control,
+        [Parameter(Mandatory)]
+        [string]$Treatment,
+        [Parameter(Mandatory)]
+        [string]$TreatmentC,
+        [Parameter(Mandatory)]
+        [string]$TreatmentD,
+        [Parameter(Mandatory)]
+        [string]$Output
+    )
+    & $selector `
+        -ReportA $Control `
+        -ReportB $Treatment `
+        -ReportC $TreatmentC `
+        -ReportD $TreatmentD `
+        -Output $Output `
+        -SyntheticTestOnly
+}
+
+try {
+    [void][System.IO.Directory]::CreateDirectory($tempRoot)
+    $reportA = Join-Path $tempRoot "report-a.json"
+    $reportB = Join-Path $tempRoot "report-b.json"
+    $reportC = Join-Path $tempRoot "report-c.json"
+    $reportD = Join-Path $tempRoot "report-d.json"
+
+    Write-Json -Path $reportA -Value (
+        New-Report -CandidateIndex 0 -WalkingFailureCount 2
+    )
+    Write-Json -Path $reportB -Value (
+        New-Report -CandidateIndex 1 -WalkingFailureCount 2
+    )
+    Write-Json -Path $reportC -Value (
+        New-Report -CandidateIndex 2 -WalkingFailureCount 1
+    )
+    Write-Json -Path $reportD -Value (
+        New-Report -CandidateIndex 3 -WalkingFailureCount 1
+    )
+    $winOutput = Join-Path $tempRoot "win\selection.json"
+    Invoke-Selector `
+        -Control $reportA `
+        -Treatment $reportB `
+        -TreatmentC $reportC `
+        -TreatmentD $reportD `
+        -Output $winOutput
+    $win = (
+        Get-Content -Raw -LiteralPath $winOutput |
+            ConvertFrom-Json -AsHashtable
+    )
+    Assert-Exact (
+        [bool]$win.family_selected -and
+        [string]$win.selected_candidate_id -ceq "BW18G-C" -and
+        [string]$win.best_treatment_candidate_id -ceq "BW18G-C" -and
+        [double]$win.selected_global_requested_correction_scale -eq 0.5 -and
+        [int]$win.best_treatment_lexicographic_comparison_to_control -eq -1 -and
+        [string]$win.deciding_metric -ceq
+            "walking_conjunction_failure_count" -and
+        [string]$win.result_status -ceq
+            "development_residual_scale_selected_requires_new_independent_validation" -and
+        [bool]$win.treatment_ties_resolve_to_lower_global_scale -and
+        [bool]$win.requires_new_prospectively_frozen_unopened_independent_validation -and
+        [bool]$win.synthetic_selector_test -and
+        -not [bool]$win.walking_acceptance -and
+        -not [bool]$win.balance_improvement -and
+        -not [bool]$win.independent_morphology_validation -and
+        -not [bool]$win.physical_acceptance_authority
+    ) "A strict BW18G treatment win did not retain the frozen no-claim boundary"
+
+    Write-Json -Path $reportA -Value (
+        New-Report -CandidateIndex 0 -WalkingFailureCount 0
+    )
+    Write-Json -Path $reportB -Value (
+        New-Report -CandidateIndex 1 -WalkingFailureCount 0
+    )
+    Write-Json -Path $reportC -Value (
+        New-Report -CandidateIndex 2 -WalkingFailureCount 0
+    )
+    Write-Json -Path $reportD -Value (
+        New-Report -CandidateIndex 3 -WalkingFailureCount 0
+    )
+    $tieOutput = Join-Path $tempRoot "tie\selection.json"
+    Invoke-Selector `
+        -Control $reportA `
+        -Treatment $reportB `
+        -TreatmentC $reportC `
+        -TreatmentD $reportD `
+        -Output $tieOutput
+    $tie = (
+        Get-Content -Raw -LiteralPath $tieOutput |
+            ConvertFrom-Json -AsHashtable
+    )
+    Assert-Exact (
+        -not [bool]$tie.family_selected -and
+        [string]$tie.selected_candidate_id -ceq "" -and
+        [string]$tie.best_treatment_candidate_id -ceq "BW18G-B" -and
+        [int]$tie.best_treatment_lexicographic_comparison_to_control -eq 0 -and
+        [string]$tie.deciding_metric -ceq "exact_tie" -and
+        [string]$tie.result_status -ceq
+            "bw18g_family_rejected_best_treatment_tied_control"
+    ) "A BW18G control tie did not reject the entire treatment family"
+
+    Write-Json -Path $reportA -Value (
+        New-Report -CandidateIndex 0 -WalkingFailureCount 0
+    )
+    Write-Json -Path $reportB -Value (
+        New-Report -CandidateIndex 1 -WalkingFailureCount 1
+    )
+    Write-Json -Path $reportC -Value (
+        New-Report -CandidateIndex 2 -WalkingFailureCount 2
+    )
+    Write-Json -Path $reportD -Value (
+        New-Report -CandidateIndex 3 -WalkingFailureCount 3
+    )
+    $lossOutput = Join-Path $tempRoot "loss\selection.json"
+    Invoke-Selector `
+        -Control $reportA `
+        -Treatment $reportB `
+        -TreatmentC $reportC `
+        -TreatmentD $reportD `
+        -Output $lossOutput
+    $loss = (
+        Get-Content -Raw -LiteralPath $lossOutput |
+            ConvertFrom-Json -AsHashtable
+    )
+    Assert-Exact (
+        -not [bool]$loss.family_selected -and
+        [int]$loss.best_treatment_lexicographic_comparison_to_control -eq 1 -and
+        [string]$loss.result_status -ceq
+            "bw18g_family_rejected_all_treatments_worse_than_control"
+    ) "A wholly worse BW18G treatment family was not rejected"
+
+    $missingRejected = $false
+    try {
+        Invoke-Selector `
+            -Control $reportA `
+            -Treatment $reportB `
+            -TreatmentC $reportC `
+            -TreatmentD (Join-Path $tempRoot "missing-d.json") `
+            -Output (Join-Path $tempRoot "missing\selection.json")
+    } catch {
+        $missingRejected = (
+            $_.Exception.Message -like "*Missing BW18G-D report*"
+        )
+    }
+    Assert-Exact $missingRejected "A missing fourth BW18G report was not rejected"
+
+    $invalid = New-Report -CandidateIndex 2 -WalkingFailureCount 0
+    $invalid.results[0].mechanism_gate_passed = $false
+    $invalid.metrics = Measure-SporeExperimentResults `
+        -Results @($invalid.results) `
+        -ExpectedCount 36
+    Write-Json -Path $reportC -Value $invalid
+    $invalidRejected = $false
+    try {
+        Invoke-Selector `
+            -Control $reportA `
+            -Treatment $reportB `
+            -TreatmentC $reportC `
+            -TreatmentD $reportD `
+            -Output (Join-Path $tempRoot "invalid\selection.json")
+    } catch {
+        $invalidRejected = (
+            $_.Exception.Message -like
+                "*not a complete eligible BW18G report*"
+        )
+    }
+    Assert-Exact (
+        $invalidRejected
+    ) "A mechanism-incomplete BW18G scale report was not rejected"
+
+    Write-Host (
+        "BW18G selector tests passed: four reports, lower-scale tie break, " +
+        "strict-vs-control selection, family rejection, and fail-closed identity."
+    )
+} finally {
+    $tempBase = [System.IO.Path]::GetFullPath(
+        [System.IO.Path]::GetTempPath()
+    )
+    $resolvedTempRoot = [System.IO.Path]::GetFullPath($tempRoot)
+    if (
+        (Test-Path -LiteralPath $resolvedTempRoot) -and
+        $resolvedTempRoot.StartsWith(
+            $tempBase,
+            [System.StringComparison]::OrdinalIgnoreCase
+        ) -and
+        $resolvedTempRoot.Length -gt ($tempBase.Length + 20)
+    ) {
+        Remove-Item -LiteralPath $resolvedTempRoot -Recurse -Force
+    }
+}

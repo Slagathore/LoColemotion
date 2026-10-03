@@ -1,0 +1,118 @@
+{
+  "schema_version": "sporespore_rapier_c6_selected_policy_commissioning_r2_preregistration_v1",
+  "campaign_id": "C6-RAPIER-SELECTED-POLICY-COMMISSIONING-R2",
+  "gate_id": "C6-RAP-SP1-R2",
+  "status": "frozen_before_first_c6_rap_sp1_r2_physics_world",
+  "recorded_utc": "2026-07-30T14:06:00Z",
+  "implementation_parent_commit": "4b82029a130a23c9ee00825ec7cd61967e6480c4",
+  "purpose": "Repeat the exact R1 selected-policy Rapier mapping once with observability-only receipts needed to classify the active-controller physical negative without tuning from its failure list.",
+  "predecessor": {
+    "closure_path": "sdk/rapier_c6_selected_policy_commissioning_r1_closure.json",
+    "closure_raw_sha256": "sha256:0fe513b1af8fe386f4d9c13d7485f4bdfd37711d38a846a938fab11270b0e9fb",
+    "status": "closed_negative_active_controller_host_dynamics",
+    "predecessor_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-r1-1597cfc\\report.json",
+    "predecessor_report_sha256": "sha256:762696c9788aa940f00231a99cbb7fc8072aa05106badfee03f285490f88065d",
+    "same_identity_rerun": false
+  },
+  "scope": {
+    "campaign_role": "outcome_exposed_single_body_observability_only_diagnostic",
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "world_count": 1,
+    "fresh_morphology": false,
+    "independent_validation": false,
+    "selection_or_tuning_authority": false,
+    "technical_commissioning_authority": false
+  },
+  "frozen_physical_contract": {
+    "source_preregistration_path": "sdk/rapier_c6_selected_policy_commissioning_r1_preregistration.json",
+    "source_preregistration_raw_sha256": "sha256:3102a8dddb8f6c7236735e2cdc6b403763d000a6b1518d55c201a7627e00a37f",
+    "selected_candidate_id": "BW5R-B",
+    "policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "portable_morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "portable_controller_profile_sha256": "sha256:6a0ce16101b8522ce844d40cf71e7129b23dcb0a64b7ff988d86c34c2dd35934",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "world_material_actuation_clock_and_threshold_fields_inherited_exactly": true,
+    "physics_or_policy_changes_allowed": false,
+    "geometry_mass_inertia_changes_allowed": false,
+    "material_or_contact_semantics_changes_allowed": false,
+    "motor_gain_limit_or_sign_changes_allowed": false,
+    "clock_or_threshold_changes_allowed": false
+  },
+  "required_observability": {
+    "post_settle_torso_pose_tilt_height_and_ground_contact": true,
+    "first_torso_ground_contact_semantic_step": true,
+    "per_actuator_nonzero_target_counts": true,
+    "per_actuator_target_position_and_velocity_ranges": true,
+    "per_actuator_observed_joint_angle_ranges": true,
+    "per_actuator_maximum_motor_impulse_and_utilization": true,
+    "per_contact_site_bearing_true_false_counts_and_transitions": true,
+    "final_per_limb_gait_step_limit_hold_timeout_and_sync_memory": true,
+    "exact_controller_error_receipts": true,
+    "interpretation_rules": [
+      "Post-settle torso ground contact or failed post-settle posture classifies support initialization before locomotion.",
+      "Nonzero targets with negligible observed joint excursion and saturated impulse utilization classify inadequate or incorrect actuator realization.",
+      "Sign-opposed target and observed angle ranges classify a joint sign mapping defect.",
+      "Observed joint excursions with foot-bearing always true classify contact qualification or insufficient physical clearance, not absent motor authority.",
+      "No physical or policy parameter may change until this diagnostic identity is closed."
+    ]
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "r1_complete_synthetic_gate_and_failure_canary_must_pass": true,
+    "r1_nonidentity_quaternion_and_numeric_finiteness_regressions_must_pass": true,
+    "perfect_synthetic_observability_receipt_must_pass": true,
+    "missing_required_observability_field_canary_must_fail": true,
+    "preflight_world_build_count": 0,
+    "preflight_scene_insertion_count": 0,
+    "preflight_physics_state_mutation_count": 0
+  },
+  "execution_contract": {
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_artifact_overwrite_forbidden": true,
+    "early_stop_forbidden": true,
+    "negative_report_retention_required": true,
+    "same_identity_rerun_forbidden_after_closure": true
+  },
+  "method_sources": {
+    "local_research_inputs": [
+      {
+        "path": "DReCon.pdf",
+        "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+      },
+      {
+        "path": "2604.08780v1.pdf",
+        "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+      },
+      {
+        "path": "2507.22653v2.pdf",
+        "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+      },
+      {
+        "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+        "sha256": "sha256:b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "observability_only": true,
+    "technical_commissioning_accepted": false,
+    "rapier_selected_policy_physical_c6": false,
+    "same_selected_policy_independent_morphology_evidence": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

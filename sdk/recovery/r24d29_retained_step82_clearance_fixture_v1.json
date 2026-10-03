@@ -1,0 +1,102 @@
+{
+  "schema_version": "sporespore_qsdk_r24d29_retained_step82_clearance_fixture_v1",
+  "gate_id": "QSDK-R24D29",
+  "question_class": "development",
+  "physical_question_declared": false,
+  "source": {
+    "predecessor_gate_id": "QSDK-R24D28",
+    "predecessor_source_commit": "412bb9f3664cc36e17cf998ddc02e040aa074114",
+    "predecessor_closure_path": "sdk/recovery/r24d28_collection_refusal_observability_physical_closure_v1.json",
+    "predecessor_closure_raw_sha256": "sha256:83bf49035a3f8c36abc7f1d29a2b5a9d2cf8410263548bd8d76286d5d0e3bd57",
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d28-mujoco-natural-recovery-progression-observable-20260829T053315174Z-412bb9f3",
+    "partial_result_path": "partial_result.json",
+    "partial_result_raw_sha256": "sha256:b8d124faec98b48910164d7cb125f3cda8b9de0b8883de459e5c0d12400d5a1d",
+    "partial_result_byte_length": 2536822
+  },
+  "exact_fixture_identity": {
+    "arm_kind": "candidate_command",
+    "semantic_step": 82,
+    "phase": "establish_distal_support",
+    "current_observation_canonical_sha256": "sha256:712737b457d3f0ae67d7d3220c55651a2c003b4b625ba0df4ea3b50825c4bb56",
+    "current_observation_canonical_byte_length": 11798,
+    "current_collection_request_canonical_sha256": "sha256:1f280a3a25a3007fbe8021ba8e78141eae0fb3e7a6509523b6c4a2becf752b68",
+    "current_collection_request_canonical_byte_length": 18209,
+    "current_step_request_canonical_sha256": "sha256:4fcc5cc599553448cd85a34a17955a94a07e9d0c515a04162e1bd3299e6e9fe8",
+    "current_step_request_canonical_byte_length": 18683,
+    "accepted_prefix_length": 82,
+    "accepted_prefix_first_semantic_step": 0,
+    "accepted_prefix_last_semantic_step": 81,
+    "accepted_prefix_strictly_contiguous": true
+  },
+  "exact_rear_distal_projection": [
+    {
+      "body_id": "rear_left_distal",
+      "nonfoot_contact_present": false,
+      "engine_contact_ids": [],
+      "accumulated_nonfoot_normal_impulse_ns": 0.0,
+      "minimum_nonfoot_clearance_m": -0.0025538792736472873,
+      "foot_contact_id_count": 5,
+      "foot_bearing_normal_impulse_ns": 0.11135666079760304
+    },
+    {
+      "body_id": "rear_right_distal",
+      "nonfoot_contact_present": false,
+      "engine_contact_ids": [],
+      "accumulated_nonfoot_normal_impulse_ns": 0.0,
+      "minimum_nonfoot_clearance_m": -0.002553879273647315,
+      "foot_contact_id_count": 5,
+      "foot_bearing_normal_impulse_ns": 0.1113566607976037
+    }
+  ],
+  "historical_result": {
+    "source_commit": "412bb9f3664cc36e17cf998ddc02e040aa074114",
+    "collector_support_status": "invalid_observation",
+    "collector_refusal_reason": "absent_nonfoot_contact_values_invalid",
+    "portable_step_accepted": false,
+    "historical_result_rewritten": false,
+    "same_identity_rerun_permitted": false
+  },
+  "successor_semantics": {
+    "contact_presence_meaning": "whether_the_native_adapter_classified_at_least_one_nonfoot_contact",
+    "engine_contact_ids_meaning": "exact_native_provenance_for_classified_nonfoot_contacts_only",
+    "accumulated_impulse_meaning": "integrated_normal_impulse_from_classified_nonfoot_contacts_only",
+    "minimum_clearance_meaning": "independent_signed_geometric_clearance_after_excluding_the_declared_foot_site",
+    "negative_clearance_without_native_contact_is_valid_observation_data": true,
+    "negative_clearance_remains_a_failing_physical_clearance_measurement": true,
+    "invented_contact_provenance_permitted": false,
+    "clearance_clamping_permitted": false,
+    "behavior_threshold_changed": false,
+    "margin_changed": false
+  },
+  "expected_successor_projection": {
+    "collector_support_status": "supported_exact",
+    "collector_refusal_reason": null,
+    "portable_step_support_status": "supported_exact",
+    "portable_step_refusal_reason": null,
+    "pose_class": "transitional",
+    "minimum_nonfoot_clearance_m": -0.002553879273647315,
+    "any_nonfoot_contact": true,
+    "raised_body_gate": false,
+    "stable_stance_gate": false,
+    "next_phase": "establish_distal_support"
+  },
+  "mutation_population": [
+    "exact_retained_negative_clearance_without_native_nonfoot_contact_is_accepted_as_data",
+    "exact_retained_negative_clearance_still_blocks_raised_body",
+    "absent_contact_with_engine_contact_id_is_rejected",
+    "absent_contact_with_nonzero_impulse_is_rejected",
+    "present_contact_without_engine_contact_id_is_rejected",
+    "duplicate_engine_contact_id_is_rejected",
+    "ventral_contact_on_non_torso_body_is_rejected",
+    "present_contact_with_positive_signed_clearance_is_accepted_as_independent_measurements"
+  ],
+  "mutation_control_count": 8,
+  "model_construction_count": 0,
+  "world_attempt_count": 0,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physics_state_modified": false,
+  "prone_to_standing_claimed": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

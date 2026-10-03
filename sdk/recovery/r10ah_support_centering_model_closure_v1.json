@@ -1,0 +1,60 @@
+{
+  "schema_version": "sporespore_r10ah_support_centering_model_closure_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "post_exposure_mathematical_probe_closure",
+    "question_class": "development"
+  },
+  "dependencies": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10ah_support_centering_closure.py",
+      "byte_length": 3530,
+      "raw_sha256": "sha256:2bfdc3c19bac5e0fffccd74fd50df9327aaeca6412697fb89aa6f4f3d1190139"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ah_support_centering_model_result_v1.json",
+      "byte_length": 5537,
+      "raw_sha256": "sha256:6af2013bba230cc5971bcfc7f45b6491ecc17e0fa187757910e92c7ab194592e"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ah_support_centering_level_model_result_v2.json",
+      "byte_length": 4847,
+      "raw_sha256": "sha256:5b40145e7d252ffa9dec59293cfac64e5acb86ba74fff6c371ab704c94189b11"
+    }
+  ],
+  "observed": {
+    "model_variants": 3,
+    "bounded_trajectories": 6,
+    "stalled_trajectories": 6,
+    "centered_trajectories": 0,
+    "modeled_rise_trajectories": 0,
+    "original_loaded_plan_parity_count": 110,
+    "modeled_com_outside_support_polygon_on_all_loaded_inputs": true,
+    "support_margin_range_m": [
+      -0.09569165432401465,
+      -0.08084170213795043
+    ],
+    "step_counts": [
+      12,
+      11,
+      1,
+      3,
+      12,
+      2
+    ],
+    "original_attempt_reclassified": false,
+    "new_physical_population_consumed": false,
+    "native_controller_implemented": false,
+    "complete_positive_consumer_coverage": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_score": "14/20",
+    "full_program_score": "14/25"
+  },
+  "decision": "Reject all three center-first model variants as candidates for native integration or physical commissioning in their current form.",
+  "next_action": "Design and check a feasible path through the measured joint constraints while coordinating body motion and foot placement. Do not require monotone COM centering before any rise unless the complete bounded path is demonstrated. Preserve task thresholds, consumed populations and the pending full positive hold/walking consumer coverage requirement.",
+  "limitation": "Negative under the declared bounded candidate searches and perfect-tracking assumptions. This does not prove centering is generally impossible, does not predict dynamics, and does not establish an alternative physical controller."
+}

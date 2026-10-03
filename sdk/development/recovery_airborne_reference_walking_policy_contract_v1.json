@@ -1,0 +1,33 @@
+{
+  "schema_version": "sporespore_development_recovery_airborne_reference_walking_policy_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "development_policy_integration",
+    "question_class": "development"
+  },
+  "policy_id": "sporespore_balanced_wave_recovery_airborne_reference_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_airborne_reference_profile_v1",
+  "recontact_gate_mode_id": "scheduled_swing_end_recontact_v1",
+  "stance_support_mode_id": "explicit_floor_joint_feasible_stance_height_reference_slew_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_airborne_reference_memory_v1",
+  "native_profile_sha256": "sha256:f31ba927913e624a521d1af4ad53f0856f35c710268c3bd87aafd78d66a5be78",
+  "allowed_segment_id": "walking_resume",
+  "prefix_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+  "receipt_schema_prefix": "sporespore_development_airborne_reference_walking_",
+  "entry_profile_id": "airborne_reference_joint_bounded_contact_gated_v1",
+  "start_profile_id": "airborne_reference_front_left_first_resume_v1",
+  "native_component_record": "sdk/development/recovery_airborne_reference_component_v1.json",
+  "native_component_record_sha256": "sha256:06a0bc09e2e82ab3d62d505fbaa6a282623e3dc0caa1856e3d5bb6e3b26a03cb",
+  "runtime_binding": "sdk/development/recovery_candidates/v39-airborne-reference-v1.runtime.json",
+  "runtime_binding_sha256": "sha256:c623c08bbacbd223766a9ab59e657e2d93bb4738582dfeb902e4fe4543d9df42",
+  "runtime_sha256": "sha256:4095e594a5925d915081c7fd9a1e3768bd439a478fc3a453c17695330d2ea118",
+  "canonical_controller_owner": "stance",
+  "floor_source_subset": "Actual StaticBody3D with one enabled BoxShape3D; translation-only transform inheritance, same world Y-up position frame, nominal box top and finite rectangle. Rotation, scale, constant surface velocity, missing provenance, crossed model or changed source refuses. Shape margin is retained, not added to nominal surface height or interpreted as contact.",
+  "floor_extent_rule": "The measured torso's XZ projection plus an orientation-independent bound from the compiled torso half-diagonal, maximum hip offset, both leg links and foot radius must fit inside the finite floor rectangle. This is input applicability, not a behavioral acceptance threshold.",
+  "rule": "Explicit V39 adapter and independent-reader integration. Use full bounded actual-reference speed only for scheduled swing/landing phases 0..72 inclusive with explicitly absent pre-command presence and bears_support, positive dt and both wave snapshots active. Otherwise preserve V38's pose-separated rate exactly. Retain all V38 position goals, support plans, slew, gains, smooth lift, floor provenance, contact gates, amplitude ramp, BW5R-B prefix, V20 recovery, motor limits, solver, schedule and behavioral criteria. The receipt preserves pre-command contact provenance and both rate constructions. No force-aware or predicted physical improvement claim.",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "swing_lift_mode_id": "phase_only_existing_loaded_peak_swing_lift_v1",
+  "reference_velocity_mode_id": "contact_selected_airborne_reference_velocity_tracking_v1"
+}

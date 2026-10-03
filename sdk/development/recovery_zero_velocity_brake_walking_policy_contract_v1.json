@@ -1,0 +1,87 @@
+{
+  "schema_version": "sporespore_development_recovery_zero_velocity_brake_walking_policy_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "development_policy_integration",
+    "question_class": "development"
+  },
+  "policy_id": "sporespore_balanced_wave_recovery_zero_velocity_brake_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_zero_velocity_brake_profile_v1",
+  "recontact_gate_mode_id": "scheduled_swing_end_recontact_v1",
+  "stance_support_mode_id": "stationary_world_feet_and_independent_upright_body_pose_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_zero_velocity_brake_memory_v1",
+  "native_profile_sha256": "sha256:acdf49207f1d448aeb9bdb598f30989558dc062be2b285327112ce3c8a68112f",
+  "allowed_segment_id": "walking_resume",
+  "prefix_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+  "receipt_schema_prefix": "sporespore_development_zero_velocity_brake_walking_",
+  "entry_profile_id": "r10n_v54_joint_bounded_contact_gated_v1",
+  "start_profile_id": "r10n_v54_front_left_first_post_interaction_v1",
+  "native_component_record": "sdk/recovery/v54_zero_velocity_brake_component_v1.json",
+  "native_component_record_sha256": "sha256:2ba9b32032448a10e184bae4ebe57b6da303f6d6b669457a891c0be136647855",
+  "runtime_binding": "sdk/development/recovery_candidates/v54-zero-velocity-brake-core-v1.runtime.json",
+  "runtime_binding_sha256": "sha256:d6cc8b6f15b65f853990be0cde0918d23f361f2f47eaae59369fa90040db619d",
+  "runtime_sha256": "sha256:ddd6635240770a2fd46fd84a1131542fc4e3c2d0e7ff4a385728f69111513dba",
+  "canonical_controller_owner": "stance",
+  "floor_source_subset": "Actual StaticBody3D with one enabled BoxShape3D; translation-only transform inheritance, same world Y-up position frame, nominal box top and finite rectangle. Rotation, scale, constant surface velocity, missing provenance, crossed model or changed source refuses. Shape margin is retained, not added to nominal surface height or interpreted as contact.",
+  "floor_extent_rule": "The measured torso's XZ projection plus an orientation-independent bound from the compiled torso half-diagonal, maximum hip offset, both leg links and foot radius must fit inside the finite floor rectangle. This is input applicability, not a behavioral acceptance threshold.",
+  "rule": "Use V54 with synchronized native body measurements. At exactly zero gait amplitude, request zero motor target velocity while retaining enabled motors and their existing impulse caps. Preserve V52 references, controller memory and nonzero-amplitude walking. Include both startup and stopping commands; publish each removed velocity in the native receipt. This registration does not register the complete R10N route or grant physical acceptance.",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "swing_lift_mode_id": "phase_only_existing_loaded_peak_swing_lift_v1",
+  "reference_velocity_mode_id": "bounded_independent_pose_startup_ramped_reference_velocity_v1",
+  "predecessor_contract": "sdk/development/recovery_extended_support_transfer_walking_policy_contract_v1.json",
+  "support_progression_mode_id": "truthful_stance_support_bounded_phase_hold_v1",
+  "support_hold_posture_mode_id": "held_world_endpoint_reference_v1",
+  "measured_support_transfer_mode_id": "measured_com_transfer_with_remaining_three_support_before_swing_v1",
+  "native_profile": {
+    "schema_version": "sporespore_balanced_wave_recovery_zero_velocity_brake_profile_v1",
+    "policy_id": "sporespore_balanced_wave_recovery_zero_velocity_brake_v1",
+    "torso_length_scale": 1.0041015625,
+    "cross_track_heading_gain_rad_per_m": 0.9959151915969655,
+    "yaw_error_stride_gain_per_rad": 1.3,
+    "cross_track_velocity_heading_gain_rad_per_m_s": 0.35071703894485934,
+    "contact_loaded_swing_knee_activation_start_phase_step": 0,
+    "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+    "anchor_error_guard_activation_fraction": 0.8,
+    "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+    "steering_feedback_update_interval_steps": 1,
+    "steering_low_pass_time_constant_cycle_fraction": 0.0625,
+    "recontact_gate_mode_id": "scheduled_swing_end_recontact_v1",
+    "stance_support_mode_id": "stationary_world_feet_and_independent_upright_body_pose_v1",
+    "swing_lift_mode_id": "phase_only_existing_loaded_peak_swing_lift_v1",
+    "reference_velocity_mode_id": "bounded_independent_pose_startup_ramped_reference_velocity_v1",
+    "support_progression_mode_id": "truthful_stance_support_bounded_phase_hold_v1",
+    "support_hold_posture_mode_id": "held_world_endpoint_reference_v1",
+    "measured_support_transfer_mode_id": "measured_com_transfer_with_remaining_three_support_before_swing_v1",
+    "branch_surfaces": [],
+    "controller_authority": true,
+    "physical_acceptance_authority": false
+  },
+  "height_contract": "sdk/development/recovery_joint_feasible_height_contract_v1.json",
+  "height_contract_sha256": "sha256:f5bdc867a3d65eb19e8c8e29abeca7f6b7111a4a35436bcaca316e182269d037",
+  "maximum_absolute_reference_bias_rad": 0.3,
+  "zero_amplitude_motor_mode": "enabled_zero_target_velocity_existing_impulse_caps",
+  "policy_binding_evidence": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v54-policy-binding-b867a0f0573f4795b4d9bf9ff9ab15d0/canonical.request.json",
+      "byte_length": 1386,
+      "raw_sha256": "sha256:efb7fe60417fc56d7a0fa4962cc7980be4de2a429a2dd32d3f23fdee8e6bda25"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v54-policy-binding-b867a0f0573f4795b4d9bf9ff9ab15d0/canonical.response.json",
+      "byte_length": 1613,
+      "raw_sha256": "sha256:38a88ee33dd7af73f2529395b465352b6fae478a3659a34ffa6103684a8a5b17"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v54-policy-binding-b867a0f0573f4795b4d9bf9ff9ab15d0/profile.request.json",
+      "byte_length": 494,
+      "raw_sha256": "sha256:d795585eb9db256863bac4619d5ef46e97ab26bbaf9f12e72914c9ea310b3769"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v54-policy-binding-b867a0f0573f4795b4d9bf9ff9ab15d0/profile.response.json",
+      "byte_length": 1340,
+      "raw_sha256": "sha256:6e366f66cfee84743adb0393de73629511c2a36a2f2f963300cdd0c4c02db617"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_host_characterization_closure_v1",
+  "status": "closed_negative_loaded_support_terminal_impulse_threshold",
+  "closed_utc": "2026-07-30T18:20:00Z",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-HOST-CHARACTERIZATION",
+  "gate_id": "C6-RAP-HC-FB1",
+  "experiment_source_commit": "331ebe36e609fa387869fefcb70e62f63e9817a9",
+  "source_was_clean_and_equal_to_origin_main": true,
+  "preregistration": {
+    "path": "sdk/rapier_c6_force_based_host_characterization_preregistration.json",
+    "raw_sha256": "7d3753308707f4e96b33959eea5dbf0ad54ae6e442614a2acb87d339c26d20dc",
+    "status": "frozen_before_first_c6_rap_hc_fb1_physics_world",
+    "implementation_parent_commit": "7027e6654925dc5e054959e0dac431d66f189d85"
+  },
+  "complete_attempt": {
+    "root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-host-characterization-331ebe3",
+    "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-host-characterization-331ebe3\\report.json",
+    "report_sha256": "5b053de8f9128920ba4b64407a4c3867171579a1aca74aff4e50dfaffa308bd3",
+    "stdout_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-host-characterization-331ebe3\\stdout.log",
+    "stdout_sha256": "5b053de8f9128920ba4b64407a4c3867171579a1aca74aff4e50dfaffa308bd3",
+    "stderr_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-host-characterization-331ebe3\\stderr.log",
+    "stderr_sha256": "e3148901c9ab35b6979f51ab62be44b0e5817c30884e765b05156bb67c88a755",
+    "process_exit_code": 1,
+    "world_attempt_count": 8,
+    "world_build_count": 8,
+    "cell_count": 8,
+    "passed_cell_count": 6,
+    "failed_cell_count": 2,
+    "motor_model_readback_count": 8,
+    "motor_model_mismatch_count": 0,
+    "nonfinite_value_count": 0,
+    "step_impulse_limit_violation_count": 0,
+    "unloaded_position_grid_passed": true,
+    "signed_velocity_pair_passed": true,
+    "gravity_loaded_support_pair_passed": false,
+    "paired_loaded_final_angle_signs_opposite": true,
+    "paired_loaded_terminal_motor_impulse_signs_opposite": true,
+    "failure_codes": [
+      "C6_RAP_HC_FB1_passed_cell_count_INVALID",
+      "C6_RAP_HC_FB1_failed_cell_count_INVALID",
+      "C6_RAP_HC_FB1_gravity_loaded_support_pair_passed_INVALID"
+    ]
+  },
+  "loaded_support_observations": [
+    {
+      "center_of_mass_offset_z_m": -0.30000001192092896,
+      "final_position_rad": -0.07363874465227127,
+      "terminal_motor_impulse_nms": -0.0012216949835419655,
+      "maximum_observed_motor_impulse_nms": 0.0012705777771770954,
+      "final_anchor_error_m": 0.0,
+      "frozen_maximum_absolute_final_angle_rad": 0.1,
+      "frozen_minimum_absolute_terminal_motor_impulse_nms": 0.005,
+      "angle_gate_passed": true,
+      "terminal_impulse_gate_passed": false,
+      "cell_passed": false
+    },
+    {
+      "center_of_mass_offset_z_m": 0.30000001192092896,
+      "final_position_rad": 0.07363874465227127,
+      "terminal_motor_impulse_nms": 0.0012216949835419655,
+      "maximum_observed_motor_impulse_nms": 0.001270580687560141,
+      "final_anchor_error_m": 0.0,
+      "frozen_maximum_absolute_final_angle_rad": 0.1,
+      "frozen_minimum_absolute_terminal_motor_impulse_nms": 0.005,
+      "angle_gate_passed": true,
+      "terminal_impulse_gate_passed": false,
+      "cell_passed": false
+    }
+  ],
+  "technical_disposition": {
+    "explicit_force_based_selection_observed_in_every_cell": true,
+    "builder_and_mutable_readback_contract_worked": true,
+    "unloaded_position_tracking_worked_for_declared_grid": true,
+    "signed_velocity_mapping_worked_for_declared_pair": true,
+    "gravity_loaded_angle_bound_worked_for_declared_pair": true,
+    "gravity_loaded_paired_sign_checks_worked": true,
+    "joint_motor_impulse_minimum_assumption_worked": false,
+    "frozen_success_contract_passed": false,
+    "force_based_host_characterization_authorized": false,
+    "selected_policy_locomotion_evaluated": false,
+    "result_is_not_a_selected_policy_verdict": true
+  },
+  "measurement_defect_hypothesis": {
+    "classification": "development_hypothesis_for_distinct_successor_only",
+    "observation": "Rapier JointMotor.impulse remained signed and nonzero under gravity load but was about four times below the preregistered minimum despite bounded equilibrium angle and paired sign symmetry.",
+    "likely_issue": "The preregistration treated JointMotor.impulse as a direct gravity-load torque-times-timestep witness without first characterizing ForceBased solver writeback semantics.",
+    "may_not_reclassify_fb1": true,
+    "successor_requirements": [
+      "new campaign and source identity",
+      "new preregistration before any successor physics world",
+      "retain explicit ForceBased builder and mutable readback",
+      "replace the unsupported absolute writeback minimum with a source-grounded load-response contract",
+      "cross multiple declared loads or lever arms",
+      "retain signed paired controls and per-step force-limit checks",
+      "run the complete synthetic integrity gate before any world"
+    ]
+  },
+  "immutability": {
+    "same_identity_rerun_forbidden": true,
+    "report_rewrite_forbidden": true,
+    "threshold_change_forbidden": true,
+    "failed_cell_deletion_replacement_or_averaging_forbidden": true,
+    "posthoc_pass_reclassification_forbidden": true,
+    "successor_requires_new_identity": true
+  },
+  "next_allowed_work": {
+    "distinct_force_based_load_response_successor_may_be_preregistered": true,
+    "rapier_locomotion_remains_blocked": true,
+    "mujoco_selected_policy_work_may_continue_independently": true,
+    "bw19v_cold_friction_campaign_may_continue_independently": true,
+    "portable_release_policy_unchanged": true
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+      "sha256": "b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+    }
+  ],
+  "claims": {
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

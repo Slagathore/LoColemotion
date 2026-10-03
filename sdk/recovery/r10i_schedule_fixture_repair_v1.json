@@ -1,0 +1,48 @@
+{
+  "schema_version": "sporespore_r10i_schedule_fixture_repair_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "zero_world_gate_failure_and_fixture_repair",
+    "question_class": "development"
+  },
+  "source_parent_commit": "802763b36fb2196898c9310b9521f093b5ecab6e",
+  "original_attempt_id": "45b75ca928bb45339182078a0a812279",
+  "original_supervisor": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-45b75ca928bb45339182078a0a812279/supervisor_result.json",
+    "byte_length": 9979,
+    "raw_sha256": "sha256:5762484a6498fb19702982c4c61b71c99a9677aefbc26d55573664ba1a1d6811"
+  },
+  "original_gate_passed_test_count": 87,
+  "expected_gate_test_count": 164,
+  "failed_stage": "candidate_schedule",
+  "failed_stage_test_result": "3 passed, 1 failed (test_actual_godot_cutoff_retention_close_bound_and_legacy_refusal)",
+  "original_false_checks": [
+    "neutral_finalizes_exactly_once",
+    "neutral_finished_session_is_not_closed_twice"
+  ],
+  "original_schedule_check_count": 66,
+  "physical_attempt_started": false,
+  "physical_child_count": 0,
+  "inventory": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10i-schedule-fixture-repair-fc898b9a696048f99a3b4dc1401a7001/inventory.json",
+    "byte_length": 14075,
+    "raw_sha256": "sha256:b86bd9313d68393fb3e3d08097cdab75b2ca0f35775e66b967045f84f8cd6709"
+  },
+  "mechanism": "Two shared zero-world defects. The shared development walking evaluator admitted the neutral_stance_entry segment only when the development policy was the R10H neutral BW5R-B alias, so the R10I joint-pose entry session was refused as shape-invalid at finalization; the production worker closes that session at the transition out of the entry phase, so the first no-kick child would have stopped exactly when readiness was reached. Separately, the shared candidate-schedule finalizer fixture bound legacy BW5R-B identity to the synthetic entry session, which is correct for R10H and crossed for R10I. This stage never executed on an R10I profile before 802763b3 because the earlier R10I gate stopped one stage earlier.",
+  "repair": "Admit the selected joint-pose entry policy for the neutral_stance_entry segment in the shared evaluator alongside the R10H neutral alias. Bind the fixture's synthetic entry session to the selected entry's native identity through the existing policy binding, which resolves to legacy BW5R-B for R10H and the joint-pose entry policy for R10I, and print the refusal code on any unexpected entry close. Select new v3 source-bound entry/start/route and candidate/schedule records.",
+  "shared_evaluator_changed": true,
+  "shared_evaluator_change": "sdk/adapters/godot/gdscript/qsdk_r10f_walking_segment_evaluator_v2.gd: one segment-admission predicate; numerical criteria unchanged.",
+  "targeted_candidate_schedule_tests_passed": 4,
+  "targeted_candidate_profile_tests_passed": 5,
+  "corrected_schedule_check_count": 66,
+  "corrected_schedule_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-schedule-8bf2f649038e46fab84ee1dbe12cb784",
+  "controller_or_runtime_changed": false,
+  "entry_limits_or_task_predicates_changed": false,
+  "original_attempt_reclassified": false,
+  "new_world_count": 0,
+  "new_solver_step_count": 0,
+  "held_out_worlds_opened": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

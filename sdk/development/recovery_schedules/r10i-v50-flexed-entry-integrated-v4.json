@@ -1,0 +1,80 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "r10i-v50-flexed-entry-integrated-v4": {
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:1e64a75698cb046e33302dc71fad0bd6207da70346427679f3d32b20e9b33c4d",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 3160,
+        "maximum_steps_per_child": 3512
+      },
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "coverage_basis": {
+        "task_contract": "sdk/recovery/r10i_flexed_entry_finite_cycle_contract_v1.json",
+        "task_contract_sha256": "sha256:640ded833f42ba173b02199cc900ae51c839fe805e28b07302b20da3d1d46cf1",
+        "source_closure": "sdk/development/v50_godot_cycle_stop_closure_v1.json",
+        "source_closure_sha256": "sha256:814fcdd31764773984055b788d02618a1086aa379e41a7c0164d550d9709cec7",
+        "maximum_descent_steps": 240,
+        "maximum_canonical_recovery_steps": 1200,
+        "maximum_walking_commands": 1600,
+        "stopping_commands": 120,
+        "settled_commands": 30,
+        "maximum_no_kick_solver_steps": 2312,
+        "maximum_kicked_solver_steps": 3512,
+        "tail_derivation": "Kicked: 240+1200+1600+120=3160; no-kick: at most 240 neutral +1600 walking+120 stop=1960, within the shared bound.",
+        "resource_derivation": "320 + 30 + 2 + role-specific tail",
+        "baseline_reused": false,
+        "equal_horizon_effect_claimed": false,
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_attempt_sha256": "sha256:64455211e73de7a2ebbe8d06e973a94276b94c719fcc2d474598112df9fa883f",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "new_controller_preserves_pre_stance_motion_and_limits": true,
+        "motion_equality_test": "recovery_runtime::tests::ramped_neutral_stance_control_tests::v20_preserves_every_pre_stance_command_and_all_limits",
+        "historical_recovery_checkpoint_scope": "Unchanged V20 recovery regression only; no R10I physical result.",
+        "reader_fixture_revision_source": "sdk/recovery/r10g_first_safety_gate_refusal_v1.json",
+        "reader_fixture_revision_source_sha256": "sha256:1061531b5bd3b11d0c05958926b3b4399185e7a8b7c1cdae75049058f517f594",
+        "walking_frame_fixture_revision_source": "sdk/recovery/r10g_walking_frame_safety_gate_refusal_v1.json",
+        "walking_frame_fixture_revision_source_sha256": "sha256:65bd9cdfe04e0e0a7890aff2c79faf54bc682b34108df9ac17c80f06f168bc83",
+        "maximum_neutral_stance_entry_commands": 240,
+        "launcher_gate_fixture_revision_source": "sdk/recovery/r10h_first_safety_gate_refusal_v1.json",
+        "launcher_gate_fixture_revision_source_sha256": "sha256:9b15bb171a644048741c942d82ef29e3d789f9fa20f4e7e98f1bc69a6b839abd",
+        "neutral_frame_revision_source": "sdk/recovery/r10h_neutral_frame_refusal_v1.json",
+        "neutral_frame_revision_source_sha256": "sha256:92052a8606e4770cac1ef1506f66d149c3fcb1bf8c7ec8ea2d3f26f119a59b34",
+        "entry_component": "sdk/recovery/r10i_joint_pose_entry_implementation_v1.json",
+        "entry_component_sha256": "sha256:3929f72955d7f3e58138cdefeaf8e08c73a770c99bd85df3c8f6a8da4de247f1",
+        "entry_diagnostic_closure": "sdk/recovery/r10h_stance_entry_pair_closure_v1.json",
+        "entry_diagnostic_closure_sha256": "sha256:19e4ec93abfe5e49d519c37e80746e5b25c2075ea8aec629e646514384f6bcbf"
+      },
+      "coverage_adequacy": "One fresh seed-40200 pair through the actual isolated worker, native adapter and cold reader. Common V6 setup and 30-command BW5R-B prefix remain exact. No-kick uses the separate measured-joint flexed entry for at most 240 commands: fresh native memory, zero first actuation, bounded smoothstep to existing V50 under-hip geometry, zero forward/yaw request, completed reference ramp plus 30 consecutive measured-ready samples, explicit session finalization, then fresh V50. Kicked keeps native kick, passive descent, V20/V7 recovery and current readiness guard. Preserve all four planned foot cycles, 120 stopping commands, every native contact/loss and refusal. Test actual producer precision, arm-level handoff linkage, actual recovery-completion phase, command/memory/event linkage and complete independent replay before physics. The new DLL contains a separate entry component and reproduces all 1157 retained V50 native responses byte exactly. No held-out, robustness, equivalence, acceptance or release authority. R10I v2 corrects only shared candidate-reader fixture classification for the new bounded entry phase. The full baseline fixture stops before entry and delegates actual entry native/capture/replay coverage to the bound entry suites. The 8244936e gate failure is preserved with no physical child. Core, DLL, entry math, runtime command behavior, task criteria and held-out fixtures are unchanged. R10I v3 corrects two shared zero-world defects exposed by the 802763b3 candidate-schedule gate stage: the shared development walking evaluator admitted the neutral_stance_entry segment only for the R10H neutral policy, so the R10I joint-pose entry session could never finalize, and the shared candidate-schedule finalizer fixture bound legacy BW5R-B identity instead of the selected entry's native identity. The evaluator now admits the selected joint-pose entry policy for that segment and the fixture binds the selected entry's native policy. The 802763b3 gate failure is preserved with no physical child. Core, DLL, entry math, runtime command behavior, task criteria and held-out fixtures are unchanged. R10I v4 corrects one shared zero-world test exposed by the 669d7405 candidate-walking-frame gate stage: the historical-frame horizon test enumerated the R10G and R10H finite routes but not the R10I flexed route, so it expected the pre-finite 986/1338 step horizon instead of the bound 3160/3512 finite limits. The test now lists the flexed route alongside them. The 669d7405 gate failure is preserved with no physical child. Core, DLL, entry math, runtime command behavior, task criteria and held-out fixtures are unchanged.",
+      "coverage_question": "One fresh seed-40200 pair through the actual isolated worker, native adapter and cold reader. Common V6 setup and 30-command BW5R-B prefix remain exact. No-kick uses the separate measured-joint flexed entry for at most 240 commands: fresh native memory, zero first actuation, bounded smoothstep to existing V50 under-hip geometry, zero forward/yaw request, completed reference ramp plus 30 consecutive measured-ready samples, explicit session finalization, then fresh V50. Kicked keeps native kick, passive descent, V20/V7 recovery and current readiness guard. Preserve all four planned foot cycles, 120 stopping commands, every native contact/loss and refusal. Test actual producer precision, arm-level handoff linkage, actual recovery-completion phase, command/memory/event linkage and complete independent replay before physics. The new DLL contains a separate entry component and reproduces all 1157 retained V50 native responses byte exactly. No held-out, robustness, equivalence, acceptance or release authority. R10I v2 corrects only shared candidate-reader fixture classification for the new bounded entry phase. The full baseline fixture stops before entry and delegates actual entry native/capture/replay coverage to the bound entry suites. The 8244936e gate failure is preserved with no physical child. Core, DLL, entry math, runtime command behavior, task criteria and held-out fixtures are unchanged. R10I v3 corrects two shared zero-world defects exposed by the 802763b3 candidate-schedule gate stage: the shared development walking evaluator admitted the neutral_stance_entry segment only for the R10H neutral policy, so the R10I joint-pose entry session could never finalize, and the shared candidate-schedule finalizer fixture bound legacy BW5R-B identity instead of the selected entry's native identity. The evaluator now admits the selected joint-pose entry policy for that segment and the fixture binds the selected entry's native policy. The 802763b3 gate failure is preserved with no physical child. Core, DLL, entry math, runtime command behavior, task criteria and held-out fixtures are unchanged. R10I v4 corrects one shared zero-world test exposed by the 669d7405 candidate-walking-frame gate stage: the historical-frame horizon test enumerated the R10G and R10H finite routes but not the R10I flexed route, so it expected the pre-finite 986/1338 step horizon instead of the bound 3160/3512 finite limits. The test now lists the flexed route alongside them. The 669d7405 gate failure is preserved with no physical child. Core, DLL, entry math, runtime command behavior, task criteria and held-out fixtures are unchanged.",
+      "uncovered_paths": [
+        "held-out acceptance",
+        "cross-engine recovery acceptance",
+        "robustness or equivalence",
+        "arbitrary morphology or terrain"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "r10i_v50_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "r10i_v50_front_left_first_post_interaction_v1",
+      "walking_policy_id": "r10i_v50_flexed_entry_route_v1",
+      "walking_policy_contract_sha256": "sha256:66f2af73a09cbd426e00d213aa95dbb2039b706974c68de75d0f7ada70d2b56c"
+    }
+  }
+}

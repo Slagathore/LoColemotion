@@ -1,0 +1,127 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D20-ACTUAL-SESSION-INTEGRATION-RECOVERY-GODOT-DEVELOPMENT",
+  "question_class": "development",
+  "declared_physical_world_count": 3,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 1,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 4,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D20-R23D19-IMMUTABLE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d19_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D19_CLOSURE_PASS ",
+      "raw_sha256": "sha256:ab2f507bc8617424bb8a7c1cbf4cda6ff1d1d6ecdfe412e33a6b4203f07757b3"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 2,
+      "gate_id": "R23D20-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d20_campaign_roles.ps1",
+      "arguments": ["-Role", "worker", "-Godot", "<canonical-godot>", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D20_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:16ab0cd041780e7d222be58322ffe1e0d37bed9d19e74b3e4a221a5d8ba4336c"
+    },
+    {
+      "ordinal": 3,
+      "gate_id": "R23D20-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d20_campaign_roles.ps1",
+      "arguments": ["-Role", "evaluator", "-Godot", "<canonical-godot>", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D20_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:16ab0cd041780e7d222be58322ffe1e0d37bed9d19e74b3e4a221a5d8ba4336c"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D20-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d20_campaign_roles.ps1",
+      "arguments": ["-Role", "supervisor", "-Godot", "<canonical-godot>", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D20_CAMPAIGN_SUPERVISOR_GATE_PASS ",
+      "raw_sha256": "sha256:16ab0cd041780e7d222be58322ffe1e0d37bed9d19e74b3e4a221a5d8ba4336c"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d20_physical_implementation_contract_v1.json",
+    "raw_sha256": "sha256:05c287411864343f982833e6aa31d8c387a183bdc32e6a1271d1fd00ebbfe3ac"
+  },
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "tests/test_sdk_qsdk_r23d20_godot_jolt_physical_worker.gd",
+      "source_raw_sha256": "sha256:9bff99f597ab81189002314000f24e6b373ba3ccf98352e8f51cf16878fd6a9d",
+      "test_gate_id": "R23D20-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d20_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:16ab0cd041780e7d222be58322ffe1e0d37bed9d19e74b3e4a221a5d8ba4336c"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d20_physical_evaluator.py",
+      "source_raw_sha256": "sha256:16c82f71ca655c1114ba4ab4b9fb88b4c5490fa29fbf37555c1a74d7c141b5a5",
+      "test_gate_id": "R23D20-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d20_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:16ab0cd041780e7d222be58322ffe1e0d37bed9d19e74b3e4a221a5d8ba4336c"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d20_supervisor.ps1",
+      "source_raw_sha256": "sha256:2d70b04d5c2f06b6876ecfbbb9c8c1aa7af945aef3408d32d4333066b42bea2b",
+      "test_gate_id": "R23D20-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d20_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:16ab0cd041780e7d222be58322ffe1e0d37bed9d19e74b3e4a221a5d8ba4336c"
+    }
+  ],
+  "source_bindings": [
+    {"path":".gitattributes","raw_sha256":"sha256:173aaa919eca93954bff30f2ec0b817a2e5c1467fa1a01dab13c63aa0d548eac"},
+    {"path":"tests/test_qsdk_r23d19_closure.ps1","raw_sha256":"sha256:ab2f507bc8617424bb8a7c1cbf4cda6ff1d1d6ecdfe412e33a6b4203f07757b3"},
+    {"path":"tests/test_qsdk_r23d20_campaign_roles.ps1","raw_sha256":"sha256:16ab0cd041780e7d222be58322ffe1e0d37bed9d19e74b3e4a221a5d8ba4336c"},
+    {"path":"sdk/turning/r23d20_physical_implementation_contract_v1.json","raw_sha256":"sha256:05c287411864343f982833e6aa31d8c387a183bdc32e6a1271d1fd00ebbfe3ac"},
+    {"path":"sdk/turning/r23d20_physical_evaluator.py","raw_sha256":"sha256:16c82f71ca655c1114ba4ab4b9fb88b4c5490fa29fbf37555c1a74d7c141b5a5"},
+    {"path":"sdk/turning/r23d20_physical_trace.py","raw_sha256":"sha256:a7ee577d8bb1907927f6fbca42347dbf2ba8c6b930b044eca53cee03d0eba3a6"},
+    {"path":"sdk/publish_qsdk_r23d20_trace.ps1","raw_sha256":"sha256:b6513276663c52c3dfca3724a661348ae197d34393fa33feb1ee49ec8d5fc4a7"},
+    {"path":"sdk/run_qsdk_r23d20_supervisor.ps1","raw_sha256":"sha256:2d70b04d5c2f06b6876ecfbbb9c8c1aa7af945aef3408d32d4333066b42bea2b"},
+    {"path":"sdk/locomotion_campaign_attestation_adoption.ps1","raw_sha256":"sha256:3e423d34ee9b9c309b67d4e15547dc7044304c89d1bfa417bcf0831ebd037684"},
+    {"path":"sdk/locomotion_campaign_attestation_adoption_contract_v1.json","raw_sha256":"sha256:5cb7dd7e2de63500d099fe771622ab40928d31af8161f7c007e2973f430e9128"},
+    {"path":"sdk/run_locomotion_campaign_attestation_adoption.ps1","raw_sha256":"sha256:2f0bf0251cb7aa026ed675b2ff7b4e61ccfabddc46828ea0b217e4bfe481ce21"},
+    {"path":"sdk/turning/r23d20_actual_session_integration_recovery_preregistration_v1.json","raw_sha256":"sha256:aa402b8b33d579717a6215c1c16565e4a3978f109e2ab64fbbdb75669b429434"},
+    {"path":"tests/test_sdk_qsdk_r23d20_godot_jolt_physical_worker.gd","raw_sha256":"sha256:9bff99f597ab81189002314000f24e6b373ba3ccf98352e8f51cf16878fd6a9d"},
+    {"path":"sdk/turning/r23d19_physical_closure_v1.json","raw_sha256":"sha256:50b5d7b18552aff7815e1eaff83bb9ce0e9f52833dd5e74e9aa8a6789dda8c9b"},
+    {"path":"tests/test_locomotion_campaign_attestation_adoption.ps1","raw_sha256":"sha256:0a7aece26658ebd69e2c20ab57f258d6b551c2dbf60110bb3abcfe35ee9d19f1"},
+    {"path":"sdk/core/src/controller.rs","raw_sha256":"sha256:f0d716225d4a318951942254339ddfe659f80b48a2faef9eec126d6768765ea2"},
+    {"path":"sdk/core/src/runtime.rs","raw_sha256":"sha256:d296706afbd800f638351708b8caaab722d235c102f467bf6bc51daa4b219b68"},
+    {"path":"scripts/lab/gait/physical_wave_gait_quadruped.gd","raw_sha256":"sha256:0eed65cf6b8231ec4077b936c0ee4a1f521116a92759e9779ca111604b3614c2"},
+    {"path":"scripts/lab/gait/sdk_godot_jolt_adapter.gd","raw_sha256":"sha256:72c4f8c9f13bf8980609a36ffe805b3f35afcde0931d5a643d7165c4e299003b"},
+    {"path":"tests/test_qsdk_r23d20_implementation.ps1","raw_sha256":"sha256:1e5c4784c611e94ca9252d452c39ddfe9039ee87238204b31ee0ffdbbc5fe5be"},
+    {"path":"sdk/turning/test_r23d20_physical_trace.py","raw_sha256":"sha256:59952fc188c1b953f222b3a4d3e5b5c3013ce4cf13f7b97bde5e59877dea9f1f"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

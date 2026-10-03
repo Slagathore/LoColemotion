@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/certification_report_attestation_v1.schema.json",
+  "title": "SporeSpore detached BR1 certification-report attestation v1",
+  "description": "A domain-separated HMAC receipt over the exact final BR1 certification-report bytes and their source/campaign identity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "domain",
+    "algorithm",
+    "key_id",
+    "certification_id",
+    "report_name",
+    "report_sha256",
+    "report_bytes",
+    "report_schema",
+    "report_status",
+    "certification",
+    "commit_sha",
+    "campaign_id",
+    "campaign_sha256",
+    "attested_utc",
+    "tag"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br1_certification_report_attestation.v1"
+    },
+    "domain": {
+      "const": "sporespore.lab.br1_certification_report_attestation.v1"
+    },
+    "algorithm": {
+      "const": "hmac-sha256"
+    },
+    "key_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "certification_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+    },
+    "report_name": {
+      "const": "br1_certification_report.json"
+    },
+    "report_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "report_bytes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 67108864
+    },
+    "report_schema": {
+      "const": "sporespore.lab.br1_certification_report.v1"
+    },
+    "report_status": {
+      "const": "pass"
+    },
+    "certification": {
+      "const": "BR1_L0_EVIDENCE_PIPELINE"
+    },
+    "commit_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "campaign_id": {
+      "const": "BR1_L0_CERTIFICATION_V1"
+    },
+    "campaign_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "attested_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^hmac-sha256:[a-f0-9]{64}$"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}

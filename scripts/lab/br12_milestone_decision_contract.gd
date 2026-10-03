@@ -1,0 +1,244 @@
+class_name LabBr12MilestoneDecisionContract
+extends RefCounted
+# gdlint: disable=max-line-length
+
+## Exact semantic contract for Cole's bounded BR12 milestone decision.
+##
+## BR12 accepts observer/planner truth only. Validation is pure, writes
+## nothing, and cannot turn static feasibility into physical recovery.
+
+const SchemaValidatorScript := preload("res://scripts/lab/schema_validator.gd")
+
+const SCHEMA := "sporespore.lab.br12_milestone_decision.v1"
+const SCHEMA_PATH := "res://data/lab/schemas/br12_milestone_decision_v1.schema.json"
+const DECISION_ID := "BR12_POSE_RECOVERY_FEASIBILITY_DECISION_V1"
+const MILESTONE_ID := "BR12_POSE_AND_RECOVERY_FEASIBILITY"
+
+const CERTIFICATION_CLAIM_BOUNDARY := "This campaign can certify only the exact source-pinned BR12.0 semantic body-region contact-role registry and labeled-box basis-oracle scope; BR12.1 deterministic profile-specific canonical-pose classifier scope; BR12.2 semantic anatomy-role recovery-profile matching scope; and BR12.3 conservative static torque, power, structural, friction, and reach feasibility scope. BR12.4 is integrity-only containment and cannot substitute for a milestone program. The BR12 claim boundary is verbatim: BR12 is observer/planner truth only. It classifies only declared labeled-box canonical poses, preserves ambiguous or invalid evidence as unknown, names missing anatomy, and reports whether one exact profile passes preregistered static inequalities before actuation. A feasible report is not dynamic execution evidence. No BR12 program contains a recovery controller, emits an actuator command, wrench, or joint target, creates or maintains contact, applies external assistance, raises a body, hands off to stance, repairs a creature, or guides one automatically. It establishes no physical self-righting or getting up, free-3D standing or bracing, generalized recovery, gait, or walking."
+
+const DECISION_CLAIM_BOUNDARY := "BR12 accepts only the exact BR12.0, BR12.1, BR12.2, and BR12.3 program claim scopes in certification br12_20260723T211754Z_0ace3791 at source commit 0ace37912babd34bfc42e24414582e3bf53cb0c8. BR12.4 remains integrity-only. The certification report's verbatim claim boundary, exact semantic body-region roles, labeled-box bases, profile-specific canonical pose set, unknown-on-ambiguity behavior, named missing-anatomy failures, and conservative static torque, power, structural, friction, and reach gates remain controlling. Feasible remains a static planning-screen result, not dynamic execution, physical recovery, stance handoff, or getting-up evidence."
+
+const EXPECTED_AUTHORIZATION := {
+	"instruction":
+	(
+		"continue the pipeline. i defer to your judgement on what should be "
+		+ "accepted. assume i accept whatever it is that you recommend and "
+		+ "keep going"
+	),
+	"interpretation":
+	"delegated_bounded_acceptance_of_recommended_br12_pose_and_static_recovery_feasibility",
+	"review_path": "docs/BR12_POSE_RECOVERY_MILESTONE_DECISION_REVIEW.md",
+	"review_commit_sha": "d98c1b77941fdebe8796b5b2b81671c88f3c3873",
+	"review_sha256": "sha256:5bfb8639d6d2a1a7d14c7259ec8170df8c625017a7dbe4317e6ad4ab284a30fe",
+}
+
+const EXPECTED_EVIDENCE := {
+	"evidence_family": "br12_certification_report_v1",
+	"certification_id": "br12_20260723T211754Z_0ace3791",
+	"certification_contract_id": MILESTONE_ID,
+	"campaign_id": "BR12_POSE_RECOVERY_PROMOTION_CAMPAIGN_V1",
+	"campaign_sha256": "sha256:10127cad5f1a180a871d0bd7c8ea992dd3cb22fa2056e1f1a4efeb00d17b8da0",
+	"certification_claim_boundary": CERTIFICATION_CLAIM_BOUNDARY,
+	"report_schema": "sporespore.lab.br12_certification_report.v1",
+	"report_status": "pass",
+	"report_sha256": "sha256:8c9179471685a3278950c7dd5648fcf0551901996a68ed702b3261e57bf23bda",
+	"report_bytes": 24846,
+	"report_locator":
+	"LabEvidence/BR12/br12_20260723T211754Z_0ace3791/br12_certification_report.json",
+	"report_generated_utc": "2026-07-23T21:19:03.0753864Z",
+	"receipt_schema": "sporespore.lab.br12_certification_report_attestation.v1",
+	"receipt_sha256": "sha256:0c5767c79bbffe400e9640c3c221961fef5116926ad02821ab13eb067691fc07",
+	"receipt_locator":
+	(
+		"LabTrust/v1/br12_certification_reports_v1/receipts/"
+		+ "bacef86ef15701f795b7926c5cef95d0261e438f4233460c57ef6047268c0c5b.json"
+	),
+	"receipt_attested_utc": "2026-07-23T21:19:12Z",
+	"receipt_key_id": "sha256:89d6e582f28664e93d12085c164cdf8fe40a76b5bfb2e382c9666279cd953a20",
+	"source_commit_sha": "0ace37912babd34bfc42e24414582e3bf53cb0c8",
+	"source_inventory_sha256":
+	"sha256:f82f6c1941d0a43c8e86d220e9800c70a3229be1c2a36c9a3b7f3737f8378040",
+	"source_file_count": 418,
+	"br1_inventory_sha256":
+	"sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+	"br1_inventory_unchanged": true,
+	"engine_version": "4.7.stable.mono.official.5b4e0cb0f",
+	"engine_sha256": "sha256:baa909d0a905021da80cfc831713e9d3ba4bd0935ac3b93ba4c77dc140cfecc4",
+	"programs_required": 5,
+	"programs_passed": 5,
+	"replicates_per_program": 2,
+	"bundles_required": 10,
+	"bundles_passed": 10,
+	"assertions_required": 150,
+	"assertions_passed": 150,
+	"milestone_programs": 4,
+	"milestone_assertions": 122,
+	"supplementary_programs": 0,
+	"supplementary_assertions": 0,
+	"integrity_programs": 1,
+	"integrity_assertions": 28,
+	"target_process_invocations": 10,
+	"unique_target_processes": 10,
+	"pid_recycle_events": 0,
+	"receipts_verified": 10,
+	"production_attestation_verified": true,
+}
+
+const ACCEPTED_CONTRACTS := [
+	"body_region_contact_role_registry_v1",
+	"labeled_box_pose_oracle_v1",
+	"profile_specific_pose_classifier_v1",
+	"semantic_recovery_profile_v1",
+	"static_recovery_feasibility_report_v1",
+]
+
+const ACCEPTED_CAPABILITIES := [
+	"The declared BR12.0 registry preserves exact semantic body-region support roles and the labeled-box oracle fixes the authored +X right, +Y up, -Z forward basis while invalid or nonfinite evidence fails closed",
+	"The declared BR12.1 classifier deterministically identifies only the exact upright, prone, supine, left-side, and right-side canonical poses and preserves ambiguous, conflicting, incomplete, invalid, or nonfinite evidence as unknown",
+	"The declared BR12.2 recovery profile addresses anatomy only through semantic roles, binds one exact prone planning sequence, and names missing required roles without granting controller authority",
+	"The declared BR12.3 analyzer applies conservative static torque, power, structural, friction, and reach screens and names infeasible phases before actuation",
+	"A BR12.3 feasible result is accepted only as a profile-specific static planning screen and not as dynamic recovery, physical self-righting, or getting-up evidence",
+]
+
+const SUPPLEMENTARY_CONSTRAINTS := [
+	"BR12.4 is integrity-only containment and cannot substitute for BR12.0, BR12.1, BR12.2, or BR12.3",
+	"The canonical pose set is exactly upright, prone, supine, left_side, and right_side under the certified labeled-box bases and profile thresholds",
+	"Ambiguous, conflicting, invalid, nonfinite, or insufficient pose evidence remains unknown rather than being guessed",
+	"Missing required anatomy remains named infeasible rather than being silently remapped to a different body region",
+	"Static feasibility requires the certified conservative torque, power, structural, friction, and reach margins",
+	"Feasible is not dynamic execution proof and no physical body rise or stance handoff was run",
+	"No controller, actuator command, wrench, joint target, contact creation, contact maintenance, or external assistance exists in the accepted family",
+	"Ventral support may be temporary recovery support but is not relabeled as steady stance",
+	"Every result remains bounded to the certified registries, labeled-box bases, canonical-pose profile, semantic anatomy roles, static thresholds, engine, source, and program scopes",
+]
+
+const EXCLUDED_CAPABILITIES := [
+	"Physical self-righting or getting up",
+	"Dynamic recovery execution or stance handoff",
+	"Controller, actuator, wrench, or joint-target authority",
+	"Contact creation, maintenance, or external assistance",
+	"Generalization beyond the exact labeled-box bases, pose profiles, anatomy roles, and thresholds",
+	"Free 3D standing, bracing, recovery, or unconstrained balance",
+	"Measured per-contact, per-body, per-foot, or per-toe load allocation",
+	"Gait, candidate walking, or walking",
+	"Creature repair or automatic creature guidance",
+	"Encyclopedia admission or BR13 constrained-get-up acceptance",
+]
+
+const DOWNSTREAM_OPEN := [
+	"Admit selected BR12.0 through BR12.3 observations only through a separate append-only operation",
+	"Choose and preregister one BR13 canonical morphology, one starting pose, and one material scaffold without changing BR12",
+	"Implement and certify a separate dynamic recovery controller, phase sequence, and timeout family",
+	"Measure physical body rise, energy, scaffold reaction, contact legality, and stance handoff in BR13",
+	"Authorize creature guidance only from separately admitted knowledge and a later explicit guidance decision",
+	"Prove every future free-3D recovery, gait, and walking milestone separately",
+]
+
+const KNOWLEDGE_EFFECTS := {
+	"entries_admitted_by_decision": 0,
+	"automatic_admission": false,
+	"automatic_creature_guidance_allowed": false,
+	"development_drafts_remain_non_entries": true,
+}
+
+const FAILURE_JSON_INVALID := "BR12_MILESTONE_DECISION_JSON_INVALID"
+const FAILURE_SCHEMA_INVALID := "BR12_MILESTONE_DECISION_SCHEMA_INVALID"
+const FAILURE_SEMANTICS_INVALID := "BR12_MILESTONE_DECISION_SEMANTICS_INVALID"
+
+
+static func validate_candidate(value: Variant) -> Dictionary:
+	if typeof(value) != TYPE_DICTIONARY:
+		return _failure(FAILURE_JSON_INVALID, "BR12 milestone decision root must be a JSON object.")
+	var decision: Dictionary = value
+	var schema_result := SchemaValidatorScript.validate_file(SCHEMA_PATH, decision)
+	if not bool(schema_result.get("ok", false)):
+		return _failure(
+			FAILURE_SCHEMA_INVALID,
+			"BR12 milestone decision fails its strict owned schema.",
+			{"schema_errors": schema_result.get("errors", [])}
+		)
+	var errors: Array[String] = []
+	if String(decision.get("schema", "")) != SCHEMA:
+		errors.append("SCHEMA_MISMATCH")
+	if String(decision.get("decision_id", "")) != DECISION_ID:
+		errors.append("DECISION_ID_MISMATCH")
+	if String(decision.get("milestone_id", "")) != MILESTONE_ID:
+		errors.append("MILESTONE_ID_MISMATCH")
+	if int(decision.get("decision_revision", -1)) != 1:
+		errors.append("DECISION_REVISION_MISMATCH")
+	if String(decision.get("status", "")) != "accepted":
+		errors.append("STATUS_NOT_ACCEPTED")
+	var decider_value: Variant = decision.get("decided_by")
+	if (
+		typeof(decider_value) != TYPE_DICTIONARY
+		or String((decider_value as Dictionary).get("id", "")) != "Cole"
+	):
+		errors.append("DECIDER_MISMATCH")
+	_append_dictionary_differences(
+		errors, "AUTHORIZATION", decision.get("authorization"), EXPECTED_AUTHORIZATION
+	)
+	_append_dictionary_differences(
+		errors, "EVIDENCE", decision.get("evidence_basis"), EXPECTED_EVIDENCE
+	)
+	if not _arrays_equal(decision.get("accepted_contracts"), ACCEPTED_CONTRACTS):
+		errors.append("ACCEPTED_CONTRACTS_MISMATCH")
+	if not _arrays_equal(decision.get("accepted_capabilities"), ACCEPTED_CAPABILITIES):
+		errors.append("ACCEPTED_CAPABILITIES_MISMATCH")
+	if not _arrays_equal(decision.get("supplementary_constraints"), SUPPLEMENTARY_CONSTRAINTS):
+		errors.append("SUPPLEMENTARY_CONSTRAINTS_MISMATCH")
+	if String(decision.get("claim_boundary", "")) != DECISION_CLAIM_BOUNDARY:
+		errors.append("CLAIM_BOUNDARY_MISMATCH")
+	if not _arrays_equal(decision.get("excluded_capabilities"), EXCLUDED_CAPABILITIES):
+		errors.append("EXCLUDED_CAPABILITIES_WEAKENED")
+	if not _arrays_equal(decision.get("downstream_open"), DOWNSTREAM_OPEN):
+		errors.append("DOWNSTREAM_OPEN_MISMATCH")
+	_append_dictionary_differences(
+		errors, "KNOWLEDGE_EFFECTS", decision.get("knowledge_effects"), KNOWLEDGE_EFFECTS
+	)
+	if not _arrays_equal(decision.get("supersedes"), []):
+		errors.append("SUPERSEDES_MISMATCH")
+	if not errors.is_empty():
+		return _failure(
+			FAILURE_SEMANTICS_INVALID,
+			"BR12 milestone decision differs from Cole's bounded acceptance.",
+			{"semantic_errors": errors}
+		)
+	return {"ok": true, "failure_code": "", "decision": decision.duplicate(true)}
+
+
+static func _append_dictionary_differences(
+	errors: Array[String], prefix: String, actual_value: Variant, expected: Dictionary
+) -> void:
+	if typeof(actual_value) != TYPE_DICTIONARY:
+		errors.append("%s_MISSING" % prefix)
+		return
+	var actual: Dictionary = actual_value
+	if actual.size() != expected.size():
+		errors.append("%s_FIELD_SET_MISMATCH" % prefix)
+	for key_value in expected.keys():
+		var key := String(key_value)
+		if actual.get(key) != expected[key]:
+			errors.append("%s_%s_MISMATCH" % [prefix, key.to_upper()])
+
+
+static func _arrays_equal(left_value: Variant, right: Array) -> bool:
+	if typeof(left_value) != TYPE_ARRAY:
+		return false
+	var left: Array = left_value
+	if left.size() != right.size():
+		return false
+	for index in range(right.size()):
+		if left[index] != right[index]:
+			return false
+	return true
+
+
+static func _failure(failure_code: String, message: String, extra: Dictionary = {}) -> Dictionary:
+	var result := {
+		"ok": false,
+		"failure_code": failure_code,
+		"message": message,
+	}
+	for key in extra.keys():
+		result[key] = extra[key]
+	return result

@@ -1,0 +1,51 @@
+{
+  "schema_version": "sporespore_r10al_support_anchored_propagation_study_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "prospective_bounded_model_propagation",
+    "question_class": "development"
+  },
+  "question": "Does the frozen R10AL one-step planner keep making geometric progress from two declared exposed starts, or stall under optimistic exact-tracking assumptions?",
+  "dependencies": [
+    {
+      "path": "sdk/recovery/r10al_support_anchored_leveling_result_v1.json",
+      "byte_length": 886223,
+      "raw_sha256": "sha256:536c3dd1bbd7195955f6f322c58ae4271d1027352207de365f6276c539adb0a2"
+    },
+    {
+      "path": "sdk/conformance/r10al_support_anchored_model.py",
+      "byte_length": 6675,
+      "raw_sha256": "sha256:6a24fd07325253b0efdffc86afa7010462ea615d763ebc1da24f9f6eb643aa4a"
+    }
+  ],
+  "population": {
+    "source_report": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-fb38afc4e51649cd96e804265d60c4be/children/kick_passive_recovery_resume/worker_report.json",
+    "raw_sha256": "sha256:4c85be6801b16a7f60d0842dd2295d976bc9f5adb74f7589c525f050bdd373e9",
+    "starts": [
+      "First nonterminal partial sample with all four ordinary positive-bearing feet.",
+      "First nonterminal partial sample with both rear feet positive-bearing and neither front foot positive-bearing."
+    ]
+  },
+  "propagation": {
+    "maximum_updates_per_start": 600,
+    "stop_rule": "First explicit no-selected-plan refusal, or all 600 updates.",
+    "state_update": "Apply only mathematical virtual translation, normalized quaternion blend and joint targets. Recompute ideal FK endpoints, torso-local COM projection, horizontal heading and four-foot center.",
+    "fixed_quantities": "Retain original positive-bearing and qualified masks, initial inferred floor and height goal, morphology, torso-local COM. No contact acquisition is simulated.",
+    "observations": "Snapshot every 60 updates and at stop; record each chosen plan, torso-up direction, goal gap, minimum nonbearing modeled cap clearance and anchored endpoint drift.",
+    "limitations": [
+      "Exact virtual torso and joint tracking is assumed, not predicted.",
+      "A free endpoint crossing the floor remains a modeled penetration; never convert it into contact or support.",
+      "No contact forces, friction, collision response, actuator tracking or new native observations.",
+      "No controller selection, world launch, deadline relaxation or physical success claim."
+    ]
+  },
+  "claim_boundary": {
+    "controller_selected": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

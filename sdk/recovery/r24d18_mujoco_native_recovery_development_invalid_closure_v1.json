@@ -1,0 +1,131 @@
+{
+  "schema_version": "sporespore_qsdk_r24d18_mujoco_native_recovery_development_invalid_closure_v1",
+  "gate_id": "QSDK-R24D18",
+  "campaign_id": "QSDK-R24D18-MUJOCO-NATIVE-RECOVERY-ROUTE-DEVELOPMENT-GHOST",
+  "closed_local_date": "2026-08-26",
+  "status": "closed_retained_invalid_integration_result_no_behavior_interpretation",
+  "question_class": "development",
+  "source_commit": "3b1714eaafc29d20629bf15fd6350ba859dc3fab",
+  "contract_path": "sdk/recovery/r24d18_mujoco_native_recovery_development_contract_v1.json",
+  "contract_raw_sha256": "sha256:b3177e3bdc317473879f27491c504579b7180d390d5b6acba30193bfd81c1013",
+  "qualification": {
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d18-qualification-20260827T032729827Z-3b1714ea",
+    "receipt_path": "qualification_receipt.json",
+    "receipt_raw_sha256": "sha256:297a131aa603e1256a0055b197fd380a854f70122535fa455d0be8b4eb5a10fa",
+    "passed": true,
+    "source_commit": "3b1714eaafc29d20629bf15fd6350ba859dc3fab",
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false
+  },
+  "physical_attempt": {
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d18-mujoco-recovery-ghost-20260827T032745138Z-3b1714ea",
+    "selected_cell_id": "development_nominal",
+    "selected_seed": 1129522465,
+    "selected_horizon_steps_per_arm": 14,
+    "held_out_cell_access_count": 0,
+    "held_out_selector_invocation_count": 0,
+    "candidate_arm_entered": true,
+    "matched_zero_arm_entered": false,
+    "model_construction_count": 1,
+    "data_construction_count": 1,
+    "world_attempt_count": 1,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "initializer_executed": false,
+    "native_observation_collected": false,
+    "controller_command_planned": false,
+    "controller_command_applied": false,
+    "portable_paired_evaluation_executed": false,
+    "route_coverage_passed": false,
+    "result_class": "invalid_integration_result",
+    "error_type": "RuntimeError",
+    "error": "C6_MJC_SP_DEV_ACTUATOR_PROFILE_MISMATCH:front_left_knee_motor",
+    "execution_count_inference": "The exact retained stack and source order show that MjModel.from_xml_string, public physical_binding_receipt, and MjData construction completed before the inherited model-identity validator raised. No initializer, mj_forward, mj_step1, mj_step2, collector, controller, or evaluator call was reached.",
+    "execution_count_inference_is_direct_runtime_counter": false
+  },
+  "retained_artifacts": [
+    {
+      "path": "attempt_reservation.json",
+      "byte_length": 1739,
+      "raw_sha256": "sha256:fd87a858d2d93a796f1a5809eea51a71564610dc4cfeb9dbdfda01ec07b20ac0"
+    },
+    {
+      "path": "invalid_result.json",
+      "byte_length": 2091,
+      "raw_sha256": "sha256:8e83162ac746673d69a7025e84342b221e0056e6e2c0c884dfc4e20772ac3a3a"
+    },
+    {
+      "path": "operation_lock.json",
+      "byte_length": 380,
+      "raw_sha256": "sha256:b7a3210ee96934fa02b12a41f6afa923881e6614d89720336da4a9ace4940fc5"
+    },
+    {
+      "path": "supervisor_completion.json",
+      "byte_length": 942,
+      "raw_sha256": "sha256:8ba92ab22eb5abb7486649f053cb260de769d076342fa407b7b47e54819a8d4c"
+    },
+    {
+      "path": "worker_stderr.log",
+      "byte_length": 2117,
+      "raw_sha256": "sha256:7d7a6aca41ae096db029e0e615547c6f980e3d641859debd12749c33ea3dc177"
+    },
+    {
+      "path": "worker_stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "observed_cause": {
+    "class": "route_validator_integration_mismatch",
+    "description": "The genuine public-profile XML correctly bound the published per-actuator force ranges, including the enlarged knee cap. The recovery subclass then inherited an older generic validator that recomputed expected force ranges from the base compiled morphology. That validator therefore rejected the first knee before initialization even though the preceding public-profile binding check had accepted the intended published profile.",
+    "physics_behavior_failure": false,
+    "threshold_failure": false,
+    "selector_failure": false,
+    "evaluator_failure": false,
+    "result_interpretation_rewritten": false
+  },
+  "decision": {
+    "r24d18_result": "invalid_and_retained",
+    "r24d18_may_be_rerun": false,
+    "same_source_may_be_reused": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "sdk1_milestone_advanced": false,
+    "sdk1_completed_steps": 11,
+    "sdk1_total_steps": 20,
+    "full_program_completed_steps": 11,
+    "full_program_total_steps": 25
+  },
+  "next_boundary": {
+    "gate_id": "QSDK-R24D19",
+    "question_class": "development",
+    "work": "replace_the_incompatible_inherited_force_range_validator_with_an_exact_public_profile_readback_validator_add_a_zero_world_mutation_control_then_requalify_and_run_the_same_small_paired_route_coverage_ghost_as_a_distinct_successor",
+    "thresholds_changed": false,
+    "selector_changed": false,
+    "cell_changed": false,
+    "seed_changed": false,
+    "horizon_changed": false,
+    "evaluator_changed": false,
+    "held_out_cells_remain_sealed": true
+  },
+  "claim_boundary": {
+    "complete_zero_world_gate_passed": true,
+    "physical_question_opened": true,
+    "valid_physical_behavior_result_observed": false,
+    "native_route_coverage_proven": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "repeatability_rate_claimed": false,
+    "population_claimed": false,
+    "held_out_validation_claimed": false,
+    "cross_engine_recovery_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "closure_audit_path": "tests/test_qsdk_r24d18_mujoco_native_recovery_development_invalid_closure.py"
+}

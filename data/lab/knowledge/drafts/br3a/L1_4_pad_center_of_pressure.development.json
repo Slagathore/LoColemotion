@@ -1,0 +1,84 @@
+{
+  "schema": "sporespore.lab.br3a_development_observation.v1",
+  "entry_id": "L1.4.static_pad_center_of_pressure.draft_v1",
+  "cell_id": "L1.4",
+  "claim_status_ceiling": "development_observation",
+  "admissible_now": false,
+  "admission_blockers": [
+    "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+    "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+    "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+    "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+    "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+  ],
+  "evidence_source": {
+    "test_files": [
+      "res://tests/test_experimental_l1_4_pad_center_of_pressure.gd"
+    ],
+    "evidence_grade": "experimental_commissioning_test_report_only",
+    "promotion_grade_bundle_exists": false
+  },
+  "title": "Impulse-weighted CoP on a static 0.30 x 0.20 m pad tracks the projected COM within 4.94 mm",
+  "claim": "For the exact L1.4 free 2 kg pad with a 0.30 x 0.20 m footprint at seven preregistered internal load locations in independent worlds at 60 Hz, the impulse-weighted center of pressure moves strictly monotonically with the authored load location, mirrors for equal-magnitude edgeward loads, stays centered for the centered load, and tracks the projected center of mass with a worst mean error of 4.94 mm against the 6 mm gate while total predicted normal load balances measured gravity within 0.212 N against the 0.25 N gate.",
+  "scope": "One unjointed free 2 kg rigid pad, 0.30 x 0.08 x 0.20 m, on a flat static floor with friction 1.0, custom internal COM offsets in [-0.12, 0.12] m along x only, no clamp, rail, rotation lock, damping, or controller, 60 Hz Jolt physics, Godot 4.7, full_contacts_v2 raw-point observer.",
+  "mechanism": "In static equilibrium the center of pressure must lie below the projected center of mass and the total normal load must equal mg. The observer weights raw Jolt contact points by predicted normal impulse; that predicted impulse is a step-average solver estimate, so the result is a calibrated predicted-impulse CoP, not an exact continuous force transducer.",
+  "applicability": [
+    "Checking where load acts inside a finite static foot or pad",
+    "Calibrating impulse-weighted CoP instrumentation before articulated stance work"
+  ],
+  "failure_boundaries": [
+    "Does not provide a generalized continuous foot-force sensor",
+    "Does not cover dynamic center-of-pressure motion, rocking, or impacts",
+    "Does not cover articulated or compliant feet, toes, or actuated load redirection",
+    "Does not establish standing, bracing, fall arrest, getting up, or walking"
+  ],
+  "morphology_tags": [
+    "jolt",
+    "unary_rigid_body",
+    "foot_scale_pad"
+  ],
+  "parameter_effects": [
+    {
+      "parameter": "/fixture_parameters/custom_com_offset_x_m",
+      "change": "move across the preregistered [-0.12, 0.12] m grid",
+      "affects": "impulse-weighted center-of-pressure location",
+      "mechanism": "Static equilibrium places the CoP under the projected COM, so the measured CoP follows the authored internal load monotonically and mirrors by sign",
+      "hinges_on": [
+        "The pad staying planted, untilted, and slip-free through every trial",
+        "The raw contact manifold spanning the authored footprint"
+      ]
+    }
+  ],
+  "minimal_repair_rules": [
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "Measured CoP on a static pad diverges from the projected COM beyond the calibrated error",
+      "diagnosis": "The pressure observation is contaminated or the contact manifold does not span the footprint",
+      "smallest_change": "Revalidate observation contamination gates and manifold span before trusting the CoP channel",
+      "expected_effect": "CoP error returns inside the calibrated 6 mm envelope on the measured fixture",
+      "identity_preserved": [
+        "body plan",
+        "footprint geometry"
+      ],
+      "do_not_apply_when": [
+        "The pad is moving, rocking, articulated, or externally driven"
+      ]
+    }
+  ],
+  "unknowns": [
+    "How the CoP error envelope changes under dynamic loading or rocking",
+    "Whether the calibration holds for other footprint shapes and masses",
+    "How multiple same-body contact shapes change raw impulse interpretation, measured separately by L1.8"
+  ],
+  "does_not_establish": [
+    "standing",
+    "bracing",
+    "fall_arrest",
+    "getting_up",
+    "walking",
+    "exact_continuous_contact_force",
+    "dynamic_center_of_pressure"
+  ],
+  "supersedes": []
+}

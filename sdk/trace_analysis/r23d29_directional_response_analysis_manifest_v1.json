@@ -1,0 +1,153 @@
+{
+  "schema_version": "sporespore_retained_trace_lineage_manifest_v1",
+  "analysis_id": "QSDK-R23D29-DIRECTIONAL-RESPONSE-MEASUREMENT-D1",
+  "question_class": "postclosure_development_diagnosis",
+  "status": "prospective_analyzer_over_already_exposed_closed_evidence",
+  "purpose": "Determine whether the R23D29 negative arm lacked directionally correct steering and response onset, or instead developed a material conditioned yaw response that regressed before the frozen endpoint sample, while reporting the frozen endpoint plus every whole-swing terminal mean through one scheduler cycle without selecting a replacement estimator or controller.",
+  "data_exposure_boundary": {
+    "r23d29_outcomes_already_observed": true,
+    "projection_is_descriptive_not_confirmatory": true,
+    "frozen_endpoint_verdict_remains_negative": true,
+    "all_declared_terminal_windows_reported_simultaneously": true,
+    "future_terminal_estimator_selected_by_this_analysis": false,
+    "future_controller_change_selected_by_this_analysis": false
+  },
+  "source_closure": {
+    "path": "sdk/turning/r23d29_two_swing_persistent_predictive_stability_guarded_steering_closure_v1.json",
+    "source_commit": "cdc3e7c39ec5955f687d47ccd16e43c8dfbd451c",
+    "git_blob_oid": "6f7544b2569dad18c417c27716fbc8a6acd5d726",
+    "raw_sha256": "sha256:6bc09ae35d8b243dc2c2ce08d1747669dd81f9dbaaa56e9256c22cb6f0ea8883",
+    "status": "closed_valid_complete_negative_no_development_candidate"
+  },
+  "trace_contract": {
+    "trace_schema_version": "sporespore_qsdk_r23d29_physical_trace_row_v1",
+    "expected_row_count": 2992,
+    "phase_order": [
+      {
+        "phase_id": "reference_warmup",
+        "row_count": 600
+      },
+      {
+        "phase_id": "commanded_turn",
+        "row_count": 1200
+      },
+      {
+        "phase_id": "reference_recovery",
+        "row_count": 600
+      },
+      {
+        "phase_id": "reference_continuation",
+        "row_count": 592
+      }
+    ],
+    "analysis_phase_id": "commanded_turn",
+    "final_window_row_count": 120,
+    "authority_reach_fraction": 0.95,
+    "ordered_contact_limbs": [
+      "front_left",
+      "front_right",
+      "rear_left",
+      "rear_right"
+    ],
+    "ordered_actuator_names": [
+      "front_left_hip_motor",
+      "front_left_knee_motor",
+      "front_right_hip_motor",
+      "front_right_knee_motor",
+      "rear_left_hip_motor",
+      "rear_left_knee_motor",
+      "rear_right_hip_motor",
+      "rear_right_knee_motor"
+    ],
+    "ordered_actuator_velocity_limits_rad_s": [
+      3.5,
+      3.5,
+      3.5,
+      3.5,
+      3.5,
+      3.0,
+      3.5,
+      3.5
+    ],
+    "limiting_actuator_claim_requires_complete_final_commands_and_limits": true,
+    "directional_response_measurement": {
+      "enabled": true,
+      "scheduler_swing_steps": 72,
+      "scheduler_cycle_steps": 360,
+      "terminal_mean_window_steps": [
+        1,
+        72,
+        144,
+        216,
+        288,
+        360
+      ],
+      "terminal_window_grid_provenance": "the immutable R23D29 endpoint is the one-step window; every additional window is a positive whole-swing multiple from one inherited 72-step swing through the complete 360-step balanced-wave scheduler cycle",
+      "trajectory_baseline_window_steps": 360,
+      "trajectory_baseline_provenance": "one complete inherited scheduler cycle immediately before the commanded-turn phase, applied to synchronized commanded-minus-reference yaw",
+      "expected_steering_sign_by_command_sign": {
+        "-1": 1,
+        "1": -1
+      },
+      "steering_zero_tolerance": 1e-12,
+      "required_guard_schema_version": "sporespore_steering_authority_guard_receipt_v3",
+      "required_guard_mode_id": "persistent_predicted_tilt_and_contact_steering_authority_guard_v1"
+    }
+  },
+  "cells": [
+    {
+      "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__reference_zero",
+      "engine_id": "rapier_parry",
+      "candidate_id": "two_swing_persistent_predictive_stability_guarded_0p20_to_0p28",
+      "arm_id": "reference_zero",
+      "command_sign": 0,
+      "steering_cap": 0.28,
+      "trace_sha256": "sha256:fc7acb0feeea6d45dfdd59ae94e3f87fd18860ebd60fb69e976f750092060599",
+      "trace_byte_length": 12175046
+    },
+    {
+      "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__positive_heading",
+      "engine_id": "rapier_parry",
+      "candidate_id": "two_swing_persistent_predictive_stability_guarded_0p20_to_0p28",
+      "arm_id": "positive_heading",
+      "command_sign": 1,
+      "steering_cap": 0.28,
+      "trace_sha256": "sha256:60151d952e410b99379720938c158cb22c55df8cd4e24e3ae7a3536130322089",
+      "trace_byte_length": 12153464
+    },
+    {
+      "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__negative_heading",
+      "engine_id": "rapier_parry",
+      "candidate_id": "two_swing_persistent_predictive_stability_guarded_0p20_to_0p28",
+      "arm_id": "negative_heading",
+      "command_sign": -1,
+      "steering_cap": 0.28,
+      "trace_sha256": "sha256:82fd2cbf74a0ddb418a7d901721d6d459a404df05d50019a0f2cf8ed4386cca4",
+      "trace_byte_length": 12150645
+    }
+  ],
+  "comparison_groups": [
+    {
+      "candidate_id": "two_swing_persistent_predictive_stability_guarded_0p20_to_0p28",
+      "reference_cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__reference_zero",
+      "positive_cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__positive_heading",
+      "negative_cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__negative_heading"
+    }
+  ],
+  "replayed_thresholds": {
+    "minimum_command_conditioned_yaw_separation_rad": 0.01,
+    "threshold_provenance": "immutable R23D29 endpoint outcome contract; replayed across every declared window only for descriptive continuity",
+    "threshold_change_authorized": false
+  },
+  "claim_limits": {
+    "closed_campaign_reinterpreted": false,
+    "candidate_selection_authorized": false,
+    "threshold_change_authorized": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "turning_validation": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

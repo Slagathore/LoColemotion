@@ -1,0 +1,104 @@
+{
+  "schema_version": "sporespore_godot_jolt_phase_timing_closure_v1",
+  "contract_id": "GJPT1",
+  "status": "invalid_or_incomplete_first_attempt",
+  "scientific_class": "retained_negative_instrumentation_execution",
+  "source_commit": "d5e6e034748238c583f3e75431cb2a437ca06104",
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/godot-jolt-phase-timing-20260805T092845Z",
+  "attempt": {
+    "process_exit_code": 1,
+    "process_timed_out": false,
+    "process_duration_seconds": 68.0030452,
+    "physical_world_attempt_count": 1,
+    "confirmed_physical_world_count": -1,
+    "physical_identity_consumed": true,
+    "same_identity_rerun_allowed": false
+  },
+  "retained_artifacts": {
+    "authorization": {
+      "relative_path": "authorization.json",
+      "raw_sha256": "sha256:e5deea8aef6b9835a6fd6d294cce3b9791f24f52f3abe47c0198685fc0fc98d0",
+      "byte_length": 2563
+    },
+    "completion": {
+      "relative_path": "completion.json",
+      "raw_sha256": "sha256:dd74628f45311a5a6a255c72d4e9ba0c51367bfff2cbaa4083d11e2a3ae261b8",
+      "byte_length": 627
+    },
+    "engine_log": {
+      "relative_path": "engine.log",
+      "raw_sha256": "sha256:e25bc5f31098162c2e43471587252c2073b38d4b0d85918796f1bfae9a3dc3b9",
+      "byte_length": 23783
+    },
+    "instrumented_runner": {
+      "relative_path": "instrumented_runner.gd",
+      "raw_sha256": "sha256:ac9310ce50ef5649d407ff38ff0f726c9ff0d3458aaad32f4e43610605ea7e09",
+      "byte_length": 202468
+    },
+    "worker_godot_log": {
+      "relative_path": "worker/appdata/Godot/app_userdata/sporespore/logs/godot.log",
+      "raw_sha256": "sha256:855a344d694c56270714db60b647807a4f782418bb8523827fc6007d9882c2e5",
+      "byte_length": 23639
+    }
+  },
+  "content_addressed_inputs_retained_before_process": {
+    "instrumented_runner": {
+      "raw_sha256": "sha256:ac9310ce50ef5649d407ff38ff0f726c9ff0d3458aaad32f4e43610605ea7e09",
+      "payload_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/artifacts/sha256/ac9310ce50ef5649d407ff38ff0f726c9ff0d3458aaad32f4e43610605ea7e09/payload.bin"
+    },
+    "godot_adapter": {
+      "raw_sha256": "sha256:8132396391f0545366cae2a670796f824b7519327382284f97c63f38361d36f6",
+      "payload_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/artifacts/sha256/8132396391f0545366cae2a670796f824b7519327382284f97c63f38361d36f6/payload.bin"
+    }
+  },
+  "observed_failure": {
+    "failure_code": "GJPT1_SOURCE_SHAPED_EVIDENCE_PROJECTION_FAILED",
+    "engine_error": "GJPT1 source-shaped evidence projection failed",
+    "engine_log_last_wave_tick": 3360,
+    "engine_log_reached_post_world_worker_line": 101,
+    "timing_receipt_retained": false,
+    "phase_measurement_authorized": false
+  },
+  "root_cause": {
+    "classification": "post_world_instrumentation_projection_contract_mismatch",
+    "description": "The development worker called the frozen BW32N acceptance receipt composer after the world returned. That composer intentionally rejects when the historical BW32N source-binding freeze no longer matches the live successor source, so it returned an empty dictionary before the timing receipt was emitted.",
+    "predictable_before_world": true,
+    "zero_world_gate_defect": "GJPT1 did not exercise its post-world projection with a synthetic real-shaped summary before authorizing the physical attempt.",
+    "historical_bw32n_binding_mismatches_at_attempt_source": [
+      {
+        "path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+        "historical_raw_sha256": "sha256:3660a8f98a9e224e30404ddc0e0d8f7e2adf413d28d165e8d4314cf66cb8ff5e",
+        "attempt_raw_sha256": "sha256:79795d3c76191722b4fb35ef7ee4b4fccd297a01b6a528278a913d5cbfa462ca"
+      },
+      {
+        "path": "sdk/run_conformance.ps1",
+        "historical_raw_sha256": "sha256:47bc79f9aafc07b651f8d2d04dd4c5cfd11c2faa761e2cb2f16f8611b035f76b",
+        "attempt_raw_sha256": "sha256:b073449d10748cf07d8de818ccc59dbfa33d122603fef9662fbfb838d6825be4"
+      },
+      {
+        "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+        "historical_raw_sha256": "sha256:f9221b3872af64809266525a182db9ac52c373f4e9dc894d8c1ad165b73b31bc",
+        "attempt_raw_sha256": "sha256:b427c8f234eb1f60c8309c840a65b3db151619b252749b9a41d0e24b7be39543"
+      },
+      {
+        "path": "sdk/adapters/godot/src/lib.rs",
+        "historical_raw_sha256": "sha256:c9d283334d1e0279bd01cd5bdae920fbebf89cde876d8aa3897bed1626652cd1",
+        "attempt_raw_sha256": "sha256:59d62e7e998daf16c8866ea96dd058efcc568de579ed072ea9228b3439488047"
+      }
+    ]
+  },
+  "successor_requirements": {
+    "distinct_identity_required": true,
+    "development_owned_projection_required": true,
+    "frozen_acceptance_composer_must_not_be_called": true,
+    "synthetic_projection_canary_required_in_complete_zero_world_gate": true,
+    "write_and_flush_timing_workload_before_optional_outcome_processing": true
+  },
+  "claims": {
+    "physics_outcome_interpretation_authorized": false,
+    "phase_measurement_authorized": false,
+    "walking_claim_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false
+  }
+}

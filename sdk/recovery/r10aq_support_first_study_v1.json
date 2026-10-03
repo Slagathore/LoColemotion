@@ -1,0 +1,111 @@
+{
+  "schema_version": "sporespore_r10aq_support_first_study_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "prospective_retained_input_model_study",
+    "question_class": "development"
+  },
+  "source_parent_commit": "beff6d55aa8678ad04273ba90283dfff68cc22a0",
+  "question": "Does one support-first recentering law admit bounded nonascending, headroom-preserving and nonpenetration-worsening joint targets on all exposed R10AP raising inputs, before another physical controller is selected?",
+  "dependencies": [
+    {
+      "path": "sdk/conformance/r10aq_support_first_study.py",
+      "byte_length": 10419,
+      "raw_sha256": "sha256:c3fd45e9ef20a6916b479149346990654aaa1a2f91e19e5635a3dab7dba62603"
+    },
+    {
+      "path": "sdk/conformance/r10ap_load_tracking_diagnosis.py",
+      "byte_length": 9082,
+      "raw_sha256": "sha256:0dc568cc146a61daf8b1c75672d38be2910f807e1fd99f9487a5af768d4fc45e"
+    },
+    {
+      "path": "sdk/recovery/r10ap_load_tracking_diagnosis_v1.json",
+      "byte_length": 46787,
+      "raw_sha256": "sha256:4413eb6058f7f61d5d4ba81c19b11f98ed55ae8e479144bbec16956964b95e7b"
+    },
+    {
+      "path": "sdk/recovery/r10ap_progressive_headroom_closure_v1.json",
+      "byte_length": 548790,
+      "raw_sha256": "sha256:a29ac37d6361fe11f2578232a53f50db21a4fb1c7295447e9126cab1200fd6d7"
+    },
+    {
+      "path": "sdk/conformance/r10ao_progressive_headroom_study.py",
+      "byte_length": 9189,
+      "raw_sha256": "sha256:224e1f8bc0bb8a9eeaf4bb005e705e130a627ccfe011922867daf23d79c61c35"
+    },
+    {
+      "path": "sdk/conformance/r10an_support_transfer_study.py",
+      "byte_length": 13919,
+      "raw_sha256": "sha256:c57935dd075cfef964f81cf4c7c1c0b34ffd54aef08244b6d995eb57b77c927a"
+    },
+    {
+      "path": "sdk/conformance/r10al_support_anchored_model.py",
+      "byte_length": 6675,
+      "raw_sha256": "sha256:6a24fd07325253b0efdffc86afa7010462ea615d763ebc1da24f9f6eb643aa4a"
+    },
+    {
+      "path": "sdk/conformance/r10ab_loaded_rise_diagnosis.py",
+      "byte_length": 13267,
+      "raw_sha256": "sha256:bfbb9eedc1d7041d15825fdc503c0a52747531fd17d0d588219c022d967ca975"
+    },
+    {
+      "path": "sdk/conformance/r10af_rise_tracking_analysis.py",
+      "byte_length": 12392,
+      "raw_sha256": "sha256:4c765b17fe3c669cc116d71c04780017f662b52cf6e42ad75a70b6d9ca0e0d23"
+    },
+    {
+      "path": "sdk/conformance/r10af_contact_frame_replay.py",
+      "byte_length": 4726,
+      "raw_sha256": "sha256:82e9e376889340a51d78b76cd4f41a7bc07b194f4a7a6921ff98e59efea65593"
+    },
+    {
+      "path": "sdk/core/src/quadruped.rs",
+      "byte_length": 17849,
+      "raw_sha256": "sha256:e81d10100d5e18b4bb2aef2982562303ae1a90ccfa3656ff938d193f8d9a95d0"
+    },
+    {
+      "path": "sdk/core/src/recovery_morphology.rs",
+      "byte_length": 24992,
+      "raw_sha256": "sha256:9782f1956f381393b4e557dcf12fc283c3d5770af7bc4e000333771c262752e8"
+    }
+  ],
+  "population": {
+    "report": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-0f483029e5e649ddad83f0d83eb7e138/children/kick_passive_recovery_resume/worker_report.json",
+      "byte_length": 606986155,
+      "raw_sha256": "sha256:698fa3b16acabbdf3ebf18eed10e3fd8585d5be380aea153d4a24f39ee6b4980"
+    },
+    "section": "r10ap_partial_recovery",
+    "command_samples": 600,
+    "observation_samples": 601,
+    "selection": "Every nonterminal observation in original order; include the terminal sample in contact diagnosis.",
+    "held_out": false
+  },
+  "algorithm": {
+    "candidates": "Original 90 V28 torso candidates, anchors and free-foot placement; original speeds, joint limits and 0.02-rad progressive headroom rule.",
+    "support_gap": "Horizontal distance of measured-offset COM under proposed rigid body pose to convex hull of all four proposed cap centers. This optimistic geometric hull is not measured support or force authority.",
+    "outside_rule": "If initial gap exceeds 1e-12 m, reject upward translation and require strict gap decrease exceeding 1e-12 m. Rank by gap, maximum headroom deficit, total deficit, then original partial-support standing-height cost, each with original lexicographic epsilon 1e-12.",
+    "inside_rule": "Inside the all-cap hull, retain original V28 deficit and cost ranking; retain the new body-floor guard.",
+    "floor_guard": "On this declared horizontal native floor y=0 only, compute ideal rigid FK bottoms for compiled torso box and eight capsules. Each proposed bottom must be at least min(0, its original bottom) minus 1e-12 m. Existing penetration is not normalized; no currently clear body may penetrate. This is an endpoint geometric constraint, not a swept-collision or callback-contact guarantee.",
+    "refusal": "Retain explicit counts and reasons through geometric, headroom, nonascending, floor, support-progress and improving-rank admission; no physical fallback is selected."
+  },
+  "checks": [
+    "Run known-answer hull, translation, deficit, ranking, shape-bottom and floor-guard controls before retained-input evaluation.",
+    "Reconstruct every original V28 plan and refusal against retained native receipts before evaluating the distinct law.",
+    "Verify independent FK, anchor residual <=0.0005 m, original speed/joint bounds and free-foot nonascending displacement <=0.1*dt.",
+    "Independently replay the partial-recovery contact frames and retain all-cap, actual-foot and all-body contact envelopes plus nonfoot normal-impulse share.",
+    "Retain all rows and refusals; do not tune objective priorities or bounds after results."
+  ],
+  "limitations": "One-step geometry only. No propagated model, force or torque feasibility, collision-free path, contact acquisition, body-motion prediction, controller selection, source-key renewal, new physical population, cap change or deadline change.",
+  "claim_boundary": {
+    "controller_selected": false,
+    "controller_changed": false,
+    "physical_execution_authorized": false,
+    "original_result_regraded": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

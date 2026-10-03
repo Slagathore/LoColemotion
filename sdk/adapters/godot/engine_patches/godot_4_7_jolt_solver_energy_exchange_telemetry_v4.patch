@@ -1,0 +1,1205 @@
+diff --git a/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp b/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp
+index 2e7d4fd5cbaa33c841b163394de56f8d0eb6abd5..9a5c484e38526d5105fc2c073af2470e62c1c22f 100644
+--- a/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp
++++ b/modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp
+@@ -377,7 +377,53 @@ float JoltHingeJoint3D::get_applied_torque() const {
+ 	}
+ }
+ 
++bool JoltHingeJoint3D::try_get_motor_telemetry(MotorTelemetry &r_telemetry) const {
++	if (unlikely(_is_fixed()) || !motor_telemetry_snapshot_valid) {
++		return false;
++	}
++
++	JoltSpace3D *space = get_space();
++	if (space == nullptr) {
++		return false;
++	}
++
++	r_telemetry = motor_telemetry_snapshot;
++	r_telemetry.read_space_step_sequence = space->get_step_sequence();
++	return true;
++}
++
++void JoltHingeJoint3D::capture_post_step_telemetry(uint64_t p_space_step_sequence, float p_space_step_s) {
++	JoltSpace3D *space = get_space();
++	const bool captured_during_active_step = space != nullptr && space->is_stepping();
++	if (unlikely(!captured_during_active_step || p_space_step_sequence == 0 || p_space_step_s <= 0.0f || _is_fixed() || jolt_ref == nullptr)) {
++		return;
++	}
++
++	const JPH::HingeConstraint *constraint = static_cast<const JPH::HingeConstraint *>(jolt_ref.GetPtr());
++	const uint64_t sequence = constraint->GetMotorTelemetrySequence();
++	const float solver_step_s = constraint->GetMotorTelemetryStep();
++	if (sequence == 0 || solver_step_s <= 0.0f || solver_step_s != p_space_step_s || (motor_telemetry_snapshot_valid && sequence == motor_telemetry_snapshot.sequence)) {
++		return;
++	}
++
++	motor_telemetry_snapshot.sequence = sequence;
++	motor_telemetry_snapshot.capture_space_step_sequence = p_space_step_sequence;
++	motor_telemetry_snapshot.read_space_step_sequence = p_space_step_sequence;
++	motor_telemetry_snapshot.captured_during_active_step = captured_during_active_step;
++	motor_telemetry_snapshot.solver_step_s = solver_step_s;
++	motor_telemetry_snapshot.motor_state = static_cast<int32_t>(constraint->GetMotorTelemetryState());
++	motor_telemetry_snapshot.target_angular_velocity_rad_s = constraint->GetMotorTelemetryTargetAngularVelocity();
++	motor_telemetry_snapshot.min_torque_limit_nm = constraint->GetMotorTelemetryMinTorqueLimit();
++	motor_telemetry_snapshot.max_torque_limit_nm = constraint->GetMotorTelemetryMaxTorqueLimit();
++	motor_telemetry_snapshot.signed_motor_impulse_nms = constraint->GetTotalLambdaMotor();
++	motor_telemetry_snapshot.positive_motor_work_j = constraint->GetPositiveMotorWork();
++	motor_telemetry_snapshot.absorbed_motor_work_j = constraint->GetAbsorbedMotorWork();
++	motor_telemetry_snapshot_valid = true;
++}
++
+ void JoltHingeJoint3D::rebuild() {
++	motor_telemetry_snapshot = MotorTelemetry();
++	motor_telemetry_snapshot_valid = false;
+ 	destroy();
+ 
+ 	JoltSpace3D *space = get_space();
+diff --git a/modules/jolt_physics/joints/jolt_hinge_joint_3d.h b/modules/jolt_physics/joints/jolt_hinge_joint_3d.h
+index cb8635bc932471b19e3b96dbc21a8c4213d8b436..ae48e44560fd80caa0d5f78895030e2971e8e9da 100644
+--- a/modules/jolt_physics/joints/jolt_hinge_joint_3d.h
++++ b/modules/jolt_physics/joints/jolt_hinge_joint_3d.h
+@@ -73,6 +73,26 @@ class JoltHingeJoint3D final : public JoltJoint3D {
+ 	void _motor_speed_changed();
+ 	void _motor_limit_changed();
+ 
++public:
++	struct MotorTelemetry {
++		uint64_t sequence = 0;
++		uint64_t capture_space_step_sequence = 0;
++		uint64_t read_space_step_sequence = 0;
++		bool captured_during_active_step = false;
++		float solver_step_s = 0.0f;
++		int32_t motor_state = 0;
++		float target_angular_velocity_rad_s = 0.0f;
++		float min_torque_limit_nm = 0.0f;
++		float max_torque_limit_nm = 0.0f;
++		float signed_motor_impulse_nms = 0.0f;
++		float positive_motor_work_j = 0.0f;
++		float absorbed_motor_work_j = 0.0f;
++	};
++
++private:
++	MotorTelemetry motor_telemetry_snapshot;
++	bool motor_telemetry_snapshot_valid = false;
++
+ public:
+ 	JoltHingeJoint3D(const JoltJoint3D &p_old_joint, JoltBody3D *p_body_a, JoltBody3D *p_body_b, const Transform3D &p_local_ref_a, const Transform3D &p_local_ref_b);
+ 
+@@ -92,6 +112,8 @@ public:
+ 
+ 	float get_applied_force() const;
+ 	float get_applied_torque() const;
++	bool try_get_motor_telemetry(MotorTelemetry &r_telemetry) const;
+ 
++	virtual void capture_post_step_telemetry(uint64_t p_space_step_sequence, float p_space_step_s) override;
+ 	virtual void rebuild() override;
+ };
+diff --git a/modules/jolt_physics/joints/jolt_joint_3d.h b/modules/jolt_physics/joints/jolt_joint_3d.h
+index 78c0dbbf3314c831dd650f43982e996c546fb729..77cb07cc58bb867db68149da5f54bbae3fc73477 100644
+--- a/modules/jolt_physics/joints/jolt_joint_3d.h
++++ b/modules/jolt_physics/joints/jolt_joint_3d.h
+@@ -100,5 +100,6 @@ public:
+ 
+ 	void destroy();
+ 
++	virtual void capture_post_step_telemetry(uint64_t p_space_step_sequence, float p_space_step_s) {}
+ 	virtual void rebuild() {}
+ };
+diff --git a/modules/jolt_physics/jolt_physics_server_3d.cpp b/modules/jolt_physics/jolt_physics_server_3d.cpp
+index 3b68594b2753a3262de69ad64de8667e7ea8df4f..64d014e589eb4c38ab19eebc5b1e390a1fa9917a 100644
+--- a/modules/jolt_physics/jolt_physics_server_3d.cpp
++++ b/modules/jolt_physics/jolt_physics_server_3d.cpp
+@@ -36,6 +36,7 @@
+ #include "joints/jolt_joint_3d.h"
+ #include "joints/jolt_pin_joint_3d.h"
+ #include "joints/jolt_slider_joint_3d.h"
++#include "misc/jolt_type_conversions.h"
+ #include "objects/jolt_area_3d.h"
+ #include "objects/jolt_body_3d.h"
+ #include "objects/jolt_soft_body_3d.h"
+@@ -48,11 +49,158 @@
+ #include "shapes/jolt_separation_ray_shape_3d.h"
+ #include "shapes/jolt_sphere_shape_3d.h"
+ #include "shapes/jolt_world_boundary_shape_3d.h"
++#include "spaces/jolt_contact_listener_3d.h"
+ #include "spaces/jolt_job_system.h"
+ #include "spaces/jolt_physics_direct_space_state_3d.h"
+ #include "spaces/jolt_space_3d.h"
+ #include "spaces/jolt_temp_allocator.h"
+ 
++#include "core/object/class_db.h"
++
++void JoltPhysicsServer3D::_bind_methods() {
++	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("hinge_joint_get_motor_telemetry", "joint"), &JoltPhysicsServer3D::hinge_joint_get_motor_telemetry);
++	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("space_get_solved_contact_telemetry", "space"), &JoltPhysicsServer3D::space_get_solved_contact_telemetry);
++	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("space_get_solver_energy_exchange_telemetry", "space"), &JoltPhysicsServer3D::space_get_solver_energy_exchange_telemetry);
++}
++
++Variant JoltPhysicsServer3D::hinge_joint_get_motor_telemetry(RID p_joint) {
++	JoltPhysicsServer3D *physics_server = get_singleton();
++	if (physics_server == nullptr || (physics_server->on_separate_thread && !physics_server->doing_sync)) {
++		return Variant();
++	}
++
++	JoltJoint3D *joint = physics_server->joint_owner.get_or_null(p_joint);
++	if (joint == nullptr || joint->get_type() != JOINT_TYPE_HINGE) {
++		return Variant();
++	}
++
++	JoltSpace3D *space = joint->get_space();
++	if (space == nullptr || space->is_stepping()) {
++		return Variant();
++	}
++
++	JoltHingeJoint3D::MotorTelemetry motor_telemetry;
++	JoltHingeJoint3D *hinge_joint = static_cast<JoltHingeJoint3D *>(joint);
++	if (!hinge_joint->try_get_motor_telemetry(motor_telemetry)) {
++		return Variant();
++	}
++
++	String motor_state;
++	switch (static_cast<JPH::EMotorState>(motor_telemetry.motor_state)) {
++		case JPH::EMotorState::Off:
++			motor_state = "off";
++			break;
++		case JPH::EMotorState::Velocity:
++			motor_state = "velocity";
++			break;
++		case JPH::EMotorState::Position:
++			motor_state = "position";
++			break;
++	}
++
++	Dictionary result;
++	result["schema"] = "sporespore.godot_jolt_hinge_motor_telemetry.v2";
++	result["telemetry_sequence"] = static_cast<int64_t>(motor_telemetry.sequence);
++	result["capture_space_step_sequence"] = static_cast<int64_t>(motor_telemetry.capture_space_step_sequence);
++	result["read_space_step_sequence"] = static_cast<int64_t>(motor_telemetry.read_space_step_sequence);
++	result["captured_during_active_step"] = motor_telemetry.captured_during_active_step;
++	result["snapshot_is_current_space_step"] = motor_telemetry.capture_space_step_sequence == motor_telemetry.read_space_step_sequence;
++	result["solver_step_s"] = motor_telemetry.solver_step_s;
++	result["motor_state"] = motor_state;
++	result["target_angular_velocity_rad_s"] = motor_telemetry.target_angular_velocity_rad_s;
++	result["min_torque_limit_nm"] = motor_telemetry.min_torque_limit_nm;
++	result["max_torque_limit_nm"] = motor_telemetry.max_torque_limit_nm;
++	result["signed_motor_impulse_nms"] = motor_telemetry.signed_motor_impulse_nms;
++	result["positive_motor_work_j"] = motor_telemetry.positive_motor_work_j;
++	result["absorbed_motor_work_j"] = motor_telemetry.absorbed_motor_work_j;
++	result["net_motor_work_j"] = motor_telemetry.positive_motor_work_j - motor_telemetry.absorbed_motor_work_j;
++	return result;
++}
++
++Variant JoltPhysicsServer3D::space_get_solved_contact_telemetry(RID p_space) {
++	JoltPhysicsServer3D *physics_server = get_singleton();
++	if (physics_server == nullptr || (physics_server->on_separate_thread && !physics_server->doing_sync)) {
++		return Variant();
++	}
++
++	JoltSpace3D *space = physics_server->space_owner.get_or_null(p_space);
++	if (space == nullptr || space->is_stepping()) {
++		return Variant();
++	}
++
++	JoltSolvedContactTelemetry3D telemetry;
++	if (!space->try_get_solved_contact_telemetry(telemetry)) {
++		return Variant();
++	}
++
++	Dictionary result;
++	result["schema"] = "sporespore.godot_jolt_solved_contact_telemetry.v1";
++	result["profile_id"] = "godot_4_7_jolt_sporespore_solved_contact_telemetry_v1";
++	result["capture_space_step_sequence"] = static_cast<int64_t>(telemetry.capture_space_step_sequence);
++	result["read_space_step_sequence"] = static_cast<int64_t>(space->get_step_sequence());
++	result["captured_during_active_step"] = telemetry.captured_during_active_step;
++	result["snapshot_is_current_space_step"] = telemetry.capture_space_step_sequence == space->get_step_sequence();
++	result["reported_manifold_count"] = telemetry.reported_manifold_count;
++	result["reported_contact_point_count"] = telemetry.reported_contact_point_count;
++	result["exact_manifold_count"] = telemetry.exact_manifold_count;
++	result["exact_contact_point_count"] = telemetry.exact_contact_point_count;
++	result["missing_manifold_count"] = telemetry.missing_manifold_count;
++	result["ccd_only_manifold_count"] = telemetry.ccd_only_manifold_count;
++	result["point_count_mismatch_count"] = telemetry.point_count_mismatch_count;
++	result["nonfinite_impulse_count"] = telemetry.nonfinite_impulse_count;
++	result["complete"] = telemetry.complete;
++	return result;
++}
++
++Variant JoltPhysicsServer3D::space_get_solver_energy_exchange_telemetry(RID p_space) {
++	JoltPhysicsServer3D *physics_server = get_singleton();
++	if (physics_server == nullptr || (physics_server->on_separate_thread && !physics_server->doing_sync)) {
++		return Variant();
++	}
++
++	JoltSpace3D *space = physics_server->space_owner.get_or_null(p_space);
++	if (space == nullptr || space->is_stepping()) {
++		return Variant();
++	}
++
++	JPH::SporeSporeSolverEnergyExchangeTelemetry telemetry;
++	uint64_t capture_sequence = 0;
++	if (!space->try_get_solver_energy_exchange_telemetry(telemetry, capture_sequence)) {
++		return Variant();
++	}
++
++	Dictionary result;
++	result["schema"] = "sporespore.godot_jolt_solver_energy_exchange_telemetry.v1";
++	result["profile_id"] = "godot_4_7_jolt_sporespore_solver_energy_exchange_telemetry_v1";
++	result["telemetry_sequence"] = static_cast<int64_t>(telemetry.mSequence);
++	result["capture_space_step_sequence"] = static_cast<int64_t>(capture_sequence);
++	result["read_space_step_sequence"] = static_cast<int64_t>(space->get_step_sequence());
++	result["captured_during_active_step"] = true;
++	result["snapshot_is_current_space_step"] = capture_sequence == space->get_step_sequence();
++	result["joint_velocity_constraint_exchange_j"] = telemetry.mJointVelocityConstraintExchangeJ;
++	result["contact_velocity_constraint_exchange_j"] = telemetry.mContactVelocityConstraintExchangeJ;
++	result["position_constraint_kinetic_exchange_j"] = telemetry.mPositionConstraintKineticExchangeJ;
++	result["position_constraint_mass_weighted_displacement_kg_m"] = to_godot(telemetry.mPositionConstraintMassWeightedDisplacementKgM);
++	result["collision_step_count"] = telemetry.mCollisionStepCount;
++	result["constrained_island_count"] = telemetry.mConstrainedIslandCount;
++	result["velocity_measured_island_count"] = telemetry.mVelocityMeasuredIslandCount;
++	result["position_measured_island_count"] = telemetry.mPositionMeasuredIslandCount;
++	result["joint_velocity_phase_count"] = telemetry.mJointVelocityPhaseCount;
++	result["contact_velocity_phase_count"] = telemetry.mContactVelocityPhaseCount;
++	result["position_constraint_phase_count"] = telemetry.mPositionConstraintPhaseCount;
++	result["dynamic_body_observation_count"] = telemetry.mDynamicBodyObservationCount;
++	result["invalid_body_measurement_count"] = telemetry.mInvalidBodyMeasurementCount;
++	result["large_island_velocity_batch_count"] = telemetry.mLargeIslandVelocityBatchCount;
++	result["large_island_position_batch_count"] = telemetry.mLargeIslandPositionBatchCount;
++	result["ccd_active_body_count"] = telemetry.mCCDActiveBodyCount;
++	result["active_soft_body_count"] = telemetry.mActiveSoftBodyCount;
++	result["update_error_bits"] = telemetry.mUpdateErrorBits;
++	result["complete"] = telemetry.mComplete;
++	result["source_measurement"] = true;
++	result["mechanical_energy_residual_used_as_work_source"] = false;
++	return result;
++}
++
+ JoltPhysicsServer3D::JoltPhysicsServer3D(bool p_on_separate_thread) :
+ 		on_separate_thread(p_on_separate_thread) {
+ 	singleton = this;
+diff --git a/modules/jolt_physics/jolt_physics_server_3d.h b/modules/jolt_physics/jolt_physics_server_3d.h
+index a8db19b899bd90d93a893e4542305f65538a62f8..c5995b035f556ca14fa0badbbacdc7699cca5909 100644
+--- a/modules/jolt_physics/jolt_physics_server_3d.h
++++ b/modules/jolt_physics/jolt_physics_server_3d.h
+@@ -119,13 +119,16 @@ public:
+ 	};
+ 
+ private:
+-	static void _bind_methods() {}
++	static void _bind_methods();
+ 
+ public:
+ 	explicit JoltPhysicsServer3D(bool p_on_separate_thread);
+ 	~JoltPhysicsServer3D();
+ 
+ 	static JoltPhysicsServer3D *get_singleton() { return singleton; }
++	static Variant hinge_joint_get_motor_telemetry(RID p_joint);
++	static Variant space_get_solved_contact_telemetry(RID p_space);
++	static Variant space_get_solver_energy_exchange_telemetry(RID p_space);
+ 
+ 	virtual RID world_boundary_shape_create() override;
+ 	virtual RID separation_ray_shape_create() override;
+diff --git a/modules/jolt_physics/register_types.cpp b/modules/jolt_physics/register_types.cpp
+index 51aadf0607fb44d8b3618adb425bd99cd0c9fcc8..988e65e9587e8809a24f31fab8838341d63e9c28 100644
+--- a/modules/jolt_physics/register_types.cpp
++++ b/modules/jolt_physics/register_types.cpp
+@@ -36,6 +36,7 @@
+ 
+ #include "core/config/project_settings.h"
+ #include "core/object/callable_mp.h"
++#include "core/object/class_db.h"
+ #include "servers/physics_3d/physics_server_3d_wrap_mt.h"
+ 
+ PhysicsServer3D *create_jolt_physics_server() {
+@@ -56,6 +57,7 @@ void initialize_jolt_physics_module(ModuleInitializationLevel p_level) {
+ 	}
+ 
+ 	jolt_initialize();
++	GDREGISTER_ABSTRACT_CLASS(JoltPhysicsServer3D);
+ 	PhysicsServer3DManager::get_singleton()->register_server("Jolt Physics", callable_mp_static(&create_jolt_physics_server));
+ 	JoltProjectSettings::register_settings();
+ }
+diff --git a/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp b/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp
+index 68377a0031d4ff580b6d860253e459dcc942112c..3ac7390120bdcf75ed9df1fddf522dd9b1bedb41 100644
+--- a/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp
++++ b/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp
+@@ -561,6 +561,83 @@ void JoltContactListener3D::pre_step() {
+ #endif
+ }
+ 
++void JoltContactListener3D::capture_solved_contact_impulses(uint64_t p_space_step_sequence) {
++	solved_contact_telemetry = JoltSolvedContactTelemetry3D();
++	solved_contact_telemetry.capture_space_step_sequence = p_space_step_sequence;
++	solved_contact_telemetry.captured_during_active_step = space->is_stepping();
++	solved_contact_telemetry_valid = true;
++
++	JPH::PhysicsSystem &physics_system = space->get_physics_system();
++	for (KeyValue<JPH::SubShapeIDPair, Manifold> &E : manifolds_by_shape_pair) {
++		Manifold &manifold = E.value;
++		if (manifold.contacts1.is_empty() && manifold.contacts2.is_empty()) {
++			continue;
++		}
++
++		solved_contact_telemetry.reported_manifold_count++;
++		solved_contact_telemetry.reported_contact_point_count += manifold.contacts1.size();
++
++		JPH::ContactConstraintManager::SolvedContactPointImpulses impulses;
++		const JPH::ContactConstraintManager::ESolvedContactImpulseStatus status = physics_system.GetSolvedContactPointImpulses(E.key, impulses);
++		if (status == JPH::ContactConstraintManager::ESolvedContactImpulseStatus::MissingManifold) {
++			solved_contact_telemetry.missing_manifold_count++;
++			continue;
++		}
++		if (status == JPH::ContactConstraintManager::ESolvedContactImpulseStatus::CCDOnlyManifold) {
++			solved_contact_telemetry.ccd_only_manifold_count++;
++			continue;
++		}
++		if (manifold.contacts1.size() != manifold.contacts2.size() || manifold.contacts1.size() != impulses.size()) {
++			solved_contact_telemetry.point_count_mismatch_count++;
++			continue;
++		}
++
++		bool finite = true;
++		for (const JPH::ContactConstraintManager::SolvedContactPointImpulse &impulse : impulses) {
++			if (!Math::is_finite(impulse.mNormalImpulse) || !Math::is_finite(impulse.mFrictionImpulse1) || !Math::is_finite(impulse.mFrictionImpulse2)) {
++				finite = false;
++				solved_contact_telemetry.nonfinite_impulse_count++;
++			}
++		}
++		if (!finite) {
++			continue;
++		}
++
++		for (uint32_t i = 0; i < impulses.size(); ++i) {
++			const JPH::Vec3 normal = to_jolt(manifold.contacts2[i].normal);
++			const JPH::Vec3 tangent1 = normal.GetNormalizedPerpendicular();
++			const JPH::Vec3 tangent2 = normal.Cross(tangent1);
++			const JPH::ContactConstraintManager::SolvedContactPointImpulse &impulse = impulses[i];
++			const Vector3 combined_impulse = to_godot(
++					normal * impulse.mNormalImpulse +
++					tangent1 * impulse.mFrictionImpulse1 +
++					tangent2 * impulse.mFrictionImpulse2);
++			manifold.contacts1[i].impulse = -combined_impulse;
++			manifold.contacts2[i].impulse = combined_impulse;
++		}
++
++		solved_contact_telemetry.exact_manifold_count++;
++		solved_contact_telemetry.exact_contact_point_count += impulses.size();
++	}
++
++	solved_contact_telemetry.complete =
++			solved_contact_telemetry.captured_during_active_step &&
++			solved_contact_telemetry.reported_manifold_count == solved_contact_telemetry.exact_manifold_count &&
++			solved_contact_telemetry.reported_contact_point_count == solved_contact_telemetry.exact_contact_point_count &&
++			solved_contact_telemetry.missing_manifold_count == 0 &&
++			solved_contact_telemetry.ccd_only_manifold_count == 0 &&
++			solved_contact_telemetry.point_count_mismatch_count == 0 &&
++			solved_contact_telemetry.nonfinite_impulse_count == 0;
++}
++
++bool JoltContactListener3D::try_get_solved_contact_telemetry(JoltSolvedContactTelemetry3D &r_telemetry) const {
++	if (!solved_contact_telemetry_valid) {
++		return false;
++	}
++	r_telemetry = solved_contact_telemetry;
++	return true;
++}
++
+ void JoltContactListener3D::post_step() {
+ 	_flush_contacts();
+ 	_flush_area_exits();
+diff --git a/modules/jolt_physics/spaces/jolt_contact_listener_3d.h b/modules/jolt_physics/spaces/jolt_contact_listener_3d.h
+index bbc2b568186b8455e736c549ffa73572e6d81db3..813cbf64fecfef237175098e9c7b05eba2fe9cbe 100644
+--- a/modules/jolt_physics/spaces/jolt_contact_listener_3d.h
++++ b/modules/jolt_physics/spaces/jolt_contact_listener_3d.h
+@@ -49,6 +49,20 @@ class JoltShapedObject3D;
+ class JoltSoftBody3D;
+ class JoltSpace3D;
+ 
++struct JoltSolvedContactTelemetry3D {
++	uint64_t capture_space_step_sequence = 0;
++	uint32_t reported_manifold_count = 0;
++	uint32_t reported_contact_point_count = 0;
++	uint32_t exact_manifold_count = 0;
++	uint32_t exact_contact_point_count = 0;
++	uint32_t missing_manifold_count = 0;
++	uint32_t ccd_only_manifold_count = 0;
++	uint32_t point_count_mismatch_count = 0;
++	uint32_t nonfinite_impulse_count = 0;
++	bool captured_during_active_step = false;
++	bool complete = false;
++};
++
+ class JoltContactListener3D final
+ 		: public JPH::ContactListener,
+ 		  public JPH::SoftBodyContactListener {
+@@ -90,6 +104,8 @@ class JoltContactListener3D final
+ 	LocalVector<JPH::SubShapeIDPair> area_soft_body_overlaps;
+ 	Mutex write_mutex;
+ 	JoltSpace3D *space = nullptr;
++	JoltSolvedContactTelemetry3D solved_contact_telemetry;
++	bool solved_contact_telemetry_valid = false;
+ 
+ #ifdef DEBUG_ENABLED
+ 	PackedVector3Array debug_contacts;
+@@ -132,7 +148,9 @@ public:
+ 			space(p_space) {}
+ 
+ 	void pre_step();
++	void capture_solved_contact_impulses(uint64_t p_space_step_sequence);
+ 	void post_step();
++	bool try_get_solved_contact_telemetry(JoltSolvedContactTelemetry3D &r_telemetry) const;
+ 
+ #ifdef DEBUG_ENABLED
+ 	const PackedVector3Array &get_debug_contacts() const { return debug_contacts; }
+diff --git a/modules/jolt_physics/spaces/jolt_space_3d.cpp b/modules/jolt_physics/spaces/jolt_space_3d.cpp
+index 8898058995026f07698dff1cfeab9e10930d49d4..f6906f1addc4f728a75948bd8edebb188b51f3c8 100644
+--- a/modules/jolt_physics/spaces/jolt_space_3d.cpp
++++ b/modules/jolt_physics/spaces/jolt_space_3d.cpp
+@@ -109,6 +109,40 @@ void JoltSpace3D::_post_step(float p_step) {
+ 	}
+ }
+ 
++void JoltSpace3D::_capture_joint_telemetry(float p_step) {
++	for (JoltJoint3D *joint : joints) {
++		joint->capture_post_step_telemetry(step_sequence, p_step);
++	}
++}
++
++void JoltSpace3D::_capture_contact_telemetry() {
++	contact_listener->capture_solved_contact_impulses(step_sequence);
++}
++
++void JoltSpace3D::_capture_solver_energy_exchange_telemetry() {
++	JPH::SporeSporeSolverEnergyExchangeTelemetry telemetry;
++	if (!physics_system->GetSporeSporeSolverEnergyExchangeTelemetry(telemetry)) {
++		solver_energy_exchange_snapshot_valid = false;
++		return;
++	}
++	solver_energy_exchange_snapshot = telemetry;
++	solver_energy_exchange_capture_sequence = step_sequence;
++	solver_energy_exchange_snapshot_valid = true;
++}
++
++bool JoltSpace3D::try_get_solved_contact_telemetry(JoltSolvedContactTelemetry3D &r_telemetry) const {
++	return contact_listener->try_get_solved_contact_telemetry(r_telemetry);
++}
++
++bool JoltSpace3D::try_get_solver_energy_exchange_telemetry(JPH::SporeSporeSolverEnergyExchangeTelemetry &r_telemetry, uint64_t &r_capture_sequence) const {
++	if (!solver_energy_exchange_snapshot_valid || solver_energy_exchange_capture_sequence == 0) {
++		return false;
++	}
++	r_telemetry = solver_energy_exchange_snapshot;
++	r_capture_sequence = solver_energy_exchange_capture_sequence;
++	return true;
++}
++
+ JoltSpace3D::JoltSpace3D(JPH::JobSystem *p_job_system, JPH::TempAllocator *p_temp_allocator) :
+ 		job_system(p_job_system),
+ 		temp_allocator(p_temp_allocator),
+@@ -190,6 +224,9 @@ JoltSpace3D::~JoltSpace3D() {
+ void JoltSpace3D::step(float p_step) {
+ 	stepping = true;
+ 	last_step = p_step;
++	if (unlikely(++step_sequence == 0)) {
++		step_sequence = 1;
++	}
+ 
+ 	_pre_step(p_step);
+ 
+@@ -216,6 +253,10 @@ void JoltSpace3D::step(float p_step) {
+ 				JoltProjectSettings::max_contact_constraints));
+ 	}
+ 
++	_capture_joint_telemetry(p_step);
++	_capture_contact_telemetry();
++	_capture_solver_energy_exchange_telemetry();
++
+ 	_post_step(p_step);
+ 
+ 	stepping = false;
+@@ -541,7 +582,11 @@ void JoltSpace3D::add_joint(JPH::Constraint *p_jolt_ref) {
+ }
+ 
+ void JoltSpace3D::add_joint(JoltJoint3D *p_joint) {
++	ERR_FAIL_NULL(p_joint);
++	ERR_FAIL_COND(joints.has(p_joint));
++
+ 	add_joint(p_joint->get_jolt_ref());
++	joints.push_back(p_joint);
+ }
+ 
+ void JoltSpace3D::remove_joint(JPH::Constraint *p_jolt_ref) {
+@@ -549,7 +594,11 @@ void JoltSpace3D::remove_joint(JPH::Constraint *p_jolt_ref) {
+ }
+ 
+ void JoltSpace3D::remove_joint(JoltJoint3D *p_joint) {
++	ERR_FAIL_NULL(p_joint);
++	ERR_FAIL_COND(!joints.has(p_joint));
++
+ 	remove_joint(p_joint->get_jolt_ref());
++	joints.erase(p_joint);
+ }
+ 
+ #ifdef DEBUG_ENABLED
+diff --git a/modules/jolt_physics/spaces/jolt_space_3d.h b/modules/jolt_physics/spaces/jolt_space_3d.h
+index 7746c9f10016008c1342d2fec548aa3267359d2a..e244f41013b1ba8697bf7350253672689a77d081 100644
+--- a/modules/jolt_physics/spaces/jolt_space_3d.h
++++ b/modules/jolt_physics/spaces/jolt_space_3d.h
+@@ -52,6 +52,7 @@ class JoltObject3D;
+ class JoltPhysicsDirectSpaceState3D;
+ class JoltShapedObject3D;
+ class JoltSoftBody3D;
++struct JoltSolvedContactTelemetry3D;
+ 
+ class JoltSpace3D {
+ 	Mutex pending_objects_mutex;
+@@ -64,6 +65,7 @@ class JoltSpace3D {
+ 
+ 	LocalVector<JPH::BodyID> pending_objects_sleeping;
+ 	LocalVector<JPH::BodyID> pending_objects_awake;
++	LocalVector<JoltJoint3D *> joints;
+ 
+ 	RID rid;
+ 
+@@ -77,6 +79,10 @@ class JoltSpace3D {
+ 	JoltArea3D *default_area = nullptr;
+ 
+ 	float last_step = 0.0f;
++	uint64_t step_sequence = 0;
++	JPH::SporeSporeSolverEnergyExchangeTelemetry solver_energy_exchange_snapshot;
++	uint64_t solver_energy_exchange_capture_sequence = 0;
++	bool solver_energy_exchange_snapshot_valid = false;
+ 
+ 	uint16_t default_area_changed_count = 0;
+ 
+@@ -84,6 +90,9 @@ class JoltSpace3D {
+ 	bool stepping = false;
+ 
+ 	void _pre_step(float p_step);
++	void _capture_joint_telemetry(float p_step);
++	void _capture_contact_telemetry();
++	void _capture_solver_energy_exchange_telemetry();
+ 	void _post_step(float p_step);
+ 
+ public:
+@@ -135,6 +144,9 @@ public:
+ 	uint16_t get_default_area_changed_count() const { return default_area_changed_count; }
+ 
+ 	float get_last_step() const { return last_step; }
++	uint64_t get_step_sequence() const { return step_sequence; }
++	bool try_get_solved_contact_telemetry(JoltSolvedContactTelemetry3D &r_telemetry) const;
++	bool try_get_solver_energy_exchange_telemetry(JPH::SporeSporeSolverEnergyExchangeTelemetry &r_telemetry, uint64_t &r_capture_sequence) const;
+ 
+ 	JPH::Body *add_object(const JoltObject3D &p_object, const JPH::BodyCreationSettings &p_settings, bool p_sleeping = false);
+ 	JPH::Body *add_object(const JoltObject3D &p_object, const JPH::SoftBodyCreationSettings &p_settings, bool p_sleeping = false);
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.cpp b/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.cpp
+index 09dfab49215a313d6ff853a9a9884cfdc5adc153..41b59045a45f54dd98fab91f4b9005ff18e15902 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.cpp
++++ b/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.cpp
+@@ -1525,6 +1525,32 @@ bool ContactConstraintManager::WereBodiesInContact(const BodyID &inBody1ID, cons
+ 	return kv != nullptr && kv->GetValue().mFirstCachedManifold != ManifoldMap::cInvalidHandle;
+ }
+ 
++ContactConstraintManager::ESolvedContactImpulseStatus ContactConstraintManager::GetSolvedContactPointImpulses(const SubShapeIDPair &inShapePair, SolvedContactPointImpulses &outImpulses) const
++{
++	outImpulses.clear();
++
++	const ManifoldCache &read_cache = mCache[mCacheWriteIdx ^ 1];
++	const MKeyValue *kv = read_cache.Find(inShapePair, inShapePair.GetHash());
++	if (kv == nullptr)
++		return ESolvedContactImpulseStatus::MissingManifold;
++
++	const CachedManifold &manifold = kv->GetValue();
++	if ((manifold.mFlags.load() & (uint16)CachedManifold::EFlags::CCDContact) != 0)
++		return ESolvedContactImpulseStatus::CCDOnlyManifold;
++
++	outImpulses.resize(manifold.mNumContactPoints);
++	for (uint32 i = 0; i < manifold.mNumContactPoints; ++i)
++	{
++		const CachedContactPoint &point = manifold.mContactPoints[i];
++		SolvedContactPointImpulse &impulse = outImpulses[i];
++		impulse.mNormalImpulse = point.mNonPenetrationLambda;
++		impulse.mFrictionImpulse1 = point.mFrictionLambda[0];
++		impulse.mFrictionImpulse2 = point.mFrictionLambda[1];
++	}
++
++	return ESolvedContactImpulseStatus::Success;
++}
++
+ template <EMotionType Type1, EMotionType Type2>
+ JPH_INLINE void ContactConstraintManager::sWarmStartConstraint(ContactConstraint &ioConstraint, MotionProperties *ioMotionProperties1, MotionProperties *ioMotionProperties2, float inWarmStartImpulseRatio)
+ {
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.h b/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.h
+index dfe5fc8c3812e4ad6b2c3cbbd344c68479c37967..00a802cad2dbd304b97b21a1f4df06cd2fd8aad1 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.h
++++ b/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.h
+@@ -157,6 +157,28 @@ public:
+ 	/// Uses the read collision cache to determine if 2 bodies are in contact.
+ 	bool						WereBodiesInContact(const BodyID &inBody1ID, const BodyID &inBody2ID) const;
+ 
++	/// Exact solver-applied impulses retained for one contact point in the
++	/// finalized manifold cache of the most recent simulation update.
++	struct SolvedContactPointImpulse
++	{
++		float					mNormalImpulse;
++		float					mFrictionImpulse1;
++		float					mFrictionImpulse2;
++	};
++
++	using SolvedContactPointImpulses = Array<SolvedContactPointImpulse>;
++
++	enum class ESolvedContactImpulseStatus : uint8
++	{
++		Success,
++		MissingManifold,
++		CCDOnlyManifold
++	};
++
++	/// Read the exact post-solve point impulses from the finalized cache. This
++	/// function is valid only while PhysicsSystem::Update is not running.
++	ESolvedContactImpulseStatus GetSolvedContactPointImpulses(const SubShapeIDPair &inShapePair, SolvedContactPointImpulses &outImpulses) const;
++
+ 	/// Get the number of contact constraints that were found
+ 	uint32						GetNumConstraints() const											{ return min<uint32>(mNumConstraints, mMaxConstraints); }
+ 
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp
+index 86bc828eab3f276547dc00e397d0e39a2f6780e3..d5aa7943393d0cffdab4e118f22557b76018b4a1 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp
++++ b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp
+@@ -226,8 +226,35 @@ void HingeConstraint::CalculateMotorConstraintProperties(float inDeltaTime)
+ 	}
+ }
+ 
++float HingeConstraint::GetMotorRelativeAngularVelocity() const
++{
++	return mA1.Dot(mBody2->GetAngularVelocity() - mBody1->GetAngularVelocity());
++}
++
++void HingeConstraint::AccumulateMotorWork(float inAppliedImpulse, float inRelativeAngularVelocityBefore, float inRelativeAngularVelocityAfter)
++{
++	// For J = [0, -a^T, 0, a^T], this is the exact kinetic-energy
++	// change caused by this angular impulse: lambda * (Jv_before +
++	// Jv_after) / 2. Splitting by sign preserves both supplied and
++	// absorbed actuator work without cancellation.
++	float work = inAppliedImpulse * 0.5f * (inRelativeAngularVelocityBefore + inRelativeAngularVelocityAfter);
++	if (work >= 0.0f)
++		mPositiveMotorWork += work;
++	else
++		mAbsorbedMotorWork -= work;
++}
++
+ void HingeConstraint::SetupVelocityConstraint(float inDeltaTime)
+ {
++	++mMotorTelemetrySequence;
++	mMotorTelemetryStep = inDeltaTime;
++	mMotorTelemetryState = mMotorState;
++	mMotorTelemetryTargetAngularVelocity = mTargetAngularVelocity;
++	mMotorTelemetryMinTorqueLimit = mMotorSettings.mMinTorqueLimit;
++	mMotorTelemetryMaxTorqueLimit = mMotorSettings.mMaxTorqueLimit;
++	mPositiveMotorWork = 0.0f;
++	mAbsorbedMotorWork = 0.0f;
++
+ 	// Cache constraint values that are valid until the bodies move
+ 	Mat44 rotation1 = Mat44::sRotation(mBody1->GetRotation());
+ 	Mat44 rotation2 = Mat44::sRotation(mBody2->GetRotation());
+@@ -249,7 +276,10 @@ void HingeConstraint::ResetWarmStart()
+ void HingeConstraint::WarmStartVelocityConstraint(float inWarmStartImpulseRatio)
+ {
+ 	// Warm starting: Apply previous frame impulse
++	float motor_velocity_before = GetMotorRelativeAngularVelocity();
+ 	mMotorConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
++	float motor_velocity_after = GetMotorRelativeAngularVelocity();
++	AccumulateMotorWork(mMotorConstraintPart.GetTotalLambda(), motor_velocity_before, motor_velocity_after);
+ 	mPointConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
+ 	mRotationConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
+ 	mRotationLimitsConstraintPart.WarmStart(*mBody1, *mBody2, inWarmStartImpulseRatio);
+@@ -275,6 +305,9 @@ bool HingeConstraint::SolveVelocityConstraint(float inDeltaTime)
+ 	bool motor = false;
+ 	if (mMotorConstraintPart.IsActive())
+ 	{
++		float motor_lambda_before = mMotorConstraintPart.GetTotalLambda();
++		float motor_velocity_before = GetMotorRelativeAngularVelocity();
++
+ 		switch (mMotorState)
+ 		{
+ 		case EMotorState::Off:
+@@ -289,6 +322,10 @@ bool HingeConstraint::SolveVelocityConstraint(float inDeltaTime)
+ 			motor = mMotorConstraintPart.SolveVelocityConstraint(*mBody1, *mBody2, mA1, inDeltaTime * mMotorSettings.mMinTorqueLimit, inDeltaTime * mMotorSettings.mMaxTorqueLimit);
+ 			break;
+ 		}
++
++		float motor_lambda_after = mMotorConstraintPart.GetTotalLambda();
++		float motor_velocity_after = GetMotorRelativeAngularVelocity();
++		AccumulateMotorWork(motor_lambda_after - motor_lambda_before, motor_velocity_before, motor_velocity_after);
+ 	}
+ 
+ 	// Solve point constraint
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h
+index 398ccc1a0626edc9127b8ea0444d047fa41c47e8..2413da6a4d16fc5e2ebf2a9b961144f539ce8d78 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h
++++ b/thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h
+@@ -145,11 +145,26 @@ public:
+ 	inline float				GetTotalLambdaRotationLimits() const					{ return mRotationLimitsConstraintPart.GetTotalLambda(); }
+ 	inline float				GetTotalLambdaMotor() const								{ return mMotorConstraintPart.GetTotalLambda(); }
+ 
++	/// Exact discrete work telemetry for the motor constraint part from the last
++	/// velocity-constraint setup. Positive and absorbed work are accumulated for
++	/// every warm-start and iterative motor impulse using the trapezoidal
++	/// generalized velocity across that impulse.
++	inline uint64				GetMotorTelemetrySequence() const						{ return mMotorTelemetrySequence; }
++	inline float				GetMotorTelemetryStep() const							{ return mMotorTelemetryStep; }
++	inline EMotorState			GetMotorTelemetryState() const						{ return mMotorTelemetryState; }
++	inline float				GetMotorTelemetryTargetAngularVelocity() const		{ return mMotorTelemetryTargetAngularVelocity; }
++	inline float				GetMotorTelemetryMinTorqueLimit() const				{ return mMotorTelemetryMinTorqueLimit; }
++	inline float				GetMotorTelemetryMaxTorqueLimit() const				{ return mMotorTelemetryMaxTorqueLimit; }
++	inline float				GetPositiveMotorWork() const							{ return mPositiveMotorWork; }
++	inline float				GetAbsorbedMotorWork() const							{ return mAbsorbedMotorWork; }
++
+ private:
+ 	// Internal helper function to calculate the values below
+ 	void						CalculateA1AndTheta();
+ 	void						CalculateRotationLimitsConstraintProperties(float inDeltaTime);
+ 	void						CalculateMotorConstraintProperties(float inDeltaTime);
++	float						GetMotorRelativeAngularVelocity() const;
++	void						AccumulateMotorWork(float inAppliedImpulse, float inRelativeAngularVelocityBefore, float inRelativeAngularVelocityAfter);
+ 	inline float				GetSmallestAngleToLimit() const;
+ 	inline bool					IsMinLimitClosest() const;
+ 
+@@ -200,6 +215,16 @@ private:
+ 	HingeRotationConstraintPart mRotationConstraintPart;
+ 	AngleConstraintPart			mRotationLimitsConstraintPart;
+ 	AngleConstraintPart			mMotorConstraintPart;
++
++	// Per-setup telemetry. These values do not affect simulation state.
++	uint64						mMotorTelemetrySequence = 0;
++	float						mMotorTelemetryStep = 0.0f;
++	EMotorState				mMotorTelemetryState = EMotorState::Off;
++	float						mMotorTelemetryTargetAngularVelocity = 0.0f;
++	float						mMotorTelemetryMinTorqueLimit = 0.0f;
++	float						mMotorTelemetryMaxTorqueLimit = 0.0f;
++	float						mPositiveMotorWork = 0.0f;
++	float						mAbsorbedMotorWork = 0.0f;
+ };
+ 
+ JPH_NAMESPACE_END
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
+index 90a69c415d4af8d693e7504c6386c4a4a625cd07..be8e31b74ed74e2627bc82a8117bafce86b8389d 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
++++ b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
+@@ -76,6 +76,163 @@ PhysicsSystem::~PhysicsSystem()
+ 	delete mBroadPhase;
+ }
+ 
++PhysicsSystem::SporeSporeEnergySnapshot PhysicsSystem::MeasureSporeSporeEnergy(const BodyID *inBodiesBegin, const BodyID *inBodiesEnd) const
++{
++	auto finite_vec3 = [](Vec3Arg inValue) {
++		return isfinite(inValue.GetX()) && isfinite(inValue.GetY()) && isfinite(inValue.GetZ());
++	};
++	auto finite_rvec3 = [](RVec3Arg inValue) {
++		return isfinite(double(inValue.GetX())) && isfinite(double(inValue.GetY())) && isfinite(double(inValue.GetZ()));
++	};
++	SporeSporeEnergySnapshot result;
++	for (const BodyID *body_id = inBodiesBegin; body_id < inBodiesEnd; ++body_id)
++	{
++		const Body &body = mBodyManager.GetBody(*body_id);
++		if (!body.IsDynamic())
++		{
++			++result.mInvalidBodyCount;
++			continue;
++		}
++
++		const MotionProperties *motion = body.GetMotionPropertiesUnchecked();
++		const float inverse_mass = motion->GetInverseMassUnchecked();
++		const Vec3 linear_velocity = motion->GetLinearVelocity();
++		const Vec3 angular_velocity = motion->GetAngularVelocity();
++		const RVec3 body_origin = body.GetPosition();
++		Mat44 inertia;
++		const Mat44 inverse_inertia = motion->GetInverseInertiaForRotation(Mat44::sRotation(body.GetRotation()));
++		if (inverse_mass <= 0.0f
++			|| !finite_vec3(linear_velocity)
++			|| !finite_vec3(angular_velocity)
++			|| !finite_rvec3(body_origin)
++			|| !inertia.SetInversed3x3(inverse_inertia))
++		{
++			++result.mInvalidBodyCount;
++			continue;
++		}
++
++		const double mass = 1.0 / double(inverse_mass);
++		const double translational = 0.5 * mass * double(linear_velocity.LengthSq());
++		const double rotational = 0.5 * double(angular_velocity.Dot(inertia.Multiply3x3(angular_velocity)));
++		const double kinetic = translational + rotational;
++		if (!isfinite(mass) || !isfinite(kinetic) || kinetic < 0.0)
++		{
++			++result.mInvalidBodyCount;
++			continue;
++		}
++
++		result.mKineticEnergyJ += kinetic;
++		result.mMassWeightedBodyOriginKgM += body_origin * float(mass);
++		++result.mDynamicBodyCount;
++	}
++
++	if (!isfinite(result.mKineticEnergyJ) || !finite_rvec3(result.mMassWeightedBodyOriginKgM))
++		++result.mInvalidBodyCount;
++	return result;
++}
++
++void PhysicsSystem::BeginSporeSporeSolverEnergyExchange(uint32 inCollisionStepCount, uint32 inActiveSoftBodyCount)
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	uint64 sequence = mSporeSporeSolverEnergyExchangeTelemetry.mSequence + 1;
++	if (sequence == 0)
++		sequence = 1;
++	mSporeSporeSolverEnergyExchangeTelemetry = SporeSporeSolverEnergyExchangeTelemetry();
++	mSporeSporeSolverEnergyExchangeTelemetry.mSequence = sequence;
++	mSporeSporeSolverEnergyExchangeTelemetry.mCollisionStepCount = inCollisionStepCount;
++	mSporeSporeSolverEnergyExchangeTelemetry.mActiveSoftBodyCount = inActiveSoftBodyCount;
++}
++
++void PhysicsSystem::RecordSporeSporeVelocityExchange(double inJointExchangeJ, double inContactExchangeJ, uint32 inJointPhaseCount, uint32 inContactPhaseCount, uint32 inDynamicBodyObservationCount, uint32 inInvalidBodyMeasurementCount, bool inIslandComplete)
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	SporeSporeSolverEnergyExchangeTelemetry &telemetry = mSporeSporeSolverEnergyExchangeTelemetry;
++	if (isfinite(inJointExchangeJ) && isfinite(inContactExchangeJ))
++	{
++		telemetry.mJointVelocityConstraintExchangeJ += inJointExchangeJ;
++		telemetry.mContactVelocityConstraintExchangeJ += inContactExchangeJ;
++	}
++	else
++	{
++		++inInvalidBodyMeasurementCount;
++		inIslandComplete = false;
++	}
++	telemetry.mJointVelocityPhaseCount += inJointPhaseCount;
++	telemetry.mContactVelocityPhaseCount += inContactPhaseCount;
++	telemetry.mDynamicBodyObservationCount += inDynamicBodyObservationCount;
++	telemetry.mInvalidBodyMeasurementCount += inInvalidBodyMeasurementCount;
++	++telemetry.mConstrainedIslandCount;
++	if (inIslandComplete)
++		++telemetry.mVelocityMeasuredIslandCount;
++}
++
++void PhysicsSystem::RecordSporeSporePositionExchange(double inKineticExchangeJ, RVec3Arg inMassWeightedDisplacementKgM, uint32 inPhaseCount, uint32 inDynamicBodyObservationCount, uint32 inInvalidBodyMeasurementCount, bool inIslandComplete)
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	SporeSporeSolverEnergyExchangeTelemetry &telemetry = mSporeSporeSolverEnergyExchangeTelemetry;
++	const bool finite_displacement = isfinite(double(inMassWeightedDisplacementKgM.GetX()))
++		&& isfinite(double(inMassWeightedDisplacementKgM.GetY()))
++		&& isfinite(double(inMassWeightedDisplacementKgM.GetZ()));
++	if (isfinite(inKineticExchangeJ) && finite_displacement)
++	{
++		telemetry.mPositionConstraintKineticExchangeJ += inKineticExchangeJ;
++		telemetry.mPositionConstraintMassWeightedDisplacementKgM += inMassWeightedDisplacementKgM;
++	}
++	else
++	{
++		++inInvalidBodyMeasurementCount;
++		inIslandComplete = false;
++	}
++	telemetry.mPositionConstraintPhaseCount += inPhaseCount;
++	telemetry.mDynamicBodyObservationCount += inDynamicBodyObservationCount;
++	telemetry.mInvalidBodyMeasurementCount += inInvalidBodyMeasurementCount;
++	if (inIslandComplete)
++		++telemetry.mPositionMeasuredIslandCount;
++}
++
++void PhysicsSystem::RecordSporeSporeLargeIslandBatch(bool inPositionPhase)
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	if (inPositionPhase)
++		++mSporeSporeSolverEnergyExchangeTelemetry.mLargeIslandPositionBatchCount;
++	else
++		++mSporeSporeSolverEnergyExchangeTelemetry.mLargeIslandVelocityBatchCount;
++}
++
++void PhysicsSystem::FinishSporeSporeSolverEnergyExchange(uint32 inCCDActiveBodyCount, EPhysicsUpdateError inErrors)
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	SporeSporeSolverEnergyExchangeTelemetry &telemetry = mSporeSporeSolverEnergyExchangeTelemetry;
++	telemetry.mCCDActiveBodyCount = inCCDActiveBodyCount;
++	telemetry.mUpdateErrorBits = uint32(inErrors);
++	telemetry.mComplete = telemetry.mCollisionStepCount == 1
++		&& telemetry.mConstrainedIslandCount > 0
++		&& telemetry.mVelocityMeasuredIslandCount == telemetry.mConstrainedIslandCount
++		&& telemetry.mPositionMeasuredIslandCount == telemetry.mConstrainedIslandCount
++		&& telemetry.mDynamicBodyObservationCount > 0
++		&& telemetry.mInvalidBodyMeasurementCount == 0
++		&& telemetry.mLargeIslandVelocityBatchCount == 0
++		&& telemetry.mLargeIslandPositionBatchCount == 0
++		&& telemetry.mCCDActiveBodyCount == 0
++		&& telemetry.mActiveSoftBodyCount == 0
++		&& telemetry.mUpdateErrorBits == 0
++		&& isfinite(telemetry.mJointVelocityConstraintExchangeJ)
++		&& isfinite(telemetry.mContactVelocityConstraintExchangeJ)
++		&& isfinite(telemetry.mPositionConstraintKineticExchangeJ)
++		&& isfinite(double(telemetry.mPositionConstraintMassWeightedDisplacementKgM.GetX()))
++		&& isfinite(double(telemetry.mPositionConstraintMassWeightedDisplacementKgM.GetY()))
++		&& isfinite(double(telemetry.mPositionConstraintMassWeightedDisplacementKgM.GetZ()));
++}
++
++bool PhysicsSystem::GetSporeSporeSolverEnergyExchangeTelemetry(SporeSporeSolverEnergyExchangeTelemetry &outTelemetry) const
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	if (mSporeSporeSolverEnergyExchangeTelemetry.mSequence == 0)
++		return false;
++	outTelemetry = mSporeSporeSolverEnergyExchangeTelemetry;
++	return true;
++}
++
+ void PhysicsSystem::Init(uint inMaxBodies, uint inNumBodyMutexes, uint inMaxBodyPairs, uint inMaxContactConstraints, const BroadPhaseLayerInterface &inBroadPhaseLayerInterface, const ObjectVsBroadPhaseLayerFilter &inObjectVsBroadPhaseLayerFilter, const ObjectLayerPairFilter &inObjectLayerPairFilter)
+ {
+ 	// Clamp max bodies
+@@ -187,6 +344,7 @@ EPhysicsUpdateError PhysicsSystem::Update(float inDeltaTime, int inCollisionStep
+ 	// If there are no active bodies (and no step listener to wake them up) or there's no time delta
+ 	uint32 num_active_rigid_bodies = mBodyManager.GetNumActiveBodies(EBodyType::RigidBody);
+ 	uint32 num_active_soft_bodies = mBodyManager.GetNumActiveBodies(EBodyType::SoftBody);
++	BeginSporeSporeSolverEnergyExchange(uint32(inCollisionSteps), num_active_soft_bodies);
+ 	if ((num_active_rigid_bodies == 0 && num_active_soft_bodies == 0 && mStepListeners.empty()) || inDeltaTime <= 0.0f)
+ 	{
+ 		mBodyManager.LockAllBodies();
+@@ -202,6 +360,7 @@ EPhysicsUpdateError PhysicsSystem::Update(float inDeltaTime, int inCollisionStep
+ 			mContactManager.FinalizeContactCacheAndCallContactPointRemovedCallbacks(0, 0);
+ 
+ 		mBodyManager.UnlockAllBodies();
++		FinishSporeSporeSolverEnergyExchange(0, EPhysicsUpdateError::None);
+ 		return EPhysicsUpdateError::None;
+ 	}
+ 
+@@ -674,6 +833,10 @@ EPhysicsUpdateError PhysicsSystem::Update(float inDeltaTime, int inCollisionStep
+ 
+ 	// Return any errors
+ 	EPhysicsUpdateError errors = static_cast<EPhysicsUpdateError>(context.mErrors.load(memory_order_acquire));
++	uint32 ccd_active_body_count = 0;
++	for (const PhysicsUpdateContext::Step &step : context.mSteps)
++		ccd_active_body_count += step.mNumCCDBodies.load(memory_order_acquire);
++	FinishSporeSporeSolverEnergyExchange(ccd_active_body_count, errors);
+ 	JPH_ASSERT(errors == EPhysicsUpdateError::None, "An error occurred during the physics update, see EPhysicsUpdateError for more information");
+ 	return errors;
+ }
+@@ -1424,6 +1587,7 @@ void PhysicsSystem::JobSolveVelocityConstraints(PhysicsUpdateContext *ioContext,
+ 			{
+ 			case LargeIslandSplitter::EStatus::BatchRetrieved:
+ 				{
++					RecordSporeSporeLargeIslandBatch(false);
+ 				#ifdef JPH_TRACK_SIMULATION_STATS
+ 					uint64 start_tick = GetProcessorTickCount();
+ 				#endif
+@@ -1530,9 +1694,43 @@ void PhysicsSystem::JobSolveVelocityConstraints(PhysicsUpdateContext *ioContext,
+ 				is_large_island = false;
+ 			#endif
+ 
++				BodyID *bodies_begin, *bodies_end;
++				mIslandBuilder.GetBodiesInIsland(island_idx, bodies_begin, bodies_end);
++				double joint_exchange_j = 0.0;
++				double contact_exchange_j = 0.0;
++				uint32 joint_phase_count = 0;
++				uint32 contact_phase_count = 0;
++				uint32 dynamic_body_observation_count = 0;
++				uint32 invalid_body_measurement_count = 0;
++				bool energy_measurement_complete = true;
++
+ 				// We didn't create a split, just run the solver now for this entire island. Begin by warm starting.
+-				ConstraintManager::sWarmStartVelocityConstraints(active_constraints, constraints_begin, constraints_end, warm_start_impulse_ratio, steps_calculator);
+-				mContactManager.WarmStartVelocityConstraints(contacts_begin, contacts_end, warm_start_impulse_ratio, steps_calculator);
++				if (constraints_begin != constraints_end)
++				{
++					SporeSporeEnergySnapshot before = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++					ConstraintManager::sWarmStartVelocityConstraints(active_constraints, constraints_begin, constraints_end, warm_start_impulse_ratio, steps_calculator);
++					SporeSporeEnergySnapshot after = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++					joint_exchange_j += after.mKineticEnergyJ - before.mKineticEnergyJ;
++					dynamic_body_observation_count += before.mDynamicBodyCount;
++					invalid_body_measurement_count += before.mInvalidBodyCount + after.mInvalidBodyCount;
++					energy_measurement_complete &= before.mInvalidBodyCount == 0 && after.mInvalidBodyCount == 0 && before.mDynamicBodyCount == after.mDynamicBodyCount && before.mDynamicBodyCount > 0;
++					++joint_phase_count;
++				}
++				else
++					ConstraintManager::sWarmStartVelocityConstraints(active_constraints, constraints_begin, constraints_end, warm_start_impulse_ratio, steps_calculator);
++				if (contacts_begin != contacts_end)
++				{
++					SporeSporeEnergySnapshot before = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++					mContactManager.WarmStartVelocityConstraints(contacts_begin, contacts_end, warm_start_impulse_ratio, steps_calculator);
++					SporeSporeEnergySnapshot after = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++					contact_exchange_j += after.mKineticEnergyJ - before.mKineticEnergyJ;
++					dynamic_body_observation_count += before.mDynamicBodyCount;
++					invalid_body_measurement_count += before.mInvalidBodyCount + after.mInvalidBodyCount;
++					energy_measurement_complete &= before.mInvalidBodyCount == 0 && after.mInvalidBodyCount == 0 && before.mDynamicBodyCount == after.mDynamicBodyCount && before.mDynamicBodyCount > 0;
++					++contact_phase_count;
++				}
++				else
++					mContactManager.WarmStartVelocityConstraints(contacts_begin, contacts_end, warm_start_impulse_ratio, steps_calculator);
+ 				steps_calculator.Finalize();
+ 
+ 				// Store the number of position steps for later
+@@ -1541,12 +1739,35 @@ void PhysicsSystem::JobSolveVelocityConstraints(PhysicsUpdateContext *ioContext,
+ 				// Solve velocity constraints
+ 				for (uint velocity_step = 0; velocity_step < steps_calculator.GetNumVelocitySteps(); ++velocity_step)
+ 				{
+-					bool applied_impulse = ConstraintManager::sSolveVelocityConstraints(active_constraints, constraints_begin, constraints_end, delta_time);
+-					applied_impulse |= mContactManager.SolveVelocityConstraints(contacts_begin, contacts_end);
++					bool applied_impulse = false;
++					if (constraints_begin != constraints_end)
++					{
++						SporeSporeEnergySnapshot before = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++						applied_impulse = ConstraintManager::sSolveVelocityConstraints(active_constraints, constraints_begin, constraints_end, delta_time);
++						SporeSporeEnergySnapshot after = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++						joint_exchange_j += after.mKineticEnergyJ - before.mKineticEnergyJ;
++						dynamic_body_observation_count += before.mDynamicBodyCount;
++						invalid_body_measurement_count += before.mInvalidBodyCount + after.mInvalidBodyCount;
++						energy_measurement_complete &= before.mInvalidBodyCount == 0 && after.mInvalidBodyCount == 0 && before.mDynamicBodyCount == after.mDynamicBodyCount && before.mDynamicBodyCount > 0;
++						++joint_phase_count;
++					}
++					if (contacts_begin != contacts_end)
++					{
++						SporeSporeEnergySnapshot before = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++						applied_impulse |= mContactManager.SolveVelocityConstraints(contacts_begin, contacts_end);
++						SporeSporeEnergySnapshot after = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++						contact_exchange_j += after.mKineticEnergyJ - before.mKineticEnergyJ;
++						dynamic_body_observation_count += before.mDynamicBodyCount;
++						invalid_body_measurement_count += before.mInvalidBodyCount + after.mInvalidBodyCount;
++						energy_measurement_complete &= before.mInvalidBodyCount == 0 && after.mInvalidBodyCount == 0 && before.mDynamicBodyCount == after.mDynamicBodyCount && before.mDynamicBodyCount > 0;
++						++contact_phase_count;
++					}
+ 					if (!applied_impulse)
+ 						break;
+ 				}
+ 
++				RecordSporeSporeVelocityExchange(joint_exchange_j, contact_exchange_j, joint_phase_count, contact_phase_count, dynamic_body_observation_count, invalid_body_measurement_count, energy_measurement_complete && joint_phase_count + contact_phase_count > 0);
++
+ 				// Save back the lambdas in the contact cache for the warm start of the next physics update
+ 				mContactManager.StoreAppliedImpulses(contacts_begin, contacts_end);
+ 			}
+@@ -2572,6 +2793,7 @@ void PhysicsSystem::JobSolvePositionConstraints(PhysicsUpdateContext *ioContext,
+ 			{
+ 			case LargeIslandSplitter::EStatus::BatchRetrieved:
+ 				{
++					RecordSporeSporeLargeIslandBatch(true);
+ 				#ifdef JPH_TRACK_SIMULATION_STATS
+ 					uint64 start_tick = GetProcessorTickCount();
+ 				#endif
+@@ -2638,15 +2860,34 @@ void PhysicsSystem::JobSolvePositionConstraints(PhysicsUpdateContext *ioContext,
+ 			// Check if this island needs solving
+ 			if (num_items > 0)
+ 			{
++				BodyID *bodies_begin, *bodies_end;
++				mIslandBuilder.GetBodiesInIsland(island_idx, bodies_begin, bodies_end);
++				double kinetic_exchange_j = 0.0;
++				RVec3 mass_weighted_displacement_kg_m = RVec3::sZero();
++				uint32 position_phase_count = 0;
++				uint32 dynamic_body_observation_count = 0;
++				uint32 invalid_body_measurement_count = 0;
++				bool energy_measurement_complete = true;
++
+ 				// Iterate
+ 				uint num_position_steps = mIslandBuilder.GetNumPositionSteps(island_idx);
+ 				for (uint position_step = 0; position_step < num_position_steps; ++position_step)
+ 				{
++					SporeSporeEnergySnapshot before = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
+ 					bool applied_impulse = ConstraintManager::sSolvePositionConstraints(active_constraints, constraints_begin, constraints_end, delta_time, baumgarte);
+ 					applied_impulse |= mContactManager.SolvePositionConstraints(contacts_begin, contacts_end);
++					SporeSporeEnergySnapshot after = MeasureSporeSporeEnergy(bodies_begin, bodies_end);
++					kinetic_exchange_j += after.mKineticEnergyJ - before.mKineticEnergyJ;
++					mass_weighted_displacement_kg_m += after.mMassWeightedBodyOriginKgM - before.mMassWeightedBodyOriginKgM;
++					dynamic_body_observation_count += before.mDynamicBodyCount;
++					invalid_body_measurement_count += before.mInvalidBodyCount + after.mInvalidBodyCount;
++					energy_measurement_complete &= before.mInvalidBodyCount == 0 && after.mInvalidBodyCount == 0 && before.mDynamicBodyCount == after.mDynamicBodyCount && before.mDynamicBodyCount > 0;
++					++position_phase_count;
+ 					if (!applied_impulse)
+ 						break;
+ 				}
++
++				RecordSporeSporePositionExchange(kinetic_exchange_j, mass_weighted_displacement_kg_m, position_phase_count, dynamic_body_observation_count, invalid_body_measurement_count, energy_measurement_complete && position_phase_count > 0);
+ 			}
+ 
+ 		#ifdef JPH_TRACK_SIMULATION_STATS
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h
+index cff88d279c9bc3f8df6ed851e54f5753e55e9239..1cd3b2054e7230495360e47d951fe9eb24681e4f 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h
++++ b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h
+@@ -23,6 +23,37 @@ class PhysicsStepListener;
+ class SoftBodyContactListener;
+ class SimShapeFilter;
+ 
++/// Source-measured solver-phase energy exchange for the most recent update.
++///
++/// This is an opt-in SporeSpore development profile. It observes kinetic
++/// energy immediately before and after every small-island velocity-constraint
++/// phase, and observes the mass-weighted body-origin displacement and
++/// rotational kinetic-energy change caused by position constraints. It never
++/// derives a work channel from the whole-step mechanical-energy residual.
++struct SporeSporeSolverEnergyExchangeTelemetry
++{
++	uint64				mSequence = 0;
++	double				mJointVelocityConstraintExchangeJ = 0.0;
++	double				mContactVelocityConstraintExchangeJ = 0.0;
++	double				mPositionConstraintKineticExchangeJ = 0.0;
++	RVec3				mPositionConstraintMassWeightedDisplacementKgM = RVec3::sZero();
++	uint32				mCollisionStepCount = 0;
++	uint32				mConstrainedIslandCount = 0;
++	uint32				mVelocityMeasuredIslandCount = 0;
++	uint32				mPositionMeasuredIslandCount = 0;
++	uint32				mJointVelocityPhaseCount = 0;
++	uint32				mContactVelocityPhaseCount = 0;
++	uint32				mPositionConstraintPhaseCount = 0;
++	uint32				mDynamicBodyObservationCount = 0;
++	uint32				mInvalidBodyMeasurementCount = 0;
++	uint32				mLargeIslandVelocityBatchCount = 0;
++	uint32				mLargeIslandPositionBatchCount = 0;
++	uint32				mCCDActiveBodyCount = 0;
++	uint32				mActiveSoftBodyCount = 0;
++	uint32				mUpdateErrorBits = 0;
++	bool				mComplete = false;
++};
++
+ /// The main class for the physics system. It contains all rigid bodies and simulates them.
+ ///
+ /// The main simulation is performed by the Update() call on multiple threads (if the JobSystem is configured to use them). Please refer to the general architecture overview in the Docs folder for more information.
+@@ -247,6 +278,14 @@ public:
+ 	/// - During the ContactListener::OnContactRemoved callback this function can be used to determine if this is the last contact pair between the bodies (function returns false) or if there are other contacts still present (function returns true).
+ 	bool						WereBodiesInContact(const BodyID &inBody1ID, const BodyID &inBody2ID) const { return mContactManager.WereBodiesInContact(inBody1ID, inBody2ID); }
+ 
++	/// Read exact solver-applied point impulses from the finalized contact cache
++	/// of the most recent update. Must not be called while Update is running.
++	ContactConstraintManager::ESolvedContactImpulseStatus GetSolvedContactPointImpulses(const SubShapeIDPair &inShapePair, ContactConstraintManager::SolvedContactPointImpulses &outImpulses) const { return mContactManager.GetSolvedContactPointImpulses(inShapePair, outImpulses); }
++
++	/// Read the finalized SporeSpore solver-phase energy telemetry. Must not be
++	/// called while Update is running.
++	bool						GetSporeSporeSolverEnergyExchangeTelemetry(SporeSporeSolverEnergyExchangeTelemetry &outTelemetry) const;
++
+ 	/// Get the bounding box of all bodies in the physics system.
+ 	/// Deprecated: Use GetBroadPhaseQuery().GetBounds() instead.
+ 	AABox						GetBounds() const											{ return mBroadPhase->GetBounds(); }
+@@ -264,6 +303,21 @@ public:
+ private:
+ 	using CCDBody = PhysicsUpdateContext::Step::CCDBody;
+ 
++	struct SporeSporeEnergySnapshot
++	{
++		double				mKineticEnergyJ = 0.0;
++		RVec3				mMassWeightedBodyOriginKgM = RVec3::sZero();
++		uint32				mDynamicBodyCount = 0;
++		uint32				mInvalidBodyCount = 0;
++	};
++
++	SporeSporeEnergySnapshot	MeasureSporeSporeEnergy(const BodyID *inBodiesBegin, const BodyID *inBodiesEnd) const;
++	void						BeginSporeSporeSolverEnergyExchange(uint32 inCollisionStepCount, uint32 inActiveSoftBodyCount);
++	void						RecordSporeSporeVelocityExchange(double inJointExchangeJ, double inContactExchangeJ, uint32 inJointPhaseCount, uint32 inContactPhaseCount, uint32 inDynamicBodyObservationCount, uint32 inInvalidBodyMeasurementCount, bool inIslandComplete);
++	void						RecordSporeSporePositionExchange(double inKineticExchangeJ, RVec3Arg inMassWeightedDisplacementKgM, uint32 inPhaseCount, uint32 inDynamicBodyObservationCount, uint32 inInvalidBodyMeasurementCount, bool inIslandComplete);
++	void						RecordSporeSporeLargeIslandBatch(bool inPositionPhase);
++	void						FinishSporeSporeSolverEnergyExchange(uint32 inCCDActiveBodyCount, EPhysicsUpdateError inErrors);
++
+ 	// Various job entry points
+ 	void						JobStepListeners(PhysicsUpdateContext::Step *ioStep);
+ 	void						JobDetermineActiveConstraints(PhysicsUpdateContext::Step *ioStep) const;
+@@ -386,6 +440,9 @@ private:
+ 
+ 	/// Previous frame's delta time of one sub step to allow scaling previous frame's constraint impulses
+ 	float						mPreviousStepDeltaTime = 0.0f;
++
++	mutable Mutex				mSporeSporeSolverEnergyExchangeMutex;
++	SporeSporeSolverEnergyExchangeTelemetry mSporeSporeSolverEnergyExchangeTelemetry;
+ };
+ 
+ JPH_NAMESPACE_END
+

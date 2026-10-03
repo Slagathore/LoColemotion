@@ -1,0 +1,208 @@
+{
+  "schema_version": "sporespore_qsdk_r23d23_mujoco_forward_receipt_diagnosis_v1",
+  "status": "postclosure_diagnosis_and_zero_world_compatibility_repair",
+  "gate_id": "QSDK-R23D23-MJC-FORWARD-RECEIPT-D1",
+  "declared_from_parent_commit": "4c34c3d2bbcfdba6ebcbcb87b0c462d44507e216",
+  "question_class": "development_diagnosis",
+  "physical_campaign_identity": false,
+  "immutable_closure_bindings": [
+    {
+      "gate_id": "QSDK-R23D21",
+      "path": "sdk/turning/r23d21_physical_closure_v1.json",
+      "git_blob_oid": "0c427f989fa71f8563ae4229852dad8701f0686e",
+      "raw_sha256": "sha256:d4f941c6de221f3ce2689a137bd07ed64a13ff9e3b63b23e225a153abbedbd4c",
+      "scientific_disposition": "finite_positive_godot_jolt_triplet"
+    },
+    {
+      "gate_id": "QSDK-R23D23",
+      "path": "sdk/turning/r23d23_physical_closure_v1.json",
+      "git_blob_oid": "94d4a95eb6b44594f99e7a2275292b43bd1c8f17",
+      "raw_sha256": "sha256:47c5be6c974fcefdbf971bf1e316ee8029bb232f3bd8b9f2dfdf0b520896dd51",
+      "scientific_disposition": "consumed_invalid_complete_matrix"
+    }
+  ],
+  "observed_failure": {
+    "engine_id": "mujoco",
+    "affected_cell_count": 3,
+    "world_attempt_count": 3,
+    "world_build_count": 3,
+    "failure_stage": "settlement_complete",
+    "failure_code": "QSDK_R23D23_MJC_RUNTIME_ERROR:RuntimeError:QSDK_R23D8_NEUTRAL_UNEXPECTED_FORWARD_RECEIPT",
+    "turning_outcome_available": false
+  },
+  "mechanism": {
+    "controller_policy_id": "sporespore_balanced_wave_r23d21_reduced_yaw_authority_v1",
+    "real_controller_receipt_schema": "sporespore_controller_step_receipt_v5",
+    "required_member": "forward_velocity_foot_placement",
+    "required_member_schema": "sporespore_forward_velocity_foot_placement_receipt_v2",
+    "required_mode_id": "forward_velocity_foot_placement_v1",
+    "required_error_orientation_id": "desired_minus_measured_forward_velocity_error_v1",
+    "required_maximum_hip_target_correction_rad": 0.03,
+    "inherited_validator_behavior": "R23D8 correctly forbids this member for its historical BW5R-B source contract, but R23D23 changed the source policy without declaring the R23D21 receipt-shape contract.",
+    "zero_world_gap": "The R23D23 policy-binding canary hand-built a receipt containing only policy_id and ordered commands. It did not call the real R23D21 controller and therefore omitted the member that every live terminal controller step emits.",
+    "physics_mechanism": false,
+    "adapter_contract_mismatch": true
+  },
+  "compatibility_repair": {
+    "source_contract_id": "r23d21_forward_velocity_foot_placement_receipt_v2",
+    "opt_in_only": true,
+    "historical_default_contract_id": "source_receipt_forbids_forward_velocity_foot_placement_v1",
+    "historical_r23d8_default_behavior_preserved": true,
+    "full_source_actuation_preserved_through_canonical_composition": true,
+    "member_may_not_be_silently_removed": true,
+    "real_portable_controller_arms_exercised": 3,
+    "source_and_terminal_mutation_control_count": 22,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "threshold_provenance_query": {
+    "purpose": "Determine from retained same-lineage traces whether R23D14's tight terminal thresholds were uncalibrated guesses before any successor changes them.",
+    "tight_maximum_torso_tilt_rad": 0.01,
+    "tight_maximum_joint_position_error_rad": 0.2,
+    "controller_steps": 2992,
+    "terminal_steps": 960,
+    "selection_rule": "Use all retained R23D21 accepted Godot/Jolt cells and all retained R23D23 execution-valid Rapier cells because they share the exact R23D14 terminal semantics. Do not pool unrelated walking contracts with different terminal laws.",
+    "retained_cells": [
+      {
+        "cell_id": "godot_jolt__tight_gated_horizon__reference_zero",
+        "engine_id": "godot_jolt",
+        "source_gate_id": "QSDK-R23D21",
+        "trace_cas_sha256": "sha256:06df14a85d9d6398474bda2e6e46ebbd7f7678e8c29b1818f98d78a7c2cab209",
+        "expected_projection": {
+          "trace_row_count": 3952,
+          "terminal_row_count": 960,
+          "terminal_tilt_minimum_rad": 0.0,
+          "terminal_tilt_final_rad": 0.0,
+          "terminal_joint_error_minimum_rad": 0.0,
+          "terminal_joint_error_final_rad": 0.0,
+          "tight_pose_row_count": 960,
+          "first_tight_terminal_index": 0,
+          "first_controller_tilt_above_0_2_step": null,
+          "first_controller_tilt_above_0_5_step": null,
+          "first_controller_height_below_0_35_step": null,
+          "first_controller_torso_ground_contact_step": null
+        }
+      },
+      {
+        "cell_id": "godot_jolt__tight_gated_horizon__positive_heading",
+        "engine_id": "godot_jolt",
+        "source_gate_id": "QSDK-R23D21",
+        "trace_cas_sha256": "sha256:fb3798446f30b5b0435895d120eeb425b00a860d54594f6d6e98410071f4f6de",
+        "expected_projection": {
+          "trace_row_count": 3952,
+          "terminal_row_count": 960,
+          "terminal_tilt_minimum_rad": 0.0,
+          "terminal_tilt_final_rad": 0.0,
+          "terminal_joint_error_minimum_rad": 0.0,
+          "terminal_joint_error_final_rad": 0.0,
+          "tight_pose_row_count": 960,
+          "first_tight_terminal_index": 0,
+          "first_controller_tilt_above_0_2_step": null,
+          "first_controller_tilt_above_0_5_step": null,
+          "first_controller_height_below_0_35_step": null,
+          "first_controller_torso_ground_contact_step": null
+        }
+      },
+      {
+        "cell_id": "godot_jolt__tight_gated_horizon__negative_heading",
+        "engine_id": "godot_jolt",
+        "source_gate_id": "QSDK-R23D21",
+        "trace_cas_sha256": "sha256:ac82c76040e8f37390915b12c3f70f9f9eeddb28ba659db9314f342dee4ebc29",
+        "expected_projection": {
+          "trace_row_count": 3952,
+          "terminal_row_count": 960,
+          "terminal_tilt_minimum_rad": 0.0,
+          "terminal_tilt_final_rad": 0.0,
+          "terminal_joint_error_minimum_rad": 0.0,
+          "terminal_joint_error_final_rad": 0.0,
+          "tight_pose_row_count": 960,
+          "first_tight_terminal_index": 0,
+          "first_controller_tilt_above_0_2_step": null,
+          "first_controller_tilt_above_0_5_step": null,
+          "first_controller_height_below_0_35_step": null,
+          "first_controller_torso_ground_contact_step": null
+        }
+      },
+      {
+        "cell_id": "rapier_parry__tight_gated_horizon__reference_zero",
+        "engine_id": "rapier_parry",
+        "source_gate_id": "QSDK-R23D23",
+        "trace_cas_sha256": "sha256:e194d22ea4288b4f160e42a3b9718d372c0c4a1cb0b69edb51de11e29a1482ec",
+        "expected_projection": {
+          "trace_row_count": 3952,
+          "terminal_row_count": 960,
+          "terminal_tilt_minimum_rad": 0.009023331105709076,
+          "terminal_tilt_final_rad": 0.0767061710357666,
+          "terminal_joint_error_minimum_rad": 0.14109596610069275,
+          "terminal_joint_error_final_rad": 0.3745042681694031,
+          "tight_pose_row_count": 207,
+          "first_tight_terminal_index": 381,
+          "first_controller_tilt_above_0_2_step": null,
+          "first_controller_tilt_above_0_5_step": null,
+          "first_controller_height_below_0_35_step": null,
+          "first_controller_torso_ground_contact_step": null
+        }
+      },
+      {
+        "cell_id": "rapier_parry__tight_gated_horizon__positive_heading",
+        "engine_id": "rapier_parry",
+        "source_gate_id": "QSDK-R23D23",
+        "trace_cas_sha256": "sha256:ddc0f575390971fa64a1b591c72a18b90e0fc57387dca7db8f53343e86edc180",
+        "expected_projection": {
+          "trace_row_count": 3952,
+          "terminal_row_count": 960,
+          "terminal_tilt_minimum_rad": 1.5085368156433105,
+          "terminal_tilt_final_rad": 1.5506852865219116,
+          "terminal_joint_error_minimum_rad": 0.013589838519692421,
+          "terminal_joint_error_final_rad": 0.3186285197734833,
+          "tight_pose_row_count": 0,
+          "first_tight_terminal_index": null,
+          "first_controller_tilt_above_0_2_step": 1032,
+          "first_controller_tilt_above_0_5_step": 1086,
+          "first_controller_height_below_0_35_step": 1105,
+          "first_controller_torso_ground_contact_step": 1122
+        }
+      },
+      {
+        "cell_id": "rapier_parry__tight_gated_horizon__negative_heading",
+        "engine_id": "rapier_parry",
+        "source_gate_id": "QSDK-R23D23",
+        "trace_cas_sha256": "sha256:ce87827546306ed1aae735a15a6096c979d18575928cba5c8228f6e900a9962a",
+        "expected_projection": {
+          "trace_row_count": 3952,
+          "terminal_row_count": 960,
+          "terminal_tilt_minimum_rad": 1.5181835889816284,
+          "terminal_tilt_final_rad": 1.5500560998916626,
+          "terminal_joint_error_minimum_rad": 0.013626527041196823,
+          "terminal_joint_error_final_rad": 0.31920674443244934,
+          "tight_pose_row_count": 0,
+          "first_tight_terminal_index": null,
+          "first_controller_tilt_above_0_2_step": 819,
+          "first_controller_tilt_above_0_5_step": 865,
+          "first_controller_height_below_0_35_step": 883,
+          "first_controller_torso_ground_contact_step": 910
+        }
+      }
+    ],
+    "finding": "The 0.01-rad tilt threshold is attained by every terminal row in all three accepted R23D21 cells. Rapier reference also enters the joint tilt region for 207 rows but does not sustain it. The commanded Rapier cells fail at approximately 1.5 rad terminal tilt and fall during the active turn, so their mechanism is not a near-threshold miss.",
+    "threshold_change_authorized": false,
+    "controller_or_stability_successor_required_for_rapier": true
+  },
+  "claims": {
+    "r23d23_result_reinterpreted": false,
+    "r23d23_same_identity_rerun_authorized": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "turning_acceptance": false,
+    "rapier_turning_candidate": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "next_boundary": "Use the repaired opt-in source contract in any future MuJoCo physical worker. Separately design a prospective Rapier controller or stability successor from the retained active-turn fall mechanism. Do not loosen the 0.01-rad or 0.20-rad tight thresholds on this evidence, and do not open a new physical series from this diagnostic boundary."
+}

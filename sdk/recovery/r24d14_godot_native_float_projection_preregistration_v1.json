@@ -1,0 +1,200 @@
+{
+  "schema_version": "sporespore_qsdk_r24d14_godot_native_float_projection_preregistration_v1",
+  "gate_id": "QSDK-R24D14",
+  "work_id": "QSDK-R24D14-GODOT-NATIVE-PROPERTY-AND-TELEMETRY-FLOAT-PROJECTION",
+  "question_class": "development",
+  "status": "prospective_zero_step_native_projection_source_implemented_qualification_pending",
+  "question": "Before another braking-mechanism solver step, does the pinned Godot runtime prove that the actual HingeJoint3D real_t property readback and the float32-to-Variant-to-full-precision-JSON projection used by Jolt telemetry produce the exact binary64 identities required by the distinct R24D14 evaluator?",
+  "scope": "One native HingeJoint3D allocation and release outside the SceneTree, one native real_t maximum-impulse readback, one independent real_t timestep-carrier readback, one PackedFloat32Array timestep projection, one full evaluator-shaped synthetic report, and zero bodies, spaces, viewports, worlds, world builds, or solver steps. This is development integration qualification only.",
+  "predecessor": {
+    "gate_id": "QSDK-R24D13",
+    "closure_path": "sdk/recovery/r24d13_godot_jolt_braking_mechanism_activation_physical_attempt_closure_v1.json",
+    "closure_raw_sha256": "sha256:2fa82f2a04d579612fbc34cfc62875f6b8f5acca63a41dd3a1da1d2d5bbdb725",
+    "closure_byte_length": 10665,
+    "status": "closed_consumed_invalid_incomplete_after_one_world_native_float32_projection_exactness_rejection",
+    "attempt_consumed": true,
+    "same_source_rerun_forbidden": true,
+    "accepted_physical_characterization": false,
+    "raw_report_re_evaluation_or_selective_promotion_allowed": false
+  },
+  "observed_failure_preserved": {
+    "first_rejection_code": "PARAMETER_brake_positive_public_maximum_motor_impulse_nms",
+    "frozen_r24d13_binary64_hex": "3f60624ddffffffa",
+    "frozen_r24d13_value": 0.0020000000949949,
+    "native_readback_binary64_hex": "3f60624de0000000",
+    "native_readback_value": 0.0020000000949949026,
+    "unreached_frozen_timestep_binary64_hex": "3f8111111ffffffd",
+    "unreached_frozen_timestep_value": 0.00833333376795053,
+    "native_telemetry_timestep_binary64_hex": "3f81111120000000",
+    "native_telemetry_timestep_value": 0.008333333767950535,
+    "adjacent_values_are_numerically_unequal": true,
+    "r24d13_result_changed_or_reinterpreted": false
+  },
+  "prospective_correction": {
+    "correction_id": "actual_native_readback_and_float32_variant_projection_gate_v1",
+    "physical_fixture_changed_from_r24d13": false,
+    "physical_schedule_changed_from_r24d13": false,
+    "mechanism_witness_changed_from_r24d13": false,
+    "threshold_changed_from_r24d13": false,
+    "interpretation_changed_from_r24d13": false,
+    "evaluator_expected_property_readback_changed": true,
+    "evaluator_expected_telemetry_timestep_changed": true,
+    "zero_step_native_readback_gate_added": true,
+    "literal_only_projection_is_adequate": false
+  },
+  "development_calibration": {
+    "separate_from_official_qualification": true,
+    "attempt_population_count": 4,
+    "invalid_or_incomplete_attempt_count": 3,
+    "passing_attempt_count": 1,
+    "first_run_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d14-native-float-projection/development/20260827T000221554Z-f8e74814-fd51dbef1dfc",
+    "first_attempt_raw_sha256": "sha256:2cde38ee17ad731c0241e896bb29cd136e09d015fc9cdadb65eafa331b7252ee",
+    "first_attempt_byte_length": 915,
+    "first_raw_report_raw_sha256": "sha256:1988adbf99fdd2a3cced0d9ad8b27705d29b7ddceebaa677f0b7d0df99367e0d",
+    "first_raw_report_byte_length": 11412,
+    "status": "retained_development_failure_zero_world_zero_step",
+    "failure": "The worker incorrectly required Godot JSON.parse_string to reconstruct the exact binary64 native values. The production evaluator is Python json, not Godot JSON parsing. The retained raw text correctly contains the full native decimals and Python parses them to binary64 3f60624de0000000 and 3f81111120000000; Godot's diagnostic parser instead returned the adjacent R24D13 values.",
+    "correction": "Keep the Godot-parser result as a non-authoritative diagnostic, require the actual native readbacks and exact full-precision output text in the worker, and require the frozen Python production evaluator to parse and accept the retained report.",
+    "additional_invalid_or_incomplete_attempts": [
+      {
+        "run_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d14-native-float-projection/development/20260827T000347604Z-f8e74814-f3304d9dfcea",
+        "attempt_raw_sha256": "sha256:d900c72b7cb302ed728ccd2fb08622a63cde47591d000ba8d169a1997630d58e",
+        "raw_report_raw_sha256": "sha256:0516ce1eb21e7ee244d3c0b4a5b55587717da085ca467bf27c643fe81661bbca",
+        "diagnosis": "The irrelevant Godot JSON parser was removed from acceptance, but GDScript decimal constants intended to name the exact native projections were themselves parsed to the adjacent shorter values. The run remained zero-step and retained."
+      },
+      {
+        "run_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d14-native-float-projection/development/20260827T000432429Z-f8e74814-4fb745c2b742",
+        "attempt_raw_sha256": "sha256:08469d75b4d7dfab4c7b6570874e5d07ef7e2c17c64f3d52cdf2bd3e8f0099ec",
+        "raw_report_raw_sha256": "sha256:457ec18fa492b9bf58744eceba6d4354f37ff096365179382fa19651f556a395",
+        "diagnosis": "Expanded zero-step diagnostics localized both false comparisons to the GDScript constants. The actual native readbacks, exact output text, and independent Python parse were already correct."
+      }
+    ],
+    "passing_run_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d14-native-float-projection/development/20260827T000527024Z-f8e74814-674c7b88c2a6",
+    "passing_receipt_raw_sha256": "sha256:33a0c38659ff776bd5753c4b2490dfd96672635d2c0efc53445ac2e9d52d5207",
+    "passing_receipt_byte_length": 17862,
+    "passing_raw_report_raw_sha256": "sha256:64b7d331a9fcb697ae59aea4f0bcda87aa826397bbb84a18cbdd3a541a0033bb",
+    "passing_evaluation_raw_sha256": "sha256:16c3bae69db0f5ee9c116002d29fc88e54ed859f5b10796b88f3f64dfd3f7b3f",
+    "passing_result": "complete_zero_step_native_property_and_telemetry_projection_passed_development_only",
+    "passing_source_was_clean_pushed": false,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_authority": false,
+    "release_authority": false
+  },
+  "exact_representation_contract": {
+    "comparison_kind": "exact_ieee_754_identity",
+    "tolerance": 0.0,
+    "fields": [
+      {
+        "semantic_role": "parameter_public_maximum_motor_impulse_nms",
+        "authored_expression": "0.002",
+        "native_storage": "HingeJoint3D params array real_t",
+        "native_binary32_hex": "3b03126f",
+        "binary32_promoted_to_binary64_hex": "3f60624de0000000",
+        "binary32_promoted_to_binary64_hexfloat": "0x1.0624de0000000p-9",
+        "required_json_number_text": "0.0020000000949949026",
+        "rejected_r24d13_adjacent_binary64_hex": "3f60624ddffffffa"
+      },
+      {
+        "semantic_role": "telemetry_solver_step_s",
+        "authored_expression": "1.0 / 120.0",
+        "native_storage": "JoltPhysicsServer3D real_t-to-float cast through JoltSpace3D and MotorTelemetry float",
+        "native_binary32_hex": "3c088889",
+        "binary32_promoted_to_binary64_hex": "3f81111120000000",
+        "binary32_promoted_to_binary64_hexfloat": "0x1.1111120000000p-7",
+        "required_json_number_text": "0.008333333767950535",
+        "rejected_r24d13_adjacent_binary64_hex": "3f8111111ffffffd"
+      },
+      {
+        "semantic_role": "fixture_child_inertia_diagonal_kg_m2_regression_control",
+        "authored_expression": "0.05",
+        "native_storage": "Vector3 real_t component",
+        "native_binary32_hex": "3d4ccccd",
+        "binary32_promoted_to_binary64_hex": "3fa99999a0000000",
+        "required_json_number_text": "0.05000000074505806"
+      }
+    ],
+    "empirical_threshold": false,
+    "post_observation_selection": false
+  },
+  "zero_step_native_probe": {
+    "worker_path": "tests/test_sdk_qsdk_r24d14_godot_native_float_projection_worker.gd",
+    "evaluator_path": "sdk/recovery/r24d14_godot_jolt_braking_mechanism_activation_evaluator.py",
+    "route": [
+      "pin and verify the canonical repository, clean-pushed source when qualifying, custom Godot source tree, patch bytes, and runtime binary bytes",
+      "disable PhysicsServer3D before any object allocation",
+      "construct exactly one HingeJoint3D outside the SceneTree, which allocates a native PhysicsServer joint RID without configuring bodies or a space",
+      "write 0.002 through HingeJoint3D.set_param and read it through HingeJoint3D.get_param",
+      "write 1/120 through a second HingeJoint3D real_t parameter and independently through PackedFloat32Array storage",
+      "replace the inherited synthetic report's property and timestep placeholders with those actual readbacks",
+      "serialize the complete report with JSON.stringify full_precision=true and require the exact native decimal identities",
+      "parse and evaluate the serialized report with the distinct frozen R24D14 evaluator",
+      "release the native joint and retain logs, report, evaluation, receipt, and content identities"
+    ],
+    "native_joint_allocation_count": 1,
+    "native_joint_release_call_count": 1,
+    "body_count": 0,
+    "space_count": 0,
+    "viewport_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0
+  },
+  "source_provenance_requirements": {
+    "godot_source_root": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7",
+    "godot_source_remote": "https://github.com/godotengine/godot.git",
+    "godot_source_commit": "5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88",
+    "combined_patch_raw_sha256": "sha256:9629982deb74da1d3e16ea8eaff7cefef7c37a33f407c4cd777e332f05ff376c",
+    "required_native_source_roles": [
+      "Joint3D constructor allocates the native PhysicsServer joint RID",
+      "HingeJoint3D setter and getter store and return real_t",
+      "JoltPhysicsServer3D casts real_t step duration to float",
+      "JoltSpace3D passes float step duration to telemetry capture",
+      "MotorTelemetry stores solver_step_s as float",
+      "JoltPhysicsServer3D inserts solver_step_s into a Variant Dictionary"
+    ],
+    "runtime_binary_reuse_scope": "Exact unchanged source, patch, and console/engine binary bytes only. No R24D13 outcome or physical evidence is reused."
+  },
+  "adequacy": {
+    "threshold_provenance": "There is no empirical threshold. The only numeric acceptances are exact IEEE-754 binary identities determined by the pinned native storage types and serialization path.",
+    "margin_argument": "No superiority, equivalence, or non-inferiority margin is used.",
+    "cohort_argument": "This is a deterministic integration seam, not a sampled cohort or population. One execution of each exact conversion path plus adjacent-value negative controls is adequate to qualify the pinned bytes; any source, runtime, serializer, or dependency change invalidates reuse.",
+    "physics_ghost_argument": "No solver-step ghost is needed because the defect occurs before physics and both vulnerable conversion seams can be executed through native float32 storage in zero steps. This gate proves only that a later attempt will not be wasted by the two known adjacent-binary64 mismatches; it does not predict the physics result.",
+    "empirical_acceptance_threshold_count": 0,
+    "superiority_margin_count": 0,
+    "equivalence_or_non_inferiority_margin_count": 0,
+    "held_out_validation_cohort_count": 0,
+    "population_claim_count": 0
+  },
+  "execution_boundary": {
+    "development_runs_may_repeat_until_integration_is_sound": true,
+    "official_qualification_requires_clean_pushed_source": true,
+    "official_qualification_count": 0,
+    "physical_supervisor_implemented": false,
+    "physical_authorization_declared": false,
+    "physical_execution_authorized_now": false,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0
+  },
+  "claims": {
+    "distinct_development_successor_declared": true,
+    "predecessor_preserved": true,
+    "zero_step_native_projection_source_implemented": true,
+    "complete_zero_step_qualification_passed": false,
+    "physical_characterization_executed": false,
+    "native_braking_mechanism_activation_observed": false,
+    "instrumented_profile_promoted": false,
+    "stock_godot_profile_promoted": false,
+    "native_capability_conjunction_complete": false,
+    "recovery_world_opened": false,
+    "prone_to_standing_world_opened": false,
+    "turning_claim_changed": false,
+    "cross_engine_equivalence_claimed": false,
+    "q_sdk_r24_satisfied": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "next_boundary": "Bind and audit the exact probe source, push it cleanly, and run one official zero-step qualification. Do not construct a body, space, viewport, world, or execute a solver step."
+}

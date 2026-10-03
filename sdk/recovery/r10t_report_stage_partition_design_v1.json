@@ -1,0 +1,113 @@
+{
+  "schema_version": "sporespore_r10t_report_stage_partition_design_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_zero_world_report_stage_partition",
+    "question_class": "development"
+  },
+  "source_parent_commit": "b89604a8761024b47959532dd8e53fcc620bc1fa",
+  "previous_gate": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-a18b7ad7ce784785a6990d08cdedb302/supervisor_result.json",
+    "byte_length": 13428,
+    "raw_sha256": "sha256:c5e1146370261d73cf0831f8ef26cc40fb0bd7d0532bf022b400ab6321bd9d5b"
+  },
+  "previous_gate_status": "unqualified_combined_branch_stage_timeout_no_physical_attempt",
+  "old_graph": {
+    "path": "sdk/development/r10t_safety_stage_contract_v1.json",
+    "byte_length": 8039,
+    "raw_sha256": "sha256:373af27871612076336cfdc4fa8707d71dd1340c5793cd019438f2a621fc5763"
+  },
+  "new_graph": {
+    "path": "sdk/development/r10t_safety_stage_contract_v2.json",
+    "byte_length": 9082,
+    "raw_sha256": "sha256:169254ba11314005a9582748e41866211d18ef5161a404bd297548559714c064"
+  },
+  "groups": [
+    {
+      "old_id": "r10t_branch_reports",
+      "source_module": "test_development_r10t_branch_complete_report",
+      "source_class": "R10TBranchCompleteReport",
+      "source_file": {
+        "path": "tests/test_development_r10t_branch_complete_report.py",
+        "byte_length": 7568,
+        "raw_sha256": "sha256:ade0716ced8901c10aa120d087d96bf312e9cfa0b2ad5d70f2167af4b5e266ec"
+      },
+      "timeout_seconds": 600,
+      "cases": [
+        {
+          "stage_id": "r10t_prone_report",
+          "wrapper": "test_development_r10t_prone_report.py",
+          "method": "test_a_prone_confirmation_report_without_walking",
+          "test_id": "test_development_r10t_branch_complete_report.R10TBranchCompleteReport.test_a_prone_confirmation_report_without_walking"
+        },
+        {
+          "stage_id": "r10t_partial_report",
+          "wrapper": "test_development_r10t_partial_report.py",
+          "method": "test_b_complete_partial_report_without_walking",
+          "test_id": "test_development_r10t_branch_complete_report.R10TBranchCompleteReport.test_b_complete_partial_report_without_walking"
+        }
+      ]
+    },
+    {
+      "old_id": "r10t_preparation_report",
+      "source_module": "test_development_r10t_preparation_report",
+      "source_class": "R10TPreparationReport",
+      "source_file": {
+        "path": "tests/test_development_r10t_preparation_report.py",
+        "byte_length": 12925,
+        "raw_sha256": "sha256:37b2fa7105b93c24b541a14af589adab92c8288132d67390f4bbb84e2ee29ef6"
+      },
+      "timeout_seconds": 900,
+      "cases": [
+        {
+          "stage_id": "r10t_preparation_refusals",
+          "wrapper": "test_development_r10t_preparation_refusals.py",
+          "method": "test_cold_reader_refuses_crossed_preparation_and_walking_links",
+          "test_id": "test_development_r10t_preparation_report.R10TPreparationReport.test_cold_reader_refuses_crossed_preparation_and_walking_links"
+        },
+        {
+          "stage_id": "r10t_preparation_positive",
+          "wrapper": "test_development_r10t_preparation_positive.py",
+          "method": "test_complete_native_preparation_retention_and_independent_replay",
+          "test_id": "test_development_r10t_preparation_report.R10TPreparationReport.test_complete_native_preparation_retention_and_independent_replay"
+        }
+      ]
+    },
+    {
+      "old_id": "r10t_complete_hold_report",
+      "source_module": "test_r10t_complete_hold_report",
+      "source_class": "CompleteHoldReport",
+      "source_file": {
+        "path": "tests/test_r10t_complete_hold_report.py",
+        "byte_length": 5320,
+        "raw_sha256": "sha256:98135dfba4cb72f71d9c95c92b3c823c33ba5fae35e42ef405138ab71ff84488"
+      },
+      "timeout_seconds": 900,
+      "cases": [
+        {
+          "stage_id": "r10t_ready_hold_report",
+          "wrapper": "test_development_r10t_ready_hold_report.py",
+          "method": "test_ready_hold_full_report",
+          "test_id": "test_r10t_complete_hold_report.CompleteHoldReport.test_ready_hold_full_report"
+        },
+        {
+          "stage_id": "r10t_timeout_hold_report",
+          "wrapper": "test_development_r10t_timeout_hold_report.py",
+          "method": "test_timeout_hold_full_report",
+          "test_id": "test_r10t_complete_hold_report.CompleteHoldReport.test_timeout_hold_full_report"
+        }
+      ]
+    }
+  ],
+  "old_stages": 48,
+  "new_stages": 51,
+  "total_tests": 220,
+  "assertions_changed": false,
+  "physical_budgets_changed": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "full_safety_gate_passed": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

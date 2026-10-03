@@ -1,0 +1,319 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw5r_preregistration_v1",
+  "status": "frozen_before_first_bw5r_physics_world",
+  "freeze_parent_commit": "0bd2a5795cc4825765f26006e17162e29cca2b89",
+  "development_data_only": true,
+  "reason_for_successor": {
+    "rejected_family_id": "BW4R",
+    "rejected_source_commit": "b538bea3656600fcd56f94cb62a8391a0a932bb0",
+    "rejected_selection_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw4r-selection-b538bea\\report.json",
+    "rejected_selection_report_sha256": "23bc6f88c46cbed8b848efd9b2663757fd2f33c5c2f9d260e69e4ddc35d6718b",
+    "rejected_result_status": "candidate_family_rejected",
+    "bw4r_a_opened_bw4_treatment_nonwalk_count": 3,
+    "bw4r_b_opened_bw4_treatment_nonwalk_count": 1,
+    "infrastructure_or_integrity_failure_count": 0,
+    "frozen_maximum_absolute_lateral_drift_m": 0.1,
+    "threshold_relaxation_or_gate_deletion_forbidden": true,
+    "failed_cell_deletion_replacement_or_averaging_forbidden": true,
+    "rejected_source_identity_rerun_forbidden": true,
+    "candidate35_repair_or_branch_reuse_forbidden": true
+  },
+  "research_provenance": {
+    "source_ledger_path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+    "local_pdf_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore\\DReCon.pdf",
+    "local_pdf_sha256": "aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54",
+    "citation": "Kevin Bergamin, Simon Clavet, Daniel Holden, and James Richard Forbes. 2019. DReCon: Data-Driven Responsive Control of Physics-Based Characters. ACM Transactions on Graphics 38(6), Article 206.",
+    "doi": "10.1145/3355089.3356536",
+    "relevant_pages": [
+      5,
+      6,
+      7
+    ],
+    "adopted_pattern": "Keep a deterministic reference and recursively low-pass a bounded feedback correction whose previous filtered value is explicit state.",
+    "numeric_constants_copied_from_paper": false,
+    "drecon_beta_0_2_forbidden_as_portable_constant": true,
+    "drecon_query_rate_forbidden_as_portable_constant": true,
+    "experiment_shape_was_recorded_before_bw4r_outcomes": true
+  },
+  "mechanism_hypothesis": {
+    "development_observation": "Direct per-step feedback and constant-rate slew limiting traded lateral terminal error against material/contact failures across the complete retained BW4R matrix.",
+    "prospective_hypothesis": "A first-order cycle-normalized low-pass filter can attenuate step-scale feedback chatter while responding smoothly within a declared fraction of one gait cycle.",
+    "causal_claim_if_selected": false,
+    "physical_balance_recovery_claim_if_selected": false,
+    "friction_specific_condition_forbidden": true,
+    "material_profile_condition_forbidden": true,
+    "morphology_or_seed_condition_forbidden": true,
+    "failure_cell_condition_forbidden": true,
+    "branch_topology_frozen_empty": true
+  },
+  "candidate_order": [
+    "BW5R-A",
+    "BW5R-B",
+    "BW5R-C"
+  ],
+  "candidate_design": {
+    "parent_candidate_id": "BW2R-C",
+    "parent_policy_id": "sporespore_balanced_wave_bw2r_c_v1",
+    "parent_profile_sha256": "sha256:a626c6478b4ac3fa1fb214c3cd09e68b5033f939c276dfb2bae679faa3085f2a",
+    "all_gait_morphology_material_stability_and_actuator_fields_exactly_inherited": true,
+    "all_candidates_update_feedback_every_semantic_step": true,
+    "only_candidate_difference": "The low-pass time constant is respectively 1/32, 1/16, or 1/8 of the fixed 360-step gait cycle.",
+    "filter_equation": "filtered[n] = filtered[n-1] + alpha * (bounded_raw[n] - filtered[n-1])",
+    "filter_alpha_equation": "alpha = 1 - exp(-1 / (time_constant_cycle_fraction * 360))",
+    "filter_initial_state": 0.0,
+    "maximum_desired_heading_error_rad": 0.25,
+    "maximum_absolute_raw_steering_fraction": 0.4,
+    "maximum_absolute_filtered_steering_fraction": 0.4,
+    "candidate_spacing_rule": "Three factor-of-two time constants span one thirty-second through one eighth of a cycle; the geometric spacing was frozen before any BW5R world.",
+    "feature_or_outcome_conditioning_forbidden": true,
+    "post_result_candidate_edit_forbidden": true
+  },
+  "candidates": [
+    {
+      "candidate_id": "BW5R-A",
+      "policy_id": "sporespore_balanced_wave_bw5r_a_v1",
+      "parent_policy_id": "sporespore_balanced_wave_bw2r_c_v1",
+      "profile_schema_version": "sporespore_balanced_wave_filtered_profile_v1",
+      "runtime_profile_sha256": "sha256:593ce25ddae1a7eec6e2a5aff5aa666ada42a332a40423d21ed85a51973ce27a",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.3,
+      "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+      "anchor_error_guard_activation_fraction": 0.8,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+      "steering_feedback_update_interval_steps": 1,
+      "maximum_steering_fraction_delta_per_step": null,
+      "steering_low_pass_time_constant_cycle_fraction": 0.03125,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW5R-B",
+      "policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "parent_policy_id": "sporespore_balanced_wave_bw2r_c_v1",
+      "profile_schema_version": "sporespore_balanced_wave_filtered_profile_v1",
+      "runtime_profile_sha256": "sha256:e02fa9c7599cffe8b331f7d8c10b6cc4dbffe7408e319169c09cbcb7d9b3890e",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.3,
+      "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+      "anchor_error_guard_activation_fraction": 0.8,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+      "steering_feedback_update_interval_steps": 1,
+      "maximum_steering_fraction_delta_per_step": null,
+      "steering_low_pass_time_constant_cycle_fraction": 0.0625,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW5R-C",
+      "policy_id": "sporespore_balanced_wave_bw5r_c_v1",
+      "parent_policy_id": "sporespore_balanced_wave_bw2r_c_v1",
+      "profile_schema_version": "sporespore_balanced_wave_filtered_profile_v1",
+      "runtime_profile_sha256": "sha256:b3969632c8fa45c60b7017d710a0f9171fb1cfc7faa99dfe3e2572b1ecf1bbe0",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.3,
+      "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+      "anchor_error_guard_activation_fraction": 0.8,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+      "steering_feedback_update_interval_steps": 1,
+      "maximum_steering_fraction_delta_per_step": null,
+      "steering_low_pass_time_constant_cycle_fraction": 0.125,
+      "branch_surfaces": []
+    }
+  ],
+  "candidate_digest_scope": "Each digest is SHA-256 over the recursively key-sorted canonical JSON bytes of the corresponding candidates array element under scripts/lab/canonical_json.gd.",
+  "candidate_policy_digests": {
+    "BW5R-A": "sha256:6001dd2b5926908a1bad16d17e49e233cbfb1dfa7eb360bdfe8e4df147b245ac",
+    "BW5R-B": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "BW5R-C": "sha256:c067ece936a53edb9cc9d667a68274451e4db67b762ab262bf42e8efe88d742d"
+  },
+  "opened_evidence_inputs": [
+    {
+      "input_id": "complete_rejected_bw4r_selection",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw4r-selection-b538bea\\report.json",
+      "sha256": "23bc6f88c46cbed8b848efd9b2663757fd2f33c5c2f9d260e69e4ddc35d6718b"
+    },
+    {
+      "input_id": "bw2r_complete_development_selection",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw2r-selection-924aa44\\report.json",
+      "sha256": "038e30c3a044ae5b01a0e6d440de6a12931bc7a1fae534c4eb86570784e92ea0"
+    },
+    {
+      "input_id": "bw3r_independent_validation_now_opened",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw3r-validation-8d43b76\\report.json",
+      "sha256": "8cb29f019497a1b9bd0f4285ccd7eef20083ccd1b636ec5ef914d7e10e261913"
+    },
+    {
+      "input_id": "rejected_bw4_first_complete_cold_result",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw4-validation-83c6142\\report.json",
+      "sha256": "539f0a724470723b445ea3ade443d8125e9934593b456a64898843d33938d550"
+    }
+  ],
+  "development_matrix": {
+    "reference_pair_world_count": 2,
+    "opened_bw2_material_world_count": 23,
+    "opened_counterexample_world_count": 4,
+    "opened_counterexample_morphology_ids": [
+      "gq15_generated_s160",
+      "gq15_generated_s167",
+      "gq15_generated_s1404",
+      "gq15_generated_s1408"
+    ],
+    "opened_bw3r_world_count": 12,
+    "opened_bw4_world_count": 17,
+    "expected_world_count_per_candidate": 58,
+    "expected_complete_world_count": 174,
+    "opened_bw4_authored_friction_values": [
+      0.15,
+      0.5,
+      0.9,
+      1.4
+    ],
+    "opened_bw4_seeds": [
+      18001,
+      18002,
+      18003
+    ],
+    "opened_bw4_treatment_world_count": 12,
+    "opened_bw4_control_world_count": 4,
+    "opened_bw4_zero_friction_safety_world_count": 1,
+    "failed_cells_may_not_be_deleted_replaced_or_averaged": true,
+    "every_candidate_runs_the_complete_matrix": true,
+    "early_stop_forbidden": true
+  },
+  "required_filter_diagnostics": {
+    "controller_step_receipt_schema_version": "sporespore_controller_step_receipt_v2",
+    "raw_requested_steering_fraction": true,
+    "previous_filtered_steering_fraction": true,
+    "filtered_steering_fraction": true,
+    "applied_steering_delta": true,
+    "filter_alpha": true,
+    "cycle_fraction_time_constant": true,
+    "raw_saturation": true,
+    "slew_limiting": true,
+    "feedback_update_count": true,
+    "filter_application_count": true,
+    "maximum_raw_and_filtered_correction": true,
+    "maximum_per_step_delta": true,
+    "lateral_error_integral": true,
+    "positive_and_negative_lateral_overshoot": true,
+    "contact_timeouts_phase_terminal_support_and_limb_relocation": true
+  },
+  "eligibility": {
+    "complete_matrix_required": true,
+    "expected_world_count_per_candidate": 58,
+    "infrastructure_failure_count": 0,
+    "adapter_schema_order_time_memory_capability_failure_count": 0,
+    "direct_body_write_count": 0,
+    "native_motor_write_count_must_equal_step_count_times_actuator_count": true,
+    "nonzero_stability_contribution_required_in_every_eligible_nonzero_friction_treatment": true,
+    "zero_friction_requires_typed_exact_zero_fallback_and_zero_native_motor_writes": true,
+    "opened_controls_must_retain_integrity_and_pair_identity": true,
+    "candidate_profile_and_candidate_digest_must_match_preregistration": true,
+    "filter_diagnostic_receipts_required_in_every_balanced_wave_step": true
+  },
+  "selection": {
+    "all_candidates_must_complete_before_selection": true,
+    "early_stop_rule": "forbidden; all three candidates must complete all 58 worlds",
+    "lexicographic_metrics": [
+      {
+        "metric": "infrastructure_and_integrity_failure_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "opened_bw4_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "all_opened_nonzero_material_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "opened_validation_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "opened_counterexample_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_cumulative_absolute_cross_track_error_m_s",
+        "direction": "ascending"
+      },
+      {
+        "metric": "maximum_absolute_task_frame_lateral_displacement_m",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_walking_gate_failure_count",
+        "direction": "ascending"
+      }
+    ],
+    "tie_rule": "candidate_order_ascending",
+    "selection_requires_zero_opened_bw4_treatment_nonwalks": true,
+    "if_no_candidate_has_zero_opened_bw4_treatment_nonwalks": "reject_family_and_open_a_new_preregistered_identity",
+    "selected_implementation_must_be_committed_before_new_characterization_or_validation": true
+  },
+  "independent_validation_reservation": {
+    "authored_friction_values": [
+      0.05,
+      0.65,
+      1.3
+    ],
+    "campaign_seeds": [
+      19501,
+      19502,
+      19503
+    ],
+    "values_and_seeds_disjoint_from_all_prior_used_and_reserved_partitions": true,
+    "selection_may_not_observe_reserved_values_or_seeds": true,
+    "new_material_characterization_and_profile_publication_required": true,
+    "validation_manifest_must_be_frozen_before_first_validation_world": true,
+    "first_complete_result_is_final_for_that_source_identity": true
+  },
+  "cold_acceptance_reservation": {
+    "authored_friction_values": [
+      0.12,
+      0.48,
+      0.95,
+      1.5
+    ],
+    "campaign_seeds": [
+      20001,
+      20002,
+      20003
+    ],
+    "values_and_seeds_disjoint_from_all_prior_used_and_reserved_partitions": true,
+    "development_and_validation_may_not_observe_reserved_values_or_seeds": true,
+    "new_material_characterization_and_profile_publication_required": true,
+    "cold_manifest_must_be_frozen_after_independent_validation_and_before_first_cold_world": true,
+    "first_complete_result_is_final_for_that_source_identity": true
+  },
+  "cross_engine_c6_interlock": {
+    "bw5r_development_selection_required": true,
+    "new_independent_validation_required": true,
+    "new_cold_material_acceptance_required": true,
+    "fresh_morphology_nuisance_terrain_push_sensor_gates_required": true,
+    "rapier_material_and_actuator_characterization_required": true,
+    "mujoco_material_and_actuator_characterization_required": true,
+    "same_selected_portable_policy_authority_required": true
+  },
+  "claims": {
+    "physical_influence_may_be_observed": true,
+    "development_selection_authority": true,
+    "walking_acceptance": false,
+    "material_robustness": false,
+    "arbitrary_material_robustness": false,
+    "continuous_friction_coverage": false,
+    "balance_improvement": false,
+    "physical_balance_recovery": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_fault_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

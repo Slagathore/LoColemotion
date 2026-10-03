@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br3a_l1_evidence_capsule_v1.schema.json",
+  "title": "SporeSpore BR3A L1 evidence capsule v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "bundle_id", "campaign_id", "certification_id", "program_id",
+    "cell_id", "evidence_role", "replicate", "status", "source_commit_sha",
+    "campaign_sha256", "source_inventory_sha256", "metrics_sha256",
+    "harness_report_sha256", "engine_log_sha256", "transcript_log_sha256",
+    "process", "created_utc", "claim_boundary"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br3a_l1_evidence_capsule.v1"},
+    "bundle_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"},
+    "campaign_id": {"const": "BR3A_L1_PROMOTION_CAMPAIGN_V1"},
+    "certification_id": {"type": "string", "pattern": "^br3a_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"},
+    "program_id": {"type": "string", "pattern": "^BR3A_[A-Z0-9_]+_V1$"},
+    "cell_id": {"type": "string", "minLength": 1},
+    "evidence_role": {"enum": ["milestone", "supplementary", "integrity"]},
+    "replicate": {"enum": [1, 2]},
+    "status": {"const": "COMPLETE"},
+    "source_commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "campaign_sha256": {"$ref": "#/$defs/sha256"},
+    "source_inventory_sha256": {"$ref": "#/$defs/sha256"},
+    "metrics_sha256": {"$ref": "#/$defs/sha256"},
+    "harness_report_sha256": {"$ref": "#/$defs/sha256"},
+    "engine_log_sha256": {"$ref": "#/$defs/sha256"},
+    "transcript_log_sha256": {"$ref": "#/$defs/sha256"},
+    "process": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["containment_host_process_id", "target_process_id", "started_utc", "ended_utc"],
+      "properties": {
+        "containment_host_process_id": {"type": "integer", "minimum": 1},
+        "target_process_id": {"type": "integer", "minimum": 1},
+        "started_utc": {"type": "string", "format": "date-time"},
+        "ended_utc": {"type": "string", "format": "date-time"}
+      }
+    },
+    "created_utc": {"type": "string", "format": "date-time"},
+    "claim_boundary": {"type": "string", "minLength": 80}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+  }
+}

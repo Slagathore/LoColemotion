@@ -1,0 +1,159 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_cw1_solver_phase_diagnostic_v1",
+  "status": "retained_zero_world_source_diagnostic_not_acceptance",
+  "recorded_utc": "2026-07-31T08:41:31Z",
+  "diagnostic_id": "C6-RAP-HC-CW1-SP-D1",
+  "predecessor_campaign_id": "C6-RAPIER-FORCE-BASED-CONVERGENCE-WINDOW",
+  "predecessor_gate_id": "C6-RAP-HC-CW1",
+  "world_build_count": 0,
+  "physics_state_modified": false,
+  "source_artifacts": {
+    "cargo_lock_path": "sdk/Cargo.lock",
+    "cargo_lock_sha256": "0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+    "rapier_package": "rapier3d",
+    "rapier_version": "0.34.0",
+    "rapier_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "cw1_preregistration_path": "sdk/rapier_c6_force_based_convergence_window_cw1_preregistration.json",
+    "cw1_preregistration_sha256": "bb38c730c3df137cebb240d1450263426d974630001caddc0d2f05f031eda3fb",
+    "cw1_closure_path": "sdk/rapier_c6_force_based_convergence_window_cw1_closure.json",
+    "cw1_closure_sha256": "df46f8a7982cabcd166a13c2b1f9e67fa606709b97484661d36aba1556e5747c",
+    "cw1_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-convergence-window-cw1-de2af88\\report.json",
+    "cw1_report_sha256": "1216f999b58a836b4242142dfbfb2fb17b6412582cee31b6a62d4070962a8e77",
+    "rapier_sources": [
+      {
+        "path": "src/dynamics/integration_parameters.rs",
+        "sha256": "0e5d5f76e1d569a5f07f1afb00c2858784f5c142eb886d4619652c58eca96498",
+        "semantic_claim": "Rapier 0.34 exposes separate outer small-step count, pre-integration internal PGS count, and post-integration stabilization count; their defaults are 4, 1, and 1."
+      },
+      {
+        "path": "src/dynamics/joint/motor_model.rs",
+        "sha256": "474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648",
+        "semantic_claim": "ForceBased computes its ERP inverse-dt and CFM gain from the small-step dt, stiffness, and damping."
+      },
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "sha256": "69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f",
+        "semantic_claim": "Motor maximum force is converted to maximum impulse using the supplied small-step dt."
+      },
+      {
+        "path": "src/dynamics/solver/island_solver.rs",
+        "sha256": "61f7fea43b03e3979a225ddb6632fb8dea5e670e54636c3060057663feccf14a",
+        "semantic_claim": "The island solver divides the outer dt by num_solver_iterations, runs the small-step solver, then writes the final constraint impulses back."
+      },
+      {
+        "path": "src/dynamics/solver/velocity_solver.rs",
+        "sha256": "b7bc9274c8ed285b4908c6010f97087f2199704eea0b37bc0e89fac2cda18e1d",
+        "semantic_claim": "Within each small step Rapier updates constraints, runs internal PGS passes, integrates positions, then runs stabilization passes without bias."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraints_set.rs",
+        "sha256": "12eb1dfe1723a702f5e21b3e4f2c2c59631e8def8abfedb65b52af640298db8a",
+        "semantic_claim": "Each stabilization pass calls remove_bias and then solves every joint constraint."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs",
+        "sha256": "a05c33a3770aada74587eebbbfae053c682bc014f9d1cd34e19658f64bc6a0a6",
+        "semantic_claim": "Bias removal assigns rhs_wo_bias to rhs, and motor writeback stores the solved constraint impulse in JointMotor.impulse."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraint_builder.rs",
+        "sha256": "07628f6f865f612db096adb828cf329cf5b55a82d239659b094f0ee214da4ac9",
+        "semantic_claim": "The angular motor stores its position and target-velocity term in both rhs and rhs_wo_bias, so that term survives stabilization bias removal."
+      }
+    ]
+  },
+  "source_reconstruction": {
+    "outer_small_step_formula": "small_step_dt = outer_dt / num_solver_iterations",
+    "force_based_coefficients": {
+      "erp_inv_dt": "stiffness / (small_step_dt * stiffness + damping)",
+      "cfm_gain": "1 / (small_step_dt^2 * stiffness + small_step_dt * damping)",
+      "maximum_motor_impulse": "maximum_motor_force * small_step_dt"
+    },
+    "per_small_step_order": [
+      "apply the precomputed external-force velocity increment",
+      "rebuild joint constraints and motor coefficients from the pre-integration pose",
+      "solve every joint constraint num_internal_pgs_iterations times",
+      "integrate positions once using small_step_dt",
+      "solve every joint constraint num_internal_stabilization_iterations times after assigning rhs_wo_bias to rhs"
+    ],
+    "motor_bias_observation": "For an angular motor, Rapier assigns the motor position and target-velocity expression to both rhs and rhs_wo_bias. The post-integration stabilization loop therefore continues to solve the motor; it does not remove the motor target term.",
+    "writeback_observation": "Constraints are rebuilt with zero impulse at each small step, and writeback occurs after the complete small-step sequence. JointMotor.impulse is therefore the last small-step solved motor impulse, not a sum over the outer step.",
+    "phase_allocation_non_equivalence": "Moving a solve pass between num_internal_pgs_iterations and num_internal_stabilization_iterations changes whether that pass occurs before or after position integration. Equal total pass counts are not source-equivalent."
+  },
+  "legacy_adapter_configuration": {
+    "outer_timestep_s": 0.008333333333333333,
+    "num_solver_iterations": 20,
+    "num_internal_pgs_iterations": 1,
+    "num_internal_stabilization_iterations": 7,
+    "total_joint_constraint_passes_per_small_step": 8,
+    "pre_integration_passes": 1,
+    "post_integration_passes": 7,
+    "post_integration_pass_fraction": 0.875,
+    "matches_rapier_default_phase_allocation": false,
+    "rapier_default_num_solver_iterations": 4,
+    "rapier_default_num_internal_pgs_iterations": 1,
+    "rapier_default_num_internal_stabilization_iterations": 1
+  },
+  "retained_cw1_observation": {
+    "cell_count": 8,
+    "solver_12": {
+      "cell_count": 4,
+      "passed_cell_count": 0,
+      "all_exhausted_1440_outer_steps": true,
+      "maximum_longest_consecutive_converged_steps": 42,
+      "maximum_terminal_damping_load_fraction": 0.021558396518230438
+    },
+    "solver_36": {
+      "cell_count": 4,
+      "passed_cell_count": 4,
+      "minimum_convergence_window_end_step": 203,
+      "maximum_convergence_window_end_step": 204
+    },
+    "all_eight_force_based_readbacks": true,
+    "all_eight_source_response_gates_passed": true,
+    "all_eight_full_pd_gravity_gates_passed": true,
+    "cw1_remains_closed_negative": true
+  },
+  "interpretation": {
+    "confirmed": [
+      "The adapter's 1-plus-7 solver configuration allocates seven of eight joint-constraint passes after position integration.",
+      "Rapier stabilization passes continue to solve the angular motor target because the motor expression is retained in rhs_wo_bias.",
+      "The 1-plus-7 phase allocation is not source-equivalent to eight pre-integration PGS passes.",
+      "CW1 demonstrated material convergence dependence on the declared discrete solver configuration."
+    ],
+    "not_confirmed": [
+      "This zero-world source audit does not prove that the 1-plus-7 phase allocation caused the CW1 solver-12 failures.",
+      "It does not prove that any alternative PGS/stabilization split will pass a physical convergence gate.",
+      "It does not establish a supported solver-iteration band or a production-optimal configuration."
+    ],
+    "architecture_killed": false,
+    "force_based_selection_disproved": false,
+    "cw1_reclassified_positive": false,
+    "host_characterization_authorized": false
+  },
+  "successor_hypothesis": {
+    "classification": "prospective_development_screen_hypothesis_not_validation",
+    "question": "At a fresh fixed small-step count and fresh signed lever arms, does reallocating an equal total number of joint-constraint passes from post-integration stabilization to pre-integration PGS materially improve the complete retained convergence window?",
+    "equal_total_pass_count_required": true,
+    "legacy_one_plus_seven_control_required": true,
+    "multiple_prospectively_declared_phase_allocations_required": true,
+    "fresh_iteration_count_and_signed_lever_arms_required": true,
+    "complete_zero_world_trace_and_selector_preflight_required": true,
+    "development_selector_may_choose_at_most_one_configuration": true,
+    "selected_configuration_requires_fresh_independent_validation": true,
+    "development_screen_may_not_authorize_host_or_selected_policy_claims": true
+  },
+  "claims": {
+    "rapier_force_based_static_convergence_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "sporespore_adaptation_experience_encyclopedia_contract_v1",
+  "contract_id": "sporespore_deterministic_online_characterization_and_append_only_experience_v1",
+  "sdk_version": "0.1.0",
+  "purpose": "Deterministically summarize an ordered canonical observation window and retain candidate provider experiences in a create-only hash-chained journal without granting promotion or physical authority.",
+  "record_schemas": {
+    "characterization_request": "sporespore_online_characterization_request_v1",
+    "characterization_sample": "sporespore_online_characterization_sample_v1",
+    "characterization_receipt": "sporespore_online_characterization_receipt_v1",
+    "experience_entry": "sporespore_adaptation_experience_entry_v1",
+    "append_event": "sporespore_adaptation_experience_append_event_v1",
+    "store_receipt": "sporespore_adaptation_experience_store_receipt_v1"
+  },
+  "characterization": {
+    "question_class": "development",
+    "ordered_samples_required": true,
+    "minimum_sample_count": 2,
+    "maximum_sample_count": 4096,
+    "strictly_increasing_step_and_time": true,
+    "engine_neutral_canonical_units_only": true,
+    "derived_features": [
+      "duration_seconds",
+      "mean_absolute_forward_velocity_error_m_s",
+      "maximum_absolute_torso_tilt_rad",
+      "minimum_torso_height_m",
+      "mean_qualified_contact_fraction",
+      "fallback_fraction",
+      "provider_influence_fraction"
+    ],
+    "thresholds_or_outcome_classification_permitted": false,
+    "population_inference_permitted": false
+  },
+  "append_only_store": {
+    "content_addressed_objects": true,
+    "experience_objects_embed_candidate_and_characterization_records": true,
+    "create_only_hash_chained_events": true,
+    "strictly_contiguous_sequence": true,
+    "expected_parent_required_after_genesis": true,
+    "duplicate_experience_permitted": false,
+    "unknown_or_corrupt_entry_refused": true,
+    "in_place_event_or_object_rewrite_permitted": false,
+    "automatic_candidate_chapter_promotion_permitted": false,
+    "automatic_model_or_provider_mutation_permitted": false
+  },
+  "authority": {
+    "candidate_only": true,
+    "scientific_result": false,
+    "training_data_authority": false,
+    "encyclopedia_promotion_authority": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "world_build_count": 0,
+  "physics_state_modified": false,
+  "physical_acceptance_authority": false
+}

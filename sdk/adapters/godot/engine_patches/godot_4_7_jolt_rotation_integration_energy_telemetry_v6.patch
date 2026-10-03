@@ -1,0 +1,183 @@
+diff --git a/modules/jolt_physics/jolt_physics_server_3d.cpp b/modules/jolt_physics/jolt_physics_server_3d.cpp
+index 64d014e589eb4c38ab19eebc5b1e390a1fa9917a..1108c54150f9b26e7dd46be8f7160c8815e7bf28 100644
+--- a/modules/jolt_physics/jolt_physics_server_3d.cpp
++++ b/modules/jolt_physics/jolt_physics_server_3d.cpp
+@@ -170,8 +170,8 @@ Variant JoltPhysicsServer3D::space_get_solver_energy_exchange_telemetry(RID p_sp
+ 	}
+ 
+ 	Dictionary result;
+-	result["schema"] = "sporespore.godot_jolt_solver_energy_exchange_telemetry.v1";
+-	result["profile_id"] = "godot_4_7_jolt_sporespore_solver_energy_exchange_telemetry_v1";
++	result["schema"] = "sporespore.godot_jolt_solver_energy_exchange_telemetry.v2";
++	result["profile_id"] = "godot_4_7_jolt_sporespore_solver_energy_exchange_telemetry_v6";
+ 	result["telemetry_sequence"] = static_cast<int64_t>(telemetry.mSequence);
+ 	result["capture_space_step_sequence"] = static_cast<int64_t>(capture_sequence);
+ 	result["read_space_step_sequence"] = static_cast<int64_t>(space->get_step_sequence());
+@@ -179,6 +179,7 @@ Variant JoltPhysicsServer3D::space_get_solver_energy_exchange_telemetry(RID p_sp
+ 	result["snapshot_is_current_space_step"] = capture_sequence == space->get_step_sequence();
+ 	result["joint_velocity_constraint_exchange_j"] = telemetry.mJointVelocityConstraintExchangeJ;
+ 	result["contact_velocity_constraint_exchange_j"] = telemetry.mContactVelocityConstraintExchangeJ;
++	result["rotation_integration_kinetic_exchange_j"] = telemetry.mRotationIntegrationKineticExchangeJ;
+ 	result["position_constraint_kinetic_exchange_j"] = telemetry.mPositionConstraintKineticExchangeJ;
+ 	result["position_constraint_mass_weighted_displacement_kg_m"] = to_godot(telemetry.mPositionConstraintMassWeightedDisplacementKgM);
+ 	result["collision_step_count"] = telemetry.mCollisionStepCount;
+@@ -188,6 +189,10 @@ Variant JoltPhysicsServer3D::space_get_solver_energy_exchange_telemetry(RID p_sp
+ 	result["joint_velocity_phase_count"] = telemetry.mJointVelocityPhaseCount;
+ 	result["contact_velocity_phase_count"] = telemetry.mContactVelocityPhaseCount;
+ 	result["position_constraint_phase_count"] = telemetry.mPositionConstraintPhaseCount;
++	result["rotation_integration_expected_active_body_count"] = telemetry.mRotationIntegrationExpectedActiveBodyCount;
++	result["rotation_integration_observed_active_body_count"] = telemetry.mRotationIntegrationObservedActiveBodyCount;
++	result["rotation_integration_dynamic_body_count"] = telemetry.mRotationIntegrationDynamicBodyCount;
++	result["rotation_integration_invalid_body_measurement_count"] = telemetry.mRotationIntegrationInvalidBodyMeasurementCount;
+ 	result["dynamic_body_observation_count"] = telemetry.mDynamicBodyObservationCount;
+ 	result["invalid_body_measurement_count"] = telemetry.mInvalidBodyMeasurementCount;
+ 	result["large_island_velocity_batch_count"] = telemetry.mLargeIslandVelocityBatchCount;
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
+index 5feb86f4975fd3fd3b668b784102c16cd815be8a..e8a61e1a0262235f8910f667c19bbe53f75c3198 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
++++ b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp
+@@ -143,6 +143,29 @@ void PhysicsSystem::BeginSporeSporeSolverEnergyExchange(uint32 inCollisionStepCo
+ 	mSporeSporeSolverEnergyExchangeTelemetry.mActiveSoftBodyCount = inActiveSoftBodyCount;
+ }
+ 
++void PhysicsSystem::RecordSporeSporeRotationIntegrationExpectation(uint32 inExpectedActiveBodyCount)
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	mSporeSporeSolverEnergyExchangeTelemetry.mRotationIntegrationExpectedActiveBodyCount += inExpectedActiveBodyCount;
++}
++
++void PhysicsSystem::RecordSporeSporeRotationIntegration(double inKineticExchangeJ, uint32 inObservedActiveBodyCount, uint32 inDynamicBodyCount, uint32 inInvalidBodyMeasurementCount)
++{
++	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
++	SporeSporeSolverEnergyExchangeTelemetry &telemetry = mSporeSporeSolverEnergyExchangeTelemetry;
++	if (isfinite(inKineticExchangeJ))
++	{
++		telemetry.mRotationIntegrationKineticExchangeJ += inKineticExchangeJ;
++	}
++	else
++	{
++		++inInvalidBodyMeasurementCount;
++	}
++	telemetry.mRotationIntegrationObservedActiveBodyCount += inObservedActiveBodyCount;
++	telemetry.mRotationIntegrationDynamicBodyCount += inDynamicBodyCount;
++	telemetry.mRotationIntegrationInvalidBodyMeasurementCount += inInvalidBodyMeasurementCount;
++}
++
+ void PhysicsSystem::RecordSporeSporeVelocityExchange(double inJointExchangeJ, double inContactExchangeJ, uint32 inJointPhaseCount, uint32 inContactPhaseCount, uint32 inDynamicBodyObservationCount, uint32 inInvalidBodyMeasurementCount, bool inIslandComplete)
+ {
+ 	lock_guard lock(mSporeSporeSolverEnergyExchangeMutex);
+@@ -208,6 +235,11 @@ void PhysicsSystem::FinishSporeSporeSolverEnergyExchange(uint32 inCCDActiveBodyC
+ 	telemetry.mComplete = telemetry.mCollisionStepCount == 1
+ 		&& telemetry.mConstrainedIslandCount > 0
+ 		&& telemetry.mVelocityMeasuredIslandCount == telemetry.mConstrainedIslandCount
++		&& telemetry.mRotationIntegrationExpectedActiveBodyCount > 0
++		&& telemetry.mRotationIntegrationObservedActiveBodyCount == telemetry.mRotationIntegrationExpectedActiveBodyCount
++		&& telemetry.mRotationIntegrationDynamicBodyCount > 0
++		&& telemetry.mRotationIntegrationInvalidBodyMeasurementCount == 0
++		&& isfinite(telemetry.mRotationIntegrationKineticExchangeJ)
+ 		&& telemetry.mPositionMeasuredIslandCount == telemetry.mConstrainedIslandCount
+ 		&& telemetry.mDynamicBodyObservationCount > 0
+ 		&& telemetry.mInvalidBodyMeasurementCount == 0
+@@ -1819,6 +1851,7 @@ void PhysicsSystem::JobPreIntegrateVelocity(PhysicsUpdateContext *ioContext, Phys
+ 	ioStep->mActiveBodyToCCDBody = (int *)temp_allocator->Allocate(ioStep->mNumActiveBodyToCCDBody * sizeof(int));
+ 
+ 	// Prepare the split island builder for solving the position constraints
++	RecordSporeSporeRotationIntegrationExpectation(ioStep->mNumActiveBodyToCCDBody);
+ 	mLargeIslandSplitter.PrepareForSolvePositions();
+ }
+ 
+@@ -1837,6 +1870,10 @@ void PhysicsSystem::JobIntegrateVelocity(const PhysicsUpdateContext *ioContext,
+ 	// We can move bodies that are not part of an island. In this case we need to notify the broadphase of the movement.
+ 	static constexpr int cBodiesBatch = 64;
+ 	BodyID *bodies_to_update_bounds = (BodyID *)JPH_STACK_ALLOC(cBodiesBatch * sizeof(BodyID));
++	double rotation_integration_kinetic_exchange_j = 0.0;
++	uint32 rotation_integration_observed_active_body_count = 0;
++	uint32 rotation_integration_dynamic_body_count = 0;
++	uint32 rotation_integration_invalid_body_measurement_count = 0;
+ 	int num_bodies_to_update_bounds = 0;
+ 
+ 	for (;;)
+@@ -1869,5 +1906,9 @@ void PhysicsSystem::JobIntegrateVelocity(const PhysicsUpdateContext *ioContext,
+ 				mp->ClampAngularVelocity();
+ 			}
+ 
++			SporeSporeEnergySnapshot rotation_before;
++			if (body.IsDynamic())
++				rotation_before = MeasureSporeSporeEnergy(&body_id, &body_id + 1);
++
+ 			// Update the rotation of the body according to the angular velocity
+ 			// For motion type discrete we need to do this anyway, for motion type linear cast we have multiple choices
+@@ -1881,6 +1933,18 @@ void PhysicsSystem::JobIntegrateVelocity(const PhysicsUpdateContext *ioContext,
+ 			// tunneling due to angular rotation, so we don't care about that too much (you'd need a full cast to take angular effects into account).
+ 			body.AddRotationStep(body.GetAngularVelocity() * delta_time);
+ 
++			++rotation_integration_observed_active_body_count;
++			if (body.IsDynamic())
++			{
++				SporeSporeEnergySnapshot rotation_after = MeasureSporeSporeEnergy(&body_id, &body_id + 1);
++				rotation_integration_invalid_body_measurement_count += rotation_before.mInvalidBodyCount + rotation_after.mInvalidBodyCount;
++				if (rotation_before.mDynamicBodyCount == 1 && rotation_after.mDynamicBodyCount == 1)
++				{
++					rotation_integration_kinetic_exchange_j += rotation_after.mKineticEnergyJ - rotation_before.mKineticEnergyJ;
++					++rotation_integration_dynamic_body_count;
++				}
++			}
++
+ 			// Get delta position
+ 			Vec3 delta_pos = body.GetLinearVelocity() * delta_time;
+ 
+@@ -1947,6 +2011,12 @@ void PhysicsSystem::JobIntegrateVelocity(const PhysicsUpdateContext *ioContext,
+ 		}
+ 	}
+ 
++	RecordSporeSporeRotationIntegration(
++		rotation_integration_kinetic_exchange_j,
++		rotation_integration_observed_active_body_count,
++		rotation_integration_dynamic_body_count,
++		rotation_integration_invalid_body_measurement_count);
++
+ 	// Notify change bounds on requested bodies
+ 	if (num_bodies_to_update_bounds > 0)
+ 		mBroadPhase->NotifyBodiesAABBChanged(bodies_to_update_bounds, num_bodies_to_update_bounds, false);
+diff --git a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h
+index 1cd3b2054e7230495360e47d951fe9eb24681e4f..ac29f3644b44cc11c39f1d4a78b02b15b13a5296 100644
+--- a/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h
++++ b/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.h
+@@ -26,7 +26,8 @@ class SimShapeFilter;
+ /// This is an opt-in SporeSpore development profile. It observes kinetic
+ /// energy immediately before and after every small-island velocity-constraint
+ /// phase, and observes the mass-weighted body-origin displacement and
+-/// rotational kinetic-energy change caused by position constraints. It never
++/// rotational kinetic-energy change caused by both orientation integration
++/// and position constraints. It never
+ /// derives a work channel from the whole-step mechanical-energy residual.
+ struct SporeSporeSolverEnergyExchangeTelemetry
+ {
+@@ -35,6 +36,7 @@ struct SporeSporeSolverEnergyExchangeTelemetry
+ 	uint64				mSequence = 0;
+ 	double				mJointVelocityConstraintExchangeJ = 0.0;
+ 	double				mContactVelocityConstraintExchangeJ = 0.0;
++	double				mRotationIntegrationKineticExchangeJ = 0.0;
+ 	double				mPositionConstraintKineticExchangeJ = 0.0;
+ 	RVec3				mPositionConstraintMassWeightedDisplacementKgM = RVec3::sZero();
+ 	uint32				mCollisionStepCount = 0;
+@@ -44,6 +46,10 @@ struct SporeSporeSolverEnergyExchangeTelemetry
+ 	uint32				mJointVelocityPhaseCount = 0;
+ 	uint32				mContactVelocityPhaseCount = 0;
+ 	uint32				mPositionConstraintPhaseCount = 0;
++	uint32				mRotationIntegrationExpectedActiveBodyCount = 0;
++	uint32				mRotationIntegrationObservedActiveBodyCount = 0;
++	uint32				mRotationIntegrationDynamicBodyCount = 0;
++	uint32				mRotationIntegrationInvalidBodyMeasurementCount = 0;
+ 	uint32				mDynamicBodyObservationCount = 0;
+ 	uint32				mInvalidBodyMeasurementCount = 0;
+ 	uint32				mLargeIslandVelocityBatchCount = 0;
+@@ -313,6 +319,8 @@ private:
+ 
+ 	SporeSporeEnergySnapshot	MeasureSporeSporeEnergy(const BodyID *inBodiesBegin, const BodyID *inBodiesEnd) const;
+ 	void						BeginSporeSporeSolverEnergyExchange(uint32 inCollisionStepCount, uint32 inActiveSoftBodyCount);
++	void						RecordSporeSporeRotationIntegrationExpectation(uint32 inExpectedActiveBodyCount);
++	void						RecordSporeSporeRotationIntegration(double inKineticExchangeJ, uint32 inObservedActiveBodyCount, uint32 inDynamicBodyCount, uint32 inInvalidBodyMeasurementCount);
+ 	void						RecordSporeSporeVelocityExchange(double inJointExchangeJ, double inContactExchangeJ, uint32 inJointPhaseCount, uint32 inContactPhaseCount, uint32 inDynamicBodyObservationCount, uint32 inInvalidBodyMeasurementCount, bool inIslandComplete);
+ 	void						RecordSporeSporePositionExchange(double inKineticExchangeJ, RVec3Arg inMassWeightedDisplacementKgM, uint32 inPhaseCount, uint32 inDynamicBodyObservationCount, uint32 inInvalidBodyMeasurementCount, bool inIslandComplete);
+ 	void						RecordSporeSporeLargeIslandBatch(bool inPositionPhase);

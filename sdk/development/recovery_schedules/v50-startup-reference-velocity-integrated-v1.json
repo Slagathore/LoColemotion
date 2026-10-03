@@ -1,0 +1,68 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "v50-startup-reference-velocity-integrated-v1": {
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:82f3a3951fa0711a18df85c9fd4c8a546d6ae908ef9798a84e2513f40bb9a274",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 3160,
+        "maximum_steps_per_child": 3512
+      },
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "coverage_basis": {
+        "source_closure": "sdk/development/v50_mujoco_closed_loop_closure_v1.json",
+        "source_closure_sha256": "sha256:9845c335fbde42a0d8b06888c6953ce4b6607eb3af11572544260be412504628",
+        "maximum_descent_steps": 240,
+        "maximum_canonical_recovery_steps": 1200,
+        "maximum_walking_commands": 1600,
+        "stopping_commands": 120,
+        "settled_commands": 30,
+        "tail_derivation": "240 + 1200 + 1600 + 120 = 3160",
+        "resource_derivation": "320 + 30 + 2 + 3160 = 3512",
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_attempt_sha256": "sha256:64455211e73de7a2ebbe8d06e973a94276b94c719fcc2d474598112df9fa883f",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "existing_recovery_controller_and_all_commands_preserved": true,
+        "new_controller_preserves_pre_stance_motion_and_limits": true,
+        "motion_equality_test": "recovery_runtime::tests::ramped_neutral_stance_control_tests::v20_preserves_every_pre_stance_command_and_all_limits",
+        "inherited_schedule": "sdk/development/recovery_schedules/v49-remaining-support-release-integrated-v1.json",
+        "inherited_schedule_sha256": "sha256:7268bc2386dca2c6a37210f28d5348f093c2ec813b03a38376890d6068163c6f",
+        "inherited_scope": "V49 supplies the exact V20/V7 recovery route, measured-body adapter, four-cycle cutoff and 120-command stop. V50 selects its startup-only feed-forward successor; old V49 observations and evaluation are preserved.",
+        "godot_handoff_source_attempt": "sdk/development/recovery_attempts/9ac04c4242964ebfa6b82c49f0b65687.json",
+        "godot_handoff_source_attempt_sha256": "sha256:aa6e27914def015896e49c4dcd8a4270cd0a2f886cabd3634c7b27785a313cbd",
+        "godot_handoff_source_report_sha256": "sha256:124b002c9a4246a1710ce2a102a3d44369e72c2a5f2ca6294d294777c34f3d7a",
+        "historical_audit_scope": "The inherited recovery observation is independently replayable under its unchanged current interface. V49 handoff data remains separately bound to its frozen source and closed report; it must not be replayed through the changed V50 live source contract. Neither historical observation is regraded."
+      },
+      "coverage_adequacy": "One fresh seed-40200 SingleKick through the existing V6 setup, native kick/prone descent, V20 get-up, V7 stance and fresh V50 walking session. Preserve BW5R-B prefix, 90-step phase offset, 72-command amplitude ramp, controller thresholds, native motor caps, solver and contact classification. Use synchronized nine-body sampled poses/twists via the strict v3 request, with no extra native body reads. Allow at most 1600 walking commands to cover four measured lift/land cycles with all four in supported stance, then exactly 120 zero-amplitude and zero-speed commands. Require the final 30 stopping commands to have measured four-foot support, COM horizontal speed <=0.03 m/s, angular speed <=0.15 rad/s and tilt <=0.05 rad. Retain every control request/output, body sample, native contact source, post-command observation, cycle transition, native refusal and full existing energy/identity/motor telemetry; independently replay without physics. Bounds 240 descent +1200 canonical recovery +1600 walking +120 stopping =3160 after interaction; total 320 setup +30 prefix +2 interaction boundary +3160 =3512. Reaching the walking limit is a valid bounded negative. Historical fixed-tail coverage remains separately reported and may be false at an earlier cycle-aligned completion. This is development only, not paired commissioning, old-check regrading, equivalence, get-up success prediction or SDK1 acceptance. The only controller change from V49 is startup reference-velocity feed-forward authority; the observed V50 MuJoCo development result does not predict this fresh Godot outcome.",
+      "coverage_question": "One fresh seed-40200 SingleKick through the existing V6 setup, native kick/prone descent, V20 get-up, V7 stance and fresh V50 walking session. Preserve BW5R-B prefix, 90-step phase offset, 72-command amplitude ramp, controller thresholds, native motor caps, solver and contact classification. Use synchronized nine-body sampled poses/twists via the strict v3 request, with no extra native body reads. Allow at most 1600 walking commands to cover four measured lift/land cycles with all four in supported stance, then exactly 120 zero-amplitude and zero-speed commands. Require the final 30 stopping commands to have measured four-foot support, COM horizontal speed <=0.03 m/s, angular speed <=0.15 rad/s and tilt <=0.05 rad. Retain every control request/output, body sample, native contact source, post-command observation, cycle transition, native refusal and full existing energy/identity/motor telemetry; independently replay without physics. Bounds 240 descent +1200 canonical recovery +1600 walking +120 stopping =3160 after interaction; total 320 setup +30 prefix +2 interaction boundary +3160 =3512. Reaching the walking limit is a valid bounded negative. Historical fixed-tail coverage remains separately reported and may be false at an earlier cycle-aligned completion. This is development only, not paired commissioning, old-check regrading, equivalence, get-up success prediction or SDK1 acceptance. The only controller change from V49 is startup reference-velocity feed-forward authority; the observed V50 MuJoCo development result does not predict this fresh Godot outcome.",
+      "uncovered_paths": [
+        "paired commissioning",
+        "held-out acceptance",
+        "robustness or equivalence",
+        "arbitrary morphology or terrain"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "startup_reference_velocity_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "startup_reference_velocity_front_left_first_resume_v1",
+      "walking_policy_id": "sporespore_balanced_wave_recovery_startup_reference_velocity_v1",
+      "walking_policy_contract_sha256": "sha256:71e7e827833bc8467da7a0859289a5aff5714383b820b02764152113343796e2"
+    }
+  }
+}

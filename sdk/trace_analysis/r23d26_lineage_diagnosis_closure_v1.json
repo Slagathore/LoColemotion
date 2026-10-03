@@ -1,0 +1,121 @@
+{
+  "schema_version": "sporespore_retained_trace_lineage_diagnosis_closure_v1",
+  "analysis_id": "QSDK-R23D26-RETAINED-TRACE-LINEAGE-D1",
+  "status": "closed_complete_development_diagnosis",
+  "question_class": "postclosure_development_diagnosis",
+  "source_commit": "97024ce9da77ff260f5282b5991b39fe97f69cbc",
+  "source_manifest": {
+    "path": "sdk/trace_analysis/r23d26_lineage_analysis_manifest_v1.json",
+    "raw_sha256": "sha256:2170f44f5200c264166de5e97a58a84071c9ac04a6023c6a6ca300fc1b08f53d"
+  },
+  "retained_evidence": {
+    "durable_directory": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\trace-lineage-r23d26-97024ce",
+    "report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\trace-lineage-r23d26-97024ce\\report.json",
+      "sha256": "sha256:a6aac6576bfab374871e71d410c95e0d4b6c7f11a30c7b993c5d9d987a599dc3",
+      "byte_length": 48023,
+      "cas_payload_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\artifacts\\sha256\\a6aac6576bfab374871e71d410c95e0d4b6c7f11a30c7b993c5d9d987a599dc3\\payload.bin"
+    },
+    "receipt": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\trace-lineage-r23d26-97024ce\\receipt.json",
+      "sha256": "sha256:6c3368d4fef3a9c7e95962ddca880a647e239084522984eb2c306bea82b742b5",
+      "byte_length": 1234
+    },
+    "input_trace_count": 9,
+    "input_trace_byte_length": 61554504,
+    "input_trace_row_count": 26928,
+    "content_addressed_input_count": 9,
+    "live_attempt_path_input_count": 0
+  },
+  "reproduced_closed_metrics": {
+    "cap_0p10": {
+      "positive_reference_conditioned_yaw_delta_rad": -0.004814479689590244,
+      "negative_reference_conditioned_yaw_delta_rad": -0.0024326850134664436,
+      "bilateral_yaw_separation_rad": -0.007247164703056688
+    },
+    "cap_0p20": {
+      "positive_reference_conditioned_yaw_delta_rad": 0.007249956486773125,
+      "negative_reference_conditioned_yaw_delta_rad": 0.032483836737762804,
+      "bilateral_yaw_separation_rad": 0.03973379322453593,
+      "minimum_per_side_threshold_rad": 0.01,
+      "positive_margin_rad": -0.002750043513226875,
+      "negative_margin_rad": 0.022483836737762802
+    },
+    "cap_0p30": {
+      "positive_reference_conditioned_yaw_delta_rad": -0.49057968761007664,
+      "negative_reference_conditioned_yaw_delta_rad": 2.479266792058109,
+      "bilateral_yaw_separation_rad": 1.9886871044480323
+    }
+  },
+  "mechanism_findings": {
+    "cap_0p20_positive": {
+      "steering_saturation_rows": 1200,
+      "commanded_phase_rows": 1200,
+      "first_held_cap_reach_step": 669,
+      "maximum_torso_tilt_rad": 0.12181901186704636,
+      "zero_foot_contact_rows": 0,
+      "torso_ground_contact_rows": 0,
+      "final_heading_error_rad": 0.19854403031044132,
+      "final_window_yaw_slope_rad_per_step": -0.00020360306898458785
+    },
+    "cap_0p20_negative": {
+      "steering_saturation_rows": 1011,
+      "commanded_phase_rows": 1200,
+      "first_held_cap_reach_step": 665,
+      "maximum_torso_tilt_rad": 0.18924522399902344,
+      "zero_foot_contact_rows": 0,
+      "torso_ground_contact_rows": 0,
+      "final_heading_error_rad": -0.16172217646502277,
+      "final_window_yaw_slope_rad_per_step": 0.000003885264825582553
+    },
+    "cap_0p30_positive": {
+      "maximum_torso_tilt_rad": 1.7859772443771362,
+      "zero_foot_contact_rows": 74,
+      "torso_ground_contact_rows": 678
+    },
+    "cap_0p30_negative": {
+      "maximum_torso_tilt_rad": 1.7858304977416992,
+      "zero_foot_contact_rows": 58,
+      "torso_ground_contact_rows": 890
+    },
+    "limiting_actuator_observability": {
+      "available_cell_count": 0,
+      "unavailable_cell_count": 9,
+      "reason": "ordered_final_commands_not_complete_and_ordered_velocity_limits_not_declared"
+    },
+    "interpretation": [
+      "Cap 0.20 is a real directionally asymmetric authority and stability boundary rather than a contact-collapse result.",
+      "The positive arm is pinned at the shared steering cap without converging; the negative arm already uses enough response to approach the frozen stability boundary.",
+      "Cap 0.30 demonstrates that increasing one shared global cap is not a supported repair.",
+      "The retained trace cannot honestly name the limiting actuator, so the next physical trace must add complete ordered final commands and declared actuator limits."
+    ]
+  },
+  "successor_constraints": {
+    "same_identity_rerun_forbidden": true,
+    "threshold_relaxation_authorized": false,
+    "global_shared_cap_increase_authorized": false,
+    "distinct_successor_required": true,
+    "complete_ordered_final_actuator_commands_required": true,
+    "complete_ordered_actuator_velocity_limits_required": true,
+    "direction_neutral_rule_required": true,
+    "support_and_stability_aware_authority_required": true,
+    "zero_command_reference_required": true,
+    "lineage_scoped_zero_world_gate_required": true,
+    "clean_pushed_source_required_before_physics": true,
+    "serialized_physics_required": true
+  },
+  "claim_limits": {
+    "r23d26_reinterpreted": false,
+    "candidate_selected": false,
+    "threshold_changed": false,
+    "physical_campaign_opened": false,
+    "turning_verified": false,
+    "portable_turning_verified": false,
+    "cross_engine_equivalence": false,
+    "release_score_changed": false,
+    "physical_acceptance_authority": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0
+  }
+}

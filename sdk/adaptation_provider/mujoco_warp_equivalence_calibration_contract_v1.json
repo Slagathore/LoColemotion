@@ -1,0 +1,187 @@
+{
+  "schema_version": "sporespore_mujoco_warp_equivalence_calibration_contract_v1",
+  "contract_id": "sporespore_mujoco_warp_repeatability_sensitivity_and_margin_protocol_v1",
+  "status": "prospective_zero_world_protocol_source_only_production_plan_absent",
+  "question_class": "development",
+  "purpose": "Commission a deterministic, fail-closed protocol for a future CPU-MuJoCo versus MuJoCo-Warp repeatability and numerical-sensitivity calibration, margin freeze, and disjoint held-out qualification without constructing a model, stepping physics, or choosing production margins from outcome-exposed data.",
+  "predecessor_boundary": {
+    "supported_subset_contract_path": "sdk/adaptation_provider/mujoco_warp_supported_subset_contract_v1.json",
+    "supported_subset_contract_raw_sha256": "sha256:8f2c3dd7122156a82dc4dd85db27aef5843e3419192b62ad6d4a47613020b1d3",
+    "runtime_evidence_manifest_path": "sdk/adaptation_provider/mujoco_warp_supported_subset_validation_manifest.json",
+    "runtime_evidence_manifest_raw_sha256": "sha256:37e74f7ae0e0ca537842e2fffb7f2a20877d9e29ed4b35d23cd7ca0907ba1cc0",
+    "runtime_evidence_source_commit": "a318bdf2ba500e4614ab6f12427298bf508e4a5e",
+    "runtime_evidence_report_sha256": "sha256:e4cef6b17d0124e8eccc21490de6384fb2dfc68ff150fca953f86298e123254d",
+    "runtime_preflight_is_installation_and_api_evidence_only": true,
+    "supported_physics_subset_qualified": false,
+    "training_plane_authorized": false
+  },
+  "scientific_roles": {
+    "protocol_source_question": "development",
+    "future_repeatability_and_sensitivity_calibration": "development",
+    "future_cpu_vs_warp_supported_subset_question": "equivalence_non_inferiority",
+    "calibration_is_not_equivalence_evidence": true,
+    "calibration_conditions_may_enter_heldout": false,
+    "training_conditions_may_enter_heldout": false,
+    "outcome_exposed_conditions_may_be_relabelled_heldout": false
+  },
+  "runtime_identity": {
+    "cpu_reference": "mujoco_3.11.0_cpu",
+    "candidate": "mujoco_warp_3.11.0_cuda",
+    "warp_lang": "1.16.0",
+    "required_cuda_device": "cuda:0",
+    "one_uploaded_topology_per_batch": true,
+    "topology_bucket_identity_required": true,
+    "batch_width_and_world_placement_are_calibration_factors": true,
+    "effective_numeric_dtypes_must_be_observed_not_assumed": true,
+    "cuda_graph_capture_identity_must_be_declared": true
+  },
+  "required_metric_families": [
+    {
+      "metric_id": "one_step_state_linf_normalized",
+      "kind": "continuous_smaller_is_better",
+      "semantic_ceiling_required_before_calibration": true
+    },
+    {
+      "metric_id": "one_step_actuator_linf_normalized",
+      "kind": "continuous_smaller_is_better",
+      "semantic_ceiling_required_before_calibration": true
+    },
+    {
+      "metric_id": "bounded_horizon_pose_velocity_rms_normalized",
+      "kind": "continuous_smaller_is_better",
+      "semantic_ceiling_required_before_calibration": true
+    },
+    {
+      "metric_id": "bounded_horizon_energy_relative_error",
+      "kind": "continuous_smaller_is_better",
+      "semantic_ceiling_required_before_calibration": true
+    },
+    {
+      "metric_id": "contact_event_time_error_steps",
+      "kind": "discrete_smaller_is_better",
+      "semantic_ceiling_required_before_calibration": true
+    }
+  ],
+  "exact_failure_families": [
+    "model_or_topology_identity_mismatch",
+    "contact_body_pair_identity_mismatch",
+    "nonfinite_state_or_metric",
+    "solver_or_capacity_overflow",
+    "missing_or_extra_step",
+    "unsupported_feature_execution",
+    "source_runtime_or_environment_mismatch"
+  ],
+  "repeatability_protocol": {
+    "fresh_process_repeats_per_runtime_condition_minimum": 3,
+    "cpu_repeats_use_identical_model_state_control_and_seed": true,
+    "warp_required_placement_modes": [
+      "single_world",
+      "declared_batch_first_slot",
+      "declared_batch_last_slot"
+    ],
+    "condition_level_repeatability_statistic": "maximum_pairwise_metric_difference_across_declared_repeats_and_placements",
+    "process_runtime_device_batch_graph_and_dtype_identity_retained": true,
+    "selective_repeat_discard_or_replacement_permitted": false
+  },
+  "numerical_sensitivity_protocol": {
+    "required_perturbation_roles": [
+      "nextafter_minus_one_representable_input_step",
+      "unmodified_baseline",
+      "nextafter_plus_one_representable_input_step"
+    ],
+    "effective_input_dtype_observed_before_perturbation": true,
+    "perturbed_fields_axes_and_order_frozen_before_results": true,
+    "condition_level_sensitivity_statistic": "maximum_baseline_to_declared_adjacent_representable_perturbation_metric_difference",
+    "outcome_selected_field_or_axis_permitted": false,
+    "larger_post_result_perturbation_permitted": false
+  },
+  "population_and_cohort_adequacy": {
+    "coverage_probability": 0.95,
+    "confidence_probability": 0.95,
+    "distribution_free_maximum_order_statistic_formula": "minimum_n=ceil(log(1-confidence_probability)/log(coverage_probability))",
+    "minimum_unique_calibration_condition_groups": 59,
+    "minimum_unique_heldout_condition_groups": 59,
+    "calibration_condition_group_definition": "One unique prospectively generated factor/seed condition; repeated runtime executions and sensitivity arms do not increase the independent condition-group count.",
+    "heldout_positive_rule": "All held-out condition groups pass every continuous margin and every exact failure predicate; zero failed groups among at least 59 supports only a one-sided 95 percent upper confidence bound below 5 percent for the declared exchangeable generator population.",
+    "metric_multiplicity_handling": "Aggregate all metric and exact-failure predicates into one condition-level pass before the zero-failure calculation.",
+    "calibration_and_heldout_condition_ids_disjoint": true,
+    "calibration_and_heldout_seeds_disjoint": true,
+    "both_cohorts_cover_every_declared_factor_level": true,
+    "exchangeability_argument_required": true,
+    "generator_and_partition_digest_frozen_before_any_outcome": true,
+    "broader_morphology_material_task_or_topology_population_claim": false
+  },
+  "margin_provenance_and_freeze": {
+    "semantic_ceiling_for_each_metric_required": true,
+    "semantic_ceiling_source_must_precede_calibration_outcomes": true,
+    "allowed_semantic_sources": [
+      "downstream_training_label_stability",
+      "canonical_state_or_action_normalization_resolution",
+      "safety_gate_guard_band",
+      "contact_event_label_tolerance"
+    ],
+    "calibration_upper_tolerance_bound": "The maximum condition-level repeatability or sensitivity statistic across the complete adequate calibration cohort.",
+    "margin_may_not_exceed_predeclared_semantic_ceiling": true,
+    "margin_may_not_be_widened_to_make_calibration_or_heldout_pass": true,
+    "metric_is_resolvable_only_if_calibration_upper_tolerance_bound_is_strictly_below_frozen_margin": true,
+    "all_metric_margins_frozen_before_heldout": true,
+    "negative_or_unresolvable_calibration_is_retained": true,
+    "calibration_result_can_authorize_training": false
+  },
+  "production_plan_requirements": {
+    "production_plan_exists": false,
+    "exact_condition_records_required": true,
+    "required_factor_axes": [
+      "topology_bucket",
+      "contact_regime",
+      "material_profile",
+      "horizon_steps"
+    ],
+    "exact_model_descriptor_policy_material_task_initial_state_control_seed_batch_capacity_and_horizon_bindings_required": true,
+    "semantic_ceiling_values_and_provenance_required": true,
+    "calibration_and_heldout_condition_ids_required": true,
+    "source_clean_pushed_live_identity_required_before_calibration": true,
+    "complete_zero_world_gate_and_negative_controls_required_before_calibration": true,
+    "physical_calibration_series_open": false,
+    "heldout_qualification_series_open": false
+  },
+  "source_conformance": {
+    "fixture_only": true,
+    "required_cells": [
+      "mjcal0_contract_and_predecessor_boundary",
+      "mjcal1_adequacy_formula",
+      "mjcal2_plan_compilation",
+      "mjcal3_positive_calibration_projection",
+      "mjcal4_negative_calibration_retention",
+      "mjcal5_disjoint_heldout_freeze",
+      "mjcal6_mutation_and_leakage_controls",
+      "mjcal7_authority_boundary"
+    ],
+    "minimum_mutation_control_count": 10,
+    "model_construction_count": 0,
+    "step_invocation_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "claims": {
+    "production_calibration_plan_frozen": false,
+    "calibration_physics_executed": false,
+    "production_margins_frozen": false,
+    "heldout_cohort_frozen": false,
+    "supported_physics_subset_qualified": false,
+    "throughput_measured": false,
+    "training_plane_authorized": false,
+    "training_data_authority": false,
+    "native_mujoco_equivalence": false,
+    "cross_engine_equivalence": false,
+    "scientific_result": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "documentation_provenance": [
+    "https://github.com/google-deepmind/mujoco_warp/blob/main/README.md",
+    "https://github.com/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb",
+    "https://github.com/google-deepmind/mujoco_warp/blob/main/benchmarks/README.md"
+  ]
+}

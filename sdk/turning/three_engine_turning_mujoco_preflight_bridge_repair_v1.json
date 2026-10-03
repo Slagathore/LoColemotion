@@ -1,0 +1,76 @@
+{
+  "schema_version": "sporespore_three_engine_turning_mujoco_preflight_bridge_repair_v1",
+  "repair_id": "SPORESPORE-TURNING-MUJOCO-PREFLIGHT-BRIDGE-REPAIR-V1",
+  "status": "implementation_complete_zero_world_regression_passed_physical_successor_not_opened",
+  "ledger_scope": {
+    "subsystem": "turning",
+    "engine_scope": "mujoco",
+    "authority_mode": "integration_repair",
+    "question_class": "development"
+  },
+  "predecessor_negative": {
+    "closure_path": "sdk/turning/r23d76_bounded_native_smoke_v2_attempt1_closure.json",
+    "closure_raw_sha256": "sha256:9416f3cd6f635819cf204a5af58e2ff23791141ba1407550511a28af4afd6fee",
+    "source_commit": "31a905cbcb2b6de610cc5c8c390b824eaf85a1ba",
+    "failure_stage": "before_world",
+    "failure_code": "QSDK_R23D3_MJC_PREFLIGHT_ERROR:TypeError:_inherited_preflight_bridge() got an unexpected keyword argument 'forward_displacement_measurement_origin_plan'",
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "same_source_rerun_allowed": false,
+    "historical_result_reinterpreted": false
+  },
+  "repair": {
+    "source_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/turning_three_engine_route.py",
+    "source_symbol": "_inherited_preflight_bridge",
+    "old_byte_length": 34948,
+    "old_raw_sha256": "sha256:aa2fb9cfe52f00d0ef712b34f0f1cdd521f02da3a89429eae709cde838842bf3",
+    "new_byte_length": 34968,
+    "new_raw_sha256": "sha256:97beb4809303f05f49a21a0465bb743a9208407f42c67a2ee9193f8b17b5596f",
+    "change": "Add the established variadic keyword sink to the private inherited preflight bridge so shared keyword-only preflight extensions are deliberately ignored by this self-contained two-step route preflight.",
+    "threshold_changed": false,
+    "seed_changed": false,
+    "selector_changed": false,
+    "evaluator_changed": false,
+    "horizon_changed": false,
+    "terminal_schema_changed": false,
+    "behavior_interpretation_changed": false
+  },
+  "zero_world_regression": {
+    "test_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/turning_three_engine_route_test.py",
+    "old_byte_length": 5616,
+    "old_raw_sha256": "sha256:24bff953e4e58ab66474ba4dfa92d396431ba5103b777e68b7b93dd6b7838a79",
+    "new_byte_length": 6552,
+    "new_raw_sha256": "sha256:a8a3e330fff6cde312b11e0c2b55df1888c4216dfe3a3a5c53a1b90e191517a7",
+    "test_name": "test_inherited_preflight_bridge_accepts_measurement_origin_extension",
+    "test_command": ".venv/Scripts/python.exe -m unittest sporespore_mujoco_adapter.turning_three_engine_route_test -v",
+    "test_count": 7,
+    "passed": true,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "successor_limit": {
+    "distinct_clean_pushed_source_required": true,
+    "focused_mujoco_zero_world_preflight_required": true,
+    "complete_three_engine_bounded_smoke_attempt_required": true,
+    "selective_mujoco_physical_rerun_allowed": false,
+    "held_out_seed_23197_may_open": false
+  },
+  "audit_path": "sdk/audit_three_engine_turning_mujoco_preflight_bridge_repair.py",
+  "claims": {
+    "repair_implemented": true,
+    "zero_world_regression_passed": true,
+    "physical_successor_opened": false,
+    "bounded_native_smoke_passed": false,
+    "held_out_seed_23197_opened": false,
+    "physical_campaign_opened": false,
+    "finite_three_engine_turning": false,
+    "portable_basic_turning": false,
+    "q_sdk_r23_satisfied": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

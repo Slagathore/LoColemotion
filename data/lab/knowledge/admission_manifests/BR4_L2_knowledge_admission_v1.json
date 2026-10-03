@@ -1,0 +1,286 @@
+{
+  "schema": "sporespore.lab.br4_knowledge_admission_manifest.v1",
+  "manifest_id": "BR4_L2_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_admit_recommended_observation_only_br4_knowledge",
+  "authorization_instruction": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations.",
+  "decision": {
+    "decision_id": "BR4_L2_JOINT_ACTUATOR_TRUTH_DECISION_V1",
+    "decision_sha256": "sha256:19dc2da4b372d3e50549eb9586b08ae796c6045897190ab4b60b8af4a72421a2"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "ACCEPTED_CONTACT_BEARING_SUPPORT_MILESTONE",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "L2.0.passive_hinge_period_and_damping.v1",
+      "cell_id": "L2.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_0_passive_pendulum.v1.json",
+      "program_id": "BR4_L2_0_PASSIVE_PENDULUM_V1",
+      "authoring": {
+        "title": "The fixed-base passive hinge matches the declared analytic pendulum response",
+        "claim": "In the exact certified L2.0 collisionless fixed-base single-link fixture at 120 Hz, the live passive hinge reproduces the analytic physical-pendulum period within the declared tolerance, retains the declared geometry and sign conventions, preserves the undamped control behavior, and shows the expected energy and amplitude reduction only when damping is enabled.",
+        "scope": "Only the exact fixed-base passive-pendulum fixture, source closure, tolerances, controls, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "A live motor-disabled and limit-disabled HingeJoint3D constrains a rectangular link to one rotational degree of freedom. Its observed period is compared with an independent physical-pendulum inertia oracle, while energy and amplitude controls distinguish passive numerical behavior from declared damping.",
+        "applicability": [
+          "Checking passive hinge geometry, axis sign, period, and damping controls before actuation experiments",
+          "Providing a fixture-bounded passive joint baseline for later articulated tests"
+        ],
+        "failure_boundaries": [
+          "The parent is a fixed scaffold, not a free creature or support mechanism",
+          "No actuator, contact, load-bearing limb, standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "fixed_scaffold",
+          "passive_hinge"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How the passive response changes in contact-bearing multi-link systems",
+          "How compliant or anatomically distributed joints differ from the certified rigid hinge"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L2.1.paired_free_hinge_torque.v1",
+      "cell_id": "L2.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_1_paired_hinge_torque.v1.json",
+      "program_id": "BR4_L2_1_FREE_HINGE_TORQUE_PULSE_V1",
+      "authoring": {
+        "title": "Paired free-hinge torque produces the declared relative acceleration without root assistance",
+        "claim": "In the exact certified L2.1 gravity-off collisionless free-hinge fixture, positive and negative joint requests resolve to equal-and-opposite parent-child torque operations, produce the analytic relative angular-velocity increments from measured inertias, retain paired command receipts for every transition, preserve total axis angular momentum within tolerance, and leave the zero control unchanged.",
+        "scope": "Only the exact coaxial two-body free-hinge torque-pulse fixture, finite actuator configuration, receipt path, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "A pure actuator resolver emits a paired operation plan. The command ledger and executor apply opposite torques to the two bodies, and the observed relative acceleration is checked against the sum of their inverse inertias while whole-pair angular momentum checks for hidden external torque.",
+        "applicability": [
+          "Validating equal-and-opposite joint actuation before multi-link or contact-bearing tests",
+          "Detecting root-only assistance through receipts and system momentum"
+        ],
+        "failure_boundaries": [
+          "Gravity, collision, contact, and external load are absent",
+          "No articulated load-bearing limb, standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "free_root",
+          "paired_joint_torque"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How paired torque tracks under external contact load",
+          "How non-coaxial or compliant joint geometry changes the measured response"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L2.2.unloaded_pd_step_response.v1",
+      "cell_id": "L2.2",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_2_unloaded_pd_step.v1.json",
+      "program_id": "BR4_L2_2_UNLOADED_PD_STEP_V1",
+      "authoring": {
+        "title": "The sealed PD resolver produces the certified mirrored unloaded step response",
+        "claim": "In the exact certified L2.2 gravity-off contact-free free-hinge fixture, mirrored positive and negative 0.25 radian targets produce symmetric critically damped responses with the certified rise and settling behavior, separately recorded proportional and derivative terms, no unreported actuator clamp, paired executor receipts, and near-zero whole-pair angular momentum; the zero target remains zero.",
+        "scope": "Only the exact unloaded two-rotor PD fixture, reflected-inertia gains, target set, finite actuator, receipt path, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "A side-effect-free PD resolver converts target error and measured relative rate into named P and D torque components. The finite joint actuator, ledger, and paired executor are the sole mutation path, so controller intent, capacity resolution, actual torque, and physical response remain distinguishable.",
+        "applicability": [
+          "Checking controller sign, decomposition, symmetry, rise, and settling before loading a joint",
+          "Separating controller output from finite-actuator and executor behavior"
+        ],
+        "failure_boundaries": [
+          "The joint is unloaded and contact-free",
+          "The certified gains do not establish stability or tracking under gravity or ground reaction",
+          "No contact-bearing or load-bearing limb, standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "free_root",
+          "pd_joint_control"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "The stable gain and actuator envelope under externally measured contact load",
+          "The response of coupled multi-joint controllers"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L2.3.fixed_scaffold_gravity_compensation.v1",
+      "cell_id": "L2.3",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_3_gravity_hold.v1.json",
+      "program_id": "BR4_L2_3_GRAVITY_HOLD_V1",
+      "authoring": {
+        "title": "Single-link gravity compensation has the certified sign and short-horizon magnitude on a fixed scaffold",
+        "claim": "In the exact certified L2.3 fixed-scaffold horizontal-link fixture, zero, 80 percent, 100 percent, and 120 percent of the analytic 4.9 newton-meter gravity compensation produce the certified negative, reduced-negative, zero, and positive initial accelerations and short-horizon responses.",
+        "scope": "Only the exact 2 kg, 0.5 m single-link fixed-scaffold gravity-hold fixture, four compensation cells, short measurement horizon, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "Analytic gravity torque about the hinge is applied through the paired actuator path. Under-compensation leaves acceleration with gravity, exact compensation cancels it for the declared fixture, and over-compensation reverses the response.",
+        "applicability": [
+          "Checking joint torque sign and analytic gravity compensation on an explicit scaffold",
+          "Providing a bounded predictor for later free-root load-bearing experiments"
+        ],
+        "failure_boundaries": [
+          "The frozen parent supplies an external scaffold reaction",
+          "A fixed-scaffold hold is not free-root support or an articulated load-bearing limb",
+          "No standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "fixed_scaffold",
+          "gravity_compensation"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "The required compensation and reserve under externally measured support load",
+          "Whether a free-root multi-link system can retain pose without scaffold reaction"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L2.4.finite_actuator_operating_points.v1",
+      "cell_id": "L2.4",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_4_actuator_envelope.v1.json",
+      "program_id": "BR4_L2_4_ACTUATOR_ENVELOPE_V1",
+      "authoring": {
+        "title": "The finite actuator enforces its certified torque-speed-power operating points",
+        "claim": "At the exact six certified L2.4 one-transition free-hinge operating points, the finite actuator applies the declared isometric, torque-speed, positive-power, no-load-speed, and absorption-power bounds, and the live angular-acceleration increments match the applied torque and analytic inertia within the fixture tolerance.",
+        "scope": "Only the exact gravity-off contact-free actuator specification, six sampled operating points, one-transition fixture, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "The actuator resolves requested torque through directional isometric torque, torque-speed, positive-work power, absorption power, and eccentric bounds, returning both the applied torque and limiting classification before paired physical application.",
+        "applicability": [
+          "Rejecting impossible requested joint torque at the certified speed and power points",
+          "Recording which finite-actuator constraint limits an isolated transition"
+        ],
+        "failure_boundaries": [
+          "No interpolation between or extrapolation beyond the six certified points is established",
+          "The sampled points establish no endurance, fatigue, duty cycle, or thermal capacity",
+          "No contact load bearing, standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "actuator_envelope",
+          "body_agnostic",
+          "free_root"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Continuous envelope behavior between sampled operating points",
+          "Endurance, fatigue, thermal, and repeated-work limits",
+          "Capacity under coupled multi-joint external load"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L2.5.hard_limit_constraint_reaction.v1",
+      "cell_id": "L2.5",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_5_hard_limit_reaction.v1.json",
+      "program_id": "BR4_L2_5_HARD_LIMIT_REACTION_V1",
+      "authoring": {
+        "title": "A hard-limit impulse is a constraint reaction and never available actuator strength",
+        "claim": "In the exact certified L2.5 gravity-off contact-free free-hinge fixture, mirrored approaches are arrested near the enabled positive and negative hard limits with mirrored momentum-balance constraint-reaction impulses, while the disabled-limit control passes through with zero inferred reaction and all active torque, passive torque, motor, and command channels remain zero.",
+        "scope": "Only the exact mirrored plus/minus 0.25 radian hard-limit trials, matched disabled control, estimator, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "Relative momentum balance identifies the impulse needed to stop motion at the geometric constraint. Because every actuator and command channel is structurally zero, the impulse is classified only as a hard-limit constraint reaction.",
+        "applicability": [
+          "Preventing hard-limit solver impulses from being counted as muscle, motor, or passive-tissue capacity",
+          "Distinguishing geometric constraint reactions from commanded joint work"
+        ],
+        "failure_boundaries": [
+          "The inferred impulse is not available actuator or muscle strength",
+          "The fixture contains no ground contact or supported creature",
+          "No load bearing, standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "hard_joint_limit",
+          "constraint_reaction"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How compliant anatomical stops distribute impulse and energy",
+          "How hard-limit reactions interact with simultaneous external contact"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L2.6.two_link_fixed_free_root_separation.v1",
+      "cell_id": "L2.6",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_6_two_link_chain.v1.json",
+      "program_id": "BR4_L2_6_TWO_LINK_CHAIN_V1",
+      "authoring": {
+        "title": "The two-link chain separates fixed-scaffold response from paired free-root internal actuation",
+        "claim": "In the exact certified L2.6 gravity-off contact-free planar two-joint fixtures, the fixed-root and free-root cases produce their certified distinct joint and root responses; every joint command expands into paired body operations and receipts; the free-root case receives no assistance operation and preserves whole-system momentum within tolerance.",
+        "scope": "Only the exact two-link dimensions, joint requests, 24-tick actuation plus 24-tick coast schedule, fixed/free-root variants, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "Each internal joint torque is applied as an equal-and-opposite pair to its connected bodies. The fixed variant exposes scaffold reaction; the free variant moves its root only through internal reactions and is checked through command receipts, system center of mass, and angular momentum.",
+        "applicability": [
+          "Detecting hidden root assistance in coupled multi-joint fixtures",
+          "Separating explicit scaffold reaction from free-root internal actuation"
+        ],
+        "failure_boundaries": [
+          "Both variants are collisionless and contact-free",
+          "The fixed-root case depends on an explicit external scaffold",
+          "No contact-bearing or load-bearing limb, support, standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "two_link_chain",
+          "paired_joint_torque",
+          "free_root"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How the chain responds when its distal link forms a measured external contact",
+          "How mass ratio and geometry change coupled loaded-joint behavior"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L2.7.anchor_observer_fail_closed.v1",
+      "cell_id": "L2.7",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br4_l2_7_anchor_error_perturbation.v1.json",
+      "program_id": "BR4_L2_7_ANCHOR_ERROR_PERTURBATION_V1",
+      "authoring": {
+        "title": "The joint observer exposes small anchor mismatch and fails closed beyond tolerance",
+        "claim": "In the exact certified L2.7 same-epoch synthetic perturbation grid around a 5 mm anchor tolerance, 0 and 2.5 mm cases remain valid with available dependent joint channels, while 7.5 and 20 mm cases return ANCHOR_MISMATCH and JOINT_GEOMETRY_UNAVAILABLE, with null or unavailable dependent channels and zero motor torque, passive torque, and command count.",
+        "scope": "Only the exact synthetic 0, 2.5, 7.5, and 20 mm anchor-error cells, same-epoch body observations, 5 mm tolerance, and program claim scope certified by br4_20260723T090118Z_1760c2cf.",
+        "mechanism": "The observer first validates joint-anchor agreement. Outside tolerance it refuses joint geometry and every dependent state channel instead of substituting a numeric zero or permitting a command from invalid state.",
+        "applicability": [
+          "Failing closed when joint geometry cannot support a valid state estimate",
+          "Distinguishing unavailable joint channels from measured zero"
+        ],
+        "failure_boundaries": [
+          "The perturbations are synthetic and do not measure physical joint strength or damage",
+          "Observer refusal performs no repair and authorizes no command",
+          "No load bearing, standing, bracing, recovery, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "joint_observer",
+          "anchor_geometry"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "The tolerance required by future articulated morphologies and scales",
+          "The recovery policy after geometry becomes invalid"
+        ],
+        "supersedes": []
+      }
+    }
+  ]
+}

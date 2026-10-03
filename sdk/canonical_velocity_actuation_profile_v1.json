@@ -1,0 +1,134 @@
+{
+  "schema_version": "sporespore_canonical_velocity_actuation_profile_declaration_v1",
+  "profile_id": "sporespore_complete_closed_loop_canonical_velocity_v1",
+  "status": "implemented_zero_world_semantic_successor_not_live_adapter_physical_or_release_authority",
+  "recorded_utc": "2026-07-31T13:23:55Z",
+  "semantic_contract_path": "docs/LOCOMOTION_SEMANTICS_V4.md",
+  "implementation_path": "sdk/core/src/canonical_actuation.rs",
+  "predecessor_diagnostic": {
+    "diagnostic_id": "C6-RAP-BW19V-ASD1",
+    "path": "sdk/rapier_c6_bw19v_actuation_semantics_diagnostic.json",
+    "raw_sha256": "a42888f04c9a42af78ab3796dee9cc98365592470f81d0153bc55ab2a375ca57",
+    "classification": "confirmed_cross_host_actuation_semantics_defect_with_unresolved_whole_body_causal_effect"
+  },
+  "compatibility_boundary": {
+    "frozen_v1_v2_v3_outputs_rewritten": false,
+    "legacy_runtime_motor_direction_sign": -1.0,
+    "legacy_runtime_sign_changed_by_this_profile": false,
+    "new_versioned_overlay": true,
+    "public_adapter_contract_v1_changed": false,
+    "public_c_abi_changed": false
+  },
+  "source_bridge": {
+    "source_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+    "source_velocity_convention_id": "legacy_godot_host_target_velocity_v1",
+    "legacy_host_to_canonical_velocity_sign": -1.0,
+    "source_actuation_frame_must_validate": true,
+    "source_actuation_frame_mutated": false,
+    "canonical_frame_schema": "sporespore_canonical_velocity_actuation_frame_v1",
+    "residual_schema": "sporespore_canonical_velocity_residual_v1"
+  },
+  "actuation_ownership": {
+    "load_bearing_actuation": "complete_closed_loop_canonical_target_velocity",
+    "position_target_role": "provenance_and_bounds_only",
+    "canonical_to_host_mapping_owned_by_adapter": true,
+    "base_and_stability_residual_compose_before_host_conversion": true,
+    "one_final_canonical_speed_clamp": true,
+    "stability_residual_is_command_not_measurement": true,
+    "adapter_may_add_independent_native_position_feedback": false,
+    "native_target_position_emitted": false,
+    "native_position_stiffness": 0.0
+  },
+  "composition": {
+    "portable_canonical_formula": "source_legacy_host_target_velocity_rad_s * -1",
+    "unbounded_canonical_formula": "portable_canonical_target_velocity_rad_s + stability_canonical_velocity_delta_rad_s",
+    "combined_canonical_formula": "clamp(unbounded_canonical_target_velocity_rad_s, -maximum_target_speed_rad_s, maximum_target_speed_rad_s)",
+    "host_formula": "combined_canonical_target_velocity_rad_s * adapter_owned_canonical_to_host_velocity_sign"
+  },
+  "host_profiles": {
+    "godot_jolt": {
+      "profile_id": "godot_jolt_velocity_only_equivalence_v1",
+      "adapter_id": "sporespore_godot_jolt_adapter",
+      "engine_id": "godot_jolt",
+      "canonical_to_host_velocity_sign": -1.0,
+      "native_motor_model_id": "hinge_target_velocity_with_impulse_cap",
+      "retained_host_behavior_equivalence_target": true,
+      "zero_residual_legacy_host_command_bit_equivalence_proved": true,
+      "ordered_actuator_count": 8,
+      "native_position_feedback_applied": false,
+      "native_position_stiffness": 0.0,
+      "live_adapter_v4_integration_complete": false,
+      "host_response_characterized_for_this_profile": false
+    },
+    "rapier": {
+      "profile_id": "rapier_force_based_velocity_only_v1",
+      "adapter_id": "sporespore_rapier3d_adapter",
+      "engine_id": "rapier3d",
+      "canonical_to_host_velocity_sign": 1.0,
+      "native_motor_model_id": "force_based_velocity_only",
+      "retained_host_behavior_equivalence_target": false,
+      "canonical_composition_before_host_mapping_proved": true,
+      "nonzero_legacy_command_mixed_space_counterexample_count": 5,
+      "nonzero_legacy_command_count": 5,
+      "native_position_feedback_applied": false,
+      "native_position_stiffness": 0.0,
+      "live_adapter_v4_integration_complete": false,
+      "host_response_characterized_for_this_profile": false
+    }
+  },
+  "zero_world_gate": {
+    "focused_rust_test_count": 4,
+    "godot_bit_exact_equivalence_test": true,
+    "rapier_canonical_composition_test": true,
+    "malformed_input_and_authority_negative_test": true,
+    "safe_frame_residual_negative_test": true,
+    "json_float_roundtrip_enabled": true,
+    "world_build_count": 0,
+    "scene_insertion_count": 0,
+    "physics_state_mutation_count": 0,
+    "new_physical_observation_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "negative_controls": {
+    "reordered_residual_must_fail": true,
+    "nonfinite_residual_must_fail": true,
+    "residual_measurement_relabel_must_fail": true,
+    "non_unit_host_sign_must_fail": true,
+    "native_position_feedback_must_fail": true,
+    "nonzero_position_stiffness_must_fail": true,
+    "safe_frame_nonzero_residual_must_fail": true,
+    "world_count_inflation_must_fail": true,
+    "physical_authority_inflation_must_fail": true,
+    "live_adapter_completion_relabel_must_fail": true,
+    "host_characterization_relabel_must_fail": true,
+    "cross_engine_equivalence_relabel_must_fail": true
+  },
+  "next_gate": {
+    "additional_rapier_physical_world_allowed_before_prospective_host_characterization_freeze": false,
+    "distinct_campaign_identity_required": true,
+    "force_based_velocity_only_builder_and_mutable_readback_required": true,
+    "zero_position_stiffness_required": true,
+    "damping_force_and_limit_mapping_must_be_frozen": true,
+    "multiple_declared_loads_or_lever_arms_required": true,
+    "signed_pairs_required": true,
+    "complete_synthetic_integrity_preflight_required": true,
+    "paired_early_horizon_screen_required_after_characterization": true,
+    "fresh_selected_policy_validation_required_before_c6": true
+  },
+  "claims": {
+    "live_godot_jolt_v4_integration": false,
+    "live_rapier_v4_integration": false,
+    "rapier_velocity_only_host_response_characterized": false,
+    "rapier_selected_policy_physical_c6": false,
+    "rapier_locomotion_acceptance": false,
+    "cross_engine_selected_policy_equivalence": false,
+    "different_physics_engines": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

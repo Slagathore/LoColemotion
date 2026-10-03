@@ -1,0 +1,344 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw12e_preregistration_v1",
+  "status": "frozen_before_first_bw12e_physics_world",
+  "implementation_parent_commit": "afd7cb175a3a6eb8504db19d62dcb53c7af9cbf4",
+  "documentation_parent_commit": "afd7cb175a3a6eb8504db19d62dcb53c7af9cbf4",
+  "development_data_only": true,
+  "reason_for_successor": {
+    "rejected_family_id": "BW11R",
+    "rejected_source_commit": "40021c84f3d5a3aa8116c8711e83545810031624",
+    "family_closure_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw11r-zero-world-closure-40021c8\\report.json",
+    "family_closure_report_sha256": "73f09c4281cb21ec635b35a6bfc59c4a8fa350162c5739cb40d0a75a1fa416ab",
+    "source_controlled_closure_manifest_path": "sdk/balanced_wave_bw11r_closure_manifest.json",
+    "closure_status": "candidate_family_invalidated_before_physics_by_entrypoint_policy_allowlist",
+    "attempted_cell_count": 48,
+    "reported_cell_receipt_count": 48,
+    "actual_world_build_count": 0,
+    "physical_outcome_count": 0,
+    "sdk_step_receipt_count": 0,
+    "root_causes": [
+      "The frozen physical entrypoint omitted all four BW11R v3 policies from its authority allowlist and returned INVALID_SDK_AUTHORITY_OPTION_VALUE before fixture construction.",
+      "The old harness-only preflight never traversed the actual physical entrypoint, so its perfect synthetic full-gate receipt could not expose that upstream rejection.",
+      "The early entrypoint failure code was not propagated into the per-cell sdk_failure_code field; the closure classification is source-audited and retains that receipt limitation."
+    ],
+    "required_successor_boundaries": [
+      "Run every declared policy through the real physical entrypoint to the final pre-fixture boundary.",
+      "Then run the entire production integrity gate against a policy-derived perfect synthetic receipt.",
+      "Require both stages to report zero worlds, zero SceneTree insertions, unchanged physics state, no locomotion outcome, and no physical acceptance authority.",
+      "A preflight failure must prevent physical campaign process and durable campaign-output directory creation.",
+      "Keep the portable v3 policies, factor topology, controller, thresholds, material, and selection rule unchanged so BW12E tests only the corrected infrastructure boundary on fresh seeds."
+    ],
+    "bw11r_family_closed": true,
+    "bw11r_repair_or_rerun_forbidden": true,
+    "threshold_relaxation_or_gate_deletion_forbidden": true,
+    "failed_cell_deletion_replacement_or_averaging_forbidden": true,
+    "candidate35_repair_or_branch_reuse_forbidden": true
+  },
+  "known_outcome_interlock": {
+    "bw9l_and_bw10f_raw_physical_outcomes_are_known": true,
+    "bw11r_produced_no_physical_outcome": true,
+    "bw11r_zero_world_failure_cannot_be_ranked": true,
+    "known_outcomes_may_not_be_called_unbiased_evidence": true,
+    "development_selection_is_hypothesis_selection_only": true,
+    "fresh_only_development_seeds_required": true,
+    "independent_validation_required_before_walking_acceptance": true,
+    "cold_axis_absent_from_every_branch_required_before_friction_claim": true
+  },
+  "research_provenance": {
+    "source_ledger_path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+    "sources": [
+      {
+        "short_name": "DReCon",
+        "local_pdf_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore\\DReCon.pdf",
+        "sha256": "aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54",
+        "portable_source": "https://doi.org/10.1145/3355089.3356536",
+        "adopted_boundary": "The deterministic base gait and bounded centroidal correction remain separately receipted; no paper numeric constant or empirical result is imported."
+      },
+      {
+        "short_name": "QWM",
+        "local_pdf_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore\\2604.08780v1.pdf",
+        "sha256": "ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae",
+        "portable_source": "https://arxiv.org/abs/2604.08780v1",
+        "adopted_boundary": "Morphology and qualified support remain explicit immutable inputs; BW12E adds no morphology-conditioned policy branch."
+      },
+      {
+        "short_name": "UniLegs",
+        "local_pdf_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore\\2507.22653v2.pdf",
+        "sha256": "6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31",
+        "portable_source": "https://arxiv.org/abs/2507.22653v2",
+        "adopted_boundary": "The v3 load-transfer API remains ordered-limb and ordered-contact based rather than host-node based, but this experiment is still fixed-quadruped development."
+      }
+    ],
+    "paper_specific_numeric_constants_imported": false,
+    "paper_empirical_claims_imported": false
+  },
+  "mechanism_hypothesis": {
+    "replication_hypothesis": "With candidate-relative gates and observation-unavailable receipt continuity frozen before execution, the complete control, preferred-normal-force, remaining-support-centroid, and combined factorial can be compared without structural execution-integrity censoring.",
+    "causal_claim_if_selected": false,
+    "physical_balance_recovery_claim_if_selected": false,
+    "friction_specific_condition_forbidden": true,
+    "material_profile_condition_forbidden": true,
+    "morphology_or_seed_condition_forbidden": true,
+    "failure_cell_condition_forbidden": true,
+    "limb_count_condition_forbidden": true,
+    "feature_or_outcome_conditioning_forbidden": true,
+    "branch_topology_frozen_empty": true,
+    "new_free_numeric_constant_count": 0
+  },
+  "portable_implementation": {
+    "base_controller_candidate_id": "BW5R-B",
+    "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "base_controller_runtime_profile_sha256": "sha256:e02fa9c7599cffe8b331f7d8c10b6cc4dbffe7408e319169c09cbcb7d9b3890e",
+    "plan_operation": "ss_plan_scheduled_load_transfer_v3_json",
+    "plan_request_envelope_schema_version": "sporespore_plan_scheduled_load_transfer_request_v3",
+    "plan_request_schema_version": "sporespore_scheduled_load_transfer_request_v3",
+    "plan_receipt_schema_version": "sporespore_scheduled_load_transfer_receipt_v3",
+    "godot_adapter_manifest_schema_version": "sporespore_godot_jolt_adapter_manifest_v15",
+    "centroidal_request_schema_version": "sporespore_centroidal_support_request_v2",
+    "centroidal_command_schema_version": "sporespore_centroidal_support_command_v2",
+    "endpoint_force_map_schema_version": "sporespore_endpoint_force_joint_map_receipt_v3",
+    "bounded_influence_schema_version": "sporespore_stability_influence_receipt_v2",
+    "planning_availability_values": [
+      "available",
+      "observation_unavailable",
+      "upstream_infeasible"
+    ],
+    "host_observation_availability_is_explicit_input": true,
+    "observation_unavailable_reason_required": true,
+    "nonavailable_requires_ordered_safe_zero_actuator_ids": true,
+    "nonavailable_requires_immediate_fail_zero": true,
+    "plan_receipt_required_for_every_sdk_step": true,
+    "plan_receipt_recorded_before_overlay_validation": true,
+    "morphology_branch_surface_count": 0,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "full_gate_satisfiability_preflight": {
+    "shared_gate_path": "tests/test_sdk_godot_jolt_material_robustness.gd",
+    "all_policy_test_path": "tests/test_sdk_full_integrity_gate_satisfiability.gd",
+    "v3_authority_test_path": "tests/test_sdk_scheduled_load_transfer_v3_authority_contract.gd",
+    "candidate_preflight_must_run_in_separate_process_before_physical_process": true,
+    "all_policy_preflight_must_run_in_separate_process_before_candidate_preflight": true,
+    "real_physical_entrypoint_pre_fixture_path_required": true,
+    "entrypoint_control_flow_complete_must_equal": true,
+    "exact_post_physics_analyzer_and_integrity_predicates_required": true,
+    "synthetic_error_mismatch_violation_and_failure_counts_must_equal": 0,
+    "candidate_a_stability_activity_witness_must_equal": 0,
+    "candidate_b_c_d_minimum_stability_activity_witness": 1,
+    "typed_observation_unavailable_step_count_per_policy": 1,
+    "actual_world_build_count_must_equal": 0,
+    "scene_tree_insertion_count_must_equal": 0,
+    "physics_state_modified_must_equal": false,
+    "locomotion_outcome_exposed_must_equal": false,
+    "preflight_failure_must_prevent_physical_process_creation": true,
+    "preflight_failure_must_prevent_durable_output_directory_creation": true
+  },
+  "candidate_order": [
+    "BW12E-A",
+    "BW12E-B",
+    "BW12E-C",
+    "BW12E-D"
+  ],
+  "candidates": [
+    {
+      "candidate_id": "BW12E-A",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw11r_a_v3",
+      "mode": "control",
+      "preferred_normal_force_factor": false,
+      "remaining_support_centroid_factor": false,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW12E-B",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw11r_b_v3",
+      "mode": "preferred_normal_force",
+      "preferred_normal_force_factor": true,
+      "remaining_support_centroid_factor": false,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW12E-C",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw11r_c_v3",
+      "mode": "remaining_support_centroid",
+      "preferred_normal_force_factor": false,
+      "remaining_support_centroid_factor": true,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW12E-D",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw11r_d_v3",
+      "mode": "combined",
+      "preferred_normal_force_factor": true,
+      "remaining_support_centroid_factor": true,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "branch_surfaces": []
+    }
+  ],
+  "candidate_digest_scope": "Each digest is SHA-256 over the recursively key-sorted canonical JSON bytes of the corresponding candidates array element under scripts/lab/canonical_json.gd.",
+  "candidate_policy_digests": {
+    "BW12E-A": "sha256:f726befa2326e46f3e086f7612a572a253af4b2633b788ea603f433e0b3df8ed",
+    "BW12E-B": "sha256:832fb5d5e26085ba4e79db9dcc875e354e5b52ebbc74a77f263f5cfb51fb598e",
+    "BW12E-C": "sha256:d6f89d01b3b73fe4749317a6efc3b1c2c8a6c45576a290d1a6989f73b7f7ed07",
+    "BW12E-D": "sha256:38977d8a366e67271b6403d1aa18d17b6ebd09d66863a71cf032d96e196818db"
+  },
+  "development_matrix": {
+    "material_profile_id": "godot_jolt_bw5c_mu095_v1",
+    "material_profile_sha256": "sha256:e62b97398497f32243bae4fb6eaca258f90cbd233fc8c913c456b01a287bf993",
+    "challenge_profile_ids": [
+      "bw6n_baseline_v1",
+      "bw6n_rough_v1"
+    ],
+    "fresh_development_seeds": [
+      27001,
+      27002,
+      27003,
+      27004,
+      27005,
+      27006
+    ],
+    "fresh_world_count_per_candidate": 12,
+    "expected_world_count_per_candidate": 12,
+    "expected_complete_world_count": 48,
+    "all_cells_are_fresh_to_bw9l_bw10f_and_bw11r": true,
+    "failed_cells_may_not_be_deleted_replaced_or_averaged": true,
+    "every_candidate_runs_the_complete_matrix": true,
+    "early_stop_forbidden": true
+  },
+  "mechanism_receipt_eligibility": {
+    "scheduled_load_transfer_receipt_required_on_every_sdk_step": true,
+    "receipt_count_must_equal_sdk_step_count": true,
+    "availability_partition_counts_must_sum_to_receipt_count": true,
+    "fail_zero_receipt_count_must_equal_nonavailable_receipt_count": true,
+    "observation_unavailable_receipts_are_typed_portable_decisions": true,
+    "activation_uses_scheduler_boundaries_only": true,
+    "morphology_branch_surface_count_must_equal": 0,
+    "candidate_a_requires_zero_active_steps_and_zero_nonzero_stability_worlds": true,
+    "candidate_b_requires_nonzero_active_and_preferred_normal_steps_across_complete_matrix": true,
+    "candidate_b_requires_zero_remaining_centroid_steps": true,
+    "candidate_c_requires_nonzero_active_and_remaining_centroid_steps_across_complete_matrix": true,
+    "candidate_c_requires_zero_preferred_normal_steps": true,
+    "candidate_d_requires_nonzero_active_preferred_normal_and_remaining_centroid_steps_across_complete_matrix": true,
+    "base_controller_policy_id_must_match": "sporespore_balanced_wave_bw5r_b_v1",
+    "portable_plan_receipt_first_and_last_hashes_required": true
+  },
+  "development_selection_eligibility": {
+    "complete_matrix_required": true,
+    "expected_world_count_per_candidate": 12,
+    "infrastructure_failure_count": 0,
+    "adapter_schema_order_time_memory_capability_failure_count": 0,
+    "mechanism_receipt_failure_count": 0,
+    "direct_body_write_count": 0,
+    "native_motor_write_count_must_equal_step_count_times_actuator_count": true,
+    "candidate_a_requires_zero_nonzero_stability_worlds": true,
+    "candidate_b_c_d_require_nonzero_stability_contribution_in_every_world": true,
+    "candidate_digest_source_commit_material_acquisition_and_mechanism_receipts_must_match_preregistration": true,
+    "zero_release_timeout_not_required_for_development_selection": true,
+    "zero_ordinary_nonwalk_not_required_for_development_selection": true,
+    "development_selection_does_not_authorize_walking": true
+  },
+  "selection": {
+    "all_candidates_must_complete_before_selection": true,
+    "control_candidate": "BW12E-A",
+    "selectable_treatment_candidates": [
+      "BW12E-B",
+      "BW12E-C",
+      "BW12E-D"
+    ],
+    "treatment_must_be_strictly_lexicographically_better_than_control": true,
+    "early_stop_rule": "forbidden; all four candidates must complete all 12 worlds",
+    "lexicographic_metrics": [
+      {
+        "metric": "infrastructure_and_integrity_failure_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "all_world_ordinary_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "all_world_release_timeout_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "rough_world_ordinary_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_walking_gate_failure_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_cumulative_absolute_cross_track_error_m_s",
+        "direction": "ascending"
+      },
+      {
+        "metric": "maximum_absolute_task_frame_lateral_displacement_m",
+        "direction": "ascending"
+      }
+    ],
+    "tie_rule": "candidate_order_ascending",
+    "if_no_integrity_valid_treatment_beats_control": "reject_family and retain the negative result without opening reserved cohorts",
+    "selected_implementation_must_be_committed_before_independent_validation": true
+  },
+  "independent_validation_reservation": {
+    "campaign_seeds": [
+      22501,
+      22502,
+      22503
+    ],
+    "reservation_remains_unopened": true,
+    "selection_may_not_observe_reserved_seeds": true,
+    "validation_manifest_must_be_frozen_before_first_validation_world": true,
+    "first_complete_result_is_final_for_that_source_identity": true
+  },
+  "cold_unbiased_friction_reservation": {
+    "authored_friction_values": [
+      0.09,
+      0.37,
+      0.76,
+      1.18
+    ],
+    "campaign_seeds": [
+      23001,
+      23002,
+      23003
+    ],
+    "reservation_remains_unopened": true,
+    "axis_appears_in_no_controller_or_stability_policy_branch_condition": true,
+    "new_material_characterization_and_profile_publication_required": true,
+    "selection_and_independent_validation_may_not_observe_reserved_values_or_seeds": true,
+    "cold_manifest_must_be_frozen_before_first_cold_world": true,
+    "first_complete_result_is_final_for_that_source_identity": true
+  },
+  "cross_engine_c6_interlock": {
+    "bw12e_development_selection_required": true,
+    "new_independent_validation_required": true,
+    "cold_unbiased_friction_acceptance_required": true,
+    "fresh_morphology_nuisance_terrain_push_sensor_and_latency_gates_required": true,
+    "rapier_material_and_actuator_characterization_required": true,
+    "mujoco_material_and_actuator_characterization_required": true,
+    "same_selected_portable_base_and_stability_policy_authority_required": true,
+    "cross_engine_trajectory_tolerance_must_be_preregistered_after_adapter_characterization": true
+  },
+  "claims": {
+    "development_selection_authority": true,
+    "walking_acceptance": false,
+    "material_robustness": false,
+    "continuous_friction_coverage": false,
+    "balance_improvement": false,
+    "physical_balance_recovery": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_robustness": false,
+    "sensor_latency_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "variable_limb_count_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

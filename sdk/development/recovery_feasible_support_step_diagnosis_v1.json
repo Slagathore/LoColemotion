@@ -1,0 +1,2229 @@
+{
+  "schema_version": "sporespore_development_v35_step_diagnosis_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "post_exposure_retained_data_diagnosis",
+    "question_class": "development"
+  },
+  "source_closure": {
+    "path": "sdk/development/recovery_attempts/2d88c07d2ae0497a8fe9bc1fb60832e5.json",
+    "raw_sha256": "sha256:882e958b97d9d44e7ba992dd32dd0baeebb09e5331bd12d0855b610a3801fe5a"
+  },
+  "source_report": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-2d88c07d2ae0497a8fe9bc1fb60832e5/children/kick_passive_recovery_resume/worker_report.json",
+    "byte_length": 286381739,
+    "raw_sha256": "sha256:1fc36eecd5b662e532aef2d8a66c99f515fe914830d4ddf197b29ff1995f3eb6"
+  },
+  "frozen_runtime_source": {
+    "path": "sdk/core/src/runtime.rs",
+    "source_commit": "6a14d37a0d6d187a3453ad687534d9b004162eb1",
+    "raw_sha256": "sha256:4469bc9c252bc49ac76aeb094e91f9ed1ea97b21ad420624e353515cf123e5fa"
+  },
+  "frozen_lift_coefficients": {
+    "SWING_STEPS": 72,
+    "KNEE_SWING_FLEXION_RAD": 0.82,
+    "KNEE_FLEXION_SCALE": 1.75,
+    "CONTACT_CLEARANCE_ASSIST_RAD": 0.4
+  },
+  "analysis_source_bindings": [
+    {
+      "path": "sdk/conformance/development_recovery_v35_step_diagnosis.py",
+      "raw_sha256": "sha256:60de17e4abc50bd6472c07515ffdc13c1e22bae671809938bbacc206e22932c6"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_feasible_support_observation.py",
+      "raw_sha256": "sha256:06474c20e16524d7fba517ae09e80e886e6c5c72e6c7f0a1a4a0b115b3752ee8"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v28_contact_geometry.py",
+      "raw_sha256": "sha256:ce65485666b0659551530e0a72019138790c26d405aca69a30b85a958a4673e3"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v33_support_tracking_diagnosis.py",
+      "raw_sha256": "sha256:80c91fa7e263aad52265b40476290e36c081a9df9948f66f9db3e6251f1c4286"
+    }
+  ],
+  "selection_rule": "All 400 commands, all 1600 precommand limb samples, every original dwell-qualified cycle, every within-swing input contact toggle, and every empty height interval.",
+  "diagnosis": {
+    "command_count": 400,
+    "limb_command_count": 1600,
+    "measured_body_sample_count": 1600,
+    "coordinate_axis_maximum_difference": 2.3614902558169404e-07,
+    "existing_lift_fraction_reconstruction_maximum_error": 3.885780586188048e-16,
+    "prospective_phase_only_lift_on_saved_inputs_rad": {
+      "count": 1600,
+      "minimum": 0.0,
+      "mean": 0.11409481266913743,
+      "maximum": 1.1,
+      "rms": 0.30499721085262776
+    },
+    "prospective_lift_peak_rule": "amplitude * (0.82 * 1.75 + 0.40); existing peak and amplitude cap",
+    "contact_transitions_during_swing": [
+      {
+        "limb": "front_left",
+        "input_command_local": 28,
+        "contact_before": true,
+        "contact_after": false,
+        "phase_before": 26.0,
+        "phase_after": 27.0,
+        "amplitude_before": 0.1780531540724295,
+        "amplitude_after": 0.1896713215258856,
+        "walking_knee_fraction_before": 0.27526235389967496,
+        "walking_knee_fraction_after": 0.22860000311105544,
+        "observed_goal_knee_change_rad": -0.055596737333553026,
+        "observed_reference_knee_change_rad": -0.029166666666666674,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.06948170649175787,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      },
+      {
+        "limb": "front_left",
+        "input_command_local": 35,
+        "contact_before": false,
+        "contact_after": true,
+        "phase_before": 33.0,
+        "phase_after": 34.0,
+        "amplitude_before": 0.26234830709456053,
+        "amplitude_after": 0.2747759238701816,
+        "walking_knee_fraction_before": 0.339317335614722,
+        "walking_knee_fraction_after": 0.4570121605710898,
+        "observed_goal_knee_change_rad": 0.12429622188902267,
+        "observed_reference_knee_change_rad": 0.025000000000000078,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.08722188058695023,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      },
+      {
+        "limb": "front_left",
+        "input_command_local": 43,
+        "contact_before": true,
+        "contact_after": false,
+        "phase_before": 41.0,
+        "phase_after": 42.0,
+        "amplitude_before": 0.3617692412995295,
+        "amplitude_after": 0.37396558684024633,
+        "walking_knee_fraction_before": 0.5923099035576811,
+        "walking_knee_fraction_after": 0.4712318468252815,
+        "observed_goal_knee_change_rad": -0.09128318148307091,
+        "observed_reference_knee_change_rad": 0.029166666666666785,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.10710000978403755,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      },
+      {
+        "limb": "rear_right",
+        "input_command_local": 105,
+        "contact_before": false,
+        "contact_after": true,
+        "phase_before": 13.0,
+        "phase_after": 14.0,
+        "amplitude_before": 0.5994550408719347,
+        "amplitude_after": 0.5994550408719347,
+        "walking_knee_fraction_before": 0.4201770779169984,
+        "walking_knee_fraction_after": 0.666529801724115,
+        "observed_goal_knee_change_rad": 0.2709879961878284,
+        "observed_reference_knee_change_rad": 0.02499999999999991,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.23978201634877389,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      },
+      {
+        "limb": "rear_right",
+        "input_command_local": 115,
+        "contact_before": true,
+        "contact_after": false,
+        "phase_before": 23.0,
+        "phase_after": 24.0,
+        "amplitude_before": 0.5994550408719347,
+        "amplitude_after": 0.5994550408719347,
+        "walking_knee_fraction_before": 0.8775295502678424,
+        "walking_knee_fraction_after": 0.6772460242128988,
+        "observed_goal_knee_change_rad": -0.18747606682253337,
+        "observed_reference_knee_change_rad": 0.029166666666667007,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.20856508331610027,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      },
+      {
+        "limb": "front_right",
+        "input_command_local": 257,
+        "contact_before": true,
+        "contact_after": false,
+        "phase_before": 18.0,
+        "phase_after": 19.0,
+        "amplitude_before": 0.5994550408719347,
+        "amplitude_after": 0.5994550408719347,
+        "walking_knee_fraction_before": 0.7709527144428862,
+        "walking_knee_fraction_after": 0.5765629309659553,
+        "observed_goal_knee_change_rad": -0.11617219698782466,
+        "observed_reference_knee_change_rad": -0.029166666666666563,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.1314931824362975,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      },
+      {
+        "limb": "front_right",
+        "input_command_local": 271,
+        "contact_before": false,
+        "contact_after": true,
+        "phase_before": 32.0,
+        "phase_after": 33.0,
+        "amplitude_before": 0.5994550408719347,
+        "amplitude_after": 0.5994550408719347,
+        "walking_knee_fraction_before": 0.7701357632547784,
+        "walking_knee_fraction_after": 0.993309741728293,
+        "observed_goal_knee_change_rad": 0.08963606474188257,
+        "observed_reference_knee_change_rad": 0.02499999999999991,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.0824923583955211,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      },
+      {
+        "limb": "front_right",
+        "input_command_local": 274,
+        "contact_before": true,
+        "contact_after": false,
+        "phase_before": 35.0,
+        "phase_after": 36.0,
+        "amplitude_before": 0.5994550408719347,
+        "amplitude_after": 0.5994550408719347,
+        "walking_knee_fraction_before": 0.9992556937166028,
+        "walking_knee_fraction_after": 0.7820163487738419,
+        "observed_goal_knee_change_rad": -0.07349448304816475,
+        "observed_reference_knee_change_rad": -0.029166666666666563,
+        "same_input_loaded_minus_unloaded_goal_knee_rad": 0.07375644652916248,
+        "proposed_same_input_contact_only_lift_difference_rad": 0.0
+      }
+    ],
+    "all_original_contact_cycles": [
+      {
+        "limb": "front_left",
+        "liftoff_local_step": 27,
+        "touchdown_local_step": 34,
+        "airborne_steps": 7,
+        "distal_body_origin_forward_relocation_m": 0.005121578182301079,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 8,
+        "applied_command_first": 27,
+        "applied_command_last": 33,
+        "measured_airborne_trace_first": 27,
+        "measured_airborne_trace_last": 33,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 7,
+          "minimum": 0.00579920761458641,
+          "mean": 0.008333506042978651,
+          "maximum": 0.01205280165735638,
+          "rms": 0.008598226419631474
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 7,
+          "minimum": 0.00022827281843958158,
+          "mean": 0.000714529780441338,
+          "maximum": 0.0010394715442848396,
+          "rms": 0.0007689286309248514
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.005121578182301079,
+            "torso_translation": 0.0033423077328507134,
+            "torso_rotation_at_initial_joints": -0.00046106979025227544,
+            "joint_change_at_final_pose": 0.00193289608266421,
+            "ideal_constraint_residual": 0.00030744415703843134
+          },
+          "clearance_change_components_m": {
+            "actual": -0.00041831528646048277,
+            "torso_translation": -0.00013765692710876465,
+            "torso_rotation_at_initial_joints": -0.0017505555033183323,
+            "joint_change_at_final_pose": 0.0011759405026158243,
+            "ideal_constraint_residual": 0.0002939566413507899
+          },
+          "measured_hip_start_end_rad": [
+            -0.02627679891884327,
+            -0.03971085697412491
+          ],
+          "measured_knee_start_end_rad": [
+            0.12786944210529327,
+            0.19412852823734283
+          ]
+        }
+      },
+      {
+        "limb": "front_left",
+        "liftoff_local_step": 42,
+        "touchdown_local_step": 82,
+        "airborne_steps": 40,
+        "distal_body_origin_forward_relocation_m": 0.00896362846702381,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 41,
+        "applied_command_first": 42,
+        "applied_command_last": 81,
+        "measured_airborne_trace_first": 42,
+        "measured_airborne_trace_last": 81,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 40,
+          "minimum": -1.6106980887942157e-09,
+          "mean": 0.02133928210452579,
+          "maximum": 0.03885573355505097,
+          "rms": 0.025220721396562326
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 40,
+          "minimum": 0.0004605554292572839,
+          "mean": 0.007119350607313831,
+          "maximum": 0.011280378719110792,
+          "rms": 0.0077201552860718696
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.00896362846702381,
+            "torso_translation": 0.0012600259333650499,
+            "torso_rotation_at_initial_joints": -0.018127648411127635,
+            "joint_change_at_final_pose": 0.025730793079140134,
+            "ideal_constraint_residual": 0.00010045786564626125
+          },
+          "clearance_change_components_m": {
+            "actual": -0.0003905332109313403,
+            "torso_translation": -0.006875276565551758,
+            "torso_rotation_at_initial_joints": -0.00730523976074926,
+            "joint_change_at_final_pose": 0.013765916953484642,
+            "ideal_constraint_residual": 2.4066161885036297e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.03919108957052231,
+            -0.005777423735707998
+          ],
+          "measured_knee_start_end_rad": [
+            0.28469839692115784,
+            0.5028776526451111
+          ]
+        }
+      },
+      {
+        "limb": "front_left",
+        "liftoff_local_step": 88,
+        "touchdown_local_step": 91,
+        "airborne_steps": 3,
+        "distal_body_origin_forward_relocation_m": -0.0007877208275468561,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 88,
+        "applied_command_last": 90,
+        "measured_airborne_trace_first": 88,
+        "measured_airborne_trace_last": 90,
+        "lowering_participant_command_count": 3,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 3,
+          "minimum": 0.005664049272172622,
+          "mean": 0.005901327898364811,
+          "maximum": 0.006175265294883825,
+          "rms": 0.005905074078032599
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 3,
+          "minimum": 1.5126475957652485e-05,
+          "mean": 4.992524902043086e-05,
+          "maximum": 0.00011305114574729214,
+          "rms": 6.702201341992408e-05
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": -0.0007877208275468561,
+            "torso_translation": 0.0008071799660185341,
+            "torso_rotation_at_initial_joints": -0.0002524814768072546,
+            "joint_change_at_final_pose": -0.0012637510992068626,
+            "ideal_constraint_residual": -7.866821755127306e-05
+          },
+          "clearance_change_components_m": {
+            "actual": -0.00011181524336316417,
+            "torso_translation": -0.00057944655418396,
+            "torso_rotation_at_initial_joints": -0.00010217120265088031,
+            "joint_change_at_final_pose": 0.0006205918094627783,
+            "ideal_constraint_residual": -5.078929599110216e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.028696896508336067,
+            -0.03839204087853432
+          ],
+          "measured_knee_start_end_rad": [
+            0.5278589725494385,
+            0.5442533493041992
+          ]
+        }
+      },
+      {
+        "limb": "front_left",
+        "liftoff_local_step": 94,
+        "touchdown_local_step": 106,
+        "airborne_steps": 12,
+        "distal_body_origin_forward_relocation_m": -0.0035942195245697306,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 94,
+        "applied_command_last": 105,
+        "measured_airborne_trace_first": 94,
+        "measured_airborne_trace_last": 105,
+        "lowering_participant_command_count": 12,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 12,
+          "minimum": 0.0010280253149453494,
+          "mean": 0.0028815593078793077,
+          "maximum": 0.004744312297773806,
+          "rms": 0.0031096097652012823
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 12,
+          "minimum": 1.046055440791227e-05,
+          "mean": 0.00013320923995614278,
+          "maximum": 0.00022614500608331145,
+          "rms": 0.00014773464223808526
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": -0.0035942195245697306,
+            "torso_translation": 0.0012328445023430668,
+            "torso_rotation_at_initial_joints": -0.0014064780100290096,
+            "joint_change_at_final_pose": -0.003339940542589761,
+            "ideal_constraint_residual": -8.064547429402665e-05
+          },
+          "clearance_change_components_m": {
+            "actual": -9.03150157297028e-06,
+            "torso_translation": -0.0011823177337646484,
+            "torso_rotation_at_initial_joints": 0.00010812576238020122,
+            "joint_change_at_final_pose": 0.0011058553250762604,
+            "ideal_constraint_residual": -4.069485526478345e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.049063172191381454,
+            -0.07140981405973434
+          ],
+          "measured_knee_start_end_rad": [
+            0.5587626695632935,
+            0.5906913876533508
+          ]
+        }
+      },
+      {
+        "limb": "front_left",
+        "liftoff_local_step": 114,
+        "touchdown_local_step": 146,
+        "airborne_steps": 32,
+        "distal_body_origin_forward_relocation_m": 0.012496237650680087,
+        "original_minimum_relocation_passed": true,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 114,
+        "applied_command_last": 145,
+        "measured_airborne_trace_first": 114,
+        "measured_airborne_trace_last": 145,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 32,
+          "minimum": -1.4997875441569164e-09,
+          "mean": 6.80784604037421e-11,
+          "maximum": 1.855724365840139e-09,
+          "rms": 7.517716793727339e-10
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 32,
+          "minimum": 0.0002498371466421734,
+          "mean": 0.0008713096957206892,
+          "maximum": 0.0014469039231828212,
+          "rms": 0.0009463427106405651
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.012496237650680087,
+            "torso_translation": 0.018555431723609628,
+            "torso_rotation_at_initial_joints": 0.0010099763700640704,
+            "joint_change_at_final_pose": -0.00714625210923593,
+            "ideal_constraint_residual": 7.708166624231967e-05
+          },
+          "clearance_change_components_m": {
+            "actual": -0.0002911942537178608,
+            "torso_translation": 0.0006439387798309326,
+            "torso_rotation_at_initial_joints": 0.0003607386429225895,
+            "joint_change_at_final_pose": -0.0013255341200944515,
+            "ideal_constraint_residual": 2.966244362306858e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.07904640585184097,
+            -0.10831926017999649
+          ],
+          "measured_knee_start_end_rad": [
+            0.596362292766571,
+            0.6004325151443481
+          ]
+        }
+      },
+      {
+        "limb": "front_left",
+        "liftoff_local_step": 157,
+        "touchdown_local_step": 165,
+        "airborne_steps": 8,
+        "distal_body_origin_forward_relocation_m": 0.006042676032881111,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 157,
+        "applied_command_last": 164,
+        "measured_airborne_trace_first": 157,
+        "measured_airborne_trace_last": 164,
+        "lowering_participant_command_count": 2,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 8,
+          "minimum": -1.0737981476216518e-09,
+          "mean": 2.4219226277726394e-05,
+          "maximum": 0.00010459842592228097,
+          "rms": 4.859221412778768e-05
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 8,
+          "minimum": 0.00028797021140548884,
+          "mean": 0.0010267172074298146,
+          "maximum": 0.0015721687935544293,
+          "rms": 0.0011138940936319993
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.006042676032881111,
+            "torso_translation": 0.006883775967329253,
+            "torso_rotation_at_initial_joints": 0.002561866521234077,
+            "joint_change_at_final_pose": -0.0034574692062040472,
+            "ideal_constraint_residual": 5.4502750521829256e-05
+          },
+          "clearance_change_components_m": {
+            "actual": -0.00028827754298998975,
+            "torso_translation": 2.631545066833496e-05,
+            "torso_rotation_at_initial_joints": 3.227989035596568e-05,
+            "joint_change_at_final_pose": -0.00034512659171433147,
+            "ideal_constraint_residual": -1.7462922999589292e-06
+          },
+          "measured_hip_start_end_rad": [
+            -0.12017098814249039,
+            -0.135162353515625
+          ],
+          "measured_knee_start_end_rad": [
+            0.609118640422821,
+            0.6139487624168396
+          ]
+        }
+      },
+      {
+        "limb": "front_left",
+        "liftoff_local_step": 256,
+        "touchdown_local_step": 264,
+        "airborne_steps": 8,
+        "distal_body_origin_forward_relocation_m": 0.0020724969090224477,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 256,
+        "applied_command_last": 263,
+        "measured_airborne_trace_first": 256,
+        "measured_airborne_trace_last": 263,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 8,
+          "minimum": -1.0815660311802588e-09,
+          "mean": -4.190487158661771e-10,
+          "maximum": 1.0535415595480657e-10,
+          "rms": 5.434874742410467e-10
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 8,
+          "minimum": -0.0004900890407906755,
+          "mean": 0.00024336875547547113,
+          "maximum": 0.0009410533040204033,
+          "rms": 0.0005850268341005897
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.0020724969090224477,
+            "torso_translation": 0.0071444387948336185,
+            "torso_rotation_at_initial_joints": -0.002779410045549451,
+            "joint_change_at_final_pose": -0.0018144815568492977,
+            "ideal_constraint_residual": -0.00047805028341242227
+          },
+          "clearance_change_components_m": {
+            "actual": 0.0004566228215761303,
+            "torso_translation": 0.0007406473159790039,
+            "torso_rotation_at_initial_joints": -0.00023367803893824257,
+            "joint_change_at_final_pose": 6.525917704100492e-06,
+            "ideal_constraint_residual": -5.6872373168731505e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.2583145499229431,
+            -0.26594921946525574
+          ],
+          "measured_knee_start_end_rad": [
+            0.6611967086791992,
+            0.6627095341682434
+          ]
+        }
+      },
+      {
+        "limb": "front_right",
+        "liftoff_local_step": 256,
+        "touchdown_local_step": 270,
+        "airborne_steps": 14,
+        "distal_body_origin_forward_relocation_m": 0.03752688839229301,
+        "original_minimum_relocation_passed": true,
+        "scheduled_swing_or_landing_command_overlap_count": 15,
+        "applied_command_first": 256,
+        "applied_command_last": 269,
+        "measured_airborne_trace_first": 256,
+        "measured_airborne_trace_last": 269,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 14,
+          "minimum": 0.021940663353293713,
+          "mean": 0.03334480928912561,
+          "maximum": 0.03911093536702122,
+          "rms": 0.03383832958441716
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 14,
+          "minimum": 0.0003740416504943028,
+          "mean": 0.003009454637748352,
+          "maximum": 0.0052154652249179895,
+          "rms": 0.0034245922130361917
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.03752688839229301,
+            "torso_translation": 0.01612926313789398,
+            "torso_rotation_at_initial_joints": -0.00655530587588414,
+            "joint_change_at_final_pose": 0.027518173772543064,
+            "ideal_constraint_residual": 0.00043475735774010926
+          },
+          "clearance_change_components_m": {
+            "actual": -0.00040897685319958577,
+            "torso_translation": 0.0007542967796325684,
+            "torso_rotation_at_initial_joints": -0.009829301979211238,
+            "joint_change_at_final_pose": 0.008216531621897269,
+            "ideal_constraint_residual": 0.00044949672448181544
+          },
+          "measured_hip_start_end_rad": [
+            -0.30323493480682373,
+            -0.24494613707065582
+          ],
+          "measured_knee_start_end_rad": [
+            0.5597258806228638,
+            0.721464216709137
+          ]
+        }
+      },
+      {
+        "limb": "front_right",
+        "liftoff_local_step": 273,
+        "touchdown_local_step": 317,
+        "airborne_steps": 44,
+        "distal_body_origin_forward_relocation_m": 0.03734126697719309,
+        "original_minimum_relocation_passed": true,
+        "scheduled_swing_or_landing_command_overlap_count": 45,
+        "applied_command_first": 273,
+        "applied_command_last": 316,
+        "measured_airborne_trace_first": 273,
+        "measured_airborne_trace_last": 316,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 44,
+          "minimum": -3.0958644398060287e-09,
+          "mean": 0.02226135394796162,
+          "maximum": 0.05845493670306945,
+          "rms": 0.027125784326713604
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 44,
+          "minimum": 0.0002368261290743301,
+          "mean": 0.00404266481698965,
+          "maximum": 0.006218352981474107,
+          "rms": 0.004307139714865793
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.03734126697719309,
+            "torso_translation": 0.02875690479395321,
+            "torso_rotation_at_initial_joints": -0.018211973146075797,
+            "joint_change_at_final_pose": 0.0270215363374512,
+            "ideal_constraint_residual": -0.00022520100813552824
+          },
+          "clearance_change_components_m": {
+            "actual": -0.0002371305926879147,
+            "torso_translation": -0.007509887218475342,
+            "torso_rotation_at_initial_joints": -0.014482597758012666,
+            "joint_change_at_final_pose": 0.021737460112242618,
+            "ideal_constraint_residual": 1.789427155747536e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.2257014513015747,
+            -0.1784590184688568
+          ],
+          "measured_knee_start_end_rad": [
+            0.7527594566345215,
+            0.9751776456832886
+          ]
+        }
+      },
+      {
+        "limb": "front_right",
+        "liftoff_local_step": 339,
+        "touchdown_local_step": 347,
+        "airborne_steps": 8,
+        "distal_body_origin_forward_relocation_m": 0.0033499205884630623,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 339,
+        "applied_command_last": 346,
+        "measured_airborne_trace_first": 339,
+        "measured_airborne_trace_last": 346,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 8,
+          "minimum": -2.4529238917825325e-09,
+          "mean": -7.868222687973381e-10,
+          "maximum": 3.020317079771573e-09,
+          "rms": 2.3311143291897124e-09
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 8,
+          "minimum": 2.8040435698234445e-05,
+          "mean": 0.00021261338586728816,
+          "maximum": 0.0003661321807763157,
+          "rms": 0.0002458032476192668
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.0033499205884630623,
+            "torso_translation": 0.005562919111495868,
+            "torso_rotation_at_initial_joints": 0.0006978048983237434,
+            "joint_change_at_final_pose": -0.002774441079035864,
+            "ideal_constraint_residual": -0.0001363623423206845
+          },
+          "clearance_change_components_m": {
+            "actual": -5.331851904723239e-05,
+            "torso_translation": 0.00010803341865539551,
+            "torso_rotation_at_initial_joints": -1.3219973944891827e-05,
+            "joint_change_at_final_pose": -2.9752537493793474e-05,
+            "ideal_constraint_residual": -0.0001183794262639426
+          },
+          "measured_hip_start_end_rad": [
+            -0.24750791490077972,
+            -0.2605888545513153
+          ],
+          "measured_knee_start_end_rad": [
+            1.0090705156326294,
+            1.0139744281768799
+          ]
+        }
+      },
+      {
+        "limb": "front_right",
+        "liftoff_local_step": 356,
+        "touchdown_local_step": 367,
+        "airborne_steps": 11,
+        "distal_body_origin_forward_relocation_m": 0.007880216033856247,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 356,
+        "applied_command_last": 366,
+        "measured_airborne_trace_first": 356,
+        "measured_airborne_trace_last": 366,
+        "lowering_participant_command_count": 4,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 11,
+          "minimum": -2.446163369085319e-09,
+          "mean": 0.0024999471161363013,
+          "maximum": 0.007286578368732602,
+          "rms": 0.0041499656448357744
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 11,
+          "minimum": 0.00022656753320521306,
+          "mean": 0.000913606570822562,
+          "maximum": 0.0013618121367982017,
+          "rms": 0.000991514730531082
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.007880216033856247,
+            "torso_translation": 0.00870963742421299,
+            "torso_rotation_at_initial_joints": 0.0032327839058264437,
+            "joint_change_at_final_pose": -0.004047760316170075,
+            "ideal_constraint_residual": -1.4444980013114672e-05
+          },
+          "clearance_change_components_m": {
+            "actual": -0.0003161411620658666,
+            "torso_translation": -0.0008924603462219238,
+            "torso_rotation_at_initial_joints": -0.00025858788226837404,
+            "joint_change_at_final_pose": 0.0008283234557383695,
+            "ideal_constraint_residual": 6.583610686061725e-06
+          },
+          "measured_hip_start_end_rad": [
+            -0.2688644826412201,
+            -0.29037952423095703
+          ],
+          "measured_knee_start_end_rad": [
+            1.0168533325195312,
+            1.0324081182479858
+          ]
+        }
+      },
+      {
+        "limb": "front_right",
+        "liftoff_local_step": 385,
+        "touchdown_local_step": 392,
+        "airborne_steps": 7,
+        "distal_body_origin_forward_relocation_m": 0.0053634451003859995,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 385,
+        "applied_command_last": 391,
+        "measured_airborne_trace_first": 385,
+        "measured_airborne_trace_last": 391,
+        "lowering_participant_command_count": 7,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 7,
+          "minimum": 0.003966835538217112,
+          "mean": 0.004477538091473153,
+          "maximum": 0.0052916031329551805,
+          "rms": 0.004506128212687051
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 7,
+          "minimum": 0.00012924529554410313,
+          "mean": 0.000906419285474023,
+          "maximum": 0.0013379592886266917,
+          "rms": 0.0009935680420968755
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.0053634451003859995,
+            "torso_translation": 0.006711429794402701,
+            "torso_rotation_at_initial_joints": 0.0021609988687292603,
+            "joint_change_at_final_pose": -0.0035530663736174956,
+            "ideal_constraint_residual": 4.4082810871533956e-05
+          },
+          "clearance_change_components_m": {
+            "actual": -0.0005762176767656196,
+            "torso_translation": -0.001171499490737915,
+            "torso_rotation_at_initial_joints": -0.0007332460923265144,
+            "joint_change_at_final_pose": 0.001342017097290843,
+            "ideal_constraint_residual": -1.3489190992033162e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.3104073405265808,
+            -0.33097243309020996
+          ],
+          "measured_knee_start_end_rad": [
+            1.0365495681762695,
+            1.055385708808899
+          ]
+        }
+      },
+      {
+        "limb": "rear_right",
+        "liftoff_local_step": 33,
+        "touchdown_local_step": 45,
+        "airborne_steps": 12,
+        "distal_body_origin_forward_relocation_m": -0.010585174462644176,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 33,
+        "applied_command_last": 44,
+        "measured_airborne_trace_first": 33,
+        "measured_airborne_trace_last": 44,
+        "lowering_participant_command_count": 12,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 12,
+          "minimum": 0.0006327353421620441,
+          "mean": 0.002920480184888412,
+          "maximum": 0.003999063783286683,
+          "rms": 0.0030983480858420703
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 12,
+          "minimum": 0.00020280894980857778,
+          "mean": 0.001884427127459538,
+          "maximum": 0.0026410154739262004,
+          "rms": 0.0020493103750989943
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": -0.010585174462644176,
+            "torso_translation": -0.00947293747654454,
+            "torso_rotation_at_initial_joints": 0.003945581661868121,
+            "joint_change_at_final_pose": -0.004763928008071851,
+            "ideal_constraint_residual": -0.00029389063989590514
+          },
+          "clearance_change_components_m": {
+            "actual": -0.00048183591511624657,
+            "torso_translation": -0.0007161498069763184,
+            "torso_rotation_at_initial_joints": -0.00018192003907691046,
+            "joint_change_at_final_pose": 0.00021957422686121053,
+            "ideal_constraint_residual": 0.0001966597040757717
+          },
+          "measured_hip_start_end_rad": [
+            -0.035554587841033936,
+            -0.049087464809417725
+          ],
+          "measured_knee_start_end_rad": [
+            0.026975257322192192,
+            0.013047277927398682
+          ]
+        }
+      },
+      {
+        "limb": "rear_right",
+        "liftoff_local_step": 54,
+        "touchdown_local_step": 104,
+        "airborne_steps": 50,
+        "distal_body_origin_forward_relocation_m": 0.004313199801076806,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 14,
+        "applied_command_first": 54,
+        "applied_command_last": 103,
+        "measured_airborne_trace_first": 54,
+        "measured_airborne_trace_last": 103,
+        "lowering_participant_command_count": 37,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 50,
+          "minimum": 0.0011959376968255914,
+          "mean": 0.0059584836272120025,
+          "maximum": 0.008442393982407134,
+          "rms": 0.006380946167411794
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 50,
+          "minimum": 0.0002667643605060305,
+          "mean": 0.0040551505520334645,
+          "maximum": 0.006531554944806728,
+          "rms": 0.004368307712590027
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.004313199801076806,
+            "torso_translation": 0.006506955467548092,
+            "torso_rotation_at_initial_joints": 0.007135029368967372,
+            "joint_change_at_final_pose": -0.009094314980232778,
+            "ideal_constraint_residual": -0.0002344700552058803
+          },
+          "clearance_change_components_m": {
+            "actual": -0.00042887174223854574,
+            "torso_translation": -0.010040432214736938,
+            "torso_rotation_at_initial_joints": 0.008230308069244394,
+            "joint_change_at_final_pose": 0.0012121740985010232,
+            "ideal_constraint_residual": 0.00016907830475297592
+          },
+          "measured_hip_start_end_rad": [
+            -0.08112199604511261,
+            -0.14060817658901215
+          ],
+          "measured_knee_start_end_rad": [
+            0.013810706324875355,
+            0.09268917143344879
+          ]
+        }
+      },
+      {
+        "limb": "rear_right",
+        "liftoff_local_step": 114,
+        "touchdown_local_step": 229,
+        "airborne_steps": 115,
+        "distal_body_origin_forward_relocation_m": 0.09262217881874513,
+        "original_minimum_relocation_passed": true,
+        "scheduled_swing_or_landing_command_overlap_count": 116,
+        "applied_command_first": 114,
+        "applied_command_last": 228,
+        "measured_airborne_trace_first": 114,
+        "measured_airborne_trace_last": 228,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 115,
+          "minimum": -1.2566011425851897e-09,
+          "mean": 0.017434179901234376,
+          "maximum": 0.058129628686791,
+          "rms": 0.028700098450526644
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 115,
+          "minimum": 4.9420820782977715e-05,
+          "mean": 0.01091615067798664,
+          "maximum": 0.029079366482751667,
+          "rms": 0.014813339076074709
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": 0.09262217881874513,
+            "torso_translation": 0.04924010589290784,
+            "torso_rotation_at_initial_joints": -0.008196340930302774,
+            "joint_change_at_final_pose": 0.05159044689120848,
+            "ideal_constraint_residual": -1.2033035068415021e-05
+          },
+          "clearance_change_components_m": {
+            "actual": -6.226517871923964e-05,
+            "torso_translation": -0.0007284879684448242,
+            "torso_rotation_at_initial_joints": -0.0016757106380568126,
+            "joint_change_at_final_pose": 0.0023290421551095813,
+            "ideal_constraint_residual": 1.2891272672815868e-05
+          },
+          "measured_hip_start_end_rad": [
+            -0.12580980360507965,
+            0.0934196412563324
+          ],
+          "measured_knee_start_end_rad": [
+            0.23843543231487274,
+            0.16126525402069092
+          ]
+        }
+      },
+      {
+        "limb": "rear_right",
+        "liftoff_local_step": 241,
+        "touchdown_local_step": 250,
+        "airborne_steps": 9,
+        "distal_body_origin_forward_relocation_m": -0.020809068882961412,
+        "original_minimum_relocation_passed": false,
+        "scheduled_swing_or_landing_command_overlap_count": 0,
+        "applied_command_first": 241,
+        "applied_command_last": 249,
+        "measured_airborne_trace_first": 241,
+        "measured_airborne_trace_last": 249,
+        "lowering_participant_command_count": 0,
+        "applied_goal_at_precommand_pose_floor_clearance_m": {
+          "count": 9,
+          "minimum": -9.918611210135708e-10,
+          "mean": -3.8558148957652034e-11,
+          "maximum": 9.261669764448754e-10,
+          "rms": 6.564199016756428e-10
+        },
+        "measured_airborne_floor_clearance_m": {
+          "count": 9,
+          "minimum": 0.000209407359379285,
+          "mean": 0.000540298390142043,
+          "maximum": 0.0007955906945441987,
+          "rms": 0.0005822341616020995
+        },
+        "raw_native_contact_samples_during_airborne": 0,
+        "decomposition": {
+          "available": true,
+          "forward_components_m": {
+            "actual": -0.020809068882961412,
+            "torso_translation": -0.009617653637526202,
+            "torso_rotation_at_initial_joints": -0.01108979800853042,
+            "joint_change_at_final_pose": 0.00025069323199182193,
+            "ideal_constraint_residual": -0.00035231046889661055
+          },
+          "clearance_change_components_m": {
+            "actual": -7.65052033592506e-06,
+            "torso_translation": -0.0001418590545654297,
+            "torso_rotation_at_initial_joints": 0.00011455987308181537,
+            "joint_change_at_final_pose": 0.0004242494566383398,
+            "ideal_constraint_residual": -0.00040460079549065053
+          },
+          "measured_hip_start_end_rad": [
+            0.08456499874591827,
+            0.0807654932141304
+          ],
+          "measured_knee_start_end_rad": [
+            0.17364247143268585,
+            0.18905982375144958
+          ]
+        }
+      }
+    ],
+    "empty_height_intervals": [
+      {
+        "command_local": 296,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 56.0,
+        "maximum_limiter_phase": 328.0,
+        "interval_gap_m": 0.0004122905341008565,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013022215792292624
+      },
+      {
+        "command_local": 297,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 57.0,
+        "maximum_limiter_phase": 329.0,
+        "interval_gap_m": 0.0015596954650312633,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01242270114786248
+      },
+      {
+        "command_local": 298,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 58.0,
+        "maximum_limiter_phase": 330.0,
+        "interval_gap_m": 0.002534875583748042,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011927250724821759
+      },
+      {
+        "command_local": 299,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 59.0,
+        "maximum_limiter_phase": 331.0,
+        "interval_gap_m": 0.0033957179347791078,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011482874015976419
+      },
+      {
+        "command_local": 300,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 60.0,
+        "maximum_limiter_phase": 332.0,
+        "interval_gap_m": 0.00412945760971728,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01112260706080015
+      },
+      {
+        "command_local": 301,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 61.0,
+        "maximum_limiter_phase": 333.0,
+        "interval_gap_m": 0.0046928461005446565,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010863333793940555
+      },
+      {
+        "command_local": 302,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 62.0,
+        "maximum_limiter_phase": 334.0,
+        "interval_gap_m": 0.005022271765826036,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01071179862558852
+      },
+      {
+        "command_local": 303,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 63.0,
+        "maximum_limiter_phase": 335.0,
+        "interval_gap_m": 0.005071520515439021,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010686714271118669
+      },
+      {
+        "command_local": 304,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 64.0,
+        "maximum_limiter_phase": 336.0,
+        "interval_gap_m": 0.004867491226172749,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010787636002185463
+      },
+      {
+        "command_local": 305,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 65.0,
+        "maximum_limiter_phase": 337.0,
+        "interval_gap_m": 0.004489093670953459,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01096551698771514
+      },
+      {
+        "command_local": 306,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 66.0,
+        "maximum_limiter_phase": 338.0,
+        "interval_gap_m": 0.004038647610556723,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011180849319913033
+      },
+      {
+        "command_local": 307,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 67.0,
+        "maximum_limiter_phase": 339.0,
+        "interval_gap_m": 0.003642699369297342,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011371390912154722
+      },
+      {
+        "command_local": 308,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 68.0,
+        "maximum_limiter_phase": 340.0,
+        "interval_gap_m": 0.0034149181760320113,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011487639236111236
+      },
+      {
+        "command_local": 309,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 69.0,
+        "maximum_limiter_phase": 341.0,
+        "interval_gap_m": 0.0034362242375114427,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011491161137656414
+      },
+      {
+        "command_local": 310,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 70.0,
+        "maximum_limiter_phase": 342.0,
+        "interval_gap_m": 0.0037424509790102145,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011366487614619336
+      },
+      {
+        "command_local": 311,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 71.0,
+        "maximum_limiter_phase": 343.0,
+        "interval_gap_m": 0.0043253506950667875,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011117557132559797
+      },
+      {
+        "command_local": 312,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 344.0,
+        "interval_gap_m": 0.005134399300853187,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01076820987281324
+      },
+      {
+        "command_local": 313,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 345.0,
+        "interval_gap_m": 0.0060879924370781935,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010353833905864307
+      },
+      {
+        "command_local": 314,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 346.0,
+        "interval_gap_m": 0.007128025175408059,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.00989184084045125
+      },
+      {
+        "command_local": 315,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 347.0,
+        "interval_gap_m": 0.008157659235542514,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.009439342276502949
+      },
+      {
+        "command_local": 316,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 348.0,
+        "interval_gap_m": 0.009111895118586788,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.009019896359451773
+      },
+      {
+        "command_local": 317,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 349.0,
+        "interval_gap_m": 0.009965244401106021,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.008642154881288555
+      },
+      {
+        "command_local": 318,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 350.0,
+        "interval_gap_m": 0.01067079860093001,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.008336167417005325
+      },
+      {
+        "command_local": 319,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 72.0,
+        "maximum_limiter_phase": 351.0,
+        "interval_gap_m": 0.011035558712036708,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.008202488754815829
+      },
+      {
+        "command_local": 320,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 73.0,
+        "maximum_limiter_phase": 352.0,
+        "interval_gap_m": 0.011230546108489725,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.011230546108489725
+      },
+      {
+        "command_local": 321,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 74.0,
+        "maximum_limiter_phase": 353.0,
+        "interval_gap_m": 0.011396673300485105,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.011396673300485105
+      },
+      {
+        "command_local": 322,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 75.0,
+        "maximum_limiter_phase": 354.0,
+        "interval_gap_m": 0.011596869344034755,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.011596869344034755
+      },
+      {
+        "command_local": 323,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 76.0,
+        "maximum_limiter_phase": 355.0,
+        "interval_gap_m": 0.011834657233462498,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.011834657233462498
+      },
+      {
+        "command_local": 324,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 77.0,
+        "maximum_limiter_phase": 356.0,
+        "interval_gap_m": 0.012063365136131599,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.012063365136131599
+      },
+      {
+        "command_local": 325,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 78.0,
+        "maximum_limiter_phase": 357.0,
+        "interval_gap_m": 0.012231407929307658,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.012231407929307658
+      },
+      {
+        "command_local": 326,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 79.0,
+        "maximum_limiter_phase": 358.0,
+        "interval_gap_m": 0.012306643774264991,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.012306643774264991
+      },
+      {
+        "command_local": 327,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 80.0,
+        "maximum_limiter_phase": 359.0,
+        "interval_gap_m": 0.01228311588768366,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": false,
+        "stance_only_signed_gap_m": 0.01228311588768366
+      },
+      {
+        "command_local": 328,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 81.0,
+        "maximum_limiter_phase": 0.0,
+        "interval_gap_m": 0.012174626479898198,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01579696472726022
+      },
+      {
+        "command_local": 329,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 82.0,
+        "maximum_limiter_phase": 1.0,
+        "interval_gap_m": 0.011992356799522763,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015883888804728408
+      },
+      {
+        "command_local": 330,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 83.0,
+        "maximum_limiter_phase": 2.0,
+        "interval_gap_m": 0.011772930821177252,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015983716596737696
+      },
+      {
+        "command_local": 331,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 84.0,
+        "maximum_limiter_phase": 3.0,
+        "interval_gap_m": 0.01148851507177645,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016097005741475157
+      },
+      {
+        "command_local": 332,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 85.0,
+        "maximum_limiter_phase": 4.0,
+        "interval_gap_m": 0.011254481998326626,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016153909662094512
+      },
+      {
+        "command_local": 333,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 86.0,
+        "maximum_limiter_phase": 5.0,
+        "interval_gap_m": 0.011066985806660268,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016188745482391353
+      },
+      {
+        "command_local": 334,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 87.0,
+        "maximum_limiter_phase": 6.0,
+        "interval_gap_m": 0.010907500901662148,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01621134077156
+      },
+      {
+        "command_local": 335,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 88.0,
+        "maximum_limiter_phase": 7.0,
+        "interval_gap_m": 0.010794322704414105,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01618855225410032
+      },
+      {
+        "command_local": 336,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 89.0,
+        "maximum_limiter_phase": 8.0,
+        "interval_gap_m": 0.010639150800978603,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016183371334821894
+      },
+      {
+        "command_local": 337,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 90.0,
+        "maximum_limiter_phase": 9.0,
+        "interval_gap_m": 0.010368192373138407,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01622913864098008
+      },
+      {
+        "command_local": 338,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 91.0,
+        "maximum_limiter_phase": 10.0,
+        "interval_gap_m": 0.009903091258863073,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01635528211687204
+      },
+      {
+        "command_local": 339,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 92.0,
+        "maximum_limiter_phase": 11.0,
+        "interval_gap_m": 0.009408026791184243,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016459462265968672
+      },
+      {
+        "command_local": 340,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 93.0,
+        "maximum_limiter_phase": 12.0,
+        "interval_gap_m": 0.008965192496647068,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016488809394766435
+      },
+      {
+        "command_local": 341,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 94.0,
+        "maximum_limiter_phase": 13.0,
+        "interval_gap_m": 0.008439795872308364,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016575608350406612
+      },
+      {
+        "command_local": 342,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 95.0,
+        "maximum_limiter_phase": 14.0,
+        "interval_gap_m": 0.0079115137020066,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016659391011739966
+      },
+      {
+        "command_local": 343,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 96.0,
+        "maximum_limiter_phase": 15.0,
+        "interval_gap_m": 0.007390228889093076,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016728113686956647
+      },
+      {
+        "command_local": 344,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 97.0,
+        "maximum_limiter_phase": 16.0,
+        "interval_gap_m": 0.006974242507922612,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01673506698331545
+      },
+      {
+        "command_local": 345,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 98.0,
+        "maximum_limiter_phase": 17.0,
+        "interval_gap_m": 0.006678126511618421,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016672767090486373
+      },
+      {
+        "command_local": 346,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 99.0,
+        "maximum_limiter_phase": 18.0,
+        "interval_gap_m": 0.0065429301684695185,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016518506188792637
+      },
+      {
+        "command_local": 347,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 100.0,
+        "maximum_limiter_phase": 19.0,
+        "interval_gap_m": 0.0065486362686911215,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01628372365697206
+      },
+      {
+        "command_local": 348,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 101.0,
+        "maximum_limiter_phase": 20.0,
+        "interval_gap_m": 0.006545894116959772,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01602594004051522
+      },
+      {
+        "command_local": 349,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 102.0,
+        "maximum_limiter_phase": 21.0,
+        "interval_gap_m": 0.006370972614998471,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015840893067428807
+      },
+      {
+        "command_local": 350,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 103.0,
+        "maximum_limiter_phase": 22.0,
+        "interval_gap_m": 0.006040045871194721,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01574970128493869
+      },
+      {
+        "command_local": 351,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 104.0,
+        "maximum_limiter_phase": 23.0,
+        "interval_gap_m": 0.0056445066401171196,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015702961585346065
+      },
+      {
+        "command_local": 352,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 105.0,
+        "maximum_limiter_phase": 24.0,
+        "interval_gap_m": 0.005233520020938909,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015678088672988977
+      },
+      {
+        "command_local": 353,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 106.0,
+        "maximum_limiter_phase": 25.0,
+        "interval_gap_m": 0.0048216163662833655,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015677228852432556
+      },
+      {
+        "command_local": 354,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 107.0,
+        "maximum_limiter_phase": 26.0,
+        "interval_gap_m": 0.004400959709937591,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01570085695974116
+      },
+      {
+        "command_local": 355,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 108.0,
+        "maximum_limiter_phase": 27.0,
+        "interval_gap_m": 0.003959511485957301,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01575079598910112
+      },
+      {
+        "command_local": 356,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 109.0,
+        "maximum_limiter_phase": 28.0,
+        "interval_gap_m": 0.0035027976588658527,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01581844956433215
+      },
+      {
+        "command_local": 357,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 110.0,
+        "maximum_limiter_phase": 29.0,
+        "interval_gap_m": 0.003006322344695722,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015969288712778584
+      },
+      {
+        "command_local": 358,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 111.0,
+        "maximum_limiter_phase": 30.0,
+        "interval_gap_m": 0.0022023939634946976,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01625971192120218
+      },
+      {
+        "command_local": 359,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 112.0,
+        "maximum_limiter_phase": 31.0,
+        "interval_gap_m": 0.0013953846799963365,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016452650204670072
+      },
+      {
+        "command_local": 360,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 113.0,
+        "maximum_limiter_phase": 32.0,
+        "interval_gap_m": 0.0007032209366793496,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.016602078916821916
+      },
+      {
+        "command_local": 361,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 114.0,
+        "maximum_limiter_phase": 33.0,
+        "interval_gap_m": 0.000147421502517453,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.0166956069345629
+      },
+      {
+        "command_local": 366,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 119.0,
+        "maximum_limiter_phase": 38.0,
+        "interval_gap_m": 6.421024880337578e-05,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01563876128984598
+      },
+      {
+        "command_local": 367,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 120.0,
+        "maximum_limiter_phase": 39.0,
+        "interval_gap_m": 0.0007186718447714235,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.015023883586600506
+      },
+      {
+        "command_local": 368,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 121.0,
+        "maximum_limiter_phase": 40.0,
+        "interval_gap_m": 0.0013134928479696106,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.014447173181218687
+      },
+      {
+        "command_local": 369,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 122.0,
+        "maximum_limiter_phase": 41.0,
+        "interval_gap_m": 0.0015949934028686719,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.014082689256417535
+      },
+      {
+        "command_local": 370,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 123.0,
+        "maximum_limiter_phase": 42.0,
+        "interval_gap_m": 0.001647030960457041,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01388227238471229
+      },
+      {
+        "command_local": 371,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 124.0,
+        "maximum_limiter_phase": 43.0,
+        "interval_gap_m": 0.001607621300095008,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01374587984889103
+      },
+      {
+        "command_local": 372,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 125.0,
+        "maximum_limiter_phase": 44.0,
+        "interval_gap_m": 0.0015218991551289585,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013638774299468637
+      },
+      {
+        "command_local": 373,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 126.0,
+        "maximum_limiter_phase": 45.0,
+        "interval_gap_m": 0.001397634237823353,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01357200467218389
+      },
+      {
+        "command_local": 374,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 127.0,
+        "maximum_limiter_phase": 46.0,
+        "interval_gap_m": 0.0012418954550209582,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013548806317879525
+      },
+      {
+        "command_local": 375,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 128.0,
+        "maximum_limiter_phase": 47.0,
+        "interval_gap_m": 0.0010747027955770316,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01356072585218493
+      },
+      {
+        "command_local": 376,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 129.0,
+        "maximum_limiter_phase": 48.0,
+        "interval_gap_m": 0.000917744001624754,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013577563227863687
+      },
+      {
+        "command_local": 377,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 130.0,
+        "maximum_limiter_phase": 49.0,
+        "interval_gap_m": 0.0007827065797251231,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013582990580787768
+      },
+      {
+        "command_local": 378,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 131.0,
+        "maximum_limiter_phase": 50.0,
+        "interval_gap_m": 0.0006638049027069548,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013576217058219209
+      },
+      {
+        "command_local": 379,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 132.0,
+        "maximum_limiter_phase": 51.0,
+        "interval_gap_m": 0.0005552305680489034,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013559982387608582
+      },
+      {
+        "command_local": 380,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 133.0,
+        "maximum_limiter_phase": 52.0,
+        "interval_gap_m": 0.00045459432373468056,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01353575922291711
+      },
+      {
+        "command_local": 381,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 134.0,
+        "maximum_limiter_phase": 53.0,
+        "interval_gap_m": 0.00036398806054266375,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013504375740772012
+      },
+      {
+        "command_local": 382,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 135.0,
+        "maximum_limiter_phase": 54.0,
+        "interval_gap_m": 0.0002831956165360028,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013468060144863847
+      },
+      {
+        "command_local": 383,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 136.0,
+        "maximum_limiter_phase": 54.0,
+        "interval_gap_m": 0.00018232756145436513,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013434051450083195
+      },
+      {
+        "command_local": 384,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 137.0,
+        "maximum_limiter_phase": 54.0,
+        "interval_gap_m": 6.843557845259696e-05,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.013409697160654988
+      },
+      {
+        "command_local": 392,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 145.0,
+        "maximum_limiter_phase": 62.0,
+        "interval_gap_m": 0.0007752186028173735,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.012410822254478426
+      },
+      {
+        "command_local": 393,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 146.0,
+        "maximum_limiter_phase": 63.0,
+        "interval_gap_m": 0.0017533395656156858,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011665118349358405
+      },
+      {
+        "command_local": 394,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 147.0,
+        "maximum_limiter_phase": 64.0,
+        "interval_gap_m": 0.002181099444840351,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.01129214574563836
+      },
+      {
+        "command_local": 395,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 148.0,
+        "maximum_limiter_phase": 65.0,
+        "interval_gap_m": 0.0022843569112603324,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011125591791680878
+      },
+      {
+        "command_local": 396,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 149.0,
+        "maximum_limiter_phase": 66.0,
+        "interval_gap_m": 0.0022788589571791085,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.011008358462422041
+      },
+      {
+        "command_local": 397,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 150.0,
+        "maximum_limiter_phase": 67.0,
+        "interval_gap_m": 0.0022597926788718303,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010902133433595196
+      },
+      {
+        "command_local": 398,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 151.0,
+        "maximum_limiter_phase": 68.0,
+        "interval_gap_m": 0.0022271897714125077,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010809370666551743
+      },
+      {
+        "command_local": 399,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 152.0,
+        "maximum_limiter_phase": 69.0,
+        "interval_gap_m": 0.0021616502432653673,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010759824904312931
+      },
+      {
+        "command_local": 400,
+        "minimum_limiting_limb": "front_right",
+        "maximum_limiting_limb": "rear_left",
+        "minimum_limiter_phase": 153.0,
+        "maximum_limiter_phase": 70.0,
+        "interval_gap_m": 0.002054508555906387,
+        "measured_height_below_common_minimum": false,
+        "stance_only_interval_nonempty": true,
+        "stance_only_signed_gap_m": -0.010747965017008143
+      }
+    ],
+    "empty_height_intervals_summary": {
+      "count": 94,
+      "limiting_limb_pairs": [
+        [
+          "front_right",
+          "rear_left"
+        ]
+      ],
+      "interval_gap_m": {
+        "count": 94,
+        "minimum": 6.421024880337578e-05,
+        "mean": 0.005325915037007388,
+        "maximum": 0.012306643774264991,
+        "rms": 0.006678680106875966
+      },
+      "stance_only_nonempty_count": 86,
+      "stance_only_still_empty_count": 8,
+      "measured_height_below_common_minimum_count": 0
+    },
+    "original_walking_evaluation": {
+      "absolute_lateral_drift_m": 0.017085491977104877,
+      "arm_id": "kick_passive_recovery_resume",
+      "behavior_passed": false,
+      "behavioral_conclusion": "none",
+      "contact_cycle_count_by_limb": {
+        "front_left": 7,
+        "front_right": 5,
+        "rear_left": 0,
+        "rear_right": 4
+      },
+      "contact_cycle_definition": "within_segment_observed_liftoff_and_touchdown_with_fixed_minimum_airborne_dwell",
+      "development_smoke_only": true,
+      "evaluation_world_build_count": 0,
+      "evaluator_id": "sporespore_development_smoke_walking_diagnostics_v1",
+      "evidence_valid": true,
+      "false_walking_receipts": [
+        "every_limb_forward_relocation",
+        "every_limb_two_contact_cycles",
+        "terminal_four_contact_recovery"
+      ],
+      "fixed_thresholds": {
+        "maximum_absolute_lateral_drift_m": 0.25,
+        "maximum_anchor_error_m": 0.025,
+        "maximum_hinge_axis_error_rad": 0.2,
+        "maximum_tilt_rad": 0.6,
+        "maximum_yaw_drift_rad": 0.45,
+        "minimum_airborne_dwell_steps": 3,
+        "minimum_foot_relocation_m": 0.012,
+        "minimum_forward_advance_m": 0.02,
+        "minimum_torso_height_m": 0.25
+      },
+      "forward_advance_m": 0.12746422657976403,
+      "gate_id": "QSDK-R10F",
+      "initial_partial_flight_censored_count_by_limb": {
+        "front_left": 0,
+        "front_right": 0,
+        "rear_left": 0,
+        "rear_right": 0
+      },
+      "initial_partial_flight_open_at_end_by_limb": {
+        "front_left": false,
+        "front_right": false,
+        "rear_left": false,
+        "rear_right": false
+      },
+      "maximum_anchor_error_m": 0.0016900579212233424,
+      "maximum_hinge_axis_error_rad": 0.05632301896388819,
+      "maximum_tilt_rad": 0.10654216255559215,
+      "minimum_cycle_forward_relocation_by_limb_m": {
+        "front_left": -0.0035942195245697306,
+        "front_right": 0.0033499205884630623,
+        "rear_left": null,
+        "rear_right": -0.020809068882961412
+      },
+      "minimum_torso_height_m": 0.3676149249076843,
+      "observed_flight_open_at_end_by_limb": {
+        "front_left": false,
+        "front_right": false,
+        "rear_left": true,
+        "rear_right": false
+      },
+      "ok": true,
+      "outcome_complete": true,
+      "payload_sha256": "sha256:fce794d31367804ea965eaf28fd0cdf61bae095fc0cda2fdb4dccddbe0eb8aac",
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "schema_version": "sporespore_development_smoke_walking_diagnostics_v1",
+      "segment_id": "walking_resume",
+      "session_id": "r10f:kick_passive_recovery_resume:walking_resume:858",
+      "threshold_override_input_count": 0,
+      "torso_contact_step_count": 0,
+      "trace_row_count": 400,
+      "walking_gate_receipts": {
+        "bounded_anchor_error": true,
+        "bounded_hinge_axis_error": true,
+        "bounded_joint_only_lateral_stride_steering": true,
+        "bounded_lateral_drift": true,
+        "bounded_tilt": true,
+        "bounded_torso_height": true,
+        "bounded_yaw_drift": true,
+        "contact_gated_evidence_horizon_completed": true,
+        "contact_gating_completed_without_timeout": true,
+        "every_contact_observer_executed": true,
+        "every_limb_completed_evidence_gait_horizon": true,
+        "every_limb_forward_relocation": false,
+        "every_limb_two_contact_cycles": false,
+        "evidence_four_contact_stance": true,
+        "explicit_sdk_controller_session_shutdown": true,
+        "fixture_spec_compiled_before_world_creation": true,
+        "initial_four_contact_stance": true,
+        "initial_perturbation_within_declared_envelope": true,
+        "minimum_evidence_forward_translation": true,
+        "minimum_final_forward_translation": true,
+        "native_sdk_exclusive_post_settle_actuation": true,
+        "no_torso_force_or_impulse_or_velocity_or_transform_command": true,
+        "no_world_reset": true,
+        "one_continuous_world": true,
+        "pinned_jolt_solver_settings": true,
+        "terminal_four_contact_recovery": false,
+        "zero_torso_contact": true
+      },
+      "walking_receipt_count": 27,
+      "yaw_drift_rad": 0.057212137038391765
+    }
+  },
+  "limits": "Forward decomposition is ordered translation, rotation with initial joints, then joint change at final pose, with ideal-constraint residual. It is not unique causal attribution. Nominal capsule clearance is not a native contact predicate. Same-input lift algebra is not an alternate trajectory; the scheduler and motor limits still depend on native contact. Removing swinging limbs from a saved height intersection does not predict another physical result. No trace-400 joint/body sample is invented.",
+  "new_world_build_count": 0,
+  "new_solver_step_count": 0,
+  "new_native_physics_read_count": 0,
+  "native_controller_call_count": 0,
+  "original_evaluation_changed": false,
+  "physical_cause_proven": false,
+  "alternative_physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

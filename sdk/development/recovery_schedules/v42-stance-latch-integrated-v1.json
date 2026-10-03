@@ -1,0 +1,88 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "v42-stance-latch-integrated-v1": {
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:d0a515485de5970059ecbbf014e21ff826b963150f378276498273e9514b124a",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 986,
+        "maximum_steps_per_child": 1338
+      },
+      "coverage_basis": {
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "original_tail_steps": 480,
+        "stance_steps_observed": 124,
+        "existing_stance_timeout_steps": 240,
+        "walking_probe_steps": 30,
+        "tail_derivation": "480 + (240 - 124) + 30 + 360 = 986",
+        "resource_derivation": "320 + 30 + 2 + 986 = 1338",
+        "threshold_source": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+        "motion_equality_test": "recovery_runtime::tests::ramped_neutral_stance_control_tests::v20_preserves_every_pre_stance_command_and_all_limits",
+        "preserved_walking_observation_budget_steps": 360,
+        "new_controller_preserves_pre_stance_motion_and_limits": true,
+        "existing_recovery_controller_and_all_commands_preserved": true,
+        "amplitude_ramp_steps": 72,
+        "maximum_walking_amplitude": 0.5994550408719347,
+        "inherited_schedule": "sdk/development/recovery_schedules/v41-upright-stance-integrated-v2.json",
+        "inherited_schedule_sha256": "sha256:5857d296ad15dffb3e812d2d4881aab60e00a86d23e99c3be44a7be80b5590c0",
+        "inherited_scope": "The bound V41 schedule retains the earlier arithmetic and lineage. This successor preserves all limits and the same 400-command walking budget; it does not extend or rerun V41.",
+        "entry_contract": "sdk/development/recovery_stance_latch_walking_entry_contract_v1.json",
+        "walking_start_contract": "sdk/development/recovery_stance_latch_walking_start_contract_v1.json",
+        "native_component": "sdk/development/recovery_stance_latch_component_v1.json",
+        "native_component_sha256": "sha256:f187de99b11bebad48038b915e3a7d80348855e3a1a0d091824b9ebf6a49c01f",
+        "diagnostic_basis": {
+          "source_closure": "sdk/development/recovery_attempts/f4a08fa3230d4276869bb865c8c25a58.json",
+          "source_closure_sha256": "sha256:c27c8cccfcbc630eaa2daac875943f94b59fd437b3d155d53c86bce73202f0a6",
+          "source_report_sha256": "sha256:05ad0d6c07494dff8e08ddd429a26ada65e03ca811415394ae19b641535f8cd2",
+          "contact_loss_diagnosis": "sdk/development/recovery_v41_contact_loss_diagnosis_v1.json",
+          "contact_loss_diagnosis_sha256": "sha256:515f8c5cc10daed6bdd513eb6673c67d0c621114192ed876805f8fe6076f007b",
+          "saved_input_precheck": "sdk/development/recovery_stance_latch_precheck_v1.json",
+          "saved_input_precheck_sha256": "sha256:422bbafdb53d7b7ec88e51862e64706afcd01e3660febaf953770dc97a1ab683",
+          "native_component": "sdk/development/recovery_stance_latch_component_v1.json",
+          "native_component_sha256": "sha256:f187de99b11bebad48038b915e3a7d80348855e3a1a0d091824b9ebf6a49c01f",
+          "physical_outcome_predicted": false,
+          "causal_attribution_proven": false
+        },
+        "controlled_change": "Relative to V41, add four per-limb reference-selection latch bits. Establish a bit only from explicit current supporting contact during an active phase 73..359. Once established, retain that reference choice through the same stance even if actual contact disappears. Do not latch, fabricate, smooth or replace contact observations. No new gain, force estimate, dwell, phase duration, contact threshold, motor cap or physical schedule. Initialize all bits false. The selected bit is active AND phase>72 AND (eligible_previous_latch OR (presence AND bears_support)). Carry is eligible only if the previous wave is present and active, its same-limb phase is >72, and the current phase is not less than the previous phase. Clear on inactive wave, phase 0..72, missing/inactive previous wave or phase wrap; current supporting contact may immediately establish a fresh bit. Same-phase held gait input preserves eligible carry. Use the existing consecutive sample and memory provenance checks; reject missing, malformed, crossed or contradictory inputs rather than infer support. Use V41's measured-pose and floor-upright all-four-leg geometry, measured floor-relative height, joint bounds and reference slew. Hold one CURRENT latch selection mask for current and previous-wave goal computations. Retain V41's actual-contact selector for full-reference versus wave-only feedforward, existing activation/dt behavior, servo gains, host sign and all speed/impulse caps. Only the reference choice and resulting carried target positions differ."
+      },
+      "coverage_adequacy": "One fresh non-comparative seed-40200 SingleKick after the complete applicable safety gate. Preserve V20 recovery, stance V7, BW5R-B prefix, initial gait clocks 90, 72-command amplitude ramp/cap, actual native observations, finite floor, motor limits, solver, 986-step tail, 1338-step child cap, 400-command walking budget and original evaluator/criteria. Change resumed walking only to V42's stance-latched upright reference. Observe establishment, held-phase carry, contact loss/recontact, clearing at swing/inactive/wrap where exercised, full-rate versus wave-rate selection, per-foot contact/relocation/cycles, clipping, torso motion and terminal support. No physical benefit is predicted from saved-input counts. A latch may delay recontact or worsen posture. Native zero-world probes cover lifecycle boundaries that this finite trajectory may not reach; report actual physical coverage. No horizon extension, consumed-identity reuse, cached baseline, matched effect, force-aware recovery, superiority, causal attribution, acceptance or release claim.",
+      "uncovered_paths": [
+        "guaranteed recovery or walking success",
+        "guaranteed two complete planned cycles for every limb",
+        "commanded stop and cooldown",
+        "every latch lifecycle boundary on the fresh physical trajectory",
+        "repair or causal explanation of V41 initial stance losses, relocation or terminal support failures",
+        "matched comparison or superiority over V41",
+        "whole-body force-aware control or load distribution",
+        "general terrain or arbitrary morphology",
+        "cross-engine behavior or equivalence",
+        "held-out acceptance or release authority"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "stance_latch_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "stance_latch_front_left_first_resume_v1",
+      "walking_policy_id": "sporespore_balanced_wave_recovery_stance_latched_upright_v1",
+      "walking_policy_contract_sha256": "sha256:bb780f7cecaffbf6b95725c4d83e937acefc0ac1f7b36ccfed9f9a44ea3aac50",
+      "coverage_question": "One fresh non-comparative seed-40200 SingleKick after the complete applicable safety gate. Preserve V20 recovery, stance V7, BW5R-B prefix, initial gait clocks 90, 72-command amplitude ramp/cap, actual native observations, finite floor, motor limits, solver, 986-step tail, 1338-step child cap, 400-command walking budget and original evaluator/criteria. Change resumed walking only to V42's stance-latched upright reference. Observe establishment, held-phase carry, contact loss/recontact, clearing at swing/inactive/wrap where exercised, full-rate versus wave-rate selection, per-foot contact/relocation/cycles, clipping, torso motion and terminal support. No physical benefit is predicted from saved-input counts. A latch may delay recontact or worsen posture. Native zero-world probes cover lifecycle boundaries that this finite trajectory may not reach; report actual physical coverage. No horizon extension, consumed-identity reuse, cached baseline, matched effect, force-aware recovery, superiority, causal attribution, acceptance or release claim."
+    }
+  }
+}

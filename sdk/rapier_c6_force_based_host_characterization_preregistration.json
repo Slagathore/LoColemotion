@@ -1,0 +1,158 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_host_characterization_preregistration_v1",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-HOST-CHARACTERIZATION",
+  "gate_id": "C6-RAP-HC-FB1",
+  "status": "frozen_before_first_c6_rap_hc_fb1_physics_world",
+  "recorded_utc": "2026-07-30T18:05:00Z",
+  "implementation_parent_commit": "7027e6654925dc5e054959e0dac431d66f189d85",
+  "purpose": "Correct the closed Rapier host-characterization declaration/implementation mismatch by explicitly selecting and reading back MotorModel::ForceBased before any new Rapier locomotion attempt.",
+  "predecessor_host_characterization": {
+    "path": "sdk/cross_engine_c6_host_characterization_r2_closure.json",
+    "raw_sha256": "sha256:a7b1b3c172b98780f574cec9dbb18bebda35429ece5105a0385ecb7d67d6ddd9",
+    "source_commit": "7c0373f213a9f61f9570b316221c1f9753048c43",
+    "same_identity_rerun_forbidden": true,
+    "material_grid_remains_retained_for_its_declared_scope": true,
+    "actuator_cells_measured_default_acceleration_based_motors": true,
+    "actuator_cells_may_not_authorize_force_based_locomotion": true
+  },
+  "predecessor_locomotion_diagnostic": {
+    "path": "sdk/rapier_c6_selected_policy_commissioning_r2_closure.json",
+    "raw_sha256": "sha256:07b02dbd2343d772a002b045ce32cbc6d5bb07c3fa63a308a4b06d70f202097d",
+    "source_commit": "441a70e963356c106aef1d1375e72b1ce280bee1",
+    "same_identity_rerun_forbidden": true,
+    "result_is_not_a_selected_policy_verdict": true,
+    "upstream_motor_model_correction_required": true
+  },
+  "defect": {
+    "rapier_version": "0.34.0",
+    "declared_model": "rapier_revolute_position_velocity_force_based",
+    "implemented_predecessor_model": "AccelerationBased",
+    "root_cause": "JointMotor::default selects MotorModel::AccelerationBased and RevoluteJointBuilder::motor does not change the model.",
+    "affected_predecessor_surfaces": [
+      "sdk/adapters/rapier/src/conformance.rs c4 actuator fixture",
+      "sdk/adapters/rapier/src/characterization.rs actuator grid",
+      "sdk/adapters/rapier/src/locomotion.rs robot joint construction and command updates"
+    ]
+  },
+  "correction": {
+    "required_model": "ForceBased",
+    "builder_must_call_motor_model": true,
+    "mutable_joint_updates_must_call_set_motor_model": true,
+    "model_must_be_read_back_from_every_physical_joint": true,
+    "default_acceleration_based_canary_must_remain_detectable": true,
+    "force_based_model_mismatch_fails_closed": true,
+    "force_limit_mapping": "maximum_motor_force_nm = maximum_step_impulse_nms / timestep_s",
+    "timestep_s": 0.008333333333333333,
+    "solver_iterations": 20,
+    "internal_pgs_iterations": 1,
+    "internal_stabilization_iterations": 7
+  },
+  "physical_grid": {
+    "expected_world_count": 8,
+    "unloaded_position_tracking": {
+      "world_count": 4,
+      "target_positions_rad": [
+        -0.4,
+        0.4
+      ],
+      "maximum_step_impulses_nms": [
+        0.05,
+        0.25
+      ],
+      "target_velocity_rad_s": 0.0,
+      "stiffness_nm_per_rad": 40.0,
+      "damping_nm_s_per_rad": 10.0,
+      "observation_steps": 240,
+      "maximum_final_position_error_rad": 0.02
+    },
+    "signed_velocity": {
+      "world_count": 2,
+      "target_velocities_rad_s": [
+        -1.0,
+        1.0
+      ],
+      "stiffness_nm_per_rad": 0.0,
+      "damping_nm_s_per_rad": 10.0,
+      "maximum_step_impulse_nms": 0.05,
+      "observation_steps": 120,
+      "minimum_absolute_final_angle_rad": 0.05,
+      "observed_angle_sign_must_match_target_velocity_sign": true
+    },
+    "gravity_loaded_support": {
+      "world_count": 2,
+      "gravity_m_s2": [
+        0.0,
+        -9.8,
+        0.0
+      ],
+      "center_of_mass_offsets_z_m": [
+        -0.3,
+        0.3
+      ],
+      "target_position_rad": 0.0,
+      "target_velocity_rad_s": 0.0,
+      "stiffness_nm_per_rad": 40.0,
+      "damping_nm_s_per_rad": 10.0,
+      "maximum_step_impulse_nms": 0.05,
+      "observation_steps": 240,
+      "maximum_absolute_final_angle_rad": 0.1,
+      "minimum_absolute_terminal_motor_impulse_nms": 0.005,
+      "paired_final_angle_signs_must_be_opposite": true,
+      "paired_terminal_motor_impulse_signs_must_be_opposite": true
+    },
+    "shared_child": {
+      "shape": "cuboid",
+      "half_extents_m": [
+        0.2,
+        0.2,
+        0.2
+      ],
+      "mass_kg": 1.0,
+      "mass_properties_source": "shape_derived_from_nonzero_mass_collider"
+    }
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "declared_policy_synthetic_result_required": true,
+    "perfect_synthetic_result_must_pass_entire_integrity_gate": true,
+    "nonzero_failure_canary_must_fail_entire_integrity_gate": true,
+    "default_model_canary_must_read_acceleration_based": true,
+    "explicit_builder_model_must_read_force_based": true,
+    "mutable_update_model_must_read_force_based": true,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "execution_contract": {
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "all_eight_worlds_required_before_decision": true,
+    "early_stop_forbidden": true,
+    "retained_negative_report_required_on_gate_failure": true
+  },
+  "success_contract": {
+    "all_eight_cells_must_pass": true,
+    "every_physical_motor_model_readback_must_be_force_based": true,
+    "zero_motor_model_mismatches_required": true,
+    "zero_nonfinite_values_required": true,
+    "zero_step_impulse_limit_violations_required": true,
+    "unloaded_position_grid_must_pass": true,
+    "signed_velocity_pair_must_pass": true,
+    "gravity_loaded_support_pair_must_pass": true
+  },
+  "claims": {
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

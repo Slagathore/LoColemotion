@@ -1,0 +1,288 @@
+{
+  "schema_version": "sporespore_quadruped_sdk1_milestone_mapping_v1",
+  "mapping_id": "SPORESPORE-QUADRUPED-SDK1-BOUNDED-PUBLISHABLE-MILESTONES-V1",
+  "status": "active_bounded_sdk1_scope_mapping",
+  "sdk_release_line": "0.1.x",
+  "ledger_scope": {
+    "subsystem": "release",
+    "engine_scope": "engine_neutral",
+    "authority_mode": "bounded_sdk1_milestone_and_candidate_authorization",
+    "question_class": "development"
+  },
+  "scope_provenance": {
+    "decision": "SDK1 is a bounded publishable three-engine quadruped SDK; formal cross-engine equivalence, arbitrary or continuous physical-morphology generalization, and later terrain/noise/latency expansions are not SDK1 release conditions.",
+    "source_commit": "60d6294fb1479d55344188b6eaf1f838c491baad",
+    "source_path": "docs/ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md",
+    "source_git_blob_oid": "7481f2625b85dca29ca532b56cdac3f1094a884f",
+    "source_git_blob_byte_length": 1330437,
+    "source_heading": "2026-08-25 SDK1 scope decision and resumed execution boundary",
+    "historical_gate_or_result_reinterpreted": false
+  },
+  "full_program_authority": {
+    "release_contract_path": "sdk/release/quadruped_release_contract.json",
+    "release_contract_schema_version": "sporespore_quadruped_sdk_release_contract_v1",
+    "release_contract_raw_sha256": "sha256:0cf268af4381b203ae99e339dd5a7375859aafa87183fb95efacb8c4e1eec815",
+    "support_matrix_path": "sdk/release/quadruped_support_matrix.json",
+    "support_matrix_schema_version": "sporespore_quadruped_sdk_support_matrix_v1",
+    "support_matrix_raw_sha256": "sha256:2cd8ddd9dbeea116e75ff6f0f998b172cb61803ee311c34b7f8e19e2b6d4806f",
+    "full_program_release_gate_count": 25,
+    "full_program_denominator_changed": false,
+    "mapping_rule": "Every full-program release gate appears exactly once as an SDK1 source gate or an explicitly deferred gate. SDK1 additionally declares one Explorer/showcase milestone that the full-program ledger did not separate.",
+    "deferred_full_program_gates": [
+      {
+        "gate_id": "QSDK-R06",
+        "target": "SDK2",
+        "reason": "Arbitrary valid-quadruped physical coverage is later generalization work; SDK1 advertises only explicit bounded per-engine envelopes and refuses unsupported descriptors."
+      },
+      {
+        "gate_id": "QSDK-R07",
+        "target": "SDK2",
+        "reason": "Continuous full-volume morphology certification is later generalization work and is not inferred from SDK1 finite support evidence."
+      },
+      {
+        "gate_id": "QSDK-R09",
+        "target": "post-SDK1 locomotion release",
+        "reason": "Prospective rough-terrain acceptance remains valuable retained work, but broader terrain support is a successive evidence-backed release rather than a first bounded SDK condition."
+      },
+      {
+        "gate_id": "QSDK-R11",
+        "target": "post-SDK1 locomotion release",
+        "reason": "Sensor-noise robustness expands the bounded first release after its core movements and product surface ship."
+      },
+      {
+        "gate_id": "QSDK-R12",
+        "target": "post-SDK1 locomotion release",
+        "reason": "Sensor-latency robustness expands the bounded first release after its core movements and product surface ship."
+      },
+      {
+        "gate_id": "QSDK-R25",
+        "target": "SDK2",
+        "reason": "Formal cross-engine equivalence or non-inferiority is distinct from running the same canonical semantics with honest finite per-engine support evidence."
+      }
+    ]
+  },
+  "clean_room_candidate_stage": {
+    "status": "active_bounded_sdk1_nonrelease_candidate_stage",
+    "purpose": "Build one watermarked non-publishable SDK1 artifact only after every non-package-bound SDK1 milestone passes, then evaluate the three package-bound milestones against that exact artifact.",
+    "artifact_role": "sdk1_clean_room_conformance_candidate",
+    "validation_milestone_ids": [
+      "SDK1-M01",
+      "SDK1-M11",
+      "SDK1-M15"
+    ],
+    "validation_gate_ids": [
+      "QSDK-R01",
+      "QSDK-R16",
+      "QSDK-R20"
+    ],
+    "candidate_rule": "Every other SDK1 milestone, including the explicit Explorer milestone, must pass before staging. The three validation milestones are then evaluated only against the staged candidate.",
+    "deferred_full_program_gates_are_candidate_prerequisites": false,
+    "satisfies_full_program_candidate_stage": false,
+    "release_authority": false,
+    "publication_authority": false,
+    "physical_acceptance_authority": false
+  },
+  "sdk1_contract": {
+    "milestone_count": 20,
+    "disposition_rule": "A full-program-backed milestone inherits its live executable gate disposition without reinterpretation. The Explorer milestone remains missing until its own explicit proof is versioned. No deferred gate is counted as passed or failed inside SDK1.",
+    "milestones": [
+      {
+        "milestone_id": "SDK1-M01",
+        "label": "Portable API clean-source proof",
+        "plain_english_requirement": "Prove the portable core, C ABI, Python surface, and packaged source from clean pushed source.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R01"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M02",
+        "label": "Third-party adapter authoring",
+        "plain_english_requirement": "Ship and test the public contract a third-party engine adapter must implement.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R02"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M03",
+        "label": "Bounded descriptors and refusals",
+        "plain_english_requirement": "Accept the declared bounded quadruped schema and return explicit support, OOD, capability, and refusal receipts outside it.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R03"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M04",
+        "label": "Canonical policy identity",
+        "plain_english_requirement": "Freeze one versioned branch-free canonical quadruped policy identity.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R04"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M05",
+        "label": "Finite supported morphology envelope",
+        "plain_english_requirement": "Earn fresh finite evidence for the morphology envelope SDK1 actually advertises without claiming arbitrary or continuous coverage.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R05"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M06",
+        "label": "Bounded material support",
+        "plain_english_requirement": "Retain prospective finite material evidence for the selected policy and advertised envelope.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R08"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M07",
+        "label": "Push interaction and recovery path",
+        "plain_english_requirement": "Provide reproducible native push interaction and a bounded recovery path; native kick interaction is also required by the Explorer milestone.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R10"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M08",
+        "label": "Scoped Godot/Jolt SDK1 envelope",
+        "plain_english_requirement": "Prove the exact Godot/Jolt morphology, material, actuator, walking, and capability envelope SDK1 advertises.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R13"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M09",
+        "label": "Scoped Rapier/Parry SDK1 envelope",
+        "plain_english_requirement": "Prove the exact Rapier/Parry morphology, material, actuator, walking, and capability envelope SDK1 advertises.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R14"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M10",
+        "label": "Scoped MuJoCo SDK1 envelope",
+        "plain_english_requirement": "Prove the exact MuJoCo morphology, material, actuator, walking, and capability envelope SDK1 advertises.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R15"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M11",
+        "label": "Clean-room developer experience",
+        "plain_english_requirement": "Pass standalone examples, diagnostics, record/replay, troubleshooting, and integration documentation outside the game tree.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R16"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M12",
+        "label": "Honest machine-readable claim matrix",
+        "plain_english_requirement": "Keep every unproved public claim false and expose narrower per-engine capabilities explicitly.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R17"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M13",
+        "label": "Versioning and compatibility policy",
+        "plain_english_requirement": "Ship semantic versioning, ABI compatibility, schema migration, and deprecation rules.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R18"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M14",
+        "label": "Distribution and licensing",
+        "plain_english_requirement": "Record the distribution decision and include every required license file in the package.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R19"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M15",
+        "label": "Deterministic clean-room package",
+        "plain_english_requirement": "Build and consume the deterministic SDK package without reading laboratory internals.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R20"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M16",
+        "label": "Optional bounded adaptation provider",
+        "plain_english_requirement": "Ship the engine-neutral optional provider interface with deterministic no-provider fallback and typed provenance/refusal.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R21"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M17",
+        "label": "Tier 2 data and promotion architecture",
+        "plain_english_requirement": "Ship the versioned episode, encyclopedia, corpus, candidate model, and promotion architecture without granting training artifacts physical authority.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R22"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M18",
+        "label": "Bounded three-engine turning",
+        "plain_english_requirement": "Pass finite commanded turning and zero-command compatibility through genuine Godot/Jolt, Rapier/Parry, and MuJoCo physics.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R23"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M19",
+        "label": "Canonical prone-to-standing",
+        "plain_english_requirement": "Pass the frozen canonical prone-to-standing contract in every advertised engine with no-cheat, safety, contact, clearance, and timeout gates.",
+        "source": {
+          "kind": "full_program_gate",
+          "gate_id": "QSDK-R24"
+        }
+      },
+      {
+        "milestone_id": "SDK1-M20",
+        "label": "Polished real-physics Explorer",
+        "plain_english_requirement": "Ship a seeded real-physics Explorer with valid live editing, construction-rule sandboxing, native kicks and interactions, diagnostics, provenance, and clear proved/unproved/ambiguous labels.",
+        "source": {
+          "kind": "explicit_sdk1_proof",
+          "proof": {
+            "kind": "explorer_interface_closure_v1",
+            "path": "sdk/explorer/showcase_closure_v1.json",
+            "raw_sha256": "sha256:babb431b67c6a2391ced76db22ce11d219f5d8ef67f89452c150a792da3185fd",
+            "auditor_path": "sdk/release/check_explorer.py",
+            "auditor_raw_sha256": "sha256:8d69b2f43c283894ca0f2f35c6d44c97ed818c2dcbb9dc4fe35ff8d3f4395a9e"
+          }
+        }
+      }
+    ]
+  },
+  "claim_boundary": {
+    "changes_full_program_gate_count": false,
+    "rewrites_historical_result": false,
+    "formal_cross_engine_equivalence_required_for_sdk1": false,
+    "arbitrary_or_continuous_morphology_required_for_sdk1": false,
+    "terrain_noise_or_latency_acceptance_required_for_sdk1": false,
+    "same_canonical_semantics_in_three_native_engines_required": true,
+    "finite_per_engine_support_evidence_required": true,
+    "unsupported_public_claims_must_remain_false": true,
+    "mapping_completion_alone_authorizes_release": false
+  }
+}

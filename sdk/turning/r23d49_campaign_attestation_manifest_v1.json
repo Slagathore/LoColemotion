@@ -1,0 +1,122 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D49-RAPIER-RETENTION-REPAIR-REPLAY",
+  "question_class": "finite_decision",
+  "declared_physical_world_count": 3,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 2,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 5,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D49-R23D48-IMMUTABLE-PHYSICAL-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d49_lineage.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D49_LINEAGE_PASS ",
+      "raw_sha256": "sha256:d9d21f86820f3a36c3de1801596002a95186227ec81836f381e5930153665f88"
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "R23D49-CHECKOUT-PROVENANCE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_closure_evidence_provenance_contract.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "CLOSURE_EVIDENCE_PROVENANCE_CONTRACT_PASS ",
+      "raw_sha256": "sha256:9ed6b033018649a1149fea59d30f700c46f4c26c5eb8dc847893478a814313df"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 3,
+      "gate_id": "R23D49-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d49_campaign_roles.ps1",
+      "arguments": ["-Role", "worker"],
+      "terminal_marker_prefix": "QSDK_R23D49_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:e3644c0cc174c2a5cafe36cf10820e4aef17126ecb6a938f2e4a14ca589daa84"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D49-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d49_campaign_roles.ps1",
+      "arguments": ["-Role", "evaluator", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D49_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:e3644c0cc174c2a5cafe36cf10820e4aef17126ecb6a938f2e4a14ca589daa84"
+    },
+    {
+      "ordinal": 5,
+      "gate_id": "R23D49-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d49_campaign_roles.ps1",
+      "arguments": ["-Role", "supervisor", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D49_CAMPAIGN_SUPERVISOR_ROLE_PASS ",
+      "raw_sha256": "sha256:e3644c0cc174c2a5cafe36cf10820e4aef17126ecb6a938f2e4a14ca589daa84"
+    }
+  ],
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d49_rapier_retention_repair_replay_implementation_v1.json",
+      "source_raw_sha256": "sha256:29e38d3477dec1a9495bd3b7b7eff33f1f07746214f992090d66ab8f131a92f3",
+      "test_gate_id": "R23D49-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d49_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:e3644c0cc174c2a5cafe36cf10820e4aef17126ecb6a938f2e4a14ca589daa84"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d49_rapier_retention_repair_replay_evaluator.py",
+      "source_raw_sha256": "sha256:d7c3d860066b2db5c6f9e5382be6772e2fb4025cbbbb9fa3ab1cd50bb5de0d9d",
+      "test_gate_id": "R23D49-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d49_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:e3644c0cc174c2a5cafe36cf10820e4aef17126ecb6a938f2e4a14ca589daa84"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d49_supervisor.ps1",
+      "source_raw_sha256": "sha256:06e1ec456730e2a8cc959741e5e777b0efb4bab68cdb24c04f19bbc1ad3dcee6",
+      "test_gate_id": "R23D49-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d49_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:e3644c0cc174c2a5cafe36cf10820e4aef17126ecb6a938f2e4a14ca589daa84"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d49_rapier_retention_repair_replay_implementation_v1.json",
+    "raw_sha256": "sha256:29e38d3477dec1a9495bd3b7b7eff33f1f07746214f992090d66ab8f131a92f3"
+  },
+  "source_bindings": [
+    {"path": "tests/test_qsdk_r23d49_lineage.ps1", "raw_sha256": "sha256:d9d21f86820f3a36c3de1801596002a95186227ec81836f381e5930153665f88"},
+    {"path": "tests/test_closure_evidence_provenance_contract.ps1", "raw_sha256": "sha256:9ed6b033018649a1149fea59d30f700c46f4c26c5eb8dc847893478a814313df"},
+    {"path": "tests/test_qsdk_r23d49_campaign_roles.ps1", "raw_sha256": "sha256:e3644c0cc174c2a5cafe36cf10820e4aef17126ecb6a938f2e4a14ca589daa84"},
+    {"path": "sdk/turning/r23d49_rapier_retention_repair_replay_implementation_v1.json", "raw_sha256": "sha256:29e38d3477dec1a9495bd3b7b7eff33f1f07746214f992090d66ab8f131a92f3"},
+    {"path": "sdk/turning/r23d49_rapier_retention_repair_replay_evaluator.py", "raw_sha256": "sha256:d7c3d860066b2db5c6f9e5382be6772e2fb4025cbbbb9fa3ab1cd50bb5de0d9d"},
+    {"path": "sdk/run_qsdk_r23d49_supervisor.ps1", "raw_sha256": "sha256:06e1ec456730e2a8cc959741e5e777b0efb4bab68cdb24c04f19bbc1ad3dcee6"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

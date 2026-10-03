@@ -1,0 +1,117 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw3r_validation_manifest_v1",
+  "status": "frozen_before_first_bw3r_validation_world",
+  "freeze_parent_commit": "2997ea65e6c0a2dce0d3b06ad5ceeb1c50df0beb",
+  "development_data_only": true,
+  "cold_acceptance": false,
+  "selected_policy": {
+    "candidate_id": "BW2R-C",
+    "policy_id": "sporespore_balanced_wave_bw2r_c_v1",
+    "policy_digest": "sha256:709aacc898e62a0c1902a04a201006f5501934562cabec4b68c1613811ae0ad0",
+    "manifest_path": "sdk/balanced_wave_selected_policy.json"
+  },
+  "prerequisite_evidence": {
+    "material_characterization": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw3r-material-characterization-9d99485\\report.json",
+      "sha256": "044952767924503bfd6f213dad930f24beedc256164d9bbceb5e8f31db44b1a1",
+      "source_commit": "9d99485ffdb61501a87efaabe73ca27048dab9f5",
+      "schema_version": "sporespore_balanced_wave_bw3r_material_characterization_report_v1",
+      "accepted": true,
+      "observed_world_count": 10
+    },
+    "material_profile_publication": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw3r-material-profiles-2997ea6\\report.json",
+      "sha256": "7433787ac1dcf4264212f93b5b40c7ecde33fa4799c24c6da4bf7043782b68cb",
+      "source_commit": "2997ea65e6c0a2dce0d3b06ad5ceeb1c50df0beb",
+      "schema_version": "sporespore_godot_jolt_material_profile_report_v1",
+      "accepted": true,
+      "observed_world_count": 0,
+      "passed_gate_count": 25
+    }
+  },
+  "profiles": [
+    {
+      "profile_id": "godot_jolt_bw3r_mu025_v1",
+      "profile_digest": "sha256:3583bba43c172171320faa2b8c0d93608cb4d4ef3f5bbbca5e70f4d1d331eb5a",
+      "authored_friction": 0.25,
+      "characterized_friction_coefficient": 0.22,
+      "minimum_lower_empirical_ratio": 0.22942660400069761
+    },
+    {
+      "profile_id": "godot_jolt_bw3r_mu055_v1",
+      "profile_digest": "sha256:c0a3ed73c693f2d8c853040e35d9c284558c1dda3b8622b807ab9041a96db2af",
+      "authored_friction": 0.55,
+      "characterized_friction_coefficient": 0.53,
+      "minimum_lower_empirical_ratio": 0.5354552035269395
+    },
+    {
+      "profile_id": "godot_jolt_bw3r_mu110_v1",
+      "profile_digest": "sha256:0377cca2ea355105bc9624ad9e270fa3750a947ad553b7b2cfb9c786f322fdd3",
+      "authored_friction": 1.1,
+      "characterized_friction_coefficient": 1.0,
+      "minimum_lower_empirical_ratio": 1.096564949574403
+    }
+  ],
+  "matrix": {
+    "seeds": [17501, 17502, 17503],
+    "ordered_cell_ids": [
+      "validation_mu025_s17501_treatment",
+      "validation_mu025_s17501_control",
+      "validation_mu025_s17502_treatment",
+      "validation_mu025_s17503_treatment",
+      "validation_mu055_s17501_treatment",
+      "validation_mu055_s17501_control",
+      "validation_mu055_s17502_treatment",
+      "validation_mu055_s17503_treatment",
+      "validation_mu110_s17501_treatment",
+      "validation_mu110_s17501_control",
+      "validation_mu110_s17502_treatment",
+      "validation_mu110_s17503_treatment"
+    ],
+    "expected_treatment_world_count": 9,
+    "expected_control_world_count": 3,
+    "expected_causal_pair_count": 3,
+    "expected_world_count": 12,
+    "exposure_steps": 1514,
+    "expected_base_commands_and_motor_writes_per_treatment": 12112,
+    "control_seed": 17501,
+    "minimum_terminal_pair_separation_m": 0.00001
+  },
+  "gate_contract": {
+    "expected_gate_count": 22,
+    "preflight_gate_count": 3,
+    "per_world_execution_integrity_gate_count": 12,
+    "aggregate_gate_count": 7,
+    "aggregate_gates": [
+      "exact_role_cardinality",
+      "zero_infrastructure_or_integrity_failures",
+      "nonzero_stability_influence_in_all_treatments",
+      "all_treatments_pass_ordinary_walking_gates",
+      "all_controls_pass_shadow_gates",
+      "all_matched_pairs_retain_identity_and_nonzero_terminal_separation",
+      "all_broader_claims_remain_false"
+    ],
+    "pass_rule": "22/22 gates, 12/12 worlds, 9/9 treatments, 3/3 controls, and 3/3 causal pairs",
+    "averaging_forbidden": true,
+    "failed_cell_replacement_forbidden": true,
+    "post_result_gate_edit_forbidden": true,
+    "first_result_is_final_for_this_source_identity": true
+  },
+  "claims": {
+    "bw3r_validation_authority": true,
+    "walking_acceptance": false,
+    "material_robustness": false,
+    "arbitrary_material_robustness": false,
+    "continuous_friction_coverage": false,
+    "balance_improvement": false,
+    "physical_balance_recovery": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_fault_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

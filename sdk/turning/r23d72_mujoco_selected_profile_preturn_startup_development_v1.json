@@ -1,0 +1,150 @@
+{
+  "schema_version": "sporespore_qsdk_r23d72_mujoco_selected_profile_preturn_startup_development_v1",
+  "campaign_id": "QSDK-R23D72-MUJOCO-SELECTED-PROFILE-PRETURN-STARTUP-DEVELOPMENT",
+  "gate_id": "QSDK-R23D72",
+  "status": "prospective_zero_world_only",
+  "ledger_scope": {
+    "subsystem": "turning",
+    "engine_scope": "mujoco",
+    "authority_mode": "physical_development",
+    "question_class": "development"
+  },
+  "question": "On the outcome-exposed R23D71 MuJoCo reference-zero fixture, does the already-established unconditional one-cycle canonical-velocity startup ramp prevent torso-ground contact through semantic step 600?",
+  "scientific_role": {
+    "question_class": "development",
+    "repeatable_calibration_or_training_work": true,
+    "finite_decision": false,
+    "superiority": false,
+    "equivalence_or_non_inferiority": false,
+    "held_out_prospective_native_validation": false,
+    "outcome_exposed_fixture": true,
+    "population_inference_allowed": false,
+    "turning_tested": false
+  },
+  "lineage": {
+    "immutable_failed_observation": "sdk/turning/r23d71_success_terminal_projection_repaired_three_engine_turning_validation_closure_v1.json",
+    "retained_diagnosis": "sdk/turning/r23d71_forward_displacement_measurement_origin_diagnosis_v1.json",
+    "positive_startup_mechanism_closure": "sdk/turning/r23d42_three_engine_startup_ramp_turning_closure_v1.json",
+    "startup_ramp_design": "sdk/turning/r23d38_mujoco_startup_ramp_stabilization.py",
+    "selected_profile_production_plumbing": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d65_selected_profile_turning.py",
+    "historical_result_threshold_selector_evaluator_or_interpretation_changed": false
+  },
+  "fixture": {
+    "engine_id": "mujoco",
+    "cell_id": "r23d72__mujoco__s23191__reference_zero__unconditional_startup_ramp",
+    "stage_id": "mujoco_selected_profile_preturn_startup_development",
+    "onset_id": "preturn_through_step_600",
+    "arm_id": "reference_zero",
+    "campaign_seed": 23191,
+    "seed_was_outcome_exposed_by_r23d71": true,
+    "profile_id": "sporespore_qsdk_r23d60_selected_s169_actuator_cap_profile_v1",
+    "profile_sha256": "sha256:b65d41e3f30c42e0a8207f1385fe00daa8f03975f4e266a0bd0867970f674964",
+    "host_mapping_id": "sporespore_mujoco_velocity_force_range_cap_mapping_v1",
+    "controller_policy_id": "sporespore_balanced_wave_r23d29_two_swing_persistent_predictive_stability_guarded_steering_v1",
+    "task_origin_policy_id": "warmup_preserving_command_onset_origin_reanchor_v1",
+    "initial_perturbation": {
+      "campaign_seed": 23191,
+      "fixture_vertical_clearance_m": 0.0002604132751002908,
+      "fixture_yaw_rad": -0.0049262382090091705,
+      "gait_phase_offset_ticks": -1,
+      "initial_linear_velocity_world_m_s": [
+        0.002370542846620083,
+        0.0,
+        0.0037111244164407253
+      ],
+      "initial_torso_angular_velocity_world_rad_s": [
+        -0.0003552224952727556,
+        -0.0022123241797089577,
+        0.00008024764247238636
+      ]
+    }
+  },
+  "intervention": {
+    "startup_ramp_id": "canonical_velocity_smoothstep_one_gait_cycle_v1",
+    "startup_ramp_step_count": 360,
+    "startup_velocity_scale_at_semantic_step_0": 0.0,
+    "startup_velocity_scale_reaches_exact_unity_at_semantic_step": 359,
+    "startup_velocity_scale_is_exact_unity_after_semantic_step": 359,
+    "composed_in_canonical_velocity_space_before_host_mapping": true,
+    "partial_support_threshold_added": false,
+    "support_loss_trigger_used": false,
+    "only_behavioral_change_from_r23d71_mujoco_preturn_route": "replace_support_loss_conditioned_startup_transform_with_existing_unconditional_one_cycle_ramp"
+  },
+  "fixed_horizon": {
+    "first_semantic_step": 0,
+    "last_semantic_step": 600,
+    "controller_step_count": 601,
+    "schedule": "reference_walk_zero_heading_offset_for_all_steps",
+    "reference_walk_step_count": 601,
+    "commanded_turn_step_count": 0,
+    "task_origin_reanchor_steps": [
+      600
+    ],
+    "forward_displacement_measurement_origin_policy_id": "evidence_window_start_semantic_step_v1",
+    "forward_displacement_measurement_origin_semantic_step": 0,
+    "terminal_settle_step_count": 0,
+    "declared_physical_world_count": 1
+  },
+  "development_gate": {
+    "primary_observation": "torso_ground_contact_step_count_through_semantic_step_600",
+    "positive_value": 0,
+    "negative_value": "greater_than_zero",
+    "criterion_provenance": "R23D71 first contacted the torso at semantic step 146 before turning began, while the retained R23D42 MuJoCo startup-ramp reference remained torso-contact-free through and beyond semantic step 600. Zero contact through the pre-turn boundary directly tests the isolated startup mechanism without inventing a morphology, equivalence, or turning margin.",
+    "minimum_torso_height_m": "descriptive_only",
+    "maximum_torso_tilt_rad": "descriptive_only",
+    "forward_displacement_m": "descriptive_only",
+    "classification_positive": "valid_complete_positive_preturn_startup_development",
+    "classification_negative": "valid_complete_negative_preturn_startup_development",
+    "classification_invalid": "invalid_or_incomplete_preturn_startup_development"
+  },
+  "zero_world_gate": {
+    "full_seeded_world_required": false,
+    "compile_selected_profile_route_without_mjmodel": true,
+    "instantiate_controller_memory": true,
+    "synthetic_ramp_semantic_steps": [
+      0,
+      1,
+      359,
+      360
+    ],
+    "negative_control_classes": [
+      "wrong_question_class",
+      "wrong_seed",
+      "wrong_horizon",
+      "wrong_startup_ramp_id",
+      "behavioral_threshold_relaxed"
+    ],
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "behavioral_success_prediction_allowed": false
+  },
+  "retention": {
+    "durable_evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence",
+    "canonical_full_precision_ndjson_required": true,
+    "trace_retained_before_terminal_entry_required": true,
+    "freeze_attempt_stdout_stderr_terminal_and_completion_required": true,
+    "positive_negative_invalid_and_incomplete_results_retained": true
+  },
+  "authorization": {
+    "complete_zero_world_gate_required": true,
+    "clean_pushed_source_required": true,
+    "local_origin_and_live_remote_equality_required": true,
+    "global_physical_operation_lock_required": true,
+    "serial_physical_execution_required": true,
+    "physical_execution_authorized": false
+  },
+  "claims": {
+    "startup_ramp_mechanism_established_on_this_fixture": false,
+    "turning_established": false,
+    "portable_basic_turning": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "population_robustness": false,
+    "q_sdk_r23_satisfied": false,
+    "release_readiness_score_changed": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

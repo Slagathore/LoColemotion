@@ -1,0 +1,40 @@
+{
+  "schema_version": "sporespore_recovery_advancing_body_origin_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": [
+      "core"
+    ],
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V48",
+  "policy_id": "sporespore_balanced_wave_recovery_advancing_body_origin_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_anchored_body_pose_v1",
+  "evidence_basis": "sdk/development/v47_mujoco_closed_loop_closure_v1.json",
+  "question": "Does continuously recentering the body reference with committed planned stance anchors preserve the existing bounded transfer range through the fourth foot cycle?",
+  "change": "After each planned stance-anchor advance, shift the reference origin forward by the mean of the four anchor advances and add that displacement divided by total leg length to the stored transfer bias. Check the unchanged bias bound before mutation; refuse if recentering would exceed it. The origin-minus-leg-length-times-bias body reference remains identical, so no motor target or velocity jumps at recentering. The parent transfer receipt explicitly describes the proposal before this coordinate change; actual next memory and the new rebase receipt record the compensated coordinates. This never asserts measured contact at a planned anchor.",
+  "unchanged": [
+    "all V47 body-height, foot trajectory, IK, reference tracking and stop behavior",
+    "all V45 readiness, motor caps, bias magnitude/rate and finite timeouts",
+    "all native model, measured contact, stepping and independent replay behavior",
+    "all consumed policies, outputs and evidence"
+  ],
+  "parameters": {
+    "reference_leg_vertical_m": 0.33,
+    "body_height_ramp_steps": 72,
+    "step_length_m": 0.06,
+    "swing_lift_m": 0.02,
+    "swing_steps": 72
+  },
+  "limitations": "A bounded fixed-heading development controller for this declared recovery morphology. Upright/reference geometry does not replace measured orientation or contact. No force control, arbitrary morphology, successful recovery, release or cross-engine equivalence claim. Feasibility refusals remain negative observations.",
+  "verification": [
+    "analytic coordinate identity, transition validation, bias bound and no-mutation refusals",
+    "exact V47 retained C ABI responses and refusal",
+    "actual stateless/cached interfaces, reference FK, synthetic swing landing and recenter memory transition",
+    "complete affected-route zero-world safety gate before one fresh bounded native diagnostic"
+  ],
+  "physical_attempt_selected": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

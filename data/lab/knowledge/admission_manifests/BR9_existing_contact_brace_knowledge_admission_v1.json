@@ -1,0 +1,167 @@
+{
+  "schema": "sporespore.lab.br9_knowledge_admission_manifest.v1",
+  "manifest_id": "BR9_EXISTING_CONTACT_BRACE_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_admit_recommended_observation_only_br9_knowledge",
+  "authorization_instruction": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations. complete the bootstraps if possible. but if you absolutely require my input for something thats a design choice that hasnt been decided yet, then defer it and build around it - if possible.",
+  "decision": {
+    "decision_id": "BR9_EXISTING_CONTACT_PLANAR_BRACE_DECISION_V1",
+    "decision_sha256": "sha256:a68e903c14b70555914c0b755957dc0cfb1a53ce5c4c35f1cc9f42d0995c77e0"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "ACCEPTED_BR10_CATCH_STEP",
+      "VALIDATED_CREATURE_GUIDANCE_CONSUMER",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "BR9.0.existing_contact_brace_controller_arithmetic.v1",
+      "cell_id": "BR9.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br9_0_existing_contact_brace_controller_arithmetic.v1.json",
+      "program_id": "BR9_EXISTING_CONTACT_BRACE_0_CONTROLLER_ARITHMETIC_V1",
+      "authoring": {
+        "title": "The certified controller produces bounded existing-contact brace commands",
+        "claim": "In the exact certified BR9.0 arithmetic fixtures, the declared controller seals one immutable configuration, mirrors signed angular-momentum-arrest requests, preserves reserve-aware unilateral feasibility, rate-limits commanded contact-load redistribution, reports desired and achieved residuals, retains command-not-measurement semantics, and enters STABILIZE only after the complete safe dwell.",
+        "scope": "Only the exact controller configuration, digests, inputs, unilateral and reserve limits, load-rate limit, stable-dwell rule, source, and BR9.0 program scope certified by br9_20260723T160129Z_4023e51f.",
+        "mechanism": "The controller maps a signed aggregate pitch-arrest request into complementary commanded left and right normal-load shares inside the declared finite envelope. The shares are commands, not measured per-foot loads.",
+        "applicability": [
+          "Checking mirrored existing-contact pitch-arrest command arithmetic",
+          "Checking bounded load redistribution and stable-dwell handoff at the certified configuration"
+        ],
+        "failure_boundaries": [
+          "Arithmetic feasibility does not prove physical recovery outside the paired certified fixture",
+          "Commanded left and right shares are not measured per-foot loads",
+          "No new-contact catch step, free 3D bracing or standing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "existing_contact_brace",
+          "planar_scaffold",
+          "controller_arithmetic",
+          "command_not_measurement",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How the command law generalizes after releasing out-of-plane degrees of freedom",
+          "How morphology-specific reach, actuator limits, and compliant contacts change the feasible envelope"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR9.1.existing_contact_brace_feasibility_refusals.v1",
+      "cell_id": "BR9.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br9_1_existing_contact_brace_feasibility_refusals.v1.json",
+      "program_id": "BR9_EXISTING_CONTACT_BRACE_1_FEASIBILITY_V1",
+      "authoring": {
+        "title": "The certified feasibility layer refuses unsafe or unsupported brace requests",
+        "claim": "In the exact certified BR9.1 fixtures, the declared feasibility layer fails closed for insufficient reserved normal capacity, reserved friction-cone overflow, an absent pre-existing contact, REACTION_TOO_LATE, a non-BRACE observation, nonfinite momentum, caller-added root rescue, nonmonotonic ticks, and a configuration that reserves away its physical envelope.",
+        "scope": "Only the exact request fields, controller configuration, reserve, friction, contact-set, detector-state, timing, finiteness, tick-order, source, and BR9.1 program scope certified by br9_20260723T160129Z_4023e51f.",
+        "mechanism": "A strict pre-command gate requires complete typed inputs, an already-bearing contact set, viable detector timing, monotonic authority, and remaining unilateral, friction, and actuator reserve before it allows controller arithmetic to proceed.",
+        "applicability": [
+          "Rejecting brace requests that exceed the certified existing-contact envelope",
+          "Rejecting hidden rescue channels, stale timing, malformed fields, and nonfinite state"
+        ],
+        "failure_boundaries": [
+          "Passing feasibility does not guarantee dynamic recovery",
+          "The gate authorizes no root force, foot pin, new support contact, repair, or guidance",
+          "No free 3D bracing or standing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "existing_contact_brace",
+          "feasibility_gate",
+          "fail_closed",
+          "reserve",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How model uncertainty should reduce the usable reserve",
+          "Which viability estimator should replace the scaffold-specific timing gate in free 3D"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR9.2.existing_contact_brace_command_receipt_chain.v1",
+      "cell_id": "BR9.2",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br9_2_existing_contact_brace_command_receipt_chain.v1.json",
+      "program_id": "BR9_EXISTING_CONTACT_BRACE_2_COMMAND_CHAIN_V1",
+      "authoring": {
+        "title": "The certified brace command retains provenance through finite paired actuators",
+        "claim": "In the exact certified BR9.2 fixture, one bounded brace command maps through the vertical contact-force seam into paired finite joint-torque plans, seals through the command ledger, executes only equal-and-opposite joint torques, reconciles append-only receipts, retains the no-root, no-pin, and no-new-contact boundaries, and rejects a forged direct root-force operation.",
+        "scope": "Only the exact force map, paired actuator specifications, command ledger, executor, receipt contracts, fixture identities, source, and BR9.2 program scope certified by br9_20260723T160129Z_4023e51f.",
+        "mechanism": "Digest-bound controller output is converted into finite paired joint torques, sealed before execution, and reconciled against append-only application receipts. The chain exposes what was commanded and applied without inventing a per-foot sensor.",
+        "applicability": [
+          "Auditing the provenance of one certified existing-contact brace command",
+          "Rejecting direct root-force substitution and unreceipted intervention"
+        ],
+        "failure_boundaries": [
+          "A correct command chain does not prove that another limb or morphology can bear the load",
+          "Command receipts are not measured per-foot load allocation",
+          "No catch step, free 3D standing or bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "existing_contact_brace",
+          "finite_actuator",
+          "command_ledger",
+          "append_only_receipt",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How compliance, backlash, and actuator dynamics change command-to-effect accuracy",
+          "How to allocate aggregate support evidence among multiple contacts without false raw-impulse summation"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR9.3.paired_planar_existing_contact_pitch_arrest.v1",
+      "cell_id": "BR9.3",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br9_3_paired_planar_existing_contact_pitch_arrest.v1.json",
+      "program_id": "BR9_EXISTING_CONTACT_BRACE_3_LIVE_PAIRED_PITCH_ARREST_V1",
+      "authoring": {
+        "title": "The certified active fixture improves planar pitch arrest against its paired control",
+        "claim": "In the exact certified BR9.3 Godot/Jolt pair, the active controller begins on the first post-impulse observation, acts through finite paired actuators, retains both original already-bearing contacts, creates no new support contact, reconciles every command and receipt, remains within its declared rate and actuator limits, and reduces aggregate angular-momentum area and pitch excursion relative to a no-brace control receiving the same declared positive pitch impulse.",
+        "scope": "Only the exact material BR7-derived planar scaffold, rigid bodies, passive hinges, already-bearing contacts, impulse, timing, finite actuators, controller, thresholds, timestep, solver, engine, source, and BR9.3 program scope certified by br9_20260723T160129Z_4023e51f.",
+        "mechanism": "After the first post-impulse observation, the active arm redistributes commanded support through finite paired joint torques while the no-brace arm receives the same impulse without that controller path. Whole-system momentum reconstruction checks only the aggregate external pitch moment.",
+        "applicability": [
+          "Checking one scaffold-constrained existing-contact pitch-arrest response against a paired same-impulse control",
+          "Checking causal command timing, original-contact retention, finite actuation, and receipt reconciliation"
+        ],
+        "failure_boundaries": [
+          "The unpowered guide materially locks out-of-plane translation, roll, and yaw",
+          "Commanded contact shares and aggregate reconstruction do not establish measured per-foot allocation",
+          "The fixture creates no new support contact and therefore proves no catch step",
+          "No free 3D bracing or standing, articulated-limb generality, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "existing_contact_brace",
+          "paired_control",
+          "planar_scaffold",
+          "pitch_arrest",
+          "finite_actuator",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Whether the response remains stable after releasing out-of-plane degrees of freedom",
+          "Whether other articulated limbs can realize the same load redistribution",
+          "How the controller should hand off to a new-contact catch step when the existing support set is insufficient"
+        ],
+        "supersedes": []
+      }
+    }
+  ]
+}

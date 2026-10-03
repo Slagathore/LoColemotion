@@ -1,0 +1,101 @@
+{
+  "schema": "sporespore.lab.br7_planar_promotion_campaign.v1",
+  "campaign_id": "BR7_PLANAR_PROMOTION_CAMPAIGN_V1",
+  "campaign_version": 1,
+  "milestone_id": "BR7_PLANAR_MULTI_CONTACT_STANCE",
+  "claim_boundary": "This campaign can certify only the exact BR7.0 two-contact planar allocation, BR7.1 friction and unilateral rejection, BR7.2 support/capture segment and support-loss supervision, and BR7.3 live two-leg planar stance program scopes named by the source-pinned programs; BR7.4 is integrity-only containment and cannot substitute for a milestone program. The unpowered Generic6DOF out-of-plane guide is an explicit material scaffold: sagittal X/Y translation and pitch are released while out-of-plane translation, roll, and yaw remain locked, and all guide motors and springs remain off. Two ordinary distal contacts, four paired finite joint actuators, strict non-clamping allocation, whole-system aggregate support and pitch-wrench reconstruction, the declared positive pitch impulse, and the declared right-support removal retain their exact fixture, geometry, mass, timestep, solver, controller, and actuator scopes. Commanded left/right contact shares are not measured per-foot loads. This establishes scaffold-constrained planar height/pitch stance and support-loss detection only, not free 3D standing, unconstrained balance, per-foot measured load allocation, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance.",
+  "process_policy": {
+    "clean_committed_source": true,
+    "fresh_godot_process_per_replicate": true,
+    "required_replicates_per_program": 2,
+    "pid_recycle_policy": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded",
+    "test_timeout_seconds": 300,
+    "complete_campaign_required": true,
+    "cherry_pick_policy": "forbidden_all_declared_runs_retained"
+  },
+  "source_policy": {
+    "identity": "clean_git_commit_plus_exact_declared_byte_inventory_v1",
+    "inventory_roots": [
+      {"kind": "file", "path": ".gitattributes", "extensions": [".gitattributes"]},
+      {"kind": "file", "path": "project.godot", "extensions": [".godot"]},
+      {"kind": "file", "path": "scripts/process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/process_runner_containment_host.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_lab_tests.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_br7_planar_certification.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "tree", "path": "scripts/lab", "extensions": [".gd"]},
+      {"kind": "tree", "path": "tests/helpers", "extensions": [".gd"]},
+      {"kind": "file", "path": "tests/test_experimental_br7_promotion_contracts.gd", "extensions": [".gd"]},
+      {"kind": "tree", "path": "data/lab/schemas", "extensions": [".json"]},
+      {"kind": "tree", "path": "data/lab/knowledge", "extensions": [".json", ".md"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR7_planar_promotion_campaign_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR1_required_lab_tests_v2.json", "extensions": [".json"]}
+    ]
+  },
+  "br1_inventory_guard": {
+    "resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json",
+    "sha256": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+    "test_count": 62,
+    "mutation_forbidden": true
+  },
+  "role_accounting": {
+    "milestone": {"programs": 4, "assertions_per_replicate": 40},
+    "supplementary": {"programs": 0, "assertions_per_replicate": 0},
+    "integrity": {"programs": 1, "assertions_per_replicate": 12},
+    "total": {"programs": 5, "assertions_per_replicate": 52}
+  },
+  "programs": [
+    {
+      "program_id": "BR7_PLANAR_0_CONTACT_ALLOCATION_V1",
+      "cell_id": "BR7.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br7_0_planar_load_allocation.gd",
+      "expected_assertions": 9,
+      "claim_scope": "The strict two-contact planar allocator exactly realizes declared feasible vertical-force and pitch-moment requests, mirrors signed load redistribution, preserves zero arithmetic residual, and rejects a pulling-contact request without clamping or relabeling commands as measurements."
+    },
+    {
+      "program_id": "BR7_PLANAR_1_FRICTION_CONE_V1",
+      "cell_id": "BR7.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br7_1_planar_friction_cone.gd",
+      "expected_assertions": 8,
+      "claim_scope": "The exact allocator distributes feasible horizontal force within both declared Coulomb cones and rejects cone overflow, pulling normal load, no-support force, and single-support pitch moments that the remaining point cannot realize."
+    },
+    {
+      "program_id": "BR7_PLANAR_2_SUPPORT_SEGMENT_LOSS_V1",
+      "cell_id": "BR7.2",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br7_2_support_segment_and_loss.gd",
+      "expected_assertions": 10,
+      "claim_scope": "The declared planar support segment computes exact static and linear-capture margins, predicts mirrored loss direction, degenerates honestly to a point under one support, and emits one reasoned fail-closed support-loss transition without applying force or authorizing guidance."
+    },
+    {
+      "program_id": "BR7_PLANAR_3_TWO_LEG_STANCE_V1",
+      "cell_id": "BR7.3",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br7_3_planar_two_leg_stance.gd",
+      "expected_assertions": 13,
+      "claim_scope": "The declared two-leg fixture regulates planar height and pitch through ordinary distal contacts and paired finite torques, reconstructs aggregate support and pitch wrench from whole-system momentum, recovers the declared positive pitch impulse, and emits one fail-closed event after declared right-support removal while retaining the explicit out-of-plane scaffold."
+    },
+    {
+      "program_id": "BR7_PLANAR_4_CONTAINMENT_V1",
+      "cell_id": "BR7.4",
+      "evidence_role": "integrity",
+      "test_resource_path": "res://tests/test_experimental_br7_4_planar_stance_containment.gd",
+      "expected_assertions": 12,
+      "claim_scope": "Integrity-only containment proves that contract mutation, hidden root force or foot pinning, false per-foot measurement, wrong-sign disturbance, missing support-loss evidence, pre-loss infeasibility, and broadened standing or guidance claims fail closed."
+    }
+  ],
+  "does_not_establish": [
+    "Per-contact, per-foot, or per-toe measured load allocation",
+    "Free 3D standing or unconstrained balance",
+    "An absent, negligible, or measured out-of-plane scaffold reaction",
+    "Bracing or fall arrest",
+    "Self-righting or getting up",
+    "Gait, candidate walking, or walking",
+    "Morphology, terrain, complex-foot, or endurance generalization",
+    "Accepted encyclopedia knowledge or automatic creature guidance"
+  ]
+}

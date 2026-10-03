@@ -1,0 +1,183 @@
+
+{
+  "schema_version": "sporespore_balanced_wave_bw24m_material_characterization_freeze_v1",
+  "status": "frozen_before_first_bw24m_physical_world",
+  "campaign_id": "BW24M-BW23Y-FRESH-MATERIAL-CHARACTERIZATION",
+  "gate_id": "BW24M",
+  "freeze_parent_commit": "e40ac4e84210aec69e9581d0bf878e43b4316653",
+  "physical_source_identity_rule": "The commit containing this freeze must be clean, pushed, and exactly equal to local origin/main and live GitHub main before the one-shot supervisor may create attempt.json or pass --run-physical to the worker.",
+  "study_class": {
+    "classification": "exact_finite_cell_adapter_material_characterization",
+    "positive_authored_value_count": 3,
+    "replicate_count_per_positive_value": 3,
+    "frictionless_control_world_count": 1,
+    "expected_world_count": 10,
+    "expected_gate_count": 19,
+    "population_inference": false,
+    "superiority_study": false,
+    "noninferiority_or_equivalence_study": false,
+    "continuous_friction_coverage": false
+  },
+  "gate_count_correction": {
+    "stage_zero_declared_count": 19,
+    "frozen_count": 19,
+    "reason": "Stage zero already declared the correct three-cell cardinality: 4 common gates + 3*(3 replicate gates + 1 cell gate) + 3 aggregate gates = 19. No correction was required after the declaration checkpoint.",
+    "corrected_before_any_physical_world": true,
+    "corrected_before_any_characterization_outcome": true,
+    "threshold_value_seed_or_stopping_rule_changed": false,
+    "post_result_gate_edit": false
+  },
+  "physical_matrix": {
+    "authored_friction_values": [
+      0.59,
+      0.71,
+      0.83
+    ],
+    "frictionless_control_value": 0.0,
+    "replicates_per_positive_value": 3,
+    "expected_world_count": 10,
+    "expected_gate_count": 19,
+    "downstream_locomotion_seeds_opened": 0
+  },
+  "source_bindings": {
+    "preregistration": {
+      "path": "sdk/balanced_wave_bw24m_fresh_material_preregistration.json",
+      "raw_sha256": "7e622d2ef25cc3d0224e95f21cd00fff3a60ac96c8179e6ccfe36f0043375815"
+    },
+    "stage_zero_runner": {
+      "path": "sdk/run_balanced_wave_bw24m_material_declaration_preflight.ps1",
+      "raw_sha256": "e5376e695e60060c98d63aebae4d01ba39430cd94f20c2c2657283fb25069f38"
+    },
+    "stage_zero_audit": {
+      "path": "tests/test_bw24m_material_declaration.ps1",
+      "raw_sha256": "834a4b1516f25f0b9bfe51401812efef220692a06fe074df18499a1e9b994fb3"
+    },
+    "stage_zero_godot_preflight": {
+      "path": "tests/test_sdk_balanced_wave_bw24m_material_preflight.gd",
+      "raw_sha256": "bd11397e7062c56232fe29b54c49adf95671bd72281096e92abe9d1af72a07e7"
+    },
+    "successor_fixture": {
+      "path": "scripts/lab/rigs/sdk_bw24m_friction_ladder_sled_rig.gd",
+      "raw_sha256": "72170b65a934c47758bdce08e1589ba2e81a7222e1e890554a35c50c1951cf3b"
+    },
+    "production_gate": {
+      "path": "sdk/balanced_wave_bw24m_material_characterization_gate.ps1",
+      "raw_sha256": "e9761ddc0c242e108c8ef178bab266f8731ace2f087f05b96304404f3eb4085c"
+    },
+    "production_gate_test": {
+      "path": "tests/test_bw24m_material_characterization_gate.ps1",
+      "raw_sha256": "51b78130df272dce2c39b3f959305dc7fccd12f3eb3d648b37c0a64d538b8bdf"
+    },
+    "physical_worker": {
+      "path": "tests/test_sdk_balanced_wave_bw24m_material_characterization.gd",
+      "raw_sha256": "9dd5e6e8d4311cdea9dc0f7a87a6cadce2399630eec789bd682176094bc51d39"
+    },
+    "one_shot_supervisor": {
+      "path": "sdk/run_balanced_wave_bw24m_material_characterization.ps1",
+      "raw_sha256": "d4babf6e9a48f3dc1e5ad16931709e2b5a27f8c4e65cf5495116682e67093ea0"
+    },
+    "inherited_physical_worker": {
+      "path": "tests/test_sdk_godot_jolt_friction_ladder_characterization.gd",
+      "raw_sha256": "2c07053fcce9d0982cf533b1eac65955bb4e3a57e1507fdb20284fc7c6f17c1e"
+    },
+    "inherited_fixture": {
+      "path": "scripts/lab/rigs/sdk_friction_ladder_sled_rig.gd",
+      "raw_sha256": "bcd40080800669492dbc0633d5aa95ed11461d7ae29756c05e892b3467ccd014"
+    },
+    "base_fixture": {
+      "path": "scripts/lab/rigs/friction_sled_rig.gd",
+      "raw_sha256": "92f7983a47257e7d3ee7e262ad57aee2c7cd5c345f54f6ce9981da8dd3beb487"
+    },
+    "capture_clock": {
+      "path": "scripts/lab/capture_clock.gd",
+      "raw_sha256": "f2f0305ce698d17d892057e160928bbebd29bac21c290aa22bf4b112205f1291"
+    },
+    "observer_profile": {
+      "path": "scripts/lab/observer_profile.gd",
+      "raw_sha256": "645844c8534d8c1c0fe693b7dc2c926a3732c3fa020c81cc2240edc5639f8fd2"
+    },
+    "observed_rigid_body": {
+      "path": "scripts/lab/mechanics/observed_rigid_body.gd",
+      "raw_sha256": "04c95729af1f755f270d07caa97d822d4b86afeeb3b6bcb246b4d68a5284be91"
+    },
+    "contact_capacity": {
+      "path": "scripts/lab/mechanics/contact_capacity.gd",
+      "raw_sha256": "8d91b6a9b774f6d51a14fa4eb5672f7779051ed35075cd73d1ac31ecea63c2ca"
+    },
+    "contact_canonicalizer": {
+      "path": "scripts/lab/mechanics/contact_canonicalizer.gd",
+      "raw_sha256": "ecc22a205123ef486faa61cbf66c33b6d05b98d3bf1ff2e8b24021bba326089c"
+    },
+    "contact_slip_observer": {
+      "path": "scripts/lab/mechanics/contact_slip_observer.gd",
+      "raw_sha256": "b153ecd8e6d7a4cc867ef8787d9a8cc97ea15cc4a35994dcd4be3640f2c3834b"
+    },
+    "breakaway_analyzer": {
+      "path": "scripts/lab/mechanics/friction_breakaway_analyzer.gd",
+      "raw_sha256": "b9efc3397d41609ea6d00d6d3e14c96ea0bb1a61ec0b7a9145a63ab5edcc8a14"
+    },
+    "canonical_json": {
+      "path": "scripts/lab/canonical_json.gd",
+      "raw_sha256": "b1f0f4df813663008824d223165577e281bffb97e81080d33d77c1ffb031501f"
+    },
+    "frozen_value": {
+      "path": "scripts/lab/frozen_value.gd",
+      "raw_sha256": "b45d91510d6f42a3cccc87bb9ea40c602469fed11338860512a832361a835d10"
+    },
+    "failure_codes": {
+      "path": "scripts/lab/failure_codes.gd",
+      "raw_sha256": "9cc79d962ad70b12c932685f8aee3996d62b631d664af57525df8726edfc3456"
+    },
+    "finite_sanitizer": {
+      "path": "scripts/lab/finite_sanitizer.gd",
+      "raw_sha256": "40428eb592bda785be76d32869f63fb55fe8e40ac038a8daf94c976414e6e444"
+    }
+  },
+  "zero_world_authorization_preflight": {
+    "perfect_synthetic_report_passes_complete_gate": true,
+    "production_gate_count": 19,
+    "negative_canary_count": 10,
+    "declaration_fixture_gate_count": 10,
+    "fixture_count": 4,
+    "authorization_receipt_canary_count": 2,
+    "direct_worker_bypass_canary_count": 1,
+    "world_build_count": 0,
+    "scene_tree_insertion_count": 0,
+    "physics_state_mutation_count": 0,
+    "characterization_outcome_exposed": false,
+    "locomotion_outcome_exposed": false,
+    "physical_acceptance_authority": false
+  },
+  "one_shot_execution_contract": {
+    "only_authorized_entrypoint": "sdk/run_balanced_wave_bw24m_material_characterization.ps1 -RunPhysical -OutputRoot <exact durable evidence root>",
+    "worker_requires_explicit_run_physical_token": true,
+    "worker_requires_exact_retained_attempt_and_matching_authorization_token": true,
+    "worker_rejects_a_forged_run_physical_argument_without_supervisor_authorization": true,
+    "worker_token_supplied_only_after_attempt_json_is_durably_created": true,
+    "output_root_must_be_new_and_inside_sporespore_evidence": true,
+    "retained_output_forbidden_under_c_tmp": true,
+    "head_must_equal_origin_main_and_live_github_main": true,
+    "worktree_must_be_clean": true,
+    "prior_attempt_count_must_be_zero": true,
+    "first_complete_result_final_for_source_identity": true,
+    "incomplete_attempt_cannot_resume_in_place": true,
+    "selective_replicate_rerun_forbidden": true,
+    "failed_cell_replacement_forbidden": true,
+    "averaging_forbidden": true,
+    "post_result_gate_edit_forbidden": true
+  },
+  "claims_after_positive_characterization": {
+    "exact_finite_godot_jolt_material_characterization": true,
+    "profile_publication_may_proceed": true,
+    "walking_acceptance": false,
+    "controller_selection": false,
+    "material_robustness": false,
+    "continuous_friction_coverage": false,
+    "arbitrary_material_robustness": false,
+    "population_inference": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

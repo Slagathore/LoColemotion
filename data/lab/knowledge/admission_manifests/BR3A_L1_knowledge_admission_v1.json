@@ -1,0 +1,165 @@
+{
+  "schema": "sporespore.lab.br3a_knowledge_admission_manifest.v1",
+  "manifest_id": "BR3A_L1_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_accept_recommended_evidence_backed_knowledge",
+  "decision": {
+    "decision_id": "BR3A_L1_ENGINE_CONTACT_TRUTH_DECISION_V1",
+    "decision_sha256": "sha256:78b4a6daae8f7b1f981bf5feed5f54a6dcee08b991b39afe51df85327080bb6d"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "ACCEPTED_SUPPORT_MILESTONE",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "L1.0.contact_observer_foundation.v1",
+      "cell_id": "L1.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_0_contact_observer_foundation.v1.json",
+      "program_ids": [
+        "BR3A_L1_0_CONTACT_POSITION_FRAME_V1",
+        "BR3A_L1_0_CONTACT_NORMAL_SIGN_V1",
+        "BR3A_L1_0_CONTACT_BUFFER_SATURATION_V1",
+        "BR3A_L1_0_CONTACT_LIFETIME_V1",
+        "BR3A_L1_0_EXTERNAL_CONTACT_DEDUP_V1",
+        "BR3A_L1_0_SELF_CONTACT_EXCLUSION_V1",
+        "BR3A_L1_0_SUPPORT_GEOMETRY_V1",
+        "BR3A_L1_0_CONTACT_SUPPORT_STATE_V1"
+      ],
+      "authoring": {
+        "kind": "inline",
+        "title": "Contact observation preserves declared frames, signs, capacity refusal, lifetime, identity, and qualified support geometry",
+        "claim": "Across the exact eight certified L1.0 programs, contact positions retain their declared world and local frame identities; normal and impulse signs are explicit; contact-cap saturation is observable and fails closed; contact lifetime preserves start, continuation, and end identity; mirrored external observations deduplicate without losing identity; self-contact is excluded from external support; support geometry distinguishes point, segment, and polygon cases; and support state is derived only from qualified external-contact evidence.",
+        "scope": "Only the exact L1.0 released-suite fixtures, contracts, source commit, and program claim scopes identified by BR3A certification br3a_20260723T050201Z_109cc664.",
+        "mechanism": "The observer carries explicit coordinate-frame and counterparty identity, rejects over-capacity observations instead of truncating them, tracks contact identity across frames, and derives support geometry and support state only after external-contact qualification.",
+        "applicability": [
+          "Validating contact-observer plumbing before dynamic joint or support experiments",
+          "Rejecting self-contact and saturated observations as external support evidence",
+          "Providing point, segment, and polygon support geometry to later bounded analyses"
+        ],
+        "failure_boundaries": [
+          "Does not establish exact continuous contact force or per-contact load allocation",
+          "Does not establish an articulated load-bearing joint, foot, limb, or creature",
+          "Does not establish standing, bracing, fall arrest, getting up, gait, or walking"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "contact_observer",
+          "jolt"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How the observer behaves under future articulated high-contact-count fixtures beyond the certified programs",
+          "How aggregate external load can be allocated among multiple simultaneous support contacts"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L1.1.contact_slip_and_friction_breakaway.v1",
+      "cell_id": "L1.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_1_contact_slip_and_breakaway.v1.json",
+      "program_ids": [
+        "BR3A_L1_1_CONTACT_SLIP_OBSERVER_V1",
+        "BR3A_L1_1_FRICTION_BREAKAWAY_V1"
+      ],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_1_contact_slip_and_breakaway.development.json",
+        "sha256": "sha256:82c1226eac048720a9ebcd3d1cfc697ef685a9cade74ee6cc648188d447ffa7b"
+      }
+    },
+    {
+      "entry_id": "L1.2.incline_hold_slide_threshold.v1",
+      "cell_id": "L1.2",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_2_incline_threshold.v1.json",
+      "program_ids": ["BR3A_L1_2_INCLINE_THRESHOLD_V1"],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_2_incline_threshold.development.json",
+        "sha256": "sha256:24a7a06900a2723c0eb8621f9880388cec9de658dae226832e9661f6ee0616f9"
+      }
+    },
+    {
+      "entry_id": "L1.3.support_edge_tipping.v1",
+      "cell_id": "L1.3",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_3_tipping_edge.v1.json",
+      "program_ids": ["BR3A_L1_3_TIPPING_EDGE_V1"],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_3_tipping_edge.development.json",
+        "sha256": "sha256:a37b32ec1950b3a3829b2a4e1c6c5b4cd2bd4f4d63ed20a1305ed44dbc6bba0f"
+      }
+    },
+    {
+      "entry_id": "L1.4.static_pad_center_of_pressure.v1",
+      "cell_id": "L1.4",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_4_pad_center_of_pressure.v1.json",
+      "program_ids": ["BR3A_L1_4_PAD_CENTER_OF_PRESSURE_V1"],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_4_pad_center_of_pressure.development.json",
+        "sha256": "sha256:17a5527e111739d6d8e78a40d5084cf70b36c9d584aa75bf18eac36a4f1ded37"
+      }
+    },
+    {
+      "entry_id": "L1.5.timestep_envelope.v1",
+      "cell_id": "L1.5",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_5_timestep_envelope.v1.json",
+      "program_ids": ["BR3A_L1_5_TIMESTEP_ENVELOPE_V1"],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_5_timestep_envelope.development.json",
+        "sha256": "sha256:7056836f610c67fa7aec404846b2c91e93a510fbaecbf911048c198112b3f769"
+      }
+    },
+    {
+      "entry_id": "L1.6.solver_sensitivity_and_external_impulse_reconstruction.v1",
+      "cell_id": "L1.6",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_6_solver_sensitivity_and_reconstruction.v1.json",
+      "program_ids": ["BR3A_L1_6_SOLVER_SENSITIVITY_V1"],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_6_solver_sensitivity_and_reconstruction.development.json",
+        "sha256": "sha256:e5bfbb3367052126b153b0a31696617e2e34b5c37dc877a1f1063d2e1a3747cb"
+      }
+    },
+    {
+      "entry_id": "L1.7.directed_mass_ratio_stability.v1",
+      "cell_id": "L1.7",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br3a_l1_7_mass_ratio_grid.v1.json",
+      "program_ids": ["BR3A_L1_7_MASS_RATIO_GRID_V1"],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_7_mass_ratio_grid.development.json",
+        "sha256": "sha256:2d7d1a0d9a9cb1795c056c5920beba44fdf1215cd348198b4f496e4621b1a193"
+      }
+    },
+    {
+      "entry_id": "L1.8.contact_discretization_raw_sum_overcount.v1",
+      "cell_id": "L1.8",
+      "knowledge_class": "supplementary_constraint",
+      "output_name": "br3a_l1_8_contact_discretization.v1.json",
+      "program_ids": ["BR3A_L1_8_CONTACT_DISCRETIZATION_V1"],
+      "authoring": {
+        "kind": "pinned_development_draft",
+        "path": "res://data/lab/knowledge/drafts/br3a/L1_8_contact_discretization.development.json",
+        "sha256": "sha256:11343465ad5d17f4f4684db180b2d936077ee0119d51e691fa4ed40fbad0a28d"
+      }
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "schema": "sporespore.lab.certification_qualification_profile.v1",
+  "profile_id": "BR1_L0_V1_R001_I45",
+  "profile_revision": 1,
+  "lifecycle": "verify_only",
+  "attestation_creation_allowed": false,
+  "legacy_schema_collision": true,
+  "collision_reason": "One v1 report schema identifier and one v1 inventory identifier were published with incompatible 45-test and 51-test byte contracts.",
+  "snapshot_source_commit": "2f748218e5d11532f0179df0d182d8c6712a3923",
+  "report_contract": {
+    "schema_id": "sporespore.lab.br1_certification_report.v1",
+    "historical_resource_path": "res://data/lab/schemas/br1_certification_report_v1.schema.json",
+    "snapshot": {
+      "resource_path": "res://data/lab/legacy/br1_report_v1/r001_i45/br1_certification_report_v1.snapshot.schema.json",
+      "sha256": "sha256:f7596fcaf798c1c4627d5cef1af4bda4136cbf08346acf00284e13f23e502567",
+      "source_git_blob_sha1": "56f73f0f130fe2d3a81d80f15169a76ca9838ec7"
+    },
+    "status": "pass",
+    "certification": "BR1_L0_EVIDENCE_PIPELINE",
+    "claim_boundary": "BR1 certifies only the L0 evidence pipeline. It establishes no standing, bracing, recovery, or walking capability.",
+    "serialization": "ordered_compact_utf8_no_bom_v1"
+  },
+  "inventory_contract": {
+    "schema_id": "sporespore.lab.br1_required_test_inventory.v1",
+    "inventory_id": "BR1_REQUIRED_LAB_TESTS_V1",
+    "inventory_version": 1,
+    "pattern": "test_lab_*.gd",
+    "historical_resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v1.json",
+    "snapshot": {
+      "resource_path": "res://data/lab/legacy/br1_report_v1/r001_i45/BR1_required_lab_tests_v1.snapshot.json",
+      "sha256": "sha256:4e090096c4009e1406214307a80e46480e80efbb4228f30df8efdc9de4ff13f6",
+      "source_git_blob_sha1": "02d6e1601feb2d87a259cafbc337b2b5de36a365"
+    },
+    "test_count": 45,
+    "artifact_count": 90
+  },
+  "campaign_contract": {
+    "schema_id": "sporespore.lab.br1_l0_certification_campaign.v1",
+    "campaign_id": "BR1_L0_CERTIFICATION_V1",
+    "campaign_version": 1,
+    "historical_resource_path": "res://data/lab/campaigns/BR1_L0_certification_v1.json",
+    "snapshot": {
+      "resource_path": "res://data/lab/legacy/br1_report_v1/common/BR1_L0_certification_v1.snapshot.json",
+      "sha256": "sha256:c8146b00bfabfd2c4784cf2907ef68244d03388ccc184a9d16a99d49423419cd",
+      "source_git_blob_sha1": "0922a79c43e456efc6ac2d6944322ea0102dab4c"
+    },
+    "cell_count": 7,
+    "required_replicates_per_cell": 2
+  },
+  "receipt_contract": {
+    "schema_id": "sporespore.lab.br1_certification_report_attestation.v1",
+    "domain": "sporespore.lab.br1_certification_report_attestation.v1",
+    "algorithm": "hmac-sha256",
+    "report_name": "br1_certification_report.json",
+    "historical_resource_path": "res://data/lab/schemas/certification_report_attestation_v1.schema.json",
+    "snapshot": {
+      "resource_path": "res://data/lab/legacy/br1_report_v1/common/certification_report_attestation_v1.snapshot.schema.json",
+      "sha256": "sha256:8cb6aceefa9b11bbd6756b91185c6f00adea06633633929d5c588d2a1804d716",
+      "source_git_blob_sha1": "48d48457c3c6a47a566283c55a5d33ff7736499f"
+    }
+  },
+  "engine_contract": {
+    "godot_version": "4.7.stable.mono.official.5b4e0cb0f",
+    "console": {
+      "executable_name": "Godot_v4.7-stable_mono_win64_console.exe",
+      "sha256": "sha256:c5fc2d0bb24826a6757fa1e6bf2991effb294859c7dd03d09a122ef217484896",
+      "product_version": "4.7.stable.mono.official",
+      "file_description": "Godot Engine (Console)"
+    },
+    "physics_child": {
+      "executable_name": "Godot_v4.7-stable_mono_win64.exe",
+      "sha256": "sha256:baa909d0a905021da80cfc831713e9d3ba4bd0935ac3b93ba4c77dc140cfecc4",
+      "product_version": "4.7.stable.mono.official",
+      "file_description": "Godot Engine"
+    },
+    "identity_gate_stages": [
+      "INITIAL",
+      "AFTER_TESTS",
+      "BEFORE_FINAL_SWEEP",
+      "AFTER_FINAL_SWEEP"
+    ]
+  },
+  "repository_gate_contract": {
+    "clean_at_all_recorded_gates": true,
+    "commit_unchanged_at_all_recorded_gates": true,
+    "stages": [
+      "INITIAL",
+      "AFTER_TESTS",
+      "BEFORE_FINAL_SWEEP",
+      "AFTER_FINAL_SWEEP"
+    ]
+  },
+  "operator_contract": {
+    "timeout_policy": {
+      "per_test_seconds": 180,
+      "lab_suite_seconds": 10800,
+      "per_step_seconds": 900,
+      "process_tree_kill_on_timeout": true
+    },
+    "process_runner_self_test": {
+      "pass": true,
+      "success_exit": 0,
+      "nonzero_exit": 37,
+      "timeout_detected": true,
+      "process_tree_killed": true,
+      "inherited_descendant_terminated": true,
+      "containment_tree_closed": true
+    },
+    "attestation_initializer_self_test": {
+      "pass": true,
+      "minimum_assertions": 61,
+      "production_store_touched": false
+    }
+  },
+  "cardinality": {
+    "tests_required": 45,
+    "test_artifacts_required": 90,
+    "cells_required": 7,
+    "bundles_required": 14,
+    "replays_required": 14,
+    "replicate_comparisons_required": 7,
+    "outer_parent_processes_required": 14,
+    "physics_child_processes_required": 14,
+    "source_gates_required": 4,
+    "engine_identity_gates_required": 4
+  }
+}

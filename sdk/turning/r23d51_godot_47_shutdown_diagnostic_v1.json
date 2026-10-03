@@ -1,0 +1,96 @@
+{
+  "schema_version": "sporespore_qsdk_r23d51_godot_47_shutdown_diagnostic_v1",
+  "status": "diagnosed_zero_world_host_fault_with_scoped_containment",
+  "campaign_id": "QSDK-R23D51-GODOT-SEGMENT-ORIGIN-REANCHOR-DEVELOPMENT",
+  "gate_id": "QSDK-R23D51",
+  "diagnostic_date_utc": "2026-08-14",
+  "retained_crash_artifact": {
+    "storage_class": "durable_external_evidence_root",
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\r51-godot47-teardown-crash-diagnostic-20260813\\Godot_v4.7-stable_win64.exe_260813_195332.dmp",
+    "byte_count": 4872164,
+    "raw_sha256": "sha256:241d7facca119a50b799bb39e3a3335b2a338dab55946dffc37568737aeab2bd",
+    "exception_code": "0xC0000005",
+    "exception_class": "ACCESS_VIOLATION",
+    "faulting_module": "Godot_v4.7-stable_win64.exe",
+    "faulting_module_rva": "0x03e1e7c1",
+    "freed_heap_poison_observed_in_register_state": "0xFEEEFEEEFEEEFEEE"
+  },
+  "diagnosis": {
+    "mapped_function": "GDScriptLanguage::finish",
+    "mapped_statement": "Ref<GDScript> scr = s->self()",
+    "failure_boundary": "Godot GDScript language teardown after a complete worker receipt",
+    "adapter_dll_was_faulting_module": false,
+    "physics_step_was_faulting_boundary": false,
+    "vs_code_was_faulting_process": false,
+    "standard_non_mono_godot_reproduced": true,
+    "mono_only_hypothesis_rejected": true,
+    "stdout_pipe_only_hypothesis_rejected": true,
+    "immediate_quit_only_hypothesis_rejected": true,
+    "native_session_drop_only_hypothesis_rejected": true
+  },
+  "upstream_corroboration": {
+    "godot_4_7_source_revision_short": "5b4e0cb0f",
+    "godot_4_7_shutdown_implementation_has_old_single_pass_script_list_walk": true,
+    "crash_resilience_pull_request": "https://github.com/godotengine/godot/pull/120976",
+    "crash_resilience_commit": "546e46d3b6e0739c4665f93df9cbf677407bb3eb",
+    "owner_reference_followup_pull_request": "https://github.com/godotengine/godot/pull/121762",
+    "owner_reference_followup_commit": "a9c94cd21fc1e95c56a17aca0b310c346e6c41fa",
+    "fix_is_in_pinned_godot_4_7_host": false
+  },
+  "discarded_zero_world_mitigations": [
+    {
+      "candidate": "explicit_native_controller_session_shutdown_only",
+      "contained_fault": false
+    },
+    {
+      "candidate": "stdout_redirection_change",
+      "contained_fault": false
+    },
+    {
+      "candidate": "two_process_frame_drain_and_async_quit_schedule",
+      "contained_fault": false
+    },
+    {
+      "candidate": "detach_main_script_before_quit",
+      "trial_count": 30,
+      "observed_access_violation_count": 7,
+      "contained_fault": false
+    }
+  ],
+  "selected_containment": {
+    "termination_protocol_id": "godot_4_7_gdscript_shutdown_containment_v1",
+    "helper_path": "sdk/godot_receipt_terminated_process.ps1",
+    "worker_path": "tests/test_sdk_qsdk_r23d51_godot_jolt_physical_worker.gd",
+    "semantic_worker_receipt_precedes_termination_ready_receipt": true,
+    "explicit_controller_session_shutdown_precedes_termination_ready_receipt": true,
+    "zero_physics_drain_process_frame_count": 2,
+    "per_process_nonce_binding": true,
+    "launcher_or_verified_descendant_pid_binding": true,
+    "exact_process_tree_termination_after_valid_ready_receipt": true,
+    "semantic_exit_and_raw_host_exit_retained_separately": true,
+    "physics_or_controller_change": false
+  },
+  "development_validation": {
+    "selected_containment_trial_count": 30,
+    "valid_semantic_receipt_count": 30,
+    "observed_access_violation_count": 0,
+    "wrong_nonce_negative_control_count": 1,
+    "wrong_nonce_rejected": true,
+    "current_campaign_worker_role_positive_count": 3,
+    "current_campaign_worker_role_nonce_negative_count": 1,
+    "model_construction_count": 0,
+    "world_build_count": 0,
+    "raw_stress_transcript_retained_as_campaign_physical_evidence": false
+  },
+  "claims": {
+    "godot_4_7_host_teardown_fault_diagnosed": true,
+    "r23d51_worker_exit_containment_selected": true,
+    "physical_world_opened": false,
+    "physics_result": false,
+    "godot_jolt_turning_validation": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

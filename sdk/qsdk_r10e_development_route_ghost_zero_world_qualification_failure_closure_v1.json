@@ -1,0 +1,136 @@
+{
+  "schema_version": "sporespore_qsdk_r10e_zero_world_qualification_failure_closure_v1",
+  "status": "closed_failed_official_zero_world_qualification_identity_consumed_pre_physics",
+  "gate_id": "QSDK-R10E",
+  "repair_id": "QSDK-R10E-L1",
+  "campaign_id": "QSDK-R10E-OBSERVER-MINIMIZED-UPRIGHT-PUSH-RECOVERY-ROUTE-GHOST",
+  "campaign_role": "development_route_ghost",
+  "question_class": "development",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "immutable_zero_world_qualification_failure_closure",
+    "question_class": "development"
+  },
+  "observed_date": "2026-09-04",
+  "invocation": {
+    "command": "pwsh -NoProfile -File sdk/qsdk_r10e_zero_world_qualification.ps1 -CampaignRole development_route_ghost",
+    "process_exit_code": 1,
+    "terminal_failure_code": "IMPLEMENTATION_AUDIT_FAILED_OR_TIMED_OUT",
+    "stdout_marker_count": 0,
+    "same_identity_rerun_permitted": false
+  },
+  "source": {
+    "source_commit": "831e5703f682703cfa6e9f721b0ce564dcb6ce9b",
+    "source_tree_git_oid": "7b276feed657d432daff39df5b738303009a2932",
+    "branch": "main",
+    "remote": "https://github.com/Slagathore/sporespore.git",
+    "local_origin_live_equal_before_invocation": true,
+    "worktree_clean_before_invocation": true,
+    "qualified_source_path_count": 84,
+    "qualified_source_path_sha256": "sha256:967f4fe5f4c7f5a8cdc39732aa34d87467b492deeb1f9ea67d21d75bba200d80"
+  },
+  "retained_evidence": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10e-development-route-ghost-zero-world-qualification-831e5703f682",
+    "file_count": 4,
+    "total_byte_length": 5853,
+    "canonical_manifest_encoding": "compact_json_array_sorted_by_ordinal_relative_path_utf8_no_bom",
+    "canonical_manifest_byte_length": 569,
+    "canonical_manifest_sha256": "sha256:fda2b3fba88474418ae7ed888af0b1ed5b55723a7608eb931afbb820ac6d0aeb",
+    "files": [
+      {
+        "path": "qualification_attempt.json",
+        "byte_length": 3083,
+        "raw_sha256": "sha256:49be906d0f38f51b5558c2f54383776f3dc434d8f9b115ed82ba15b8648fec60"
+      },
+      {
+        "path": "qualification_failure.json",
+        "byte_length": 907,
+        "raw_sha256": "sha256:23283482289c63e2dd71fbaadb1b1ac6976decdf14d5c36753e0cafa2bae692f"
+      },
+      {
+        "path": "qualification_stderr.log",
+        "byte_length": 1863,
+        "raw_sha256": "sha256:24a3d5352b43b7d5b52682adff5effb96e1bb674cf69d1d4e476e13d6cc0cad2"
+      },
+      {
+        "path": "qualification_stdout.log",
+        "byte_length": 0,
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ]
+  },
+  "diagnosis": {
+    "classification": "implementation_invalid_zero_world_parser_failure",
+    "implementation_audit_started": true,
+    "godot_process_started": true,
+    "source_gate_compiled": false,
+    "failure_count": 3,
+    "failures": [
+      {
+        "path": "scripts/lab/gait/qsdk_r10e_observer_minimized_upright_push_recovery.gd",
+        "observed_source_line": 450,
+        "local_name": "common_execution_integrity",
+        "message": "Cannot infer the type of common_execution_integrity variable because the value does not have a set type."
+      },
+      {
+        "path": "tests/test_sdk_qsdk_r10e_observer_minimized_upright_push_recovery_worker.gd",
+        "observed_source_line": 168,
+        "local_name": "exact",
+        "message": "Cannot infer the type of exact variable because the value does not have a set type."
+      },
+      {
+        "path": "tests/test_sdk_qsdk_r10e_observer_minimized_upright_push_recovery_worker.gd",
+        "observed_source_line": 428,
+        "local_name": "exact_attempt",
+        "message": "Cannot infer the type of exact_attempt variable because the value does not have a set type."
+      }
+    ],
+    "mechanism": "Godot 4.7 could not infer Boolean local types across expressions containing Variant-valued dictionary reads and an awaited worker result.",
+    "physical_or_locomotion_interpretation_permitted": false
+  },
+  "execution_boundary": {
+    "official_zero_world_qualification_attempt_count": 1,
+    "official_zero_world_qualification_passed": false,
+    "qualification_identity_consumed": true,
+    "qualification_completion_written": false,
+    "stage_freeze_written": false,
+    "execution_authority_written": false,
+    "physical_execution_authorized": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "scene_tree_insertion_count": 0,
+    "native_readback_count": 0,
+    "solver_step_count": 0,
+    "locomotion_outcome_exposure_count": 0,
+    "physics_state_modified": false
+  },
+  "successor_policy": {
+    "repeat_failed_qualification": false,
+    "new_clean_pushed_source_required": true,
+    "new_official_zero_world_qualification_required": true,
+    "new_stage_freeze_required": true,
+    "new_execution_authority_required": true,
+    "repair_scope": "Add explicit Boolean types to the three parser-rejected local expressions and require the real Godot source entrypoint to compile and complete during development zero-world validation.",
+    "controller_changed": false,
+    "fixture_changed": false,
+    "challenge_changed": false,
+    "impulse_changed": false,
+    "threshold_changed": false,
+    "population_changed": false,
+    "physical_canary_added": false
+  },
+  "claim_boundary": {
+    "bounded_upright_push_recovery_claimed": false,
+    "locomotion_negative_claimed": false,
+    "external_push_recovery_claimed": false,
+    "fall_recovery_claimed": false,
+    "prone_to_standing_claimed": false,
+    "force_aware_recovery_claimed": false,
+    "other_engine_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

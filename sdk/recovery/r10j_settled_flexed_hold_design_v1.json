@@ -1,0 +1,144 @@
+{
+  "schema_version": "sporespore_r10j_settled_flexed_hold_design_v1",
+  "design_id": "r10j_settled_flexed_hold_v1",
+  "status": "selected_not_implemented_zero_world_design",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_successor_design",
+    "question_class": "development"
+  },
+  "authored_parent_commit": "e166b5c5",
+  "release_gate_id": "QSDK-R10",
+  "sdk1_milestone_id": "SDK1-M07",
+  "question": "Can the no-kick role, after the R10I flexed ramp reaches its geometry, settle to 30 consecutive measured-ready samples under a floor-referenced compliant hold, then start fresh V50 and complete the unchanged finite walking task?",
+  "bound_evidence": {
+    "r10i_pair_closure": {
+      "path": "sdk/recovery/r10i_flexed_entry_pair_closure_v1.json",
+      "sha256": "sha256:76363b44a99afe64a85e8588f2a3bbaca4892e8b6808f06f72482156945ccf7e"
+    },
+    "attempt_id": "0a7a1d1d17d44132bdfa150260d5a8b0",
+    "no_kick_observations": {
+      "ramp_commands": 163,
+      "final_joint_targets_rad": {
+        "hip": -0.3244993167066847,
+        "knee": 0.6800676828213142
+      },
+      "ready_samples": 5,
+      "ready_indices": [
+        73,
+        74,
+        187,
+        188,
+        196
+      ],
+      "post_ramp_com_speed_m_s": {
+        "min": 0.004,
+        "max": 0.162,
+        "mean": 0.075,
+        "limit": 0.03
+      },
+      "post_ramp_single_foot_non_bearing_samples": 32,
+      "post_ramp_torso_x_span_m": 0.0104,
+      "max_measured_joint_speed_rad_s": 1.6
+    },
+    "kicked_role": "positive; identical finite measurement to the R10H kicked child"
+  },
+  "mechanism_analysis": {
+    "fixed_joint_hold": "The R10I joint-pose entry holds eight fixed joint targets under the shared 8/s gain, 0.65 damping law. It has no floor or body reference, so a four-legged stance whose feet are not coplanar rocks between diagonal supports; the observed alternating single-foot bearing losses, 10 mm torso oscillation and 1.6 rad/s joint spikes are consistent with that and do not decay by command 240.",
+    "v50_anchored_zero_amplitude_hold": "recovery_anchored_body_pose::apply at gait_amplitude 0 keeps the body reference at its measured origin, anchors each foot target on the floor plane under its measured capsule endpoint, re-solves per-leg IK against the measured body pose every step, slews joint targets, and uses the same gain and damping. This law met the identical settled criteria for 30 consecutive samples in every V50 stop observed, including both kicked children.",
+    "memory_timing_constraint": "The anchored law's body-height blend and V50's startup reference-velocity scale are both keyed to the memory's creation time over 72/120 s. A zero-amplitude prelude inside the walking memory would exhaust both windows before walking begins and silently remove V50's startup easing. The hold must therefore be its own finalized V50 session, followed by fresh V50 walking memory exactly as today."
+  },
+  "selected_mechanism": "v50_anchored_zero_amplitude_hold_session",
+  "rejected_alternative": {
+    "id": "compliant_joint_pose_hold",
+    "reason": "Requires a Rust change and new DLL with unproved effect on four-foot rocking; the selected mechanism needs no core or DLL change and reuses a hold that has already met the criteria in this physics."
+  },
+  "route": [
+    "common_v6_setup_and_30_command_bw5r_b_prefix_unchanged",
+    "r10i_joint_pose_ramp_to_flexed_targets_unchanged",
+    "hold_gate_four_native_supports_and_native_reachability_only",
+    "zero_amplitude_v50_hold_session_owned_by_stance",
+    "30_consecutive_measured_ready_samples_under_hold",
+    "finalize_hold_session",
+    "fresh_v50_walking_cycle_unchanged",
+    "120_command_settled_stop_unchanged"
+  ],
+  "budgets": {
+    "ramp_commands_max": 240,
+    "hold_commands_max": 240,
+    "declared_separately": true,
+    "note": "Distinct contract; the R10I 240-command single entry bound is not reinterpreted."
+  },
+  "readiness_gate_change": "The dwell entry requires four native supports and the native core's own reachability acceptance of the first zero-amplitude V50 request; settle criteria are evaluated during the hold, not before it. The unchanged 30-sample measured-ready dwell still gates fresh V50 walking memory.",
+  "implementation_surface": [
+    "development_recovery_candidate_worker_v1.gd: new hold phase and session between the entry phase and matched continuation",
+    "recovery_stance_entry_route_v1.gd or a distinct r10j route: phase, segment alias, owner, state fields and 240-command hold budget",
+    "development_recovery_walking_policy_v1.gd: hold session binding to the V50 startup policy at zero amplitude with its own segment alias",
+    "cold readers: replay every hold command and readiness sample; bind arm-level handoffs for two V50 sessions",
+    "shared tests: enumerate the R10J route wherever R10G, R10H and R10I are enumerated (candidate profile, schedule, walking frame, reader fixtures)"
+  ],
+  "known_shared_enumeration_sites": [
+    "tests/test_development_recovery_candidate_profile.py",
+    "tests/test_development_recovery_candidate_schedule.gd",
+    "tests/test_development_recovery_walking_frame.py",
+    "tests/test_development_recovery_candidate_replay.py",
+    "tests/test_development_passive_entry_replay_fixture.gd",
+    "sdk/adapters/godot/gdscript/qsdk_r10f_walking_segment_evaluator_v2.gd",
+    "sdk/adapters/godot/gdscript/development_recovery_cycle_stop_v1.gd",
+    "sdk/run_development_recovery_smoke.ps1"
+  ],
+  "zero_world_controls_required": [
+    "actual worker capture through native session transport for the hold session",
+    "hold finalization exactly once and refusal of a second close",
+    "corrupted memory, clock, motor and session identity refusals",
+    "cold replay of the complete no-kick timeline including both V50 sessions",
+    "complete safety gate before one fresh seed-40200 pair"
+  ],
+  "claim_boundary": {
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "held_out_worlds_opened": 0,
+    "new_world_count": 0,
+    "new_solver_step_count": 0,
+    "sdk1_score": "14/20"
+  },
+  "zero_world_hold_audit": {
+    "method": "The actual R10I DLL (ss_balanced_wave_policy_step_json, request schema v3) was driven from Python with the retained no-kick final state (attempt 0a7a1d1d, readiness row 239) re-based to semantic step 1, the V50 startup policy, its canonical initial memory, gait amplitude 0, zero planar velocity, a task frame built from the measured torso basis with the same axis rule the neutral start uses, and the retained floor reference and measured body frame rebound to each step. The state was held constant for 30 steps; no world, no solver step.",
+    "results": {
+      "accepted_from_step": 1,
+      "safe_no_actuation_steps": 0,
+      "initial_target_error_rad": 0.6921,
+      "initial_commanded_speed_rad_s": 3.5,
+      "steps_until_target_error_below_0_05_rad": 30,
+      "step_30_joint_goals_rad": [
+        -0.335,
+        0.7073,
+        -0.3337,
+        0.7073,
+        -0.3301,
+        0.7072,
+        -0.3216,
+        0.7066
+      ],
+      "step_30_target_fk_error_m": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "step_30_goal_bottom_in_measured_pose_m": [
+        0.0018,
+        -0.0007,
+        0.0007,
+        -0.0018
+      ],
+      "proposed_torso_height_m": 0.3683,
+      "reference_velocity_mode": "bounded_independent_pose_startup_ramped_reference_velocity_v1"
+    },
+    "identity_frame_refusal": "With the readiness projection's identity task frame the core returned FRAME_INVALID; with the torso-derived frame but unbound measured body frame it returned FRAME_INVALID:measured_support_transfer_body_frame_binding. Both are the core's own guards working as intended and define what the hold session start must supply.",
+    "finding": "The zero-amplitude V50 hold accepts the flexed end state and converges to goals within 0.03 rad of the R10I ramp targets with feet solved onto the floor plane within 2 mm. V50's canonical initial support memory targets neutral joints, so the first roughly 24 hold commands slew from straight-leg targets back to the flexed goals at up to the 3.5 rad/s controller cap. This transient is bounded, is the same start every V50 session has, and is declared as a risk to be measured in the pair, not hidden.",
+    "decision": "Proceed with the zero-amplitude V50 hold session. Keep the R10I ramp. Do not seed or alter V50 memory."
+  }
+}

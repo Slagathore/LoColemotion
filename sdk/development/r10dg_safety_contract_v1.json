@@ -1,0 +1,214 @@
+{
+  "schema_version": "sporespore_r10dg_safety_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "complete_affected_path_development_gate",
+    "question_class": "development"
+  },
+  "complete_applicable_coverage": true,
+  "python_stages": [
+    {
+      "id": "r10dg_authority",
+      "pattern": "test_r10dg_authority.py",
+      "tests": 6,
+      "candidate_bound": true,
+      "timeout_seconds": 180
+    },
+    {
+      "id": "shared_context_environment",
+      "pattern": "test_r10dg_context_environment.py",
+      "tests": 5,
+      "candidate_bound": true,
+      "timeout_seconds": 900
+    },
+    {
+      "id": "shared_enclosing_retention",
+      "pattern": "test_qsdk_r10f_l15_collection_enclosing_retention.py",
+      "tests": 7,
+      "candidate_bound": false,
+      "timeout_seconds": 180
+    },
+    {
+      "id": "exact_runtime_binding",
+      "pattern": "test_qsdk_r10f_l14_runtime_binding.py",
+      "tests": 11,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "host_runtime_successor",
+      "pattern": "test_development_host_runtime_successor.py",
+      "tests": 3,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "shared_interface_definitions",
+      "pattern": "test_development_shared_interfaces.py",
+      "tests": 4,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "exact_publication",
+      "pattern": "test_exact_json_transport.py",
+      "tests": 5,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_callers",
+      "pattern": "test_development_r10t_publication_callers.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_late_catch",
+      "pattern": "test_development_r10t_publication_late_catch.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_duplicate",
+      "pattern": "test_development_r10t_publication_duplicate.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_failure_sources",
+      "pattern": "test_development_r10t_publication_failure_sources.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_forged_retention",
+      "pattern": "test_development_r10t_publication_forged_retention.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_terminal_modes",
+      "pattern": "test_development_r10t_publication_terminal_modes.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_terminal_consumer",
+      "pattern": "test_development_r10t_publication_terminal_consumer.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10t_publication_single_output",
+      "pattern": "test_development_r10t_publication_single_output.py",
+      "tests": 1,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "owned_process_relationship",
+      "pattern": "test_r10dg_native_process_observation.py",
+      "tests": 13,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "godot_rust_owner_contract",
+      "pattern": "test_qsdk_r10f_l15_canonical_ownership.py",
+      "tests": 2,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "smoke_native_safety",
+      "pattern": "test_development_r10v_native_safety.py",
+      "tests": 3,
+      "candidate_bound": false,
+      "timeout_seconds": 420
+    },
+    {
+      "id": "smoke_reader_controls",
+      "pattern": "test_development_recovery_smoke_reader.py",
+      "tests": 3,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "step_cost_profile_controls",
+      "pattern": "test_development_step_cost_profile.py",
+      "tests": 4,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "context_cache_exact_inputs",
+      "pattern": "test_development_exact_context_cache.py",
+      "tests": 3,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "context_cache_integration",
+      "pattern": "test_development_context_cache_integration.py",
+      "tests": 5,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    }
+  ],
+  "required_stage_ids": [
+    "r10dg_authority",
+    "shared_context_environment",
+    "shared_enclosing_retention",
+    "exact_runtime_binding",
+    "host_runtime_successor",
+    "shared_interface_definitions",
+    "exact_publication",
+    "r10t_publication_callers",
+    "r10t_publication_late_catch",
+    "r10t_publication_duplicate",
+    "r10t_publication_failure_sources",
+    "r10t_publication_forged_retention",
+    "r10t_publication_terminal_modes",
+    "r10t_publication_terminal_consumer",
+    "r10t_publication_single_output",
+    "owned_process_relationship",
+    "godot_rust_owner_contract",
+    "smoke_native_safety",
+    "smoke_reader_controls",
+    "step_cost_profile_controls",
+    "context_cache_exact_inputs",
+    "context_cache_integration",
+    "finite_worker",
+    "finite_session",
+    "native_world_guard",
+    "early_worker_stop",
+    "segment_reader_controls",
+    "complete_report_and_refusals",
+    "actual_pre_world_handoff",
+    "crossed_pre_world_context"
+  ],
+  "coverage": {
+    "launch_ownership": "r10dg_authority plus actual Godot helper and native handle observer; real pre-world initializer; original context sender controls explicitly select the production R10X native observer; legacy CIM path excluded from this launcher",
+    "stepping_and_terminal": "finite worker, original supervisor early stop, finite session, complete report and both native entry refusals",
+    "serialization_cleanup_publication": "existing shared publication controls plus selected complete producer and cold reader",
+    "source_and_commands": "actual selected DLL, uninserted motors, source/energy/epoch/application reader controls, full contact frame report",
+    "unchanged_setup_path": "original shared startup/no-actuation checks; complete selected-context initializer; original compiled supervisor retained"
+  },
+  "excluded": [
+    "post-recovery walking and hold",
+    "paired comparison",
+    "official qualification and acceptance"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "zero_world_host_timing": "The successor context test allows 120 seconds per PowerShell invocation and 900 seconds for five tests. An isolated unchanged assertion test took 49.954 seconds while a separate eight-worker sweep loaded the host. Physical and reader limits remain 2400 and 1200 seconds; no solver schedule or evaluator changes. The distinct native-observer adapter allows 180 seconds only for the 32-snapshot stress test after its original 60-second timeout; all 13 assertions remain inherited unchanged. Its enclosing stage allows 600 seconds.",
+  "dependency_scope": "Archived script, test, native fixture and runtime/profile contracts, project.godot and extension descriptors; selected native source/runtime hashes independently verified. Post-exit closures and prose are consumers, not mutable launch inputs."
+}

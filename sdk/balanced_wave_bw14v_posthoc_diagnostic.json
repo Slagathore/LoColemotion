@@ -1,0 +1,131 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw14v_posthoc_diagnostic_v1",
+  "status": "complete_outcome_exposed_diagnostic_only",
+  "gate_id": "BW14V-POSTHOC",
+  "source_family": {
+    "campaign_id": "BW14V-MORPHOLOGY-DEVELOPMENT",
+    "source_commit": "b519fe094196d235a9a09c8c3a5637d2553e2bc2",
+    "control_report": {
+      "candidate_id": "BW14V-A",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw14v-morphology-development-b519fe0\\BW14V-A\\report.json",
+      "sha256": "29166d1b2f28b53942a2bbd6ff03fe52077804ffc9e960f95f405d30065d33b4"
+    },
+    "treatment_report": {
+      "candidate_id": "BW14V-B",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw14v-morphology-development-b519fe0\\BW14V-B\\report.json",
+      "sha256": "438593b539f6e31a12b5bd4760b41e9c5a8a5a71d0d99e8c2ff8f3073562e25a"
+    },
+    "matched_cell_count": 36,
+    "control_walking_count": 33,
+    "treatment_walking_count": 0
+  },
+  "matched_directional_counts": {
+    "treatment_reached_declared_correction_cap": 36,
+    "treatment_reached_unit_normalized_error": 36,
+    "treatment_evidence_forward_less_than_control": 36,
+    "treatment_evidence_forward_negative": 18,
+    "treatment_final_forward_negative": 19,
+    "treatment_peak_tilt_greater_than_control": 36,
+    "treatment_minimum_torso_height_lower_than_control": 36,
+    "treatment_absolute_lateral_displacement_greater_than_control": 35,
+    "treatment_any_release_timeout": 31,
+    "treatment_correction_receipt_count": 114407
+  },
+  "paired_metrics": {
+    "evidence_forward_m": {
+      "control_mean": 0.9046730299790701,
+      "control_median": 0.9017152190208435,
+      "treatment_mean": 0.0497728879046109,
+      "treatment_median": -0.039899589493870735,
+      "treatment_minus_control_mean": -0.8549001420744591,
+      "treatment_minus_control_median": -0.897412272170186
+    },
+    "final_forward_m": {
+      "control_mean": 1.0526103989945517,
+      "control_median": 1.041811227798462,
+      "treatment_mean": 0.049174391379993826,
+      "treatment_median": -0.06060093594714999,
+      "treatment_minus_control_mean": -1.0034360076145579,
+      "treatment_minus_control_median": -1.0172955114394426
+    },
+    "absolute_lateral_m": {
+      "control_mean": 0.034604824400351696,
+      "control_median": 0.028568895533680916,
+      "treatment_mean": 0.21089163407062492,
+      "treatment_median": 0.13839274644851685,
+      "treatment_minus_control_mean": 0.17628680967027321,
+      "treatment_minus_control_median": 0.11310928966850042
+    },
+    "minimum_torso_height_m": {
+      "control_mean": 0.4285871378249592,
+      "control_median": 0.4283493012189865,
+      "treatment_mean": 0.23099274074451792,
+      "treatment_median": 0.2462260127067566,
+      "treatment_minus_control_mean": -0.19759439708044133,
+      "treatment_minus_control_median": -0.18367920070886612
+    },
+    "maximum_tilt_rad": {
+      "control_mean": 0.10606157931443966,
+      "control_median": 0.10831677260946246,
+      "treatment_mean": 1.6825574005814843,
+      "treatment_median": 1.8579176171661493,
+      "treatment_minus_control_mean": 1.5764958212670452,
+      "treatment_minus_control_median": 1.7380398692969083
+    },
+    "release_timeouts": {
+      "control_mean": 0.0,
+      "control_median": 0.0,
+      "treatment_mean": 5.388888888888889,
+      "treatment_median": 5.5,
+      "treatment_minus_control_mean": 5.388888888888889,
+      "treatment_minus_control_median": 5.5
+    }
+  },
+  "control_counterexamples": [
+    {
+      "morphology_id": "qsdk_r05b_generated_s182",
+      "generator_index": 182,
+      "campaign_seed": 21602,
+      "failed_gate": "every_limb_two_contact_cycles"
+    },
+    {
+      "morphology_id": "qsdk_r05b_generated_s190",
+      "generator_index": 190,
+      "campaign_seed": 21601,
+      "failed_gate": "bounded_lateral_drift"
+    },
+    {
+      "morphology_id": "qsdk_r05b_generated_s191",
+      "generator_index": 191,
+      "campaign_seed": 21601,
+      "failed_gate": "every_limb_forward_relocation"
+    }
+  ],
+  "diagnostic_interpretation": {
+    "confirmed": [
+      "The BW14V-B mechanism executed and saturated in every treatment cell.",
+      "The full 0.30-rad desired-minus-measured correction degraded forward motion and stability in every matched cell.",
+      "The negative result is not explained by adapter routing, missing mechanism execution, or report-integrity failure."
+    ],
+    "not_identified_by_this_family": [
+      "Whether the dominant defect is correction sign, correction magnitude, cycle-phase envelope, or an interaction among them.",
+      "Whether any forward-velocity foot-placement successor improves an independent morphology population."
+    ],
+    "successor_constraints": [
+      "Use a distinct source, policy, and preregistration identity.",
+      "Use only global branch-free sign and gain factors before considering a separately identified phase experiment.",
+      "Do not branch on morphology, material, seed, failure identity, or observed outcome.",
+      "Do not open R05C or the unbiased friction reservation for development."
+    ]
+  },
+  "claim_boundary": {
+    "posthoc_development_diagnostic": true,
+    "candidate_selection_authority": false,
+    "walking_acceptance": false,
+    "balance_improvement": false,
+    "independent_morphology_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "physical_acceptance_authority": false
+  }
+}

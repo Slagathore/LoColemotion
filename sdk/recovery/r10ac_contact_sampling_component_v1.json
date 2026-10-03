@@ -1,0 +1,242 @@
+{
+  "schema_version": "sporespore_r10ac_contact_sampling_component_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "frozen_source_and_algebraic_contact_sampling_diagnosis",
+    "question_class": "development"
+  },
+  "observed": {
+    "ok": true,
+    "frozen_source": {
+      "upstream_commit": "5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88",
+      "diff_raw_sha256": "sha256:4fa2410d302868e0a9e5401d3b469eaff0a8ad5709965d410d2230370783f96a",
+      "diff_byte_length": 65654,
+      "engine": {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r24d157-godot-jolt-rotation-integration-energy-v6/development-cold-build-ed4ec00a/godot.windows.editor.dev.x86_64.exe",
+        "byte_length": 188855808,
+        "raw_sha256": "sha256:1b365fe5a054e2614e2c063273d6e686593eafac81836475385df14b65177e4b"
+      }
+    },
+    "source_bindings": [
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10ac_contact_sampling_component.py",
+        "byte_length": 10343,
+        "raw_sha256": "sha256:87a6215f91591f30388b8eac0e56f59296b5ef105b909ed986575136705957bb"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r24d157_godot_jolt_rotation_integration_energy_contract_v1.json",
+        "byte_length": 15990,
+        "raw_sha256": "sha256:8dba4e9671345d37cda816ea1207326d227e6880e939ec8030a5f771706bc577"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ac_support_loss_component_v1.json",
+        "byte_length": 11410,
+        "raw_sha256": "sha256:254ef8b9cea51e1827a78cb17848a0bb93eac7549268d878c26f0f4ae5368b46"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/adapters/godot/gdscript/recovery_native_world_v1.gd",
+        "byte_length": 607900,
+        "raw_sha256": "sha256:9fe5e9716a93f296aac3ef917b78fe2a9da61562a5ff67dc707ac1725f8943c5"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/scripts/lab/mechanics/semantic_contact_rigid_body.gd",
+        "byte_length": 3812,
+        "raw_sha256": "sha256:6d14fb70bef2699dc4e9d25d7eafa7fa95432b532774d6583b5bec21f7918297"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10ac_support_loss_diagnosis.py",
+        "byte_length": 8364,
+        "raw_sha256": "sha256:75bded552e83bef431a56481792ed75bfe5a626f2c419f735090a4e79d0ea39a"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp",
+        "byte_length": 26515,
+        "raw_sha256": "sha256:4ab2c4124cc6e187ca236e719d0af7ebff90b18ec64e6652233f398b1bebc9ab"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/spaces/jolt_space_3d.cpp",
+        "byte_length": 26952,
+        "raw_sha256": "sha256:687ea0a1771056c2851caff77b5ab89c4a61b1ccb5d87e489e1887a765027769"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/objects/jolt_body_3d.cpp",
+        "byte_length": 38707,
+        "raw_sha256": "sha256:36842eb8765e1a4abe9eb2fbb20d85ab14b653c7333bd043beb2c6cab5392408"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/objects/jolt_physics_direct_body_state_3d.cpp",
+        "byte_length": 10150,
+        "raw_sha256": "sha256:29c65a79724cdc8820654c534d7591a199e41e4a8a385ab4c94295e1654bf892"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+        "byte_length": 144257,
+        "raw_sha256": "sha256:66c59b39293c2c7a4f9cf156622f87573242a1a3ae18b9794d46c3d3ef4ef431"
+      },
+      {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/thirdparty/jolt_physics/Jolt/Physics/Constraints/ContactConstraintManager.cpp",
+        "byte_length": 74153,
+        "raw_sha256": "sha256:1e9ddacbca1e4b52263aaef52f5b44afd575b1aa3dcdf0ae03cb999c216dea79"
+      }
+    ],
+    "source_trace": {
+      "discrete_contact_preferred": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp",
+        "first_line": 199,
+        "last_line": 202,
+        "text": "\tif (unlikely(!manifold.contacts1.is_empty())) {\n\t\t// CCD collisions can result in two contact callbacks for the same shape pair, one in the earlier discrete stage and one in the later CCD stage.\n\t\t// We want the manifolds from the discrete stage, as the bodies still have their original velocities at that point, so we early-out if we've already stored something.\n\t\treturn false;"
+      },
+      "world_point_at_detection": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp",
+        "first_line": 218,
+        "last_line": 233,
+        "text": "\t\tconst JPH::RVec3 world_point1 = p_manifold.mBaseOffset + relative_point1;\n\t\tconst JPH::RVec3 world_point2 = p_manifold.mBaseOffset + relative_point2;\n\n\t\tconst JPH::Vec3 velocity1 = p_jolt_body1.GetPointVelocity(world_point1);\n\t\tconst JPH::Vec3 velocity2 = p_jolt_body2.GetPointVelocity(world_point2);\n\n\t\tconst JPH::CollisionEstimationResult::Impulse &impulse = collision.mImpulses[i];\n\n\t\tconst JPH::Vec3 contact_impulse = p_manifold.mWorldSpaceNormal * impulse.mContactImpulse;\n\t\tconst JPH::Vec3 friction_impulse1 = collision.mTangent1 * impulse.mFrictionImpulse1;\n\t\tconst JPH::Vec3 friction_impulse2 = collision.mTangent2 * impulse.mFrictionImpulse2;\n\t\tconst JPH::Vec3 combined_impulse = contact_impulse + friction_impulse1 + friction_impulse2;\n\n\t\tContact contact1;\n\t\tcontact1.point_self = to_godot(world_point1);\n\t\tcontact1.point_other = to_godot(world_point2);"
+      },
+      "solved_impulses_only_replaced": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp",
+        "first_line": 611,
+        "last_line": 616,
+        "text": "\t\t\tconst Vector3 combined_impulse = to_godot(\n\t\t\t\t\tnormal * impulse.mNormalImpulse +\n\t\t\t\t\ttangent1 * impulse.mFrictionImpulse1 +\n\t\t\t\t\ttangent2 * impulse.mFrictionImpulse2);\n\t\t\tmanifold.contacts1[i].impulse = -combined_impulse;\n\t\t\tmanifold.contacts2[i].impulse = combined_impulse;"
+      },
+      "unchanged_points_flushed": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp",
+        "first_line": 471,
+        "last_line": 472,
+        "text": "\t\tfor (const Contact &contact : manifold.contacts1) {\n\t\t\tbody1->add_contact(body2, manifold.depth, shape_index1, shape_index2, contact.normal, contact.point_self, contact.point_other, contact.velocity_self, contact.velocity_other, contact.impulse);"
+      },
+      "body_stores_world_point": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/objects/jolt_body_3d.cpp",
+        "first_line": 861,
+        "last_line": 863,
+        "text": "\t\tcontact->normal = p_normal;\n\t\tcontact->position = p_position;\n\t\tcontact->collider_position = p_collider_position;"
+      },
+      "direct_state_returns_stored_point": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/objects/jolt_physics_direct_body_state_3d.cpp",
+        "first_line": 185,
+        "last_line": 187,
+        "text": "Vector3 JoltPhysicsDirectBodyState3D::get_contact_local_position(int p_contact_idx) const {\n\tERR_FAIL_INDEX_V(p_contact_idx, (int)body->get_contact_count(), Vector3());\n\treturn body->get_contact(p_contact_idx).position;"
+      },
+      "direct_state_returns_current_transform": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/objects/jolt_physics_direct_body_state_3d.cpp",
+        "first_line": 97,
+        "last_line": 98,
+        "text": "Transform3D JoltPhysicsDirectBodyState3D::get_transform() const {\n\treturn body->get_transform_scaled();"
+      },
+      "update_before_flush": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/modules/jolt_physics/spaces/jolt_space_3d.cpp",
+        "first_line": 233,
+        "last_line": 260,
+        "text": "\tconst JPH::EPhysicsUpdateError update_error = physics_system->Update(p_step, 1, temp_allocator, job_system);\n\n\tif ((update_error & JPH::EPhysicsUpdateError::ManifoldCacheFull) != JPH::EPhysicsUpdateError::None) {\n\t\tWARN_PRINT_ONCE(vformat(\"Jolt Physics manifold cache exceeded capacity and contacts were ignored. \"\n\t\t\t\t\t\t\t\t\"Consider increasing maximum number of contact constraints in project settings. \"\n\t\t\t\t\t\t\t\t\"Maximum number of contact constraints is currently set to %d.\",\n\t\t\t\tJoltProjectSettings::max_contact_constraints));\n\t}\n\n\tif ((update_error & JPH::EPhysicsUpdateError::BodyPairCacheFull) != JPH::EPhysicsUpdateError::None) {\n\t\tWARN_PRINT_ONCE(vformat(\"Jolt Physics body pair cache exceeded capacity and contacts were ignored. \"\n\t\t\t\t\t\t\t\t\"Consider increasing maximum number of body pairs in project settings. \"\n\t\t\t\t\t\t\t\t\"Maximum number of body pairs is currently set to %d.\",\n\t\t\t\tJoltProjectSettings::max_body_pairs));\n\t}\n\n\tif ((update_error & JPH::EPhysicsUpdateError::ContactConstraintsFull) != JPH::EPhysicsUpdateError::None) {\n\t\tWARN_PRINT_ONCE(vformat(\"Jolt Physics contact constraint buffer exceeded capacity and contacts were ignored. \"\n\t\t\t\t\t\t\t\t\"Consider increasing maximum number of contact constraints in project settings. \"\n\t\t\t\t\t\t\t\t\"Maximum number of contact constraints is currently set to %d.\",\n\t\t\t\tJoltProjectSettings::max_contact_constraints));\n\t}\n\n\t_capture_joint_telemetry(p_step);\n\t_capture_contact_telemetry();\n\t_capture_solver_energy_exchange_telemetry();\n\n\t_post_step(p_step);"
+      },
+      "collision_before_integration": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+        "first_line": 688,
+        "last_line": 703,
+        "text": "\t\t\t// Finalize islands is a dependency on find collisions so it can go last\n\t\t\tstep.mFinalizeIslands.RemoveDependency();\n\n\t\t\t// This job will prepare the position update of all active bodies\n\t\t\tstep.mPreIntegrateVelocity = inJobSystem->CreateJob(\"PreIntegrateVelocity\", cColorPreIntegrateVelocity, [&context, &step]()\n\t\t\t\t{\n\t\t\t\t\tcontext.mPhysicsSystem->JobPreIntegrateVelocity(&context, &step);\n\n\t\t\t\t\tJobHandle::sRemoveDependencies(step.mIntegrateVelocity);\n\t\t\t\t}, 2 + max_concurrency); // depends on: broadphase update finalize, solve velocity constraints, finish building jobs.\n\n\t\t\t// Unblock previous jobs\n\t\t\tstep.mUpdateBroadphaseFinalize.RemoveDependency();\n\t\t\tJobHandle::sRemoveDependencies(step.mSolveVelocityConstraints);\n\n\t\t\t// This job will update the positions of all active bodies"
+      },
+      "position_solve_after_integration": {
+        "path": "C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r136/thirdparty/jolt_physics/Jolt/Physics/PhysicsSystem.cpp",
+        "first_line": 727,
+        "last_line": 748,
+        "text": "\t\t\t// This job will update the positions and velocities for all bodies that need continuous collision detection\n\t\t\tstep.mResolveCCDContacts = inJobSystem->CreateJob(\"ResolveCCDContacts\", cColorResolveCCDContacts, [&context, &step]()\n\t\t\t\t{\n\t\t\t\t\tcontext.mPhysicsSystem->JobResolveCCDContacts(&context, &step);\n\n\t\t\t\t\tJobHandle::sRemoveDependencies(step.mSolvePositionConstraints);\n\t\t\t\t}, 2); // depends on: integrate velocities, detect ccd contacts (added dynamically), finish building jobs.\n\n\t\t\t// Unblock previous job\n\t\t\tstep.mPostIntegrateVelocity.RemoveDependency();\n\n\t\t\t// Fixes up drift in positions and updates the broadphase with new body positions\n\t\t\tstep.mSolvePositionConstraints.resize(max_concurrency);\n\t\t\tfor (int i = 0; i < max_concurrency; ++i)\n\t\t\t\tstep.mSolvePositionConstraints[i] = inJobSystem->CreateJob(\"SolvePositionConstraints\", cColorSolvePositionConstraints, [&context, &step]()\n\t\t\t\t\t{\n\t\t\t\t\t\tcontext.mPhysicsSystem->JobSolvePositionConstraints(&context, &step);\n\n\t\t\t\t\t\t// Kick the next step\n\t\t\t\t\t\tif (step.mSoftBodyPrepare.IsValid())\n\t\t\t\t\t\t\tstep.mSoftBodyPrepare.RemoveDependency();\n\t\t\t\t\t}, 3); // depends on: resolve ccd contacts, body set island index, finish building jobs."
+      },
+      "host_uses_callback_transform": {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/adapters/godot/gdscript/recovery_native_world_v1.gd",
+        "first_line": 14195,
+        "last_line": 14204,
+        "text": "\t\t\tvar local_point := body_transform.affine_inverse() * point_world\n\t\t\tvar engine_contact_id := String(sample.get(\"engine_contact_id\", \"\"))\n\t\t\tif engine_contact_id.is_empty():\n\t\t\t\treturn _failure(\"QSDK_R24D57_WORLD_CONTACT_ID_MISSING:%s\" % body_id)\n\t\t\tvar foot_site_value: Variant = model[\"blueprint\"][\"contact_by_body_id\"].get(body_id)\n\t\t\tvar classified_as_foot := false\n\t\t\tif foot_site_value is Dictionary:\n\t\t\t\tvar site: Dictionary = foot_site_value\n\t\t\t\tvar site_center := _vec3(site[\"local_center_m\"])\n\t\t\t\tclassified_as_foot = local_point.y <= site_center.y + CONTACT_CLASSIFICATION_TOLERANCE_M"
+      },
+      "scalar_joint_angle_not_full_pose": {
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/adapters/godot/gdscript/recovery_native_world_v1.gd",
+        "first_line": 14449,
+        "last_line": 14456,
+        "text": "static func _signed_relative_angle_z(parent_basis: Basis, child_basis: Basis) -> float:\n\tvar relative := (parent_basis.inverse() * child_basis).orthonormalized()\n\treturn _signed_basis_angle_z(relative)\n\n\nstatic func _signed_basis_angle_z(basis: Basis) -> float:\n\tvar rotation := basis.get_rotation_quaternion().normalized()\n\tvar angle := rotation.get_angle()"
+      }
+    },
+    "algebraic_coordinate_checks": {
+      "synthetic_only": true,
+      "cap_center_y_m": -0.1,
+      "unchanged_classification_tolerance_m": 1e-06,
+      "cases": [
+        {
+          "name": "stationary_control",
+          "point_body_local_m": [
+            0.02,
+            -0.1
+          ],
+          "post_translation_y_m": 0.0,
+          "post_rotation_z_rad": 0.0,
+          "collision_frame_foot": true,
+          "later_frame_foot": true,
+          "later_frame_local_y_m": -0.1
+        },
+        {
+          "name": "translation_false_nonfoot",
+          "point_body_local_m": [
+            0.02,
+            -0.1
+          ],
+          "post_translation_y_m": -0.0001,
+          "post_rotation_z_rad": 0.0,
+          "collision_frame_foot": true,
+          "later_frame_foot": false,
+          "later_frame_local_y_m": -0.09990000000000002
+        },
+        {
+          "name": "translation_false_foot",
+          "point_body_local_m": [
+            0.02,
+            -0.09995000000000001
+          ],
+          "post_translation_y_m": 0.0001,
+          "post_rotation_z_rad": 0.0,
+          "collision_frame_foot": false,
+          "later_frame_foot": true,
+          "later_frame_local_y_m": -0.10005
+        },
+        {
+          "name": "rotation_false_nonfoot",
+          "point_body_local_m": [
+            0.02,
+            -0.1
+          ],
+          "post_translation_y_m": 0.0,
+          "post_rotation_z_rad": -0.01,
+          "collision_frame_foot": true,
+          "later_frame_foot": false,
+          "later_frame_local_y_m": -0.0997950033749832
+        }
+      ]
+    },
+    "discrete_contact_world_position_precedes_final_body_transform": true,
+    "same_host_callback_does_not_imply_same_native_sampling_phase": true,
+    "measured_effect_on_consumed_recovery": null,
+    "consumed_results_regraded": false,
+    "controller_changed": false,
+    "threshold_changed": false,
+    "causal_repair_proven": false,
+    "physical_population_declared": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "interpretation": "The reader combines a detection-stage world point with a later body transform. Synthetic rigid transforms can change cap membership in either direction without changing the cap definition. This is a demonstrated source-level coordinate hazard, not measured causality for R10AA or R10AB.",
+  "next_action": "Implement and zero-world qualify an opt-in diagnostic capture of detection-stage body-local contact points and exact body transforms, paired with callback transforms and solved impulses. Keep the existing classification and controller unchanged while measuring the discrepancy in a distinct development population.",
+  "required_capture": [
+    "exact frozen engine and adapter identities",
+    "contact-detection body transform and body-local point for both bodies",
+    "contact world points, subshape pair, within-manifold index and step sequence",
+    "discrete or CCD provenance with missing and duplicate coverage refusals",
+    "callback body transforms for all nine bodies and their existing source hash",
+    "original foot classification plus diagnostic collision-frame classification",
+    "complete fresh bounded tail and independent replay; no old-run regrading"
+  ],
+  "non_goals": [
+    "no widened cap or tolerance",
+    "no controller tuning",
+    "no consumed campaign rerun",
+    "no held-out or acceptance authority"
+  ]
+}

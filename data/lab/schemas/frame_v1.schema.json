@@ -1,0 +1,346 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/frame_v1.schema.json",
+  "title": "SporeSpore immutable L0 sensor frame v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "schema_version",
+    "frame_id",
+    "physics_step_id",
+    "capture_epoch",
+    "physics_time_s",
+    "sample_phase",
+    "experiment_phase",
+    "release_frame_id",
+    "bodies",
+    "contacts",
+    "availability",
+    "finite"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.frame.v1"
+    },
+    "run_id": {
+      "$ref": "#/$defs/stable_id"
+    },
+    "schema_version": {
+      "const": "frame_v1"
+    },
+    "frame_id": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "physics_step_id": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "capture_epoch": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "physics_time_s": {
+      "type": "number",
+      "minimum": 0
+    },
+    "sample_phase": {
+      "enum": [
+        "pre_control",
+        "command_sealed",
+        "pre_integrate",
+        "integrate_callback",
+        "post_step",
+        "derived"
+      ]
+    },
+    "experiment_phase": {
+      "enum": [
+        "CONFIGURE",
+        "SPAWN",
+        "SETTLE_SCAFFOLDED",
+        "RELEASE",
+        "WARMUP",
+        "MEASURE",
+        "COOLDOWN",
+        "TERMINATED"
+      ]
+    },
+    "release_frame_id": {
+      "type": "integer",
+      "minimum": -1
+    },
+    "bodies": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/body"
+      }
+    },
+    "contacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/contact"
+      }
+    },
+    "availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_body_ids",
+        "captured_body_count",
+        "contact_count",
+        "invalid_reasons"
+      ],
+      "properties": {
+        "required_body_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/stable_id"},
+          "uniqueItems": true
+        },
+        "captured_body_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "contact_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "invalid_reasons": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/availability"
+          }
+        }
+      }
+    },
+    "finite": {
+      "type": "boolean"
+    },
+    "whole_body": {
+      "$ref": "#/$defs/whole_body"
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    },
+    "basis": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/vec3"}
+    },
+    "transform": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "origin"],
+      "properties": {
+        "basis": {"$ref": "#/$defs/basis"},
+        "origin": {"$ref": "#/$defs/vec3"}
+      }
+    },
+    "inverse_inertia": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y", "z"],
+      "properties": {
+        "x": {"$ref": "#/$defs/vec3"},
+        "y": {"$ref": "#/$defs/vec3"},
+        "z": {"$ref": "#/$defs/vec3"}
+      }
+    },
+    "body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "physics_step_id",
+        "body_callback_sequence",
+        "capture_epoch",
+        "sample_phase",
+        "body_id",
+        "part_index",
+        "transform",
+        "center_of_mass_world",
+        "linear_velocity",
+        "angular_velocity",
+        "mass_kg",
+        "inverse_inertia_tensor_world",
+        "sleeping",
+        "finite",
+        "step_s",
+        "total_gravity_world",
+        "com_frame_oracle_error_m",
+        "observer_profile_id",
+        "observer_adapter_id"
+      ],
+      "properties": {
+        "physics_step_id": {"type": "integer", "minimum": 0},
+        "body_callback_sequence": {"type": "integer", "minimum": 0},
+        "capture_epoch": {"type": "integer", "minimum": 0},
+        "sample_phase": {
+          "enum": [
+            "pre_control",
+            "command_sealed",
+            "pre_integrate",
+            "integrate_callback",
+            "post_step",
+            "derived"
+          ]
+        },
+        "body_id": {"$ref": "#/$defs/stable_id"},
+        "part_index": {"type": "integer", "minimum": -1},
+        "transform": {"$ref": "#/$defs/transform"},
+        "center_of_mass_world": {"$ref": "#/$defs/vec3"},
+        "linear_velocity": {"$ref": "#/$defs/vec3"},
+        "angular_velocity": {"$ref": "#/$defs/vec3"},
+        "mass_kg": {"type": "number", "exclusiveMinimum": 0},
+        "inverse_inertia_tensor_world": {"$ref": "#/$defs/inverse_inertia"},
+        "sleeping": {"type": "boolean"},
+        "finite": {"type": "boolean"},
+        "step_s": {"type": "number", "exclusiveMinimum": 0},
+        "total_gravity_world": {"$ref": "#/$defs/vec3"},
+        "com_frame_oracle_error_m": {"type": "number", "minimum": 0},
+        "observer_profile_id": {"$ref": "#/$defs/stable_id"},
+        "observer_adapter_id": {"$ref": "#/$defs/stable_id"}
+      }
+    },
+    "contact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contact_key",
+        "physics_step_id",
+        "capture_epoch",
+        "body_callback_sequence",
+        "sample_phase",
+        "body_id",
+        "contact_index",
+        "collider_instance_id",
+        "point_world",
+        "point_body_local",
+        "other_point_world",
+        "normal_world",
+        "normal_available",
+        "normal_frame_source",
+        "normal_quality",
+        "relative_velocity_world",
+        "tangential_velocity_world",
+        "tangential_velocity_available",
+        "impulse_world_ns",
+        "impulse_quality",
+        "finite"
+      ],
+      "properties": {
+        "contact_key": {"$ref": "#/$defs/stable_id"},
+        "physics_step_id": {"type": "integer", "minimum": 0},
+        "capture_epoch": {"type": "integer", "minimum": 0},
+        "body_callback_sequence": {"type": "integer", "minimum": 0},
+        "sample_phase": {
+          "enum": [
+            "pre_control",
+            "command_sealed",
+            "pre_integrate",
+            "integrate_callback",
+            "post_step",
+            "derived"
+          ]
+        },
+        "body_id": {"$ref": "#/$defs/stable_id"},
+        "contact_index": {"type": "integer", "minimum": 0},
+        "collider_instance_id": {"type": "integer"},
+        "point_world": {"$ref": "#/$defs/vec3"},
+        "point_body_local": {"$ref": "#/$defs/vec3"},
+        "other_point_world": {"$ref": "#/$defs/vec3"},
+        "normal_world": {"$ref": "#/$defs/vec3"},
+        "normal_available": {"type": "boolean"},
+        "normal_frame_source": {"type": "string"},
+        "normal_quality": {"type": "string"},
+        "relative_velocity_world": {"$ref": "#/$defs/vec3"},
+        "tangential_velocity_world": {"$ref": "#/$defs/vec3"},
+        "tangential_velocity_available": {"type": "boolean"},
+        "impulse_world_ns": {"$ref": "#/$defs/vec3"},
+        "impulse_quality": {"type": "string"},
+        "finite": {"type": "boolean"}
+      }
+    },
+    "availability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "reason"],
+      "properties": {
+        "status": {
+          "enum": [
+            "measured",
+            "engine_estimate",
+            "derived",
+            "commanded",
+            "unavailable",
+            "invalid"
+          ]
+        },
+        "reason": {
+          "type": ["string", "null"]
+        },
+        "source": {
+          "type": ["string", "null"]
+        }
+      }
+    },
+    "whole_body": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_id",
+        "physics_step_id",
+        "capture_epoch",
+        "body_ids",
+        "total_mass_kg",
+        "center_of_mass_world_m",
+        "linear_momentum_world_n_s",
+        "center_of_mass_velocity_world_m_s",
+        "angular_momentum_about_com_world_n_m_s",
+        "availability",
+        "finite"
+      ],
+      "properties": {
+        "frame_id": {"type": "integer", "minimum": 0},
+        "physics_step_id": {"type": "integer", "minimum": 0},
+        "capture_epoch": {"type": "integer", "minimum": 0},
+        "body_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/stable_id"},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "total_mass_kg": {"type": "number", "exclusiveMinimum": 0},
+        "center_of_mass_world_m": {"$ref": "#/$defs/vec3"},
+        "linear_momentum_world_n_s": {"$ref": "#/$defs/vec3"},
+        "center_of_mass_velocity_world_m_s": {"$ref": "#/$defs/vec3"},
+        "angular_momentum_about_com_world_n_m_s": {
+          "type": ["array", "null"],
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"type": "number"}
+        },
+        "availability": {
+          "type": "object",
+          "additionalProperties": {"$ref": "#/$defs/availability"}
+        },
+        "finite": {"type": "boolean"}
+      }
+    }
+  }
+}

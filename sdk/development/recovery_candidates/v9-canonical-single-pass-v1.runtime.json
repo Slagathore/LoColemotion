@@ -1,0 +1,335 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_runtime_binding_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "development_runtime_artifact_binding",
+    "question_class": "development"
+  },
+  "build_source_parent_commit": "755122369dc4c29a7bf371d2a5d9c18d3f4a3d0d",
+  "build_stages": [
+    {
+      "stage": "core_tests",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-candidate-v9-canonical-single-pass-v1",
+        "-p",
+        "sporespore-locomotion-core",
+        "--lib"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 34.09400000004098
+    },
+    {
+      "stage": "fixtures",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-candidate-v9-canonical-single-pass-v1",
+        "-p",
+        "sporespore-locomotion-core",
+        "--lib",
+        "v9_public_json_buffer_and_exported_native_shaped_fixtures",
+        "--",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.375
+    },
+    {
+      "stage": "adapter",
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--manifest-path",
+        "sdk/Cargo.toml",
+        "--target-dir",
+        "sdk/target/development-candidate-v9-canonical-single-pass-v1",
+        "-p",
+        "sporespore-godot-adapter"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 76.06199999991804
+    }
+  ],
+  "rustc_version": "rustc 1.97.0 (2d8144b78 2026-07-07)\nbinary: rustc\ncommit-hash: 2d8144b7880597b6e6d3dfd63a9a9efae3f533d3\ncommit-date: 2026-07-07\nhost: x86_64-pc-windows-msvc\nrelease: 1.97.0\nLLVM version: 22.1.6",
+  "cargo_version": "cargo 1.97.0 (c980f4866 2026-06-30)",
+  "runtime": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/sporespore_godot_adapter.dll",
+    "byte_length": 10437120,
+    "raw_sha256": "sha256:c90aac72780f0b333b3cf853513b0dcb537c62084360cebbcd25814a941be387"
+  },
+  "local_build_path": "sdk/target/development-candidate-v9-canonical-single-pass-v1/debug/sporespore_godot_adapter.dll",
+  "source_files": [
+    {
+      "path": "sdk/adapters/godot/Cargo.toml",
+      "byte_length": 404,
+      "raw_sha256": "sha256:138d3cb4b8e15c56642bb08991d00ca291e14ac5d6af3b1f004332aef28dd731"
+    },
+    {
+      "path": "sdk/adapters/godot/src/lib.rs",
+      "byte_length": 57646,
+      "raw_sha256": "sha256:f5afadf1730210367c58aae74e97fe3efbcf1efb4db0103eb1fe9429fc699d45"
+    },
+    {
+      "path": "sdk/balanced_wave_selected_policy.json",
+      "byte_length": 4935,
+      "raw_sha256": "sha256:8e111aa9a0b3c7182d4bd7021f6652c50e9d678ff95a6d06d5056e94f7e299b6"
+    },
+    {
+      "path": "sdk/Cargo.lock",
+      "byte_length": 19887,
+      "raw_sha256": "sha256:5256c3872e753693ea18bfb9a97ee47a3cbda56cedde7980f84dd7235d8247db"
+    },
+    {
+      "path": "sdk/Cargo.toml",
+      "byte_length": 83,
+      "raw_sha256": "sha256:bb38b6151b190e2948b679ee5fad813e38f393e4cb8e940e1170203816870cb3"
+    },
+    {
+      "path": "sdk/conformance/golden/candidate35_gq15_v1.json",
+      "byte_length": 6329,
+      "raw_sha256": "sha256:468d6465d50fc160f59bcacb371e8d5b5e44504336072c35639c4e98c43e9f09"
+    },
+    {
+      "path": "sdk/conformance/golden/stability_v2_gdscript_oracle_v1.json",
+      "byte_length": 4591,
+      "raw_sha256": "sha256:63634ed86ee1514a93df56a7ae89936c07d4e2d4fe339eabdf387c73166ba8e8"
+    },
+    {
+      "path": "sdk/core/build.rs",
+      "byte_length": 1893,
+      "raw_sha256": "sha256:8e2d134f5092d4b6266fb147455babb415d378de97fa1959e2abb9d53fdbd08c"
+    },
+    {
+      "path": "sdk/core/Cargo.toml",
+      "byte_length": 602,
+      "raw_sha256": "sha256:695e860ead75e0a5791a88b8a7dc8f21b74fcec89299841951112cce137a15a1"
+    },
+    {
+      "path": "sdk/core/contracts/recovery_interfaces_v1.json",
+      "byte_length": 985,
+      "raw_sha256": "sha256:322dfb08e8c8ccca74aeb9dc8ae85c80b0b490880605d149677b0c366f6ea35d"
+    },
+    {
+      "path": "sdk/core/src/actuator_profile.rs",
+      "byte_length": 24016,
+      "raw_sha256": "sha256:c5a175f0783e0004b4012e803d2d254c3448b2d52b88daeefc23cf746d499795"
+    },
+    {
+      "path": "sdk/core/src/adaptation.rs",
+      "byte_length": 55830,
+      "raw_sha256": "sha256:422f3cc362b04b399884fd2f9f3139cfbf0a1baeff043e17c3344f739166c580"
+    },
+    {
+      "path": "sdk/core/src/canonical.rs",
+      "byte_length": 9197,
+      "raw_sha256": "sha256:83ab1b94d0127b18f45476afc3745b67fe14c7be2917e4edd77a7c38f519e07f"
+    },
+    {
+      "path": "sdk/core/src/canonical_actuation.rs",
+      "byte_length": 53283,
+      "raw_sha256": "sha256:af4fcb7afdf3f74942a322ab1bb6d814b8e78d05825e6c622dc0973a7206bedb"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "byte_length": 92484,
+      "raw_sha256": "sha256:b296804ab597d62d2cb4e1fdc497505fcc89198793437a8f68f2d568a32925b9"
+    },
+    {
+      "path": "sdk/core/src/coverage.rs",
+      "byte_length": 14852,
+      "raw_sha256": "sha256:69e2cc1386601ec5f3982edd937c3cd65bc19a89d07c48c8048e3678f67cb0be"
+    },
+    {
+      "path": "sdk/core/src/ffi.rs",
+      "byte_length": 124307,
+      "raw_sha256": "sha256:5c44f4a78ee16cb7868a42e860c7f3a2d297ece1dc0051409ccd2ece40ad7979"
+    },
+    {
+      "path": "sdk/core/src/lib.rs",
+      "byte_length": 18920,
+      "raw_sha256": "sha256:e635450baeaa3b66554508edd057a444eb6eae52fabcd9fdb8f8d33773e6f35e"
+    },
+    {
+      "path": "sdk/core/src/protocol.rs",
+      "byte_length": 38249,
+      "raw_sha256": "sha256:f62f8be5513bc941a4f3afe45a94a962d85fcd3f9010c42577efcd1cf807cfd0"
+    },
+    {
+      "path": "sdk/core/src/quadruped.rs",
+      "byte_length": 17838,
+      "raw_sha256": "sha256:0ad27c0c2a7658516d71ceb98fa54af42609088c0b211489c7b076367bb1265d"
+    },
+    {
+      "path": "sdk/core/src/recovery/passive_entry/native_epoch.rs",
+      "byte_length": 4718,
+      "raw_sha256": "sha256:738c424454c3d9249b8ba6604437ab337cfb0dde203fa194570aa893edef3035"
+    },
+    {
+      "path": "sdk/core/src/recovery/passive_entry.rs",
+      "byte_length": 15481,
+      "raw_sha256": "sha256:a178c175f571564f12205c91af2ac0279f13c97b387a811396645559bbd8dbb9"
+    },
+    {
+      "path": "sdk/core/src/recovery/tests/passive_entry_tests.rs",
+      "byte_length": 24391,
+      "raw_sha256": "sha256:a22296200a54ac1707255f3ec9647f6d4ee0e0b4399400cf7b1120ef4f5e3ba1"
+    },
+    {
+      "path": "sdk/core/src/recovery.rs",
+      "byte_length": 247157,
+      "raw_sha256": "sha256:0bf910eea03e3d01dc80ab7600f057ebb5a3f5901b155ead1769bad5a77a84d1"
+    },
+    {
+      "path": "sdk/core/src/recovery_energy.rs",
+      "byte_length": 37283,
+      "raw_sha256": "sha256:97e2b1bb56fb14c32a0a5ca6f2fb843a4251295e6e955762bda14c84ec9db2da"
+    },
+    {
+      "path": "sdk/core/src/recovery_energy_v3.rs",
+      "byte_length": 18108,
+      "raw_sha256": "sha256:e8287ba5cf585b505adb20778e67b12c1373d06b88fc152910be7866f2493b4a"
+    },
+    {
+      "path": "sdk/core/src/recovery_morphology.rs",
+      "byte_length": 24992,
+      "raw_sha256": "sha256:9782f1956f381393b4e557dcf12fc283c3d5770af7bc4e000333771c262752e8"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/passive_entry_collection.rs",
+      "byte_length": 3194,
+      "raw_sha256": "sha256:4cc0b85bcc7d2f5f5532dd8dd3efbd904afe01f39145f6707d6e544e95fe3e04"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/coordinated_support_control_tests.rs",
+      "byte_length": 6985,
+      "raw_sha256": "sha256:a2d38f754381b785a74d281d9940dd11d8b548cac5ad8cee6eae5ae1a50cc1b0"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/passive_entry_collection_tests.rs",
+      "byte_length": 7630,
+      "raw_sha256": "sha256:15528e77cb45543c8c20f227a56a25e88e598c9ac4623b135b534aabf1df0dda"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime/tests/rearward_fold_control_tests.rs",
+      "byte_length": 13225,
+      "raw_sha256": "sha256:40fb5e2a4675f4c8fcfed7c68112b79f597767b516cfd014b0d9c84cb877e584"
+    },
+    {
+      "path": "sdk/core/src/recovery_runtime.rs",
+      "byte_length": 237072,
+      "raw_sha256": "sha256:3571e6c56c996c3de23edd001fa97910ffdd443576f82ff70f6679fb14d10ff1"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "byte_length": 146979,
+      "raw_sha256": "sha256:25b413f0502031853d17c156e0b5e3c9ae0312cdc5355ef7637bbbc4fa150282"
+    },
+    {
+      "path": "sdk/core/src/scheduler.rs",
+      "byte_length": 8038,
+      "raw_sha256": "sha256:2bcfddfcafa9221e8852181a5c56ea32624aaf4f8e8cabe37489538b6f9e119d"
+    },
+    {
+      "path": "sdk/core/src/schema.rs",
+      "byte_length": 16861,
+      "raw_sha256": "sha256:63baba3e1ebc2ae9db7c0e7bd4aa788fb609b41d7c77febe2b32155fe8c32a66"
+    },
+    {
+      "path": "sdk/core/src/stability.rs",
+      "byte_length": 225629,
+      "raw_sha256": "sha256:4181580b3a08b6b684a474e8cd3b24605858276cad9a948ba4afaf3a1b678ad1"
+    },
+    {
+      "path": "sdk/development_recovery_entry_initialization_diagnosis_v1.json",
+      "byte_length": 3631,
+      "raw_sha256": "sha256:c4b04809a8124800cb66e7c6eea48059c6b320efc2c1cfb21ed46bf4a2e3a665"
+    },
+    {
+      "path": "sdk/include/sporespore_locomotion.h",
+      "byte_length": 15198,
+      "raw_sha256": "sha256:8010a9442f68b4ec1c617870b06c28d6d8fcfdbdd8e9378297df39e61ae425c8"
+    },
+    {
+      "path": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+      "byte_length": 20125,
+      "raw_sha256": "sha256:9dc6bbbe0b7e003d167b9f29ee7d33e1ae52281f86131e8c7d07646a1f0d8e22"
+    }
+  ],
+  "compiled_fixtures": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/fixtures.stdout.log",
+    "byte_length": 111122,
+    "raw_sha256": "sha256:4671b5dfc74fd947555f0905a2cbdd565a03c32ffe05cf7238d9b725da67e3ed"
+  },
+  "core_test_count": 220,
+  "build_evidence_files": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/adapter.execution.json",
+      "byte_length": 335,
+      "raw_sha256": "sha256:60cc2f3a5f3a5b52165950cc16e6a713575a9bcc49b25cd13d2056dc25dd2c30"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/adapter.stderr.log",
+      "byte_length": 1262,
+      "raw_sha256": "sha256:e4af97810f7259375c1e1442ebb7fcef3c8f8470a069f88c46059e0fb89cedea"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/adapter.stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/core_tests.execution.json",
+      "byte_length": 353,
+      "raw_sha256": "sha256:d3ccd0aaf8efa6c7e3d198380dbe078093611a6da5aa3c159c47636465a812a9"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/core_tests.stderr.log",
+      "byte_length": 939,
+      "raw_sha256": "sha256:58f36e4ee8848fac532a7d542f0da2dd81be7be998b2cd382be6defa8612a7a3"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/core_tests.stdout.log",
+      "byte_length": 21310,
+      "raw_sha256": "sha256:d4beca1b9dd62afb04cc1b6235b174e166675cb9222968f541d70a6c3c5e534d"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/fixtures.execution.json",
+      "byte_length": 436,
+      "raw_sha256": "sha256:1ef50cf848c2818f8b60447dcbb11a598302b52f1df09460005ed00cca1971f3"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/fixtures.stderr.log",
+      "byte_length": 229,
+      "raw_sha256": "sha256:9e923ac74b2cfad752e32d41d79277ea2d5cd4754bce9a6c8031536a537f39e1"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/fixtures.stdout.log",
+      "byte_length": 111122,
+      "raw_sha256": "sha256:4671b5dfc74fd947555f0905a2cbdd565a03c32ffe05cf7238d9b725da67e3ed"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-6c1cb2cb90314239bf52a052aab9cf71/source_snapshot.json",
+      "byte_length": 189233,
+      "raw_sha256": "sha256:24aeaf628f932e4285fc5c68b6869d6920e9bfd2270f08d594039a95e7063acf"
+    }
+  ],
+  "default_godot_extension_changed": false,
+  "old_pinned_adapter_overwritten": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "qualification_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

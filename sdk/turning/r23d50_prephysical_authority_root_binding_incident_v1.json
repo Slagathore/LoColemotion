@@ -1,0 +1,70 @@
+{
+  "schema_version": "sporespore_qsdk_r23d50_prephysical_authority_root_binding_incident_v1",
+  "status": "retained_zero_world_implementation_incident_requires_fresh_clean_push_and_qualification",
+  "observed_utc": "2026-08-13T15:22:48.9500861Z",
+  "campaign_id": "QSDK-R23D50-RAPIER-CAS-PATH-IDENTITY-REPLAY",
+  "gate_id": "QSDK-R23D50",
+  "source_commit": "603f5894472d559c54333498b168b47164e5b4e6",
+  "attempt_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r23d50-20260813T151849Z",
+  "qualification": {
+    "attestation_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r23d50-attestation-603f589\\attestation.json",
+    "attestation_sha256": "sha256:1c76b529ba6b73aa47367108ae382bd5c9850bbb4108ed62bcdadd33206972bf",
+    "executed_gate_count": 17,
+    "world_build_count": 0,
+    "adoption_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r23d50-attestation-603f589\\adoption.json",
+    "adoption_sha256": "sha256:cc8eb9a0c989f4c4c8e7ffd8cdf8f680b3e112ae5104bb34f0eba04eb79c8ce0",
+    "physical_launch_prerequisite_satisfied": true
+  },
+  "failure": {
+    "boundary": "release_worker_production_retention_preflight_before_model",
+    "failure_code": "R23D50_PRODUCTION_CAS_BINDING_INVALID",
+    "outer_failure_code_prefix": "QSDK_R23D50_RETENTION_PREFLIGHT_FAILED",
+    "model_construction_count": 0,
+    "physical_process_launch_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "terminal_physical_cell_count": 0
+  },
+  "retained_inputs": {
+    "source_archive": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r23d50-20260813T151849Z\\source-archive.zip",
+      "sha256": "sha256:c9372c9705d5f3f4225bc6d355890625dc0c08c053609179ea356c2760728236",
+      "byte_length": 14141375
+    },
+    "synthetic_rows": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r23d50-20260813T151849Z\\pre-world-retention-canary\\pending-traces\\production-canary.rows.json",
+      "sha256": "sha256:9d4226488f75ad981c623591f382f9862ad84669ba925390dec0318308607472",
+      "byte_length": 4433162,
+      "row_count": 2992
+    },
+    "canonical_trace": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r23d50-20260813T151849Z\\pre-world-retention-canary\\traces\\rapier_parry__r23d29_support_loss_conditioned_turning_validation__reference_zero.ndjson",
+      "sha256": "sha256:7c18c69f82758b8cae09e129683b8d074e87940abf080e05cd5c1477533df65d",
+      "byte_length": 4433161,
+      "production_cas_payload_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\artifacts\\sha256\\7c18c69f82758b8cae09e129683b8d074e87940abf080e05cd5c1477533df65d\\payload.bin",
+      "production_cas_manifest_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\artifacts\\sha256\\7c18c69f82758b8cae09e129683b8d074e87940abf080e05cd5c1477533df65d\\manifest.json",
+      "production_cas_objects_exist": true
+    }
+  },
+  "diagnosis": {
+    "publisher_failed": false,
+    "cas_bytes_missing": false,
+    "samefile_semantics_failed": false,
+    "mechanism": "The evaluator was imported from the Git-blob-exact materialized source, so its module-level REPO_ROOT named the materialized source tree. The new CAS-binding helper derived the expected evidence directory from that source tree even though run_production_retention_preflight had received the authoritative repository root. Publication correctly retained the canary beneath the authoritative SporeSpore_Evidence root, then the verifier compared it against a nonexistent materialization-relative evidence root.",
+    "required_repair": "Pass the already-validated authority repo root explicitly into the complete CAS-binding helper during the production canary. Preserve the helper's default for terminal evaluation, where evaluate_complete_entries temporarily binds the evaluator stack to the authoritative root.",
+    "controller_or_physics_change_required": false,
+    "threshold_change_required": false
+  },
+  "disposition": {
+    "preworld_attempt_root_reusable": false,
+    "r23d50_physical_identity_consumed": false,
+    "r23d50_question_or_selector_changed": false,
+    "same_source_commit_physical_retry_permitted": false,
+    "fresh_clean_push_required": true,
+    "fresh_scoped_attestation_and_adoption_required": true,
+    "physical_result": false,
+    "walking_or_turning_result": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

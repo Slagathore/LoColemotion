@@ -1,0 +1,143 @@
+{
+  "schema_version": "sporespore_rapier_c6_velocity_only_live_integration_v1",
+  "status": "implemented_and_zero_world_integrity_gated",
+  "implementation_parent_commit": "e64582bf639711a4dbbaff374e1d3c5f3c96f2f0",
+  "adapter_id": "sporespore_rapier3d_adapter",
+  "host": {
+    "engine": "rapier3d",
+    "engine_version": "0.34.0",
+    "outer_timestep_s": 0.008333333767950535,
+    "solver_iterations": 16,
+    "num_internal_pgs_iterations": 3,
+    "num_internal_stabilization_iterations": 5
+  },
+  "bound_predecessors": {
+    "canonical_profile": {
+      "path": "sdk/canonical_velocity_actuation_profile_v1.json",
+      "raw_sha256": "1240ad4bba89bc8d1c22fa270fa718c57ab5ee227d777434b3870b859001e6a3",
+      "profile_id": "sporespore_complete_closed_loop_canonical_velocity_v1"
+    },
+    "vh1_closure": {
+      "path": "sdk/rapier_c6_force_based_velocity_only_host_characterization_vh1_closure.json",
+      "raw_sha256": "d94b20ef4767479172408c1dfbd0b7f66e18e3f4bc8b9d8d84193fc157d284aa",
+      "status": "closed_positive_exact_finite_velocity_only_host_characterization",
+      "experiment_source_commit": "ce1e846d7d866b24ef5e30b46ca17247c6862748"
+    },
+    "active_configuration_v1": {
+      "path": "sdk/rapier_c6_force_based_active_configuration.json",
+      "raw_sha256": "dc1eb57df75a41cb5ab80c45e537e7bd0974df0ac9cc7d738e24f08daaf60737",
+      "retained_immutable_for_historical_campaigns": true
+    }
+  },
+  "selected_portable_composition": {
+    "candidate_id": "BW19V-B",
+    "candidate_composition_digest": "sha256:3d0fc7ac8da2de811bbc890a4a2a7b32ffc5f59fb9ee36a3e391cdec65548c77",
+    "controller_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+    "controller_policy_digest": "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd",
+    "global_requested_correction_scale": 0.5,
+    "portable_support_contribution_retained": true,
+    "friction_is_not_a_controller_branch_condition": true
+  },
+  "actuation_contract": {
+    "canonical_profile_id": "sporespore_complete_closed_loop_canonical_velocity_v1",
+    "rapier_host_profile_id": "rapier_force_based_velocity_only_v1",
+    "legacy_portable_base_to_canonical_sign": -1.0,
+    "rapier_canonical_to_host_sign": 1.0,
+    "composition_order": [
+      "convert_complete_legacy_portable_command_to_canonical_velocity",
+      "add_bounded_bw19v_canonical_velocity_residual",
+      "clamp_in_canonical_velocity_space",
+      "map_complete_canonical_command_once_to_rapier_host_velocity"
+    ],
+    "retained_historical_mixed_space_projection_is_load_bearing": false,
+    "motor_model": "ForceBased",
+    "native_actuation_mode": "velocity_only",
+    "native_target_position": null,
+    "native_position_stiffness_nm_per_rad": 0.0,
+    "damping_nm_s_per_rad": 10.0,
+    "maximum_force_formula": "portable_maximum_outer_step_impulse_nms / outer_timestep_s",
+    "observable_small_step_impulse_limit_formula": "maximum_force_nm * outer_timestep_s / solver_iterations",
+    "force_margin_or_hidden_multiplier": 1.0,
+    "builder_and_mutable_readback_required": true
+  },
+  "implemented_surfaces": [
+    {
+      "path": "sdk/adapters/rapier/src/velocity_only_live_integration.rs",
+      "role": "shared ForceBased velocity-only builder, mutable update, readback, force mapping, and complete zero-world gate"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_composition.rs",
+      "role": "versioned canonical composition of BW15F-B and the exact BW19V scale-0.5 support residual"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/locomotion.rs",
+      "role": "separate prospective v4 robot constructor, application, settle, and small-step impulse checks"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/lib.rs",
+      "role": "v2 capability receipt and exported preflight"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bin/velocity_only_live_integration_preflight.rs",
+      "role": "executable zero-world receipt"
+    }
+  ],
+  "zero_world_gate": {
+    "executable": "sdk/run_rapier_c6_velocity_only_live_integration_preflight.ps1",
+    "perfect_synthetic_integration_passed": true,
+    "selected_policy_id_exact": true,
+    "selected_policy_branch_surface_count": 0,
+    "synthetic_actuator_count": 8,
+    "mixed_space_negative_witness_count": 5,
+    "native_position_target_count": 0,
+    "exact_force_mapping_passed": true,
+    "default_acceleration_based_canary_passed": true,
+    "explicit_force_based_builder_readback_passed": true,
+    "force_based_mutable_update_readback_passed": true,
+    "negative_controls": [
+      "reordered_residual",
+      "missing_residual",
+      "wrong_host_sign",
+      "default_acceleration_based_model",
+      "nonzero_native_position_stiffness",
+      "wrong_target_velocity",
+      "wrong_maximum_force",
+      "world_count_and_authority_inflation"
+    ],
+    "world_build_count": 0,
+    "scene_insertion_count": 0,
+    "physics_state_modified": false,
+    "locomotion_outcome_exposed": false,
+    "physical_acceptance_authority": false
+  },
+  "retained_historical_boundary": {
+    "combined_position_velocity_campaign_paths_remain_available_for_reconstruction": true,
+    "historical_paths_are_not_the_v4_live_entrypoint": true,
+    "fb1_remains_closed_negative": true,
+    "spv1_remains_closed_positive_for_its_distinct_combined_pd_profile": true,
+    "vh1_remains_closed_positive_for_its_exact_finite_velocity_only_host_grid": true,
+    "no_frozen_campaign_was_rerun_rethresholded_or_reclassified": true
+  },
+  "claim_boundary": {
+    "rapier_v4_live_adapter_semantic_integration": true,
+    "rapier_v4_selected_policy_world_executed": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "walking_acceptance": false,
+    "cross_engine_selected_policy_equivalence": false,
+    "friction_or_material_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  },
+  "next_allowed_work": {
+    "distinct_early_horizon_velocity_only_screen_may_be_preregistered": true,
+    "new_screen_must_use_the_v4_entrypoint_only": true,
+    "new_screen_must_retain_exact_bw19v_scale_0_5_and_portable_support_contribution": true,
+    "new_screen_must_include_a_complete_prospectively_frozen_synthetic_gate": true,
+    "no_physics_world_may_open_before_that_gate_passes_from_clean_pushed_source": true,
+    "vh1_must_not_be_rerun_or_reinterpreted": true
+  }
+}

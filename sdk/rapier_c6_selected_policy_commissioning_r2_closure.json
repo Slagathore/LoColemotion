@@ -1,0 +1,154 @@
+{
+  "schema_version": "sporespore_rapier_c6_selected_policy_commissioning_r2_closure_v1",
+  "campaign_id": "C6-RAPIER-SELECTED-POLICY-COMMISSIONING-R2",
+  "gate_id": "C6-RAP-SP1-R2",
+  "status": "closed_diagnostic_declared_motor_model_mismatch",
+  "source": {
+    "commit": "441a70e963356c106aef1d1375e72b1ce280bee1",
+    "remote": "origin/main",
+    "clean": true,
+    "matches_origin_main": true
+  },
+  "preregistration": {
+    "path": "sdk/rapier_c6_selected_policy_commissioning_r2_preregistration.json",
+    "raw_sha256": "sha256:fe0b6d23f1262d1d3ead5621f6c8042c48ae016afebbdac20d51c52671ff7ec9"
+  },
+  "predecessor_closure": {
+    "path": "sdk/rapier_c6_selected_policy_commissioning_r1_closure.json",
+    "raw_sha256": "sha256:0fe513b1af8fe386f4d9c13d7485f4bdfd37711d38a846a938fab11270b0e9fb"
+  },
+  "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-r2-441a70e",
+  "artifacts": {
+    "report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-r2-441a70e\\report.json",
+      "bytes": 14545,
+      "sha256": "sha256:6f60f81ac4811ab5eb55879f24d0bcb2f79237f09fd2fcd92acdd6d259840251"
+    },
+    "stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-r2-441a70e\\stdout.log",
+      "bytes": 14545,
+      "sha256": "sha256:6f60f81ac4811ab5eb55879f24d0bcb2f79237f09fd2fcd92acdd6d259840251"
+    },
+    "stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-r2-441a70e\\stderr.log",
+      "bytes": 834,
+      "sha256": "sha256:50ea116a55c0605add29193db6708222d768d362189584b70240d0388f921f4a"
+    }
+  },
+  "diagnostic_result": {
+    "ok": false,
+    "world_attempt_count": 1,
+    "world_build_count": 1,
+    "controller_semantic_step_count": 2992,
+    "validated_portable_command_count": 23936,
+    "native_motor_application_count": 23936,
+    "controller_error_count": 0,
+    "safe_no_actuation_count": 0,
+    "nonfinite_observation_count": 0,
+    "motor_impulse_limit_violation_count": 0,
+    "post_settle": {
+      "torso_position_m": {
+        "x": -0.4698747396469116,
+        "y": 0.23770499229431152,
+        "z": 0.00003648569690994918
+      },
+      "torso_tilt_rad": 0.4253164231777191,
+      "torso_ground_contact": false,
+      "front_hip_angles_rad": [
+        -0.2714632749557495,
+        -0.28263965249061584
+      ],
+      "rear_hip_angles_rad": [
+        0.7203679084777832,
+        0.7203684449195862
+      ],
+      "front_knee_angles_rad": [
+        1.0913156270980835,
+        1.0984035730361938
+      ],
+      "rear_knee_angles_rad": [
+        0.9933510422706604,
+        0.9857885837554932
+      ]
+    },
+    "first_torso_ground_contact_semantic_step": 26,
+    "contact_occupancy": {
+      "each_distal_bearing_true_step_count": 2992,
+      "each_distal_bearing_false_step_count": 0,
+      "each_distal_transition_count": 0
+    },
+    "actuator_realization": {
+      "all_actuators_received_nonzero_position_targets": true,
+      "all_actuators_received_nonzero_velocity_targets_on_every_step": true,
+      "maximum_observed_motor_impulse_nms": 0.00001134399735747138,
+      "maximum_observed_motor_impulse_utilization": 0.0002423111195756869,
+      "hip_observed_limits_reached": true,
+      "knee_observed_limits_or_near_limits_reached": true
+    },
+    "final_gait_memory": {
+      "gait_step_range": [
+        1584,
+        1596
+      ],
+      "evidence_gait_step_limit": 1912,
+      "release_hold_step_count_range": [
+        360,
+        459
+      ],
+      "gate_timeout_count_per_limb": 3,
+      "phase_sync_hold_step_count_range": [
+        942,
+        1029
+      ]
+    },
+    "gate_failure_count": 19
+  },
+  "contract_diagnosis": {
+    "classification": "declared_force_based_motor_model_not_realized",
+    "confirmed_source_facts": [
+      "Rapier 0.34.0 JointMotor::default selects MotorModel::AccelerationBased.",
+      "RevoluteJointBuilder::motor configures target position, target velocity, stiffness, and damping but does not change the motor model.",
+      "The C6 host-characterization and selected-policy builders never called motor_model(MotorModel::ForceBased) or set_motor_model(MotorModel::ForceBased).",
+      "Their reports nevertheless labeled the actuator model rapier_revolute_position_velocity_force_based."
+    ],
+    "local_api_source_paths": [
+      "C:\\Users\\Cole\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rapier3d-0.34.0\\src\\dynamics\\joint\\generic_joint.rs",
+      "C:\\Users\\Cole\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rapier3d-0.34.0\\src\\dynamics\\joint\\motor_model.rs",
+      "C:\\Users\\Cole\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rapier3d-0.34.0\\src\\dynamics\\joint\\revolute_joint.rs"
+    ],
+    "official_repository": "https://github.com/dimforge/rapier",
+    "post_settle_support_initialization_passed": false,
+    "selected_policy_locomotion_was_fairly_initialized": false,
+    "policy_performance_interpretation_allowed": false
+  },
+  "host_characterization_impact": {
+    "c6_hc1_r2_material_grid_remains_valid_for_its_declared_discrete_material_worlds": true,
+    "c6_hc1_r2_actuator_grid_measured_acceleration_based_default_behavior": true,
+    "c6_hc1_r2_actuator_grid_supports_force_based_claim": false,
+    "required_successor": "Distinct host-characterization correction with explicit MotorModel::ForceBased, model readback, representative gravity-loaded support cells, sign checks, and retained impulse utilization."
+  },
+  "disposition": {
+    "observability_campaign_complete": true,
+    "technical_commissioning_accepted": false,
+    "rapier_selected_policy_physical_c6": false,
+    "cross_engine_c6": false,
+    "same_identity_rerun_allowed": false,
+    "another_unchanged_locomotion_probe_allowed": false,
+    "force_based_host_characterization_successor_allowed": true,
+    "locomotion_successor_blocked_until_host_characterization_closes": true
+  },
+  "claim_boundary": {
+    "independent_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "cross_engine_c6": false,
+    "locomotion_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

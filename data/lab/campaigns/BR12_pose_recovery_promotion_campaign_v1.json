@@ -1,0 +1,103 @@
+{
+  "schema": "sporespore.lab.br12_pose_recovery_promotion_campaign.v1",
+  "campaign_id": "BR12_POSE_RECOVERY_PROMOTION_CAMPAIGN_V1",
+  "campaign_version": 1,
+  "milestone_id": "BR12_POSE_AND_RECOVERY_FEASIBILITY",
+  "claim_boundary": "This campaign can certify only the exact source-pinned BR12.0 semantic body-region contact-role registry and labeled-box basis-oracle scope; BR12.1 deterministic profile-specific canonical-pose classifier scope; BR12.2 semantic anatomy-role recovery-profile matching scope; and BR12.3 conservative static torque, power, structural, friction, and reach feasibility scope. BR12.4 is integrity-only containment and cannot substitute for a milestone program. The BR12 claim boundary is verbatim: BR12 is observer/planner truth only. It classifies only declared labeled-box canonical poses, preserves ambiguous or invalid evidence as unknown, names missing anatomy, and reports whether one exact profile passes preregistered static inequalities before actuation. A feasible report is not dynamic execution evidence. No BR12 program contains a recovery controller, emits an actuator command, wrench, or joint target, creates or maintains contact, applies external assistance, raises a body, hands off to stance, repairs a creature, or guides one automatically. It establishes no physical self-righting or getting up, free-3D standing or bracing, generalized recovery, gait, or walking.",
+  "process_policy": {
+    "clean_committed_source": true,
+    "fresh_godot_process_per_replicate": true,
+    "required_replicates_per_program": 2,
+    "pid_recycle_policy": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded",
+    "test_timeout_seconds": 300,
+    "complete_campaign_required": true,
+    "cherry_pick_policy": "forbidden_all_declared_runs_retained"
+  },
+  "source_policy": {
+    "identity": "clean_git_commit_plus_exact_declared_byte_inventory_v1",
+    "inventory_roots": [
+      {"kind": "file", "path": ".gitattributes", "extensions": [".gitattributes"]},
+      {"kind": "file", "path": "project.godot", "extensions": [".godot"]},
+      {"kind": "file", "path": "scripts/process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/process_runner_containment_host.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_lab_tests.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_br12_pose_recovery_certification.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "tree", "path": "scripts/lab", "extensions": [".gd"]},
+      {"kind": "tree", "path": "tests/helpers", "extensions": [".gd"]},
+      {"kind": "file", "path": "tests/test_experimental_br12_promotion_contracts.gd", "extensions": [".gd"]},
+      {"kind": "tree", "path": "data/lab/schemas", "extensions": [".json"]},
+      {"kind": "tree", "path": "data/lab/knowledge", "extensions": [".json", ".md"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR12_pose_recovery_promotion_campaign_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR1_required_lab_tests_v2.json", "extensions": [".json"]}
+    ]
+  },
+  "br1_inventory_guard": {
+    "resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json",
+    "sha256": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+    "test_count": 62,
+    "mutation_forbidden": true
+  },
+  "role_accounting": {
+    "milestone": {"programs": 4, "assertions_per_replicate": 61},
+    "supplementary": {"programs": 0, "assertions_per_replicate": 0},
+    "integrity": {"programs": 1, "assertions_per_replicate": 14},
+    "total": {"programs": 5, "assertions_per_replicate": 75}
+  },
+  "programs": [
+    {
+      "program_id": "BR12_POSE_RECOVERY_0_ROLES_ORACLE_V1",
+      "cell_id": "BR12.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br12_0_body_region_roles_and_labeled_box.gd",
+      "expected_assertions": 19,
+      "claim_scope": "The strict semantic registry seals the declared body-region contact roles, distinguishes steady stance from temporary recovery support, rejects duplicate identities, invalid support policy, and guidance authority, while the labeled-box oracle fixes the authored +X right, +Y up, -Z forward basis, preserves orthonormal handedness, and fails closed on invalid or nonfinite basis evidence."
+    },
+    {
+      "program_id": "BR12_POSE_RECOVERY_1_CLASSIFIER_V1",
+      "cell_id": "BR12.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br12_1_pose_classifier.gd",
+      "expected_assertions": 14,
+      "claim_scope": "The deterministic profile-specific classifier combines declared labeled-box orientation and required semantic support contact to classify only upright, prone, supine, left-side, and right-side canonical poses; returns unknown for ambiguous, conflicting, incomplete, invalid, or nonfinite evidence; and grants no actuation, repair, or guidance authority."
+    },
+    {
+      "program_id": "BR12_POSE_RECOVERY_2_PROFILE_MATCH_V1",
+      "cell_id": "BR12.2",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br12_2_recovery_profile_role_match.gd",
+      "expected_assertions": 13,
+      "claim_scope": "The strict recovery profile references anatomy through semantic roles rather than limb indices, binds one exact prone static-feasibility sequence, names every missing required role, rejects duplicates and unknown roles, and exposes no controller, command, contact-creation, repair, or guidance channel."
+    },
+    {
+      "program_id": "BR12_POSE_RECOVERY_3_STATIC_FEASIBILITY_V1",
+      "cell_id": "BR12.3",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br12_3_recovery_static_feasibility.gd",
+      "expected_assertions": 15,
+      "claim_scope": "The digest-bound analyzer evaluates conservative static torque, power, structural, friction, and reach margins for one exact semantic-role recovery profile; names underpowered, overloaded, slipping, unreachable, and anatomically incomplete phases before actuation; and treats feasible as a planning-screen result rather than dynamic recovery evidence."
+    },
+    {
+      "program_id": "BR12_POSE_RECOVERY_4_CONTAINMENT_V1",
+      "cell_id": "BR12.4",
+      "evidence_role": "integrity",
+      "test_resource_path": "res://tests/test_experimental_br12_4_pose_recovery_containment.gd",
+      "expected_assertions": 14,
+      "claim_scope": "Integrity-only containment preserves the verbatim observer/planner boundary and proves that a hidden controller, get-up claim, contact creation, external assistance, automatic application, guidance, unknown-pose guessing, missing-anatomy feasibility, or command, wrench, and joint-target output channels fail closed; it cannot substitute for a milestone cell or physical recovery evidence."
+    }
+  ],
+  "does_not_establish": [
+    "Physical self-righting or getting up",
+    "Dynamic recovery execution or stance handoff",
+    "Controller, actuator, wrench, or joint-target authority",
+    "Contact creation, maintenance, or external assistance",
+    "Generalization beyond the exact labeled-box bases, pose profiles, anatomy roles, and thresholds",
+    "Free 3D standing, bracing, recovery, or unconstrained balance",
+    "Per-contact, per-body, per-foot, or per-toe measured load allocation",
+    "Gait, candidate walking, or walking",
+    "Creature repair or automatic creature guidance",
+    "Encyclopedia admission or BR13 constrained-get-up acceptance"
+  ]
+}

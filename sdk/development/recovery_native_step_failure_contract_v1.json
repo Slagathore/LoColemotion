@@ -1,0 +1,32 @@
+{
+  "schema_version": "sporespore_development_native_step_failure_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "development_failure_retention",
+    "question_class": "development"
+  },
+  "failure_record_schema": "sporespore_development_native_step_failure_v1",
+  "generic_controller_receipt_schema": "sporespore_controller_step_receipt_v2",
+  "verified_refusal_classification": "verified_zero_actuation_controller_refusal",
+  "invalid_classification": "unverified_native_response_or_transport_failure",
+  "verified_refusal_failure_code": "ADAPTER_NATIVE_VERIFIED_ZERO_ACTUATION_REFUSAL",
+  "invalid_failure_code": "ADAPTER_NATIVE_FAILURE_RETAINED_UNVERIFIED",
+  "enablement": "Explicit development walking policy selected and validated by the shared recovery facade; adapter default is disabled.",
+  "retained_original_bytes": ["request", "response", "initial_transport_verification"],
+  "classification_requirements": [
+    "Native generic-receipt verification binds policy, semantic step, authority, receipt digest and exact raw response.",
+    "Request, compiled morphology and native receipt agree on step, command, morphology and adapter capability.",
+    "Native output explicitly requests safe_no_actuation with nonempty consistent failure codes and controller error.",
+    "Exactly the compiled ordered actuator population has zero target, residual and safety velocities and the current validity step.",
+    "Next memory equals the supplied incoming memory under exact JSON numeric values, without approximate comparison."
+  ],
+  "normal_success_path_changed": false,
+  "native_controller_reinvoked_for_classification": false,
+  "failed_request_reconstructed_from_previous_step": false,
+  "refusal_is_normal_actuation": false,
+  "refusal_advances_adapter_clock_or_memory": false,
+  "refusal_proves_complete_physical_route": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

@@ -1,0 +1,100 @@
+{
+  "schema_version": "sporespore_qsdk_r23d2_mujoco_worker_contract_v1",
+  "status": "mujoco_supervisor_only_physical_authorized",
+  "campaign_id": "QSDK-R23D2-THREE-ENGINE-HEADING-RESPONSE-DEVELOPMENT",
+  "gate_id": "QSDK-R23D2-MJC",
+  "parent_gate_id": "QSDK-R23D2",
+  "stage_zero_oracle": {
+    "path": "sdk/turning/r23d2_oracle_preregistration.json",
+    "sha256": "sha256:4252a8b542de60b656752606e3a1a6eb85c383329125da6f8d9d6c0f4446b464",
+    "source_commit": "d9303df0e16dbbbdb35983f9632b5cfd0ff3061f",
+    "canary_count": 7,
+    "nonzero_cross_track_canary_count": 6,
+    "required_receipt_predicate_count": 5,
+    "predicate_negative_control_count": 35
+  },
+  "engine": {
+    "engine_id": "mujoco",
+    "engine_family": "MuJoCo",
+    "adapter_id": "sporespore_mujoco_adapter",
+    "engine_version": "3.11.0",
+    "host_profile_id": "mujoco_s169_per_actuator_force_limited_five_substep_vh5_validated_v1",
+    "native_motor_model_id": "velocity_servo_s169_per_actuator_force_limited_five_substep_vh5_validated_v1",
+    "internal_steps_per_controller_step": 5
+  },
+  "worker": {
+    "implementation_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d2_heading_response.py",
+    "test_path": "sdk/adapters/mujoco/test_qsdk_r23d2_heading_response.py",
+    "preflight_path": "sdk/run_qsdk_r23d2_mujoco_worker_preflight.ps1",
+    "preflight_schema_version": "sporespore_qsdk_r23d2_mujoco_worker_preflight_v1",
+    "actual_arm_entrypoint_count": 3,
+    "oracle_canaries_per_entrypoint": 7,
+    "arm_command_boundary_count": 3,
+    "native_controller_step_count": 24,
+    "native_command_count": 192,
+    "host_mapping_validation_count": 24,
+    "model_xml_validation_count": 3,
+    "legacy_oracle_rejection_count": 18,
+    "predicate_negative_control_count": 105,
+    "synthetic_successful_report_count": 3,
+    "synthetic_failure_stage_receipt_count": 18,
+    "direct_physical_bypass_refusal_required": true,
+    "model_construction_count": 0,
+    "world_build_count": 0
+  },
+  "independence_requirements": {
+    "oracle_may_not_import_or_call_controller_internal_formula": true,
+    "state_projection_recomputed_from_state_frame": true,
+    "profile_gains_read_from_selected_compiled_profile": true,
+    "profile_gains_cross_checked_against_preregistered_values": true,
+    "all_five_receipt_fields_compared": true,
+    "public_core_dynamic_library_crossed": true,
+    "canonical_velocity_mapping_validated": true,
+    "vh5_characterized_host_mapping_validated": true,
+    "production_model_xml_compiled_and_validated": true,
+    "mujoco_model_construction_forbidden_during_preflight": true,
+    "native_model_construction_is_the_world_attempt_boundary": true,
+    "independent_oracle_validates_every_physical_controller_step": true
+  },
+  "future_physical_requirements": {
+    "physical_implementation_present": true,
+    "successful_report_canary_per_arm": true,
+    "all_six_failure_stage_canaries_per_arm": true,
+    "physical_world_loop_requires_exact_supervisor_authorization": true,
+    "reproducible_core_build": {
+      "shared_helper_path": "sdk/r23d2_reproducible_runtime_materialization.ps1",
+      "cargo_incremental": false,
+      "source_date_epoch": "stage_zero_source_commit_epoch",
+      "source_cargo_home_and_rust_sysroot_remapped": true,
+      "cargo_target_root_remapped_to_constant_virtual_prefix": true,
+      "msvc_brepro": true,
+      "pdb_alt_path_bare_name": true
+    },
+    "stage_aware_attempt_build_and_model_counts_required": true,
+    "rejected_receipt_and_per_predicate_failures_retained_before_exit": true,
+    "aggregate_supervisor_only_authorization_required": true,
+    "all_nine_cells_execute_without_early_stop": true,
+    "replacement_or_selective_rerun_permitted": false
+  },
+  "authorization": {
+    "physical_execution_authorized": true,
+    "reason": "Only the frozen R23D2 aggregate supervisor may authorize this worker, and only for its exact cell in the sole serialized nine-cell attempt after clean-live source, current attestation, operation-lock, content-addressed-input, token, and cell-order checks pass.",
+    "model_construction_count": 0,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "claim_boundary": {
+    "mujoco_worker_zero_world_commissioned": true,
+    "mujoco_physical_worker_implemented": true,
+    "actual_r23d2_engine_worker_count": 3,
+    "physical_worker_implementation_count": 3,
+    "physical_workers_complete": true,
+    "development_result_exists": false,
+    "scientific_result_exists": false,
+    "command_conditioned_turning": false,
+    "q_sdk_r23_satisfied": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

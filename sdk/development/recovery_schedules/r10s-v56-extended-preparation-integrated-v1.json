@@ -1,0 +1,66 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "r10s-v56-extended-preparation-integrated-v1": {
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:7b1ce5dd546796e13a726e26a9c1f47ad4a27792768a40d0da58cd67409e9c2b",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 3160,
+        "maximum_steps_per_child": 3512
+      },
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "coverage_basis": {
+        "maximum_descent_steps": 240,
+        "maximum_canonical_recovery_steps": 1200,
+        "maximum_walking_commands": 1600,
+        "stopping_commands": 120,
+        "settled_commands": 30,
+        "maximum_no_kick_solver_steps": 2552,
+        "maximum_kicked_solver_steps": 3512,
+        "tail_derivation": "Kicked: 240+1200+1600+120=3160. No-kick: 240 ramp+240 hold+1600 walking+120 stop=2200. Add 320 precondition+30 prefix+2 transition steps: 3512 kicked and 2552 no-kick.",
+        "resource_derivation": "320 + 30 + 2 + role-specific tail",
+        "baseline_reused": false,
+        "equal_horizon_effect_claimed": false,
+        "maximum_no_kick_ramp_commands": 240,
+        "maximum_no_kick_hold_commands": 240,
+        "task_contract": "sdk/recovery/r10s_extended_preparation_finite_cycle_contract_v1.json",
+        "task_contract_sha256": "sha256:e61eba39806e2fd88a450e74357b3a825afa108377db5e3a347337fbd497064d",
+        "successor_design": "sdk/recovery/r10s_extended_preparation_design_v1.json",
+        "successor_design_sha256": "sha256:a34411ee9608133c5b755dff8a273423e8f10f053803fa74150af1d8305506c2",
+        "maximum_partial_recovery_steps": 1200,
+        "maximum_upright_recovery_steps": 1200
+      },
+      "coverage_adequacy": "First one fresh phase-246 kicked diagnostic tests unchanged R10R upright recovery and V56 preparation through all four walking cycles and the complete stop. Any invalid or nonpositive first result closes this chain. Only its valid positive audit permits a fresh phase-246 pair; only a positive pair permits fresh phase-245/241/243 branch diagnostics. No baseline reuse or held-out population.",
+      "coverage_question": "First one fresh phase-246 kicked diagnostic tests unchanged R10R upright recovery and V56 preparation through all four walking cycles and the complete stop. Any invalid or nonpositive first result closes this chain. Only its valid positive audit permits a fresh phase-246 pair; only a positive pair permits fresh phase-245/241/243 branch diagnostics. No baseline reuse or held-out population.",
+      "uncovered_paths": [
+        "held-out acceptance",
+        "cross-engine recovery acceptance",
+        "robustness or equivalence",
+        "arbitrary morphology or terrain"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "r10s_v56_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "r10s_v56_front_left_first_post_interaction_v1",
+      "walking_policy_id": "r10s_v56_upright_recovery_route_v1",
+      "walking_policy_contract_sha256": "sha256:be8576ca0d218872bef36f23dae058b42d2d899838f4a0e2df0c99c3989880d8",
+      "coverage_argument": "First one fresh phase-246 kicked diagnostic tests unchanged R10R upright recovery and V56 preparation through all four walking cycles and the complete stop. Any invalid or nonpositive first result closes this chain. Only its valid positive audit permits a fresh phase-246 pair; only a positive pair permits fresh phase-245/241/243 branch diagnostics. No baseline reuse or held-out population."
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "schema_version": "sporespore_quadruped_sdk1_candidate_authority_closure_v1",
+  "closure_id": "SPORESPORE-QUADRUPED-SDK1-CANDIDATE-AUTHORITY-CLOSURE-V1",
+  "status": "closed_zero_world_sdk1_candidate_authority_candidate_blocked",
+  "ledger_scope": {
+    "subsystem": "release",
+    "engine_scope": "engine_neutral",
+    "authority_mode": "bounded_sdk1_candidate_authority_closure",
+    "question_class": "development"
+  },
+  "implementation_source": {
+    "commit": "811aba3ea001c3d81b16449b2f9e10165b1c026b",
+    "tree_git_oid": "3c35a0865d7827b5c5f07f38307935422d340ca2",
+    "remote": "https://github.com/Slagathore/sporespore.git",
+    "remote_ref": "refs/heads/main",
+    "origin_main": "811aba3ea001c3d81b16449b2f9e10165b1c026b",
+    "clean": true,
+    "matches_origin_main": true
+  },
+  "retained_readiness_report": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk1-candidate-authority-811aba3e\\report.json",
+    "sha256": "sha256:f46505d6c2726fb9deaa95120b562eeab993c0bfa6eb15dfcc28620cced607ca",
+    "byte_length": 14236,
+    "schema_version": "sporespore_quadruped_sdk1_milestone_readiness_report_v1",
+    "source_commit": "811aba3ea001c3d81b16449b2f9e10165b1c026b",
+    "source_clean": true,
+    "source_matches_origin_main": true
+  },
+  "bound_authorities": [
+    {
+      "path": "sdk/compile_quadruped_sdk1_milestone_readiness.ps1",
+      "sha256": "sha256:bbdcccefe3feb7af58e8c386b918b9913d06bdedc79c61ab5491129446fb5290",
+      "byte_length": 20024
+    },
+    {
+      "path": "sdk/release/quadruped_sdk1_milestone_mapping_v1.json",
+      "sha256": "sha256:25282383118db7b59f66c73afadaa2ceb21ad3657deff50a366c15025fb95289",
+      "byte_length": 12351
+    },
+    {
+      "path": "sdk/test_quadruped_sdk_release_readiness.ps1",
+      "sha256": "sha256:916f68dcc2f5c4019f3906b9570e6e717406d269b34b248b78b31cda80b26f16",
+      "byte_length": 275578
+    },
+    {
+      "path": "sdk/release/quadruped_release_contract.json",
+      "sha256": "sha256:68e6a6368bdef965dd7728c7248ea217888f26f45626696904865c78ed1ac8bb",
+      "byte_length": 1375442
+    },
+    {
+      "path": "sdk/release/quadruped_support_matrix.json",
+      "sha256": "sha256:f2d3cc1d0b304757bf23ea5dd9b65bbbdfe918f5bbf49d8e4774377de1a5f653",
+      "byte_length": 1599706
+    }
+  ],
+  "candidate_partition": {
+    "sdk1_milestone_count": 20,
+    "prerequisite_milestone_count": 17,
+    "validation_milestone_count": 3,
+    "validation_milestone_ids": [
+      "SDK1-M01",
+      "SDK1-M11",
+      "SDK1-M15"
+    ],
+    "validation_gate_ids": [
+      "QSDK-R01",
+      "QSDK-R16",
+      "QSDK-R20"
+    ],
+    "deferred_full_program_gate_ids_out_of_scope": [
+      "QSDK-R06",
+      "QSDK-R07",
+      "QSDK-R09",
+      "QSDK-R11",
+      "QSDK-R12",
+      "QSDK-R25"
+    ],
+    "two_stage_package_flow_satisfiable": true
+  },
+  "observed_readiness": {
+    "sdk1_score": "12/20",
+    "full_program_score": "12/25",
+    "sdk1_missing_count": 6,
+    "sdk1_contradicted_count": 2,
+    "sdk1_invalid_proof_count": 0,
+    "candidate_authorized": false,
+    "candidate_blocking_milestone_ids": [
+      "SDK1-M05",
+      "SDK1-M07",
+      "SDK1-M08",
+      "SDK1-M14",
+      "SDK1-M20"
+    ],
+    "candidate_blocking_condition_count": 5,
+    "package_created": false
+  },
+  "audit": {
+    "release_readiness_contract_gate_count": 33,
+    "release_readiness_test_passed": true,
+    "sdk1_candidate_negative_control_count": 2,
+    "premature_require_candidate_refused": true,
+    "mutated_validation_partition_refused": true
+  },
+  "execution": {
+    "physics_engine_process_count": 0,
+    "physics_model_construction_count": 0,
+    "world_build_count": 0,
+    "native_physics_read_count": 0,
+    "solver_step_count": 0
+  },
+  "claims": {
+    "q_sdk_r01_satisfied": false,
+    "sdk1_m01_satisfied": false,
+    "sdk1_m11_satisfied": false,
+    "sdk1_m15_satisfied": false,
+    "clean_room_candidate_authorized": false,
+    "clean_room_candidate_is_full_program_candidate": false,
+    "release_authorized": false,
+    "publication_authorized": false,
+    "physical_acceptance_authority": false,
+    "historical_gate_or_result_reinterpreted": false
+  },
+  "ordering": {
+    "selected_next_milestone_id": "SDK1-M14",
+    "selected_next_gate_id": "QSDK-R19",
+    "selection_reason": "Distribution and licensing are zero-world package inputs and must be settled before the eventual candidate is copied. M05 should precede M08, M07 should precede M20, and all five current prerequisite blockers must precede candidate creation.",
+    "physical_work_authorized": false
+  }
+}

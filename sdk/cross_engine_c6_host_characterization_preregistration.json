@@ -1,0 +1,168 @@
+{
+  "schema_version": "sporespore_cross_engine_c6_host_characterization_preregistration_v1",
+  "campaign_id": "C6-HOST-CHARACTERIZATION",
+  "gate_id": "C6-HC1",
+  "status": "frozen_before_first_c6_hc1_physics_world",
+  "recorded_utc": "2026-07-30T12:54:48.3430612Z",
+  "implementation_parent_commit": "2a78dea1148d817e2018830f3bba1e1e776ecd64",
+  "purpose": "Characterize exact Rapier and MuJoCo material and actuator semantics before any selected-policy cross-engine locomotion campaign.",
+  "method_sources": {
+    "local_research_inputs": [
+      {
+        "path": "DReCon.pdf",
+        "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+      },
+      {
+        "path": "2604.08780v1.pdf",
+        "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+      },
+      {
+        "path": "2507.22653v2.pdf",
+        "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+      },
+      {
+        "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+        "sha256": "sha256:b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+      }
+    ],
+    "api_authorities": [
+      {
+        "library": "Rapier",
+        "version": "0.34.0",
+        "source": "https://github.com/dimforge/rapier",
+        "adopted_semantics": [
+          "fixed-step PhysicsWorld",
+          "explicit friction combine rule",
+          "single Coulomb friction coefficient without distinct static and dynamic coefficients",
+          "force-based revolute position and velocity motor with maximum force"
+        ]
+      },
+      {
+        "library": "MuJoCo",
+        "version": "3.11.0",
+        "source": "https://github.com/google-deepmind/mujoco",
+        "adopted_semantics": [
+          "fixed-step official Python binding",
+          "MJCF geom friction vector",
+          "elliptic friction cone",
+          "force-limited position actuator",
+          "contact-frame force from mj_contactForce"
+        ]
+      }
+    ]
+  },
+  "common_fixture": {
+    "canonical_coordinates": "x_forward_y_up_z_right",
+    "timestep_s": 0.008333333333333333,
+    "gravity_m_s2": 9.8,
+    "sled_mass_kg": 1.0,
+    "sled_half_extents_m": [
+      0.2,
+      0.1,
+      0.15
+    ],
+    "settle_steps": 240,
+    "authored_sliding_friction_values": [
+      0.2,
+      0.6,
+      1.0
+    ],
+    "breakaway_force_ratios": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      1.25,
+      1.5
+    ],
+    "breakaway_observation_steps": 120,
+    "breakaway_velocity_threshold_m_s": 0.02,
+    "breakaway_displacement_threshold_m": 0.005,
+    "maximum_breakaway_bracket_width_ratio": 0.25,
+    "minimum_breakaway_lower_ratio": 0.5,
+    "maximum_breakaway_upper_ratio": 1.5,
+    "steady_slide_initial_velocity_m_s": 1.0,
+    "steady_slide_observation_steps": 6,
+    "minimum_steady_slide_effective_to_authored_ratio": 0.5,
+    "maximum_steady_slide_effective_to_authored_ratio": 1.5
+  },
+  "actuator_fixture": {
+    "joint_type": "revolute",
+    "joint_axis_canonical": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "target_positions_rad": [
+      -0.4,
+      0.4
+    ],
+    "target_velocity_rad_s": 0.0,
+    "maximum_step_impulses_nms": [
+      0.05,
+      0.25
+    ],
+    "stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "observation_steps": 240,
+    "maximum_final_position_error_rad": 0.02,
+    "maximum_impulse_tolerance_nms": 0.000001
+  },
+  "host_contracts": {
+    "rapier": {
+      "adapter_id": "sporespore_rapier3d_adapter",
+      "engine_version": "0.34.0",
+      "numeric_precision": "f32",
+      "friction_combine_rule": "min",
+      "authored_ground_and_sled_coefficients_equal": true,
+      "actuator_model": "rapier_revolute_position_velocity_force_based"
+    },
+    "mujoco": {
+      "adapter_id": "sporespore_mujoco_adapter",
+      "engine_version": "3.11.0",
+      "numeric_precision": "f64",
+      "friction_cone": "elliptic",
+      "geom_priority": 1,
+      "authored_ground_and_sled_friction_vectors_equal": true,
+      "torsional_friction": 0.0,
+      "rolling_friction": 0.0,
+      "actuator_model": "mujoco_position_servo_force_limited"
+    }
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "perfect_synthetic_zero_failure_result_must_pass_full_integrity_gate": true,
+    "nonzero_failure_canary_must_fail_full_integrity_gate": true,
+    "preflight_world_build_count": 0,
+    "preflight_scene_insertion_count": 0,
+    "preflight_physics_state_mutation_count": 0
+  },
+  "execution_contract": {
+    "both_hosts_required": true,
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_per_host_and_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "early_stop_forbidden": true,
+    "all_declared_material_cells_required": true,
+    "all_declared_actuator_cells_required": true,
+    "host_specific_results_may_differ": true,
+    "bit_identical_trajectory_required": false
+  },
+  "claims": {
+    "rapier_material_characterization": false,
+    "rapier_actuator_characterization": false,
+    "mujoco_material_characterization": false,
+    "mujoco_actuator_characterization": false,
+    "controller_policy_authority": false,
+    "selected_policy_physical_authority": false,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "material_robustness": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

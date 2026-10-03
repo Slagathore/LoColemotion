@@ -1,0 +1,99 @@
+{
+  "schema": "sporespore.lab.br3a_development_observation.v1",
+  "entry_id": "L1.6.solver_sensitivity_and_external_impulse_reconstruction.draft_v1",
+  "cell_id": "L1.6",
+  "claim_status_ceiling": "development_observation",
+  "admissible_now": false,
+  "admission_blockers": [
+    "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+    "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+    "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+    "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+    "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+  ],
+  "evidence_source": {
+    "test_files": [
+      "res://tests/test_experimental_l1_6_solver_step_sensitivity.gd"
+    ],
+    "evidence_grade": "experimental_commissioning_test_report_only",
+    "promotion_grade_bundle_exists": false
+  },
+  "title": "Solver-step admission is exact-cell only and local raw contact impulse is transmission-blind in coupled stacks",
+  "claim": "For the exact L1.6 ten-body 1 kg-per-body stack fixture at 60 Hz across eight fresh Jolt spaces plus repeats, velocity/position solver configurations 2/4, 4/4, and 10/4 are rejected while 20/1, 20/2, 20/4, 20/8, and 40/4 are accepted, so the project's 20/4 sits inside the measured envelope. A changed solver setting takes effect only after ProjectSettings mutation, a process-boundary settings notification, and construction of a fresh World3D with a tagged excluded warm-up tick; mislabeled reuse of a cached space produced a plausible but wrong table that was removed. Independently, the raw predicted impulse at the bottom floor contact reported approximately 9.821 N while the expected and momentum-reconstructed whole-system support load was approximately 98.005 N, so a local raw contact impulse is not the external support load of a coupled system; the reconstructor recovers it from J_unknown = P_after - P_before - J_known and F_n = (J_unknown . n) / dt.",
+  "scope": "Ten stacked unjointed 1 kg bodies on a static floor, 60 Hz, Godot 4.7 Jolt backend, one fresh SubViewport World3D per solver configuration after a settings-change notification boundary, exact measured solver cells only, whole-system momentum-balance reconstruction over all bodies with gravity as the known impulse.",
+  "mechanism": "Jolt's project-settings listener updates its cache on settings_changed, and a Jolt space snapshots velocity and position step counts at construction, so only a fresh space after the notification runs the requested configuration. Contact impulses report local pair transmission, not system support: summing momentum change over every body isolates the unknown external impulse, which converts to a step-average normal load.",
+  "applicability": [
+    "Admitting or rejecting solver configurations for lab fixtures by measurement instead of interpolation",
+    "Reconstructing total external support load for a closed measured body set",
+    "Diagnosing controllers that underestimate support because they read one local contact impulse"
+  ],
+  "failure_boundaries": [
+    "Does not permit interpolation or extrapolation to unmeasured solver configurations",
+    "Does not allocate the reconstructed load among multiple feet, toes, or contact sites",
+    "Does not cover articulated joints; the stack couples through contact only",
+    "Does not establish standing, bracing, fall arrest, getting up, or walking"
+  ],
+  "morphology_tags": [
+    "jolt",
+    "unjointed_contact_stack",
+    "solver_configuration_sweep"
+  ],
+  "parameter_effects": [
+    {
+      "parameter": "/physics/jolt_physics_3d/simulation/velocity_steps",
+      "change": "decrease below the measured accepted cells",
+      "affects": "stack contact stability classification",
+      "mechanism": "Too few velocity iterations under-resolve the coupled contact constraints of the ten-body stack",
+      "hinges_on": [
+        "The fresh-space lifecycle actually applying the requested configuration",
+        "Exact-cell admission with interpolation forbidden"
+      ]
+    }
+  ],
+  "minimal_repair_rules": [
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "A limb appears unable to brace while its contact sensor reports a small support load",
+      "diagnosis": "The controller is reading a local raw contact impulse, which is transmission-blind in coupled systems",
+      "smallest_change": "Compute total external support load by whole-system momentum reconstruction over the measured body set",
+      "expected_effect": "The reconstructed load matches the expected external support within the measured 1 N class error",
+      "identity_preserved": [
+        "body plan",
+        "solver configuration"
+      ],
+      "do_not_apply_when": [
+        "The body set is open, unmeasured, or exchanging momentum with unmodeled actors"
+      ]
+    },
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "A solver-configuration change appears to have no measured effect in a reused physics space",
+      "diagnosis": "The Jolt space was constructed before the settings notification and still runs the cached configuration",
+      "smallest_change": "Apply settings, cross a process boundary for the settings notification, construct a fresh World3D, and exclude a tagged warm-up tick",
+      "expected_effect": "The measured table labels match the configuration the backend actually ran",
+      "identity_preserved": [
+        "fixture geometry"
+      ],
+      "do_not_apply_when": [
+        "The engine version changes the documented settings lifecycle"
+      ]
+    }
+  ],
+  "unknowns": [
+    "How the accepted solver envelope shifts for articulated chains and motors",
+    "How to attribute reconstructed external load to individual contact sites",
+    "Whether the rejected low-iteration cells fail identically across platforms"
+  ],
+  "does_not_establish": [
+    "standing",
+    "bracing",
+    "fall_arrest",
+    "getting_up",
+    "walking",
+    "per_contact_load_allocation",
+    "articulated_solver_envelope"
+  ],
+  "supersedes": []
+}

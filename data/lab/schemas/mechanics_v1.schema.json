@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/mechanics_v1.schema.json",
+  "title": "SporeSpore mechanics accounting record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "transition",
+    "dt_s",
+    "body_id",
+    "mass_kg",
+    "linear_momentum_before_n_s",
+    "linear_momentum_after_n_s",
+    "translational_kinetic_energy_before_j",
+    "translational_kinetic_energy_after_j",
+    "observed_acceleration_m_s2",
+    "expected_acceleration_m_s2",
+    "acceleration_residual_m_s2",
+    "expected_position_m",
+    "position_residual_m",
+    "expected_velocity_m_s",
+    "velocity_residual_m_s",
+    "availability"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.mechanics.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "transition": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "dt_s": {"type": "number", "exclusiveMinimum": 0},
+    "body_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "mass_kg": {"type": "number", "exclusiveMinimum": 0},
+    "linear_momentum_before_n_s": {"$ref": "#/$defs/vec3"},
+    "linear_momentum_after_n_s": {"$ref": "#/$defs/vec3"},
+    "translational_kinetic_energy_before_j": {"type": "number", "minimum": 0},
+    "translational_kinetic_energy_after_j": {"type": "number", "minimum": 0},
+    "observed_acceleration_m_s2": {"$ref": "#/$defs/vec3"},
+    "expected_acceleration_m_s2": {"$ref": "#/$defs/vec3"},
+    "acceleration_residual_m_s2": {"$ref": "#/$defs/vec3"},
+    "expected_position_m": {"$ref": "#/$defs/vec3"},
+    "position_residual_m": {"$ref": "#/$defs/vec3"},
+    "expected_velocity_m_s": {"$ref": "#/$defs/vec3"},
+    "velocity_residual_m_s": {"$ref": "#/$defs/vec3"},
+    "availability": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["status", "reason"],
+        "properties": {
+          "status": {
+            "enum": [
+              "measured",
+              "engine_estimate",
+              "derived",
+              "unavailable",
+              "invalid"
+            ]
+          },
+          "reason": {"type": ["string", "null"]},
+          "source": {"type": ["string", "null"]}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    }
+  }
+}

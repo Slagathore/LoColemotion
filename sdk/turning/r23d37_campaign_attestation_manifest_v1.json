@@ -1,0 +1,144 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D37-MUJOCO-R23D21-POLICY-SEED-ISOLATION",
+  "question_class": "development",
+  "declared_physical_world_count": 1,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 4,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 7,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D37-R23D25-ACCEPTED-R23D21-MUJOCO-WALKING-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d25_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D25_CLOSURE_PASS ",
+      "raw_sha256": "sha256:e2d942542113cae93d63d345f8dcaf4563b421c2292a1248ce58abda018a5859"
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "R23D37-R23D34-SAME-SEED-R23D29-NEGATIVE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d34_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D34_CLOSURE_PASS ",
+      "raw_sha256": "sha256:fea3708e1a3ac7a8d6e1029fbb8bb41dbde4f923b828c3bdc4ee6d14fc0efec9"
+    },
+    {
+      "ordinal": 3,
+      "gate_id": "R23D37-R23D36-CONSUMED-MANIFEST-DEFECT-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d36_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D36_CLOSURE_PASS ",
+      "raw_sha256": "sha256:87884d99909ea4a0155df3b95351b1229f48f79aeb097121a62fbff07d17fcd7"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D37-CHECKOUT-PROVENANCE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_closure_evidence_provenance_contract.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "CLOSURE_EVIDENCE_PROVENANCE_CONTRACT_PASS ",
+      "raw_sha256": "sha256:ab360559b5ffeea14da7977f23773141f1e0dbefb24e5c3b501fc79897927aaa"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 5,
+      "gate_id": "R23D37-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d37_campaign_roles.ps1",
+      "arguments": ["-Role", "worker", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D37_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:b5a8eb712b774fd3656b82c641458d36be0dd191b760f5208670d095883d4f2b"
+    },
+    {
+      "ordinal": 6,
+      "gate_id": "R23D37-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d37_campaign_roles.ps1",
+      "arguments": ["-Role", "evaluator", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D37_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:b5a8eb712b774fd3656b82c641458d36be0dd191b760f5208670d095883d4f2b"
+    },
+    {
+      "ordinal": 7,
+      "gate_id": "R23D37-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d37_campaign_roles.ps1",
+      "arguments": ["-Role", "supervisor", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D37_CAMPAIGN_SUPERVISOR_ROLE_PASS ",
+      "raw_sha256": "sha256:b5a8eb712b774fd3656b82c641458d36be0dd191b760f5208670d095883d4f2b"
+    }
+  ],
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d37_mujoco_policy_seed_isolation_implementation_v1.json",
+      "source_raw_sha256": "sha256:aa1c36cb5018608a71d39dd39455cf94de57f2ab91b7c9408dc89c6126f288c4",
+      "test_gate_id": "R23D37-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d37_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:b5a8eb712b774fd3656b82c641458d36be0dd191b760f5208670d095883d4f2b"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d37_mujoco_policy_seed_isolation_evaluator.py",
+      "source_raw_sha256": "sha256:4c47fe646d69bd0ec4cc19b872658ac03b7849ca291ddbf78bce34b25e09c08a",
+      "test_gate_id": "R23D37-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d37_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:b5a8eb712b774fd3656b82c641458d36be0dd191b760f5208670d095883d4f2b"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d37_supervisor.ps1",
+      "source_raw_sha256": "sha256:1330928ab413066a193a422e4f84f8a8948256c915a1161000d0a7254a9490b5",
+      "test_gate_id": "R23D37-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d37_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:b5a8eb712b774fd3656b82c641458d36be0dd191b760f5208670d095883d4f2b"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d37_mujoco_policy_seed_isolation_implementation_v1.json",
+    "raw_sha256": "sha256:aa1c36cb5018608a71d39dd39455cf94de57f2ab91b7c9408dc89c6126f288c4"
+  },
+  "source_bindings": [
+    {"path": "tests/test_qsdk_r23d25_closure.ps1", "raw_sha256": "sha256:e2d942542113cae93d63d345f8dcaf4563b421c2292a1248ce58abda018a5859"},
+    {"path": "tests/test_qsdk_r23d34_closure.ps1", "raw_sha256": "sha256:fea3708e1a3ac7a8d6e1029fbb8bb41dbde4f923b828c3bdc4ee6d14fc0efec9"},
+    {"path": "tests/test_qsdk_r23d36_closure.ps1", "raw_sha256": "sha256:87884d99909ea4a0155df3b95351b1229f48f79aeb097121a62fbff07d17fcd7"},
+    {"path": "tests/test_closure_evidence_provenance_contract.ps1", "raw_sha256": "sha256:ab360559b5ffeea14da7977f23773141f1e0dbefb24e5c3b501fc79897927aaa"},
+    {"path": "tests/test_qsdk_r23d37_campaign_roles.ps1", "raw_sha256": "sha256:b5a8eb712b774fd3656b82c641458d36be0dd191b760f5208670d095883d4f2b"},
+    {"path": "sdk/turning/r23d37_mujoco_policy_seed_isolation_implementation_v1.json", "raw_sha256": "sha256:aa1c36cb5018608a71d39dd39455cf94de57f2ab91b7c9408dc89c6126f288c4"},
+    {"path": "sdk/turning/r23d37_mujoco_policy_seed_isolation_evaluator.py", "raw_sha256": "sha256:4c47fe646d69bd0ec4cc19b872658ac03b7849ca291ddbf78bce34b25e09c08a"},
+    {"path": "sdk/run_qsdk_r23d37_supervisor.ps1", "raw_sha256": "sha256:1330928ab413066a193a422e4f84f8a8948256c915a1161000d0a7254a9490b5"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/certification_qualification_profile_v1.schema.json",
+  "title": "SporeSpore certification qualification profile v1",
+  "description": "An immutable, allowlisted qualification contract for one exact certification report-schema and test-inventory revision. Legacy profiles are verification-only and never authorize new attestation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "profile_id",
+    "profile_revision",
+    "lifecycle",
+    "attestation_creation_allowed",
+    "legacy_schema_collision",
+    "collision_reason",
+    "snapshot_source_commit",
+    "report_contract",
+    "inventory_contract",
+    "campaign_contract",
+    "receipt_contract",
+    "engine_contract",
+    "repository_gate_contract",
+    "operator_contract",
+    "cardinality"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.certification_qualification_profile.v1"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^BR1_L0_V1_R[0-9]{3}_I[0-9]+$"
+    },
+    "profile_revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lifecycle": {
+      "const": "verify_only"
+    },
+    "attestation_creation_allowed": {
+      "const": false
+    },
+    "legacy_schema_collision": {
+      "const": true
+    },
+    "collision_reason": {
+      "const": "One v1 report schema identifier and one v1 inventory identifier were published with incompatible 45-test and 51-test byte contracts."
+    },
+    "snapshot_source_commit": {
+      "$ref": "#/$defs/git_sha1"
+    },
+    "report_contract": {
+      "$ref": "#/$defs/report_contract"
+    },
+    "inventory_contract": {
+      "$ref": "#/$defs/inventory_contract"
+    },
+    "campaign_contract": {
+      "$ref": "#/$defs/campaign_contract"
+    },
+    "receipt_contract": {
+      "$ref": "#/$defs/receipt_contract"
+    },
+    "engine_contract": {
+      "$ref": "#/$defs/engine_contract"
+    },
+    "repository_gate_contract": {
+      "$ref": "#/$defs/repository_gate_contract"
+    },
+    "operator_contract": {
+      "$ref": "#/$defs/operator_contract"
+    },
+    "cardinality": {
+      "$ref": "#/$defs/cardinality"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "git_sha1": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "resource_path": {
+      "type": "string",
+      "pattern": "^res://[A-Za-z0-9_./-]+$"
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_path",
+        "sha256",
+        "source_git_blob_sha1"
+      ],
+      "properties": {
+        "resource_path": {
+          "$ref": "#/$defs/resource_path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_git_blob_sha1": {
+          "$ref": "#/$defs/git_sha1"
+        }
+      }
+    },
+    "report_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "historical_resource_path",
+        "snapshot",
+        "status",
+        "certification",
+        "claim_boundary",
+        "serialization"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "sporespore.lab.br1_certification_report.v1"
+        },
+        "historical_resource_path": {
+          "const": "res://data/lab/schemas/br1_certification_report_v1.schema.json"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "status": {
+          "const": "pass"
+        },
+        "certification": {
+          "const": "BR1_L0_EVIDENCE_PIPELINE"
+        },
+        "claim_boundary": {
+          "const": "BR1 certifies only the L0 evidence pipeline. It establishes no standing, bracing, recovery, or walking capability."
+        },
+        "serialization": {
+          "const": "ordered_compact_utf8_no_bom_v1"
+        }
+      }
+    },
+    "inventory_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "inventory_id",
+        "inventory_version",
+        "pattern",
+        "historical_resource_path",
+        "snapshot",
+        "test_count",
+        "artifact_count"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "sporespore.lab.br1_required_test_inventory.v1"
+        },
+        "inventory_id": {
+          "const": "BR1_REQUIRED_LAB_TESTS_V1"
+        },
+        "inventory_version": {
+          "const": 1
+        },
+        "pattern": {
+          "const": "test_lab_*.gd"
+        },
+        "historical_resource_path": {
+          "const": "res://data/lab/campaigns/BR1_required_lab_tests_v1.json"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "test_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "artifact_count": {
+          "type": "integer",
+          "minimum": 2
+        }
+      }
+    },
+    "campaign_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "campaign_id",
+        "campaign_version",
+        "historical_resource_path",
+        "snapshot",
+        "cell_count",
+        "required_replicates_per_cell"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "sporespore.lab.br1_l0_certification_campaign.v1"
+        },
+        "campaign_id": {
+          "const": "BR1_L0_CERTIFICATION_V1"
+        },
+        "campaign_version": {
+          "const": 1
+        },
+        "historical_resource_path": {
+          "const": "res://data/lab/campaigns/BR1_L0_certification_v1.json"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "cell_count": {
+          "const": 7
+        },
+        "required_replicates_per_cell": {
+          "const": 2
+        }
+      }
+    },
+    "receipt_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_id",
+        "domain",
+        "algorithm",
+        "report_name",
+        "historical_resource_path",
+        "snapshot"
+      ],
+      "properties": {
+        "schema_id": {
+          "const": "sporespore.lab.br1_certification_report_attestation.v1"
+        },
+        "domain": {
+          "const": "sporespore.lab.br1_certification_report_attestation.v1"
+        },
+        "algorithm": {
+          "const": "hmac-sha256"
+        },
+        "report_name": {
+          "const": "br1_certification_report.json"
+        },
+        "historical_resource_path": {
+          "const": "res://data/lab/schemas/certification_report_attestation_v1.schema.json"
+        },
+        "snapshot": {
+          "$ref": "#/$defs/snapshot"
+        }
+      }
+    },
+    "executable_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "executable_name",
+        "sha256",
+        "product_version",
+        "file_description"
+      ],
+      "properties": {
+        "executable_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "product_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file_description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "gate_stages": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "INITIAL",
+          "AFTER_TESTS",
+          "BEFORE_FINAL_SWEEP",
+          "AFTER_FINAL_SWEEP"
+        ]
+      }
+    },
+    "engine_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "godot_version",
+        "console",
+        "physics_child",
+        "identity_gate_stages"
+      ],
+      "properties": {
+        "godot_version": {
+          "const": "4.7.stable.mono.official.5b4e0cb0f"
+        },
+        "console": {
+          "$ref": "#/$defs/executable_identity"
+        },
+        "physics_child": {
+          "$ref": "#/$defs/executable_identity"
+        },
+        "identity_gate_stages": {
+          "$ref": "#/$defs/gate_stages"
+        }
+      }
+    },
+    "repository_gate_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clean_at_all_recorded_gates",
+        "commit_unchanged_at_all_recorded_gates",
+        "stages"
+      ],
+      "properties": {
+        "clean_at_all_recorded_gates": {
+          "const": true
+        },
+        "commit_unchanged_at_all_recorded_gates": {
+          "const": true
+        },
+        "stages": {
+          "$ref": "#/$defs/gate_stages"
+        }
+      }
+    },
+    "operator_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "timeout_policy",
+        "process_runner_self_test",
+        "attestation_initializer_self_test"
+      ],
+      "properties": {
+        "timeout_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "per_test_seconds",
+            "lab_suite_seconds",
+            "per_step_seconds",
+            "process_tree_kill_on_timeout"
+          ],
+          "properties": {
+            "per_test_seconds": {
+              "const": 180
+            },
+            "lab_suite_seconds": {
+              "const": 10800
+            },
+            "per_step_seconds": {
+              "const": 900
+            },
+            "process_tree_kill_on_timeout": {
+              "const": true
+            }
+          }
+        },
+        "process_runner_self_test": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pass",
+            "success_exit",
+            "nonzero_exit",
+            "timeout_detected",
+            "process_tree_killed",
+            "inherited_descendant_terminated",
+            "containment_tree_closed"
+          ],
+          "properties": {
+            "pass": {
+              "const": true
+            },
+            "success_exit": {
+              "const": 0
+            },
+            "nonzero_exit": {
+              "const": 37
+            },
+            "timeout_detected": {
+              "const": true
+            },
+            "process_tree_killed": {
+              "const": true
+            },
+            "inherited_descendant_terminated": {
+              "const": true
+            },
+            "containment_tree_closed": {
+              "const": true
+            }
+          }
+        },
+        "attestation_initializer_self_test": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pass",
+            "minimum_assertions",
+            "production_store_touched"
+          ],
+          "properties": {
+            "pass": {
+              "const": true
+            },
+            "minimum_assertions": {
+              "const": 61
+            },
+            "production_store_touched": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "cardinality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tests_required",
+        "test_artifacts_required",
+        "cells_required",
+        "bundles_required",
+        "replays_required",
+        "replicate_comparisons_required",
+        "outer_parent_processes_required",
+        "physics_child_processes_required",
+        "source_gates_required",
+        "engine_identity_gates_required"
+      ],
+      "properties": {
+        "tests_required": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "test_artifacts_required": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "cells_required": {
+          "const": 7
+        },
+        "bundles_required": {
+          "const": 14
+        },
+        "replays_required": {
+          "const": 14
+        },
+        "replicate_comparisons_required": {
+          "const": 7
+        },
+        "outer_parent_processes_required": {
+          "const": 14
+        },
+        "physics_child_processes_required": {
+          "const": 14
+        },
+        "source_gates_required": {
+          "const": 4
+        },
+        "engine_identity_gates_required": {
+          "const": 4
+        }
+      }
+    }
+  }
+}

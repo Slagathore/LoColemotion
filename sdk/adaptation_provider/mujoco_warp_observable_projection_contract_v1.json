@@ -1,0 +1,207 @@
+{
+  "schema_version": "sporespore_mujoco_warp_observable_projection_contract_v1",
+  "contract_id": "sporespore_mujoco_warp_premetric_native_observable_projection_v1",
+  "status": "zero_world_source_only_production_topology_bindings_unresolved",
+  "question_class": "development",
+  "purpose": "Make the raw CPU-MuJoCo and MuJoCo-Warp observable projection into MJMS-compatible traces executable before any model-specific production binding, normalization scale, semantic ceiling, calibration plan, physics step, or training use is opened.",
+  "predecessor_boundary": {
+    "metric_semantics_contract_path": "sdk/adaptation_provider/mujoco_warp_metric_semantics_contract_v1.json",
+    "metric_semantics_contract_raw_sha256": "sha256:b6dbcf86ad6d49dbeba814640530a2e26f44091695b262e2f961a987d0dc368f",
+    "metric_semantics_compiler_path": "sdk/adaptation_provider/mujoco_warp_metric_semantics.py",
+    "metric_semantics_compiler_raw_sha256": "sha256:e0698dfdb68168eabbc2a1d30c1bb76be612b7c8ced1cecdd433e79cf8d0caf9",
+    "metric_semantics_validation_manifest_path": "sdk/adaptation_provider/mujoco_warp_metric_semantics_validation_manifest.json",
+    "metric_semantics_validation_manifest_raw_sha256": "sha256:e9fbbeda6812c830d0eebd4a4f10c4e3c25c34390905448a1c988a203d5fb879",
+    "metric_semantics_source_commit": "ba3ba521a8570c623ce26c06fb0c4148ac2e0a27",
+    "metric_semantics_source_report_sha256": "sha256:d3d8e68fa904e1712642e0767b93b3f4c9395c36da3a46660aee123937d7a7e9",
+    "metric_semantics_integration_commit": "424992016f3f770930025ceed00c8a0f15a53707",
+    "metric_semantics_integration_receipt_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\conformance-runs\\20260814T232917Z-42499201-65bcbf37b4ab476986a55ae64064355d\\receipt.json",
+    "metric_semantics_integration_receipt_sha256": "sha256:18bf77deb0006f40153582162d4fc7efe8732740b3f5895709fef5e1ae721a98",
+    "metric_semantics_integration_receipt_byte_length": 17338,
+    "production_metric_definition_count": 0,
+    "production_metric_semantics_complete": false,
+    "production_semantic_ceiling_sources_complete": false,
+    "production_plan_exists": false,
+    "physical_calibration_series_open": false,
+    "heldout_qualification_series_open": false
+  },
+  "runtime_identity": {
+    "cpu_reference": "mujoco_3.11.0_cpu",
+    "warp_candidate": "mujoco_warp_3.11.0_cuda",
+    "warp_lang": "1.16.0",
+    "one_uploaded_topology_per_batch": true,
+    "model_and_topology_identity_must_match": true,
+    "effective_numeric_dtypes_must_be_observed_per_binding": true,
+    "static_type_annotations_are_not_effective_dtype_evidence": true,
+    "world_index_and_batch_width_are_binding_identity": true
+  },
+  "native_field_projection": {
+    "state_fields": [
+      {
+        "native_field": "qpos",
+        "cpu_source": "mujoco.MjData.qpos",
+        "cpu_shape": ["nq"],
+        "warp_source": "mujoco_warp.Data.qpos",
+        "warp_shape": ["nworld", "nq"]
+      },
+      {
+        "native_field": "qvel",
+        "cpu_source": "mujoco.MjData.qvel",
+        "cpu_shape": ["nv"],
+        "warp_source": "mujoco_warp.Data.qvel",
+        "warp_shape": ["nworld", "nv"]
+      }
+    ],
+    "actuator_field": {
+      "native_field": "actuator_force",
+      "quantity": "actuator_force_in_actuation_space",
+      "cpu_source": "mujoco.MjData.actuator_force",
+      "cpu_shape": ["nu"],
+      "warp_source": "mujoco_warp.Data.actuator_force",
+      "warp_shape": ["nworld", "nu"],
+      "qfrc_actuator_is_not_a_substitute": true,
+      "qfrc_applied_is_not_a_substitute": true
+    },
+    "energy_field": {
+      "observable": "total_mechanical_energy_j",
+      "cpu_source": "mujoco.MjData.energy",
+      "cpu_shape": [2],
+      "warp_source": "mujoco_warp.Data.energy",
+      "warp_shape": ["nworld", 2],
+      "index_zero": "potential_energy_j",
+      "index_one": "kinetic_energy_j",
+      "aggregation": "potential_plus_kinetic",
+      "energy_enable_flag_required": true,
+      "disabled_energy_zero_is_not_an_observation": true
+    },
+    "contact_field": {
+      "cpu_active_count_source": "mujoco.MjData.ncon",
+      "cpu_active_storage": "mujoco.MjData.contact[0:ncon]",
+      "cpu_constraint_inclusion": "contact.efc_address_greater_than_or_equal_to_zero",
+      "warp_active_count_source": "mujoco_warp.Data.nacon[0]",
+      "warp_active_storage": "mujoco_warp.Data.contact[0:nacon]",
+      "warp_world_selection": "filter_contact.worldid_equal_to_bound_world_index",
+      "warp_constraint_inclusion": "contact.type_has_constraint_bit_and_any_efc_address_nonnegative",
+      "constraint_contact_bit": 1,
+      "geom_pair_order": "unordered_min_then_max",
+      "site_presence": "any_included_contact_between_declared_site_geom_set_and_environment_geom_set",
+      "baseline_step_zero_is_left_censored": true,
+      "event_transition_rule": "false_to_true_contact_begin_true_to_false_contact_end",
+      "event_occurrence_indexing": "one_based_per_body_pair_and_event_kind",
+      "event_output_order": "lexicographic_body_pair_kind_occurrence",
+      "unmapped_included_contact_disposition": "exact_failure",
+      "capacity_overflow_disposition": "exact_failure"
+    }
+  },
+  "capture_lifecycle_contract": {
+    "semantic_step_origin": 0,
+    "cpu_capture_point": "immediately_after_mj_step_return_before_any_mj_forward_recomputation",
+    "warp_capture_point": "immediately_after_mujoco_warp_step_completion_and_device_synchronization",
+    "same_initial_state_control_and_semantic_step_required": true,
+    "one_capture_per_semantic_step_required": true,
+    "steps_zero_through_h_inclusive_required": true,
+    "selective_step_discard_or_replacement_permitted": false,
+    "post_capture_forward_recomputation_permitted": false
+  },
+  "binding_contract": {
+    "schema_version": "sporespore_mujoco_warp_observable_binding_v1",
+    "fixture_only_positive_path": true,
+    "production_binding_installation_permitted_by_this_gate": false,
+    "exact_model_morphology_and_topology_digests_required": true,
+    "exact_nq_nv_nu_ngeom_nsite_required": true,
+    "qpos_qvel_and_actuator_force_native_slot_coverage_must_be_exact": true,
+    "component_order_is_hash_bound": true,
+    "allowed_value_kinds": [
+      "scalar_linear",
+      "scalar_periodic_radians",
+      "unit_quaternion_wxyz"
+    ],
+    "unit_quaternion_native_index_count": 4,
+    "scalar_native_index_count": 1,
+    "quaternion_native_order": "wxyz",
+    "state_and_pose_velocity_components_must_share_exact_order": true,
+    "actuator_components_must_cover_actuator_force_exactly": true,
+    "contact_site_and_body_pair_ids_must_be_unique": true,
+    "contact_geom_indices_must_be_in_range": true,
+    "ignored_contact_pairs_require_preoutcome_adequacy": true,
+    "normalization_scale_fields_permitted": false,
+    "semantic_ceiling_fields_permitted": false,
+    "effective_dtype_observation_required": true,
+    "capture_lifecycle_must_match_contract": true
+  },
+  "native_trace_contract": {
+    "schema_version": "sporespore_mujoco_warp_native_observable_trace_fixture_v1",
+    "required_runtime_roles": [
+      "cpu_reference",
+      "warp_candidate"
+    ],
+    "binding_hash_required": true,
+    "metric_suite_hash_required": true,
+    "exact_steps_required": "0_through_h_inclusive_without_gap_or_duplicate",
+    "array_shapes_and_effective_dtype_must_match_binding": true,
+    "all_projected_numeric_values_must_be_finite": true,
+    "active_contact_count_must_equal_retained_record_count": true,
+    "structural_mutation_disposition": "invalid_refused",
+    "runtime_failure_overflow_or_unmapped_contact_disposition": "retained_exact_failure_without_metric_vector",
+    "projected_trace_schema": "sporespore_mujoco_warp_metric_fixture_trace_v1",
+    "projected_trace_must_be_accepted_by_exact_mjms_compiler": true,
+    "native_and_projected_trace_content_addresses_required": true,
+    "fixture_trace_may_create_scientific_or_physical_result": false
+  },
+  "current_inventory": {
+    "inventory_id": "mujoco_warp_observable_projection_current_unresolved_v1",
+    "required_initial_topology_binding_count": 1,
+    "required_initial_topology_bucket": "bounded_quadruped_gq15",
+    "production_topology_binding_count": 0,
+    "unresolved_topology_binding_count": 1,
+    "production_native_observable_binding_complete": false,
+    "production_metric_definition_count": 0,
+    "production_metric_semantics_complete": false,
+    "production_semantic_ceiling_sources_complete": false,
+    "production_plan_exists": false,
+    "calibration_authorized": false
+  },
+  "source_conformance": {
+    "required_cells": [
+      "mjop0_contract_and_predecessor_boundary",
+      "mjop1_current_incomplete_inventory",
+      "mjop2_fixture_binding_compilation",
+      "mjop3_positive_native_projection_and_mjms_integration",
+      "mjop4_model_address_and_dtype_controls",
+      "mjop5_shape_lifecycle_and_horizon_controls",
+      "mjop6_energy_contact_and_failure_controls",
+      "mjop7_authority_boundary"
+    ],
+    "exact_control_count": 48,
+    "minimum_rejected_mutation_count": 24,
+    "model_construction_count": 0,
+    "step_invocation_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "claims": {
+    "production_native_observable_binding_complete": false,
+    "production_metric_semantics_complete": false,
+    "production_semantic_ceiling_sources_complete": false,
+    "production_calibration_plan_frozen": false,
+    "calibration_physics_executed": false,
+    "production_margins_frozen": false,
+    "heldout_cohort_frozen": false,
+    "supported_physics_subset_qualified": false,
+    "throughput_measured": false,
+    "training_plane_authorized": false,
+    "training_data_authority": false,
+    "native_mujoco_equivalence": false,
+    "cross_engine_equivalence": false,
+    "scientific_result": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "documentation_provenance": [
+    "https://github.com/google-deepmind/mujoco/blob/main/include/mujoco/mjdata.h",
+    "https://github.com/google-deepmind/mujoco/blob/main/python/tutorial.ipynb",
+    "https://github.com/google-deepmind/mujoco_warp/blob/main/mujoco_warp/_src/types.py",
+    "https://github.com/google-deepmind/mujoco_warp/blob/main/mujoco_warp/_src/forward.py",
+    "https://github.com/google-deepmind/mujoco_warp/blob/main/mujoco_warp/_src/sensor.py"
+  ]
+}

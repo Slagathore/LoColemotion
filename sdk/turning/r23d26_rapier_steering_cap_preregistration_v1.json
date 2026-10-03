@@ -1,0 +1,112 @@
+{
+  "schema_version": "sporespore_qsdk_r23d26_rapier_steering_cap_preregistration_v1",
+  "status": "prospective_zero_world_only",
+  "campaign_id": "QSDK-R23D26-RAPIER-STEERING-CAP-DEVELOPMENT",
+  "gate_id": "QSDK-R23D26",
+  "study_classification": "prospective_outcome_exposed_finite_rapier_controller_development_screen",
+  "question": "Can a portable steering-fraction cap prevent the retained Rapier active-turn falls while preserving forward walking and bilateral command-conditioned yaw response?",
+  "immutable_lineage": {
+    "r23d21_godot_finite_positive_closure": "sdk/turning/r23d21_physical_closure_v1.json",
+    "r23d23_rapier_negative_closure": "sdk/turning/r23d23_physical_closure_v1.json",
+    "r23d23_rapier_negative_closure_raw_sha256": "sha256:47c5be6c974fcefdbf971bf1e316ee8029bb232f3bd8b9f2dfdf0b520896dd51",
+    "r23d25_mujoco_negative_closure": "sdk/turning/r23d25_mujoco_terminal_zero_forward_closure_v1.json",
+    "r23d25_mujoco_negative_closure_raw_sha256": "sha256:b1b61aeeb9f6643bf8a15f3ca6d0b715d8af02b085fc63fcd9cf86a733313a30",
+    "same_identity_rerun_forbidden": true,
+    "historical_outcomes_reinterpreted": false,
+    "historical_worlds_reused_as_new_cells": false
+  },
+  "mechanism": {
+    "retained_observation": "Both R23D23 commanded Rapier arms reached the inherited 0.40 steering bound and fell during the active turn. Positive first exceeded 0.20 rad tilt at trace step 1032 after only 0.015402430696887907 rad yaw change; negative did so at step 819 after only 0.02052210573527902 rad yaw change.",
+    "interpretation": "Large bilateral stride asymmetry produces lateral roll before useful yaw response. This screen varies only a portable controller bound; it does not branch on engine identity inside the controller.",
+    "threshold_change": false,
+    "terminal_policy_change": false,
+    "fixture_change": false,
+    "physics_change": false
+  },
+  "candidate_family": {
+    "parent_policy_id": "sporespore_balanced_wave_r23d21_reduced_yaw_authority_v1",
+    "inherited_global_steering_fraction_limit": 0.4,
+    "only_behavioral_controller_field_changed": "maximum_steering_fraction",
+    "profile_schema_change": "The profile schema identity advances to sporespore_balanced_wave_bounded_steering_profile_v1 so the new optional bound is explicit; no second behavioral field changes.",
+    "level_provenance": "The levels are exactly one quarter, one half, and three quarters of the inherited 0.40 bound. They were declared together before any candidate physical result and are not fitted to a winning outcome.",
+    "ordered_candidates": [
+      {
+        "candidate_id": "cap_0p10",
+        "controller_policy_id": "sporespore_balanced_wave_r23d26_steering_cap_0p10_v1",
+        "maximum_steering_fraction": 0.1
+      },
+      {
+        "candidate_id": "cap_0p20",
+        "controller_policy_id": "sporespore_balanced_wave_r23d26_steering_cap_0p20_v1",
+        "maximum_steering_fraction": 0.2
+      },
+      {
+        "candidate_id": "cap_0p30",
+        "controller_policy_id": "sporespore_balanced_wave_r23d26_steering_cap_0p30_v1",
+        "maximum_steering_fraction": 0.3
+      }
+    ],
+    "engine_specific_gait_logic_permitted": false,
+    "candidate_or_outcome_branching_permitted": false
+  },
+  "frozen_matrix": {
+    "stage_id": "rapier_steering_cap_development",
+    "ordered_engine_ids": ["rapier_parry"],
+    "ordered_candidate_ids": ["cap_0p10", "cap_0p20", "cap_0p30"],
+    "ordered_arm_ids": ["reference_zero", "positive_heading", "negative_heading"],
+    "declared_cell_count": 9,
+    "serial_execution_required": true,
+    "all_cells_run_regardless_of_intermediate_outcome": true,
+    "morphology_id": "qsdk_r05_generated_s169",
+    "seed": 21501,
+    "physics_hz": 120,
+    "settlement_step_count": 240,
+    "controller_step_count": 2992,
+    "turn_start_step": 600,
+    "turn_end_step_exclusive": 1800,
+    "desired_heading_offsets_rad_by_arm": {
+      "reference_zero": 0.0,
+      "positive_heading": 0.2,
+      "negative_heading": -0.2
+    }
+  },
+  "frozen_active_turn_gates": {
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "minimum_absolute_signed_turn_phase_yaw_delta_rad": 0.01,
+    "minimum_command_conditioned_yaw_separation_rad": 0.01,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "zero_torso_ground_contact_required": true,
+    "zero_controller_errors_required": true,
+    "zero_nonfinite_observations_required": true,
+    "zero_actuator_application_mismatches_required": true,
+    "terminal_quiescent_taper_required": false,
+    "terminal_exclusion_reason": "This development screen isolates the active-turn fall mechanism. R23D23 Rapier reference and R23D25 MuJoCo reference terminal/contact mechanisms remain separate unresolved work and cannot be silently rethresholded here."
+  },
+  "selector": {
+    "candidate_eligibility": "all three cells execution-valid and every frozen active-turn gate passes, including both signed reference-conditioned responses",
+    "selection_order": "choose the largest eligible maximum_steering_fraction; otherwise NONE",
+    "selection_rationale": "retain the greatest prospectively screened turn authority that satisfies the complete stability and bilateral-response screen",
+    "selected_candidate_is_validation": false,
+    "selected_candidate_requires_distinct_prospective_validation": true
+  },
+  "evidence": {
+    "complete_zero_world_preflight_required": true,
+    "clean_pushed_source_required": true,
+    "campaign_local_lca1_qualification_required": true,
+    "content_addressed_trace_before_terminal_required": true,
+    "one_world_build_and_attempt_per_cell_required": true,
+    "same_identity_rerun_allowed": false
+  },
+  "claims": {
+    "development_screen_only": true,
+    "turning_validation": false,
+    "portable_basic_turning": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

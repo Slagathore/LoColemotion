@@ -1,0 +1,340 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br8_certification_report_v1.schema.json",
+  "title": "SporeSpore BR8 certification report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "status", "certification", "certification_id", "milestone_id",
+    "claim_boundary", "generated_utc", "source", "engine", "bundle_policy",
+    "report_attestation_policy", "accounting", "cells", "programs",
+    "final_readback", "brace_detection_constraints", "capabilities",
+    "does_not_establish"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br8_certification_report.v1"},
+    "status": {"const": "pass"},
+    "certification": {"const": "BR8_EARLY_LOSS_OF_VIABILITY_DETECTION"},
+    "certification_id": {
+      "type": "string",
+      "pattern": "^br8_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"
+    },
+    "milestone_id": {"const": "BR8_EARLY_LOSS_OF_VIABILITY_DETECTION"},
+    "claim_boundary": {
+      "const": "This campaign can certify only the exact BR8.0 static-margin, support-count, and impact-deadline oracles; BR8.1 linear-capture margin, boundary-clock, mirrored-direction, and delayed REACTION_TOO_LATE oracles; BR8.2 immediate STAND/PRECARIOUS/BRACE escalation and hysteretic one-state-at-a-time release; and BR8.3 passive central-horizontal-impulse, slowly-tilting-platform, and disappearing-right-support program scopes named by the source-pinned programs. BR8.4 is integrity-only containment and cannot substitute for a milestone program. Every live fixture retains an explicit unpowered Generic6DOF planar guide: sagittal X/Y translation and pitch are released while out-of-plane translation, roll, and yaw remain locked, and all guide motors and springs remain off. Detector and supervisor outputs are observations, not force, torque, brace, step, foot-pin, root-rescue, creature-edit, or guidance commands. The declared timing thresholds, rigid-body geometry, masses, friction, timestep, solver, central impulse, platform rotation, support removal, measured transforms, measured velocities, and observed contact membership retain their exact fixture scopes. This establishes early loss-of-viability detection in the passive planar-scaffold matrix only, not an executed existing-contact brace, catch step, new support contact, free 3D standing, unconstrained balance, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance."
+    },
+    "generated_utc": {"type": "string", "format": "date-time"},
+    "source": {"$ref": "#/$defs/source"},
+    "engine": {"$ref": "#/$defs/engine"},
+    "bundle_policy": {"$ref": "#/$defs/bundle_policy"},
+    "report_attestation_policy": {"$ref": "#/$defs/report_attestation_policy"},
+    "accounting": {"$ref": "#/$defs/accounting"},
+    "cells": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"$ref": "#/$defs/cell"}
+    },
+    "programs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {"$ref": "#/$defs/program"}
+    },
+    "final_readback": {"$ref": "#/$defs/final_readback"},
+    "brace_detection_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "guide_type",
+        "sagittal_x_y_translation_released",
+        "pitch_released",
+        "out_of_plane_translation_locked",
+        "roll_and_yaw_locked",
+        "guide_motors_or_springs_enabled",
+        "active_brace_controller_enabled",
+        "step_controller_enabled",
+        "foot_pin_enabled",
+        "root_rescue_enabled",
+        "detector_observation_only",
+        "supervisor_observation_only",
+        "horizontal_impulse_required",
+        "slowly_tilting_platform_required",
+        "disappearing_right_support_required",
+        "delayed_reaction_too_late_control_required",
+        "tilt_brace_before_static_exhaustion_required",
+        "support_loss_observed_within_two_ticks",
+        "early_loss_of_viability_detection_established"
+      ],
+      "properties": {
+        "guide_type": {"const": "Generic6DOFJoint3D_out_of_plane_scaffold"},
+        "sagittal_x_y_translation_released": {"const": true},
+        "pitch_released": {"const": true},
+        "out_of_plane_translation_locked": {"const": true},
+        "roll_and_yaw_locked": {"const": true},
+        "guide_motors_or_springs_enabled": {"const": false},
+        "active_brace_controller_enabled": {"const": false},
+        "step_controller_enabled": {"const": false},
+        "foot_pin_enabled": {"const": false},
+        "root_rescue_enabled": {"const": false},
+        "detector_observation_only": {"const": true},
+        "supervisor_observation_only": {"const": true},
+        "horizontal_impulse_required": {"const": true},
+        "slowly_tilting_platform_required": {"const": true},
+        "disappearing_right_support_required": {"const": true},
+        "delayed_reaction_too_late_control_required": {"const": true},
+        "tilt_brace_before_static_exhaustion_required": {"const": true},
+        "support_loss_observed_within_two_ticks": {"const": true},
+        "early_loss_of_viability_detection_established": {"const": true}
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_knowledge_entries", "automatic_creature_guidance_allowed",
+        "early_loss_of_viability_detection",
+        "executed_existing_contact_brace", "catch_step",
+        "new_support_contact", "free_3d_standing",
+        "unconstrained_balance",
+        "fall_arrest", "getting_up", "walking"
+      ],
+      "properties": {
+        "accepted_knowledge_entries": {"const": 0},
+        "automatic_creature_guidance_allowed": {"const": false},
+        "early_loss_of_viability_detection": {"const": true},
+        "executed_existing_contact_brace": {"const": false},
+        "catch_step": {"const": false},
+        "new_support_contact": {"const": false},
+        "free_3d_standing": {"const": false},
+        "unconstrained_balance": {"const": false},
+        "fall_arrest": {"const": false},
+        "getting_up": {"const": false},
+        "walking": {"const": false}
+      }
+    },
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "An executed existing-contact brace",
+          "A catch step or new support contact",
+          "Free 3D standing or unconstrained balance",
+          "An absent, negligible, or measured out-of-plane scaffold reaction",
+          "Fall arrest",
+          "Self-righting or getting up",
+          "Gait, candidate walking, or walking",
+          "Morphology, terrain, complex-foot, or endurance generalization",
+          "Accepted encyclopedia knowledge or automatic creature guidance"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "path": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_root", "commit_sha", "clean_at_start", "clean_at_end",
+        "campaign_path", "campaign_sha256", "source_inventory_sha256",
+        "source_file_count", "br1_inventory_path", "br1_inventory_sha256",
+        "br1_inventory_unchanged"
+      ],
+      "properties": {
+        "repository_root": {"$ref": "#/$defs/path"},
+        "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "clean_at_start": {"const": true},
+        "clean_at_end": {"const": true},
+        "campaign_path": {"$ref": "#/$defs/path"},
+        "campaign_sha256": {"$ref": "#/$defs/sha256"},
+        "source_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "source_file_count": {"type": "integer", "minimum": 1},
+        "br1_inventory_path": {"$ref": "#/$defs/path"},
+        "br1_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "br1_inventory_unchanged": {"const": true}
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executable", "sha256", "version", "fresh_target_process_invocations", "pid_recycle_events_recorded"],
+      "properties": {
+        "executable": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "version": {"const": "4.7.stable.mono.official.5b4e0cb0f"},
+        "fresh_target_process_invocations": {"const": 10},
+        "pid_recycle_events_recorded": {"const": true}
+      }
+    },
+    "bundle_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_schema", "capsule_schema", "metrics_schema", "receipt_schema", "receipt_domain", "trust_mode"],
+      "properties": {
+        "manifest_schema": {"const": "sporespore.lab.manifest.v1"},
+        "capsule_schema": {"const": "sporespore.lab.br8_brace_detection_evidence_capsule.v1"},
+        "metrics_schema": {"const": "sporespore.lab.br8_brace_detection_evidence_metrics.v1"},
+        "receipt_schema": {"const": "sporespore.lab.publication_attestation.v1"},
+        "receipt_domain": {"const": "sporespore.lab.publication_attestation.v1"},
+        "trust_mode": {"const": "production"}
+      }
+    },
+    "report_attestation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_schema", "receipt_domain", "trust_mode", "detached", "report_rewrite_after_attestation_forbidden"],
+      "properties": {
+        "receipt_schema": {"const": "sporespore.lab.br8_certification_report_attestation.v1"},
+        "receipt_domain": {"const": "sporespore.lab.br8_certification_report_attestation.v1"},
+        "trust_mode": {"const": "production"},
+        "detached": {"const": true},
+        "report_rewrite_after_attestation_forbidden": {"const": true}
+      }
+    },
+    "accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "programs_required", "programs_passed", "replicates_per_program",
+        "bundles_required", "bundles_passed", "assertions_required",
+        "assertions_passed", "milestone_programs", "milestone_assertions",
+        "supplementary_programs", "supplementary_assertions",
+        "integrity_programs", "integrity_assertions"
+      ],
+      "properties": {
+        "programs_required": {"const": 5},
+        "programs_passed": {"const": 5},
+        "replicates_per_program": {"const": 2},
+        "bundles_required": {"const": 10},
+        "bundles_passed": {"const": 10},
+        "assertions_required": {"const": 116},
+        "assertions_passed": {"const": 116},
+        "milestone_programs": {"const": 4},
+        "milestone_assertions": {"const": 80},
+        "supplementary_programs": {"const": 0},
+        "supplementary_assertions": {"const": 0},
+        "integrity_programs": {"const": 1},
+        "integrity_assertions": {"const": 36}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cell_id", "programs_required", "programs_passed", "assertions_per_replicate", "status"],
+      "properties": {
+        "cell_id": {"enum": ["BR8.0", "BR8.1", "BR8.2", "BR8.3"]},
+        "programs_required": {"type": "integer", "minimum": 1},
+        "programs_passed": {"type": "integer", "minimum": 1},
+        "assertions_per_replicate": {"type": "integer", "minimum": 1},
+        "status": {"const": "pass"}
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid", "trust_mode", "key_id", "receipt_path", "receipt_sha256"],
+      "properties": {
+        "valid": {"const": true},
+        "trust_mode": {"const": "production"},
+        "key_id": {"$ref": "#/$defs/sha256"},
+        "receipt_path": {"$ref": "#/$defs/path"},
+        "receipt_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "replicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "replicate", "bundle_id", "bundle_path", "manifest_sha256",
+        "checksums_sha256", "capsule_sha256", "metrics_sha256",
+        "source_inventory_sha256", "containment_host_process_id",
+        "target_process_id", "started_utc", "ended_utc", "assertions_passed",
+        "assertion_labels_sha256", "transcript_sha256", "attestation"
+      ],
+      "properties": {
+        "replicate": {"enum": [1, 2]},
+        "bundle_id": {"type": "string", "minLength": 1},
+        "bundle_path": {"$ref": "#/$defs/path"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "checksums_sha256": {"$ref": "#/$defs/sha256"},
+        "capsule_sha256": {"$ref": "#/$defs/sha256"},
+        "metrics_sha256": {"$ref": "#/$defs/sha256"},
+        "source_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "containment_host_process_id": {"type": "integer", "minimum": 1},
+        "target_process_id": {"type": "integer", "minimum": 1},
+        "started_utc": {"type": "string", "format": "date-time"},
+        "ended_utc": {"type": "string", "format": "date-time"},
+        "assertions_passed": {"type": "integer", "minimum": 1},
+        "assertion_labels_sha256": {"$ref": "#/$defs/sha256"},
+        "transcript_sha256": {"$ref": "#/$defs/sha256"},
+        "attestation": {"$ref": "#/$defs/attestation"}
+      }
+    },
+    "reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass", "source_identity_match", "assertion_count_match",
+        "ordered_assertion_labels_match", "both_raw_transcripts_retained",
+        "raw_transcript_identity_required"
+      ],
+      "properties": {
+        "pass": {"const": true},
+        "source_identity_match": {"const": true},
+        "assertion_count_match": {"const": true},
+        "ordered_assertion_labels_match": {"const": true},
+        "both_raw_transcripts_retained": {"const": true},
+        "raw_transcript_identity_required": {"const": false}
+      }
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program_id", "cell_id", "evidence_role", "test",
+        "expected_assertions", "claim_scope", "replicates", "reconciliation"
+      ],
+      "properties": {
+        "program_id": {"type": "string", "pattern": "^BR8_[A-Z0-9_]+_V1$"},
+        "cell_id": {"type": "string", "minLength": 1},
+        "evidence_role": {"enum": ["milestone", "supplementary", "integrity"]},
+        "test": {"type": "string", "pattern": "^test_(?:lab|experimental)_[A-Za-z0-9_.-]+\\.gd$"},
+        "expected_assertions": {"type": "integer", "minimum": 1},
+        "claim_scope": {"type": "string", "minLength": 1},
+        "replicates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {"$ref": "#/$defs/replicate"}
+        },
+        "reconciliation": {"$ref": "#/$defs/reconciliation"}
+      }
+    },
+    "final_readback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundles_required", "bundles_verified", "receipts_required",
+        "receipts_verified", "source_inventories_verified",
+        "metrics_verified", "target_process_invocations", "unique_target_processes", "pid_recycle_events", "complete_campaign"
+      ],
+      "properties": {
+        "bundles_required": {"const": 10},
+        "bundles_verified": {"const": 10},
+        "receipts_required": {"const": 10},
+        "receipts_verified": {"const": 10},
+        "source_inventories_verified": {"const": 10},
+        "metrics_verified": {"const": 10},
+        "target_process_invocations": {"const": 10},
+        "unique_target_processes": {"type": "integer", "minimum": 1, "maximum": 10},
+        "pid_recycle_events": {"type": "integer", "minimum": 0, "maximum": 9},
+        "complete_campaign": {"const": true}
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="ExperimentSpec" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/lab/experiment_spec.gd" id="1_spec"]
+
+[resource]
+script = ExtResource("1_spec")
+experiment_id = &"L0_4_TRACE_PLAYBACK"
+hypothesis_id = &"H_L0_4_REPLAY_IS_PHYSICS_FREE"
+fixture_id = &"trace_playback_v1"
+fixture_version = 1
+controller_id = &"none"
+observer_profile_id = &"minimal_state_v1"
+duration_ticks = 1
+warmup_ticks = 0
+physics_ticks_per_second = 60
+root_seed = 42
+body_parameters = {}
+fixture_parameters = {}
+controller_parameters = {}
+gate_parameters = {
+"replay_mismatch_count": 0
+}
+forbidden_scaffolds = Array[StringName]([&"physics_step", &"live_body_read"])
+metadata = {
+"claim_scope": "recorded_evidence_playback_only"
+}

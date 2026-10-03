@@ -1,0 +1,84 @@
+{
+  "schema": "sporespore.lab.br3a_development_observation.v1",
+  "entry_id": "L1.2.incline_hold_slide_threshold.draft_v1",
+  "cell_id": "L1.2",
+  "claim_status_ceiling": "development_observation",
+  "admissible_now": false,
+  "admission_blockers": [
+    "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+    "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+    "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+    "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+    "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+  ],
+  "evidence_source": {
+    "test_files": [
+      "res://tests/test_experimental_l1_2_incline_threshold.gd"
+    ],
+    "evidence_grade": "experimental_commissioning_test_report_only",
+    "promotion_grade_bundle_exists": false
+  },
+  "title": "The calibrated block holds through 30 degrees and first slides at 32 degrees on the authored friction pair",
+  "claim": "For the exact L1.2 free block on seven independent real-Jolt slopes with the authored friction 0.6 material pair at 60 Hz, post-step hold-versus-slide classification brackets the static threshold between the 30 degree and 32 degree slopes. This is consistent with tan(30 deg) = 0.577 below and tan(32 deg) = 0.625 above the authored coefficient, and gravity normal/tangent decomposition balanced on every measured slope.",
+  "scope": "One unjointed rigid block on inclined static floors at seven preregistered angles, equal authored friction 0.6, rough=false, bounce 0, no damping or hidden constraints, fresh world per slope, 60 Hz Jolt physics, Godot 4.7, full_contacts_v2 observer; rotated-normal, cross-slope, and tipping contamination gates enforced.",
+  "mechanism": "On a slope of angle theta a static body's required friction ratio is tan(theta). The measured hold at 30 degrees and slide at 32 degrees brackets the effective static coefficient for this material pair inside 0.577-0.625, which contains the authored 0.6. Classification uses post-step motion, not the pre-constraint callback candidate documented by L1.1.",
+  "applicability": [
+    "Predicting whether the canonical material pair can statically hold a support on a measured slope",
+    "Cross-checking the L1.1 flat-floor breakaway bracket by an independent geometry"
+  ],
+  "failure_boundaries": [
+    "Does not cover other friction values, materials, curvature, or surface roughness",
+    "Does not cover intermediate unmeasured angles inside 30-32 degrees beyond the bracket itself",
+    "Does not cover articulated bodies or actuated limbs on slopes",
+    "Does not establish standing, bracing, fall arrest, getting up, or walking"
+  ],
+  "morphology_tags": [
+    "jolt",
+    "unary_rigid_body",
+    "inclined_static_floor"
+  ],
+  "parameter_effects": [
+    {
+      "parameter": "/fixture_parameters/slope_angle_deg",
+      "change": "increase across the seven preregistered angles",
+      "affects": "post-step hold-versus-slide classification",
+      "mechanism": "Required tangential support tan(theta) crosses the effective static friction coefficient between 30 and 32 degrees",
+      "hinges_on": [
+        "Equal authored friction 0.6 with rough=false on both surfaces",
+        "No tipping or cross-slope contamination in the measured window"
+      ]
+    }
+  ],
+  "minimal_repair_rules": [
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "A static support placement on a slope steeper than the measured hold bracket keeps sliding",
+      "diagnosis": "Required tangential ratio tan(theta) exceeds the measured effective static friction for this material pair",
+      "smallest_change": "Reduce the support slope below the measured 30 degree hold angle or re-measure with the actual material pair",
+      "expected_effect": "Post-step slide classification returns to hold on the measured pair",
+      "identity_preserved": [
+        "body plan",
+        "materials"
+      ],
+      "do_not_apply_when": [
+        "The material pair, normal load regime, or backend differs from the measured fixture"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Where the exact threshold sits inside the unmeasured 30-32 degree interval",
+    "Whether the bracket shifts with normal load, contact area, or solver configuration",
+    "How compliant or articulated feet change effective slope holding"
+  ],
+  "does_not_establish": [
+    "standing",
+    "bracing",
+    "fall_arrest",
+    "getting_up",
+    "walking",
+    "exact_static_friction_coefficient",
+    "articulated_slope_support"
+  ],
+  "supersedes": []
+}

@@ -1,0 +1,157 @@
+"""Actual PowerShell development declaration and pre-world refusals for R10R."""
+import subprocess
+import unittest
+import uuid
+
+from test_development_r10r_complete_report import ROOT, EVIDENCE, PROFILE, declaration, candidate, development, entry, write
+
+PWSH = 'C:/Program Files/PowerShell/7/pwsh.exe'
+
+
+class R10RLauncher(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.out = EVIDENCE / ('development-r10r-launcher-' + uuid.uuid4().hex)
+        cls.out.mkdir()
+        cls.before = entry._source_snapshot()
+        write(cls.out / 'source_before.json', cls.before)
+        cls.reference = candidate.reference_for_path(PROFILE)
+        print('R10R_LAUNCHER_EVIDENCE ' + str(cls.out), flush=True)
+
+    @classmethod
+    def tearDownClass(cls):
+        after = entry._source_snapshot()
+        write(cls.out / 'source_after.json', after)
+        if after != cls.before:
+            raise AssertionError('R10R_LAUNCHER_SOURCE_DRIFT')
+
+    def run_launcher(self, label, options, output=''):
+        relative = self.reference['resource'].removeprefix('res://')
+        command = f". ./sdk/run_development_recovery_smoke.ps1 -ProfileSteps -ReuseContextChecks -CandidateProfile '{relative}' {options}"
+        if output:
+            command += '; ' + output
+        args = [PWSH, '-NoProfile', '-NonInteractive', '-Command', command]
+        result = subprocess.run(args, cwd=ROOT, capture_output=True, timeout=40, creationflags=subprocess.CREATE_NO_WINDOW)
+        (self.out / (label + '.stdout.txt')).write_bytes(result.stdout)
+        (self.out / (label + '.stderr.txt')).write_bytes(result.stderr)
+        write(self.out / (label + '.execution.json'), dict(command=args, returncode=result.returncode))
+        return result
+
+    def test_actual_initial_single_library_context_and_worker_declaration_agree(self):
+        result = self.run_launcher('paired', '-Library -SingleKick',
+            'ConvertTo-SporeSporeExactJson -Value ([ordered]@{fields=(Get-DevelopmentCandidateFields);'
+            'worker=$script:WorkerResource;roles=$script:OrderedChildRoles;seed=$script:DevelopmentSeed;'
+            'context=$r10rDevelopmentContext})')
+        self.assertEqual(0, result.returncode, result.stderr.decode())
+        selected = entry.packet.parse_json(result.stdout.decode())
+        self.assertEqual(40946, selected['seed'])
+        self.assertEqual([development.ROLES[1]], selected['roles'])
+        value = declaration(self.reference, self.before['head'])
+        value.update(selected['fields'])
+        value['worker_resource'] = selected['worker']
+        value['r10r_development'] = selected['context']
+        self.assertEqual([development.ROLES[1]], development.validate_declaration(value)['roles'])
+        self.assertEqual(self.reference, value['candidate_profile'])
+        self.assertEqual(3512, value['maximum_steps_per_child'])
+        self.assertFalse(value['comparative_authority'])
+        self.assertFalse(value['baseline_reused'])
+        write(self.out / 'paired-declaration.json', value)
+
+    def test_actual_gate_selects_r10r_and_every_declared_test_exists(self):
+        result = self.run_launcher('stage-selection', '-Library -SingleKick',
+            'ConvertTo-SporeSporeExactJson -Value $stages')
+        self.assertEqual(0, result.returncode, result.stderr.decode())
+        stages = entry.packet.parse_json(result.stdout.decode())
+        ids = [stage['id'] for stage in stages]
+        self.assertEqual(len(ids), len(set(ids)))
+        contract = entry.packet.parse_json((ROOT / 'sdk/development/r10r_safety_stage_contract_v1.json').read_text())
+        self.assertEqual(len(contract['stages']), len(stages))
+        for index, (declared, selected) in enumerate(zip(contract['stages'], stages)):
+            self.assertEqual(declared, {k: selected[k] for k in ('id', 'pattern', 'tests')})
+            if index >= contract['unbound_common_stage_count']:
+                self.assertEqual(self.reference['resource'].removeprefix('res://'), selected['candidate_profile'])
+            else:
+                self.assertNotIn('candidate_profile', selected)
+            timeout = contract['stage_timeout_overrides_seconds'].get(selected['id'])
+            if timeout is None:
+                self.assertNotIn('timeout_seconds', selected)
+            else:
+                self.assertEqual(timeout, selected['timeout_seconds'])
+        counts = {}
+        for stage in stages:
+            suite = unittest.TestLoader().discover(str(ROOT / 'tests'), pattern=stage['pattern'])
+            counts[stage['id']] = suite.countTestCases()
+            self.assertEqual(stage['tests'], counts[stage['id']], stage)
+        self.assertNotIn('test_development_v32_walking_policy.py', [stage['pattern'] for stage in stages])
+        self.assertNotIn('candidate_walking_start', ids)
+        self.assertNotIn('candidate_walking_entry', ids) # Both selected role adapters cover these controls.
+        write(self.out / 'selected-stages.json', dict(stages=stages, discovered_test_counts=counts,
+            test_count=sum(counts.values()), world_build_count=0, solver_step_count=0))
+
+    def test_invalid_test_timeout_refuses_before_a_process_or_log_file(self):
+        # These library calls cannot execute tests or construct a physical world.
+        for label, value in [('zero', '0'), ('boolean', '$true'), ('too-long', '601')]:
+            result = self.run_launcher('timeout-' + label, '-Library -SingleKick',
+                "Invoke-DevelopmentStage @{id='never-launched';pattern='unused';tests=1;timeout_seconds="
+                + value + "} '" + self.out.as_posix() + "'")
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn('DEVELOPMENT_STAGE_TIMEOUT_INVALID', result.stderr.decode())
+        for label, pattern, tests, seconds in [
+                ('registered-too-long', 'test_development_r10r_preparation_report.py', 2, 901),
+                ('crossed-long-pattern', 'unused.py', 2, 601),
+                ('crossed-long-count', 'test_development_r10r_preparation_report.py', 1, 601)]:
+            result = self.run_launcher(label, '-Library -SingleKick',
+                "Invoke-DevelopmentStage @{id='r10r_preparation_report';pattern='" + pattern
+                + "';tests=" + str(tests) + ";timeout_seconds=" + str(seconds) + "} '" + self.out.as_posix() + "'")
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn('DEVELOPMENT_STAGE_TIMEOUT_INVALID', result.stderr.decode())
+        self.assertFalse((self.out / 'r10r_preparation_report.stdout.log').exists())
+        self.assertFalse((self.out / 'never-launched.stdout.log').exists())
+        self.assertFalse((self.out / 'never-launched.stderr.log').exists())
+
+    def test_later_stages_refuse_without_the_required_retained_positive_result(self):
+        for label, options, code in [
+            ('pair-without-single', '-Library', 'PAIR_REQUIRES_POSITIVE_SINGLE'),
+            ('branch-without-pair', '-Library -SingleKick -R10RDiagnosticSeed 40943', 'ADDITIONAL_SINGLE_REQUIRES_POSITIVE_PAIR'),
+            ('undeclared-seed', '-Library -SingleKick -R10RDiagnosticSeed 40200', 'R10R_DEVELOPMENT_CONTEXT_REFUSED'),
+            ('wrong-pair-seed', '-Library -R10RDiagnosticSeed 40945', 'MODE_SEED'),
+            ('initial-with-prerequisite', '-Library -SingleKick -R10RPrerequisite never-created', 'INITIAL_SINGLE_HAS_PREREQUISITE')]:
+            result = self.run_launcher(label, options)
+            self.assertNotEqual(0, result.returncode)
+            self.assertIn(code, result.stderr.decode())
+            self.assertNotIn('DEVELOPMENT_SMOKE_CHILD_START', result.stdout.decode())
+
+    def test_physical_prelaunch_requires_complete_current_safety_stages(self):
+        # Invoke the actual prelaunch predicate through Library mode. No test
+        # calls RunSmoke, launches a child, or supplies physical authority.
+        receipt = ("$taskReceipts = @($stages | ForEach-Object { "
+                   "@{id=$_.id;passed=$true;timed_out=$false;exit_code=0;"
+                   "test_count=$_.tests;expected_test_count=$_.tests} }); ")
+        cases = {
+            'complete': '',
+            'missing': '$taskReceipts = @(); ',
+            'untyped_count': "$taskReceipts[-1].test_count = '4'; ",
+            'crossed_candidate': "$stages[-1].candidate_profile = 'wrong.json'; ",
+            'bound_common': "$stages[0].candidate_profile = $candidatePathRequested; ",
+            'wrong_count': '$taskReceipts[-1].test_count = 0; ',
+            'false_pass': '$taskReceipts[-1].passed = $false; ',
+            'untyped_pass': "$taskReceipts[-1].passed = 'true'; ",
+            'timeout': '$taskReceipts[-1].timed_out = $true; ',
+            'missing_first_stage': '$stages = @($stages | Select-Object -Skip 1); $taskReceipts = @($taskReceipts | Select-Object -Skip 1); ',
+            'crossed_pattern': "$stages[0].pattern = 'wrong.py'; ",
+            'crossed_preparation_timeout': "($stages | Where-Object { $_.id -ceq 'r10r_preparation_report' }).timeout_seconds = 600; ",
+            'missing_preparation': "$stages = @($stages | Where-Object { $_.id -cne 'r10r_preparation_report' }); ",
+        }
+        for label, mutation in cases.items():
+            result = self.run_launcher('prelaunch-' + label, '-Library -SingleKick', receipt + mutation +
+                'Assert-R10RPreparationSafety -CompletedStages $taskReceipts -SelectedStages $stages')
+            if label == 'complete':
+                self.assertEqual(0, result.returncode, result.stderr.decode())
+            else:
+                self.assertNotEqual(0, result.returncode)
+                self.assertIn('R10R_COMPLETE_PRODUCTION_SAFETY_GATE_PENDING', result.stderr.decode())
+            self.assertNotIn('DEVELOPMENT_SMOKE_CHILD_START', result.stdout.decode())
+
+
+if __name__ == '__main__':
+    unittest.main()

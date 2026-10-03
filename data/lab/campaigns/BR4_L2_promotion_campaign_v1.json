@@ -1,0 +1,125 @@
+{
+  "schema": "sporespore.lab.br4_l2_promotion_campaign.v1",
+  "campaign_id": "BR4_L2_PROMOTION_CAMPAIGN_V1",
+  "campaign_version": 1,
+  "milestone_id": "BR4_L2_JOINT_ACTUATOR_TRUTH",
+  "claim_boundary": "This campaign can certify only the exact L2.0-L2.7 joint-actuator observations named by the source-pinned programs. Fixed scaffolds, free roots, actuator envelopes, hard-limit reactions, two-joint behavior, and anchor-observer failures retain their declared fixture scopes. It establishes no contact-bearing articulated limb, per-foot or per-contact load allocation, standing, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance.",
+  "process_policy": {
+    "clean_committed_source": true,
+    "fresh_godot_process_per_replicate": true,
+    "required_replicates_per_program": 2,
+    "pid_recycle_policy": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded",
+    "test_timeout_seconds": 300,
+    "complete_campaign_required": true,
+    "cherry_pick_policy": "forbidden_all_declared_runs_retained"
+  },
+  "source_policy": {
+    "identity": "clean_git_commit_plus_exact_declared_byte_inventory_v1",
+    "inventory_roots": [
+      {"kind": "file", "path": ".gitattributes", "extensions": [".gitattributes"]},
+      {"kind": "file", "path": "project.godot", "extensions": [".godot"]},
+      {"kind": "file", "path": "scripts/process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/process_runner_containment_host.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_lab_tests.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_br4_l2_certification.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "tree", "path": "scripts/lab", "extensions": [".gd"]},
+      {"kind": "tree", "path": "tests/helpers", "extensions": [".gd"]},
+      {"kind": "file", "path": "tests/test_experimental_br4_promotion_contracts.gd", "extensions": [".gd"]},
+      {"kind": "tree", "path": "data/lab/schemas", "extensions": [".json"]},
+      {"kind": "tree", "path": "data/lab/knowledge", "extensions": [".json", ".md"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR4_L2_promotion_campaign_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR1_required_lab_tests_v2.json", "extensions": [".json"]}
+    ]
+  },
+  "br1_inventory_guard": {
+    "resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json",
+    "sha256": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+    "test_count": 62,
+    "mutation_forbidden": true
+  },
+  "role_accounting": {
+    "milestone": {"programs": 8, "assertions_per_replicate": 131},
+    "supplementary": {"programs": 0, "assertions_per_replicate": 0},
+    "integrity": {"programs": 0, "assertions_per_replicate": 0},
+    "total": {"programs": 8, "assertions_per_replicate": 131}
+  },
+  "programs": [
+    {
+      "program_id": "BR4_L2_0_PASSIVE_PENDULUM_V1",
+      "cell_id": "L2.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_0_passive_pendulum.gd",
+      "expected_assertions": 24,
+      "claim_scope": "The declared single-link passive pendulum matches its analytic period, energy, sign, and damping controls within the measured fixture tolerances."
+    },
+    {
+      "program_id": "BR4_L2_1_FREE_HINGE_TORQUE_PULSE_V1",
+      "cell_id": "L2.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_1_free_hinge_torque_pulse.gd",
+      "expected_assertions": 24,
+      "claim_scope": "A free-root two-body hinge applies equal-and-opposite parent-child torque, preserves total angular momentum, and rejects root-only assistance in the declared pulse fixture."
+    },
+    {
+      "program_id": "BR4_L2_2_UNLOADED_PD_STEP_V1",
+      "cell_id": "L2.2",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_2_unloaded_pd_step.gd",
+      "expected_assertions": 19,
+      "claim_scope": "The declared unloaded free-hinge PD controller resolves mirrored step requests into deterministic paired torque with measured rise, settling, saturation, and momentum behavior."
+    },
+    {
+      "program_id": "BR4_L2_3_GRAVITY_HOLD_V1",
+      "cell_id": "L2.3",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_3_gravity_hold.gd",
+      "expected_assertions": 14,
+      "claim_scope": "The fixed-scaffold horizontal link responds with the expected sign and magnitude at 0, 80, 100, and 120 percent analytic gravity compensation."
+    },
+    {
+      "program_id": "BR4_L2_4_ACTUATOR_ENVELOPE_V1",
+      "cell_id": "L2.4",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_4_actuator_envelope.gd",
+      "expected_assertions": 12,
+      "claim_scope": "The declared finite actuator enforces its exact isometric torque, speed, positive-power, absorption, and eccentric limits at the measured operating points."
+    },
+    {
+      "program_id": "BR4_L2_5_HARD_LIMIT_REACTION_V1",
+      "cell_id": "L2.5",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_5_hard_limit_reaction.gd",
+      "expected_assertions": 12,
+      "claim_scope": "Mirrored hinge approaches are arrested near the declared hard limits by constraint reaction, while the disabled control crosses without active or passive commanded torque."
+    },
+    {
+      "program_id": "BR4_L2_6_TWO_LINK_CHAIN_V1",
+      "cell_id": "L2.6",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_6_two_link_chain.gd",
+      "expected_assertions": 14,
+      "claim_scope": "The declared two-link chain distinguishes fixed and free roots, produces only paired joint torque receipts, and preserves free-system momentum without root assistance."
+    },
+    {
+      "program_id": "BR4_L2_7_ANCHOR_ERROR_PERTURBATION_V1",
+      "cell_id": "L2.7",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l2_7_anchor_error_perturbation.gd",
+      "expected_assertions": 12,
+      "claim_scope": "The joint observer accepts anchor mismatches only within the declared tolerance and fails closed with zero commands when geometry is mismatched or unavailable."
+    }
+  ],
+  "does_not_establish": [
+    "A contact-bearing articulated limb, foot, or creature",
+    "Per-contact, per-foot, or per-toe load allocation",
+    "Standing, bracing, or fall arrest",
+    "Self-righting or getting up",
+    "Gait, candidate walking, or walking",
+    "Continuous endurance, fatigue, or thermal capacity",
+    "A hard-limit reaction as available muscle strength",
+    "Accepted encyclopedia knowledge or automatic creature guidance"
+  ]
+}

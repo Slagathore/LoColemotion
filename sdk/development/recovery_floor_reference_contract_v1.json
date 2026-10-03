@@ -1,0 +1,34 @@
+{
+  "schema_version": "sporespore_development_recovery_floor_reference_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core_and_godot_exported_abi",
+    "authority_mode": "development_native_component_contract",
+    "question_class": "development"
+  },
+  "policy_id": "sporespore_balanced_wave_recovery_floor_support_v1",
+  "context_schema": "sporespore_static_horizontal_floor_reference_v1",
+  "frame_id": "sporespore_state_world_y_up_metres_v1",
+  "source_kind": "declared_static_horizontal_surface",
+  "required_context_fields": ["schema_version", "frame_id", "surface_id", "source_instance_id", "source_kind", "geometry_source_sha256", "height_world_m"],
+  "context_rule": "Explicit static horizontal surface height in the same world position frame and metres as StateFrame.base_pose_world. The horizontal plane normal is world +Y. Body-axis quaternion conventions do not rotate world positions or the floor height. No default world-zero surface is supplied.",
+  "stateless_request_schema": "sporespore_balanced_wave_policy_step_request_v2",
+  "session_request_schema": "sporespore_balanced_wave_policy_session_step_request_v2",
+  "request_field": "floor_reference",
+  "compatibility_rule": "Existing v1 requests remain context-free. The new field requires request v2 and the distinct floor-support policy. Null, missing, crossed-policy and session-drift context refuses. Initial memory has no plane digest; the first accepted request binds it, and every later step requires the same complete digest.",
+  "geometry_rule": "Use measured torso height relative to the supplied plane; preserve each nominal leg direction; project requested endpoint distance to the physical link range and then existing joint limits. Retain each reach flag and nominal plane residual. Keep existing swing composition, neutral first reference, rate bounds, gains, motor caps and gait scheduler.",
+  "receipt_height_semantics": "For this distinct mode, recovery_support_plane.proposed_torso_height_m is the measured torso height ABOVE the explicit plane. floor_reference retains the plane's absolute world height. The old V33 mode and receipt semantics are unchanged.",
+  "observation_authority_split": "The core checks context shape, digest syntax and session continuity. Only the adapter/independent reader can prove that it came from the actual constructed surface in the same world. A plausible digest is not native geometry proof.",
+  "required_integration_checks": [
+    "Read actual static floor and collision shape transforms, including parent transforms, and derive the horizontal top surface in the walking world frame.",
+    "Bind surface identity, construction geometry digest and model-instance provenance; reject missing, nonhorizontal, transformed-inconsistently or changed surfaces.",
+    "Keep finite surface extent and its applicable region explicit. A plane equation is not proof of an infinite supporting floor.",
+    "Retain the source geometry beside the request so independent replay can verify the derivation and reject consistently rehashed but crossed source/context values.",
+    "Exercise translated geometry and the actual adapter request producer before a fresh bounded physical attempt."
+  ],
+  "physical_scope": "Kinematic geometry only: not native contact, force-aware recovery, body stability, alternate trajectory prediction or successful walking.",
+  "native_floor_producer_integrated": false,
+  "physical_attempt_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

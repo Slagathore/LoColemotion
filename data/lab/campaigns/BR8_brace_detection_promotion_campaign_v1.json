@@ -1,0 +1,102 @@
+{
+  "schema": "sporespore.lab.br8_brace_detection_promotion_campaign.v1",
+  "campaign_id": "BR8_BRACE_DETECTION_PROMOTION_CAMPAIGN_V1",
+  "campaign_version": 1,
+  "milestone_id": "BR8_EARLY_LOSS_OF_VIABILITY_DETECTION",
+  "claim_boundary": "This campaign can certify only the exact BR8.0 static-margin, support-count, and impact-deadline oracles; BR8.1 linear-capture margin, boundary-clock, mirrored-direction, and delayed REACTION_TOO_LATE oracles; BR8.2 immediate STAND/PRECARIOUS/BRACE escalation and hysteretic one-state-at-a-time release; and BR8.3 passive central-horizontal-impulse, slowly-tilting-platform, and disappearing-right-support program scopes named by the source-pinned programs. BR8.4 is integrity-only containment and cannot substitute for a milestone program. Every live fixture retains an explicit unpowered Generic6DOF planar guide: sagittal X/Y translation and pitch are released while out-of-plane translation, roll, and yaw remain locked, and all guide motors and springs remain off. Detector and supervisor outputs are observations, not force, torque, brace, step, foot-pin, root-rescue, creature-edit, or guidance commands. The declared timing thresholds, rigid-body geometry, masses, friction, timestep, solver, central impulse, platform rotation, support removal, measured transforms, measured velocities, and observed contact membership retain their exact fixture scopes. This establishes early loss-of-viability detection in the passive planar-scaffold matrix only, not an executed existing-contact brace, catch step, new support contact, free 3D standing, unconstrained balance, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance.",
+  "process_policy": {
+    "clean_committed_source": true,
+    "fresh_godot_process_per_replicate": true,
+    "required_replicates_per_program": 2,
+    "pid_recycle_policy": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded",
+    "test_timeout_seconds": 300,
+    "complete_campaign_required": true,
+    "cherry_pick_policy": "forbidden_all_declared_runs_retained"
+  },
+  "source_policy": {
+    "identity": "clean_git_commit_plus_exact_declared_byte_inventory_v1",
+    "inventory_roots": [
+      {"kind": "file", "path": ".gitattributes", "extensions": [".gitattributes"]},
+      {"kind": "file", "path": "project.godot", "extensions": [".godot"]},
+      {"kind": "file", "path": "scripts/process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/process_runner_containment_host.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_lab_tests.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_br8_brace_detection_certification.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "tree", "path": "scripts/lab", "extensions": [".gd"]},
+      {"kind": "tree", "path": "tests/helpers", "extensions": [".gd"]},
+      {"kind": "file", "path": "tests/test_experimental_br8_promotion_contracts.gd", "extensions": [".gd"]},
+      {"kind": "tree", "path": "data/lab/schemas", "extensions": [".json"]},
+      {"kind": "tree", "path": "data/lab/knowledge", "extensions": [".json", ".md"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR8_brace_detection_promotion_campaign_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR1_required_lab_tests_v2.json", "extensions": [".json"]}
+    ]
+  },
+  "br1_inventory_guard": {
+    "resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json",
+    "sha256": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+    "test_count": 62,
+    "mutation_forbidden": true
+  },
+  "role_accounting": {
+    "milestone": {"programs": 4, "assertions_per_replicate": 40},
+    "supplementary": {"programs": 0, "assertions_per_replicate": 0},
+    "integrity": {"programs": 1, "assertions_per_replicate": 18},
+    "total": {"programs": 5, "assertions_per_replicate": 58}
+  },
+  "programs": [
+    {
+      "program_id": "BR8_BRACE_DETECTION_0_STATIC_MARGIN_V1",
+      "cell_id": "BR8.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br8_0_brace_detector_static_margin.gd",
+      "expected_assertions": 10,
+      "claim_scope": "The strict observer computes exact centered, near-edge, brace-threshold, exhausted-support, no-support, and airborne impact-deadline classifications; mirrors signed static margins; labels the delayed airborne negative control REACTION_TOO_LATE; and grants no force or guidance authority."
+    },
+    {
+      "program_id": "BR8_BRACE_DETECTION_1_CAPTURE_MARGIN_V1",
+      "cell_id": "BR8.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br8_1_brace_detector_capture_margin.gd",
+      "expected_assertions": 8,
+      "claim_scope": "The declared linear-capture oracle computes exact capture position and boundary time, mirrors velocity and loss direction, distinguishes static from capture urgency, fires while reaction remains viable when warranted, labels the delayed negative control REACTION_TOO_LATE, and rejects nonfinite velocity."
+    },
+    {
+      "program_id": "BR8_BRACE_DETECTION_2_HYSTERESIS_V1",
+      "cell_id": "BR8.2",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br8_2_brace_hysteresis.gd",
+      "expected_assertions": 9,
+      "claim_scope": "The observer supervisor escalates immediately from STAND through PRECARIOUS to BRACE, retains reasoned digest-bound transitions, refuses release below the safe margin, de-escalates by only one state after each complete safe dwell, and emits no force, step, or guidance command."
+    },
+    {
+      "program_id": "BR8_BRACE_DETECTION_3_PASSIVE_DISTURBANCE_MATRIX_V1",
+      "cell_id": "BR8.3",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_br8_3_brace_transition_reason.gd",
+      "expected_assertions": 13,
+      "claim_scope": "Three fresh passive Godot/Jolt worlds retain the exact unpowered planar guide: a central horizontal impulse produces capture-driven BRACE while static margin and reaction time remain; a slowly tilting platform passes through PRECARIOUS and BRACE before static support exhaustion; and right-support removal is observed and classified on the declared tick without brace actuation."
+    },
+    {
+      "program_id": "BR8_BRACE_DETECTION_4_CONTAINMENT_V1",
+      "cell_id": "BR8.4",
+      "evidence_role": "integrity",
+      "test_resource_path": "res://tests/test_experimental_br8_4_brace_detection_containment.gd",
+      "expected_assertions": 18,
+      "claim_scope": "Integrity-only containment proves that configuration mutation, hidden guide motors or springs, active brace or step control, root rescue, guidance, free-3D claims, wrong causal channels, detection at rather than before exhaustion, and late support-loss observation fail closed."
+    }
+  ],
+  "does_not_establish": [
+    "An executed existing-contact brace",
+    "A catch step or new support contact",
+    "Free 3D standing or unconstrained balance",
+    "An absent, negligible, or measured out-of-plane scaffold reaction",
+    "Fall arrest",
+    "Self-righting or getting up",
+    "Gait, candidate walking, or walking",
+    "Morphology, terrain, complex-foot, or endurance generalization",
+    "Accepted encyclopedia knowledge or automatic creature guidance"
+  ]
+}

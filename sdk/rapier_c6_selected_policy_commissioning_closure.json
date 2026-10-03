@@ -1,0 +1,135 @@
+{
+  "schema_version": "sporespore_rapier_c6_selected_policy_commissioning_closure_v1",
+  "campaign_id": "C6-RAPIER-SELECTED-POLICY-COMMISSIONING",
+  "gate_id": "C6-RAP-SP1",
+  "status": "closed_negative_adapter_transport",
+  "recorded_utc": "2026-07-30T13:56:29.2335219Z",
+  "source": {
+    "commit": "1df9c703721781502f3ea15eef9ee181fc341456",
+    "remote": "origin/main",
+    "clean": true,
+    "matches_origin_main": true
+  },
+  "preregistration": {
+    "path": "sdk/rapier_c6_selected_policy_commissioning_preregistration.json",
+    "raw_sha256": "sha256:5d1f77ae8b84bd2fa32f2cd7c71613b0f0c01b03ecbc88b4ca0deba9670bb440"
+  },
+  "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-1df9c70",
+  "artifacts": {
+    "report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-1df9c70\\report.json",
+      "bytes": 6021,
+      "sha256": "sha256:05d6a300364d2a1a1f05b3007bbc00b94db7f4f4079da785558d72cb19ec39cd"
+    },
+    "stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-1df9c70\\stdout.log",
+      "bytes": 6021,
+      "sha256": "sha256:05d6a300364d2a1a1f05b3007bbc00b94db7f4f4079da785558d72cb19ec39cd"
+    },
+    "stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-1df9c70\\stderr.log",
+      "bytes": 813,
+      "sha256": "sha256:f0826aaa355acf4eb14d7a6ee20ff1022ce54ab366274a40fac1c4c0659f32bc"
+    }
+  },
+  "result": {
+    "ok": false,
+    "world_attempt_count": 1,
+    "world_build_count": 1,
+    "world_reset_count": 0,
+    "initial_four_contact_stance": true,
+    "controller_semantic_step_count": 2992,
+    "validated_portable_command_count": 23936,
+    "native_motor_application_count": 23936,
+    "controller_error_count": 2991,
+    "safe_no_actuation_count": 2991,
+    "reported_nonfinite_observation_count": 2992,
+    "motor_impulse_limit_violation_count": 0,
+    "evidence_limits_reached": false,
+    "cooldown_completed": false,
+    "terminal_settle_completed": true,
+    "terminal_four_contact_recovery": true,
+    "torso_ground_contact_step_count": 3206,
+    "final_forward_displacement_m": -0.05727255344390869,
+    "final_lateral_displacement_m": 0.00010831339750438929,
+    "final_yaw_drift_rad": -0.0016477698998435094,
+    "maximum_tilt_rad": 0.820434033870697,
+    "minimum_torso_height_m": 0.22151365876197815,
+    "maximum_anchor_error_m": 0.00005414567203843035,
+    "maximum_hinge_axis_error_rad": 0.0006905339541845024,
+    "gate_failures": [
+      "C6_RAP_SP1_controller_error_count_INVALID",
+      "C6_RAP_SP1_safe_no_actuation_count_INVALID",
+      "C6_RAP_SP1_nonfinite_observation_count_INVALID",
+      "C6_RAP_SP1_evidence_limits_not_reached",
+      "C6_RAP_SP1_cooldown_incomplete",
+      "C6_RAP_SP1_torso_ground_contact",
+      "C6_RAP_SP1_evidence_advance_GATE_FAILED",
+      "C6_RAP_SP1_final_advance_GATE_FAILED",
+      "C6_RAP_SP1_tilt_GATE_FAILED",
+      "C6_RAP_SP1_torso_height_GATE_FAILED",
+      "C6_RAP_SP1_CONTACT_CYCLES_front_left",
+      "C6_RAP_SP1_FOOT_RELOCATION_front_left",
+      "C6_RAP_SP1_AIRBORNE_DWELL_front_left",
+      "C6_RAP_SP1_CONTACT_CYCLES_front_right",
+      "C6_RAP_SP1_FOOT_RELOCATION_front_right",
+      "C6_RAP_SP1_AIRBORNE_DWELL_front_right",
+      "C6_RAP_SP1_CONTACT_CYCLES_rear_left",
+      "C6_RAP_SP1_FOOT_RELOCATION_rear_left",
+      "C6_RAP_SP1_AIRBORNE_DWELL_rear_left",
+      "C6_RAP_SP1_CONTACT_CYCLES_rear_right",
+      "C6_RAP_SP1_FOOT_RELOCATION_rear_right",
+      "C6_RAP_SP1_AIRBORNE_DWELL_rear_right"
+    ]
+  },
+  "diagnosis": {
+    "classification": "adapter_transport_and_instrumentation_failure_before_policy_evaluation",
+    "direct_observations": [
+      "Semantic step zero passed, while 2991 of the remaining 2991 controller steps returned the portable core's safe-no-actuation frame.",
+      "All 23936 safe or active portable actuator commands were applied exactly once and no mapped Rapier motor exceeded its declared impulse limit.",
+      "The body began and ended in four-contact stance, but accumulated no gait contact cycles because portable authority failed after the identity frame."
+    ],
+    "source_supported_inference": {
+      "status": "requires_distinct_successor_preflight_regression",
+      "likely_controller_error": "FRAME_INVALID:state.base_pose_world.orientation_xyzw_quaternion_not_unit",
+      "basis": "The adapter promoted Rapier f32 quaternion components directly to f64 while the portable StateFrame requires unit norm within 1e-9. Identity at step zero is exact; the first rotated f32 host quaternion is not guaranteed to satisfy that f64 tolerance.",
+      "required_fix": "Normalize the host quaternion after f32-to-f64 conversion, prove the conversion with a nonidentity zero-world canary, and retain controller error codes by semantic step."
+    },
+    "confirmed_instrumentation_defect": {
+      "field": "nonfinite_observation_count",
+      "reported_value": 2992,
+      "actual_interpretation": "invalid_counter",
+      "basis": "The counter searched serialized StateFrame JSON for the token null. previous_applied_actuation was intentionally null in every state, so every finite frame was counted as nonfinite.",
+      "required_fix": "Inspect only declared numeric observation fields with is_finite checks."
+    },
+    "locomotion_metrics_interpretable_as_policy_performance": false,
+    "same_identity_rerun_allowed": false
+  },
+  "disposition": {
+    "technical_commissioning_accepted": false,
+    "rapier_selected_policy_physical_c6": false,
+    "cross_engine_c6": false,
+    "successor_allowed": true,
+    "successor_requirements": [
+      "Use a distinct preregistration, campaign identity, gate identity, source commit, and durable evidence root.",
+      "Preserve the morphology, selected policy, physics parameters, actuation gains, clock, and walking thresholds.",
+      "Change only the diagnosed adapter quaternion normalization, numeric nonfinite accounting, and diagnostic receipts.",
+      "Run the complete synthetic integrity gate and the nonidentity quaternion normalization regression before any successor world opens."
+    ]
+  },
+  "claim_boundary": {
+    "technical_commissioning_only": false,
+    "independent_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "cross_engine_c6": false,
+    "locomotion_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

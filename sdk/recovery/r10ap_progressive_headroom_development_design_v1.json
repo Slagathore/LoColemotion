@@ -1,0 +1,152 @@
+{
+  "schema_version": "sporespore_r10ap_progressive_headroom_development_design_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_controller_and_worker_development",
+    "question_class": "development"
+  },
+  "source_parent_commit": "c67222f3efd98cb882032a00ef8b8b6d8c5081e4",
+  "question": "Can V28 progressively restore joint headroom while targeting standing height under partial bearing at exposed prefix phase 248, then complete unchanged standing, settling and finite V56 walking?",
+  "dependencies": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10am_support_anchored_closure_v1.json",
+      "byte_length": 538150,
+      "raw_sha256": "sha256:95938e622c8a896a726fe1c04faba76436de09e6199374443c6c039fbecfefcd"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10am_support_anchored_development_design_v1.json",
+      "byte_length": 9555,
+      "raw_sha256": "sha256:4f5cc03139d44bc01e957472deb3f8a421e9825d03674889c35da2049013d03a"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10an_support_transfer_result_v1.json",
+      "byte_length": 3059105,
+      "raw_sha256": "sha256:4d332ae75c3194cb913d17e792ca5b33632f26b70681983d121aae516c82cc14"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ao_progressive_headroom_result_v1.json",
+      "byte_length": 1293569,
+      "raw_sha256": "sha256:216ca714164d28c4f8399dde2d0c0b8d5debfb4ff9969b0d99c8cbd90fe1b341"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ap_progressive_headroom_kernel_contract_v1.json",
+      "byte_length": 5227,
+      "raw_sha256": "sha256:e8bbed3faa3ea6f2c8684332f7787687a828b617a68d663ee0fa14ba992e5aa2"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ap_progressive_headroom_kernel_component_v1.json",
+      "byte_length": 9290,
+      "raw_sha256": "sha256:aafb223e1aefd27b768293ef65e8140ee8ec1c2d23f19454e40abc7a8facb43e"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ap_progressive_headroom_native_component_v1.json",
+      "byte_length": 11654,
+      "raw_sha256": "sha256:5f51ee3f1a44f553e7ed0b8a5b761dd5f4741178bac538cf541d5dbaa22745de"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ap_worker_source_component_v1.json",
+      "byte_length": 165685,
+      "raw_sha256": "sha256:d6b0264a381ba6c9575f80fe599b0ad6787788fdc6979ef5d2242aecd241af24"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10ap_segment_reader_component_v1.json",
+      "byte_length": 158524,
+      "raw_sha256": "sha256:da5267f0bcca13ffae2e8f57cbb3244f94d7e0a143c2b90042b439b4ba4bdbb1"
+    }
+  ],
+  "rationale": "The consumed R10AM diagnostic exhausted 600 raise commands with persistent nonfoot contact and joint-limit gate failures. R10AN identified near-limit targets and support-transfer obstacles; its hard 0.02-rad margin made most exposed poses infeasible. R10AO and the compiled R10AP kernel instead require per-joint nonworsening deficits and strict total deficit reduction whenever any joint lacks 0.02-rad headroom. Ranking prioritizes maximum deficit, then total deficit, then geometry cost. Standing height remains the objective under partial bearing. The verified native and reader paths retain 492 geometry-cost increases in 600 exposed inputs. These geometric and synthetic checks do not predict forces, tracking, fresh contacts or physical recovery.",
+  "controlled_change": {
+    "from_controller": "sporespore_exact_s169_partial_support_anchored_controller_v27",
+    "to_controller": "sporespore_exact_s169_partial_progressive_headroom_controller_v28",
+    "composition": "sporespore_r10ap_partial_progressive_headroom_v28_v7_composition_v1",
+    "entry_export": "ss_recovery_r10ap_partial_entry_control_v1_json",
+    "step_export": "ss_recovery_r10ap_partial_step_control_v1_json",
+    "support_establishment": "Exact original V25 reference, which preserves V23 establishment.",
+    "raising": "Retain the original 90 bounded torso candidates, IK anchors and free-foot placement. Reject any candidate worsening a joint headroom deficit beyond 1e-12 rad. If any deficit is positive, require total deficit reduction beyond 1e-12 rad. Rank by maximum deficit, total deficit and geometry cost, each using the declared 1e-12 comparison tolerance. Geometry cost may increase while the headroom rank improves; emit bounded joint targets only. Keep qualified support, actuator limits and all original task gates.",
+    "fallback": "Use the original V23 reference from the same observation for no positive bearing plane, undefined heading, no geometric candidate, no nonworsening-headroom candidate, no headroom-progress candidate, or no improving candidate. Record the exact reason. Never reuse a cached plan or change a deadline.",
+    "terminal": "Original task termination produces no command; terminal requests refuse.",
+    "selected_runtime": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-0782ffec40504de79ba8304be4b75bde/sporespore_godot_adapter.dll",
+      "byte_length": 9934336,
+      "raw_sha256": "sha256:76d05482da331ee4ed423f82672e2bf429222cd0efdeafa2f4f20c50a6023b81"
+    },
+    "runtime_binding": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/development/recovery_candidates/r10ap-progressive-headroom-core-v1.runtime.json",
+      "byte_length": 38142,
+      "raw_sha256": "sha256:6ba4124cf84d8d9e189b05bf6d5d645979be182bd3e4a6b8e4b78a1f639e5c65"
+    },
+    "selected_runtime_interface_verified": true,
+    "synthetic_worker_verified": true,
+    "serialized_partial_segment_verified": true
+  },
+  "preserved": {
+    "contact_profile": "godot_jolt_distal_contact_detection_frame_v1",
+    "contact_source_schema": "sporespore_r10af_godot_detection_frame_contact_source_v1",
+    "contact_activation": "entire fresh world including setup and prefix",
+    "classification_tolerance_m": 1e-06,
+    "minimum_bearing_impulse_ns": 0.019293,
+    "normal_impulses": "native post-solve",
+    "nonfoot_clearance_and_ventral_frame": "original callback frame",
+    "walking": "V56",
+    "prone": "V20",
+    "upright": "V20/V12/V7",
+    "stance": "V7",
+    "partial_phase_limits": {
+      "establish_distal_support": 240,
+      "raise_body": 600,
+      "stance_dwell": 360,
+      "total": 1200
+    },
+    "standing_dwell_samples": 60,
+    "engine_image_changed": false,
+    "actuator_caps_changed": false,
+    "task_thresholds_changed": false,
+    "evaluator_predicates_changed": false
+  },
+  "first_probe": {
+    "seed": 70248,
+    "prefix_phase": 248,
+    "seed_label": "R10AP-PROGRESSIVE-HEADROOM-PREFIX-248-V1",
+    "roles": [
+      "kick_passive_recovery_resume"
+    ],
+    "execution_mode": "single_kick_controller_diagnostic_v1",
+    "attempt_limit": 1,
+    "held_out": false,
+    "fresh_setup": true,
+    "baseline_reuse": false,
+    "coverage_adequacy": "One fresh child exercises V28 progressive headroom and bearing-loss fallback at the already exposed failure phase, detection-frame contacts, original energy and partial-task supervision, terminal or gated settling/walking continuation, retention and complete production readers. It answers a single controller diagnostic, not matched effect, paired commissioning, other prefix phases or held-out acceptance. Both the setup and kicked child are fresh; no physical baseline is cached or reused."
+  },
+  "limits": {
+    "maximum_world_build_count": 1,
+    "maximum_steps_per_child": 3752,
+    "after_interaction_steps": 3400,
+    "child_wall_time_limit_seconds": 2400,
+    "independent_reader_wall_time_limit_seconds": 1200
+  },
+  "required_before_world": [
+    "Bind this immutable design to a distinct candidate schedule, source key, prefix/seed guard, worker, report namespace and reader selecting the exact V28 DLL.",
+    "Complete the production Python report consumer on fresh fully bound synthetic partial/upright, ready/timeout hold and walking reports. Native replay or independent contact replay alone is insufficient.",
+    "Crossed source, owner, phase, energy, shutdown, capture and missing report-field controls must refuse through the real consumer, without mocked selection or admission.",
+    "Bind context handoff, one-use reservation, native world guard, retention and the complete affected-path safety graph; preserve the original bounds and evaluators.",
+    "Pass the entire applicable safety graph at the exact clean pushed prospective freeze under the operation lock before this single declared diagnostic."
+  ],
+  "decision_rules": [
+    "Any physically exposed attempt consumes this diagnostic identity, including infrastructure-invalid results. Retain the original outcome and do not renew its source key.",
+    "A valid negative closes this candidate. Further physical optimization requires a scientifically distinct successor.",
+    "A positive SingleKick is development evidence only. Fresh paired commissioning, official qualification, fresh held-out acceptance and M07 adoption remain before 15/20.",
+    "Recorded-input geometric feasibility and synthetic standing do not guarantee tracking or load retention. Do not relax task clocks, thresholds, actuator limits or acceptance predicates after exposure."
+  ],
+  "worker_component_integrated": true,
+  "serialized_partial_segment_verified": true,
+  "complete_physical_route_integrated": false,
+  "complete_report_consumer_qualified": false,
+  "launch_enabled": false,
+  "physical_execution_authorized": false,
+  "held_out_campaign_declared": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

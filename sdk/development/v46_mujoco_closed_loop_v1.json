@@ -1,0 +1,67 @@
+{
+  "schema_version": "sporespore_v46_mujoco_closed_loop_declaration_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": [
+      "mujoco"
+    ],
+    "authority_mode": "bounded_development_diagnostic",
+    "question_class": "development"
+  },
+  "diagnostic_id": "v46-measured-pose-support-mujoco-v1",
+  "runtime_binding": "sdk/development/recovery_candidates/v46-measured-pose-support-core-v1.runtime.json",
+  "policy_id": "sporespore_balanced_wave_recovery_measured_pose_support_v1",
+  "controller_contract": "sdk/development/recovery_measured_pose_support_contract_v1.json",
+  "engine_version": "3.11.0",
+  "seed": 40200,
+  "world_count": 1,
+  "fresh_child_roles": [
+    "one walking diagnostic world",
+    "one separate cold reader with no world"
+  ],
+  "maximum_walking_commands": 1600,
+  "stopping_commands": 120,
+  "settle_tail_commands": 30,
+  "native_substeps_per_command": 5,
+  "native_dt_s": 0.0016666666666666668,
+  "maximum_native_steps": 8600,
+  "child_wall_time_limit_s": 180,
+  "initial_state": "Exactly the retained V44 fixed-command MuJoCo replay initial projection, recovery morphology, actuator caps and authored friction 1.8. A fresh world and fresh V46 memory with all gait clocks 90. No initialization settling, state offsets, replayed physical baseline or reset after refusal. This does not exercise MuJoCo get-up.",
+  "wave": "Inherited front-left-first wave, smooth amplitude ramp over commands 1 through 73, cap 0.5994550408719347, desired forward speed 0.2 m/s and initial frozen heading. V46 alone decides measured support transfer, release and inherited gate holds.",
+  "cycle_completion": "For each of four limbs, retain first V46 preparation release, then a post-step final-substep absence while its selected phase is at most 72, then positive measured support during selected scheduled stance above 72. End walking at the first command where all four such cycles completed, all four selected phases exceed 72, and all four feet bear positive final-substep support. The first such command is the walking cutoff. No fixed-horizon terminal regrading of V44.",
+  "stop": "After cycle completion, run exactly 120 fresh commands with gait amplitude and desired forward speed zero, unchanged heading and bounded reference/motor tracking. Report settled only if every one of the final 30 commands has four positive final-substep supports, measured mass-weighted horizontal COM speed at most 0.030 m/s, torso angular speed at most 0.15 rad/s and tilt at most 0.05 rad. A finite diagnostic predicate, not acceptance authority.",
+  "failure": "At a decoded controller safe-zero refusal, retain the exact request/response and unchanged memory, set native controls to zero with readback, and terminate without another solver step. A completed retained refusal is a valid development negative. Any transport error, source drift, native warning, nonfinite value, cap violation, incomplete retention or failed independent reader makes the attempt infrastructure-invalid. Reaching 1600 walking commands without cycle completion is a valid finite negative, not a release claim.",
+  "production_entrypoints": [
+    "LocomotionCore.balanced_wave_policy_step_with_measured_body -> ss_balanced_wave_policy_step_json v3",
+    "existing recovery morphology compiler -> MujocoRecoveryMorphologyWorld",
+    "canonical_velocity_compose_v1 -> canonical_velocity_host_map_v1",
+    "existing native five-substep velocity/contact/force collector",
+    "separate no-world C ABI replay and publication reader"
+  ],
+  "telemetry": "Full exact C ABI input/output per command, all nine measured body poses/twists, all eight joint observations, controller memory and support decisions, each of five native controls/forces/contact lists, post-step geometry, any-substep and final-substep bearing separately, original child stdout/stderr and source/runtime bindings. No capture reduction.",
+  "covered_risks": [
+    "synchronized measured-body input",
+    "body basis and native joint/sign mapping",
+    "actual C ABI and cached API",
+    "bounded support-transfer readiness and timeout",
+    "truthful contact source",
+    "native owner and timeout",
+    "native stepping, force caps and warning refusal",
+    "cycle-aligned transition and complete stopping tail",
+    "exact retention, independent replay and no-claim publication"
+  ],
+  "not_covered": [
+    "MuJoCo get-up",
+    "paired commissioning",
+    "Godot V46 recovery-route integration",
+    "official M07 acceptance",
+    "three-engine behavioral equivalence",
+    "arbitrary morphology, terrain or disturbance robustness"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "behavior_claimed": false,
+  "equivalence_claimed": false,
+  "parent_declaration": "sdk/development/v45_mujoco_closed_loop_v1.json",
+  "change_from_parent": "Only the V46 measured-pose support selector and its bound DLL. Same V44 native-state projection, transfer limits, motor/solver/material route, 1600 walking maximum, four-limb measured cycle predicate and 120-command stop."
+}

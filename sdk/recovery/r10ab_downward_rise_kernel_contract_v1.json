@@ -1,0 +1,100 @@
+{
+  "schema_version": "sporespore_r10ab_downward_rise_kernel_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral",
+    "authority_mode": "prospective_controller_kernel_design",
+    "question_class": "development"
+  },
+  "question": "Can constraining the loaded rise to downward modeled motion at every foot avoid the immediate support loss observed after all 44 R10AA rise commands?",
+  "diagnostic_basis": {
+    "path": "sdk/recovery/r10ab_loaded_rise_component_v1.json",
+    "byte_length": 4166,
+    "raw_sha256": "sha256:6b259829714f92aa43e65d7e409dc312d9a4cd12c691d8e650b9e7412ed6c063"
+  },
+  "consumed_predecessor": {
+    "path": "sdk/recovery/r10aa_first_support_diagnostic_closure_v1.json",
+    "byte_length": 118089,
+    "raw_sha256": "sha256:fcbe7dfe92d87e9b4ab3b08798eb504a2e68b081ebee360c34b6d40e9421a1b8"
+  },
+  "change_scope": {
+    "support_establishment": "Preserve the R10AA native-qualified load-seeking law exactly.",
+    "weak_support_during_raise": "Preserve R10AA load seeking when any original native-qualified foot condition is false.",
+    "loaded_raise": "Search the original finite measured-pose candidate grid with an additional all-foot downward-direction constraint.",
+    "terminal": "No controller command after the original terminal transition."
+  },
+  "native_qualification": {
+    "required_feet": 4,
+    "presence": true,
+    "bears_support": true,
+    "ordinary_unilateral_contact": true,
+    "minimum_bearing_impulse_ns": 0.019293,
+    "measurement_rewritten": false,
+    "acceptance_threshold_changed": false
+  },
+  "loaded_rise_constraint": {
+    "virtual_translation_world_y_strictly_positive": true,
+    "minimum_fixed_torso_downward_fraction": 0.25,
+    "inequality": "For every foot, foot(target_joints, measured_torso).y - foot(measured_joints, measured_torso).y <= -0.25 * virtual_translation_world_y + 1e-12",
+    "numeric_roundoff_tolerance_m": 1e-12,
+    "measured_torso_is_mathematical_reference_only": true,
+    "no_host_pose_write": true
+  },
+  "candidate_grid": {
+    "scales": [
+      1.0,
+      0.5,
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "translation_speed_m_s": 0.1,
+    "outer_step_s": 0.008333333333333333,
+    "heading_translation_signs": [
+      -1,
+      0,
+      1
+    ],
+    "vertical_translation_signs": [
+      -1,
+      0,
+      1
+    ],
+    "level_blend_rate_s": 0.6,
+    "level_blend_signs": [
+      -1,
+      0,
+      1
+    ],
+    "enumerated_candidates": 135
+  },
+  "unchanged_bounds": {
+    "hip_target_limit_rad": 1.6,
+    "knee_target_limit_rad": 1.1,
+    "maximum_joint_target_speed_rad_s": 4.0,
+    "maximum_unactuated_lateral_residual_m": 0.0005,
+    "cost_improvement_epsilon": 1e-12,
+    "descriptor": "exact selected S169 only",
+    "nearest_admissible_ik_branch": true,
+    "original_cost_and_candidate_order": true
+  },
+  "refusal": "If no cost-decreasing candidate satisfies the joint, lateral and downward-foot constraints, return an explicit bounded hold without rewriting observations, phase clocks or task limits.",
+  "validation_required": [
+    "Reproduce the 44 retained loaded-rise reference plans before interpreting the counterfactual model.",
+    "Check the prospective compiled search on all 646 exposed observations with original inputs preserved; controller admission remains separate from model feasibility.",
+    "Prove exact R10AA behavior for support seeking and weak-support fallback.",
+    "Cover terminal, missing/nonfinite/native-unqualified input, no-admissible-candidate and joint-boundary controls.",
+    "Use a distinct native profile, composition, runtime binding and source key; preserve older controller behavior.",
+    "Complete the applicable safety graph before a freshly declared native diagnostic; offline feasibility never qualifies physics."
+  ],
+  "design_limits": [
+    "The fixed-torso constraint describes target direction, not predicted force or guaranteed contact retention.",
+    "No held-out population or physical attempt is declared by this kernel contract.",
+    "Original standing, readiness, cycle/stop conditions and physical budgets remain unchanged."
+  ],
+  "controller_implementation_proven": false,
+  "native_integration_proven": false,
+  "physical_load_retention_proven": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

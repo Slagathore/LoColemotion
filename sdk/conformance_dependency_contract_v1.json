@@ -1,0 +1,148 @@
+{
+  "schema_version": "sporespore_conformance_dependency_contract_v1",
+  "contract_id": "CDK1-CONSERVATIVE-CONFORMANCE-INPUT-KEY",
+  "status": "active_candidate_key_cache_disabled",
+  "purpose": "Construct a canonical, mutation-sensitive candidate identity for conformance inputs without authorizing lookup, reuse, historical-audit waiver, physical execution, or release claims.",
+  "canonicalization": {
+    "digest_algorithm": "sha256",
+    "text_encoding": "utf-8",
+    "path_separator": "/",
+    "path_order": "ordinal",
+    "path_uniqueness": "ordinal_ignore_case",
+    "root_paths_in_digest": false,
+    "file_record_fields": [
+      "path",
+      "byte_length",
+      "raw_sha256"
+    ]
+  },
+  "source_boundary": {
+    "tracked_checkout_inventory_required": true,
+    "git_head_tree_required": true,
+    "git_tree_listing_digest_required": true,
+    "checkout_bytes_required_because_git_filters_can_change_disk_bytes": true,
+    "dirty_and_untracked_state_must_be_observed": true,
+    "clean_pushed_source_required_for_future_reuse": true,
+    "newline_paths_permitted": false,
+    "reparse_points_permitted": false
+  },
+  "environment_boundary": {
+    "baseline_names": [
+      "PATH",
+      "PATHEXT",
+      "PSModulePath",
+      "PYTHONPATH",
+      "VIRTUAL_ENV",
+      "CARGO_HOME",
+      "CARGO_TARGET_DIR",
+      "RUSTFLAGS",
+      "RUSTUP_TOOLCHAIN",
+      "SOURCE_DATE_EPOCH",
+      "TZ"
+    ],
+    "constant_reference_languages": [
+      "PowerShell",
+      "Python",
+      "Rust",
+      "GDScript"
+    ],
+    "value_storage": "sha256_only",
+    "complete_process_environment_inventory_required": true,
+    "complete_process_environment_values_stored_raw": false,
+    "dynamic_environment_lookup_permitted_for_future_reuse": false,
+    "missing_and_empty_are_distinct": true
+  },
+  "declared_runtime_and_evidence_boundary": {
+    "runtime_file_inventories_required_for_complete_key": true,
+    "evidence_file_inventories_required_for_complete_key": true,
+    "missing_declared_input_fails_closed": true,
+    "directory_reparse_point_fails_closed": true,
+    "candidate_v1_runtime_inventory_complete": false,
+    "candidate_v1_evidence_inventory_complete": false
+  },
+  "referenced_cas_candidate_boundary": {
+    "discovery_inputs": "tracked_text_source_bytes",
+    "explicit_artifact_path_pattern": "artifacts/sha256/<64-lowercase-hex>/payload.bin",
+    "bare_sha256_literal_matching_existing_cas_object_included": true,
+    "explicit_missing_object_fails_closed": true,
+    "matched_payload_and_manifest_rehashed": true,
+    "unrelated_cas_append_invalidates_inventory": false,
+    "non_cas_evidence_dependency_detection_complete": false
+  },
+  "per_audit_external_dependency_candidate_boundary": {
+    "contract": "sdk/conformance_audit_dependency_contract_v1.json",
+    "registry": "sdk/conformance_audit_dependency_registry_v1.json",
+    "cep1_audit_count": 167,
+    "registered_audit_count": 1,
+    "complete_audit_count": 1,
+    "unregistered_audit_count": 166,
+    "dependency_shapes": [
+      "file",
+      "directory_tree",
+      "directory_query",
+      "git_object_set"
+    ],
+    "candidate_inventory_bound_into_evidence_digest": true,
+    "external_evidence_inventory_complete": false,
+    "reuse_permitted": false
+  },
+  "per_audit_runtime_profile_candidate_boundary": {
+    "contract": "sdk/conformance_runtime_profile_contract_v1.json",
+    "registry": "sdk/conformance_runtime_profile_registry_v1.json",
+    "registered_profile_count": 1,
+    "complete_profile_count": 1,
+    "registered_audit_binding_count": 1,
+    "complete_audit_binding_count": 1,
+    "candidate_inventory_bound_into_runtime_digest": true,
+    "raw_git_configuration_values_retained": false,
+    "runtime_inventory_complete": false,
+    "host_semantics_complete": false,
+    "reuse_permitted": false
+  },
+  "physical_authorization_kernel_candidate_boundary": {
+    "contract": "sdk/conformance_authorization_kernel_contract_v1.json",
+    "manifest": "sdk/conformance_authorization_kernel_manifest_v1.json",
+    "global_gate_count": 12,
+    "required_campaign_negative_control_role_count": 3,
+    "candidate_inventory_bound_into_dependency_key": true,
+    "global_gate_declaration_complete": true,
+    "global_gate_execution_complete": false,
+    "campaign_negative_controls_complete": false,
+    "cold_equivalence_complete": false,
+    "kernel_commissioned": false,
+    "physical_launch_permitted": false
+  },
+  "environment_candidate_boundary": {
+    "complete_process_environment_observed": true,
+    "dynamic_reference_values_covered_by_conservative_inventory": true,
+    "per_audit_refinement_required_before_cross_session_reuse": true,
+    "environment_semantics_complete_beyond_process_variables": false
+  },
+  "candidate_authority": {
+    "transitive_dependency_key_complete": false,
+    "undeclared_dependency_detection_complete": false,
+    "host_semantics_key_complete": false,
+    "lookup_permitted": false,
+    "reuse_permitted": false,
+    "cache_hit_authority": false,
+    "historical_audit_waiver_permitted": false,
+    "full_source_exact_conformance_remains_required": true
+  },
+  "enablement_requires": [
+    "declared_runtime_closure",
+    "declared_external_evidence_closure",
+    "dynamic_input_refusal",
+    "per_audit_or_conservatively_complete_input_manifests",
+    "mutation_and_invalidation_controls",
+    "physical_authorization_safety_kernel",
+    "godot_including_executed_vs_reused_equivalence"
+  ],
+  "claims": {
+    "cache_commissioned": false,
+    "historical_audit_waiver": false,
+    "physical_campaign_executed": false,
+    "physical_acceptance_authority": false,
+    "scientific_result": false,
+    "release_authority": false
+  }
+}

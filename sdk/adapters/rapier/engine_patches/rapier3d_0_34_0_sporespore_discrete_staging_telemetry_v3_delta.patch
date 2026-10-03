@@ -1,0 +1,493 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index be81a8a5f85e35a80467f0d7a169cc924fad3eb7..5eec6ac9f757ec38669f6e1a04f9d5bcd9ecd411 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -99,6 +99,7 @@ simd-stable = [
+ ]
+ sporespore-motor-work-telemetry = []
+ sporespore-energy-exchange-telemetry = ["sporespore-motor-work-telemetry"]
++sporespore-discrete-staging-telemetry = ["sporespore-energy-exchange-telemetry"]
+ std = [
+     "alloc",
+     "parry3d/std",
+diff --git a/src/dynamics/mod.rs b/src/dynamics/mod.rs
+index 0a14ab125fd017c26cfe339e42047fb3caae328d..9b7d94bd4370884ed19390fa88133217949a6716 100644
+--- a/src/dynamics/mod.rs
++++ b/src/dynamics/mod.rs
+@@ -23,8 +23,14 @@ pub(crate) use self::rigid_body_set::ModifiedRigidBodies;
+ // #[cfg(not(feature = "parallel"))]
+ #[cfg(feature = "alloc")]
+ pub(crate) use self::solver::IslandSolver;
++#[cfg(all(feature = "alloc", feature = "sporespore-discrete-staging-telemetry"))]
++pub(crate) use self::solver::SporeSporeSolverDiscreteStagingTelemetry;
+ #[cfg(all(feature = "alloc", feature = "sporespore-energy-exchange-telemetry"))]
+ pub(crate) use self::solver::SporeSporeSolverEnergyExchange;
++#[cfg(all(feature = "alloc", feature = "sporespore-discrete-staging-telemetry"))]
++pub use self::solver::{
++    SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY, SporeSporeDiscreteStagingSmallStepTelemetry,
++};
+ // #[cfg(feature = "parallel")]
+ // pub(crate) use self::solver::ParallelIslandSolver;
+ pub use parry::mass_properties::MassProperties;
+diff --git a/src/dynamics/solver/island_solver.rs b/src/dynamics/solver/island_solver.rs
+index 94aff6e480b91263d114d3588e10f4163dddc673..51eb7e19aee5e3d4604896c6834966ec76dca78e 100644
+--- a/src/dynamics/solver/island_solver.rs
++++ b/src/dynamics/solver/island_solver.rs
+@@ -1,6 +1,8 @@
+ use super::{JointConstraintsSet, VelocitySolver};
+ #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+ use super::SporeSporeSolverEnergyExchange;
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++use super::SporeSporeSolverDiscreteStagingTelemetry;
+ use crate::counters::Counters;
+ use crate::dynamics::IslandManager;
+ use crate::dynamics::solver::contact_constraint::ContactConstraintsSet;
+@@ -35,12 +37,18 @@ impl IslandSolver {
+         self.velocity_solver.sporespore_energy_exchange
+     }
+ 
++    #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++    pub(crate) fn sporespore_discrete_staging(&self) -> SporeSporeSolverDiscreteStagingTelemetry {
++        self.velocity_solver.sporespore_discrete_staging
++    }
++
+     #[profiling::function]
+     pub fn init_and_solve(
+         &mut self,
+         island_id: usize,
+         counters: &mut Counters,
+         base_params: &IntegrationParameters,
++        #[cfg(feature = "sporespore-discrete-staging-telemetry")] gravity: crate::math::Vector,
+         islands: &IslandManager,
+         bodies: &mut RigidBodySet,
+         manifolds: &mut [&mut ContactManifold],
+@@ -105,6 +113,8 @@ impl IslandSolver {
+         self.velocity_solver.solve_constraints(
+             &params,
+             num_solver_iterations,
++            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++            gravity,
+             bodies,
+             multibodies,
+             &mut self.contact_constraints,
+diff --git a/src/dynamics/solver/mod.rs b/src/dynamics/solver/mod.rs
+index a35e46a71eefdda299f9de9fc5c5699642f523eb..ff5326912bf6c55a32e86efe29a25e2d40ce27cf 100644
+--- a/src/dynamics/solver/mod.rs
++++ b/src/dynamics/solver/mod.rs
+@@ -11,6 +11,12 @@ pub(crate) use self::island_solver::IslandSolver;
+ use self::velocity_solver::VelocitySolver;
+ #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+ pub(crate) use self::velocity_solver::SporeSporeSolverEnergyExchange;
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++pub use self::velocity_solver::{
++    SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY, SporeSporeDiscreteStagingSmallStepTelemetry,
++};
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++pub(crate) use self::velocity_solver::SporeSporeSolverDiscreteStagingTelemetry;
+ 
+ use contact_constraint::*;
+ pub(crate) use joint_constraint::MotorParameters;
+diff --git a/src/dynamics/solver/solver_body.rs b/src/dynamics/solver/solver_body.rs
+index 1c058dbc7c76db0b3c067a2212b603d1f2c57507..5c0b731bab3da4bd6a1c723934b119adc09e0b14 100644
+--- a/src/dynamics/solver/solver_body.rs
++++ b/src/dynamics/solver/solver_body.rs
+@@ -113,6 +113,20 @@ impl SolverBodies {
+         energy
+     }
+ 
++    #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++    pub fn sporespore_raw_gravity_potential(&self, gravity: Vector) -> Real {
++        let mut energy = 0.0;
++
++        for pose in &self.poses {
++            let inverse_mass = (0..3).map(|axis| pose.im[axis]).find(|value| *value != 0.0);
++            if let Some(inverse_mass) = inverse_mass {
++                energy -= gravity.dot(pose.translation) / inverse_mass;
++            }
++        }
++
++        energy
++    }
++
+     // TODO: add a SIMD version?
+     pub fn copy_from(&mut self, _dt: Real, i: usize, rb: &RigidBody) {
+         let poses = &mut self.poses[i];
+diff --git a/src/dynamics/solver/velocity_solver.rs b/src/dynamics/solver/velocity_solver.rs
+index 0da488cd234632ff99c2a4cee629626cd19742c6..4f031b56d91abe8e7af620a905dd10e1031e1662 100644
+--- a/src/dynamics/solver/velocity_solver.rs
++++ b/src/dynamics/solver/velocity_solver.rs
+@@ -7,6 +7,8 @@ use crate::dynamics::{
+     MultibodyJointSet, MultibodyLinkId, RigidBodySet, RigidBodyType, solver::SolverVel,
+ };
+ use crate::geometry::{ContactManifold, ContactManifoldIndex};
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++use crate::math::Vector;
+ use crate::math::{DVector, Real};
+ use crate::prelude::RigidBodyVelocity;
+ use parry::math::SIMD_WIDTH;
+@@ -45,6 +47,49 @@ pub(crate) struct SporeSporeSolverEnergyExchange {
+     pub(crate) generic_solver_dof_count: u32,
+ }
+ 
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++/// Fixed ordered population qualified for the supported scalar recovery route.
++pub const SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY: usize = 16;
++
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++#[derive(Copy, Clone, Debug, Default, PartialEq)]
++/// Native measurements bracketing one force and one position integration stage.
++pub struct SporeSporeDiscreteStagingSmallStepTelemetry {
++    /// Zero-based native small-step index within the island solve.
++    pub small_step_index: u32,
++    /// Aggregate supported-body kinetic energy before force increments are applied.
++    pub kinetic_energy_before_force_j: Real,
++    /// Aggregate supported-body kinetic energy after force increments are applied.
++    pub kinetic_energy_after_force_j: Real,
++    /// Aggregate raw gravitational potential before position integration.
++    pub raw_gravity_potential_before_position_j: Real,
++    /// Aggregate raw gravitational potential after position integration.
++    pub raw_gravity_potential_after_position_j: Real,
++    /// True only for values sampled at these native solver boundaries.
++    pub source_measurement: bool,
++}
++
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++#[derive(Copy, Clone, Debug, Default)]
++pub(crate) struct SporeSporeSolverDiscreteStagingTelemetry {
++    pub(crate) small_steps: [SporeSporeDiscreteStagingSmallStepTelemetry;
++        SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY],
++    pub(crate) small_step_count: u32,
++    pub(crate) overflow_small_step_count: u32,
++}
++
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++impl SporeSporeSolverDiscreteStagingTelemetry {
++    fn record(&mut self, sample: SporeSporeDiscreteStagingSmallStepTelemetry) {
++        if let Some(slot) = self.small_steps.get_mut(self.small_step_count as usize) {
++            *slot = sample;
++        } else {
++            self.overflow_small_step_count = self.overflow_small_step_count.saturating_add(1);
++        }
++        self.small_step_count = self.small_step_count.saturating_add(1);
++    }
++}
++
+ #[cfg(feature = "dim3")]
+ use crate::dynamics::FrictionModel;
+ 
+@@ -56,6 +101,8 @@ pub(crate) struct VelocitySolver {
+     pub multibody_roots: Vec<MultibodyLinkId>,
+     #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+     pub sporespore_energy_exchange: SporeSporeSolverEnergyExchange,
++    #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++    pub sporespore_discrete_staging: SporeSporeSolverDiscreteStagingTelemetry,
+ }
+ 
+ impl VelocitySolver {
+@@ -68,6 +115,8 @@ impl VelocitySolver {
+             multibody_roots: Vec::new(),
+             #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+             sporespore_energy_exchange: SporeSporeSolverEnergyExchange::default(),
++            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++            sporespore_discrete_staging: SporeSporeSolverDiscreteStagingTelemetry::default(),
+         }
+     }
+ 
+@@ -120,6 +169,10 @@ impl VelocitySolver {
+         {
+             self.sporespore_energy_exchange = SporeSporeSolverEnergyExchange::default();
+         }
++        #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++        {
++            self.sporespore_discrete_staging = SporeSporeSolverDiscreteStagingTelemetry::default();
++        }
+         self.multibody_roots.clear();
+         self.solver_bodies.clear();
+ 
+@@ -253,6 +306,7 @@ impl VelocitySolver {
+         &mut self,
+         params: &IntegrationParameters,
+         num_substeps: usize,
++        #[cfg(feature = "sporespore-discrete-staging-telemetry")] gravity: Vector,
+         bodies: &mut RigidBodySet,
+         multibodies: &mut MultibodyJointSet,
+         contact_constraints: &mut ContactConstraintsSet,
+@@ -269,6 +323,9 @@ impl VelocitySolver {
+             }
+ 
+             // TODO PERF: could easily use SIMD.
++            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++            let sporespore_kinetic_energy_before_force =
++                self.solver_bodies.sporespore_kinetic_energy();
+             for (solver_vels, incr) in self
+                 .solver_bodies
+                 .vels
+@@ -278,6 +335,9 @@ impl VelocitySolver {
+                 solver_vels.linear += incr.linear;
+                 solver_vels.angular += incr.angular;
+             }
++            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++            let sporespore_kinetic_energy_after_force =
++                self.solver_bodies.sporespore_kinetic_energy();
+ 
+             self.generic_solver_vels += &self.generic_solver_vels_increment;
+ 
+@@ -358,7 +418,27 @@ impl VelocitySolver {
+             /*
+              * Integrate positions.
+              */
++            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++            let sporespore_raw_gravity_potential_before_position =
++                self.solver_bodies.sporespore_raw_gravity_potential(gravity);
+             self.integrate_positions(params, is_last_substep, bodies, multibodies);
++            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++            {
++                let sporespore_raw_gravity_potential_after_position =
++                    self.solver_bodies.sporespore_raw_gravity_potential(gravity);
++                self.sporespore_discrete_staging.record(
++                    SporeSporeDiscreteStagingSmallStepTelemetry {
++                        small_step_index: u32::try_from(substep_id).unwrap_or(u32::MAX),
++                        kinetic_energy_before_force_j: sporespore_kinetic_energy_before_force,
++                        kinetic_energy_after_force_j: sporespore_kinetic_energy_after_force,
++                        raw_gravity_potential_before_position_j:
++                            sporespore_raw_gravity_potential_before_position,
++                        raw_gravity_potential_after_position_j:
++                            sporespore_raw_gravity_potential_after_position,
++                        source_measurement: true,
++                    },
++                );
++            }
+ 
+             /*
+              * Resolution without bias.
+diff --git a/src/pipeline/mod.rs b/src/pipeline/mod.rs
+index 343054f7b6f57ffaf3da0b56e74a29bb92716b71..8ffd8b8ad69861186c8fe0e47f682623fa7b3569 100644
+--- a/src/pipeline/mod.rs
++++ b/src/pipeline/mod.rs
+@@ -1,5 +1,9 @@
+ //! Structure for combining the various physics components to perform an actual simulation.
+ 
++#[cfg(all(feature = "alloc", feature = "sporespore-discrete-staging-telemetry"))]
++pub use crate::dynamics::{
++    SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY, SporeSporeDiscreteStagingSmallStepTelemetry,
++};
+ #[cfg(feature = "alloc")]
+ pub use collision_pipeline::CollisionPipeline;
+ pub use event_handler::ActiveEvents;
+@@ -12,6 +16,8 @@ pub use physics_hooks::ActiveHooks;
+ pub use physics_hooks::{ContactModificationContext, PairFilterContext, PhysicsHooks};
+ #[cfg(feature = "alloc")]
+ pub use physics_pipeline::PhysicsPipeline;
++#[cfg(all(feature = "alloc", feature = "sporespore-discrete-staging-telemetry"))]
++pub use physics_pipeline::SporeSporeDiscreteStagingTelemetry;
+ #[cfg(all(feature = "alloc", feature = "sporespore-energy-exchange-telemetry"))]
+ pub use physics_pipeline::SporeSporeEnergyExchangeTelemetry;
+ #[cfg(feature = "alloc")]
+diff --git a/src/pipeline/physics_pipeline.rs b/src/pipeline/physics_pipeline.rs
+index c1661716997ad3d6f913b24ec4f5aa87d12718de..a7bff21bfee0089294851602faf531a7355ac7fd 100644
+--- a/src/pipeline/physics_pipeline.rs
++++ b/src/pipeline/physics_pipeline.rs
+@@ -13,6 +13,11 @@ use crate::dynamics::{
+ };
+ #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+ use crate::dynamics::SporeSporeSolverEnergyExchange;
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++use crate::dynamics::{
++    SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY, SporeSporeDiscreteStagingSmallStepTelemetry,
++    SporeSporeSolverDiscreteStagingTelemetry,
++};
+ use crate::geometry::{
+     BroadPhaseBvh, BroadPhasePairEvent, ColliderChanges, ColliderHandle, ColliderPair,
+     ContactManifoldIndex, ModifiedColliders, NarrowPhase, TemporaryInteractionIndex,
+@@ -140,6 +145,95 @@ impl SporeSporeEnergyExchangeTelemetry {
+     }
+ }
+ 
++/// Exact force, position, and endpoint-projection staging telemetry for one outer step.
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++#[derive(Copy, Clone, Debug, Default, PartialEq)]
++pub struct SporeSporeDiscreteStagingTelemetry {
++    /// Monotonic publication sequence for completed outer pipeline steps.
++    pub sequence: u64,
++    /// Ordered scalar-solver measurements retained without aggregation.
++    pub small_steps: [SporeSporeDiscreteStagingSmallStepTelemetry;
++        SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY],
++    /// Total small-step measurements observed, including any beyond capacity.
++    pub small_step_count: u32,
++    /// Measurements that could not be retained in the fixed qualified population.
++    pub overflow_small_step_count: u32,
++    /// Number of island solves contributing staging measurements.
++    pub island_solve_count: u32,
++    /// Number of CCD time slices contributing staging measurements.
++    pub ccd_substep_count: u32,
++    /// Aggregate half-step potential projection before the outer step.
++    pub endpoint_half_step_projection_before_j: Real,
++    /// Aggregate half-step potential projection after the outer step.
++    pub endpoint_half_step_projection_after_j: Real,
++    /// Enabled dynamic-body population sampled at the initial endpoint.
++    pub endpoint_body_count_before: u32,
++    /// Enabled dynamic-body population sampled at the final endpoint.
++    pub endpoint_body_count_after: u32,
++    /// True only when both endpoint values were sampled at their native boundaries.
++    pub endpoint_source_measurement: bool,
++}
++
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++impl SporeSporeDiscreteStagingTelemetry {
++    fn begin_outer_step(&mut self, endpoint_projection_j: Real, body_count: u32) {
++        let sequence = self.sequence.saturating_add(1);
++        *self = Self::default();
++        self.sequence = sequence;
++        self.endpoint_half_step_projection_before_j = endpoint_projection_j;
++        self.endpoint_body_count_before = body_count;
++    }
++
++    fn accumulate(&mut self, sample: SporeSporeSolverDiscreteStagingTelemetry) {
++        let retained_count = usize::try_from(sample.small_step_count)
++            .unwrap_or(usize::MAX)
++            .min(SPORESPORE_DISCRETE_STAGING_SMALL_STEP_CAPACITY);
++        for source in sample.small_steps.iter().take(retained_count) {
++            if let Some(destination) = self.small_steps.get_mut(self.small_step_count as usize) {
++                *destination = *source;
++            } else {
++                self.overflow_small_step_count = self.overflow_small_step_count.saturating_add(1);
++            }
++            self.small_step_count = self.small_step_count.saturating_add(1);
++        }
++        let unretained_count = sample
++            .small_step_count
++            .saturating_sub(u32::try_from(retained_count).unwrap_or(u32::MAX));
++        self.small_step_count = self.small_step_count.saturating_add(unretained_count);
++        self.overflow_small_step_count = self
++            .overflow_small_step_count
++            .saturating_add(sample.overflow_small_step_count);
++        self.island_solve_count = self.island_solve_count.saturating_add(1);
++    }
++
++    fn complete_outer_step(&mut self, endpoint_projection_j: Real, body_count: u32) {
++        self.endpoint_half_step_projection_after_j = endpoint_projection_j;
++        self.endpoint_body_count_after = body_count;
++        self.endpoint_source_measurement = true;
++    }
++}
++
++#[cfg(feature = "sporespore-discrete-staging-telemetry")]
++fn sporespore_endpoint_half_step_projection(
++    bodies: &RigidBodySet,
++    gravity: Vector,
++    outer_step_dt: Real,
++) -> (Real, u32) {
++    let mut projection = 0.0;
++    let mut body_count = 0_u32;
++    for (_, body) in bodies.iter() {
++        if body.is_enabled() && body.is_dynamic() {
++            projection += body.mass()
++                * body.gravity_scale()
++                * gravity.dot(body.linvel())
++                * outer_step_dt
++                * 0.5;
++            body_count = body_count.saturating_add(1);
++        }
++    }
++    (projection, body_count)
++}
++
+ /// The main physics simulation engine that runs your physics world forward in time.
+ ///
+ /// Think of this as the "game loop" for your physics simulation. Each frame, you call
+@@ -165,6 +259,9 @@ pub struct PhysicsPipeline {
+     /// Exact scalar solver-phase exchange telemetry for the most recent outer step.
+     #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+     pub sporespore_energy_exchange: SporeSporeEnergyExchangeTelemetry,
++    /// Exact discrete-staging telemetry for the most recent outer step.
++    #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++    pub sporespore_discrete_staging: SporeSporeDiscreteStagingTelemetry,
+     contact_pair_indices: Vec<TemporaryInteractionIndex>,
+     manifold_indices: Vec<Vec<ContactManifoldIndex>>,
+     joint_constraint_indices: Vec<Vec<ContactManifoldIndex>>,
+@@ -195,6 +292,8 @@ impl PhysicsPipeline {
+             counters: Counters::new(true),
+             #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+             sporespore_energy_exchange: SporeSporeEnergyExchangeTelemetry::default(),
++            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++            sporespore_discrete_staging: SporeSporeDiscreteStagingTelemetry::default(),
+             solvers: vec![],
+             contact_pair_indices: vec![],
+             manifold_indices: vec![],
+@@ -329,6 +428,13 @@ impl PhysicsPipeline {
+                 .ccd_substep_count
+                 .saturating_add(1);
+         }
++        #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++        {
++            self.sporespore_discrete_staging.ccd_substep_count = self
++                .sporespore_discrete_staging
++                .ccd_substep_count
++                .saturating_add(1);
++        }
+         self.counters.stages.island_construction_time.resume();
+         // NOTE: islands update must be done after the narrow-phase.
+         islands.update_islands(
+@@ -402,6 +508,8 @@ impl PhysicsPipeline {
+                     *island_id,
+                     &mut self.counters,
+                     integration_parameters,
++                    #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++                    gravity,
+                     islands,
+                     bodies,
+                     &mut manifolds[..],
+@@ -415,6 +523,11 @@ impl PhysicsPipeline {
+                     let sample = self.solvers[island_awake_id].sporespore_energy_exchange();
+                     self.sporespore_energy_exchange.accumulate(sample);
+                 }
++                #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++                {
++                    let sample = self.solvers[island_awake_id].sporespore_discrete_staging();
++                    self.sporespore_discrete_staging.accumulate(sample);
++                }
+             }
+         }
+ 
+@@ -459,6 +572,8 @@ impl PhysicsPipeline {
+                             island_id,
+                             &mut counters,
+                             integration_parameters,
++                            #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++                            gravity,
+                             islands,
+                             bodies,
+                             &mut manifolds[..],
+@@ -639,8 +754,17 @@ impl PhysicsPipeline {
+         hooks: &dyn PhysicsHooks,
+         events: &dyn EventHandler,
+     ) {
++        #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++        let sporespore_outer_step_dt = integration_parameters.dt;
+         #[cfg(feature = "sporespore-energy-exchange-telemetry")]
+         self.sporespore_energy_exchange.begin_outer_step();
++        #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++        {
++            let (projection, body_count) =
++                sporespore_endpoint_half_step_projection(bodies, gravity, sporespore_outer_step_dt);
++            self.sporespore_discrete_staging
++                .begin_outer_step(projection, body_count);
++        }
+         self.counters.reset();
+         self.counters.step_started();
+ 
+@@ -933,6 +1057,14 @@ impl PhysicsPipeline {
+         // Re-insert the modified vector we extracted for the borrow-checker.
+         colliders.set_modified(modified_colliders);
+ 
++        #[cfg(feature = "sporespore-discrete-staging-telemetry")]
++        {
++            let (projection, body_count) =
++                sporespore_endpoint_half_step_projection(bodies, gravity, sporespore_outer_step_dt);
++            self.sporespore_discrete_staging
++                .complete_outer_step(projection, body_count);
++        }
++
+         self.counters.step_completed();
+     }
+ }

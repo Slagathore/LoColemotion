@@ -1,0 +1,382 @@
+{
+  "schema_version": "sporespore_development_recovery_preflight_failure_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_zero_world_gate_failure",
+    "question_class": "development"
+  },
+  "status": "closed_consumed_zero_world_safety_gate_failure",
+  "attempt_id": "4e43b57e644d47a78c1e80681361a24a",
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-4e43b57e644d47a78c1e80681361a24a",
+  "source_snapshot": {
+    "head": "4a83be9cc7e5a276189c47369e92f7efda3af60a",
+    "dirty": false,
+    "status": [],
+    "changed_file_bindings": []
+  },
+  "candidate_profile": {
+    "resource": "res://sdk/development/recovery_candidates/v28-first-swing-walking-warmup-v1.json",
+    "raw_sha256": "sha256:ed611ed32f573968f8beb78260f6be0bffc8cc456f8743b44bd9e79299ff8b36"
+  },
+  "failure_code": "SMOKE_SAFETY_GATE_FAILED:candidate_walking_transition",
+  "completed_test_count": 95,
+  "passed_tests_in_preceding_stages": 91,
+  "failed_stage_completed_test_count": 4,
+  "failed_stage_failed_test_count": 1,
+  "elapsed_seconds": 700.205469,
+  "diagnosis": "The historical V23 replay test selected the current V28 amplitude identity for untouched V23 retained rows. The production reader correctly rejected that crossed identity before checking memory continuity. Fix only the test selection: use the identity retained by V23 for historical replay and separately require the current mismatched identity to refuse. Preserve the original V23 invalid outcome and all new preflight failures.",
+  "failed_stage_observation": {
+    "cases": {
+      "359": {
+        "adapter_mode_transition_count": 0,
+        "native_physics_read_count": 0,
+        "ok": true,
+        "solver_step_count": 0,
+        "world_build_count": 0
+      },
+      "360": {
+        "adapter_mode_transition_count": 0,
+        "native_physics_read_count": 0,
+        "ok": true,
+        "solver_step_count": 0,
+        "world_build_count": 0
+      },
+      "361": {
+        "adapter_mode_transition_count": 1,
+        "native_physics_read_count": 0,
+        "ok": true,
+        "solver_step_count": 0,
+        "world_build_count": 0
+      },
+      "362": {
+        "adapter_mode_transition_count": 0,
+        "native_physics_read_count": 0,
+        "ok": true,
+        "solver_step_count": 0,
+        "world_build_count": 0
+      },
+      "clock": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      },
+      "counter": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      },
+      "early_transition": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_BOUNDARY",
+        "ok": false
+      },
+      "endpoint": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      },
+      "extra_field": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      },
+      "missing_limb": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      },
+      "omitted_transition": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      },
+      "repeated_transition": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      },
+      "steering": {
+        "failure_code": "DEVELOPMENT_MEMORY_TRANSITION_CONTENT",
+        "ok": false
+      }
+    },
+    "correct_selection": true,
+    "crossed_entry_refused": true,
+    "input_raw_sha256": "sha256:d89026edbeaba783d1eda9d376654401ac6e699acd592191a5bd406b7daa0c4d",
+    "native_physics_read_count": 0,
+    "ok": true,
+    "original_reader": {
+      "failure_code": "DEVELOPMENT_WALKING_ENTRY_READER_RETENTION",
+      "ok": false
+    },
+    "physical_acceptance_authority": false,
+    "physical_outcome_predicted": false,
+    "process_id": 77720,
+    "release_authority": false,
+    "runtime_raw_sha256": "sha256:b0fc357702a7040bd38c9262f94207e16cee4ca22ba0335d7664e7f052e100fb",
+    "solver_step_count": 0,
+    "successor_reader": {
+      "failure_code": "DEVELOPMENT_WALKING_ENTRY_READER_RETENTION",
+      "ok": false
+    },
+    "synthetic_body_or_contact_inputs": false,
+    "unknown_profile": {
+      "failure_code": "DEVELOPMENT_WALKING_ENTRY_READER_MEMORY_TRANSITION_SELECTION",
+      "ok": false
+    },
+    "world_build_count": 0
+  },
+  "retained_population": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-4e43b57e644d47a78c1e80681361a24a",
+    "file_count": 42,
+    "byte_length": 181937,
+    "inventory_sha256": "sha256:09fd6c5cc36b7c9b6141605eabac409738c75a99cbacc48d66533fc2c86f9aa8",
+    "files": [
+      {
+        "path": "candidate_profile.stderr.log",
+        "byte_length": 1094,
+        "raw_sha256": "sha256:978faeb99537d992bf05796351583b771d8711995b4fe24878b4297b46e1c500"
+      },
+      {
+        "path": "candidate_profile.stdout.log",
+        "byte_length": 142,
+        "raw_sha256": "sha256:eb77b8f0348b7cdbcdae8a8400bdd5d6959f06f7bb5e2428e28fb30713a1160e"
+      },
+      {
+        "path": "candidate_reader.stderr.log",
+        "byte_length": 1479,
+        "raw_sha256": "sha256:8f2e551b3ec0ee8b0a097bbc5cc637f44ddaa4fd1100afb1b51a31d1f4ccf2cb"
+      },
+      {
+        "path": "candidate_reader.stdout.log",
+        "byte_length": 4743,
+        "raw_sha256": "sha256:ac3eac505e0f18dcf205eb7ec1a7246da60ac63363870ae0d1f6aa7fec66e6d5"
+      },
+      {
+        "path": "candidate_runtime.stderr.log",
+        "byte_length": 866,
+        "raw_sha256": "sha256:991731a911895362c62671e92a9ae6067df2f6762cf48094c081d0886cd4261b"
+      },
+      {
+        "path": "candidate_runtime.stdout.log",
+        "byte_length": 142,
+        "raw_sha256": "sha256:6e87c4368b0a35102dc52426b2bffbc9f8ee1000aff0d8eac0a588cfd2642a64"
+      },
+      {
+        "path": "candidate_schedule.stderr.log",
+        "byte_length": 856,
+        "raw_sha256": "sha256:8fd8104e8ebb98a04439dd7d788aa28d25bd967491ad0a7a971d81b279e1c04b"
+      },
+      {
+        "path": "candidate_schedule.stdout.log",
+        "byte_length": 144,
+        "raw_sha256": "sha256:6ecf232a59e0c2e7cacee3122808c7c13f5bfce866afe297a52ffa582e402eee"
+      },
+      {
+        "path": "candidate_transport.stderr.log",
+        "byte_length": 1521,
+        "raw_sha256": "sha256:ae35e4e10e413a9b7b0469460cf18501579950cfc754a004cca8021d84633ada"
+      },
+      {
+        "path": "candidate_transport.stdout.log",
+        "byte_length": 33987,
+        "raw_sha256": "sha256:4222afb9bb166c9de2af2621a6112ec14694d1c21000add493fa9b1c5bb190e4"
+      },
+      {
+        "path": "candidate_walking_entry.stderr.log",
+        "byte_length": 1212,
+        "raw_sha256": "sha256:21de36cdf3d840281246220ace8ca4f4d79084f3a1b7743d943e441f1514ad95"
+      },
+      {
+        "path": "candidate_walking_entry.stdout.log",
+        "byte_length": 4713,
+        "raw_sha256": "sha256:891f67294c146cea7e80cf56a81587d0154e8b97ef6ea97905cc0e63ee20e6f8"
+      },
+      {
+        "path": "candidate_walking_frame.stderr.log",
+        "byte_length": 844,
+        "raw_sha256": "sha256:b31d974fa8c3502c04bdc9cbbf12b5ba463d6903d2f1f7221c5014954802439f"
+      },
+      {
+        "path": "candidate_walking_frame.stdout.log",
+        "byte_length": 743,
+        "raw_sha256": "sha256:f5ac51b797c9dcd30e1227ded3d09252a4481c30ec8f1171ff17001e42ce218f"
+      },
+      {
+        "path": "candidate_walking_start.stderr.log",
+        "byte_length": 776,
+        "raw_sha256": "sha256:15b22e63f2879bea2107df123391b86712dd7bd7bffeef3cf45fd1a805e2a76b"
+      },
+      {
+        "path": "candidate_walking_start.stdout.log",
+        "byte_length": 146,
+        "raw_sha256": "sha256:bd7eec36eca1150fa1bfa15890abb7c7590855f0588062c06b84bd1a06509055"
+      },
+      {
+        "path": "candidate_walking_transition.stderr.log",
+        "byte_length": 1935,
+        "raw_sha256": "sha256:2bf9c82990781b359afadef19721b73e88bd3923fb7d36c671f9e272b32f0e64"
+      },
+      {
+        "path": "candidate_walking_transition.stdout.log",
+        "byte_length": 149,
+        "raw_sha256": "sha256:6514edd2c50e7e155e5b3ff666b13b8a6127475843110d26b8f1d688c2f45864"
+      },
+      {
+        "path": "context_cache_exact_inputs.stderr.log",
+        "byte_length": 601,
+        "raw_sha256": "sha256:b9c2ce3c02bd79869397730f11a414f99a2e00d7814bb5e273984e625c5764ea"
+      },
+      {
+        "path": "context_cache_exact_inputs.stdout.log",
+        "byte_length": 5165,
+        "raw_sha256": "sha256:e7b8995cf210771aab5ae11c5e5e1399ba6082a3a263a31f2cf3eca5df449a36"
+      },
+      {
+        "path": "context_cache_integration.stderr.log",
+        "byte_length": 1081,
+        "raw_sha256": "sha256:ce8c46823512be21f15a9b5fa5caf8f9ca92236a8e4ecff808cee276837add67"
+      },
+      {
+        "path": "context_cache_integration.stdout.log",
+        "byte_length": 4445,
+        "raw_sha256": "sha256:93c729fe2fe8088d1a6978b1c26508a50ef1bf7d71a1f7dcaf637a854e781bf1"
+      },
+      {
+        "path": "exact_publication.stderr.log",
+        "byte_length": 965,
+        "raw_sha256": "sha256:a24a114a0b9e2201e29aa73f3a0748a26aca1b8a7ebeba9b8c2bf0fda98da205"
+      },
+      {
+        "path": "exact_publication.stdout.log",
+        "byte_length": 0,
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "godot_rust_owner_contract.stderr.log",
+        "byte_length": 492,
+        "raw_sha256": "sha256:cd7ee7cc7387d63ab445101a3335932cde7827373d372bbec02ae465d29ed7fb"
+      },
+      {
+        "path": "godot_rust_owner_contract.stdout.log",
+        "byte_length": 0,
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "owned_process_relationship.stderr.log",
+        "byte_length": 1323,
+        "raw_sha256": "sha256:c8976aa6e2e38982f262b968898af2701f954641aa84cfd90db882644de95d6b"
+      },
+      {
+        "path": "owned_process_relationship.stdout.log",
+        "byte_length": 0,
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "production_publication.stderr.log",
+        "byte_length": 1562,
+        "raw_sha256": "sha256:660f008627cad9aa3c4a35c6cb0bd378c3bc8796fb48b8a7863f3f949fb537d5"
+      },
+      {
+        "path": "production_publication.stdout.log",
+        "byte_length": 0,
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "prone_deadline_schedule.stderr.log",
+        "byte_length": 1087,
+        "raw_sha256": "sha256:650a4178826a8d2207e98bafff3d8ce736c795903c272af5693b2aa87e3e68c3"
+      },
+      {
+        "path": "prone_deadline_schedule.stdout.log",
+        "byte_length": 2227,
+        "raw_sha256": "sha256:eb60fe8194cc4fda98a3cee86b0090e4153721c25708a5c55d2b987ea47be1cd"
+      },
+      {
+        "path": "published_marker.txt",
+        "byte_length": 8967,
+        "raw_sha256": "sha256:b1cc60408ada0879e5113780cd2b1628f09d79b2720172b3b7b20be5a3d46c34"
+      },
+      {
+        "path": "shared_interface_definitions.stderr.log",
+        "byte_length": 873,
+        "raw_sha256": "sha256:2649d17459d46c86185be48794e5b0f0f4eb2d063b85d5d42445b193aa036181"
+      },
+      {
+        "path": "shared_interface_definitions.stdout.log",
+        "byte_length": 334,
+        "raw_sha256": "sha256:9f4ec83e11c0c111de68604540ea83768830400a841ef5bad47973ac059282c5"
+      },
+      {
+        "path": "smoke_native_safety.stderr.log",
+        "byte_length": 553,
+        "raw_sha256": "sha256:cbe8a1a8565d0b75b416e2401524d9fe59da9ebba2905afaf32dc06f1dd5ce31"
+      },
+      {
+        "path": "smoke_native_safety.stdout.log",
+        "byte_length": 82036,
+        "raw_sha256": "sha256:122ff9d21ad68e514ff1189a7436fb10ad461f0279f3325e3d7dde2e206f91c9"
+      },
+      {
+        "path": "smoke_reader_controls.stderr.log",
+        "byte_length": 624,
+        "raw_sha256": "sha256:03a16620883c5b7ef1cb4f87ab1a2c4776f225e4c72d38b7b4fc26ae09ed26da"
+      },
+      {
+        "path": "smoke_reader_controls.stdout.log",
+        "byte_length": 0,
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "step_cost_profile_controls.stderr.log",
+        "byte_length": 802,
+        "raw_sha256": "sha256:b676c9269c39da7ddec8b4f7b8acf862a1bbe7d22ced738a21993fc057f091fa"
+      },
+      {
+        "path": "step_cost_profile_controls.stdout.log",
+        "byte_length": 2287,
+        "raw_sha256": "sha256:a6c698f733b66c1c621aaafca2d28456bc8a5471aa54f01f8773f52ce0c5bde9"
+      },
+      {
+        "path": "supervisor_result.json",
+        "byte_length": 11021,
+        "raw_sha256": "sha256:c1068ad8c8582b7686334178015968e0c6c39e26a4e6e6738bad6ff5305984b2"
+      }
+    ]
+  },
+  "failed_stage_source_population": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-memory-transition-checks-cbb09c9e41284db1a54a4c384b32645b",
+    "file_count": 5,
+    "byte_length": 13924417,
+    "inventory_sha256": "sha256:3f58ab28ee5e80850fe0231e2a70fcf4b60ba47a58396d439da7bc832dae9a71",
+    "files": [
+      {
+        "path": "actual_adapter_and_readers.execution.json",
+        "byte_length": 1005,
+        "raw_sha256": "sha256:2f3cc68e40d99ea173e2ceef0227194797a9dc9b266c3833682dcd335a6050e4"
+      },
+      {
+        "path": "actual_adapter_and_readers.source_snapshot.json",
+        "byte_length": 162,
+        "raw_sha256": "sha256:b5515f1b04b04b2f7e3127e5147ea64293fd55aa7252ec933338bac491633487"
+      },
+      {
+        "path": "actual_adapter_and_readers.stderr.txt",
+        "byte_length": 0,
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "actual_adapter_and_readers.stdout.txt",
+        "byte_length": 2385,
+        "raw_sha256": "sha256:5a317abf184d50da99c62683e5182e4448052682f09527e57efce449716b38db"
+      },
+      {
+        "path": "retained_walking_and_transition_cases.json",
+        "byte_length": 13920865,
+        "raw_sha256": "sha256:d89026edbeaba783d1eda9d376654401ac6e699acd592191a5bd406b7daa0c4d"
+      }
+    ]
+  },
+  "physical_attempt_started": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "original_v23_reclassified": false,
+  "complete_route_proven": false,
+  "successful_recovery_proven": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "repeat_consumed_attempt_permitted": false
+}

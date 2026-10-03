@@ -1,0 +1,253 @@
+{
+  "schema_version": "sporespore_development_recovery_stance_latch_observation_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "descriptive_retained_native_receipt_counts",
+    "question_class": "development"
+  },
+  "original_closure": {
+    "path": "sdk/development/recovery_attempts/6514ace221e547c6b7b69e2d6bbdebaa.json",
+    "raw_sha256": "sha256:9a24db850c215026f91dced4b93622c0f21d2d4bbd580fa099ba53ea41bb7bad"
+  },
+  "original_report": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-6514ace221e547c6b7b69e2d6bbdebaa/children/kick_passive_recovery_resume/worker_report.json",
+    "byte_length": 300493531,
+    "raw_sha256": "sha256:5aa35dbe98a1c96894eb1cd5694cd26a91c5d6c8d53911caabb8f2ffab3084e4"
+  },
+  "method": {
+    "population": "All 400 development_walking_entry.rows in their retained order; eight ordered joint commands and four ordered limbs per row. The independent replay already validates every original native response and memory link.",
+    "latched_limb_inputs": "Sum next_upright_reference_latched over all stance_latch.ordered_limbs.",
+    "selector_transitions": "Count unequal next_upright_reference_latched values for the same ordered limb in adjacent rows; exclude initialization before row 1.",
+    "carried_absent_limb_inputs": "Count a selected next_upright_reference_latched bit with the corresponding request.state.ordered_contact_observations presence=false. The original contact is never changed.",
+    "speed_clamped_joint_commands": "Count velocity_saturated=true in native_output.actuation.ordered_commands.",
+    "original_evaluation": "Copy the original walking_resume session evaluation without applying a new evaluator, threshold, horizon or criterion.",
+    "terminal_time_alignment": "The terminal latch receipt uses the final command's pre-solver observation. The original evaluation's open-flight fields describe the measured segment endpoint; these are not interchangeable samples."
+  },
+  "observation": {
+    "command_count": 400,
+    "joint_command_count": 3200,
+    "latched_limb_inputs": 1253,
+    "selector_limb_transitions": 11,
+    "carried_absent_limb_inputs": 300,
+    "speed_clamped_joint_commands": 99,
+    "terminal_precommand_latches": [
+      {
+        "current_scheduled_phase_step": 35,
+        "incoming_upright_reference_latched": false,
+        "limb_id": "front_left",
+        "next_upright_reference_latched": false,
+        "precommand_contact": {
+          "bears_support": false,
+          "contact_site_id": "front_left_foot",
+          "normal_load_n": null,
+          "presence": false,
+          "provenance": {
+            "adapter_id": "sporespore_godot_jolt_adapter",
+            "aggregation_rule_id": "godot_jolt_exact_post_solve_distal_capsule_lower_cap_contact_v1",
+            "engine_contact_ids": [],
+            "impulse_source_kind": "native_post_solve_contact_constraint_lambda",
+            "impulse_source_profile_id": "godot_4_7_jolt_sporespore_solved_contact_telemetry_v1",
+            "quality": "qualified_bearing"
+          }
+        },
+        "previous_latch_carry_eligible": false,
+        "previous_scheduled_phase_step": 34,
+        "previous_wave_active": true
+      },
+      {
+        "current_scheduled_phase_step": 215,
+        "incoming_upright_reference_latched": true,
+        "limb_id": "front_right",
+        "next_upright_reference_latched": true,
+        "precommand_contact": {
+          "bears_support": true,
+          "contact_site_id": "front_right_foot",
+          "normal_load_n": null,
+          "presence": true,
+          "provenance": {
+            "adapter_id": "sporespore_godot_jolt_adapter",
+            "aggregation_rule_id": "godot_jolt_exact_post_solve_distal_capsule_lower_cap_contact_v1",
+            "engine_contact_ids": [
+              "godot_contact_66726f6e745f72696768745f64697374616c3a307c666c6f6f723a30"
+            ],
+            "impulse_source_kind": "native_post_solve_contact_constraint_lambda",
+            "impulse_source_profile_id": "godot_4_7_jolt_sporespore_solved_contact_telemetry_v1",
+            "quality": "qualified_bearing"
+          }
+        },
+        "previous_latch_carry_eligible": true,
+        "previous_scheduled_phase_step": 214,
+        "previous_wave_active": true
+      },
+      {
+        "current_scheduled_phase_step": 125,
+        "incoming_upright_reference_latched": true,
+        "limb_id": "rear_left",
+        "next_upright_reference_latched": true,
+        "precommand_contact": {
+          "bears_support": true,
+          "contact_site_id": "rear_left_foot",
+          "normal_load_n": null,
+          "presence": true,
+          "provenance": {
+            "adapter_id": "sporespore_godot_jolt_adapter",
+            "aggregation_rule_id": "godot_jolt_exact_post_solve_distal_capsule_lower_cap_contact_v1",
+            "engine_contact_ids": [
+              "godot_contact_726561725f6c6566745f64697374616c3a307c666c6f6f723a30"
+            ],
+            "impulse_source_kind": "native_post_solve_contact_constraint_lambda",
+            "impulse_source_profile_id": "godot_4_7_jolt_sporespore_solved_contact_telemetry_v1",
+            "quality": "qualified_bearing"
+          }
+        },
+        "previous_latch_carry_eligible": true,
+        "previous_scheduled_phase_step": 124,
+        "previous_wave_active": true
+      },
+      {
+        "current_scheduled_phase_step": 305,
+        "incoming_upright_reference_latched": true,
+        "limb_id": "rear_right",
+        "next_upright_reference_latched": true,
+        "precommand_contact": {
+          "bears_support": true,
+          "contact_site_id": "rear_right_foot",
+          "normal_load_n": null,
+          "presence": true,
+          "provenance": {
+            "adapter_id": "sporespore_godot_jolt_adapter",
+            "aggregation_rule_id": "godot_jolt_exact_post_solve_distal_capsule_lower_cap_contact_v1",
+            "engine_contact_ids": [
+              "godot_contact_726561725f72696768745f64697374616c3a307c666c6f6f723a30"
+            ],
+            "impulse_source_kind": "native_post_solve_contact_constraint_lambda",
+            "impulse_source_profile_id": "godot_4_7_jolt_sporespore_solved_contact_telemetry_v1",
+            "quality": "qualified_bearing"
+          }
+        },
+        "previous_latch_carry_eligible": true,
+        "previous_scheduled_phase_step": 304,
+        "previous_wave_active": true
+      }
+    ],
+    "original_walking_evaluation": {
+      "absolute_lateral_drift_m": 0.026995926326651265,
+      "arm_id": "kick_passive_recovery_resume",
+      "behavior_passed": false,
+      "behavioral_conclusion": "none",
+      "contact_cycle_count_by_limb": {
+        "front_left": 5,
+        "front_right": 3,
+        "rear_left": 7,
+        "rear_right": 4
+      },
+      "contact_cycle_definition": "within_segment_observed_liftoff_and_touchdown_with_fixed_minimum_airborne_dwell",
+      "development_smoke_only": true,
+      "evaluation_world_build_count": 0,
+      "evaluator_id": "sporespore_development_smoke_walking_diagnostics_v1",
+      "evidence_valid": true,
+      "false_walking_receipts": [
+        "every_limb_forward_relocation",
+        "terminal_four_contact_recovery"
+      ],
+      "fixed_thresholds": {
+        "maximum_absolute_lateral_drift_m": 0.25,
+        "maximum_anchor_error_m": 0.025,
+        "maximum_hinge_axis_error_rad": 0.2,
+        "maximum_tilt_rad": 0.6,
+        "maximum_yaw_drift_rad": 0.45,
+        "minimum_airborne_dwell_steps": 3,
+        "minimum_foot_relocation_m": 0.012,
+        "minimum_forward_advance_m": 0.02,
+        "minimum_torso_height_m": 0.25
+      },
+      "forward_advance_m": 0.10562911445257184,
+      "gate_id": "QSDK-R10F",
+      "initial_partial_flight_censored_count_by_limb": {
+        "front_left": 0,
+        "front_right": 0,
+        "rear_left": 0,
+        "rear_right": 0
+      },
+      "initial_partial_flight_open_at_end_by_limb": {
+        "front_left": false,
+        "front_right": false,
+        "rear_left": false,
+        "rear_right": false
+      },
+      "maximum_anchor_error_m": 0.002053569070994854,
+      "maximum_hinge_axis_error_rad": 0.08119015230449604,
+      "maximum_tilt_rad": 0.11355935627610468,
+      "minimum_cycle_forward_relocation_by_limb_m": {
+        "front_left": -0.0033568718156429256,
+        "front_right": 0.012156134313595635,
+        "rear_left": -0.06440808113792018,
+        "rear_right": -0.023873116048912735
+      },
+      "minimum_torso_height_m": 0.3688786029815674,
+      "observed_flight_open_at_end_by_limb": {
+        "front_left": true,
+        "front_right": false,
+        "rear_left": false,
+        "rear_right": false
+      },
+      "ok": true,
+      "outcome_complete": true,
+      "payload_sha256": "sha256:4107e5f475c7c798dc585b1e2e9ba326d638ac9c490f1c3d004bc1b49ceb32f4",
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "schema_version": "sporespore_development_smoke_walking_diagnostics_v1",
+      "segment_id": "walking_resume",
+      "session_id": "r10f:kick_passive_recovery_resume:walking_resume:858",
+      "threshold_override_input_count": 0,
+      "torso_contact_step_count": 0,
+      "trace_row_count": 400,
+      "walking_gate_receipts": {
+        "bounded_anchor_error": true,
+        "bounded_hinge_axis_error": true,
+        "bounded_joint_only_lateral_stride_steering": true,
+        "bounded_lateral_drift": true,
+        "bounded_tilt": true,
+        "bounded_torso_height": true,
+        "bounded_yaw_drift": true,
+        "contact_gated_evidence_horizon_completed": true,
+        "contact_gating_completed_without_timeout": true,
+        "every_contact_observer_executed": true,
+        "every_limb_completed_evidence_gait_horizon": true,
+        "every_limb_forward_relocation": false,
+        "every_limb_two_contact_cycles": true,
+        "evidence_four_contact_stance": true,
+        "explicit_sdk_controller_session_shutdown": true,
+        "fixture_spec_compiled_before_world_creation": true,
+        "initial_four_contact_stance": true,
+        "initial_perturbation_within_declared_envelope": true,
+        "minimum_evidence_forward_translation": true,
+        "minimum_final_forward_translation": true,
+        "native_sdk_exclusive_post_settle_actuation": true,
+        "no_torso_force_or_impulse_or_velocity_or_transform_command": true,
+        "no_world_reset": true,
+        "one_continuous_world": true,
+        "pinned_jolt_solver_settings": true,
+        "terminal_four_contact_recovery": false,
+        "zero_torso_contact": true
+      },
+      "walking_receipt_count": 27,
+      "yaw_drift_rad": 0.2782546545698677
+    }
+  },
+  "historical_descriptive_reference": {
+    "path": "sdk/development/recovery_upright_stance_observation_v1.json",
+    "raw_sha256": "sha256:e91856d0a201a1027113f15cbb0ea8f8ab2a0bb9aca151901688c280bfef3c99",
+    "limit": "Two separate development trajectories with different controllers, not a paired experiment, causal effect, superiority test, equivalence result or new support claim."
+  },
+  "next_question": "Locate the remaining backward observed lift-and-land events in the saved V42 timeline, including intended gait phase, truthful contact gaps, reference selection/rates and body rotation. Keep the terminal front-left scheduled swing distinct from an absent-contact stance. Do not choose another controller correction or new physical attempt until this bounded retained-data diagnosis is complete.",
+  "original_evaluation_replaced": false,
+  "causal_attribution_proven": false,
+  "comparative_authority": false,
+  "native_calls": 0,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

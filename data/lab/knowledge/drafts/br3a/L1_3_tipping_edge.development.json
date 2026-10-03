@@ -1,0 +1,84 @@
+{
+  "schema": "sporespore.lab.br3a_development_observation.v1",
+  "entry_id": "L1.3.support_edge_tipping.draft_v1",
+  "cell_id": "L1.3",
+  "claim_status_ceiling": "development_observation",
+  "admissible_now": false,
+  "admission_blockers": [
+    "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+    "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+    "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+    "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+    "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+  ],
+  "evidence_source": {
+    "test_files": [
+      "res://tests/test_experimental_l1_3_tipping_edge.gd"
+    ],
+    "evidence_grade": "experimental_commissioning_test_report_only",
+    "promotion_grade_bundle_exists": false
+  },
+  "title": "Static tipping brackets the analytic 0.30 m support edge and mirrors by sign",
+  "claim": "For the exact L1.3 prism on seven independent real-Jolt COM-offset worlds at 60 Hz, a center-of-mass offset of +0.28 m stays stable while +0.32 m tips around the analytically predicted 0.30 m support-polygon edge, and the mirrored -0.36 m case tips in the opposite direction. Raw-point impulse-weighted center of pressure and a pre-pivot slip gate confirm the pivot is a support-edge rotation rather than a slide.",
+  "scope": "One unjointed rigid prism under gravity on a flat static floor, independent fresh world per authored internal COM offset, authored support half-width 0.30 m as the analytic tipping oracle, 60 Hz Jolt physics, Godot 4.7, full_contacts_v2 observer with adversarial config and geometry refusal in the runner.",
+  "mechanism": "A static rigid body tips when the gravity line of action through its center of mass leaves the support polygon. The measured stable/tip bracket 0.28-0.32 m around the authored 0.30 m half-width matches that static criterion, and the sign of the offset selects the tipping direction. This is passive support-edge truth with no controller or actuation.",
+  "applicability": [
+    "Validating support-polygon margin math for later stance placement",
+    "Providing a passive-tipping oracle for center-of-pressure instrumentation"
+  ],
+  "failure_boundaries": [
+    "Does not cover dynamic tipping under motion, impact, or applied moments",
+    "Does not cover the unmeasured interior of the 0.28-0.32 m bracket",
+    "Does not cover articulated bodies, active balance, or any recovery response",
+    "Does not establish standing, bracing, fall arrest, getting up, or walking"
+  ],
+  "morphology_tags": [
+    "jolt",
+    "unary_rigid_body",
+    "flat_static_floor"
+  ],
+  "parameter_effects": [
+    {
+      "parameter": "/fixture_parameters/custom_com_offset_x_m",
+      "change": "increase magnitude across the preregistered offset grid",
+      "affects": "static stable-versus-tip classification and tipping direction",
+      "mechanism": "The gravity line of action crosses the authored support-polygon edge near 0.30 m and the offset sign selects the pivot side",
+      "hinges_on": [
+        "The authored support half-width remaining 0.30 m",
+        "No pre-pivot slip contaminating the rotation"
+      ]
+    }
+  ],
+  "minimal_repair_rules": [
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "A static placement tips although total support load looks correct",
+      "diagnosis": "The projected center of mass sits outside the measured support-polygon edge",
+      "smallest_change": "Move the internal load inside the measured stable offset bracket or widen the authored support geometry",
+      "expected_effect": "The static placement returns to the measured stable class",
+      "identity_preserved": [
+        "body plan",
+        "part count"
+      ],
+      "do_not_apply_when": [
+        "The body is moving, actuated, or articulated rather than passively supported"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Where the exact static edge sits inside the unmeasured 0.28-0.32 m interval",
+    "How dynamic momentum shifts the effective tipping boundary",
+    "How articulated mass redistribution changes support-polygon margins"
+  ],
+  "does_not_establish": [
+    "standing",
+    "bracing",
+    "fall_arrest",
+    "getting_up",
+    "walking",
+    "dynamic_tipping_boundary",
+    "active_balance"
+  ],
+  "supersedes": []
+}

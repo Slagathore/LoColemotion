@@ -1,0 +1,235 @@
+{
+  "schema_version": "sporespore_qsdk_r23d2_oracle_preregistration_v1",
+  "status": "stage_zero_oracle_preregistered_workers_not_frozen",
+  "campaign_id": "QSDK-R23D2-THREE-ENGINE-HEADING-RESPONSE-DEVELOPMENT",
+  "gate_id": "QSDK-R23D2",
+  "release_gate_id": "QSDK-R23",
+  "study_classification": "exact_finite_outcome_exposed_implementation_recovery_development_screen",
+  "purpose": "Repeat the unchanged nine-cell R23D1 development question under a distinct identity while independently recomputing the selected controller's complete desired-heading oracle and retaining truthful failure-stage provenance.",
+  "predecessor": {
+    "campaign_id": "QSDK-R23D1-THREE-ENGINE-HEADING-RESPONSE-DEVELOPMENT",
+    "closure_path": "sdk/turning/physical_development_closure_v1.json",
+    "closure_sha256": "sha256:022b42ae025abc3ee4eb502ee1857d5b43c1f6bc0e67b7e84c07bd6aa7076717",
+    "source_contract_path": "sdk/turning/physical_development_contract_v1.json",
+    "source_contract_sha256": "sha256:c7c801477065002f4bf624f0fe70fb289a64c282bc792eb9cb3a159d0db96284",
+    "consumed_source_commit": "dd61a90ee32d756f94f826cd0e5b2df6520cbe33",
+    "classification": "closed_consumed_implementation_invalid_incomplete_no_three_engine_result",
+    "complete_report_count": 3,
+    "declared_report_count": 9,
+    "scientific_result_exists": false
+  },
+  "outcome_exposure": {
+    "r23d1_results_exposed_before_preregistration": true,
+    "godot_jolt_cell_metrics_exposed": true,
+    "rapier_and_mujoco_failure_mechanism_exposed": true,
+    "reuse_same_body_seed_arms_schedule_and_thresholds": true,
+    "reuse_reason": "This is an implementation-recovery development successor on an already exposed exact-finite fixture, not fresh validation or population inference.",
+    "fresh_morphology_or_seed_claim": false,
+    "population_inference": false
+  },
+  "unchanged_question": {
+    "selected_candidate_id": "BW5R-B",
+    "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "initial_condition_seed": 21501,
+    "engine_ids": [
+      "godot_jolt",
+      "rapier_parry",
+      "mujoco"
+    ],
+    "arms": [
+      {
+        "arm_id": "reference_zero",
+        "turn_heading_offset_rad": 0.0
+      },
+      {
+        "arm_id": "positive_heading",
+        "turn_heading_offset_rad": 0.2
+      },
+      {
+        "arm_id": "negative_heading",
+        "turn_heading_offset_rad": -0.2
+      }
+    ],
+    "declared_cell_count": 9,
+    "execution_order": "engine_order_then_arm_order",
+    "all_cells_execute_without_early_stop": true,
+    "replacement_or_selective_rerun_permitted": false,
+    "command_schedule_inherited_without_change": true,
+    "development_detection_gates_inherited_without_change": true
+  },
+  "implementation_change_scope": {
+    "portable_controller_changed": false,
+    "selected_policy_changed": false,
+    "physical_fixture_changed": false,
+    "command_schedule_changed": false,
+    "development_thresholds_changed": false,
+    "adapter_host_profiles_changed": false,
+    "controller_receipt_oracle_corrected": true,
+    "failure_provenance_corrected": true,
+    "rejected_receipt_retention_added": true,
+    "campaign_supervisor_identity_must_be_distinct": true,
+    "evidence_root_must_be_distinct": true
+  },
+  "selected_profile_oracle": {
+    "schema_version": "sporespore_qsdk_r23d2_selected_profile_oracle_v1",
+    "torso_length_scale": 1.0041015625,
+    "cross_track_heading_base_gain_rad_per_m": 1.0,
+    "cross_track_velocity_base_gain_rad_per_m_s": 0.35,
+    "cross_track_heading_gain_formula": "cross_track_heading_base_gain_rad_per_m / torso_length_scale",
+    "cross_track_velocity_heading_gain_formula": "cross_track_velocity_base_gain_rad_per_m_s * sqrt(torso_length_scale)",
+    "cross_track_heading_gain_rad_per_m": 0.9959151915969655,
+    "cross_track_velocity_heading_gain_rad_per_m_s": 0.35071703894485934,
+    "maximum_desired_heading_error_rad": 0.25,
+    "comparison_absolute_tolerance": 1e-12,
+    "independent_recomputation": {
+      "requested_heading_error_rad": "wrap(desired_heading_rad - reference_yaw_rad)",
+      "cross_track_error_m": "dot(base_position_world_m - task_origin_world_m, task_lateral_axis_world_unit)",
+      "cross_track_velocity_m_s": "dot(base_linear_velocity_world_m_s, task_lateral_axis_world_unit)",
+      "measured_yaw_error_rad": "wrap(measured_heading_world_rad - reference_yaw_rad)",
+      "desired_heading_error_rad": "clamp(requested_heading_error_rad - cross_track_heading_gain_rad_per_m * cross_track_error_m - cross_track_velocity_heading_gain_rad_per_m_s * cross_track_velocity_m_s, -maximum_desired_heading_error_rad, maximum_desired_heading_error_rad)",
+      "yaw_tracking_error_rad": "wrap(measured_yaw_error_rad - desired_heading_error_rad)"
+    },
+    "required_receipt_predicates": [
+      "cross_track_error_m",
+      "cross_track_velocity_m_s",
+      "measured_yaw_error_rad",
+      "desired_heading_error_rad",
+      "yaw_tracking_error_rad"
+    ],
+    "raw_heading_offset_equality_is_forbidden_as_oracle": true
+  },
+  "oracle_canaries": [
+    {
+      "canary_id": "zero_only_r23d1_blind_spot",
+      "reference_yaw_rad": 0.4,
+      "desired_heading_rad": 0.6,
+      "measured_heading_world_rad": 0.43,
+      "task_origin_world_m": [0.0, 0.0, 0.0],
+      "task_lateral_axis_world_unit": [0.0, 0.0, 1.0],
+      "base_position_world_m": [0.0, 0.0, 0.0],
+      "base_linear_velocity_world_m_s": [0.0, 0.0, 0.0],
+      "expected_desired_heading_error_rad": 0.20000000000000018,
+      "legacy_raw_offset_oracle_would_pass": true
+    },
+    {
+      "canary_id": "nonzero_cross_track_position",
+      "reference_yaw_rad": 0.4,
+      "desired_heading_rad": 0.6,
+      "measured_heading_world_rad": 0.43,
+      "task_origin_world_m": [0.0, 0.0, 0.0],
+      "task_lateral_axis_world_unit": [0.0, 0.0, 1.0],
+      "base_position_world_m": [0.0, 0.0, 0.05],
+      "base_linear_velocity_world_m_s": [0.0, 0.0, 0.0],
+      "expected_desired_heading_error_rad": 0.1502042404201519,
+      "legacy_raw_offset_oracle_would_pass": false
+    },
+    {
+      "canary_id": "nonzero_cross_track_velocity",
+      "reference_yaw_rad": -0.4,
+      "desired_heading_rad": -0.6,
+      "measured_heading_world_rad": -0.44,
+      "task_origin_world_m": [0.0, 0.0, 0.0],
+      "task_lateral_axis_world_unit": [0.0, 0.0, 1.0],
+      "base_position_world_m": [0.0, 0.0, 0.0],
+      "base_linear_velocity_world_m_s": [0.0, 0.0, -0.1],
+      "expected_desired_heading_error_rad": -0.16492829610551424,
+      "legacy_raw_offset_oracle_would_pass": false
+    },
+    {
+      "canary_id": "mixed_nonzero_position_velocity",
+      "reference_yaw_rad": 0.4,
+      "desired_heading_rad": 0.6,
+      "measured_heading_world_rad": 0.52,
+      "task_origin_world_m": [0.0, 0.0, 0.0],
+      "task_lateral_axis_world_unit": [0.0, 0.0, 1.0],
+      "base_position_world_m": [0.0, 0.0, 0.08],
+      "base_linear_velocity_world_m_s": [0.0, 0.0, -0.04],
+      "expected_desired_heading_error_rad": 0.1343554662300373,
+      "legacy_raw_offset_oracle_would_pass": false
+    },
+    {
+      "canary_id": "positive_clamp",
+      "reference_yaw_rad": 0.4,
+      "desired_heading_rad": 0.6,
+      "measured_heading_world_rad": 0.7,
+      "task_origin_world_m": [0.0, 0.0, 0.0],
+      "task_lateral_axis_world_unit": [0.0, 0.0, 1.0],
+      "base_position_world_m": [0.0, 0.0, -0.2],
+      "base_linear_velocity_world_m_s": [0.0, 0.0, -0.2],
+      "expected_desired_heading_error_rad": 0.25,
+      "legacy_raw_offset_oracle_would_pass": false
+    },
+    {
+      "canary_id": "negative_clamp",
+      "reference_yaw_rad": -0.4,
+      "desired_heading_rad": -0.6,
+      "measured_heading_world_rad": -0.7,
+      "task_origin_world_m": [0.0, 0.0, 0.0],
+      "task_lateral_axis_world_unit": [0.0, 0.0, 1.0],
+      "base_position_world_m": [0.0, 0.0, 0.2],
+      "base_linear_velocity_world_m_s": [0.0, 0.0, 0.2],
+      "expected_desired_heading_error_rad": -0.25,
+      "legacy_raw_offset_oracle_would_pass": false
+    },
+    {
+      "canary_id": "wrapped_heading_with_nonzero_cross_track",
+      "reference_yaw_rad": 3.1,
+      "desired_heading_rad": -3.0,
+      "measured_heading_world_rad": -3.05,
+      "task_origin_world_m": [0.0, 0.0, 0.0],
+      "task_lateral_axis_world_unit": [0.0, 0.0, 1.0],
+      "base_position_world_m": [0.0, 0.0, 0.02],
+      "base_linear_velocity_world_m_s": [0.0, 0.0, 0.03],
+      "expected_desired_heading_error_rad": 0.1527454921793015,
+      "legacy_raw_offset_oracle_would_pass": false
+    }
+  ],
+  "failure_provenance": {
+    "schema_version": "sporespore_qsdk_r23d2_worker_failure_v1",
+    "world_attempt_count_increment_boundary": "immediately_before_first_native_world_or_model_construction_call",
+    "world_build_count_increment_boundary": "immediately_after_successful_native_world_or_model construction",
+    "required_stage_ids": [
+      "before_world",
+      "world_construction_failed",
+      "world_constructed",
+      "settlement_complete",
+      "controller_validation_failed",
+      "cell_report_complete"
+    ],
+    "rejected_native_receipt_retention_required": true,
+    "per_predicate_failure_ids_required": true,
+    "aggregate_must_sum_actual_worker_counts": true,
+    "hardcoded_zero_counts_after_world_attempt_forbidden": true
+  },
+  "future_worker_requirements": {
+    "actual_engine_worker_count": 0,
+    "required_engine_worker_count": 3,
+    "each_worker_must_execute_all_oracle_canaries_at_zero_world": true,
+    "each_worker_must_recompute_from_exact_state_command_and_profile": true,
+    "shared_production_evaluator_required": true,
+    "aggregate_supervisor_required": true,
+    "content_addressed_rejected_receipts_required": true,
+    "full_source_runtime_freeze_required": true,
+    "source_exact_full_godot_v2_attestation_required": true
+  },
+  "authorization": {
+    "physical_execution_authorized": false,
+    "reason": "Stage zero freezes only the corrected oracle and failure-provenance contract. No R23D2 engine worker, aggregate supervisor, source freeze, exact-source attestation, or physical attempt exists yet.",
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "claim_boundary": {
+    "oracle_design_complete": true,
+    "actual_engine_workers_complete": false,
+    "development_result_exists": false,
+    "scientific_result_exists": false,
+    "straight_walk_compatibility": false,
+    "command_conditioned_turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "schema_version": "sporespore_qsdk_r23d10_quiescent_taper_preregistration_v1",
+  "status": "prospectively_frozen_stage_zero_zero_world_only",
+  "campaign_id": "QSDK-R23D10-SUPPORT-POSE-CONFIRMED-QUIESCENT-TAPER-BILATERAL-TURN-DEVELOPMENT",
+  "gate_id": "QSDK-R23D10",
+  "release_gate_id": "QSDK-R23",
+  "created_utc": "2026-08-09T11:08:00Z",
+  "study_classification": "prospective_exact_finite_development_screen_after_consumed_infrastructure_invalid_predecessor",
+  "purpose": "Test whether a portable active quiescence taper, gated by four-foot support and a near-neutral pose before irreversible zero actuation, preserves the signed turning response and prevents the post-handoff contact loss observed in one R23D9 arm.",
+  "lineage": {
+    "immutable_predecessor_gate_id": "QSDK-R23D9",
+    "immutable_predecessor_campaign_id": "QSDK-R23D9-SUPPORT-CONFIRMED-ACTIVE-TO-PASSIVE-HANDOFF-BILATERAL-TURN-DEVELOPMENT",
+    "predecessor_closure_path": "sdk/turning/r23d9_physical_closure_v1.json",
+    "predecessor_closure_raw_sha256": "sha256:464d97cb79eac4ba7a83ac3d0904137b44e05aed7c02a226bc27f3ade90cfcbf",
+    "predecessor_source_commit": "74f45053c69cd264e60e0927d9eaf4bcd8a43038",
+    "predecessor_status": "closed_consumed_infrastructure_invalid_after_two_stage_a_worlds_evaluator_marker_mismatch",
+    "predecessor_same_identity_rerun_forbidden": true,
+    "predecessor_campaign_level_scientific_result_exists": false,
+    "predecessor_diagnostic_payload_promoted": false,
+    "predecessor_stage_b_world_count": 0
+  },
+  "declared_use_of_predecessor_data": {
+    "development_informed": true,
+    "independent_validation": false,
+    "source": "The two immutable R23D9 MuJoCo Stage A traces are used only to diagnose the active-to-passive transition and choose the distinct R23D10 taper and pose-confirmation mechanism.",
+    "positive_trace_raw_sha256": "sha256:ff02fb0adf03a70eb892ab3f11298cbe60380e6cf7b46f4a186e2949ddde4afa",
+    "negative_trace_raw_sha256": "sha256:29d5b19d110de4f0bdb9c2e48bdd2379221a7202c64d6dc6caa96a77a11fe2d6",
+    "r23d9_positive_last_30_support_maximum_torso_tilt_rad": 0.0046328184846318905,
+    "r23d9_positive_last_30_support_maximum_joint_position_error_rad": 0.17540983309682578,
+    "r23d9_negative_last_30_support_minimum_torso_tilt_rad": 0.02392804760050467,
+    "r23d9_negative_last_30_support_minimum_joint_position_error_rad": 0.26349168895154307,
+    "r23d9_negative_first_coarse_pose_supported_terminal_step_zero_based": 370,
+    "r23d9_negative_final_continuous_support_window_first_terminal_step_zero_based": 382,
+    "r23d9_negative_handoff_terminal_step_zero_based": 411,
+    "r23d9_negative_first_post_handoff_contact_loss_terminal_step_zero_based": 528,
+    "r23d9_negative_post_handoff_contact_loss_step_count": 93,
+    "r23d9_both_signed_yaw_responses_passed": true,
+    "counterfactual_success_claimed": false
+  },
+  "scientifically_distinct_successor": {
+    "fixture_changed": false,
+    "morphology_changed": false,
+    "turning_controller_policy_changed": false,
+    "walking_turning_and_safety_thresholds_changed": false,
+    "stage_a_and_stage_b_shape_changed": false,
+    "active_terminal_policy_changed": true,
+    "terminal_horizon_changed": true,
+    "support_only_confirmation_replaced": true,
+    "new_policy_id": "sporespore_support_pose_confirmed_quiescent_taper_v1",
+    "new_mechanism": "four-foot coarse-pose acquisition followed by at least 120 consecutive active taper steps, tight pose confirmation, then irreversible zero actuation",
+    "marker_only_same_policy_rerun": false
+  },
+  "numeric_derivation": {
+    "coarse_maximum_torso_tilt_rad": {
+      "value": 0.035,
+      "basis": "Above the R23D9 negative arm's first disclosed coarse-pose supported tilt of 0.03146044245323057 rad so the taper can begin before the predecessor handoff."
+    },
+    "coarse_maximum_joint_position_error_rad": {
+      "value": 0.32,
+      "basis": "Above the R23D9 negative arm's first disclosed coarse-pose supported joint error of 0.3192104576295037 rad."
+    },
+    "tight_maximum_torso_tilt_rad": {
+      "value": 0.01,
+      "basis": "Strictly between the R23D9 stable arm's 30-step maximum 0.0046328184846318905 rad and unstable arm's 30-step minimum 0.02392804760050467 rad."
+    },
+    "tight_maximum_joint_position_error_rad": {
+      "value": 0.2,
+      "basis": "Strictly between the R23D9 stable arm's 30-step maximum 0.17540983309682578 rad and unstable arm's 30-step minimum 0.26349168895154307 rad."
+    },
+    "minimum_quiescent_taper_steps": {
+      "value": 120,
+      "basis": "Four times the predecessor's 30-step contact-only confirmation and long enough for a continuous taper beginning at the negative arm's disclosed terminal step 382 to finish by step 501."
+    },
+    "maximum_active_terminal_steps": {
+      "value": 540,
+      "basis": "The predecessor's 420-step active budget plus the new 120-step taper budget, leaving 38 steps after the disclosed negative-arm continuous-support onset and minimum taper."
+    },
+    "minimum_passive_zero_actuation_steps": {
+      "value": 360,
+      "basis": "Unchanged from R23D9."
+    },
+    "terminal_step_count": {
+      "value": 900,
+      "basis": "Maximum 540 active steps plus the unchanged minimum 360 passive proof steps."
+    }
+  },
+  "inherited_unchanged_scientific_contract": {
+    "morphology_id": "qsdk_r05_generated_s169",
+    "campaign_seed": 21501,
+    "physics_hz": 120,
+    "authored_sliding_friction": 0.95,
+    "selected_candidate_id": "BW5R-B",
+    "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "fixed_onset_id": "onset_600",
+    "turn_start_semantic_step": 600,
+    "turn_duration_steps": 1200,
+    "turn_heading_offset_rad_by_arm": {
+      "reference_zero": 0.0,
+      "positive_heading": 0.2,
+      "negative_heading": -0.2
+    },
+    "turning_controller_semantic_step_count": 2992,
+    "minimum_absolute_signed_turn_phase_yaw_delta_rad": 0.01,
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "maximum_absolute_requested_or_held_steering_fraction": 0.4,
+    "zero_torso_ground_contact_required": true,
+    "zero_controller_errors_required": true,
+    "zero_nonfinite_observations_required": true,
+    "zero_actuator_application_mismatches_required": true
+  },
+  "terminal_policy_contract": {
+    "initial_mode": "active_neutral_acquisition",
+    "quiescent_mode": "active_quiescent_taper",
+    "passive_mode": "irreversible_zero_actuation_stability",
+    "terminal_step_count": 900,
+    "maximum_active_step_count": 540,
+    "minimum_quiescent_taper_step_count": 120,
+    "minimum_passive_step_count": 360,
+    "ordered_actuator_count": 8,
+    "contact_order": [
+      "front_left",
+      "front_right",
+      "rear_left",
+      "rear_right"
+    ],
+    "neutral_target_position_rad_for_every_ordered_actuator": 0.0,
+    "unbounded_velocity_equation": "8.0 * (0.0 - measured_position_rad) - 0.65 * measured_velocity_rad_s",
+    "base_velocity_limit_rad_s": 0.35,
+    "acquisition_velocity_scale_fraction": {"numerator": 120, "denominator": 120},
+    "taper_velocity_scale_fraction_for_completed_taper_count_c": "max(1, 120 - c) / 120",
+    "taper_scale_is_applied_to_canonical_velocity_limit_before_host_mapping": true,
+    "coarse_pose_predicate": "all_four_contacts and torso_tilt_rad <= 0.035 and maximum_absolute_joint_position_error_rad <= 0.32",
+    "tight_pose_predicate": "all_four_contacts and torso_tilt_rad <= 0.01 and maximum_absolute_joint_position_error_rad <= 0.2",
+    "taper_resets_to_acquisition_on_coarse_pose_failure": true,
+    "tight_pose_may_authorize_handoff_only_after_120_completed_taper_steps": true,
+    "support_confirmed_transition_precedes_deadline_forced_transition": true,
+    "deadline_forced_transition_after_active_step_zero_based": 539,
+    "transition_is_applied_to_next_step": true,
+    "mode_reactivation_after_passive_handoff_permitted": false,
+    "deadline_forced_handoff_can_pass": false,
+    "every_post_handoff_step_requires_all_four_contacts": true,
+    "every_post_handoff_step_requires_zero_native_actuation": true,
+    "all_900_terminal_steps_execute": true
+  },
+  "required_oracle_canaries": [
+    "coarse_pose_from_first_step_then_120_step_taper_passes",
+    "r23d9_positive_shaped_delayed_entry_then_taper_passes",
+    "coarse_pose_loss_resets_taper_before_later_confirmation",
+    "tight_pose_never_reached_forces_deadline_and_fails",
+    "post_handoff_contact_loss_fails_without_reactivation"
+  ],
+  "required_mutation_controls": [
+    "entered_taper_without_coarse_pose",
+    "did_not_reset_taper_on_contact_loss",
+    "did_not_reset_taper_on_coarse_tilt_failure",
+    "did_not_reset_taper_on_coarse_joint_error_failure",
+    "used_wrong_taper_scale_numerator",
+    "used_wrong_taper_scale_denominator",
+    "handed_off_before_120_taper_steps",
+    "handed_off_without_tight_tilt",
+    "handed_off_without_tight_joint_error",
+    "allowed_active_step_after_deadline",
+    "allowed_deadline_forced_handoff_to_pass",
+    "reactivated_after_passive_contact_loss",
+    "applied_native_actuation_after_handoff",
+    "stopped_before_900_terminal_steps",
+    "accepted_changed_threshold",
+    "accepted_changed_taper_or_horizon"
+  ],
+  "stage_a_mujoco_screen": {
+    "stage_id": "mujoco_quiescent_taper_screen",
+    "engine_id": "mujoco",
+    "ordered_arm_ids": ["positive_heading", "negative_heading"],
+    "declared_cell_count": 2,
+    "declared_world_count": 2,
+    "all_cells_execute_without_outcome_based_early_stop": true,
+    "parallel_execution_permitted": false,
+    "replacement_or_selective_rerun_permitted": false,
+    "stage_b_launch_requires_both_signed_cells_complete_execution_valid_and_passing": true,
+    "valid_none_forbids_stage_b": true,
+    "invalid_or_incomplete_forbids_stage_b": true
+  },
+  "stage_a_selector": {
+    "selected_policy_id_if_passing": "sporespore_support_pose_confirmed_quiescent_taper_v1",
+    "selected_policy_id_if_not_passing": "NONE",
+    "post_result_rethresholding_forbidden": true,
+    "manual_override_forbidden": true
+  },
+  "stage_b_three_engine_confirmation": {
+    "ordered_engine_ids": ["godot_jolt", "rapier_parry", "mujoco"],
+    "ordered_arm_ids": ["reference_zero", "positive_heading", "negative_heading"],
+    "declared_cell_count_if_launched": 9,
+    "declared_world_count_if_launched": 9,
+    "parallel_execution_permitted": false,
+    "replacement_or_selective_rerun_permitted": false,
+    "reference_zero_requires_zero_command_straight_walk_compatibility": true,
+    "complete_nine_report_aggregate_required": true
+  },
+  "evaluator_cli_wire_contract": {
+    "stage_a_command": "evaluate-stage-a",
+    "stage_a_success_marker": "QSDK_R23D10_STAGE_A_EVALUATION ",
+    "complete_command": "evaluate-complete",
+    "complete_success_marker": "QSDK_R23D10_COMPLETE_EVALUATION ",
+    "generic_shared_success_marker_permitted": false,
+    "prephysical_integration_must_execute_each_cli_command": true,
+    "prephysical_integration_must_compare_exact_producer_and_consumer_prefix": true,
+    "function_only_evaluator_tests_sufficient": false
+  },
+  "stage_zero_authority": {
+    "declaration_complete": true,
+    "pure_temporal_policy_required": true,
+    "native_engine_route_count": 0,
+    "physical_worker_count": 0,
+    "evaluator_implementation_count": 0,
+    "supervisor_implementation_count": 0,
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physical_execution_authorized": false
+  },
+  "claim_boundary": {
+    "stage_zero_design_complete": true,
+    "quiescent_taper_hypothesis_physically_tested": false,
+    "stage_a_result_exists": false,
+    "stage_b_result_exists": false,
+    "command_conditioned_turning": false,
+    "bilateral_signed_turning": false,
+    "portable_basic_turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

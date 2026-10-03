@@ -1,0 +1,143 @@
+{
+  "schema_version": "sporespore_r10ar_multicontact_statics_study_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_model_from_godot_measurements",
+    "authority_mode": "prospective_frozen_pose_force_feasibility_study",
+    "question_class": "development"
+  },
+  "source_parent_commit": "b0da602cf8cb9f6ad2a42d754ccfea8450a42528",
+  "question": "At every exposed R10AP partial-recovery pose, can existing contacts support weight in a stationary surrogate with the existing actuator bounds, and what minimum nonfoot support does the model require?",
+  "dependencies": [
+    {
+      "path": "sdk/conformance/r10ar_multicontact_statics.py",
+      "byte_length": 10482,
+      "raw_sha256": "sha256:6454be303fbfd2986ebcab095a0c9513fbd13b9eb5d71122a5767362bd08f2e4"
+    },
+    {
+      "path": "sdk/conformance/r10ap_load_tracking_diagnosis.py",
+      "byte_length": 9082,
+      "raw_sha256": "sha256:0dc568cc146a61daf8b1c75672d38be2910f807e1fd99f9487a5af768d4fc45e"
+    },
+    {
+      "path": "sdk/conformance/r10af_rise_tracking_analysis.py",
+      "byte_length": 12392,
+      "raw_sha256": "sha256:4c765b17fe3c669cc116d71c04780017f662b52cf6e42ad75a70b6d9ca0e0d23"
+    },
+    {
+      "path": "sdk/conformance/r10af_contact_frame_replay.py",
+      "byte_length": 4726,
+      "raw_sha256": "sha256:82e9e376889340a51d78b76cd4f41a7bc07b194f4a7a6921ff98e59efea65593"
+    },
+    {
+      "path": "sdk/recovery/r10ap_load_tracking_diagnosis_v1.json",
+      "byte_length": 46787,
+      "raw_sha256": "sha256:4413eb6058f7f61d5d4ba81c19b11f98ed55ae8e479144bbec16956964b95e7b"
+    },
+    {
+      "path": "sdk/recovery/r10ap_progressive_headroom_closure_v1.json",
+      "byte_length": 548790,
+      "raw_sha256": "sha256:a29ac37d6361fe11f2578232a53f50db21a4fb1c7295447e9126cab1200fd6d7"
+    },
+    {
+      "path": "sdk/core/src/quadruped.rs",
+      "byte_length": 17849,
+      "raw_sha256": "sha256:e81d10100d5e18b4bb2aef2982562303ae1a90ccfa3656ff938d193f8d9a95d0"
+    },
+    {
+      "path": "sdk/core/src/recovery_morphology.rs",
+      "byte_length": 24992,
+      "raw_sha256": "sha256:9782f1956f381393b4e557dcf12fc283c3d5770af7bc4e000333771c262752e8"
+    },
+    {
+      "path": "C:/Users/Cole/AppData/Roaming/Python/Python311/site-packages/scipy/optimize/_linprog.py",
+      "byte_length": 30995,
+      "raw_sha256": "sha256:ecca09ba6dd109aff5ffa52beb4433dd63dfe1b7dea047e5fbe3abee728ae85b"
+    },
+    {
+      "path": "C:/Users/Cole/AppData/Roaming/Python/Python311/site-packages/scipy/optimize/_linprog_highs.py",
+      "byte_length": 17564,
+      "raw_sha256": "sha256:c7f71ee2c03dfc3a34283483708d7a940f8f3865ba0a4d1384b1c1748f3050a9"
+    },
+    {
+      "path": "C:/Users/Cole/AppData/Roaming/Python/Python311/site-packages/scipy/optimize/_highspy/_core.cp311-win_amd64.pyd",
+      "byte_length": 5780992,
+      "raw_sha256": "sha256:e90712bccb5928cd7533e8023cd111d9e1345496233ca0f27c0a2eb8f33b9088"
+    },
+    {
+      "path": "C:/Users/Cole/AppData/Roaming/Python/Python311/site-packages/scipy/optimize/_highspy/_highs_options.cp311-win_amd64.pyd",
+      "byte_length": 1221632,
+      "raw_sha256": "sha256:b9b227dbb009dde3649a77d9b27f2ab0c3eb74989bcb68b73a36b66e143fc38d"
+    }
+  ],
+  "population": {
+    "report": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-0f483029e5e649ddad83f0d83eb7e138/children/kick_passive_recovery_resume/worker_report.json",
+      "byte_length": 606986155,
+      "raw_sha256": "sha256:698fa3b16acabbdf3ebf18eed10e3fd8585d5be380aea153d4a24f39ee6b4980"
+    },
+    "observation_samples": 601,
+    "selection": "Every partial-recovery observation, including terminal, in original order.",
+    "held_out": false
+  },
+  "model": {
+    "generalized_velocity": "World root translation and rotation plus eight canonical hip/knee velocities; 14 coordinates.",
+    "gravity": "Use retained direct-state gravity, body masses and body COM positions. Check mass-weighted COM against the controller observation within 1e-6 m.",
+    "jacobian": "Root columns I and axis cross point-minus-root. Joint columns are normalized measured parent z-axis cross point-minus-measured-parent-side-hinge; only ancestor joints contribute.",
+    "contact_population": "Retained strictly positive normal-impulse contacts, both foot and nonfoot; use original reported world points, preserve original classification. No invented or newly enabled contacts.",
+    "equilibrium": "Sum J_contact_transpose*f + actuator_selection*tau + sum J_body_com_transpose*mass*gravity = 0.",
+    "friction_coefficient": 1.8,
+    "friction": "Authored coefficient, used as an explicit model assumption. Upward world-y normals; inner friction pyramid abs(fx)+abs(fz)<=1.8*fy and fy>=0. This is not a claim about exact native combined-material or moving-friction response.",
+    "actuator_limits": "Published per-step impulse divided by the unchanged 1/120 s outer timestep; symmetric canonical torque bounds. No command or cap is changed.",
+    "variants": [
+      "all_contacts_uncapped",
+      "all_contacts_capped",
+      "foot_contacts_capped"
+    ],
+    "objective": "First certify equilibrium feasibility. For feasible problems minimize total nonfoot upward force divided by measured total weight.",
+    "staging_limit": "Reported contact points are retained at native contact-sampling time while body/joint frames are callback states. This frozen-frame surrogate does not remove that staging difference or finite constraint deformation.",
+    "dynamics_excluded": "No mass-matrix acceleration, Coriolis terms, passive joint-limit forces, impulse-to-force reconstruction, contact creation, trajectory propagation, or actual static-state assertion."
+  },
+  "numerics": {
+    "numpy": "1.26.4",
+    "scipy": "1.16.0",
+    "solver": "scipy.optimize.linprog highs-ds",
+    "primal_feasibility_tolerance": 1e-09,
+    "dual_feasibility_tolerance": 1e-09,
+    "certificate_tolerance": 1e-06,
+    "feasible_phase_one_threshold": 1e-07,
+    "phase_one": "Normalize each generalized balance row by max(1,abs(gravity_row)). Minimize sum of positive and negative equilibrium slacks, leaving friction and torque bounds enforced. A certified optimum above 1e-7 is a model infeasibility result.",
+    "certificate": "Check primal feasibility, dual signs, stationarity, complementary slackness and primal-dual objective gap for every solve. Recheck unscaled balances on every feasible load distribution."
+  },
+  "checks": [
+    "Eight known-answer controls covering force/moment balance, unsupported moment, required nonfoot load fraction, and bounded actuator infeasibility before retained evaluation.",
+    "Independent contact-source replay and body mass/COM reconstruction for all 601 samples.",
+    "Retain all 1803 model outcomes, their phase-I certificates, and every feasible force/torque allocation.",
+    "No tuning of variants, friction, caps, objectives or tolerances after result exposure."
+  ],
+  "research_sources": [
+    {
+      "url": "https://underactuated.mit.edu/multibody.html",
+      "use": "Generalized manipulator equations and contact Jacobian transpose forces."
+    },
+    {
+      "url": "https://manipulation.mit.edu/clutter.html",
+      "use": "Static equilibrium and unilateral Coulomb friction constraints."
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.16.0/reference/optimize.linprog-highs-ds.html",
+      "use": "Pinned installed-version dual-simplex interface and marginal conventions."
+    }
+  ],
+  "claim_boundary": {
+    "controller_selected": false,
+    "controller_changed": false,
+    "physical_execution_authorized": false,
+    "original_result_regraded": false,
+    "static_model_is_observed_equilibrium": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

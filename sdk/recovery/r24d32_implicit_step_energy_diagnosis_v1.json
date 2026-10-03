@@ -1,0 +1,199 @@
+{
+  "schema_version": "sporespore_qsdk_r24d32_implicit_step_energy_diagnosis_v1",
+  "diagnosis_id": "QSDK-R24D32-IMPLICIT-STEP-ENERGY-DIAGNOSIS-V1",
+  "authored_local_date": "2026-08-29",
+  "authored_parent_commit": "7332992980d58ea1cc5e5dfb345e19fe4d1ad224",
+  "analysis_class": "repeatable_zero_world_retained_trace_development_diagnosis",
+  "physical_question_declared": false,
+  "model_construction_count": 0,
+  "world_attempt_count": 0,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "question": "Does the frozen R24D32 source and retained paired trace support a specific measurement-boundary explanation for the remaining energy residual strongly enough to design a distinct zero-world successor without changing the observed R24D32 result, threshold, evaluator, or interpretation?",
+  "predecessor": {
+    "gate_id": "QSDK-R24D32",
+    "source_commit": "326dd1d22b40b675f12372089d77d7724dc20a9a",
+    "closure_commit": "7332992980d58ea1cc5e5dfb345e19fe4d1ad224",
+    "closure_path": "sdk/recovery/r24d32_corrected_energy_progression_physical_closure_v1.json",
+    "closure_raw_sha256": "sha256:d2c84767823171406a868f6ccda4331b210d3c517974d0ae018c6e357e802eb8",
+    "observed_result": "closed_consumed_execution_valid_development_negative_corrected_energy_residual_above_unchanged_limit_no_handoff",
+    "same_identity_rerun_permitted": false,
+    "same_identity_requalification_permitted": false,
+    "historical_result_rewritten": false,
+    "historical_threshold_rewritten": false,
+    "historical_evaluator_rewritten": false,
+    "historical_interpretation_rewritten": false
+  },
+  "retained_evidence": {
+    "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d32-mujoco-corrected-energy-progression-20260829T081638398Z-326dd1d2",
+    "full_result_path": "paired_full_result.json",
+    "full_result_byte_length": 47878962,
+    "full_result_raw_sha256": "sha256:a471708f83172263275dd9bbee1c6fef08a1ba292ca844687b815aa2795cd6d9",
+    "candidate_outer_step_count": 745,
+    "matched_zero_outer_step_count": 775,
+    "native_solver_step_count": 7600,
+    "candidate_active_application_count": 733,
+    "candidate_first_active_outer_index_zero_based": 12,
+    "candidate_last_active_outer_index_zero_based": 744,
+    "paired_physical_state_and_energy_equal_prefix_outer_step_count": 12,
+    "first_candidate_matched_zero_physical_state_or_energy_divergence_outer_index_zero_based": 12,
+    "held_out_cell_access_count": 0
+  },
+  "frozen_source_bindings": [
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/native_recovery_development.py",
+      "byte_length": 76583,
+      "raw_sha256": "sha256:e0c10e861c6c29909c7a38b2b46c716ccd81d19cf49e046c08122dfadc8e0982",
+      "git_blob_oid": "55dae17c694c4064e994012b37533904181ad57b"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_development.py",
+      "byte_length": 49444,
+      "raw_sha256": "sha256:306669481601cc91c8146e84a202a57228672e23c3f9daa0c531d2eb9d077e46",
+      "git_blob_oid": "4e044c95e31342675699ae82d8904ab284cf3d6f"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/actuator_cap_profile.py",
+      "byte_length": 19338,
+      "raw_sha256": "sha256:5c0385a3c8f1d843070a7ef6623189a4388da720569e6c3f3ec9202cc9891765",
+      "git_blob_oid": "a99e8a6b56c62f6d144bf19699b716f504511f1c"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r24d32_corrected_energy_progression_worker.py",
+      "byte_length": 42904,
+      "raw_sha256": "sha256:98391fa586f57fc0f2d59031ff73e9a68e5e5dd474b896dfd15b1d0a36eb942f",
+      "git_blob_oid": "161d35620a556194da679b1815e3c611a50dd15e"
+    }
+  ],
+  "frozen_runtime_facts": {
+    "engine": "mujoco",
+    "integrator": "implicitfast",
+    "native_timestep_s": 0.0016666666666666668,
+    "native_substeps_per_outer_step": 5,
+    "velocity_actuator_gain_nm_s_per_rad": 10.0,
+    "joint_damping": 0.0,
+    "energy_ledger_profile_id": "mujoco_independent_constraint_and_passive_work_energy_ledger_v2",
+    "ledger_copies_generalized_velocity_before_mj_step2": true,
+    "ledger_reads_actuator_and_generalized_force_fields_after_mj_step2": true,
+    "ledger_multiplies_the_retained_force_fields_by_the_copied_pre_integration_velocity_and_timestep": true,
+    "ledger_retains_per_native_substep_post_integration_velocity": false,
+    "ledger_retains_effective_implicit_velocity_actuator_force": false,
+    "ledger_retains_generalized_constraint_impulse": false
+  },
+  "primary_source_basis": [
+    {
+      "source": "https://github.com/google-deepmind/mujoco/blob/main/doc/programming/simulation.rst",
+      "supports": "mj_step1_control_assignment_mj_step2_and_integration_stage_order"
+    },
+    {
+      "source": "https://mujoco.readthedocs.io/en/stable/computation/",
+      "supports": "implicit_and_implicitfast_use_velocity_derivatives_of_smooth_forces_including_actuation"
+    },
+    {
+      "source": "https://mujoco.readthedocs.io/en/stable/APIreference/APItypes.html#mjdata",
+      "supports": "native_force_and_energy_field_semantics"
+    }
+  ],
+  "endpoint_centered_actuator_projection": {
+    "projection_kind": "outcome_exposed_outer_step_descriptive_projection_not_evaluator_or_acceptance_authority",
+    "formula": "sum_over_outer_steps_and_ordered_joints(applied_actuator_impulse_nms * (retained_joint_velocity_before_rad_s + retained_joint_velocity_after_rad_s) / 2)",
+    "candidate": {
+      "joint_count": 8,
+      "recorded_cumulative_actuator_work_j": 28.465087333563766,
+      "endpoint_centered_cumulative_actuator_work_j": 29.212478240370416,
+      "additional_projected_actuator_work_j": 0.7473909068066504,
+      "terminal_original_signed_residual_j": 1.0714549090012788,
+      "terminal_projected_signed_residual_j": 0.3240640021946284,
+      "terminal_residual_reduction_fraction": 0.6975476994205068,
+      "raised_body_observation_count": 439,
+      "minimum_raised_original_absolute_residual_j": 0.7256340038771327,
+      "minimum_raised_projected_absolute_residual_j": 0.2796674345822936,
+      "minimum_raised_projected_outer_index_zero_based": 391,
+      "minimum_raised_residual_reduction_j": 0.44596656929483913,
+      "minimum_raised_residual_reduction_fraction": 0.6145888518343912
+    },
+    "candidate_phase_contributions": {
+      "confirm_prone": {
+        "outer_step_count": 12,
+        "recorded_actuator_work_j": 0.0,
+        "endpoint_centered_actuator_work_j": 0.0
+      },
+      "establish_distal_support": {
+        "outer_step_count": 133,
+        "recorded_actuator_work_j": 10.663083776956858,
+        "endpoint_centered_actuator_work_j": 10.822723273186197
+      },
+      "raise_body": {
+        "outer_step_count": 600,
+        "recorded_actuator_work_j": 17.802003556606902,
+        "endpoint_centered_actuator_work_j": 18.389754967184235
+      }
+    },
+    "matched_zero": {
+      "joint_count": 8,
+      "recorded_cumulative_actuator_work_j": 0.0,
+      "endpoint_centered_cumulative_actuator_work_j": 0.0,
+      "additional_projected_actuator_work_j": 0.0,
+      "terminal_original_signed_residual_j": 0.042397882500414874,
+      "terminal_projected_signed_residual_j": 0.042397882500414874
+    },
+    "unchanged_maximum_absolute_residual_j": 0.25,
+    "projected_minimum_raised_excess_above_unchanged_limit_j": 0.029667434582293595,
+    "projected_minimum_raised_to_limit_ratio": 1.1186697383291744,
+    "projection_changes_r24d32_decision": false,
+    "projection_may_be_substituted_into_r24d32_evaluator": false
+  },
+  "diagnosis": {
+    "pre_integration_continuous_power_was_mislabeled_as_complete_discrete_actuator_work": true,
+    "implicitfast_velocity_derivative_term_is_absent_from_the_retained_v2_work_ledger": true,
+    "retained_projection_materially_localizes_the_candidate_residual_to_force_velocity_staging": true,
+    "retained_projection_alone_fully_establishes_the_correct_per_native_substep_work_formula": false,
+    "retained_projection_alone_establishes_the_complete_remaining_residual_cause": false,
+    "missing_independent_physical_force_term_established": false,
+    "controller_fault_established": false,
+    "constraint_work_measurement_adequacy_established": false,
+    "matched_zero_effective_implicit_actuator_work_established_zero": false,
+    "numerical_integration_error_fully_quantified": false,
+    "threshold_inadequacy_established": false,
+    "threshold_or_margin_changed": false,
+    "r24d32_result_or_interpretation_changed": false,
+    "plain_english": "R24D32 measured valid native force fields, but converted them to work with a left-endpoint continuous-power rule while implicitfast changes the velocity update using actuator-force velocity derivatives. The retained outer-step midpoint projection recovers 0.7473909068066504 J of candidate actuator work and removes about 69.75 percent of the terminal discrepancy, which is strong enough to identify the next measurement boundary. It is not fine-grained enough to certify a replacement ledger or to make R24D32 pass."
+  },
+  "next_boundary": {
+    "gate_id": "QSDK-R24D33",
+    "status": "eligible_for_distinct_zero_world_implicit_step_energy_measurement_declaration_physics_still_blocked",
+    "question_class": "development",
+    "physical_question_declared": false,
+    "required_design": [
+      "retain pre- and post-integration generalized velocity for every native substep",
+      "retain the reported pre-integration actuator and constraint force identities",
+      "derive and independently validate the effective implicit velocity-actuator force from the frozen direct velocity-servo mapping",
+      "compute time-centered effective actuator and constraint work without using mechanical-energy change or the residual as an input",
+      "make the matched-zero arm expose any nonzero effective implicit actuator work instead of inferring zero from the reported pre-integration force",
+      "retain the v2 left-endpoint terms beside the successor terms for diagnosis"
+    ],
+    "short_non_authoritative_integration_smoke_permitted_only_after_zero_world_design_controls_pass": true,
+    "complete_official_zero_world_qualification_required_before_any_finite_physical_decision": true,
+    "same_identity_rerun_permitted": false,
+    "new_threshold_or_margin_selected": false,
+    "next_physical_execution_authorized": false,
+    "held_out_cells_remain_sealed": true,
+    "prone_to_standing_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "claim_boundary": {
+    "retained_trace_and_frozen_source_diagnosed": true,
+    "specific_successor_measurement_boundary_identified": true,
+    "new_physical_observation_made": false,
+    "r24d32_reopened": false,
+    "r24d32_passed": false,
+    "corrected_discrete_work_qualified": false,
+    "corrected_discrete_work_physically_validated": false,
+    "recovery_to_stance_handoff_observed": false,
+    "prone_to_standing_claimed": false,
+    "population_inference_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

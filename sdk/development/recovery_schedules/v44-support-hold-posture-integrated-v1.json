@@ -1,0 +1,86 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "v44-support-hold-posture-integrated-v1": {
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:ac9e8d6c301f947f8f2313da7cda8910a989021dfb748c23d99707ac4b4c6ab5",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 986,
+        "maximum_steps_per_child": 1338
+      },
+      "coverage_basis": {
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "original_tail_steps": 480,
+        "stance_steps_observed": 124,
+        "existing_stance_timeout_steps": 240,
+        "walking_probe_steps": 30,
+        "tail_derivation": "480 + (240 - 124) + 30 + 360 = 986",
+        "resource_derivation": "320 + 30 + 2 + 986 = 1338",
+        "threshold_source": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+        "motion_equality_test": "recovery_runtime::tests::ramped_neutral_stance_control_tests::v20_preserves_every_pre_stance_command_and_all_limits",
+        "preserved_walking_observation_budget_steps": 360,
+        "new_controller_preserves_pre_stance_motion_and_limits": true,
+        "existing_recovery_controller_and_all_commands_preserved": true,
+        "amplitude_ramp_steps": 72,
+        "maximum_walking_amplitude": 0.5994550408719347,
+        "inherited_schedule": "sdk/development/recovery_schedules/v42-stance-latch-integrated-v1.json",
+        "inherited_schedule_sha256": "sha256:b2020bebc4ae2dd3cf97629724e3bc9ce257aa2c2fd3abf332813afcf56eaa51",
+        "inherited_scope": "The bound V42 schedule retains earlier arithmetic and lineage. V43 preserves all limits and the same 400-command walking budget; it neither extends nor reruns V42.",
+        "entry_contract": "sdk/development/recovery_support_progression_walking_entry_contract_v1.json",
+        "walking_start_contract": "sdk/development/recovery_support_progression_walking_start_contract_v1.json",
+        "native_component": "sdk/development/recovery_support_progression_component_v1.json",
+        "native_component_sha256": "sha256:fdb50ea770dabba16b472fbfbb388cd9f42ffa8a3b40f5c89859f0dfb4862b0e",
+        "diagnostic_basis": {
+          "source_closure": "sdk/development/recovery_attempts/b72c4d6447704de49bbc6c348c0f8ff0.json",
+          "source_closure_sha256": "sha256:a4c4f524e3fde84313ae512b5b25b5a1389460ea93e9069204c784d0c5e31718",
+          "source_report_sha256": "sha256:c10bffdd83cb274a5d32b28dddb27d470d2e19a13647026cd45abeb30d5abd51",
+          "support_hold_diagnosis": "sdk/development/recovery_support_hold_posture_component_v1.json",
+          "support_hold_diagnosis_sha256": "sha256:d566044d6f66fd50728f7f84471780ee41d53588cd02d0726a4530344ded8c9a",
+          "native_component": "sdk/development/recovery_support_hold_posture_component_v1.json",
+          "native_component_sha256": "sha256:d566044d6f66fd50728f7f84471780ee41d53588cd02d0726a4530344ded8c9a",
+          "physical_outcome_predicted": false,
+          "causal_attribution_proven": false
+        },
+        "controlled_change": "Only the new V44 policy, and only when the unchanged V43 guard holds progression, selects the existing floor-upright support reference for all four limbs and sets reference knee-lift fractions to zero. Preserve each scheduled phase and nominal leg direction. Keep existing joint projection, floor/height feasibility arithmetic, reference slew, contact-selected reference rates, gains, damping and final motor limits. This requests support; it does not assert contact or static equilibrium. Apply the same current hold mode to both current-wave and prior-wave reference evaluations. Do not interpret a hold-mode switch as walking-wave feedforward. Store the original scheduled wave in reference memory. Record the effective no-lift reference and same-mode comparison waves separately. Keep actual observations, ordinary stance-latch choices, gait clocks, gate counters and guard lifecycle unchanged. A support-posture selection for a swing limb must not create a stance latch or a supporting-contact observation."
+      },
+      "coverage_adequacy": "One fresh non-comparative seed-40200 SingleKick through the shared launcher, worker, Godot adapter, native controller, motor ledger, full retention and independent cold reader after the complete applicable safety gate. Preserve V20 recovery, stance V7, BW5R-B prefix, initial clocks 90, 72-command amplitude ramp/cap, actual native contact, finite floor, solver and all motor limits. Keep the 986-step tail, 1338-step child cap, 400-command walking budget and original evaluator/criteria. Change resumed walking only to V44: during the unchanged finite guard hold request all-limb upright support with no walking lift, keeping current-mode reference comparisons and scheduled-wave memory distinct. Retain hold/release counts, effective posture and reference continuity, clipping, torso tilt, per-foot support/relocation/cycles, terminal contact and any verified native refusal. The full retained telemetry profile is unchanged. Zero-world tests cover guard boundaries and mode transitions; the physical trajectory need not visit every boundary. No predicted benefit, timeout or horizon extension, identity reuse, cached baseline, matched effect, force-aware recovery, causal attribution, equivalence, acceptance or release claim.",
+      "uncovered_paths": [
+        "guaranteed recovery or resumed walking success",
+        "guaranteed complete planned cycles for every limb",
+        "commanded stop and cooldown",
+        "every hold, release and latch boundary on this physical trajectory",
+        "repair or causal explanation of the original V43 incomplete result",
+        "matched comparison or superiority over V43",
+        "force-aware whole-body control or load distribution",
+        "arbitrary morphology or terrain",
+        "cross-engine behavior or equivalence",
+        "held-out acceptance or release authority"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "support_hold_posture_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "support_hold_posture_front_left_first_resume_v1",
+      "walking_policy_id": "sporespore_balanced_wave_recovery_support_hold_posture_v1",
+      "walking_policy_contract_sha256": "sha256:ea20c3e4b42653728b7c1ac7483af4622d0c3b8fa994d8e8377a19a92c85a4da",
+      "coverage_question": "One fresh non-comparative seed-40200 SingleKick through the shared launcher, worker, Godot adapter, native controller, motor ledger, full retention and independent cold reader after the complete applicable safety gate. Preserve V20 recovery, stance V7, BW5R-B prefix, initial clocks 90, 72-command amplitude ramp/cap, actual native contact, finite floor, solver and all motor limits. Keep the 986-step tail, 1338-step child cap, 400-command walking budget and original evaluator/criteria. Change resumed walking only to V44: during the unchanged finite guard hold request all-limb upright support with no walking lift, keeping current-mode reference comparisons and scheduled-wave memory distinct. Retain hold/release counts, effective posture and reference continuity, clipping, torso tilt, per-foot support/relocation/cycles, terminal contact and any verified native refusal. The full retained telemetry profile is unchanged. Zero-world tests cover guard boundaries and mode transitions; the physical trajectory need not visit every boundary. No predicted benefit, timeout or horizon extension, identity reuse, cached baseline, matched effect, force-aware recovery, causal attribution, equivalence, acceptance or release claim."
+    }
+  }
+}

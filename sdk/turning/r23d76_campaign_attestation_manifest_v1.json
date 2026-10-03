@@ -1,0 +1,1125 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D76-FRESH-FINITE-THREE-ENGINE-TURNING-DECISION",
+  "question_class": "finite_decision",
+  "declared_physical_world_count": 9,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 2,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 5,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D76-COMPLETE-ZERO-WORLD",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d76_zero_world_qualification_v3.ps1",
+      "arguments": [
+        "-Godot",
+        "<canonical-godot>",
+        "-Python",
+        "<python>",
+        "-PowerShell",
+        "pwsh",
+        "-ExpectProductionConformanceLockHeld"
+      ],
+      "terminal_marker_prefix": "[turning/3e] R23D76 qualification zero-world PASS ",
+      "raw_sha256": "sha256:a04ca3b6be1862abee89fc61a31a9c14f04243981095e279165078036f69be95"
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "R23D76-BOUNDED-NATIVE-SMOKE-CLOSURE",
+      "role": "lineage",
+      "invocation_kind": "python_file",
+      "path": "sdk/audit_r23d76_bounded_native_smoke_v3_closure.py",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D76_BOUNDED_NATIVE_SMOKE_V3_CLOSURE ",
+      "raw_sha256": "sha256:3b5c337b239ff26019c1c9a187b9b9e30310bce19f24533b0b32bba473362855"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 3,
+      "gate_id": "R23D76-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d76_campaign_roles.ps1",
+      "arguments": [
+        "-Role",
+        "worker",
+        "-Python",
+        "<python>",
+        "-Godot",
+        "<canonical-godot>",
+        "-PowerShell",
+        "pwsh"
+      ],
+      "terminal_marker_prefix": "QSDK_R23D76_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:605b526d6f5e700459fafcef79f6b01afbd7933bcc3b9b5868aeb87e298a78c9"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D76-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d76_campaign_roles.ps1",
+      "arguments": [
+        "-Role",
+        "evaluator",
+        "-Python",
+        "<python>",
+        "-Godot",
+        "<canonical-godot>",
+        "-PowerShell",
+        "pwsh"
+      ],
+      "terminal_marker_prefix": "QSDK_R23D76_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:605b526d6f5e700459fafcef79f6b01afbd7933bcc3b9b5868aeb87e298a78c9"
+    },
+    {
+      "ordinal": 5,
+      "gate_id": "R23D76-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d76_campaign_roles.ps1",
+      "arguments": [
+        "-Role",
+        "supervisor",
+        "-Python",
+        "<python>",
+        "-Godot",
+        "<canonical-godot>",
+        "-PowerShell",
+        "pwsh"
+      ],
+      "terminal_marker_prefix": "QSDK_R23D76_CAMPAIGN_SUPERVISOR_ROLE_PASS ",
+      "raw_sha256": "sha256:605b526d6f5e700459fafcef79f6b01afbd7933bcc3b9b5868aeb87e298a78c9"
+    }
+  ],
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d76_production_route_three_engine_turning_implementation_v1.json",
+      "source_raw_sha256": "sha256:7457e3b10e37e58cf1bf96749b885a9ae5a96b994cd5e6853a099b79398eb903",
+      "test_gate_id": "R23D76-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d76_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:605b526d6f5e700459fafcef79f6b01afbd7933bcc3b9b5868aeb87e298a78c9"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d76_production_route_three_engine_turning_evaluator.py",
+      "source_raw_sha256": "sha256:51979581bc1cdba1e24d05fd68e02cb5ad075558ed9ac187acf09fd9fec58ed5",
+      "test_gate_id": "R23D76-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d76_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:605b526d6f5e700459fafcef79f6b01afbd7933bcc3b9b5868aeb87e298a78c9"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d76_supervisor.ps1",
+      "source_raw_sha256": "sha256:ffefb89468e4c0a83bff7f92de914c6a2be6d5af8031515edec6940a656d51c2",
+      "test_gate_id": "R23D76-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d76_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:605b526d6f5e700459fafcef79f6b01afbd7933bcc3b9b5868aeb87e298a78c9"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d76_production_route_three_engine_turning_implementation_v1.json",
+    "raw_sha256": "sha256:7457e3b10e37e58cf1bf96749b885a9ae5a96b994cd5e6853a099b79398eb903"
+  },
+  "bounded_native_smoke_closure": {
+    "path": "sdk/turning/r23d76_bounded_native_smoke_v3_closure.json",
+    "raw_sha256": "sha256:4d5e56b3fb0dd7a5fa31259ca8b3241a6ec49e2534fd7a5993b7ad2973b0145d",
+    "audit_path": "sdk/audit_r23d76_bounded_native_smoke_v3_closure.py",
+    "audit_raw_sha256": "sha256:3b5c337b239ff26019c1c9a187b9b9e30310bce19f24533b0b32bba473362855",
+    "attempt_id": "6c7c1ac5d4c84a04a3dbbd8bd79b1d1c",
+    "source_commit": "3ea5c10eb780e032a910d3959c37ae0ed016dd32",
+    "native_engine_count": 3,
+    "world_build_count": 3,
+    "solver_step_count": 6,
+    "behavior_outcome_evaluated": false,
+    "held_out_seed_23197_opened": false
+  },
+  "first_campaign_qualification_failure": {
+    "path": "sdk/turning/r23d76_first_campaign_qualification_failure_v1.json",
+    "raw_sha256": "sha256:a442b8eaa67cb040ffcaa602c0393783555998aa60a42db835ac7ae607d0d8da",
+    "audit_path": "sdk/audit_r23d76_first_campaign_qualification_failure.py",
+    "audit_raw_sha256": "sha256:8fe27dd7a5355e2b8602cb465fb8fe59bf152876e336a99c3d3439e70a48b3d6",
+    "source_commit": "3435117a68314821fd5fc9eadec950241e66baec",
+    "attempt_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r23d76-qualification-20260826T144209Z-3435117a",
+    "global_gate_pass_count": 12,
+    "failed_ordinal": 13,
+    "failed_gate_id": "R23D76-COMPLETE-ZERO-WORLD",
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "reusable": false
+  },
+  "second_campaign_qualification_failure": {
+    "path": "sdk/turning/r23d76_second_campaign_qualification_failure_v1.json",
+    "raw_sha256": "sha256:cea94bfed69fb3c88996acf137b4a00b52ee801923442e24558fdd441086a9d2",
+    "audit_path": "sdk/audit_r23d76_second_campaign_qualification_failure.py",
+    "audit_raw_sha256": "sha256:9dff973456d5de9367ad0ae742147ef7b0e564f83abdc5d9903a897acaf68994",
+    "source_commit": "5ddb573e711885abda4a66b53b946cad1a3236b6",
+    "attempt_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r23d76-qualification-20260826T145705Z-5ddb573e",
+    "global_gate_pass_count": 12,
+    "failed_ordinal": 13,
+    "failed_gate_id": "R23D76-COMPLETE-ZERO-WORLD",
+    "failure_class": "qualification_wrapper_missing_mujoco_runtime_search_path_binding",
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "reusable": false
+  },
+  "source_bindings": [
+    {
+      "path": ".gitattributes",
+      "raw_sha256": "sha256:bb593853ffdb6a94e7ab797612ad9effdc15a419f2e2d263dd81f0cee7330433"
+    },
+    {
+      "path": "project.godot",
+      "raw_sha256": "sha256:effbab91c99a0c2edeed40006fa9b30109feb08e7ebf6b119885b5cbaca94d44"
+    },
+    {
+      "path": "scripts/lab/canonical_json.gd",
+      "raw_sha256": "sha256:b1f0f4df813663008824d223165577e281bffb97e81080d33d77c1ffb031501f"
+    },
+    {
+      "path": "scripts/lab/finite_sanitizer.gd",
+      "raw_sha256": "sha256:40428eb592bda785be76d32869f63fb55fe8e40ac038a8daf94c976414e6e444"
+    },
+    {
+      "path": "scripts/lab/gait/physical_gait_clock_spec.gd",
+      "raw_sha256": "sha256:55a8495f16842808487eccdfbc6bd695ef385d807c2221ab5a9c01017ed137d3"
+    },
+    {
+      "path": "scripts/lab/gait/physical_quadruped_fixture_spec.gd",
+      "raw_sha256": "sha256:e357c432cd20c0e6502ba370e87f08f690cd932c240fcd3ca6a6b9fe33d60a1f"
+    },
+    {
+      "path": "scripts/lab/gait/physical_quadruped_proportion_spec.gd",
+      "raw_sha256": "sha256:871c817cf1fa5d884bf3fc37f76d7dd17cfd6ab5b0e553353a1e9cc8a99c3cde"
+    },
+    {
+      "path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+      "raw_sha256": "sha256:0205268af835da3c390032a8ecb865779a1ecc756b4d824236fb1ad93cc44c73"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "raw_sha256": "sha256:10679c11476f9b83cd23205580313caba9b348e1bee2bb8473189f8f05f61e63"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_live_fixture_actuator_cap_binding.gd",
+      "raw_sha256": "sha256:69dce352146b849329850a95eada169a9e6befad53ab0908d41b523ebdd4660a"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_live_fixture_actuator_cap_factorial_binding.gd",
+      "raw_sha256": "sha256:8d2888b69f3e4bc534ad697d9e4b723425551d11898ba379c2ca6a4a2b3d69e1"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_material_profiles.gd",
+      "raw_sha256": "sha256:5ff17b17709b98f70d20635fb4c5888a49619e19f9fd4eeba9f003876937ea9d"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_neutral_stance.gd",
+      "raw_sha256": "sha256:373dec07196ff56a6c57c20cbd1958136e1cff03c6356a1efb8a184950b69754"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_public_actuator_cap_profile_binding.gd",
+      "raw_sha256": "sha256:0821faeb6a33f76737eede37080712b594db3e08d225057508851f9f2f05cc0d"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_quiescent_taper.gd",
+      "raw_sha256": "sha256:f0c1b8efd2956a567d8a2f4385b92ae4235f84efb42cf228dd55a8fdafee6090"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_quiescent_taper_actuation.gd",
+      "raw_sha256": "sha256:cf2032ac6e0a6107cbae9e1d84755ad69ca6a86d334158d3d53d016a5bfb80fc"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_r23d12_measurement_semantics.gd",
+      "raw_sha256": "sha256:8fbfb55729bc373622f767e710b05fb731a8877b58595a8b5a6bbb17586d55ae"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_r23d13_residual_pose_authority.gd",
+      "raw_sha256": "sha256:ba1081f9fedf82fa30753eeb957e7cd186c7c32e0b7436b8bf4e873d2553b9b0"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_r23d14_tight_gated_horizon.gd",
+      "raw_sha256": "sha256:2d7fe92635e7c6c241e456a1527e91e65255b2f6f22e6ef8a88366603eec0aad"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_stability_assisted_taper.gd",
+      "raw_sha256": "sha256:75f5468e8f12037c5a8b4366d13673b74af76adcd816be1b1a2dae8f47032270"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_stability_assisted_taper_actuation.gd",
+      "raw_sha256": "sha256:dd1b9b0bbacc63628ed9d021d8bb91ff51ce345816ccbfb8dc28eeaab961cccf"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_terminal_restoration.gd",
+      "raw_sha256": "sha256:5f2000adb93c26dbb5a1b0ca0d82226c2f91d8fe0b7a469f8a2992709eba0316"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_startup_velocity_ramp.gd",
+      "raw_sha256": "sha256:2bcbf6c2663bee30d5e7623e2830974b6aaa758c680f1834302848539b0f81c0"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_support_loss_conditioned_startup.gd",
+      "raw_sha256": "sha256:8f1467fd24af11244462c0ea23be2c830d67bdb2b850ef48fbcff55f52f73484"
+    },
+    {
+      "path": "scripts/lab/mechanics/dynamic_support_diagnostic_receipt.gd",
+      "raw_sha256": "sha256:b3849ef41f17a6af4226b7c03c66bb6e9dc739e9fbeb4aedb530aaa59f75c0d8"
+    },
+    {
+      "path": "scripts/lab/mechanics/semantic_contact_rigid_body.gd",
+      "raw_sha256": "sha256:b66b8304fde5d582da88454b7394742bcc9db85da069246a2cca044812851a60"
+    },
+    {
+      "path": "scripts/lab/mechanics/spatial_dynamic_support_observer.gd",
+      "raw_sha256": "sha256:43ae84ce292e5a155d7753cd4ac3a870391952cade7c576f349e33fd88e5009d"
+    },
+    {
+      "path": "sdk/Cargo.lock",
+      "raw_sha256": "sha256:0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc"
+    },
+    {
+      "path": "sdk/Cargo.toml",
+      "raw_sha256": "sha256:bb38b6151b190e2948b679ee5fad813e38f393e4cb8e940e1170203816870cb3"
+    },
+    {
+      "path": "sdk/adapters/godot/Cargo.toml",
+      "raw_sha256": "sha256:f60d7824a2bd9681b30017ea04370238ee6438dbae5e3196dd316054e7fc2be6"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/actuator_cap_profile_binding.gd",
+      "raw_sha256": "sha256:23dd0c2fb1e300175b3d0bd0e4b0b0ebf718d69723d549376af8f2b47d9b024a"
+    },
+    {
+      "path": "sdk/adapters/godot/sporespore_locomotion.gdextension",
+      "raw_sha256": "sha256:971bb0b14afd094a46bffc042030a2974bd03f73b7c10d41d43acdb43b2f16d3"
+    },
+    {
+      "path": "sdk/adapters/godot/src/lib.rs",
+      "raw_sha256": "sha256:8676147cf8d4ed3560e81cc84279d09d5173535ae75d64d2d6854cc75d942ce1"
+    },
+    {
+      "path": "sdk/adapters/mujoco/requirements-lock.txt",
+      "raw_sha256": "sha256:1c4da4ba7964874fc55c8e16b60d1c6114f40e598f402fb2db1bb6a703b37603"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/__init__.py",
+      "raw_sha256": "sha256:4d7d903f2b6187181473d9e310f2516cb99f55a46ea6aa416e909c9cf6984413"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/actuator_cap_profile.py",
+      "raw_sha256": "sha256:5c0385a3c8f1d843070a7ef6623189a4388da720569e6c3f3ec9202cc9891765"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/conformance.py",
+      "raw_sha256": "sha256:5ab75bbc31dddb8c81d4beebcb2f237e0a400bf458c62df361e821c379001d57"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d2_heading_response.py",
+      "raw_sha256": "sha256:f4f79a6ceb755e8eacfaa0450bc80181a7082ebaa199d4a81fbfc8646e1c4f6f"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d65_public_profile_route.py",
+      "raw_sha256": "sha256:735dc12281b758d38386a59f6ac491e51095a9778cbaba045752e363107ac4fe"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d65_selected_profile_turning.py",
+      "raw_sha256": "sha256:19940de8ec6e5a8eec9a78b721f968e3b93b26c0f39e79a8fbc38124973ded9b"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d76_turning_route.py",
+      "raw_sha256": "sha256:7fc15f3b592c0e7f4b6930523d0e7199325398bb64aecdf8c77c7a3e83e32d2b"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_development.py",
+      "raw_sha256": "sha256:306669481601cc91c8146e84a202a57228672e23c3f9daa0c531d2eb9d077e46"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/velocity_only_stability_characterization_vh4.py",
+      "raw_sha256": "sha256:24539f4b082a8c703e0bd45483b0f353cd513c79cc487745c55200c32b89c14e"
+    },
+    {
+      "path": "sdk/adapters/rapier/Cargo.toml",
+      "raw_sha256": "sha256:037eaaa45e82eb2791fa3a10c0301858d2e4fa42f75794e0a080cbb54392363f"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/active_configuration.rs",
+      "raw_sha256": "sha256:f92d6710ac90ce225477ce778be874722be6730e507f3d1a2e75afa259fc4ab7"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/actuator_cap_profile.rs",
+      "raw_sha256": "sha256:36a433d3d6111d716149920abd67de42a85df9000efa1ed19df1facf85df21f7"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bin/qsdk_r23d76_turning_route.rs",
+      "raw_sha256": "sha256:ac1e31ce53d340032db8945aa24212daf7a504eb0a79e63a767adab714713604"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_commissioning.rs",
+      "raw_sha256": "sha256:88e5af05b57b2f5a51d5fa6af660a9185871ce46a1cc6eefb2f92b2d8cb8f2cd"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_composition.rs",
+      "raw_sha256": "sha256:105b9dab60b9614ba19e0811c3dcae1aaf297bb6b29db005eebccb7bf5b3b1af"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_early_horizon_development.rs",
+      "raw_sha256": "sha256:bfcc6514687a674cd0e701452e9068ad4868ff20e2eed802ad563a461d29944f"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_velocity_only_contact_restoration_tr1.rs",
+      "raw_sha256": "sha256:4646a708545029a1bdc37885d567272fe4da13cef5cab5773b5651e18634e46a"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_velocity_only_early_horizon_eh1.rs",
+      "raw_sha256": "sha256:5e07acb94aafdf7c35cccdcd51b808b18b60afedda2070b6de3e713265a6b562"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_velocity_only_long_horizon_lc1.rs",
+      "raw_sha256": "sha256:3504748b69b33f102f7e38146e811e9d4f243e5e19ef16bac58d20308f75b070"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_velocity_only_pose_hold_restoration_ph1.rs",
+      "raw_sha256": "sha256:81ccd613ff8d989ec558fdb79502c03e048be6460924740565f017ed5d34ee16"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/bw19v_velocity_only_terminal_stance_ts1.rs",
+      "raw_sha256": "sha256:38b2459a68199e66fe3446015f3184b8ca44d4173df64fb116eccec82d7e5244"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/characterization.rs",
+      "raw_sha256": "sha256:f0397de3802d340648abc433a731412f259773f55a0b155396defef9d8c6a50d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/conformance.rs",
+      "raw_sha256": "sha256:c0a9b59ac3b75975268f727d51dfc622b2cce54ada8b476672fc656ae282de41"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/cross_engine_discrete_material_validation_xv1_rapier.rs",
+      "raw_sha256": "sha256:fda4167420a997db6520cde1b3eb43bdcc79267513f6fdbbd70764cfde1391ca"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/cross_engine_discrete_material_validation_xv2_rapier.rs",
+      "raw_sha256": "sha256:f573223e75652aa22bfaa3420b1eb34965986b14fd777e18aedf6c7b8ae19982"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/force_based_characterization.rs",
+      "raw_sha256": "sha256:60cb8c8ce4b4fc7a73a417fa7efbe9825b65ee8a08ed40b8bb77a9bbb773dbc5"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/force_based_convergence_window.rs",
+      "raw_sha256": "sha256:2442a26cba74236838b992d234af2a3b8540ae037110762a8eb8b3346ea5bd60"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/force_based_load_response.rs",
+      "raw_sha256": "sha256:123dd2ab42be8e274444239680e482768698ed5f040aa3832559682126b2fdaa"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/force_based_selected_configuration_validation.rs",
+      "raw_sha256": "sha256:555453673621068a0dcc0fc13ea1f312aebea21e406f116d75c7a507fd2d9430"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/force_based_solver_phase_development.rs",
+      "raw_sha256": "sha256:76e478dc936cb3921a0bc5fe5ad680c7250ed0e3b205793ec0f988e4961011f4"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/force_based_velocity_only_characterization.rs",
+      "raw_sha256": "sha256:2ba5cde0f3615a401b4bc890d9ba8a8db393bad74bf351574923fc4f878e8359"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/lib.rs",
+      "raw_sha256": "sha256:08d99ba37cf95a9037a63639631ff551f1e60114bd58e1c7ad8244f00b2c274c"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/live_explorer.rs",
+      "raw_sha256": "sha256:a2d67ceddecae259c4171dfa68db689620bdc2f513fd7143334d2f4cbcf6aebd"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/locomotion.rs",
+      "raw_sha256": "sha256:75af4f77bb356c29799ba7d4dd6544d17b6e49d85b3301073cd4013c7871853d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d10_quiescent_taper.rs",
+      "raw_sha256": "sha256:0ecfcd75053a2f5170e07c9bd8d155d323fc43c98373fd09398e0e919d85e7fc"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d11_stability_assisted_taper.rs",
+      "raw_sha256": "sha256:a4fbfd94278438384af7f9ee7afc25d9bb9d7b7077604092fd1c7874aea3a120"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d12_measurement_semantics.rs",
+      "raw_sha256": "sha256:ec1984f34eff8762186959ae17a1bfe4fa691be86e7d1f8dfa90ffc786b2a926"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d13_residual_pose_authority.rs",
+      "raw_sha256": "sha256:0f2f7d4e97e90fca6431618eea15ee8589117a9e934028d78766516d23469a6b"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d14_tight_gated_horizon.rs",
+      "raw_sha256": "sha256:04e5830895f1056574b3576eae9843268d1f3bb3f85c93f8917a24b1dc803265"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d15_composition_recovery.rs",
+      "raw_sha256": "sha256:fd89fe6b3ca3c025a86f8b980828fc982e325a40a969bebf672625aa563de937"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d16_composition_recovery.rs",
+      "raw_sha256": "sha256:dbbd6cb6f4752938897b536d85536fde8172449ca85680d57b60370e6e74f87f"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d17_composition_recovery.rs",
+      "raw_sha256": "sha256:0f24a3cfd84e5dbcaf91da5f3718424664db9866d468f8cc372349fa7b91c398"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d18_composition_recovery.rs",
+      "raw_sha256": "sha256:20d34c953f7bee3a441e68e1a54203cc2ed62bb757d37fe745de9ed846b83b7d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d1_heading_response.rs",
+      "raw_sha256": "sha256:84863d01ea84a8369b3192e95670a16c0d945a53ab96889acf146d539bf63028"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d22_composition_recovery.rs",
+      "raw_sha256": "sha256:c92566a6feced2ff58fb1a40c453d4590a01e233cec8e347412a336b7f37594c"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d23_composition_recovery.rs",
+      "raw_sha256": "sha256:cd3d8ef2c465bed10c894dfac2be63d627131487d806acb4f738d296115b6321"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d2_heading_response.rs",
+      "raw_sha256": "sha256:fef4758f66540c3479b9d222e3818d1879823c1c4552ab685a139cb4a9e54e55"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced.rs",
+      "raw_sha256": "sha256:a26eb462cd6f2095b95f5c2bbebbbb07c9aa986c69ca2cd010dafc4189a52711"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d11_physical.rs",
+      "raw_sha256": "sha256:f13392a4d12939a6181994d32c80821d1ac2545277cff0b0b6ea1aa7b0b263c5"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d12_physical.rs",
+      "raw_sha256": "sha256:2e7d7a3d9d3f12b3c618afde54b7b3e923d83166bb94c0611943cd321ff8e748"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d13_physical.rs",
+      "raw_sha256": "sha256:89d50fd23148bca25c17abc8cb51b28a069125bef16bd8b9f7b1c9772ebb426d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d14_physical.rs",
+      "raw_sha256": "sha256:57cd44ee6816ceb8d3ebd9172bdfae1788217789cab5a0dd3f6f6b294201af0d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d15_physical.rs",
+      "raw_sha256": "sha256:c6ee3592d6f96f256388b5c20f76dcb2a9ffd565ef32749fe1a6b236f9d83c4c"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d16_physical.rs",
+      "raw_sha256": "sha256:1d659fd483e0c4fd7a65aad428261faf10714976ab200df15eaccc504b834a2d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d17_physical.rs",
+      "raw_sha256": "sha256:70dc72f67c93a263577df1e314e636def07e0a8e553e91d01fdae0647097e981"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d18_physical.rs",
+      "raw_sha256": "sha256:7106f41a2f6ef50b14cc7762c378aa92f2102b7c0428693f9cd9e9d6369f3de6"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d22_physical.rs",
+      "raw_sha256": "sha256:ea62de1219aae2a8e76e9fe76ac9c63683a082709856dd4547da98acaa85bcd2"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d23_physical.rs",
+      "raw_sha256": "sha256:27307d50dd8fa870284e3d38ac21314e1370631a40b095adb5403d3e4e31f03a"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d26_physical.rs",
+      "raw_sha256": "sha256:33d49751d6b508308cdc6ca5795f2edfef84d3c4da7c0b8e00bd0196eda989bf"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d27_physical.rs",
+      "raw_sha256": "sha256:227d8a7c17f9b9fb53414d5fc408676227d02f3a6f735196ef27c71602ee005a"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d62_public_profile_route.rs",
+      "raw_sha256": "sha256:96f8f164611b0d4a5468f332535ae2fd07cc59dff4af8265ccabfa8cd5398291"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d62_rapier_worker.rs",
+      "raw_sha256": "sha256:8f68634a90f29adefa005b869662245be0e1cf07e533a9e5a553987915030532"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d63_public_profile_route.rs",
+      "raw_sha256": "sha256:64cb26266708b55691113c3f48720ec0a918ea032c297de1f7f3912d76bca4cb"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d63_rapier_worker.rs",
+      "raw_sha256": "sha256:d41e9435b2dc125d319f4360f4cccaffdbb3a661737ce6491cadec7a9e8757b6"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d64_public_profile_route.rs",
+      "raw_sha256": "sha256:533adad5f56991c6b81851214f21355cf049673892db1435f8c287adc7711006"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d64_rapier_worker.rs",
+      "raw_sha256": "sha256:5a6935d4821c9938a17cc38410536ff2ce48f3712a4627f522cf1ca3fea1a7cb"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d65_public_profile_route.rs",
+      "raw_sha256": "sha256:98c21379ad64e8315f8c343a7e3a928df7f1eb8de3c0a9986310bfb4e7a8f0d3"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d65_rapier_worker.rs",
+      "raw_sha256": "sha256:817015c80723aef4599ac2d6da4dc1f475b9d27f6e523cf09898dbd8286d1d33"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d66_turning_route.rs",
+      "raw_sha256": "sha256:c6a6ec095ed47861853aa9059135411b334a695d808b5a7e3c753b83a9a52cc0"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d67_turning_route.rs",
+      "raw_sha256": "sha256:3096a7f123dc16a8750349a5cc5ca387fd9e8a2269ecacb6cc449309517ed116"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d68_turning_route.rs",
+      "raw_sha256": "sha256:d5928c7939fb133f5426a6ef4047ddabfcf97a5fc9583f265c39ed0375cdab99"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d69_turning_route.rs",
+      "raw_sha256": "sha256:b9d2d732ffc708af3b21c1861bea729f53072ff1237bfa46462fc1f2b4bdff4f"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d70_receipt_contract.rs",
+      "raw_sha256": "sha256:172fd0708cff56177bbb655252e6cdaac4b411da65b9afcaeb2c9b98df6ee595"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d70_turning_route.rs",
+      "raw_sha256": "sha256:f0f775bb7f35ef0fedf80e4b38b6796f2322f09c88e828addc06557ea678b2ea"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d71_receipt_contract.rs",
+      "raw_sha256": "sha256:b74e5101ba165217348adb173daa54212bacb18ba621aab5e95eca346b9c4d04"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d71_turning_route.rs",
+      "raw_sha256": "sha256:37cd694c73d2c32995e9b0a1a542d5a780b3f4030c43cc62ccb64597a988fd7f"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d74_receipt_contract.rs",
+      "raw_sha256": "sha256:54d068186ae75a16848497778cf36eed57edb22b902d6d938993c0363a23058d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d74_turning_route.rs",
+      "raw_sha256": "sha256:a008a74f5815a0a11423051b29aac0dcb88e96378effe49bdafb58e43424018d"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d76_receipt_contract.rs",
+      "raw_sha256": "sha256:6bdf392131f89682034a6d2c2dda7c74c9f21426a5b9925bd30a8e6b81cfb951"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d76_turning_route.rs",
+      "raw_sha256": "sha256:997a4dcc2872873eb94f112ad24c3c09410215d8c23b1531808854a1dd57b9ed"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r23d9_support_handoff.rs",
+      "raw_sha256": "sha256:1da0321db59380c2fc97127d140045f666f4c5b8d52c8c5f82773c10ab0e3a1a"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/recovery_capability.rs",
+      "raw_sha256": "sha256:ad0311b105040315ef4d969499618aaf5d23cf567b8e2e6e1c01a1a1198a8ff9"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/turning_three_engine_route.rs",
+      "raw_sha256": "sha256:87380c8e1e6ad77a00011cc4d24145d22081ba93352564ea80f250902f213133"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/velocity_only_live_integration.rs",
+      "raw_sha256": "sha256:ded8a0750330cd05224c4488a01eed5ea09e88e9bb92421570e5a148c2b4f495"
+    },
+    {
+      "path": "sdk/audit_r23d76_bounded_native_smoke_v3_closure.py",
+      "raw_sha256": "sha256:3b5c337b239ff26019c1c9a187b9b9e30310bce19f24533b0b32bba473362855"
+    },
+    {
+      "path": "sdk/audit_r23d76_first_campaign_qualification_failure.py",
+      "raw_sha256": "sha256:8fe27dd7a5355e2b8602cb465fb8fe59bf152876e336a99c3d3439e70a48b3d6"
+    },
+    {
+      "path": "sdk/audit_r23d76_fresh_finite_three_engine_turning_decision.ps1",
+      "raw_sha256": "sha256:e940004dca01e2de1972f3849c9da6817e0f31cd65e8337b3fed90a3df55b61d"
+    },
+    {
+      "path": "sdk/audit_r23d76_second_campaign_qualification_failure.py",
+      "raw_sha256": "sha256:9dff973456d5de9367ad0ae742147ef7b0e564f83abdc5d9903a897acaf68994"
+    },
+    {
+      "path": "sdk/conformance_authorization_kernel.ps1",
+      "raw_sha256": "sha256:b7508050804bd306cdcced038544898a41d9dd3e7b5c3a8f267b70c6ec654533"
+    },
+    {
+      "path": "sdk/content_addressed_artifact_store.ps1",
+      "raw_sha256": "sha256:3b10f36e86eeaaac23dfc9b1b4089e8fd13b699e426c622d22360cb2d5cc5d7c"
+    },
+    {
+      "path": "sdk/core/Cargo.toml",
+      "raw_sha256": "sha256:cae670717e34e8a5e4aabcb8fb8014fc24e535cd4befa12e67159cb54ea72633"
+    },
+    {
+      "path": "sdk/core/src/actuator_profile.rs",
+      "raw_sha256": "sha256:c5a175f0783e0004b4012e803d2d254c3448b2d52b88daeefc23cf746d499795"
+    },
+    {
+      "path": "sdk/core/src/adaptation.rs",
+      "raw_sha256": "sha256:aacc52fa2fa22f38eaef21ff6c83a7729a009b7eae9844f729a3e43d18f20f58"
+    },
+    {
+      "path": "sdk/core/src/canonical.rs",
+      "raw_sha256": "sha256:3201cd0411220f92a0a1d46d427a7cdd8981a8e13c2614442ba8aae16853e155"
+    },
+    {
+      "path": "sdk/core/src/canonical_actuation.rs",
+      "raw_sha256": "sha256:e2d7e27edaf7caa218d95a5ed7966f5c6d317ff8c5990c5cd0e2876e1d485d05"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "raw_sha256": "sha256:b296804ab597d62d2cb4e1fdc497505fcc89198793437a8f68f2d568a32925b9"
+    },
+    {
+      "path": "sdk/core/src/coverage.rs",
+      "raw_sha256": "sha256:69e2cc1386601ec5f3982edd937c3cd65bc19a89d07c48c8048e3678f67cb0be"
+    },
+    {
+      "path": "sdk/core/src/ffi.rs",
+      "raw_sha256": "sha256:33244331f84edfd430205055023f2c907df2ebae63898fe85337ffb0e6cfa081"
+    },
+    {
+      "path": "sdk/core/src/lib.rs",
+      "raw_sha256": "sha256:88f9da7e4bb7b9f45ffc15bd0ee711c9c21ed9736bff44b50401a52b70637ba4"
+    },
+    {
+      "path": "sdk/core/src/protocol.rs",
+      "raw_sha256": "sha256:38dcce2bf024d6f33f4fbe2366a878cf3af9005cdb9a7296bae10a4630cf8baa"
+    },
+    {
+      "path": "sdk/core/src/quadruped.rs",
+      "raw_sha256": "sha256:d778bdcd74d8e529f682641bfdc7402a4bc56f70252f91471bb56fe3992a211a"
+    },
+    {
+      "path": "sdk/core/src/recovery.rs",
+      "raw_sha256": "sha256:b2385bb4737c63a3b0ab190200391c1e87a1cd6f4f3ce213250e5e2cdb72a12f"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "raw_sha256": "sha256:6533997031d0a987266caf37ef889ca58ef778cde393be8b04a19f5334463e63"
+    },
+    {
+      "path": "sdk/core/src/scheduler.rs",
+      "raw_sha256": "sha256:2bcfddfcafa9221e8852181a5c56ea32624aaf4f8e8cabe37489538b6f9e119d"
+    },
+    {
+      "path": "sdk/core/src/schema.rs",
+      "raw_sha256": "sha256:63baba3e1ebc2ae9db7c0e7bd4aa788fb609b41d7c77febe2b32155fe8c32a66"
+    },
+    {
+      "path": "sdk/core/src/stability.rs",
+      "raw_sha256": "sha256:4181580b3a08b6b684a474e8cd3b24605858276cad9a948ba4afaf3a1b678ad1"
+    },
+    {
+      "path": "sdk/godot_receipt_terminated_process.ps1",
+      "raw_sha256": "sha256:748a0a4dd15840ab00dde84e42125b1cf39ca3fd36de14bbe11d37f50af643f3"
+    },
+    {
+      "path": "sdk/locomotion_campaign_attestation.ps1",
+      "raw_sha256": "sha256:940719b4e8ef856b648504b6df007482f9c6c7710c5355fa1221210121f620fb"
+    },
+    {
+      "path": "sdk/locomotion_campaign_attestation_adoption.ps1",
+      "raw_sha256": "sha256:3e423d34ee9b9c309b67d4e15547dc7044304c89d1bfa417bcf0831ebd037684"
+    },
+    {
+      "path": "sdk/locomotion_full_conformance_attestation.ps1",
+      "raw_sha256": "sha256:b70d00f9b77f46676520d3c39c63882313449376383758484a74690bd389a267"
+    },
+    {
+      "path": "sdk/locomotion_operation_lock.ps1",
+      "raw_sha256": "sha256:105964dfcd3fdf0a4aca27cb369e2714d7ec0cc8bf7e0204e559f85567fa3e31"
+    },
+    {
+      "path": "sdk/locomotion_terminal_execution_projection.ps1",
+      "raw_sha256": "sha256:6d167f802c8c2aa804e8444429af5b13ed7c072c4001e0bd9df921b1ab4e8bf6"
+    },
+    {
+      "path": "sdk/process_result_projection.ps1",
+      "raw_sha256": "sha256:3028ec110f3266d1ecc50126ec80dcaf71cb57d5d39753eddb9a5d160d1b9fbf"
+    },
+    {
+      "path": "sdk/publish_qsdk_r23d3_trace.ps1",
+      "raw_sha256": "sha256:b77985323fbfcf6e6555c25cfce12aca7b123065f9a2ef230e7f3e94a019e858"
+    },
+    {
+      "path": "sdk/publish_qsdk_r23d48_trace.ps1",
+      "raw_sha256": "sha256:10d6c9c87662a0f59a502385f2d20cd93459272121c2079525b59228c3507ede"
+    },
+    {
+      "path": "sdk/python/sporespore_locomotion.py",
+      "raw_sha256": "sha256:480aaf3f118f5ca69df953005fca97c742eda519e5d5954a43ce3dd485e85526"
+    },
+    {
+      "path": "sdk/r23d3_reproducible_runtime_materialization.ps1",
+      "raw_sha256": "sha256:a21325c79e46b16788f71617f65152a22bc34581b55c698e87c5acd9d0610fc5"
+    },
+    {
+      "path": "sdk/run_qsdk_r23d76_supervisor.ps1",
+      "raw_sha256": "sha256:ffefb89468e4c0a83bff7f92de914c6a2be6d5af8031515edec6940a656d51c2"
+    },
+    {
+      "path": "sdk/strict_json_array_document.ps1",
+      "raw_sha256": "sha256:50dcbd4299bd1234751617c0eb802ca6450aa3f8e9ae639777a75dfc58c1daf7"
+    },
+    {
+      "path": "sdk/three_engine_authorization_receipt.ps1",
+      "raw_sha256": "sha256:2e6c4e08953992580a7e6fd0cc37e9b8ec8806b4257c4a9c83e63ba45f9893dc"
+    },
+    {
+      "path": "sdk/trace_analysis/godot_authoritative_json_transport.gd",
+      "raw_sha256": "sha256:5571f442ce6bfe5746ef67d1d0f820b45496db96182fc5d5ad6517d5adb58c41"
+    },
+    {
+      "path": "sdk/turning/materialize_r23d76_campaign_attestation_manifest.py",
+      "raw_sha256": "sha256:864cf58979afba62e2072b5cee8972e6c9408746abe98782527a463dddb2861a"
+    },
+    {
+      "path": "sdk/turning/materialize_r23d76_implementation.py",
+      "raw_sha256": "sha256:be23e838aaa97318ea22442f3fc7b901cd4bf8daaeee16093d075fe80d2cc88b"
+    },
+    {
+      "path": "sdk/turning/materialize_r23d76_native_bindings.py",
+      "raw_sha256": "sha256:dbb6f2bdd2841d9a4e69b1fb41f26ea2512818de9363faf7d49881c0e8d3312f"
+    },
+    {
+      "path": "sdk/turning/r23d2_development_contract_v1.json",
+      "raw_sha256": "sha256:a33d1ac34856a2358b7a3133495e5b4b7b8e8591f3ec235d903cf68f8684b436"
+    },
+    {
+      "path": "sdk/turning/r23d31_cycle_integrated_measurement.py",
+      "raw_sha256": "sha256:b82656f877989a2cb1494fa2d715353715b0a01958038b3b48ccd7c8e9f99516"
+    },
+    {
+      "path": "sdk/turning/r23d34_native_r23d29_transfer.py",
+      "raw_sha256": "sha256:3549d641998d145b27589bfedcb004b6d71f801abcd669a531d5757a0310c3ec"
+    },
+    {
+      "path": "sdk/turning/r23d34_native_r23d29_transfer_evaluator.py",
+      "raw_sha256": "sha256:ea7e700523c33c4be886ec1d6974bb9507e672817e1b6649ce9d4d8cf6abf36a"
+    },
+    {
+      "path": "sdk/turning/r23d38_mujoco_startup_ramp_stabilization.py",
+      "raw_sha256": "sha256:243b46a851a0ce3742de4c2c7a2956ed8b7d1af2e028f41b6809a295509eac99"
+    },
+    {
+      "path": "sdk/turning/r23d3_phase_balanced.py",
+      "raw_sha256": "sha256:c234088d0d1995b03c8b6a0d90aec35cb22c494172401bcc3404c59d6537cd6a"
+    },
+    {
+      "path": "sdk/turning/r23d3_phase_balanced_preregistration_v1.json",
+      "raw_sha256": "sha256:a20ce471f8d23bbce0317483b0a398c57842a5f4d7e280645276aca7359d7819"
+    },
+    {
+      "path": "sdk/turning/r23d3_physical_closure_v1.json",
+      "raw_sha256": "sha256:d4e0e1370191aa9cac923d2ec74f0d1679653f307119eaaa56785d55bbf379ab"
+    },
+    {
+      "path": "sdk/turning/r23d3_physical_evaluator.py",
+      "raw_sha256": "sha256:af80b04feb7d0825745bed9329de766887fc16d8ad46fa9cb7a20dd8a953bfd3"
+    },
+    {
+      "path": "sdk/turning/r23d45_support_loss_conditioned_startup.py",
+      "raw_sha256": "sha256:ef1b2f346b110020df7748235b22187e9d430c1c8ad04924a229034604646d43"
+    },
+    {
+      "path": "sdk/turning/r23d48_support_loss_conditioned_three_engine_turning.py",
+      "raw_sha256": "sha256:27bc6dc4bff893f7d1014141e2938890dc4801f9ed8d7c5ea09b6b10dcf0854e"
+    },
+    {
+      "path": "sdk/turning/r23d48_support_loss_conditioned_three_engine_turning_closure_v1.json",
+      "raw_sha256": "sha256:5b2ce3553a78836035c6a7b6ff11ee585cb615f0ebcc70341902e7bca58b7063"
+    },
+    {
+      "path": "sdk/turning/r23d48_support_loss_conditioned_three_engine_turning_evaluator.py",
+      "raw_sha256": "sha256:7c8bf7b80af4368dbaa142eb5fb1f9efddf9167ebc21eadef30562e0e0ca1926"
+    },
+    {
+      "path": "sdk/turning/r23d48_support_loss_conditioned_three_engine_turning_implementation_v1.json",
+      "raw_sha256": "sha256:d2dda1e9164444b965b5163c46b88b6e74643953ad48a2c0a293f9646f57cc36"
+    },
+    {
+      "path": "sdk/turning/r23d48_support_loss_conditioned_three_engine_turning_preregistration_v1.json",
+      "raw_sha256": "sha256:d7e955b9cc3aee4452de8f09923a66cf3db130a19cac4b3f8a0ed55161fe561d"
+    },
+    {
+      "path": "sdk/turning/r23d53_godot_warmup_preserving_origin_reanchor.py",
+      "raw_sha256": "sha256:4fbaa2b7ce5e095af50841669949b82b2cfea9852066a996133b5f61f3a9d9c1"
+    },
+    {
+      "path": "sdk/turning/r23d54_godot_actuator_phase_characterization.py",
+      "raw_sha256": "sha256:fbb4a0dfc622183e81abe5b9016621dd640685772c4a11e19582064eb2e4765c"
+    },
+    {
+      "path": "sdk/turning/r23d56_godot_valid_route_actuator_phase_characterization.py",
+      "raw_sha256": "sha256:d3e0a3bc2c76d42964c1a5b3a069e43375f8d361b7cc77edcb5ad5e01dd2471a"
+    },
+    {
+      "path": "sdk/turning/r23d57_godot_full_precision_trace_actuator_phase_characterization.py",
+      "raw_sha256": "sha256:683b49b88053484212617b1d16f8b9e27f8504d31c8864ce941abb1d1b589342"
+    },
+    {
+      "path": "sdk/turning/r23d58_godot_cap_source_factorial.py",
+      "raw_sha256": "sha256:858effd96a2083a462fab5fea539b18783dc4c080a5c75e5fdb777401008a406"
+    },
+    {
+      "path": "sdk/turning/r23d58_godot_cap_source_factorial_closure_v1.json",
+      "raw_sha256": "sha256:ccd14099611da72970d218383ca8072c1fbca278332a0289894dcf1af00986b9"
+    },
+    {
+      "path": "sdk/turning/r23d58_godot_cap_source_factorial_evaluator.py",
+      "raw_sha256": "sha256:764d7ae3d6655a467cbda0ff4dd82999218eb921cdfa6f9985c6d7dffa9b5798"
+    },
+    {
+      "path": "sdk/turning/r23d58_godot_cap_source_factorial_implementation_v1.json",
+      "raw_sha256": "sha256:e2168d06325e8da8b7f6bcb19596ae487335be1348921b6645f78f2bbe493bdc"
+    },
+    {
+      "path": "sdk/turning/r23d58_godot_terminal_trace_cap_factorial_zero_world_v1.json",
+      "raw_sha256": "sha256:b1d5615048c624e506dd4b89a3abac41dd07c41e90a9b814bae6cbb5913961ad"
+    },
+    {
+      "path": "sdk/turning/r23d59_godot_knee_source_finite_decision.py",
+      "raw_sha256": "sha256:b168d0eec215950c494d40af6f5a3f862d04c4cc1b0d2414cdadf7c903f386fb"
+    },
+    {
+      "path": "sdk/turning/r23d59_godot_knee_source_finite_decision_closure_v1.json",
+      "raw_sha256": "sha256:cbce64d87d18dbd819f8afd759943f4bbe7c066d32da3d4c4f567fc7b4422cc8"
+    },
+    {
+      "path": "sdk/turning/r23d59_godot_knee_source_finite_decision_evaluator.py",
+      "raw_sha256": "sha256:e1eecc5374f3cdeda2d80392145379251c64c829f16bc7cd52f4161b3db9ff4e"
+    },
+    {
+      "path": "sdk/turning/r23d59_godot_knee_source_finite_decision_implementation_v1.json",
+      "raw_sha256": "sha256:b5d21e8b9b99ffe2d32b11e56cc453a270d681682ba47a5a0738aee9aaf18611"
+    },
+    {
+      "path": "sdk/turning/r23d59_godot_knee_source_finite_decision_preregistration_v1.json",
+      "raw_sha256": "sha256:a057aedf2066d849bb9f2da484421c219b1b0f50e9a0d5f14e25b0dac0148ebb"
+    },
+    {
+      "path": "sdk/turning/r23d60_godot_fixture_knee_held_out_turning_validation.py",
+      "raw_sha256": "sha256:968401d04852fd13e9d0045f21ccbde1a60548cbc13a3ee63b641061fd54ab49"
+    },
+    {
+      "path": "sdk/turning/r23d60_godot_fixture_knee_held_out_turning_validation_closure_v1.json",
+      "raw_sha256": "sha256:910fd0ba2369a889430c1228f2eaea1146cf26005c4ac51f353803869d709fd8"
+    },
+    {
+      "path": "sdk/turning/r23d60_godot_fixture_knee_held_out_turning_validation_evaluator.py",
+      "raw_sha256": "sha256:6d6984449bc29901ed2d940aa61f15238c554a0bb68fac3efd1c1500f251f84c"
+    },
+    {
+      "path": "sdk/turning/r23d60_godot_fixture_knee_held_out_turning_validation_implementation_v1.json",
+      "raw_sha256": "sha256:102d8c535b18400451c07e23505b89ea18da0f2527ece177143b9ca44f1c7ade"
+    },
+    {
+      "path": "sdk/turning/r23d60_godot_fixture_knee_held_out_turning_validation_preregistration_v1.json",
+      "raw_sha256": "sha256:b6502f7dbf8c3035d52af2f0d423e55e42cc55816ee461ca18d9f81b71fb32a3"
+    },
+    {
+      "path": "sdk/turning/r23d65_dependency_closure.py",
+      "raw_sha256": "sha256:c75128c3889a2275e7471c3ccc21ba0f617ed3865ead4b981940e15e28e55ae7"
+    },
+    {
+      "path": "sdk/turning/r23d65_selected_profile_three_engine_turning_validation.py",
+      "raw_sha256": "sha256:39e6ec4dc27aded7567b80a7e5bcb45b186629ac46c166ba3c7da1e88b3950df"
+    },
+    {
+      "path": "sdk/turning/r23d65_selected_profile_three_engine_turning_validation_closure_v1.json",
+      "raw_sha256": "sha256:02d8f03957c2e799abc69c12adfc18d7d38753d238ac4f475db56cd1f7821e96"
+    },
+    {
+      "path": "sdk/turning/r23d65_selected_profile_three_engine_turning_validation_evaluator.py",
+      "raw_sha256": "sha256:7fd4bfd5df23112967096e12fcc257de0806ce331692bf012a62a0867b5a2a55"
+    },
+    {
+      "path": "sdk/turning/r23d65_selected_profile_three_engine_turning_validation_implementation_v1.json",
+      "raw_sha256": "sha256:043b2b98c4d22ae5f2f52ee7a2ef539c234a8cc8310fda37ba2f37e8db437572"
+    },
+    {
+      "path": "sdk/turning/r23d65_selected_profile_three_engine_turning_validation_preregistration_v1.json",
+      "raw_sha256": "sha256:c14c17073447e45f4de3a912b68b80591066075ac9def45ce485f5520a5dd686"
+    },
+    {
+      "path": "sdk/turning/r23d66_production_route_runtime.py",
+      "raw_sha256": "sha256:51c5e30b547a20dd98c195812a5cb083882a6dd9580234ca1e0a9efd81c04a92"
+    },
+    {
+      "path": "sdk/turning/r23d66_production_route_three_engine_turning_validation.py",
+      "raw_sha256": "sha256:61af8f0b3672ad9ae51c0b867af81758ac376e238e4965483360fb84324d6724"
+    },
+    {
+      "path": "sdk/turning/r23d66_production_route_three_engine_turning_validation_preregistration_v1.json",
+      "raw_sha256": "sha256:d625d911c6f582a1bccd5bf6b8fd019e93befd7893dc0e6ededbd5870c32571a"
+    },
+    {
+      "path": "sdk/turning/r23d70_trace_retention_receipt_contract_repaired_three_engine_turning_preregistration_v1.json",
+      "raw_sha256": "sha256:622ad55225d3735aefb8babddf263e16c748decd1a8cf533f4753e8fac7cc6d1"
+    },
+    {
+      "path": "sdk/turning/r23d74_production_route_runtime.py",
+      "raw_sha256": "sha256:bffc5c5f259bfb76e6d8cbf05e0d9bfcf7b233ff394c469a4ebe8e82afba38ea"
+    },
+    {
+      "path": "sdk/turning/r23d74_production_route_three_engine_turning_evaluator.py",
+      "raw_sha256": "sha256:26b820c903c4c78ac7454969e15cd7cc3a6f93abd7a8c74875d464eaa4d59ca7"
+    },
+    {
+      "path": "sdk/turning/r23d74_receipt_contract.py",
+      "raw_sha256": "sha256:9e83c7ce43a138548f46a281ab195ed2414b896a42d66c12be775e86397d59c9"
+    },
+    {
+      "path": "sdk/turning/r23d75_native_startup_trace_evaluator_conformance.py",
+      "raw_sha256": "sha256:f56f33607b505f6e3cb3f6e3f16fc57421db357576cdcae0690bc2c7ec163e63"
+    },
+    {
+      "path": "sdk/turning/r23d75_native_startup_trace_evaluator_conformance_closure_v1.json",
+      "raw_sha256": "sha256:b5c637c0c59c5cc23fa6224494a4dd8914610da4c1a892067f7f736f133e7fde"
+    },
+    {
+      "path": "sdk/turning/r23d76_bounded_native_smoke_v3_closure.json",
+      "raw_sha256": "sha256:4d5e56b3fb0dd7a5fa31259ca8b3241a6ec49e2534fd7a5993b7ad2973b0145d"
+    },
+    {
+      "path": "sdk/turning/r23d76_first_campaign_qualification_failure_v1.json",
+      "raw_sha256": "sha256:a442b8eaa67cb040ffcaa602c0393783555998aa60a42db835ac7ae607d0d8da"
+    },
+    {
+      "path": "sdk/turning/r23d76_fresh_finite_three_engine_turning_decision_v1.json",
+      "raw_sha256": "sha256:a10d46bb7678800fe6b7527ddd7dc1fab45f3d458079b78fe597055fa9db066a"
+    },
+    {
+      "path": "sdk/turning/r23d76_production_route_runtime.py",
+      "raw_sha256": "sha256:1d8495f1d0e5f85078936a13eafa6f557a2642a7a1e7e72c57ae879cc9da68cb"
+    },
+    {
+      "path": "sdk/turning/r23d76_production_route_three_engine_turning_evaluator.py",
+      "raw_sha256": "sha256:51979581bc1cdba1e24d05fd68e02cb5ad075558ed9ac187acf09fd9fec58ed5"
+    },
+    {
+      "path": "sdk/turning/r23d76_production_route_three_engine_turning_implementation_v1.json",
+      "raw_sha256": "sha256:7457e3b10e37e58cf1bf96749b885a9ae5a96b994cd5e6853a099b79398eb903"
+    },
+    {
+      "path": "sdk/turning/r23d76_receipt_contract.gd",
+      "raw_sha256": "sha256:adfe0bc1e0651f4e718556a326b8a5e736ee9d0950df81fcbbc9bada11c57913"
+    },
+    {
+      "path": "sdk/turning/r23d76_receipt_contract.py",
+      "raw_sha256": "sha256:f93fc77816d0c44ba3d61c6c05e14e628249e7bdc97f4efced0fee1ed182dd2b"
+    },
+    {
+      "path": "sdk/turning/r23d76_second_campaign_qualification_failure_v1.json",
+      "raw_sha256": "sha256:cea94bfed69fb3c88996acf137b4a00b52ee801923442e24558fdd441086a9d2"
+    },
+    {
+      "path": "sdk/turning/r23d76_seed_fixture_compiler.gd",
+      "raw_sha256": "sha256:c5542d56e0b8edf1af017ae27b3986c9f9deca50677d57cc57034eea2a00ea6d"
+    },
+    {
+      "path": "sdk/turning/three_engine_authorization_receipt_contract_v1.json",
+      "raw_sha256": "sha256:eea63f3af045f83d6b6c4d34d5c83f428d6e7a5ae943a929a22e925145476fca"
+    },
+    {
+      "path": "tests/test_qsdk_r23d74_physical_closure.ps1",
+      "raw_sha256": "sha256:b59ba0a7d261a9e9053ae254762dc6424156c0c550ba1d7838debba45527e2d8"
+    },
+    {
+      "path": "tests/test_qsdk_r23d75_native_startup_trace_evaluator_conformance_closure.ps1",
+      "raw_sha256": "sha256:c065b53b17589edb5448125494fcd0435da0ddf397c31e39ccb4eca9494c9d13"
+    },
+    {
+      "path": "tests/test_qsdk_r23d76_campaign_roles.ps1",
+      "raw_sha256": "sha256:605b526d6f5e700459fafcef79f6b01afbd7933bcc3b9b5868aeb87e298a78c9"
+    },
+    {
+      "path": "tests/test_qsdk_r23d76_runtime_contract.py",
+      "raw_sha256": "sha256:d6f4a6a0e35bc5bff9e8252a0cf8a085a889c6bcbf5f41e7b85a6c40256e4d67"
+    },
+    {
+      "path": "tests/test_qsdk_r23d76_zero_world.ps1",
+      "raw_sha256": "sha256:557d45c0078e7e774a619ca13a61e5accdcd5c01f144b4e2b30974c21ac03fe6"
+    },
+    {
+      "path": "tests/test_qsdk_r23d76_zero_world_qualification_v3.ps1",
+      "raw_sha256": "sha256:a04ca3b6be1862abee89fc61a31a9c14f04243981095e279165078036f69be95"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d3_godot_jolt_worker.gd",
+      "raw_sha256": "sha256:5cf72eb78ec11e7f5ce97bdd95f8071983702d7a689d1d66fb7de0119ef64a44"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d48_godot_jolt_physical_worker.gd",
+      "raw_sha256": "sha256:1cb7e57a7a0f844c5e652cef16d6d8431f9ef28e349189d8db6a4dd6d93f8b38"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d48_godot_trace_composition_boundary.gd",
+      "raw_sha256": "sha256:09529e9dc754c35338f197603abe65c3a6ad19957e9e5b14bd6dce3ecff297ae"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d58_godot_jolt_physical_worker.gd",
+      "raw_sha256": "sha256:5bad614856e0276e3a508f845f1b128f44b4884c2e8a6734ecbb29ecaee14217"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d59_godot_jolt_physical_worker.gd",
+      "raw_sha256": "sha256:3d9ab6fa0408927c890e00031b8020bbc3b2e335bcacbaf37b5da265cc4928ec"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d60_godot_jolt_physical_worker.gd",
+      "raw_sha256": "sha256:7708e4704e9d1c73f5ef6b9235156e325aac30e2ed65b7590a456b56db0c48a9"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d65_godot_jolt_physical_worker.gd",
+      "raw_sha256": "sha256:9b9723239bbbe70dce09249071e7bcfc79fd6e0c01bc99c001225aa0808adf78"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r23d76_godot_jolt_worker.gd",
+      "raw_sha256": "sha256:8aa8f0e78a484f02140ae66a4df81c2888c5b107774481179b65ae564beac79f"
+    }
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "sporespore_r10al_support_anchored_leveling_study_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "prospective_retained_input_model_study",
+    "question_class": "development"
+  },
+  "source_parent_commit": "1aebc627ac51be9621fe7a7b53a7a03ccd180920",
+  "question": "Can a bounded virtual torso-leveling search preserve positive-bearing feet while allowing unsupported feet to make feasible downward placement moves, avoiding the all-foot exact-IK deadlock and all-hip recentering failure?",
+  "dependencies": [
+    {
+      "path": "sdk/recovery/r10aj_hip_recenter_closure_v1.json",
+      "byte_length": 291057,
+      "raw_sha256": "sha256:58125c6bcf534ea2ba34de6696ddd72445dbad57f92b622f1c78c1ba728e5924"
+    },
+    {
+      "path": "sdk/recovery/r10aj_posture_diagnosis_v1.json",
+      "byte_length": 1532979,
+      "raw_sha256": "sha256:7747c3adc551f1b973fb2ca96d048993cc6cbbfa9b9487ea4305145bb331d765"
+    },
+    {
+      "path": "sdk/recovery/r10ak_bearing_preserving_geometry_result_v1.json",
+      "byte_length": 994659,
+      "raw_sha256": "sha256:bce472d4a26156e5dfac623d5f52ee66d8c8cefb5cff16c30638f582b192a4e9"
+    }
+  ],
+  "population": {
+    "report": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-fb38afc4e51649cd96e804265d60c4be/children/kick_passive_recovery_resume/worker_report.json",
+    "raw_sha256": "sha256:4c85be6801b16a7f60d0842dd2295d976bc9f5adb74f7589c525f050bdd373e9",
+    "section": "r10aj_partial_recovery",
+    "selection": "All 600 nonterminal samples in original order.",
+    "expected_samples": 600,
+    "held_out": false
+  },
+  "algorithm": {
+    "bearing_rule": "Presence, bears_support, ordinary unilateral contact and positive normal impulse; an anchoring choice, not qualified support.",
+    "body_candidates": "Five scales 1, 1/2, 1/4, 1/8, 1/16; three heading translations -d,0,+d; three vertical translations -d,0,+d; level blend 0 or +0.6*dt*scale. 90 candidates.",
+    "distance": "d=0.1*dt*scale",
+    "loaded_legs": "Exact original two-branch inverse kinematics to preserve modeled world foot positions; original 0.0005 m unactuated lateral residual and 4 rad/s joint-step bounds.",
+    "unsupported_legs": "Desired world endpoint is previous modeled endpoint displaced down by d. Use damped local two-joint Jacobian least squares with damping squared 1e-4 m^2/rad^2; bounded five-scale line search plus unchanged joints. Select minimum squared endpoint error, with original joint and speed limits and <=0.1*dt fixed-torso FK displacement.",
+    "pose_checks": "Reject worse torso-up direction, upward unsupported world endpoint motion, or an anchored foot exceeding the original lateral residual.",
+    "cost": "Original horizontal COM-to-four-foot-center squared distance plus 0.04*tilt_rad^2 plus squared positive unsupported-foot height gaps. Add squared torso height error: original 0.92-leg-height goal only when all four feet bear; otherwise current torso height.",
+    "selection": "First strictly cost-decreasing minimum in declared candidate order; improvement epsilon 1e-12. Explicit no-feasible/no-improvement result, no fallback law.",
+    "limits": {
+      "dt": 0.008333333333333333,
+      "joint_speed_rad_s": 4,
+      "hip_limit_rad": 1.6,
+      "knee_limit_rad": 1.1,
+      "translation_speed_m_s": 0.1,
+      "level_blend_rate_s": 0.6
+    }
+  },
+  "checks": [
+    "Verify complete original report identity and sample population.",
+    "Record feasible and selected counts, all refusals, anchor endpoint error, unsupported motion and torso-up change.",
+    "Check original joint limits and target-step bounds; independent FK verifies every selected target.",
+    "Compare original V26 mode and contact mask without regrading any physical observation."
+  ],
+  "decision_rules": [
+    "Model constraints and geometry only; no rigid-body dynamics, friction, motor force or contact prediction.",
+    "Do not select a physical controller from geometry alone.",
+    "Retain every negative and refusal; changing an observed algorithm requires a distinct study identity.",
+    "A selected virtual torso pose is never directly imposed on a native body.",
+    "No physical population, source-key renewal, threshold change or actuator-cap change is authorized."
+  ],
+  "claim_boundary": {
+    "controller_selected": false,
+    "controller_changed": false,
+    "physical_execution_authorized": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

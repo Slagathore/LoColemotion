@@ -1,0 +1,118 @@
+{
+  "schema_version": "sporespore_r10an_support_transfer_study_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt_retained_data_and_engine_neutral_geometry",
+    "authority_mode": "prospective_retained_input_model_study",
+    "question_class": "development"
+  },
+  "source_parent_commit": "97c7d1e120266b9b6a8942bbd629b8b5d4f3f823",
+  "question": "Does R10AM lack a foot-only support envelope, and does its conditional height objective or an interior joint margin obstruct a bounded upward support-transfer target?",
+  "dependencies": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10am_support_anchored_closure_v1.json",
+      "byte_length": 538150,
+      "raw_sha256": "sha256:95938e622c8a896a726fe1c04faba76436de09e6199374443c6c039fbecfefcd"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10am_support_tracking_diagnosis_v1.json",
+      "byte_length": 465336,
+      "raw_sha256": "sha256:25ef1c9b6ba310b5f1286e1fc6eb5aef1fdc93c3a8d2143f458d962cdd5bec8e"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10am_support_tracking_diagnosis.py",
+      "byte_length": 12576,
+      "raw_sha256": "sha256:25a1ee136c9bc9becf2072697a17114552ac206f35a58a27c9c5a02e6dc48841"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10al_support_anchored_model.py",
+      "byte_length": 6675,
+      "raw_sha256": "sha256:6a24fd07325253b0efdffc86afa7010462ea615d763ebc1da24f9f6eb643aa4a"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10ab_loaded_rise_diagnosis.py",
+      "byte_length": 13267,
+      "raw_sha256": "sha256:bfbb9eedc1d7041d15825fdc503c0a52747531fd17d0d588219c022d967ca975"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10af_contact_frame_replay.py",
+      "byte_length": 4726,
+      "raw_sha256": "sha256:82e9e376889340a51d78b76cd4f41a7bc07b194f4a7a6921ff98e59efea65593"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/detection_frame_contact_source_v1.py",
+      "byte_length": 7988,
+      "raw_sha256": "sha256:d7ac4ef73c978f99b828f1a7ef222d0ec1c33659204882f21964ff1aa7a8bb94"
+    }
+  ],
+  "population": {
+    "report": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-899ecfdea2914711a39b7b0d5db0b621/children/kick_passive_recovery_resume/worker_report.json",
+      "byte_length": 620534747,
+      "raw_sha256": "sha256:d4f9ba6de5f10404c4272ff256155814ebd224cb0f2a6afe22e288315be2658a"
+    },
+    "section": "r10am_partial_recovery",
+    "observations": 601,
+    "command_samples": 600,
+    "selection": "All original observations in order; terminal sample descriptive only.",
+    "held_out": false
+  },
+  "contact_analysis": {
+    "source": "Original detection-frame contact source, independently replayed before use.",
+    "envelopes": [
+      "all four callback cap centers, including unloaded feet",
+      "positive-bearing callback cap centers",
+      "qualified callback cap centers",
+      "positive normal-impulse actual foot contact points",
+      "positive normal-impulse actual all-body floor contact points"
+    ],
+    "measurement": "Euclidean horizontal distance from measured COM projection to convex hull; zero inside. Empty hull returns null. Points/segments handled explicitly.",
+    "load": "Sum original normal impulses by foot/nonfoot and body; ratio of nonfoot to total. This is measured contact impulse allocation, not static load or a force model.",
+    "motion": "Sum virtual proposals separately from measured net torso translation; virtual sums are not trajectory predictions."
+  },
+  "model_variants": [
+    {
+      "name": "original",
+      "height_goal": false,
+      "interior_margin_rad": 0.0
+    },
+    {
+      "name": "raise_partial",
+      "height_goal": true,
+      "interior_margin_rad": 0.0
+    },
+    {
+      "name": "interior_only",
+      "height_goal": false,
+      "interior_margin_rad": 0.02
+    },
+    {
+      "name": "raise_partial_interior",
+      "height_goal": true,
+      "interior_margin_rad": 0.02
+    }
+  ],
+  "model_algorithm": {
+    "candidate_population": "Original 90 torso candidates, exact original anchoring and free-foot placement algorithms, unchanged joint speed 4 rad/s and Cartesian speed 0.1 m/s.",
+    "height_objective": "When height_goal=true, use the original 0.92-leg-height torso goal whenever any foot bears, including partial bearing. Other original cost terms unchanged.",
+    "margin": "When nonzero, reject a candidate unless all targets are inside original hip/knee limits by 0.02 rad. No target clipping or physical predicate change.",
+    "selection": "First strictly cost-decreasing candidate under the declared variant cost, epsilon 1e-12. Record every no-candidate or no-improvement refusal.",
+    "validation": "Original variant must exactly reconstruct retained candidate counts, selection, and targets. Check selected targets by independent FK, original speed limits, anchor residual <=0.0005m, unsupported endpoints nonascending, and torso-up nondecreasing. Record candidates before and after margin filtering.",
+    "exclusions": "No model propagation, body-force prediction, collision-free path claim, contact acquisition prediction or physical controller selection."
+  },
+  "decision_rules": [
+    "Retain all four variants, all 600 inputs and all refusals; no search over margins or weights after results.",
+    "A feasible target is only local geometry; original nonfoot contacts can block actual movement.",
+    "A margin-only patch cannot be called sufficient without a support-transfer route.",
+    "No physical population, source-key renewal, controller mutation, cap change or deadline change."
+  ],
+  "claim_boundary": {
+    "controller_selected": false,
+    "controller_changed": false,
+    "physical_execution_authorized": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

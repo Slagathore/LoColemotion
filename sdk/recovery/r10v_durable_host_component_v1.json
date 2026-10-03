@@ -1,0 +1,122 @@
+{
+  "schema_version": "sporespore_r10v_durable_host_component_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "zero_world_real_host_lifecycle_component",
+    "question_class": "development"
+  },
+  "auditor": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10v_host_component.py",
+    "byte_length": 6585,
+    "raw_sha256": "sha256:a480275e6085c22a4e6cb257914055b6e261a68e56266407dd1acf262160dedd"
+  },
+  "manifest": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-component-5b4f5297acd6442eabac23bc25d9e848/manifest.json",
+    "byte_length": 80940,
+    "raw_sha256": "sha256:6737331947c64bd655a6ff2b5f9f477e915b22bbbe0041c0f17197dc8c86153c"
+  },
+  "observed": {
+    "current_controls_passed": 15,
+    "prior_controls_passed": 13,
+    "actual_current_host_runs": 9,
+    "real_caller_loss_passed": true,
+    "real_host_loss_cleanup_passed": true,
+    "real_deadline_and_owned_cancellation_passed": true,
+    "real_operation_lock_contention_passed": true,
+    "source_drift_and_identity_refusals_passed": true,
+    "terminal_and_publication_refusals_passed": true,
+    "original_probe_output_capture_gap_retained": true,
+    "live_hosts_remaining": 0,
+    "actual": [
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-d1e319a50ab444f991a167be452c9a96",
+        "case": "hang",
+        "state": "failed"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-865ad16985a7484faafc91dbebd4fba6",
+        "case": "success",
+        "state": "failed"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-3d79bf3e21164be38c953b9943e80ef0",
+        "case": "hang",
+        "state": "failed"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-5fb644a3c7114c2c891d7ab9ed856aff",
+        "case": "hang",
+        "state": "incomplete"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-aa7bd58dad5a48308b162c63417bff8c",
+        "case": "success",
+        "state": "complete"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-8fbf4c0e4a8e4ee7b453bd8f805ceafa",
+        "case": "malformed_terminal",
+        "state": "failed"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-b2a85f1d1dd24a49bf5547a31f9c8aa3",
+        "case": "missing_terminal",
+        "state": "failed"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-9130766f1bbc4b2b85df4385434752f4",
+        "case": "nonzero",
+        "state": "failed"
+      },
+      {
+        "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10v-host-2873a1e2618e4b9292734bd6391f26cf",
+        "case": "success",
+        "state": "complete"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "zero_world_host_component_implemented": true,
+    "production_smoke_host_integrated": false,
+    "payload_release_implemented": false,
+    "complete_safety_gate_passed": false,
+    "physical_attempt_started": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_score": "14/20",
+    "full_program_score": "14/25"
+  },
+  "bindings": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10v_durable_workflow_design_v1.json",
+      "byte_length": 8521,
+      "raw_sha256": "sha256:5903e0b69ac913f32d148246c6635bf9930b860defa1450a14d292d1473966ee"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10v_durable_host.py",
+      "byte_length": 13751,
+      "raw_sha256": "sha256:172fec3ba28d35294430087efb83d73f8101a891c5ae25ffeb26ea3c876f8ceb"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10v_windows_job.py",
+      "byte_length": 3394,
+      "raw_sha256": "sha256:f49015c867d860915c471f79d4d90fed0560d1d31283d0c9ace56d0f8a35ebef"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10v_host_probe.ps1",
+      "byte_length": 2455,
+      "raw_sha256": "sha256:4e72ee85f48899629c988f468a2a8cc489578aea0ab4bc4a2103378be4987df3"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/test_r10v_durable_host.py",
+      "byte_length": 12133,
+      "raw_sha256": "sha256:76d8096184e7df2b624515426578a4b4a75f0f5034e0b6581b394f60615ec2b8"
+    }
+  ],
+  "evidence_scope": "Actual detached host, gated supervisor and descendants on Windows; the probe takes the real operation lock and launches no Godot or physics. Six additional cases exercise original request and terminal-consumer refusal paths. Deliberate source drift is an owned synthetic zero-world mutation, retained exactly and removed after process cleanup.",
+  "history": "The first probe reached a terminal receipt but lost nested stdout inheritance. Explicit standard-handle forwarding repaired capture before the 13-control suite. A subsequent review added explicit publication binding and two controls: an unpublished terminal stays incomplete and crossed publication is refused. The distinct 15-control suite passed. Original probe and suite records remain unchanged.",
+  "next": "Implement verified retained-payload release, integrate the actual R10V production launcher and final auditor, declare the complete dependency key and safety graph, then qualify from a clean pushed freeze. This component grants no physical launch."
+}

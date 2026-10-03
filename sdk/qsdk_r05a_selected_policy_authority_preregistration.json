@@ -1,0 +1,110 @@
+{
+  "schema_version": "sporespore_qsdk_r05a_selected_policy_authority_preregistration_v1",
+  "status": "frozen_before_first_qsdk_r05a_physics_world",
+  "gate_id": "QSDK-R05A",
+  "campaign_id": "QSDK-R05A",
+  "campaign_role": "technical_capability_closure",
+  "freeze_parent_commit": "d89e45e1a1f04d4aeff824714d833e9b53af4954",
+  "parent_negative_result": {
+    "gate_id": "QSDK-R05",
+    "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r05-815748c\\report.json",
+    "report_sha256": "sha256:2135633c9d1d987e97b15f1ae4c1166b08760e2e428f5549f5eee03ee22c1ae8",
+    "disposition": "rejected_complete_result",
+    "primary_failure": "selected BW5R-B full-authority adapter start was forbidden"
+  },
+  "selected_candidate_id": "BW5R-B",
+  "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+  "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+  "adapter_capability_change": {
+    "source_path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+    "newly_allowed_pair": {
+      "controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "authority_scope": "post_settle_full",
+      "actuation_authority": true
+    },
+    "non_selected_balanced_wave_candidates_remain_forbidden": true,
+    "evidence_handoff_for_selected_balanced_wave_remains_forbidden": true
+  },
+  "mandatory_pre_world_gates": [
+    {
+      "test_path": "tests/test_sdk_balanced_wave_bw5r_authority_contract.gd",
+      "requirement": "The selected policy alone passes exact zero-world full-authority adapter start and a non-selected BW5R candidate remains rejected."
+    },
+    {
+      "test_path": "tests/test_sdk_full_integrity_gate_satisfiability.gd",
+      "receipt_schema": "sporespore_full_integrity_gate_satisfiability_receipt_v3",
+      "requirement": "The complete integrity gate includes and passes the real selected-policy full-authority adapter start before synthetic policy and post-physics analysis."
+    },
+    {
+      "test_path": "tests/test_sdk_qsdk_r05_independent_morphology.gd",
+      "mode": "preflight",
+      "requirement": "All 36 morphology-seed entrypoints perform exact selected-policy full-authority adapter starts and return with zero worlds."
+    }
+  ],
+  "physical_probe": {
+    "harness_path": "tests/test_sdk_qsdk_r05_independent_morphology.gd",
+    "harness_mode": "physical",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "generator_index": 169,
+    "generator_receipt_sha256": "sha256:53d637771ebd848c604470beaf7609c16bb877aa87d083053fa451e0d5b54a49",
+    "proportion_spec_sha256": "sha256:91867919d91512b7be1e24e7614b6274b52a7ddca3e3438d241056fe723365fb",
+    "campaign_seed": 21501,
+    "world_count": 1,
+    "population_status": "outcome_exposed_in_rejected_qsdk_r05",
+    "independent_validation_authority": false,
+    "reason_for_reuse": "Reusing the first rejected R05 cell isolates the adapter capability change without consuming a fresh morphology or claiming independent validation."
+  },
+  "acceptance": {
+    "complete_receipt_required": true,
+    "common_execution_integrity_required": true,
+    "all_production_walking_gates_required": true,
+    "controller_policy_id_required": "sporespore_balanced_wave_bw5r_b_v1",
+    "authority_scope_required": "post_settle_full",
+    "sdk_step_count_minimum_exclusive": 0,
+    "native_motor_write_count_required": "sdk_step_count * 8",
+    "legacy_post_settle_motor_write_count_required": 0,
+    "legacy_evidence_motor_write_count_required": 0,
+    "sdk_mismatch_count_required": 0,
+    "sdk_safe_no_actuation_count_required": 0,
+    "sdk_safe_disable_count_required": 0,
+    "world_build_count_required": 1
+  },
+  "successor": {
+    "campaign_id": "QSDK-R05B",
+    "must_use_previously_unopened_morphologies": true,
+    "must_use_fresh_seeds": true,
+    "may_begin_only_if_qsdk_r05a_passes": true
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md"
+    }
+  ],
+  "claim_boundary": {
+    "technical_capability_only": true,
+    "same_selected_policy_independent_morphology_evidence": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "running": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

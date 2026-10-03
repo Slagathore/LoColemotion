@@ -1,0 +1,122 @@
+{
+  "schema_version": "sporespore_conformance_observability_contract_v1",
+  "contract_status": "active_instrumentation_only",
+  "commissioning_phase": "timing_receipts_and_retained_logs_before_cache_reuse",
+  "runner": "sdk/run_conformance.ps1",
+  "tier_by_mode": {
+    "godot_including": "full_cold",
+    "skip_godot": "canonical_no_godot"
+  },
+  "stage_order": [
+    {
+      "ordinal": 1,
+      "stage_id": "authority_and_historical_closures",
+      "description": "Repository authority, evidence provenance, immutable physical closures, and retained historical results."
+    },
+    {
+      "ordinal": 2,
+      "stage_id": "source_inventory_and_zero_world_preflights",
+      "description": "Source parse inventory, operation and attestation contracts, and current zero-world host preflights."
+    },
+    {
+      "ordinal": 3,
+      "stage_id": "portable_core_and_release_source",
+      "description": "Rust workspace, portable SDK semantics, release-source gates, and source-level adapter contracts."
+    },
+    {
+      "ordinal": 4,
+      "stage_id": "campaign_closures_and_zero_world_gates",
+      "description": "Closed campaign audits and prospective zero-world gates that are legal in the current lifecycle state."
+    },
+    {
+      "ordinal": 5,
+      "stage_id": "selectors_and_integrity",
+      "description": "Actuation semantics, experiment integrity, and frozen selector audits."
+    },
+    {
+      "ordinal": 6,
+      "stage_id": "godot_runtime_regression",
+      "description": "Godot/Jolt runtime and preflight regressions; explicitly skipped only under the declared SkipGodot mode."
+    },
+    {
+      "ordinal": 7,
+      "stage_id": "language_bindings_and_developer_experience",
+      "description": "Python C ABI smoke coverage and developer-experience conformance."
+    },
+    {
+      "ordinal": 8,
+      "stage_id": "attestation_and_terminal_receipt",
+      "description": "Optional durable full-Godot attestation publication and canonical terminal success marker."
+    }
+  ],
+  "receipt_requirements": {
+    "stage_schema": "sporespore_conformance_stage_observation_v1",
+    "run_schema": "sporespore_conformance_run_observation_v1",
+    "required_stage_fields": [
+      "stage_id",
+      "ordinal",
+      "status",
+      "started_utc",
+      "completed_utc",
+      "duration_seconds",
+      "exit_code",
+      "observed_input_identity_sha256",
+      "dependency_key_candidate",
+      "toolchain_runtime_identity_sha256",
+      "bytes_hashed",
+      "cache",
+      "full_log_paths",
+      "claims"
+    ],
+    "success_console_prefix": "CONFORMANCE_STAGE_RECEIPT ",
+    "failure_console_prefix": "CONFORMANCE_STAGE_FAILURE ",
+    "run_console_prefix": "CONFORMANCE_RUN_RECEIPT ",
+    "content_addressed_retention_required": true,
+    "full_log_required": true,
+    "failure_excerpt_max_lines": 40,
+    "failure_excerpt_max_characters": 8000
+  },
+  "input_identity_boundary": {
+    "current_status": "observed_not_transitive",
+    "bound_files": [
+      "sdk/run_conformance.ps1",
+      "sdk/conformance_observability.ps1",
+      "sdk/conformance_observability_contract_v1.json",
+      "sdk/conformance_dependency_key.ps1",
+      "sdk/conformance_dependency_contract_v1.json",
+      "sdk/content_addressed_artifact_store.ps1"
+    ],
+    "transitive_dependency_key_complete": false,
+    "undeclared_dependency_detection_complete": false,
+    "host_semantics_key_complete": false
+  },
+  "cache_boundary": {
+    "status": "disabled_uncommissioned",
+    "lookup_permitted": false,
+    "reuse_permitted": false,
+    "cache_hit_authority": false,
+    "scheduled_historical_waiver_permitted": false,
+    "full_source_exact_conformance_remains_required": true,
+    "enablement_requires": [
+      "declared_transitive_dependency_contract",
+      "content_addressed_cache_key",
+      "mutation_and_invalidation_controls",
+      "physical_authorization_safety_kernel",
+      "complete_cold_equivalence_baseline"
+    ]
+  },
+  "failure_retention": {
+    "retain_full_transcript": true,
+    "retain_bounded_excerpt": true,
+    "publish_both_by_sha256": true,
+    "caught_failure_must_fail_original_run": true
+  },
+  "claims": {
+    "cache_commissioned": false,
+    "historical_audit_waiver": false,
+    "physical_campaign_executed": false,
+    "physical_acceptance_authority": false,
+    "scientific_result": false,
+    "release_authority": false
+  }
+}

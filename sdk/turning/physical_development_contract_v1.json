@@ -1,0 +1,229 @@
+{
+  "schema_version": "sporespore_qsdk_r23d1_physical_development_contract_v1",
+  "status": "frozen_physical_authorization_pending_exact_source_attestation",
+  "campaign_id": "QSDK-R23D1-THREE-ENGINE-HEADING-RESPONSE-DEVELOPMENT",
+  "gate_id": "QSDK-R23D1",
+  "study_classification": "exact_finite_development_screen",
+  "purpose": "Measure whether the release-selected BW5R-B command surface preserves straight walking and produces signed physical heading response before a separate QSDK-R23 acceptance study is frozen.",
+  "release_gate_id": "QSDK-R23",
+  "source_contract": {
+    "path": "sdk/turning/heading_command_contract_v1.json",
+    "selected_candidate_id": "BW5R-B",
+    "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "motion_command_schema_version": "sporespore_motion_command_v2",
+    "heading_mode": "absolute_heading_only",
+    "yaw_rate_supported": false
+  },
+  "fixture": {
+    "descriptor_schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "descriptor": {
+      "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+      "morphology_id": "qsdk_r05_generated_s169",
+      "torso_length_scale": 1.0041015625,
+      "torso_width_scale": 1.0031893004115227,
+      "upper_length_fraction": 0.5219571428571428,
+      "hip_span_scale": 0.9856413994169096,
+      "foot_radius_scale": 0.9987180691209617,
+      "front_limb_mass_scale": 0.975022758306782
+    },
+    "physics_hz": 120,
+    "authored_sliding_friction": 0.95,
+    "initial_condition_seed": 21501,
+    "initial_condition_policy": "physical_wave_gait_compile_seeded_initial_perturbation_v1",
+    "initial_perturbation": {
+      "campaign_seed": 21501,
+      "fixture_vertical_clearance_m": 0.000116370123578236,
+      "fixture_yaw_rad": 0.00635678833350539,
+      "initial_linear_velocity_world_m_s": [
+        -0.00314345676451921,
+        0.0,
+        0.00062476983293891
+      ],
+      "initial_torso_angular_velocity_world_rad_s": [
+        -0.00167809403501451,
+        0.00145599897950888,
+        0.000355467665940523
+      ],
+      "gait_phase_offset_ticks": 3
+    },
+    "seed_population_status": "already_outcome_exposed_qsdk_r05a_exact_s169_positive",
+    "seed_reuse_reason": "Reuse the exact accepted QSDK-R05A s169 seed so R23D1 measures command transport and heading response without consuming or pretending to validate a fresh initial condition.",
+    "population_status": "already_outcome_exposed_exact_finite_development_fixture",
+    "fresh_morphology_consumed": false
+  },
+  "engines": [
+    {
+      "engine_id": "godot_jolt",
+      "engine_family": "Godot/Jolt",
+      "host_binding_status": "actual_route_zero_world_commissioned",
+      "actual_worker_path": "tests/test_sdk_qsdk_r23d1_godot_jolt_worker.gd",
+      "actual_route_preflight_path": "sdk/run_qsdk_r23d1_godot_jolt_worker_preflight.ps1",
+      "actual_route_zero_world_commissioned": true,
+      "known_predecessor": "QSDK-R05A exact-s169 BW5R-B straight-walking technical positive"
+    },
+    {
+      "engine_id": "rapier_parry",
+      "engine_family": "Rapier/Parry",
+      "host_binding_status": "actual_route_zero_world_commissioned",
+      "actual_worker_path": "sdk/adapters/rapier/src/bin/qsdk_r23d1_heading_response.rs",
+      "actual_route_preflight_path": "sdk/run_qsdk_r23d1_rapier_worker_preflight.ps1",
+      "actual_route_zero_world_commissioned": true,
+      "known_predecessor": "BW5R-B historical physical negatives precede the current independently characterized ForceBased velocity-only host"
+    },
+    {
+      "engine_id": "mujoco",
+      "engine_family": "MuJoCo",
+      "host_binding_status": "actual_route_zero_world_commissioned",
+      "actual_worker_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d1_heading_response.py",
+      "actual_route_preflight_path": "sdk/run_qsdk_r23d1_mujoco_worker_preflight.ps1",
+      "actual_route_zero_world_commissioned": true,
+      "known_predecessor": "No accepted BW5R-B physical walk; BW19V-B over BW15F-B is a distinct composite and cannot substitute"
+    }
+  ],
+  "arms": [
+    {
+      "arm_id": "reference_zero",
+      "turn_heading_offset_rad": 0.0,
+      "role": "zero_command_straight_walk_compatibility"
+    },
+    {
+      "arm_id": "positive_heading",
+      "turn_heading_offset_rad": 0.2,
+      "role": "positive_signed_heading_response"
+    },
+    {
+      "arm_id": "negative_heading",
+      "turn_heading_offset_rad": -0.2,
+      "role": "negative_signed_heading_response"
+    }
+  ],
+  "cell_matrix": {
+    "engine_count": 3,
+    "arm_count": 3,
+    "declared_cell_count": 9,
+    "worlds_per_cell": 1,
+    "declared_total_world_count": 9,
+    "execution_order": "engine_order_then_arm_order",
+    "parallel_execution_permitted": false,
+    "replacement_or_selective_rerun_permitted": false,
+    "population_inference": false
+  },
+  "command_schedule": {
+    "schema_version": "sporespore_heading_offset_schedule_v1",
+    "schedule_id": "qsdk_r23d1_step_turn_return_v1",
+    "domain": "controller_semantic_step",
+    "reference_heading_source": "state.task_frame.reference_yaw_rad",
+    "minimum_required_controller_step_count": 2400,
+    "segments": [
+      {
+        "segment_id": "reference_warmup",
+        "start_step_inclusive": 0,
+        "end_step_exclusive": 600,
+        "heading_offset_source": "zero"
+      },
+      {
+        "segment_id": "commanded_turn",
+        "start_step_inclusive": 600,
+        "end_step_exclusive": 1800,
+        "heading_offset_source": "arm.turn_heading_offset_rad"
+      },
+      {
+        "segment_id": "reference_recovery",
+        "start_step_inclusive": 1800,
+        "end_step_exclusive": 2400,
+        "heading_offset_source": "zero"
+      }
+    ],
+    "after_last_segment": "hold_reference_heading",
+    "expected_segment_sample_counts": {
+      "reference_warmup": 600,
+      "commanded_turn": 1200,
+      "reference_recovery": 600
+    }
+  },
+  "development_detection_gates": {
+    "maximum_absolute_requested_or_held_steering_fraction": 0.4,
+    "minimum_absolute_signed_turn_phase_yaw_delta_rad": 0.01,
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "zero_torso_ground_contact_required": true,
+    "zero_command_requires_engine_production_straight_walking_gate": true,
+    "turn_arms_require_forward_contact_and_stability_gates": true,
+    "recovery_heading_is_measured_but_not_thresholded": true,
+    "note": "The 0.01 rad signed-response floor is a development mechanism-detection floor equal to 5 percent of the 0.2 rad command, not a release turning margin. A later QSDK-R23 study must freeze acceptance and adequacy from retained development evidence."
+  },
+  "required_normalized_report_schema": "sporespore_qsdk_r23d1_engine_cell_report_v2",
+  "required_command_validation": {
+    "schema_version": "sporespore_qsdk_r23d1_command_validation_v1",
+    "normalized_validation_mode": "native_adapter_structure_and_receipts_v1",
+    "heading_command_conditioned_entire_schedule": true,
+    "legacy_command_parity_applicable": false,
+    "legacy_command_parity_checked_step_count": 0,
+    "legacy_command_parity_waived_step_count": 0,
+    "note": "Every engine must validate its own native controller output, receipts, ordering, bounds, memory, and physical application. The Candidate35 host-command parity oracle is not a Balanced Wave or cross-engine authority and is neither invoked nor waived. The zero-command arm supplies physical straight-walk compatibility evidence instead."
+  },
+  "aggregate_supervisor": {
+    "status": "frozen_physical_authorized_pending_exact_source_attestation",
+    "supervisor_path": "sdk/run_qsdk_r23d1_supervisor.ps1",
+    "freeze_path": "sdk/turning/physical_development_freeze_v1.json",
+    "worker_bundle_schema_version": "sporespore_qsdk_r23d1_worker_bundle_v1",
+    "attempt_schema_version": "sporespore_qsdk_r23d1_attempt_v1",
+    "aggregate_evaluation_schema_version": "sporespore_qsdk_r23d1_aggregate_evaluation_v1",
+    "serial_one_shot_required": true,
+    "content_addressed_retention_before_consumption_required": true,
+    "clean_pushed_live_source_required": true,
+    "exact_full_godot_v2_attestation_required": true,
+    "global_operation_lock_required": true,
+    "replacement_or_selective_rerun_permitted": false,
+    "physical_acceptance_authority": false
+  },
+  "future_physical_freeze_requirements": [
+    "all three actual engine workers implement the exact normalized report",
+    "the zero-world gate invokes every actual worker entrypoint and production evaluator",
+    "negative controls cover identity, schedule, application accounting, straight compatibility, signed response, contact, stability, and aggregate completeness",
+    "the source inventory binds every worker, evaluator, adapter, contract, runtime artifact, lock, supervisor, and attestation verifier",
+    "clean pushed source equals origin/main and live GitHub main",
+    "a source-exact full-Godot V2 attestation is retained",
+    "the global locomotion operation lock is held",
+    "all inputs and cell receipts are retained content-addressably before aggregation"
+  ],
+  "authorization": {
+    "physical_execution_authorized": true,
+    "reason": "The unchanged nine-cell development question, all three actual engine workers, the aggregate supervisor, and the complete source/runtime freeze passed from clean pushed source. A clean Godot-including V2 conformance run at the immediately preceding supervisor-freeze commit independently verified the launch machinery. This authorization permits only one serialized R23D1 development attempt and remains operationally blocked until this authorization boundary is itself cleanly pushed and receives a source-exact current full-Godot V2 attestation.",
+    "preauthorization_attestation": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/full-godot-conformance-v2-7e8bc1cb-20260806T050812Z/attestation.json",
+      "raw_sha256": "sha256:b300767e6e1fa6cada0439e0eaa18a375783869f5952ade579ad6761ba7f1df3",
+      "source_commit": "7e8bc1cb8e6c0273cfb013889ee6e851cacab8dd",
+      "source_tree_git_oid": "41dea4cd420e1926a94a2218868ac3c54fdfdaac",
+      "duration_seconds": 1772.4711209,
+      "production_verifier_passed_before_authorization_freeze": true,
+      "new_physical_campaign_executed": false,
+      "physical_acceptance_authority": false
+    },
+    "launch_requires_clean_pushed_live_authorization_source": true,
+    "launch_requires_matching_current_full_godot_v2_attestation": true,
+    "authorized_serial_world_count": 9,
+    "replacement_or_selective_rerun_permitted": false,
+    "q_sdk_r23_satisfied": false,
+    "command_conditioned_turning_accepted": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "claim_boundary": {
+    "development_screen_only": true,
+    "straight_walk_compatibility": false,
+    "command_conditioned_turning": false,
+    "cross_engine_equivalence": false,
+    "trajectory_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_morphology_coverage": false,
+    "population_inference": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

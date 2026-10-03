@@ -1,0 +1,163 @@
+{
+  "schema": "sporespore.lab.br8_knowledge_admission_manifest.v1",
+  "manifest_id": "BR8_BRACE_DETECTION_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_admit_recommended_observation_only_br8_knowledge",
+  "authorization_instruction": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations. complete the bootstraps if possible. but if you absolutely require my input for something thats a design choice that hasnt been decided yet, then defer it and build around it - if possible.",
+  "decision": {
+    "decision_id": "BR8_EARLY_LOSS_OF_VIABILITY_DETECTION_DECISION_V1",
+    "decision_sha256": "sha256:17b1aa1482fcdcda1f6c421477d6f360b2c4633b35f18a307ec29d6aa9b5bc18"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "ACCEPTED_BR9_EXISTING_CONTACT_BRACE",
+      "VALIDATED_CREATURE_GUIDANCE_CONSUMER",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "BR8.0.static_margin_impact_deadline_detection.v1",
+      "cell_id": "BR8.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br8_0_static_margin_impact_deadline.v1.json",
+      "program_id": "BR8_BRACE_DETECTION_0_STATIC_MARGIN_V1",
+      "authoring": {
+        "title": "The certified observer classifies static support margin and airborne impact deadline",
+        "claim": "In the exact certified BR8.0 arithmetic fixtures, the declared observer computes centered, near-edge, brace-threshold, exhausted-support, no-support, and airborne impact-deadline classifications, mirrors signed static margins, and labels the delayed airborne negative control REACTION_TOO_LATE.",
+        "scope": "Only the exact support intervals, COM positions, vertical states, thresholds, timing assumptions, source, and program claim scope certified by br8_20260723T144351Z_90b2c1ce.",
+        "mechanism": "The observer compares projected COM position with the current support interval and separately predicts time to declared impact height from vertical state. It reports a reason and urgency but has no force or guidance channel.",
+        "applicability": [
+          "Checking exact one-dimensional static-support margin classification",
+          "Distinguishing an actionable airborne deadline from the declared delayed negative control"
+        ],
+        "failure_boundaries": [
+          "A classification is an observation and does not execute a physical brace, step, or landing response",
+          "The support interval is not a full 3D viability region",
+          "No free 3D standing, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "static_margin",
+          "impact_deadline",
+          "support_interval",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How angular momentum and morphology-specific reach change an actionable deadline",
+          "Which physical response can satisfy a detected deadline"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR8.1.linear_capture_boundary_clock.v1",
+      "cell_id": "BR8.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br8_1_linear_capture_boundary_clock.v1.json",
+      "program_id": "BR8_BRACE_DETECTION_1_CAPTURE_MARGIN_V1",
+      "authoring": {
+        "title": "The certified linear-capture oracle separates static margin from motion-driven urgency",
+        "claim": "In the exact certified BR8.1 arithmetic fixtures, the declared oracle computes linear-capture position and boundary time, mirrors velocity and loss direction, distinguishes static from capture urgency, reports a reaction-viable warning when warranted, labels the delayed negative control REACTION_TOO_LATE, and rejects nonfinite velocity.",
+        "scope": "Only the declared linear-capture approximation, one-dimensional support interval, COM height and velocity inputs, gravity, thresholds, source, and program claim scope certified by br8_20260723T144351Z_90b2c1ce.",
+        "mechanism": "The oracle projects horizontal velocity through the declared linear inverted-pendulum timescale and compares the resulting capture position with the support boundary. A boundary clock estimates when present motion crosses that boundary.",
+        "applicability": [
+          "Detecting motion-driven urgency while static COM margin remains positive",
+          "Reporting mirrored loss direction and a bounded reaction-time estimate"
+        ],
+        "failure_boundaries": [
+          "The linear-capture approximation is not a nonlinear viability kernel or a physical recovery controller",
+          "Reaction-viable means only that the declared timing inequality remains open; it does not prove a feasible brace",
+          "No executed brace, catch step, free 3D standing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "linear_capture_point",
+          "boundary_clock",
+          "reaction_viability",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How angular momentum, finite foot area, and nonlinear dynamics change the boundary",
+          "How actuator and contact limits should be incorporated into a true viability estimate"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR8.2.hysteretic_viability_state_supervision.v1",
+      "cell_id": "BR8.2",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br8_2_hysteretic_viability_supervision.v1.json",
+      "program_id": "BR8_BRACE_DETECTION_2_HYSTERESIS_V1",
+      "authoring": {
+        "title": "The certified supervisor escalates immediately and releases viability states hysteretically",
+        "claim": "In the exact certified BR8.2 sequence fixtures, the declared observer supervisor escalates immediately from STAND through PRECARIOUS to BRACE, retains reasoned digest-bound transitions, refuses release below the safe margin, and de-escalates by only one state after each complete safe dwell.",
+        "scope": "Only the exact input observations, thresholds, dwell lengths, transition ordering, digest contract, source, and program claim scope certified by br8_20260723T144351Z_90b2c1ce.",
+        "mechanism": "Urgent observations raise the reported state without delay, while recovery requires a complete safe dwell and can release only one state at a time. Transition evidence binds the before-state, after-state, reason, and observed input digest.",
+        "applicability": [
+          "Preventing noisy observations from instantly clearing a high-urgency detector state",
+          "Auditing why and when a detector state escalated or released"
+        ],
+        "failure_boundaries": [
+          "BRACE is a detector-state label and not evidence that a physical brace command or action occurred",
+          "The supervisor emits no force, torque, step, foot pin, root rescue, creature edit, or guidance command",
+          "No free 3D standing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "hysteresis",
+          "viability_state",
+          "digest_bound_transition",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How detector dwell thresholds should scale with morphology and controller latency",
+          "How a future actuator should acknowledge or reject an observed BRACE state"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR8.3.passive_disturbance_detection_matrix.v1",
+      "cell_id": "BR8.3",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br8_3_passive_disturbance_detection.v1.json",
+      "program_id": "BR8_BRACE_DETECTION_3_PASSIVE_DISTURBANCE_MATRIX_V1",
+      "authoring": {
+        "title": "The certified passive scaffold matrix detects impulse, tilt, and support-removal urgency",
+        "claim": "In the exact certified BR8.3 passive Godot/Jolt fixtures, a declared central horizontal impulse produces capture-driven BRACE while static margin and reaction time remain, a slowly tilting platform passes through PRECARIOUS and BRACE before measured static support exhaustion, and declared right-support removal is observed and classified on its declared tick.",
+        "scope": "Only the exact rigid-body geometry and masses, contact set, unpowered Generic6DOF planar guide, friction, central impulse, platform-rotation schedule, support-removal tick, thresholds, timestep, solver, engine, source, and program claim scope certified by br8_20260723T144351Z_90b2c1ce.",
+        "mechanism": "Measured transforms, velocities, and contact membership feed the observation-only detector and hysteretic supervisor. The fixture interventions disturb the passive scaffolded bodies; the detector does not apply a response.",
+        "applicability": [
+          "Checking detector timing against one declared central impulse and slow tilt",
+          "Checking same-tick observation and classification of one declared support removal"
+        ],
+        "failure_boundaries": [
+          "The unpowered guide is a material scaffold that locks out-of-plane translation, roll, and yaw",
+          "The detector and supervisor execute no brace, step, new support contact, root rescue, or creature guidance",
+          "REACTION_TOO_LATE is a negative-control classification and not evidence of a failed physical brace",
+          "No free 3D standing, unconstrained balance, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "passive_disturbance",
+          "planar_scaffold",
+          "support_removal",
+          "tilting_platform",
+          "observation_only"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Whether the observations remain timely when out-of-plane degrees of freedom are released",
+          "Whether a finite articulated brace or catch step can act before the detected deadline",
+          "How detector thresholds generalize across morphology, terrain, and disturbance direction"
+        ],
+        "supersedes": []
+      }
+    }
+  ]
+}

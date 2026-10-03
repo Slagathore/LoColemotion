@@ -1,0 +1,153 @@
+{
+  "schema_version": "sporespore_cross_engine_c6_host_characterization_closure_v1",
+  "campaign_id": "C6-HOST-CHARACTERIZATION",
+  "gate_id": "C6-HC1",
+  "status": "closed_mixed_result_rapier_fixture_invalid_mujoco_pass",
+  "source_commit": "4707b8d5d467d899a3b6ea1d8f5caf28bd99f008",
+  "source_was_clean_and_equal_to_origin_main": true,
+  "preregistration": {
+    "path": "sdk/cross_engine_c6_host_characterization_preregistration.json",
+    "raw_sha256": "sha256:2ff51bc87745d84f2d4d0521005098ead3bef20e691b25f9f49c0cf7eadade8e"
+  },
+  "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-4707b8d",
+  "artifacts": {
+    "rapier_report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-4707b8d\\rapier\\report.json",
+      "bytes": 22074,
+      "sha256": "sha256:d6c7d8a886824922770d860c43bab15bc8f0624792f89cbb71e3b36b8ede0500"
+    },
+    "rapier_stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-4707b8d\\rapier\\stdout.log",
+      "bytes": 22074,
+      "sha256": "sha256:d6c7d8a886824922770d860c43bab15bc8f0624792f89cbb71e3b36b8ede0500"
+    },
+    "rapier_stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-4707b8d\\rapier\\stderr.log",
+      "bytes": 871,
+      "sha256": "sha256:4702dd42b8533e15d67db6a4f5427c0904638b2278aa0b9190ad235b1440c0ce"
+    },
+    "mujoco_report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-4707b8d\\mujoco\\report.json",
+      "bytes": 22635,
+      "sha256": "sha256:e90af6eb43f84aebcf1d5eebb4cd5e3ef78dfe0246cc7f669d81d0b65e854f4e"
+    },
+    "mujoco_stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-4707b8d\\mujoco\\stdout.log",
+      "bytes": 23243,
+      "sha256": "sha256:4bfd0f85649037a982a097b31d74ce477025578ea46cd5d09bddd0058228bcaf"
+    },
+    "mujoco_stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-4707b8d\\mujoco\\stderr.log",
+      "bytes": 0,
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "rapier_result": {
+    "ok": false,
+    "world_attempt_count": 28,
+    "world_build_count": 24,
+    "material_profile_count": 3,
+    "breakaway_trial_count": 21,
+    "steady_slide_trial_count": 3,
+    "material_characterization_complete_for_declared_grid": true,
+    "actuator_cell_count": 4,
+    "failed_actuator_cell_count": 4,
+    "actuator_characterization_complete_for_declared_grid": false,
+    "actuator_failure": "All four cells remained at exactly zero angle and failed the 0.02 rad final-error gate.",
+    "material_observations": {
+      "breakaway_brackets": {
+        "0.2": [
+          1.0,
+          1.25
+        ],
+        "0.6": [
+          1.0,
+          1.25
+        ],
+        "1.0": [
+          1.0,
+          1.25
+        ]
+      },
+      "steady_slide_effective_to_authored_ratios": {
+        "0.2": 0.999971866607666,
+        "0.6": 0.999995708465576,
+        "1.0": 1.00000047683716
+      }
+    }
+  },
+  "mujoco_result": {
+    "ok": true,
+    "world_attempt_count": 28,
+    "world_build_count": 28,
+    "material_profile_count": 3,
+    "breakaway_trial_count": 21,
+    "steady_slide_trial_count": 3,
+    "material_characterization_complete_for_declared_grid": true,
+    "actuator_cell_count": 4,
+    "failed_actuator_cell_count": 0,
+    "actuator_characterization_complete_for_declared_grid": true,
+    "material_observations": {
+      "breakaway_brackets": {
+        "0.2": [
+          1.0,
+          1.25
+        ],
+        "0.6": [
+          1.0,
+          1.25
+        ],
+        "1.0": [
+          0.75,
+          1.0
+        ]
+      },
+      "steady_slide_effective_to_authored_ratios": {
+        "0.2": 1.25646921816038,
+        "0.6": 0.889159309855668,
+        "1.0": 0.948359627674517
+      }
+    }
+  },
+  "diagnosis": {
+    "classification": "rapier_actuator_fixture_invalid_zero_angular_inertia",
+    "observed_source_pattern": "The Rapier actuator child used RigidBodyBuilder::additional_mass(1.0) with a cuboid collider whose mass was explicitly 0.0.",
+    "rapier_0_34_semantics": "Rigid-body mass properties begin at zero. Collider contributions are accumulated first. RigidBodyAdditionalMassProps::Mass then calls set_mass(new_mass, true), which rescales existing angular inertia; a zero-density collider supplied zero inertia, so the resulting principal angular inertia stayed zero.",
+    "why_zero_angle_is_expected": "Rapier treats zero angular inertia as infinite rotational inertia, so the revolute motor could not rotate the child even though translational mass was nonzero.",
+    "authoritative_sources": [
+      {
+        "source": "rapier3d 0.34.0 crate",
+        "path": "src/dynamics/rigid_body.rs:1711",
+        "relevance": "documents additional mass and shape-derived collider mass-property behavior"
+      },
+      {
+        "source": "rapier3d 0.34.0 crate",
+        "path": "src/dynamics/rigid_body_components.rs:414",
+        "relevance": "shows collider accumulation followed by additional-mass rescaling"
+      },
+      {
+        "source": "parry3d 0.29.0 crate",
+        "path": "src/mass_properties/mass_properties.rs:340",
+        "relevance": "shows set_mass rescales the existing inverse principal inertia"
+      },
+      {
+        "source": "https://github.com/dimforge/rapier",
+        "relevance": "official Rapier source and API authority"
+      }
+    ]
+  },
+  "decision": {
+    "overall_gate_passed": false,
+    "rapier_engine_failure_claimed": false,
+    "mujoco_host_characterization_pass_retained": true,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "material_robustness": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false,
+    "same_identity_rerun_forbidden": true,
+    "successor": "A distinct C6-HC1-R1 may align both actuator fixtures to one shape-derived, nonzero-inertia 1 kg cuboid and must be frozen before any successor world."
+  }
+}

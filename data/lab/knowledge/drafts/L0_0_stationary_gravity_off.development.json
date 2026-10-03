@@ -1,0 +1,31 @@
+{
+  "entry_id": "L0.stationary_gravity_off.no_invented_motion.v1",
+  "title": "Zero-input isolated rigid body does not invent motion",
+  "claim": "For the exact L0.0 isolated-body configuration, the measured position, velocity, kinetic energy, contact count, and externally applied work remain within the preregistered stationary-body gates for 60 Jolt integration intervals.",
+  "scope": "One unjointed 2 kg RigidBody3D at 60 physics ticks per second, gravity_scale 0, zero initial velocity, zero linear and angular damping, no contacts, no controller, no application receipts, no interventions, and the full_contacts_v1 observer with a 32-contact cap.",
+  "mechanism": "With measured gravity equal to zero and sealed command, application, intervention, and contact streams proving that no external operation was applied, linear momentum should remain zero. This experiment tests whether the engine fixture and observer preserve that zero-input baseline; it does not test support or actuation.",
+  "applicability": [
+    "Calibrating the BR1 flight recorder before articulated experiments",
+    "Detecting invented translation, velocity, energy, or contacts in an isolated unary rigid-body fixture"
+  ],
+  "failure_boundaries": [
+    "Does not establish standing, bracing, fall arrest, getting up, gait, or walking",
+    "Does not exercise joints, motors, tendons, muscles, contact reactions, friction, or support geometry",
+    "Does not generalize from one rigid body to articulated or soft-body morphologies",
+    "Does not establish the effect of changing gravity, damping, mass, timestep, or observer profile because those require separate sweeps or paired controls"
+  ],
+  "morphology_tags": [
+    "isolated_no_contact",
+    "jolt",
+    "unary_rigid_body"
+  ],
+  "parameter_effects": [],
+  "minimal_repair_rules": [],
+  "unknowns": [
+    "Whether the same analytic agreement holds across the preregistered L0.1 timestep sweep under gravity",
+    "Whether nonzero initial momentum is preserved in the L0.2 ballistic control",
+    "Whether full contact instrumentation stays inside the L0.3 observer parity envelope",
+    "Whether BR2 can certify articulated inertia and angular momentum without unavailable channels"
+  ],
+  "supersedes": []
+}

@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br3b_knowledge_admission_manifest_v1.schema.json",
+  "title": "SporeSpore BR3B observation-only knowledge admission manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "manifest_id",
+    "status",
+    "authorized_by",
+    "authorization_basis",
+    "authorization_instruction",
+    "decision",
+    "guidance_policy",
+    "entries"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br3b_knowledge_admission_manifest.v1"},
+    "manifest_id": {"const": "BR3B_L3_KNOWLEDGE_ADMISSION_V1"},
+    "status": {"const": "authorized"},
+    "authorized_by": {"const": "Cole"},
+    "authorization_basis": {
+      "const": "standing_authority_to_admit_recommended_observation_only_br3b_knowledge"
+    },
+    "authorization_instruction": {
+      "const": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations."
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decision_id", "decision_sha256"],
+      "properties": {
+        "decision_id": {"const": "BR3B_L3_BASIC_LOADED_FOOT_TRUTH_DECISION_V1"},
+        "decision_sha256": {
+          "const": "sha256:f607c2b86599b1bc2ef085ff29819edd736ef161c8e5024916fae8b7d753ea85"
+        }
+      }
+    },
+    "guidance_policy": {"$ref": "#/$defs/guidance_policy"},
+    "entries": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/entry_spec"}
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,159}$"
+    },
+    "parameter_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["parameter", "change", "affects", "mechanism", "hinges_on"],
+      "properties": {
+        "parameter": {"type": "string", "minLength": 1},
+        "change": {"type": "string", "minLength": 1},
+        "affects": {"type": "string", "minLength": 1},
+        "mechanism": {"type": "string", "minLength": 1},
+        "hinges_on": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "guidance_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "automatic_creature_guidance_allowed",
+        "automatic_application_allowed",
+        "unlock_requires"
+      ],
+      "properties": {
+        "mode": {"const": "observation_only"},
+        "automatic_creature_guidance_allowed": {"const": false},
+        "automatic_application_allowed": {"const": false},
+        "unlock_requires": {
+          "const": [
+            "ACCEPTED_ARTICULATED_CONTACT_BEARING_SUPPORT_MILESTONE",
+            "SEPARATE_GUIDANCE_DECISION"
+          ]
+        }
+      }
+    },
+    "authoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "claim",
+        "scope",
+        "mechanism",
+        "applicability",
+        "failure_boundaries",
+        "morphology_tags",
+        "parameter_effects",
+        "unknowns",
+        "supersedes"
+      ],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "claim": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1},
+        "mechanism": {"type": "string", "minLength": 1},
+        "applicability": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "failure_boundaries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "morphology_tags": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/stable_id"},
+          "uniqueItems": true
+        },
+        "parameter_effects": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/parameter_effect"}
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "supersedes": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/stable_id"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "entry_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_id",
+        "cell_id",
+        "knowledge_class",
+        "output_name",
+        "program_id",
+        "authoring"
+      ],
+      "properties": {
+        "entry_id": {"$ref": "#/$defs/stable_id"},
+        "cell_id": {"pattern": "^L3\\.[0-2]$"},
+        "knowledge_class": {"const": "milestone_observation"},
+        "output_name": {
+          "pattern": "^br3b_l3_[0-2]_[a-z0-9_]+\\.v1\\.json$"
+        },
+        "program_id": {"pattern": "^BR3B_L3_[0-2]_[A-Z0-9_]+_V1$"},
+        "authoring": {"$ref": "#/$defs/authoring"}
+      }
+    }
+  }
+}

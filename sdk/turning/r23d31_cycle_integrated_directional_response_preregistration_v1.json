@@ -1,0 +1,168 @@
+{
+  "schema_version": "sporespore_qsdk_r23d31_cycle_integrated_directional_response_preregistration_v1",
+  "status": "prospective_zero_world_only",
+  "campaign_id": "QSDK-R23D31-RAPIER-CYCLE-INTEGRATED-DIRECTIONAL-RESPONSE-MEASUREMENT-VALIDATION",
+  "gate_id": "QSDK-R23D31",
+  "study_classification": "prospective_finite_rapier_measurement_validation",
+  "question": "On one prospectively frozen held-out Rapier fixture, does the unchanged R23D29 controller retain safe walking and produce bilateral directional response under a full-scheduler-cycle estimator whose physical and measurement verdicts are reported independently?",
+  "immutable_lineage": {
+    "r23d30_physical_closure": "sdk/turning/r23d30_cycle_coherent_directional_response_closure_v1.json",
+    "r23d30_closure_status": "closed_valid_complete_negative_no_measurement_validation_candidate",
+    "r23d30_all_declared_gates_remain_binding": true,
+    "r23d30_same_identity_rerun_forbidden": true,
+    "r23d30_outcome_reinterpreted": false,
+    "r23d30_worlds_reused_as_new_cells": false,
+    "r23d29_controller_behavior_inherited_unchanged": true
+  },
+  "measurement_rationale": {
+    "r23d30_observed_boundary": "The full-cycle raw and same-fixture reference-conditioned gates passed bilaterally and all five raw swing directions passed, while one positive swing did not exceed the synchronized reference swing.",
+    "property_distinction": "A commanded arm need not dominate the zero-command arm during every gait phase to produce a net directional response over the complete periodic scheduler cycle. Phase-wise reference dominance is a stronger transient-dominance property, not part of the independently derived cycle-integrated turning estimand.",
+    "selecting_measurement": "Shortest-arc yaw unwrapping followed by complete 360-step baseline and terminal scheduler-cycle means, with raw and synchronized-reference-conditioned bilateral magnitude gates.",
+    "nonselecting_diagnostics": [
+      "all five terminal 72-step raw swing directions",
+      "all five terminal 72-step synchronized-reference-conditioned directions",
+      "legacy endpoint yaw delta"
+    ],
+    "reporting_correction": "Common physical gates are computed from the unchanged per-cell physical receipts before measurement is applied. Measurement failures remain top-level measurement failures and cannot rewrite common physical gate fields.",
+    "controller_change": false,
+    "threshold_change": false,
+    "fixture_change": true,
+    "fresh_held_out_seed": 21505,
+    "engine_identity_input_permitted": false,
+    "command_sign_branch_permitted": false
+  },
+  "candidate_family": {
+    "parent_policy_id": "sporespore_balanced_wave_r23d29_two_swing_persistent_predictive_stability_guarded_steering_v1",
+    "behavioral_controller_change_set": [],
+    "measurement_change_set": [
+      "selector:full_scheduler_cycle_raw_and_reference_conditioned_response_only",
+      "phase_subwindows:retained_as_nonselecting_diagnostics",
+      "verdict_reporting:common_physical_and_measurement_gates_separated"
+    ],
+    "ordered_candidates": [
+      {
+        "candidate_id": "two_swing_persistent_predictive_stability_guarded_0p20_to_0p28",
+        "controller_policy_id": "sporespore_balanced_wave_r23d29_two_swing_persistent_predictive_stability_guarded_steering_v1",
+        "minimum_steering_fraction": 0.2,
+        "maximum_steering_fraction": 0.28,
+        "full_authority_maximum_tilt_rad": 0.1,
+        "minimum_authority_tilt_rad": 0.2,
+        "minimum_support_contact_count": 2,
+        "prediction_horizon_s": 0.6,
+        "prediction_horizon_scheduler_swing_steps": 72,
+        "tilt_rate_source_id": "state_frame_base_twist_world_angular_velocity_v1",
+        "floor_hold_duration_steps": 144,
+        "floor_hold_scheduler_swing_count": 2,
+        "floor_hold_refresh_trigger": "instantaneous_effective_authority_reaches_baseline",
+        "controller_memory_schema": "sporespore_balanced_wave_persistent_predictive_guard_memory_v1",
+        "guard_receipt_schema": "sporespore_steering_authority_guard_receipt_v3"
+      }
+    ],
+    "finite_difference_trace_window_selected": false,
+    "engine_specific_gait_logic_permitted": false,
+    "candidate_or_outcome_branching_permitted": false,
+    "direction_neutral_guard_required": true,
+    "independent_measurement_oracle_required": true
+  },
+  "frozen_matrix": {
+    "stage_id": "rapier_cycle_integrated_directional_response_measurement_validation",
+    "ordered_engine_ids": ["rapier_parry"],
+    "ordered_candidate_ids": ["two_swing_persistent_predictive_stability_guarded_0p20_to_0p28"],
+    "ordered_arm_ids": ["reference_zero", "positive_heading", "negative_heading"],
+    "declared_cell_count": 3,
+    "serial_execution_required": true,
+    "all_cells_run_regardless_of_intermediate_outcome": true,
+    "morphology_id": "qsdk_r05_generated_s169",
+    "seed": 21505,
+    "initial_condition_policy": "physical_wave_gait_compile_seeded_initial_perturbation_v1",
+    "initial_perturbation": {
+      "campaign_seed": 21505,
+      "fixture_vertical_clearance_m": 0.00038353752461262,
+      "fixture_yaw_rad": -0.00483254250138998,
+      "initial_linear_velocity_world_m_s": [-0.000736588845029473, 0.0, 0.00354705285280943],
+      "initial_torso_angular_velocity_world_rad_s": [0.000218588626012206, -0.0021993569098413, 0.00194169511087239],
+      "gait_phase_offset_ticks": 2
+    },
+    "physics_hz": 120,
+    "settlement_step_count": 240,
+    "controller_step_count": 2992,
+    "turn_start_step": 600,
+    "turn_end_step_exclusive": 1800,
+    "desired_heading_offsets_rad_by_arm": {
+      "reference_zero": 0.0,
+      "positive_heading": 0.2,
+      "negative_heading": -0.2
+    }
+  },
+  "cycle_coherent_measurement": {
+    "yaw_unwrap_mode": "shortest_arc_continuous_v1",
+    "baseline_start_step_inclusive": 240,
+    "baseline_end_step_exclusive": 600,
+    "terminal_start_step_inclusive": 1440,
+    "terminal_end_step_exclusive": 1800,
+    "scheduler_swing_steps": 72,
+    "scheduler_cycle_steps": 360,
+    "terminal_swing_count": 5,
+    "cell_shift": "terminal_cycle_mean_unwrapped_yaw_minus_baseline_cycle_mean_unwrapped_yaw",
+    "positive_conditioned_shift": "positive_heading_cell_shift_minus_reference_zero_cell_shift",
+    "negative_conditioned_shift": "reference_zero_cell_shift_minus_negative_heading_cell_shift",
+    "minimum_raw_signed_cycle_shift_rad": 0.01,
+    "minimum_reference_conditioned_cycle_shift_rad": 0.01,
+    "selecting_gate_ids": [
+      "raw_signed_cycle_shift",
+      "reference_conditioned_cycle_shift"
+    ],
+    "every_terminal_swing_raw_sign_selects_result": false,
+    "every_terminal_swing_conditioned_sign_selects_result": false,
+    "swing_sign_zero_tolerance_rad": 1e-12,
+    "legacy_endpoint_reported_as_secondary_diagnostic": true,
+    "threshold_provenance": "The unchanged 0.01 rad value is the inherited development mechanism-detection floor equal to five percent of the 0.2 rad heading command. It is not a calibrated release acceptance or equivalence margin."
+  },
+  "frozen_common_physical_gates": {
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "zero_torso_ground_contact_required": true,
+    "zero_controller_errors_required": true,
+    "zero_nonfinite_observations_required": true,
+    "zero_actuator_application_mismatches_required": true,
+    "terminal_quiescent_taper_required": false,
+    "inherited_unchanged_from_r23d30": true
+  },
+  "selector": {
+    "candidate_eligibility": "All three held-out cells must be execution-valid and pass every common physical gate; both commanded arms must pass the raw and synchronized-reference-conditioned complete-cycle magnitude gates.",
+    "selected_candidate_is_validation": false,
+    "selected_measurement_is_validation": true,
+    "positive_classification": "valid_complete_positive_measurement_validation_candidate",
+    "otherwise_classification": "valid_complete_negative_no_measurement_validation_candidate"
+  },
+  "cohort_adequacy": {
+    "declared_fixture_count": 1,
+    "purpose": "A single fresh held-out fixture can validate only whether the corrected cycle-integrated measurement and reporting boundary survive new physical execution.",
+    "population_inference": false,
+    "robustness_inference": false,
+    "replication_required_before_turning_claim": true,
+    "cross_engine_validation_required_before_portable_claim": true
+  },
+  "evidence": {
+    "complete_focused_zero_world_preflight_required": true,
+    "full_historical_conformance_required_per_campaign": false,
+    "clean_pushed_source_required": true,
+    "campaign_local_lca1_qualification_required": true,
+    "content_addressed_trace_before_terminal_required": true,
+    "one_world_build_and_attempt_per_cell_required": true,
+    "same_identity_rerun_allowed": false
+  },
+  "claims": {
+    "finite_rapier_cycle_integrated_measurement_validation": false,
+    "finite_rapier_turning_validation": false,
+    "turning_validation": false,
+    "portable_basic_turning": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

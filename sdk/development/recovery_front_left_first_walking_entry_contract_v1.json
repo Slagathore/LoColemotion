@@ -1,0 +1,82 @@
+{
+  "schema_version": "sporespore_development_recovery_front_left_first_walking_entry_contract_v1",
+  "profile_id": "front_left_first_joint_bounded_contact_gated_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_command_schedule",
+    "question_class": "development"
+  },
+  "segment_id": "walking_resume",
+  "warmup_steps": 72,
+  "first_full_amplitude_local_step": 73,
+  "first_contact_gated_local_step": 1,
+  "maximum_amplitude": 0.5994550408719347,
+  "phase_progression_entry_profile_id": "normal_one_cycle_amplitude_ramp_with_control_trace_v1",
+  "phase_progression_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "phase_progression_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "amplitude_and_retention_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "amplitude_and_retention_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "normal_launcher_resource": "res://scripts/lab/gait/physical_wave_gait_quadruped.gd",
+  "normal_launcher_raw_sha256": "sha256:80f5197940e971dbff6bba0720eb92d72843386754f327e5c533f3737fdf17eb",
+  "bound_source_files": [
+    {
+      "path": "sdk/development/recovery_joint_bounded_walking_entry_contract_v1.json",
+      "raw_sha256": "sha256:2030f252770ec0d13635f2955afc9dafabb54c4fb87e375520908637dd4877c6"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "raw_sha256": "sha256:25b413f0502031853d17c156e0b5e3c9ae0312cdc5355ef7637bbbc4fa150282"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "raw_sha256": "sha256:b296804ab597d62d2cb4e1fdc497505fcc89198793437a8f68f2d568a32925b9"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "raw_sha256": "sha256:1a41786768749149a09789436dec0660e4a99f39db1b410aacd27e7d0be91d1b"
+    },
+    {
+      "path": "sdk/development/recovery_contact_gated_walking_entry_contract_v1.json",
+      "raw_sha256": "sha256:b2f49ed6ed7ff88555eebb7fbcc1a39f631253e304fbefa779c27fa6275a8145"
+    },
+    {
+      "path": "sdk/development/recovery_front_left_first_walking_start_contract_v1.json",
+      "raw_sha256": "sha256:d61b073d9ac7f107c2be7c0b4243f371b417e62e6fd329a4c8e8e62450ef3e04"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v30_startup_diagnosis.py",
+      "raw_sha256": "sha256:51b90d1271e4e16df277e6fa56399f3085a8ccbfd4a0ecf4f43f319daf95ea4c"
+    }
+  ],
+  "rule": "Preserve V30's exact contact-gated mode from command one, 72-step wall-clock amplitude ramp and cap, V20 recovery/stance DLL and commands, native contacts, motor limits, model, 986-step tail, 1338-step cap and every evaluator. Change only the initial gait-clock offset to 90 before the session's first command, so front-left is the first scheduled swing. The independent reader requires exact consecutive memory equality, without a mode-switch exception. Prefix stays unchanged. Select only the separately bound front-left-first start contract.",
+  "parameter_basis": "At V30's retained walking startup, the raw-contact triangle excluding the scheduled rear-left foot places measured COM outside by 1.1187170089549756 mm. The triangle excluding front-left has the largest positive distance among all four choices, 1.6251051471231397 mm. Select its existing policy phase index 1 times 360/4 = 90, not an arbitrary timing grid. These tiny static distances omit momentum and subsequent contact motion and do not establish viability or predict improvement.",
+  "compatibility_scope": "Distinct startup identity with the same amplitude, phase-mode family and retention format. Preserve every earlier zero-phase, seeded and clocked profile. This is one fixed development hypothesis, not online foot choice, a support-margin threshold, force-aware recovery, a sweep or cross-engine claim.",
+  "diagnostic_basis": {
+    "source_closure": "sdk/development/recovery_attempts/f31bc1e0355244b1866629edd7122d81.json",
+    "source_closure_sha256": "sha256:3a2b29b37b2054ef0b9105d34591fb8da6084e8ac16e6b4d9dd0daaa7a78a3df",
+    "source_report_sha256": "sha256:284285483ed8242d1c7b13a27118862465f71fa8ddba6c2067d2374ffcdc9359",
+    "observer": "sdk/conformance/development_recovery_v30_startup_diagnosis.py",
+    "first_front_right_flight_trace_interval": [
+      34,
+      114
+    ],
+    "first_flight_raw_contact_count": 0,
+    "first_flight_native_input_count": 80,
+    "startup_raw_contact_triangle_margins_m": {
+      "rear_left": -0.0011187170089549756,
+      "front_left": 0.0016251051471231398,
+      "rear_right": -0.0016251051471231398,
+      "front_right": 0.0011187170089549756
+    },
+    "selected_first_swing_limb": "front_left",
+    "selected_policy_phase_index": 1,
+    "selected_initial_gait_step": 90,
+    "minimum_support_margin_required": null,
+    "causal_attribution_proven": false,
+    "physical_outcome_predicted": false
+  },
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "required_start_profile_id": "front_left_first_contact_gated_resume_v1"
+}

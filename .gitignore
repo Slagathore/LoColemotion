@@ -1,0 +1,88 @@
+# Godot 4+ specific ignores
+.godot/
+
+# Generated GDScript identity sidecars are operator/editor state unless a
+# separate repository-policy change explicitly promotes one. Already tracked
+# sidecars remain tracked; this keeps new editor churn out of evidence commits.
+*.gd.uid
+# Explicitly selected development extensions and the PowerShell Add-Type
+# helper also acquire editor-generated identity sidecars. Keep the tracked
+# default extension UID; these local discovery artifacts are not SDK inputs.
+/sdk/adapters/godot/development_candidate_runtimes/*.gdextension.uid
+/sdk/adapters/godot/development_rate_limited_recovery_runtime/*.gdextension.uid
+/sdk/adapters/godot/development_rearward_fold_runtime/*.gdextension.uid
+/sdk/process/ExactJsonV1.cs.uid
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# Exported builds
+/build/
+/export/
+*.pck
+*.zip
+
+# Local tooling scratch (regenerated per run; outputs get committed elsewhere)
+.fusion/
+
+# Pre-edit backup snapshots (tool-generated; e.g. .bak_gait_<timestamp>/)
+.bak_*/
+
+# Local design notes / long-form transcripts (kept on disk, not in the repo)
+docs/design_notes/
+
+# Editor-saved / generated / duplicated creatures are scratch by default (keep the
+# dir via .gitkeep). Promote a curated creature explicitly: git add -f data/creatures/<name>.tres
+data/creatures/*.tres
+
+# Headless rollout/diagnosis outputs are regenerated evidence, not source.
+data/runs/
+
+# Isolated lab tests use res://.tmp for disposable fixtures and adversarial
+# bundle copies. A controlled abort must not turn scratch evidence into source.
+/.tmp/
+
+# Coding assistant files stay local and are never tracked.
+AGENTS.md
+CLAUDE.md
+.claude/
+.codex/
+.agents/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+/debug.log
+*.tmp
+*.swp
+# Editor settings are machine specific.
+.vscode/
+.idea/
+# CodeLapse editor snapshots are local copies, never experiment inputs.
+/.snapshots/
+# Engine-neutral Rust SDK build output.
+/sdk/target/
+# Python binding bytecode/cache output.
+__pycache__/
+*.py[cod]
+# Project-local MuJoCo host environment. Requirements and adapter source are
+# tracked; downloaded wheels and installed packages are machine-local.
+/sdk/adapters/mujoco/.venv/
+
+# Local research-paper copies. Their canonical citations, source URLs, local
+# paths, and SHA-256 digests are retained in
+# docs/research/LOCOMOTION_RESEARCH_SOURCES.md; do not commit publisher PDFs.
+# Keep the rule root-scoped so an explicitly designed PDF under docs/ or
+# another project directory can still be tracked.
+/*.pdf

@@ -1,0 +1,252 @@
+{
+  "schema_version": "sporespore_mujoco_c6_s169_per_actuator_force_limit_host_characterization_vh5_preregistration_v1",
+  "campaign_id": "C6-MUJOCO-S169-PER-ACTUATOR-FORCE-LIMIT-HOST-CHARACTERIZATION-VH5",
+  "gate_id": "C6-MJC-HC-VH5",
+  "status": "frozen_before_first_c6_mjc_hc_vh5_campaign_world",
+  "recorded_utc": "2026-08-03T06:46:41Z",
+  "frozen_utc": "2026-08-03T06:52:30Z",
+  "implementation_parent_commit": "086f3019228167e8f8d526200d2b7304af0ed6e0",
+  "study_class": "exact_finite_s169_per_actuator_force_limit_profile_characterization",
+  "estimand": {
+    "question": "Does the exact MuJoCo 3.11.0 five-substep velocity-only actuator satisfy the complete temporally measured transient, signed-load, force-cap, force-time, momentum, convergence, and symmetry gate at each of the four exact force limits derived from the finite s169 selected-policy actuator budgets?",
+    "decision_unit": "the exact ordered ninety-six-cell C6-MJC-HC-VH5 grid",
+    "population_inference": false,
+    "continuous_force_limit_domain": false,
+    "superiority": false,
+    "equivalence": false,
+    "selector_present": false,
+    "all_cells_required": true,
+    "scope_if_confirmed": "exact finite MuJoCo 3.11.0 official CPython wheel characterization for the four declared s169 force-limit classes under the declared scalar fixture, five-substep host, target/load/initial-condition grid, horizon, temporal trace, and thresholds"
+  },
+  "scientifically_distinct_successor": {
+    "new_campaign_identity": true,
+    "new_gate_identity": true,
+    "new_source_identity_required_for_execution": true,
+    "vh4_remains_closed_positive_exact_finite": true,
+    "vh4_closure_path": "sdk/mujoco_c6_velocity_only_stability_host_characterization_vh4_closure.json",
+    "vh4_closure_raw_sha256": "faf6aabe9d5bb36a410a4447416c63697666640b458bae49ee1662aa045e4cb9",
+    "vh4_uniform_force_limit_nm": 6.0,
+    "no_vh4_threshold_result_cell_or_profile_reinterpreted": true,
+    "difference_from_vh4": "VH5 retains VH4's exact scalar fixture, velocity gain, five 1/600 s implicitfast substeps, target/load/initial-condition cells, temporal force sampling, momentum reconstruction, horizon, and thresholds. It crosses that complete grid with the four exact force limits derived from the selected s169 actuator budgets, creating 96 cells and 48 signed pairs under a new candidate profile identity.",
+    "selected_policy_development_run_is_not_inherited_evidence": true,
+    "development_uniform_vh4_budget_violation_is_design_information_only": true,
+    "development_walking_trajectory_is_not_scored_by_vh5": true
+  },
+  "selected_policy_source_binding": {
+    "morphology_id": "qsdk_r05_generated_s169",
+    "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+    "morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "selected_policy_development_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_development.py",
+    "selected_policy_development_raw_sha256": "a4dd40eac736c88c6acf661e503aa3cb4414a3e5f8e5e4fc6cc8ef226ab609e0",
+    "canonical_implementation_path": "sdk/core/src/canonical_actuation.rs",
+    "canonical_implementation_raw_sha256": "33082ebac939141dc6999a9e9d5743a156fa8f89f67b077042fb906518a6e198",
+    "derivation_rule": "maximum_force_nm = portable_maximum_impulse_nms / (1/120 s)",
+    "compiled_descriptor_and_force_limit_reconstruction_required_before_any_world": true
+  },
+  "host_identity": {
+    "adapter_id": "sporespore_mujoco_adapter",
+    "engine": "MuJoCo",
+    "engine_version": "3.11.0",
+    "binding": "official_cpython_windows_wheel",
+    "python_version": "3.11.9",
+    "numpy_version": "2.4.6",
+    "portable_controller_timestep_s": 0.008333333333333333,
+    "internal_physics_timestep_s": 0.0016666666666666668,
+    "internal_physics_steps_per_controller_step": 5,
+    "integrator": "implicitfast",
+    "solver": "Newton",
+    "solver_iterations": 20,
+    "line_search_iterations": 7,
+    "gravity_m_s2": [0.0, 0.0, 0.0]
+  },
+  "host_source_semantics": {
+    "requirements_lock_path": "sdk/adapters/mujoco/requirements-lock.txt",
+    "requirements_lock_windows_checkout_raw_sha256": "38e97a013ec5e7c5bd88cd4dc1c2c54dd151936aa7f24c1f87abac19853b77b9",
+    "python_base_executable": "C:/Program Files/Python311/python.exe",
+    "python_base_executable_raw_sha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+    "python_generalized_inertia_field": "M",
+    "python_forbidden_generalized_inertia_field": "qM",
+    "python_mj_fullM_signature": "mj_fullM(m: mujoco._structs.MjModel, d: mujoco._structs.MjData, dst: typing.Annotated[numpy.typing.NDArray[numpy.float64], \"[m, n]\", \"flags.writeable\", \"flags.c_contiguous\"]) -> None",
+    "python_split_step_functions": ["mj_step1", "mj_step2"],
+    "installed_wheel_files": [
+      {"relative_to_site_packages":"mujoco-3.11.0.dist-info/METADATA","raw_sha256":"3e4faabcb9a58cbde47388f34dfdac1602d79a14b2c6338df01f2618d461c385"},
+      {"relative_to_site_packages":"mujoco-3.11.0.dist-info/WHEEL","raw_sha256":"0b81650649feb673233bd9f4ddac78c902452a1d8bf79cf7362558225eedf1c6"},
+      {"relative_to_site_packages":"mujoco-3.11.0.dist-info/RECORD","raw_sha256":"6a17a9ec2623f033811a474901a696780abe6284b860f6a03aded9d629ed09f1"},
+      {"relative_to_site_packages":"mujoco/mujoco.dll","raw_sha256":"5144ebd4c805290c8be5a25702ab83ebc137bea67cf4a767164b38fc8c69b2dc"},
+      {"relative_to_site_packages":"mujoco/_structs.cp311-win_amd64.pyd","raw_sha256":"bb5cf4133c28c887c587d53ac2a627251a22beab818a4e849784d221eee6da72"},
+      {"relative_to_site_packages":"mujoco/_functions.cp311-win_amd64.pyd","raw_sha256":"558529970ab8da0f96a85e80f7c396331ed80f04ed9592e77431202ab621d3a2"},
+      {"relative_to_site_packages":"mujoco/include/mujoco/mujoco/mjdata.h","raw_sha256":"e5c1f0bfc1d9338849e05728e94186ff33c66bfc173c853459e5e0f8aa86131c"},
+      {"relative_to_site_packages":"mujoco/include/mujoco/mujoco/mjmodel.h","raw_sha256":"2f25d9f7c340acaf018c6502ae01aaac8f2d7487dd6a8f9a605256bfc6c9db67"},
+      {"relative_to_site_packages":"mujoco/include/mujoco/mujoco/mjtype.h","raw_sha256":"dab3c228432edfd37d937cc3b7a4d91cbfe04ff6e1fa28b5d9557a6e555e31a7"}
+    ],
+    "velocity_actuator_formula": "actuator_force = clamp(kv * (control_velocity - observed_velocity), -maximum_force, maximum_force)",
+    "split_step_pipeline": "mj_step1 computes position and velocity stages; controls and applied torque are then set; mj_step2 computes actuation, acceleration, constraints, and integrates with mj_implicit for implicit or implicitfast",
+    "completed_step_actuation_sample": "actuator_force and qfrc_actuator retained immediately after mj_step2 before any post-state mj_forward recomputation",
+    "motor_impulse_cross_check": "effective motor impulse is reconstructed as effective_inertia * (post_velocity - pre_velocity) - external_applied_torque * internal_timestep; saturated rows match completed-step force times dt and unsaturated rows match post-state recomputed force times dt under the exact scalar implicitfast fixture",
+    "source_and_runtime_hash_mismatch_fails_before_any_world": true
+  },
+  "fixture": {
+    "joint_type": "unlimited_hinge",
+    "joint_axis_mujoco": [1.0, 0.0, 0.0],
+    "joint_anchor_world_m": [0.0, 0.0, 0.0],
+    "joint_armature": 0.01,
+    "joint_passive_damping": 0.0,
+    "child_shape": "box",
+    "child_half_extents_m": [0.1, 0.1, 0.1],
+    "child_mass_kg": 1.0,
+    "analytic_effective_joint_inertia_kg_m2": 0.01666666666666667,
+    "contacts_enabled": false,
+    "physical_generalized_inertia_readback_required": true
+  },
+  "motor_profile": {
+    "profile_id": "mujoco_s169_per_actuator_force_limited_five_substep_candidate_v1",
+    "native_actuator": "velocity",
+    "transmission_type": "mjTRN_JOINT",
+    "velocity_gain_nm_s_per_rad": 10.0,
+    "native_position_target": false,
+    "independent_native_position_feedback": false,
+    "requested_position_role": "portable_controller_provenance_and_bounds_only",
+    "force_limit_classes": [
+      {
+        "class_id": "front_hip",
+        "actuator_ids": ["front_left_hip_motor", "front_right_hip_motor"],
+        "portable_maximum_impulse_nms": 0.05362625170687301,
+        "maximum_force_nm": 6.435150204824762,
+        "maximum_internal_step_force_time_budget_nms": 0.010725250341374604,
+        "maximum_controller_step_cumulative_absolute_force_time_budget_nms": 0.05362625170687301
+      },
+      {
+        "class_id": "front_knee",
+        "actuator_ids": ["front_left_knee_motor", "front_right_knee_motor"],
+        "portable_maximum_impulse_nms": 0.04387602412380519,
+        "maximum_force_nm": 5.265122894856622,
+        "maximum_internal_step_force_time_budget_nms": 0.008775204824761038,
+        "maximum_controller_step_cumulative_absolute_force_time_budget_nms": 0.04387602412380519
+      },
+      {
+        "class_id": "rear_hip",
+        "actuator_ids": ["rear_left_hip_motor", "rear_right_hip_motor"],
+        "portable_maximum_impulse_nms": 0.056373748293126996,
+        "maximum_force_nm": 6.764849795175239,
+        "maximum_internal_step_force_time_budget_nms": 0.0112747496586254,
+        "maximum_controller_step_cumulative_absolute_force_time_budget_nms": 0.056373748293126996
+      },
+      {
+        "class_id": "rear_knee",
+        "actuator_ids": ["rear_left_knee_motor", "rear_right_knee_motor"],
+        "portable_maximum_impulse_nms": 0.046123975876194816,
+        "maximum_force_nm": 5.534877105143378,
+        "maximum_internal_step_force_time_budget_nms": 0.009224795175238965,
+        "maximum_controller_step_cumulative_absolute_force_time_budget_nms": 0.046123975876194816
+      }
+    ]
+  },
+  "physical_grid": {
+    "base_target_load_cells": [
+      {"base_id":"unloaded_vn075","kind":"unloaded","target_velocity_rad_s":-0.75,"external_torque_nm":0.0},
+      {"base_id":"unloaded_vp075","kind":"unloaded","target_velocity_rad_s":0.75,"external_torque_nm":0.0},
+      {"base_id":"unloaded_vn225","kind":"unloaded","target_velocity_rad_s":-2.25,"external_torque_nm":0.0},
+      {"base_id":"unloaded_vp225","kind":"unloaded","target_velocity_rad_s":2.25,"external_torque_nm":0.0},
+      {"base_id":"loaded_vn150_tn075","kind":"loaded","target_velocity_rad_s":-1.5,"external_torque_nm":-0.75},
+      {"base_id":"loaded_vn150_tp075","kind":"loaded","target_velocity_rad_s":-1.5,"external_torque_nm":0.75},
+      {"base_id":"loaded_vn150_tn225","kind":"loaded","target_velocity_rad_s":-1.5,"external_torque_nm":-2.25},
+      {"base_id":"loaded_vn150_tp225","kind":"loaded","target_velocity_rad_s":-1.5,"external_torque_nm":2.25},
+      {"base_id":"loaded_vp150_tn075","kind":"loaded","target_velocity_rad_s":1.5,"external_torque_nm":-0.75},
+      {"base_id":"loaded_vp150_tp075","kind":"loaded","target_velocity_rad_s":1.5,"external_torque_nm":0.75},
+      {"base_id":"loaded_vp150_tn225","kind":"loaded","target_velocity_rad_s":1.5,"external_torque_nm":-2.25},
+      {"base_id":"loaded_vp150_tp225","kind":"loaded","target_velocity_rad_s":1.5,"external_torque_nm":2.25}
+    ],
+    "initial_condition_profiles": [
+      {"profile_id":"zero","rule":"initial_joint_velocity_rad_s = 0"},
+      {"profile_id":"adverse","rule":"initial_joint_velocity_rad_s = -3 * sign(predicted_steady_velocity_rad_s)"}
+    ],
+    "ordered_cell_expansion": "for each force-limit class in declared order, for each base target/load cell in declared order, zero then adverse",
+    "worlds": 96,
+    "replacement_worlds": 0,
+    "outer_controller_steps_per_cell": 360,
+    "internal_physics_steps_per_outer_step": 5,
+    "internal_trace_records_per_cell": 1800,
+    "aggregate_internal_trace_records": 172800,
+    "mirrored_signed_pairs": 48,
+    "first_acceptable_outer_step": 120,
+    "required_consecutive_acceptable_outer_steps": 120,
+    "early_stop_forbidden": true
+  },
+  "cell_gate": {
+    "normalized_terminal_velocity_response_inclusive": [0.98, 1.02],
+    "normalized_terminal_generalized_force_response_inclusive": [0.98, 1.02],
+    "maximum_mirrored_pair_relative_asymmetry": 0.005,
+    "maximum_joint_anchor_world_position_residual_m": 1e-12,
+    "maximum_actuation_space_to_joint_space_force_error_nm": 1e-12,
+    "maximum_applied_torque_readback_error_nm": 1e-12,
+    "maximum_generalized_inertia_readback_error_kg_m2": 1e-12,
+    "maximum_saturated_step_force_time_to_momentum_error_nms": 1e-12,
+    "maximum_unsaturated_post_state_force_time_to_momentum_error_nms": 1e-12,
+    "minimum_pre_step_to_post_state_force_temporal_witness_nm": 1e-12,
+    "every_cell_must_observe_force_saturation_and_temporal_distinction": true,
+    "every_cell_must_recover_to_120_consecutive_acceptable_outer_steps": true,
+    "terminal_internal_step_must_be_unsaturated": true,
+    "full_internal_trace_must_be_retained": true,
+    "all_values_finite": true
+  },
+  "aggregate_gate": {
+    "all_96_cells_must_pass": true,
+    "all_48_mirrored_pairs_must_pass": true,
+    "missing_duplicate_or_reordered_force_classes_cells_or_pairs_fail": true,
+    "world_attempt_count": 96,
+    "world_build_count": 96,
+    "world_reset_count": 0,
+    "all_integrity_violation_and_mismatch_counts": 0
+  },
+  "preflight_contract": {
+    "perfect_synthetic_96_cell_172800_trace_report_must_pass_complete_production_evaluator": true,
+    "perfect_synthetic_serialization_round_trip_must_pass": true,
+    "negative_control_count": 24,
+    "binding_surface_canary_count": 5,
+    "compiled_s169_force_limit_reconstruction_canary_count": 4,
+    "world_build_count": 0,
+    "physics_state_modified": false,
+    "physical_acceptance_authority": false
+  },
+  "pre_freeze_implementation_qualification": {
+    "draft_preregistration_raw_sha256": "6ae2b1dee6036c0cdda8573eaa8610b816642da4b94b091cc8f76c624c94d2a2",
+    "complete_synthetic_preflight_passed_before_any_qualification_model": true,
+    "synthetic_preflight_world_build_count": 0,
+    "ordinary_non_campaign_world_count": 4,
+    "qualified_cell_ids": [
+      "front_hip__unloaded_vp075__izero",
+      "front_knee__unloaded_vp075__izero",
+      "rear_hip__unloaded_vp075__izero",
+      "rear_knee__unloaded_vp075__izero"
+    ],
+    "all_four_qualification_cells_passed_the_already_declared_cell_gate": true,
+    "qualification_results_are_development_only": true,
+    "qualification_results_may_not_be_substituted_into_campaign_report": true,
+    "qualification_results_grant_no_host_walking_or_physical_authority": true,
+    "grid_thresholds_estimand_and_claim_boundary_changed_after_qualification": false,
+    "first_supervised_campaign_world_has_not_opened": true
+  },
+  "execution_lifecycle": {
+    "preflight_only_must_not_construct_mujoco_model": true,
+    "physical_execution_requires_clean_pushed_source_equal_to_origin_and_live_github_main": true,
+    "full_godot_v2_attestation_for_exact_source_required": true,
+    "one_physical_process_launch_consumes_identity": true,
+    "replacement_processes_allowed": 0,
+    "every_declared_world_attempted_even_after_cell_failure": true,
+    "same_identity_rerun_forbidden_after_process_launch": true,
+    "report_overwrite_forbidden": true
+  },
+  "claim_boundary": {
+    "exact_finite_s169_per_actuator_force_limit_host_characterization_if_passed": false,
+    "continuous_force_limit_gain_inertia_load_or_timestep_domain": false,
+    "selected_robot_multibody_dynamics_characterized": false,
+    "mujoco_selected_policy_locomotion": false,
+    "mujoco_walking": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "friction_material_or_terrain_robustness": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/knowledge_entry_v1.schema.json",
+  "title": "SporeSpore locomotion knowledge entry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "entry_id",
+    "title",
+    "claim",
+    "claim_status",
+    "scope",
+    "mechanism",
+    "applicability",
+    "failure_boundaries",
+    "morphology_tags",
+    "parameter_effects",
+    "minimal_repair_rules",
+    "unknowns",
+    "evidence",
+    "supersedes",
+    "recorded_utc",
+    "admission"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.knowledge_entry.v1"},
+    "entry_id": {"$ref": "#/$defs/stable_id"},
+    "title": {"type": "string", "minLength": 1, "maxLength": 200},
+    "claim": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "claim_status": {
+      "enum": [
+        "development_observation",
+        "accepted",
+        "refuted",
+        "retired"
+      ]
+    },
+    "scope": {"type": "string", "minLength": 1},
+    "mechanism": {"type": "string", "minLength": 1},
+    "applicability": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "failure_boundaries": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "morphology_tags": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/stable_id"},
+      "uniqueItems": true
+    },
+    "parameter_effects": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/parameter_effect"}
+    },
+    "minimal_repair_rules": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/repair_rule"}
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "evidence": {"$ref": "#/$defs/evidence"},
+    "supersedes": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/stable_id"},
+      "uniqueItems": true
+    },
+    "recorded_utc": {"type": "string", "format": "date-time"},
+    "admission": {"$ref": "#/$defs/admission"}
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "claim_status": {"const": "development_observation"},
+        "evidence": {
+          "properties": {
+            "bundle_can_promote": {"const": false}
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "claim_status": {
+          "enum": ["accepted", "refuted", "retired"]
+        },
+        "evidence": {
+          "properties": {
+            "evidence_validity": {"const": "valid"},
+            "promotion": {"const": "pass"},
+            "bundle_can_promote": {"const": true},
+            "publication_attestation": {
+              "properties": {
+                "trust_mode": {"const": "production"}
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,159}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "parameter_effect": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parameter",
+        "change",
+        "affects",
+        "mechanism",
+        "hinges_on"
+      ],
+      "properties": {
+        "parameter": {"type": "string", "minLength": 1},
+        "change": {"type": "string", "minLength": 1},
+        "affects": {"type": "string", "minLength": 1},
+        "mechanism": {"type": "string", "minLength": 1},
+        "hinges_on": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "repair_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "symptom",
+        "diagnosis",
+        "smallest_change",
+        "expected_effect",
+        "identity_preserved",
+        "do_not_apply_when"
+      ],
+      "properties": {
+        "symptom": {"type": "string", "minLength": 1},
+        "diagnosis": {"type": "string", "minLength": 1},
+        "smallest_change": {"type": "string", "minLength": 1},
+        "expected_effect": {"type": "string", "minLength": 1},
+        "identity_preserved": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "do_not_apply_when": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      }
+    },
+    "admission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "payload_sha256"],
+      "properties": {
+        "policy": {"const": "knowledge-admission-v1"},
+        "payload_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundle_path",
+        "run_id",
+        "experiment_id",
+        "expanded_spec_sha256",
+        "manifest_sha256",
+        "summary_sha256",
+        "checksums_sha256",
+        "evidence_validity",
+        "hypothesis_result",
+        "promotion",
+        "bundle_can_promote",
+        "observed_metric_ids",
+        "publication_attestation"
+      ],
+      "properties": {
+        "bundle_path": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 4096
+        },
+        "run_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+        },
+        "experiment_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "expanded_spec_sha256": {"$ref": "#/$defs/sha256"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "summary_sha256": {"$ref": "#/$defs/sha256"},
+        "checksums_sha256": {"$ref": "#/$defs/sha256"},
+        "evidence_validity": {"enum": ["valid", "invalid", "partial"]},
+        "hypothesis_result": {
+          "enum": ["supported", "contradicted", "inconclusive"]
+        },
+        "promotion": {"enum": ["pass", "fail", "not_evaluated"]},
+        "bundle_can_promote": {"type": "boolean"},
+        "publication_attestation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ok",
+            "algorithm",
+            "trust_mode",
+            "key_id",
+            "receipt_sha256",
+            "run_id",
+            "checksums_sha256",
+            "manifest_sha256",
+            "artifact_count",
+            "attested_utc"
+          ],
+          "properties": {
+            "ok": {"const": true},
+            "algorithm": {"const": "hmac-sha256"},
+            "trust_mode": {"enum": ["production", "test"]},
+            "key_id": {"$ref": "#/$defs/sha256"},
+            "receipt_sha256": {"$ref": "#/$defs/sha256"},
+            "run_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+            },
+            "checksums_sha256": {"$ref": "#/$defs/sha256"},
+            "manifest_sha256": {"$ref": "#/$defs/sha256"},
+            "artifact_count": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "attested_utc": {"type": "string", "format": "date-time"}
+          }
+        },
+        "observed_metric_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9._-]{0,127}$"
+          },
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

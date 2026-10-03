@@ -1,0 +1,36 @@
+[package]
+name = "sporespore-rapier-adapter"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license-file = "../../LICENSE"
+description = "Rapier 3D adapter for the SporeSpore engine-neutral locomotion core"
+
+[features]
+default = []
+sporespore-rapier-motor-work = []
+sporespore-rapier-energy-exchange = ["sporespore-rapier-motor-work"]
+sporespore-rapier-discrete-staging = ["sporespore-rapier-energy-exchange"]
+sporespore-rapier-r24d53-staging-transport = ["sporespore-rapier-discrete-staging"]
+sporespore-rapier-r24d54-v3-recovery-behavior = ["sporespore-rapier-r24d53-staging-transport"]
+sporespore-rapier-r24d55-terminal-prefix-recovery = ["sporespore-rapier-r24d54-v3-recovery-behavior"]
+
+[lib]
+name = "sporespore_rapier_adapter"
+crate-type = ["rlib"]
+
+[[bin]]
+name = "qsdk_r24d52_discrete_staging_ledger"
+path = "src/bin/qsdk_r24d52_discrete_staging_ledger.rs"
+required-features = ["sporespore-rapier-discrete-staging"]
+
+[[bin]]
+name = "qsdk_r24d53_staging_transport_smoke"
+path = "src/bin/qsdk_r24d53_staging_transport_smoke.rs"
+required-features = ["sporespore-rapier-r24d53-staging-transport"]
+
+[dependencies]
+rapier3d = "0.34.0"
+serde_json = "1.0.149"
+sha2 = "0.10.9"
+sporespore-locomotion-core = { path = "../../core" }

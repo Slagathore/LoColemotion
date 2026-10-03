@@ -1,0 +1,72 @@
+{
+  "schema_version": "sporespore_development_recovery_swing_end_walking_entry_contract_v1",
+  "profile_id": "swing_end_recontact_joint_bounded_contact_gated_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_command_schedule",
+    "question_class": "development"
+  },
+  "segment_id": "walking_resume",
+  "warmup_steps": 72,
+  "first_full_amplitude_local_step": 73,
+  "first_contact_gated_local_step": 1,
+  "maximum_amplitude": 0.5994550408719347,
+  "phase_progression_entry_profile_id": "normal_one_cycle_amplitude_ramp_with_control_trace_v1",
+  "phase_progression_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "phase_progression_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "amplitude_and_retention_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "amplitude_and_retention_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "normal_launcher_resource": "res://scripts/lab/gait/physical_wave_gait_quadruped.gd",
+  "normal_launcher_raw_sha256": "sha256:80f5197940e971dbff6bba0720eb92d72843386754f327e5c533f3737fdf17eb",
+  "bound_source_files": [
+    {
+      "path": "sdk/development/recovery_front_left_first_walking_start_contract_v1.json",
+      "raw_sha256": "sha256:d61b073d9ac7f107c2be7c0b4243f371b417e62e6fd329a4c8e8e62450ef3e04"
+    },
+    {
+      "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "raw_sha256": "sha256:8ae8ce1a7b416653cce4719577aac6ac25842904d4b47f887f8443e54f149c14"
+    },
+    {
+      "path": "sdk/core/src/runtime.rs",
+      "raw_sha256": "sha256:2c82315e0c3ce5cbdf4bf2b3f3e227d15b575edbaca37cd0acd30cba1bae6ef3"
+    },
+    {
+      "path": "sdk/core/src/controller.rs",
+      "raw_sha256": "sha256:14afc82c2248ab41619fd8d917348e7e4258361560fa7adc815b09cef3153279"
+    },
+    {
+      "path": "sdk/development/recovery_swing_end_walking_policy_contract_v1.json",
+      "raw_sha256": "sha256:ea797759436c247d333e00f7df9ccd5c4b0b63d49b3f33695b4c79b2a05dc5a0"
+    },
+    {
+      "path": "sdk/development/recovery_front_left_first_walking_entry_contract_v1.json",
+      "raw_sha256": "sha256:fc7be429660ca6c6c0c7a40ec996e8f34b83e69ced18a27a1e30b1fb2cf95b41"
+    },
+    {
+      "path": "sdk/development/recovery_swing_end_walking_adapter_integration_v1.json",
+      "raw_sha256": "sha256:19b77406b2139a9dedbc9630434059f1efecd002012f0708014b48e1115dbaf7"
+    },
+    {
+      "path": "sdk/development/recovery_swing_end_walking_start_contract_v1.json",
+      "raw_sha256": "sha256:0f9a38d44895eff88a9c52d13d67b4637e4b0fb31ed1c74060f13ca8034cae94"
+    }
+  ],
+  "rule": "Preserve V31 initial clocks 90, contact gating from command one, 72-step wall-clock amplitude ramp and cap 0.5994550408719347. Change only the resumed native policy's recontact checkpoint from 144 to scheduled swing end 72. Prefix remains BW5R-B, recovery V20 and stance V7. Preserve strict consecutive memory replay, motor limits, contacts, model, solver, horizon and all evaluators.",
+  "parameter_basis": "V31 retained inputs show a foot still airborne when the following scheduled swing begins before the old recontact check. The distinct native policy derives its earlier check from existing swing end 72, with unchanged dwell 3, skew 12 and timeout 120. It is a development hypothesis, not a force-aware controller or proof of landing.",
+  "compatibility_scope": "New explicit native policy with separately bound adapter/ledger identity. Old contracts and observations stay immutable. No mode-switch exception, baseline reuse, old identity rerun, rethresholding or support promotion.",
+  "diagnostic_basis": {
+    "source_closure": "sdk/development/recovery_attempts/72f7accb15c44d68a7ba817a61b3ac08.json",
+    "source_closure_sha256": "sha256:638c375a87053ee104c53e7d4336d76d885267107a5406070c654c1978841b64",
+    "source_report_sha256": "sha256:76bf505328df4147ed5002b73add3d811cd6a289f8cdd25e00bbfd77a5bf498d",
+    "native_component": "sdk/development/recovery_swing_end_recontact_component_v1.json",
+    "native_component_sha256": "sha256:3f2a04362d53d14e2ddec1b014a58000370c2bc6936afdbe82d84b91924fc6a7",
+    "physical_outcome_predicted": false,
+    "causal_attribution_proven": false
+  },
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "required_start_profile_id": "swing_end_recontact_front_left_first_resume_v1",
+  "required_walking_policy_id": "sporespore_balanced_wave_recovery_swing_end_recontact_v1"
+}

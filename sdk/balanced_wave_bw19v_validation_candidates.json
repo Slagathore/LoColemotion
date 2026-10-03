@@ -1,0 +1,141 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw19v_validation_candidates_v1",
+  "status": "frozen_before_first_bw19v_physics_world",
+  "campaign_id": "BW19V-INDEPENDENT-MORPHOLOGY-VALIDATION",
+  "gate_id": "BW19V",
+  "implementation_parent_commit": "7024efdddde6c1ad889987f43c2018f4a6ac7069",
+  "candidate_order": [
+    "BW19V-A",
+    "BW19V-B"
+  ],
+  "candidates": [
+    {
+      "schema_version": "sporespore_bw19v_validation_candidate_v1",
+      "candidate_id": "BW19V-A",
+      "candidate_role": "safe_zero_control",
+      "controller_candidate_id": "BW15F-B",
+      "controller_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+      "controller_policy_digest": "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+      "authority_scope": "post_settle_full",
+      "execution_mode": "native_balanced_wave_base_with_stability_contribution",
+      "portable_plan_enabled": true,
+      "portable_plan_operation": "plan_scheduled_load_transfer_v3_json",
+      "portable_plan_receipt_schema_version": "sporespore_scheduled_load_transfer_receipt_v3",
+      "stability_contribution_authority": true,
+      "stability_influence_operation": "bound_stability_influence_v3_json",
+      "stability_influence_receipt_schema_version": "sporespore_stability_influence_receipt_v3",
+      "global_requested_correction_scale": 0.0,
+      "global_scale_authority": "portable_core_before_existing_magnitude_and_slew_limits",
+      "exact_zero_residual_control": true,
+      "nonzero_effective_application_required": false,
+      "expected_application_pass_count": 0,
+      "morphology_condition_count": 0,
+      "material_condition_count": 0,
+      "seed_condition_count": 0,
+      "failure_identity_condition_count": 0,
+      "outcome_condition_count": 0,
+      "branch_surfaces": [],
+      "physical_acceptance_authority": false
+    },
+    {
+      "schema_version": "sporespore_bw19v_validation_candidate_v1",
+      "candidate_id": "BW19V-B",
+      "candidate_role": "prospectively_frozen_bw18g_c_scale_hypothesis",
+      "controller_candidate_id": "BW15F-B",
+      "controller_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+      "controller_policy_digest": "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+      "authority_scope": "post_settle_full",
+      "execution_mode": "native_balanced_wave_base_with_stability_contribution",
+      "portable_plan_enabled": true,
+      "portable_plan_operation": "plan_scheduled_load_transfer_v3_json",
+      "portable_plan_receipt_schema_version": "sporespore_scheduled_load_transfer_receipt_v3",
+      "stability_contribution_authority": true,
+      "stability_influence_operation": "bound_stability_influence_v3_json",
+      "stability_influence_receipt_schema_version": "sporespore_stability_influence_receipt_v3",
+      "global_requested_correction_scale": 0.5,
+      "global_scale_authority": "portable_core_before_existing_magnitude_and_slew_limits",
+      "exact_zero_residual_control": false,
+      "nonzero_effective_application_required": true,
+      "expected_application_pass_count": 36,
+      "morphology_condition_count": 0,
+      "material_condition_count": 0,
+      "seed_condition_count": 0,
+      "failure_identity_condition_count": 0,
+      "outcome_condition_count": 0,
+      "branch_surfaces": [],
+      "physical_acceptance_authority": false
+    }
+  ],
+  "candidate_composition_digests": {
+    "BW19V-A": "sha256:2eb8621882b4ae4047821aca415ab1b67de3399d0ab272a91f57fb0fc2ada7a4",
+    "BW19V-B": "sha256:3d0fc7ac8da2de811bbc890a4a2a7b32ffc5f59fb9ee36a3e391cdec65548c77"
+  },
+  "controlled_difference": {
+    "controller_held_identical": true,
+    "portable_plan_held_identical": true,
+    "stability_policy_held_identical": true,
+    "authority_scope_held_identical": true,
+    "material_held_identical": true,
+    "morphology_seed_pairing_held_identical": true,
+    "only_declared_factor": "global_requested_correction_scale",
+    "factor_values_in_candidate_order": [
+      0.0,
+      0.5
+    ],
+    "scale_applied_before_existing_magnitude_and_slew_limits": true,
+    "policy_relative_expected_application_pass_counts": [
+      0,
+      36
+    ],
+    "morphology_material_seed_failure_and_outcome_conditioning_forbidden": true
+  },
+  "hypothesis_provenance": {
+    "source_family": "BW18G-MORPHOLOGY-DEVELOPMENT",
+    "source_family_valid_selection": false,
+    "source_family_status": "complete_four_arm_family_invalid_preregistration_control_application_unsatisfiable",
+    "source_candidate_id": "BW18G-C",
+    "source_candidate_report_sha256": "sha256:d9b796c4dc6ea80f6a13df39078fe37a6b3b2fc8ecd23533b9f940efc8103562",
+    "source_candidate_walking_conjunction_pass_count": 32,
+    "source_control_walking_conjunction_pass_count": 29,
+    "hypothesis_generation_only": true,
+    "no_bw18g_selection_or_promotion_claim": true,
+    "new_validation_cohort_must_be_unopened": true,
+    "new_validation_seeds_must_be_fresh": true
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+      "sha256": "sha256:b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+    }
+  ],
+  "claim_boundary": {
+    "walking_acceptance": false,
+    "balance_improvement": false,
+    "independent_morphology_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "different_physics_engines": false,
+    "running": false,
+    "completed_engine_neutral_sdk": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

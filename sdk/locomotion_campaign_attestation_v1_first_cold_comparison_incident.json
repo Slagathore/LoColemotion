@@ -1,0 +1,103 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_commissioning_incident_v1",
+  "incident_id": "LCA1-FIRST-COLD-COMPARISON-20260811",
+  "status": "closed_negative_full_runner_missing_three_campaign_role_execution_edges",
+  "observed_source_identity": {
+    "commit": "1f2f71364cbe5d65ab4246211ed09804611a7493",
+    "tree_git_oid": "cb3486e9cdef4c950468108fa3bb163b4d7a7e72",
+    "origin_main": "1f2f71364cbe5d65ab4246211ed09804611a7493",
+    "live_github_main": "1f2f71364cbe5d65ab4246211ed09804611a7493",
+    "worktree_clean": true
+  },
+  "cold_full_v2": {
+    "status": "passed",
+    "started_utc": "2026-08-11T22:37:01.2155957Z",
+    "completed_utc": "2026-08-11T23:12:02.1409877Z",
+    "duration_seconds": 2100.9241034,
+    "attestation": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\lca1-cold-commissioning-20260811T223651Z-1f2f7136\\full-v2-attestation.json",
+      "raw_sha256": "sha256:bd3cc2355087da3d013714a9fb23e1d519dc0a74b7cb8a64c949fff6ebb452ac",
+      "byte_length": 3564,
+      "cas_required": false
+    },
+    "run_receipt": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\conformance-runs\\20260811T223659Z-1f2f7136-89dc64a52b114d16acc77d26451811a6\\receipt.json",
+      "raw_sha256": "sha256:9d163db8046c79785c54849cf18f8825faae97353cb59e96bb754f79e167c49d",
+      "byte_length": 17730,
+      "cas_required": true
+    },
+    "full_log": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\conformance-runs\\20260811T223659Z-1f2f7136-89dc64a52b114d16acc77d26451811a6\\conformance.log",
+      "raw_sha256": "sha256:df2a58164db4ad6d2db446e84355ed826e66811cab9feb79eb9622238c54bfaa",
+      "byte_length": 240543,
+      "cas_required": true
+    },
+    "terminal_marker_counts": {
+      "QSDK_R23D17_CLOSURE_PASS": 1,
+      "LCA1_COMMISSIONING_WORKER_PASS": 0,
+      "LCA1_COMMISSIONING_EVALUATOR_PASS": 0,
+      "LCA1_COMMISSIONING_SUPERVISOR_PASS": 0
+    },
+    "physical_worlds_opened": 0
+  },
+  "cold_scoped_lca1": {
+    "status": "passed_uncommissioned",
+    "started_utc": "2026-08-11T23:12:48.7406834Z",
+    "completed_utc": "2026-08-11T23:14:35.1426804Z",
+    "duration_seconds": 106.401997,
+    "attestation": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\lca1-cold-commissioning-20260811T223651Z-1f2f7136\\scoped-attestation\\attestation.json",
+      "raw_sha256": "sha256:3d23b492eda49aadd4025404b8373375eb284e1bbfea3816d53953dbde41c238",
+      "byte_length": 76174,
+      "cas_required": true
+    },
+    "global_gate_count": 12,
+    "lineage_gate_count": 1,
+    "campaign_role_gate_count": 3,
+    "executed_gate_count": 16,
+    "all_gates_passed": true,
+    "all_gate_streams_content_addressed": true,
+    "terminal_marker_counts": {
+      "QSDK_R23D17_CLOSURE_PASS": 1,
+      "LCA1_COMMISSIONING_WORKER_PASS": 1,
+      "LCA1_COMMISSIONING_EVALUATOR_PASS": 1,
+      "LCA1_COMMISSIONING_SUPERVISOR_PASS": 1
+    },
+    "physical_worlds_opened": 0
+  },
+  "comparison": {
+    "same_source": true,
+    "required_subset_marker_count": 4,
+    "matching_marker_count": 1,
+    "missing_full_runner_markers": [
+      "LCA1_COMMISSIONING_WORKER_PASS",
+      "LCA1_COMMISSIONING_EVALUATOR_PASS",
+      "LCA1_COMMISSIONING_SUPERVISOR_PASS"
+    ],
+    "failure_class": "full_runner_campaign_role_execution_edges_absent",
+    "commissioning_passed": false,
+    "physical_launch_prerequisite_satisfied": false
+  },
+  "interpretation": {
+    "physics_failure": false,
+    "scientific_failure": false,
+    "scoped_gate_failure": false,
+    "process_commissioning_failure": true,
+    "reason": "The cold full runner did not execute the exact worker, evaluator, or supervisor refusal gates that the scoped path executed, so the required full-runner subset comparison failed even though both commands exited successfully.",
+    "authorized_repair": "Add exactly those three zero-world role gates to the canonical full runner, retain this negative with an executable audit, and repeat the same-source cold full and scoped comparison under a new clean pushed source.",
+    "threshold_change_authorized": false,
+    "controller_change_authorized": false,
+    "physical_rerun_authorized_by_incident": false
+  },
+  "claims": {
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "sporespore_development_recovery_upright_stance_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V41",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_absent_contact_reference_v1",
+  "policy_id": "sporespore_balanced_wave_recovery_upright_stance_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_upright_stance_profile_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_upright_stance_memory_v1",
+  "native_actuation_receipt_schema": "sporespore_recovery_upright_stance_controller_step_receipt_v1",
+  "reference_velocity_mode_id": "contact_selected_upright_stance_reference_velocity_tracking_v1",
+  "source_diagnosis": "sdk/development/recovery_landing_reach_diagnosis_v1.json",
+  "source_decision": "sdk/development/recovery_landing_reach_verification_v1.json",
+  "source_precheck": {
+    "path": "sdk/development/recovery_upright_stance_precheck_v1.json",
+    "raw_sha256": "sha256:52d18964fdced49612a28f5b96cc7b4e5b6678a0f911f5f7d391da8696db5aaf"
+  },
+  "source_attempt": "sdk/development/recovery_attempts/9791149066cc43e2b42df2f1def7adc1.json",
+  "source_report_sha256": "sha256:a1872bd14d79a844e48577bc5338fe7b46f1141d7a1c97460f84d52cb9c915bc",
+  "question": "Can joint-only reference targets for supporting stance feet restore a floor-upright body posture and remove the observed opposite-corner reach conflict without worsening stance losses or walking? The saved-input precheck does not answer the physical question.",
+  "controlled_change": "Relative to V40, change composed position goals only for an active wave's currently contact-bearing stance feet. Use the existing all-four-leg support geometry at a floor-upright REFERENCE orientation and measured floor-relative torso height. All unselected goals retain V40's measured-pose geometry. Existing reference slew, absent-contact/full-rate selector, supported wave-rate fallback, gains and caps remain.",
+  "selector": "current_wave.active AND current scheduled phase is an integer in 73..359 AND presence is explicitly true AND bears_support is explicitly true. Both joints share the same current selector. A contact-present but nonbearing foot is not selected. Missing, crossed, malformed or contradictory contact provenance must fail closed.",
+  "reference_geometry": "Preserve authored horizontal-floor/frame provenance. In the existing anatomical vertical projection, the reference has forward_y=0, up_y=1 and side_y=0; all upright yaws share these projections. Use the measured floor-relative torso height, compiled geometry, existing nominal directions, knee fractions, per-joint limits and all four height constraints in the same feasible-plan/goal algebra. Do not overwrite the measured pose, synthesize an observation quaternion, or replace original contact truth. Reference-pose geometry is explicitly labeled as a controller target, not a measured pose or contact claim.",
+  "wave_comparison": "Compute the current selector once from the real current wave and pre-command contacts. Hold that same selector for current and previous-wave goal evaluations, with one current measured height, one reference pose choice and one incoming reference-position vector. Do not turn a selector/frame switch into an alleged wave derivative. Previous-wave activation and positive dt requirements remain V40's.",
+  "rates_and_motor_formula": "Apply V40 reference slew to the selected goals. With both waves active and dt>0, absent contacts retain clamp((bounded_target-incoming_reference)/dt) and other contacts retain clamp((bounded_target-bounded_comparison)/dt), using existing caps. Otherwise rate is zero. Motor velocity remains host sign -1 times clamp(8*(reference-measured_position)-0.65*measured_velocity+1.65*rate). Keep truthful saturation, speed/impulse slots and joint bounds.",
+  "memory_and_receipt": "Distinct profile/policy/memory/receipt identities; no new dynamic state. Carry actual selected reference positions, previous time and the unchanged upstream wave snapshot. Add an optional V41-only upright_stance receipt exposing source step/time/capability/floor provenance, per-foot pre-command contact and current selector, explicitly labeled measured-pose baseline proposals, floor-upright reference proposals/plan, actual selected goals and the same-mask comparison choice. Existing actual target/rate/motor fields must reflect actual selected commands. Never label measured-pose baseline goals as actual selected goals when they differ; retain both explicitly for independent reconstruction. Absent optional fields must preserve older-policy serialized bytes.",
+  "preserve": [
+    "V40 and all older policy/profile/DLL/output identities and all observed physical results.",
+    "Same-input V40 composed goals and final commands for every unselected limb with identical incoming reference memory; distinguish this from changed-memory replay.",
+    "V40 upstream wave snapshots, gait clocks, steering, contact/recontact/sync gates and dwell. Reference positions may differ as the intended controlled change; memory identity is distinct.",
+    "Zero-amplitude neutral goals, dt=0 initial reference hold, inactive/activation feedforward behavior and invalid-input safe refusal.",
+    "Existing joint bounds, speed and impulse caps, reference slew and servo gains; no fitted contact-count threshold or altered support predicate.",
+    "V20 recovery, stance V7, BW5R-B setup/prefix, original development schedule/evaluator and no-claim publication. No horizon or timeout extension is selected."
+  ],
+  "required_zero_world_checks": [
+    "Real stateless and stateful exported interfaces on all 400 original V40 physical inputs, with chained actual candidate memory and exact input precision.",
+    "Independent reconstruction of measured and upright goal plans, selector/provenance, current-mask wave comparison, actual bounded references, selected rates and final motor velocities.",
+    "Separate one-command comparisons against V40 with identical incoming memory, covering all changed and unchanged commands; chain carry must not be misreported as same-memory equivalence.",
+    "Selector and runtime refusal checks covering phases 0/72/73/359, present/nonbearing/absent/contradictory contacts, initial/active/inactive waves, dt=0/positive, malformed geometry/floor/time/state and contact switching.",
+    "Synthetic upright-pose identity control and tilted-pose selection; no selected virtual pose may overwrite the actual measured observation.",
+    "Preserve all older-policy native output bytes and recovery fixtures. Keep the candidate component profile non-runnable until shared worker/adapter/motor-ledger/reader integration is verified.",
+    "Complete applicable safety gate before a distinct fresh bounded development diagnostic. The precheck selects no physical attempt."
+  ],
+  "risks_and_remaining_blockers": [
+    "The upright all-four-leg geometry is nonempty on all 400 old inputs, not necessarily on a future trajectory and not proof of native contact or stable posture.",
+    "Old-input chained reference replay produces 168 speed-clamped commands versus V40's 85. One-command substitution produces 83; the latter must not hide chained cost.",
+    "Reference carry changes 102 currently unselected joint commands in the sketch; all 47 selector transitions are retained. Abrupt loss/restoration of contact can increase instability.",
+    "Some selected foot goals move upward at the fixed original torso. Desired body lowering assumes sustained anchoring; unilateral contact may instead lift a foot. Supporting-foot load transfer and delivered force remain unproved.",
+    "The old inputs include 131 two-contact, 175 three-contact and 94 four-contact commands. No data demonstrate physical behavior with zero or one supporting contact; synthetic refusal/bounds checks do not supply that evidence.",
+    "Rear-left's original 56 landing inputs and all original stance/relocation failures remain unchanged data. This proposal does not claim to explain or repair every failure.",
+    "Second complete planned cycles, commanded stop/cooldown, fresh paired commissioning and prospective acceptance remain required.",
+    "This is pose/contact-based SDK1 development, not real-time force-aware recovery, superiority, cross-engine equivalence, robustness or release authority."
+  ],
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

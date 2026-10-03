@@ -1,0 +1,134 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw13p_partial_family_closure_manifest_v1",
+  "status": "source_invalidated_by_common_runtime_schema_failure",
+  "closed_utc": "2026-07-29T20:39:13.4028961Z",
+  "experiment_source_commit": "aa92940e6f8aca258df17d051dc7fd8c294d4eb7",
+  "development_data_only": true,
+  "preregistration": {
+    "path": "sdk/balanced_wave_bw13p_morphology_development_preregistration.json",
+    "raw_sha256": "3d3433f6e9fa05790bb493eb3190fd174a543311bf143972b7ae0ed18b3207b7",
+    "implementation_parent_commit": "0a4139cd195bc9d9692d74de8f3f37847a5e9db1",
+    "status": "frozen_before_first_bw13p_physics_world"
+  },
+  "attempted_candidate": {
+    "candidate_id": "BW13P-A",
+    "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+    "candidate_policy_digest": "sha256:5843bcb182dbf68072246a3c730e53033fc705818186fcb3f0fd8ad4e0120a47",
+    "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw13p-morphology-development-aa92940\\BW13P-A\\report.json",
+    "report_sha256": "7be88cafdafd1d3e07149621e5b845feb156154c6dcc1805e342b51285153766",
+    "report_schema_version": "sporespore_bw13p_morphology_development_report_v1",
+    "observed_world_count": 36,
+    "complete_receipt_count": 36,
+    "report_complete": false,
+    "integrity_pass_count": 0,
+    "mechanism_pass_count": 0,
+    "combined_application_pass_count": 0,
+    "harness_pass_count": 0,
+    "sdk_step_count": 0,
+    "native_motor_write_count": 0,
+    "legacy_post_settle_motor_write_count": 491504,
+    "sdk_safe_disable_count": 436032,
+    "stability_contribution_attempt_count": 54504,
+    "declared_phase_offset_cell_counts": {
+      "-3": 12,
+      "-2": 24
+    }
+  },
+  "unopened_candidates": [
+    {
+      "candidate_id": "BW13P-B",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_b_v3",
+      "world_count": 0
+    },
+    {
+      "candidate_id": "BW13P-C",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_c_v3",
+      "world_count": 0
+    },
+    {
+      "candidate_id": "BW13P-D",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_d_v3",
+      "world_count": 0
+    }
+  ],
+  "root_cause": {
+    "scope": "all_36_attempted_bw13p_a_worlds",
+    "failure": "The adapter applied each declared negative gait-phase offset directly to nonnegative balanced-wave gait memory, then serialized the resulting negative gait_step into the portable scheduled-load-transfer request whose public Rust schema requires u64. Native planning and native controller execution rejected the request before any SDK motor command was applied.",
+    "representative_failure_codes": [
+      "SCHEDULED_LOAD_TRANSFER_PLAN:SCHEMA_INVALID:invalid value: integer `-2`, expected u64",
+      "SCHEDULED_LOAD_TRANSFER_PLAN:SCHEMA_INVALID:invalid value: integer `-3`, expected u64",
+      "SCHEDULED_LOAD_TRANSFER_PLAN:SCHEMA_INVALID:invalid value: integer `-4`, expected u64",
+      "SCHEDULED_LOAD_TRANSFER_PLAN:SCHEMA_INVALID:invalid value: integer `-6`, expected u64"
+    ],
+    "scientific_consequence": "Every apparent trajectory used legacy fallback actuation. None is evidence for BW13P, portable balance, native SDK walking, candidate comparison, or selection.",
+    "preflight_gap": "The launch preflight proved startup, one neutral policy sample, real mapping and combined application, and a perfect aggregate report, but it never executed the declared signed phase-offset transition from the minimum legal gait-memory boundary.",
+    "required_successor_boundary": "Before any world, every declared candidate and phase offset must traverse one real zero-world runtime boundary witness: signed-offset application, nonnegative cycle representation, native balanced-wave step, portable scheduled planner, combined application, and the exact perfect synthetic aggregate gate.",
+    "repair_strategy": "Normalize an underflowing signed offset with one common whole-cycle representation shift across all limbs and account for that exact shift in raw-step parity. This preserves relative phase and local gait timing while satisfying the portable nonnegative gait-step schema."
+  },
+  "immutability": {
+    "aa92940_repair_or_rerun_forbidden": true,
+    "bw13p_a_report_reclassification_forbidden": true,
+    "bw13p_b_c_d_launch_from_aa92940_forbidden": true,
+    "failed_cell_deletion_replacement_or_averaging_forbidden": true,
+    "walking_threshold_relaxation_or_gate_deletion_forbidden": true,
+    "new_successor_source_and_preregistration_identity_required": true
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md"
+    }
+  ],
+  "reservations": {
+    "r05c_generator_indices": [
+      193,
+      194,
+      195,
+      196,
+      197,
+      198,
+      199,
+      200,
+      201,
+      202,
+      203,
+      204
+    ],
+    "r05c_campaign_seeds": [
+      38101,
+      38102,
+      38103
+    ],
+    "r05c_opened": false,
+    "unbiased_friction_reservation_opened": false
+  },
+  "claims": {
+    "development_selection_authority": false,
+    "walking_acceptance": false,
+    "balance_improvement": false,
+    "physical_balance_recovery": false,
+    "independent_morphology_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_or_friction_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "running": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

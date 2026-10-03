@@ -1,0 +1,122 @@
+{
+  "schema_version": "sporespore_cross_engine_c6_host_characterization_r1_preregistration_v1",
+  "campaign_id": "C6-HOST-CHARACTERIZATION-R1",
+  "gate_id": "C6-HC1-R1",
+  "status": "frozen_before_first_c6_hc1_r1_physics_world",
+  "recorded_utc": "2026-07-30T13:16:38.6266173Z",
+  "implementation_parent_commit": "4707b8d5d467d899a3b6ea1d8f5caf28bd99f008",
+  "purpose": "Correct the C6-HC1 Rapier zero-angular-inertia actuator fixture under a distinct identity while preserving the original material and actuator grid.",
+  "base_preregistration": {
+    "path": "sdk/cross_engine_c6_host_characterization_preregistration.json",
+    "raw_sha256": "sha256:2ff51bc87745d84f2d4d0521005098ead3bef20e691b25f9f49c0cf7eadade8e",
+    "all_material_cells_unchanged": true,
+    "all_actuator_targets_impulse_limits_gains_timestep_and_observation_steps_unchanged": true
+  },
+  "predecessor_closure": {
+    "path": "sdk/cross_engine_c6_host_characterization_closure.json",
+    "raw_sha256": "sha256:dadd1e8a44dca2e66136c496a91bf2d4e579300459af4f0884b9040aa3faff21",
+    "source_commit": "4707b8d5d467d899a3b6ea1d8f5caf28bd99f008",
+    "rapier_report_sha256": "sha256:d6c7d8a886824922770d860c43bab15bc8f0624792f89cbb71e3b36b8ede0500",
+    "mujoco_report_sha256": "sha256:e90af6eb43f84aebcf1d5eebb4cd5e3ef78dfe0246cc7f669d81d0b65e854f4e",
+    "same_identity_rerun_forbidden": true
+  },
+  "correction": {
+    "classification": "fixture_correction_not_threshold_or_policy_change",
+    "predecessor_defect": "The Rapier child combined collider mass 0.0 with additional_mass(1.0), leaving zero principal angular inertia and making every motor cell rotation-immune.",
+    "shared_actuator_child": {
+      "shape": "cuboid",
+      "half_extents_m": [
+        0.2,
+        0.2,
+        0.2
+      ],
+      "mass_kg": 1.0,
+      "mass_properties_source": "shape_derived_from_nonzero_mass_collider",
+      "center_of_mass_at_joint_anchor": true,
+      "expected_principal_angular_inertia_kg_m2": [
+        0.02666666666666667,
+        0.02666666666666667,
+        0.02666666666666667
+      ],
+      "maximum_absolute_mass_error_kg": 0.000001,
+      "maximum_absolute_principal_inertia_error_kg_m2": 0.000001,
+      "every_principal_inertia_axis_must_be_positive": true
+    },
+    "rapier": {
+      "remove_additional_mass_only_fixture": true,
+      "collider_mass_kg": 1.0,
+      "report_measured_principal_inertia": true
+    },
+    "mujoco": {
+      "replace_predecessor_capsule_with_shared_cuboid": true,
+      "geom_mass_kg": 1.0,
+      "joint_armature_kg_m2": 0.0,
+      "report_measured_body_inertia": true
+    }
+  },
+  "unchanged_grid": {
+    "timestep_s": 0.008333333333333333,
+    "authored_sliding_friction_values": [
+      0.2,
+      0.6,
+      1.0
+    ],
+    "breakaway_force_ratios": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      1.25,
+      1.5
+    ],
+    "steady_slide_initial_velocity_m_s": 1.0,
+    "target_positions_rad": [
+      -0.4,
+      0.4
+    ],
+    "maximum_step_impulses_nms": [
+      0.05,
+      0.25
+    ],
+    "stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "actuator_observation_steps": 240,
+    "maximum_final_position_error_rad": 0.02
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "perfect_synthetic_zero_failure_result_must_pass_full_integrity_gate": true,
+    "nonzero_failure_canary_must_fail_full_integrity_gate": true,
+    "preflight_world_build_count": 0,
+    "preflight_scene_insertion_count": 0,
+    "preflight_physics_state_mutation_count": 0
+  },
+  "execution_contract": {
+    "both_hosts_required": true,
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_per_host_and_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "early_stop_forbidden": true,
+    "all_declared_material_cells_required": true,
+    "all_declared_actuator_cells_required": true,
+    "host_specific_results_may_differ": true,
+    "bit_identical_trajectory_required": false
+  },
+  "claims": {
+    "rapier_material_characterization": false,
+    "rapier_actuator_characterization": false,
+    "mujoco_material_characterization": false,
+    "mujoco_actuator_characterization": false,
+    "controller_policy_authority": false,
+    "selected_policy_physical_authority": false,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "material_robustness": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

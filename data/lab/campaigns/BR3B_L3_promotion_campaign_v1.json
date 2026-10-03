@@ -1,0 +1,85 @@
+{
+  "schema": "sporespore.lab.br3b_l3_promotion_campaign.v1",
+  "campaign_id": "BR3B_L3_PROMOTION_CAMPAIGN_V1",
+  "campaign_version": 1,
+  "milestone_id": "BR3B_L3_BASIC_LOADED_FOOT_TRUTH",
+  "claim_boundary": "This campaign can certify only the exact L3.0-L3.2 free unary loaded-pad observations named by the source-pinned programs. The force-controlled carriage is an explicit apply_force boundary and not a rail; centered normal loading, loaded shear breakaway, predicted contact-pressure edge migration, and rocking retain their declared fixture, load, geometry, material, timestep, and solver scopes. It establishes no general contact wrench, per-contact or per-foot load allocation, articulated load-bearing limb, standing, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance.",
+  "process_policy": {
+    "clean_committed_source": true,
+    "fresh_godot_process_per_replicate": true,
+    "required_replicates_per_program": 2,
+    "pid_recycle_policy": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded",
+    "test_timeout_seconds": 300,
+    "complete_campaign_required": true,
+    "cherry_pick_policy": "forbidden_all_declared_runs_retained"
+  },
+  "source_policy": {
+    "identity": "clean_git_commit_plus_exact_declared_byte_inventory_v1",
+    "inventory_roots": [
+      {"kind": "file", "path": ".gitattributes", "extensions": [".gitattributes"]},
+      {"kind": "file", "path": "project.godot", "extensions": [".godot"]},
+      {"kind": "file", "path": "scripts/process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/process_runner_containment_host.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_lab_tests.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_br3b_l3_certification.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "tree", "path": "scripts/lab", "extensions": [".gd"]},
+      {"kind": "tree", "path": "tests/helpers", "extensions": [".gd"]},
+      {"kind": "file", "path": "tests/test_experimental_br3b_promotion_contracts.gd", "extensions": [".gd"]},
+      {"kind": "tree", "path": "data/lab/schemas", "extensions": [".json"]},
+      {"kind": "tree", "path": "data/lab/knowledge", "extensions": [".json", ".md"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR3B_L3_promotion_campaign_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR1_required_lab_tests_v2.json", "extensions": [".json"]}
+    ]
+  },
+  "br1_inventory_guard": {
+    "resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json",
+    "sha256": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+    "test_count": 62,
+    "mutation_forbidden": true
+  },
+  "role_accounting": {
+    "milestone": {"programs": 3, "assertions_per_replicate": 43},
+    "supplementary": {"programs": 0, "assertions_per_replicate": 0},
+    "integrity": {"programs": 0, "assertions_per_replicate": 0},
+    "total": {"programs": 3, "assertions_per_replicate": 43}
+  },
+  "programs": [
+    {
+      "program_id": "BR3B_L3_0_LOADED_PAD_NORMAL_V1",
+      "cell_id": "L3.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l3_0_loaded_pad_normal.gd",
+      "expected_assertions": 14,
+      "claim_scope": "The declared free unary pad reconstructs total external normal support under the exact centered 0, 20, 40, and 80 N load cells, while raw predicted contact load remains a bounded single-manifold cross-check."
+    },
+    {
+      "program_id": "BR3B_L3_1_LOADED_PAD_SHEAR_V1",
+      "cell_id": "L3.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l3_1_loaded_pad_shear.gd",
+      "expected_assertions": 13,
+      "claim_scope": "The declared free unary pad retains reconstructed 59.6 N normal support and brackets friction-0.6 shear breakaway between 34 and 36 N inside the accepted L1 friction envelope."
+    },
+    {
+      "program_id": "BR3B_L3_2_LOADED_PAD_ROCKING_V1",
+      "cell_id": "L3.2",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l3_2_loaded_pad_rocking.gd",
+      "expected_assertions": 16,
+      "claim_scope": "The declared free unary pad moves predicted contact pressure toward the analytic edge and brackets rocking between 0.21 and 0.24 m application offsets around the 0.2235 m threshold, with a mirrored negative repeat."
+    }
+  ],
+  "does_not_establish": [
+    "A general contact wrench or continuous foot-force sensor",
+    "Per-contact, per-foot, or per-toe load allocation",
+    "An articulated load-bearing limb, foot, or creature",
+    "Standing, bracing, or fall arrest",
+    "Self-righting or getting up",
+    "Gait, candidate walking, or walking",
+    "Terrain robustness, complex-foot superiority, or endurance",
+    "Accepted encyclopedia knowledge or automatic creature guidance"
+  ]
+}

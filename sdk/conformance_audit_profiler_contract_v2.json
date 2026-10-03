@@ -1,0 +1,98 @@
+{
+  "schema_version": "sporespore_conformance_audit_profiler_contract_v2",
+  "contract_id": "CAP2-CRASH-RESILIENT-SERIALIZED-AUDIT-PROFILER",
+  "status": "prospective_crash_resilient_development_profiler_uncommissioned",
+  "purpose": "Retain each completed audit duration immediately and resume an interrupted serialized profile only from an exact, verified, contiguous receipt prefix.",
+  "predecessor": {
+    "contract_id": "CAP1-CEP1-SERIALIZED-AUDIT-DURATION-PROFILER",
+    "frozen_closure_id": "CAP1-CEP1-FULL-SERIALIZED-PROFILE-C1",
+    "historical_closure_unchanged": true,
+    "new_production_runs_through_v1_refuse": true,
+    "v1_test_only_regression_route_retained": true
+  },
+  "production_inventory": {
+    "path": "sdk/closure_evidence_mode_inventory.json",
+    "schema_version": "sporespore_closure_evidence_mode_inventory_v1",
+    "expected_audit_count": 95,
+    "expected_remote_url": "https://github.com/Slagathore/sporespore.git",
+    "required_world_build_count": 0,
+    "physical_execution_authorized": false
+  },
+  "execution": {
+    "serialized": true,
+    "command": "pwsh -NoLogo -NoProfile -File <audit-path>",
+    "production_requires_clean_equal_origin_main": true,
+    "production_requires_expected_remote_url": true,
+    "production_requires_live_remote_main_equal_head": true,
+    "continue_after_failure_for_complete_ranking": true,
+    "final_exit_nonzero_if_any_audit_failed": true,
+    "hard_safety_timeout_seconds": 900,
+    "timeout_is_not_classified_as_a_proven_hang": true,
+    "exclusive_run_lease_required": true,
+    "test_only_subset_and_inventory_override_permitted": true
+  },
+  "incremental_retention": {
+    "immutable_run_manifest_create_only": true,
+    "run_manifest_content_addressed_before_first_audit": true,
+    "stdout_and_stderr_content_addressed_before_receipt": true,
+    "per_audit_receipt_content_addressed_before_atomic_publication": true,
+    "per_audit_receipt_create_only": true,
+    "receipt_contains_duration_and_output_digests": true,
+    "final_profile_derived_only_from_verified_receipts": true,
+    "final_profile_create_only_and_content_addressed": true,
+    "directory_timestamps_are_not_evidence": true,
+    "incomplete_pending_directories_are_non_authoritative": true
+  },
+  "resume": {
+    "explicit_run_id_required": true,
+    "live_input_key_must_equal_manifest_input_key": true,
+    "source_commit_tree_status_origin_url_and_live_main_are_keyed": true,
+    "complete_process_environment_digest_is_keyed": true,
+    "contract_profiler_artifact_store_dependency_key_and_pwsh_are_keyed": true,
+    "inventory_and_ordered_selected_audits_are_keyed": true,
+    "timeout_mode_and_test_identity_are_keyed": true,
+    "manifest_and_every_receipt_must_reproduce_from_cas": true,
+    "stdout_and_stderr_payloads_must_reproduce_from_cas": true,
+    "receipt_prefix_must_be_contiguous_from_ordinal_one": true,
+    "verified_receipts_are_not_reexecuted": true,
+    "completed_run_resume_refuses": true,
+    "corruption_missing_artifact_gap_or_drift_refuses": true
+  },
+  "commissioning": {
+    "classification": "zero_world_process_recovery_commissioning",
+    "selected_audits": [
+      "tests/test_rapier_c6_selected_policy_commissioning_closure.ps1",
+      "tests/test_rapier_c6_selected_policy_commissioning_r1_closure.ps1"
+    ],
+    "controlled_stop_after_published_receipt_count": 1,
+    "start_and_resume_must_be_distinct_processes": true,
+    "first_receipt_digest_must_remain_identical": true,
+    "resumed_receipt_count": 1,
+    "resume_audit_invocation_count": 1,
+    "world_build_count": 0,
+    "implementation_must_be_clean_and_pushed_before_commissioning": true
+  },
+  "required_negative_controls": {
+    "concurrent_run_lease_refuses": true,
+    "environment_mutation_refuses": true,
+    "selection_order_mutation_refuses": true,
+    "manifest_byte_corruption_refuses": true,
+    "receipt_byte_corruption_refuses": true,
+    "output_payload_corruption_refuses": true,
+    "receipt_ordinal_gap_refuses": true,
+    "completed_run_resume_refuses": true
+  },
+  "claims": {
+    "crash_resilient_resume_commissioned": false,
+    "development_observation_only": true,
+    "audit_dependency_complete": false,
+    "runtime_profile_complete": false,
+    "cold_equivalence_complete": false,
+    "production_cache_lookup_permitted": false,
+    "production_result_reuse_permitted": false,
+    "historical_audit_waiver_permitted": false,
+    "physical_execution_authorized": false,
+    "scientific_authority": false,
+    "release_authority": false
+  }
+}

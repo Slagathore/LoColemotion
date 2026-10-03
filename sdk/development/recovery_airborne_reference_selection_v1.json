@@ -1,0 +1,131 @@
+{
+  "schema_version": "sporespore_development_recovery_airborne_reference_selection_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "development_controller_selection",
+    "question_class": "development"
+  },
+  "source_parent_commit": "e7edd1bf36ab815dbbc3160d1e9074878a49a09a",
+  "status": "selected_airborne_tracking_component_not_implemented",
+  "selected_component_id": "V39",
+  "selected_policy_id": "sporespore_balanced_wave_recovery_airborne_reference_v1",
+  "source_and_evidence_bindings": [
+    {
+      "path": "sdk/development/recovery_airborne_reference_contract_v1.json",
+      "byte_length": 7243,
+      "raw_sha256": "sha256:7ab04c1e1b146effd8811abb2e5bbc3ef529eef63b82a98e0c7a7d10a3610e50"
+    },
+    {
+      "path": "sdk/development/recovery_wave_velocity_landing_diagnosis_v1.json",
+      "byte_length": 42126,
+      "raw_sha256": "sha256:baccc6f06262e17de1484be34769f626a73697c879b07c63ffbfc2fbb75334c3"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v38_landing_diagnosis.py",
+      "byte_length": 14154,
+      "raw_sha256": "sha256:81b82f61d46c8c7196af10f3253c07861a08fb46ac533d67f308263b9d48e096"
+    },
+    {
+      "path": "tests/test_development_v38_landing_diagnosis.py",
+      "byte_length": 8493,
+      "raw_sha256": "sha256:1a7f71d0498beeab147ede7380132ce69a1cb84791fd6c5273e5f9cc7fcf44d3"
+    },
+    {
+      "path": "sdk/development/recovery_attempts/db53de264ab04bc29157f8a1524e73d0.json",
+      "byte_length": 260218,
+      "raw_sha256": "sha256:d0988c97ab0ec59be9bc3dcb1a9865104222a7322c2cb025530ee1f69d9534f7"
+    },
+    {
+      "path": "sdk/development/recovery_wave_velocity_closure_audit_v1.json",
+      "byte_length": 8480,
+      "raw_sha256": "sha256:650fa5eeef4095cd9ec5ab14200b97a94468716fee6def6af7db46eb2921d51e"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v38-landing-diagnosis-d9e47489ebe74357bac32abda2bb275e/complete_diagnosis.json",
+      "byte_length": 3651542,
+      "raw_sha256": "sha256:b09e1b5cf6bdaeef1dc6840172bcfe635f97ee609221ea49f424c15d1fa56c24"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v38-landing-diagnosis-d9e47489ebe74357bac32abda2bb275e/readiness.json",
+      "byte_length": 14305,
+      "raw_sha256": "sha256:369d5003505299a1ec24743938a2144c65fa66bb86fb859d6cd8e39788dcc63d"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v38-landing-diagnosis-d9e47489ebe74357bac32abda2bb275e/v38_landing_diagnosis.stderr.log",
+      "byte_length": 1151,
+      "raw_sha256": "sha256:4e59e70e77f9838f994b29cd2713e95aad249e0e622684411059bc333175e7df"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v38-landing-diagnosis-d9e47489ebe74357bac32abda2bb275e/v38_landing_diagnosis.stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "diagnosis_scope": {
+    "retained_commands": 400,
+    "joint_commands": 3200,
+    "limb_command_rows": 1600,
+    "original_completed_contact_cycles": 13,
+    "failed_relocation_cycles": 9,
+    "contact_loss_transitions": 21,
+    "stance_phase_contact_loss_transitions": 17,
+    "terminal_next_body_pose_invented": false
+  },
+  "observed_mechanisms": {
+    "rear_right": "The original recontact gate holds at phase 72 for commands 166-255. 88 of these commands have zero raw native contact samples. No hold motor saturates; seven joint references are slew-limited. The actual foot initially remains about 33.84 mm above the nominal floor while the complete geometric goal is already floor-reaching.",
+    "gait_clock_propagation": "During that 90-command interval, the existing phase-sync counter holds front-left 76 times and front-right/rear-left 80 times each. This is observed scheduler state, not a counterfactual physical prediction.",
+    "rear_left": "Contact is lost after command 286 at scheduled stance phase 294, before first scheduled swing at command 352. 65 stance commands lack contact; 45 stance commands have link-reach projection. The maximum ideal stance goal bottom at the measured body pose is about 24.13 mm above the authored floor. The final swing remains incomplete.",
+    "limits": "Ideal reference geometry and tracking errors are distinct from actual native contacts. A reachable target does not prove prompt landing; extra time cannot erase earlier relocation failures. The rate sketch is not an established unique physical cause or complete repair."
+  },
+  "focused_test": {
+    "passed": true,
+    "test_count": 6,
+    "seconds": 4.9620974,
+    "exit_code": 0,
+    "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v38-landing-diagnosis-d9e47489ebe74357bac32abda2bb275e"
+  },
+  "selection_rationale": "Use the already implemented full reference-speed expression only during explicitly absent-contact scheduled swing/landing. Retain V38's pose-separated rate in supported contact and scheduled stance, where V37's broader full-reference term previously coincided with undesirable motion. This targets slow aerial tracking without changing gains, cap, schedule, geometry, native contact truth or any old result. It does not claim to repair the separate stance-reach and unintended-contact-loss mechanisms.",
+  "saved_input_sketch": {
+    "selected_joint_commands": 550,
+    "changed_joint_commands": 474,
+    "original_saturated_commands": 19,
+    "proposed_saturated_commands": 120,
+    "all_unselected_velocities_exact": true,
+    "all_rates_and_velocities_within_existing_caps": true,
+    "native_controller_called": false,
+    "alternate_physical_trajectory": false
+  },
+  "finite_remaining_work": [
+    "Implement and verify one distinct V39 native component, including selector truth table, complete 400-input stateless/session comparison, exact V38 unselected behavior, legacy byte compatibility and negative controls.",
+    "Bind the verified immutable runtime into the existing parameterized worker/reader route. Keep the component-only profile non-runnable; complete all applicable zero-world safety checks before a fresh diagnostic.",
+    "Use a fresh bounded diagnostic only after explicit integration and prospective declaration. Preserve the 400-command budget and all original criteria; report landing/tracking changes together with the unresolved stance and relocation failures."
+  ],
+  "deferred_not_waived": [
+    "Stance contact retention and geometric reach conflicts.",
+    "Every-foot forward relocation and complete repeatable contact cycles.",
+    "Terminal four-foot support and official held-out three-engine recovery acceptance."
+  ],
+  "controller_or_gain_changed": false,
+  "threshold_or_evaluator_changed": false,
+  "physical_attempt_authorized": false,
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "readiness": {
+    "sdk1_passed": 14,
+    "sdk1_total": 20,
+    "full_program_passed": 14,
+    "full_program_total": 25,
+    "invalid_proof_count": 0,
+    "R173_raw_sha256": "sha256:c2d6edf090ab80a55eb8a6996f52984c14c453bf513e9d8d058d81603817425f"
+  },
+  "native_controller_call_count": 0,
+  "new_world_build_count": 0,
+  "new_solver_step_count": 0,
+  "new_native_physics_read_count": 0,
+  "original_result_changed": false,
+  "physical_cause_proven": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

@@ -1,0 +1,204 @@
+{
+  "schema_version": "sporespore_r10s_extended_preparation_design_v1",
+  "design_id": "R10S-EXTENDED-PREPARATION-V1",
+  "status": "declared_before_successor_implementation",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_bounded_support_preparation_successor",
+    "question_class": "development"
+  },
+  "predecessor_closure": {
+    "path": "sdk/recovery/r10r_phase246_development_failure_v1.json",
+    "byte_length": 201631,
+    "raw_sha256": "sha256:b369e0326c60a0cdc591afeef22da6b11cb892a9a6fd36a5034b7580ff2feec6"
+  },
+  "diagnostic_review": {
+    "path": "sdk/recovery/r10r_support_transfer_review_v1.json",
+    "byte_length": 2253,
+    "raw_sha256": "sha256:ce4e5e02678f4f0153f0dcc1443b11c7170926ec76939c16aa39f3416b35c3e1"
+  },
+  "question": "Can an additional bounded second of unchanged support-transfer control complete the fourth walking cycle after the retained upright recovery?",
+  "evidence_basis": {
+    "exposed_histories": 6,
+    "preparations": 24,
+    "successful_rear_left_preparation_commands": [
+      210,
+      238,
+      198,
+      209
+    ],
+    "consumed_refusal_preparation_commands": [
+      240,
+      240
+    ],
+    "r10r_margin_range_m": [
+      -0.02842837847347214,
+      0.019879817397075936
+    ],
+    "r10r_required_margin_m": 0.02,
+    "r10r_ready_samples": 0,
+    "r10n_maximum_ready_dwell": 5,
+    "required_ready_dwell": 6,
+    "component_observation": "R10R completes direct upright rise and 60-sample standing, then three walking cycles. Both exposed refusals are later rear-left preparation timeouts.",
+    "causality_limits": "The histories are descriptive and not a matched controller comparison. No continued physical trajectory or success beyond command 240 is known."
+  },
+  "controller_change": {
+    "new_policy_id": "sporespore_balanced_wave_recovery_extended_preparation_v1",
+    "new_memory_schema": "sporespore_balanced_wave_recovery_extended_preparation_memory_v1",
+    "new_profile_schema": "sporespore_balanced_wave_recovery_extended_preparation_profile_v1",
+    "new_receipt_schema": "sporespore_recovery_extended_preparation_controller_step_receipt_v1",
+    "predecessor_policy": "sporespore_balanced_wave_recovery_initialized_zero_brake_v1",
+    "preparation_limit_commands_before": 240,
+    "preparation_limit_commands_after": 360,
+    "preparation_duration_s_before": 2,
+    "preparation_duration_s_after": 3,
+    "physics_hz": 120,
+    "limit_semantics": "Permit up to 360 unreleased preparation commands; next non-ready command refuses with unchanged zero-actuation semantics. Six consecutive ready samples release under the existing ordering, including the existing boundary-release behavior.",
+    "memory_validation": "Only the new policy accepts its own preparation counter through 360. All old policies, old memory schemas and 240-command validation/refusals stay exact.",
+    "control_law_changed": false,
+    "source_observation_rewriting": false,
+    "old_native_exports_and_outputs_preserved": true,
+    "new_upright_export_required": false,
+    "reuse_upright_export": "ss_recovery_r10r_upright_step_control_v1_json"
+  },
+  "preserved": {
+    "target_triangle_margin_m": 0.025,
+    "release_triangle_margin_m": 0.02,
+    "release_horizontal_com_speed_m_s": 0.03,
+    "release_angular_speed_rad_s": 0.15,
+    "release_tilt_rad": 0.05,
+    "release_dwell_samples": 6,
+    "required_remaining_supports": 3,
+    "position_rate_gain": 4.0,
+    "velocity_damping": 1.5,
+    "maximum_absolute_hip_bias_rad": 0.3,
+    "maximum_hip_bias_rate_rad_s": 0.6,
+    "original_motor_caps": true,
+    "reference_geometry_and_height_selection": true,
+    "gait_contact_interlocks": true,
+    "first_initialized_zero_amplitude_brake": true,
+    "original_no_kick_joint_ramp_and_separate_v50_hold": true,
+    "r10r_upright_v20_v12_v7": true,
+    "original_partial_and_prone_v20_v7": true,
+    "standing_thresholds_and_60_sample_dwell": true,
+    "kick_energy_epoch": true,
+    "maximum_walking_commands": 1600,
+    "planned_cycles": 4,
+    "stop_commands": 120,
+    "final_settled_commands": 30,
+    "maximum_no_kick_child_solver_steps": 2552,
+    "maximum_kicked_child_solver_steps": 3512,
+    "child_wall_time_seconds": 1500
+  },
+  "budget_rationale": "360 adds one second (50 percent) to a preparation budget whose observed positive margin is only two commands. The hard 1600-command walking limit is preserved: extra preparation time competes with the rest of the declared task instead of extending the finite acceptance horizon. A successor can still fail that outer bound.",
+  "alternatives": [
+    {
+      "option": "Repeat R10R or reinterpret its three cycles",
+      "selected": false,
+      "reason": "The first single is consumed and incomplete; its original outcome and four-cycle contract stay fixed."
+    },
+    {
+      "option": "Lower margin or consecutive ready dwell",
+      "selected": false,
+      "reason": "Would weaken the stability requirement that has not yet been met."
+    },
+    {
+      "option": "Increase feedback gain or alter reference-height dynamics",
+      "selected": false,
+      "reason": "Changes physical actuation throughout preparation; the exposed comparison does not establish which gain or height law would improve stability."
+    },
+    {
+      "option": "Increase only the new policy preparation limit to 360",
+      "selected": true,
+      "reason": "Addresses the demonstrated tight time allowance while preserving the controller and existing finite task horizon. It must be tested prospectively."
+    },
+    {
+      "option": "Repeat the full 360-phase startup sweep before investigating later balance",
+      "selected": false,
+      "reason": "Startup-only enumeration does not observe this later physical preparation. New-runtime qualification must cover affected boundaries and exact unchanged startup geometry without treating synthetic phases as physical states."
+    }
+  ],
+  "qualification": {
+    "exact_new_runtime_required": true,
+    "original_dll_overwrite": false,
+    "complete_affected_zero_world_gate_before_physics": true,
+    "required_coverage": [
+      "Original native policy outputs and both retained terminal refusals reproduce byte-exactly on their original IDs.",
+      "All six exposed walking histories are checked on the new policy using copied inputs and prospectively translated memory IDs: completed command arithmetic, caps, contacts and stop outputs retain the predecessor values apart from explicit identity fields.",
+      "Synthetic exact boundary checks cover counters 239, 240, 241, 359, 360 and invalid 361, including readiness release, non-ready refusal, fresh memory, stale clocks, crossed policy memory and stateless/session equality.",
+      "The actual Godot adapter and independent reader reject crossed policy IDs, limits, memory, finalization and publication identities.",
+      "Original R10R upright and Q/partial/prone API fixtures remain exact; no recovery law changes.",
+      "Production launcher enforces declared roles, explicit prefix phases, complete gate, clean pushed source, single-use initial consumption, process ownership, bounded stepping and no-claim publication."
+    ],
+    "qualification_reuse": "Only exact complete dependency-key matches permit reused evidence. Source-level reasoning or copied test names do not waive affected native and adapter checks."
+  },
+  "development_coverage": {
+    "held_out": false,
+    "first_diagnostic": {
+      "seed": 41046,
+      "prefix_phase": 246,
+      "roles": [
+        "kick_passive_recovery_resume"
+      ],
+      "single_kick": true,
+      "attempt_limit": 1,
+      "full_finite_horizon": true,
+      "question": "Fresh upright recovery, V56 walking through all four cycles, and the complete stop on the exposed difficult phase.",
+      "coverage_adequacy": "The new behavior begins at an existing support-preparation deadline. The first fresh kicked child exercises that deadline after the retained upright path. Both roles receive real-interface safety coverage first; this single makes no paired-effect claim."
+    },
+    "if_first_not_valid_positive": "Retain the consumed result; no later R10S pair or additional cell may launch. Any further change requires a distinct successor.",
+    "if_first_valid_positive": {
+      "fresh_pair": {
+        "seed": 41046,
+        "prefix_phase": 246,
+        "roles": [
+          "matched_no_kick_continuation",
+          "kick_passive_recovery_resume"
+        ],
+        "baseline_reuse": false
+      },
+      "if_pair_not_valid_positive": "Close this R10S development chain; no additional cells or held-out population.",
+      "only_after_valid_positive_pair": [
+        {
+          "seed": 41045,
+          "prefix_phase": 245,
+          "role": "kick_passive_recovery_resume",
+          "branch": "upright"
+        },
+        {
+          "seed": 41041,
+          "prefix_phase": 241,
+          "role": "kick_passive_recovery_resume",
+          "branch": "partial"
+        },
+        {
+          "seed": 41043,
+          "prefix_phase": 243,
+          "role": "kick_passive_recovery_resume",
+          "branch": "prone"
+        }
+      ]
+    },
+    "explicit_prefix_map": {
+      "41046": 246,
+      "41045": 245,
+      "41041": 241,
+      "41043": 243
+    },
+    "original_r10r_populations_reused": false,
+    "clean_pushed_freeze_required": true
+  },
+  "risks": [
+    "Additional time may still never produce six consecutive ready samples.",
+    "More preparation can exhaust the unchanged 1600-command walking budget.",
+    "Later foot placement, stop settling, and the partial/prone branches can fail independently of upright recovery.",
+    "Two observed timeouts and four successes cannot establish robustness or acceptance probability."
+  ],
+  "held_out_population_declared": false,
+  "held_out_execution_authorized": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "sdk1_score": "14/20"
+}

@@ -1,0 +1,77 @@
+{
+  "schema_version": "sporespore_sdk_compatibility_policy_v1",
+  "policy_id": "sporespore_sdk_public_compatibility_v1",
+  "sdk_version": "0.1.0",
+  "abi_generation": 1,
+  "status": "public_preview_frozen_for_quadruped_submission",
+  "normative_versioning_model": "Semantic Versioning 2.0.0",
+  "release_version_rules": {
+    "version_shape": "MAJOR.MINOR.PATCH",
+    "pre_1_0_status": "public_preview",
+    "patch_release": {
+      "may_break_active_public_c_abi": false,
+      "may_change_existing_schema_meaning": false,
+      "may_remove_public_symbols": false,
+      "allowed_changes": [
+        "backward_compatible_bug_fix",
+        "documentation",
+        "new_optional_source_surface_that_does_not_change_existing_records"
+      ]
+    },
+    "minor_release_before_1_0": {
+      "may_add_public_surface": true,
+      "may_remove_deprecated_preview_surface": true,
+      "removal_requires_registry_entry": true,
+      "removal_requires_minimum_notice_minor_releases": 1,
+      "c_abi_removal_requires_abi_generation_increment": true,
+      "schema_meaning_may_not_change_in_place": true
+    },
+    "major_release": {
+      "required_for_stable_breaking_change_after_1_0": true,
+      "requires_new_abi_generation_for_c_abi_break": true
+    }
+  },
+  "c_abi_rules": {
+    "calling_convention": "c",
+    "rust_layout_crosses_boundary": false,
+    "caller_owned_output_buffers": true,
+    "status_discriminants_are_stable_within_abi_generation": true,
+    "existing_symbol_signature_may_change_in_place": false,
+    "symbol_removal_requires_abi_generation_increment": true,
+    "new_symbols_are_additive": true,
+    "abi_manifest": "sdk/versioning/c_abi_manifest_v1.json"
+  },
+  "schema_rules": {
+    "schema_identity_field": "schema_version",
+    "unknown_input_fields_fail_closed": true,
+    "missing_required_fields_fail_closed": true,
+    "nonfinite_numbers_fail_closed": true,
+    "record_shape_or_meaning_may_change_in_place": false,
+    "breaking_record_change_requires_new_schema_id": true,
+    "multiple_schema_versions_may_coexist": true,
+    "implicit_cross_version_coercion_allowed": false,
+    "migration_requires_registered_transform": true,
+    "migration_must_preserve_declared_semantics": true,
+    "migration_receipt_schema": "sporespore_schema_migration_receipt_v1",
+    "schema_registry": "sdk/versioning/schema_registry_v1.json"
+  },
+  "deprecation_rules": {
+    "registry": "sdk/versioning/deprecation_registry_v1.json",
+    "allowed_statuses": [
+      "active",
+      "deprecated",
+      "removed"
+    ],
+    "deprecated_surface_remains_tested": true,
+    "replacement_and_notice_window_required": true,
+    "silent_policy_substitution_allowed": false,
+    "removal_before_not_before_version_allowed": false
+  },
+  "authority_boundary": {
+    "versioning_conformance_grants_release": false,
+    "versioning_conformance_grants_packaging": false,
+    "versioning_conformance_grants_walking": false,
+    "versioning_conformance_grants_physical_acceptance": false,
+    "versioning_conformance_grants_completed_engine_neutral_sdk": false
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "sporespore_qsdk_r23d16_pre_attestation_rustfmt_incident_v1",
+  "campaign_id": "QSDK-R23D16-EVIDENCE-PIPELINE-RECOVERY-THREE-ENGINE-TURN-CONFIRMATION",
+  "gate_id": "QSDK-R23D16",
+  "status": "closed_pre_attestation_source_format_failure_zero_world",
+  "source_commit": "ae0ffa203bffea5f6375cfc1e57016d3c12173eb",
+  "source_tree_git_oid": "046e8a5aaf9a056a1d8a6efebeaadaeb493ba2a9",
+  "failure": {
+    "stage_id": "portable_core_and_release_source",
+    "message": "Rust SDK formatting check failed with exit code 1",
+    "classification": "prospective_source_format_drift_not_behavior_change_not_scientific_result",
+    "mechanism": "rustfmt required one declaration in the new R23D16 Rapier composition module to occupy a single line; the declaration value and executable semantics are unchanged.",
+    "affected_path": "sdk/adapters/rapier/src/qsdk_r23d16_composition_recovery.rs",
+    "authorized_repair": "apply_cargo_fmt_to_the_exact_source_then_rerun_focused_gates_commit_push_and_create_a_fresh_full_attestation",
+    "controller_or_physics_change_authorized": false,
+    "historical_result_reinterpretation_authorized": false
+  },
+  "retained_conformance": {
+    "run_receipt_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/conformance-runs/20260811T180534Z-ae0ffa20-dbd4365f1e96439f96abb5c3f9a0d28e/receipt.json",
+    "run_receipt_raw_sha256": "sha256:0ba7e8f6ef541a31f809884ecb656522ece5aa2f8b6bc48eb31a6a0a782928bd",
+    "failed_stage_receipt_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/conformance-runs/20260811T180534Z-ae0ffa20-dbd4365f1e96439f96abb5c3f9a0d28e/stages/03-portable_core_and_release_source.json",
+    "failed_stage_receipt_raw_sha256": "sha256:15a641d9f2b6ca1034bb415a5ea2981fe156b3a018b3f7f8ebc23cbeb8cee1ce",
+    "duration_seconds": 731.7839105,
+    "authority_stage_passed": true,
+    "authority_stage_duration_seconds": 635.4596597,
+    "zero_world_preflight_stage_passed": true,
+    "zero_world_preflight_stage_duration_seconds": 93.366519,
+    "failed_stage_duration_seconds": 2.5911531,
+    "attestation_published": false
+  },
+  "repair": {
+    "kind": "rustfmt_only",
+    "changed_line_count": 2,
+    "formatted_source_raw_sha256": "sha256:dbbd6cb6f4752938897b536d85536fde8172449ca85680d57b60370e6e74f87f",
+    "behavior_changed": false,
+    "campaign_identity_changed": false
+  },
+  "counters": {
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0
+  },
+  "claims": {
+    "scientific_result": false,
+    "turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false
+  }
+}

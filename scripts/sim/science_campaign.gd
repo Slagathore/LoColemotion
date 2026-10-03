@@ -1,0 +1,204 @@
+class_name ScienceCampaign
+extends RefCounted
+
+## M11 campaign wrapper: build a labeled corpus, measure correlation, split
+## train/holdout for calibration assessment, and write an honest report. This
+## does not mutate evaluator constants.
+
+
+class Config:
+	extends Resource
+	var seed := 7100
+	var horizon_s := 3.0
+	var output_path := "user://science_correlation.jsonl"
+	var report_path := "res://docs/CORRELATION_FINDING.md"
+	var min_total := 60
+	var min_category := 10
+	var min_body_plan := 8
+	var generated_count := 40
+	var mutation_count := 12
+	var known_bad_count := 2
+	var write_report := true
+	var include_training_log := true
+
+
+static func run(tree: SceneTree, cfg: Config = null) -> Dictionary:
+	var c := cfg if cfg != null else Config.new()
+	if tree == null:
+		return {"ok": false, "error": "missing tree"}
+	var ccfg := CorpusBuilder.Config.new()
+	ccfg.seed = c.seed
+	ccfg.generated_count = c.generated_count
+	ccfg.mutation_count = c.mutation_count
+	ccfg.known_bad_count = c.known_bad_count
+	var corpus := CorpusBuilder.build(ccfg)
+	var floors := CorpusBuilder.floor_report(corpus, c.min_total, c.min_category, c.min_body_plan)
+	var training_log := _training_log_summary() if c.include_training_log else {}
+	var rcfg := CorrelationRunner.Config.new()
+	rcfg.seed = c.seed + 100
+	rcfg.horizon_s = c.horizon_s
+	rcfg.output_path = c.output_path
+	var runner := CorrelationRunner.new()
+	var correlation: Dictionary = await runner.run(corpus, tree, rcfg)
+	var splits := _split_rows(correlation.get("row_data", []))
+	var calibration := CalibrationRunner.assess(_calibration_history(splits), CalibrationRunner.Config.new())
+	var summary := {
+		"ok": bool(correlation.get("ok", false)),
+		"corpus_size": corpus.size(),
+		"floors": floors,
+		"training_log": training_log,
+		"correlation": correlation,
+		"splits": splits,
+		"calibration": calibration,
+		"report_path": c.report_path,
+	}
+	if c.write_report:
+		_write_report(c.report_path, summary)
+	return summary
+
+
+static func _split_rows(rows_in: Array) -> Dictionary:
+	var train_rows: Array[Dictionary] = []
+	var holdout_rows: Array[Dictionary] = []
+	var grouped := {}
+	for raw in rows_in:
+		var row: Dictionary = raw
+		var group_key := "%s|%s" % [
+			String(row.get("source_category", "unknown")),
+			String(row.get("body_plan", "unknown")),
+		]
+		if not grouped.has(group_key):
+			grouped[group_key] = []
+		grouped[group_key].append(row)
+	for group_key in grouped.keys():
+		var group_rows: Array = grouped[group_key]
+		group_rows.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+			return String(a.get("genome_hash", "")) < String(b.get("genome_hash", ""))
+		)
+		for i in group_rows.size():
+			if i % 4 == 3:
+				holdout_rows.append(group_rows[i])
+			else:
+				train_rows.append(group_rows[i])
+	if holdout_rows.is_empty() and train_rows.size() > 1:
+		holdout_rows.append(train_rows.pop_back())
+	if train_rows.is_empty() and holdout_rows.size() > 1:
+		train_rows.append(holdout_rows.pop_back())
+	return {
+		"train": _slice_summary(train_rows),
+		"holdout": _slice_summary(holdout_rows),
+	}
+
+
+static func _slice_summary(rows: Array[Dictionary]) -> Dictionary:
+	var xs := PackedFloat32Array()
+	var ys := PackedFloat32Array()
+	var categories := {}
+	var body_plans := {}
+	for row in rows:
+		xs.append(float(row.get("analytic_speed", 0.0)))
+		ys.append(float(row.get("measured_speed", 0.0)))
+		var cat := String(row.get("source_category", "unknown"))
+		var bp := String(row.get("body_plan", "unknown"))
+		categories[cat] = int(categories.get(cat, 0)) + 1
+		body_plans[bp] = int(body_plans.get(bp, 0)) + 1
+	return {
+		"n": rows.size(),
+		"spearman": Reconcile.spearman(xs, ys),
+		"kendall": Reconcile.kendall(xs, ys),
+		"category_counts": categories,
+		"body_plan_counts": body_plans,
+	}
+
+
+static func _calibration_history(splits: Dictionary) -> Array[Dictionary]:
+	var train: Dictionary = splits.get("train", {})
+	var holdout: Dictionary = splits.get("holdout", {})
+	return [
+		{"spearman": float(train.get("spearman", 0.0)), "split": "train"},
+		{"spearman": float(holdout.get("spearman", 0.0)), "split": "holdout"},
+		{"spearman": float(holdout.get("spearman", 0.0)), "split": "holdout_repeat"},
+	]
+
+
+static func _write_report(path: String, summary: Dictionary) -> void:
+	var abs_dir := ProjectSettings.globalize_path(path.get_base_dir())
+	if not DirAccess.dir_exists_absolute(abs_dir):
+		DirAccess.make_dir_recursive_absolute(abs_dir)
+	var f := FileAccess.open(path, FileAccess.WRITE)
+	if f == null:
+		return
+	var floors: Dictionary = summary.get("floors", {})
+	var corr: Dictionary = summary.get("correlation", {})
+	var splits: Dictionary = summary.get("splits", {})
+	var training_log: Dictionary = summary.get("training_log", {})
+	var train: Dictionary = splits.get("train", {})
+	var holdout: Dictionary = splits.get("holdout", {})
+	var cal: Dictionary = summary.get("calibration", {})
+	var lines := PackedStringArray()
+	lines.append("# Correlation Finding")
+	lines.append("")
+	lines.append("Generated by `ScienceCampaign`. This is a directional smell test unless the numeric corpus floors are met.")
+	lines.append("")
+	lines.append("## Corpus")
+	lines.append("")
+	lines.append("- N: %d" % int(summary.get("corpus_size", 0)))
+	lines.append("- Floors met: %s" % str(bool(floors.get("ok", false))))
+	lines.append("- Source categories: `%s`" % JSON.stringify(floors.get("category_counts", {})))
+	lines.append("- Body plans: `%s`" % JSON.stringify(floors.get("body_plan_counts", {})))
+	if not bool(floors.get("ok", false)):
+		lines.append("- Floor blockers: `%s`" % JSON.stringify(floors.get("blockers", [])))
+	if not training_log.is_empty():
+		lines.append("- Training-log rows tabulated separately: %d" % int(training_log.get("runs", 0)))
+		lines.append("- Training-log credible rows: %d" % int(training_log.get("credible", 0)))
+		lines.append("- Training-log body plans: `%s`" % JSON.stringify(training_log.get("body_plan_counts", {})))
+	lines.append("")
+	lines.append("## Correlation")
+	lines.append("")
+	lines.append("- Spearman: %.4f" % float(corr.get("spearman", 0.0)))
+	lines.append("- Kendall: %.4f" % float(corr.get("kendall", 0.0)))
+	lines.append("- By category: `%s`" % JSON.stringify(corr.get("by_category", {})))
+	lines.append("- By body plan: `%s`" % JSON.stringify(corr.get("by_body_plan", {})))
+	lines.append("")
+	lines.append("## Train / Holdout")
+	lines.append("")
+	lines.append("- Train N: %d" % int(train.get("n", 0)))
+	lines.append("- Train Spearman: %.4f" % float(train.get("spearman", 0.0)))
+	lines.append("- Holdout N: %d" % int(holdout.get("n", 0)))
+	lines.append("- Holdout Spearman: %.4f" % float(holdout.get("spearman", 0.0)))
+	lines.append("- Holdout categories: `%s`" % JSON.stringify(holdout.get("category_counts", {})))
+	lines.append("- Holdout body plans: `%s`" % JSON.stringify(holdout.get("body_plan_counts", {})))
+	lines.append("")
+	lines.append("## Calibration Assessment")
+	lines.append("")
+	lines.append("- Decision: `%s`" % String(cal.get("decision", &"unknown")))
+	lines.append("- Best Spearman: %.4f" % float(cal.get("best_spearman", 0.0)))
+	if cal.has("reason"):
+		lines.append("- Reason: %s" % String(cal["reason"]))
+	lines.append("")
+	lines.append("No evaluator constants were mutated by this campaign.")
+	f.store_string("\n".join(lines) + "\n")
+	f.close()
+
+
+static func _training_log_summary() -> Dictionary:
+	var rows := TrainingLog.load_runs()
+	var categories := {}
+	var body_plans := {}
+	var credible := 0
+	for raw in rows:
+		var row: Dictionary = raw
+		categories["training_log"] = int(categories.get("training_log", 0)) + 1
+		var features: Dictionary = row.get("features", {})
+		var body_plan := CorpusBuilder.body_plan_label(features)
+		body_plans[body_plan] = int(body_plans.get(body_plan, 0)) + 1
+		if bool(row.get("credible_walk", false)):
+			credible += 1
+	return {
+		"runs": rows.size(),
+		"credible": credible,
+		"category_counts": categories,
+		"body_plan_counts": body_plans,
+		"trained_roots": TrainingLog.trained_root_entries().size(),
+		"note": "Training logs store reconstructable best roots; corpus inclusion is handled by CorpusBuilder.include_trained.",
+	}

@@ -1,0 +1,71 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "r10ab-partial-downward-rise-integrated-v2": {
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:729661dfd0936a4858238254fa8429688ad8815c49bda1dc9cd1cc3f6604ba08",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 3400,
+        "maximum_steps_per_child": 3752
+      },
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "coverage_basis": {
+        "maximum_descent_steps": 240,
+        "maximum_canonical_recovery_steps": 1200,
+        "maximum_walking_commands": 1600,
+        "stopping_commands": 120,
+        "settled_commands": 30,
+        "maximum_no_kick_solver_steps": 2552,
+        "maximum_kicked_solver_steps": 3752,
+        "tail_derivation": "Kicked: 240 descent+1200 recovery+240 post-recovery hold+1600 walking+120 stop=3400. No-kick: 240 ramp+240 hold+1600 walking+120 stop=2200. Add 320 precondition+30 prefix+2 transition steps: 3752 kicked and 2552 no-kick.",
+        "resource_derivation": "320 + 30 + 2 + role-specific tail",
+        "baseline_reused": false,
+        "equal_horizon_effect_claimed": false,
+        "maximum_no_kick_ramp_commands": 240,
+        "maximum_no_kick_hold_commands": 240,
+        "task_contract": "sdk/recovery/r10ab_partial_downward_rise_finite_cycle_contract_v2.json",
+        "task_contract_sha256": "sha256:bd8bf8b616a80c7f5c2b5070324350c0d8d66e9543f3598bc9edb067982cb83c",
+        "successor_design": "sdk/recovery/r10ab_partial_downward_rise_development_design_v1.json",
+        "successor_design_sha256": "sha256:2f1dd3df7edd561ec94ddb2cfffe8d2e72553b9914a5924a8635c940e9be186b",
+        "maximum_partial_recovery_steps": 1200,
+        "maximum_upright_recovery_steps": 1200,
+        "maximum_post_recovery_hold_commands": 240
+      },
+      "coverage_adequacy": "One fresh noncomparative kicked child at exposed phase 248 exercises the new V24 loaded downward-rise control through the real launcher, native source/motor interfaces, bounded recovery and walking tail, finalization, publication and independent reader. Continued rise and stance are covered only if the original task gates permit them. No cached baseline, paired commissioning, held-out result or broader phase coverage is supplied by this diagnostic.",
+      "coverage_question": "One fresh noncomparative kicked child at exposed phase 248 exercises the new V24 loaded downward-rise control through the real launcher, native source/motor interfaces, bounded recovery and walking tail, finalization, publication and independent reader. Continued rise and stance are covered only if the original task gates permit them. No cached baseline, paired commissioning, held-out result or broader phase coverage is supplied by this diagnostic.",
+      "uncovered_paths": [
+        "paired commissioning",
+        "exposed raise-failure phase 247",
+        "prior-positive partial phase 241",
+        "phase 249 asymmetry and joint-limit coverage",
+        "held-out acceptance",
+        "cross-engine recovery acceptance",
+        "robustness or equivalence",
+        "arbitrary morphology or terrain"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "r10ab_v56_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "r10ab_v56_front_left_first_post_interaction_v1",
+      "walking_policy_id": "r10ab_partial_downward_rise_route_v1",
+      "walking_policy_contract_sha256": "sha256:ba3ab1683523558b92d80798f911ec971f4cf72be2ddab0ba63dd437b7b0a282",
+      "coverage_argument": "One fresh noncomparative kicked child at exposed phase 248 exercises the new V24 loaded downward-rise control through the real launcher, native source/motor interfaces, bounded recovery and walking tail, finalization, publication and independent reader. Continued rise and stance are covered only if the original task gates permit them. No cached baseline, paired commissioning, held-out result or broader phase coverage is supplied by this diagnostic."
+    }
+  }
+}

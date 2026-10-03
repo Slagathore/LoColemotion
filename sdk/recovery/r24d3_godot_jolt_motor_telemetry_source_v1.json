@@ -1,0 +1,230 @@
+{
+  "schema_version": "sporespore_qsdk_r24d3_godot_jolt_motor_telemetry_source_contract_v1",
+  "gate_id": "QSDK-R24D3",
+  "work_id": "QSDK-R24D3-GODOT-JOLT-EXACT-MOTOR-TELEMETRY-SOURCE",
+  "status": "implemented_compile_proved_zero_world_binding_proved_characterization_withheld",
+  "question_class": "non_physical_source_conformance",
+  "physical_question_opened": false,
+  "purpose": "Provide an exact, signed, post-solver hinge-motor impulse source and a non-cancelling discrete actuator-work ledger for the published Godot/Jolt velocity-motor profile without changing its actuator semantics.",
+  "parent_boundary": {
+    "repository": "https://github.com/Slagathore/sporespore.git",
+    "parent_commit": "d7995aeac268f22142edd82564c79b5d7b56c881",
+    "parent_gate_id": "QSDK-R24D2",
+    "parent_contract_path": "sdk/recovery/r24d2_portable_recovery_semantics_v1.json",
+    "parent_result": "partial_fail_closed",
+    "preserved_stock_godot_supported_channel_count": 8,
+    "preserved_stock_godot_unsupported_channels": [
+      "applied_actuation_receipts",
+      "energy_balance_ledger"
+    ],
+    "parent_result_rewritten": false,
+    "parent_threshold_changed": false,
+    "parent_selector_changed": false,
+    "parent_interpretation_changed": false
+  },
+  "upstream_source": {
+    "repository": "https://github.com/godotengine/godot.git",
+    "release": "4.7-stable",
+    "commit": "5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88",
+    "physics_backend": "Godot built-in Jolt module with bundled Jolt Physics",
+    "patch_path": "sdk/adapters/godot/engine_patches/godot_4_7_jolt_motor_telemetry.patch",
+    "patch_raw_sha256": "sha256:f067543bc6237a38c0c0935a56b3bbebcd318dc6d82cec1321ea5d52e45dae2f",
+    "patch_file_count": 7,
+    "patched_paths": [
+      "modules/jolt_physics/joints/jolt_hinge_joint_3d.cpp",
+      "modules/jolt_physics/joints/jolt_hinge_joint_3d.h",
+      "modules/jolt_physics/jolt_physics_server_3d.cpp",
+      "modules/jolt_physics/jolt_physics_server_3d.h",
+      "modules/jolt_physics/register_types.cpp",
+      "thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.cpp",
+      "thirdparty/jolt_physics/Jolt/Physics/Constraints/HingeConstraint.h"
+    ],
+    "patch_reverse_apply_checked_against_exact_modified_source": true,
+    "patch_forward_apply_to_wrong_commit_authorized": false,
+    "custom_engine_profile_id": "godot_4_7_jolt_sporespore_motor_telemetry_v1",
+    "stock_godot_profile_changed": false
+  },
+  "source_decision": {
+    "selected_route": "pinned_minimal_native_instrumentation_at_each_jolt_hinge_motor_impulse_application",
+    "actuator_semantics_unchanged": true,
+    "selected_velocity_motor_replaced_with_direct_body_torque": false,
+    "configured_target_or_limit_relabelled_as_applied_effort": false,
+    "aggregate_joint_reaction_relabelled_as_motor_effort": false,
+    "endpoint_only_work_estimator_used": false,
+    "selection_argument": "Jolt owns the signed motor Lagrange multiplier at the exact velocity-solver application site. Instrumenting that site preserves the frozen Godot hinge velocity motor while separating motor impulse from limit and orthogonal reaction impulses and while accounting for solver interleaving that an outer pre/post estimator cannot isolate.",
+    "rejected_routes": [
+      {
+        "route": "configured_motor_target_or_maximum_impulse_readback",
+        "reason": "A command or cap is not the solved impulse actually applied."
+      },
+      {
+        "route": "Godot aggregate Jolt joint reaction helper",
+        "reason": "It takes a magnitude and combines motor, limit, and other hinge reaction terms, destroying sign and source separation."
+      },
+      {
+        "route": "replace_hinge_motor_with_paired_direct_body_torques",
+        "reason": "That changes the published actuator profile and cannot qualify the existing R24D1/R24D2 semantics."
+      },
+      {
+        "route": "outer_step_relative_rate_times_total_motor_impulse",
+        "reason": "Other sequential impulses can be interleaved between motor iterations, so outer endpoints do not isolate motor-attributed work."
+      },
+      {
+        "route": "subtree_momentum_reconstruction",
+        "reason": "A moving articulated subtree with contacts, limits, damping, and a moving pivot requires a separately qualified oracle and is not the minimal exact source available here."
+      }
+    ]
+  },
+  "measurement_semantics": {
+    "receipt_schema": "sporespore.godot_jolt_hinge_motor_telemetry.v1",
+    "binding_class": "JoltPhysicsServer3D",
+    "binding_method": "hinge_joint_get_motor_telemetry",
+    "generalized_velocity_definition": "Jv = hinge_axis dot (body_2_angular_velocity - body_1_angular_velocity)",
+    "jolt_angle_constraint_jacobian": "J = [0, -axis_transpose, 0, axis_transpose]",
+    "per_impulse_work_definition": "delta_work_j = delta_lambda_nms * 0.5 * (generalized_velocity_before_rad_s + generalized_velocity_after_rad_s)",
+    "warm_start_included": true,
+    "every_iterative_motor_impulse_included": true,
+    "other_constraint_impulses_excluded_from_motor_work_interval": true,
+    "positive_and_absorbed_work_retained_separately": true,
+    "net_work_definition": "positive_motor_work_j - absorbed_motor_work_j",
+    "signed_impulse_source": "JPH::HingeConstraint::GetTotalLambdaMotor()",
+    "signed_impulse_units": "N*m*s",
+    "work_units": "J",
+    "solver_step_units": "s",
+    "sequence_scope": "monotonic_per_live_hinge_constraint_instance_when_velocity_constraint_setup_runs",
+    "receipt_fields": [
+      "schema",
+      "telemetry_sequence",
+      "solver_step_s",
+      "motor_state",
+      "target_angular_velocity_rad_s",
+      "min_torque_limit_nm",
+      "max_torque_limit_nm",
+      "signed_motor_impulse_nms",
+      "positive_motor_work_j",
+      "absorbed_motor_work_j",
+      "net_motor_work_j"
+    ],
+    "refusal_conditions": [
+      "no Jolt physics server singleton",
+      "separate-thread server outside its synchronization window",
+      "invalid or non-hinge RID",
+      "hinge has no owning space",
+      "space is currently stepping",
+      "fixed-joint substitution",
+      "missing native hinge constraint",
+      "no completed positive-duration velocity-constraint setup"
+    ],
+    "refusal_value": null,
+    "invalid_read_synthesizes_zero": false
+  },
+  "profile_boundary": {
+    "stock_godot_4_7_jolt": {
+      "supported_channel_count": 8,
+      "required_channel_count": 10,
+      "typed_refusal_preserved": true,
+      "qualified_for_r24_recovery": false
+    },
+    "instrumented_godot_4_7_jolt_candidate": {
+      "source_field_count": 10,
+      "required_channel_count": 10,
+      "compile_proved": true,
+      "zero_world_binding_proved": true,
+      "native_sign_characterized": false,
+      "impulse_cap_characterized": false,
+      "work_energy_oracle_characterized": false,
+      "limit_active_separation_characterized": false,
+      "motor_disabled_zero_characterized": false,
+      "qualified_for_r24_recovery": false
+    },
+    "profile_substitution_allowed": false,
+    "stock_and_instrumented_results_interchangeable": false
+  },
+  "zero_world_evidence": {
+    "source_compile_passed": true,
+    "compile_target": "Godot editor dev build, Windows x86_64, built-in Jolt",
+    "compile_command": "python -m SCons platform=windows target=editor dev_build=yes debug_symbols=no module_mono_enabled=no tests=no accesskit=no d3d12=no angle=no -j12",
+    "binding_test_path": "tests/test_sdk_qsdk_r24d3_godot_jolt_motor_telemetry_binding_zero_world.gd",
+    "validation_manifest_path": "sdk/recovery/r24d3_godot_jolt_motor_telemetry_source_validation_manifest.json",
+    "binding_assertion_count": 6,
+    "binding_failed_assertion_count": 0,
+    "invalid_rid_refused": true,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false
+  },
+  "negative_controls": {
+    "declared_count": 12,
+    "required": [
+      "configured_limit_substitution_rejected",
+      "aggregate_reaction_substitution_rejected",
+      "endpoint_only_work_substitution_rejected",
+      "warm_start_omission_rejected",
+      "iterative_delta_lambda_omission_rejected",
+      "positive_absorbed_cancellation_rejected",
+      "work_sign_mutation_rejected",
+      "invalid_rid_zero_synthesis_rejected",
+      "stepping_read_allowed_mutation_rejected",
+      "fixed_joint_substitution_allowed_mutation_rejected",
+      "unsequenced_receipt_mutation_rejected",
+      "receipt_schema_mutation_rejected"
+    ]
+  },
+  "threshold_margin_cohort_and_population_adequacy": {
+    "empirical_physical_threshold_count": 0,
+    "superiority_margin_count": 0,
+    "equivalence_or_non_inferiority_margin_count": 0,
+    "physical_cohort_identity_count": 0,
+    "population_claim_count": 0,
+    "algebraic_invariant_count": 3,
+    "algebraic_invariants": [
+      "impulse units are N*m*s and generalized angular velocity units are rad/s",
+      "an instantaneous angular impulse changes rotational kinetic energy by delta_lambda times the average generalized velocity across that impulse",
+      "positive and absorbed work are accumulated separately before net work is derived"
+    ],
+    "adequacy_argument": "Exact source identity, successful compilation, binding reachability, source-structure mutation rejection, and algebraic canaries are adequate only to select and freeze the instrumentation source without opening physics. They are not adequate to establish sign, numerical accuracy, actuator caps, energy closure, recovery, morphology, engine equivalence, or a population claim."
+  },
+  "next_permitted_work": {
+    "question_class": "development",
+    "work": "prospective_native_one_hinge_instrument_characterization",
+    "required_before_world": [
+      "commit_and_push_the_exact_instrumented_source_contract",
+      "pass_the_complete_r24d3_zero_world_gate_from_clean_pushed_source",
+      "retain_a_content_addressed_cold_build_receipt",
+      "freeze_the_one_hinge_world_source_and_oracles",
+      "declare_sign_cap_work_limit_and_disabled_motor_controls"
+    ],
+    "required_characterizations": [
+      "canonical_to_host_to_jolt_sign",
+      "signed_impulse_against_independent_angular_momentum_change",
+      "torque_cap_times_step_bound",
+      "positive_and_absorbed_work_against_independent_kinetic_energy change",
+      "limit_active separation",
+      "motor-disabled zero",
+      "invalid timing and invalid RID refusal",
+      "sequence freshness and sleeping-stale detection"
+    ],
+    "recovery_world_authorized": false,
+    "prone_to_standing_world_authorized": false
+  },
+  "claims": {
+    "exact_source_route_selected": true,
+    "patch_applies_to_pinned_source": true,
+    "custom_engine_compiles": true,
+    "zero_world_binding_reachable": true,
+    "stock_godot_capability_promoted": false,
+    "instrumented_godot_capability_promoted": false,
+    "native_measurement_accuracy_claimed": false,
+    "complete_r24_prephysical_gate_passed": false,
+    "recovery_controller_implemented": false,
+    "native_recovery_collector_implemented": false,
+    "physical_recovery_world_opened": false,
+    "prone_to_standing_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "q_sdk_r24_satisfied": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

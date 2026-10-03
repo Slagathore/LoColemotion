@@ -1,0 +1,164 @@
+{
+  "schema": "sporespore.lab.br7_knowledge_admission_manifest.v1",
+  "manifest_id": "BR7_PLANAR_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_admit_recommended_observation_only_br7_knowledge",
+  "authorization_instruction": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations.",
+  "decision": {
+    "decision_id": "BR7_PLANAR_MULTI_CONTACT_STANCE_DECISION_V1",
+    "decision_sha256": "sha256:ecd2528d6d766e137b6f69272054a455f047d97befd268ca2989399df3b9aa41"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "ACCEPTED_FREE_3D_STANCE_MILESTONE",
+      "VALIDATED_PER_CONTACT_LOAD_MEASUREMENT",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "BR7.0.planar_contact_wrench_allocation.v1",
+      "cell_id": "BR7.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br7_0_planar_contact_allocation.v1.json",
+      "program_id": "BR7_PLANAR_0_CONTACT_ALLOCATION_V1",
+      "authoring": {
+        "title": "The certified strict two-contact allocator preserves or rejects the exact planar wrench",
+        "claim": "In the exact certified BR7.0 arithmetic fixture, the declared strict two-contact allocator exactly realizes feasible vertical-force and pitch-moment requests, mirrors signed load redistribution, preserves zero arithmetic residual, and rejects a request that would require a pulling contact without clamping it into a plausible answer.",
+        "scope": "Only the exact two-point planar geometry, unilateral bounds, request fields, arithmetic tolerance, source, and program claim scope certified by br7_20260723T134427Z_91a160b9.",
+        "mechanism": "For two declared support abscissas, the allocator solves total horizontal force, total vertical force, and pitch moment simultaneously, then admits the result only when unilateral normal and friction constraints remain satisfied.",
+        "applicability": [
+          "Checking planar two-support wrench arithmetic before commands are issued",
+          "Rejecting a desired pitch moment that would require a pulling contact"
+        ],
+        "failure_boundaries": [
+          "The resulting left and right values are commands, not measured foot loads",
+          "Two point supports do not represent a finite 3D support polygon or general contact wrench",
+          "No free 3D standing, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "two_contact",
+          "planar_wrench",
+          "strict_allocator",
+          "unilateral_contact"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How more than two simultaneous contacts should be allocated without inventing measurement",
+          "How model error changes the relation between commanded and realized contact wrench"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR7.1.planar_friction_feasibility.v1",
+      "cell_id": "BR7.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br7_1_planar_friction_feasibility.v1.json",
+      "program_id": "BR7_PLANAR_1_FRICTION_CONE_V1",
+      "authoring": {
+        "title": "The certified allocator rejects unilateral and Coulomb-cone violations",
+        "claim": "In the exact certified BR7.1 arithmetic fixture, feasible horizontal force is distributed in proportion to nonnegative normal load, while friction-cone overflow, pulling normal load, force without normal support, and an independent pitch moment that one remaining point cannot realize all fail closed.",
+        "scope": "Only the exact two-point planar support locations, authored friction coefficient, force and moment requests, unilateral bounds, tolerance, source, and program claim scope certified by br7_20260723T134427Z_91a160b9.",
+        "mechanism": "Each declared support must satisfy nonnegative normal load and the Coulomb bound on tangential force. A one-point support can realize only the moment implied by its position and force and cannot synthesize an independent pitch moment.",
+        "applicability": [
+          "Preflighting a planar desired wrench against unilateral and Coulomb constraints",
+          "Detecting loss of independent pitch authority after one point support is removed"
+        ],
+        "failure_boundaries": [
+          "Arithmetic feasibility is not proof that a physical limb realizes the commanded share",
+          "The authored friction cone remains fixture- and material-specific",
+          "No free 3D standing, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "friction_cone",
+          "unilateral_contact",
+          "single_support",
+          "planar_wrench"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How uncertain or time-varying friction should enter a robust feasibility margin",
+          "How a finite-area foot changes the one-point moment boundary"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR7.2.planar_support_segment_and_loss.v1",
+      "cell_id": "BR7.2",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br7_2_planar_support_segment_and_loss.v1.json",
+      "program_id": "BR7_PLANAR_2_SUPPORT_SEGMENT_LOSS_V1",
+      "authoring": {
+        "title": "The certified support segment predicts planar margin and emits one fail-closed loss transition",
+        "claim": "In the exact certified BR7.2 fixture, the declared planar oracle computes static and linear-capture margins, predicts mirrored loss direction outside the support segment, degenerates honestly to a zero-width point with one support, and emits one reasoned force-free fail-closed transition after declared support loss.",
+        "scope": "Only the declared linear capture approximation, support points, COM height and velocity inputs, gravity, transition semantics, source, and program claim scope certified by br7_20260723T134427Z_91a160b9.",
+        "mechanism": "The oracle compares projected COM and a linear capture point with the current one-dimensional support segment. The supervisor observes bearing-set changes and allocator feasibility but applies no force, pin, or automatic edit.",
+        "applicability": [
+          "Reporting planar static and linear-capture margin for a declared support set",
+          "Producing a reasoned stop when support loss makes the requested wrench infeasible"
+        ],
+        "failure_boundaries": [
+          "The linear capture point is not a nonlinear viability kernel or a 3D support polygon",
+          "The supervisor detects and reports; it does not brace, recover, or rescue the root",
+          "No free 3D standing, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "support_segment",
+          "linear_capture_point",
+          "support_loss",
+          "fail_closed_supervisor"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How angular momentum and finite foot area change the capture boundary",
+          "Which controlled transition is safe after a support-loss stop"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "BR7.3.scaffolded_planar_two_leg_stance.v1",
+      "cell_id": "BR7.3",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br7_3_scaffolded_planar_two_leg_stance.v1.json",
+      "program_id": "BR7_PLANAR_3_TWO_LEG_STANCE_V1",
+      "authoring": {
+        "title": "The certified two-leg fixture regulates planar height and pitch within an explicit scaffold",
+        "claim": "In the exact certified BR7.3 fixture, two ordinary distal contacts and four paired finite joint actuators regulate scaffold-constrained planar height and pitch, reconstruct aggregate support and pitch wrench, recover from the declared positive 0.03 newton-meter-second pitch impulse, and emit one fail-closed stop after declared right-support removal makes the requested pitch moment infeasible.",
+        "scope": "Only the exact root and link geometry and masses, two ordinary distal contacts, unpowered out-of-plane guide, controller gains, actuator ceiling, positive pitch impulse, right-support removal, timestep, solver, engine, source, and program claim scope certified by br7_20260723T134427Z_91a160b9.",
+        "mechanism": "A strict planar wrench request is mapped through finite paired joint actuators while whole-system linear and angular momentum reconstruct aggregate external support and pitch wrench. The unpowered guide releases sagittal X/Y translation and pitch but locks out-of-plane translation, roll, and yaw.",
+        "applicability": [
+          "Checking scaffold-constrained planar stance before remaining root degrees of freedom are released",
+          "Checking sign-controlled pitch disturbance recovery and reasoned support-loss stopping"
+        ],
+        "failure_boundaries": [
+          "The out-of-plane guide is a material scaffold even though all of its motors and springs are disabled",
+          "Aggregate support and pitch-wrench reconstruction cannot allocate measured load to either foot",
+          "Commanded left and right contact shares are not measurements",
+          "No free 3D standing, unconstrained balance, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "two_leg",
+          "planar_stance",
+          "out_of_plane_scaffold",
+          "finite_actuator",
+          "aggregate_wrench",
+          "support_loss"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Whether the controller remains stable when out-of-plane translation, roll, and yaw are released",
+          "How individual foot loads can be measured rather than inferred from commands",
+          "How stance generalizes across morphology, terrain, disturbance direction, and duration"
+        ],
+        "supersedes": []
+      }
+    }
+  ]
+}

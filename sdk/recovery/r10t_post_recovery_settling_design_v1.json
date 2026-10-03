@@ -1,0 +1,220 @@
+{
+  "schema_version": "sporespore_r10t_post_recovery_settling_design_v1",
+  "design_id": "R10T-UPRIGHT-SPEED-HANDOFF-V1",
+  "status": "declared_before_successor_implementation",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_conditional_post_recovery_hold_successor",
+    "question_class": "development"
+  },
+  "predecessor_closures": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10s_phase245_development_negative_closure_v1.json",
+      "byte_length": 6167,
+      "raw_sha256": "sha256:cf3035bb38eb2681f2eb408ac3b9b35e5174fd4268b4ee44940cdbb39afcd0ca"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10s_phase246_development_pair_closure_v1.json",
+      "byte_length": 7521,
+      "raw_sha256": "sha256:e119cd9e81cb615930ab66e0c42d6d3532db1b2366e0ee9031bf65eee56925ac"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10s_phase241_development_positive_closure_v1.json",
+      "byte_length": 5361,
+      "raw_sha256": "sha256:54fad55d541ee0dd0777c8cdc976c138580a5b3ef86c348fbe108d45d2ceb358"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10s_phase243_development_positive_closure_v1.json",
+      "byte_length": 6853,
+      "raw_sha256": "sha256:0ce6c98d530df536026e68066fe881b88a701be6468744a81b9f437628defc11"
+    }
+  ],
+  "interface_review": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10t_post_recovery_hold_interface_review_v1.json",
+    "byte_length": 8323,
+    "raw_sha256": "sha256:15e2ee7d416fa1f0d98756b8790e8dff83f4a522b83f93b0eb94b361078bf78a"
+  },
+  "question": "Can a separate bounded stationary V50 session settle the completed upright recovery when whole-system horizontal COM speed alone prevents fresh V56 walking entry?",
+  "observation": {
+    "prefix_phase": 245,
+    "recovery_complete": true,
+    "standing_samples": 60,
+    "horizontal_com_speed_m_s": 0.03400406676351237,
+    "entry_limit_m_s": 0.03,
+    "failed_readiness_checks": [
+      "horizontal_com_settled"
+    ],
+    "walking_commands": 0
+  },
+  "route": {
+    "route_id": "r10t_v56_post_recovery_hold_route_v1",
+    "post_recovery_phase": "post_recovery_stationary_settling",
+    "post_recovery_segment": "v50_post_recovery_settling",
+    "post_recovery_hold_alias": "r10t_v50_post_recovery_hold_v1",
+    "native_hold_policy_id": "sporespore_balanced_wave_recovery_startup_reference_velocity_v1",
+    "native_walking_policy_id": "sporespore_balanced_wave_recovery_extended_preparation_v1",
+    "native_dll_sha256": "sha256:7b1ce5dd546796e13a726e26a9c1f47ad4a27792768a40d0da58cd67409e9c2b",
+    "native_core_change": false,
+    "native_dll_change": false
+  },
+  "entry_decision": {
+    "source": "Original complete native recovery receipt plus independently projected same-step readiness source packet.",
+    "already_ready": "Preserve immediate fresh V56 entry with zero post-recovery hold commands.",
+    "fallback_entry_kind": "upright",
+    "fallback_required_checks": {
+      "angular_settled": true,
+      "four_native_supports": true,
+      "horizontal_com_settled": false,
+      "upright": true,
+      "zero_bias_reference_path_feasible": true
+    },
+    "fallback_requires_recovery_phase": "complete",
+    "other_unready_outcomes": "Retain a bounded development negative; do not broaden the hold to partial, prone, unsupported, tilted, geometrically infeasible or angularly unsettled entries.",
+    "new_decision_solver_steps": 0,
+    "recovery_terminal_memory_reopened": false,
+    "recovery_terminal_receipt_rewritten": false
+  },
+  "hold": {
+    "maximum_commands": 240,
+    "ready_dwell_consecutive_samples": 30,
+    "physics_hz": 120,
+    "gait_amplitude": 0.0,
+    "desired_planar_velocity_task_m_s": {
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0
+    },
+    "initial_gait_steps": {
+      "front_left": 6,
+      "front_right": 6,
+      "rear_left": 6,
+      "rear_right": 6
+    },
+    "frame_selection": "Existing V50 hold frame helper with empty development frame selection; frame is frozen at current native torso pose.",
+    "memory": "Fresh native V50 session only; no ramp, prefix, completed-recovery or earlier walking memory transplant.",
+    "sampling": "One fresh same-step complete readiness source after every hold command; count only complete consecutive all-five-ready samples and reset the dwell on every non-ready sample.",
+    "readiness_predicate": "Unchanged R10S all-five walking-entry predicate; whole-system native COM speed <= 0.03 m/s, torso angular speed <= 0.15 rad/s, tilt <= 0.05 rad, four native supports and all zero-bias reference paths feasible.",
+    "boundary_order": "A 30th consecutive ready sample at command 240 succeeds. Otherwise command 240 closes a negative. Command 241 is forbidden.",
+    "finalization": "Finalize the distinct hold session exactly once, retain the final source and memory, release its actuation ownership and start a separate fresh V56 walking session on the next command.",
+    "timeout": "Close and retain post_recovery_hold_timeout; no fresh V56 start, recovery retry, budget extension or replayed physical continuation.",
+    "intervention_caveat": "Zero commanded planar motion does not mean fixed joint targets: on the frozen phase-245 pose, V50 targets reach 0.5450643393535838 rad from the measured pose, with maximum command-to-command change 0.029166666666671226 rad. This is bounded native posture control, not a prediction of settling."
+  },
+  "limits": {
+    "maximum_precondition_steps": 320,
+    "precondition_pair_release_steps": 1,
+    "walking_prefix_steps": 30,
+    "interaction_steps": 1,
+    "maximum_passive_descent_steps": 240,
+    "maximum_recovery_steps": 1200,
+    "maximum_post_recovery_hold_steps": 240,
+    "maximum_walking_commands": 1600,
+    "stopping_commands": 120,
+    "maximum_after_interaction_steps": 3400,
+    "maximum_kicked_solver_steps": 3752,
+    "maximum_no_kick_solver_steps": 2552,
+    "per_child_wall_seconds": 1740,
+    "wall_basis": "The physical horizon gains at most 240 commands. The child wall ceiling gains a bounded 240 seconds over R10S; this changes no solver timing, controller threshold or physical result criterion."
+  },
+  "preserved": [
+    "Unchanged R10R upright V20-support/V12-rise/V7-stance native composition and 60-sample completion.",
+    "Unchanged partial and canonical prone recovery policies, branch observations and task thresholds.",
+    "Unchanged V56 360-command preparation, four planned cycles, forward threshold, full walking envelope and complete 120-command stop.",
+    "Unchanged no-kick ramp followed by its original separate V50 hold.",
+    "Original kick energy epoch, same body identities, native contacts, motor caps and per-command telemetry; no reset or transform/velocity write.",
+    "All R10S physical and zero-world records, source keys, outcomes and consumed identities."
+  ],
+  "retention": [
+    "Bind the initial readiness decision to the original terminal native recovery event before selecting hold or direct entry.",
+    "Retain every hold request, exact native response, host transport check, motor application receipt, collection source, readiness sample and orchestrator transition.",
+    "Keep hold commands and counters separate from recovery, walking cycles and stop. All physical steps still count in global and kick-epoch totals.",
+    "Independently replay the conditional decision, fresh session ownership, every hold command and sample, dwell reset, exact timeout/finalization, and fresh V56 handoff.",
+    "A failed hold is a retained negative with a complete physical trace, not missing or discarded evidence."
+  ],
+  "qualification": {
+    "full_affected_safety_gate_before_physics": true,
+    "official_qualification_reused": false,
+    "complete_dependency_key_required": true,
+    "required_zero_world_checks": [
+      "Actual DLL and facade selection, fresh session and zero-command controls, missing/crossed state, floor, runtime and memory refusals.",
+      "Same-step source binding and original terminal memory preservation; direct-ready bypass and speed-only upright eligibility; all other unready outcomes refuse.",
+      "Dwell reset, readiness at command 30, command 240 success and timeout, command 241 refusal, nonfinite/crossed/stale samples and no stepping terminal states.",
+      "Complete orchestrator clocks, energy epoch, ownership, fresh hold and fresh V56 memory, no hold commands counted as walking and no duplicated finalization.",
+      "Production launcher, candidate selection, real adapter, reader, full report retention, publication and negative controls.",
+      "Preserved no-kick, ready upright, partial and prone timelines on copied retained input with no physical reclassification."
+    ],
+    "native_probe_is_route_qualification": false
+  },
+  "development_coverage": {
+    "held_out": false,
+    "first_diagnostic": {
+      "seed": 41145,
+      "prefix_phase": 245,
+      "roles": [
+        "kick_passive_recovery_resume"
+      ],
+      "attempt_limit": 1,
+      "full_finite_horizon": true,
+      "required_entry_kind": "upright",
+      "required_handoff": "bounded_hold",
+      "coverage": "Exposed difficult handoff, fresh hold motor ownership, readiness release, fresh V56, all four cycles and full stop."
+    },
+    "if_first_not_valid_positive": "Close the R10T development chain and retain its result. No pair or later R10T physical diagnostic may launch.",
+    "after_first_valid_positive": {
+      "fresh_pair": {
+        "seed": 41145,
+        "prefix_phase": 245,
+        "roles": [
+          "matched_no_kick_continuation",
+          "kick_passive_recovery_resume"
+        ],
+        "attempt_limit": 1,
+        "baseline_reuse": false
+      },
+      "if_pair_not_valid_positive": "Close the R10T development chain. No later R10T physical diagnostic may launch.",
+      "only_after_valid_positive_pair": [
+        {
+          "seed": 41146,
+          "prefix_phase": 246,
+          "entry_kind": "upright",
+          "required_handoff": "direct",
+          "roles": [
+            "kick_passive_recovery_resume"
+          ],
+          "attempt_limit": 1
+        },
+        {
+          "seed": 41141,
+          "prefix_phase": 241,
+          "entry_kind": "partial",
+          "required_handoff": "direct",
+          "roles": [
+            "kick_passive_recovery_resume"
+          ],
+          "attempt_limit": 1
+        },
+        {
+          "seed": 41143,
+          "prefix_phase": 243,
+          "entry_kind": "prone",
+          "required_handoff": "direct",
+          "roles": [
+            "kick_passive_recovery_resume"
+          ],
+          "attempt_limit": 1
+        }
+      ],
+      "additional_coverage_adequacy": "These three single-role diagnostics cover distinct complete terminal-memory producers and finalization paths through the new route/reader. Phase 246 explicitly covers ready upright bypass; partial and prone remain separate native histories. They are not extra tuning seeds or matched comparisons. The no-kick population is fresh only in the pair.",
+      "additional_negative_rule": "Retain every result once. Remaining predeclared branch diagnostics may complete for coverage; any negative prevents a held-out declaration under this design."
+    },
+    "held_out_precondition": "All declared fresh development roles must be valid finite positives, with hold used only where required and all direct paths bypassing it. A separate prospective held-out contract and complete qualification are still required."
+  },
+  "claim_boundary": {
+    "held_out_population_declared": false,
+    "physical_attempt_authorized_by_design_alone": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_score": "14/20",
+    "full_program_score": "14/25"
+  }
+}

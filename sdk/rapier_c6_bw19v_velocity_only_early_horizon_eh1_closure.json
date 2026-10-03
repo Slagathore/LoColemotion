@@ -1,0 +1,180 @@
+{
+  "schema_version": "sporespore_rapier_c6_bw19v_velocity_only_early_horizon_eh1_closure_v1",
+  "status": "closed_invalid_primary_report_with_complete_posthoc_reconstructible_trace",
+  "campaign_id": "C6-RAPIER-BW19V-VELOCITY-ONLY-EARLY-HORIZON-DEVELOPMENT-EH1",
+  "gate_id": "C6-RAP-BW19V-V4-EH1",
+  "physical_source_commit": "fad011bbdca6b2b81791058abee3901bcda0ac8a",
+  "same_identity_rerun_allowed": false,
+  "threshold_horizon_scale_arm_or_report_rewrite_allowed": false,
+  "physical_attempt": {
+    "process_launch_count": 1,
+    "identity_consumed": true,
+    "process_exit_code": 1,
+    "report_retained": true,
+    "world_attempt_count": 2,
+    "world_build_count": 2,
+    "trace_step_count_total": 944,
+    "host_command_count_total": 7552,
+    "retained_primary_report_ok": false,
+    "original_integrity_gate_failure_codes": [
+      "C6_RAP_V4_EH1_EH1-A_RECEIPT_INVALID:0",
+      "C6_RAP_V4_EH1_EH1-A_RESIDUAL_COUNT_RECOMPUTE",
+      "C6_RAP_V4_EH1_EH1-B_RECEIPT_INVALID:0",
+      "C6_RAP_V4_EH1_EH1-B_RESIDUAL_COUNT_RECOMPUTE"
+    ]
+  },
+  "frozen_source_blobs": {
+    "preregistration": {
+      "path": "sdk/rapier_c6_bw19v_velocity_only_early_horizon_eh1_preregistration.json",
+      "git_blob_oid": "819351ffd60d763d5073b2dc6cdb75b86176b3da",
+      "raw_sha256": "be3573e44948e3e2b17327ed0cfafe4c666055c39962c548eec54ed95fa69253"
+    },
+    "physical_evaluator": {
+      "path": "sdk/adapters/rapier/src/bw19v_velocity_only_early_horizon_eh1.rs",
+      "git_blob_oid": "0ab7654cc9748df328f403aa83e814c9afc58994"
+    },
+    "physical_binary": {
+      "path": "sdk/adapters/rapier/src/bin/bw19v_velocity_only_early_horizon_eh1.rs",
+      "git_blob_oid": "ce3553c29192db814ef63e9870b7d02bf7fd49c8"
+    },
+    "physical_supervisor": {
+      "path": "sdk/run_rapier_c6_bw19v_velocity_only_early_horizon_eh1.ps1",
+      "git_blob_oid": "fe12074c05c537fde87d44a0c36a0312345edfe4"
+    }
+  },
+  "retained_evidence": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/c6-rapier-bw19v-velocity-only-eh1-fad011b",
+    "attempt": {
+      "path": "attempt.json",
+      "raw_sha256": "c48d19e16e5c4e6b92f59215b51ca1786633c7a2df5f3dcf6d1fb90f989ff11d"
+    },
+    "completion": {
+      "path": "completion.json",
+      "raw_sha256": "ea812f026fe3cb1dc049296727f4d2f3f4aacbbbd366f42a0af44f04e06a39a7"
+    },
+    "primary_report": {
+      "path": "report.json",
+      "byte_length": 79950421,
+      "raw_sha256": "cdbcebc11eb727f9d24be6900788f6fd180cf8fc27a7df71780dc7d1921f6fa5"
+    },
+    "stdout": {
+      "path": "stdout.log",
+      "byte_length": 79950421,
+      "raw_sha256": "cdbcebc11eb727f9d24be6900788f6fd180cf8fc27a7df71780dc7d1921f6fa5"
+    },
+    "stderr": {
+      "path": "stderr.log",
+      "raw_sha256": "bb85b65d5ae0c0f50c83f4aa5f7b0f904d0f3159d7d1bda1661c97808dbec818"
+    },
+    "posthoc_diagnostic": {
+      "path": "posthoc_diagnostic.json",
+      "raw_sha256": "6f6c0fefe33b86fd0388101194344105b5e2fd1e6f184a55b8848ea1fdc523fa"
+    }
+  },
+  "diagnosed_gate_defects": {
+    "shared_synthetic_and_evaluator_host_profile_identity": {
+      "incorrect_expected_profile_id": "rapier_force_based_velocity_only_target_v1",
+      "authoritative_and_runtime_profile_id": "rapier_force_based_velocity_only_v1",
+      "frozen_synthetic_used_the_same_incorrect_id": true,
+      "primary_report_failed_at_semantic_step_zero": true
+    },
+    "shared_synthetic_and_evaluator_residual_count_reconstruction": {
+      "incorrect_reconstruction": "count_nonzero_pre_clamp_bounded_residuals",
+      "declared_counter_semantics": "count_residuals_that_change_final_load_bearing_host_velocity",
+      "correct_reconstruction": "count_final_clamped_canonical_velocity_different_from_portable_canonical_base",
+      "synthetic_saturation_case_present_before_attempt": false,
+      "treatment_pre_clamp_nonzero_count": 1822,
+      "treatment_effective_host_application_count": 1759,
+      "difference_absorbed_by_complete_command_speed_clamp": 63
+    }
+  },
+  "posthoc_diagnostic_result": {
+    "corrected_counterfactual_integrity_passed": true,
+    "corrected_counterfactual_integrity_failure_codes": [],
+    "all_traces_complete_without_declared_event": true,
+    "pair_classification": "neither_arm_event",
+    "arm_a": {
+      "trace_step_count": 472,
+      "declared_event_step_count": 0,
+      "torso_ground_contact_step_count": 0,
+      "minimum_torso_height_m": 0.4235931932926178,
+      "maximum_torso_tilt_rad": 0.12285304069519043,
+      "shadow_nonzero_bounded_residual_count": 1782,
+      "applied_nonzero_stability_residual_count": 0
+    },
+    "arm_b": {
+      "trace_step_count": 472,
+      "declared_event_step_count": 0,
+      "torso_ground_contact_step_count": 0,
+      "minimum_torso_height_m": 0.4236564338207245,
+      "maximum_torso_tilt_rad": 0.12280438840389252,
+      "shadow_nonzero_bounded_residual_count": 1822,
+      "applied_nonzero_stability_residual_count": 1759
+    },
+    "diagnostic_is_posthoc": true,
+    "primary_integrity_restored": false,
+    "physical_acceptance_authority": false
+  },
+  "corrected_zero_world_regressions": {
+    "authoritative_host_profile_id_is_derived_and_checked": true,
+    "wrong_host_profile_canary_rejected": true,
+    "saturated_residual_fidelity_variant_passed": true,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "closure_implementation_bindings": {
+    "corrected_evaluator": {
+      "path": "sdk/adapters/rapier/src/bw19v_velocity_only_early_horizon_eh1.rs",
+      "raw_sha256": "5e07acb94aafdf7c35cccdcd51b808b18b60afedda2070b6de3e713265a6b562"
+    },
+    "posthoc_binary": {
+      "path": "sdk/adapters/rapier/src/bin/bw19v_velocity_only_early_horizon_eh1_posthoc.rs",
+      "raw_sha256": "019f7af6e473d35348eb8576ce5a622a3f96f59c8fac0f93d0b17f838ea39739"
+    },
+    "closed_supervisor": {
+      "path": "sdk/run_rapier_c6_bw19v_velocity_only_early_horizon_eh1.ps1",
+      "raw_sha256": "9c66a87576b653afffccea30d9ed3147019bd15d1f29a530be6e2ee9bf0438bf"
+    }
+  },
+  "authoritative_profile_bindings": [
+    {
+      "path": "sdk/canonical_velocity_actuation_profile_v1.json",
+      "raw_sha256": "1240ad4bba89bc8d1c22fa270fa718c57ab5ee227d777434b3870b859001e6a3"
+    },
+    {
+      "path": "sdk/rapier_c6_velocity_only_live_integration_v1.json",
+      "raw_sha256": "7c4c7435ca02f30073d5a33fce162fef67a461340ae609225b096abe59f88507"
+    },
+    {
+      "path": "sdk/rapier_c6_velocity_only_active_configuration_v2.json",
+      "raw_sha256": "fb16ede4b295f69a343dde239c98874d547aba6cec6d47a71df1797f6c03c8fe"
+    },
+    {
+      "path": "sdk/core/src/canonical_actuation.rs",
+      "raw_sha256": "81bb1747c0abb903fdfc552e6764036c0479152388e09fd4c79b0813edd4a6c4"
+    }
+  ],
+  "successor_requirements": {
+    "new_campaign_gate_source_and_preregistration_identity": true,
+    "same_eh1_worlds_or_report_may_not_be_replaced": true,
+    "production_profile_identity_must_be_imported_or_reconstructed_from_the_real_mapper": true,
+    "synthetic_report_must_include_at_least_one_nonzero_bounded_residual_absorbed_by_final_speed_clamp": true,
+    "complete_zero_world_gate_must_pass_before_any_new_world": true,
+    "posthoc_eh1_observations_may_inform_design_but_not_supply_acceptance_authority": true
+  },
+  "claims": {
+    "complete_posthoc_trace_diagnostic": true,
+    "valid_primary_eh1_result": false,
+    "rapier_v4_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "walking_acceptance": false,
+    "bw19v_improvement": false,
+    "cross_engine_selected_policy_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "friction_or_material_robustness": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

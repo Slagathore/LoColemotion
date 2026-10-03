@@ -1,0 +1,129 @@
+{
+  "schema_version": "sporespore_r10m_bounded_stop_velocity_successor_design_v1",
+  "design_id": "r10m_v53_bounded_zero_amplitude_stop_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt_with_engine_neutral_native_policy",
+    "authority_mode": "prospective_successor_design",
+    "question_class": "development"
+  },
+  "source_parent_commit": "0900b414f783c0704c3308caeae3913a9b51b02e",
+  "status_at_declaration": "declared_not_implemented_no_physical_authority",
+  "release_gate_id": "QSDK-R10",
+  "sdk1_milestone_id": "SDK1-M07",
+  "question": "Does a fixed native velocity-command cap during zero-amplitude holding suppress the observed stop feedback burst enough to complete the unchanged recovery, four-cycle walking and 120-command settled-stop task?",
+  "bound_evidence": [
+    {
+      "path": "sdk/recovery/r10l_phase241_development_pair_closure_v1.json",
+      "byte_length": 212438,
+      "raw_sha256": "sha256:009c765e2d8402795fd758d5f15c762a5dfd35c26282bc84f19795573d2ace2a"
+    },
+    {
+      "path": "sdk/recovery/r10l_stop_velocity_diagnosis_v1.json",
+      "byte_length": 737981,
+      "raw_sha256": "sha256:86bb6179ee5163891ff61db839ad481f3c39d1b850350d90b7291abd8aaaaa69"
+    }
+  ],
+  "observed": {
+    "no_kick_positive": true,
+    "kicked_recovery_and_walking_positive": true,
+    "kicked_settled_stop_positive": false,
+    "kicked_failed_final_tail_samples": 14,
+    "kicked_final_consecutive_settled_samples": 4,
+    "required_final_settled_samples": 30,
+    "all_240_stop_body_foot_and_joint_targets_fixed": true,
+    "all_240_stop_reference_rates_zero": true,
+    "no_kick_maximum_requested_velocity_rad_s": 0.08378285014876684,
+    "kicked_maximum_requested_velocity_rad_s": 1.018436380059079,
+    "kicked_commands_above_proposed_cap": [
+      94,
+      95,
+      96
+    ],
+    "causal_attribution_proven": false
+  },
+  "selected_native_policy": {
+    "policy_id": "sporespore_balanced_wave_recovery_bounded_stop_velocity_v1",
+    "memory_schema": "sporespore_balanced_wave_recovery_bounded_stop_velocity_memory_v1",
+    "profile_schema": "sporespore_balanced_wave_recovery_bounded_stop_velocity_profile_v1",
+    "receipt_schema": "sporespore_recovery_bounded_stop_velocity_controller_step_receipt_v1",
+    "parent_policy_id": "sporespore_balanced_wave_recovery_extended_support_transfer_v1",
+    "activation": "Valid V53 policy output with command.gait_amplitude exactly zero. No semantic-step, seed, role, engine, morphology or observed-result selection.",
+    "maximum_absolute_velocity_rad_s": 0.25,
+    "law": "Clamp each native motor target velocity to the smaller of 0.25 rad/s and its existing descriptor limit, after the unchanged V52 position/rate feedback and reference construction. Preserve command sign, targets, phase and memory. Add the clipping delta to the existing safety contribution and expose clipped actuator identities in an additive native receipt.",
+    "no_caller_numeric_override": true,
+    "refused_requests_remain_no_actuation": true,
+    "unclipped_commands_preserved_exactly": true,
+    "walking_nonzero_amplitude_arithmetic_unchanged": true,
+    "existing_policies_byte_exact": true
+  },
+  "preserved_requirements": {
+    "reference_range_rad": 0.3,
+    "position_gain_per_s": 8.0,
+    "measured_velocity_damping": 0.65,
+    "all_native_joint_motor_and_solver_caps": true,
+    "partial_and_prone_recovery": true,
+    "standing_samples": 60,
+    "planned_cycles": 4,
+    "stop_commands": 120,
+    "final_settled_samples": 30,
+    "maximum_horizontal_com_speed_m_s": 0.03,
+    "maximum_torso_angular_speed_rad_s": 0.15,
+    "maximum_torso_tilt_rad": 0.05,
+    "native_contact_authority": true,
+    "all_role_and_wall_time_limits": true,
+    "whole_walking_envelope": true
+  },
+  "tradeoffs": [
+    {
+      "choice": "Select fixed 0.25 rad/s native zero-amplitude velocity cap",
+      "benefit": "On exposed measurements, preserves every no-kick stop command and the first 93 kicked stop commands; limits the three unusually large feedback reactions.",
+      "risk": "A bounded command can respond too slowly to a real disturbance; changed commands change future physics, so copied-input agreement does not predict settling."
+    },
+    {
+      "choice": "Reduce position gain or change measured-rate damping",
+      "decision": "Deferred: this changes every hold response and the observed burst is dominated by a measured joint-speed spike; no comparative physical evidence selects a gain."
+    },
+    {
+      "choice": "Longer stop, shifted evaluation window or looser settling/contact criteria",
+      "decision": "Not selected: preserve the finite task and the consumed negative result."
+    },
+    {
+      "choice": "Modify frozen stop geometry or add COM feedback",
+      "decision": "Deferred: possible successor if limiting the localized velocity burst fails; adds a different control mechanism requiring separate evidence."
+    }
+  ],
+  "development_population": {
+    "first_attempt": {
+      "seed": 40541,
+      "prefix_phase": 241,
+      "roles": [
+        "matched_no_kick_continuation",
+        "kick_passive_recovery_resume"
+      ],
+      "fresh_children": true
+    },
+    "additional_branch_diagnostic": {
+      "seed": 40543,
+      "prefix_phase": 243,
+      "roles": [
+        "kick_passive_recovery_resume"
+      ],
+      "requires_independently_audited_positive_pair": true
+    },
+    "adequacy": "Phase 241 covers the observed complete positive baseline and partial-fall recovery with the failed stop. A separate phase-243 diagnostic is required for genuine-prone recovery after a positive pair. Both phases are exposed development inputs; neither grants held-out evidence.",
+    "baseline_reused": false
+  },
+  "required_validation": [
+    "Reconstruct all 1920 retained R10L stop feedback commands and validate immutable report bindings.",
+    "Build the exact V53 native DLL with the complete core suite and preserve original V52/V51 outputs and refusals.",
+    "Exercise actual C ABI stateless and fresh-session paths over both complete exposed R10L command sequences; verify unchanged nonzero-amplitude actuation, the exact fixed hold cap, typed receipt bindings, lower descriptor caps and malformed/crossed-memory refusals.",
+    "Integrate V53 through actual Godot adapter, policy selection, complete worker/report/reader and development launcher; bind a distinct R10M route with the complete applicable zero-world gate.",
+    "Run the fresh declared development pair from a clean pushed source freeze; only a positive pair enables the declared prone diagnostic.",
+    "After successful development, declare and qualify a new held-out finite decision and independently close and adopt successful evidence into QSDK-R10/M07."
+  ],
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "sdk1_score": "14/20"
+}

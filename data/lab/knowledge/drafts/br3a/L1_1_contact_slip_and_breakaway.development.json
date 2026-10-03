@@ -1,0 +1,87 @@
+{
+  "schema": "sporespore.lab.br3a_development_observation.v1",
+  "entry_id": "L1.1.contact_slip_and_friction_breakaway.draft_v1",
+  "cell_id": "L1.1",
+  "claim_status_ceiling": "development_observation",
+  "admissible_now": false,
+  "admission_blockers": [
+    "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+    "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+    "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+    "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+    "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+  ],
+  "evidence_source": {
+    "test_files": [
+      "res://tests/test_experimental_l1_1_contact_slip.gd",
+      "res://tests/test_experimental_l1_1_friction_breakaway.gd"
+    ],
+    "evidence_grade": "experimental_commissioning_test_report_only",
+    "promotion_grade_bundle_exists": false
+  },
+  "title": "Post-step contact-point motion is the slip authority and friction breakaway brackets 22-24 N on the calibrated sled",
+  "claim": "For the exact L1.1 4 kg free sled on a flat static floor with equal authored friction 0.6, rough=false, zero bounce, and 60 Hz Jolt physics, a monotonic staged central force ramp 0-40 N last completes a hold at 22 N and first completes a slide at 24 N, giving an empirical breakaway-to-normal ratio bracket of 0.56101-0.61230 around the approximately 39.2 N predicted normal load. Contact-relative velocity captured inside _integrate_forces behaved as a pre-constraint candidate equal to the one-tick free acceleration F*dt/m while post-step displacement and velocity stayed exactly zero, so slip classification must use reconstructed post-step contact-point motion v_point = v_com + omega x (p - c), never the callback candidate.",
+  "scope": "One unjointed 4 kg, 0.8 x 0.2 x 0.6 m RigidBody3D box on a static floor, equal PhysicsMaterial friction 0.6 on both surfaces, rough=false, bounce 0, no damping, lock_rotation=false, no rail or custom integrator, apply_central_force once per physics tick at 60 Hz, Godot 4.7 Jolt backend, full_contacts_v2 observer.",
+  "mechanism": "Godot exposes a predicted contact impulse, and impulse divided by step time is a step-average solver-load estimate rather than an exact continuous force. The integrate-forces callback samples velocity before the constraint solve, so a successfully friction-held contact still reports the unconstrained one-tick velocity candidate. Post-step body state is the solved authority, so contact-point motion reconstructed from post-step center-of-mass and angular velocity separates held contacts from sliding contacts.",
+  "applicability": [
+    "Classifying foot slip in later articulated experiments using post-step contact-point motion",
+    "Bounding the usable static-friction budget for the canonical lab floor and material pair",
+    "Detecting instrumentation bugs where a held contact is misreported as sliding"
+  ],
+  "failure_boundaries": [
+    "Does not cover other friction values, materials, rough surfaces, or nonzero bounce",
+    "Does not cover moving counterparties; a moving ground must supply its own measured post-step point velocity instead of inheriting zero",
+    "Does not cover articulated bodies, joints, motors, or any actuated limb",
+    "Does not establish standing, bracing, fall arrest, getting up, or walking"
+  ],
+  "morphology_tags": [
+    "jolt",
+    "unary_rigid_body",
+    "flat_static_floor"
+  ],
+  "parameter_effects": [
+    {
+      "parameter": "/fixture_parameters/applied_force_n",
+      "change": "increase through the staged 0-40 N ramp",
+      "affects": "hold-versus-slide classification",
+      "mechanism": "Applied tangential force crosses the measured static friction budget between the 22 N and 24 N stages",
+      "hinges_on": [
+        "Equal authored friction 0.6 with rough=false on both surfaces",
+        "The approximately 39.2 N predicted normal load remaining constant"
+      ]
+    }
+  ],
+  "minimal_repair_rules": [
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "A friction-held contact is reported as sliding while post-step displacement stays zero",
+      "diagnosis": "Slip was classified from the pre-constraint integrate-forces velocity candidate",
+      "smallest_change": "Classify slip from reconstructed post-step contact-point motion instead of the callback candidate",
+      "expected_effect": "Held contacts report zero slip while true sliding is still detected",
+      "identity_preserved": [
+        "body plan",
+        "materials",
+        "controller absence"
+      ],
+      "do_not_apply_when": [
+        "The counterparty is itself moving and its post-step point velocity is unmeasured"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Whether the breakaway bracket transfers to other normal loads, materials, or contact geometries",
+    "Whether the pre-constraint candidate behavior is identical across Jolt solver configurations beyond the measured cells",
+    "How articulated load paths change the usable friction budget at each foot"
+  ],
+  "does_not_establish": [
+    "standing",
+    "bracing",
+    "fall_arrest",
+    "getting_up",
+    "walking",
+    "exact_continuous_contact_force",
+    "articulated_foot_friction"
+  ],
+  "supersedes": []
+}

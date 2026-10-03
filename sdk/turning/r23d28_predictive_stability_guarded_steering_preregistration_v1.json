@@ -1,0 +1,129 @@
+{
+  "schema_version": "sporespore_qsdk_r23d28_predictive_stability_guarded_steering_preregistration_v1",
+  "status": "prospective_zero_world_only",
+  "campaign_id": "QSDK-R23D28-RAPIER-PREDICTIVE-STABILITY-GUARDED-STEERING-DEVELOPMENT",
+  "gate_id": "QSDK-R23D28",
+  "study_classification": "prospective_finite_rapier_controller_development",
+  "question": "Does the retained-trace-supported, direction-neutral one-swing predictive tilt guard preserve reference walking and keep both signed Rapier turning arms inside the unchanged walking and bilateral response gates?",
+  "immutable_lineage": {
+    "r23d27_physical_closure": "sdk/turning/r23d27_stability_guarded_steering_closure_v1.json",
+    "r23d27_predictive_diagnosis_closure": "sdk/trace_analysis/r23d27_predictive_tilt_diagnosis_closure_v1.json",
+    "r23d27_predictive_diagnosis_report_sha256": "sha256:708add0dd57c8b36e0630660dbde5d68672ac8b34ca3fced08f0a796c766fcea",
+    "same_identity_rerun_forbidden": true,
+    "historical_outcomes_reinterpreted": false,
+    "historical_worlds_reused_as_new_cells": false
+  },
+  "mechanism": {
+    "retained_observation": "R23D27's actual-tilt guard began reducing authority only after actual tilt exceeded 0.10 rad. Across the simultaneously declared 8, 12, 24, and 36-step diagnostic windows, a one-swing-ahead projection reached the unchanged 0.20 rad minimum-authority boundary 9 to 24 steps before that reaction in both failed commands, while the reference had zero projected floor crossings.",
+    "interpretation": "The observed guard reacted to accumulated displacement rather than worsening angular motion. A portable state-frame rate projection may reduce steering earlier without selecting any exposed finite-difference window.",
+    "post_outcome_development_informed": true,
+    "counterfactual_recovery_claimed": false,
+    "threshold_change": false,
+    "authority_bound_change": false,
+    "fixture_change": false,
+    "physics_change": false,
+    "engine_identity_input_permitted": false,
+    "command_sign_branch_permitted": false
+  },
+  "candidate_family": {
+    "parent_policy_id": "sporespore_balanced_wave_r23d27_stability_guarded_steering_v1",
+    "behavioral_controller_change_set": [
+      "steering_authority_guard_mode_id:tilt_and_contact_v1_to_predicted_tilt_and_contact_v1",
+      "torso_tilt_rate_source:canonical_state_frame_base_twist_world_angular_velocity",
+      "prediction_horizon:one_72_step_scheduler_swing_at_120_hz_equals_0.6_s",
+      "authority_evaluation_tilt:actual_to_actual_plus_max_zero_signed_tilt_rate_times_horizon"
+    ],
+    "unchanged_contract": {
+      "minimum_steering_fraction": 0.2,
+      "maximum_steering_fraction": 0.28,
+      "full_authority_maximum_tilt_rad": 0.1,
+      "minimum_authority_tilt_rad": 0.2,
+      "minimum_support_contact_count": 2
+    },
+    "ordered_candidates": [
+      {
+        "candidate_id": "predictive_stability_guarded_0p20_to_0p28",
+        "controller_policy_id": "sporespore_balanced_wave_r23d28_predictive_stability_guarded_steering_v1",
+        "minimum_steering_fraction": 0.2,
+        "maximum_steering_fraction": 0.28,
+        "full_authority_maximum_tilt_rad": 0.1,
+        "minimum_authority_tilt_rad": 0.2,
+        "minimum_support_contact_count": 2,
+        "prediction_horizon_s": 0.6,
+        "prediction_horizon_scheduler_swing_steps": 72,
+        "tilt_rate_source_id": "state_frame_base_twist_world_angular_velocity_v1"
+      }
+    ],
+    "finite_difference_trace_window_selected": false,
+    "engine_specific_gait_logic_permitted": false,
+    "candidate_or_outcome_branching_permitted": false,
+    "direction_neutral_guard_required": true
+  },
+  "frozen_matrix": {
+    "stage_id": "rapier_predictive_stability_guarded_steering_development",
+    "ordered_engine_ids": ["rapier_parry"],
+    "ordered_candidate_ids": ["predictive_stability_guarded_0p20_to_0p28"],
+    "ordered_arm_ids": ["reference_zero", "positive_heading", "negative_heading"],
+    "declared_cell_count": 3,
+    "serial_execution_required": true,
+    "all_cells_run_regardless_of_intermediate_outcome": true,
+    "morphology_id": "qsdk_r05_generated_s169",
+    "seed": 21501,
+    "physics_hz": 120,
+    "settlement_step_count": 240,
+    "controller_step_count": 2992,
+    "turn_start_step": 600,
+    "turn_end_step_exclusive": 1800,
+    "desired_heading_offsets_rad_by_arm": {
+      "reference_zero": 0.0,
+      "positive_heading": 0.2,
+      "negative_heading": -0.2
+    }
+  },
+  "frozen_active_turn_gates": {
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "minimum_absolute_signed_turn_phase_yaw_delta_rad": 0.01,
+    "minimum_command_conditioned_yaw_separation_rad": 0.01,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "zero_torso_ground_contact_required": true,
+    "zero_controller_errors_required": true,
+    "zero_nonfinite_observations_required": true,
+    "zero_actuator_application_mismatches_required": true,
+    "terminal_quiescent_taper_required": false,
+    "thresholds_inherited_unchanged_from_r23d27": true
+  },
+  "trace_observability": {
+    "predictive_guard_receipt_required_every_row": true,
+    "actual_tilt_rate_worsening_rate_horizon_and_predicted_tilt_required": true,
+    "ordered_final_canonical_velocities_required_every_row": true,
+    "ordered_actuator_velocity_limits_required_every_row": true,
+    "ordered_actuator_count": 8
+  },
+  "selector": {
+    "candidate_eligibility": "All three cells must be execution-valid and pass every frozen individual and bilateral reference-conditioned gate.",
+    "selected_candidate_is_validation": false,
+    "positive_classification": "valid_complete_positive_development_candidate",
+    "otherwise_classification": "valid_complete_negative_no_development_candidate"
+  },
+  "evidence": {
+    "complete_zero_world_preflight_required": true,
+    "clean_pushed_source_required": true,
+    "campaign_local_lca1_qualification_required": true,
+    "content_addressed_trace_before_terminal_required": true,
+    "one_world_build_and_attempt_per_cell_required": true,
+    "same_identity_rerun_allowed": false
+  },
+  "claims": {
+    "finite_rapier_development_candidate": false,
+    "finite_rapier_candidate_validation": false,
+    "turning_validation": false,
+    "portable_basic_turning": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

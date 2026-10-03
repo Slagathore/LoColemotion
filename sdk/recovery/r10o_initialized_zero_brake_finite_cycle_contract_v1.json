@@ -1,0 +1,344 @@
+{
+  "schema_version": "sporespore_r10o_initialized_zero_brake_finite_cycle_contract_v1",
+  "contract_id": "r10o_initialized_zero_brake_finite_cycle_v1",
+  "status": "prospective_integration_no_execution_authority",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_partial_fall_finite_task_design",
+    "question_class": "development"
+  },
+  "source_parent_commit": "506ffc1c0aac4ba09fc66f69ac771a7383a90fcc",
+  "release_gate_id": "QSDK-R10",
+  "sdk1_milestone_id": "SDK1-M07",
+  "question": "Can V55 preserve bounded initialization and complete the unchanged partial-fall or prone recovery, four-cycle walking and settled-stop task with enabled zero-velocity braking on later zero-amplitude commands?",
+  "source_authorities": [
+    {
+      "path": "sdk/recovery/r10o_initialized_zero_brake_successor_design_v1.json",
+      "byte_length": 11677,
+      "sha256": "sha256:9a4bb652285cbf468568a6313405bf034d2fdd7944a08c19671c78dd5c648a2b"
+    },
+    {
+      "path": "sdk/recovery/v55_initialized_zero_brake_component_v1.json",
+      "byte_length": 12800,
+      "sha256": "sha256:83dfbc6478bf8fbbb8d0aea21ec0c964b87d67a8edcd8d14f99be1ddafd41ea5"
+    },
+    {
+      "path": "sdk/recovery/r10k_partial_fall_finite_cycle_contract_v1.json",
+      "byte_length": 21000,
+      "sha256": "sha256:72cded74ff3f1811d7ea15a66d98d72c20a3765561cf9824b80110c4cb34d41a"
+    },
+    {
+      "path": "sdk/development/recovery_joint_feasible_height_contract_v1.json",
+      "byte_length": 4664,
+      "sha256": "sha256:f5bdc867a3d65eb19e8c8e29abeca7f6b7111a4a35436bcaca316e182269d037"
+    }
+  ],
+  "controller_composition": {
+    "precondition": "sporespore_exact_s169_prone_to_standing_controller_v6",
+    "walking_prefix": "sporespore_balanced_wave_bw5r_b_v1",
+    "kick_arm_post_prone_recovery": "sporespore_exact_s169_prone_to_standing_controller_v20",
+    "stance": "sporespore_exact_s169_stance_handoff_controller_v7",
+    "post_interaction_walking": "sporespore_balanced_wave_recovery_initialized_zero_brake_v1",
+    "native_runtime_sha256": "sha256:c9303b0e7209f63c8b132a271d1ec32ce69f8768409f22d1f4cee6fcd12a5437",
+    "rust_controller_change": true,
+    "common_native_model_contact_solver_motor_cap_change": false,
+    "fresh_memory_per_walking_session": true,
+    "post_interaction_initial_gait_steps": [
+      90,
+      90,
+      90,
+      90
+    ],
+    "ordered_native_limb_memory_ids": [
+      "rear_left",
+      "front_left",
+      "rear_right",
+      "front_right"
+    ],
+    "phase_offset_semantics": "The actual native initial-memory array order assigns offsets index * 90 within the 360-command gait cycle. This order differs from the compiled contact-site/display order; preserve it throughout the session.",
+    "stance_identity_correction": "R10G composition.stance full ID named the different prone-to-standing V7. The actual V20 mapping in recovery_candidate_stance_profiles_v6.json selects stance_handoff_controller_v7. Preserve the old contract and correct the full name here; no executed controller change.",
+    "no_kick_entry_hold": "sporespore_balanced_wave_joint_pose_entry_v1",
+    "v50_walking_arithmetic_changed": false,
+    "native_component_record": "sdk/recovery/v55_initialized_zero_brake_component_v1.json",
+    "native_component_record_sha256": "sha256:83dfbc6478bf8fbbb8d0aea21ec0c964b87d67a8edcd8d14f99be1ddafd41ea5",
+    "no_kick_hold": "sporespore_balanced_wave_recovery_startup_reference_velocity_v1",
+    "no_kick_hold_gait_amplitude": 0.0,
+    "no_kick_hold_separate_session": true,
+    "no_kick_hold_note": "The hold is its own finalized V50 session because the anchored law height blend and the startup reference-velocity scale are keyed to memory creation time; a prelude inside the walking memory would silently remove V50 startup easing.",
+    "partial_fall_supervisor": "sporespore_measured_partial_fall_recovery_semantics_v1",
+    "recovery_component_reuse": "The unchanged R10K partial/prone supervisor, native task identifiers and thresholds are reused. R10O selects V55 bounded zero-amplitude initialization feedback and enabled zero-velocity braking on later zero-amplitude holds. Positive-amplitude geometry and arithmetic remain unchanged."
+  },
+  "fresh_roles": [
+    {
+      "role": "matched_no_kick_continuation",
+      "native_kick_application_count": 0,
+      "post_interaction_segment": "matched_continuation",
+      "post_interaction_route": [
+        "fresh_bounded_measured_joint_flexed_entry",
+        "native_reference_ramp_complete_with_four_native_supports",
+        "ramp_session_finalized",
+        "fresh_zero_amplitude_v50_hold_session",
+        "measured_readiness_dwell_under_hold",
+        "hold_session_finalized",
+        "fresh_v55_walking_cycle",
+        "120_command_settled_stop"
+      ]
+    },
+    {
+      "role": "kick_passive_recovery_resume",
+      "native_kick_application_count": 1,
+      "post_interaction_segment": "walking_resume",
+      "post_interaction_route": [
+        "zero_actuation_passive_descent",
+        "genuine_prone_confirmation_or_distinct_measured_partial_fall_entry",
+        "continuous_selected_v20_v7_recovery_without_energy_reset",
+        "unchanged_60_sample_standing_requirement",
+        "measured_readiness_check",
+        "fresh_v55_walking_cycle",
+        "120_command_settled_stop"
+      ]
+    }
+  ],
+  "matching": {
+    "same_seed_same_precondition_same_common_30_command_prefix": true,
+    "both_children_are_fresh": true,
+    "baseline_reuse": false,
+    "body_joint_identity_constant_within_child": true,
+    "state_reset_after_construction": false,
+    "horizon": "Each role uses its own prospectively bounded task completion, including exactly the same four planned foot cycles and stopping tail. Recovery time is part of the kicked task. Global elapsed horizons need not be equal; no equal-horizon causal effect, superiority or non-inferiority estimate is made.",
+    "baseline_preparation_scope": "Separate unchanged measured-joint ramp and zero-amplitude V50 hold, followed by fresh V55 walking. Preparation displacement and commands remain excluded from the finite walking task."
+  },
+  "native_interaction": {
+    "target_body_id": "torso",
+    "task_frame_impulse_n_s": [
+      0,
+      0,
+      0.25
+    ],
+    "application_count_kick_role": 1,
+    "application_count_no_kick_role": 0,
+    "minimum_measured_velocity_effect_m_s": 0.0001,
+    "motor_disable_same_pre_solver_event_as_kick": true,
+    "force_aware": false,
+    "kick_alone_mechanically_causes_fall_claimed": false,
+    "provenance": "Unchanged R10F native interaction and source-measured first completed-step effect."
+  },
+  "limits": {
+    "physics_hz": 120,
+    "maximum_precondition_commands": 320,
+    "common_walking_prefix_commands": 30,
+    "interaction_commands": 1,
+    "maximum_passive_descent_commands": 240,
+    "maximum_canonical_recovery_commands": 1200,
+    "stopping_commands": 120,
+    "settled_tail_commands": 30,
+    "maximum_no_kick_child_solver_steps": 2552,
+    "maximum_kicked_child_solver_steps": 3512,
+    "child_wall_time_limit_seconds": 1500,
+    "independent_reader_wall_time_limit_seconds": 900,
+    "maximum_no_kick_stance_entry_commands": 240,
+    "maximum_no_kick_hold_commands": 240,
+    "maximum_walking_commands": 1600,
+    "maximum_partial_recovery_commands": 1200,
+    "maximum_standing_commands": 360
+  },
+  "finite_walking_observable": {
+    "required_planned_cycles_per_limb": 1,
+    "ordered_limb_ids": [
+      "front_left",
+      "front_right",
+      "rear_left",
+      "rear_right"
+    ],
+    "cycle": "A retained preparation release, actual native post-step absence during scheduled swing, then actual supported stance after the swing; use synchronized measured capsule endpoints. The independent reader must bind every request, response, clock, contact and memory transition.",
+    "minimum_consecutive_native_absence_samples": 3,
+    "minimum_measured_forward_endpoint_advance_m": 0.012,
+    "minimum_forward_body_advance_m": 0.02,
+    "cutoff": "First completion of all four measured planned cycles with all four feet in supported scheduled stance, then exactly 120 zero-amplitude and zero-speed commands. Failure to finish within 1600 walking commands is a bounded negative.",
+    "threshold_provenance": "The 3-sample airborne dwell, 12 mm foot advance and 20 mm body advance are unchanged magnitudes from the original development walking evaluator. The new observable identifies planned gait cycles rather than treating every stance contact loss as an intended step. No old campaign is regraded.",
+    "body_advance_measurement": "Measured torso position immediately before the first walking command to the final post-stop native torso position, projected onto the initial anatomical horizontal forward axis. The neutral-entry segment is excluded."
+  },
+  "settled_tail": {
+    "required_measured_supports": 4,
+    "maximum_horizontal_com_speed_m_s": 0.03,
+    "maximum_torso_angular_speed_rad_s": 0.15,
+    "maximum_torso_tilt_rad": 0.05,
+    "provenance": "Unchanged V49/V50 prospective cycle-stop conditions; require every final 30 observation, not an average."
+  },
+  "whole_walking_envelope": {
+    "maximum_absolute_lateral_drift_m": 0.25,
+    "maximum_yaw_drift_rad": 0.45,
+    "maximum_torso_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.25,
+    "maximum_joint_anchor_error_m": 0.025,
+    "maximum_hinge_axis_error_rad": 0.2,
+    "maximum_torso_contact_samples": 0,
+    "provenance": "Unchanged original finite development walking limits. Native engine health, bounded joint-only actuation, identity, contact truth and the complete recovery energy invariants also remain mandatory."
+  },
+  "unintended_support_loss_contract": {
+    "all_native_contact_samples_retained": true,
+    "all_absence_and_nonbearing_episodes_reported": true,
+    "required_stance_and_planned_swing_onsets_distinguished": true,
+    "report_each_episode_duration_forward_motion_and_nominal_gap": true,
+    "contact_loss_data_may_be_dropped": false,
+    "contact_geometry_may_override_native_contact": false,
+    "original_walking_evaluation_retained_unchanged": true,
+    "original_every_limb_forward_relocation_negative_may_be_relabelled": false,
+    "uninterrupted_stance_contact_claimed": false,
+    "stance_contact_robustness_claimed": false,
+    "scope": "This prospective task tests bounded kick-triggered recovery, four measured intended foot relocations and settled stopping. It does not establish uninterrupted stance contact, arbitrary duration walking or contact robustness. Every existing negative remains accessible."
+  },
+  "prospective_populations": {
+    "development": {
+      "first_attempt": {
+        "label": "R10O-DEVELOPMENT-PREFIX-241-PAIR-V1",
+        "seed": 40741,
+        "prefix_phase": 241,
+        "fresh_roles": [
+          "matched_no_kick_continuation",
+          "kick_passive_recovery_resume"
+        ],
+        "coverage": "One fresh pair covers joint-pose ramp/V50 hold, V55 startup and walking, exposed partial-collapse recovery, full 120-command stopping, complete source-bound publication and cold replay. Development comparison only."
+      },
+      "additional_branch_diagnostic": {
+        "label": "R10O-DEVELOPMENT-PREFIX-243-SINGLE-KICK-V1",
+        "seed": 40743,
+        "prefix_phase": 243,
+        "fresh_roles": [
+          "kick_passive_recovery_resume"
+        ],
+        "coverage": "After the first pair closes valid and positive, one separate fresh kicked child covers the mutually exclusive genuine-prone branch and the new standing budget through V55 and the complete stop. It is explicitly non-comparative and reuses no physical baseline.",
+        "prerequisite": "The exact selected R10O pair must close valid and positive under independent audit."
+      },
+      "adequacy_argument": "The phase-241 pair covers the exposed no-kick transfer refusal and partial-fall branch. The separate phase-243 kicked diagnostic covers the mutually exclusive genuine-prone branch. Both are development on exposed phases; neither is held-out evidence.",
+      "prelaunch_requirements": "Bind exact production entrypoints, candidate DLL, source snapshot, maximum solver/time limits, unchanged full capture and publication profile, negative controls, and complete applicable smoke safety gate before each fresh attempt.",
+      "qualification": "Neither diagnostic grants official qualification, M07 acceptance, a population claim or release authority. A new finite held-out design and its complete prospective graph remain required after successful development."
+    },
+    "held_out_finite_decision": {
+      "declared": false,
+      "old_r10j_population_consumed": true,
+      "new_prospective_graph_required": true
+    }
+  },
+  "implementation_contract": "All producers, worker branches, session and source identities, launch ownership, bounded stepping, complete capture, finalization, independent replay and finite evaluation must pass the full applicable safety gate before development physics.",
+  "ordered_gates": [
+    "integrate_complete_route",
+    "complete_applicable_smoke_safety_gate",
+    "fresh_declared_phase_241_pair",
+    "conditional_fresh_phase_243_single_kick",
+    "new_prospective_held_out_graph",
+    "complete_official_qualification",
+    "single_use_held_out_decision",
+    "independent_closure_and_release_gate_adoption"
+  ],
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "sdk1_m07_satisfied": false,
+  "sdk1_score": "14/20",
+  "stance_entry": {
+    "phase_id": "no_kick_neutral_stance_entry",
+    "segment_id": "neutral_stance_entry",
+    "controller_id": "sporespore_balanced_wave_joint_pose_entry_v1",
+    "gait_amplitude": 0.0,
+    "maximum_commands": 240,
+    "ready_consecutive_completed_samples": 30,
+    "initial_memory": "Fresh native joint-pose-entry memory, independent of prefix, hold and subsequent V55.",
+    "canonical_stance_receipt_fabricated": false,
+    "body_or_joint_teleport_permitted": false,
+    "measured_support_source": "original native completed-step presence AND bears_support for each of four feet",
+    "maximum_horizontal_com_speed_m_s": 0.03,
+    "maximum_torso_angular_speed_rad_s": 0.15,
+    "maximum_torso_tilt_rad": 0.05,
+    "geometry": "From synchronized measured distal body poses and compiled capsule centers, calculate each endpoint independently. For each of the 73 upright zero-bias reference heights at smoothstep(n/72), n=0..72, from measured torso height to floor+radius+0.33, require the positive-knee sagittal IK solution to exist within all compiled hip and knee position limits. No cosine or angle clamping. The selected recovery morphology has hip anchor parent y=0; the standard quadruped descriptor hip y=-0.05 is not this native recovery body.",
+    "geometry_claim_limit": "Readiness tests the stationary-anchor, zero-bias startup reference path. It does not guarantee later contact or feasibility under measured support correction or native motion. Native refusal remains authoritative.",
+    "kicked_entry": "Keep the actual V20/V7 recovery and its consecutive standing completion unchanged. Before creating V50 memory, require current native support/motion and the same geometric readiness once. A failed check is a bounded task negative; do not forge recovery history or add hidden actuation.",
+    "timeout": "At command 240, missing readiness terminates as a bounded negative with the complete native record. No fallback controller, reset, extended horizon or new attempt under the same identity.",
+    "parameter_basis": "Reuse the existing 240-step stance timeout and existing 30-sample/.03m/s/.15rad/s/.05rad settled criteria. The 73 reference heights are the exact endpoints and 72 command intervals of unchanged V50 startup. No acceptance threshold is loosened.",
+    "reference_ramp_complete_required_before_ready_dwell": true,
+    "native_entry_policy_contract": "sdk/recovery/r10o_joint_pose_entry_policy_contract_v1.json",
+    "native_entry_policy_contract_sha256": "sha256:3da2702d446825e4d2cffa89dd8d42da35548216ff1e50719bc810f7eb28b148",
+    "ramp_ready_rule": "Native reference_ramp_complete AND four native supports (presence and bears_support) on the same completed step. Settling is not required to close the ramp.",
+    "hold": {
+      "phase_id": "no_kick_neutral_stance_entry",
+      "segment_id": "v50_hold_stance_entry",
+      "event_kind": "v50_hold_entry_step",
+      "selection_id": "r10o_v50_zero_amplitude_hold_v1",
+      "controller_id": "sporespore_balanced_wave_recovery_startup_reference_velocity_v1",
+      "gait_amplitude": 0.0,
+      "desired_planar_velocity_task_m_s": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_commands": 240,
+      "ready_consecutive_completed_samples": 30,
+      "initial_memory": "fresh canonical V50 memory, independent of the ramp session and of the later walking session",
+      "task_frame": "legacy adapter frame with the same exact perpendicular-axis rule as the neutral start; no anatomical frame profile",
+      "declared_startup_transient": "V50 canonical initial support memory targets neutral joints; the first commands slew from straight-leg targets back to the measured flexed goals at up to the controller cap. Measured in the pair, not hidden.",
+      "timeout": "At hold command 240, missing readiness terminates as v50_hold_entry_timeout with the complete native record. No fallback, reset, extended horizon or new attempt under the same identity.",
+      "settled_criteria_provenance": "Unchanged 30-sample/.03 m/s/.15 rad/s/.05 rad criteria and the unchanged 73 zero-bias reference heights."
+    }
+  },
+  "predecessor_task": {
+    "path": "sdk/recovery/r10n_zero_velocity_brake_finite_cycle_contract_v1.json",
+    "sha256": "sha256:4d784d67f06c9a24d26c7ea7aebe570852f65d8a26defce5c9a5d174eb88069e"
+  },
+  "design_record": {
+    "path": "sdk/recovery/r10o_initialized_zero_brake_successor_design_v1.json",
+    "sha256": "sha256:9a4bb652285cbf468568a6313405bf034d2fdd7944a08c19671c78dd5c648a2b"
+  },
+  "partial_recovery": {
+    "task_id": "sporespore_measured_partial_fall_to_standing_v1",
+    "semantics_id": "sporespore_measured_partial_fall_recovery_semantics_v1",
+    "entry": {
+      "torso_height_ratio_exclusive_min": 0.25,
+      "torso_height_ratio_inclusive_max": 0.5,
+      "torso_up_dot_inclusive_min": 0.5,
+      "consecutive_samples": 12,
+      "ventral_contact_required": false,
+      "ownership": "none",
+      "motor_impulses": "Every measured motor impulse is zero, as required by the original passive collector.",
+      "not_an_acceptance_pose": "Entry does not assert that joints already lie within their final acceptance limits or that all four feet bear. Those remain measured recovery completion requirements, as in the prone route."
+    },
+    "raise_and_completion": {
+      "minimum_measured_com_height_gain_m": 0.1,
+      "gain_reference": "The last original passive sample that initialized this new partial task; the kick energy epoch and original source observations are unchanged.",
+      "standing_torso_height_ratio_min": 0.75,
+      "standing_torso_up_dot_min": 0.95,
+      "distal_bearing_minimum_impulse_ns": 0.019293,
+      "all_four_distal_sites_bearing_required": true,
+      "minimum_nonfoot_clearance_m": 0.005,
+      "nonfoot_contact_permitted": false,
+      "maximum_terminal_linear_speed_m_s": 0.1,
+      "maximum_terminal_angular_speed_rad_s": 0.2,
+      "maximum_energy_balance_residual_j": 0.25,
+      "standing_consecutive_samples": 60,
+      "joint_limits_actuator_caps_and_no_cheat": "Unchanged exact native morphology/cap contracts, complete energy partition, and no intervention or state rewrite.",
+      "gain_rationale": "The original 0.22 m criterion belongs to a task starting in ventral prone. This distinct task starts above the prone ceiling but at no more than half the reference torso height. It requires at least 0.10 m of measured COM rise as well as the same absolute standing geometry and stability. The changed entry and gain define a new task; they cannot regrade R10J or establish canonical prone recovery."
+    },
+    "phase_budgets": {
+      "establish_distal_support": 240,
+      "raise_body": 600,
+      "stance_handoff": 120,
+      "stance_dwell": 360,
+      "total": 1200
+    },
+    "measurement_identity": "Post-handoff observations carry the new task and semantics identifiers at their original producer before source hashing. Shared native validation kernels may be reused under an explicit task scope. Never rewrite an already observed canonical task identifier or source-binding digest."
+  },
+  "prone_recovery": {
+    "profile_id": "sporespore_r10k_exact_s169_prone_thresholds_v1",
+    "parent_profile": "The existing exact-S169 physical development threshold profile.",
+    "only_numeric_change": "stance_dwell timeout 240 to 360 commands",
+    "unchanged": "60 consecutive standing samples, all original entry, rise, contact, geometry, speed, cap and energy requirements, all other phase timeouts, and the 1200-command total bound.",
+    "rationale": "The observed prone child ended in measured stable stance with 47 consecutive samples. The distinct budget permits more settling time; it does not predict that another 13 samples would have succeeded or permit continuation of the old child."
+  },
+  "zero_amplitude_command_scope": {
+    "maximum_velocity_rad_s": 0.25,
+    "activation": "Every valid V55 command with gait_amplitude exactly zero, including the first startup command.",
+    "retained_no_kick_startup_motors_clipped": 8,
+    "physical_effect_unverified": true,
+    "v50_preparation_hold_unchanged": true
+  }
+}

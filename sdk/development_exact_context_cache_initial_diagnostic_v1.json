@@ -1,0 +1,47 @@
+{
+  "schema_version": "sporespore_development_exact_context_cache_initial_diagnostic_v1",
+  "ledger_scope": {
+    "subsystem": "workflow",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_zero_world_failed_benchmark_diagnosis",
+    "question_class": "development"
+  },
+  "base_commit": "a0590126ae22453f242184fcd652816b9ec68ab0",
+  "initial_cache_source_sha256": "sha256:3b65f610c6e1757634bf1809a0b23e46b0b1ff614452949467f35556f3b6bf56",
+  "initial_test_source_sha256": "sha256:78e9c6ba46ccc46292c9d157d0ce45fa7a88597a1753011dcfed37ecffe042c4",
+  "initial_test_exit_code": 1,
+  "initial_test_elapsed_seconds": 24.353,
+  "initial_benchmark_ok": false,
+  "failed_check": "key_distinction_12",
+  "failed_check_inputs_in_source": "[0.0, -0.0]",
+  "other_reported_boolean_checks_passed": true,
+  "initial_benchmarks": [
+    {"input": "matched_no_kick_continuation", "predicate": 0, "full_total_us": 932331, "cold_us": 156910, "hit_total_us": 118725, "hits": 8, "full_checks": 1, "key_bytes": 64924},
+    {"input": "matched_no_kick_continuation", "predicate": 1, "full_total_us": 1267554, "cold_us": 166330, "hit_total_us": 124926, "hits": 8, "full_checks": 1, "key_bytes": 64924},
+    {"input": "kick_passive_recovery_resume", "predicate": 0, "full_total_us": 1111194, "cold_us": 170140, "hit_total_us": 115730, "hits": 8, "full_checks": 1, "key_bytes": 64924},
+    {"input": "kick_passive_recovery_resume", "predicate": 1, "full_total_us": 1266587, "cold_us": 153852, "hit_total_us": 117924, "hits": 8, "full_checks": 1, "key_bytes": 64924},
+    {"input": "fresh_zero_world_prepared_context", "predicate": 0, "full_total_us": 1253211, "cold_us": 160009, "hit_total_us": 109255, "hits": 8, "full_checks": 1, "key_bytes": 64924},
+    {"input": "fresh_zero_world_prepared_context", "predicate": 1, "full_total_us": 1214860, "cold_us": 170690, "hit_total_us": 116259, "hits": 8, "full_checks": 1, "key_bytes": 64924}
+  ],
+  "diagnostic_probe": {
+    "script": "tests/test_development_context_key_representation.gd",
+    "native_exit_code": 0,
+    "literal_pair_binary64_le": ["0000000000000000", "0000000000000000"],
+    "runtime_signed_zero_keys": [
+      "1b00000001000000040000000500000076616c75650000000300000000000000",
+      "1b00000001000000040000000500000076616c75650000000300000000000080"
+    ],
+    "runtime_signed_zero_distinct": true,
+    "nul_codepoints": [97, 65533, 98],
+    "nul_utf32_hex": "61000000fdff000062000000",
+    "stdout_display_wrapper_failed": "UnicodeEncodeError cp1252 displaying U+FFFD in native stderr; native probe had already exited 0"
+  },
+  "interpretation": "The initial signed-zero fixture contained two positive-zero values after GDScript literal interning. A runtime bit-constructed negative zero has a different key. NUL construction becomes U+FFFD with a native warning before reaching the cache. Fix the fixture, retain this failed benchmark, and test the actual typed inputs; do not change the cache to accept a failed distinction.",
+  "model_construction_count": 0,
+  "world_build_count": 0,
+  "native_physics_read_count": 0,
+  "solver_step_count": 0,
+  "physical_path_cache_installed": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

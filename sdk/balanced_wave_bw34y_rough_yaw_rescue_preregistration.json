@@ -1,0 +1,159 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw34y_rough_yaw_rescue_preregistration_v1",
+  "status": "prospective_stage_zero_zero_world_only_physical_execution_blocked",
+  "campaign_id": "BW34Y-BW33N-ROUGH-YAW-RESCUE-DEVELOPMENT",
+  "gate_id": "BW34Y",
+  "implementation_parent_commit": "ec0b583a8a39b8e417720224307edc8d6163e819",
+  "study_classification": "single_arm_outcome_exposed_rough_rescue_development_screen_against_retained_comparator",
+  "question": "Does one further branch-free 0.3 reduction in yaw-error stride authority convert all three already-exposed BW33N rough seeds into complete walks while preserving the retained BW33N-C passing seed?",
+  "source_bindings": {
+    "candidate_declarations": {
+      "path": "sdk/balanced_wave_bw34y_rough_yaw_rescue_candidates.json",
+      "raw_sha256": "b8dacb9d71827ace6bd96a32b0d55905ecc2d41dfecca792b0c70f7afeb3d62e"
+    },
+    "bw33n_immutable_valid_none_closure": {
+      "path": "sdk/balanced_wave_bw33n_rough_factorial_closure.json",
+      "raw_sha256": "e0853f5136524cd76541a404fd09d10c5c9c5163dc34f4af9073562ca5126279"
+    },
+    "candidate_authority_exposure_horizon": {
+      "path": "sdk/balanced_wave_bw32n_candidate_authority_exposure_horizon.json",
+      "raw_sha256": "ec8291ecd54dbc8299d79d6b3adf176bf67fe851e4bacffc3df253c9a0a605df"
+    },
+    "portable_controller_implementation": {
+      "path": "sdk/core/src/controller.rs",
+      "raw_sha256": "4ee37e24215c362bcd249ba1f8e06286d6238dbccefc3e7e173c5f8badaa9440"
+    },
+    "portable_runtime_implementation": {
+      "path": "sdk/core/src/runtime.rs",
+      "raw_sha256": "59aad72e5cb80b57f20c151a5f0c45e576f6ac856387d5c64dbdce2bd89783d6"
+    },
+    "godot_jolt_adapter": {
+      "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "raw_sha256": "088269475cb33ecf73dc496a524caa651c67d7bd36273d948b7e3841508146bd"
+    },
+    "physical_wave_parent": {
+      "path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+      "raw_sha256": "8b43926a5a0c49e63784d569128c140e208ad6b1d57d2f2253d733e34a26eb3a"
+    },
+    "fixed_horizon_physical_wave_parent": {
+      "path": "scripts/lab/gait/physical_wave_gait_quadruped_bw30n_fixed_horizon.gd",
+      "raw_sha256": "a25a53dac5ea334c3b6c82ae2db3c223d47b0a14831807c940d1e0b92108694a"
+    }
+  },
+  "retained_comparator_contract": {
+    "candidate_id": "BW33N-C",
+    "controller_policy_id": "sporespore_balanced_wave_bw23y_b_v1",
+    "runtime_profile_sha256": "sha256:d345d9607bed545ee6c58a20055cd6258f38ed581dd3d9f6490a9ae7f1a57570",
+    "yaw_error_stride_gain_per_rad": 1.0,
+    "global_requested_correction_scale": 0.5,
+    "integrity_pass_count": 3,
+    "walking_pass_count": 1,
+    "walking_passing_seed_ids": [21001],
+    "failed_seed_21002_only_gate": "bounded_lateral_drift",
+    "failed_seed_21003_only_gate": "bounded_lateral_drift",
+    "comparator_is_not_rerun": true,
+    "comparison_is_descriptive_and_cross_source_not_a_concurrent_superiority_test": true
+  },
+  "candidate_contract": {
+    "candidate_id": "BW34Y-A",
+    "controller_policy_id": "sporespore_balanced_wave_bw34y_a_v1",
+    "runtime_profile_sha256": "sha256:f95e63ae3af945715c8a4e1030351caaf46e0cf947aa5f6711f2b9c9b5582eb5",
+    "candidate_composition_digest": "sha256:031d9fdb41626c7b2d62ec889b25089ee731d6587f16502c05b7d2284e1332c1",
+    "yaw_error_stride_gain_per_rad": 0.7,
+    "global_requested_correction_scale": 0.5,
+    "all_other_controller_fields_identical_to_bw33n_c": true,
+    "branch_surface_count": 0,
+    "runtime_seed_failure_identity_and_outcome_conditioning_forbidden": true
+  },
+  "development_matrix": {
+    "candidate_order": ["BW34Y-A"],
+    "seed_order": [21001, 21002, 21003],
+    "challenge_profile_id": "bw6n_rough_v1",
+    "material_profile_id": "godot_jolt_bw5c_mu095_v1",
+    "expected_world_count": 3,
+    "all_worlds_serialized": true,
+    "all_worlds_execute_even_after_selection_is_decided": true,
+    "early_stop_forbidden": true,
+    "failed_cell_retry_or_replacement_forbidden": true,
+    "already_outcome_exposed_seeds_only": true
+  },
+  "selection_contract": {
+    "eligible_candidate_ids": ["BW34Y-A"],
+    "required_integrity_pass_count": 3,
+    "required_walking_pass_count": 3,
+    "required_failed_walking_gate_count": 0,
+    "retained_comparator_passing_seed_21001_must_remain_passing": true,
+    "eligible_candidate_selects": "BW34Y-A",
+    "no_eligible_candidate_selects": "NONE",
+    "selection_grants_only_distinct_full_nuisance_development_declaration_authority": true,
+    "selection_grants_rough_terrain_acceptance": false,
+    "selection_grants_fresh_validation_authority": false,
+    "selection_grants_release_authority": false
+  },
+  "prospective_mechanism_interpretation": {
+    "positive_pattern": "BW34Y-A passes all three complete walking conjunctions with no new failure gate",
+    "negative_pattern": "any integrity-valid cell that does not walk makes BW34Y-A ineligible and selects NONE",
+    "gain_response_interpretation": "A positive result would justify testing the 0.7 profile over the already-opened full nuisance development matrix; it would not establish monotonicity, rough robustness, or a population effect",
+    "no_posthoc_threshold_or_seed_subset_or_alternate_candidate_selection": true
+  },
+  "stage_one_requirements_before_physics": {
+    "new_native_worker_and_single_dynamic_final_receipt_constructor": true,
+    "production_evaluator_accepts_complete_walking_negatives_without_turning_them_into_passes": true,
+    "one_shot_supervisor_and_machine_wide_physical_operation_lock": true,
+    "content_addressed_inputs_and_per_cell_outputs_before_aggregation": true,
+    "complete_real_shaped_zero_world_gate": true,
+    "negative_controls": [
+      "wrong_policy_identity",
+      "wrong_runtime_profile_digest",
+      "wrong_yaw_gain",
+      "wrong_global_scale",
+      "wrong_seed",
+      "wrong_rough_challenge_digest",
+      "wrong_authority_horizon",
+      "missing_walking_receipt",
+      "valid_structural_walking_negative",
+      "selector_positive_canary",
+      "selector_none_canary",
+      "prior_attempt_cardinality"
+    ],
+    "clean_pushed_source_and_source_bound_full_godot_attestation": true,
+    "physical_execution_blocked_until_a_distinct_stage_one_freeze_is_committed_and_pushed": true
+  },
+  "pipeline_stages": {
+    "stage_0_declaration": {
+      "current": true,
+      "authorized_world_count": 0,
+      "locomotion_outcome_exposure_authorized": false
+    },
+    "stage_1_rough_rescue_development": {
+      "current": false,
+      "planned_world_count": 3,
+      "requires_distinct_stage_one_freeze": true
+    },
+    "stage_2_full_nuisance_development": {
+      "current": false,
+      "declaration_authorized_only_if_bw34y_a_is_selected": true,
+      "physical_execution_authorized": false
+    },
+    "stage_3_independent_validation": {
+      "current": false,
+      "reserved_unopened_seed_ids": [49101, 49102, 49103],
+      "reserved_seed_use_authorized": false
+    }
+  },
+  "inferential_ceiling": {
+    "finite_outcome_exposed_mechanism_screen_only": true,
+    "rough_terrain_robustness": false,
+    "population_inference": false,
+    "superiority": false,
+    "noninferiority_or_equivalence": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_morphology_coverage": false,
+    "release_authorized": false
+  },
+  "attempt_count": 0,
+  "world_count": 0,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false
+}

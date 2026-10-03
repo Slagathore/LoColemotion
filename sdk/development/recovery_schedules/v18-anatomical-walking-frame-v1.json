@@ -1,0 +1,58 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "v18-anatomical-walking-frame-v1": {
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v17",
+      "runtime_sha256": "sha256:18d939ca2f7c6efc1bf0f010b85a3b68dae19f4a58780e500d6c8c12809b9578",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 626,
+        "maximum_steps_per_child": 978
+      },
+      "coverage_basis": {
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "original_tail_steps": 480,
+        "stance_steps_observed": 124,
+        "existing_stance_timeout_steps": 240,
+        "walking_probe_steps": 30,
+        "tail_derivation": "480 + (240 - 124) + 30 = 626",
+        "resource_derivation": "320 + 30 + 2 + 626 = 978",
+        "threshold_source": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+        "new_controller_preserves_v14_recovery_motion": true,
+        "motion_equality_test": "recovery_runtime::tests::damped_stance_control_tests::v17_preserves_v16_get_up_commands_thresholds_and_caps",
+        "frame_diagnosis_source_attempt": "sdk/development/recovery_attempts/5436af3ddcad48dda0f2450ce0a9dd7b.json",
+        "frame_diagnosis_report_sha256": "sha256:2ec328e3dac08ff9457c485e49f8a1820756117f45967d7904cc8d444004b7f7",
+        "unchanged_controller_candidate": "sdk/development/recovery_candidates/v17-velocity-damped-stance-v1.json"
+      },
+      "coverage_adequacy": "One development seed and one fresh kicked child. Reuse the exact V17 compiled controller, 626-step tail, 978-step cap, setup, prefix, kick, get-up, standing criteria and gait phase. Only after completed standing, use the established walking launcher horizontal +X-forward/+Z-lateral frame and matching anatomical trace heading. Preserve its separate legacy yaw conversion. This short diagnostic asks about resumed walking startup, not two complete cycles or walking acceptance. Actual standing and resume coverage must be measured; no baseline reuse or inference of determinism.",
+      "uncovered_paths": [
+        "guaranteed recovery or walking completion",
+        "two complete contact cycles per limb",
+        "causal attribution of the V17 walking negative",
+        "full official walking horizon",
+        "matched comparison",
+        "held-out behavior",
+        "cross-engine effects",
+        "force-aware recovery"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1"
+    }
+  }
+}

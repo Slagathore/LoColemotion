@@ -1,0 +1,192 @@
+{
+  "schema_version": "sporespore_r23d27_predictive_tilt_diagnosis_closure_v1",
+  "analysis_id": "QSDK-R23D27-PREDICTIVE-TILT-PRECURSOR-D1",
+  "status": "closed_complete_postoutcome_development_diagnosis",
+  "closed_utc": "2026-08-12T14:33:22Z",
+  "source": {
+    "commit": "f0f9084daf7a57d33289c1529ec7914336bdd58b",
+    "tree_git_oid": "c344aaeb4e7b5bb8f3594be1c06fa7269915da6b",
+    "clean_pushed_live_main_verified": true,
+    "source_bindings": [
+      {
+        "path": "sdk/trace_analysis/r23d27_predictive_tilt_analysis_manifest_v1.json",
+        "git_blob_oid": "30afb2c1ced8cb36386686b13ca87109b3f9a5e1",
+        "raw_sha256": "sha256:c768f3f3cbb0fa2c8ed0645e214a9285b06373398ae2a59af2df4f0d7650c553"
+      },
+      {
+        "path": "sdk/trace_analysis/analyze_retained_trace_lineage.py",
+        "git_blob_oid": "ee488e5621c23188c6602be9770cf210405ffb09",
+        "raw_sha256": "sha256:ef59a04a5141c96c028ac97261630bd4b0378e8a41dc76f9dc0a79008ccca679"
+      },
+      {
+        "path": "sdk/trace_analysis/retained_trace_lineage_contract_v1.json",
+        "git_blob_oid": "9d1a9b1d93777a5535bf9a707ebc54d51f07c09f",
+        "raw_sha256": "sha256:6b9957074322043f5dd3092690c24ffe1c44fa44851319467f5889a040f169c8"
+      },
+      {
+        "path": "sdk/run_retained_trace_lineage_analysis.ps1",
+        "git_blob_oid": "534a82f12f10ec8492fbb9db1beb592bbe86ff17",
+        "raw_sha256": "sha256:78960976a00f6b67e0820bd89e8120cc57d72548633a82f1ad592e62b7561f3b"
+      },
+      {
+        "path": "tests/test_qsdk_r23d27_predictive_tilt_diagnosis.ps1",
+        "git_blob_oid": "99b21a6acb08d46060a43d754f23ae4437bfe88d",
+        "raw_sha256": "sha256:f829b7434f7e537660d321ec138d8515e87088378246e11c7d5bf66bbcfbc2bb"
+      }
+    ]
+  },
+  "immutable_parent": {
+    "closure_path": "sdk/turning/r23d27_stability_guarded_steering_closure_v1.json",
+    "closure_source_commit": "3daea0d1c72d6e471fc5ca077edc2133ec408082",
+    "closure_git_blob_oid": "2a1902edc3a3d4d81c6b1d50b56f6e507d6f0a97",
+    "closure_raw_sha256": "sha256:a896f3c38da454bafb27b19fd2a8b75dcf456df5d760dac4036c3c88c64ac53c",
+    "parent_status": "closed_consumed_valid_complete_negative_no_validated_candidate",
+    "parent_reinterpreted": false,
+    "parent_rerun": false
+  },
+  "retained_evidence": {
+    "root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\trace-lineage-r23d27-f0f9084",
+    "report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\trace-lineage-r23d27-f0f9084\\report.json",
+      "sha256": "sha256:708add0dd57c8b36e0630660dbde5d68672ac8b34ca3fced08f0a796c766fcea",
+      "byte_length": 31164,
+      "cas_payload_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\artifacts\\sha256\\708add0dd57c8b36e0630660dbde5d68672ac8b34ca3fced08f0a796c766fcea\\payload.bin",
+      "cas_manifest_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\artifacts\\sha256\\708add0dd57c8b36e0630660dbde5d68672ac8b34ca3fced08f0a796c766fcea\\manifest.json"
+    },
+    "receipt": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\trace-lineage-r23d27-f0f9084\\receipt.json",
+      "sha256": "sha256:e81b61356f5c4a046a0328e8e2ded7bedc881ee0f9cb82f5a2a12373bfb860be",
+      "byte_length": 1245
+    },
+    "input_trace_count": 3,
+    "input_trace_row_count": 8976,
+    "input_trace_byte_length": 29252801,
+    "content_addressed_input_count": 3,
+    "live_attempt_path_input_count": 0
+  },
+  "projection_contract": {
+    "physics_hz": 120,
+    "finite_difference_window_steps": [
+      4,
+      8,
+      12,
+      24,
+      36,
+      60,
+      72
+    ],
+    "prediction_horizon_s": 0.6,
+    "prediction_horizon_provenance": "one complete 72-step swing interval at the inherited 120 Hz controller rate",
+    "full_authority_maximum_tilt_rad": 0.1,
+    "minimum_authority_tilt_rad": 0.2,
+    "thresholds_changed": false,
+    "finite_difference_window_selected": false,
+    "counterfactual_physical_outcome_claimed": false
+  },
+  "findings": {
+    "reference_zero": {
+      "observed_guard_reduction_step": null,
+      "observed_guard_floor_step": null,
+      "projected_floor_crossing_count": 0
+    },
+    "positive_heading": {
+      "first_actual_full_authority_tilt_exceeded_step": 975,
+      "observed_guard_reduction_step": 976,
+      "observed_guard_floor_step": 1033,
+      "projected_floor_steps_by_window_order": [
+        840,
+        952,
+        954,
+        959,
+        966,
+        978,
+        982
+      ],
+      "projected_floor_lead_over_observed_guard_reduction_by_window_order": [
+        136,
+        24,
+        22,
+        17,
+        10,
+        -2,
+        -6
+      ]
+    },
+    "negative_heading": {
+      "first_actual_full_authority_tilt_exceeded_step": 785,
+      "observed_guard_reduction_step": 786,
+      "observed_guard_floor_step": 819,
+      "projected_floor_steps_by_window_order": [
+        646,
+        763,
+        765,
+        771,
+        777,
+        787,
+        791
+      ],
+      "projected_floor_lead_over_observed_guard_reduction_by_window_order": [
+        140,
+        23,
+        21,
+        15,
+        9,
+        -1,
+        -5
+      ]
+    },
+    "middle_window_precursor_count_per_failed_arm": 4,
+    "middle_windows": [
+      8,
+      12,
+      24,
+      36
+    ],
+    "both_failed_arms_have_positive_middle_window_lead": true,
+    "reference_has_no_projected_floor_crossing": true,
+    "complete_actuator_limit_observability_cell_count": 3
+  },
+  "interpretation": {
+    "supported": "R23D27 retained a direction-neutral tilt-trend precursor that becomes safety-relevant before the observed tilt-only guard reacts in both failed command directions across four simultaneously reported middle windows.",
+    "not_supported": "The diagnosis does not show that any replayed finite-difference window would have prevented a fall, does not select a controller parameter, and does not turn the closed negative into a positive.",
+    "distinct_successor_design_supported": true,
+    "distinct_successor_physical_execution_authorized": false
+  },
+  "successor_constraints": {
+    "question_must_be_declared_development_or_validation_before_physics": true,
+    "portable_state_frame_tilt_rate_required": true,
+    "finite_difference_window_from_exposed_trace_may_not_be_selected": true,
+    "prediction_horizon_must_equal_one_scheduler_swing_interval": true,
+    "prediction_horizon_seconds": 0.6,
+    "existing_full_and_minimum_authority_tilt_thresholds_preserved": true,
+    "baseline_and_expanded_steering_fractions_preserved": true,
+    "direction_neutral_rule_required": true,
+    "engine_identity_branch_forbidden": true,
+    "command_sign_branch_forbidden": true,
+    "complete_predictive_guard_receipt_required": true,
+    "complete_ordered_final_actuator_commands_and_limits_required": true,
+    "own_zero_world_gate_required": true,
+    "clean_pushed_scoped_attestation_and_adoption_required": true,
+    "fresh_physical_identity_required": true
+  },
+  "counts": {
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0
+  },
+  "claim_limits": {
+    "r23d27_reinterpreted": false,
+    "r23d27_rerun": false,
+    "counterfactual_recovery": false,
+    "controller_selected": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "finite_rapier_turning_validation": false,
+    "portable_basic_turning": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

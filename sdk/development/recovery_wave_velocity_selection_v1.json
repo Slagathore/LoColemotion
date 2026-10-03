@@ -1,0 +1,146 @@
+{
+  "schema_version": "sporespore_development_recovery_wave_velocity_selection_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core_and_godot_jolt",
+    "authority_mode": "post_exposure_development_successor_selection",
+    "question_class": "development"
+  },
+  "source_parent_commit": "aba5242c2b6350d7c0b3ed132e8beab159d80e33",
+  "source_closure": {
+    "path": "sdk/development/recovery_attempts/8ceafcfb9d5c4439859aee7f959e2740.json",
+    "raw_sha256": "sha256:8ab9f404dbdeaae05b447181b0b061ad85f625963ea59db634c82300ad47c4a1",
+    "byte_length": 260002
+  },
+  "diagnosis_and_audit_sources": [
+    {
+      "path": "sdk/conformance/development_recovery_v37_reference_diagnosis.py",
+      "raw_sha256": "sha256:cfa872c920b220a57a6bbb386a06ad477231fd8554172c8d51f20c11544e1c56",
+      "byte_length": 19297
+    },
+    {
+      "path": "sdk/development/recovery_reference_velocity_diagnosis_v1.json",
+      "raw_sha256": "sha256:1fe0b5395599180d3ae2cb28af6d568f941b79635e4667374d87d0513d0233bb",
+      "byte_length": 237136
+    },
+    {
+      "path": "tests/test_development_v37_reference_diagnosis.py",
+      "raw_sha256": "sha256:6b2b3821f218fe9412765392cfe2686ebee5c90a969ea9346998a1e0f80d1c3e",
+      "byte_length": 8230
+    }
+  ],
+  "selected_contract": {
+    "path": "sdk/development/recovery_wave_velocity_contract_v1.json",
+    "raw_sha256": "sha256:7edf7fed103864c16ef8685804c79053fa402fa4f902bad84f039cbee4f5e6f0",
+    "byte_length": 6390
+  },
+  "selected_component_id": "V38",
+  "decision": "Implement the separately identified pose-separated wave-rate velocity term. Preserve the current position-reference path, support geometry, gains, limits, gates, schedule and evaluator. The rate compares previous and current upstream wave snapshots at one current pose and one slew origin; it excludes activation, static-goal catch-up and direct support-pose variation. This is not a pure open-loop phase derivative because upstream wave directions include steering feedback.",
+  "observed_basis": {
+    "joint_commands": 3200,
+    "original_velocity_saturated_commands": 465,
+    "activation_command_local": 2,
+    "activation_saturated_commands": 8,
+    "native_contact_losses": 42,
+    "scheduled_stance_contact_losses": 34,
+    "first_stance_contact_loss": {
+      "command_local": 4,
+      "limb": "rear_right"
+    },
+    "first_empty_common_height_interval_command": 51,
+    "first_original_tilt_failure_command": 369,
+    "all_original_contact_cycles": 25,
+    "failed_original_relocation_cycles": 20,
+    "unplanned_cycle_count": 17,
+    "ordered_support_pose_vs_wave_rate_rms_rad_s": {
+      "all_after_activation": {
+        "pose_last": 1.0724640550598596,
+        "wave_first": 0.5108991256065458,
+        "pose_first": 1.0643761465175943,
+        "wave_last": 0.49309431472731013
+      },
+      "stance_after_activation": {
+        "pose_last": 1.167494936108818,
+        "wave_first": 0.2502019430631039,
+        "pose_first": 1.1552706187696204,
+        "wave_last": 0.19867099685613399
+      }
+    },
+    "interpretation": "The measured-pose contribution exceeds the wave contribution in RMS under both attribution orders on these inputs. This is ordered algebra, not a causal fraction or proof of the physical instability's unique cause."
+  },
+  "proposal_scope": {
+    "joint_commands": 3200,
+    "changed_command_count_above_arithmetic_allowance": 1491,
+    "command_comparison_allowance_rad_s": 1e-12,
+    "velocity_saturated_count": 79,
+    "unchanged_initial_command_count": 8,
+    "activation_reference_rate_zero_count": 8,
+    "activation_velocity_saturated_count": 0,
+    "all_rates_and_velocities_inside_existing_caps": true,
+    "native_component_implemented": false,
+    "alternate_physical_trajectory_evaluated": false
+  },
+  "focused_audit": {
+    "passed": true,
+    "test_count": 6,
+    "seconds": 5.2711417,
+    "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v37-reference-diagnosis-82a83bc3a47d4073b2b36a170e000b1c",
+    "stdout_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_sha256": "sha256:3f3c436adf6e86fa2a3978928acb13cec004a97733e11aff1b11b65304a8217a",
+    "retained_prior_check": {
+      "passed": false,
+      "test_count": 6,
+      "failure_count": 1,
+      "seconds": 5.0341004,
+      "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v37-reference-diagnosis-801132a531144493b8b490b782a9e609",
+      "stdout_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "sha256:2708d2b288d2d2c33c6bc1da2216e86da00a005103ea58361c8c4fb531914359",
+      "diagnosis": "A synthetic fixture expected nonzero transport although both goals hit the same reference-slew endpoint. The expected zero case was retained and a second fixture with the preceding reference at the preceding goal verifies nonzero motion. Controller sketch and measured physical evidence were not changed by this test correction."
+    }
+  },
+  "readiness": {
+    "source": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v37-reference-diagnosis-82a83bc3a47d4073b2b36a170e000b1c/readiness.json",
+      "raw_sha256": "sha256:22b906f94ac45f5856d675297c93bfa8d1285e752950a23e80b6a0485a0ba402",
+      "byte_length": 14232
+    },
+    "sdk1_counts": {
+      "total": 20,
+      "passed": 14,
+      "missing": 5,
+      "contradicted": 1,
+      "invalid_proof": 0
+    },
+    "full_program": {
+      "status": "blocked",
+      "required_passed": 14,
+      "required_total": 25,
+      "denominator_changed": false
+    },
+    "r173": {
+      "path": "sdk/recovery/r24d173_three_engine_canonical_prone_to_standing_decision_v1.json",
+      "raw_sha256": "sha256:c2d6edf090ab80a55eb8a6996f52984c14c453bf513e9d8d058d81603817425f",
+      "byte_length": 13023
+    }
+  },
+  "finite_remaining_blockers": [
+    "Implement and verify one immutable V38 native component and closed wave-memory contract; no native V38 implementation exists at this selection.",
+    "Integrate explicit V38 identities into the existing shared worker, profile and independent reader without altering consumed profiles.",
+    "Pass the complete applicable smoke safety gate and run one fresh, bounded SingleKick diagnostic before any new behavioral conclusion."
+  ],
+  "deferred_not_prerequisites": [
+    "Broad control redesign, learned corrections and force-aware SDK2 recovery.",
+    "Formal superiority/equivalence, acceptance and additional seeds.",
+    "Telemetry optimization unrelated to this controller change."
+  ],
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_authorized": false,
+  "behavioral_threshold_changed": false,
+  "physical_cause_proven": false,
+  "new_world_build_count": 0,
+  "new_solver_step_count": 0,
+  "new_native_physics_read_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "sporespore_godot_actuator_phase_observation_contract_v1",
+  "contract_id": "QSDK-GODOT-ACTUATOR-PHASE-OBSERVATION-V1",
+  "status": "prospective_zero_world_instrumentation_development",
+  "question_class": "development",
+  "purpose": "Expose the exact ordered controller command, Godot host application/readback, compiled impulse limit/readback, actuator-to-limb identity, controller phase, and before/after contact observations required to diagnose a future turning mechanism without reopening or reinterpreting R23D53.",
+  "source_boundary": {
+    "repository": "https://github.com/Slagathore/sporespore.git",
+    "parent_commit": "2047ef092f52d907d44df66c2dcd6946e2e7e07a",
+    "parent_boundary": "closed_r23d53_command_contrast_diagnosis",
+    "parent_closure_path": "sdk/trace_analysis/r23d53_godot_command_contrast_diagnosis_closure_v1.json",
+    "parent_outcome_rewritten": false,
+    "physical_successor_opened": false
+  },
+  "runtime_api_provenance": {
+    "commissioned_runtime_observed_by_preflight": "Godot 4.7.stable.official",
+    "official_reference": "https://docs.godotengine.org/en/4.7/classes/class_hingejoint3d.html",
+    "configured_target_api": "HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY",
+    "configured_impulse_limit_api": "HingeJoint3D.PARAM_MOTOR_MAX_IMPULSE",
+    "write_method": "HingeJoint3D.set_param",
+    "readback_method": "HingeJoint3D.get_param",
+    "measured_motor_torque_available": false,
+    "measured_motor_impulse_available": false,
+    "configured_parameter_readback_only": true
+  },
+  "production_route": {
+    "adapter_path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+    "application_function": "apply_authority",
+    "application_receipt_schema": "sporespore_godot_jolt_full_authority_application_receipt_v1",
+    "trace_composer_path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+    "observation_schema": "sporespore_godot_jolt_actuator_phase_observation_v1",
+    "zero_world_test_path": "tests/test_sdk_godot_actuator_phase_observation.gd",
+    "canonical_conformance_runner": "sdk/run_conformance.ps1"
+  },
+  "required_observation": {
+    "order_source": "compiled_morphology.ordered_actuator_ids",
+    "per_actuator_fields": [
+      "actuator_id",
+      "joint_id",
+      "host_joint_id",
+      "limb_id",
+      "limb_joint_index",
+      "requested_target_position_rad",
+      "clamped_target_position_rad",
+      "controller_target_velocity_rad_s",
+      "maximum_target_speed_rad_s",
+      "host_applied_target_velocity_rad_s",
+      "motor_target_velocity_readback_rad_s",
+      "motor_target_velocity_readback_error_rad_s",
+      "declared_maximum_impulse_nms",
+      "motor_maximum_impulse_readback_nms",
+      "motor_maximum_impulse_readback_error_nms",
+      "position_saturated",
+      "velocity_saturated",
+      "slew_limited",
+      "host_additional_clamp_applied",
+      "local_phase_step_before",
+      "gait_step_before",
+      "release_hold_step_count_before",
+      "foot_contact_before",
+      "foot_contact_after"
+    ],
+    "semantic_step_exactly_linked": true,
+    "controller_receipt_digest_retained": true,
+    "portable_and_host_joint_identities_separate": true,
+    "before_and_after_contacts_linked_by_limb_id": true,
+    "configured_parameter_nonclaims_required": true
+  },
+  "threshold_and_adequacy_argument": {
+    "observed_r23d53_values_used_to_set_thresholds": false,
+    "empirical_acceptance_threshold_count": 0,
+    "exact_invariants": [
+      "schema identity",
+      "semantic-step identity",
+      "actuator order and cardinality",
+      "actuator-to-portable-joint-to-host-joint linkage",
+      "actuator-to-limb-phase linkage",
+      "before and after contact linkage",
+      "configured-parameter-only nonclaims",
+      "zero model and world counts"
+    ],
+    "numeric_tolerance": 2.5e-7,
+    "numeric_tolerance_units": "field native units",
+    "numeric_tolerance_provenance": "existing commissioned SDK comparison tolerance supplied to sdk_godot_jolt_adapter.start; not estimated from R23D53 outcomes",
+    "configured_impulse_limit_provenance": "compiled morphology actuator maximum_impulse_nms",
+    "cohort_argument": "No physical cohort or population claim is made. One deterministic zero-world native-controller route is adequate only to prove schema reachability, ordered linkage, configured parameter round-trip, and mutation rejection.",
+    "population_claim_authorized": false,
+    "turning_mechanism_selected": false,
+    "physical_acceptance_authority": false
+  },
+  "negative_controls": {
+    "wrong_observation_schema_rejected": true,
+    "application_order_mutation_rejected": true,
+    "application_impulse_readback_mutation_rejected": true,
+    "retained_target_readback_mutation_rejected": true,
+    "retained_impulse_readback_mutation_rejected": true,
+    "retained_actuator_order_mutation_rejected": true,
+    "retained_phase_mutation_rejected": true,
+    "retained_before_contact_mutation_rejected": true,
+    "retained_after_contact_mutation_rejected": true,
+    "retained_limb_identity_mutation_rejected": true
+  },
+  "execution_boundary": {
+    "unparented_hinge_object_count": 8,
+    "scene_tree_insertion_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physics_state_modified": false,
+    "physical_work_authorized": false,
+    "r23d54_or_successor_authorized": false
+  },
+  "nonclaims": {
+    "r23d53_verdict_changed": false,
+    "actuator_cause_identified": false,
+    "contact_phase_cause_identified": false,
+    "measured_torque_claimed": false,
+    "measured_impulse_claimed": false,
+    "godot_turning_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "release_gate_satisfied": false
+  }
+}

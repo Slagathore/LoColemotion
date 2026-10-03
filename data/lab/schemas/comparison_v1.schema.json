@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/comparison_v1.schema.json",
+  "title": "SporeSpore paired comparison v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "comparison_id",
+    "control_run_id",
+    "intervention_run_id",
+    "declared_independent_variable",
+    "paired_base_spec_sha256",
+    "control_expanded_spec_sha256",
+    "intervention_expanded_spec_sha256",
+    "declared_diff_paths",
+    "evidence_validity",
+    "conclusion"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.comparison.v1"},
+    "comparison_id": {"$ref": "#/$defs/stable_id"},
+    "control_run_id": {"$ref": "#/$defs/stable_id"},
+    "intervention_run_id": {"$ref": "#/$defs/stable_id"},
+    "declared_independent_variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "path": {"$ref": "#/$defs/json_pointer"}
+      }
+    },
+    "paired_base_spec_sha256": {"$ref": "#/$defs/sha256"},
+    "control_expanded_spec_sha256": {"$ref": "#/$defs/sha256"},
+    "intervention_expanded_spec_sha256": {"$ref": "#/$defs/sha256"},
+    "declared_diff_paths": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/json_pointer"},
+      "uniqueItems": true
+    },
+    "evidence_validity": {"enum": ["valid", "invalid"]},
+    "conclusion": {"enum": ["inconclusive", "undeclared_difference"]}
+  },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "evidence_validity": {"const": "valid"},
+            "conclusion": {"const": "inconclusive"}
+          }
+        },
+        {
+          "properties": {
+            "evidence_validity": {"const": "invalid"},
+            "conclusion": {"const": "undeclared_difference"}
+          }
+        }
+      ]
+    }
+  ],
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "json_pointer": {
+      "type": "string",
+      "pattern": "^/(?:[^~/]|~0|~1)*(?:/(?:[^~/]|~0|~1)*)*$"
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "schema_version": "sporespore_c_abi_manifest_v1",
+  "sdk_version": "0.1.0",
+  "abi_generation": 1,
+  "header": "sdk/include/sporespore_locomotion.h",
+  "calling_convention": "c",
+  "ownership": {
+    "ss_version_result": "process_static_utf8_do_not_free",
+    "json_output": "caller_owned_byte_buffer_without_nul",
+    "input_output_overlap_allowed": false,
+    "controller_session_handle": "process_local_opaque_nonzero_u64_destroy_exactly_once"
+  },
+  "status_discriminants": {
+    "SS_OK": 0,
+    "SS_INVALID_ARGUMENT": 1,
+    "SS_BUFFER_TOO_SMALL": 2,
+    "SS_CORE_ERROR": 3,
+    "SS_PANIC_CAUGHT": 4
+  },
+  "signature_classes": {
+    "version_static_utf8_v1": "const char *fn(void)",
+    "json_input_buffer_v1": "ss_status fn(const uint8_t *, size_t, uint8_t *, size_t, size_t *)",
+    "json_output_buffer_v1": "ss_status fn(uint8_t *, size_t, size_t *)",
+    "controller_session_create_json_v1": "ss_status fn(const uint8_t *, size_t, uint64_t *)",
+    "controller_session_step_json_v1": "ss_status fn(uint64_t, const uint8_t *, size_t, uint8_t *, size_t, size_t *)",
+    "controller_session_destroy_v1": "ss_status fn(uint64_t)"
+  },
+  "symbols": [
+    {
+      "name": "ss_version",
+      "signature_class": "version_static_utf8_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": null
+    },
+    {
+      "name": "ss_canonicalize_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_canonical_json_request_v1"
+    },
+    {
+      "name": "ss_compile_bounded_quadruped_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_bounded_quadruped_descriptor_v1"
+    },
+    {
+      "name": "ss_compile_recovery_morphology_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_morphology_descriptor_v1"
+    },
+    {
+      "name": "ss_resolve_actuator_cap_profile_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_actuator_cap_profile_request_v1"
+    },
+    {
+      "name": "ss_recovery_initialize_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_initialize_request_v1"
+    },
+    {
+      "name": "ss_recovery_initialize_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_initialize_request_v2"
+    },
+    {
+      "name": "ss_recovery_step_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_step_request_v1"
+    },
+    {
+      "name": "ss_recovery_step_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_step_request_v2"
+    },
+    {
+      "name": "ss_recovery_step_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_step_request_v3"
+    },
+    {
+      "name": "ss_recovery_step_v4_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_step_request_v4"
+    },
+    {
+      "name": "ss_recovery_step_v5_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_step_request_v5"
+    },
+    {
+      "name": "ss_recovery_evaluate_trace_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_evaluation_request_v1"
+    },
+    {
+      "name": "ss_recovery_evaluate_trace_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_evaluation_request_v2"
+    },
+    {
+      "name": "ss_recovery_evaluate_trace_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_evaluation_request_v3"
+    },
+    {
+      "name": "ss_recovery_evaluate_trace_v4_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_evaluation_request_v4"
+    },
+    {
+      "name": "ss_recovery_evaluate_trace_v5_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_evaluation_request_v5"
+    },
+    {
+      "name": "ss_recovery_energy_balance_aggregate_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_energy_balance_aggregation_request_v2"
+    },
+    {
+      "name": "ss_recovery_energy_balance_evaluate_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_energy_balance_evaluation_request_v2"
+    },
+    {
+      "name": "ss_recovery_energy_balance_aggregate_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_energy_balance_aggregation_request_v3"
+    },
+    {
+      "name": "ss_recovery_energy_balance_evaluate_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_energy_balance_evaluation_request_v3"
+    },
+    {
+      "name": "ss_recovery_energy_balance_migrate_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_energy_balance_migration_request_v1"
+    },
+    {
+      "name": "ss_recovery_development_profile_v1_json",
+      "signature_class": "json_output_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": null
+    },
+    {
+      "name": "ss_recovery_collect_native_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_native_collection_request_v1"
+    },
+    {
+      "name": "ss_recovery_collect_native_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_native_collection_request_v2"
+    },
+    {
+      "name": "ss_recovery_collect_native_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_native_collection_request_v3"
+    },
+    {
+      "name": "ss_recovery_plan_control_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_control_request_v1"
+    },
+    {
+      "name": "ss_recovery_plan_control_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_control_request_v2"
+    },
+    {
+      "name": "ss_recovery_plan_control_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_control_request_v3"
+    },
+    {
+      "name": "ss_recovery_plan_stance_control_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_stance_control_request_v1"
+    },
+    {
+      "name": "ss_recovery_plan_stance_control_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_stance_control_request_v2"
+    },
+    {
+      "name": "ss_recovery_plan_stance_control_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_stance_control_request_v3"
+    },
+    {
+      "name": "ss_recovery_plan_stance_control_v4_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_recovery_stance_control_request_v4"
+    },
+    {
+      "name": "ss_canonical_velocity_compose_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_canonical_velocity_compose_request_v1"
+    },
+    {
+      "name": "ss_canonical_velocity_host_map_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_canonical_velocity_host_map_request_v1"
+    },
+    {
+      "name": "ss_resolve_adaptation_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_adaptation_resolution_request_v1"
+    },
+    {
+      "name": "ss_candidate35_profile_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_bounded_quadruped_descriptor_v1"
+    },
+    {
+      "name": "ss_balanced_wave_profile_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "deprecated",
+      "input_schema": "sporespore_bounded_quadruped_descriptor_v1",
+      "replacement": "ss_balanced_wave_policy_profile_json"
+    },
+    {
+      "name": "ss_balanced_wave_policy_profile_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_balanced_wave_policy_profile_request_v1"
+    },
+    {
+      "name": "ss_gq15_domain_certificate_json",
+      "signature_class": "json_output_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": null
+    },
+    {
+      "name": "ss_candidate35_initial_memory_json",
+      "signature_class": "json_output_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": null
+    },
+    {
+      "name": "ss_balanced_wave_initial_memory_json",
+      "signature_class": "json_output_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": null
+    },
+    {
+      "name": "ss_balanced_wave_policy_initial_memory_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_balanced_wave_policy_initial_memory_request_v1"
+    },
+    {
+      "name": "ss_candidate35_step_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_candidate35_step_request_v1"
+    },
+    {
+      "name": "ss_balanced_wave_step_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "deprecated",
+      "input_schema": "sporespore_balanced_wave_step_request_v1",
+      "replacement": "ss_balanced_wave_policy_step_json"
+    },
+    {
+      "name": "ss_balanced_wave_policy_step_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_balanced_wave_policy_step_request_v1"
+    },
+    {
+      "name": "ss_balanced_wave_policy_session_create_json",
+      "signature_class": "controller_session_create_json_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_balanced_wave_policy_session_create_request_v1"
+    },
+    {
+      "name": "ss_balanced_wave_policy_session_step_json",
+      "signature_class": "controller_session_step_json_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_balanced_wave_policy_session_step_request_v1"
+    },
+    {
+      "name": "ss_balanced_wave_policy_session_destroy",
+      "signature_class": "controller_session_destroy_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": null
+    },
+    {
+      "name": "ss_observe_stability_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_observe_stability_request_v2"
+    },
+    {
+      "name": "ss_plan_scheduled_load_transfer_v1_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "deprecated",
+      "input_schema": "sporespore_plan_scheduled_load_transfer_request_v1",
+      "replacement": "ss_plan_scheduled_load_transfer_v3_json"
+    },
+    {
+      "name": "ss_plan_scheduled_load_transfer_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "deprecated",
+      "input_schema": "sporespore_plan_scheduled_load_transfer_request_v2",
+      "replacement": "ss_plan_scheduled_load_transfer_v3_json"
+    },
+    {
+      "name": "ss_plan_scheduled_load_transfer_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_plan_scheduled_load_transfer_request_v3"
+    },
+    {
+      "name": "ss_command_centroidal_support_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_centroidal_support_request_v2"
+    },
+    {
+      "name": "ss_map_endpoint_force_to_joint_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "deprecated",
+      "input_schema": "sporespore_map_endpoint_force_to_joint_request_v2",
+      "replacement": "ss_map_endpoint_force_to_joint_v3_json"
+    },
+    {
+      "name": "ss_map_endpoint_force_to_joint_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_map_endpoint_force_to_joint_request_v3"
+    },
+    {
+      "name": "ss_bound_stability_influence_v2_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_bound_stability_influence_request_v2"
+    },
+    {
+      "name": "ss_bound_stability_influence_v3_json",
+      "signature_class": "json_input_buffer_v1",
+      "since": "0.1.0",
+      "status": "active",
+      "input_schema": "sporespore_bound_stability_influence_request_v3"
+    }
+  ],
+  "physical_acceptance_authority": false
+}

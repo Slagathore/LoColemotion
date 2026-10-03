@@ -1,0 +1,165 @@
+{
+  "schema_version": "sporespore_qsdk_r23d4_physical_development_closure_v1",
+  "status": "closed_consumed_implementation_invalid_zero_world",
+  "closed_utc": "2026-08-08T12:46:12Z",
+  "campaign_id": "QSDK-R23D4-TERMINAL-STABILIZED-BILATERAL-TURN-DEVELOPMENT",
+  "gate_id": "QSDK-R23D4",
+  "source_identity": {
+    "commit": "7cb164527df62c71c55fc40fdba486af48e4797a",
+    "tree_git_oid": "ba38d97e143baca5803b6fc34ca9efe37fa1f878",
+    "origin_main_equal_at_authorization": true,
+    "live_github_main_equal_at_authorization": true,
+    "worktree_clean_at_authorization": true,
+    "declared_source_binding_count": 65,
+    "runtime_artifact_count": 3,
+    "external_runtime_binding_count": 4
+  },
+  "full_godot_attestation": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/full-godot-conformance-v2-7cb1645-20260808T120455Z/attestation.json",
+    "raw_sha256": "sha256:27ceaae6740e3f316e3bbdfe9e92ae6d79f971b00b8b12850e68c6913821ceb6",
+    "duration_seconds": 1913.2563677,
+    "independent_verification_passed": true,
+    "godot_included": true,
+    "physical_execution": false,
+    "claim_true_count": 0
+  },
+  "attempt": {
+    "attempt_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r23d4-20260808T124127Z",
+    "attempt_id": "3858505513db467480565a36edb5af65",
+    "physical_freeze_raw_sha256": "sha256:bfe99d2657015de074e009636a914dddeb4a5ff96f5f51721f90b782e081b351",
+    "stage_a_authorization_raw_sha256": "sha256:016f9630ea411cc25988a6b3cf897f31b1972bb53ee5da6aa91130baa9e87f4d",
+    "completion_raw_sha256": "sha256:1c85e7b6aeb1fea5e90a9fa0c26076ab6cd46580bec39c3820b0979c424e8514",
+    "evidence_file_count": 6,
+    "evidence_total_byte_length": 115139,
+    "evidence_tree_projection": "relative_forward_slash_path_tab_byte_length_tab_raw_sha256_lf_v1",
+    "evidence_tree_raw_sha256": "sha256:72a5b245f5ad69d56722477a1fafa8b44fddd911e82b994267bdb89b7b7bd571",
+    "declared_stage_a_cell_count": 2,
+    "launched_stage_a_worker_process_count": 1,
+    "completed_stage_a_cell_count": 0,
+    "unopened_stage_a_cell_count": 1,
+    "stage_b_authorization_created": false,
+    "stage_b_worker_process_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "one_shot_identity_consumed": true,
+    "same_identity_rerun_allowed": false
+  },
+  "immutable_completion_record": {
+    "status": "invalid_or_incomplete_first_attempt",
+    "failure_code": "SUPERVISOR_INFRASTRUCTURE_EXCEPTION",
+    "failure_detail": "The property 'Count' cannot be found on this object. Verify that the property exists.",
+    "must_not_be_rewritten_as_valid": true,
+    "complete_campaign_report_exists": false,
+    "complete_evaluation_exists": false,
+    "physical_acceptance_authority": false
+  },
+  "retained_first_worker_process": {
+    "stage_id": "mujoco_terminal_restoration_screen",
+    "cell_id": "mujoco__terminal_restoration__positive_heading",
+    "engine_id": "mujoco",
+    "process_launch_succeeded": true,
+    "process_exit_code": 1,
+    "process_timed_out": false,
+    "process_duration_seconds": 0.3911156,
+    "process_raw_sha256": "sha256:881735c70b44915147681b781efeb3436730994ef085ddb24d1f73307476ded7",
+    "stdout_raw_sha256": "sha256:07ab0c18ec582b54096a63d46b9f76cf76c843b24740500c76135b6ea532775d",
+    "stderr_raw_sha256": "sha256:04d0cd4d94b95528fa907a58171c232b6e1e3dff2254542a4767763536693e14",
+    "stdout_terminal_marker_count": 1,
+    "worker_failure_code": "QSDK_R23D4_MJC_PHYSICAL_AUTHORIZATION_INVALID",
+    "worker_failure_stage": "before_world",
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "trace_artifact_exists": false,
+    "terminal_entry_retained_by_supervisor": false,
+    "content_addressed_process_artifact_count": 3
+  },
+  "worker_authorization_diagnosis": {
+    "checked_predicate_count": 28,
+    "failed_predicate_ids": ["source_bindings"],
+    "all_other_authorization_predicates_passed": true,
+    "missing_direct_runtime_dependency_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d2_heading_response.py",
+    "missing_dependency_git_blob_oid": "588c06a62a154a2aca6b769684785734df89c45d",
+    "missing_dependency_raw_sha256": "sha256:b8da30dd3fa65b0e6142aa4cbcec0f7c3d0b4e83e411b78ab5c6b6bbc445c556",
+    "missing_dependency_present_in_physical_freeze": false,
+    "worker_correctly_refused_before_model_or_world": true,
+    "root_cause": "The MuJoCo worker directly imports qsdk_r23d2_heading_response.py and requires it in _source_bindings_exact, but the supervisor's 65-file physical freeze did not include that path. Every other retained authorization predicate passed, so the worker correctly failed closed before model construction or world creation.",
+    "zero_world_gap": "The prospective worker preflight proved refusal and fixed-horizon seams but did not prove that every direct runtime dependency required by _source_bindings_exact was present in the supervisor-composed physical source binding set."
+  },
+  "supervisor_retention_diagnosis": {
+    "retained_stdout_contains_one_terminal_receipt": true,
+    "singleton_terminal_collection_was_unrolled_to_scalar": true,
+    "strict_mode_count_access_failed": true,
+    "failing_expression": "$terminalLines.Count",
+    "failure_boundary": "after_worker_process_stdout_stderr_and_process_receipts_were_written_and_content_addressed_before_terminal_entry_retention",
+    "root_cause": "PowerShell enumerated the one-element array emitted by an if expression into a scalar string. Strict-mode .Count access then threw while parsing the worker's valid failure terminal receipt.",
+    "worker_failure_receipt_recoverable_from_retained_stdout": true,
+    "worker_failure_receipt_is_not_a_physical_result": true
+  },
+  "historical_source_blobs": [
+    {
+      "path": "sdk/run_qsdk_r23d4_supervisor.ps1",
+      "git_blob_oid": "fd691187fb97771aed4c7024b0182b547b564158",
+      "byte_length": 65536,
+      "raw_sha256": "sha256:a1d6a6a675c1837ede273b19b116aa1280400da8a196584d7d556fc38d15b8e8"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d4_terminal_stabilization.py",
+      "git_blob_oid": "468f4ea11457b3692ccdfb61c1ad440d31cf4954",
+      "byte_length": 41888,
+      "raw_sha256": "sha256:29e5617b33d70aa2164542f8613065665cd1c9ae599ebfbb955e3c8f25f36dd9"
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d2_heading_response.py",
+      "git_blob_oid": "588c06a62a154a2aca6b769684785734df89c45d",
+      "byte_length": 71842,
+      "raw_sha256": "sha256:b8da30dd3fa65b0e6142aa4cbcec0f7c3d0b4e83e411b78ab5c6b6bbc445c556"
+    },
+    {
+      "path": "sdk/turning/r23d4_implementation_contract_v1.json",
+      "git_blob_oid": "605dd93495ded59aa59a89ac19115b2a318c19e1",
+      "byte_length": 9260,
+      "raw_sha256": "sha256:6e1e7cf453c07b1ce683553900d24e8854b28b8d43eda288f0351965475aab97"
+    },
+    {
+      "path": "sdk/turning/r23d4_terminal_stabilization_preregistration_v1.json",
+      "git_blob_oid": "5beb44191da2259e2ce913197648bda6cd55c3b5",
+      "byte_length": 15873,
+      "raw_sha256": "sha256:64a2c3bd2bc9194338e62e66bc557d51a3661ed12de77b86d05ebe876891530a"
+    }
+  ],
+  "immutability": {
+    "same_identity_rerun_forbidden": true,
+    "stage_a_replacement_forbidden": true,
+    "second_stage_a_cell_completion_forbidden": true,
+    "stage_b_launch_forbidden": true,
+    "completion_record_rewrite_forbidden": true,
+    "threshold_rewrite_forbidden": true,
+    "supervisor_closure_interlock_required": true,
+    "all_three_physical_worker_closure_interlocks_required": true,
+    "canonical_conformance_must_use_closure_audit_not_prospective_preflight": true
+  },
+  "successor_boundary": {
+    "successor_id": "QSDK-R23D5",
+    "new_campaign_and_gate_identity_required": true,
+    "same_scientific_estimand_may_be_retained_because_no_world_opened": true,
+    "numeric_threshold_change_required": false,
+    "missing_runtime_dependency_must_be_bound_and_negative_controlled": true,
+    "worker_required_dependency_set_must_be_proved_subset_of_physical_freeze": true,
+    "singleton_zero_one_many_terminal_marker_cases_must_be_exercised": true,
+    "all_process_bytes_must_be_retained_before_marker_interpretation": true,
+    "zero_command_straight_walk_compatibility_still_required": true,
+    "three_engine_confirmation_still_required": true
+  },
+  "claims": {
+    "scientific_positive": false,
+    "scientific_negative": false,
+    "command_conditioned_turning": false,
+    "bilateral_signed_turning": false,
+    "portable_basic_turning": false,
+    "cross_engine_equivalence": false,
+    "q_sdk_r23_satisfied": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

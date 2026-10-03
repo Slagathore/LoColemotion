@@ -1,0 +1,54 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw15f_selected_policy_v1",
+  "status": "frozen_after_complete_bw15f_development_before_r05c_validation",
+  "development_selection_authority": true,
+  "independent_validation_authority": false,
+  "selected_candidate_id": "BW15F-B",
+  "selected_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "selected_candidate_policy_digest": "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd",
+  "selected_profile": {
+    "schema_version": "sporespore_balanced_wave_signed_forward_velocity_foot_placement_profile_v1",
+    "runtime_profile_sha256": "sha256:1134302a1566e12d1e1179beebed893176eeed88065920855026e903738bb413",
+    "parent_candidate_id": "BW5R-B",
+    "parent_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "forward_velocity_foot_placement_mode_id": "forward_velocity_foot_placement_v1",
+    "velocity_error_orientation_id": "desired_minus_measured_forward_velocity_error_v1",
+    "normalized_error_formula": "clamp((desired-measured)/abs(desired),-1,1); exact_zero_when_abs(desired)<=1e-12",
+    "maximum_hip_target_correction_rad": 0.03,
+    "cycle_envelope": "unchanged_bw14v_smoothstep_swing_and_one_minus_smoothstep_stance",
+    "morphology_condition_count": 0,
+    "material_condition_count": 0,
+    "seed_condition_count": 0,
+    "failure_identity_condition_count": 0,
+    "outcome_condition_count": 0,
+    "branch_surfaces": []
+  },
+  "selection_report": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw15f-morphology-development-14647c1\\selection\\selection.json",
+    "sha256": "daf95012d1d7fb0bcd6771200d5a08d90858e2e409237c22ad0b1dae989195cf",
+    "source_commit": "14647c1c17ea30f3d73542e0f24c2c66c37fb487",
+    "selection_mode": "complete_preregistered_lexicographic_selection",
+    "control_candidate_id": "BW15F-A",
+    "strictly_better_treatment_candidate_ids": [
+      "BW15F-B",
+      "BW15F-C"
+    ],
+    "deciding_metric": "walking_conjunction_failure_count_then_aggregate_failed_production_walking_gate_count",
+    "all_candidate_reports_observed": true,
+    "genuinely_new_validation_required": true
+  },
+  "closure_manifest": {
+    "path": "sdk/balanced_wave_bw15f_closure_manifest.json",
+    "status": "complete_four_arm_family_selected_bw15f_b_requires_independent_validation"
+  },
+  "claims": {
+    "walking_acceptance": false,
+    "independent_morphology_validation": false,
+    "material_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

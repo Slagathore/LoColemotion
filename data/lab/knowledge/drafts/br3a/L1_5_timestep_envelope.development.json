@@ -1,0 +1,84 @@
+{
+  "schema": "sporespore.lab.br3a_development_observation.v1",
+  "entry_id": "L1.5.timestep_envelope.draft_v1",
+  "cell_id": "L1.5",
+  "claim_status_ceiling": "development_observation",
+  "admissible_now": false,
+  "admission_blockers": [
+    "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+    "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+    "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+    "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+    "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+  ],
+  "evidence_source": {
+    "test_files": [
+      "res://tests/test_experimental_l1_5_timestep_convergence.gd"
+    ],
+    "evidence_grade": "experimental_commissioning_test_report_only",
+    "promotion_grade_bundle_exists": false
+  },
+  "title": "60-240 Hz is the accepted measured timestep envelope for the calibrated contact fixture and 30 Hz is causally rejected",
+  "claim": "For the exact L1.5 physical-time-preserving dynamic drop plus static eccentric pad fixture, physics rates 60, 120, and 240 Hz form the contiguous accepted measured interval while 30 Hz is rejected with causal evidence: touch/load timing of 0.6667 s against an analytic expectation of approximately 0.4949 s, maximum penetration of approximately 95.78 mm, and a settled height approximately 20 mm too low. Unmeasured rates cannot be interpolated and no universal minimum physics rate is claimed.",
+  "scope": "The preregistered L1.5 drop-and-settle contact fixture at exactly 30, 60, 120, and 240 Hz with physical time preserved across rates, first-principles timing, speed, and impulse gates, TOUCH/LOAD phase separation, fresh evidence per rate, Godot 4.7 Jolt backend.",
+  "mechanism": "Contact resolution quality depends on how far a body can travel and penetrate within one step. At 30 Hz the fixture's contact events land a full measured interval late relative to the analytic free-fall time, penetration grows to tens of millimeters, and the settled pose is biased low, so the 30 Hz cell fails the preregistered physical gates while 60-240 Hz pass them.",
+  "applicability": [
+    "Choosing a physics tick rate for later lab fixtures of this contact class",
+    "Rejecting low-rate configurations before they contaminate contact evidence"
+  ],
+  "failure_boundaries": [
+    "Does not establish a universal minimum physics rate for every creature or mechanism",
+    "Does not cover unmeasured rates between or beyond the grid; interpolation is forbidden",
+    "Does not cover articulated chains, joints, or high-speed impacts beyond the fixture",
+    "Does not establish standing, bracing, fall arrest, getting up, or walking"
+  ],
+  "morphology_tags": [
+    "jolt",
+    "unary_rigid_body",
+    "timestep_sweep"
+  ],
+  "parameter_effects": [
+    {
+      "parameter": "/physics/common/physics_ticks_per_second",
+      "change": "decrease from the accepted 60-240 Hz interval to the measured 30 Hz cell",
+      "affects": "contact timing, penetration depth, and settled height",
+      "mechanism": "Longer steps let the falling body traverse and penetrate farther before the solver responds, delaying touch/load events and biasing the settled pose",
+      "hinges_on": [
+        "Physical time being preserved across rate cells",
+        "The fixture's mass, drop height, and geometry staying pinned"
+      ]
+    }
+  ],
+  "minimal_repair_rules": [
+    {
+      "advisory_only": true,
+      "automatic_application_forbidden": true,
+      "symptom": "Contact events land late and penetration is tens of millimeters deep in a lab fixture of this class",
+      "diagnosis": "The physics tick rate sits outside the measured accepted envelope for this fixture class",
+      "smallest_change": "Raise physics_ticks_per_second into the measured 60-240 Hz interval",
+      "expected_effect": "Touch/load timing and penetration return inside the preregistered gates",
+      "identity_preserved": [
+        "fixture geometry",
+        "body plan"
+      ],
+      "do_not_apply_when": [
+        "The fixture class, speeds, or masses differ enough that the envelope was never measured for it"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Whether the envelope holds for articulated chains and fast swing-phase contacts",
+    "Where the true failure boundary sits between 30 and 60 Hz",
+    "Whether rates above 240 Hz change solved outcomes for this fixture"
+  ],
+  "does_not_establish": [
+    "standing",
+    "bracing",
+    "fall_arrest",
+    "getting_up",
+    "walking",
+    "universal_minimum_physics_rate",
+    "articulated_timestep_envelope"
+  ],
+  "supersedes": []
+}

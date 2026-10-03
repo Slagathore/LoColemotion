@@ -1,0 +1,124 @@
+{
+  "schema_version": "sporespore_r10u_interrupted_pair_diagnostic_component_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "post_exposure_retained_data_diagnosis",
+    "question_class": "development"
+  },
+  "finite_diagnostic_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10u-interrupted-finite-diagnosis-3dfe5e41bd4344c0992dfe27129aa8d6",
+  "replay_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10u-interrupted-report-diagnosis-83ae2d6dfe804cc0bd46b281e70ad720",
+  "auditor": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10u_interrupted_finite_diagnosis.py",
+    "byte_length": 6829,
+    "raw_sha256": "sha256:f846e0090276c82a329958d677fa6f500fdc1f4137b17c6b73bec3c36a078145"
+  },
+  "manifest": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10u-interrupted-finite-diagnosis-3dfe5e41bd4344c0992dfe27129aa8d6/manifest.json",
+    "byte_length": 8603,
+    "raw_sha256": "sha256:42db90c1f1fec24675badf6d13619919b1c6322cd04fbe362f4fa3b2e3017caa"
+  },
+  "bindings": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10u_phase245_interrupted_pair_closure_v1.json",
+      "byte_length": 6803,
+      "raw_sha256": "sha256:9d5350c6639cd8bc9a00173510150c746658bfb35453fdd6d03e0a68fb1815bf"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10u_interrupted_report_diagnosis.py",
+      "byte_length": 4762,
+      "raw_sha256": "sha256:8878a084fe1f3891b1db2082417863b70b9445dabd5ca3a0a03280ead2f24b55"
+    }
+  ],
+  "observed": {
+    "complete_native_replays": 2,
+    "transitions": [
+      1749,
+      2315
+    ],
+    "all_finite_predicates_passed": true,
+    "cells": [
+      {
+        "role": "matched_no_kick_continuation",
+        "finite_task_predicates_passed": true,
+        "predicates": {
+          "entry_ready": true,
+          "planned_cycles": true,
+          "forward_advance": true,
+          "settled_stop": true,
+          "whole_walking_envelope": true
+        },
+        "entry": {
+          "sample_count": 328,
+          "counts": {
+            "neutral_dwell": 167,
+            "hold_dwell": 161,
+            "post_recovery_entry": 0
+          },
+          "final_consecutive_hold_ready": 30,
+          "initial_recovery_ready": true,
+          "final_ready": true,
+          "passed": true,
+          "post_recovery": {
+            "handoff": "direct",
+            "commands": 0,
+            "final_ready": true,
+            "passed": true
+          }
+        },
+        "walking_commands": 1149,
+        "planned_cycles": 4,
+        "stopping_commands": 120,
+        "forward_advance_m": 0.14894433221899603
+      },
+      {
+        "role": "kick_passive_recovery_resume",
+        "finite_task_predicates_passed": true,
+        "predicates": {
+          "entry_ready": true,
+          "planned_cycles": true,
+          "forward_advance": true,
+          "settled_stop": true,
+          "whole_walking_envelope": true,
+          "recovery_completed": true,
+          "declared_handoff": true
+        },
+        "entry": {
+          "sample_count": 1,
+          "counts": {
+            "neutral_dwell": 0,
+            "hold_dwell": 0,
+            "post_recovery_entry": 1
+          },
+          "final_consecutive_hold_ready": 0,
+          "initial_recovery_ready": false,
+          "final_ready": true,
+          "passed": true,
+          "post_recovery": {
+            "handoff": "bounded_hold",
+            "commands": 106,
+            "consecutive_ready": 30,
+            "initial_ready": false,
+            "final_ready": true,
+            "passed": true
+          }
+        },
+        "walking_commands": 1175,
+        "planned_cycles": 4,
+        "stopping_commands": 120,
+        "forward_advance_m": 0.1236262030334826
+      }
+    ]
+  },
+  "claim_boundary": {
+    "original_attempt_reclassified": false,
+    "r10u_development_chain_closed": true,
+    "original_full_workflow_proven": false,
+    "interruption_cause": "unknown",
+    "new_world_count": 0,
+    "new_solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_score": "14/20"
+  }
+}

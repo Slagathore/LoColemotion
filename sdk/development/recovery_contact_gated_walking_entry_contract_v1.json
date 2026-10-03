@@ -1,0 +1,43 @@
+{
+  "schema_version": "sporespore_development_recovery_contact_gated_walking_entry_contract_v1",
+  "profile_id": "joint_bounded_contact_gated_from_start_v1",
+  "ledger_scope": {"subsystem": "recovery", "engine_scope": "godot_jolt", "authority_mode": "prospective_development_command_schedule", "question_class": "development"},
+  "segment_id": "walking_resume",
+  "warmup_steps": 72,
+  "first_full_amplitude_local_step": 73,
+  "first_contact_gated_local_step": 1,
+  "maximum_amplitude": 0.5994550408719347,
+  "phase_progression_entry_profile_id": "normal_one_cycle_amplitude_ramp_with_control_trace_v1",
+  "phase_progression_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "phase_progression_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "amplitude_and_retention_contract": "sdk/development/recovery_walking_entry_contract_v1.json",
+  "amplitude_and_retention_contract_sha256": "sha256:84c293a0719d814bd132f7f1059dd0c523f4c50acef4480a325db6913051d8bf",
+  "normal_launcher_resource": "res://scripts/lab/gait/physical_wave_gait_quadruped.gd",
+  "normal_launcher_raw_sha256": "sha256:80f5197940e971dbff6bba0720eb92d72843386754f327e5c533f3737fdf17eb",
+  "bound_source_files": [
+    {"path": "sdk/development/recovery_joint_bounded_walking_entry_contract_v1.json", "raw_sha256": "sha256:2030f252770ec0d13635f2955afc9dafabb54c4fb87e375520908637dd4877c6"},
+    {"path": "sdk/core/src/runtime.rs", "raw_sha256": "sha256:25b413f0502031853d17c156e0b5e3c9ae0312cdc5355ef7637bbbc4fa150282"},
+    {"path": "sdk/core/src/controller.rs", "raw_sha256": "sha256:b296804ab597d62d2cb4e1fdc497505fcc89198793437a8f68f2d568a32925b9"},
+    {"path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd", "raw_sha256": "sha256:1a41786768749149a09789436dec0660e4a99f39db1b410aacd27e7d0be91d1b"}
+  ],
+  "rule": "Use the existing contact_gated phase progression from resumed command one. Keep V29's exact 72-step wall-clock amplitude ramp and cap, V20 recovery/stance DLL and commands, native contacts, zero gait clocks, motor limits, model, 986-step tail, 1338-step cap and every evaluator. Phase holds alter subsequent gait timing, not the amplitude clock. Prefix stays unchanged. No mid-session mode change: the independent reader requires exact consecutive memory equality with no transition exception.",
+  "parameter_basis": "This enables the existing policy mode, not new feedback or new margins. Existing release/recontact phase checkpoints are 54/144, dwell is 3, hold limit 120 and phase-skew limit 12. V29 bypasses an unsatisfied front-right recontact checkpoint at command 56, before its amplitude reaches the cap, and an unsatisfied front-left recontact checkpoint at 236. Starting at 73 would miss the first one. No causal explanation or physical success is inferred from these code-path observations.",
+  "compatibility_scope": "Reuse only the old always-contact-gated phase-mode family and retention format; amplitude identity remains distinct. The separately named zero-phase startup contract calls the same normal initializer. Do not select the clocked-to-contact-gated memory-transition reader for this profile.",
+  "diagnostic_basis": {
+    "source_closure": "sdk/development/recovery_attempts/66b2e79c43d3401285f7cdba0f607990.json",
+    "source_closure_sha256": "sha256:5a09474a9408233dd885fd1d6a80ff62a7db0e91c1a676e3eca8ea6e96fb97ce",
+    "source_report_sha256": "sha256:c6ecd396aaaad898b4d0c4cfa235429507559e680ebc2c00a4c27332067b24d9",
+    "selected_failed_stance_gap_trace_intervals": {"rear_left": [[93, 111], [286, 293], [328, 343]], "rear_right": [[98, 103]]},
+    "selected_failed_stance_gap_native_samples_without_raw_contact": 45,
+    "front_left_first_swing_flight_intervals": [[111, 123], [127, 146], [156, 163]],
+    "front_left_intervening_raw_contact_intervals": [[123, 127], [146, 156]],
+    "front_left_intervening_raw_contact_input_count": 14,
+    "bypassed_unsatisfied_recontact_checkpoints": [{"command_local_step": 56, "limb": "front_right", "prior_gait_local_phase": 144}, {"command_local_step": 236, "limb": "front_left", "prior_gait_local_phase": 144}],
+    "selected_policy_release_gate_apex_overrides_active": false,
+    "selected_policy_note": "BW5R-B does not select the later BW8U release-gate hip/knee apex overrides. V29's amplitude bound is nevertheless exact for BW5R-B's ordinary loaded swing at phase 36: 0.82*1.75+0.4. No inactive override is relied on here.",
+    "causal_attribution_proven": false,
+    "physical_outcome_predicted": false
+  },
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

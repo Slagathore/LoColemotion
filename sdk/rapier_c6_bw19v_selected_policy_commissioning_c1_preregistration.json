@@ -1,0 +1,301 @@
+{
+  "schema_version": "sporespore_rapier_c6_bw19v_selected_policy_commissioning_c1_preregistration_v1",
+  "campaign_id": "C6-RAPIER-BW19V-SELECTED-POLICY-COMMISSIONING-C1",
+  "gate_id": "C6-RAP-BW19V-C1",
+  "status": "frozen_before_first_c6_rap_bw19v_c1_physics_world",
+  "recorded_utc": "2026-07-31T10:25:10Z",
+  "implementation_parent_commit": "9b9369ca131035d0cdccc0206d7a2bc56ab81ad7",
+  "study_class": {
+    "classification": "outcome_exposed_single_body_technical_commissioning",
+    "estimand": "Whether the exact BW19V-B portable composition can execute its complete declared single-body walking and integrity contract on the validated active Rapier configuration.",
+    "world_count": 1,
+    "morphology_count": 1,
+    "fresh_morphology": false,
+    "morphology_outcome_exposed": true,
+    "independent_validation": false,
+    "development_selection": false,
+    "population_inference": false,
+    "superiority_noninferiority_or_equivalence": false,
+    "cohort_size_adequacy_argument_required": false,
+    "technical_commissioning_authority_if_passed": true
+  },
+  "predecessor_interlocks": {
+    "rapier_sp1_r2_closure_path": "sdk/rapier_c6_selected_policy_commissioning_r2_closure.json",
+    "rapier_sp1_r2_closure_raw_sha256": "07b02dbd2343d772a002b045ce32cbc6d5bb07c3fa63a308a4b06d70f202097d",
+    "rapier_sp1_r2_closure_status": "closed_diagnostic_declared_motor_model_mismatch",
+    "same_identity_rerun": false,
+    "force_based_correction_required": true,
+    "force_based_correction_complete": true,
+    "spv1_closure_path": "sdk/rapier_c6_force_based_selected_configuration_validation_spv1_closure.json",
+    "spv1_closure_raw_sha256": "7830f66de49f1d7c2d5b88d151c0c2d5077782903457837d7ecd0da2fb724203",
+    "spv1_status": "closed_positive_exact_finite_host_configuration",
+    "active_configuration_path": "sdk/rapier_c6_force_based_active_configuration.json",
+    "active_configuration_raw_sha256": "dc1eb57df75a41cb5ab80c45e537e7bd0974df0ac9cc7d738e24f08daaf60737"
+  },
+  "portable_policy_identity": {
+    "candidate_id": "BW19V-B",
+    "candidate_composition_digest": "sha256:3d0fc7ac8da2de811bbc890a4a2a7b32ffc5f59fb9ee36a3e391cdec65548c77",
+    "controller_candidate_id": "BW15F-B",
+    "controller_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+    "controller_policy_digest": "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd",
+    "reference_descriptor_runtime_profile_sha256": "sha256:1134302a1566e12d1e1179beebed893176eeed88065920855026e903738bb413",
+    "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+    "portable_plan_operation": "plan_scheduled_load_transfer_v3",
+    "mapping_operation": "map_endpoint_force_to_joint_v3",
+    "stability_influence_operation": "bound_stability_influence_v3",
+    "global_requested_correction_scale": 0.5,
+    "global_scale_applied_before_magnitude_and_slew": true,
+    "authority_scope": "post_settle_full",
+    "execution_mode": "native_balanced_wave_base_with_stability_contribution",
+    "morphology_material_seed_failure_and_outcome_branch_count": 0,
+    "bw19v_closure_path": "sdk/balanced_wave_bw19v_closure_manifest.json",
+    "bw19v_closure_raw_sha256": "ea8df6a574e1b9be1050afa8ed57982a102982ada0f0d5babccf3c937c7067f7",
+    "bw19v_candidate_declaration_path": "sdk/balanced_wave_bw19v_validation_candidates.json",
+    "bw19v_candidate_declaration_raw_sha256": "02124811891638efaad30fc6e04b3a10b600a5eab913984c1d4c8abbd1a963a3",
+    "bw15f_selected_policy_path": "sdk/balanced_wave_bw15f_selected_policy.json",
+    "bw15f_selected_policy_raw_sha256": "6e114c809df93ff6b7059a9e203ae1538f2f6a12a45cadc6760f379bf1c99bed",
+    "finite_bw19v_godot_jolt_confirmation_is_not_cross_engine_evidence": true
+  },
+  "host_contract": {
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "scalar": "f32",
+    "outer_timestep_s": 0.008333333333333333,
+    "motor_model": "ForceBased",
+    "motor_model_explicit_builder_selection": true,
+    "motor_model_explicit_mutable_update_selection": true,
+    "motor_model_readback_required_every_command": true,
+    "motor_stiffness_nm_per_rad": 40.0,
+    "motor_damping_nm_s_per_rad": 10.0,
+    "solver_iterations": 16,
+    "internal_pgs_iterations": 3,
+    "internal_stabilization_iterations": 5,
+    "per_step_impulse_limit_mapping": "motor_max_force_nm=maximum_impulse_nms*1.015/outer_timestep_s",
+    "authored_ground_and_robot_friction": 0.95,
+    "characterized_controller_friction": 0.94,
+    "friction_held_fixed": true,
+    "friction_robustness_claim": false,
+    "contact_bearing_rule": "active_solver_contact_presence_on_declared_support_site",
+    "normal_load_measurement_available": false,
+    "raw_multishape_contact_impulses_not_used_as_per_foot_loads": true
+  },
+  "source_derived_response_contract": {
+    "profile_id": "rapier_force_based_velocity_residual_v1",
+    "source_formula": "force_or_torque=stiffness*position_error+damping*velocity_error",
+    "composition_formula": "raw_canonical_velocity_delta_rad_s=generalized_torque_command_nm/motor_damping_nm_s_per_rad",
+    "canonical_to_host_velocity_sign": 1.0,
+    "sign_grounding": "The canonical revolute axis and Rapier joint axis are identical, and SPV1 independently passed both signed target-velocity cells.",
+    "global_scale": 0.5,
+    "maximum_absolute_position_delta_rad": 0.0,
+    "maximum_position_delta_slew_per_step_rad": 0.0,
+    "maximum_absolute_velocity_delta_rad_s": 0.075,
+    "maximum_velocity_delta_slew_per_step_rad_s": 0.01,
+    "scale_then_magnitude_then_slew_order": true,
+    "base_position_target_unchanged": true,
+    "combined_target_velocity_clamped_to_portable_base_speed_limit": true,
+    "requested_generalized_torque_is_not_a_measurement": true,
+    "exact_realized_incremental_torque_claim": false,
+    "response_reconstruction_tolerance_nm": 1e-12
+  },
+  "host_source_semantics": {
+    "cargo_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "cargo_lock_path": "sdk/Cargo.lock",
+    "cargo_lock_raw_sha256": "0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+    "upstream_files": [
+      {
+        "path": "src/dynamics/integration_parameters.rs",
+        "raw_sha256": "0e5d5f76e1d569a5f07f1afb00c2858784f5c142eb886d4619652c58eca96498"
+      },
+      {
+        "path": "src/dynamics/joint/motor_model.rs",
+        "raw_sha256": "474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648"
+      },
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "raw_sha256": "69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f"
+      },
+      {
+        "path": "src/dynamics/solver/island_solver.rs",
+        "raw_sha256": "61f7fea43b03e3979a225ddb6632fb8dea5e670e54636c3060057663feccf14a"
+      },
+      {
+        "path": "src/dynamics/solver/velocity_solver.rs",
+        "raw_sha256": "b7bc9274c8ed285b4908c6010f97087f2199704eea0b37bc0e89fac2cda18e1d"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraints_set.rs",
+        "raw_sha256": "12eb1dfe1723a702f5e21b3e4f2c2c59631e8def8abfedb65b52af640298db8a"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs",
+        "raw_sha256": "a05c33a3770aada74587eebbbfae053c682bc014f9d1cd34e19658f64bc6a0a6"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraint_builder.rs",
+        "raw_sha256": "07628f6f865f612db096adb828cf329cf5b55a82d239659b094f0ee214da4ac9"
+      }
+    ],
+    "runner_must_hash_installed_crate_source_before_preflight": true
+  },
+  "physical_fixture": {
+    "morphology_id": "qsdk_r05_generated_s169",
+    "outcome_exposure": "Previously opened in Godot/Jolt evidence and closed Rapier BW5R-B diagnostics; reserved here only for technical commissioning.",
+    "descriptor": {
+      "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+      "morphology_id": "qsdk_r05_generated_s169",
+      "torso_length_scale": 1.0041015625,
+      "torso_width_scale": 1.0031893004115227,
+      "upper_length_fraction": 0.5219571428571428,
+      "hip_span_scale": 0.9856413994169096,
+      "foot_radius_scale": 0.9987180691209617,
+      "front_limb_mass_scale": 0.975022758306782
+    },
+    "compiled_s169_runtime_profile_sha256": "sha256:312957dedabd3bd0eb7160c5cc69c7788bc7927acaedc42dc609a781f9c6c7db",
+    "runtime_profile_hash_differs_from_reference_because_torso_length_scale_is_descriptor_dependent": true,
+    "settle_steps": 240,
+    "contact_gated_start_step": 472,
+    "evidence_gait_steps_per_limb": 1440,
+    "maximum_evidence_extension_steps": 720,
+    "cooldown_steps": 360,
+    "terminal_settle_steps": 240,
+    "maximum_controller_semantic_steps": 3232,
+    "desired_forward_velocity_m_s": 0.2
+  },
+  "walking_and_integrity_gate": {
+    "threshold_provenance": "Inherited unchanged from the prospectively frozen C6-RAP-SP1 family and its Godot/Jolt QSDK-R05A predecessor; none was selected from ForceBased or BW19V-B Rapier motion.",
+    "world_attempt_count": 1,
+    "world_build_count": 1,
+    "world_reset_count": 0,
+    "body_count": 9,
+    "joint_count": 8,
+    "actuator_count": 8,
+    "direct_body_write_count": 0,
+    "controller_error_count": 0,
+    "safe_no_actuation_count": 0,
+    "nonfinite_observation_count": 0,
+    "actuator_application_mismatch_count": 0,
+    "motor_impulse_limit_violation_count": 0,
+    "initial_four_contact_stance": true,
+    "terminal_four_contact_recovery": true,
+    "zero_torso_ground_contact": true,
+    "evidence_limits_reached": true,
+    "cooldown_completed": true,
+    "terminal_settle_completed": true,
+    "minimum_evidence_forward_displacement_m": 0.0401640625,
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "maximum_absolute_final_lateral_displacement_m": 0.10031893004115228,
+    "maximum_absolute_final_yaw_drift_rad": 0.45,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "maximum_anchor_error_m": 0.025575899999999995,
+    "maximum_hinge_axis_error_rad": 0.2,
+    "minimum_contact_cycles_per_limb": 2,
+    "minimum_airborne_dwell_steps_per_limb": 3,
+    "minimum_foot_relocation_m_per_limb": 0.01194880859375
+  },
+  "composition_integrity_gate": {
+    "composition_attempt_count_equals_controller_semantic_step_count": true,
+    "scheduled_plan_receipt_count_equals_attempt_count": true,
+    "stability_influence_receipt_count_equals_attempt_count": true,
+    "influence_output_count_equals_attempt_count_times_eight": true,
+    "mapping_receipt_count_equals_available_plan_count": true,
+    "available_unavailable_and_infeasible_counts_partition_attempts": true,
+    "fail_zero_receipt_count_equals_unavailable_plus_infeasible": true,
+    "global_scale_exact_on_every_step": 0.5,
+    "response_reconstruction_maximum_error_nm": 1e-12,
+    "nonzero_raw_request_count_minimum": 1,
+    "nonzero_scaled_request_count_minimum": 1,
+    "nonzero_applied_contribution_count_minimum": 1,
+    "nonzero_effective_host_application_count_minimum": 1,
+    "inactive_contact_zero_mismatch_count": 0,
+    "host_response_conversion_failure_count": 0,
+    "motor_model_readback_mismatch_count": 0,
+    "all_eight_final_motor_writes_once_per_controller_step": true
+  },
+  "preflight_contract": {
+    "must_complete_before_any_physics_world": true,
+    "complete_declared_3232_step_synthetic_horizon": true,
+    "exact_bw15f_b_policy_and_digest": true,
+    "exact_bw19v_b_composition_and_scale": true,
+    "available_partial_support_and_fail_zero_paths_exercised": true,
+    "source_response_signed_pair_and_nonfinite_canaries": true,
+    "perfect_synthetic_whole_report_passes": true,
+    "wrong_scale_canary_fails": true,
+    "composition_count_canary_fails": true,
+    "motor_model_mismatch_canary_fails": true,
+    "missing_nonzero_application_canary_fails": true,
+    "serialization_round_trip": true,
+    "preflight_world_build_count": 0,
+    "preflight_scene_insertion_count": 0,
+    "preflight_physics_state_mutation_count": 0
+  },
+  "execution_contract": {
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "attempt_receipt_reserved_before_physical_process_launch": true,
+    "completion_receipt_retained_after_every_physical_process_exit": true,
+    "any_physical_process_launch_consumes_the_campaign_identity": true,
+    "runtime_abort_is_retained_as_an_abnormal_attempt_not_a_scientific_result": true,
+    "abnormal_attempt_requires_immutable_closure_not_a_rerun": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_artifact_overwrite_forbidden": true,
+    "early_stop_forbidden": true,
+    "negative_report_retention_required": true,
+    "same_identity_rerun_forbidden_after_closure": true,
+    "evidence_must_live_beneath_sibling_SporeSpore_Evidence": true
+  },
+  "success_authority": {
+    "single_body_bw19v_b_rapier_technical_commissioning": true,
+    "rapier_selected_policy_technical_integration": true,
+    "rapier_c6_locomotion_conformance": false,
+    "cross_engine_equivalence": false,
+    "independent_validation": false,
+    "population_inference": false,
+    "arbitrary_quadruped_coverage": false,
+    "material_robustness": false,
+    "release_authority": false
+  },
+  "negative_disposition": {
+    "retain_complete_report": true,
+    "diagnose_mechanism": true,
+    "same_identity_rerun": false,
+    "threshold_edit_after_outcome": false,
+    "scientifically_distinct_successor_allowed": true
+  },
+  "method_sources": {
+    "local_research_inputs": [
+      {
+        "path": "DReCon.pdf",
+        "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+      },
+      {
+        "path": "2604.08780v1.pdf",
+        "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+      },
+      {
+        "path": "2507.22653v2.pdf",
+        "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+      },
+      {
+        "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+        "sha256": "sha256:b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "technical_commissioning_only": true,
+    "independent_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

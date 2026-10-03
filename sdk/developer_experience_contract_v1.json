@@ -1,0 +1,67 @@
+{
+  "schema_version": "sporespore_developer_experience_contract_v1",
+  "status": "source_implemented_pending_clean_room_candidate_validation",
+  "release_gate_id": "QSDK-R16",
+  "requires_clean_room_candidate": true,
+  "public_surfaces": {
+    "quickstart": "examples/quadruped_quickstart.py",
+    "reference_fixture": "examples/reference_quadruped.py",
+    "descriptor_diagnostics": "diagnostics/descriptor_diagnostics.py",
+    "diagnostics_cli": "diagnostics/__main__.py",
+    "record_replay": "record_replay/canonical_recording.py",
+    "record_replay_cli": "record_replay/__main__.py",
+    "integration_guide": "docs/QUADRUPED_SDK_INTEGRATION.md",
+    "conformance": "developer_experience/test_developer_experience.py",
+    "runner": "run_developer_experience_conformance.ps1",
+    "source_validation_manifest": "developer_experience_validation_manifest.json"
+  },
+  "recording_contract": {
+    "transport": "UTF-8 JSON Lines; sorted keys; compact separators; finite JSON; one trailing newline",
+    "header_schema": "sporespore_canonical_recording_header_v1",
+    "frame_schema": "sporespore_canonical_recording_frame_v1",
+    "footer_schema": "sporespore_canonical_recording_footer_v1",
+    "verification_receipt_schema": "sporespore_recording_verification_receipt_v1",
+    "replay_receipt_schema": "sporespore_recording_replay_receipt_v1",
+    "canonical_digest_authority": "ss_canonicalize_json",
+    "exact_transport_digest": "SHA-256 over the sorted compact finite JSON spelling used by the public Python binding.",
+    "hash_chain": "Each record carries the exact transport SHA-256 of the previous record, its own core-canonical SHA-256, and its own exact transport SHA-256.",
+    "exact_named_policy_required": "sporespore_balanced_wave_bw5r_b_v1",
+    "physics_trajectory_recorded": false,
+    "physics_trajectory_replayed": false
+  },
+  "source_conformance_cells": [
+    "D0_quickstart_selected_policy_and_zero_world",
+    "D1_descriptor_acceptance_and_refusal_diagnostics",
+    "D2_canonical_record_verify_and_exact_policy_replay",
+    "D3_modified_frame_and_numeric_transport_drift_refusal",
+    "D4_deleted_frame_refusal",
+    "D5_sdk_version_drift_refusal",
+    "D6_policy_identity_refusal",
+    "D7_cli_verify_replay_and_diagnostics",
+    "D8_package_inventory_and_isolation"
+  ],
+  "clean_room_acceptance": {
+    "package_manifest_required": true,
+    "not_for_distribution_marker_required": true,
+    "source_repository_metadata_forbidden": true,
+    "all_package_file_hashes_must_match": true,
+    "quickstart_must_pass": true,
+    "diagnostics_must_pass": true,
+    "record_verify_and_replay_must_pass": true,
+    "tamper_gap_version_and_policy_negative_tests_must_pass": true,
+    "world_build_count_must_equal": 0,
+    "physical_acceptance_authority_must_equal": false
+  },
+  "claims": {
+    "source_implementation_complete": true,
+    "source_conformance_report_retained": true,
+    "clean_room_candidate_validated": false,
+    "r16_passed": false,
+    "release_authorized": false,
+    "publication_authorized": false,
+    "walking_acceptance": false,
+    "physics_replay": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

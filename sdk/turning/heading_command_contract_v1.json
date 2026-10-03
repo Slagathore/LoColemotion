@@ -1,0 +1,73 @@
+{
+  "schema_version": "sporespore_heading_command_turning_contract_v1",
+  "contract_id": "sporespore_bounded_heading_command_source_v1",
+  "sdk_version": "0.1.0",
+  "release_gate_id": "QSDK-R23",
+  "qualification_status": "source_mechanism_precondition_only",
+  "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+  "public_surfaces": {
+    "motion_command_schema": "sporespore_motion_command_v2",
+    "heading_field": "desired_heading_rad",
+    "yaw_rate_field": "desired_yaw_rate_rad_s",
+    "stateless_c_entrypoint": "ss_balanced_wave_policy_step_json",
+    "persistent_c_entrypoint": "ss_balanced_wave_policy_session_step_json",
+    "stateless_python_entrypoint": "LocomotionCore.balanced_wave_policy_step",
+    "persistent_python_entrypoint": "BalancedWavePolicySession.step"
+  },
+  "heading_semantics": {
+    "frame": "world_yaw_in_canonical_x_forward_z_right_coordinates",
+    "no_explicit_heading": "hold_task_frame_reference_yaw",
+    "shortest_arc_wrapping": true,
+    "desired_heading_error_limit_rad": 0.25,
+    "steering_fraction_limit": 0.4,
+    "selected_policy_yaw_error_stride_gain_per_rad": 1.3,
+    "selected_policy_low_pass_time_constant_cycle_fraction": 0.0625,
+    "steering_transform": "linear_bilateral_hip_stride_scale",
+    "left_scale": "1-held_steering_fraction",
+    "right_scale": "1+held_steering_fraction"
+  },
+  "command_modes": {
+    "absolute_heading_supported_at_source": true,
+    "yaw_rate_supported_at_source": false,
+    "heading_and_yaw_rate_are_mutually_exclusive": true,
+    "unsupported_or_invalid_mode_behavior": "ordered_safe_no_actuation_with_typed_failure"
+  },
+  "bounded_descriptor_vertex_fixture": {
+    "dimensions": {
+      "torso_length_scale": [0.9, 1.1],
+      "torso_width_scale": [0.9, 1.1],
+      "upper_length_fraction": [0.48, 0.55],
+      "hip_span_scale": [0.9, 1.1],
+      "foot_radius_scale": [0.9, 1.1],
+      "front_limb_mass_scale": [0.9, 1.1]
+    },
+    "expected_vertex_count": 64,
+    "physical_population_authority": false,
+    "continuous_interior_authority": false
+  },
+  "conformance_cells": [
+    "H0_contract_and_authority",
+    "H1_exact_zero_command_compatibility",
+    "H2_signed_mirror_and_bilateral_stride",
+    "H3_heading_and_steering_bounds",
+    "H4_shortest_arc_wrapping",
+    "H5_mutually_exclusive_mode_safe_zero",
+    "H6_unsupported_yaw_rate_safe_zero",
+    "H7_stateless_persistent_session_equivalence",
+    "H8_all_bounded_descriptor_vertices"
+  ],
+  "release_boundary": {
+    "source_conformance_may_satisfy_qsdk_r23": false,
+    "prospective_physical_campaign_required": true,
+    "every_advertised_engine_required": true,
+    "zero_command_physical_straight_walk_compatibility_required": true,
+    "commanded_turning_physical_acceptance_required": true,
+    "formal_cross_engine_comparative_inference_is_separate": true
+  },
+  "world_build_count": 0,
+  "physics_state_modified": false,
+  "turning_acceptance": false,
+  "walking_acceptance": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

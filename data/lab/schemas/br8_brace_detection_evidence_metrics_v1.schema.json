@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br8_brace_detection_evidence_metrics_v1.schema.json",
+  "title": "SporeSpore BR8 brace-detection evidence metrics v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "program_id", "cell_id", "evidence_role", "replicate",
+    "test", "source_commit_sha", "process", "harness", "assertion_labels",
+    "observation_lines", "transcript_line_count", "artifact_hashes",
+    "claim_scope", "does_not_establish"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br8_brace_detection_evidence_metrics.v1"},
+    "program_id": {"type": "string", "pattern": "^BR8_[A-Z0-9_]+_V1$"},
+    "cell_id": {"type": "string", "minLength": 1},
+    "evidence_role": {"enum": ["milestone", "supplementary", "integrity"]},
+    "replicate": {"enum": [1, 2]},
+    "test": {"type": "string", "pattern": "^test_(?:lab|experimental)_[A-Za-z0-9_.-]+\\.gd$"},
+    "source_commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "process": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["containment_host_process_id", "target_process_id", "started_utc", "ended_utc", "fresh_process"],
+      "properties": {
+        "containment_host_process_id": {"type": "integer", "minimum": 1},
+        "target_process_id": {"type": "integer", "minimum": 1},
+        "started_utc": {"type": "string", "format": "date-time"},
+        "ended_utc": {"type": "string", "format": "date-time"},
+        "fresh_process": {"const": true}
+      }
+    },
+    "harness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status", "process_exit_code", "timed_out", "containment_tree_closed",
+        "exit_marker_observed", "footer_count", "assertions_passed",
+        "assertions_failed", "unexpected_engine_error_count"
+      ],
+      "properties": {
+        "status": {"const": "pass"},
+        "process_exit_code": {"const": 0},
+        "timed_out": {"const": false},
+        "containment_tree_closed": {"const": true},
+        "exit_marker_observed": {"const": true},
+        "footer_count": {"const": 1},
+        "assertions_passed": {"type": "integer", "minimum": 1},
+        "assertions_failed": {"const": 0},
+        "unexpected_engine_error_count": {"const": 0}
+      }
+    },
+    "assertion_labels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "observation_lines": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "transcript_line_count": {"type": "integer", "minimum": 1},
+    "artifact_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["harness_report", "engine_log", "transcript_log", "source_inventory"],
+      "properties": {
+        "harness_report": {"$ref": "#/$defs/sha256"},
+        "engine_log": {"$ref": "#/$defs/sha256"},
+        "transcript_log": {"$ref": "#/$defs/sha256"},
+        "source_inventory": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "claim_scope": {"type": "string", "minLength": 1},
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+  }
+}

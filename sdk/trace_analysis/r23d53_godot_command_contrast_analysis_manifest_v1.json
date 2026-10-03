@@ -1,0 +1,140 @@
+{
+  "schema_version": "sporespore_r23d53_godot_command_contrast_analysis_manifest_v1",
+  "analysis_id": "QSDK-R23D53-GODOT-COMMAND-CONTRAST-D1",
+  "status": "postclosure_outcome_exposed_descriptive_zero_world_diagnosis",
+  "question_class": "development_diagnosis",
+  "purpose": "Determine whether the closed R23D53 Godot/Jolt negative is explained by lost command transport, origin-timing contamination, or reported steering saturation; measure command, controller, and yaw contrasts against the synchronized reference without changing the frozen R23D53 verdict or selecting a successor.",
+  "data_exposure_boundary": {
+    "r23d53_outcomes_already_observed": true,
+    "projection_is_descriptive_not_confirmatory": true,
+    "r23d53_verdict_unchanged": true,
+    "r23d53_exact_policy_rejected": true,
+    "fresh_held_out_condition_consumed": false,
+    "future_successor_physical_outcome_known": false
+  },
+  "source_closure": {
+    "gate_id": "QSDK-R23D53",
+    "path": "sdk/turning/r23d53_godot_warmup_preserving_origin_reanchor_closure_v1.json",
+    "addition_commit": "f9467d140c5b88556afa4c7f38e61b2ff8cbdeda",
+    "git_blob_oid": "999b97ca46c0848c2260068f33bde650009c4ff7",
+    "raw_sha256": "sha256:feea68e660df6a0e09918e414f957f9f2d7bed301c685d7938f5120e91bf6611",
+    "byte_length": 17168,
+    "status": "closed_consumed_valid_complete_negative_outcome_exposed_godot_warmup_preserving_origin_reanchor_development"
+  },
+  "trace_contract": {
+    "trace_schema_version": "sporespore_qsdk_r23d48_turning_trace_row_v1",
+    "expected_trace_row_count": 2992,
+    "warmup_end_semantic_step_exclusive": 600,
+    "turn_start_semantic_step": 600,
+    "turn_end_semantic_step_exclusive": 1800,
+    "gait_cycle_steps": 360,
+    "task_frame_origin_policy_id": "warmup_preserving_command_onset_origin_reanchor_v1",
+    "expected_reanchor_steps": [600, 1800, 2400],
+    "contrast_zero_tolerance": 1e-12,
+    "warmup_equivalence_fields": [
+      "cross_track_error_m",
+      "cross_track_velocity_m_s",
+      "desired_heading_error_rad",
+      "desired_heading_offset_rad",
+      "held_steering_fraction",
+      "legacy_fixed_axis_cross_track_error_m",
+      "legacy_fixed_axis_cross_track_velocity_m_s",
+      "measured_yaw_error_rad",
+      "measured_yaw_rad",
+      "ordered_foot_contacts_after",
+      "ordered_foot_contacts_before",
+      "ordered_limb_phase_before",
+      "requested_heading_error_rad",
+      "requested_steering_fraction",
+      "segment_id",
+      "startup_ramp_active",
+      "startup_ramp_triggered",
+      "task_frame_origin_reanchor_count",
+      "task_frame_origin_reanchored_this_step",
+      "task_frame_origin_world_m",
+      "torso_ground_contact",
+      "torso_height_m",
+      "torso_position_world_m",
+      "torso_tilt_rad",
+      "yaw_tracking_error_rad"
+    ],
+    "required_numeric_fields": [
+      "cross_track_error_m",
+      "cross_track_velocity_m_s",
+      "desired_heading_error_rad",
+      "desired_heading_offset_rad",
+      "held_steering_fraction",
+      "measured_yaw_error_rad",
+      "measured_yaw_rad",
+      "requested_heading_error_rad",
+      "requested_steering_fraction",
+      "yaw_tracking_error_rad"
+    ],
+    "actuator_attribution_fields_absent_from_this_trace_schema": [
+      "ordered_final_actuator_commands",
+      "ordered_applied_actuator_commands",
+      "ordered_actuator_effort_limits",
+      "ordered_actuator_command_limit_fractions"
+    ]
+  },
+  "ordered_arms": [
+    {
+      "arm_id": "reference_zero",
+      "command_sign": 0,
+      "desired_heading_offset_rad": 0.0,
+      "cell_id": "godot_jolt__r23d29_warmup_preserving_command_onset_origin_reanchor_development__reference_zero",
+      "trace_sha256": "sha256:507bb7c0ae84388d3bb1116e0bd6b172f70419e9586deada8a06406f8ecf17dd",
+      "trace_byte_length": 7601654
+    },
+    {
+      "arm_id": "positive_heading",
+      "command_sign": 1,
+      "desired_heading_offset_rad": 0.2,
+      "cell_id": "godot_jolt__r23d29_warmup_preserving_command_onset_origin_reanchor_development__positive_heading",
+      "trace_sha256": "sha256:e32f2faf0b0ac2e659ef218f31c6a8e5318cbe44ce83d4bcb5b28638f2f84305",
+      "trace_byte_length": 7607365
+    },
+    {
+      "arm_id": "negative_heading",
+      "command_sign": -1,
+      "desired_heading_offset_rad": -0.2,
+      "cell_id": "godot_jolt__r23d29_warmup_preserving_command_onset_origin_reanchor_development__negative_heading",
+      "trace_sha256": "sha256:b6eaa774a0d494f5245cee6d768c1d05fb0967ff9b2a029f79ac78fe41911be4",
+      "trace_byte_length": 7590274
+    }
+  ],
+  "immutable_official_result": {
+    "raw_reference_cycle_shift_rad": -0.09942303053658974,
+    "raw_positive_cycle_shift_rad": 0.09393502242850182,
+    "raw_negative_cycle_shift_rad": -0.0532672479719114,
+    "positive_reference_conditioned_cycle_shift_rad": 0.19335805296509156,
+    "negative_reference_conditioned_cycle_shift_rad": -0.04615578256467834,
+    "raw_signed_cycle_shift_gate_passed": true,
+    "reference_conditioned_cycle_shift_gate_passed": false,
+    "threshold_only_successor_supported": false
+  },
+  "attribution_boundary": {
+    "origin_timing_only_successor_supported": false,
+    "missing_or_inverted_negative_command_hypothesis_may_be_selected": false,
+    "reported_steering_saturation_hypothesis_may_be_selected": false,
+    "actuator_or_contact_phase_mechanism_may_be_selected_from_current_trace": false,
+    "next_attribution_schema_requires_final_per_actuator_commands_and_declared_limits": true,
+    "next_attribution_schema_requires_contact_phase_alignment": true,
+    "schema_and_evaluator_mutation_controls_required_before_any_new_world": true,
+    "physical_successor_selected": false
+  },
+  "claim_limits": {
+    "historical_result_reinterpreted": false,
+    "r23d53_policy_selected": false,
+    "successor_mechanism_selected": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "godot_jolt_turning_validation": false,
+    "portable_basic_turning": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

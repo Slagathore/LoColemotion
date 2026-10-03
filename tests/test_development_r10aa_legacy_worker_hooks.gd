@@ -1,0 +1,9 @@
+extends "res://tests/test_development_r10v_branch_worker_hooks.gd"
+
+func _profile_resource_v1() -> String:
+	return "res://sdk/development/recovery_candidates/r10aa-partial-load-seeking-core-v1.json"
+
+func _configure_fixture_probe_v1(probe: SceneTree, _resource: String) -> void:
+	probe._candidate_selection = {"post_kick_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+		"diagnostic_schedule": {"walking_policy_id": R10V.ROUTE}}
+	probe._configuration_sha256 = SHA

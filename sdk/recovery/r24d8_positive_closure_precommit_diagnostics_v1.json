@@ -1,0 +1,102 @@
+{
+  "schema_version": "sporespore_qsdk_r24d8_positive_closure_precommit_diagnostics_v1",
+  "gate_id": "QSDK-R24D8",
+  "question_class": "non_physical_closure_conformance_development_diagnostics",
+  "status": "complete_local_closure_audit_pass_after_four_diagnostic_negatives",
+  "command": "pwsh -NoLogo -NoProfile -File tests/test_qsdk_r24d8_active_step_snapshot_timing_positive_closure.ps1 -GodotRepositoryRoot C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7",
+  "attempt_count": 5,
+  "negative_attempt_count": 4,
+  "passing_attempt_count": 1,
+  "attempts": [
+    {
+      "attempt_index": 1,
+      "classification": "local_precommit_reconstructed_diff_stream_negative",
+      "first_failed_gate": "reconstructed_diff_patch",
+      "mechanism": "The first closure-audit draft merged git diff stderr into stdout. Git's Windows checkout warning stream therefore preceded an otherwise canonical reconstructed patch diff.",
+      "reconstructed_source_view_created": true,
+      "reconstructed_source_view_removed": true,
+      "godot_worktree_count_before": 1,
+      "godot_worktree_count_after": 1,
+      "passed": false
+    },
+    {
+      "attempt_index": 2,
+      "classification": "local_precommit_reconstructed_diff_stream_identity_negative",
+      "first_failed_gate": "reconstructed_diff_patch",
+      "mechanism": "Diagnostic hashing proved the merged stream was SHA-256 6598bfdba1988923fb57480a43c467171f71e2f3f2e131ec4c0bae623a3c583d and 20019 characters, while the exact patch was SHA-256 9629982deb74da1d3e16ea8eaff7cefef7c37a33f407c4cd777e332f05ff376c and 18593 characters.",
+      "reconstructed_source_view_created": true,
+      "reconstructed_source_view_removed": true,
+      "godot_worktree_count_before": 1,
+      "godot_worktree_count_after": 1,
+      "passed": false
+    },
+    {
+      "attempt_index": 3,
+      "classification": "local_precommit_safecrlf_warning_identification_negative",
+      "first_failed_gate": "reconstructed_diff_patch",
+      "mechanism": "Line comparison proved the actual merged stream had 447 lines versus the patch's 437. Its first line was Git's warning that CRLF in the reconstructed jolt_hinge_joint_3d.cpp working copy would be replaced by LF. The ten extra lines were one safe-CRLF warning per patched file, not source differences.",
+      "reconstructed_source_view_created": true,
+      "reconstructed_source_view_removed": true,
+      "godot_worktree_count_before": 1,
+      "godot_worktree_count_after": 1,
+      "passed": false
+    },
+    {
+      "attempt_index": 4,
+      "classification": "local_precommit_reconstructed_source_marker_negative",
+      "first_failed_gate": "reconstructed_active_step_capture_order",
+      "mechanism": "After pinning core.safecrlf=false only for diff serialization, the reconstructed diff matched exactly. The audit's source-order probe still used stale draft names without the p_step arguments instead of the frozen _capture_joint_telemetry(p_step) and _post_step(p_step) calls.",
+      "reconstructed_diff_exact": true,
+      "reconstructed_source_view_created": true,
+      "reconstructed_source_view_removed": true,
+      "godot_worktree_count_before": 1,
+      "godot_worktree_count_after": 1,
+      "passed": false
+    },
+    {
+      "attempt_index": 5,
+      "classification": "local_precommit_exact_positive_closure_audit_pass",
+      "result": "complete_positive_closure_conformance_pass",
+      "historical_source_binding_count": 15,
+      "reconstructed_external_source_file_count": 10,
+      "zero_world_retained_file_count": 17,
+      "physical_retained_file_count": 13,
+      "cross_run_unique_digest_count": 24,
+      "matching_physical_attempt_count": 1,
+      "closure_mutation_rejection_count": 38,
+      "reconstructed_source_view_created": true,
+      "reconstructed_source_view_removed": true,
+      "godot_worktree_count_before": 1,
+      "godot_worktree_count_after": 1,
+      "passed": true
+    }
+  ],
+  "adequacy": {
+    "campaign_source_worker_evaluator_receipt_or_interpretation_changed": false,
+    "physical_attempt_repeated": false,
+    "retained_evidence_deleted_or_replaced": false,
+    "reconstructed_view_derived_only_from_pinned_upstream_commit_and_executed_patch_blob": true,
+    "core_safecrlf_override_scope": "read_only_reconstructed_git_diff_serialization_only",
+    "safecrlf_warning_suppression_changed_reconstructed_source_bytes": false,
+    "final_source_order_probe_matches_executed_r24d8_freeze_semantics": true,
+    "every_temporary_worktree_removed": true
+  },
+  "actual_counts": {
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_world_count": 0
+  },
+  "claims": {
+    "complete_zero_world_gate_passed_by_diagnostics": false,
+    "physical_timing_question_executed_by_diagnostics": false,
+    "native_numerical_telemetry_characterized": false,
+    "instrumented_profile_promoted": false,
+    "recovery_world_opened": false,
+    "prone_to_standing_world_opened": false,
+    "turning_claim_changed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": "sporespore_r10k_partial_fall_successor_design_v1",
+  "design_id": "r10k_measured_partial_fall_and_v51_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_successor_design",
+    "question_class": "development"
+  },
+  "source_parent_commit": "331ab6fa2088985e82543fbe9de0af10dfd0bce2",
+  "status_at_declaration": "walking_native_component_verified_recovery_route_not_implemented",
+  "release_gate_id": "QSDK-R10",
+  "sdk1_milestone_id": "SDK1-M07",
+  "question": "Can a fresh kicked child return to the same measured standing requirements and complete the finite V51 walking task when passive descent reaches either genuine prone or a sustained partial collapse?",
+  "bound_evidence": [
+    {
+      "path": "sdk/recovery/r10j_held_out_physical_closure_v1.json",
+      "raw_sha256": "sha256:68267d60c58d39713705224e61cb356826a70012b49586be0ecc53a4d16a4420"
+    },
+    {
+      "path": "sdk/development/v51_joint_feasible_height_implementation_v1.json",
+      "raw_sha256": "sha256:b4d8dea0138284e17bd4eef6f04373638be56fe3dc649dbf4d9f80fff1164bdb"
+    }
+  ],
+  "observed_blockers": [
+    "R10J phases 241 and 242 timed out after 240 passive commands at torso height ratios about 0.403 and 0.413 without reaching the genuine prone entry predicate. No recovery control was applied after those falls.",
+    "R10J phase 243 reached prone and recovered, but its standing phase exhausted 240 commands with only 47 of the required 60 consecutive standing samples.",
+    "Two no-kick walking runs requested unreachable endpoints. The distinct V51 native component accepts their complete exposed input sequences; altered-command physical behavior remains untested."
+  ],
+  "selected_route": {
+    "setup": "Preserve V6 setup, BW5R-B prefix, one native external kick in the kicked role, and the same morphology and actuator caps.",
+    "no_kick": "Preserve the flexed joint-pose ramp, separate zero-amplitude hold session, 240-command ramp and hold bounds, and 30 consecutive measured-ready samples. Select V51 for the fresh walking session.",
+    "passive_descent": "Preserve the original 240-command passive collector and its exact observations, zero motor actuation, kick energy epoch, and genuine-prone result. An additive entry selector also counts consecutive measured partial-collapse samples from the same validated observations.",
+    "genuine_prone": "Immediately take the existing prone handoff when its actual native predicate passes. Preserve 12 confirmation samples, V20 support/rise control, and V7 standing control. Use the distinctly named R10K threshold profile with the prospective standing phase timeout below.",
+    "partial_collapse": "Only at the declared passive timeout, and only when the final 12 consecutive validated passive samples satisfy the partial-entry predicate, initialize a distinct partial-fall-to-standing supervisor. Preserve the original passive receipt as a descent timeout; do not replace it with a prone handoff or manufacture canonical supervisor memory.",
+    "partial_control": "The new task starts at establish_distal_support, then raise_body, stance_handoff, and stance_dwell. It reuses V20's measured-joint support/rise law and V7's standing law through explicitly bound control APIs. Its phase history has no confirm_prone phase and grants no prone-to-standing claim.",
+    "walking": "After the selected recovery supervisor reaches its own complete standing result, start fresh V51 and preserve the existing finite task: four planned foot cycles, the full 120-command stop, and the full spatial, contact, actuator and energy predicates."
+  },
+  "partial_task_contract": {
+    "task_id": "sporespore_measured_partial_fall_to_standing_v1",
+    "semantics_id": "sporespore_measured_partial_fall_recovery_semantics_v1",
+    "entry": {
+      "torso_height_ratio_exclusive_min": 0.25,
+      "torso_height_ratio_inclusive_max": 0.5,
+      "torso_up_dot_inclusive_min": 0.5,
+      "consecutive_samples": 12,
+      "ventral_contact_required": false,
+      "ownership": "none",
+      "motor_impulses": "Every measured motor impulse is zero, as required by the original passive collector.",
+      "not_an_acceptance_pose": "Entry does not assert that joints already lie within their final acceptance limits or that all four feet bear. Those remain measured recovery completion requirements, as in the prone route."
+    },
+    "raise_and_completion": {
+      "minimum_measured_com_height_gain_m": 0.1,
+      "gain_reference": "The last original passive sample that initialized this new partial task; the kick energy epoch and original source observations are unchanged.",
+      "standing_torso_height_ratio_min": 0.75,
+      "standing_torso_up_dot_min": 0.95,
+      "distal_bearing_minimum_impulse_ns": 0.019293,
+      "all_four_distal_sites_bearing_required": true,
+      "minimum_nonfoot_clearance_m": 0.005,
+      "nonfoot_contact_permitted": false,
+      "maximum_terminal_linear_speed_m_s": 0.1,
+      "maximum_terminal_angular_speed_rad_s": 0.2,
+      "maximum_energy_balance_residual_j": 0.25,
+      "standing_consecutive_samples": 60,
+      "joint_limits_actuator_caps_and_no_cheat": "Unchanged exact native morphology/cap contracts, complete energy partition, and no intervention or state rewrite.",
+      "gain_rationale": "The original 0.22 m criterion belongs to a task starting in ventral prone. This distinct task starts above the prone ceiling but at no more than half the reference torso height. It requires at least 0.10 m of measured COM rise as well as the same absolute standing geometry and stability. The changed entry and gain define a new task; they cannot regrade R10J or establish canonical prone recovery."
+    },
+    "phase_budgets": {
+      "establish_distal_support": 240,
+      "raise_body": 600,
+      "stance_handoff": 120,
+      "stance_dwell": 360,
+      "total": 1200
+    },
+    "measurement_identity": "Post-handoff observations carry the new task and semantics identifiers at their original producer before source hashing. Shared native validation kernels may be reused under an explicit task scope. Never rewrite an already observed canonical task identifier or source-binding digest."
+  },
+  "prone_standing_budget_successor": {
+    "profile_id": "sporespore_r10k_exact_s169_prone_thresholds_v1",
+    "parent_profile": "The existing exact-S169 physical development threshold profile.",
+    "only_numeric_change": "stance_dwell timeout 240 to 360 commands",
+    "unchanged": "60 consecutive standing samples, all original entry, rise, contact, geometry, speed, cap and energy requirements, all other phase timeouts, and the 1200-command total bound.",
+    "rationale": "The observed prone child ended in measured stable stance with 47 consecutive samples. The distinct budget permits more settling time; it does not predict that another 13 samples would have succeeded or permit continuation of the old child."
+  },
+  "development_coverage": {
+    "first_attempt": {
+      "label": "R10K-DEVELOPMENT-PREFIX-241-PAIR-V1",
+      "seed": 40341,
+      "prefix_phase": 241,
+      "fresh_roles": ["matched_no_kick_continuation", "kick_passive_recovery_resume"],
+      "coverage": "One pair covers neutral ramp/hold, V51 walking, the exposed partial-collapse branch, complete finite stopping, source-bound publication and cold replay. It is a development comparison only."
+    },
+    "additional_branch_diagnostic": {
+      "label": "R10K-DEVELOPMENT-PREFIX-243-SINGLE-KICK-V1",
+      "seed": 40343,
+      "prefix_phase": 243,
+      "fresh_roles": ["kick_passive_recovery_resume"],
+      "coverage": "After the first pair closes valid and positive, one separate fresh kicked child covers the mutually exclusive genuine-prone branch and the new standing budget through V51 and the complete stop. It is explicitly non-comparative and reuses no physical baseline."
+    },
+    "adequacy_argument": "The two entry branches are mutually exclusive in one kicked world. A complete phase-241 pair plus one separately labeled phase-243 kicked diagnostic is the smallest declared population that targets both observed recovery failures and the no-kick V51 route. These exposed phases are development inputs, not a replacement held-out population.",
+    "prelaunch_requirements": "Bind exact production entrypoints, candidate DLL, source snapshot, maximum solver/time limits, unchanged full capture and publication profile, negative controls, and complete applicable smoke safety gate before each fresh attempt.",
+    "qualification": "Neither diagnostic grants official qualification, M07 acceptance, a population claim or release authority. A new finite held-out design and its complete prospective graph remain required after successful development."
+  },
+  "alternatives": [
+    {
+      "choice": "Extend passive descent only",
+      "advantage": "Smaller source change and original prone-only task.",
+      "reason_not_selected": "The exposed children remained partially collapsed after 240 commands; no evidence establishes that a longer passive wait reaches prone. It leaves the recovery controller unable to act on a real partial fall."
+    },
+    {
+      "choice": "Actively force a partial collapse down into canonical prone",
+      "advantage": "Retains a single prone-to-standing supervisor after descent.",
+      "reason_not_selected": "Adds an unproved active descent maneuver and deliberately moves away from standing before recovery. The selected separate task can act on the actual low pose while retaining honest entry semantics."
+    }
+  ],
+  "implementation_and_validation_boundaries": [
+    "Additive entry selector must retain the original passive receipt and its exact contiguous energy history. An incomplete, corrupted, nonzero-actuation or prematurely terminated passive prefix cannot initialize partial recovery.",
+    "The partial supervisor must validate identity, ordering, phase history, single ownership/handoff, complete source-bound observations, and uninterrupted energy accounting. A partial receipt or memory cannot enter the canonical supervisor.",
+    "V20 and V7 arithmetic must remain unchanged. Reuse their pure kernels behind new typed partial-task authority, not a synthetic canonical completion receipt.",
+    "The old threshold profile and all observed records remain immutable. Declare the new standing budget under its own profile and bind it throughout controller, collector, supervisor, reader and task contracts.",
+    "The real worker, schedule, launcher, cold reader, finite evaluator and all shared selector enumerations must exercise both new entry branches with exact JSON and source/runtime identity before physical work.",
+    "Freeze and independently qualify the complete final route only after development demonstrates its actual behavior."
+  ],
+  "claim_boundary": {
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "old_r10j_population_reused": false,
+    "sdk1_score": "14/20"
+  }
+}

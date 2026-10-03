@@ -1,0 +1,90 @@
+{
+  "schema_version": "sporespore_qsdk_r23d45_support_loss_conditioned_startup_preregistration_v1",
+  "status": "prospective_frozen_before_first_r23d45_world",
+  "campaign_id": "QSDK-R23D45-SUPPORT-LOSS-CONDITIONED-STARTUP-DEVELOPMENT",
+  "gate_id": "QSDK-R23D45",
+  "study_classification": "outcome_exposed_single_world_mechanism_development",
+  "question": "On the exact exposed MuJoCo seed-21507 reference fixture where the identity startup transform fell and the one-cycle unconditional ramp walked, does an engine-neutral transform that latches the same ramp only after complete four-foot support loss during semantic steps 0 through 3 restore unassisted walking?",
+  "immutability": {
+    "same_identity_rerun_permitted": false,
+    "selective_retry_permitted": false,
+    "observed_result_may_change_this_declaration": false,
+    "negative_and_invalid_results_must_be_retained": true
+  },
+  "retained_discovery_inputs": {
+    "outcome_exposed_threshold_and_window": true,
+    "mujoco_identity_transform_trace_sha256": "sha256:1be0a087e223995433bde0950377b62b41f0fbd1a113138c586c1c656ea768c1",
+    "mujoco_unconditional_ramp_trace_sha256": "sha256:effcc8e2375254802f5e7c0cf2a93e5b484df09cda82371b1e7e8988b9d98ad4",
+    "rapier_identity_transform_trace_sha256": "sha256:3f91a2b7e6a7cd2ea529389e7aceb96c72d3e3f9e6e610de9b3ab46d88c00aa7",
+    "godot_jolt_identity_transform_trace_sha256": "sha256:b8bdd7c4441aa02ffb76932f4df90f0a744b792bfcd8483612f13601d0551214",
+    "mujoco_identity_transform_first_zero_support_semantic_step": 3,
+    "rapier_identity_transform_zero_support_during_probe": false,
+    "godot_jolt_identity_transform_zero_support_during_probe": false,
+    "discovery_can_establish_general_separator": false
+  },
+  "immutable_parent_closures": {
+    "r23d34_path": "sdk/turning/r23d34_native_r23d29_transfer_closure_v1.json",
+    "r23d34_raw_sha256": "sha256:945a3934035ee8ef0a45be5d9e7964a5bb954033a62f1fadf61708b39be191f3",
+    "r23d35_path": "sdk/turning/r23d35_godot_trace_recovery_closure_v1.json",
+    "r23d35_raw_sha256": "sha256:6f96ed00593ead67a118d1c07a6c54fb8f5892aa2599a121fd59c1f2efb6f148",
+    "r23d38_path": "sdk/turning/r23d38_mujoco_startup_ramp_stabilization_closure_v1.json",
+    "r23d38_raw_sha256": "sha256:e6a0a965a5b07f70ee7e080315b43157fa6e5c5129c09c94cdee8af27faeeef5",
+    "r23d44_path": "sdk/turning/r23d44_rapier_paired_startup_transform_closure_v1.json",
+    "r23d44_raw_sha256": "sha256:5e48ede1cb22f9e9d2ea7190e1d6a2ca6ff1fa278796c4b27f76e1979eb88d4a",
+    "historical_result_reinterpreted": false,
+    "closed_identity_rerun_permitted": false
+  },
+  "candidate": {
+    "candidate_id": "r23d29_support_loss_conditioned_startup_v1",
+    "controller_policy_id": "sporespore_balanced_wave_r23d29_two_swing_persistent_predictive_stability_guarded_steering_v1",
+    "startup_transform_id": "support_loss_latched_smoothstep_one_cycle_v1",
+    "probe_first_semantic_step": 0,
+    "probe_last_semantic_step": 3,
+    "trigger": "all four ordered foot-contact observations are false before command composition",
+    "trigger_latched_for_remainder_of_run": true,
+    "no_trigger_behavior": "identity transform for remainder of run",
+    "trigger_behavior": "scale every canonical target velocity by smoothstep(local_step/359), exact zero on the trigger step and exact unity from local step 359",
+    "engine_identity_input_count": 0,
+    "arm_identity_input_count": 0,
+    "outcome_input_count": 0,
+    "late_support_loss_can_change_decision": false
+  },
+  "matrix": {
+    "ordered_engine_ids": ["mujoco"],
+    "ordered_arm_ids": ["reference_zero"],
+    "declared_cell_count": 1,
+    "declared_world_count": 1,
+    "seed": 21507,
+    "morphology_id": "qsdk_r05_generated_s169",
+    "controller_step_count": 2992,
+    "command_schedule": "reference_walk_for_all_2992_steps",
+    "desired_heading_offset_rad": 0.0,
+    "terminal_restoration_or_taper_invoked": false,
+    "serial_execution_required": true
+  },
+  "physical_gates": {
+    "minimum_final_forward_displacement_m": 0.030123046875,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "minimum_contact_cycles_per_limb": 2,
+    "maximum_torso_ground_contact_step_count": 0,
+    "exact_controller_step_count": 2992,
+    "exact_validated_portable_command_count": 23936,
+    "exact_native_actuation_application_count": 23936,
+    "maximum_controller_error_count": 0,
+    "maximum_safe_no_actuation_count": 0,
+    "maximum_nonfinite_observation_count": 0,
+    "maximum_actuator_application_mismatch_count": 0
+  },
+  "interpretation": {
+    "positive": "valid complete exact-condition development evidence that this state-conditioned startup mechanism restores MuJoCo reference walking; it may be ported prospectively for an outcome-exposed three-engine turning screen",
+    "negative": "valid complete exact-condition evidence that this mechanism does not restore the declared MuJoCo reference walk",
+    "invalid": "implementation or evidence failure; no locomotion interpretation",
+    "fresh_held_out_condition_consumed": false,
+    "turning_tested": false,
+    "portable_turning_established": false,
+    "cross_engine_equivalence_established": false,
+    "release_gate_satisfied": false,
+    "physical_acceptance_authority": false
+  }
+}

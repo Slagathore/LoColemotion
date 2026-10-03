@@ -1,0 +1,17 @@
+[package]
+name = "sporespore-godot-adapter"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license-file = "../../LICENSE"
+description = "Godot 4.7 GDExtension adapter for the SporeSpore locomotion core"
+
+[lib]
+name = "sporespore_godot_adapter"
+crate-type = ["cdylib"]
+
+[dependencies]
+godot = { version = "=0.5.4", features = ["api-4-7"] }
+serde_json = "1.0.149"
+sha2 = "0.10.9"
+sporespore-locomotion-core = { path = "../../core" }

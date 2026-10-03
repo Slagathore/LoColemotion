@@ -1,0 +1,166 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw2_preregistration_v1",
+  "status": "frozen_before_first_bw2_physics_world",
+  "preregistration_parent_commit": "8e41d6721377da5d78f26a573c7db2eda8ffbf9f",
+  "development_data_only": true,
+  "candidate_order": [
+    "BW2-A",
+    "BW2-B",
+    "BW2-C"
+  ],
+  "candidates": [
+    {
+      "candidate_id": "BW2-A",
+      "policy_id": "sporespore_balanced_wave_v1",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.0,
+      "velocity_heading_gain_formula": "0.30 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.25,
+      "anchor_error_guard_activation_fraction": 0.85,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.25,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW2-B",
+      "policy_id": "sporespore_balanced_wave_bw2_b_v1",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.0,
+      "velocity_heading_gain_formula": "0.275 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.5,
+      "anchor_error_guard_activation_fraction": 0.9,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.5,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW2-C",
+      "policy_id": "sporespore_balanced_wave_bw2_c_v1",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.0,
+      "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+      "anchor_error_guard_activation_fraction": 0.8,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+      "branch_surfaces": []
+    }
+  ],
+  "candidate_digest_scope": "Each digest is SHA-256 over the recursively key-sorted canonical JSON bytes of the corresponding candidates array element.",
+  "candidate_policy_digests": {
+    "BW2-A": "sha256:d1ce56ba1a74f843700559e1b240c3a5a4ea33c31d7a14d874fdd2c6ebfb2fd9",
+    "BW2-B": "sha256:0ab4fa4c4e37441b26bdd00d23926e4511892201150bf61554c5b1362edf7913",
+    "BW2-C": "sha256:367e944b33384d8685d746dca0a864cfa33ca013846636236512641456d51ad3"
+  },
+  "shared_authority": {
+    "authority_scope": "stability_contribution_overlay",
+    "base_command_source": "portable_controller_ordered_commands",
+    "stability_policy_id": "p5i3c_support_centroid_tilt_feedback_v1",
+    "stability_runtime_id": "sporespore_godot_jolt_stability_overlay_runtime_v1",
+    "stability_memory_id": "sporespore_stability_overlay_memory_v1",
+    "maximum_absolute_velocity_delta_rad_s": 0.075,
+    "maximum_velocity_delta_slew_per_step_rad_s": 0.01,
+    "direct_body_write_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "opened_evidence_inputs": [
+    {
+      "input_id": "p5i3c_r2_reference_pair",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\godot-jolt-stability-physical-influence-r2-df6c9e5\\report.json",
+      "sha256": "d0971317d174f7bb5aef4cbea1f79c462182a0cd3e4ce59c83980ef6a7cb305b"
+    },
+    {
+      "input_id": "p5m3_r1_material_matrix",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\godot-jolt-material-robustness-r1-ac52b5c\\report.json",
+      "sha256": "7c58a73df1187076087e1c2f47536030b8a1e9536b157ea8d6b7818f9bf6a0ef"
+    },
+    {
+      "input_id": "c6_rejected_selection",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\formal-sdk-c6-55a7598\\campaign\\20260728T040930002\\selection\\20260728T040931467\\report.json",
+      "sha256": "3087d75946e37730847809175c09147acddd78cff4a45fd4d47b3121a53315b3"
+    },
+    {
+      "input_id": "c6r_rejected_heldout_r1",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\formal-sdk-c6r-041289c\\campaign\\20260728T042931085\\heldout-r1\\20260728T043504915\\report.json",
+      "sha256": "ab3c91fa3ca941feb8abc5d2e9959492f500fabbbdcb3c7eae527f5a06a55d3a"
+    }
+  ],
+  "no_world_vectors": [
+    {
+      "path": "tests/test_sdk_balanced_wave_profile_oracle.gd",
+      "sha256_at_freeze": "1a0f5eba959f8fde60eaaef86622f000f5faa6a0b9589542d94ce76e74cf1977"
+    },
+    {
+      "path": "tests/test_experimental_br14a_10_nonuniform_proportion_compilers.gd",
+      "sha256_at_freeze": "1b90e024fa855246ae78fdfb3f78c954b29f6a4ae66e2a989c17ec64bee6d8cc"
+    }
+  ],
+  "physics_matrix": {
+    "reference_pair_world_count": 2,
+    "material_world_count": 23,
+    "opened_counterexample_morphology_ids": [
+      "gq15_generated_s160",
+      "gq15_generated_s167",
+      "gq15_generated_s1404",
+      "gq15_generated_s1408"
+    ],
+    "counterexample_world_count": 4,
+    "total_world_count_per_opened_candidate": 29,
+    "material_cell_ids_are_exactly_the_p5m3_r1_cell_ids": true,
+    "reference_and_material_exposure_steps": 1514,
+    "expected_commands_and_motor_writes_per_reference_or_material_treatment": 12112
+  },
+  "eligibility": {
+    "complete_matrix_required": true,
+    "expected_world_count": 29,
+    "infrastructure_failure_count": 0,
+    "adapter_schema_order_time_memory_capability_failure_count": 0,
+    "safe_no_actuation_count": 0,
+    "direct_body_write_count": 0,
+    "native_motor_write_count_must_equal_step_count_times_actuator_count": true,
+    "nonzero_stability_contribution_required_in_every_eligible_nonzero_friction_treatment": true,
+    "zero_friction_requires_typed_exact_zero_fallback_and_no_walking_claim": true,
+    "counterexamples_may_not_be_deleted_or_replaced": true
+  },
+  "selection": {
+    "lexicographic_metrics": [
+      {
+        "metric": "infrastructure_and_integrity_failure_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "eligible_nonzero_material_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "opened_counterexample_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "reference_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_walking_gate_failure_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "worst_normalized_positive_safety_margin",
+        "direction": "descending"
+      }
+    ],
+    "tie_rule": "candidate_order_ascending",
+    "early_stop_rule": "Stop after the first eligible candidate with zero eligible nonzero material treatment nonwalks, zero opened counterexample nonwalks, and zero reference treatment nonwalks.",
+    "otherwise_run_next_candidate_in_candidate_order": true,
+    "if_no_early_stop_select_best_eligible_candidate_after_bw2_c": true,
+    "selected_implementation_must_be_committed_before_bw3": true
+  },
+  "claims": {
+    "physical_influence_may_be_observed": true,
+    "development_selection_authority": true,
+    "walking_acceptance": false,
+    "material_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

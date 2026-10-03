@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br3b_certification_report_attestation_v1.schema.json",
+  "title": "SporeSpore detached BR3B certification-report attestation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "domain", "algorithm", "key_id", "certification_id",
+    "report_name", "report_sha256", "report_bytes", "report_schema",
+    "report_status", "certification", "commit_sha", "campaign_id",
+    "campaign_sha256", "attested_utc", "tag"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br3b_certification_report_attestation.v1"},
+    "domain": {"const": "sporespore.lab.br3b_certification_report_attestation.v1"},
+    "algorithm": {"const": "hmac-sha256"},
+    "key_id": {"$ref": "#/$defs/sha256"},
+    "certification_id": {"type": "string", "pattern": "^br3b_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"},
+    "report_name": {"const": "br3b_certification_report.json"},
+    "report_sha256": {"$ref": "#/$defs/sha256"},
+    "report_bytes": {"type": "integer", "minimum": 1, "maximum": 67108864},
+    "report_schema": {"const": "sporespore.lab.br3b_certification_report.v1"},
+    "report_status": {"const": "pass"},
+    "certification": {"const": "BR3B_L3_BASIC_LOADED_FOOT_TRUTH"},
+    "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "campaign_id": {"const": "BR3B_L3_PROMOTION_CAMPAIGN_V1"},
+    "campaign_sha256": {"$ref": "#/$defs/sha256"},
+    "attested_utc": {"type": "string", "format": "date-time"},
+    "tag": {"type": "string", "pattern": "^hmac-sha256:[a-f0-9]{64}$"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+  }
+}

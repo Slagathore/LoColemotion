@@ -1,0 +1,658 @@
+{
+  "schema_version": "sporespore_development_recovery_swing_end_route_integration_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_route_integration",
+    "question_class": "development"
+  },
+  "status": "route_connected_focused_checks_passed_complete_safety_gate_and_physics_pending",
+  "source_parent_commit": "adfa10c26b1704ec293ff50f5479b7d171947fd1",
+  "candidate_profile": "sdk/development/recovery_candidates/v32-swing-end-recontact-integrated-v1.json",
+  "component_profile_preserved_non_runnable": "sdk/development/recovery_candidates/v32-swing-end-recontact-v1.json",
+  "walking_policy_id": "sporespore_balanced_wave_recovery_swing_end_recontact_v1",
+  "walking_policy_scope": "Fresh walking_resume session only; prefix and precondition remain legacy BW5R-B/V6, post-kick recovery remains V20 with stance V7.",
+  "preserved": {
+    "initial_gait_step_each_limb": 90,
+    "amplitude_warmup_wall_steps": 72,
+    "maximum_amplitude": 0.5994550408719347,
+    "after_interaction_steps": 986,
+    "maximum_steps_per_child": 1338,
+    "development_seed": 40200,
+    "strict_consecutive_memory_replay": true,
+    "numerical_walking_evaluation_criteria": true,
+    "motor_limits": true,
+    "all_observed_results": true
+  },
+  "verification": {
+    "focused_tests_passed": 28,
+    "walking_start_tests": 4,
+    "walking_entry_tests": 6,
+    "connected_route_tests": 4,
+    "walking_finalizer_and_schedule_tests": 4,
+    "launcher_profile_tests": 5,
+    "adapter_ledger_and_reader_tests": 5,
+    "synthetic_route_events_independently_replayed": 49,
+    "synthetic_route_cold_reader_refusals": 5,
+    "synthetic_native_start_probe_steps": 450,
+    "synthetic_retained_entry_commands": 100,
+    "synthetic_adapter_policy_commands": 200,
+    "adapter_cold_reader_refusals": 10,
+    "identical_synthetic_measurements_yield_exact_identical_diagnostics": true,
+    "unchanged_non_resume_synthetic_event_bytes": true,
+    "source_snapshots_retained": true,
+    "evaluator_lf_normalization_after_focused_checks": "Line endings only, bound in current source below; complete applicable gate will run on the clean pushed prospective source."
+  },
+  "preserved_development_failures": [
+    {
+      "stage_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-route-focus-e5e904305d5646e6b6f86b190d12558a",
+      "failed_stage": "schedule",
+      "cause": "Coverage test enumerated old ramp profiles without the new swing-end successor; its preserved walking budget was incorrectly looked up as an added warmup. Actual finalizer passed. Test selection updated, no horizon or threshold changed."
+    },
+    {
+      "stage_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-connected-focus-7f8bfb9a299d4b248753029967915873",
+      "failed_stage": "route",
+      "cause": "New synthetic fixture omitted existing worker arm storage needed by the real kick transition memory-clear hook; fixture now supplies explicit synthetic completed setup memory. Production hook unchanged."
+    }
+  ],
+  "legacy_source_audit": {
+    "tests": 44,
+    "existing_failures": 3,
+    "existing_errors": 1,
+    "new_failures": 0,
+    "official_suite_passed": false
+  },
+  "next": {
+    "command": "./sdk/run_development_recovery_smoke.ps1 -RunSmoke -ProfileSteps -ReuseContextChecks -SingleKick -CandidateProfile sdk/development/recovery_candidates/v32-swing-end-recontact-integrated-v1.json",
+    "complete_applicable_safety_test_count": 108,
+    "physical_children_if_safety_passes": 1,
+    "baseline_reuse": false,
+    "question": "Does the earlier swing-end recontact guard actually hold at local phase 72 in this resumed walking trajectory, and what contacts, displacement and unchanged walking diagnostics result?",
+    "not_covered": [
+      "held-out behavioral validation",
+      "paired commissioning or effect comparison",
+      "cross-engine validation",
+      "force-aware recovery",
+      "unintended early stance support loss correction",
+      "guaranteed touchdown before bounded timeout"
+    ]
+  },
+  "source_files": [
+    {
+      "path": ".gitattributes",
+      "raw_sha256": "sha256:7cdd71a368e0e404f22405cc151a18bef2e8c2f91620dfe3b5ef6b6b3a6581f8"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_passive_entry_orchestrator_v1.gd",
+      "raw_sha256": "sha256:1e5035b8a04d73fed9835a3b43ef387008a23668637b912d50b08f5ba77ce034"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_passive_entry_replay_v1.gd",
+      "raw_sha256": "sha256:ef7af541940ca5c602707d9176c0ca6b12741ee970cc022e135f0922d0df45b2"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_passive_entry_smoke_worker_v1.gd",
+      "raw_sha256": "sha256:17abacc022e1fa9bdacef8b94d5cbf828c26efffecbc1358eee822c89fcd5736"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_recovery_candidate_profile_v1.gd",
+      "raw_sha256": "sha256:9dafaa1ae46c34d08124a8cac81f7ff7c2755410ede46254709858da7c2adc5f"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_recovery_candidate_worker_v1.gd",
+      "raw_sha256": "sha256:b85f078efe32014a1dd7237651f1ad84b7aaeab651bc96250b1ae479ee487594"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_recovery_walking_policy_v1.gd",
+      "raw_sha256": "sha256:0179648282b1934a60250ec96e3afce79848eedf04f5dd5f8e7e2a2d294259f4"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_recovery_walking_start_v1.gd",
+      "raw_sha256": "sha256:7bf817018e03007dde1d8cc60e7a77830008f72a4cd1e3a4f6ac0029ee3ac828"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/development_recovery_walking_startup_v1.gd",
+      "raw_sha256": "sha256:7203409124459afbe231bf7e08dd9be35a4a41aa9d3371594b6e86fc3e91a99e"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/qsdk_r10f_event_triggered_passive_recovery_orchestrator_v1.gd",
+      "raw_sha256": "sha256:ecc6093f18fefa3b4dc154ce9c8d342c85530c0be12eeaa20700268eb7b69d95"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/qsdk_r10f_walking_segment_evaluator_v2.gd",
+      "raw_sha256": "sha256:b8d859b3ae68411b5e30de4f4a5bfcfb0e2355acaf76c571be0bde60c60659ba"
+    },
+    {
+      "path": "sdk/conformance/development_passive_entry_profile.py",
+      "raw_sha256": "sha256:cd9b833c4a307d341c65d9fd0df7c9dd9875df9ef7248700b5acfa598a775c88"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_candidate_checkpoint.py",
+      "raw_sha256": "sha256:1a8c46f9a6e0de7eb64c5e2278c26b3f053914d87b546eb879a1cb44b7fd905a"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_candidate.py",
+      "raw_sha256": "sha256:48151996df963572ff50f9d81e54a9ae80f112cb9289112c69160e7e6a120726"
+    },
+    {
+      "path": "sdk/development/recovery_candidates/v32-swing-end-recontact-integrated-v1.json",
+      "raw_sha256": "sha256:4a4a53a96b6ea25969eb63a971fb7e12eb63e963d6d625855b76df89c010f086"
+    },
+    {
+      "path": "sdk/development/recovery_schedules/v32-swing-end-recontact-integrated-v1.json",
+      "raw_sha256": "sha256:66ec6d866942e6df98c52166cd6f377218893e7e4b294c4114ca88ff625d5b7c"
+    },
+    {
+      "path": "sdk/development/recovery_swing_end_walking_entry_contract_v1.json",
+      "raw_sha256": "sha256:ab37df4597e68caf9b62be6b19197c91680cae803ab53e567fe75004121e2c60"
+    },
+    {
+      "path": "sdk/development/recovery_swing_end_walking_start_contract_v1.json",
+      "raw_sha256": "sha256:0f9a38d44895eff88a9c52d13d67b4637e4b0fb31ed1c74060f13ca8034cae94"
+    },
+    {
+      "path": "sdk/run_development_recovery_smoke.ps1",
+      "raw_sha256": "sha256:c745c46e088a92f15ace84c25cf522c9888f9739e61fea6fa4a8015ffe9bbd87"
+    },
+    {
+      "path": "tests/test_development_recovery_candidate_profile.py",
+      "raw_sha256": "sha256:11ec7ab937365bfeedf9d4d4d4991032770fb9e43dc8096847f868f5ee1e04ea"
+    },
+    {
+      "path": "tests/test_development_recovery_candidate_schedule.gd",
+      "raw_sha256": "sha256:747a1a778ca0840581f22659eb865ae2de7fd04a94599b99afdf8f0e80757126"
+    },
+    {
+      "path": "tests/test_development_recovery_candidate_schedule.py",
+      "raw_sha256": "sha256:38d1905b139d0278009dcc889bcfae7a14e5701e4006386c1ce12336741c5e80"
+    },
+    {
+      "path": "tests/test_development_recovery_walking_entry.gd",
+      "raw_sha256": "sha256:19c7c3565b81dd44a1635ad7660061911a1173e1251656ca3613a0998785a436"
+    },
+    {
+      "path": "tests/test_development_recovery_walking_entry.py",
+      "raw_sha256": "sha256:51f8037a2fd09ba04a08a501b02589528e6dde382457be54b783b391b6ccfb28"
+    },
+    {
+      "path": "tests/test_development_recovery_walking_start.gd",
+      "raw_sha256": "sha256:32480cc9fde711394116ad28df19481380b6dd31d5a42d41ab36ee905548bcac"
+    },
+    {
+      "path": "tests/test_development_recovery_walking_start.py",
+      "raw_sha256": "sha256:c85fbda834a4822f3a60017dbc2e034a4d16203dd4df83093a3a112a3d5a65f5"
+    },
+    {
+      "path": "tests/test_development_v32_recovery_route.gd",
+      "raw_sha256": "sha256:aa6b57c113444b54c158ee6bc956bdc22c3335f3fe22da519b5c86b2e9c144d2"
+    },
+    {
+      "path": "tests/test_development_v32_recovery_route.py",
+      "raw_sha256": "sha256:9b6996952f135dcb8562b3c8dd450e738a96845b270a3329677a5e50eb4c36c9"
+    },
+    {
+      "path": "tests/test_development_v32_walking_policy.py",
+      "raw_sha256": "sha256:850b35f8ce4f2d68be7ea3ce1e49b409561de8ff6c22ee6afaa51f91343689db"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r10f_continuous_passive_recovery_worker.gd",
+      "raw_sha256": "sha256:a41e79aa3db2da8f2dfd393417a627e7aa6284d7944733d6af288a8beb262e86"
+    }
+  ],
+  "retained_populations": [
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-profile-3b2a83063d23429586d4db63d8e90c05",
+      "file_count": 4,
+      "files": [
+        {
+          "path": "launcher_False.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "launcher_False.stdout.txt",
+          "byte_length": 8103,
+          "raw_sha256": "sha256:546ecf2c16b916884c8e1d245dafa08752039043736912222f195670669bda2b"
+        },
+        {
+          "path": "launcher_True.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "launcher_True.stdout.txt",
+          "byte_length": 8070,
+          "raw_sha256": "sha256:d68db2db916034697c54f9121096caf6b086ee22156a90ff4539c98af49ab3a9"
+        }
+      ],
+      "byte_length": 16173
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-schedule-43f43986e5254eeeb75de46e538fb6d2",
+      "file_count": 4,
+      "files": [
+        {
+          "path": "schedule_hooks.execution.json",
+          "byte_length": 832,
+          "raw_sha256": "sha256:7cfc7ee93d8798c4fef93827df09bb58a4753f2cce497d1ef5b1c8c282dc24bf"
+        },
+        {
+          "path": "schedule_hooks.source_snapshot.json",
+          "byte_length": 935071,
+          "raw_sha256": "sha256:80d44969b70d746202022ca5d050888a599b09027d453dd891925cbbe687147f"
+        },
+        {
+          "path": "schedule_hooks.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "schedule_hooks.stdout.txt",
+          "byte_length": 2777,
+          "raw_sha256": "sha256:2d5b0b9ba2a6a7a129877a4dd1b57edd0414ea42a67a60337559db10b0c26f15"
+        }
+      ],
+      "byte_length": 938680
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-schedule-8176ae9e454d4c1681ac8bcc140983b9",
+      "file_count": 4,
+      "files": [
+        {
+          "path": "schedule_hooks.execution.json",
+          "byte_length": 832,
+          "raw_sha256": "sha256:0fc94c15b695c9373250eef2d8977313adedd25937df43d59dcfc17a999183ce"
+        },
+        {
+          "path": "schedule_hooks.source_snapshot.json",
+          "byte_length": 1033789,
+          "raw_sha256": "sha256:861ed4acc8cff7c2353227a99d4c0e62dbd48d75318ed2944696c7789ad876be"
+        },
+        {
+          "path": "schedule_hooks.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "schedule_hooks.stdout.txt",
+          "byte_length": 2905,
+          "raw_sha256": "sha256:18b926a343930b077217c3385964eea21f4b84e39835e8b8cb36906ebc79a705"
+        }
+      ],
+      "byte_length": 1037526
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-connected-focus-7f8bfb9a299d4b248753029967915873",
+      "file_count": 3,
+      "files": [
+        {
+          "path": "route.json",
+          "byte_length": 351,
+          "raw_sha256": "sha256:ef075850b1844db11d72becf5973f4c52c2a5f68959d79ad669ccc044c9a8cbc"
+        },
+        {
+          "path": "route.stderr.log",
+          "byte_length": 3981,
+          "raw_sha256": "sha256:4a2b372792f05c82e6b2e04005c2edefa9182b65ada769bdbfaadeebfa6e075b"
+        },
+        {
+          "path": "route.stdout.log",
+          "byte_length": 121,
+          "raw_sha256": "sha256:768c642564f84444f1491be103fbc27fe2abfcf69d91e343cdc3e7d1660f64b5"
+        }
+      ],
+      "byte_length": 4453
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-connected-focus-d8b0b3115ad54c35916fd96235202262",
+      "file_count": 12,
+      "files": [
+        {
+          "path": "policy.json",
+          "byte_length": 353,
+          "raw_sha256": "sha256:74ea7af050a124ce59992864d5c504bb40268f28dafa32da0737f13351fa503b"
+        },
+        {
+          "path": "policy.stderr.log",
+          "byte_length": 1574,
+          "raw_sha256": "sha256:cfd361fef67b9486ea649e7d4ac0b2ad200c1bf6526024ace397bd88829a62ab"
+        },
+        {
+          "path": "policy.stdout.log",
+          "byte_length": 9595,
+          "raw_sha256": "sha256:2bc08bf551baa380c55c0c35de8c5fa91626efadec95f5f7cb258dc22ff566b7"
+        },
+        {
+          "path": "profile.json",
+          "byte_length": 356,
+          "raw_sha256": "sha256:7e50ffec9ac445b59f7a4b73e09e1c21f897369e70689ce16c91db95131e3e04"
+        },
+        {
+          "path": "profile.stderr.log",
+          "byte_length": 1094,
+          "raw_sha256": "sha256:639ac078b71068e3216041dc6b6e6dc8e1a34de0aca21730dbf7097d87209c56"
+        },
+        {
+          "path": "profile.stdout.log",
+          "byte_length": 142,
+          "raw_sha256": "sha256:6e98a189099662c8eebf262d9357c9ec5ad295cbcd019d456e331f45dd5637b3"
+        },
+        {
+          "path": "route.json",
+          "byte_length": 350,
+          "raw_sha256": "sha256:f5173a19e1162c622d91f3eabc2c3dd5811a6e1695de455078c2b61a39ff94f6"
+        },
+        {
+          "path": "route.stderr.log",
+          "byte_length": 1444,
+          "raw_sha256": "sha256:a925dcbcec0e8ec78f2fb0871342640c81f4cf2995ba3bd82e5b0e0e37f9439b"
+        },
+        {
+          "path": "route.stdout.log",
+          "byte_length": 678,
+          "raw_sha256": "sha256:283f1e90699e918a8ac9197bd75a1190383723dd04a4b24b12fc88dee29ef00a"
+        },
+        {
+          "path": "schedule.json",
+          "byte_length": 351,
+          "raw_sha256": "sha256:f35c9a24ed1aae4ed693bc2ff18b1214d7b80af887b51a3e4931c4ab66da5ff8"
+        },
+        {
+          "path": "schedule.stderr.log",
+          "byte_length": 1180,
+          "raw_sha256": "sha256:a04e1ad698827fa3613fbbd720efec048341873c30a06104d0b61e24fec110c8"
+        },
+        {
+          "path": "schedule.stdout.log",
+          "byte_length": 144,
+          "raw_sha256": "sha256:50ff4cc3cc798a4ada0c4443d97da9d1a7a6a086f573a38166768468fe76550f"
+        }
+      ],
+      "byte_length": 17261
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-route-6e8c3ed49e484dd299cee7349c3fa1db",
+      "file_count": 4,
+      "files": [
+        {
+          "path": "producer.execution.json",
+          "byte_length": 824,
+          "raw_sha256": "sha256:488d4cbb416fd2e25162d512b574e10e480d620bc351192019f2678fc24da765"
+        },
+        {
+          "path": "producer.source_snapshot.json",
+          "byte_length": 1032513,
+          "raw_sha256": "sha256:1a16b275cc84127c18af60e8a5707d68b93ea519229a1e842bffd49bb246b5df"
+        },
+        {
+          "path": "producer.stderr.txt",
+          "byte_length": 1272,
+          "raw_sha256": "sha256:b22f8e59b6c807dead8bd40af689d74fbf0d465e68414f9e7b518f091d891c17"
+        },
+        {
+          "path": "producer.stdout.txt",
+          "byte_length": 309,
+          "raw_sha256": "sha256:378562869b782b612e4fcdcd513349ef8f7ebd2cec37ac9fe3e9b05f574b9ef9"
+        }
+      ],
+      "byte_length": 1034918
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-route-c8dcbe766270462498072cbfb554fc61",
+      "file_count": 9,
+      "files": [
+        {
+          "path": "cold_reader.execution.json",
+          "byte_length": 968,
+          "raw_sha256": "sha256:5a641f7d7cb4fd025b77c823713ec701cfbc69275da10accfbe03db0c5be8308"
+        },
+        {
+          "path": "cold_reader.source_snapshot.json",
+          "byte_length": 1033789,
+          "raw_sha256": "sha256:861ed4acc8cff7c2353227a99d4c0e62dbd48d75318ed2944696c7789ad876be"
+        },
+        {
+          "path": "cold_reader.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "cold_reader.stdout.txt",
+          "byte_length": 740,
+          "raw_sha256": "sha256:fe86bfb7d411a6eabedb1553eae7f905a8f6ff411895724fc51461c356f90519"
+        },
+        {
+          "path": "event_reader_inputs.json",
+          "byte_length": 704337,
+          "raw_sha256": "sha256:ea44b9abd8dfe375174c1f5b613289003ffd64299d79139191815e1b3d9198e3"
+        },
+        {
+          "path": "producer.execution.json",
+          "byte_length": 810,
+          "raw_sha256": "sha256:d93b9b53b272420e04b54bdec917c888b6e27fd394e81d00611769f844dbc4e5"
+        },
+        {
+          "path": "producer.source_snapshot.json",
+          "byte_length": 1033789,
+          "raw_sha256": "sha256:861ed4acc8cff7c2353227a99d4c0e62dbd48d75318ed2944696c7789ad876be"
+        },
+        {
+          "path": "producer.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "producer.stdout.txt",
+          "byte_length": 118809,
+          "raw_sha256": "sha256:4e74a62d93ffff3b7736816684410bd1ccf4713d74207508b8932d7e8847fd1c"
+        }
+      ],
+      "byte_length": 2893242
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-route-focus-e5e904305d5646e6b6f86b190d12558a",
+      "file_count": 9,
+      "files": [
+        {
+          "path": "schedule.json",
+          "byte_length": 360,
+          "raw_sha256": "sha256:97566b6c25c5e90fbdcf4e0e81305eb7b78b78378b80c1a5eeead52880363206"
+        },
+        {
+          "path": "schedule.stderr.log",
+          "byte_length": 3107,
+          "raw_sha256": "sha256:3f469dc2e5949030c2b9070fc7aa0e373795fd04de2b8f85c8aa34f826dcedb3"
+        },
+        {
+          "path": "schedule.stdout.log",
+          "byte_length": 144,
+          "raw_sha256": "sha256:33aba9d5e89367cf7be639cc52c4715ee2b920eb8a13fdd76febc27bf9290f83"
+        },
+        {
+          "path": "walking_entry.json",
+          "byte_length": 374,
+          "raw_sha256": "sha256:a6401b21c82489bcda3530e5dda57a1cdfe13a9b799f6b678e302ac21ce3472c"
+        },
+        {
+          "path": "walking_entry.stderr.log",
+          "byte_length": 4184,
+          "raw_sha256": "sha256:6e7d553bcd19b9ed6f435e584c627d1b3f2877dd0a4ff1ab311d145986c31b01"
+        },
+        {
+          "path": "walking_entry.stdout.log",
+          "byte_length": 4713,
+          "raw_sha256": "sha256:9583390d208583e673851822e8639faea471d3db80d6fe4cabdc5a604dacd35d"
+        },
+        {
+          "path": "walking_start.json",
+          "byte_length": 366,
+          "raw_sha256": "sha256:959abb0500a9fd0bef8384da970843d067df60d2f196f4826e89afdb43beaeda"
+        },
+        {
+          "path": "walking_start.stderr.log",
+          "byte_length": 2262,
+          "raw_sha256": "sha256:85fd5c62062c6771dd32517a4262531b251191944f19a656869574cdc2a41032"
+        },
+        {
+          "path": "walking_start.stdout.log",
+          "byte_length": 146,
+          "raw_sha256": "sha256:5de3c6979fb4174ae1254520bfbf7afd1578c333d6b15225c08462aeceb16300"
+        }
+      ],
+      "byte_length": 15656
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v32-walking-policy-70ac2e046da14e55a68879ffab53bb7c",
+      "file_count": 9,
+      "files": [
+        {
+          "path": "cold_reader.execution.json",
+          "byte_length": 786,
+          "raw_sha256": "sha256:93ad909920de02108462c52172d7b6831f2ce3c4106fd6793aa52e671fc058b8"
+        },
+        {
+          "path": "cold_reader.source_snapshot.json",
+          "byte_length": 1033789,
+          "raw_sha256": "sha256:861ed4acc8cff7c2353227a99d4c0e62dbd48d75318ed2944696c7789ad876be"
+        },
+        {
+          "path": "cold_reader.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "cold_reader.stdout.txt",
+          "byte_length": 7199,
+          "raw_sha256": "sha256:03119537613beb010d544a6a5667c72c41abacee9ebb6926bac3d15a5d406647"
+        },
+        {
+          "path": "producer.execution.json",
+          "byte_length": 639,
+          "raw_sha256": "sha256:f7555f8c536bb0cebaba5668c8acde433c5918ef56597150197f9e503d0ae416"
+        },
+        {
+          "path": "producer.source_snapshot.json",
+          "byte_length": 1033789,
+          "raw_sha256": "sha256:861ed4acc8cff7c2353227a99d4c0e62dbd48d75318ed2944696c7789ad876be"
+        },
+        {
+          "path": "producer.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "producer.stdout.txt",
+          "byte_length": 2760081,
+          "raw_sha256": "sha256:1efa384bbaf21701b7dbb900c07ad47834513985ee20904590988b318503a440"
+        },
+        {
+          "path": "reader_inputs.json",
+          "byte_length": 26967209,
+          "raw_sha256": "sha256:6d0fece4014e94ba8f96b947f82800c5199a10bfc2a3c1b464d92cff8cd8c6b0"
+        }
+      ],
+      "byte_length": 31803492
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-walking-entry-9e6c6e18389243c08966b420c46e405e",
+      "file_count": 11,
+      "files": [
+        {
+          "path": "cold_walking_reader.execution.json",
+          "byte_length": 1007,
+          "raw_sha256": "sha256:411559249c810677b7add9968b1f5782050a4abb915f9228d1a90c85c8873b71"
+        },
+        {
+          "path": "cold_walking_reader.source_snapshot.json",
+          "byte_length": 935071,
+          "raw_sha256": "sha256:80d44969b70d746202022ca5d050888a599b09027d453dd891925cbbe687147f"
+        },
+        {
+          "path": "cold_walking_reader.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "cold_walking_reader.stdout.txt",
+          "byte_length": 7244,
+          "raw_sha256": "sha256:212e3d3cc09ab88561ddbcd59ddbd2d9c384fdd029add3856764d788ac7eabe7"
+        },
+        {
+          "path": "command_jump_diagnosis.json",
+          "byte_length": 6523,
+          "raw_sha256": "sha256:1ef7b2cdefcf036069e2231108aba33523d9d5604d1bb540aa4bf11d94bb1b32"
+        },
+        {
+          "path": "native_command_probe.execution.json",
+          "byte_length": 967,
+          "raw_sha256": "sha256:eec4f7e53bb28e0550ed6b7a2093b6a06f5ac0abccd3c2087fb8feaa55bd8368"
+        },
+        {
+          "path": "native_command_probe.source_snapshot.json",
+          "byte_length": 935071,
+          "raw_sha256": "sha256:80d44969b70d746202022ca5d050888a599b09027d453dd891925cbbe687147f"
+        },
+        {
+          "path": "native_command_probe.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "native_command_probe.stdout.txt",
+          "byte_length": 1528949,
+          "raw_sha256": "sha256:4e9bb939d14a81619c902bb37918023b40aee6d640fe8ce047a37e8c43e246d4"
+        },
+        {
+          "path": "retained_standing_input.json",
+          "byte_length": 5203,
+          "raw_sha256": "sha256:38d586cf9bc989457107e00fdc3c53442dee1740c24ab58c9d5bc0f729f6e594"
+        },
+        {
+          "path": "serialized_reader_cases.json",
+          "byte_length": 17955726,
+          "raw_sha256": "sha256:3cfd5f1feecee011b3aab252458a871ac7b9ab08422e20e12d3aa3e104d0a813"
+        }
+      ],
+      "byte_length": 21375761
+    },
+    {
+      "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-walking-start-89932c150dd74219a34914af02a30b75",
+      "file_count": 4,
+      "files": [
+        {
+          "path": "actual_start.execution.json",
+          "byte_length": 827,
+          "raw_sha256": "sha256:c74c05b49aaf6c41d340e45b0b9955435830f69bfb448675300a9f65b69d290a"
+        },
+        {
+          "path": "actual_start.source_snapshot.json",
+          "byte_length": 935071,
+          "raw_sha256": "sha256:80d44969b70d746202022ca5d050888a599b09027d453dd891925cbbe687147f"
+        },
+        {
+          "path": "actual_start.stderr.txt",
+          "byte_length": 0,
+          "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "actual_start.stdout.txt",
+          "byte_length": 4511,
+          "raw_sha256": "sha256:75c2b8a6f0397fdf7b289c53df257da2f356fafb381b4ad0fc2f23b438d75ac1"
+        }
+      ],
+      "byte_length": 940409
+    }
+  ],
+  "retained_file_count": 73,
+  "retained_byte_length": 60077571,
+  "native_rebuild_count": 0,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "successful_recovery_proven": false,
+  "complete_route_proven": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "r173_sha256": "sha256:c2d6edf090ab80a55eb8a6996f52984c14c453bf513e9d8d058d81603817425f",
+  "sdk1_score": "14/20",
+  "full_program_score": "14/25"
+}

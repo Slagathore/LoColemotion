@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br7_certification_report_v1.schema.json",
+  "title": "SporeSpore BR7 certification report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "status", "certification", "certification_id", "milestone_id",
+    "claim_boundary", "generated_utc", "source", "engine", "bundle_policy",
+    "report_attestation_policy", "accounting", "cells", "programs",
+    "final_readback", "planar_stance_constraints", "capabilities",
+    "does_not_establish"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br7_certification_report.v1"},
+    "status": {"const": "pass"},
+    "certification": {"const": "BR7_PLANAR_MULTI_CONTACT_STANCE"},
+    "certification_id": {
+      "type": "string",
+      "pattern": "^br7_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"
+    },
+    "milestone_id": {"const": "BR7_PLANAR_MULTI_CONTACT_STANCE"},
+    "claim_boundary": {
+      "const": "This campaign can certify only the exact BR7.0 two-contact planar allocation, BR7.1 friction and unilateral rejection, BR7.2 support/capture segment and support-loss supervision, and BR7.3 live two-leg planar stance program scopes named by the source-pinned programs; BR7.4 is integrity-only containment and cannot substitute for a milestone program. The unpowered Generic6DOF out-of-plane guide is an explicit material scaffold: sagittal X/Y translation and pitch are released while out-of-plane translation, roll, and yaw remain locked, and all guide motors and springs remain off. Two ordinary distal contacts, four paired finite joint actuators, strict non-clamping allocation, whole-system aggregate support and pitch-wrench reconstruction, the declared positive pitch impulse, and the declared right-support removal retain their exact fixture, geometry, mass, timestep, solver, controller, and actuator scopes. Commanded left/right contact shares are not measured per-foot loads. This establishes scaffold-constrained planar height/pitch stance and support-loss detection only, not free 3D standing, unconstrained balance, per-foot measured load allocation, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance."
+    },
+    "generated_utc": {"type": "string", "format": "date-time"},
+    "source": {"$ref": "#/$defs/source"},
+    "engine": {"$ref": "#/$defs/engine"},
+    "bundle_policy": {"$ref": "#/$defs/bundle_policy"},
+    "report_attestation_policy": {"$ref": "#/$defs/report_attestation_policy"},
+    "accounting": {"$ref": "#/$defs/accounting"},
+    "cells": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"$ref": "#/$defs/cell"}
+    },
+    "programs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {"$ref": "#/$defs/program"}
+    },
+    "final_readback": {"$ref": "#/$defs/final_readback"},
+    "planar_stance_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "guide_type",
+        "sagittal_x_y_translation_released",
+        "pitch_released",
+        "out_of_plane_translation_locked",
+        "roll_and_yaw_locked",
+        "guide_motors_or_springs_enabled",
+        "built_in_joint_motors_enabled",
+        "joint_limits_enabled",
+        "passive_tissues_enabled",
+        "foot_pin_enabled",
+        "controller_root_rescue_enabled",
+        "ordinary_distal_contacts",
+        "aggregate_external_support_reconstruction",
+        "aggregate_external_pitch_wrench_reconstruction",
+        "commanded_contact_shares_are_measurements",
+        "per_foot_measured_load_allocation_available",
+        "support_loss_event_required",
+        "fail_closed_infeasible_stop_required",
+        "scaffold_constrained_planar_stance_established"
+      ],
+      "properties": {
+        "guide_type": {"const": "Generic6DOFJoint3D_out_of_plane_scaffold"},
+        "sagittal_x_y_translation_released": {"const": true},
+        "pitch_released": {"const": true},
+        "out_of_plane_translation_locked": {"const": true},
+        "roll_and_yaw_locked": {"const": true},
+        "guide_motors_or_springs_enabled": {"const": false},
+        "built_in_joint_motors_enabled": {"const": false},
+        "joint_limits_enabled": {"const": false},
+        "passive_tissues_enabled": {"const": false},
+        "foot_pin_enabled": {"const": false},
+        "controller_root_rescue_enabled": {"const": false},
+        "ordinary_distal_contacts": {"const": 2},
+        "aggregate_external_support_reconstruction": {"const": true},
+        "aggregate_external_pitch_wrench_reconstruction": {"const": true},
+        "commanded_contact_shares_are_measurements": {"const": false},
+        "per_foot_measured_load_allocation_available": {"const": false},
+        "support_loss_event_required": {"const": true},
+        "fail_closed_infeasible_stop_required": {"const": true},
+        "scaffold_constrained_planar_stance_established": {"const": true}
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_knowledge_entries", "automatic_creature_guidance_allowed",
+        "per_foot_measured_load_allocation",
+        "scaffold_constrained_planar_height_pitch_stance",
+        "support_loss_detection", "free_3d_standing",
+        "unconstrained_balance", "bracing",
+        "fall_arrest", "getting_up", "walking"
+      ],
+      "properties": {
+        "accepted_knowledge_entries": {"const": 0},
+        "automatic_creature_guidance_allowed": {"const": false},
+        "per_foot_measured_load_allocation": {"const": false},
+        "scaffold_constrained_planar_height_pitch_stance": {"const": true},
+        "support_loss_detection": {"const": true},
+        "free_3d_standing": {"const": false},
+        "unconstrained_balance": {"const": false},
+        "bracing": {"const": false},
+        "fall_arrest": {"const": false},
+        "getting_up": {"const": false},
+        "walking": {"const": false}
+      }
+    },
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "Per-contact, per-foot, or per-toe measured load allocation",
+          "Free 3D standing or unconstrained balance",
+          "An absent, negligible, or measured out-of-plane scaffold reaction",
+          "Bracing or fall arrest",
+          "Self-righting or getting up",
+          "Gait, candidate walking, or walking",
+          "Morphology, terrain, complex-foot, or endurance generalization",
+          "Accepted encyclopedia knowledge or automatic creature guidance"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "path": {"type": "string", "minLength": 1},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_root", "commit_sha", "clean_at_start", "clean_at_end",
+        "campaign_path", "campaign_sha256", "source_inventory_sha256",
+        "source_file_count", "br1_inventory_path", "br1_inventory_sha256",
+        "br1_inventory_unchanged"
+      ],
+      "properties": {
+        "repository_root": {"$ref": "#/$defs/path"},
+        "commit_sha": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "clean_at_start": {"const": true},
+        "clean_at_end": {"const": true},
+        "campaign_path": {"$ref": "#/$defs/path"},
+        "campaign_sha256": {"$ref": "#/$defs/sha256"},
+        "source_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "source_file_count": {"type": "integer", "minimum": 1},
+        "br1_inventory_path": {"$ref": "#/$defs/path"},
+        "br1_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "br1_inventory_unchanged": {"const": true}
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executable", "sha256", "version", "fresh_target_process_invocations", "pid_recycle_events_recorded"],
+      "properties": {
+        "executable": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "version": {"const": "4.7.stable.mono.official.5b4e0cb0f"},
+        "fresh_target_process_invocations": {"const": 10},
+        "pid_recycle_events_recorded": {"const": true}
+      }
+    },
+    "bundle_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest_schema", "capsule_schema", "metrics_schema", "receipt_schema", "receipt_domain", "trust_mode"],
+      "properties": {
+        "manifest_schema": {"const": "sporespore.lab.manifest.v1"},
+        "capsule_schema": {"const": "sporespore.lab.br7_planar_evidence_capsule.v1"},
+        "metrics_schema": {"const": "sporespore.lab.br7_planar_evidence_metrics.v1"},
+        "receipt_schema": {"const": "sporespore.lab.publication_attestation.v1"},
+        "receipt_domain": {"const": "sporespore.lab.publication_attestation.v1"},
+        "trust_mode": {"const": "production"}
+      }
+    },
+    "report_attestation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["receipt_schema", "receipt_domain", "trust_mode", "detached", "report_rewrite_after_attestation_forbidden"],
+      "properties": {
+        "receipt_schema": {"const": "sporespore.lab.br7_certification_report_attestation.v1"},
+        "receipt_domain": {"const": "sporespore.lab.br7_certification_report_attestation.v1"},
+        "trust_mode": {"const": "production"},
+        "detached": {"const": true},
+        "report_rewrite_after_attestation_forbidden": {"const": true}
+      }
+    },
+    "accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "programs_required", "programs_passed", "replicates_per_program",
+        "bundles_required", "bundles_passed", "assertions_required",
+        "assertions_passed", "milestone_programs", "milestone_assertions",
+        "supplementary_programs", "supplementary_assertions",
+        "integrity_programs", "integrity_assertions"
+      ],
+      "properties": {
+        "programs_required": {"const": 5},
+        "programs_passed": {"const": 5},
+        "replicates_per_program": {"const": 2},
+        "bundles_required": {"const": 10},
+        "bundles_passed": {"const": 10},
+        "assertions_required": {"const": 104},
+        "assertions_passed": {"const": 104},
+        "milestone_programs": {"const": 4},
+        "milestone_assertions": {"const": 80},
+        "supplementary_programs": {"const": 0},
+        "supplementary_assertions": {"const": 0},
+        "integrity_programs": {"const": 1},
+        "integrity_assertions": {"const": 24}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cell_id", "programs_required", "programs_passed", "assertions_per_replicate", "status"],
+      "properties": {
+        "cell_id": {"enum": ["BR7.0", "BR7.1", "BR7.2", "BR7.3"]},
+        "programs_required": {"type": "integer", "minimum": 1},
+        "programs_passed": {"type": "integer", "minimum": 1},
+        "assertions_per_replicate": {"type": "integer", "minimum": 1},
+        "status": {"const": "pass"}
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid", "trust_mode", "key_id", "receipt_path", "receipt_sha256"],
+      "properties": {
+        "valid": {"const": true},
+        "trust_mode": {"const": "production"},
+        "key_id": {"$ref": "#/$defs/sha256"},
+        "receipt_path": {"$ref": "#/$defs/path"},
+        "receipt_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "replicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "replicate", "bundle_id", "bundle_path", "manifest_sha256",
+        "checksums_sha256", "capsule_sha256", "metrics_sha256",
+        "source_inventory_sha256", "containment_host_process_id",
+        "target_process_id", "started_utc", "ended_utc", "assertions_passed",
+        "assertion_labels_sha256", "transcript_sha256", "attestation"
+      ],
+      "properties": {
+        "replicate": {"enum": [1, 2]},
+        "bundle_id": {"type": "string", "minLength": 1},
+        "bundle_path": {"$ref": "#/$defs/path"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "checksums_sha256": {"$ref": "#/$defs/sha256"},
+        "capsule_sha256": {"$ref": "#/$defs/sha256"},
+        "metrics_sha256": {"$ref": "#/$defs/sha256"},
+        "source_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "containment_host_process_id": {"type": "integer", "minimum": 1},
+        "target_process_id": {"type": "integer", "minimum": 1},
+        "started_utc": {"type": "string", "format": "date-time"},
+        "ended_utc": {"type": "string", "format": "date-time"},
+        "assertions_passed": {"type": "integer", "minimum": 1},
+        "assertion_labels_sha256": {"$ref": "#/$defs/sha256"},
+        "transcript_sha256": {"$ref": "#/$defs/sha256"},
+        "attestation": {"$ref": "#/$defs/attestation"}
+      }
+    },
+    "reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass", "source_identity_match", "assertion_count_match",
+        "ordered_assertion_labels_match", "both_raw_transcripts_retained",
+        "raw_transcript_identity_required"
+      ],
+      "properties": {
+        "pass": {"const": true},
+        "source_identity_match": {"const": true},
+        "assertion_count_match": {"const": true},
+        "ordered_assertion_labels_match": {"const": true},
+        "both_raw_transcripts_retained": {"const": true},
+        "raw_transcript_identity_required": {"const": false}
+      }
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program_id", "cell_id", "evidence_role", "test",
+        "expected_assertions", "claim_scope", "replicates", "reconciliation"
+      ],
+      "properties": {
+        "program_id": {"type": "string", "pattern": "^BR7_[A-Z0-9_]+_V1$"},
+        "cell_id": {"type": "string", "minLength": 1},
+        "evidence_role": {"enum": ["milestone", "supplementary", "integrity"]},
+        "test": {"type": "string", "pattern": "^test_(?:lab|experimental)_[A-Za-z0-9_.-]+\\.gd$"},
+        "expected_assertions": {"type": "integer", "minimum": 1},
+        "claim_scope": {"type": "string", "minLength": 1},
+        "replicates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {"$ref": "#/$defs/replicate"}
+        },
+        "reconciliation": {"$ref": "#/$defs/reconciliation"}
+      }
+    },
+    "final_readback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundles_required", "bundles_verified", "receipts_required",
+        "receipts_verified", "source_inventories_verified",
+        "metrics_verified", "target_process_invocations", "unique_target_processes", "pid_recycle_events", "complete_campaign"
+      ],
+      "properties": {
+        "bundles_required": {"const": 10},
+        "bundles_verified": {"const": 10},
+        "receipts_required": {"const": 10},
+        "receipts_verified": {"const": 10},
+        "source_inventories_verified": {"const": 10},
+        "metrics_verified": {"const": 10},
+        "target_process_invocations": {"const": 10},
+        "unique_target_processes": {"type": "integer", "minimum": 1, "maximum": 10},
+        "pid_recycle_events": {"type": "integer", "minimum": 0, "maximum": 9},
+        "complete_campaign": {"const": true}
+      }
+    }
+  }
+}

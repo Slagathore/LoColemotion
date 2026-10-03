@@ -1,0 +1,215 @@
+{
+  "schema_version": "sporespore_rapier_c6_bw19v_velocity_only_early_horizon_eh1_preregistration_v1",
+  "status": "frozen_before_first_c6_rap_bw19v_v4_eh1_physics_world",
+  "campaign_id": "C6-RAPIER-BW19V-VELOCITY-ONLY-EARLY-HORIZON-DEVELOPMENT-EH1",
+  "gate_id": "C6-RAP-BW19V-V4-EH1",
+  "study_class": "outcome_exposed_paired_early_horizon_mechanism_development_screen",
+  "implementation_parent_commit": "e2e9320efa9d7f329046875617df3ee89422ed5c",
+  "implementation_artifacts": {
+    "evaluator_path": "sdk/adapters/rapier/src/bw19v_velocity_only_early_horizon_eh1.rs",
+    "binary_path": "sdk/adapters/rapier/src/bin/bw19v_velocity_only_early_horizon_eh1.rs",
+    "supervisor_path": "sdk/run_rapier_c6_bw19v_velocity_only_early_horizon_eh1.ps1",
+    "complete_synthetic_gate_uses_the_real_report_evaluator": true
+  },
+  "purpose": "Exercise the exact live-v4 Rapier path on the selected finite s169 body, compare base-only versus exact BW19V scale-0.5 support composition, and retain early failure timing and complete motor receipts without locomotion acceptance or policy selection.",
+  "bound_authorities": {
+    "live_integration": {
+      "path": "sdk/rapier_c6_velocity_only_live_integration_v1.json",
+      "raw_sha256": "7c4c7435ca02f30073d5a33fce162fef67a461340ae609225b096abe59f88507",
+      "status": "implemented_and_zero_world_integrity_gated"
+    },
+    "active_configuration_v2": {
+      "path": "sdk/rapier_c6_velocity_only_active_configuration_v2.json",
+      "raw_sha256": "fb16ede4b295f69a343dde239c98874d547aba6cec6d47a71df1797f6c03c8fe"
+    },
+    "vh1_closure": {
+      "path": "sdk/rapier_c6_force_based_velocity_only_host_characterization_vh1_closure.json",
+      "raw_sha256": "d94b20ef4767479172408c1dfbd0b7f66e18e3f4bc8b9d8d84193fc157d284aa",
+      "status": "closed_positive_exact_finite_velocity_only_host_characterization"
+    },
+    "ed1_closure": {
+      "path": "sdk/rapier_c6_bw19v_early_horizon_mechanism_development_ed1_closure.json",
+      "raw_sha256": "8155effd3e0141839964a18b59733fc256e3b5c130f936824b6a34c0cd21f3d4",
+      "status": "closed_complete_negative_mechanism_development_screen"
+    },
+    "asd1_diagnostic": {
+      "path": "sdk/rapier_c6_bw19v_actuation_semantics_diagnostic.json",
+      "raw_sha256": "a42888f04c9a42af78ab3796dee9cc98365592470f81d0153bc55ab2a375ca57",
+      "diagnosed_mixed_space_projection": true,
+      "causation_or_physical_repair_claim": false
+    }
+  },
+  "frozen_portable_identity": {
+    "morphology_id": "qsdk_r05_generated_s169",
+    "controller_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+    "controller_policy_digest": "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd",
+    "runtime_profile_sha256": "sha256:312957dedabd3bd0eb7160c5cc69c7788bc7927acaedc42dc609a781f9c6c7db",
+    "candidate_id": "BW19V-B",
+    "candidate_composition_digest": "sha256:3d0fc7ac8da2de811bbc890a4a2a7b32ffc5f59fb9ee36a3e391cdec65548c77",
+    "stability_policy_id": "scheduled_load_transfer_bw13p_a_v1",
+    "global_requested_correction_scale": 0.5,
+    "desired_forward_velocity_m_s": 0.2,
+    "gait_family_id": "lateral_wave",
+    "phase_progression_mode": "clocked",
+    "controller_branch_surface_count": 0
+  },
+  "frozen_host_identity": {
+    "engine": "rapier3d",
+    "engine_version": "0.34.0",
+    "outer_timestep_s": 0.008333333767950535,
+    "solver_iterations": 16,
+    "num_internal_pgs_iterations": 3,
+    "num_internal_stabilization_iterations": 5,
+    "gravity_m_s2": [
+      0.0,
+      -9.8,
+      0.0
+    ],
+    "authored_friction": 0.95,
+    "motor_model": "ForceBased",
+    "motor_mode": "velocity_only",
+    "native_position_stiffness_nm_per_rad": 0.0,
+    "damping_nm_s_per_rad": 10.0,
+    "maximum_force_formula": "portable_maximum_outer_step_impulse_nms / outer_timestep_s",
+    "small_step_impulse_limit_formula": "maximum_force_nm * outer_timestep_s / solver_iterations",
+    "hidden_force_margin": 1.0,
+    "canonical_to_host_velocity_sign": 1.0
+  },
+  "initialization_contract": {
+    "zero_target_settle_steps": 0,
+    "controller_authority_begins_at_semantic_step": 0,
+    "reason": "Velocity-only actuation has no native position-holding term; a zero-velocity prelude is not equivalent to the retained combined-PD posture settle and would introduce a known uncontrolled-collapse phase before the tested controller.",
+    "initial_pose_is_the_compiled_s169_pose": true,
+    "initial_pose_snapshot_required_before_first_application": true,
+    "initial_declared_failure_events_must_be_empty_for_fixture_integrity": true,
+    "initial_contact_count_is_recorded_not_thresholded": true
+  },
+  "paired_arms": [
+    {
+      "arm_id": "EH1-A",
+      "order_index": 0,
+      "role": "canonical_velocity_only_bw15f_b_base_control",
+      "bw19v_plan_and_residual_computed_in_shadow": true,
+      "applied_stability_residual_scale": 0.0,
+      "load_bearing_host_mapping": "canonical_bw15f_b_base_plus_exact_zero_residual"
+    },
+    {
+      "arm_id": "EH1-B",
+      "order_index": 1,
+      "role": "canonical_velocity_only_bw19v_b_treatment",
+      "bw19v_plan_and_residual_computed_in_shadow": true,
+      "applied_stability_residual_scale": 0.5,
+      "load_bearing_host_mapping": "canonical_bw15f_b_base_plus_bounded_bw19v_residual"
+    }
+  ],
+  "physical_horizon": {
+    "expected_world_count": 2,
+    "world_reset_count": 0,
+    "steps_per_arm": 472,
+    "expected_total_trace_steps": 944,
+    "expected_commands_per_layer_per_arm": 3776,
+    "continue_after_declared_failure_event": true,
+    "early_stop_allowed_only_for_fatal_process_or_integrity_failure": true,
+    "failed_arm_replacement_forbidden": true,
+    "arm_deletion_or_averaging_forbidden": true
+  },
+  "declared_diagnostic_events": {
+    "torso_ground_contact": true,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "maximum_anchor_error_m": 0.025575899999999995,
+    "maximum_hinge_axis_error_rad": 0.2,
+    "threshold_source": "retained_unchanged_from_closed_ED1_for_timing_comparability",
+    "events_are_physical_outcomes_not_integrity_gate_failures": true
+  },
+  "required_per_step_receipts": [
+    "pre_step_torso_and_structure_snapshot",
+    "portable_controller_actuation_receipt_sha256",
+    "ordered_portable_base_commands",
+    "v4_planning_and_bounding_receipt_sha256",
+    "planning_availability_and_bw19v_scale",
+    "ordered_bounded_canonical_residuals",
+    "canonical_actuation_frame_sha256",
+    "rapier_host_mapping_sha256",
+    "ordered_load_bearing_host_commands",
+    "ordered_post_step_joint_motor_readbacks_and_impulses",
+    "post_step_torso_and_structure_snapshot",
+    "declared_diagnostic_events"
+  ],
+  "integrity_gate": {
+    "both_arms_complete_exact_472_step_horizon": true,
+    "world_count_exactly_two": true,
+    "all_eight_ordered_actuators_present_at_every_layer": true,
+    "controller_errors": 0,
+    "safe_no_actuation_frames": 0,
+    "composition_errors": 0,
+    "nonfinite_observations": 0,
+    "actuator_application_mismatches": 0,
+    "motor_model_or_field_readback_mismatches": 0,
+    "small_step_impulse_limit_violations": 0,
+    "global_scale_mismatches": 0,
+    "native_position_target_applications": 0,
+    "arm_a_applied_nonzero_stability_residuals": 0,
+    "arm_b_requires_at_least_one_nonzero_bounded_and_applied_stability_residual": true,
+    "complete_report_serialization_and_recomputation_required": true,
+    "physical_event_pattern_is_not_an_integrity_predicate": true,
+    "report_ok_means_complete_diagnostic_not_physical_success": true
+  },
+  "outcome_interpretation": {
+    "neither_arm_event": "The v4 pair completed the early horizon without a declared event; this permits a distinct longer commissioning design but is not walking acceptance.",
+    "control_only_event": "The exact BW19V treatment delayed or avoided an event in this paired screen; this is development evidence only.",
+    "treatment_only_event": "The applied BW19V residual is a candidate contributor to the early failure under v4 and requires diagnosis; no post-hoc scale change is allowed in EH1.",
+    "both_arms_event": "The corrected v4 host path still has an early body-level failure in both arms; use the retained traces to distinguish base-command, initialization, contact, force-limit, or shared dynamics causes.",
+    "first_event_step_difference_is_descriptive_not_a_selector": true,
+    "no_arm_or_policy_is_selected_by_eh1": true
+  },
+  "preflight_contract": {
+    "must_run_before_any_eh1_physics_world": true,
+    "perfect_synthetic_two_arm_report_must_pass_the_complete_real_integrity_gate": true,
+    "all_four_declared_physical_event_patterns_must_remain_integrity_valid": true,
+    "negative_controls": [
+      "missing_trace_step",
+      "reordered_semantic_step",
+      "wrong_selected_policy_identity",
+      "wrong_bw19v_scale",
+      "arm_a_nonzero_residual_application",
+      "arm_b_missing_nonzero_residual_application",
+      "nonzero_native_position_stiffness",
+      "wrong_motor_model",
+      "motor_target_readback_mismatch",
+      "small_step_impulse_limit_violation",
+      "missing_or_reordered_actuator",
+      "claim_or_world_count_inflation"
+    ],
+    "world_build_count": 0,
+    "scene_insertion_count": 0,
+    "physics_state_modified": false,
+    "locomotion_outcome_exposed": false,
+    "physical_acceptance_authority": false
+  },
+  "execution_contract": {
+    "physical_execution_requires_explicit_run_physical_switch": true,
+    "physical_execution_requires_clean_head_equal_origin_main": true,
+    "physical_execution_requires_source_commit_distinct_from_implementation_parent": true,
+    "physical_execution_requires_exact_preregistration_and_source_hashes": true,
+    "one_complete_two_world_report_only": true,
+    "durable_non_overwritable_evidence_root_required": true,
+    "same_identity_rerun_forbidden_after_any_complete_attempt": true,
+    "threshold_or_horizon_change_forbidden_after_first_world": true,
+    "report_rewrite_or_arm_replacement_forbidden": true
+  },
+  "claims": {
+    "complete_mechanism_development_trace_only": true,
+    "rapier_v4_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "walking_acceptance": false,
+    "bw19v_improvement": false,
+    "cross_engine_selected_policy_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "friction_or_material_robustness": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": "sporespore_mujoco_warp_metric_semantics_contract_v1",
+  "contract_id": "sporespore_mujoco_warp_precalibration_metric_semantics_readiness_v1",
+  "status": "zero_world_source_only_all_production_metric_semantics_unresolved",
+  "question_class": "development",
+  "purpose": "Make the five CPU-MuJoCo versus MuJoCo-Warp metric names executable before any semantic ceiling or production calibration plan is installed, while preserving the current absence of production component registries, normalization scales, horizon rules, energy semantics, and contact-event semantics.",
+  "predecessor_boundary": {
+    "calibration_contract_path": "sdk/adaptation_provider/mujoco_warp_equivalence_calibration_contract_v1.json",
+    "calibration_contract_raw_sha256": "sha256:c38f26211882f3349266f7381fcc5dc34acc9b20e5485d3b18d7f1185c35e374",
+    "semantic_ceiling_contract_path": "sdk/adaptation_provider/mujoco_warp_semantic_ceiling_readiness_contract_v1.json",
+    "semantic_ceiling_contract_raw_sha256": "sha256:eddc0afaabdafd483319007384cb5184e3fae792a74ae19002dd2b982caa1ceb",
+    "semantic_ceiling_validation_manifest_path": "sdk/adaptation_provider/mujoco_warp_semantic_ceiling_readiness_validation_manifest.json",
+    "semantic_ceiling_validation_manifest_raw_sha256": "sha256:270a98b21008bacccdfc446712bc3c66fb9eec4f9b75d47c2b7b886cf39483dc",
+    "semantic_ceiling_source_commit": "faaf057ad6379ba66ec1a4425f479082f28cb1b6",
+    "semantic_ceiling_source_report_sha256": "sha256:8102f0cbc8153f724d408ea4fc0393dfdb226b4a70c8521fb9e7b45b6be4b3fe",
+    "semantic_ceiling_integration_commit": "dd553b6e669c8875eaff71fb0d35c59d65c5c329",
+    "semantic_ceiling_integration_receipt_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\conformance-runs\\20260814T222617Z-dd553b6e-5108da71f3fe495c976a89e5d7f6a987\\receipt.json",
+    "semantic_ceiling_integration_receipt_sha256": "sha256:67b6eedcb9aed2a2b2c16d8290c1452d4d2f8256c65f14d9f554c26d6487cfe9",
+    "semantic_ceiling_integration_receipt_byte_length": 17339,
+    "accepted_production_semantic_ceiling_source_count": 0,
+    "production_semantic_ceiling_sources_complete": false,
+    "production_plan_exists": false,
+    "physical_calibration_series_open": false,
+    "heldout_qualification_series_open": false
+  },
+  "required_metric_semantics": [
+    {
+      "metric_id": "one_step_state_linf_normalized",
+      "unit": "normalized_ratio",
+      "kind": "continuous_smaller_is_better",
+      "required_definition": "An ordered state-observable registry with exact quantity, unit, value kind, positive normalization scale, scale provenance, and one-step index.",
+      "status": "unresolved_no_production_metric_definition"
+    },
+    {
+      "metric_id": "one_step_actuator_linf_normalized",
+      "unit": "normalized_ratio",
+      "kind": "continuous_smaller_is_better",
+      "required_definition": "An ordered actuator-observable registry with exact quantity, unit, value kind, positive normalization scale, scale provenance, and one-step index.",
+      "status": "unresolved_no_production_metric_definition"
+    },
+    {
+      "metric_id": "bounded_horizon_pose_velocity_rms_normalized",
+      "unit": "normalized_ratio",
+      "kind": "continuous_smaller_is_better",
+      "required_definition": "An ordered pose/velocity observable registry, exact inclusive step range, scalar/periodic/quaternion difference rules, normalization scales, and RMS population.",
+      "status": "unresolved_no_production_metric_definition"
+    },
+    {
+      "metric_id": "bounded_horizon_energy_relative_error",
+      "unit": "relative_ratio",
+      "kind": "continuous_smaller_is_better",
+      "required_definition": "One exact energy observable, CPU-reference denominator rule, positive denominator floor with provenance, inclusive step range, and aggregation rule.",
+      "status": "unresolved_no_production_metric_definition"
+    },
+    {
+      "metric_id": "contact_event_time_error_steps",
+      "unit": "step",
+      "kind": "discrete_smaller_is_better",
+      "required_definition": "Exact body-pair/event-kind/occurrence identity, exact-count matching, canonical step index, mismatch failure, and maximum absolute step-delta aggregation.",
+      "status": "unresolved_no_production_metric_definition"
+    }
+  ],
+  "metric_suite_contract": {
+    "schema_version": "sporespore_mujoco_warp_metric_semantics_suite_v1",
+    "fixture_only_positive_path": true,
+    "production_suite_installation_permitted_by_this_gate": false,
+    "step_index_origin": 0,
+    "one_step_observation_index": 1,
+    "bounded_horizon_inclusion": "steps_1_through_h_inclusive",
+    "required_component_registries": [
+      "state_components",
+      "actuator_components",
+      "pose_velocity_components"
+    ],
+    "allowed_value_kinds": [
+      "scalar_linear",
+      "scalar_periodic_radians",
+      "unit_quaternion_wxyz"
+    ],
+    "normalization_scale_must_be_finite_and_strictly_positive": true,
+    "periodic_and_quaternion_errors_are_measured_in_radians": true,
+    "periodic_error_rule": "absolute_shortest_arc_modulo_2pi_radians",
+    "quaternion_input_rule": "finite_nonzero_wxyz_normalized_for_error",
+    "quaternion_error_rule": "twice_arccos_absolute_normalized_dot_clamped_to_unit_interval",
+    "quaternion_sign_is_invariant": true,
+    "raw_quaternion_norm_is_not_a_metric_component": true,
+    "component_order_is_hash_bound": true,
+    "normalization_source_and_provenance_required": true,
+    "normalization_adequacy_argument_required": true,
+    "normalization_chosen_before_outcomes_required": true,
+    "bounded_population_scope_required": true,
+    "broader_population_claim_permitted": false
+  },
+  "metric_formula_contract": {
+    "one_step_state_linf_normalized": {
+      "source_registry": "state_components",
+      "sample_population": "one_step_observation_index_only",
+      "component_error": "value_kind_error_divided_by_component_normalization_scale",
+      "aggregation": "maximum_over_ordered_components"
+    },
+    "one_step_actuator_linf_normalized": {
+      "source_registry": "actuator_components",
+      "sample_population": "one_step_observation_index_only",
+      "component_error": "value_kind_error_divided_by_component_normalization_scale",
+      "aggregation": "maximum_over_ordered_components"
+    },
+    "bounded_horizon_pose_velocity_rms_normalized": {
+      "source_registry": "pose_velocity_components",
+      "sample_population": "cartesian_product_steps_1_through_h_inclusive_and_ordered_components",
+      "component_error": "value_kind_error_divided_by_component_normalization_scale",
+      "aggregation": "sqrt_sum_squared_errors_divided_by_h_times_component_count"
+    },
+    "bounded_horizon_energy_relative_error": {
+      "source_field": "energy_j",
+      "sample_population": "steps_1_through_h_inclusive",
+      "per_step_error": "abs_cpu_reference_minus_warp_candidate_divided_by_max_abs_cpu_reference_and_positive_floor",
+      "aggregation": "sqrt_sum_squared_errors_divided_by_h"
+    },
+    "contact_event_time_error_steps": {
+      "source_field": "contact_events",
+      "sample_population": "exactly_matched_event_identities",
+      "per_event_error": "absolute_cpu_reference_step_minus_warp_candidate_step",
+      "aggregation": "maximum_or_exact_zero_for_empty_matched_set",
+      "identity_or_count_mismatch": "exact_failure_without_numeric_substitution"
+    }
+  },
+  "energy_semantics_contract": {
+    "allowed_observables": [
+      "total_mechanical_energy_j",
+      "cumulative_actuator_work_j",
+      "cumulative_absolute_actuator_work_j"
+    ],
+    "reference_role": "cpu_reference",
+    "denominator_rule": "max_abs_cpu_reference_and_positive_floor",
+    "denominator_floor_j_must_be_finite_positive_and_provenanced": true,
+    "denominator_floor_adequacy_argument_required": true,
+    "aggregation": "rms_over_steps_1_through_h_inclusive",
+    "outcome_selected_observable_floor_or_aggregation_permitted": false
+  },
+  "contact_event_semantics_contract": {
+    "identity_fields": [
+      "body_pair_id",
+      "event_kind",
+      "occurrence_index"
+    ],
+    "allowed_event_kinds": [
+      "contact_begin",
+      "contact_end"
+    ],
+    "matching_rule": "exact_identity_and_count",
+    "event_order": "lexicographic_body_pair_kind_occurrence",
+    "occurrence_indexing": "one_based_contiguous_per_body_pair_and_event_kind",
+    "aggregation": "maximum_absolute_step_delta",
+    "empty_matched_event_set_value_steps": 0,
+    "identity_or_count_mismatch_disposition": "exact_failure_without_numeric_substitution",
+    "population_scope_adequacy_argument_required": true,
+    "outcome_selected_matching_or_remapping_permitted": false
+  },
+  "paired_trace_contract": {
+    "schema_version": "sporespore_mujoco_warp_metric_fixture_trace_v1",
+    "required_runtime_roles": [
+      "cpu_reference",
+      "warp_candidate"
+    ],
+    "exact_steps_required": "0_through_h_inclusive_without_gap_or_duplicate",
+    "component_key_set_must_match_registry_exactly": true,
+    "all_scalar_quaternion_and_energy_values_must_be_finite": true,
+    "zero_norm_quaternion_permitted": false,
+    "trace_suite_hash_binding_required": true,
+    "trace_content_address_required": true,
+    "nonzero_exact_failure_count_yields_no_valid_metric_vector": true,
+    "fixture_trace_may_create_scientific_or_physical_result": false
+  },
+  "current_inventory": {
+    "inventory_id": "mujoco_warp_metric_semantics_current_unresolved_v1",
+    "required_metric_count": 5,
+    "production_metric_definition_count": 0,
+    "unresolved_metric_count": 5,
+    "production_metric_semantics_complete": false,
+    "production_semantic_ceiling_sources_complete": false,
+    "production_plan_exists": false,
+    "calibration_authorized": false
+  },
+  "source_conformance": {
+    "required_cells": [
+      "mjms0_contract_and_predecessor_boundary",
+      "mjms1_current_incomplete_inventory",
+      "mjms2_fixture_suite_compilation",
+      "mjms3_positive_fixture_evaluation",
+      "mjms4_component_and_normalization_controls",
+      "mjms5_trace_and_horizon_controls",
+      "mjms6_energy_contact_and_failure_controls",
+      "mjms7_authority_boundary"
+    ],
+    "exact_mutation_control_count": 52,
+    "model_construction_count": 0,
+    "step_invocation_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "claims": {
+    "production_metric_semantics_complete": false,
+    "production_semantic_ceiling_sources_complete": false,
+    "production_calibration_plan_frozen": false,
+    "calibration_physics_executed": false,
+    "production_margins_frozen": false,
+    "heldout_cohort_frozen": false,
+    "supported_physics_subset_qualified": false,
+    "throughput_measured": false,
+    "training_plane_authorized": false,
+    "training_data_authority": false,
+    "native_mujoco_equivalence": false,
+    "cross_engine_equivalence": false,
+    "scientific_result": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

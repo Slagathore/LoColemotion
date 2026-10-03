@@ -1,0 +1,183 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_convergence_window_closure_v1",
+  "status": "closed_negative_low_iteration_convergence_window",
+  "closed_utc": "2026-07-31T08:23:07Z",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-CONVERGENCE-WINDOW",
+  "gate_id": "C6-RAP-HC-CW1",
+  "experiment_source_commit": "de2af8876d76b248b83d7bc0c3a2ef15e5830656",
+  "source_was_clean_and_equal_to_origin_main": true,
+  "preregistration": {
+    "path": "sdk/rapier_c6_force_based_convergence_window_cw1_preregistration.json",
+    "raw_sha256": "bb38c730c3df137cebb240d1450263426d974630001caddc0d2f05f031eda3fb",
+    "status": "frozen_before_first_c6_rap_hc_cw1_physics_world",
+    "implementation_parent_commit": "ce5baaa4fa5dd2df0cfd04d7683d9636c8511421"
+  },
+  "predecessor_artifacts": {
+    "lr1_closure_path": "sdk/rapier_c6_force_based_load_response_lr1_closure.json",
+    "lr1_closure_sha256": "edb1890f9b9b4a38e53446f474f7c75e5aff8ce102d797912ce4ac7ef7d61a9f",
+    "lr1_posthoc_diagnostic_path": "sdk/rapier_c6_force_based_load_response_lr1_posthoc_diagnostic.json",
+    "lr1_posthoc_diagnostic_sha256": "5cf4f29192354479d23ca06e0306d1128b100bb3c9e224ceb7a25883999f38bb",
+    "fb1_and_lr1_remain_closed_negative": true,
+    "no_predecessor_was_rerun_rethresholded_or_reclassified": true
+  },
+  "complete_attempt": {
+    "root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-convergence-window-cw1-de2af88",
+    "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-convergence-window-cw1-de2af88\\report.json",
+    "report_sha256": "1216f999b58a836b4242142dfbfb2fb17b6412582cee31b6a62d4070962a8e77",
+    "stdout_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-convergence-window-cw1-de2af88\\stdout.log",
+    "stdout_sha256": "1216f999b58a836b4242142dfbfb2fb17b6412582cee31b6a62d4070962a8e77",
+    "stderr_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-convergence-window-cw1-de2af88\\stderr.log",
+    "stderr_sha256": "e204b5aaa4cdeb48c3aabfe55c620fb3fa0806545e0dcf1fe6af8afdbbadffb7",
+    "process_exit_code": 1,
+    "world_attempt_count": 8,
+    "world_build_count": 8,
+    "cell_count": 8,
+    "passed_cell_count": 4,
+    "failed_cell_count": 4,
+    "convergence_window_reached_count": 4,
+    "motor_model_readback_count": 8,
+    "motor_model_mismatch_count": 0,
+    "nonfinite_value_count": 0,
+    "step_impulse_limit_violation_count": 0,
+    "load_relative_static_convergence_grid_passed": false,
+    "signed_pair_symmetry_passed": true,
+    "maximum_signed_pair_relative_asymmetry": 0.0004162341658496908,
+    "arm_magnitude_ordering_passed": true,
+    "solver_iteration_inverse_scaling_passed": true,
+    "maximum_solver_scaling_relative_error": 0.00012662294458454237,
+    "failure_codes": [
+      "C6_RAP_HC_CW1_passed_cell_count_INVALID",
+      "C6_RAP_HC_CW1_failed_cell_count_INVALID",
+      "C6_RAP_HC_CW1_convergence_window_reached_count_INVALID",
+      "C6_RAP_HC_CW1_load_relative_static_convergence_grid_passed_INVALID"
+    ]
+  },
+  "solver_iteration_partition": {
+    "solver_12": {
+      "cell_count": 4,
+      "passed_cell_count": 0,
+      "failed_cell_count": 4,
+      "all_exhausted_maximum_1440_steps": true,
+      "convergence_window_reached_count": 0,
+      "longest_consecutive_windows_by_ordered_cell": [
+        2,
+        2,
+        42,
+        42
+      ],
+      "terminal_damping_load_fraction_by_ordered_cell": [
+        0.021558396518230438,
+        0.021558396518230438,
+        0.007691474631428719,
+        0.007691519800573587
+      ],
+      "terminal_spring_only_static_residual_by_ordered_cell": [
+        0.02161855250597,
+        0.02161855250597,
+        0.007714242674410343,
+        0.007714242674410343
+      ]
+    },
+    "solver_36": {
+      "cell_count": 4,
+      "passed_cell_count": 4,
+      "failed_cell_count": 0,
+      "convergence_window_reached_count": 4,
+      "ordered_convergence_window_start_steps": [
+        144,
+        144,
+        145,
+        145
+      ],
+      "ordered_convergence_window_end_steps": [
+        203,
+        203,
+        204,
+        204
+      ],
+      "required_consecutive_steps_observed_in_every_cell": 60
+    }
+  },
+  "technical_disposition": {
+    "explicit_force_based_selection_observed_in_every_cell": true,
+    "source_derived_small_step_impulse_response_worked_for_all_declared_cells": true,
+    "normalized_terminal_impulse_response_observed_minimum": 1.0,
+    "normalized_terminal_impulse_response_observed_maximum": 1.0000568628311157,
+    "full_pd_gravity_residual_observed_maximum": 0.00006016639599693008,
+    "signed_pair_symmetry_worked": true,
+    "arm_magnitude_ordering_worked": true,
+    "inverse_solver_iteration_scaling_worked": true,
+    "anchor_integrity_worked": true,
+    "small_step_force_limit_worked": true,
+    "solver_36_complete_convergence_window_worked_for_all_declared_arms": true,
+    "solver_12_complete_convergence_window_worked_for_all_declared_arms": false,
+    "frozen_success_contract_passed": false,
+    "force_based_static_convergence_characterization_authorized": false,
+    "force_based_host_characterization_authorized": false,
+    "selected_policy_locomotion_evaluated": false,
+    "result_is_not_a_selected_policy_verdict": true
+  },
+  "failure_analysis": {
+    "classification": "retained_outcome_for_distinct_configuration_successor_design",
+    "observed_mechanism": "All four 12-iteration cells exhausted the 1,440-step ceiling without retaining 60 consecutive load-relative convergence steps. Their longest windows were only 2, 2, 42, and 42 steps, while all four 36-iteration cells completed the window at steps 203 or 204.",
+    "what_worked": "Every cell preserved ForceBased readback, finite observations, source-derived small-step impulse response, full-PD gravity balance, signs, anchor integrity, force limits, signed symmetry, arm ordering, and inverse solver scaling.",
+    "what_failed": "The 12-iteration configuration retained a persistent load-relative damping contribution above the frozen 0.5 percent convergence bound; the 0.20 m cells also exceeded the 1 percent spring-only static residual at the terminal ceiling.",
+    "continuous_time_horizon_inference_rejected": "The 12-second ceiling exceeded 52 declared linearized continuous-time constants, so the failure is not defensibly described as merely needing more continuous-time settling. The discrete Rapier solver configuration remained material.",
+    "likely_successor_question": "A distinct successor may prospectively characterize a supported solver-iteration configuration band on fresh arms and iteration counts, while preserving the same load-relative convergence and source-response gates.",
+    "may_not_reclassify_cw1": true,
+    "successor_requirements": [
+      "new campaign, gate, source identity, and preregistration",
+      "classify all CW1 arms and solver counts as outcome-exposed",
+      "use fresh physical cells and prospectively declare any supported solver-configuration scope",
+      "retain explicit ForceBased builder and mutable readback",
+      "retain the source-derived impulse, static residual, load-relative damping, full-PD, force-limit, signed-pair, and convergence-window gates",
+      "run the complete zero-world trace and aggregate gate before any successor world"
+    ]
+  },
+  "immutability": {
+    "same_identity_rerun_forbidden": true,
+    "report_rewrite_forbidden": true,
+    "threshold_change_forbidden": true,
+    "failed_cell_deletion_replacement_or_averaging_forbidden": true,
+    "posthoc_pass_reclassification_forbidden": true,
+    "successor_requires_new_identity": true
+  },
+  "next_allowed_work": {
+    "distinct_solver_configuration_successor_may_be_preregistered": true,
+    "rapier_selected_policy_locomotion_remains_blocked": true,
+    "mujoco_selected_policy_work_may_continue_independently": true,
+    "bw19v_cold_friction_campaign_may_continue_independently": true,
+    "portable_release_policy_unchanged": true
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+      "sha256": "b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+    }
+  ],
+  "claims": {
+    "rapier_force_based_static_convergence_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

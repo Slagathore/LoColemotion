@@ -1,0 +1,133 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_load_response_posthoc_diagnostic_v1",
+  "status": "retained_zero_world_posthoc_mechanism_diagnostic_not_acceptance",
+  "recorded_utc": "2026-07-31T08:07:16Z",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-LOAD-RESPONSE",
+  "gate_id": "C6-RAP-HC-LR1",
+  "diagnostic_id": "C6-RAP-HC-LR1-PD-D1",
+  "world_build_count": 0,
+  "physics_state_modified": false,
+  "source_artifacts": {
+    "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-force-based-load-response-lr1-5a91c4d\\report.json",
+    "report_sha256": "55a907eb027ca4c5e3d8443fac9869d058ecaa920dc9f299fdadc4c81c2402d7",
+    "closure_path": "sdk/rapier_c6_force_based_load_response_lr1_closure.json",
+    "closure_sha256": "edb1890f9b9b4a38e53446f474f7c75e5aff8ce102d797912ce4ac7ef7d61a9f",
+    "preregistration_path": "sdk/rapier_c6_force_based_load_response_lr1_preregistration.json",
+    "preregistration_sha256": "975e9205c46b3e718d3484a3e2d9185bddf4cd04da66ce326fc9bd14671dc031",
+    "rapier_motor_model_source_path": "src/dynamics/joint/motor_model.rs",
+    "rapier_motor_model_source_sha256": "474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648"
+  },
+  "source_grounded_equation": {
+    "rapier_force_based_law": "force_or_torque = stiffness * position_error + damping * velocity_error",
+    "zero_target_magnitude_reconstruction": "abs(stiffness * final_angle_rad + damping * terminal_angular_velocity_rad_s)",
+    "gravity_torque": "mass_kg * gravity_m_s2 * abs(signed_lever_arm_z_m) * cos(abs(final_angle_rad))",
+    "normalized_full_pd_gravity_residual": "abs(reconstructed_full_pd_torque_nm - gravity_torque_nm) / gravity_torque_nm",
+    "normalized_damping_load_fraction": "damping_nm_s_per_rad * abs(terminal_angular_velocity_rad_s) / gravity_torque_nm"
+  },
+  "cells": [
+    {
+      "cell_id": "arm_0.15_negative_solver_10",
+      "frozen_static_residual": 0.04028994217514992,
+      "damping_load_fraction": 0.04014925647213087,
+      "reconstructed_full_pd_torque_nm": 1.4691341575235128,
+      "gravity_torque_nm": 1.4689274922890667,
+      "full_pd_gravity_residual": 0.0001406912427815428
+    },
+    {
+      "cell_id": "arm_0.15_positive_solver_10",
+      "frozen_static_residual": 0.04028994217514992,
+      "damping_load_fraction": 0.040149189900519376,
+      "reconstructed_full_pd_torque_nm": 1.4691342553123832,
+      "gravity_torque_nm": 1.4689274922890667,
+      "full_pd_gravity_residual": 0.0001407578143930403
+    },
+    {
+      "cell_id": "arm_0.35_negative_solver_10",
+      "frozen_static_residual": 0.013178691267967224,
+      "damping_load_fraction": 0.013116877640182654,
+      "reconstructed_full_pd_torque_nm": 3.4173711435869336,
+      "gravity_torque_nm": 3.417159626445887,
+      "full_pd_gravity_residual": 0.00006189852514048563
+    },
+    {
+      "cell_id": "arm_0.35_positive_solver_10",
+      "frozen_static_residual": 0.013178691267967224,
+      "damping_load_fraction": 0.013116910345329962,
+      "reconstructed_full_pd_torque_nm": 3.4173710318282247,
+      "gravity_torque_nm": 3.417159626445887,
+      "full_pd_gravity_residual": 0.0000618658199931788
+    },
+    {
+      "cell_id": "arm_0.15_negative_solver_40",
+      "frozen_static_residual": 0.0027839241083711386,
+      "damping_load_fraction": 0.0027767745253027614,
+      "reconstructed_full_pd_torque_nm": 1.469013792811893,
+      "gravity_torque_nm": 1.4690033260674775,
+      "full_pd_gravity_residual": 0.000007125065157901609
+    },
+    {
+      "cell_id": "arm_0.15_positive_solver_40",
+      "frozen_static_residual": 0.0027839241083711386,
+      "damping_load_fraction": 0.0027767517415524245,
+      "reconstructed_full_pd_torque_nm": 1.469013826281298,
+      "gravity_torque_nm": 1.4690033260674775,
+      "full_pd_gravity_residual": 0.000007147848908238541
+    },
+    {
+      "cell_id": "arm_0.35_negative_solver_40",
+      "frozen_static_residual": 0.0008097584941424429,
+      "damping_load_fraction": 0.0007952012412709384,
+      "reconstructed_full_pd_torque_nm": 3.417518535279669,
+      "gravity_torque_nm": 3.4174687695954793,
+      "full_pd_gravity_residual": 0.000014562147467835959
+    },
+    {
+      "cell_id": "arm_0.35_positive_solver_40",
+      "frozen_static_residual": 0.0008097584941424429,
+      "damping_load_fraction": 0.0007952052438825896,
+      "reconstructed_full_pd_torque_nm": 3.4175185216008686,
+      "gravity_torque_nm": 3.4174687695954793,
+      "full_pd_gravity_residual": 0.000014558144856184797
+    }
+  ],
+  "aggregate": {
+    "cell_count": 8,
+    "maximum_frozen_static_residual": 0.04028994217514992,
+    "maximum_damping_load_fraction": 0.04014925647213087,
+    "maximum_full_pd_gravity_residual": 0.0001407578143930403,
+    "frozen_static_failures_explained_by_nonzero_damping_contribution": true,
+    "source_derived_small_step_impulse_result_unchanged": true,
+    "lr1_frozen_result_unchanged": true,
+    "lr1_remains_closed_negative": true
+  },
+  "interpretation": {
+    "finding": "Across all eight retained LR1 cells, restoring Rapier's declared damping term reduces the apparent endpoint torque residual to at most approximately 0.014076 percent. In the two failed cells, the approximately 4.015 percent damping contribution accounts for essentially all of the approximately 4.029 percent spring-only residual.",
+    "mechanism": "LR1 compared a spring-only static torque reconstruction against gravity while its separate absolute terminal-speed gate still admitted a load-relative damping contribution above the frozen static-residual allowance for the smallest declared load.",
+    "architecture_killed": false,
+    "force_based_selection_disproved": false,
+    "joint_motor_impulse_small_step_semantics_disproved": false,
+    "lr1_passed": false,
+    "posthoc_result_may_not_satisfy_lr1_gate": true,
+    "posthoc_result_may_inform_only_a_distinct_successor": true
+  },
+  "successor_hypothesis": {
+    "classification": "development_hypothesis_not_validation",
+    "proposal": "Use a prospectively frozen, load-relative convergence window that requires both spring-only static residual and damping-load fraction to remain small for consecutive steps before accepting an endpoint.",
+    "fresh_physical_cells_required": true,
+    "new_campaign_gate_source_and_preregistration_required": true,
+    "complete_zero_world_preflight_required": true
+  },
+  "claims": {
+    "rapier_force_based_load_response_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

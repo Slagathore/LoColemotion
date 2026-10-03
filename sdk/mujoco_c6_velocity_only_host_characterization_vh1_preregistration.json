@@ -1,0 +1,269 @@
+{
+  "schema_version": "sporespore_mujoco_c6_velocity_only_host_characterization_vh1_preregistration_v1",
+  "campaign_id": "C6-MUJOCO-VELOCITY-ONLY-HOST-CHARACTERIZATION-VH1",
+  "gate_id": "C6-MJC-HC-VH1",
+  "status": "frozen_before_first_c6_mjc_hc_vh1_physics_world",
+  "recorded_utc": "2026-08-02T21:09:35Z",
+  "implementation_parent_commit": "d96843d2b7c96252e16a8a45b970f5aa428b8a52",
+  "study_class": "exact_finite_cell_velocity_only_host_characterization",
+  "estimand": {
+    "question": "Does the exact official-wheel MuJoCo 3.11.0 velocity actuator, with no native position feedback and the declared 6 N m force clamp, realize the source-derived affine steady response on the complete twelve-cell sub-limit target/load grid?",
+    "decision_unit": "the exact ordered twelve-cell C6-MJC-HC-VH1 grid",
+    "population_inference": false,
+    "superiority": false,
+    "non_inferiority": false,
+    "equivalence": false,
+    "development_selection": false,
+    "selector_present": false,
+    "cohort_size_or_sequential_stopping_argument_required": false,
+    "scope_if_confirmed": "exact finite MuJoCo 3.11.0 official CPython 3.11 wheel characterization for the declared velocity actuator, unit joint transmission, gain 10, force range [-6, 6] N m, 20/7 Newton solver configuration, fixture, targets, sub-limit constant torques, timestep, observation timing, horizon, and thresholds"
+  },
+  "scientifically_distinct_successor": {
+    "new_campaign_identity": true,
+    "new_gate_identity": true,
+    "new_source_identity_required_for_execution": true,
+    "cross_engine_r2_and_rapier_vh1_remain_immutable": true,
+    "no_predecessor_threshold_or_result_reinterpreted": true,
+    "difference_from_cross_engine_r2": "R2 characterized a MuJoCo native position servo. C6-MJC-HC-VH1 characterizes the v4 velocity-only ownership profile with no native position target or position feedback.",
+    "difference_from_rapier_vh1": "The finite targets and sub-limit load fractions are intentionally comparable, but MuJoCo actuator-force and generalized-force semantics, solver, fixture representation, and runtime are independently pinned and evaluated."
+  },
+  "semantic_parent": {
+    "profile_path": "sdk/canonical_velocity_actuation_profile_v1.json",
+    "profile_raw_sha256": "1240ad4bba89bc8d1c22fa270fa718c57ab5ee227d777434b3870b859001e6a3",
+    "semantics_path": "docs/LOCOMOTION_SEMANTICS_V4.md",
+    "semantics_raw_sha256": "19134cf0745f0a3d4cbbfb9c5ce4a7e051244c7477575863cee8558cf15da3c8",
+    "canonical_implementation_path": "sdk/core/src/canonical_actuation.rs",
+    "canonical_implementation_raw_sha256": "81bb1747c0abb903fdfc552e6764036c0479152388e09fd4c79b0813edd4a6c4",
+    "rapier_velocity_only_closure_path": "sdk/rapier_c6_force_based_velocity_only_host_characterization_vh1_closure.json",
+    "rapier_velocity_only_closure_raw_sha256": "d94b20ef4767479172408c1dfbd0b7f66e18e3f4bc8b9d8d84193fc157d284aa",
+    "cross_engine_host_closure_path": "sdk/cross_engine_c6_host_characterization_r2_closure.json",
+    "cross_engine_host_closure_raw_sha256": "a7b1b3c172b98780f574cec9dbb18bebda35429ece5105a0385ecb7d67d6ddd9",
+    "inheritance_boundary": "The canonical velocity-only ownership rule is inherited. Rapier outcomes are not MuJoCo validation data, and the MuJoCo R2 position-servo cells do not characterize this velocity-only profile."
+  },
+  "host_identity": {
+    "adapter_id": "sporespore_mujoco_adapter",
+    "engine": "MuJoCo",
+    "engine_version": "3.11.0",
+    "binding": "official_cpython_windows_wheel",
+    "python_version": "3.11.9",
+    "numpy_version": "2.4.6",
+    "timestep_s": 0.008333333333333333,
+    "integrator": "implicitfast",
+    "solver": "Newton",
+    "solver_iterations": 20,
+    "line_search_iterations": 7,
+    "gravity_m_s2": [0.0, 0.0, 0.0]
+  },
+  "host_source_semantics": {
+    "requirements_lock_path": "sdk/adapters/mujoco/requirements-lock.txt",
+    "requirements_lock_raw_sha256": "38e97a013ec5e7c5bd88cd4dc1c2c54dd151936aa7f24c1f87abac19853b77b9",
+    "python_base_executable": "C:/Program Files/Python311/python.exe",
+    "python_base_executable_raw_sha256": "5f7b89a612c9b8af1d6456cdfcd1dbe5ca630849e79aebced9bee9a6694952ec",
+    "installed_wheel_files": [
+      {
+        "relative_to_site_packages": "mujoco-3.11.0.dist-info/METADATA",
+        "raw_sha256": "3e4faabcb9a58cbde47388f34dfdac1602d79a14b2c6338df01f2618d461c385"
+      },
+      {
+        "relative_to_site_packages": "mujoco-3.11.0.dist-info/WHEEL",
+        "raw_sha256": "0b81650649feb673233bd9f4ddac78c902452a1d8bf79cf7362558225eedf1c6"
+      },
+      {
+        "relative_to_site_packages": "mujoco-3.11.0.dist-info/RECORD",
+        "raw_sha256": "6a17a9ec2623f033811a474901a696780abe6284b860f6a03aded9d629ed09f1"
+      },
+      {
+        "relative_to_site_packages": "mujoco/mujoco.dll",
+        "raw_sha256": "5144ebd4c805290c8be5a25702ab83ebc137bea67cf4a767164b38fc8c69b2dc"
+      },
+      {
+        "relative_to_site_packages": "mujoco/_structs.cp311-win_amd64.pyd",
+        "raw_sha256": "bb5cf4133c28c887c587d53ac2a627251a22beab818a4e849784d221eee6da72"
+      },
+      {
+        "relative_to_site_packages": "mujoco/_functions.cp311-win_amd64.pyd",
+        "raw_sha256": "558529970ab8da0f96a85e80f7c396331ed80f04ed9592e77431202ab621d3a2"
+      },
+      {
+        "relative_to_site_packages": "mujoco/include/mujoco/mujoco/mjdata.h",
+        "raw_sha256": "e5c1f0bfc1d9338849e05728e94186ff33c66bfc173c853459e5e0f8aa86131c"
+      },
+      {
+        "relative_to_site_packages": "mujoco/include/mujoco/mujoco/mjmodel.h",
+        "raw_sha256": "2f25d9f7c340acaf018c6502ae01aaac8f2d7487dd6a8f9a605256bfc6c9db67"
+      },
+      {
+        "relative_to_site_packages": "mujoco/include/mujoco/mujoco/mjtype.h",
+        "raw_sha256": "dab3c228432edfd37d937cc3b7a4d91cbfe04ff6e1fa28b5d9557a6e555e31a7"
+      }
+    ],
+    "official_header_semantics": {
+      "xanchor": "Cartesian position of joint anchor in world coordinates; the reported fixture residual is norm(xanchor - declared_world_anchor), not a generic constraint error.",
+      "actuator_force": "actuator force in actuation space",
+      "qfrc_actuator": "actuator force in joint/generalized space",
+      "qfrc_applied": "user-applied generalized force input",
+      "joint_transmission": "mjTRN_JOINT applies actuator force on the named joint"
+    },
+    "velocity_actuator_formula": "actuator_force_nm = velocity_gain_nm_s_per_rad * (target_velocity_rad_s - observed_velocity_rad_s), clamped to declared force range",
+    "sub_limit_constant_load_steady_velocity_formula": "expected_velocity_rad_s = target_velocity_rad_s + external_torque_nm / velocity_gain_nm_s_per_rad",
+    "sub_limit_steady_actuator_force_formula": "expected_generalized_actuator_torque_nm = -external_torque_nm",
+    "derived_step_impulse_formula": "abs(generalized_actuator_torque_nm) * timestep_s",
+    "observation_timing": "After each primary mj_step returns, copy the integration state and declared inputs into a separate MjData observation buffer and call mj_forward there. Read velocity, actuator force, generalized actuator force, applied force, and joint-anchor world position from that coherent observation buffer; the observation buffer never feeds the primary trajectory.",
+    "source_and_runtime_hash_mismatch_fails_before_any_world": true
+  },
+  "fixture": {
+    "joint_type": "unlimited_hinge",
+    "joint_axis_mujoco": [1.0, 0.0, 0.0],
+    "joint_axis_canonical": [1.0, 0.0, 0.0],
+    "joint_anchor_world_m": [0.0, 0.0, 0.0],
+    "joint_armature": 0.01,
+    "joint_passive_damping": 0.0,
+    "child_shape": "box",
+    "child_half_extents_m": [0.1, 0.1, 0.1],
+    "child_mass_kg": 1.0,
+    "contacts_enabled": false,
+    "primary_data_buffers_per_world": 1,
+    "read_only_observation_data_buffers_per_world": 1,
+    "observation_buffer_modifies_primary_trajectory": false
+  },
+  "motor_profile": {
+    "profile_id": "mujoco_velocity_servo_force_limited_v1",
+    "native_actuator": "velocity",
+    "transmission_type": "mjTRN_JOINT",
+    "transmission_gear": [1.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+    "control_semantics": "target_joint_velocity_rad_s",
+    "velocity_gain_nm_s_per_rad": 10.0,
+    "minimum_force_nm": -6.0,
+    "maximum_force_nm": 6.0,
+    "maximum_declared_load_fraction_of_force_limit": 0.375,
+    "maximum_derived_step_impulse_nms": 0.05,
+    "native_position_target": false,
+    "independent_native_position_feedback": false,
+    "requested_position_role": "portable_controller_provenance_and_bounds_only",
+    "load_balance_equations": {
+      "terminal_velocity_rad_s": "target_velocity_rad_s + external_torque_nm / velocity_gain_nm_s_per_rad",
+      "terminal_generalized_actuator_torque_nm": "-external_torque_nm",
+      "derived_step_impulse_nms": "abs(generalized_actuator_torque_nm) * timestep_s"
+    },
+    "saturation_boundary": {
+      "every_declared_physical_load_is_strictly_sub_limit": true,
+      "dynamic_force_saturation_response_characterized": false,
+      "force_limit_configuration_readback_required": true,
+      "every_observed_generalized_actuator_torque_must_respect_force_limit": true,
+      "future_saturation_study_requires_new_campaign_identity": true
+    }
+  },
+  "physical_grid": {
+    "ordered_cells": [
+      {"cell_id": "unloaded_vn075", "kind": "unloaded", "target_velocity_rad_s": -0.75, "external_torque_nm": 0.0},
+      {"cell_id": "unloaded_vp075", "kind": "unloaded", "target_velocity_rad_s": 0.75, "external_torque_nm": 0.0},
+      {"cell_id": "unloaded_vn225", "kind": "unloaded", "target_velocity_rad_s": -2.25, "external_torque_nm": 0.0},
+      {"cell_id": "unloaded_vp225", "kind": "unloaded", "target_velocity_rad_s": 2.25, "external_torque_nm": 0.0},
+      {"cell_id": "loaded_vn150_tn075", "kind": "loaded", "target_velocity_rad_s": -1.5, "external_torque_nm": -0.75},
+      {"cell_id": "loaded_vn150_tp075", "kind": "loaded", "target_velocity_rad_s": -1.5, "external_torque_nm": 0.75},
+      {"cell_id": "loaded_vn150_tn225", "kind": "loaded", "target_velocity_rad_s": -1.5, "external_torque_nm": -2.25},
+      {"cell_id": "loaded_vn150_tp225", "kind": "loaded", "target_velocity_rad_s": -1.5, "external_torque_nm": 2.25},
+      {"cell_id": "loaded_vp150_tn075", "kind": "loaded", "target_velocity_rad_s": 1.5, "external_torque_nm": -0.75},
+      {"cell_id": "loaded_vp150_tp075", "kind": "loaded", "target_velocity_rad_s": 1.5, "external_torque_nm": 0.75},
+      {"cell_id": "loaded_vp150_tn225", "kind": "loaded", "target_velocity_rad_s": 1.5, "external_torque_nm": -2.25},
+      {"cell_id": "loaded_vp150_tp225", "kind": "loaded", "target_velocity_rad_s": 1.5, "external_torque_nm": 2.25}
+    ],
+    "outer_steps_per_cell": 360,
+    "first_acceptable_step": 120,
+    "required_consecutive_acceptable_steps": 60,
+    "worlds": 12,
+    "replacement_worlds": 0,
+    "early_stop_forbidden": true
+  },
+  "cell_gate": {
+    "normalized_terminal_velocity_response_inclusive": [0.98, 1.02],
+    "normalized_terminal_generalized_force_response_inclusive": [0.98, 1.02],
+    "maximum_joint_anchor_world_position_residual_m": 0.000000000001,
+    "maximum_actuation_space_to_joint_space_force_error_nm": 0.000000000001,
+    "maximum_applied_torque_readback_error_nm": 0.000000000001,
+    "maximum_derived_step_impulse_tolerance_nms": 0.000000000001,
+    "all_values_finite": true,
+    "exact_host_fixture_and_motor_readback": true,
+    "target_and_response_signs_must_match": true,
+    "loaded_generalized_actuator_torque_must_oppose_external_torque": true,
+    "all_360_steps_must_execute": true,
+    "at_least_60_consecutive_acceptable_steps_must_exist": true
+  },
+  "aggregate_gate": {
+    "all_12_cells_must_pass": true,
+    "missing_duplicate_or_reordered_cells_fail": true,
+    "maximum_mirrored_pair_relative_asymmetry": 0.005,
+    "model_or_field_mismatch_count": 0,
+    "nonfinite_observation_count": 0,
+    "derived_step_impulse_limit_violation_count": 0,
+    "actuation_space_to_joint_space_force_mismatch_count": 0,
+    "applied_torque_readback_mismatch_count": 0,
+    "world_attempt_count": 12,
+    "world_build_count": 12,
+    "world_reset_count": 0
+  },
+  "threshold_grounding": {
+    "velocity_response_band": "The dimensionless [0.98, 1.02] interval is retained from the independently positive Rapier VH1 finite signed-velocity and affine-load cells and applied to an independently implemented MuJoCo grid.",
+    "loaded_velocity_response": "The official velocity-actuator law is affine in control and velocity. With a unit joint transmission and an unsaturated constant external torque, force balance predicts target plus external torque divided by velocity gain.",
+    "loaded_force_response": "For the unit joint transmission, the official actuator-space and joint-space force observables must agree, and steady joint-space actuator torque must oppose the applied generalized torque.",
+    "pair_asymmetry": "The 0.005 dimensionless mirror bound is retained from Rapier VH1; the fixture is exactly signed-paired and no population or cross-engine-equivalence claim is made.",
+    "acceptance_window": "The first acceptable step 120, required 60-step streak, and 360-step ceiling are retained from the positive Rapier VH1 finite host design.",
+    "force_limit": "The absolute joint-space actuator torque may not exceed 6 N m, so the maximum derived outer-step impulse is 6/120 = 0.05 N m s plus only the declared numeric tolerance.",
+    "anchor_residual": "MuJoCo xanchor is a world-space anchor position. The gate measures its residual from the prospectively declared world origin and does not relabel it as a generic constraint error.",
+    "no_posthoc_numeric_threshold": true
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "must_hash_and_verify_the_exact_host_runtime_before_any_world": true,
+    "must_use_the_production_report_evaluator": true,
+    "perfect_synthetic_result_must_pass": true,
+    "perfect_synthetic_serialization_round_trip_must_pass": true,
+    "missing_cell_canary_must_fail": true,
+    "wrong_host_profile_canary_must_fail": true,
+    "wrong_velocity_response_canary_must_fail": true,
+    "wrong_force_response_canary_must_fail": true,
+    "actuation_space_to_joint_space_mismatch_canary_must_fail": true,
+    "applied_torque_readback_mismatch_canary_must_fail": true,
+    "anchor_residual_canary_must_fail": true,
+    "impulse_limit_canary_must_fail": true,
+    "world_count_inflation_canary_must_fail": true,
+    "physical_authority_inflation_canary_must_fail": true,
+    "world_build_count": 0,
+    "physics_state_modified": false,
+    "physical_acceptance_authority": false
+  },
+  "execution_contract": {
+    "physical_execution_requires_explicit_run_physical_switch": true,
+    "physical_execution_requires_clean_pushed_source": true,
+    "physical_execution_requires_head_equals_origin_main_and_live_github_main": true,
+    "physical_execution_requires_global_locomotion_operation_lock": true,
+    "physical_execution_requires_exact_full_godot_v2_conformance_attestation": true,
+    "physical_execution_requires_zero_prior_same_identity_evidence_roots": true,
+    "first_physical_process_launch_consumes_identity": true,
+    "attempt_reservation_must_precede_process_launch": true,
+    "report_must_be_retained_even_if_negative": true,
+    "report_may_not_be_overwritten": true,
+    "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence",
+    "same_identity_rerun_forbidden": true
+  },
+  "result_policy": {
+    "all_cells_pass": "close as positive exact finite host characterization",
+    "any_complete_cell_or_aggregate_gate_fails": "close as valid negative exact finite host characterization",
+    "world_or_process_infrastructure_is_incomplete": "retain the attempt and close or repair only under a prospectively declared recovery rule; never replace a completed locomotion outcome",
+    "threshold_cell_grid_or_selector_change_after_first_world": "forbidden",
+    "scientifically_distinct_successor_may_use_failure_mechanism": true
+  },
+  "claim_boundary": {
+    "exact_finite_mujoco_velocity_only_host_characterization_if_passed": true,
+    "dynamic_force_saturation_response": false,
+    "mujoco_selected_policy_locomotion": false,
+    "mujoco_walking": false,
+    "cross_engine_equivalence": false,
+    "continuous_host_domain_coverage": false,
+    "morphology_coverage": false,
+    "friction_or_material_robustness": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

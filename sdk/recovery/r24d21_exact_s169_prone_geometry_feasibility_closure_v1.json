@@ -1,0 +1,153 @@
+{
+  "schema_version": "sporespore_qsdk_r24d21_exact_s169_prone_geometry_feasibility_closure_v1",
+  "gate_id": "QSDK-R24D21",
+  "closed_local_date": "2026-08-26",
+  "status": "closed_exact_finite_infeasibility_decision_no_physical_world_opened",
+  "question_class": "finite_decision",
+  "source_commit": "603f33678d2cbb811b8b4430e07b1c64e1bbc8e8",
+  "contract_path": "sdk/recovery/r24d21_exact_s169_prone_geometry_feasibility_contract_v1.json",
+  "contract_raw_sha256": "sha256:30b2b8123ab5fe62349df60d8071e0d55f39558b75973da8910422c7c8ffd9dd",
+  "evaluator_path": "sdk/recovery/r24d21_exact_s169_prone_geometry_feasibility.py",
+  "evaluator_raw_sha256": "sha256:ca893feacc3d5eee58279b2d852811ea9a9860a0c5ff3d8876d034db5fedf589",
+  "source_audit_path": "tests/test_qsdk_r24d21_exact_s169_prone_geometry_feasibility_source.py",
+  "source_audit_raw_sha256": "sha256:b1a39f3dbeea98f216b3db4ccd920ff48c844c85809ac5ec445378b305600b08",
+  "bound_source": [
+    {
+      "path": "sdk/core/src/quadruped.rs",
+      "byte_length": 16809,
+      "raw_sha256": "sha256:d778bdcd74d8e529f682641bfdc7402a4bc56f70252f91471bb56fe3992a211a"
+    },
+    {
+      "path": "sdk/python/sporespore_locomotion.py",
+      "byte_length": 25921,
+      "raw_sha256": "sha256:5b47f8df71b707d84a893536bdc77553c3b8e38a88b3e122b162d0baa109c95d"
+    },
+    {
+      "path": "sdk/recovery/r24d21_exact_s169_prone_geometry_feasibility.py",
+      "byte_length": 7973,
+      "raw_sha256": "sha256:ca893feacc3d5eee58279b2d852811ea9a9860a0c5ff3d8876d034db5fedf589"
+    },
+    {
+      "path": "sdk/recovery/r24d21_exact_s169_prone_geometry_feasibility_contract_v1.json",
+      "byte_length": 5575,
+      "raw_sha256": "sha256:30b2b8123ab5fe62349df60d8071e0d55f39558b75973da8910422c7c8ffd9dd"
+    },
+    {
+      "path": "tests/test_qsdk_r24d21_exact_s169_prone_geometry_feasibility_source.py",
+      "byte_length": 6996,
+      "raw_sha256": "sha256:b1a39f3dbeea98f216b3db4ccd920ff48c844c85809ac5ec445378b305600b08"
+    }
+  ],
+  "execution": {
+    "source_identity_clean_pushed_remote_equal_before_execution": true,
+    "core_rebuilt_before_decision": true,
+    "python_version": "3.11.9",
+    "core_library_raw_sha256_at_execution": "sha256:5553f75a4b606d12bb4a1ea53dd8f2a70356d3449e70ecc1e7bba9452b302efc",
+    "decision_canonical_byte_length": 3692,
+    "decision_canonical_sha256": "sha256:c4686d6411444b48e18152a99b2aefc43695bfe5b5aea1320e39fd3136d5e75c",
+    "mujoco_imported": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "held_out_cell_access_count": 0,
+    "held_out_selector_invocation_count": 0
+  },
+  "decision": {
+    "population": "exact_s169_nominal_roll_joint_limit_valid_ventral_tangent_pose_family",
+    "population_size": 1,
+    "morphology_id": "qsdk_r05_generated_s169",
+    "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+    "morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "feasibility_threshold_m": 0.0,
+    "feasible": false,
+    "result": "exact_pose_family_infeasible_upper_link_necessary_condition",
+    "ordered_limb_count": 4,
+    "all_four_limb_bounds_identical": true,
+    "knee_search_required": false,
+    "per_limb_geometry": {
+      "torso_half_height_m": 0.06,
+      "hip_anchor_parent_y_m": -0.05,
+      "hip_center_y_m": 0.009999999999999995,
+      "upper_capsule_length_m": 0.18268499999999996,
+      "upper_capsule_radius_m": 0.0225,
+      "hip_lower_limit_rad": -0.72,
+      "hip_upper_limit_rad": 0.72,
+      "best_abs_hip_angle_rad": 0.72,
+      "proximal_cap_clearance_m": -0.012500000000000004,
+      "distal_cap_clearance_at_best_angle_m": -0.14984362962810435,
+      "maximum_upper_capsule_clearance_m": -0.14984362962810435,
+      "required_hip_anchor_parent_y_at_current_range_m": 0.09984362962810436
+    },
+    "adequacy": "Every allowed hip angle lies inside plus or minus 0.72 radians, so the upper link's distal cap remains below its proximal cap. The exact global maximum occurs at either range endpoint and is still 0.14984362962810435 m below the plane. The upper collision shape is independent of the knee, so no knee search can repair this necessary-condition failure.",
+    "r24d20_native_cross_check": {
+      "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r24d20-mujoco-recovery-ghost-20260827T035244995Z-0d8fe639",
+      "artifact_path": "paired_full_result.json",
+      "artifact_raw_sha256": "sha256:259bcf1f67ca9912ed115b33f389988e7074e39e47638f2a26db520d281dab3f",
+      "first_observation_front_left_upper_minimum_clearance_m": -0.14984362962810435,
+      "analytic_and_native_value_exactly_equal": true
+    }
+  },
+  "mutation_controls": [
+    {
+      "mutation_id": "raise_hip_anchor_until_current_range_is_exactly_tangent",
+      "hip_anchor_parent_y_m": 0.09984362962810436,
+      "maximum_upper_capsule_clearance_m": -6.938893903907228e-18,
+      "accepted": false,
+      "interpretation": "The real-valued tangency expression rounds to the last binary64 anchor below the strict boundary, so the exact predicate correctly still rejects it."
+    },
+    {
+      "mutation_id": "increase_hip_anchor_by_one_binary64_step_above_tangent",
+      "hip_anchor_parent_y_m": 0.09984362962810438,
+      "maximum_upper_capsule_clearance_m": 2.0816681711721685e-17,
+      "accepted": true,
+      "interpretation": "The immediately adjacent higher binary64 anchor yields positive clearance and is accepted, proving the zero boundary was neither relaxed nor stuck."
+    }
+  ],
+  "interpretation": {
+    "initializer_only_repair_possible_for_declared_pose_family": false,
+    "compiled_morphology_capability_mismatch_identified": true,
+    "current_s169_recovery_support_status": "unsupported_declared_pose_family_geometry_infeasible",
+    "current_s169_walking_or_turning_evidence_changed": false,
+    "current_s169_walking_or_turning_claim_rewritten": false,
+    "arbitrary_morphology_claimed": false,
+    "continuous_morphology_claimed": false,
+    "population_inference_claimed": false,
+    "physical_result_reinterpreted": false
+  },
+  "sdk_status": {
+    "sdk1_milestone_advanced": false,
+    "sdk1_completed_steps": 11,
+    "sdk1_total_steps": 20,
+    "full_program_completed_steps": 11,
+    "full_program_total_steps": 25
+  },
+  "next_boundary": {
+    "gate_id": "QSDK-R24D22",
+    "question_class": "development",
+    "work": "version_an_engine_neutral_recovery_capable_morphology_contract_with_explicit_hip_vertical_anchor_and_joint_range_authority_preserve_the_existing_s169_walking_and_turning_identity_as_immutable_and_refused_for_this_prone_task_then_prove_the_new_exact_reference_pose_family_geometry_feasible_at_zero_world_before_any_native_calibration",
+    "existing_s169_morphology_rewritten": false,
+    "existing_walking_evidence_rewritten": false,
+    "existing_turning_evidence_rewritten": false,
+    "controller_changed": false,
+    "physical_thresholds_changed": false,
+    "physical_world_permitted_before_zero_world_geometry_feasibility": false,
+    "held_out_cells_remain_sealed": true
+  },
+  "claim_boundary": {
+    "finite_geometry_decision_observed": true,
+    "exact_s169_declared_pose_family_infeasible": true,
+    "initializer_successor_implemented": false,
+    "recovery_capable_morphology_implemented": false,
+    "physical_question_opened": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "held_out_validation_claimed": false,
+    "cross_engine_recovery_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "closure_audit_path": "tests/test_qsdk_r24d21_exact_s169_prone_geometry_feasibility_closure.py"
+}

@@ -1,0 +1,2110 @@
+{
+  "schema_version": "sporespore_development_upright_stance_precheck_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt_retained_inputs",
+    "authority_mode": "non_native_controller_precheck",
+    "question_class": "development"
+  },
+  "source_closure": {
+    "path": "sdk/development/recovery_attempts/9791149066cc43e2b42df2f1def7adc1.json",
+    "raw_sha256": "sha256:7782fc657984a17f426fc63bf0e66d88bb0422237607ec3949e12c89f717827c"
+  },
+  "source_report": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-9791149066cc43e2b42df2f1def7adc1/children/kick_passive_recovery_resume/worker_report.json",
+    "byte_length": 290846952,
+    "raw_sha256": "sha256:a1872bd14d79a844e48577bc5338fe7b46f1141d7a1c97460f84d52cb9c915bc"
+  },
+  "analysis_sources": [
+    {
+      "path": "sdk/conformance/development_recovery_landing_reach_diagnosis.py",
+      "raw_sha256": "sha256:bcc19e50fa09c2a2f8a6aef081f0fcb92b8bfaa83530a16933c6518b159eb6a2"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_absent_contact_reference_observation.py",
+      "raw_sha256": "sha256:e5d3eafcf05f3c19ebe9acbe25ad1b4cd373ef7abe60f0a8deb68967d22409c3"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_airborne_reference_observation.py",
+      "raw_sha256": "sha256:02663e13812a13a18be70958182fa6fd26b5a28a066121cde8237ae432e1801a"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_feasible_support_observation.py",
+      "raw_sha256": "sha256:06474c20e16524d7fba517ae09e80e886e6c5c72e6c7f0a1a4a0b115b3752ee8"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v33_support_tracking_diagnosis.py",
+      "raw_sha256": "sha256:80c91fa7e263aad52265b40476290e36c081a9df9948f66f9db3e6251f1c4286"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v37_reference_diagnosis.py",
+      "raw_sha256": "sha256:cfa872c920b220a57a6bbb386a06ad477231fd8554172c8d51f20c11544e1c56"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v28_contact_geometry.py",
+      "raw_sha256": "sha256:ce65485666b0659551530e0a72019138790c26d405aca69a30b85a958a4673e3"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_v32_placement_diagnosis.py",
+      "raw_sha256": "sha256:0c04c214ec0cd90ce6442d4e8ce0a351b20203f21d4da9bf8d2cb8fe1de9142a"
+    },
+    {
+      "path": "sdk/conformance/qsdk_r10f_physical_closure.py",
+      "raw_sha256": "sha256:d9ca01b2efb9fb900d080e5a01c8a76f1c9996cac9d38b913d23209bcef3f623"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_upright_stance_precheck.py",
+      "raw_sha256": "sha256:840f47d6593365ab369fa7e6a4e47f4c8cb75ab86ff7caa493eb487760fe16ba"
+    }
+  ],
+  "proposal_rule": "For active wave inputs, select only current phase 73..359 with explicit presence=true and bears_support=true. Replace selected goals with the same all-four-leg support geometry at a floor-upright reference orientation and the measured floor-relative torso height. Preserve original goals for all other limbs. Hold the current selection mask fixed for the current and prior-wave goal evaluations; retain V40 full-reference selection only for absent contacts. Preserve slew, gains and all caps.",
+  "observation": {
+    "command_count": 400,
+    "limb_command_count": 1600,
+    "joint_command_count": 3200,
+    "original_command_audit": {
+      "command_count": 400,
+      "joint_commands": 3200,
+      "lift_goals": 1600,
+      "selected_joint_commands": 874,
+      "fallback_joint_commands": 2326,
+      "selected_stance_joint_commands": 398,
+      "selected_stance_saturated_joint_commands": 26,
+      "saturated_joint_commands": 85,
+      "selected_saturated_joint_commands": 74,
+      "fallback_saturated_joint_commands": 11,
+      "maximum_target_error_rad": 1.1102230246251565e-15,
+      "maximum_comparison_error_rad": 2.220446049250313e-16,
+      "maximum_motor_error_rad_s": 4.707345624410664e-14,
+      "arithmetic_allowances": "Existing V38 cold arithmetic allowances only; no behavioral threshold changes."
+    },
+    "original_walking_evaluation": {
+      "absolute_lateral_drift_m": 0.027096237598326134,
+      "arm_id": "kick_passive_recovery_resume",
+      "behavior_passed": false,
+      "behavioral_conclusion": "none",
+      "contact_cycle_count_by_limb": {
+        "front_left": 5,
+        "front_right": 5,
+        "rear_left": 2,
+        "rear_right": 3
+      },
+      "contact_cycle_definition": "within_segment_observed_liftoff_and_touchdown_with_fixed_minimum_airborne_dwell",
+      "development_smoke_only": true,
+      "evaluation_world_build_count": 0,
+      "evaluator_id": "sporespore_development_smoke_walking_diagnostics_v1",
+      "evidence_valid": true,
+      "false_walking_receipts": [
+        "every_limb_forward_relocation",
+        "terminal_four_contact_recovery"
+      ],
+      "fixed_thresholds": {
+        "maximum_absolute_lateral_drift_m": 0.25,
+        "maximum_anchor_error_m": 0.025,
+        "maximum_hinge_axis_error_rad": 0.2,
+        "maximum_tilt_rad": 0.6,
+        "maximum_yaw_drift_rad": 0.45,
+        "minimum_airborne_dwell_steps": 3,
+        "minimum_foot_relocation_m": 0.012,
+        "minimum_forward_advance_m": 0.02,
+        "minimum_torso_height_m": 0.25
+      },
+      "forward_advance_m": 0.16043077021547214,
+      "gate_id": "QSDK-R10F",
+      "initial_partial_flight_censored_count_by_limb": {
+        "front_left": 0,
+        "front_right": 0,
+        "rear_left": 0,
+        "rear_right": 0
+      },
+      "initial_partial_flight_open_at_end_by_limb": {
+        "front_left": false,
+        "front_right": false,
+        "rear_left": false,
+        "rear_right": false
+      },
+      "maximum_anchor_error_m": 0.0015396318631246686,
+      "maximum_hinge_axis_error_rad": 0.03437093462155082,
+      "maximum_tilt_rad": 0.11310028076953413,
+      "minimum_cycle_forward_relocation_by_limb_m": {
+        "front_left": -0.00566099664157349,
+        "front_right": 0.002955464755826639,
+        "rear_left": 0.019319593940451574,
+        "rear_right": -0.018175812006106185
+      },
+      "minimum_torso_height_m": 0.3657290041446686,
+      "observed_flight_open_at_end_by_limb": {
+        "front_left": false,
+        "front_right": false,
+        "rear_left": true,
+        "rear_right": false
+      },
+      "ok": true,
+      "outcome_complete": true,
+      "payload_sha256": "sha256:c4c3ba75e0b0570ff99dc94d91b9660f28edced54f4d76911f7de83de0e462ce",
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "schema_version": "sporespore_development_smoke_walking_diagnostics_v1",
+      "segment_id": "walking_resume",
+      "session_id": "r10f:kick_passive_recovery_resume:walking_resume:858",
+      "threshold_override_input_count": 0,
+      "torso_contact_step_count": 0,
+      "trace_row_count": 400,
+      "walking_gate_receipts": {
+        "bounded_anchor_error": true,
+        "bounded_hinge_axis_error": true,
+        "bounded_joint_only_lateral_stride_steering": true,
+        "bounded_lateral_drift": true,
+        "bounded_tilt": true,
+        "bounded_torso_height": true,
+        "bounded_yaw_drift": true,
+        "contact_gated_evidence_horizon_completed": true,
+        "contact_gating_completed_without_timeout": true,
+        "every_contact_observer_executed": true,
+        "every_limb_completed_evidence_gait_horizon": true,
+        "every_limb_forward_relocation": false,
+        "every_limb_two_contact_cycles": true,
+        "evidence_four_contact_stance": true,
+        "explicit_sdk_controller_session_shutdown": true,
+        "fixture_spec_compiled_before_world_creation": true,
+        "initial_four_contact_stance": true,
+        "initial_perturbation_within_declared_envelope": true,
+        "minimum_evidence_forward_translation": true,
+        "minimum_final_forward_translation": true,
+        "native_sdk_exclusive_post_settle_actuation": true,
+        "no_torso_force_or_impulse_or_velocity_or_transform_command": true,
+        "no_world_reset": true,
+        "one_continuous_world": true,
+        "pinned_jolt_solver_settings": true,
+        "terminal_four_contact_recovery": false,
+        "zero_torso_contact": true
+      },
+      "walking_receipt_count": 27,
+      "yaw_drift_rad": 0.05189054235137921
+    },
+    "baseline_target_maximum_error_rad": 1.1102230246251565e-15,
+    "baseline_motor_maximum_error_rad_s": 1.829786322460336e-13,
+    "original_saturated_joint_commands": 85,
+    "upright_selected_limb_commands": 1037,
+    "support_contact_count_strata": {
+      "0": {
+        "command_count": 0,
+        "selected_limb_commands": 0
+      },
+      "1": {
+        "command_count": 0,
+        "selected_limb_commands": 0
+      },
+      "2": {
+        "command_count": 131,
+        "selected_limb_commands": 262
+      },
+      "3": {
+        "command_count": 175,
+        "selected_limb_commands": 485
+      },
+      "4": {
+        "command_count": 94,
+        "selected_limb_commands": 290
+      }
+    },
+    "upright_common_height_nonempty_command_count": 400,
+    "one_command_substitution": {
+      "changed_joint_commands": 2044,
+      "saturated_joint_commands": 83,
+      "unselected_goal_and_target_and_motor_preserved_within_existing_arithmetic": true
+    },
+    "chained_reference_replay": {
+      "changed_joint_commands": 2186,
+      "saturated_joint_commands": 168,
+      "unselected_joint_commands_with_carried_reference_change": 102,
+      "all_goal_target_velocity_and_slew_bounds_preserved": true,
+      "maximum_absolute_step_reference_change_rad": 0.029166666666668117
+    },
+    "selector_change_count": 47,
+    "selector_changes": [
+      {
+        "command_local": 2,
+        "limb": "front_right",
+        "phase": 181,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0,
+            "goal_rad": -0.028546338061402485,
+            "target_rad": -0.028546338061402485,
+            "comparison_rad": -0.028546338061402485,
+            "full_reference_rate_rad_s": -3.4255605673683,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.18771637462877427,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0,
+            "goal_rad": 0.05979292391377187,
+            "target_rad": 0.029166666666666653,
+            "comparison_rad": 0.029166666666666653,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.24778744609405587,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 2,
+        "limb": "rear_left",
+        "phase": 91,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0,
+            "goal_rad": -0.02848251587823694,
+            "target_rad": -0.02848251587823694,
+            "comparison_rad": -0.02848251587823694,
+            "full_reference_rate_rad_s": -3.4179019053884345,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.19198629139890594,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0,
+            "goal_rad": 0.059792630791963924,
+            "target_rad": 0.029166666666666653,
+            "comparison_rad": 0.029166666666666653,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.25256293763717,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 2,
+        "limb": "rear_right",
+        "phase": 271,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0,
+            "goal_rad": -0.02863936116697594,
+            "target_rad": -0.02863936116697594,
+            "comparison_rad": -0.02863936116697594,
+            "full_reference_rate_rad_s": -3.436723340037114,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.17664852643477552,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0,
+            "goal_rad": 0.05979286359273658,
+            "target_rad": 0.029166666666666653,
+            "comparison_rad": 0.029166666666666653,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.2815732122709353,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 24,
+        "limb": "rear_right",
+        "phase": 293,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.06636934706050393,
+            "goal_rad": -0.03096011454113464,
+            "target_rad": -0.03720268039383728,
+            "comparison_rad": -0.03720268039383728,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.0793928567835569,
+            "goal_rad": 0,
+            "target_rad": 0.050226190116890244,
+            "comparison_rad": 0.050226190116890244,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 41,
+        "limb": "rear_right",
+        "phase": 310,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.080750973331757,
+            "goal_rad": -0.16248426751924006,
+            "target_rad": -0.10991763999842376,
+            "comparison_rad": -0.10991763999842376,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.10143222258748771,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0,
+            "goal_rad": 0.1637810135046321,
+            "target_rad": 0.029166666666666757,
+            "comparison_rad": 0.029166666666666757,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.1710109983881322,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 53,
+        "limb": "rear_right",
+        "phase": 322,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.1791925510311179,
+            "goal_rad": -0.12215351129714022,
+            "target_rad": -0.15002588436445136,
+            "comparison_rad": -0.15002588436445136,
+            "full_reference_rate_rad_s": 3.4999999999999982,
+            "selected_reference_rate_rad_s": 3.4999999999999982,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.12484651435060808,
+            "goal_rad": 0,
+            "target_rad": 0.09567984768394153,
+            "comparison_rad": 0.09567984768394153,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 78,
+        "limb": "front_left",
+        "phase": 73,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.07455213349632756,
+            "goal_rad": 0.09925228131909192,
+            "target_rad": -0.045385466829661006,
+            "comparison_rad": -0.045385466829661006,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.6927499298991882,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.587850824755151,
+            "goal_rad": 0.22362835068804945,
+            "target_rad": 0.5586841580884845,
+            "comparison_rad": 0.5586841580884845,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.26748483593885836,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 81,
+        "limb": "rear_left",
+        "phase": 170,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.11119227610342729,
+            "goal_rad": -0.1760370532917015,
+            "target_rad": -0.14035894277009422,
+            "comparison_rad": -0.14035894277009422,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.43641121245371334,
+            "goal_rad": 0.5682780439617642,
+            "target_rad": 0.4655778791203803,
+            "comparison_rad": 0.4655778791203803,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 82,
+        "limb": "rear_left",
+        "phase": 171,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.14035894277009422,
+            "goal_rad": -0.12453315038870086,
+            "target_rad": -0.12453315038870086,
+            "comparison_rad": -0.12163231283693234,
+            "full_reference_rate_rad_s": 1.8990950857672115,
+            "selected_reference_rate_rad_s": -0.34810050621222416,
+            "velocity_rad_s": -0.5002187319477643,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.4655778791203803,
+            "goal_rad": 0.455819011814828,
+            "target_rad": 0.455819011814828,
+            "comparison_rad": 0.45411163726417036,
+            "full_reference_rate_rad_s": -1.1710640766662819,
+            "selected_reference_rate_rad_s": 0.20488494607891453,
+            "velocity_rad_s": 0.6879420585876723,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 84,
+        "limb": "front_left",
+        "phase": 79,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.06547222788180579,
+            "goal_rad": -0.10198135951561907,
+            "target_rad": 0.03630556121513924,
+            "comparison_rad": 0.03630556121513924,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.4128508247551513,
+            "goal_rad": 0.641174294748924,
+            "target_rad": 0.44201749142181784,
+            "comparison_rad": 0.44201749142181784,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 86,
+        "limb": "front_left",
+        "phase": 81,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.0071388945484723056,
+            "goal_rad": 0.04736690079719827,
+            "target_rad": 0.03630556121513885,
+            "comparison_rad": 0.03630556121513885,
+            "full_reference_rate_rad_s": 3.4999999999999996,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.41380159497623775,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.4711841580884848,
+            "goal_rad": 0.3250761952161246,
+            "target_rad": 0.44201749142181823,
+            "comparison_rad": 0.44201749142181823,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.3983372828302343,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 87,
+        "limb": "front_left",
+        "phase": 82,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.03630556121513885,
+            "goal_rad": -0.0821597513593012,
+            "target_rad": 0.007138894548472302,
+            "comparison_rad": 0.007138894548472302,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.44201749142181823,
+            "goal_rad": 0.5950801430501765,
+            "target_rad": 0.4711841580884848,
+            "comparison_rad": 0.4711841580884848,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 88,
+        "limb": "front_left",
+        "phase": 83,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.007138894548472302,
+            "goal_rad": 0.04282343156343105,
+            "target_rad": 0.03630556121513885,
+            "comparison_rad": 0.03630556121513885,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.166309555772594,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.4711841580884848,
+            "goal_rad": 0.3311836409429058,
+            "target_rad": 0.44201749142181823,
+            "comparison_rad": 0.44201749142181823,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.6928884527025183,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 89,
+        "limb": "front_left",
+        "phase": 84,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.03630556121513885,
+            "goal_rad": -0.07312228088917572,
+            "target_rad": 0.007138894548471917,
+            "comparison_rad": 0.007138894548471917,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.44201749142181823,
+            "goal_rad": 0.5725389278836523,
+            "target_rad": 0.4711841580884852,
+            "comparison_rad": 0.4711841580884852,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.4305340271132767,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 91,
+        "limb": "front_left",
+        "phase": 86,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.022027772118194632,
+            "goal_rad": 0.03526687703200648,
+            "target_rad": 0.007138894548471917,
+            "comparison_rad": 0.007138894548471917,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.08931997080281462,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.5003508247551517,
+            "goal_rad": 0.3415380239846132,
+            "target_rad": 0.4711841580884851,
+            "comparison_rad": 0.4711841580884851,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.7382037859099684,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 92,
+        "limb": "front_left",
+        "phase": 87,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.007138894548471917,
+            "goal_rad": -0.058425816564190464,
+            "target_rad": -0.022027772118195017,
+            "comparison_rad": -0.022027772118195017,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.4711841580884851,
+            "goal_rad": 0.5361879974387614,
+            "target_rad": 0.500350824755152,
+            "comparison_rad": 0.500350824755152,
+            "full_reference_rate_rad_s": 3.4999999999999956,
+            "selected_reference_rate_rad_s": 3.4999999999999956,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 101,
+        "limb": "front_left",
+        "phase": 96,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.07431438811928276,
+            "goal_rad": 0.019800788516931206,
+            "target_rad": -0.04514772145261621,
+            "comparison_rad": -0.04514772145261621,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.6948315860183831,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.5581267165307062,
+            "goal_rad": 0.3595148630626965,
+            "target_rad": 0.5289600498640397,
+            "comparison_rad": 0.5289600498640397,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.8187920394231014,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 123,
+        "limb": "front_left",
+        "phase": 118,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.007172975352197575,
+            "goal_rad": -0.09865444006536386,
+            "target_rad": -0.036339642018864124,
+            "comparison_rad": -0.036339642018864124,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.375902580357382,
+            "goal_rad": 0.5651552379592722,
+            "target_rad": 0.40506924702404856,
+            "comparison_rad": 0.40506924702404856,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 132,
+        "limb": "front_left",
+        "phase": 127,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.06487138608136658,
+            "goal_rad": -0.029300407741523204,
+            "target_rad": -0.03570471941469926,
+            "comparison_rad": -0.03570471941469926,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.9672131050396905,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.4708196318558455,
+            "goal_rad": 0.3932505767010534,
+            "target_rad": 0.4416529651891782,
+            "comparison_rad": 0.4416529651891782,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 1.6190473227408775,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 145,
+        "limb": "front_left",
+        "phase": 140,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.06188322712645955,
+            "goal_rad": -0.09745851079251885,
+            "target_rad": -0.0910498937931261,
+            "comparison_rad": -0.0910498937931261,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.42596774675861165,
+            "goal_rad": 0.4975324738869956,
+            "target_rad": 0.4551344134252782,
+            "comparison_rad": 0.4551344134252782,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 146,
+        "limb": "front_left",
+        "phase": 141,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.0910498937931261,
+            "goal_rad": -0.06740367758278731,
+            "target_rad": -0.06740367758278731,
+            "comparison_rad": -0.06500908176643844,
+            "full_reference_rate_rad_s": 2.8375459452406657,
+            "selected_reference_rate_rad_s": -0.2873514979618664,
+            "velocity_rad_s": 0.1158593146643282,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.4551344134252782,
+            "goal_rad": 0.4313876456238151,
+            "target_rad": 0.4313876456238151,
+            "comparison_rad": 0.4294786244103946,
+            "full_reference_rate_rad_s": -2.8496121361755855,
+            "selected_reference_rate_rad_s": 0.22908254561046262,
+            "velocity_rad_s": 0.050370418451251564,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 147,
+        "limb": "front_left",
+        "phase": 142,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.06740367758278731,
+            "goal_rad": -0.09799565797557969,
+            "target_rad": -0.09657034424945464,
+            "comparison_rad": -0.09568991764232779,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.4313876456238151,
+            "goal_rad": 0.4923458906221042,
+            "target_rad": 0.46055431229048244,
+            "comparison_rad": 0.46055431229048244,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 155,
+        "limb": "front_left",
+        "phase": 150,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.07267951186372967,
+            "goal_rad": -0.0888205144341536,
+            "target_rad": -0.0888205144341536,
+            "comparison_rad": -0.0862257203880529,
+            "full_reference_rate_rad_s": -1.9369203084508795,
+            "selected_reference_rate_rad_s": -0.3113752855320857,
+            "velocity_rad_s": 0.38885837162485953,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.41544241228127265,
+            "goal_rad": 0.44572785212886945,
+            "target_rad": 0.4446090789479392,
+            "comparison_rad": 0.44384121752367134,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0.09214337091214589,
+            "velocity_rad_s": -0.07645575345879749,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 168,
+        "limb": "rear_right",
+        "phase": 73,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.025783368055316752,
+            "goal_rad": -0.018227204221385268,
+            "target_rad": -0.018227204221385268,
+            "comparison_rad": -0.018027335534130773,
+            "full_reference_rate_rad_s": 0.9067396600717816,
+            "selected_reference_rate_rad_s": -0.023984242470539523,
+            "velocity_rad_s": -0.20574999090123447,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.40371681339477883,
+            "goal_rad": 0.3876512399039944,
+            "target_rad": 0.3876512399039944,
+            "comparison_rad": 0.3874623262513003,
+            "full_reference_rate_rad_s": -1.927868818894137,
+            "selected_reference_rate_rad_s": 0.02266963832329614,
+            "velocity_rad_s": -0.02713552742025655,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 179,
+        "limb": "front_right",
+        "phase": 358,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.3492603288556636,
+            "goal_rad": -0.34358527568699504,
+            "target_rad": -0.34358527568699504,
+            "comparison_rad": -0.34357471892862224,
+            "full_reference_rate_rad_s": 0.6810063802402304,
+            "selected_reference_rate_rad_s": 0.6810063802402304,
+            "velocity_rad_s": -1.0087548495436236,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.383498963484858,
+            "goal_rad": 0.37146451617759035,
+            "target_rad": 0.37146451617759035,
+            "comparison_rad": 0.37158551447547034,
+            "full_reference_rate_rad_s": -1.444133676872125,
+            "selected_reference_rate_rad_s": -1.444133676872125,
+            "velocity_rad_s": 2.3903708633855,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 187,
+        "limb": "rear_left",
+        "phase": 276,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.3283300826802417,
+            "goal_rad": -0.33025451834314673,
+            "target_rad": -0.33025451834314673,
+            "comparison_rad": -0.3294395107826015,
+            "full_reference_rate_rad_s": -0.2309322795486022,
+            "selected_reference_rate_rad_s": -0.2309322795486022,
+            "velocity_rad_s": 0.21256229815449076,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.45319819465288896,
+            "goal_rad": 0.4540099953582028,
+            "target_rad": 0.4540099953582028,
+            "comparison_rad": 0.4555246647932897,
+            "full_reference_rate_rad_s": 0.09741608463766077,
+            "selected_reference_rate_rad_s": 0.09741608463766077,
+            "velocity_rad_s": 0.19651673966020058,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 188,
+        "limb": "rear_left",
+        "phase": 277,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.33025451834314673,
+            "goal_rad": -0.3333842975822591,
+            "target_rad": -0.3333842975822591,
+            "comparison_rad": -0.33257725527035487,
+            "full_reference_rate_rad_s": -0.37557350869347905,
+            "selected_reference_rate_rad_s": -0.09684507742850905,
+            "velocity_rad_s": -0.2873514644156595,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.4540099953582028,
+            "goal_rad": 0.45738048160069,
+            "target_rad": 0.45738048160069,
+            "comparison_rad": 0.45888088743972855,
+            "full_reference_rate_rad_s": 0.40445834909845524,
+            "selected_reference_rate_rad_s": -0.18004870068462114,
+            "velocity_rad_s": 0.8996035237403646,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 204,
+        "limb": "rear_left",
+        "phase": 293,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.34731906020216474,
+            "goal_rad": -0.3359278403708794,
+            "target_rad": -0.3359278403708794,
+            "comparison_rad": -0.3354624126352157,
+            "full_reference_rate_rad_s": 1.3669463797542807,
+            "selected_reference_rate_rad_s": 1.3669463797542807,
+            "velocity_rad_s": -2.5165155443454155,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.44483183461579656,
+            "goal_rad": 0.4183095908657778,
+            "target_rad": 0.4183095908657778,
+            "comparison_rad": 0.419974373582138,
+            "full_reference_rate_rad_s": -3.1826692500023492,
+            "selected_reference_rate_rad_s": -3.1826692500023492,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 210,
+        "limb": "rear_left",
+        "phase": 299,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.23102894055294576,
+            "goal_rad": -0.3498504239495557,
+            "target_rad": -0.2601956072196123,
+            "comparison_rad": -0.2601956072196123,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 1.3062203250287034,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.2724762575324442,
+            "goal_rad": 0.4325397587830733,
+            "target_rad": 0.30164292419911076,
+            "comparison_rad": 0.30164292419911076,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -2.685940298633627,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 211,
+        "limb": "rear_left",
+        "phase": 300,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.2601956072196123,
+            "goal_rad": -0.19846848793826016,
+            "target_rad": -0.23102894055294576,
+            "comparison_rad": -0.23102894055294576,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.30164292419911076,
+            "goal_rad": 0.11335799978122547,
+            "target_rad": 0.2724762575324442,
+            "comparison_rad": 0.2724762575324442,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 212,
+        "limb": "rear_left",
+        "phase": 301,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.23102894055294576,
+            "goal_rad": -0.3498321080112732,
+            "target_rad": -0.2601956072196123,
+            "comparison_rad": -0.2601956072196123,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 1.593097712790773,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.2724762575324442,
+            "goal_rad": 0.4282047688251644,
+            "target_rad": 0.30164292419911076,
+            "comparison_rad": 0.30164292419911076,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -2.6771867247391263,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 213,
+        "limb": "rear_left",
+        "phase": 302,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.2601956072196123,
+            "goal_rad": -0.14621740401753305,
+            "target_rad": -0.23102894055294576,
+            "comparison_rad": -0.23102894055294576,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.30164292419911076,
+            "goal_rad": 0,
+            "target_rad": 0.2724762575324442,
+            "comparison_rad": 0.2724762575324442,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 214,
+        "limb": "rear_left",
+        "phase": 303,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.23102894055294576,
+            "goal_rad": -0.3499009117698225,
+            "target_rad": -0.2601956072196131,
+            "comparison_rad": -0.2601956072196131,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 2.1202726266739886,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.2724762575324442,
+            "goal_rad": 0.42452207708710815,
+            "target_rad": 0.30164292419911154,
+            "comparison_rad": 0.30164292419911154,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -2.9656768532562836,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 215,
+        "limb": "rear_left",
+        "phase": 304,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "rear_left_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.2601956072196131,
+            "goal_rad": -0.14792341741427248,
+            "target_rad": -0.23102894055294654,
+            "comparison_rad": -0.23102894055294654,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "rear_left_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.30164292419911154,
+            "goal_rad": 0,
+            "target_rad": 0.272476257532445,
+            "comparison_rad": 0.272476257532445,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 258,
+        "limb": "front_right",
+        "phase": 73,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.28245204178687544,
+            "goal_rad": -0.09584051914592276,
+            "target_rad": -0.2532853751202089,
+            "comparison_rad": -0.2532853751202089,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.6159486377679013,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.9912124883412181,
+            "goal_rad": 0.5978755457263316,
+            "target_rad": 0.9620458216745515,
+            "comparison_rad": 0.9620458216745515,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.41169977086475706,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 265,
+        "limb": "front_right",
+        "phase": 80,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.10436862597416083,
+            "goal_rad": -0.33084523892513507,
+            "target_rad": -0.13353529264082736,
+            "comparison_rad": -0.13353529264082736,
+            "full_reference_rate_rad_s": -3.4999999999999982,
+            "selected_reference_rate_rad_s": -3.4999999999999982,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.7870458216745506,
+            "goal_rad": 1.0926093598224687,
+            "target_rad": 0.8162124883412172,
+            "comparison_rad": 0.8162124883412172,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 273,
+        "limb": "front_right",
+        "phase": 88,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.2757181983652145,
+            "goal_rad": -0.12356335533952223,
+            "target_rad": -0.24655153169854793,
+            "comparison_rad": -0.24655153169854793,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.17004684317117427,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.9658945907753415,
+            "goal_rad": 0.6429456750432465,
+            "target_rad": 0.9367279241086749,
+            "comparison_rad": 0.9367279241086749,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.3427391486181479,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 294,
+        "limb": "front_right",
+        "phase": 109,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.10884069331720758,
+            "goal_rad": -0.2537713556554433,
+            "target_rad": -0.13800735998387414,
+            "comparison_rad": -0.13800735998387414,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.5833864153335251,
+            "goal_rad": 0.887044920575199,
+            "target_rad": 0.6125530820001917,
+            "comparison_rad": 0.6125530820001917,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 296,
+        "limb": "front_right",
+        "phase": 111,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.1671740266505407,
+            "goal_rad": -0.10435629091187759,
+            "target_rad": -0.13800735998387414,
+            "comparison_rad": -0.13800735998387414,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.7649298233202872,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.6417197486668582,
+            "goal_rad": 0.5684289273592763,
+            "target_rad": 0.6125530820001917,
+            "comparison_rad": 0.6125530820001917,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 0.7243788870892871,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 297,
+        "limb": "front_right",
+        "phase": 112,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.13800735998387414,
+            "goal_rad": -0.23490281501363797,
+            "target_rad": -0.1671740266505407,
+            "comparison_rad": -0.1671740266505407,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.6125530820001917,
+            "goal_rad": 0.8409478429607034,
+            "target_rad": 0.6417197486668582,
+            "comparison_rad": 0.6417197486668582,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.0311742829559285,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 318,
+        "limb": "front_right",
+        "phase": 133,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.35807165069311364,
+            "goal_rad": -0.16764227332526696,
+            "target_rad": -0.3289049840264471,
+            "comparison_rad": -0.3289049840264471,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -1.3512653539236774,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 1.0542457175814621,
+            "goal_rad": 0.6499119102629054,
+            "target_rad": 1.0250790509147956,
+            "comparison_rad": 1.0250790509147956,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 3.362810609687556,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 332,
+        "limb": "front_right",
+        "phase": 147,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.19676100527851498,
+            "goal_rad": -0.3871097784175483,
+            "target_rad": -0.22592767194518154,
+            "comparison_rad": -0.22592767194518154,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.675887611443694,
+            "goal_rad": 1.0746333338524883,
+            "target_rad": 0.7050542781103606,
+            "comparison_rad": 0.7050542781103606,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -2.7791039980740977,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 333,
+        "limb": "front_right",
+        "phase": 148,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.22592767194518154,
+            "goal_rad": -0.2020660129903603,
+            "target_rad": -0.2020660129903603,
+            "comparison_rad": -0.1997206228229086,
+            "full_reference_rate_rad_s": 2.863399074578559,
+            "selected_reference_rate_rad_s": -0.28144682009420774,
+            "velocity_rad_s": -1.0747633875357991,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.7050542781103606,
+            "goal_rad": 0.6797680861872536,
+            "target_rad": 0.6797680861872536,
+            "comparison_rad": 0.6785330103500395,
+            "full_reference_rate_rad_s": -3.034343030772851,
+            "selected_reference_rate_rad_s": 0.1482091004656866,
+            "velocity_rad_s": 2.7526819171767873,
+            "saturated": false,
+            "slew_limited": false,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 334,
+        "limb": "front_right",
+        "phase": 149,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.2020660129903603,
+            "goal_rad": -0.3881837029897875,
+            "target_rad": -0.23123267965702687,
+            "comparison_rad": -0.23123267965702687,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": -3.5,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.6797680861872536,
+            "goal_rad": 1.0693372280784912,
+            "target_rad": 0.7089347528539202,
+            "comparison_rad": 0.7089347528539202,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -2.719202226596753,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 336,
+        "limb": "front_right",
+        "phase": 151,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.26039934632369344,
+            "goal_rad": -0.2085304068267206,
+            "target_rad": -0.23123267965702687,
+            "comparison_rad": -0.23123267965702687,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -1.6338316558052322,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.7381014195205867,
+            "goal_rad": 0.6817430724258073,
+            "target_rad": 0.7089347528539202,
+            "comparison_rad": 0.7089347528539202,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 2.876409757965375,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 352,
+        "limb": "front_right",
+        "phase": 167,
+        "previous_selected": true,
+        "current_selected": false,
+        "pre_contact": false,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": false,
+            "prior_reference_rad": -0.24323529952035264,
+            "goal_rad": -0.4171356503895115,
+            "target_rad": -0.2724019661870192,
+            "comparison_rad": -0.2724019661870192,
+            "full_reference_rate_rad_s": -3.4999999999999982,
+            "selected_reference_rate_rad_s": -3.4999999999999982,
+            "velocity_rad_s": 3.5,
+            "saturated": true,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": false,
+            "prior_reference_rad": 0.6979736690277486,
+            "goal_rad": 1.061930951231278,
+            "target_rad": 0.7271403356944152,
+            "comparison_rad": 0.7271403356944152,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 3.5,
+            "velocity_rad_s": -3.0880326470545945,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      },
+      {
+        "command_local": 362,
+        "limb": "front_right",
+        "phase": 174,
+        "previous_selected": false,
+        "current_selected": true,
+        "pre_contact": true,
+        "chained_motor_commands": [
+          {
+            "actuator_id": "front_right_hip_motor",
+            "upright_selected": true,
+            "prior_reference_rad": -0.4393936444900717,
+            "goal_rad": -0.26665094193123107,
+            "target_rad": -0.4102269778234051,
+            "comparison_rad": -0.4102269778234051,
+            "full_reference_rate_rad_s": 3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": -0.45166738463855866,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          },
+          {
+            "actuator_id": "front_right_knee_motor",
+            "upright_selected": true,
+            "prior_reference_rad": 0.9896403356944158,
+            "goal_rad": 0.7166776573354992,
+            "target_rad": 0.9604736690277492,
+            "comparison_rad": 0.9604736690277492,
+            "full_reference_rate_rad_s": -3.5,
+            "selected_reference_rate_rad_s": 0,
+            "velocity_rad_s": 1.4760654413265901,
+            "saturated": false,
+            "slew_limited": true,
+            "cap_rad_s": 3.5
+          }
+        ]
+      }
+    ],
+    "per_limb_selected_geometry": [
+      {
+        "limb": "front_left",
+        "selected_command_count": 291,
+        "proposed_minus_original_goal_bottom_m": {
+          "count": 291,
+          "minimum": -0.019579454087200576,
+          "mean": -0.0010169236630451686,
+          "maximum": 0.0058987398864214086,
+          "rms": 0.005448218716278356
+        },
+        "proposed_goal_bottom_at_original_pose_m": {
+          "count": 291,
+          "minimum": -0.012709470645989013,
+          "mean": 0.00017005729152156266,
+          "maximum": 0.0058987400196772455,
+          "rms": 0.004174932653301193
+        },
+        "geometry_lift_direction_command_count": 140,
+        "geometry_lower_direction_command_count": 151
+      },
+      {
+        "limb": "front_right",
+        "selected_command_count": 276,
+        "proposed_minus_original_goal_bottom_m": {
+          "count": 276,
+          "minimum": -0.03454402430455325,
+          "mean": -0.010719544949003781,
+          "maximum": 0.0014240180112483902,
+          "rms": 0.016535737578807285
+        },
+        "proposed_goal_bottom_at_original_pose_m": {
+          "count": 276,
+          "minimum": -0.031601079336295315,
+          "mean": -0.009543765327417728,
+          "maximum": 0.0014240176304656654,
+          "rms": 0.016155754166912943
+        },
+        "geometry_lift_direction_command_count": 83,
+        "geometry_lower_direction_command_count": 193
+      },
+      {
+        "limb": "rear_left",
+        "selected_command_count": 203,
+        "proposed_minus_original_goal_bottom_m": {
+          "count": 203,
+          "minimum": -0.011396862999366889,
+          "mean": -0.0012537503195272288,
+          "maximum": 0.007800499612968553,
+          "rms": 0.003137733776967246
+        },
+        "proposed_goal_bottom_at_original_pose_m": {
+          "count": 203,
+          "minimum": -0.0006710827228439548,
+          "mean": 0.000183209642454305,
+          "maximum": 0.008581273389143843,
+          "rms": 0.0010869367759730971
+        },
+        "geometry_lift_direction_command_count": 55,
+        "geometry_lower_direction_command_count": 148
+      },
+      {
+        "limb": "rear_right",
+        "selected_command_count": 267,
+        "proposed_minus_original_goal_bottom_m": {
+          "count": 267,
+          "minimum": -0.008580530576544301,
+          "mean": 0.0011703100850261748,
+          "maximum": 0.006059726492071801,
+          "rms": 0.0036191965774716953
+        },
+        "proposed_goal_bottom_at_original_pose_m": {
+          "count": 267,
+          "minimum": -0.0004558685435989557,
+          "mean": 0.0023365209631408495,
+          "maximum": 0.006059724680317652,
+          "rms": 0.0030739761715253104
+        },
+        "geometry_lift_direction_command_count": 197,
+        "geometry_lower_direction_command_count": 70
+      }
+    ]
+  },
+  "limits": "One-command substitution uses the original incoming reference memory. Chained replay carries only proposed reference positions; all physical states, contacts and upstream wave/gait inputs remain V40 observations. Neither replay predicts another trajectory. A foot goal rising at a fixed body pose can imply desired body lowering if that foot remains anchored, but unilateral contact and load transfer are unproved. Original foot contact and outcome are never replaced by ideal geometry. No force-aware policy, acceptance or equivalence claim.",
+  "native_controller_call_count": 0,
+  "new_world_build_count": 0,
+  "new_solver_step_count": 0,
+  "new_native_physics_read_count": 0,
+  "original_evaluation_changed": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "complete_precheck": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v41-upright-precheck-05cd7167cadc493aba4ea1f2eb60f197/precheck.json",
+    "byte_length": 8919841,
+    "raw_sha256": "sha256:0ac6ddd5f12ea012f6b16c90bc1168b76e7608fefc4246f51fcd87df1f779077"
+  }
+}

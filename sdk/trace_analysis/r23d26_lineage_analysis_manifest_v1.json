@@ -1,0 +1,72 @@
+{
+  "schema_version": "sporespore_retained_trace_lineage_manifest_v1",
+  "analysis_id": "QSDK-R23D26-RETAINED-TRACE-LINEAGE-D1",
+  "question_class": "postclosure_development_diagnosis",
+  "purpose": "Determine from all nine immutable R23D26 traces whether the 0.20 near miss is primarily missing steering authority, lost support or contact, stability collapse, nonconvergence, or an observable actuator limit before any distinct successor is designed.",
+  "source_closure": {
+    "gate_id": "QSDK-R23D26",
+    "source_commit": "c5ef0edc82879547d0548c725b7846c9eccca8ec",
+    "path": "sdk/turning/r23d26_rapier_steering_cap_closure_v1.json",
+    "git_blob_oid": "82a3d2b48dbd8091695b91fc528dad10e87aac1b",
+    "raw_sha256": "sha256:327432a004ddc706644e2bc427fa8b8c6a93bcdfaac869b0bad15c31c724d23f",
+    "immutable_status": "closed_consumed_valid_complete_negative_no_selected_cap"
+  },
+  "trace_contract": {
+    "trace_schema_version": "sporespore_qsdk_r23d26_physical_trace_row_v1",
+    "expected_row_count": 2992,
+    "phase_order": [
+      {"phase_id": "reference_warmup", "row_count": 600},
+      {"phase_id": "commanded_turn", "row_count": 1200},
+      {"phase_id": "reference_recovery", "row_count": 600},
+      {"phase_id": "reference_continuation", "row_count": 592}
+    ],
+    "analysis_phase_id": "commanded_turn",
+    "final_window_row_count": 120,
+    "authority_reach_fraction": 0.95,
+    "ordered_contact_limbs": ["front_left", "front_right", "rear_left", "rear_right"],
+    "ordered_actuator_names": [
+      "front_left_hip",
+      "front_left_knee",
+      "front_right_hip",
+      "front_right_knee",
+      "rear_left_hip",
+      "rear_left_knee",
+      "rear_right_hip",
+      "rear_right_knee"
+    ],
+    "ordered_actuator_velocity_limits_rad_s": null,
+    "limiting_actuator_claim_requires_complete_final_commands_and_limits": true
+  },
+  "replayed_thresholds": {
+    "minimum_command_conditioned_yaw_separation_rad": 0.01,
+    "provenance": "Inherited unchanged from the closed R23D26 preregistration and used only to recompute diagnostic margins.",
+    "threshold_change_authorized": false
+  },
+  "cells": [
+    {"cell_id":"rapier_parry__cap_0p10__reference_zero","engine_id":"rapier_parry","candidate_id":"cap_0p10","arm_id":"reference_zero","command_sign":0,"steering_cap":0.1,"trace_sha256":"sha256:b91ef5ff3bab16206b3d09da6671c4348cd8021f04b4bf5e964679257a89fcf5","trace_byte_length":6847511},
+    {"cell_id":"rapier_parry__cap_0p10__positive_heading","engine_id":"rapier_parry","candidate_id":"cap_0p10","arm_id":"positive_heading","command_sign":1,"steering_cap":0.1,"trace_sha256":"sha256:c470d8b910f0f9586c09a9525864af606f07a67de945ed37d9dacc3f352e16c5","trace_byte_length":6835540},
+    {"cell_id":"rapier_parry__cap_0p10__negative_heading","engine_id":"rapier_parry","candidate_id":"cap_0p10","arm_id":"negative_heading","command_sign":-1,"steering_cap":0.1,"trace_sha256":"sha256:2ea12d0818f5f298dfbc252a235666496e33719305406bce85fad615d314fce4","trace_byte_length":6832391},
+    {"cell_id":"rapier_parry__cap_0p20__reference_zero","engine_id":"rapier_parry","candidate_id":"cap_0p20","arm_id":"reference_zero","command_sign":0,"steering_cap":0.2,"trace_sha256":"sha256:41743d72a88e9de84eeff0c3bad9ccdc09a51f9f4a4226589cbc1e9573ae71c6","trace_byte_length":6847511},
+    {"cell_id":"rapier_parry__cap_0p20__positive_heading","engine_id":"rapier_parry","candidate_id":"cap_0p20","arm_id":"positive_heading","command_sign":1,"steering_cap":0.2,"trace_sha256":"sha256:23e4ddaed418e26deaad8c725e6575c3779cfa0d52b3750a59779c1a6ee1c1b4","trace_byte_length":6832145},
+    {"cell_id":"rapier_parry__cap_0p20__negative_heading","engine_id":"rapier_parry","candidate_id":"cap_0p20","arm_id":"negative_heading","command_sign":-1,"steering_cap":0.2,"trace_sha256":"sha256:36e00c32f6c009534679440fb8e316c34b4b967de4bc7e251d40911835bc3ade","trace_byte_length":6835750},
+    {"cell_id":"rapier_parry__cap_0p30__reference_zero","engine_id":"rapier_parry","candidate_id":"cap_0p30","arm_id":"reference_zero","command_sign":0,"steering_cap":0.3,"trace_sha256":"sha256:eba6890d0b7777331bea8aad6c18e688cf915fee0429c0743effd3b790d0ce6a","trace_byte_length":6847511},
+    {"cell_id":"rapier_parry__cap_0p30__positive_heading","engine_id":"rapier_parry","candidate_id":"cap_0p30","arm_id":"positive_heading","command_sign":1,"steering_cap":0.3,"trace_sha256":"sha256:4f8bd2b31e97230d6e1a6b6a1fe814b4dab7ea188f532fb8c70f1f9db993a800","trace_byte_length":6837880},
+    {"cell_id":"rapier_parry__cap_0p30__negative_heading","engine_id":"rapier_parry","candidate_id":"cap_0p30","arm_id":"negative_heading","command_sign":-1,"steering_cap":0.3,"trace_sha256":"sha256:20ba779fb983b23b14e1875660bebc4d4391b2c5f92b4da7fb4a780b5dad04e9","trace_byte_length":6838265}
+  ],
+  "comparison_groups": [
+    {"candidate_id":"cap_0p10","reference_cell_id":"rapier_parry__cap_0p10__reference_zero","positive_cell_id":"rapier_parry__cap_0p10__positive_heading","negative_cell_id":"rapier_parry__cap_0p10__negative_heading"},
+    {"candidate_id":"cap_0p20","reference_cell_id":"rapier_parry__cap_0p20__reference_zero","positive_cell_id":"rapier_parry__cap_0p20__positive_heading","negative_cell_id":"rapier_parry__cap_0p20__negative_heading"},
+    {"candidate_id":"cap_0p30","reference_cell_id":"rapier_parry__cap_0p30__reference_zero","positive_cell_id":"rapier_parry__cap_0p30__positive_heading","negative_cell_id":"rapier_parry__cap_0p30__negative_heading"}
+  ],
+  "claim_limits": {
+    "closed_campaign_reinterpreted": false,
+    "candidate_selection_authorized": false,
+    "threshold_change_authorized": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "turning_validation": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

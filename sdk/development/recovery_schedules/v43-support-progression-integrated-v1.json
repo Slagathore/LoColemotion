@@ -1,0 +1,86 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_schedules_v1",
+  "profile_schema": "sporespore_development_recovery_candidate_profile_v2",
+  "extra_profile_keys": [
+    "diagnostic_schedule_id",
+    "diagnostic_schedule_sha256"
+  ],
+  "schedules": {
+    "v43-support-progression-integrated-v1": {
+      "ledger_scope": {
+        "subsystem": "recovery",
+        "engine_scope": "godot_jolt",
+        "authority_mode": "prospective_development_schedule",
+        "question_class": "development"
+      },
+      "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "runtime_sha256": "sha256:141b9cfe4e514b48a1446b16a52b5b936dc3660fe93eadf21e646b8b6ec68a86",
+      "limits": {
+        "maximum_precondition_steps": 320,
+        "walking_prefix_steps": 30,
+        "interaction_steps": 1,
+        "maximum_passive_descent_steps": 240,
+        "after_interaction_steps": 986,
+        "maximum_steps_per_child": 1338
+      },
+      "coverage_basis": {
+        "source_attempt": "sdk/development/recovery_attempts/f3e303d7b09146b0b23b33d6407da1d3.json",
+        "source_report_sha256": "sha256:65bc3d03e7c65908831e0a073f3eb4ecf65b1a1ce92bc3ee18b6994e9cf33912",
+        "original_tail_steps": 480,
+        "stance_steps_observed": 124,
+        "existing_stance_timeout_steps": 240,
+        "walking_probe_steps": 30,
+        "tail_derivation": "480 + (240 - 124) + 30 + 360 = 986",
+        "resource_derivation": "320 + 30 + 2 + 986 = 1338",
+        "threshold_source": "sdk/recovery/r24d17_native_recovery_runtime_and_physical_profile_contract_v1.json",
+        "motion_equality_test": "recovery_runtime::tests::ramped_neutral_stance_control_tests::v20_preserves_every_pre_stance_command_and_all_limits",
+        "preserved_walking_observation_budget_steps": 360,
+        "new_controller_preserves_pre_stance_motion_and_limits": true,
+        "existing_recovery_controller_and_all_commands_preserved": true,
+        "amplitude_ramp_steps": 72,
+        "maximum_walking_amplitude": 0.5994550408719347,
+        "inherited_schedule": "sdk/development/recovery_schedules/v42-stance-latch-integrated-v1.json",
+        "inherited_schedule_sha256": "sha256:b2020bebc4ae2dd3cf97629724e3bc9ce257aa2c2fd3abf332813afcf56eaa51",
+        "inherited_scope": "The bound V42 schedule retains earlier arithmetic and lineage. V43 preserves all limits and the same 400-command walking budget; it neither extends nor reruns V42.",
+        "entry_contract": "sdk/development/recovery_support_progression_walking_entry_contract_v1.json",
+        "walking_start_contract": "sdk/development/recovery_support_progression_walking_start_contract_v1.json",
+        "native_component": "sdk/development/recovery_support_progression_component_v1.json",
+        "native_component_sha256": "sha256:fdb50ea770dabba16b472fbfbb388cd9f42ffa8a3b40f5c89859f0dfb4862b0e",
+        "diagnostic_basis": {
+          "source_closure": "sdk/development/recovery_attempts/6514ace221e547c6b7b69e2d6bbdebaa.json",
+          "source_closure_sha256": "sha256:9a24db850c215026f91dced4b93622c0f21d2d4bbd580fa099ba53ea41bb7bad",
+          "source_report_sha256": "sha256:5aa35dbe98a1c96894eb1cd5694cd26a91c5d6c8d53911caabb8f2ffab3084e4",
+          "relocation_diagnosis": "sdk/development/recovery_v42_relocation_diagnosis_v1.json",
+          "relocation_diagnosis_sha256": "sha256:f114183dd6403152a0da2f863ede3ee9a30a4257dfd8c3074494cdca963a102d",
+          "native_component": "sdk/development/recovery_support_progression_component_v1.json",
+          "native_component_sha256": "sha256:fdb50ea770dabba16b472fbfbb388cd9f42ffa8a3b40f5c89859f0dfb4862b0e",
+          "physical_outcome_predicted": false,
+          "causal_attribution_proven": false
+        },
+        "controlled_change": "Relative to V42, preview the existing shared scheduler. During an active current or proposed swing (phase 0..72), require explicit presence AND bears_support for every limb whose proposed phase is stance (>72). If any required support is missing, hold all four gait clocks and gate counters; continue semantic/sample time, joint/reference control, steering and the ordinary amplitude ramp. Once holding, release after three consecutive clear samples; interrupted clear dwell resets. At most 120 held commands, including the first two clear-dwell commands, are allowed. A further required hold safely refuses with unchanged memory; a third clear sample can release at the limit. Inactive or non-swing operation resets the guard. Preserve the parent's explicit evidence-limit mode transition. Use original contact observations without latching or inferring contact. Preserve V42 reference-geometry latches, full-reference versus wave-rate selection, measured floor geometry, servo gains, host signs and all speed/impulse caps at the selected phases. Record incoming/proposed/selected phases, exact contacts, missing support, counters and decisions in the native receipt. This changes gait progression, not the physical time budget, evaluator or recovery controller."
+      },
+      "coverage_adequacy": "One fresh non-comparative seed-40200 SingleKick after the complete applicable safety gate, through the shared production launcher, worker, native adapter, motor ledger, retention and independent cold reader. Preserve V20 recovery, stance V7, BW5R-B prefix, initial gait clocks 90, 72-command amplitude ramp/cap, actual native contacts, finite floor, motor limits, solver, 986-step tail, 1338-step child cap, 400-command walking budget and original evaluator/criteria. Change resumed walking only to V43 support-aware phase progression over V42 reference control. Observe missing stance support, held/released gait clocks, clear dwell, safe timeout if reached, physical versus gait-step progress, reference latches, per-foot contact/relocation/cycles, clipping, torso motion and terminal support. The full retained telemetry profile is unchanged. Three-clear dwell and 120-held-command limit have zero-world boundary coverage; the finite physical trajectory need not exercise every boundary. A hold may stall gait or leave an unfinished swing. No predicted physical benefit, horizon extension, identity reuse, cached baseline, matched effect, force-aware recovery, superiority, causal attribution, acceptance or release claim.",
+      "uncovered_paths": [
+        "guaranteed recovery or walking success",
+        "guaranteed two complete planned cycles for every limb",
+        "commanded stop and cooldown",
+        "every guard and latch lifecycle boundary on the fresh physical trajectory",
+        "repair or causal explanation of V42 stance losses and backward relocation",
+        "matched comparison or superiority over V42",
+        "whole-body force-aware control or load distribution",
+        "general terrain or arbitrary morphology",
+        "cross-engine behavior or equivalence",
+        "held-out acceptance or release authority"
+      ],
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "walking_resume_frame_id": "anatomical_plus_x_horizontal_resume_v1",
+      "walking_entry_profile_id": "support_progression_joint_bounded_contact_gated_v1",
+      "walking_contact_profile_id": "recovery_native_qualified_contacts_v1",
+      "walking_start_profile_id": "support_progression_front_left_first_resume_v1",
+      "walking_policy_id": "sporespore_balanced_wave_recovery_support_progression_v1",
+      "walking_policy_contract_sha256": "sha256:706595a0eb44448507c93819a408dd82e3d2f54a162c06a7445ab861292b0e4a",
+      "coverage_question": "One fresh non-comparative seed-40200 SingleKick after the complete applicable safety gate, through the shared production launcher, worker, native adapter, motor ledger, retention and independent cold reader. Preserve V20 recovery, stance V7, BW5R-B prefix, initial gait clocks 90, 72-command amplitude ramp/cap, actual native contacts, finite floor, motor limits, solver, 986-step tail, 1338-step child cap, 400-command walking budget and original evaluator/criteria. Change resumed walking only to V43 support-aware phase progression over V42 reference control. Observe missing stance support, held/released gait clocks, clear dwell, safe timeout if reached, physical versus gait-step progress, reference latches, per-foot contact/relocation/cycles, clipping, torso motion and terminal support. The full retained telemetry profile is unchanged. Three-clear dwell and 120-held-command limit have zero-world boundary coverage; the finite physical trajectory need not exercise every boundary. A hold may stall gait or leave an unfinished swing. No predicted physical benefit, horizon extension, identity reuse, cached baseline, matched effect, force-aware recovery, superiority, causal attribution, acceptance or release claim."
+    }
+  }
+}

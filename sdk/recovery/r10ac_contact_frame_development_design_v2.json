@@ -1,0 +1,116 @@
+{
+  "schema_version": "sporespore_r10ac_contact_frame_development_design_v2",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_contact_frame_diagnostic",
+    "question_class": "development"
+  },
+  "source_parent_commit": "afa9271e166d9d813875fdcd21d321b3417261ff",
+  "question": "Do detection-frame and later callback-frame local coordinates classify the same loaded floor contact differently during V24 recovery at exposed prefix phase 248?",
+  "controlled_change": "Enable the v7 read-only contact-frame observer and retain both coordinate interpretations. Preserve controller observations, classifier tolerance, solved impulses, task clocks, evaluator and V24 DLL.",
+  "dependencies": [
+    {
+      "path": "sdk/recovery/r10ab_first_support_diagnostic_closure_v1.json",
+      "raw_sha256": "sha256:53bab27c22b4d10d42d2d4568a7b1e40a63bfd4b6884420d7984a4ac8c7079ea",
+      "byte_length": 120640
+    },
+    {
+      "path": "sdk/recovery/r10ac_contact_sampling_component_v1.json",
+      "raw_sha256": "sha256:8bff441a451ac920ac1d4c2430b2f1455b8a0cd60fc832dfadcf9c87f0cea07d",
+      "byte_length": 17874
+    },
+    {
+      "path": "sdk/recovery/r10ac_contact_frame_component_v1.json",
+      "raw_sha256": "sha256:145d2972a01d2bb1346ae84fc18aebca45673da8cc206ab41510bf7d4d926792",
+      "byte_length": 17144
+    },
+    {
+      "path": "sdk/recovery/r10ac_contact_capture_component_v1.json",
+      "raw_sha256": "sha256:a3ed6eb30f0b9bfac0064266eb3193fe7bcc66630e5d1685e6110c6d5d6b35c5",
+      "byte_length": 24436
+    },
+    {
+      "path": "sdk/recovery/r10ab_partial_downward_rise_finite_cycle_contract_v2.json",
+      "raw_sha256": "sha256:bd8bf8b616a80c7f5c2b5070324350c0d8d66e9543f3598bc9edb067982cb83c",
+      "byte_length": 33651
+    },
+    {
+      "path": "sdk/development/recovery_schedules/r10ab-partial-downward-rise-integrated-v2.json",
+      "raw_sha256": "sha256:021b4ec16cf0b43ce975d03d13026834be4ba9083cf939e95a32d95243b52108",
+      "byte_length": 4746
+    }
+  ],
+  "candidate_resource": "res://sdk/development/recovery_candidates/r10ac-contact-frame-diagnostic-v2.json",
+  "diagnostic_schedule_id": "r10ac-contact-frame-diagnostic-v2",
+  "engine": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10ac-contact-frame-build-ac6fc57f978740a8926c9955f4b572b1/build-02/godot.windows.editor.dev.x86_64.exe",
+    "raw_sha256": "sha256:491663b2f41147938b45eeb0863d68a0bb14ec18c6349d94402df846f29f9347"
+  },
+  "core_runtime_sha256": "sha256:729661dfd0936a4858238254fa8429688ad8815c49bda1dc9cd1cc3f6604ba08",
+  "first_probe": {
+    "seed": 61248,
+    "prefix_phase": 248,
+    "seed_label": "R10AC-CONTACT-FRAME-PREFIX-248-V1",
+    "roles": [
+      "kick_passive_recovery_resume"
+    ],
+    "attempt_limit": 1,
+    "held_out": false,
+    "fresh_setup": true,
+    "baseline_reuse": false,
+    "required_entry_kind": "partial",
+    "execution_mode": "single_kick_controller_diagnostic_v1",
+    "stage": "contact_frame_diagnostic",
+    "coverage_adequacy": "One fresh world at the already exposed phase 248 covers native observer enablement, all setup/prefix/descent/partial recovery captures and the bounded continuation allowed by unchanged controller gates. The distinct numeric seed is an identity mapped to the same exposed phase, not an unseen condition or independent generalization sample."
+  },
+  "limits": {
+    "maximum_world_build_count": 1,
+    "maximum_steps_per_child": 3752,
+    "after_interaction_steps": 3400,
+    "child_wall_time_limit_seconds": 2400,
+    "independent_reader_wall_time_limit_seconds": 1200
+  },
+  "timing_adequacy": "The original 1740-second child and 900-second reader ceilings are extended only for full diagnostic capture and independent replay; all simulated horizons and behavior thresholds stay unchanged. Record actual capture cost before considering reduced telemetry.",
+  "telemetry": {
+    "profile_id": "r10ac_contact_frame_capture_v1",
+    "capture_every_completed_step": true,
+    "retain_rejected_records": true,
+    "reduce_original_capture": false,
+    "maximum_native_point_records_per_step": 4096,
+    "callback_body_count": 9,
+    "independent_replay_required": true
+  },
+  "required_before_world": [
+    "Bind fresh complete source/runtime key and qualify the entire applicable smoke safety graph, including negative launch, capture, retention, replay and finalization controls.",
+    "Integrate a distinct seed guard, profile dispatch, prefix mapping, worker, full-report reader and durable single-use reservation.",
+    "Run from clean pushed prospective freeze under the operation lock; retain original stdout/stderr and full bounded tail."
+  ],
+  "outcome_rules": [
+    "Report incomplete or ambiguous telemetry as diagnostic infrastructure failure; retain it and do not infer classification rates.",
+    "Report exact per-contact local-coordinate differences and classification changes with denominators by phase/body; preserve original classifications.",
+    "Association in this instrumented fresh world does not establish that classification repair restores recovery. Any repair needs a distinct prospective controller/observer successor."
+  ],
+  "finite_blockers": [
+    "Complete diagnostic launch integration and safety qualification",
+    "Observe actual native contact timing and quantify discrepancy",
+    "Implement and commission a justified distinct recovery repair if supported",
+    "Fresh official qualification and all-pass held-out decision with M07 adoption"
+  ],
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "predecessor_design": {
+    "path": "sdk/recovery/r10ac_contact_frame_development_design_v1.json",
+    "raw_sha256": "sha256:4fe524528d18ab7c98958be1b24a1ae645bcaf474a169165e0d335d01063c68a"
+  },
+  "revision_reason": "Separate entry/start admission identities permit a new R10AC source key without rebinding the consumed R10AB key. Native control laws, gait phase, task, seed population and simulated limits are unchanged. Compose the existing controller replay with the linked diagnostic reader.",
+  "integration_selection": {
+    "walking_entry_profile_id": "r10ac_v56_joint_bounded_contact_gated_v1",
+    "walking_start_profile_id": "r10ac_v56_front_left_first_post_interaction_v1",
+    "walking_policy_id": "r10ab_partial_downward_rise_route_v1",
+    "capture_worker": "res://sdk/adapters/godot/gdscript/r10ac_development_worker_v1.gd",
+    "reader": "res://sdk/trace_analysis/r10ac_recovery_replay.gd",
+    "prefix_profile_id": "r10ac_declared_contact_frame_prefix_phase_v2"
+  }
+}

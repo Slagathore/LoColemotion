@@ -1,0 +1,166 @@
+{
+  "schema_version": "sporespore_r10r_upright_direct_rise_design_v1",
+  "design_id": "R10R-UPRIGHT-DIRECT-RISE-V1",
+  "status": "declared_before_successor_implementation",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_control_composition",
+    "question_class": "development"
+  },
+  "predecessor_closure": {
+    "path": "sdk/recovery/r10q_phase246_development_pair_closure_v1.json",
+    "raw_sha256": "sha256:87c45ba4e0cfb41bec92e76b85a21faee4c5b4ae555b9d96def5882ea114fcc2"
+  },
+  "command_diagnosis": {
+    "path": "sdk/recovery/r10q_upright_command_component_v1.json",
+    "raw_sha256": "sha256:c8e6b31a0f483bb5127a0cdf45e20339f6f934763e8405d9ab01314be7403019"
+  },
+  "question": "Can replacing only the upright raise-body fold/replant sequence with the existing direct measured-pose rise reach standing and finite walking from the exposed upright entry?",
+  "source_basis": {
+    "physical_failure": "The phase-246 upright raise drives both right knees from about +1.10 through zero to -1.05 while both left knees are already near -1.05; the body loses support and inverts.",
+    "command_only_observation": "On three exposed entry readings, 2322 original native calls reproduce exactly. Direct V12 ideal tracking reaches neutral without sign crossings and peaks at 0.5524407413520072 rad/s; V20 reverses all four right-side joints and peaks at 3.2308423993727997 rad/s.",
+    "counterfactual_physics_predicted": false
+  },
+  "control_composition": {
+    "original_passive_entry": "unchanged R10Q selector and source-verified entry API; original prone/partial routes retain priority",
+    "upright_task": "sporespore_measured_upright_recovery_to_standing_v1",
+    "establish_distal_support": "unchanged V20 world-vertical support law",
+    "raise_body": "unchanged V12 measured_pose_rise_reference toward all-zero joints over its existing 360-command reference clock",
+    "stance_handoff_and_dwell": "unchanged V7 stance law selected by V20",
+    "raise_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v12",
+    "new_step_request_schema": "sporespore_r10r_upright_direct_rise_step_control_request_v1",
+    "new_native_step_export": "ss_recovery_r10r_upright_step_control_v1_json",
+    "expected_observation_owner_by_phase": {
+      "establish_distal_support": "V20 recovery",
+      "raise_body": "V12 recovery",
+      "stance_handoff": "V7 stance",
+      "stance_dwell": "V7 stance"
+    },
+    "old_r10q_exports_and_outputs_preserved": true,
+    "canonical_or_partial_supervisor_synthesis": false,
+    "source_observation_rewriting": false,
+    "standing_threshold_change": false,
+    "controller_limit_change": false,
+    "phase_timeout_change": false
+  },
+  "preserved": {
+    "absolute_standing_height_ratio": 0.75,
+    "minimum_up_dot": 0.95,
+    "minimum_nonfoot_clearance_m": 0.005,
+    "minimum_each_distal_bearing_impulse_ns": 0.019293,
+    "maximum_linear_speed_m_s": 0.1,
+    "maximum_angular_speed_rad_s": 0.2,
+    "required_consecutive_standing_samples": 60,
+    "strict_final_joint_limits": true,
+    "original_actuator_caps": true,
+    "maximum_energy_balance_residual_j": 0.25,
+    "exclusive_control_ownership": true,
+    "raise_body_timeout_commands": 600,
+    "total_recovery_timeout_commands": 1200,
+    "kick_energy_epoch": true,
+    "no_kick_ramp_and_v50_hold": true,
+    "v55_walking_and_stopping": true,
+    "walking_planned_cycles": 4,
+    "stop_commands": 120,
+    "required_final_settled_commands": 30
+  },
+  "alternatives": [
+    {
+      "option": "Increase raise timeout",
+      "selected": false,
+      "reason": "The observed child is already settled upside down; extra time does not address the commanded folding."
+    },
+    {
+      "option": "Require longer support establishment only",
+      "selected": false,
+      "reason": "It retains the asymmetric fold/replant trajectory after support is attained."
+    },
+    {
+      "option": "Use the no-kick joint ramp unchanged for upright recovery",
+      "selected": false,
+      "reason": "The existing entry law refuses measured joint-limit violations present at both exposed upright entries; its fixed positive-knee endpoint also differs from a direct rise to neutral."
+    },
+    {
+      "option": "Direct V12 rise only in the upright branch",
+      "selected": true,
+      "reason": "Uses an existing measured-pose law that moves both knee signs toward neutral, preserves the demonstrated prone/partial V20 path, and leaves all completion and time limits intact."
+    }
+  ],
+  "risks": [
+    "Command-space ideal tracking does not prove physical support, clearance, settling or recovery.",
+    "The unchanged support transition may still leave too much angular motion for a direct rise.",
+    "The V7 handoff reference may disturb a newly raised body; the full retained tail must measure it.",
+    "A new DLL requires its complete dependency key and affected native/adapter/reader qualification; old qualification is not inherited."
+  ],
+  "development_coverage": {
+    "held_out": false,
+    "first_diagnostic": {
+      "seed": 40946,
+      "prefix_phase": 246,
+      "roles": [
+        "kick_passive_recovery_resume"
+      ],
+      "single_kick": true,
+      "attempt_limit": 1,
+      "full_finite_horizon": true,
+      "question": "Exercise source-verified upright direct rise, V7 standing, fresh V55 walking and the complete stop through the real launcher and reader.",
+      "coverage_adequacy": "Only upright actuation changes. One fresh kicked child covers the changed branch; unchanged no-kick and partial/prone compatibility are first checked at the native/adapter interfaces. This diagnostic makes no paired-effect claim."
+    },
+    "if_first_diagnostic_negative": "Retain and close R10R development negative; no later declared R10R cells may launch.",
+    "if_first_diagnostic_positive": {
+      "fresh_phase246_pair": {
+        "seed": 40946,
+        "prefix_phase": 246,
+        "roles": [
+          "matched_no_kick_continuation",
+          "kick_passive_recovery_resume"
+        ]
+      },
+      "additional_single_kicks": [
+        {
+          "seed": 40945,
+          "prefix_phase": 245,
+          "branch": "upright"
+        },
+        {
+          "seed": 40941,
+          "prefix_phase": 241,
+          "branch": "partial"
+        },
+        {
+          "seed": 40943,
+          "prefix_phase": 243,
+          "branch": "prone"
+        }
+      ],
+      "additional_cells_require": "Fresh phase-246 pair is valid and positive; each later diagnostic is individually declared and gated."
+    },
+    "fresh_identity_per_attempt": true,
+    "physical_baseline_reuse": false,
+    "full_capture_and_independent_native_replay": true,
+    "explicit_prefix_mapping": true,
+    "all_worlds_from_clean_pushed_source": true
+  },
+  "zero_world_requirements": [
+    "Cold replay and retain all 2322 diagnostic native responses and the exact compiled source bytes.",
+    "Test the new actual step API at source/owner/task/clock/energy/memory boundaries and all phase transitions; old Q, prone and partial APIs must retain their outputs.",
+    "Validate all unchanged walking, ramp, stationary hold and stop policies on the exact newly built DLL, with explicit dependency-key scope.",
+    "Exercise the real worker, publisher and independent Godot/Python readers for the mixed V20/V12/V7 controller sequence, including crossed owners and old step APIs.",
+    "Complete the applicable zero-world smoke gate and negative controls before every physical child."
+  ],
+  "next_execution_order": [
+    "Implement a distinct source-verified native step API composing the original laws.",
+    "Build and bind the exact candidate DLL, then qualify its native and real production interfaces.",
+    "Run the single phase-246 kicked diagnostic after its complete safety gate.",
+    "Only if positive, run the fresh declared pair and gated additional branch diagnostics.",
+    "Only after adequate development coverage, preregister a fresh held-out finite population and complete single-use authority."
+  ],
+  "held_out_population": [],
+  "held_out_population_declared": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "original_results_regraded": false,
+  "old_qualification_reused": false,
+  "sdk1_score": "14/20"
+}

@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br13_knowledge_entry_v1.schema.json",
+  "title": "SporeSpore BR13 certification-backed observation entry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "entry_id",
+    "cell_id",
+    "knowledge_class",
+    "title",
+    "claim",
+    "claim_status",
+    "scope",
+    "mechanism",
+    "applicability",
+    "failure_boundaries",
+    "morphology_tags",
+    "parameter_effects",
+    "minimal_repair_rules",
+    "unknowns",
+    "evidence",
+    "guidance_policy",
+    "authoring_source",
+    "supersedes",
+    "recorded_utc",
+    "admission"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br13_knowledge_entry.v1"
+    },
+    "entry_id": {
+      "$ref": "#/$defs/stable_id"
+    },
+    "cell_id": {
+      "enum": ["BR13.0", "BR13.2", "BR13.4"]
+    },
+    "knowledge_class": {
+      "const": "milestone_observation"
+    },
+    "title": {
+      "$ref": "#/$defs/text"
+    },
+    "claim": {
+      "$ref": "#/$defs/text"
+    },
+    "claim_status": {
+      "const": "accepted"
+    },
+    "scope": {
+      "$ref": "#/$defs/text"
+    },
+    "mechanism": {
+      "$ref": "#/$defs/text"
+    },
+    "applicability": {
+      "$ref": "#/$defs/unique_strings"
+    },
+    "failure_boundaries": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/unique_strings"
+        },
+        {
+          "minItems": 1
+        }
+      ]
+    },
+    "morphology_tags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stable_id"
+      },
+      "uniqueItems": true
+    },
+    "parameter_effects": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "minimal_repair_rules": {
+      "type": "array",
+      "maxItems": 0
+    },
+    "unknowns": {
+      "$ref": "#/$defs/unique_strings"
+    },
+    "evidence": {
+      "$ref": "#/$defs/evidence"
+    },
+    "guidance_policy": {
+      "$ref": "#/$defs/guidance_policy"
+    },
+    "authoring_source": {
+      "$ref": "#/$defs/authoring_source"
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stable_id"
+      },
+      "uniqueItems": true
+    },
+    "recorded_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "admission": {
+      "$ref": "#/$defs/admission"
+    }
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._-]{0,159}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000
+    },
+    "unique_strings": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "trust_mode",
+        "key_id",
+        "receipt_path",
+        "receipt_sha256",
+        "artifact_count",
+        "attested_utc"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "hmac-sha256"
+        },
+        "trust_mode": {
+          "const": "production"
+        },
+        "key_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receipt_path": {
+          "$ref": "#/$defs/path"
+        },
+        "receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "artifact_count": {
+          "const": 7
+        },
+        "attested_utc": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "replicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "replicate",
+        "bundle_id",
+        "bundle_path",
+        "manifest_sha256",
+        "checksums_sha256",
+        "capsule_sha256",
+        "metrics_sha256",
+        "source_inventory_sha256",
+        "transcript_sha256",
+        "attestation"
+      ],
+      "properties": {
+        "replicate": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2
+        },
+        "bundle_id": {
+          "$ref": "#/$defs/stable_id"
+        },
+        "bundle_path": {
+          "$ref": "#/$defs/path"
+        },
+        "manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "checksums_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "capsule_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "metrics_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_inventory_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "transcript_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "attestation": {
+          "$ref": "#/$defs/attestation"
+        }
+      }
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program_id",
+        "cell_id",
+        "evidence_role",
+        "claim_scope",
+        "replicates"
+      ],
+      "properties": {
+        "program_id": {
+          "pattern": "^BR13_CANONICAL_GET_UP_[024]_[A-Z0-9_]+_V1$"
+        },
+        "cell_id": {
+          "enum": ["BR13.0", "BR13.2", "BR13.4"]
+        },
+        "evidence_role": {
+          "const": "milestone"
+        },
+        "claim_scope": {
+          "$ref": "#/$defs/text"
+        },
+        "replicates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/replicate"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family",
+        "decision_id",
+        "decision_sha256",
+        "certification_id",
+        "report_sha256",
+        "report_bytes",
+        "report_receipt_sha256",
+        "source_commit_sha",
+        "campaign_sha256",
+        "certification_claim_boundary",
+        "program"
+      ],
+      "properties": {
+        "family": {
+          "const": "br13_certification_program_v1"
+        },
+        "decision_id": {
+          "const": "BR13_CONSTRAINED_CANONICAL_GET_UP_DECISION_V1"
+        },
+        "decision_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "certification_id": {
+          "pattern": "^br13_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"
+        },
+        "report_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "report_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "report_receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_commit_sha": {
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "campaign_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "certification_claim_boundary": {
+          "type": "string",
+          "minLength": 80
+        },
+        "program": {
+          "$ref": "#/$defs/program"
+        }
+      }
+    },
+    "guidance_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "automatic_creature_guidance_allowed",
+        "automatic_application_allowed",
+        "unlock_requires"
+      ],
+      "properties": {
+        "mode": {
+          "const": "observation_only"
+        },
+        "automatic_creature_guidance_allowed": {
+          "const": false
+        },
+        "automatic_application_allowed": {
+          "const": false
+        },
+        "unlock_requires": {
+          "const": [
+            "VALIDATED_CREATURE_GUIDANCE_CONSUMER",
+            "CERTIFIED_MORPHOLOGY_TERRAIN_TRANSFER",
+            "SEPARATE_GUIDANCE_DECISION"
+          ]
+        }
+      }
+    },
+    "authoring_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "sha256"],
+      "properties": {
+        "kind": {
+          "const": "admission_manifest_inline"
+        },
+        "path": {
+          "const": "res://data/lab/knowledge/admission_manifests/BR13_canonical_get_up_knowledge_admission_v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "admission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policy",
+        "manifest_id",
+        "manifest_sha256",
+        "authorized_by",
+        "authorization_basis",
+        "payload_sha256"
+      ],
+      "properties": {
+        "policy": {
+          "const": "br13-knowledge-admission-v1"
+        },
+        "manifest_id": {
+          "const": "BR13_CANONICAL_GET_UP_KNOWLEDGE_ADMISSION_V1"
+        },
+        "manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "authorized_by": {
+          "const": "Cole"
+        },
+        "authorization_basis": {
+          "const": "standing_authority_to_admit_recommended_observation_only_br13_knowledge"
+        },
+        "payload_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  }
+}

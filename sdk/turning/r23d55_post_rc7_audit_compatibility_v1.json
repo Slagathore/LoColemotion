@@ -1,0 +1,144 @@
+{
+  "schema_version": "sporespore_qsdk_r23d55_post_rc7_audit_compatibility_contract_v1",
+  "status": "implemented_zero_world_historical_and_live_binding_split_extended_for_r23d58_successor",
+  "maintenance_id": "QSDK-R23D55-POST-RC7-AUDIT-COMPATIBILITY",
+  "record_type": "prospective_zero_world_audit_compatibility_maintenance",
+  "question_class": "development",
+  "physical_question_declared": false,
+  "pre_maintenance_live_audit_failure_invoked": false,
+  "declared_from_parent": {
+    "commit": "79ec6b4a4f2b0b2324c0842ead31bdf4d542c4d0",
+    "tree": "ba445c7305397f6dac1a3b996da63d3541f9f6c7",
+    "remote": "https://github.com/Slagathore/sporespore.git",
+    "local_upstream_and_live_remote_equal": true,
+    "worktree_clean": true
+  },
+  "immutable_r23d55_observation": {
+    "source_commit": "0d173d385f22fb8a30e7cc2234be8b17799512d9",
+    "source_tree": "e8339ab265285647a1ccf09a67ade080cea93c08",
+    "contract_path": "sdk/turning/r23d55_godot_live_fixture_actuator_cap_conformance_v1.json",
+    "contract_raw_sha256": "sha256:07dde7aafb3cefdd31bf4fa52f2abb231f6783a1d270361776a63041d3583838",
+    "source_binding_count": 19,
+    "observed_result_changed": false,
+    "threshold_changed": false,
+    "selector_changed": false,
+    "evaluator_changed": false,
+    "interpretation_changed": false,
+    "physical_rerun_authorized": false
+  },
+  "r23d58_successor_compatibility_incident": {
+    "observed": true,
+    "status": "local_zero_world_audit_negative_live_successor_source_coupled_to_immutable_observation",
+    "failed_gate_path": "tests/test_qsdk_r23d55_live_fixture_actuator_cap_contract.ps1",
+    "failure_message": "QSDK-R23D55 CAP CONFORMANCE: Bound live source drifted: scripts/lab/gait/physical_wave_gait_quadruped.gd",
+    "failure_reached_r23d55_runtime_reexecution": false,
+    "root_cause": "The post-RC7 compatibility split still classified the physical runner and adapter as permanently live R23D55 dependencies even though their exact observed bytes remain pinned in the R23D55 contract and reconstructable from its retained source commit. R23D58 deliberately extended both production paths after the R23D55 observation.",
+    "repair": "Move only the observed physical runner and adapter paths from live-checkout verification to exact Git-blob verification at the unchanged R23D55 source commit. Preserve their original contract and ledger digests, every observed runtime value, and every R23D55 claim boundary.",
+    "successor_gate_id": "QSDK-R23D58",
+    "moved_binding_count": 2,
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "r23d55_observed_result_changed": false,
+    "r23d55_threshold_changed": false,
+    "r23d55_selector_changed": false,
+    "r23d55_evaluator_changed": false,
+    "r23d55_interpretation_changed": false,
+    "physical_acceptance_authority": false
+  },
+  "historical_binding_verification": {
+    "mode": "sha256_exact_pinned_git_blob_bytes_at_observed_source_commit",
+    "binding_count": 7,
+    "live_checkout_identity_required": false,
+    "bindings": [
+      {
+        "path": ".gitattributes",
+        "git_blob_oid": "2c3692d669c727d6d1ef9fd66c09900aa69618b7",
+        "raw_sha256": "sha256:7425a6c7f720b37a5b656b7045524478913f5ccf9cd0ced96df25809baa5d316"
+      },
+      {
+        "path": "sdk/closure_evidence_provenance_contract.json",
+        "git_blob_oid": "510c0cbc872b2f26d2fd1d7bb60e7c540fd8a7e9",
+        "raw_sha256": "sha256:f7d9ea77019211005033767b238daa0c71adbcf4c60e715371eb34ca3552d0c2"
+      },
+      {
+        "path": "tests/test_closure_evidence_provenance_contract.ps1",
+        "git_blob_oid": "b58e413b0b6b6405c9ec889281e68ab0011a254e",
+        "raw_sha256": "sha256:3af2d3fdec2cca4278013968c6caa7d7266a92bbab599e14d02519d0cc16c09d"
+      },
+      {
+        "path": "sdk/closure_evidence_mode_inventory.json",
+        "git_blob_oid": "0dc6037d82fb2267f86a0a6f908ce0df8f196aa5",
+        "raw_sha256": "sha256:4be25cd67e04a100a5a591d658f8491360c51861af15f76d6a27080bfe1211f1"
+      },
+      {
+        "path": "sdk/run_conformance.ps1",
+        "git_blob_oid": "c19157937b587e8b46bc01125cb05bd77645c949",
+        "raw_sha256": "sha256:c02bd9b0fa222958ca475dee4ee264a90e246828fbb60595560fcd58e2318da7"
+      },
+      {
+        "path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+        "git_blob_oid": "502778a79745e07fe16a601cd34206bf4c6ee92a",
+        "raw_sha256": "sha256:0a21165e37044311c3a65e7e8b46b3c00dc9a2057a97c239bdd659c6703ace6a"
+      },
+      {
+        "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+        "git_blob_oid": "4be79e7698bcca658d39e6a6a6e08076353fbd0f",
+        "raw_sha256": "sha256:d014cea92744812f07e9a3482560eb25b6ca11ad8e4544819e58a71bbef676d3"
+      }
+    ],
+    "adequacy": "These seven paths are campaign-era infrastructure or production inputs whose exact R23D55 bytes remain reconstructable from the retained source commit. Pinning their Git objects and hashing the object bytes preserves the observed dependency key while allowing prospectively declared infrastructure and successor production-route growth."
+  },
+  "live_binding_verification": {
+    "mode": "sha256_exact_live_checkout_bytes",
+    "binding_count": 12,
+    "paths": [
+      "sdk/audit_closure_evidence_modes.ps1",
+      "project.godot",
+      "sdk/adapters/godot/sporespore_locomotion.gdextension",
+      "scripts/lab/gait/sdk_godot_jolt_live_fixture_actuator_cap_binding.gd",
+      "scripts/lab/gait/physical_quadruped_fixture_spec.gd",
+      "scripts/lab/gait/physical_quadruped_proportion_spec.gd",
+      "sdk/turning/r23d2_development_contract_v1.json",
+      "tests/test_sdk_qsdk_r23d3_godot_jolt_worker.gd",
+      "tests/test_sdk_qsdk_r23d48_godot_jolt_physical_worker.gd",
+      "tests/test_sdk_qsdk_r23d55_godot_live_fixture_actuator_cap_conformance.gd",
+      "sdk/turning/r23d54_godot_actuator_phase_characterization_closure_v1.json",
+      "tests/test_qsdk_r23d54_closure.ps1"
+    ],
+    "adequacy": "These are the still-unchanged runtime, binder, compiler, inherited-contract, and immutable-parent inputs that make the R23D55 zero-world result meaningful. Their live bytes must still match the observed contract exactly. The two successor-modified production paths are verified separately from the retained source commit."
+  },
+  "audit_compatibility_policy": {
+    "audit_path": "tests/test_qsdk_r23d55_live_fixture_actuator_cap_contract.ps1",
+    "release_block_key": "prospective_r23d55_live_fixture_actuator_cap_conformance",
+    "historical_digest_fields_remain_observed_values": true,
+    "mutable_current_successor_fields_excluded_from_immutable_r23d55_assertion": true,
+    "release_and_support_mirrors_required": true,
+    "historical_git_blob_and_live_checkout_partition_must_be_complete_and_disjoint": true,
+    "successor_modified_observed_production_paths_use_historical_git_bytes": true,
+    "contract_source_binding_count_must_remain_19": true
+  },
+  "zero_world_boundary": {
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "claims": {
+    "r23d55_observation_reinterpreted": false,
+    "r23d58_successor_change_reinterpreted_as_r23d55_result": false,
+    "complete_dependency_key_for_future_result_reuse": false,
+    "physical_successor_opened": false,
+    "actuator_phase_characterization_complete": false,
+    "godot_jolt_turning_validation": false,
+    "finite_three_engine_turning": false,
+    "portable_basic_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "q_sdk_r23_satisfied": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

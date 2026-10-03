@@ -1,0 +1,761 @@
+{
+  "schema_version": "sporespore_r10ap_safety_stage_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "complete_development_safety_stage_graph",
+    "question_class": "development"
+  },
+  "population": {
+    "seed": 70248,
+    "roles": [
+      "kick_passive_recovery_resume"
+    ],
+    "mode": "single_kick_controller_diagnostic_v1"
+  },
+  "design_sha256": "sha256:fb0ae1ad852be3feba84aee39ec9dafd30c1424cbc81d02eff0db59d0e3f7858",
+  "candidate_profile": {
+    "resource": "res://sdk/development/recovery_candidates/r10ap-progressive-headroom-v1.json",
+    "raw_sha256": "sha256:e314459fbfecb029b5a7f27be9a3d88edfb9e6cf52b1e04684bd46243d411d1a"
+  },
+  "complete_applicable_coverage": true,
+  "additional_required_controls": [],
+  "stages": [
+    {
+      "id": "r10ap_context_handoff",
+      "pattern": "test_r10ap_context_handoff.py",
+      "tests": 3,
+      "candidate_bound": true,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10ap_launch_guard",
+      "pattern": "test_r10ap_launch_guard.py",
+      "tests": 13,
+      "candidate_bound": true,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "shared_context_environment",
+      "pattern": "test_qsdk_r10f_l15_context_environment.py",
+      "tests": 5,
+      "candidate_bound": false,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "shared_enclosing_retention",
+      "pattern": "test_qsdk_r10f_l15_collection_enclosing_retention.py",
+      "tests": 7,
+      "candidate_bound": false,
+      "timeout_seconds": 180
+    },
+    {
+      "id": "r10ap_startup_transport",
+      "pattern": "test_r10ad_startup_transport.py",
+      "tests": 3,
+      "candidate_bound": false,
+      "timeout_seconds": 60
+    },
+    {
+      "id": "r10ap_startup_controls",
+      "pattern": "test_r10ap_startup_preflight.py",
+      "tests": 4,
+      "candidate_bound": false,
+      "timeout_seconds": 60
+    },
+    {
+      "id": "r10ap_native_startup",
+      "pattern": "test_r10ap_native_startup_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 240
+    },
+    {
+      "id": "r10ap_native_interfaces",
+      "pattern": "test_r10ap_native_interfaces.py",
+      "tests": 4,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_host",
+      "pattern": "test_r10ap_host.py",
+      "tests": 7,
+      "candidate_bound": true,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10ap_native_world_authority",
+      "pattern": "test_r10ap_native_world_authority.py",
+      "tests": 20,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_header",
+      "pattern": "test_r10ap_smoke_reader.py",
+      "tests": 8,
+      "candidate_bound": true,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10ap_compact_retention",
+      "pattern": "test_r10ap_retention_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 180
+    },
+    {
+      "id": "r10ap_workflow",
+      "pattern": "test_r10ap_workflow_audit.py",
+      "tests": 3,
+      "candidate_bound": true,
+      "timeout_seconds": 360
+    },
+    {
+      "id": "exact_runtime_binding",
+      "pattern": "test_qsdk_r10f_l14_runtime_binding.py",
+      "tests": 11,
+      "candidate_bound": false
+    },
+    {
+      "id": "host_runtime_successor",
+      "pattern": "test_development_host_runtime_successor.py",
+      "tests": 3,
+      "candidate_bound": false
+    },
+    {
+      "id": "shared_interface_definitions",
+      "pattern": "test_development_shared_interfaces.py",
+      "tests": 4,
+      "candidate_bound": false
+    },
+    {
+      "id": "exact_publication",
+      "pattern": "test_exact_json_transport.py",
+      "tests": 5,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_callers",
+      "pattern": "test_development_r10t_publication_callers.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_late_catch",
+      "pattern": "test_development_r10t_publication_late_catch.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_duplicate",
+      "pattern": "test_development_r10t_publication_duplicate.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_failure_sources",
+      "pattern": "test_development_r10t_publication_failure_sources.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_forged_retention",
+      "pattern": "test_development_r10t_publication_forged_retention.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_terminal_modes",
+      "pattern": "test_development_r10t_publication_terminal_modes.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_terminal_consumer",
+      "pattern": "test_development_r10t_publication_terminal_consumer.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10t_publication_single_output",
+      "pattern": "test_development_r10t_publication_single_output.py",
+      "tests": 1,
+      "candidate_bound": false
+    },
+    {
+      "id": "owned_process_relationship",
+      "pattern": "test_r10x_native_process_observation.py",
+      "tests": 13,
+      "candidate_bound": false
+    },
+    {
+      "id": "godot_rust_owner_contract",
+      "pattern": "test_qsdk_r10f_l15_canonical_ownership.py",
+      "tests": 2,
+      "candidate_bound": false
+    },
+    {
+      "id": "smoke_native_safety",
+      "pattern": "test_development_r10v_native_safety.py",
+      "tests": 3,
+      "candidate_bound": false,
+      "timeout_seconds": 420
+    },
+    {
+      "id": "smoke_reader_controls",
+      "pattern": "test_development_recovery_smoke_reader.py",
+      "tests": 3,
+      "candidate_bound": false
+    },
+    {
+      "id": "step_cost_profile_controls",
+      "pattern": "test_development_step_cost_profile.py",
+      "tests": 4,
+      "candidate_bound": false
+    },
+    {
+      "id": "context_cache_exact_inputs",
+      "pattern": "test_development_exact_context_cache.py",
+      "tests": 3,
+      "candidate_bound": false
+    },
+    {
+      "id": "context_cache_integration",
+      "pattern": "test_development_context_cache_integration.py",
+      "tests": 5,
+      "candidate_bound": false
+    },
+    {
+      "id": "prone_deadline_schedule",
+      "pattern": "test_development_recovery_prone_deadline.py",
+      "tests": 5,
+      "candidate_bound": false
+    },
+    {
+      "id": "r10ap_runtime",
+      "pattern": "test_r10ap_runtime.py",
+      "tests": 4,
+      "candidate_bound": true
+    },
+    {
+      "id": "candidate_transport",
+      "pattern": "test_development_recovery_candidate_transport.py",
+      "tests": 7,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_native_control",
+      "pattern": "test_r10ap_native_safety_components.py",
+      "tests": 3,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_task_source",
+      "pattern": "test_development_r10ap_task_source.py",
+      "tests": 2,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_loaded_source",
+      "pattern": "test_r10ap_loaded_source.py",
+      "tests": 1,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_native_api",
+      "pattern": "test_r10ap_native_api.py",
+      "tests": 1,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_worker_new_partial",
+      "pattern": "test_r10ap_worker_new_partial_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 240
+    },
+    {
+      "id": "r10ap_worker_new_prone",
+      "pattern": "test_r10ap_worker_new_prone_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 240
+    },
+    {
+      "id": "r10ap_worker_original_partial",
+      "pattern": "test_r10ap_worker_original_partial_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 240
+    },
+    {
+      "id": "r10ap_worker_original_prone",
+      "pattern": "test_r10ap_worker_original_prone_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 240
+    },
+    {
+      "id": "r10ap_upright_worker",
+      "pattern": "test_development_r10ap_upright_worker.py",
+      "tests": 1,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_segment_reader",
+      "pattern": "test_development_r10ap_segment_reader.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10ap_route_bindings",
+      "pattern": "test_development_r10ap_route_bindings.py",
+      "tests": 1,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_hold_interfaces",
+      "pattern": "test_r10ap_hold_route_interface.py",
+      "tests": 3,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_measured_body",
+      "pattern": "test_r10ap_measured_body_adapter.py",
+      "tests": 14,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_walking_boundaries",
+      "pattern": "test_r10ap_native_walking_boundaries.py",
+      "tests": 1,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_finite_task",
+      "pattern": "test_r10ap_finite_task_audit.py",
+      "tests": 11,
+      "candidate_bound": true
+    },
+    {
+      "id": "walking_readiness",
+      "pattern": "test_recovery_walking_readiness.py",
+      "tests": 7,
+      "candidate_bound": true
+    },
+    {
+      "id": "finite_walking",
+      "pattern": "test_finite_recovery_walking.py",
+      "tests": 7,
+      "candidate_bound": true
+    },
+    {
+      "id": "cycle_stop",
+      "pattern": "test_development_r10v_cycle_stop.py",
+      "tests": 3,
+      "candidate_bound": true
+    },
+    {
+      "id": "native_step_failure",
+      "pattern": "test_development_native_step_failure.py",
+      "tests": 3,
+      "candidate_bound": true
+    },
+    {
+      "id": "walking_contacts",
+      "pattern": "test_development_recovery_walking_contacts.py",
+      "tests": 4,
+      "candidate_bound": true
+    },
+    {
+      "id": "native_walking_contacts",
+      "pattern": "test_development_recovery_native_walking_contacts.py",
+      "tests": 4,
+      "candidate_bound": true
+    },
+    {
+      "id": "r10ap_complete_partial_report",
+      "pattern": "test_r10ap_report_partial_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_upright_report",
+      "pattern": "test_r10ap_report_upright_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_ready_report",
+      "pattern": "test_r10ap_report_ready_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_timeout_report",
+      "pattern": "test_r10ap_report_timeout_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_walking_report",
+      "pattern": "test_r10ap_report_walking_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_detection_frame",
+      "pattern": "test_r10af_detection_frame_contacts.py",
+      "tests": 4,
+      "candidate_bound": true,
+      "timeout_seconds": 180
+    },
+    {
+      "id": "r10ap_contact_report",
+      "pattern": "test_r10ap_contact_report.py",
+      "tests": 3,
+      "candidate_bound": true,
+      "timeout_seconds": 180
+    },
+    {
+      "id": "r10ap_walking_source",
+      "pattern": "test_r10ap_walking_source.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 180
+    },
+    {
+      "id": "r10ap_pre_world",
+      "pattern": "test_r10ap_pre_world_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 300
+    },
+    {
+      "id": "r10ap_report_partial_source",
+      "pattern": "test_r10ap_report_partial_source_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_report_partial_owner",
+      "pattern": "test_r10ap_report_partial_owner_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_report_partial_phase",
+      "pattern": "test_r10ap_report_partial_phase_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_report_partial_energy",
+      "pattern": "test_r10ap_report_partial_energy_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_report_walking_shutdown",
+      "pattern": "test_r10ap_report_walking_shutdown_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_report_walking_memory",
+      "pattern": "test_r10ap_report_walking_memory_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_report_walking_capture",
+      "pattern": "test_r10ap_report_walking_capture_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_report_walking_missing",
+      "pattern": "test_r10ap_report_walking_missing_gate.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 600
+    },
+    {
+      "id": "r10ap_physical_identity",
+      "pattern": "test_r10ap_physical_identity.py",
+      "tests": 5,
+      "candidate_bound": false,
+      "timeout_seconds": 60
+    },
+    {
+      "id": "r10ap_progressive_headroom_geometry",
+      "pattern": "test_r10ap_progressive_headroom_geometry.py",
+      "tests": 1,
+      "candidate_bound": true,
+      "timeout_seconds": 180
+    }
+  ],
+  "total_tests": 258,
+  "coverage": {
+    "construction": {
+      "argument": "Fresh actual v7 diagnostic runtime binding, source admission, worker and reader parsing, extension loading and observer API refusals. Unchanged DLL construction safety is exercised independently; native permission is tested without granting a real diagnostic world.",
+      "stage_ids": [
+        "r10ap_native_interfaces",
+        "r10ap_host",
+        "r10ap_native_world_authority",
+        "r10ap_runtime",
+        "smoke_native_safety",
+        "godot_rust_owner_contract",
+        "r10ap_pre_world"
+      ]
+    },
+    "launch_ownership": {
+      "argument": "Fresh process relationship controls, actual Godot-to-Python parent probe, strict host images, exclusive population reservation and single-use native world permission. Isolated authority tests preserve real catalog membership. Design and finite task both bind seed 70248 directly; there is no inherited population correction.",
+      "stage_ids": [
+        "owned_process_relationship",
+        "r10ap_host",
+        "r10ap_native_world_authority",
+        "r10ap_compact_retention",
+        "r10ap_launch_guard",
+        "r10ap_context_handoff",
+        "shared_context_environment",
+        "r10ap_route_bindings",
+        "r10ap_physical_identity"
+      ]
+    },
+    "bounded_stepping": {
+      "argument": "Fresh V28 entry/step calls, original partial API compatibility, exact retained V28 synthetic scheduler transitions with mutation controls, and 44 original V23 loaded-source compatibility inputs. Fresh new and original partial/prone workers, upright route, actual hold interfaces, V56 measured-body commands, clocks and deadlines use the selected AJ DLL. Seven compiled V28 cases include weak-support progressive-headroom levelinging and terminal timeout. Independent geometry reconstruction covers 600 compiled outputs. Full production Python report-consumer stages cover partial, upright, hold readiness, hold timeout and two-command fresh walking. No physics or physical thresholds change.",
+      "stage_ids": [
+        "r10ap_native_control",
+        "r10ap_loaded_source",
+        "r10ap_native_api",
+        "r10ap_task_source",
+        "r10ap_worker_new_partial",
+        "r10ap_worker_new_prone",
+        "r10ap_worker_original_partial",
+        "r10ap_worker_original_prone",
+        "r10ap_upright_worker",
+        "r10ap_hold_interfaces",
+        "r10ap_measured_body",
+        "r10ap_walking_boundaries",
+        "walking_readiness",
+        "finite_walking",
+        "cycle_stop",
+        "native_step_failure",
+        "walking_contacts",
+        "native_walking_contacts",
+        "r10ap_complete_partial_report",
+        "r10ap_upright_report",
+        "r10ap_ready_report",
+        "r10ap_timeout_report",
+        "r10ap_walking_report",
+        "r10ap_host",
+        "r10ap_progressive_headroom_geometry"
+      ]
+    },
+    "serialization": {
+      "argument": "Exact JSON transport, selected DLL forwarding, source hashes, sidecar links and compact retained bytes. Python final-audit workflow tests double only their documented external boundaries; all 13 complete production Python report-consumer stages use real candidate admission, actual native readers, cold subprocess receipts and independent consumption with no mocks.",
+      "stage_ids": [
+        "exact_publication",
+        "candidate_transport",
+        "r10ap_native_interfaces",
+        "r10ap_header",
+        "r10ap_workflow",
+        "r10ap_compact_retention",
+        "context_cache_exact_inputs",
+        "context_cache_integration",
+        "step_cost_profile_controls",
+        "r10ap_context_handoff",
+        "shared_context_environment"
+      ]
+    },
+    "finalization": {
+      "argument": "Fresh worker segment generation and independent native replay, session shutdown, memory freshness, missing captures, failed steps and terminal publication controls. Complete synthetic reports are cold-replayed on the actual v7 engine. Historical controller inputs are supplied fixture data only; original native receipts are not relabeled.",
+      "stage_ids": [
+        "r10ap_complete_partial_report",
+        "r10ap_upright_report",
+        "r10ap_ready_report",
+        "r10ap_timeout_report",
+        "r10ap_walking_report",
+        "r10ap_segment_reader",
+        "r10ap_walking_boundaries",
+        "native_step_failure",
+        "r10t_publication_terminal_modes",
+        "r10t_publication_terminal_consumer",
+        "r10ap_report_walking_shutdown",
+        "r10ap_report_walking_missing"
+      ]
+    },
+    "no_claim_publication": {
+      "argument": "Crossed identity and promoted claims refuse; incomplete diagnostic negatives remain negative. Full Python aggregation is unit-tested on explicitly synthetic reports that the unmodified production header rejects. Reservation and native claims confer diagnostic execution only.",
+      "stage_ids": [
+        "r10ap_header",
+        "r10ap_workflow",
+        "r10ap_native_world_authority",
+        "smoke_reader_controls",
+        "r10t_publication_callers",
+        "r10t_publication_late_catch",
+        "r10t_publication_duplicate",
+        "r10t_publication_failure_sources",
+        "r10t_publication_forged_retention",
+        "r10t_publication_single_output",
+        "r10ap_finite_task"
+      ]
+    },
+    "contact_frame_capture": {
+      "argument": "Actual v7 observer API, 39 malformed snapshot refusals, five synthetic packet positives and 29 negatives, linked multi-step report replay, crossed sources and diagnostic capture throughout synthetic partial, hold and walking reports. Native field population during real physics and any physical classification effect remain unmeasured.",
+      "stage_ids": [
+        "r10ap_native_interfaces",
+        "r10ap_complete_partial_report",
+        "r10ap_upright_report",
+        "r10ap_ready_report",
+        "r10ap_timeout_report",
+        "r10ap_walking_report",
+        "r10ap_detection_frame",
+        "r10ap_contact_report"
+      ]
+    },
+    "independent_combined_replay": {
+      "argument": "Fresh cold v7 controller-plus-contact replay and independent Python packet/report comparison. Require both readers and correct selected runtime/declaration; incomplete controllers, missing captures and stale walking memory refuse. Task measurements retain unchanged thresholds.",
+      "stage_ids": [
+        "r10ap_native_interfaces",
+        "r10ap_host",
+        "r10ap_header",
+        "r10ap_complete_partial_report",
+        "r10ap_upright_report",
+        "r10ap_ready_report",
+        "r10ap_timeout_report",
+        "r10ap_walking_report",
+        "r10ap_finite_task",
+        "r10ap_contact_report",
+        "r10ap_report_partial_source",
+        "r10ap_report_partial_owner",
+        "r10ap_report_partial_phase",
+        "r10ap_report_partial_energy",
+        "r10ap_report_walking_shutdown",
+        "r10ap_report_walking_memory",
+        "r10ap_report_walking_capture",
+        "r10ap_report_walking_missing"
+      ]
+    },
+    "compact_retention": {
+      "argument": "Production compact publication control on isolated synthetic envelope metadata, retained raw bytes before release, explicit opt-in and exact native observer selection, plus Python audit-flow reopening. This does not claim live child transport success before the diagnostic.",
+      "stage_ids": [
+        "r10ap_compact_retention",
+        "r10ap_workflow",
+        "owned_process_relationship",
+        "shared_enclosing_retention"
+      ]
+    },
+    "startup_preflight": {
+      "argument": "Before declaration or population reservation, the actual v7 Godot-to-Python helper verifies the live parent, pinned runtime images and clean pushed source through explicit captured standard streams. The read-only preflight grants no reservation or native world permission; structured failure and timeout controls cover retained diagnostics. The startup transport control reuses the unchanged R10AD read-only subprocess helper protocol; R10AP-specific native startup binds the actual R10AP identity and pinned host.",
+      "stage_ids": [
+        "r10ap_startup_transport",
+        "r10ap_startup_controls",
+        "r10ap_native_startup",
+        "r10ap_native_world_authority"
+      ]
+    },
+    "context_handoff": {
+      "argument": "Selected v7 runtime produces fresh expected context before reservation; independent consumer exercises inherited worker startup to intercepted construction. Corrupt receipts, crossed runtime and legacy context refuse. Real supervisor environment assembly, serialization and shared enclosing retention are checked separately. No test probe grants physical launch.",
+      "stage_ids": [
+        "r10ap_context_handoff",
+        "r10ap_native_interfaces",
+        "r10ap_launch_guard",
+        "shared_context_environment",
+        "shared_enclosing_retention",
+        "r10ap_pre_world"
+      ]
+    },
+    "detection_frame_classification": {
+      "argument": "Selected production classification, both cap membership directions, rotated frames, both native sides, authored float conversion, complete unique matching, callback torso preservation and impulse partition. Missing, stale, ambiguous, crossed and unknown sources refuse. Physical correction effect remains unmeasured.",
+      "stage_ids": [
+        "r10ap_detection_frame",
+        "r10ap_contact_report",
+        "r10ap_complete_partial_report"
+      ]
+    },
+    "walking_source_transport": {
+      "argument": "The actual walking-source preparation and adapter hooks admit only the selected detection-frame source and consistent native step/frame. Legacy callback aggregation remains unchanged; crossed or missing source fields refuse. Two synthetic walking commands cover session/replay plumbing only.",
+      "stage_ids": [
+        "r10ap_walking_source",
+        "r10ap_walking_report",
+        "native_walking_contacts"
+      ]
+    },
+    "complete_python_report_consumer": {
+      "argument": "Five fresh complete positive synthetic report paths and eight exact-cause corruption refusals enter through production Python run_replay and consume_replay. Each case has a prospective unique catalog identity, full logs, process receipts, unchanged source snapshots and a 600-second enclosing limit. Native-only replay does not satisfy this coverage.",
+      "stage_ids": [
+        "r10ap_complete_partial_report",
+        "r10ap_upright_report",
+        "r10ap_ready_report",
+        "r10ap_timeout_report",
+        "r10ap_walking_report",
+        "r10ap_report_partial_source",
+        "r10ap_report_partial_owner",
+        "r10ap_report_partial_phase",
+        "r10ap_report_partial_energy",
+        "r10ap_report_walking_shutdown",
+        "r10ap_report_walking_memory",
+        "r10ap_report_walking_capture",
+        "r10ap_report_walking_missing"
+      ]
+    },
+    "synthetic_identity_exclusion": {
+      "argument": "Every catalog identity is refused before physical reservation even if its fixture flag is removed. False, numeric and null fixture flags and invalid catalogs refuse. Native one-use controls independently preserve the same exclusion.",
+      "stage_ids": [
+        "r10ap_physical_identity",
+        "r10ap_launch_guard",
+        "r10ap_native_world_authority"
+      ]
+    },
+    "progressive_headroom_control": {
+      "argument": "The selected V28 DLL reproduces seven compiled composition cases, rejects V27 ownership and old-API crossover plus malformed inputs, preserves legacy API behavior, and supplies 600 compiled outputs independently reconstructed from declared exposed observations. Each joint headroom deficit must not worsen; a positive total deficit must strictly decrease. Deterministic selection ranks maximum deficit, summed deficit and geometry cost, with explicit V23 fallback. Geometry cost may increase while joint headroom is restored. Positive-bearing anchors, bounded virtual translation and leveling, unchanged qualified-support criteria and bounded actuation are checked. Virtual body poses are never applied to physics. Fresh workers and scheduler controls validate ownership and terminal no-actuation without relabeling older receipts.",
+      "stage_ids": [
+        "r10ap_native_control",
+        "r10ap_native_api",
+        "r10ap_task_source",
+        "r10ap_progressive_headroom_geometry",
+        "r10ap_worker_new_partial",
+        "r10ap_segment_reader"
+      ]
+    }
+  },
+  "coverage_adequacy": "One fresh SingleKick development diagnostic uses seed 70248 at exposed phase 248. All 75 stages and 258 tests execute anew under the supervisor lock. Actual V28 calls, source and worker paths, unchanged legacy compatibility, hold, measured-body interfaces, startup and walking boundaries select the AP DLL and declared host. V28 scheduler fixtures preserve exact original synthetic native receipts and outer identities. Old V23 loaded-source fixtures are explicitly compatibility probes only. Five valid full production Python consumer reports and eight exact-cause refusals use prospectively reserved synthetic IDs; all fixture IDs are excluded from physical launch. Named final-audit unit test doubles do not replace the full report consumer or launch guards. No earlier graph qualification or physics baseline is reused. Every stage must pass at the exact clean pushed freeze before reservation.",
+  "uncovered_paths": [
+    "Closed-loop V28 tracking, persistence of physical support and recovery success remain unobserved by this zero-world graph.",
+    "One development kick is noncomparative; fresh paired commissioning, official qualification and held-out acceptance remain separate.",
+    "No continuous morphology, 360-phase physical robustness, cross-engine equivalence or SDK1 M07 adoption is granted.",
+    "Two-command synthetic walking reports cover the consumer path, not completion of the finite physical walking task."
+  ],
+  "qualification_status": "prospective_complete_graph_pending_execution",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "zero_world_budget_basis": {
+    "basis": "Predecessor stage limits retained. Each of 13 full production consumer cases has its own 600-second stage; the previous five native-only report stages are replaced. The new geometry reconstruction limit is 180 seconds and physical-identity exclusion is 60 seconds. No physics horizon, child deadline, reader deadline, evaluator or threshold changes.",
+    "qualification_reused": false,
+    "physical_limits_changed": false
+  },
+  "declaration_reason": "Distinct R10AP V28 complete affected safety graph. Fresh source-bound launch, task, geometry, legacy API compatibility and full report-consumer checks precede the one-use development diagnostic; no historical qualification is reused.",
+  "predecessor_graph": "sdk/development/r10am_safety_stage_contract_v1.json",
+  "predecessor_graph_sha256": "sha256:d24f35d7f86c11d6bc4d82b47cd6480ee50b51fe334a0ebb37176ff45600d018",
+  "report_fixture_catalog": {
+    "path": "sdk/development/r10ap_report_fixture_catalog_v2.json",
+    "raw_sha256": "sha256:209c8b5634a9c6f4c799199de94376b9934ef62c76a5cd98f1ac97e88eec9e77"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "sporespore_development_recovery_reference_velocity_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V37",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_smooth_swing_v1",
+  "policy_id": "sporespore_balanced_wave_recovery_reference_velocity_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_reference_velocity_profile_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_reference_velocity_memory_v1",
+  "native_actuation_receipt_schema": "sporespore_recovery_reference_velocity_controller_step_receipt_v1",
+  "reference_velocity_mode_id": "bounded_slewed_reference_velocity_tracking_v1",
+  "unchanged_swing_lift_mode_id": "phase_only_existing_loaded_peak_swing_lift_v1",
+  "unchanged_stance_support_mode_id": "explicit_floor_joint_feasible_stance_height_reference_slew_v1",
+  "rule": "After V36 builds its unchanged joint-bounded and speed-slewed position references, derive each reference rate from the current and preceding reference and existing sample-time interval. Clamp the derived rate to the unchanged selected actuator speed cap. Use zero rate on the initial command, whose reference remains neutral. Add reference-rate feedforward and reference-relative damping to the geometric angular-velocity command, then apply the existing speed clamp and motor direction sign.",
+  "formula": {
+    "reference_rate": "dt > 0 ? clamp((q_ref - q_ref_previous) / dt, -selected_speed_cap, selected_speed_cap) : 0",
+    "geometric_velocity_before_clamp": "reference_rate + 8.0 * (q_ref - q_measured) - 0.65 * (q_dot_measured - reference_rate)",
+    "equivalent_feedforward_coefficient": 1.65,
+    "coefficient_basis": "1 + existing rate damping 0.65, derived for a velocity-output servo, not fitted from a successful outcome.",
+    "first_command": "Existing first reference and motor command; reference_rate=0.",
+    "final_command": "Existing selected speed clamp and motor direction sign -1.0."
+  },
+  "scope": "All eight hip/knee commands of the explicitly selected V37 resumed-walking controller only. No new force estimate, body impulse, transform write or observer input. Existing support-reference memory supplies time and previous references; no history reconstruction or session reset.",
+  "preserve": [
+    "V36 floor provenance, feasible-height plan, smooth swing goals, joint bounds and reference slew",
+    "existing contact release/recontact gates, synchronization, dwell, timeout and seed",
+    "V20 recovery, stance V7, BW5R-B prefix and their exact commands",
+    "position gain 8.0, rate damping 0.65, actuator speed/force limits and all safety guards",
+    "neutral initial reference and first motor command",
+    "all old profile, memory and receipt bytes, with new optional mode/velocity receipt fields omitted for old policies",
+    "original evaluator, physical schedule, 400-command walking budget, 986-step tail and 1338-step child cap"
+  ],
+  "required_receipt": "Distinct V37 top-level actuation receipt and memory identities, plus reference_velocity_mode_id and ordered_reference_velocity_rad_s inside the support receipt. Preserve final clamps and their truthful saturation flags.",
+  "required_zero_world_checks": [
+    "Core registration, ideal velocity-servo algebra, finite-rate bounds and first-command neutrality",
+    "Same-input V36 comparison: identical position goals, slewed references, feasible plans, phase/gate memory and limits; only the declared velocity-control outputs and distinct identities may differ",
+    "400 saved V36 inputs through real exported stateless and session calls with exact session/stateless output equality",
+    "Every saved-input derived reference rate and final motor velocity independently reconstructed",
+    "Byte-exact older-policy outputs and original recovery fixtures, runtime source binding and non-runnable component selection"
+  ],
+  "risks": [
+    "Existing velocity caps are reached more often in saved-input algebra; stronger movement may worsen support or attitude.",
+    "Finite differences respond to changes in the observed-pose-dependent reference; rate caps bound values but do not prove smooth native acceleration.",
+    "An ideal velocity actuator argument omits real torque limits, contact coupling, compliance and integration delay.",
+    "Stance interruptions, insufficient foot relocation and incomplete scheduled-cycle coverage may remain."
+  ],
+  "native_component_implemented": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

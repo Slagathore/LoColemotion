@@ -1,0 +1,59 @@
+{
+  "schema_version": "sporespore_r10t_cold_import_repair_design_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_fresh_interpreter_test_import_repair",
+    "question_class": "development"
+  },
+  "source_parent_commit": "f8a42be17b31d2891efdaa6b309127a1aca9e2a4",
+  "failed_gate": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-0fb399e9d0764735a03172253e456547/supervisor_result.json",
+    "raw_sha256": "sha256:0de85068dada32d1ff8ca68adb6e22c4b4c919cc662943c19201fbde8fc3f7cf",
+    "byte_length": 15720
+  },
+  "cold_discovery": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10t-cold-discovery-18b7a511bee640efa0addd4de318663d/results.json",
+    "raw_sha256": "sha256:e8e24691d5ce719604ce4cfa50af5fa2ae67771b2eda64bf45db6608bac7c2bd",
+    "byte_length": 12042
+  },
+  "prior_host_component": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10t_host_stage_partition_component_v1.json",
+    "raw_sha256": "sha256:2e7b7bc7de17d9a2596baf49250fd7555108de38e3b30dc5ae8a01c8d9c703c9",
+    "byte_length": 7208
+  },
+  "safety_contract": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/development/r10t_safety_stage_contract_v5.json",
+    "raw_sha256": "sha256:5525e7c0e68c57dcace9dad984247628d63d1bf55c01b5b532c2bed5a09f356e",
+    "byte_length": 10871
+  },
+  "repaired_modules": [
+    "tests/test_development_r10t_native_control.py",
+    "tests/test_development_r10t_startup_receipt.py",
+    "tests/test_r10t_development_context.py"
+  ],
+  "expected_failed_import_stages": [
+    "r10t_native_control",
+    "r10t_startup_receipt",
+    "r10t_development_context"
+  ],
+  "target_stage_ids": [
+    "r10t_host_gate_discovery",
+    "r10t_host_gate_declaration",
+    "r10t_host_gate_timeouts",
+    "r10t_host_gate_prerequisites",
+    "r10t_host_gate_prelaunch",
+    "r10t_native_control",
+    "r10t_startup_receipt",
+    "r10t_development_context"
+  ],
+  "target_tests": 13,
+  "discovery": "A fresh process for each selected stage, with inherited PYTHONPATH removed and only its production candidate selection; require no unittest loader errors as well as exact count. A retained failing-import module must expose the one-case false positive.",
+  "native_assertions_changed": false,
+  "controller_changed": false,
+  "native_dll_changed": false,
+  "host_deadlines_changed": false,
+  "physical_budgets_changed": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

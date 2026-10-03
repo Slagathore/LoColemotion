@@ -1,0 +1,42 @@
+{
+  "schema_version": "sporespore_recovery_remaining_support_release_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": [
+      "core"
+    ],
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V49",
+  "policy_id": "sporespore_balanced_wave_recovery_remaining_support_release_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_advancing_body_origin_v1",
+  "evidence_basis": "sdk/development/v48_mujoco_closed_loop_closure_v1.json",
+  "question": "Does requiring positive support from the three feet that remain in stance, while allowing a known unloaded planned swing foot, permit the same six-command safe preparation dwell and completion of the fourth foot cycle?",
+  "change": "Only the preparation contact population changes. Require positive presence and bearing from the three non-swing feet that define the measured support triangle. The planned swing foot still requires known contact observations but may already be unloaded. Retain the original 20 mm release margin, 30 mm/s horizontal COM speed, 0.15 rad/s angular speed, 0.05 rad tilt, six-command dwell, 240-command preparation timeout and 120-command missing-stance guard. The receipt lists the required support limbs and explicitly declares that the planned foot need not bear support. This does not alter the all-four measured cycle cutoff or stopping checks.",
+  "unchanged": [
+    "all V48 origin recentering, V47 Cartesian reference/IK and motor tracking",
+    "measured body/floor binding and native contact classification",
+    "all geometric, velocity, orientation, dwell, bias, motor and timeout bounds",
+    "all-four measured landing and stopped-tail predicates",
+    "all consumed policies, receipts and observed negatives"
+  ],
+  "parameters": {
+    "reference_leg_vertical_m": 0.33,
+    "body_height_ramp_steps": 72,
+    "step_length_m": 0.06,
+    "swing_lift_m": 0.02,
+    "swing_steps": 72
+  },
+  "limitations": "A bounded fixed-heading development controller for this declared recovery morphology. Upright/reference geometry does not replace measured orientation or contact. No force control, arbitrary morphology, successful recovery, release or cross-engine equivalence claim. Feasibility refusals remain negative observations.",
+  "verification": [
+    "positive remaining-three support plus known unloaded planned foot; missing/unknown remaining supports blocked",
+    "unchanged margin, dwell and timeout negative controls",
+    "byte-exact V48 retained commands and refusal",
+    "actual stateless/cached APIs, reference geometry and rebase transitions",
+    "complete affected-route zero-world safety gate before a distinct fresh native run"
+  ],
+  "physical_attempt_selected": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

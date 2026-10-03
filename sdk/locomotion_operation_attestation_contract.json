@@ -1,0 +1,92 @@
+{
+  "schema_version": "sporespore_locomotion_operation_attestation_contract_v2",
+  "status": "prospective_infrastructure_contract_no_physical_authority",
+  "operation_lock": {
+    "mutex_name": "Global\\SporeSpore.Locomotion.PhysicalConformance.Serial.v1",
+    "scope": "machine_wide_windows_named_mutex",
+    "roles": [
+      "conformance",
+      "physical"
+    ],
+    "default_acquisition_timeout_milliseconds": 0,
+    "all_canonical_conformance_runs_acquire": true,
+    "all_future_qualified_physical_runs_must_acquire": true,
+    "conformance_blocks_physical": true,
+    "physical_blocks_conformance": true,
+    "abandoned_owner_is_acquired_and_reported_when_observable": true,
+    "abandoned_owner_observability_requires_surviving_kernel_object": true,
+    "safety_does_not_depend_on_abandonment_always_being_observable": true,
+    "frozen_historical_supervisors_are_not_rewritten": true
+  },
+  "durable_attestation": {
+    "schema_version": "sporespore_full_godot_conformance_attestation_v2",
+    "publisher": "sdk/run_conformance.ps1",
+    "skip_godot_forbidden": true,
+    "regression_test_physics_permitted": true,
+    "one_shot_physical_campaign_executed": false,
+    "source_clean_required_at_start_and_completion": true,
+    "head_equals_origin_main_required": true,
+    "head_equals_live_github_main_required": true,
+    "source_drift_forbidden": true,
+    "durable_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence",
+    "temporary_root_forbidden": true,
+    "overwrite_forbidden": true,
+    "atomic_same_volume_publication": true,
+    "required_source_bindings": [
+      "sdk/run_conformance.ps1",
+      "sdk/locomotion_operation_lock.ps1",
+      "sdk/locomotion_full_conformance_attestation.ps1",
+      "sdk/locomotion_operation_attestation_contract.json"
+    ],
+    "required_host_bindings": {
+      "godot": [
+        "executable_path",
+        "executable_sha256",
+        "version"
+      ],
+      "powershell": [
+        "executable_path",
+        "executable_sha256",
+        "version",
+        "edition",
+        "process_architecture"
+      ]
+    },
+    "serialized_temporary_file_must_verify_before_atomic_publication": true,
+    "required_operation_binding": "Global\\SporeSpore.Locomotion.PhysicalConformance.Serial.v1",
+    "physical_launcher_must_verify_exact_current_source_and_host": true,
+    "physical_launcher_must_record_attestation_path_and_sha256": true
+  },
+  "canaries": {
+    "conformance_blocks_physical": true,
+    "physical_blocks_conformance": true,
+    "real_conformance_entrypoint_refuses_held_physical_lock": true,
+    "acquisition_after_release": true,
+    "observable_abandoned_owner_recovery": true,
+    "test_attestation_rejected_by_production_verifier": true,
+    "serialized_json_round_trip_accepted": true,
+    "powershell_identity_tamper_rejected": true,
+    "source_tamper_rejected": true,
+    "godot_tamper_rejected": true,
+    "source_binding_tamper_rejected": true,
+    "skip_godot_attestation_rejected": true,
+    "claim_inflation_rejected": true,
+    "missing_or_extra_claim_field_rejected": true,
+    "one_shot_campaign_execution_claim_rejected": true,
+    "nondurable_output_path_rejected": true
+  },
+  "claims": {
+    "new_physical_campaign_executed": false,
+    "new_scientific_outcome_exposed": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "material_robustness": false,
+    "candidate_selected": false,
+    "validation_authority": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

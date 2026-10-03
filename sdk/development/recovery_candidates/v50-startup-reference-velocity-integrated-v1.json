@@ -1,0 +1,13 @@
+{
+  "schema_version": "sporespore_development_recovery_candidate_profile_v2",
+  "candidate_id": "v50-startup-reference-velocity-integrated-v1",
+  "post_kick_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+  "runtime_binding": "res://sdk/development/recovery_candidates/v50-startup-reference-velocity-core-v1.runtime.json",
+  "runtime_binding_sha256": "sha256:b89a3e9a9446b58aad7bc9f7ab695dab85b5d62c1110d162e982da7680e08f16",
+  "runtime_sha256": "sha256:82f3a3951fa0711a18df85c9fd4c8a546d6ae908ef9798a84e2513f40bb9a274",
+  "extension": "res://sdk/adapters/godot/development_candidate_runtimes/v50-startup-reference-velocity-core-v1.gdextension",
+  "extension_sha256": "sha256:150df8ea0028c0086125820a02ca8bef9ed894646847075f66faa00444830675",
+  "coverage_question": "One fresh seed-40200 SingleKick through the existing V6 setup, native kick/prone descent, V20 get-up, V7 stance and fresh V50 walking session. Preserve BW5R-B prefix, 90-step phase offset, 72-command amplitude ramp, controller thresholds, native motor caps, solver and contact classification. Use synchronized nine-body sampled poses/twists via the strict v3 request, with no extra native body reads. Allow at most 1600 walking commands to cover four measured lift/land cycles with all four in supported stance, then exactly 120 zero-amplitude and zero-speed commands. Require the final 30 stopping commands to have measured four-foot support, COM horizontal speed <=0.03 m/s, angular speed <=0.15 rad/s and tilt <=0.05 rad. Retain every control request/output, body sample, native contact source, post-command observation, cycle transition, native refusal and full existing energy/identity/motor telemetry; independently replay without physics. Bounds 240 descent +1200 canonical recovery +1600 walking +120 stopping =3160 after interaction; total 320 setup +30 prefix +2 interaction boundary +3160 =3512. Reaching the walking limit is a valid bounded negative. Historical fixed-tail coverage remains separately reported and may be false at an earlier cycle-aligned completion. This is development only, not paired commissioning, old-check regrading, equivalence, get-up success prediction or SDK1 acceptance.",
+  "diagnostic_schedule_id": "v50-startup-reference-velocity-integrated-v1",
+  "diagnostic_schedule_sha256": "sha256:6050fe90c2bc8178c9f9c62642c9e5743e3c167d4b20bea401dd17414b4f69db"
+}

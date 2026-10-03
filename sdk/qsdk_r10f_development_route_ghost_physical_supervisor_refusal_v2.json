@@ -1,0 +1,125 @@
+{
+  "schema_version": "sporespore_qsdk_r10f_physical_supervisor_refusal_v2",
+  "status": "closed_infrastructure_invalid_pre_physics_output_identity_unconsumed",
+  "gate_id": "QSDK-R10F",
+  "repair_id": "QSDK-R10F-L2",
+  "campaign_id": "QSDK-R10F-CONTINUOUS-S169-KICK-PASSIVE-FALL-RECOVERY-RESUME",
+  "campaign_role": "development_route_ghost",
+  "question_class": "development",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "closed_pre_physics_supervisor_refusal",
+    "question_class": "development"
+  },
+  "observed_date": "2026-09-04",
+  "invocation": {
+    "mode": "Physical",
+    "command": "pwsh -NoLogo -NoProfile -File sdk/run_qsdk_r10f_continuous_passive_recovery.ps1 -Mode Physical -RunPhysical -AuthorizationPath sdk/qsdk_r10f_development_route_ghost_execution_authority_v2.json",
+    "process_exit_code": 1,
+    "terminal_error": "Cannot process argument transformation on parameter 'Condition'. Cannot convert value \"System.String\" to type \"System.Boolean\". Boolean parameters accept only Boolean values and numbers, such as $True, $False, 1 or 0.",
+    "terminal_receipt_schema": "sporespore_qsdk_r10f_supervisor_refusal_v1",
+    "terminal_receipt_authority_mode": "zero_world_supervisor_refusal",
+    "same_authority_graph_rerun_permitted": false
+  },
+  "source": {
+    "source_commit": "04a4b4aa68a7b466db6bc975fdec9295e7c280f8",
+    "source_tree_git_oid": "fb24c4705c6124555b2808771265f63258366f74",
+    "qualification_commit": "e211187d08de8a57f57221fe8cf83250c5b331e0",
+    "qualification_tree_git_oid": "418ef3cc68a50fc4cb694ef1c9042edbe0c0aa36",
+    "authorization_commit": "fc3187f918c953b156b3036811709ef95227fc6c",
+    "authorization_tree_git_oid": "93d06201aaddbd73785e68720e4973aa9b41ef64",
+    "branch": "main",
+    "remote": "https://github.com/Slagathore/sporespore.git",
+    "local_origin_live_equal_before_invocation": true,
+    "worktree_clean_before_invocation": true
+  },
+  "authority_bindings": {
+    "stage_freeze": {
+      "path": "sdk/qsdk_r10f_development_route_ghost_zero_world_qualification_closure_v2.json",
+      "byte_length": 8019,
+      "raw_sha256": "sha256:a507120f48c9f135c4fb5e45aa3043c33fe080fd667ec2617f393715c63ad10f",
+      "git_blob_oid": "30575dc1a29a2a572275f70373f4ab49b643f17e"
+    },
+    "execution_authority": {
+      "path": "sdk/qsdk_r10f_development_route_ghost_execution_authority_v2.json",
+      "byte_length": 2099,
+      "raw_sha256": "sha256:e54d2cf4de04d82e7d3a7405e344ed5dcf8e90a73d9bb94c370ee49762c56d69",
+      "git_blob_oid": "ca56f0eeb3432018cc48f229ea9c6f42f0945ff5"
+    },
+    "qualification_completion": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-04a4b4aa68a7/qualification_completion.json",
+      "byte_length": 3343,
+      "raw_sha256": "sha256:671e1aad489f142d8f3244dafc4573d6e7e4ded7378b89a29d5b89fec1378c9f"
+    },
+    "predecessor_supervisor_refusal": {
+      "path": "sdk/qsdk_r10f_development_route_ghost_physical_supervisor_refusal_v1.json",
+      "byte_length": 6012,
+      "raw_sha256": "sha256:27528d78b217278700f5d1860046a2e5f7fc1e2324cef1a0239ffbd7859391e0"
+    },
+    "qualified_source_path_count": 83,
+    "qualified_source_path_sha256": "sha256:2af915e6a92e978499f20268c4a259674f016bb3e520834043c1afbc599cc1de",
+    "authorized_output_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-e54d2cf4de04d82e",
+    "authorized_output_root_absent_after_refusal": true
+  },
+  "diagnosis": {
+    "classification": "infrastructure_invalid_supervisor_runtime_expression",
+    "failure_predicate": "authority_graph_changed_path_set_equality",
+    "mechanism": "The first L1 repair correctly projected Git output into paths, but the following equality expression did not enclose the second -join operation. PowerShell produced a string-valued expression and parameter binding rejected it for Assert-R10f's Boolean Condition.",
+    "powershell_parse_error_count": 0,
+    "root_cause_expression_start_line": 450,
+    "committed_graph_check_passed_before_invocation": true,
+    "live_main_boundary_passed_inside_supervisor": true,
+    "stage_freeze_sha256_matched_inside_supervisor": true,
+    "execution_authority_sha256_matched_inside_supervisor": true,
+    "qualified_source_binding_matched_inside_supervisor": true,
+    "l1_path_projection_executed_without_error": true,
+    "sole_observed_runtime_failure": true
+  },
+  "execution_boundary": {
+    "physical_supervisor_invocation_count": 1,
+    "operation_lock_acquisition_count": 1,
+    "operation_lock_explicit_release_count": 1,
+    "post_refusal_zero_world_preflight_passed": true,
+    "durable_evidence_directory_created": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "scene_tree_insertion_count": 0,
+    "native_readback_count": 0,
+    "solver_step_count": 0,
+    "locomotion_outcome_exposure_count": 0,
+    "physics_state_modified": false,
+    "physical_attempt_identity_consumed": false
+  },
+  "successor_policy": {
+    "repeat_failed_supervisor_invocation": false,
+    "old_stage_freeze_reusable": false,
+    "old_execution_authority_reusable": false,
+    "new_clean_pushed_source_required": true,
+    "new_official_zero_world_qualification_required": true,
+    "new_stage_freeze_required": true,
+    "new_execution_authority_required": true,
+    "repair_scope": "Replace joined-string comparison with one pure ordinal Boolean path-set function, use that exact function in the physical verifier, execute it over equal, reordered, missing, duplicate, and extra-path zero-world controls, and bind both refusals into the replacement lineage.",
+    "controller_changed": false,
+    "fixture_changed": false,
+    "challenge_changed": false,
+    "impulse_changed": false,
+    "threshold_changed": false,
+    "seed_changed": false,
+    "population_changed": false,
+    "physical_canary_added": false
+  },
+  "claim_boundary": {
+    "production_route_construct_step_finalize_retain_publish_evaluate_qualified": false,
+    "continuous_passive_fall_recovery_claimed": false,
+    "external_push_recovery_claimed": false,
+    "locomotion_negative_claimed": false,
+    "prone_to_standing_claimed": false,
+    "force_aware_recovery_claimed": false,
+    "other_engine_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

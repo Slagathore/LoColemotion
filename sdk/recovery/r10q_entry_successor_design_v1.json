@@ -1,0 +1,189 @@
+{
+  "schema_version": "sporespore_r10q_entry_successor_design_v1",
+  "design_id": "R10Q-UPRIGHT-RECOVERY-AND-RAMP-HOLD-ENTRY-V1",
+  "status": "declared_not_implemented_or_physically_observed",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_development_successor_design",
+    "question_class": "development"
+  },
+  "predecessor_closure": {
+    "path": "sdk/recovery/r10p_held_out_physical_closure_v1.json",
+    "raw_sha256": "sha256:659d0d697bf36348945f049999b608dc3b81adbea94a296c1ff49172b48185a7"
+  },
+  "post_exposure_diagnosis": {
+    "path": "sdk/recovery/r10p_entry_domain_diagnosis_v1.json",
+    "raw_sha256": "sha256:caa7844a829a905d9ff709f699d45c514c0bbdf2269edfaa5f50039ea0b12c5c"
+  },
+  "question": "Can a distinct upright recovery task and a ramp-to-active-hold handoff complete the exposed entry failures while preserving partial/prone recovery and finite walking/stop?",
+  "preserved_originals": {
+    "r10p_population_consumed": true,
+    "r10p_outcome": "negative",
+    "r10p_results_regraded": false,
+    "r10p_retries_permitted": false,
+    "prior_thresholds_and_controller_identities_mutated": false,
+    "old_qualification_reused": false
+  },
+  "decisions": {
+    "no_kick_handoff": {
+      "change": "After native reference-ramp completion, transfer to the existing V50 zero-amplitude hold when the actual upright and full startup-geometry checks pass; four measured supports remain a walking-readiness condition inside the hold.",
+      "native_ramp_policy": "sporespore_balanced_wave_joint_pose_entry_v1",
+      "native_hold_policy": "sporespore_balanced_wave_recovery_startup_reference_velocity_v1",
+      "native_walking_and_stop_policy": "sporespore_balanced_wave_recovery_initialized_zero_brake_v1",
+      "ramp_maximum_commands": 240,
+      "hold_maximum_commands": 240,
+      "required_consecutive_hold_ready_samples": 30,
+      "reference_completion_is_physical_readiness": false,
+      "geometry_may_override_native_contact": false,
+      "required_hold_readiness": [
+        "four_native_supports",
+        "upright",
+        "zero_bias_reference_path_feasible",
+        "horizontal_com_settled",
+        "angular_settled"
+      ],
+      "development_risk": "V50 may still refuse startup or fail to acquire/settle four supports. The new handoff is a controller transfer, never a ready or success claim."
+    },
+    "upright_recovery": {
+      "change": "Add a separately named native task for a body that remains upright above the partial-fall entry domain after the full passive descent. Keep canonical prone and existing partial recovery unchanged.",
+      "task_id": "sporespore_measured_upright_recovery_to_standing_v1",
+      "semantics_id": "sporespore_measured_upright_recovery_semantics_v1",
+      "entry_selection": {
+        "original_native_entry_receipt_preserved": true,
+        "original_passive_descent_steps": 240,
+        "existing_prone_and_partial_routes_take_priority": true,
+        "admit_only_original_timeout": true,
+        "consecutive_upright_samples": 12,
+        "torso_height_ratio_exclusive_minimum": 0.5,
+        "torso_up_dot_inclusive_minimum": 0.95,
+        "entry_geometry_is_standing_success": false,
+        "joint_limit_violation_may_enter_bounded_repair": true
+      },
+      "supervision": {
+        "controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+        "stance_controller": "unchanged_V20_selected_stance_law",
+        "phases": [
+          "establish_distal_support",
+          "raise_body",
+          "stance_handoff",
+          "stance_dwell"
+        ],
+        "maximum_recovery_commands": 1200,
+        "maximum_standing_dwell_commands": 360,
+        "required_consecutive_standing_samples": 60,
+        "relative_com_height_gain_required": false,
+        "absolute_stance_height_ratio_minimum": 0.75,
+        "torso_up_dot_minimum": 0.95,
+        "minimum_nonfoot_clearance_m": 0.005,
+        "minimum_each_distal_bearing_impulse_ns": 0.019293,
+        "maximum_terminal_linear_speed_m_s": 0.1,
+        "maximum_terminal_angular_speed_rad_s": 0.2,
+        "maximum_forbidden_contact_impulse_ns": 0.0,
+        "original_joint_limits_required_at_standing": true,
+        "original_actuator_caps_preserved": true,
+        "maximum_energy_balance_residual_j": 0.25,
+        "no_cheat_and_exclusive_stance_ownership_required": true
+      },
+      "completion_flag": "upright_stabilization_complete",
+      "prone_to_standing_claimed": false,
+      "partial_fall_standing_complete_synthesized": false,
+      "kick_energy_epoch_reset": false,
+      "body_pose_or_velocity_writes": false,
+      "observation_rewriting": false,
+      "new_native_exports_and_exact_dll_qualification_required": true,
+      "development_risk": "Unchanged V20 actuation is unproven from the high crouched states. The distinct task requires absolute standing and clearance rather than the deep-partial task 0.1 m COM gain; it cannot relabel an old timeout."
+    },
+    "finite_walking": {
+      "change": "Compose the separately validated upright completion into a new finite-task reader; preserve all original walking/cycle/stop/envelope thresholds.",
+      "planned_cycles": 4,
+      "stopping_commands": 120,
+      "required_final_settled_commands": 30,
+      "fresh_walking_session_required": true,
+      "all_native_contact_samples_retained": true,
+      "old_reader_predicates_mutated": false
+    }
+  },
+  "alternatives": [
+    {
+      "option": "Increase passive descent timeout only",
+      "selected": false,
+      "reason": "Both exposed kicked traces stay above the partial domain; more waiting does not provide a measured recovery route and may deepen joint/clearance violations."
+    },
+    {
+      "option": "Expand the original partial threshold",
+      "selected": false,
+      "reason": "Would change an observed task and retain its deep-collapse 0.1 m COM-gain requirement from a substantially higher initial COM."
+    },
+    {
+      "option": "Change only the no-kick handoff and launch another held-out campaign",
+      "selected": false,
+      "reason": "Leaves both known upright kicked failures unaddressed."
+    },
+    {
+      "option": "Replace the active V50 hold with V55 braking",
+      "selected": false,
+      "reason": "The existing hold is V50 and can actively seek support. V55 braking would be an additional controller change without evidence that it addresses the missing support."
+    }
+  ],
+  "development_coverage": {
+    "held_out": false,
+    "fresh_identity_per_attempt": true,
+    "physical_baseline_reuse": false,
+    "first_pair": {
+      "seed": 40846,
+      "prefix_phase": 246,
+      "roles": [
+        "matched_no_kick_continuation",
+        "kick_passive_recovery_resume"
+      ],
+      "coverage": "Both exposed phase-246 failures: native ramp handoff into V50 hold and upright recovery into finite walking/stop."
+    },
+    "additional_single_kick_diagnostics": [
+      {
+        "seed": 40845,
+        "prefix_phase": 245,
+        "coverage": "Second exposed upright failure, with distinct joint/tilt/support history."
+      },
+      {
+        "seed": 40841,
+        "prefix_phase": 241,
+        "coverage": "Existing partial recovery regression through the new native/adapter route."
+      },
+      {
+        "seed": 40843,
+        "prefix_phase": 243,
+        "coverage": "Existing canonical-prone recovery and consecutive-prone-reader regression."
+      }
+    ],
+    "additional_cells_prerequisite": "First pair is valid and positive; each additional diagnostic is freshly declared and gated.",
+    "adequacy_argument": "Five fresh cells cover the changed no-kick path, both independently observed upright failure states, and mutually exclusive partial and prone branches. Single-kick diagnostics make no paired effect claim and reuse no baseline.",
+    "prefix_selection": "Explicit immutable mapping under a new development profile; no modulo-based accidental phase mapping.",
+    "maximum_expected_cells": 5,
+    "default_full_finite_horizon": true,
+    "full_capture_and_independent_native_replay_required": true
+  },
+  "zero_world_requirements": [
+    "Reconstruct and bind all three original negative reports, original entry gates, and actual V50 hold identity.",
+    "Test native upright admission, consecutive/reset counters, original-timeout retention, branch priority, wrong task/memory/clock/energy/source/DLL refusal, joint repair versus strict final standing, and bounded timeouts.",
+    "Test no-kick ramp/hold handoff at the actual native interface and retained states, including missing supports, incomplete references, infeasible geometry, and no premature walking.",
+    "Exercise unchanged V55 walking/stop and V50 hold on the actual DLL across all 360 synthetic startup phases and representative exposed entry states; enumerate refusals without constructing physics worlds.",
+    "Run the complete applicable development safety gate covering launcher/ownership, native construction, bounded stepping, capture, finalize, replay, publication, and negative controls before each fresh diagnostic world."
+  ],
+  "next_execution_order": [
+    "Build distinct native task and adapter/reader components under R10Q identities.",
+    "Run complete affected-path zero-world tests and retained-state interface sweeps.",
+    "Run the phase-246 fresh development pair, retain and independently audit both roles.",
+    "Only after that pair is positive, run the declared additional branch diagnostics with fresh identities.",
+    "Only after adequate development coverage, declare a new held-out population and finite contract; create a complete dependency manifest, fresh qualification and single-use authority."
+  ],
+  "held_out_population": [],
+  "held_out_population_declared": false,
+  "physical_execution_authorized": false,
+  "physical_worlds_opened": 0,
+  "successor_implemented": false,
+  "successor_success_proven": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "sdk1_score": "14/20"
+}

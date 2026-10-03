@@ -1,0 +1,122 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D50-RAPIER-CAS-PATH-IDENTITY-REPLAY",
+  "question_class": "finite_decision",
+  "declared_physical_world_count": 3,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 2,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 5,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D50-R23D49-IMMUTABLE-PHYSICAL-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d50_lineage.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D50_LINEAGE_PASS ",
+      "raw_sha256": "sha256:0a54f62d1da8d955ca8c7cd5031f28a5f8412fec9ed2da08a74bbee33aa6555e"
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "R23D50-CHECKOUT-PROVENANCE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_closure_evidence_provenance_contract.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "CLOSURE_EVIDENCE_PROVENANCE_CONTRACT_PASS ",
+      "raw_sha256": "sha256:91cac5d7c33333a562327009b9bfb2abbac0e76af702a137c00c8c3db373d098"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 3,
+      "gate_id": "R23D50-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d50_campaign_roles.ps1",
+      "arguments": ["-Role", "worker"],
+      "terminal_marker_prefix": "QSDK_R23D50_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:0753b5435750141e8f797a9ab47fc6a0b3735f45ddaf0918b245511041d64de4"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D50-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d50_campaign_roles.ps1",
+      "arguments": ["-Role", "evaluator", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D50_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:0753b5435750141e8f797a9ab47fc6a0b3735f45ddaf0918b245511041d64de4"
+    },
+    {
+      "ordinal": 5,
+      "gate_id": "R23D50-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d50_campaign_roles.ps1",
+      "arguments": ["-Role", "supervisor", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D50_CAMPAIGN_SUPERVISOR_ROLE_PASS ",
+      "raw_sha256": "sha256:0753b5435750141e8f797a9ab47fc6a0b3735f45ddaf0918b245511041d64de4"
+    }
+  ],
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d50_rapier_cas_path_identity_replay_implementation_v1.json",
+      "source_raw_sha256": "sha256:60bb07c7b18abc88bacee5dbf59eeca31b9869b69f664dc328ec16747baf7741",
+      "test_gate_id": "R23D50-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d50_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:0753b5435750141e8f797a9ab47fc6a0b3735f45ddaf0918b245511041d64de4"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d50_rapier_cas_path_identity_replay_evaluator.py",
+      "source_raw_sha256": "sha256:b068d2426b53e718a6e3ce341b0c103469d85c65f2cecbc29941faeb98022cbf",
+      "test_gate_id": "R23D50-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d50_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:0753b5435750141e8f797a9ab47fc6a0b3735f45ddaf0918b245511041d64de4"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d50_supervisor.ps1",
+      "source_raw_sha256": "sha256:68faa899c2ba1d83d5b86c028aa0f26f6dcff9703e3aaecd1ac387c36d640273",
+      "test_gate_id": "R23D50-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d50_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:0753b5435750141e8f797a9ab47fc6a0b3735f45ddaf0918b245511041d64de4"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d50_rapier_cas_path_identity_replay_implementation_v1.json",
+    "raw_sha256": "sha256:60bb07c7b18abc88bacee5dbf59eeca31b9869b69f664dc328ec16747baf7741"
+  },
+  "source_bindings": [
+    {"path": "tests/test_qsdk_r23d50_lineage.ps1", "raw_sha256": "sha256:0a54f62d1da8d955ca8c7cd5031f28a5f8412fec9ed2da08a74bbee33aa6555e"},
+    {"path": "tests/test_closure_evidence_provenance_contract.ps1", "raw_sha256": "sha256:91cac5d7c33333a562327009b9bfb2abbac0e76af702a137c00c8c3db373d098"},
+    {"path": "tests/test_qsdk_r23d50_campaign_roles.ps1", "raw_sha256": "sha256:0753b5435750141e8f797a9ab47fc6a0b3735f45ddaf0918b245511041d64de4"},
+    {"path": "sdk/turning/r23d50_rapier_cas_path_identity_replay_implementation_v1.json", "raw_sha256": "sha256:60bb07c7b18abc88bacee5dbf59eeca31b9869b69f664dc328ec16747baf7741"},
+    {"path": "sdk/turning/r23d50_rapier_cas_path_identity_replay_evaluator.py", "raw_sha256": "sha256:b068d2426b53e718a6e3ce341b0c103469d85c65f2cecbc29941faeb98022cbf"},
+    {"path": "sdk/run_qsdk_r23d50_supervisor.ps1", "raw_sha256": "sha256:68faa899c2ba1d83d5b86c028aa0f26f6dcff9703e3aaecd1ac387c36d640273"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

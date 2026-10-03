@@ -1,0 +1,49 @@
+{
+  "schema_version": "sporespore_r10v_entry_policy_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_development_entry_policy_binding",
+    "question_class": "development"
+  },
+  "selection_id": "r10v_joint_pose_entry_v1",
+  "policy_id": "sporespore_balanced_wave_joint_pose_entry_v1",
+  "native_profile_schema": "sporespore_balanced_wave_joint_pose_entry_profile_v1",
+  "native_profile": {
+    "schema_version": "sporespore_balanced_wave_joint_pose_entry_profile_v1",
+    "policy_id": "sporespore_balanced_wave_joint_pose_entry_v1",
+    "torso_length_scale": 1.0041015625,
+    "cross_track_heading_gain_rad_per_m": 0.9959151915969655,
+    "yaw_error_stride_gain_per_rad": 1.3,
+    "cross_track_velocity_heading_gain_rad_per_m_s": 0.35071703894485934,
+    "contact_loaded_swing_knee_activation_start_phase_step": 0,
+    "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+    "anchor_error_guard_activation_fraction": 0.8,
+    "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+    "steering_feedback_update_interval_steps": 1,
+    "steering_low_pass_time_constant_cycle_fraction": 0.0625,
+    "branch_surfaces": [],
+    "controller_authority": true,
+    "physical_acceptance_authority": false
+  },
+  "native_profile_sha256": "sha256:047bae3edc41a619fb2c58be0aca8cd501899a11ad8237ba223ab72aa049e8c2",
+  "native_memory_schema": "sporespore_balanced_wave_joint_pose_entry_memory_v1",
+  "native_component_record": "sdk/recovery/v56_extended_preparation_component_v1.json",
+  "native_component_record_sha256": "sha256:b00019f251a5aa3f4cdc79bb855be13d04cfbaf3baaa38461b37323dffe3e355",
+  "runtime_binding": "sdk/development/recovery_candidates/r10s-extended-preparation-core-v1.runtime.json",
+  "runtime_binding_sha256": "sha256:a3ae33fbe078cac5fdc9f83793052e79b70923bfccdfda2016fc4a3689036570",
+  "runtime_sha256": "sha256:7b1ce5dd546796e13a726e26a9c1f47ad4a27792768a40d0da58cd67409e9c2b",
+  "receipt_schema_prefix": "sporespore_development_joint_pose_entry_",
+  "prefix_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+  "canonical_controller_owner": "stance",
+  "allowed_segment_ids": [
+    "neutral_stance_entry",
+    "walking_resume",
+    "matched_continuation"
+  ],
+  "rule": "R10T separately owned session using the unchanged native policy, DLL and motor limits. This declaration grants no launch authority.",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "predecessor_contract": "sdk/recovery/r10t_joint_pose_entry_policy_contract_v1.json",
+  "predecessor_contract_sha256": "sha256:9002de666bb31abc71ccd2bcd287acbe1eda5c5991b50b3b27761e9b2be24b86"
+}

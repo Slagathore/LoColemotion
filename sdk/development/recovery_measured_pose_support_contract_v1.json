@@ -1,0 +1,16 @@
+{
+  "schema_version": "sporespore_recovery_measured_pose_support_contract_v1",
+  "ledger_scope": {"subsystem":"recovery","engine_scope":["core"],"authority_mode":"prospective_development_controller_contract","question_class":"development"},
+  "component_id": "V46",
+  "policy_id": "sporespore_balanced_wave_recovery_measured_pose_support_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_measured_support_transfer_v1",
+  "evidence_basis": "sdk/development/v45_mujoco_closed_loop_closure_v1.json",
+  "question": "Does retaining the measured body orientation in support targets prevent the above-floor stance-reference mismatch observed under V45, allowing the same transfer gate to complete walking and its bounded stop?",
+  "change": "Use the already implemented measured-pose floor/feasible-support calculation for every limb. Remove virtual-upright selection and its no-longer-used latch memory. During the same inherited support or V45 preparation hold, remove swing lift in both current and comparison waves, using the same measured pose and current hip bias in both. Scheduled wave memory remains unchanged. Report the measured-pose reference and hold modes explicitly; do not label the reference upright.",
+  "unchanged": ["V45 synchronized measured-body v3 request and mass-weighted COM/velocity", "all V45 triangle, velocity, tilt, dwell, bias and preparation limits", "original native contact truth and 120-command support hold", "floor plane, joint feasibility, common-height lowering and out-of-reach branches", "smooth swing, motor gains, canonical velocity signs, force caps and reference slew", "all old policy outputs and consumed observations"],
+  "verification": ["complete Rust tests and old recovery fixtures", "actual stateless/cached C ABI plus missing/crossed frame and memory refusals", "replay all 399 retained V45 commands byte-for-byte under original V45 policy", "independent target FK in the measured pose, including supported, absent, held and reachable/out-of-reach cases", "same-mode wave comparison and finite timeout", "complete affected-route zero-world gate before a distinct fresh MuJoCo diagnostic with unchanged cycle/stop limits"],
+  "limitations": "This tests target geometry, not force-controlled support, dynamic stability, a general Cartesian stance anchor or a new contact model. Retain any remaining joint reach or lowering residual rather than changing the old threshold.",
+  "physical_attempt_selected": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/runtime_note_v1.schema.json",
+  "title": "SporeSpore runtime note v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "note_sequence",
+    "frame_id",
+    "source",
+    "severity",
+    "code",
+    "message",
+    "evidence"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.runtime_note.v1"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+    },
+    "note_sequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "frame_id": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "severity": {
+      "enum": ["debug", "info", "warning", "error", "fatal"]
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{1,95}$"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024
+    },
+    "evidence": {
+      "type": "object"
+    },
+    "recorded_utc": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

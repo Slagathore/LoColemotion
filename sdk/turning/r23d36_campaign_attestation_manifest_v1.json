@@ -1,0 +1,133 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D36-MUJOCO-R23D29-BW19V-WALKING-RESTORATION",
+  "question_class": "development",
+  "declared_physical_world_count": 1,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 3,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 6,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D36-R23D34-CLOSED-MUJOCO-WALKING-NEGATIVE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d34_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D34_CLOSURE_PASS ",
+      "raw_sha256": "sha256:fea3708e1a3ac7a8d6e1029fbb8bb41dbde4f923b828c3bdc4ee6d14fc0efec9"
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "R23D36-MUJOCO-MV6-BW19V-POSITIVE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_mujoco_c6_bw19v_selected_policy_pose_hold_restoration_mv6_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "C6_MJC_BW19V_MV6_CLOSURE_PASS ",
+      "raw_sha256": "sha256:e0fb4d4a5e8560015fff2602d8a324faee315fae39eaed36f773c9f7fc617f81"
+    },
+    {
+      "ordinal": 3,
+      "gate_id": "R23D36-CHECKOUT-PROVENANCE-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_closure_evidence_provenance_contract.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "CLOSURE_EVIDENCE_PROVENANCE_CONTRACT_PASS ",
+      "raw_sha256": "sha256:b0eaf0ad93370b1eb5f17b45dbe1cdbbd5e2a4be24c2e5f195ec134d0a1be7da"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 4,
+      "gate_id": "R23D36-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d36_campaign_roles.ps1",
+      "arguments": ["-Role", "worker", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D36_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:5a4bcc7f1475e646c3c7207eeedcdf8a3b8a25bd02555897281ad7d595271f89"
+    },
+    {
+      "ordinal": 5,
+      "gate_id": "R23D36-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d36_campaign_roles.ps1",
+      "arguments": ["-Role", "evaluator", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D36_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:5a4bcc7f1475e646c3c7207eeedcdf8a3b8a25bd02555897281ad7d595271f89"
+    },
+    {
+      "ordinal": 6,
+      "gate_id": "R23D36-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d36_campaign_roles.ps1",
+      "arguments": ["-Role", "supervisor", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D36_CAMPAIGN_SUPERVISOR_ROLE_PASS ",
+      "raw_sha256": "sha256:5a4bcc7f1475e646c3c7207eeedcdf8a3b8a25bd02555897281ad7d595271f89"
+    }
+  ],
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d36_mujoco_bw19v_walking_restoration_implementation_v1.json",
+      "source_raw_sha256": "sha256:41e718f0aa4de81ef3cb13ff03efa0dc4d39e55724c14be7049077efe6436006",
+      "test_gate_id": "R23D36-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d36_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:5a4bcc7f1475e646c3c7207eeedcdf8a3b8a25bd02555897281ad7d595271f89"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d36_mujoco_bw19v_walking_restoration_evaluator.py",
+      "source_raw_sha256": "sha256:70db20671ed13a1d11e0166dddb66d9cbb82de64f19faa7d2b723321e349263b",
+      "test_gate_id": "R23D36-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d36_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:5a4bcc7f1475e646c3c7207eeedcdf8a3b8a25bd02555897281ad7d595271f89"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d36_supervisor.ps1",
+      "source_raw_sha256": "sha256:049cdd8056e67ec0666eb2facbde864b1f929cb42ec04f3c1ce65a8bc99cd541",
+      "test_gate_id": "R23D36-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d36_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:5a4bcc7f1475e646c3c7207eeedcdf8a3b8a25bd02555897281ad7d595271f89"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d36_mujoco_bw19v_walking_restoration_implementation_v1.json",
+    "raw_sha256": "sha256:41e718f0aa4de81ef3cb13ff03efa0dc4d39e55724c14be7049077efe6436006"
+  },
+  "source_bindings": [
+    {"path": "tests/test_qsdk_r23d34_closure.ps1", "raw_sha256": "sha256:fea3708e1a3ac7a8d6e1029fbb8bb41dbde4f923b828c3bdc4ee6d14fc0efec9"},
+    {"path": "tests/test_mujoco_c6_bw19v_selected_policy_pose_hold_restoration_mv6_closure.ps1", "raw_sha256": "sha256:e0fb4d4a5e8560015fff2602d8a324faee315fae39eaed36f773c9f7fc617f81"},
+    {"path": "tests/test_closure_evidence_provenance_contract.ps1", "raw_sha256": "sha256:b0eaf0ad93370b1eb5f17b45dbe1cdbbd5e2a4be24c2e5f195ec134d0a1be7da"},
+    {"path": "tests/test_qsdk_r23d36_campaign_roles.ps1", "raw_sha256": "sha256:5a4bcc7f1475e646c3c7207eeedcdf8a3b8a25bd02555897281ad7d595271f89"},
+    {"path": "sdk/turning/r23d36_mujoco_bw19v_walking_restoration_implementation_v1.json", "raw_sha256": "sha256:41e718f0aa4de81ef3cb13ff03efa0dc4d39e55724c14be7049077efe6436006"},
+    {"path": "sdk/turning/r23d36_mujoco_bw19v_walking_restoration_evaluator.py", "raw_sha256": "sha256:70db20671ed13a1d11e0166dddb66d9cbb82de64f19faa7d2b723321e349263b"},
+    {"path": "sdk/run_qsdk_r23d36_supervisor.ps1", "raw_sha256": "sha256:049cdd8056e67ec0666eb2facbde864b1f929cb42ec04f3c1ce65a8bc99cd541"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

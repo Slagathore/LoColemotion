@@ -1,0 +1,248 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_convergence_window_preregistration_v1",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-CONVERGENCE-WINDOW",
+  "gate_id": "C6-RAP-HC-CW1",
+  "status": "frozen_before_first_c6_rap_hc_cw1_physics_world",
+  "recorded_utc": "2026-07-31T08:10:27Z",
+  "implementation_parent_commit": "ce5baaa4fa5dd2df0cfd04d7683d9636c8511421",
+  "scientifically_distinct_from_fb1_and_lr1": true,
+  "purpose": "Test whether Rapier 0.34 ForceBased revolute motors reach and continuously retain a load-relative static equilibrium window while preserving the source-derived small-step impulse response, using fresh lever arms and solver-iteration counts.",
+  "estimand": {
+    "class": "exact_finite_cell_host_characterization",
+    "question": "Across the eight declared fresh Rapier 0.34 worlds, does an explicitly selected ForceBased motor reach 60 consecutive acceptable static-equilibrium steps within the frozen maximum horizon while retaining the pinned small-step impulse response, signed geometry, force limits, and aggregate scaling relationships?",
+    "population_superiority": false,
+    "noninferiority_or_equivalence": false,
+    "population_sampling_process": false,
+    "statistical_effect_margin_required": false,
+    "deterministic_convergence_stopping_not_statistical_sequential_sampling": true,
+    "authority_boundary": "Only the exact Rapier 0.34 host, source semantics, motor parameters, body fixture, fresh lever arms, fresh solver-iteration values, timestep, gravity, finite convergence window, and response grid declared here."
+  },
+  "predecessors": {
+    "fb1": {
+      "closure_path": "sdk/rapier_c6_force_based_host_characterization_closure.json",
+      "closure_raw_sha256": "sha256:48a46e3533a45226f8dddab64d962814bd88e3526202d48242b0400ec9d32416",
+      "status": "closed_negative_loaded_support_terminal_impulse_threshold",
+      "remains_closed_negative": true
+    },
+    "lr1": {
+      "closure_path": "sdk/rapier_c6_force_based_load_response_lr1_closure.json",
+      "closure_raw_sha256": "sha256:edb1890f9b9b4a38e53446f474f7c75e5aff8ce102d797912ce4ac7ef7d61a9f",
+      "report_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/c6-rapier-force-based-load-response-lr1-5a91c4d/report.json",
+      "report_raw_sha256": "sha256:55a907eb027ca4c5e3d8443fac9869d058ecaa920dc9f299fdadc4c81c2402d7",
+      "status": "closed_negative_static_torque_residual",
+      "same_identity_rerun_forbidden": true,
+      "threshold_change_forbidden": true,
+      "result_reclassification_forbidden": true
+    },
+    "lr1_posthoc_diagnostic": {
+      "path": "sdk/rapier_c6_force_based_load_response_lr1_posthoc_diagnostic.json",
+      "raw_sha256": "sha256:5cf4f29192354479d23ca06e0306d1128b100bb3c9e224ceb7a25883999f38bb",
+      "diagnostic_id": "C6-RAP-HC-LR1-PD-D1",
+      "classification": "outcome_exposed_development_hypothesis_not_validation",
+      "retained_learning": "LR1's spring-only static residual was almost completely accounted for by the damping contribution that its separate absolute angular-speed gate still allowed. A load-relative damping bound and consecutive window are therefore required before declaring a static endpoint.",
+      "may_not_satisfy_lr1_or_cw1": true
+    }
+  },
+  "freshness_contract": {
+    "fb1_exposed_signed_lever_arms_z_m": [
+      -0.3,
+      0.3
+    ],
+    "fb1_exposed_solver_iterations": [
+      20
+    ],
+    "lr1_exposed_signed_lever_arms_z_m": [
+      -0.15,
+      0.15,
+      -0.35,
+      0.35
+    ],
+    "lr1_exposed_solver_iterations": [
+      10,
+      40
+    ],
+    "cw1_signed_lever_arms_z_m": [
+      -0.2,
+      0.2,
+      -0.4,
+      0.4
+    ],
+    "cw1_solver_iterations": [
+      12,
+      36
+    ],
+    "no_cw1_physical_cell_was_opened_before_freeze": true
+  },
+  "host_source_semantics": {
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "cargo_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "cargo_lock_raw_sha256": "sha256:0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+    "upstream_files": [
+      {
+        "path": "src/dynamics/joint/motor_model.rs",
+        "raw_sha256": "sha256:474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648",
+        "semantic_claim": "ForceBased applies absolute force or torque using stiffness times position error plus damping times velocity error."
+      },
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "raw_sha256": "sha256:69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f",
+        "semantic_claim": "JointMotor.max_force is a force or torque, JointMotor.impulse is the current applied impulse, and motor_params limits impulse to max_force times the supplied dt."
+      },
+      {
+        "path": "src/dynamics/solver/island_solver.rs",
+        "raw_sha256": "sha256:61f7fea43b03e3979a225ddb6632fb8dea5e670e54636c3060057663feccf14a",
+        "semantic_claim": "The solver divides the outer integration dt by num_solver_iterations before constraints and writes impulses back after the small-step solve sequence."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs",
+        "raw_sha256": "sha256:a05c33a3770aada74587eebbbfae053c682bc014f9d1cd34e19658f64bc6a0a6",
+        "semantic_claim": "Motor constraint writeback assigns the solved constraint impulse to joint.data.motors[i].impulse."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/generic_joint_constraint_builder.rs",
+        "raw_sha256": "sha256:540cbf2c0b549d10ddabe288db97cdf6c214476aeb081fa390cc2002256f0305",
+        "semantic_claim": "The angular motor builds its small-angle position and target-velocity constraint from motor parameters computed for the small-step dt."
+      }
+    ],
+    "runner_must_hash_installed_crate_source_before_preflight": true,
+    "source_hash_mismatch_fails_before_any_world": true
+  },
+  "dynamics_grounded_horizon": {
+    "child_cuboid_side_lengths_m": [
+      0.4,
+      0.4,
+      0.4
+    ],
+    "maximum_declared_arm_m": 0.4,
+    "maximum_pivot_inertia_kg_m2_formula": "mass * (side_y^2 + side_z^2) / 12 + mass * maximum_arm^2",
+    "maximum_pivot_inertia_kg_m2": 0.18666666666666668,
+    "linearized_slow_decay_rate_s_inverse_formula": "(damping - sqrt(damping^2 - 4 * stiffness * maximum_pivot_inertia)) / (2 * maximum_pivot_inertia)",
+    "linearized_slow_decay_rate_s_inverse": 4.353844646511135,
+    "linearized_slow_time_constant_s": 0.22968205831628138,
+    "maximum_observation_horizon_s": 12.0,
+    "maximum_observation_steps": 1440,
+    "minimum_steps_before_convergence_acceptance": 120,
+    "required_consecutive_converged_steps": 60,
+    "convergence_window_s": 0.5,
+    "horizon_rationale": "The 12-second ceiling exceeds 52 linearized slow time constants for the maximum-inertia declared fixture. It is a conservative deterministic engineering ceiling, not a population stopping rule; failure to establish the complete consecutive window by the ceiling is a final negative cell."
+  },
+  "physical_grid": {
+    "expected_world_count": 8,
+    "mass_kg": 1.0,
+    "shape": "cuboid",
+    "half_extents_m": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "gravity_m_s2": [
+      0.0,
+      -9.8,
+      0.0
+    ],
+    "signed_lever_arms_z_m": [
+      -0.2,
+      0.2,
+      -0.4,
+      0.4
+    ],
+    "solver_iterations": [
+      12,
+      36
+    ],
+    "target_position_rad": 0.0,
+    "target_velocity_rad_s": 0.0,
+    "position_stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "maximum_motor_force_nm": 6.0,
+    "outer_timestep_s": 0.008333333333333333,
+    "internal_pgs_iterations": 1,
+    "internal_stabilization_iterations": 7
+  },
+  "per_step_convergence_contract": {
+    "small_step_timestep_formula": "outer_timestep_s / solver_iterations",
+    "gravity_torque_formula": "mass_kg * gravity_m_s2 * abs(signed_lever_arm_z_m) * cos(abs(angle_rad))",
+    "expected_small_step_impulse_formula": "gravity_torque_nm * outer_timestep_s / solver_iterations",
+    "normalized_impulse_response_formula": "abs(motor_impulse_nms) / expected_small_step_impulse_nms",
+    "spring_only_static_residual_formula": "abs(stiffness * abs(angle_rad) - gravity_torque_nm) / gravity_torque_nm",
+    "damping_load_fraction_formula": "damping * abs(angular_velocity_rad_s) / gravity_torque_nm",
+    "full_pd_gravity_residual_formula": "abs(abs(stiffness * angle_rad + damping * angular_velocity_rad_s) - gravity_torque_nm) / gravity_torque_nm",
+    "normalized_impulse_response_minimum": 0.98,
+    "normalized_impulse_response_maximum": 1.02,
+    "maximum_spring_only_static_residual": 0.01,
+    "maximum_damping_load_fraction": 0.005,
+    "maximum_full_pd_gravity_residual": 0.005,
+    "maximum_anchor_error_m": 0.00001,
+    "step_impulse_tolerance_nms": 0.000001,
+    "signed_geometry_required": true,
+    "force_based_readback_required": true,
+    "finite_values_required": true,
+    "all_predicates_must_hold_on_every_step_of_the_consecutive_window": true,
+    "any_failed_predicate_resets_the_consecutive_window_to_zero": true
+  },
+  "aggregate_gates": {
+    "all_eight_cells_must_reach_complete_window": true,
+    "maximum_signed_pair_relative_asymmetry": 0.005,
+    "arm_magnitude_ordering_required": true,
+    "maximum_solver_scaling_relative_error": 0.02,
+    "zero_motor_model_mismatches_required": true,
+    "zero_nonfinite_values_required": true,
+    "zero_small_step_impulse_limit_violations_required": true,
+    "exact_world_attempt_build_and_cell_counts_required": true
+  },
+  "threshold_provenance": {
+    "response_interval": "Pinned Rapier small-step source semantics and the prospective two-percent integration envelope frozen for LR1, retained unchanged.",
+    "static_residual": "Prospective one-percent load-relative static endpoint requirement, stricter than LR1's failed two-percent bound.",
+    "damping_fraction": "Prospective half-percent load-relative bound that makes the velocity criterion commensurate with each declared gravity load.",
+    "full_pd_residual": "Prospective half-percent consistency bound on Rapier's declared ForceBased PD equation at every converged step.",
+    "consecutive_window": "Sixty consecutive outer steps, or 0.5 seconds, exceeding two maximum-inertia linearized slow time constants.",
+    "maximum_horizon": "Twelve seconds, exceeding 52 maximum-inertia linearized slow time constants.",
+    "symmetry_anchor_force_and_scaling": "Existing source-grounded LR1 families retained without relaxation."
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "default_acceleration_based_canary_must_pass": true,
+    "explicit_force_based_builder_readback_must_pass": true,
+    "mutable_force_based_update_readback_must_pass": true,
+    "perfect_eight_cell_convergence_traces_must_pass_entire_gate": true,
+    "single_acceptable_step_canary_must_fail": true,
+    "window_gap_canary_must_fail": true,
+    "whole_outer_step_impulse_canary_must_fail": true,
+    "missing_cell_canary_must_fail": true,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "execution_contract": {
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "all_eight_worlds_required_before_decision": true,
+    "early_stop_across_cells_forbidden": true,
+    "per_cell_stop_only_after_complete_frozen_window_or_maximum_horizon": true,
+    "retained_negative_report_required_on_gate_failure": true,
+    "evidence_must_be_outside_repository_and_beneath_SporeSpore_Evidence": true
+  },
+  "success_contract": {
+    "all_eight_cells_must_pass": true,
+    "every_physical_motor_model_readback_must_be_force_based": true,
+    "load_relative_static_convergence_grid_must_pass": true,
+    "signed_pair_symmetry_must_pass": true,
+    "arm_magnitude_ordering_must_pass": true,
+    "solver_iteration_inverse_scaling_must_pass": true
+  },
+  "claims": {
+    "rapier_force_based_static_convergence_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

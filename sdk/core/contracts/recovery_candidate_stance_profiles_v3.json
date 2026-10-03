@@ -1,0 +1,20 @@
+{
+  "schema_version": "sporespore_recovery_candidate_stance_profiles_v3",
+  "preserved_predecessor": "sdk/core/contracts/recovery_candidate_stance_profiles_v2.json",
+  "profiles": [
+    {
+      "ledger_scope": {"subsystem": "recovery", "engine_scope": "engine_neutral", "authority_mode": "prospective_development_controller", "question_class": "development"},
+      "recovery_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v17",
+      "controller_id": "sporespore_exact_s169_stance_handoff_controller_v4",
+      "profile_id": "sporespore_exact_s169_velocity_damped_flexed_stance_v1",
+      "response_time_s": 0.1,
+      "geometry_rule_id": "two_link_sagittal_endpoint_under_hip_v1",
+      "target_knee_angle_rad": -0.25,
+      "measured_velocity_damping_gain": 0.5,
+      "rule": "Preserve V16 geometry and relaxation. Before the unchanged speed clamp, subtract 0.5 times each measured joint velocity from its position-error velocity request. Require valid finite measured velocities. Do not alter observations, standing gates, impulse caps, timeouts or get-up commands.",
+      "parameter_basis": "Prospective dimensionless half-strength opposing velocity feedback, not a fitted optimum. Retained V16 late body motion is mainly along the hip axis and strongly covaries with hip velocity. A one-step ideal velocity-following recurrence is checked for decay with this gain at the existing 120 Hz and 0.1 s relaxation; that toy model excludes contacts, torque saturation and native solver dynamics and proves no physical stability or recovery.",
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    }
+  ]
+}

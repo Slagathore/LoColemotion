@@ -1,0 +1,99 @@
+{
+  "schema_version": "sporespore_r10z_pose_geometry_kernel_contract_v2",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral",
+    "authority_mode": "prospective_development_kernel",
+    "question_class": "development"
+  },
+  "scope": "Exact s169 recovery morphology; partial support and rise joint-reference planning only. No native execution or task success authority.",
+  "input": "Actual source observation V3, descriptor, joints, torso pose, COM, ordered native contact and bearing observations. Full native source/energy/ownership validation belongs to the future route wrapper.",
+  "modeled_support_plane": "Median modeled foot-bottom height among native-present, bearing, ordinary unilateral sites with positive measured normal impulse. Never written to source observations.",
+  "goal": {
+    "horizontal": "Predicted measured COM projection centered over the four modeled foot centers",
+    "height": "modeled support plane + 0.92 * total leg length + foot radius",
+    "orientation": "level torso preserving measured horizontal heading"
+  },
+  "objective": "Squared world X/Z COM errors + squared torso height error + 0.04 * squared torso-up tilt angle + sum squared positive missing-foot clearance above modeled support plane.",
+  "candidate_search": {
+    "scales": [
+      1,
+      0.5,
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "forward_translation_speed_m_s": [
+      -0.1,
+      0,
+      0.1
+    ],
+    "vertical_translation_speed_m_s": [
+      -0.1,
+      0,
+      0.1
+    ],
+    "level_quaternion_blend_rate_s_inverse": [
+      -0.6,
+      0,
+      0.6
+    ],
+    "outer_step_duration_s": 0.008333333333333333,
+    "candidate_count": 135,
+    "order": "scale, forward, vertical, blend; keep first exact tie",
+    "minimum_cost_improvement": 1e-12
+  },
+  "foot_targets": "Keep current ideal modeled endpoints for bearing feet; lower missing-contact endpoints toward modeled support plane by at most 0.1 * dt * candidate scale. No pose pin or contact relabel.",
+  "inverse_kinematics": {
+    "axis": "+Z",
+    "hip_limits_rad": [
+      -1.6,
+      1.6
+    ],
+    "knee_limits_rad": [
+      -1.1,
+      1.1
+    ],
+    "maximum_joint_increment_rad": 0.03333333333333333,
+    "maximum_unactuated_lateral_residual_m": 0.0005,
+    "branches": "Both analytic branches; choose smallest squared displacement among individually bounded solutions; positive branch wins exact tie.",
+    "unreachable": "Reject; never clamp an unreachable cosine to a fake endpoint."
+  },
+  "measured_hold": [
+    "No positive native bearing reference",
+    "Undefined horizontal heading (projected forward length below 1e-12)",
+    "No feasible cost-decreasing candidate"
+  ],
+  "refuse": [
+    "Wrong descriptor, observation version, dt or source clock",
+    "Missing/crossed/nonfinite joints or measured overshoot requiring more than 4/120 rad to reach a legal target",
+    "Missing/crossed/nonfinite/unmeasured contact or COM values",
+    "Non-unit or nonfinite quaternion"
+  ],
+  "preserved": [
+    "All task predicates and phase deadlines",
+    "Existing actuator impulse and speed caps",
+    "Old controller behavior and all consumed records"
+  ],
+  "validation_required": [
+    "Four exact retained entry references and input immutability",
+    "Independent forward reconstruction and rate/limit assertions",
+    "Crossed/missing/nonfinite input negatives",
+    "Contact-loss and no-reference measured hold",
+    "Singular/unreachable inverse geometry",
+    "Quaternion-sign and world-translation invariance",
+    "Original small native overshoots preserved; boundary-return commands legal and bounded, including no-bearing hold"
+  ],
+  "source_bound_native_route_integrated": false,
+  "controller_physics_proven": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "predecessor": {
+    "path": "sdk/recovery/r10z_pose_geometry_kernel_contract_v1.json",
+    "raw_sha256": "sha256:aa1e55dc0b0bd2f6b16669562529d005eff2687430511ae6660c8719b0344508"
+  },
+  "observed_zero_world_failure": "r10z-geometry-kernel-720b8acdc93e43ba8fd1aa03caec8202: 4 passed / 2 failed. The strict input-angle bound refused small native overshoots in original phases 241 and 249.",
+  "native_overshoot": "Retain the exact measured angle. Permit planning only when its distance to the legal target interval is at most 4/120 rad. All emitted targets must remain inside authored limits and within 4/120 rad of that unmodified measurement. The bounded-hold fallback returns small overshoots to the nearest legal boundary and reports their count; task joint-limit predicates remain strict and unchanged."
+}

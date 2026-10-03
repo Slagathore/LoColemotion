@@ -1,0 +1,142 @@
+{
+  "schema_version": "sporespore_r10j_held_out_preregistration_v1",
+  "campaign_id": "R10J-HELD-OUT-FINITE-DECISION-V1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_finite_decision_contract",
+    "question_class": "finite decision"
+  },
+  "candidate_profile": {
+    "resource": "res://sdk/development/recovery_candidates/r10j-v50-campaign-v1.json",
+    "raw_sha256": "sha256:cfd5c2d4b3c2652d6bbf2d8a6b655c035fcc499823a565421abfb24cd25013be"
+  },
+  "cells": [
+    {
+      "cell_id": "50641:matched_no_kick_continuation",
+      "seed": {
+        "seed": 50641,
+        "label": "R10J-HELD-OUT-FINITE-DECISION-V1/godot/prefix-phase-241/seed-50641",
+        "sha256": "sha256:d6ff11a043e567819fce245283e87f575d29380c6a7243a400f75e66af383ab9",
+        "prefix_phase": 241
+      },
+      "role": "matched_no_kick_continuation",
+      "maximum_world_attempts": 1,
+      "maximum_world_builds": 1,
+      "maximum_solver_steps": 2552
+    },
+    {
+      "cell_id": "50641:kick_passive_recovery_resume",
+      "seed": {
+        "seed": 50641,
+        "label": "R10J-HELD-OUT-FINITE-DECISION-V1/godot/prefix-phase-241/seed-50641",
+        "sha256": "sha256:d6ff11a043e567819fce245283e87f575d29380c6a7243a400f75e66af383ab9",
+        "prefix_phase": 241
+      },
+      "role": "kick_passive_recovery_resume",
+      "maximum_world_attempts": 1,
+      "maximum_world_builds": 1,
+      "maximum_solver_steps": 3512
+    },
+    {
+      "cell_id": "50642:matched_no_kick_continuation",
+      "seed": {
+        "seed": 50642,
+        "label": "R10J-HELD-OUT-FINITE-DECISION-V1/godot/prefix-phase-242/seed-50642",
+        "sha256": "sha256:03bc4073d66159c6b70eabbbb86fdd21f1b6c28693140c8a7d7ee26dd70e859b",
+        "prefix_phase": 242
+      },
+      "role": "matched_no_kick_continuation",
+      "maximum_world_attempts": 1,
+      "maximum_world_builds": 1,
+      "maximum_solver_steps": 2552
+    },
+    {
+      "cell_id": "50642:kick_passive_recovery_resume",
+      "seed": {
+        "seed": 50642,
+        "label": "R10J-HELD-OUT-FINITE-DECISION-V1/godot/prefix-phase-242/seed-50642",
+        "sha256": "sha256:03bc4073d66159c6b70eabbbb86fdd21f1b6c28693140c8a7d7ee26dd70e859b",
+        "prefix_phase": 242
+      },
+      "role": "kick_passive_recovery_resume",
+      "maximum_world_attempts": 1,
+      "maximum_world_builds": 1,
+      "maximum_solver_steps": 3512
+    },
+    {
+      "cell_id": "50643:matched_no_kick_continuation",
+      "seed": {
+        "seed": 50643,
+        "label": "R10J-HELD-OUT-FINITE-DECISION-V1/godot/prefix-phase-243/seed-50643",
+        "sha256": "sha256:32d61ef6d27cde091f2215c54153de8d02ab98339f51e66279072c6a682a8835",
+        "prefix_phase": 243
+      },
+      "role": "matched_no_kick_continuation",
+      "maximum_world_attempts": 1,
+      "maximum_world_builds": 1,
+      "maximum_solver_steps": 2552
+    },
+    {
+      "cell_id": "50643:kick_passive_recovery_resume",
+      "seed": {
+        "seed": 50643,
+        "label": "R10J-HELD-OUT-FINITE-DECISION-V1/godot/prefix-phase-243/seed-50643",
+        "sha256": "sha256:32d61ef6d27cde091f2215c54153de8d02ab98339f51e66279072c6a682a8835",
+        "prefix_phase": 243
+      },
+      "role": "kick_passive_recovery_resume",
+      "maximum_world_attempts": 1,
+      "maximum_world_builds": 1,
+      "maximum_solver_steps": 3512
+    }
+  ],
+  "task_contract_path": "sdk/recovery/r10j_settled_hold_finite_cycle_contract_v1.json",
+  "task_contract_sha256": "sha256:8bf76ff468ce0f51ee773cbd342a6711f0ea765249d95320732e9f94e5584801",
+  "maximum_campaign_attempt_count": 1,
+  "maximum_world_attempt_count": 6,
+  "maximum_solver_step_count": 18192,
+  "all_cells_must_pass": true,
+  "all_cells_run_regardless_of_behavior": true,
+  "cell_replacement_permitted": false,
+  "retry_permitted": false,
+  "threshold_override_permitted": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "production_runner": "sdk/run_r10j_finite_recovery.ps1",
+  "qualification_wrapper": "sdk/conformance/r10j_qualification.py",
+  "post_result_auditor": "sdk/conformance/r10j_campaign_audit.py",
+  "decision_rule": "All six exact cells must have valid production execution, independently consumed exact native replays, unchanged finite task predicates, bounded whole walking envelope, and complete retained publication. Any behavioral negative defeats this conjunction; any incomplete or invalid cell prevents acceptance. Never replace, retry, omit, rethreshold or reuse an observed cell.",
+  "source_or_runtime_drift": "Abort and retain an invalid consumed campaign; do not execute additional cells against changed inputs.",
+  "scope": "Exact S169 Godot/Jolt finite recovery tasks at three declared prefix phases. No robustness, arbitrary morphology, force-aware recovery, cross-engine equivalence or superiority claim.",
+  "required_production_ghost": "sdk/recovery/r10j_production_route_ghost_closure_v1.json",
+  "prerequisite_rule": "A fresh complete seed-40200 two-role production ghost after the final route-affecting change, complete zero-world gate, original launcher publication and independent audit must pass at the same complete dependency key. Preserve the earlier launcher refusal and post-exposure replays separately.",
+  "hold_budget_decision": "Unchanged 240 ramp commands and 240 hold commands with the original 30 consecutive measured-ready samples. Development readiness at command 182 is descriptive and is not a held-out success estimate.",
+  "held_out_population_previously_observed": false,
+  "remaining_adoption": "A physical conjunction does not grant release authority automatically. Commit an independent closure and explicit QSDK-R10 adoption, then run the SDK1 milestone compiler.",
+  "development_coverage_manifest": {
+    "seed": 40200,
+    "roles": [
+      "matched_no_kick_continuation",
+      "kick_passive_recovery_resume"
+    ],
+    "maximum_world_builds": 2,
+    "maximum_solver_steps": 6064,
+    "full_finite_horizon_required_for": [
+      "late_30_sample_readiness_dwell",
+      "all_four_planned_foot_cycles",
+      "120_command_stop",
+      "three_session_no_kick_finalization",
+      "complete_native_trace_replay",
+      "paired_supervisor_publication"
+    ],
+    "uncovered": [
+      "held_out_phase_behavior",
+      "robustness",
+      "arbitrary_morphology",
+      "cross_engine_push_recovery"
+    ],
+    "held_out_seed_guard_coverage": "All six exact seed/role envelope branches are tested with zero worlds; the native physics path is the same parameterized route at each phase. One development seed covers its route risks."
+  }
+}

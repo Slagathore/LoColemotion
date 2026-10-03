@@ -1,0 +1,196 @@
+{
+  "schema_version": "sporespore_qsdk_r24d45_rapier_actuator_work_observer_diagnosis_v1",
+  "analysis_id": "QSDK-R24D45-RAPIER-ACTUATOR-WORK-OBSERVER-DIAGNOSIS-V1",
+  "analysis_class": "zero_world_frozen_source_development_diagnosis",
+  "status": "complete_source_proven_r45_actuator_work_observer_defect_future_physics_blocked",
+  "authored_parent_commit": "1fc1f4a3ce55d154594113dc312ab580761815a2",
+  "question_class": "development",
+  "physical_question_declared": false,
+  "behavior_question_declared": false,
+  "model_construction_count": 0,
+  "world_attempt_count": 0,
+  "world_build_count": 0,
+  "outer_adapter_step_count": 0,
+  "rapier_small_step_count": 0,
+  "physics_state_modified": false,
+  "predecessor": {
+    "gate_id": "QSDK-R24D45",
+    "source_commit": "3b72261066042b61b8f77f4ed2aaaef64aa0c4e5",
+    "closure_commit": "1fc1f4a3ce55d154594113dc312ab580761815a2",
+    "closure_path": "sdk/recovery/r24d45_rapier_native_recovery_port_negative_closure_v1.json",
+    "closure_byte_length": 9747,
+    "closure_raw_sha256": "sha256:156f358481160e8937f2c48d2c0dbd206fbe4ec6974a693c6ff5569a55372fcd",
+    "result_classification": "valid_complete_negative_exact_nominal_rapier_development",
+    "same_identity_rerun_permitted": false,
+    "same_identity_requalification_permitted": false,
+    "historical_result_rewritten": false,
+    "historical_threshold_rewritten": false,
+    "historical_evaluator_rewritten": false,
+    "historical_interpretation_rewritten": false,
+    "post_closure_diagnosis_may_reclassify_r24d45": false
+  },
+  "repo_source_bindings": [
+    {
+      "path": "sdk/Cargo.lock",
+      "byte_length": 19878,
+      "raw_sha256": "sha256:0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+      "git_blob_oid": "7e0249cbbbb883af105d178bb27197d7da6ae87b"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/active_configuration.rs",
+      "byte_length": 1980,
+      "raw_sha256": "sha256:f92d6710ac90ce225477ce778be874722be6730e507f3d1a2e75afa259fc4ab7",
+      "git_blob_oid": "72c726f2e37f2faea76ad0d3ba5a0f8db45de374"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/lib.rs",
+      "byte_length": 40336,
+      "raw_sha256": "sha256:78329ea3f56e009d1edf39c2f64a066186dbaee228c7ddfe2077b907048408e9",
+      "git_blob_oid": "e263261361766c79841d6a32fa1f0a42352898d1"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/qsdk_r24d45_recovery_route.rs",
+      "byte_length": 123377,
+      "raw_sha256": "sha256:c375eb4cfb02ec5d024538fbc4d04e3c01c3cdb7d43c083dcf02e0168b4e63d7",
+      "git_blob_oid": "f37f0e26e82200d740f6d28cce76685b227adf4d"
+    },
+    {
+      "path": "sdk/rapier_c6_force_based_load_response_lr1_preregistration.json",
+      "byte_length": 9738,
+      "raw_sha256": "sha256:975e9205c46b3e718d3484a3e2d9185bddf4cd04da66ce326fc9bd14671dc031",
+      "git_blob_oid": "f9267c872ac2a8b8ff21c9eb06a67e6db3922748"
+    }
+  ],
+  "pinned_rapier_dependency": {
+    "crate": "rapier3d",
+    "version": "0.34.0",
+    "registry_source": "registry+https://github.com/rust-lang/crates.io-index",
+    "cargo_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "installed_source_root_suffix": "rapier3d-0.34.0",
+    "upstream_files": [
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "byte_length": 29320,
+        "raw_sha256": "sha256:69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f",
+        "semantic_scope": "motor impulse limit is max_force times the supplied small-step dt"
+      },
+      {
+        "path": "src/dynamics/solver/island_solver.rs",
+        "byte_length": 3716,
+        "raw_sha256": "sha256:61f7fea43b03e3979a225ddb6632fb8dea5e670e54636c3060057663feccf14a",
+        "semantic_scope": "outer dt is divided by solver iterations and only the terminal constraint state is written back after the small-step loop"
+      },
+      {
+        "path": "src/dynamics/solver/velocity_solver.rs",
+        "byte_length": 14304,
+        "raw_sha256": "sha256:b7bc9274c8ed285b4908c6010f97087f2199704eea0b37bc0e89fac2cda18e1d",
+        "semantic_scope": "constraints are rebuilt and solved with interleaved joint/contact passes inside every small step"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraint_builder.rs",
+        "byte_length": 29475,
+        "raw_sha256": "sha256:07628f6f865f612db096adb828cf329cf5b55a82d239659b094f0ee214da4ac9",
+        "semantic_scope": "each rebuilt motor constraint initializes its impulse accumulator to zero"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs",
+        "byte_length": 14560,
+        "raw_sha256": "sha256:a05c33a3770aada74587eebbbfae053c682bc014f9d1cd34e19658f64bc6a0a6",
+        "semantic_scope": "relative velocity is body2 minus body1, solved impulse is applied plus to body1 and minus to body2, and the motor field receives the final constraint impulse"
+      }
+    ]
+  },
+  "frozen_execution_semantics": {
+    "outer_adapter_dt_s": 0.008333333333333333,
+    "configured_solver_small_steps_per_outer_adapter_step": 16,
+    "configured_internal_pgs_iterations_per_small_step": 3,
+    "configured_internal_stabilization_iterations_per_small_step": 5,
+    "r45_counter_called_each_outer_adapter_call_one_native_solver_step": true,
+    "rapier_actually_executes_sixteen_small_steps_inside_each_counted_outer_call": true,
+    "motor_constraint_impulse_resets_when_each_small_step_rebuilds_constraints": true,
+    "joint_motor_impulse_after_outer_step_is_only_the_final_small_step_constraint_impulse": true,
+    "joint_motor_impulse_after_outer_step_is_not_the_sum_of_all_sixteen_small_step_impulses": true,
+    "r45_reads_joint_motor_impulse_once_after_the_outer_world_step": true,
+    "r45_retains_first_fifteen_small_step_motor_impulses": false,
+    "r45_relative_joint_velocity_coordinate": "body2_child_minus_body1_parent_about_parent_positive_z",
+    "rapier_positive_constraint_impulse_application": "plus_body1_parent_minus_body2_child",
+    "motor_generalized_impulse_sign_in_r45_coordinate": "negative_of_joint_motor_impulse",
+    "r45_recorded_work_sign_rule": "positive_joint_motor_impulse_times_child_minus_parent_centered_outer_velocity",
+    "correct_sign_for_that_coordinate": "negative_joint_motor_impulse_times_child_minus_parent_velocity_at_each_motor_impulse_application"
+  },
+  "diagnosis": {
+    "r45_recorded_actuator_work_is_complete_outer_step_actuator_work": false,
+    "r45_recorded_actuator_work_has_the_correct_generalized_sign": false,
+    "r45_recorded_outer_endpoint_velocity_has_the_required_per_application_time_support": false,
+    "r45_actuator_work_observer_defect_proven_by_frozen_source": true,
+    "exact_corrected_r45_actuator_work_reconstructible_from_retained_trace": false,
+    "multiplying_the_terminal_impulse_by_sixteen_is_an_exact_reconstruction": false,
+    "negating_the_retained_r45_work_is_an_exact_reconstruction": false,
+    "mechanical_energy_residual_may_be_relabelled_as_missing_actuator_or_constraint_work": false,
+    "native_constraint_exchange_was_independently_measured_by_r45": false,
+    "passive_dissipation_was_independently_measured_by_r45": false,
+    "controller_failure_proven": false,
+    "r45_physics_result_reclassified": false,
+    "r45_threshold_or_margin_changed": false,
+    "r45_evaluator_changed": false,
+    "r45_may_rerun": false
+  },
+  "rejected_shortcuts": [
+    "reinterpret_the_terminal_small_step_impulse_as_an_outer_step_sum",
+    "multiply_the_terminal_small_step_impulse_by_sixteen",
+    "flip_only_the_sign_of_the_retained_outer_endpoint_product",
+    "derive_a_balancing_work_or_dissipation_channel_from_the_observed_residual",
+    "host_split_the_outer_step_and_claim_source_equivalence_without_a_distinct_contract",
+    "change_the_unchanged_0_25_j_residual_threshold",
+    "reclassify_or_rerun_r24d45"
+  ],
+  "live_authority_paths": [
+    "sdk/release/quadruped_release_contract.json",
+    "sdk/release/quadruped_support_matrix.json"
+  ],
+  "live_gate_expectations": {
+    "r24d45_post_closure_observer_diagnosis_path": "sdk/recovery/r24d45_rapier_actuator_work_observer_diagnosis_v1.json",
+    "r24d45_post_closure_observer_diagnosis_complete": true,
+    "r24d45_post_closure_actuator_work_observer_defect_proven": true,
+    "r24d45_post_closure_terminal_small_step_only_proven": true,
+    "r24d45_post_closure_generalized_sign_inversion_proven": true,
+    "r24d45_exact_corrected_work_reconstructible": false,
+    "r24d45_result_reclassified_by_post_closure_diagnosis": false,
+    "next_gate_id": "QSDK-R24D46",
+    "r24d46_question_class": "development",
+    "r24d46_physical_question_declared": false,
+    "r24d46_exact_solver_work_observer_implemented": false,
+    "physical_execution_blocked_until_r24d46_declaration_and_zero_world_qualification": true,
+    "physical_execution_authorized": false,
+    "maximum_physical_steps_authorized": 0,
+    "held_out_cells_remain_sealed": true
+  },
+  "next_boundary": {
+    "gate_id": "QSDK-R24D46",
+    "question_class": "development",
+    "status": "eligible_for_distinct_zero_world_exact_rapier_solver_work_observer_declaration_physics_blocked",
+    "required_observer_seam": "accumulate every signed motor delta-impulse contribution at its actual Rapier solver application, separating supplied, absorbed, net work, and total impulse before outer-step publication",
+    "required_energy_boundary": "publish only independently observed actuator, external, constraint-exchange, and passive-dissipation channels; refuse any unmeasured required channel",
+    "implementation_preference": "a minimal version-pinned Rapier instrumentation patch analogous to the qualified Jolt motor-work seam, with exact source and binary provenance",
+    "host_split_route_may_be_used_without_distinct_equivalence_characterization": false,
+    "physical_question_declared": false,
+    "next_physical_execution_authorized": false,
+    "maximum_physical_steps_authorized": 0,
+    "held_out_cells_remain_sealed": true
+  },
+  "claim_boundary": {
+    "frozen_source_observer_diagnosis_complete": true,
+    "specific_successor_measurement_boundary_identified": true,
+    "rapier_actuator_work_observer_implemented": false,
+    "rapier_energy_exchange_partition_qualified": false,
+    "rapier_recovery_result_positive": false,
+    "rapier_prone_to_standing": false,
+    "cross_engine_prone_to_standing": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_completed_steps": 11,
+    "sdk1_total_steps": 20,
+    "full_program_completed_steps": 11,
+    "full_program_total_steps": 25
+  }
+}

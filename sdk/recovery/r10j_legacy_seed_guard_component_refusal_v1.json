@@ -1,0 +1,83 @@
+{
+  "schema_version": "sporespore_r10j_legacy_seed_guard_component_refusal_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_zero_world_component_refusal",
+    "question_class": "development"
+  },
+  "parent_source_commit": "8637f698795bb0a5a71b5d4dbbfef26103505065",
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10j-campaign-route-checks-226da91d405e40869d984ca1c5cb2f2d",
+  "retained_files": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10j-campaign-route-checks-226da91d405e40869d984ca1c5cb2f2d/candidate_cycle_stop.stderr.log",
+      "byte_length": 524,
+      "raw_sha256": "sha256:d4f74ce792da9f7adbce850773648639e981d2f03aa4c5fccb9933d34e3a34a9"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10j-campaign-route-checks-226da91d405e40869d984ca1c5cb2f2d/candidate_cycle_stop.stdout.log",
+      "byte_length": 133,
+      "raw_sha256": "sha256:a57edaeee04375444b2ef793f2e0397376eeaae8c44c6f96f2eff64e2896eceb"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10j-campaign-route-checks-226da91d405e40869d984ca1c5cb2f2d/candidate_legacy_source.stderr.log",
+      "byte_length": 1545,
+      "raw_sha256": "sha256:53ccc18f42d8e0e13db522635ed92bd0210f2b7bee00c16100eb60ac9f266032"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10j-campaign-route-checks-226da91d405e40869d984ca1c5cb2f2d/candidate_legacy_source.stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10j-campaign-route-checks-226da91d405e40869d984ca1c5cb2f2d/result.json",
+      "byte_length": 1113,
+      "raw_sha256": "sha256:cfc8dcd51a34f025a057963355e5ee527fa22f77d1cbee268c55d2c7f9125547"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/r10j-campaign-route-checks-226da91d405e40869d984ca1c5cb2f2d/source_before.json",
+      "byte_length": 5458,
+      "raw_sha256": "sha256:68a525802dceb9e78a77c5250f0f081121840dd38d96d6de15234e9bb50d367b"
+    }
+  ],
+  "result": {
+    "world_build_count": 0,
+    "source_unchanged": true,
+    "stages": [
+      {
+        "id": "candidate_cycle_stop",
+        "passed": true,
+        "test_count": 3,
+        "expected_test_count": 3,
+        "seconds": 7.4760398,
+        "exit_code": 0,
+        "timed_out": false,
+        "stdout": "candidate_cycle_stop.stdout.log",
+        "stderr": "candidate_cycle_stop.stderr.log",
+        "stdout_sha256": "a57edaeee04375444b2ef793f2e0397376eeaae8c44c6f96f2eff64e2896eceb",
+        "stderr_sha256": "d4f74ce792da9f7adbce850773648639e981d2f03aa4c5fccb9933d34e3a34a9"
+      },
+      {
+        "id": "candidate_legacy_source",
+        "passed": false,
+        "test_count": 1,
+        "expected_test_count": 1,
+        "seconds": 26.0435969,
+        "exit_code": 1,
+        "timed_out": false,
+        "stdout": "candidate_legacy_source.stdout.log",
+        "stderr": "candidate_legacy_source.stderr.log",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderr_sha256": "53ccc18f42d8e0e13db522635ed92bd0210f2b7bee00c16100eb60ac9f266032"
+      }
+    ],
+    "solver_step_count": 0
+  },
+  "diagnosis": "The old source differential required the fixed development seed tokens inside _load_campaign_binding_v1 itself. The campaign successor moved the unchanged default seed/label/digest predicate into _authorized_seed_binding_v1, invoked by that same pre-world rejection expression. The source test did not follow that helper, adding one structural false failure over its historical three-failure baseline.",
+  "repair": "Recognize the extracted helper only when the exact pre-world rejection call is present; assert its original four seed domain/equality predicates, then retain all other binding checks. The historical inline form remains supported. Baseline failures and errors remain exactly as before; no legacy failure is newly waived.",
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "held_out_worlds_opened": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

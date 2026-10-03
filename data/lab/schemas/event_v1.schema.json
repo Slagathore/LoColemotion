@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/event_v1.schema.json",
+  "title": "SporeSpore ordered lab event v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "event_sequence",
+    "frame_id",
+    "event",
+    "subject_id",
+    "detector_local_ordinal",
+    "evidence"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.event.v1"},
+    "run_id": {"$ref": "#/$defs/stable_id"},
+    "event_sequence": {"type": "integer", "minimum": 0},
+    "frame_id": {"type": "integer", "minimum": 0},
+    "event": {
+      "enum": [
+        "CONTACT_BEGIN",
+        "CONTACT_END",
+        "SUPPORT_STATE_CHANGE",
+        "SATURATION_BEGIN",
+        "SATURATION_END",
+        "LIMIT_HIT",
+        "NONFINITE_DETECTED",
+        "ALLOCATOR_INFEASIBLE",
+        "MODE_TRANSITION",
+        "RECOVERY_PHASE_BEGIN",
+        "RECOVERY_SUCCESS",
+        "RECOVERY_FAILURE",
+        "UNAUTHORIZED_INTERVENTION",
+        "ABORT",
+        "PROMOTION_DECISION"
+      ]
+    },
+    "subject_id": {"type": "string"},
+    "detector_local_ordinal": {"type": "integer", "minimum": 0},
+    "from": {"type": ["string", "null"]},
+    "to": {"type": ["string", "null"]},
+    "reason": {"type": ["string", "null"]},
+    "evidence": {
+      "oneOf": [
+        {"$ref": "#/$defs/promotion_evidence"},
+        {"$ref": "#/$defs/empty_evidence"}
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "event": {"const": "PROMOTION_DECISION"},
+            "evidence": {"$ref": "#/$defs/promotion_evidence"}
+          }
+        },
+        {
+          "properties": {
+            "event": {
+              "enum": [
+                "CONTACT_BEGIN",
+                "CONTACT_END",
+                "SUPPORT_STATE_CHANGE",
+                "SATURATION_BEGIN",
+                "SATURATION_END",
+                "LIMIT_HIT",
+                "NONFINITE_DETECTED",
+                "ALLOCATOR_INFEASIBLE",
+                "MODE_TRANSITION",
+                "RECOVERY_PHASE_BEGIN",
+                "RECOVERY_SUCCESS",
+                "RECOVERY_FAILURE",
+                "UNAUTHORIZED_INTERVENTION",
+                "ABORT"
+              ]
+            },
+            "evidence": {"$ref": "#/$defs/empty_evidence"}
+          }
+        }
+      ]
+    }
+  ],
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "promotion_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["physical_gate_pass", "source_state_gate_pass"],
+      "properties": {
+        "physical_gate_pass": {"type": "boolean"},
+        "source_state_gate_pass": {"type": "boolean"}
+      }
+    },
+    "empty_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "maxProperties": 0
+    }
+  }
+}

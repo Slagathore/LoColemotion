@@ -1,0 +1,66 @@
+{
+  "schema_version": "sporespore_qsdk_r23d15_pre_attestation_workbench_proof_incident_v1",
+  "status": "closed_retained_pre_attestation_verifier_proof_failure_no_physics",
+  "campaign_id": "QSDK-R23D15-PRODUCTION-COMPOSITION-RECOVERY-THREE-ENGINE-TURN-CONFIRMATION",
+  "gate_id": "QSDK-R23D15",
+  "source_commit": "712dbe422169f97bd05b0d32450acd2030070913",
+  "source_tree_git_oid": "daa154d2a9dac34937cae8016a1df8ce78e91dbe",
+  "attempted_attestation_path": "full-godot-conformance-v2-712dbe42-20260811T125859Z/attestation.json",
+  "attestation_published": false,
+  "failed_stage_id": "authority_and_historical_closures",
+  "elapsed_seconds": 218.4761435,
+  "failure": {
+    "audit_path": "tests/test_locomotion_experiment_workbench.ps1",
+    "message": "LOCOMOTION_EXPERIMENT_WORKBENCH proof digest mismatch: sdk/release/quadruped_release_contract.json",
+    "mechanism": "The retained dependency-count incident was added to the release contract and support matrix, but the experiment catalog still pinned their predecessor raw digests. The workbench audit correctly refused the stale release-contract proof binding. A complete follow-up inventory of all 250 non-empty catalog proofs found one additional stale binding for the R23D15 Godot physical runner and no missing proofs.",
+    "classification": "verifier_fixture_drift_not_scientific_result",
+    "r23d15_physical_identity_consumed": false
+  },
+  "retained_evidence": [
+    {
+      "path": "conformance-runs/20260811T125914Z-712dbe42-282bc595617e431890dca8e3246b6d27/receipt.json",
+      "raw_sha256": "sha256:07ea1820a910fbfe2c8d6682de693f4d0623be03fc7088b1945aae41e595e3fa",
+      "byte_length": 12092
+    },
+    {
+      "path": "conformance-runs/20260811T125914Z-712dbe42-282bc595617e431890dca8e3246b6d27/conformance.log",
+      "raw_sha256": "sha256:815b13995a9853df3d573662e7f960a743412a09c5698ce60c9547c95dbae4da",
+      "byte_length": 693
+    },
+    {
+      "path": "conformance-runs/20260811T125914Z-712dbe42-282bc595617e431890dca8e3246b6d27/stages/01-authority_and_historical_closures.json",
+      "raw_sha256": "sha256:be3750164ad0c9a990df61a26b8fb630c9974db237508569246492d92c29caa3",
+      "byte_length": 2324
+    }
+  ],
+  "authorized_repair": {
+    "update_experiment_catalog_release_and_support_proof_digests": true,
+    "update_experiment_catalog_r23d15_godot_runner_proof_digest": true,
+    "bind_final_post_incident_annotation_raw_digests": true,
+    "controller_or_physics_change_permitted": false,
+    "scientific_threshold_or_question_change_permitted": false,
+    "new_clean_push_and_create_only_attestation_path_required": true
+  },
+  "followup_catalog_inventory": {
+    "non_empty_proof_count": 250,
+    "stale_proof_count_after_release_and_support_rebinding": 1,
+    "missing_proof_count": 0,
+    "stale_path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+    "predecessor_expected_sha256": "sha256:f41de972392ac5ff05dbdfdc7393e174f7c9915b17ec4b2c6e0a7cf67cb34362",
+    "current_raw_sha256": "sha256:0e85e7cf2ebfcc7affd45aa973ebbb09108187f83b21eff424482dfa2463efc1"
+  },
+  "counts": {
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0
+  },
+  "claims": {
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "finite_three_engine_result_exists": false,
+    "command_conditioned_turning": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false
+  }
+}

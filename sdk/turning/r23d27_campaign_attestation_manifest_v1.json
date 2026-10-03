@@ -1,0 +1,130 @@
+{
+  "schema_version": "sporespore_locomotion_campaign_attestation_manifest_v1",
+  "status": "prospective_zero_world_physical_candidate",
+  "campaign_id": "QSDK-R23D27-RAPIER-STABILITY-GUARDED-STEERING-VALIDATION",
+  "question_class": "finite_decision",
+  "declared_physical_world_count": 3,
+  "physical_launch_candidate": true,
+  "godot_including": true,
+  "skip_godot": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "declared_lineage_gate_count": 2,
+  "declared_campaign_gate_count": 3,
+  "declared_total_gate_count": 5,
+  "declared_role_binding_count": 3,
+  "lineage_gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "R23D27-R23D26-IMMUTABLE-PHYSICAL-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d26_closure.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "QSDK_R23D26_CLOSURE_PASS ",
+      "raw_sha256": "sha256:e52a46f7438bdd65125c0417ae1c6a40fed3db9094b5e20c926c3da67548c53a"
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "R23D27-R23D26-RETAINED-DIAGNOSIS-LINEAGE",
+      "role": "lineage",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_retained_trace_lineage_analysis.ps1",
+      "arguments": [],
+      "terminal_marker_prefix": "RETAINED_TRACE_LINEAGE_ANALYSIS_PASS ",
+      "raw_sha256": "sha256:44bdeb9e650da5084fdf5479ee594545270bdd88d8f3a8041d1b01568e5e5e02"
+    }
+  ],
+  "campaign_gates": [
+    {
+      "ordinal": 3,
+      "gate_id": "R23D27-WORKER-ROLE",
+      "role": "worker",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d27_campaign_roles.ps1",
+      "arguments": ["-Role", "worker"],
+      "terminal_marker_prefix": "QSDK_R23D27_CAMPAIGN_WORKER_ROLE_PASS ",
+      "raw_sha256": "sha256:6f96a685cda3b1ce043395a2cddc7a32e001a3b3eea5b97e855e0ac20c0cc559"
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "R23D27-EVALUATOR-ROLE",
+      "role": "evaluator",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d27_campaign_roles.ps1",
+      "arguments": ["-Role", "evaluator", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D27_CAMPAIGN_EVALUATOR_ROLE_PASS ",
+      "raw_sha256": "sha256:6f96a685cda3b1ce043395a2cddc7a32e001a3b3eea5b97e855e0ac20c0cc559"
+    },
+    {
+      "ordinal": 5,
+      "gate_id": "R23D27-SUPERVISOR-ROLE",
+      "role": "supervisor",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_qsdk_r23d27_campaign_roles.ps1",
+      "arguments": ["-Role", "supervisor", "-Python", "<python>"],
+      "terminal_marker_prefix": "QSDK_R23D27_CAMPAIGN_SUPERVISOR_ROLE_PASS ",
+      "raw_sha256": "sha256:6f96a685cda3b1ce043395a2cddc7a32e001a3b3eea5b97e855e0ac20c0cc559"
+    }
+  ],
+  "campaign_role_bindings": [
+    {
+      "role": "worker",
+      "source_path": "sdk/turning/r23d27_stability_guarded_steering_implementation_v1.json",
+      "source_raw_sha256": "sha256:49f02f80db75884847e36e3f849816275b18450708bb96b2071d2ee0f36e806c",
+      "test_gate_id": "R23D27-WORKER-ROLE",
+      "test_path": "tests/test_qsdk_r23d27_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:6f96a685cda3b1ce043395a2cddc7a32e001a3b3eea5b97e855e0ac20c0cc559"
+    },
+    {
+      "role": "evaluator",
+      "source_path": "sdk/turning/r23d27_stability_guarded_steering_evaluator.py",
+      "source_raw_sha256": "sha256:34b335c1ffecc71f0ef3e13de3c18a5bf0e42b71362ede10a9786d3fbfa1b68b",
+      "test_gate_id": "R23D27-EVALUATOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d27_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:6f96a685cda3b1ce043395a2cddc7a32e001a3b3eea5b97e855e0ac20c0cc559"
+    },
+    {
+      "role": "supervisor",
+      "source_path": "sdk/run_qsdk_r23d27_supervisor.ps1",
+      "source_raw_sha256": "sha256:3577fb115210faf963003fa5d545dbb175f76f88b02926ddf2e6e6ba3605b4a0",
+      "test_gate_id": "R23D27-SUPERVISOR-ROLE",
+      "test_path": "tests/test_qsdk_r23d27_campaign_roles.ps1",
+      "test_raw_sha256": "sha256:6f96a685cda3b1ce043395a2cddc7a32e001a3b3eea5b97e855e0ac20c0cc559"
+    }
+  ],
+  "dependency_authority": {
+    "path": "sdk/turning/r23d27_stability_guarded_steering_implementation_v1.json",
+    "raw_sha256": "sha256:49f02f80db75884847e36e3f849816275b18450708bb96b2071d2ee0f36e806c"
+  },
+  "source_bindings": [
+    {"path": ".gitattributes", "raw_sha256": "sha256:a2463d4e596defac97858af78b7e59fa3ecf71332cf1adaef59b670014db6d48"},
+    {"path": "tests/test_qsdk_r23d26_closure.ps1", "raw_sha256": "sha256:e52a46f7438bdd65125c0417ae1c6a40fed3db9094b5e20c926c3da67548c53a"},
+    {"path": "tests/test_retained_trace_lineage_analysis.ps1", "raw_sha256": "sha256:44bdeb9e650da5084fdf5479ee594545270bdd88d8f3a8041d1b01568e5e5e02"},
+    {"path": "tests/test_qsdk_r23d27_campaign_roles.ps1", "raw_sha256": "sha256:6f96a685cda3b1ce043395a2cddc7a32e001a3b3eea5b97e855e0ac20c0cc559"},
+    {"path": "tests/test_qsdk_r23d27_implementation.ps1", "raw_sha256": "sha256:c65219792132e6eb063be6948818dbcc1699e46c13db45522b36857455200f2d"},
+    {"path": "sdk/turning/r23d27_stability_guarded_steering_preregistration_v1.json", "raw_sha256": "sha256:74de38b322b8cf2ccbca053f58dec00771ba97d297671edd766b79f204f82158"},
+    {"path": "sdk/turning/r23d27_stability_guarded_steering_implementation_v1.json", "raw_sha256": "sha256:49f02f80db75884847e36e3f849816275b18450708bb96b2071d2ee0f36e806c"},
+    {"path": "sdk/turning/r23d27_stability_guarded_steering_evaluator.py", "raw_sha256": "sha256:34b335c1ffecc71f0ef3e13de3c18a5bf0e42b71362ede10a9786d3fbfa1b68b"},
+    {"path": "sdk/turning/test_r23d27_stability_guarded_steering_evaluator.py", "raw_sha256": "sha256:9f0868f4d9384850e8b520af8d539ab6a30012694e7ae34cb1ea9f81df47da06"},
+    {"path": "sdk/run_qsdk_r23d27_supervisor.ps1", "raw_sha256": "sha256:3577fb115210faf963003fa5d545dbb175f76f88b02926ddf2e6e6ba3605b4a0"},
+    {"path": "sdk/locomotion_campaign_attestation_adoption.ps1", "raw_sha256": "sha256:3e423d34ee9b9c309b67d4e15547dc7044304c89d1bfa417bcf0831ebd037684"},
+    {"path": "sdk/locomotion_campaign_attestation_adoption_contract_v1.json", "raw_sha256": "sha256:5cb7dd7e2de63500d099fe771622ab40928d31af8161f7c007e2973f430e9128"},
+    {"path": "sdk/run_locomotion_campaign_attestation_adoption.ps1", "raw_sha256": "sha256:2f0bf0251cb7aa026ed675b2ff7b4e61ccfabddc46828ea0b217e4bfe481ce21"},
+    {"path": "tests/test_locomotion_campaign_attestation_adoption.ps1", "raw_sha256": "sha256:0a7aece26658ebd69e2c20ab57f258d6b551c2dbf60110bb3abcfe35ee9d19f1"}
+  ],
+  "claims": {
+    "campaign_local_qualification_passed": false,
+    "cold_commissioning_complete": false,
+    "physical_launch_prerequisite_satisfied": false,
+    "physical_campaign_executed": false,
+    "scientific_result": false,
+    "walking_acceptance": false,
+    "turning_acceptance": false,
+    "cross_engine_equivalence": false,
+    "arbitrary_quadruped_coverage": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

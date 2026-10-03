@@ -1,0 +1,120 @@
+{
+  "schema_version": "sporespore_adaptation_provider_contract_v1",
+  "contract_id": "sporespore_optional_adaptation_provider_v1",
+  "sdk_version": "0.1.0",
+  "release_gate_id": "QSDK-R21",
+  "provider_optional_at_runtime": true,
+  "trained_provider_required_for_first_public_release": false,
+  "public_entrypoints": {
+    "rust": "resolve_adaptation_v1",
+    "c": "ss_resolve_adaptation_v1_json",
+    "python": "LocomotionCore.resolve_adaptation_v1"
+  },
+  "schemas": {
+    "resolution_request": "sporespore_adaptation_resolution_request_v1",
+    "provider_request": "sporespore_adaptation_provider_request_v1",
+    "provider_response": "sporespore_adaptation_provider_response_v1",
+    "resolution_receipt": "sporespore_adaptation_resolution_receipt_v1",
+    "provider_memory": "sporespore_adaptation_provider_memory_v1",
+    "history": "sporespore_adaptation_history_v1",
+    "controller_context": "sporespore_adaptation_controller_context_v1",
+    "safety_envelope": "sporespore_adaptation_safety_envelope_v1",
+    "candidate_experience": "sporespore_adaptation_candidate_experience_v1"
+  },
+  "request_binding": {
+    "digest": "canonical_sha256_of_provider_request",
+    "response_must_echo_request_id": true,
+    "response_must_echo_request_sha256": true,
+    "response_provider_model_and_corpus_must_match_request_pins": true,
+    "stale_or_mismatched_response_behavior": "deterministic_baseline_fallback"
+  },
+  "engine_neutral_inputs": [
+    "bounded_quadruped_descriptor",
+    "canonical_state_frame",
+    "motion_command",
+    "deterministic_canonical_velocity_baseline",
+    "bounded_recent_canonical_state_command_baseline_and_applied_correction_history",
+    "versioned_controller_context_and_memory",
+    "bounded_versioned_provider_memory_with_verified_digest",
+    "canonical_safety_envelope",
+    "seed"
+  ],
+  "allowed_provider_outputs": [
+    "exact_order_canonical_velocity_delta_rad_s",
+    "confidence",
+    "support_distance",
+    "explicit_status_or_refusal",
+    "versioned_next_memory_digest",
+    "diagnostics",
+    "append_only_candidate_experience",
+    "model_and_corpus_provenance"
+  ],
+  "composition_order": [
+    "validate_host_request",
+    "bind_and_validate_optional_provider_response",
+    "require_applied_status_confidence_and_support",
+    "absolute_correction_clamp",
+    "per_step_slew_clamp",
+    "canonical_actuator_speed_clamp",
+    "emit_reasoned_resolution_receipt",
+    "adapter_performs_canonical_to_host_mapping"
+  ],
+  "host_request_failure_policy": "typed_core_error",
+  "provider_response_failure_policy": "successful_reasoned_deterministic_baseline_receipt",
+  "baseline_exactness": {
+    "absent_provider": "binary64_bit_exact_final_velocity_per_actuator",
+    "rejected_provider": "binary64_bit_exact_final_velocity_per_actuator"
+  },
+  "fallback_reasons": [
+    "provider_absent",
+    "invalid_provider_response",
+    "request_identity_mismatch",
+    "provider_no_proposal",
+    "provider_refused",
+    "provider_unsupported",
+    "provider_uncertain",
+    "provider_reset",
+    "reset_required",
+    "confidence_below_minimum",
+    "outside_supported_domain",
+    "safe_no_actuation"
+  ],
+  "provider_statuses": [
+    "applied",
+    "no_proposal",
+    "refused",
+    "unsupported",
+    "uncertain",
+    "reset"
+  ],
+  "forbidden_authority": {
+    "engine_specific_output": true,
+    "direct_native_world_access": true,
+    "world_construction": true,
+    "physics_state_mutation": true,
+    "native_force_or_transform_application": true,
+    "safety_limit_override": true,
+    "online_weight_mutation": true,
+    "encyclopedia_promotion": true,
+    "physical_acceptance": true
+  },
+  "memory": {
+    "identity_bound_to_provider": true,
+    "monotonic_sequence_within_reset_epoch": true,
+    "explicit_reset_epoch": true,
+    "opaque_state_is_carried_and_digest_verified": true,
+    "maximum_opaque_state_canonical_bytes": 65536,
+    "weights_mutated_must_be_false": true
+  },
+  "candidate_experience": {
+    "append_only_hypothesis_event": true,
+    "may_promote_encyclopedia_chapter": false,
+    "may_grant_physical_authority": false,
+    "promotion_contract": "sporespore_tier2_adaptation_architecture_v1"
+  },
+  "maximum_history_entries": 64,
+  "deterministic": true,
+  "world_build_count": 0,
+  "physics_state_modified": false,
+  "physical_acceptance_authority": false
+}

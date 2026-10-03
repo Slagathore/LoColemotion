@@ -1,0 +1,81 @@
+{
+  "schema_version": "sporespore_r10dc_native_reference_kernel_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_reference_from_godot_measurements",
+    "authority_mode": "compiled_finite_diagnostic_reference",
+    "question_class": "development"
+  },
+  "source_parent_commit": "0c289131568c9c353f2fcf06d160e2d6b5743fb6",
+  "dependencies": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10db_native_reference_angles_result_v1.json",
+      "byte_length": 178491,
+      "raw_sha256": "sha256:decfed2362645db486c184f977f8d1c8d59b6537178ef28318453185603cacd1"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10db_native_reference_angles_study_v1.json",
+      "byte_length": 99099,
+      "raw_sha256": "sha256:e1c299eea92b01f122b2914c1be47461a725ba64989e1acab150e33072809c49"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10db_native_reference_angles.py",
+      "byte_length": 13685,
+      "raw_sha256": "sha256:e9d930ee76da5253564a9b78912f59f166be04078527ff48de7303fc5ebda207"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10db_native_reference_closure.py",
+      "byte_length": 2738,
+      "raw_sha256": "sha256:a7c489c54bc9cc4aa3b7c33311b94487a32c0132e1f6f516ad8268c0341b1db1"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/core/src/recovery_runtime/partial_native_reference_control.rs",
+      "byte_length": 10886,
+      "raw_sha256": "sha256:300ab1652520b743ff2fe6ebb91f6ca929e3673ff2780427ac85eccdcd99daa0"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/core/contracts/r10dc_native_reference_endpoints_v1.json",
+      "byte_length": 26910,
+      "raw_sha256": "sha256:e8edd33b8bb1c43751351a40f9994c63e463dd278724020cd302384aeaa34315"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/run_r10dc_reference_kernel.ps1",
+      "byte_length": 1240,
+      "raw_sha256": "sha256:524fbca410d6d1f76949ada79f3d9fecc1184aa5e87dec8c10915486504c9312"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10dc_native_reference_kernel.py",
+      "byte_length": 10042,
+      "raw_sha256": "sha256:25349a3d2d5792d6d2474df06374c735243c75ba11f40600dca60f689ab1f054"
+    }
+  ],
+  "design": {
+    "reference": "Exact119 native endpoints from R10DB. Two controller ticks per interval: unchanged endpoint on even ticks, arithmetic midpoint on odd ticks. Tick0 is observed entry;236 subsequent targets are finite. No clipping, wrapping, final hold, solver rerun or world command.",
+    "clock": "The stateful cursor starts at1, rejects skipped/repeated ticks without advancing, and refuses beyond236. Exhaustion is not recovery completion. Native composition must tie this cursor to the original task clock.",
+    "limits": "Unchanged [1.6,1.1]*4 hard joint limits and1/120 s outer cadence. Reference-rate guard3.9 rad/s leaves margin below unchanged motor cap4 rad/s. Uniform two-tick timing is distinct from the observed one-tick schedule.",
+    "entry": "Kernel admission checks all8 joint positions finite and within1e-6 rad of the audited entry. This is only a joint gate; native composition must additionally bind descriptor, full available entry observation, phase, source, ownership, clock and safety.",
+    "validation": "All237 compiled references must equal independent Python reconstruction exactly. Check endpoints, convex midpoints, all tick rates/hard limits, finite entry admission, malformed identity/data, skips/repeats and finite exhaustion. Run the complete release core library test suite under the shared operation lock and preserve complete source snapshot and output.",
+    "boundary": "Offline absolute reference diagnostic, not a general feedback policy. Slower timing and joint interpolation do not inherit model contact/force or swept-geometry admission. No native controller, smoke safety qualification, tracking or recovery claim."
+  },
+  "numerics": {
+    "ticks_per_interval": 2,
+    "endpoint_count": 119,
+    "last_tick": 236,
+    "outer_step_duration_s": 0.008333333333333333,
+    "reference_rate_limit_rad_s": 3.9,
+    "motor_speed_cap_rad_s": 4.0,
+    "entry_joint_tolerance_rad": 1e-06
+  },
+  "claim_boundary": {
+    "reference_kernel_implemented": true,
+    "native_controller_integrated": false,
+    "complete_safety_gate_qualified": false,
+    "physical_population_declared": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "motor_commands_applied": 0,
+    "physical_tracking_proven": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

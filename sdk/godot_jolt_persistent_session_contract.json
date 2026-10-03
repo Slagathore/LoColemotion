@@ -1,0 +1,188 @@
+{
+  "schema_version": "sporespore_godot_jolt_persistent_session_contract_declaration_v1",
+  "contract_id": "GJPS1",
+  "status": "active_zero_world_contract",
+  "purpose": "Compile immutable morphology and balanced-wave policy state once per adapter instance while retaining explicit controller memory, byte-equivalent outputs, and fail-closed lifecycle ownership.",
+  "execution_identity": {
+    "session_execution_version": "sporespore_godot_balanced_wave_persistent_session_v1",
+    "runtime_contract_schema_version": "sporespore_godot_controller_session_execution_contract_v1",
+    "create_request_schema_version": "sporespore_balanced_wave_policy_session_create_request_v1",
+    "step_request_schema_version": "sporespore_balanced_wave_policy_session_step_request_v1",
+    "initial_memory_request_schema_version": "sporespore_balanced_wave_policy_initial_memory_request_v1",
+    "c_abi_initial_memory_symbol": "ss_balanced_wave_policy_initial_memory_json",
+    "controller_memory_initialization": "explicit_named_policy",
+    "c_abi_create_symbol": "ss_balanced_wave_policy_session_create_json",
+    "c_abi_step_symbol": "ss_balanced_wave_policy_session_step_json",
+    "c_abi_destroy_symbol": "ss_balanced_wave_policy_session_destroy",
+    "handle_type": "process_local_opaque_nonzero_u64",
+    "controller_memory_transport": "explicit_every_step",
+    "compiled_morphology_reused": true,
+    "controller_profile_reused": true,
+    "automatic_destroy_on_adapter_release": true,
+    "explicit_terminal_shutdown_supported": true
+  },
+  "implementation_scope": {
+    "changed": [
+      "additive public C ABI controller-session lifecycle",
+      "Godot GDExtension ownership of one balanced-wave session per adapter instance",
+      "balanced-wave per-tick request schema omits the already compiled descriptor and selected policy ID",
+      "Godot/Jolt startup validates the session contract before descriptor compilation or world construction",
+      "adapter manifests and preflight receipts retain the exact session contract and digest",
+      "named policies initialize through the policy-specific memory schema selected by the same compiled controller constructor",
+      "successful zero-world and physical runners explicitly destroy the native session before releasing the adapter while automatic Drop remains a fallback"
+    ],
+    "unchanged": [
+      "controller policy identity and numerical implementation",
+      "controller memory contents and explicit caller ownership",
+      "state observation and motion-command semantics",
+      "actuation output schema, ordering, and numerical values",
+      "morphology compilation formulas and bounded-domain refusal",
+      "physics timestep, Jolt solver settings, fixtures, horizons, seeds, thresholds, and selectors",
+      "all completed campaign records and interpretations",
+      "GJTP1 preallocated single-pass transport contract"
+    ]
+  },
+  "required_source_routes": [
+    "sdk/core/src/ffi.rs",
+    "sdk/include/sporespore_locomotion.h",
+    "sdk/versioning/c_abi_manifest_v1.json",
+    "sdk/versioning/schema_registry_v1.json",
+    "sdk/adapters/godot/src/lib.rs",
+    "sdk/python/sporespore_locomotion.py",
+    "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+    "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+    "scripts/lab/gait/physical_wave_gait_quadruped_bw30n_fixed_horizon.gd",
+    "sdk/run_godot_jolt_persistent_session_benchmark.ps1"
+  ],
+  "lifecycle_contract": {
+    "create_count_per_balanced_wave_adapter_start": 1,
+    "step_requires_active_handle": true,
+    "step_mutates_hidden_controller_state": false,
+    "step_size_query_is_pure": true,
+    "destroy_count_per_handle": 1,
+    "destroy_unknown_or_zero_handle": "SS_INVALID_ARGUMENT",
+    "step_unknown_or_destroyed_handle": "REFERENCE_INVALID",
+    "second_create_on_active_godot_adapter": "GODOT_ADAPTER_CONTROLLER_SESSION_ALREADY_ACTIVE",
+    "adapter_release_destroys_active_handle": true,
+    "startup_failure_after_create_destroys_active_handle": true,
+    "successful_runner_explicitly_destroys_active_handle": true,
+    "automatic_drop_is_fallback_not_normal_success_path": true,
+    "explicit_shutdown_receipt_schema_version": "sporespore_godot_jolt_adapter_shutdown_receipt_v1"
+  },
+  "equivalence_contract": {
+    "reference_operation": "ss_balanced_wave_policy_step_json",
+    "comparison": "exact_status_and_serialized_output_bytes",
+    "required_positive_cases": [
+      "reference bounded descriptor with selected BW5R-B policy",
+      "normal valid step",
+      "explicit memory transported on every step"
+    ],
+    "required_negative_cases": [
+      "unknown handle",
+      "destroyed handle",
+      "wrong create schema",
+      "wrong step schema",
+      "unknown policy",
+      "out-of-domain descriptor"
+    ],
+    "floating_point_tolerance_used": false,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "benchmark_execution_contract": {
+    "entrypoint": "sdk/run_godot_jolt_persistent_session_benchmark.ps1",
+    "cargo_target_must_be_outside_repository": true,
+    "canonical_sdk_target_permitted": false,
+    "reusable_isolated_cargo_cache_permitted": true,
+    "durable_evidence_root_required": true,
+    "existing_evidence_root_permitted": false,
+    "source_drift_permitted": false,
+    "canonical_release_artifact_hashes_verified_unchanged": true,
+    "canonical_release_artifact_backups_retained": true,
+    "stateless_reference": "GJTP1 preallocated single-pass",
+    "world_build_count": 0,
+    "physical_acceptance_authority": false,
+    "claim_scope": "development_native_boundary_microbenchmark_only"
+  },
+  "development_benchmark_observation": {
+    "status": "complete_dirty_source_zero_world",
+    "source_head": "3d4b120c6e3b42feae5eae513dd546390501cfbe",
+    "source_worktree_clean": false,
+    "iterations": 5000,
+    "create_input_bytes": 413,
+    "session_step_input_bytes": 4835,
+    "stateless_step_input_bytes": 5162,
+    "output_bytes": 5524,
+    "session_seconds": 0.176369,
+    "stateless_single_pass_seconds": 1.601918,
+    "native_boundary_speedup": 9.0828,
+    "output_byte_equivalence": true,
+    "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/gjps1-session-benchmark-20260805T082544Z",
+    "receipt_sha256": "sha256:0c69f3deefec7b705b7c376644646f00efe6c56213350a8831bd51b4f782beb2",
+    "transcript_sha256": "sha256:7ad18751354fa8f292a738a0181efe6570f7f0821e31223b08e9ae3d179267cf",
+    "canonical_release_artifacts_unchanged": true,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false,
+    "total_cell_speedup_claimed": false
+  },
+  "fail_closed_contract": {
+    "validation_order": [
+      "load GDExtension resource",
+      "instantiate native SporeLocomotionSdk class",
+      "validate the unchanged GJTP1 transport identity and runtime contract",
+      "require all GJPS1 identity, contract, create, step, and destroy methods",
+      "compare the exact session execution version",
+      "compare every runtime session contract field",
+      "emit a zero-world combined transport and session receipt",
+      "only then permit descriptor compilation, session creation, fixture construction, or scene-tree insertion"
+    ],
+    "wrong_or_missing_version": "reject",
+    "wrong_or_missing_contract_field": "reject",
+    "wrong_or_missing_lifecycle_method": "reject",
+    "silent_stateless_fallback_for_balanced_wave": false,
+    "failure_world_build_count": 0,
+    "failure_scene_tree_insertion_count": 0,
+    "failure_physics_state_modified": false,
+    "failure_physical_acceptance_authority": false
+  },
+  "future_campaign_requirements": {
+    "all_new_godot_jolt_physical_declarations_must_pin": [
+      "session execution version",
+      "session runtime contract schema version",
+      "GJPS1 declaration SHA-256",
+      "C ABI manifest SHA-256",
+      "schema registry SHA-256",
+      "portable core FFI source SHA-256",
+      "Godot adapter Rust source SHA-256",
+      "Godot/Jolt GDScript adapter source SHA-256",
+      "selected physical runner source SHA-256",
+      "built GDExtension SHA-256",
+      "policy-specific initial-memory request schema and symbol"
+    ],
+    "all_new_worker_preflights_must_assert": [
+      "combined transport and session receipt ok=true",
+      "exact session execution version",
+      "exact session runtime contract fields",
+      "compiled_morphology_reused=true",
+      "controller_profile_reused=true",
+      "controller_memory_transport=explicit_every_step",
+      "policy-specific initial memory schema matches the selected controller policy",
+      "world_build_count=0",
+      "scene_tree_insertion_count=0",
+      "physics_state_modified=false",
+      "physical_acceptance_authority=false",
+      "explicit shutdown receipt is exact and reports one native controller-session destroy"
+    ],
+    "freeze_mismatch_timing": "before_physics_world_entry",
+    "old_campaign_interpretation_changes_allowed": false
+  },
+  "evidence_boundary": {
+    "world_build_count": 0,
+    "physical_acceptance_authority": false,
+    "walking_acceptance": false,
+    "whole_cell_speedup_requires_separate_measurement": true,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

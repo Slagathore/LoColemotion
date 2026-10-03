@@ -1,0 +1,354 @@
+{
+  "schema_version": "sporespore_r23d43_rapier_startup_transform_analysis_manifest_v1",
+  "analysis_id": "QSDK-R23D43-RAPIER-STARTUP-TRANSFORM-D1",
+  "question_class": "postclosure_development_diagnosis",
+  "status": "prospective_analyzer_over_already_exposed_closed_evidence",
+  "purpose": "Compare every available complete R23D30-R23D32 no-startup-ramp Rapier triplet with every complete R23D41-R23D43 startup-ramped Rapier triplet under one cycle-integrated estimator, while preserving each closed verdict and determining whether a verifier-only successor is scientifically sufficient or a paired outcome-exposed startup-transform development study is required before another held-out validation seed.",
+  "data_exposure_boundary": {
+    "all_six_campaign_outcomes_already_observed": true,
+    "projection_is_descriptive_not_confirmatory": true,
+    "closed_campaign_verdicts_remain_unchanged": true,
+    "r23d41_r23d42_r23d43_rapier_rows_are_postclosure_diagnostic_inputs": true,
+    "startup_transform_and_seed_are_confounded": true,
+    "causal_startup_transform_effect_identified": false,
+    "candidate_or_parameter_selected_by_this_analysis": false,
+    "future_physical_identity_opened": false
+  },
+  "analysis_contract": {
+    "engine_id": "rapier_parry",
+    "controller_policy_id": "sporespore_balanced_wave_r23d29_two_swing_persistent_predictive_stability_guarded_steering_v1",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "physics_hz": 120,
+    "expected_row_count_per_cell": 2992,
+    "ordered_arm_ids": [
+      "reference_zero",
+      "positive_heading",
+      "negative_heading"
+    ],
+    "heading_offset_rad_by_arm": {
+      "reference_zero": 0.0,
+      "positive_heading": 0.2,
+      "negative_heading": -0.2
+    },
+    "phase_order": [
+      {
+        "phase_id": "reference_warmup",
+        "row_count": 600
+      },
+      {
+        "phase_id": "commanded_turn",
+        "row_count": 1200
+      },
+      {
+        "phase_id": "reference_recovery",
+        "row_count": 600
+      },
+      {
+        "phase_id": "reference_continuation",
+        "row_count": 592
+      }
+    ],
+    "baseline_window": [
+      240,
+      600
+    ],
+    "terminal_window": [
+      1440,
+      1800
+    ],
+    "scheduler_swing_steps": 72,
+    "scheduler_cycle_steps": 360,
+    "expected_steering_sign_by_arm": {
+      "positive_heading": -1,
+      "negative_heading": 1
+    },
+    "steering_zero_tolerance": 1e-12,
+    "startup_ramp": {
+      "ramp_id": "canonical_velocity_smoothstep_one_gait_cycle_v1",
+      "ramp_step_count": 360,
+      "active_step_count": 359,
+      "law": "scale(step)=smoothstep(step/359) for steps 0 through 358; exact 1.0 from step 359 onward",
+      "gait_phase_memory_advances_unchanged": true,
+      "ramp_fields_must_be_absent_from_no_ramp_traces": true,
+      "ramp_fields_must_match_the_complete_law_in_ramped_traces": true
+    }
+  },
+  "threshold_provenance": {
+    "heading_command_magnitude_rad": 0.2,
+    "minimum_cycle_shift_rad": 0.01,
+    "command_fraction": 0.05,
+    "provenance": "Inherited development mechanism-detection floor equal to five percent of the 0.2 rad heading command.",
+    "calibrated_release_acceptance_margin": false,
+    "calibrated_population_margin": false,
+    "calibrated_cross_engine_equivalence_margin": false,
+    "threshold_change_authorized": false
+  },
+  "groups": [
+    {
+      "group_id": "no_startup_ramp",
+      "startup_ramp_applied": false,
+      "ordered_campaign_keys": [
+        "r23d30",
+        "r23d31",
+        "r23d32"
+      ]
+    },
+    {
+      "group_id": "canonical_startup_ramp",
+      "startup_ramp_applied": true,
+      "ordered_campaign_keys": [
+        "r23d41",
+        "r23d42",
+        "r23d43"
+      ]
+    }
+  ],
+  "campaigns": [
+    {
+      "campaign_key": "r23d30",
+      "closure": {
+        "path": "sdk/turning/r23d30_cycle_coherent_directional_response_closure_v1.json",
+        "git_commit": "491fa9f0a51a76aada7265034aad72db4cf230b3",
+        "git_blob_oid": "1c7a5cc8a6ee99fa904326c78d5605ed32ba6f2a",
+        "raw_sha256": "sha256:fda113bffd32d9effc62653fa50ca2c2cb737b201925fa0a3fa799697bbd7944",
+        "status": "closed_valid_complete_negative_no_measurement_validation_candidate"
+      },
+      "source_physical_commit": "31d78852de90420bd67b23fe2554d6d3cfd8ada2",
+      "seed": 21504,
+      "gait_phase_offset_ticks": -1,
+      "startup_ramp_applied": false,
+      "trace_schema_version": "sporespore_qsdk_r23d30_physical_trace_row_v1",
+      "trace_encoding": "jsonl",
+      "historical_authority": "official_valid_complete_cycle_gate_positive_phase_dominance_negative",
+      "cells": [
+        {
+          "arm_id": "reference_zero",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__reference_zero",
+          "trace_sha256": "sha256:a20b67e9bae546170742cc9e0ac0aebd1e1e70c284dd18c4ca86ab8d2df01606",
+          "trace_byte_length": 12241258
+        },
+        {
+          "arm_id": "positive_heading",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__positive_heading",
+          "trace_sha256": "sha256:75104ddda211827939932974903823a69d15e0b741195ad36e31c949a4bee4a0",
+          "trace_byte_length": 12219333
+        },
+        {
+          "arm_id": "negative_heading",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__negative_heading",
+          "trace_sha256": "sha256:893d2fb7d76c672ad88273c47a0214dde66e44a5533d88f2c0a5b6df57dc2dcd",
+          "trace_byte_length": 12217222
+        }
+      ]
+    },
+    {
+      "campaign_key": "r23d31",
+      "closure": {
+        "path": "sdk/turning/r23d31_cycle_integrated_directional_response_closure_v1.json",
+        "git_commit": "eca62f34573fcf664dec3bc90bc073b52bf0d093",
+        "git_blob_oid": "dcabe219a29801bbd0ebe0bd689f121687e50113",
+        "raw_sha256": "sha256:364f44e3a974d81e6b98073e02e4c46abf927cbabed933d0d1aae706e5890b4c",
+        "status": "closed_valid_complete_positive_measurement_validation_candidate"
+      },
+      "source_physical_commit": "fcec5011ec9b1dd29b90ee9f0d5018bcc228a799",
+      "seed": 21505,
+      "gait_phase_offset_ticks": 2,
+      "startup_ramp_applied": false,
+      "trace_schema_version": "sporespore_qsdk_r23d31_physical_trace_row_v1",
+      "trace_encoding": "jsonl",
+      "historical_authority": "official_positive_measurement_validation_only",
+      "cells": [
+        {
+          "arm_id": "reference_zero",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__reference_zero",
+          "trace_sha256": "sha256:590825f1651f5d25489462701adc3d090428e69b75292fa8cc7dbb3af54af6be",
+          "trace_byte_length": 12238852
+        },
+        {
+          "arm_id": "positive_heading",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__positive_heading",
+          "trace_sha256": "sha256:f35b915d0026f2117f040c38d4486ca8bbf818f3a386b24ef3da8696224d0eb3",
+          "trace_byte_length": 12217580
+        },
+        {
+          "arm_id": "negative_heading",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__negative_heading",
+          "trace_sha256": "sha256:8e5de6108e2ea570ea502e1947577b97de92c54e051433edc595573bea394c46",
+          "trace_byte_length": 12216649
+        }
+      ]
+    },
+    {
+      "campaign_key": "r23d32",
+      "closure": {
+        "path": "sdk/turning/r23d32_finite_rapier_turning_replication_closure_v1.json",
+        "git_commit": "bcf75ea305bb5f876d1be7ace2bcbf85c3d2ebd9",
+        "git_blob_oid": "3211170c294d1a910d676d3e5b0693b1dbac4d2b",
+        "raw_sha256": "sha256:40c7f4797916a5780d331f2676b2956875a35f28f79ef2043db30fef0eb09c93",
+        "status": "closed_valid_complete_positive_finite_rapier_turning_validation"
+      },
+      "source_physical_commit": "d92ef53681071bb4f25c393dff69004b151901d2",
+      "seed": 21506,
+      "gait_phase_offset_ticks": 0,
+      "startup_ramp_applied": false,
+      "trace_schema_version": "sporespore_qsdk_r23d32_physical_trace_row_v1",
+      "trace_encoding": "jsonl",
+      "historical_authority": "official_positive_finite_rapier_turning_validation",
+      "cells": [
+        {
+          "arm_id": "reference_zero",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__reference_zero",
+          "trace_sha256": "sha256:0cc6806fb88723bc8f53c5b7a7364032edfa46fbd1e6b61d9a0f43b2955340b5",
+          "trace_byte_length": 12241800
+        },
+        {
+          "arm_id": "positive_heading",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__positive_heading",
+          "trace_sha256": "sha256:2f4b104dad71dc345d77b6e9b4f5b97558b4eb00652ad9f9ea9099bb8c944fc2",
+          "trace_byte_length": 12218175
+        },
+        {
+          "arm_id": "negative_heading",
+          "cell_id": "rapier_parry__two_swing_persistent_predictive_stability_guarded_0p20_to_0p28__negative_heading",
+          "trace_sha256": "sha256:f09ef27177f71e7f6aa551772e02793072607378ca7f308b20e9b2cb0d1cc7dd",
+          "trace_byte_length": 12217008
+        }
+      ]
+    },
+    {
+      "campaign_key": "r23d41",
+      "closure": {
+        "path": "sdk/turning/r23d41_three_engine_startup_ramp_turning_closure_v1.json",
+        "git_commit": "636fe87fb7bd4ae1f796eb672d5577de51e5e1fa",
+        "git_blob_oid": "2cf8353b8dd89a42657916068c601d7024ef0e22",
+        "raw_sha256": "sha256:d3160ffabc7dfb9f697fcc55f1e9efb827cc5316647543d9b6841d994fda6ba4",
+        "status": "closed_consumed_invalid_complete_trace_interfaces_with_valid_mujoco_turning_positive"
+      },
+      "source_physical_commit": "6b4e9f447181ba79670301eef1c12dcf533cd37d",
+      "seed": 21509,
+      "gait_phase_offset_ticks": -1,
+      "startup_ramp_applied": true,
+      "trace_schema_version": "sporespore_qsdk_r23d41_turning_trace_row_v1",
+      "trace_encoding": "json_array",
+      "historical_authority": "postclosure_diagnostic_only_no_accepted_rapier_result",
+      "cells": [
+        {
+          "arm_id": "reference_zero",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__reference_zero",
+          "trace_sha256": "sha256:8ec9e047138aba0ffd3432307551c75488fdd21067f4654d59febd714382882e",
+          "trace_byte_length": 13754634
+        },
+        {
+          "arm_id": "positive_heading",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__positive_heading",
+          "trace_sha256": "sha256:a8b8f4549bc0e2389a765b74073812b29e369a972e90798a19dabb3142141607",
+          "trace_byte_length": 13752794
+        },
+        {
+          "arm_id": "negative_heading",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__negative_heading",
+          "trace_sha256": "sha256:5fa432a4b083eb1c35b9087810cf25072ae7d911fd8ffef88a337d8ce8351603",
+          "trace_byte_length": 13737528
+        }
+      ]
+    },
+    {
+      "campaign_key": "r23d42",
+      "closure": {
+        "path": "sdk/turning/r23d42_three_engine_startup_ramp_turning_closure_v1.json",
+        "git_commit": "0790d1ae01efd32b5a2f9e0edf1ccfa70012dec9",
+        "git_blob_oid": "3d1c19787e424411fcfad0455afcbd5deeeabe45",
+        "raw_sha256": "sha256:1f75146d2c211ff33980d267a0024b53391c5fbdefb2059773e97f436f02651b",
+        "status": "closed_consumed_implementation_invalid_rapier_production_trace_cas_with_valid_godot_negative_and_mujoco_positive"
+      },
+      "source_physical_commit": "91db8559e4545e2ff1cb8061f631cfb6734dd0a2",
+      "seed": 21510,
+      "gait_phase_offset_ticks": -3,
+      "startup_ramp_applied": true,
+      "trace_schema_version": "sporespore_qsdk_r23d42_turning_trace_row_v1",
+      "trace_encoding": "jsonl",
+      "historical_authority": "postclosure_diagnostic_only_no_accepted_rapier_result",
+      "cells": [
+        {
+          "arm_id": "reference_zero",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__reference_zero",
+          "trace_sha256": "sha256:cf5b1786cf2db80fcdf194e2866c903de88f57f5db64f6f060bde3e712edc66d",
+          "trace_byte_length": 13754333
+        },
+        {
+          "arm_id": "positive_heading",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__positive_heading",
+          "trace_sha256": "sha256:313b330dc4eb5719091d55f04bbad1291189ca12e608c924df82ae6616751837",
+          "trace_byte_length": 13752860
+        },
+        {
+          "arm_id": "negative_heading",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__negative_heading",
+          "trace_sha256": "sha256:4ce755b3efba3c3cfcb65e28d6737fc924b1eb545a24c6e29c91af171c6b2cc4",
+          "trace_byte_length": 13738448
+        }
+      ]
+    },
+    {
+      "campaign_key": "r23d43",
+      "closure": {
+        "path": "sdk/turning/r23d43_rapier_retention_hardened_turning_closure_v1.json",
+        "git_commit": "387d9c78ceda20b252091e78b1c640c08b3c0c3e",
+        "git_blob_oid": "bee37626800e0e7baec9cb288e5fa1e48916f8ec",
+        "raw_sha256": "sha256:f62c128bdc61430e51ad0bed9143bfc44cade75643b8a7a7a2b398efc6b6d9a2",
+        "status": "closed_consumed_implementation_invalid_windows_extended_path_cas_verifier"
+      },
+      "source_physical_commit": "0fe05a4e761615113e858fd015eef6ece3cd0b00",
+      "seed": 21511,
+      "gait_phase_offset_ticks": -1,
+      "startup_ramp_applied": true,
+      "trace_schema_version": "sporespore_qsdk_r23d43_turning_trace_row_v1",
+      "trace_encoding": "jsonl",
+      "historical_authority": "postclosure_diagnostic_only_no_accepted_rapier_result",
+      "cells": [
+        {
+          "arm_id": "reference_zero",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__reference_zero",
+          "trace_sha256": "sha256:ebe9314bf397d8e0620f8d54209f72b2169d914c0bf53a0438427563fc39889b",
+          "trace_byte_length": 13753768
+        },
+        {
+          "arm_id": "positive_heading",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__positive_heading",
+          "trace_sha256": "sha256:f5c7081c81eeb201ce733dc2ce1ecae7d68e9d424be93f17424f79c379034553",
+          "trace_byte_length": 13752660
+        },
+        {
+          "arm_id": "negative_heading",
+          "cell_id": "rapier_parry__r23d29_startup_ramp_turning_validation__negative_heading",
+          "trace_sha256": "sha256:5d527c43d7bfb82da3bbc3ddcb3ab89df01a2b6a1e74f3a2a80799aa9d6261cf",
+          "trace_byte_length": 13738146
+        }
+      ]
+    }
+  ],
+  "decision_boundary": {
+    "verifier_only_successor_is_sufficient_only_if_retained_r23d43_turning_passes_after_path_identity_projection": true,
+    "retained_r23d43_turning_passes_after_path_identity_projection": false,
+    "verifier_only_successor_sufficient": false,
+    "paired_outcome_exposed_startup_transform_development_is_the_next_testable_question": true,
+    "paired_screen_must_include_both_transform_states_on_the_same_declared_exposed_seeds": true,
+    "paired_screen_can_satisfy_qsdk_r23": false,
+    "paired_screen_can_consume_a_new_held_out_validation_seed": false,
+    "later_validation_requires_a_frozen_candidate_and_fresh_held_out_native_conditions": true
+  },
+  "claim_limits": {
+    "closed_campaign_reinterpreted": false,
+    "causal_startup_transform_effect": false,
+    "candidate_selection_authorized": false,
+    "threshold_change_authorized": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "turning_validation": false,
+    "portable_turning": false,
+    "cross_engine_equivalence": false,
+    "population_inference": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

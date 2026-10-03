@@ -1,0 +1,21 @@
+{
+  "schema_version": "sporespore_recovery_interfaces_v1",
+  "canonical_owners": [
+    {"rust_variant": "None", "wire_name": "none"},
+    {"rust_variant": "Recovery", "wire_name": "recovery"},
+    {"rust_variant": "Stance", "wire_name": "stance"}
+  ],
+  "no_actuation_mapping": {"none": "none", "recovery_v6": "recovery"},
+  "recovery_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v6",
+  "process": {
+    "context_schema": "sporespore_qsdk_r10f_l15_launch_context_v1",
+    "receipt_schema": "sporespore_qsdk_r10f_launch_relationship_receipt_v1",
+    "ready_schema": "sporespore_godot_supervised_termination_ready_v1",
+    "termination_protocol_id": "godot_4_7_gdscript_shutdown_containment_v1",
+    "ready_marker_prefix": "QSDK_R10F_CONTINUOUS_PASSIVE_RECOVERY_READY ",
+    "roles": ["matched_no_kick_continuation", "kick_passive_recovery_resume"],
+    "self_relationship": "self",
+    "descendant_relationship": "descendant",
+    "maximum_chain_nodes": 17
+  }
+}

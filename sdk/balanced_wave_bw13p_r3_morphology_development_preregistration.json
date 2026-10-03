@@ -1,0 +1,489 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw13p_r3_morphology_development_preregistration_v1",
+  "status": "frozen_before_first_bw13p_r3_physics_world",
+  "campaign_id": "BW13P-R3-MORPHOLOGY-DEVELOPMENT",
+  "gate_id": "BW13P-R3",
+  "implementation_parent_commit": "1360f5247aa7a262d7d6f9899f823d309bcc1a54",
+  "development_data_only": true,
+  "campaign_role": "paired_outcome_exposed_morphology_hypothesis_selection",
+  "development_candidate_selected": false,
+  "selected_candidate_id": "BW5R-B",
+  "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+  "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+  "policy_branch_surface_count": 0,
+  "predecessor_interlock": {
+    "rejected_campaign_id": "QSDK-R05B",
+    "rejected_source_commit": "51d1b70d14ce3861cebbb1c238c5888b1bfc33ba",
+    "rejected_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\qsdk-r05b-51d1b70\\report.json",
+    "rejected_report_sha256": "sha256:d5880f2ff78396d8d1ee4ab8851b454dd908ba85a3d9dfae3ac8ca6893054b3a",
+    "validation_manifest": "sdk/qsdk_r05b_independent_morphology_validation_manifest.json",
+    "complete_integrity_cell_count": 36,
+    "walking_conjunction_pass_count": 33,
+    "walking_conjunction_failure_count": 3,
+    "known_failure_cells_may_inform_development_but_not_independent_validation": true,
+    "failure_identity_or_outcome_conditioned_policy_branch_forbidden": true,
+    "bw11r_and_bw12e_reopen_repair_or_rerun_forbidden": true,
+    "r05b_rerun_threshold_relaxation_or_failed_cell_replacement_forbidden": true
+  },
+  "invalid_bw13p_r1_interlock": {
+    "rejected_campaign_id": "BW13P-R1-MORPHOLOGY-DEVELOPMENT",
+    "rejected_source_commit": "06a4ea6efecb91abbcbf73457375b51a1512f59b",
+    "complete_attempt_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw13p-r1-morphology-development-06a4ea6-complete-attempt-2",
+    "closure_manifest_path": "sdk/balanced_wave_bw13p_r1_closure_manifest.json",
+    "closure_manifest_sha256": "sha256:dc579f365df2bd5cfbedb04bcba332c7b8ab252070542c158cb251384a364e06",
+    "closure_test_path": "tests/test_bw13p_r1_closure.ps1",
+    "complete_world_count": 144,
+    "complete_receipt_count": 144,
+    "integrity_pass_count": 0,
+    "mechanism_pass_count": 144,
+    "combined_application_pass_count": 0,
+    "walking_conjunction_pass_count": 0,
+    "successful_native_sdk_step_count_per_cell": 1154,
+    "safe_disable_motor_write_count_per_cell": 2880,
+    "failure": "The production harness misclassified post_settle_full authority as fixed exposure, baked the signed phase offset into initial gait memory, scheduled it again at semantic step 360, and retained legacy base writes. Negative initial gait_step values then failed the public u64 boundary.",
+    "r1_repair_or_rerun_forbidden": true,
+    "r1_report_reclassification_forbidden": true,
+    "r1_candidate_selection_forbidden": true,
+    "closure_test_required_before_world": true,
+    "new_source_and_preregistration_identity_required": true
+  },
+  "invalid_bw13p_r2_interlock": {
+    "rejected_campaign_id": "BW13P-R2-MORPHOLOGY-DEVELOPMENT",
+    "rejected_source_commit": "35348c76cf063af08961a16d8f636fa4aa9278d7",
+    "opened_candidate_id": "BW13P-A",
+    "opened_candidate_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw13p-r2-morphology-development-35348c7\\BW13P-A",
+    "opened_candidate_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw13p-r2-morphology-development-35348c7\\BW13P-A\\report.json",
+    "opened_candidate_report_sha256": "sha256:00de55bb38d35ff7dd215cd191ee05a4a20ff6e227c0af6fc10d6c3589d07769",
+    "closure_manifest_path": "sdk/balanced_wave_bw13p_r2_closure_manifest.json",
+    "closure_manifest_sha256": "sha256:c082d2578d6a962daafd785969168779c86b82b5754433c6d160cf1e34b5aad1",
+    "closure_test_path": "tests/test_bw13p_r2_closure.ps1",
+    "opened_world_count": 36,
+    "complete_receipt_count": 36,
+    "integrity_pass_count": 36,
+    "mechanism_pass_count": 36,
+    "combined_application_pass_count": 36,
+    "walking_conjunction_pass_count": 35,
+    "reported_aggregate_failed_production_walking_gate_count": 0,
+    "reconstructed_aggregate_failed_production_walking_gate_count": 1,
+    "unopened_candidate_ids": ["BW13P-B", "BW13P-C", "BW13P-D"],
+    "failure": "The live PowerShell runner aggregated ordered dictionaries with Measure-Object -Property. The failed-gate key was not exposed through that property adapter, .Sum was null, and an Int32 cast silently retained zero despite one failed cell.",
+    "perfect_zero_preflight_was_necessary_but_insufficient": true,
+    "r2_outcome_changed_no_policy_constant_branch_threshold_candidate_or_selection_rule": true,
+    "r2_repair_resume_or_unopened_candidate_launch_forbidden": true,
+    "r2_report_rewrite_or_reclassification_forbidden": true,
+    "r2_candidate_selection_forbidden": true,
+    "closure_test_required_before_world": true,
+    "new_source_and_preregistration_identity_required": true
+  },
+  "runtime_boundary_revision": {
+    "phase_receipt_schema": "sporespore_sdk_phase_offset_synchronization_receipt_v2",
+    "gait_step_representation": "nonnegative_u64_cycle_epoch",
+    "cycle_steps": 360,
+    "underflow_policy": "common_whole_cycle_shift_preserves_relative_phase",
+    "declared_signed_phase_offsets": [-3, -2],
+    "runtime_boundary_receipt_schema": "sporespore_declared_policy_runtime_boundary_preflight_v1",
+    "full_integrity_receipt_schema": "sporespore_full_integrity_gate_satisfiability_receipt_v5",
+    "runtime_horizon_receipt_schema": "sporespore_declared_policy_runtime_horizon_preflight_v1",
+    "worst_case_runtime_horizon_step_count": 3232,
+    "worst_case_native_controller_command_count": 25856,
+    "production_execution_mode_resolver_required": true,
+    "every_candidate_and_declared_offset_must_execute_native_controller_before_world": true,
+    "portable_scheduled_plan_must_execute_before_world": true,
+    "worst_signed_offset_must_execute_complete_runtime_horizon_before_world": true,
+    "r1_misroute_negative_control_must_fail_at_synthetic_step_zero": true,
+    "perfect_declared_synthetic_result_must_pass_exact_production_gate": true,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "report_aggregation_revision": {
+    "source_path": "sdk/experiment_result_integrity.ps1",
+    "source_sha256": "sha256:1bcc43fe7bfeb197b32a016df4efd55bc8dada2266d794958e6e8e2d815791a6",
+    "required_test_path": "tests/test_experiment_result_integrity_preflight.ps1",
+    "ordered_dictionary_keys_must_be_resolved_explicitly": true,
+    "measure_object_property_aggregation_forbidden": true,
+    "missing_null_nonnumeric_nonfinite_fractional_or_overflowing_values_fail_closed": true,
+    "perfect_all_zero_36_cell_matrix_must_pass_exact_production_aggregate_gate": true,
+    "nonzero_ordered_dictionary_canary_required": true,
+    "canary_failed_production_walking_gate_count": 3,
+    "canary_release_timeout_count": 2,
+    "canary_walking_conjunction_failure_count": 1,
+    "canary_maximum_normalized_lateral_displacement": 1.25,
+    "canary_aggregate_normalized_lateral_displacement": 1.75,
+    "canary_aggregate_cross_track_error_m_s": 1.0,
+    "canary_must_survive_json_serialization_hash_readback_and_reconciliation": true,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "research_provenance": {
+    "source_ledger_path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+    "sources": [
+      {
+        "short_name": "DReCon",
+        "local_pdf_path": "DReCon.pdf",
+        "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54",
+        "portable_source": "https://doi.org/10.1145/3355089.3356536",
+        "adopted_boundary": "The deterministic gait, progressive contact preference, centroidal request, and host application remain separately receipted; no paper numeric constant or empirical result is imported."
+      },
+      {
+        "short_name": "QWM",
+        "local_pdf_path": "2604.08780v1.pdf",
+        "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae",
+        "portable_source": "https://arxiv.org/abs/2604.08780v1",
+        "adopted_boundary": "Morphology and qualified support are immutable explicit inputs; the policy has no morphology-conditioned branch."
+      },
+      {
+        "short_name": "UniLegs",
+        "local_pdf_path": "2507.22653v2.pdf",
+        "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31",
+        "portable_source": "https://arxiv.org/abs/2507.22653v2",
+        "adopted_boundary": "The interface remains ordered-limb and ordered-contact based rather than engine-node based; this campaign is still quadruped-only development."
+      }
+    ],
+    "paper_specific_numeric_constants_imported": false,
+    "paper_empirical_claims_imported": false
+  },
+  "mechanism_hypothesis": {
+    "hypothesis": "A scheduler-normalized progressive transfer of preferred normal force and or lateral support target can improve morphology-wide repeated walking without a morphology, material, seed, failure-cell, or outcome branch.",
+    "all_available_contacts_begin_with_equal_commanded_weight_preference": true,
+    "total_preferred_normal_force_conserved_exactly": true,
+    "transfer_progress": "smoothstep(local_phase_step / (swing_steps - 1))",
+    "transfer_progress_uses_existing_scheduler_bounds_only": true,
+    "centroid_factor_modifies_gravity_plane_lateral_target_only": true,
+    "morphology_branch_surface_count": 0,
+    "material_branch_surface_count": 0,
+    "seed_branch_surface_count": 0,
+    "failure_identity_branch_surface_count": 0,
+    "outcome_branch_surface_count": 0,
+    "new_fitted_numeric_threshold_count": 0,
+    "causal_balance_claim_if_selected": false,
+    "walking_claim_if_selected": false
+  },
+  "base_controller": {
+    "selected_candidate_id": "BW5R-B",
+    "selected_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "selected_policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "selected_policy_source": "sdk/balanced_wave_selected_policy.json"
+  },
+  "candidate_order": [
+    "BW13P-A",
+    "BW13P-B",
+    "BW13P-C",
+    "BW13P-D"
+  ],
+  "candidates": [
+    {
+      "candidate_id": "BW13P-A",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+      "mode": "control",
+      "preferred_normal_force_factor": false,
+      "remaining_support_centroid_factor": false,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "transfer_progress": "smoothstep(local_phase_step / (swing_steps - 1))",
+      "total_preferred_normal_force_conserved": true,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW13P-B",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_b_v3",
+      "mode": "preferred_normal_force",
+      "preferred_normal_force_factor": true,
+      "remaining_support_centroid_factor": false,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "transfer_progress": "smoothstep(local_phase_step / (swing_steps - 1))",
+      "total_preferred_normal_force_conserved": true,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW13P-C",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_c_v3",
+      "mode": "remaining_support_centroid",
+      "preferred_normal_force_factor": false,
+      "remaining_support_centroid_factor": true,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "transfer_progress": "smoothstep(local_phase_step / (swing_steps - 1))",
+      "total_preferred_normal_force_conserved": true,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW13P-D",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_d_v3",
+      "mode": "combined",
+      "preferred_normal_force_factor": true,
+      "remaining_support_centroid_factor": true,
+      "base_controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "transfer_progress": "smoothstep(local_phase_step / (swing_steps - 1))",
+      "total_preferred_normal_force_conserved": true,
+      "branch_surfaces": []
+    }
+  ],
+  "candidate_digest_scope": "SHA-256 over recursively key-sorted compact canonical JSON bytes of the corresponding candidates element under scripts/lab/canonical_json.gd.",
+  "candidate_policy_digests": {
+    "BW13P-A": "sha256:5843bcb182dbf68072246a3c730e53033fc705818186fcb3f0fd8ad4e0120a47",
+    "BW13P-B": "sha256:4d5a0ebaf6a6dfdbc20ce1a538ef84b1a1c2a85c559d67c84bbeac586d6c3887",
+    "BW13P-C": "sha256:522947d355d39543bfc5cc8af4b930aba1db8409c10ad5d7e9f8c81deac1f0f4",
+    "BW13P-D": "sha256:05d0460c3cccec4e25bc5cf9040a8fa82c681264bd1efaaec4f8601efb27e05e"
+  },
+  "portable_implementation": {
+    "source_paths": [
+      "sdk/core/src/stability.rs",
+      "sdk/core/src/lib.rs",
+      "sdk/core/src/ffi.rs",
+      "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "scripts/lab/gait/physical_wave_gait_quadruped.gd"
+    ],
+    "plan_operation": "ss_plan_scheduled_load_transfer_v3_json",
+    "plan_request_schema_version": "sporespore_scheduled_load_transfer_request_v3",
+    "plan_receipt_schema_version": "sporespore_scheduled_load_transfer_receipt_v3",
+    "endpoint_force_map_schema_version": "sporespore_endpoint_force_joint_map_receipt_v3",
+    "bounded_influence_schema_version": "sporespore_stability_influence_receipt_v2",
+    "raw_scheduler_and_support_geometry_may_be_reused": true,
+    "predecessor_command_feasibility_may_not_censor_bw13p": true,
+    "bw13p_command_receives_the_only_exposed_feasibility_verdict": true,
+    "typed_observation_unavailable_and_upstream_infeasible_safe_zero_required": true,
+    "receipt_required_on_every_sdk_step": true,
+    "morphology_branch_surface_count": 0,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "engine": {
+    "adapter_id": "godot_jolt_gdextension_v1",
+    "physics_engine": "Jolt Physics",
+    "physics_hz": 120,
+    "solver_policy_id": "jolt_120hz_20v_7p_v1",
+    "solver_velocity_steps": 20,
+    "solver_position_steps": 7,
+    "authority_scope": "post_settle_full",
+    "exclusive_native_motor_authority_required": true,
+    "direct_body_writes_forbidden": true
+  },
+  "material": {
+    "profile_id": "godot_jolt_bw5c_mu095_v1",
+    "profile_sha256": "sha256:e62b97398497f32243bae4fb6eaca258f90cbd233fc8c913c456b01a287bf993",
+    "authored_friction": 0.95,
+    "characterized_friction_coefficient": 0.94,
+    "held_constant_across_every_development_cell": true,
+    "material_or_friction_robustness_claim": false
+  },
+  "morphology_generator": {
+    "source_path": "scripts/lab/gait/physical_quadruped_proportion_spec.gd",
+    "source_preregistration": "sdk/qsdk_r05b_independent_morphology_preregistration.json",
+    "generator_policy_id": "qsdk_r05b_radical_inverse_piecewise_shell_v1",
+    "generator_indices": [181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192],
+    "outcomes_are_known_and_cells_are_development_only": true,
+    "same_complete_cell_set_required_for_every_candidate": true,
+    "cells": [
+      {
+        "generator_index": 181,
+        "morphology_id": "qsdk_r05b_generated_s181",
+        "generator_receipt_sha256": "sha256:25ff2236011856d76fd458750ef97cf2532b85dff6bbb619fdc8b9e38d8b77ed",
+        "proportion_spec_sha256": "sha256:b7759aa817b678f99a92ed14ba7897e161174a4ec7e89798516458f847fd3142"
+      },
+      {
+        "generator_index": 182,
+        "morphology_id": "qsdk_r05b_generated_s182",
+        "generator_receipt_sha256": "sha256:c791399ed4a1ef687395d091538a1a35cd0958f5dfc84291e655c17ec8b9b664",
+        "proportion_spec_sha256": "sha256:df95cb35efc9dc98a511aa33ebc87d20035837bb4441249ae4786c75433ca984"
+      },
+      {
+        "generator_index": 183,
+        "morphology_id": "qsdk_r05b_generated_s183",
+        "generator_receipt_sha256": "sha256:7c14d4758a8278c042e33b67fe00cebf7a52028fad6519c191d8e0935534f860",
+        "proportion_spec_sha256": "sha256:c2a3a6dbbdcb7c2fc1403a912384aeb3231fe4bbd82f3a883ab4fe23478ff32d"
+      },
+      {
+        "generator_index": 184,
+        "morphology_id": "qsdk_r05b_generated_s184",
+        "generator_receipt_sha256": "sha256:1e025fc3c3edcc6b002b21281e32f867a502f0dcc06764012cefd1ccbdc9409d",
+        "proportion_spec_sha256": "sha256:fd379ed073df23945f3dc94b1f6591f616f4d6d16e58ad57f2ea81d746513cc2"
+      },
+      {
+        "generator_index": 185,
+        "morphology_id": "qsdk_r05b_generated_s185",
+        "generator_receipt_sha256": "sha256:e91689553b2730bff295256908270412a504af42ed233113b3717d2cdb2ade22",
+        "proportion_spec_sha256": "sha256:831c4ca7c0f84b3e2069f5b4104abdbfd88e3b8987efd06e47be3a8c4e989512"
+      },
+      {
+        "generator_index": 186,
+        "morphology_id": "qsdk_r05b_generated_s186",
+        "generator_receipt_sha256": "sha256:b4289832e91c540cf7bf229cd37bad355e9be5d3936b0cc3b6f2a0f6bdebaaa1",
+        "proportion_spec_sha256": "sha256:667e62efa3b8a0c5e60b9d3aa17776677460040867d80970b1f7a96f5989c642"
+      },
+      {
+        "generator_index": 187,
+        "morphology_id": "qsdk_r05b_generated_s187",
+        "generator_receipt_sha256": "sha256:98563bd7ee960b670d57d5e91e8c30e34d13e3b4515650eb8dd6fc22a0fb26c2",
+        "proportion_spec_sha256": "sha256:95cfd1541b7c91b8b213a8a46ce26d02c9510d143e546885e1e4fcbc13d95e5f"
+      },
+      {
+        "generator_index": 188,
+        "morphology_id": "qsdk_r05b_generated_s188",
+        "generator_receipt_sha256": "sha256:8052d548d01cba6fcfb7aeba407e22f354c1b75d36b8b44c5feac3bd822282f7",
+        "proportion_spec_sha256": "sha256:3f8ad516a82a8060472b101833ef77a3c2e69b8cb7728367fea677f95b4bac54"
+      },
+      {
+        "generator_index": 189,
+        "morphology_id": "qsdk_r05b_generated_s189",
+        "generator_receipt_sha256": "sha256:25911d0fc9ba44c49b3380f4ee1ebf290e46d4e76896b4d6852db129fda90c3a",
+        "proportion_spec_sha256": "sha256:a6a1741063b1c7a4fefffc06c15fce74289113bf4a708e13a59a5bbdad5dd39f"
+      },
+      {
+        "generator_index": 190,
+        "morphology_id": "qsdk_r05b_generated_s190",
+        "generator_receipt_sha256": "sha256:0c4277f8b2741dbd6c1fd074f02b2561e0205ae3881f2e76798116007cdca27a",
+        "proportion_spec_sha256": "sha256:1fdca6501ca00f0f3bd00326800ab922294d2231c474a2621da3d7547c287d93"
+      },
+      {
+        "generator_index": 191,
+        "morphology_id": "qsdk_r05b_generated_s191",
+        "generator_receipt_sha256": "sha256:dd0aeccdfde410de198e900b7775f14200172cd5c9fb7638d9d7e149f9a89706",
+        "proportion_spec_sha256": "sha256:276cdce02776558a37da1ac9f847460e2e388f97be820d4f87a75b7c501924f8"
+      },
+      {
+        "generator_index": 192,
+        "morphology_id": "qsdk_r05b_generated_s192",
+        "generator_receipt_sha256": "sha256:dbc81685425704ffbdb1414c783189fc6cdb55ee273c5ffb1b9d97e344d5b302",
+        "proportion_spec_sha256": "sha256:7702f4594dc69232dd4c7678797e467d16676a17ef82045f3ec9ff9a2806efb1"
+      }
+    ]
+  },
+  "repetitions": {
+    "campaign_seeds": [21601, 21602, 21603],
+    "seeds_and_outcomes_are_known_and_development_only": true,
+    "expected_world_count": 36,
+    "expected_world_count_per_candidate": 36,
+    "expected_complete_world_count": 144,
+    "all_four_candidates_run_the_identical_12_by_3_matrix": true,
+    "early_stop_for_outcome_forbidden": true,
+    "failed_cell_deletion_replacement_averaging_or_threshold_change_forbidden": true,
+    "first_complete_report_per_candidate_and_source_identity_is_final": true
+  },
+  "walking_gate": {
+    "production_gate_source": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+    "threshold_source": "sdk/qsdk_r05b_independent_morphology_preregistration.json",
+    "thresholds_unchanged_from_qsdk_r05b": true,
+    "walking_is_recorded_as_development_outcome_not_harness_success": true,
+    "one_continuous_world_required_for_each_positive_walking_observation": true,
+    "no_threshold_may_change_after_first_world": true
+  },
+  "mandatory_launch_preflights": [
+    {
+      "test_path": "tests/test_bw13p_r1_closure.ps1",
+      "requirement": "The four immutable R1 reports, all 144 common invalid result signatures, the interrupted-attempt inventory, and the pinned research inputs remain byte-exact; R1 has no selection authority and may not be reopened."
+    },
+    {
+      "test_path": "tests/test_bw13p_r2_closure.ps1",
+      "requirement": "The immutable R2 control report, all 108 referenced cell artifacts, exact aggregate contradiction, unopened B/C/D directories, and research inputs remain byte-exact; R2 has no resume or selection authority."
+    },
+    {
+      "test_path": "tests/test_experiment_result_integrity_preflight.ps1",
+      "requirement": "The fail-closed aggregator accepts the complete perfect 36-cell ordered matrix, propagates exact nonzero failed-gate, timeout, lateral, and cross-track canaries through JSON round trip, and rejects malformed fields with zero worlds."
+    },
+    {
+      "test_path": "tests/test_sdk_scheduled_load_transfer_v3_authority_contract.gd",
+      "requirement": "All eight declared v3 policies produce available and typed-unavailable public receipts with zero worlds."
+    },
+    {
+      "test_path": "tests/test_sdk_full_integrity_gate_satisfiability.gd",
+      "receipt_schema": "sporespore_full_integrity_gate_satisfiability_receipt_v5",
+      "requirement": "The exact production execution-mode resolver passes every BW13P policy and signed offset, one worst-case route completes all 3232 native-controller and portable-planner steps with 25856 ordered commands, every declared policy passes the exact analyzer on a perfect zero-defect result, and the R1 misroute fails at synthetic step zero before any world."
+    },
+    {
+      "test_path": "tests/test_sdk_balanced_wave_bw13p_r3_morphology_development.gd",
+      "mode": "preflight",
+      "requirement": "All 36 exact candidate requests traverse the real entrypoint, adapter start, declared signed phase transition, native controller, and portable planner with zero worlds, SceneTree insertions, physics mutation, or outcome exposure."
+    },
+    {
+      "test_path": "sdk/run_balanced_wave_bw13p_r3_morphology_development.ps1",
+      "mode": "perfect_and_nonzero_synthetic_runner_report_preflight",
+      "requirement": "The runner executes the R1 and R2 closure audits and receipt-v5 gate, then compiles, serializes, hashes, rereads, and reconciles both a complete perfect 36-cell aggregate report and a deliberately nonzero ordered-dictionary canary before creating a durable directory or physical process."
+    }
+  ],
+  "mechanism_receipt_eligibility": {
+    "receipt_count_must_equal_sdk_step_count": true,
+    "availability_partition_must_sum_to_receipt_count": true,
+    "fail_zero_count_must_equal_nonavailable_count": true,
+    "first_and_last_receipt_sha256_required": true,
+    "activation_uses_scheduler_boundaries_only": true,
+    "morphology_branch_surface_count_must_equal": 0,
+    "control_requires_zero_active_preferred_and_centroid_factor_steps": true,
+    "control_preserves_nonzero_shared_baseline_influence": true,
+    "b_requires_nonzero_active_and_preferred_steps_and_zero_centroid_steps": true,
+    "c_requires_nonzero_active_and_centroid_steps_and_zero_preferred_steps": true,
+    "d_requires_nonzero_active_preferred_and_centroid_steps": true,
+    "all_candidates_require_exact_commanded_weight_preference_sum_on_available_receipts": true,
+    "all_candidates_require_one_combined_full_authority_application_per_sdk_step": true,
+    "all_candidates_require_eight_combined_motor_writes_per_sdk_step": true,
+    "all_candidates_require_nonzero_effective_stability_influence": true,
+    "all_candidates_require_zero_legacy_post_settle_and_evidence_motor_writes": true
+  },
+  "selection": {
+    "all_four_complete_36_world_reports_required": true,
+    "all_candidates_must_have_zero_integrity_and_mechanism_failures": true,
+    "control_candidate": "BW13P-A",
+    "selectable_treatments": ["BW13P-B", "BW13P-C", "BW13P-D"],
+    "treatment_must_be_strictly_lexicographically_better_than_control": true,
+    "lexicographic_metrics": [
+      {
+        "metric": "walking_conjunction_failure_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_failed_production_walking_gate_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_release_timeout_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "maximum_normalized_absolute_task_frame_lateral_displacement",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_normalized_absolute_task_frame_lateral_displacement",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_cumulative_absolute_cross_track_error_m_s",
+        "direction": "ascending"
+      }
+    ],
+    "tie_rule": "candidate_order_ascending",
+    "if_no_treatment_strictly_beats_control": "reject_bw13p_r3_family",
+    "selection_is_development_hypothesis_selection_only": true,
+    "selected_policy_must_be_committed_before_independent_validation": true
+  },
+  "independent_validation_reservation": {
+    "reserved_campaign_id": "QSDK-R05C",
+    "reserved_generator_indices": [193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204],
+    "reserved_morphology_prefix": "qsdk_r05c_generated_s",
+    "reserved_campaign_seeds": [38101, 38102, 38103],
+    "pre_r3_freeze_evidence_search_found_no_reserved_morphology_outcomes": true,
+    "pre_r3_freeze_evidence_search_found_no_reserved_seed_outcomes": true,
+    "r1_invalid_results_do_not_open_or_consume_the_reservation": true,
+    "r2_control_results_do_not_open_or_consume_the_reservation": true,
+    "reservation_remains_unopened": true,
+    "selection_may_not_observe_reserved_cells": true,
+    "new_generator_receipts_and_validation_preregistration_required_after_selection": true
+  },
+  "claim_boundary": {
+    "development_selection_authority": true,
+    "finite_population_only": true,
+    "walking_acceptance": false,
+    "balance_improvement": false,
+    "independent_morphology_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_or_friction_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "running": false,
+    "variable_limb_count_coverage": false,
+    "biped_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

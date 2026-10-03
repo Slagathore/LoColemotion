@@ -1,0 +1,117 @@
+{
+  "schema_version": "sporespore_godot_jolt_phase_timing_gjpt2_contract_v1",
+  "contract_id": "GJPT2",
+  "status": "prospective_one_cell_development_measurement_successor",
+  "scientific_class": "non_acceptance_performance_phase_characterization",
+  "predecessor": {
+    "contract_id": "GJPT1",
+    "status": "invalid_or_incomplete_first_attempt",
+    "closure_path": "sdk/godot_jolt_phase_timing_gjpt1_closure.json",
+    "closure_raw_sha256": "sha256:17b2b2754288d22707a67a2a89375c159a2a90df5f0373176724652218231d50",
+    "same_identity_rerun": false,
+    "successor_difference": "GJPT2 replaces the frozen BW32N acceptance-composer call with a development-owned non-acceptance projection and requires a synthetic projection canary before its physical world."
+  },
+  "question": "What share of one real Godot/Jolt fixed-horizon cell is spent in the persistent native controller boundary, active pre-physics work, physics-frame wait, post-physics observation work, setup-summary-cleanup residual, and the GJPT2 retained evidence workload?",
+  "cell": {
+    "cell_id": "gjpt2_baseline_s21001_bw32n_b",
+    "source_cell_template_id": "baseline_s21001_bw32n_b",
+    "source_template_is_reused_as_configuration_only": true,
+    "historical_campaign_identity_is_not_reopened": true,
+    "candidate_id": "BW32N-B",
+    "candidate_digest": "sha256:3490c1934bb018ef68a54b5d5415c7d19dddf7696ee0ac7fca4ab27951957e4d",
+    "challenge_profile_id": "bw6n_baseline_v1",
+    "campaign_seed": 21001,
+    "material_profile_id": "godot_jolt_bw5c_mu095_v1",
+    "physics_engine": "Jolt Physics",
+    "physics_hz": 120,
+    "solver_velocity_steps": 20,
+    "solver_position_steps": 7,
+    "expected_pre_authority_world_tick_count": 240,
+    "candidate_authority_observation_count": 3232,
+    "expected_instrumented_tick_count": 3472,
+    "expected_world_count": 1
+  },
+  "instrumentation": {
+    "method": "exact_hash_pinned_gjpt1_derived_runner_with_gjpt2_development_owned_projection",
+    "base_runner": {
+      "path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+      "raw_sha256": "sha256:79795d3c76191722b4fb35ef7ee4b4fccd297a01b6a528278a913d5cbfa462ca",
+      "may_be_modified": false
+    },
+    "transformer": {
+      "path": "sdk/godot_jolt_phase_timing_source.ps1",
+      "raw_sha256": "sha256:37c6ebbc3426c2137f0e27a2e8e10f582e7f30d2b6ce750617bfcb636d524ec4",
+      "all_replacement_anchors_must_be_unique": true
+    },
+    "generated_runner": {
+      "path": "sdk/target/gjpt1/physical_wave_gait_quadruped_phase_timing.gd",
+      "raw_sha256": "sha256:ac9310ce50ef5649d407ff38ff0f726c9ff0d3458aaad32f4e43610605ea7e09",
+      "byte_length": 202468,
+      "generated_output_is_not_source_authority": true,
+      "retained_copy_required_before_physical_process": true
+    },
+    "worker": {
+      "path": "tests/probe_godot_jolt_phase_timing_gjpt2.gd",
+      "raw_sha256": "sha256:11f47aa37e84f6c9dd7c75914619cbf229b7df60f32c23e56d27782e5ca31116"
+    },
+    "phase_fields": [
+      "pre_physics_active_exclusive_boundary_usec",
+      "native_boundary_usec",
+      "physics_frame_wait_usec",
+      "post_physics_observation_evidence_usec",
+      "setup_summary_cleanup_residual_usec",
+      "projection_composition_usec",
+      "evidence_serialization_usec",
+      "evidence_file_write_usec"
+    ],
+    "native_boundary_definition": "Elapsed wall time inside sdk_adapter.start plus sdk_adapter.step, including JSON transport, native policy execution, and result parsing.",
+    "physics_wait_definition": "Elapsed wall time suspended at the 3232-plus-preauthority main-loop awaits of SceneTree.physics_frame; it is a scheduling-plus-physics-frame measure, not a solver-only profiler sample.",
+    "evidence_workload_definition": "A development-owned projection of configuration, runtime provenance, uninterpreted outcome fields, and phase timing; it does not call or claim authority from the frozen BW32N acceptance composer.",
+    "post_optimization_share_analysis": "The observed native share is measured after GJPS1. Recovered stateless-to-persistent total-cell speed is estimated as 1 + post_optimization_native_share * (9.0828 - 1), assuming non-boundary work is unchanged."
+  },
+  "source_bindings": [
+    {"path":"sdk/godot_jolt_phase_timing_contract.json","raw_sha256":"sha256:cba07dbe118b5d778777e3dd80c5d78631d2f613d2f747eea676308c85ae7f18"},
+    {"path":"sdk/godot_jolt_phase_timing_gjpt1_closure.json","raw_sha256":"sha256:17b2b2754288d22707a67a2a89375c159a2a90df5f0373176724652218231d50"},
+    {"path":"sdk/run_godot_jolt_phase_timing.ps1","raw_sha256":"sha256:57a2195825eb376f6816b8ec2398dd8857a79d99defbde7b0cff77f498b20c47"},
+    {"path":"sdk/godot_jolt_phase_timing_source.ps1","raw_sha256":"sha256:37c6ebbc3426c2137f0e27a2e8e10f582e7f30d2b6ce750617bfcb636d524ec4"},
+    {"path":"tests/probe_godot_jolt_phase_timing_gjpt2.gd","raw_sha256":"sha256:11f47aa37e84f6c9dd7c75914619cbf229b7df60f32c23e56d27782e5ca31116"},
+    {"path":"scripts/lab/gait/physical_wave_gait_quadruped.gd","raw_sha256":"sha256:79795d3c76191722b4fb35ef7ee4b4fccd297a01b6a528278a913d5cbfa462ca"},
+    {"path":"scripts/lab/gait/sdk_godot_jolt_adapter.gd","raw_sha256":"sha256:b427c8f234eb1f60c8309c840a65b3db151619b252749b9a41d0e24b7be39543"},
+    {"path":"sdk/adapters/godot/src/lib.rs","raw_sha256":"sha256:59d62e7e998daf16c8866ea96dd058efcc568de579ed072ea9228b3439488047"},
+    {"path":"sdk/core/src/ffi.rs","raw_sha256":"sha256:b3ad0285af4e1f377612cfe0626b82779063ac39286d304a7b91c07ef29e2a4f"},
+    {"path":"sdk/include/sporespore_locomotion.h","raw_sha256":"sha256:163c42ab1dd3f0713252759f95f2ce06108c0401b83e5a8000a71365d29f5570"}
+  ],
+  "runtime_bindings": {
+    "godot_version": "4.7.stable.mono.official.5b4e0cb0f",
+    "godot_console_raw_sha256": "sha256:c5fc2d0bb24826a6757fa1e6bf2991effb294859c7dd03d09a122ef217484896",
+    "godot_runtime_raw_sha256": "sha256:baa909d0a905021da80cfc831713e9d3ba4bd0935ac3b93ba4c77dc140cfecc4",
+    "godot_adapter_artifact_path": "sdk/target/debug/sporespore_godot_adapter.dll",
+    "godot_adapter_artifact_raw_sha256": "sha256:8132396391f0545366cae2a670796f824b7519327382284f97c63f38361d36f6",
+    "content_addressed_copy_required_before_physical_process": true
+  },
+  "execution": {
+    "complete_zero_world_gate_required_before_physical_world": true,
+    "inherited_gjpt1_runner_preflight_required": true,
+    "synthetic_projection_canary_required": true,
+    "frozen_acceptance_composer_call_forbidden": true,
+    "clean_pushed_live_source_required": true,
+    "shared_physical_operation_lock_required": true,
+    "first_attempt_is_final_for_this_identity": true,
+    "retry_or_replacement_forbidden": true,
+    "progress_heartbeat_required": true,
+    "wall_clock_timeout_seconds": 360,
+    "durable_evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence",
+    "physical_world_count": 1
+  },
+  "claims": {
+    "one_cell_phase_measurement": true,
+    "native_boundary_benchmark_generalization": false,
+    "total_campaign_speedup": false,
+    "source_world_outcome_may_be_observed_but_not_interpreted": true,
+    "walking_claim_authorized": false,
+    "nuisance_claim_authorized": false,
+    "determinism_or_load_independence_claim_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false
+  }
+}

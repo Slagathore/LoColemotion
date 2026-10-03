@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/campaign_manifest_v1.schema.json",
+  "title": "SporeSpore sealed campaign manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "campaign_id",
+    "status",
+    "campaign_kind",
+    "schema_set",
+    "declared_factors",
+    "child_run_ids"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.campaign_manifest.v1"},
+    "campaign_id": {"$ref": "#/$defs/stable_id"},
+    "status": {"enum": ["RUNNING", "COMPLETE", "ABORTED"]},
+    "campaign_kind": {
+      "enum": ["paired", "sweep", "factorial", "exploratory"]
+    },
+    "schema_set": {"const": "sporespore.lab.schemas.v1"},
+    "declared_factors": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/declared_factor"},
+      "uniqueItems": true
+    },
+    "child_run_ids": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/stable_id"},
+      "uniqueItems": true
+    },
+    "source_revision": {"type": "string", "minLength": 1},
+    "nuisance_fingerprint_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "json_pointer": {
+      "type": "string",
+      "pattern": "^/(?:[^~/]|~0|~1)*(?:/(?:[^~/]|~0|~1)*)*$"
+    },
+    "factor_level": {
+      "anyOf": [
+        {"type": "boolean"},
+        {"type": "number"},
+        {"type": "string"},
+        {"type": "null"}
+      ]
+    },
+    "declared_factor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "factor_id": {"$ref": "#/$defs/stable_id"},
+        "path": {"$ref": "#/$defs/json_pointer"},
+        "role": {
+          "enum": ["treatment", "nuisance", "observer", "seed"]
+        },
+        "levels": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/factor_level"},
+          "uniqueItems": true
+        },
+        "allowed_interactions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/stable_id"},
+          "uniqueItems": true
+        }
+      }
+    }
+  }
+}

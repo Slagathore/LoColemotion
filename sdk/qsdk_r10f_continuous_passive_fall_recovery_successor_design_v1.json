@@ -1,0 +1,518 @@
+{
+  "schema_version": "sporespore_qsdk_r10f_continuous_passive_fall_recovery_successor_design_v1",
+  "status": "prospective_zero_world_successor_design_complete_implementation_authorized_physics_blocked",
+  "gate_id": "QSDK-R10F",
+  "parent_gate_id": "QSDK-R10",
+  "design_id": "QSDK-R10F-CONTINUOUS-S169-KICK-PASSIVE-FALL-RECOVERY-RESUME",
+  "authored_parent_commit": "21a1019bc170c2f09125896df6b3e0934b217812",
+  "authored_local_date": "2026-09-04",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_evidence_diagnosis_and_prospective_successor_design",
+    "question_class": "development"
+  },
+  "question_declaration": {
+    "question": "Can one continuously simulated exact S169 Godot/Jolt body use the frozen selected BW5R-B locomotion policy, receive one source-measured native lateral kick, enter a zero-actuation passive fall, use the existing V6 recovery command policy after prone confirmation, return to stable four-foot stance, and then begin a fresh BW5R-B session that resumes bounded forward locomotion without a transform, velocity, contact, or solver-state rewrite?",
+    "physical_question_declared": false,
+    "finite_decision_declared": false,
+    "superiority_question_declared": false,
+    "equivalence_or_non_inferiority_question_declared": false,
+    "population_inference_declared": false,
+    "physical_work_authorized": false,
+    "maximum_world_attempt_count_before_complete_new_authority_graph": 0,
+    "maximum_world_build_count_before_complete_new_authority_graph": 0,
+    "maximum_solver_step_count_before_complete_new_authority_graph": 0
+  },
+  "release_milestone_context": {
+    "sdk1_milestone_id": "SDK1-M07",
+    "sdk1_milestone_label": "Push interaction and recovery path",
+    "source_gate_id": "QSDK-R10",
+    "source_requirement": "The selected policy passes prospectively frozen external-push recovery acceptance.",
+    "score_before_design": "14/20",
+    "full_program_score_before_design": "14/25",
+    "other_current_candidate_blockers": [
+      "SDK1-M14",
+      "SDK1-M20"
+    ],
+    "m07_should_precede_m20": true,
+    "reason_m07_should_precede_m20": "The Explorer must expose only a native kick and recovery interaction that has already completed a prospective M07 capability path.",
+    "this_design_advances_m07": false
+  },
+  "bound_authorities": [
+    {
+      "role": "consumed_r10e_l3_finite_negative",
+      "path": "sdk/qsdk_r10e_held_out_finite_decision_physical_closure_v3.json",
+      "git_blob_oid": "3fe5fb0b5527c2b950effc3e0e40f1191e3322d6",
+      "byte_length": 12565,
+      "raw_sha256": "sha256:f764a112b2a3037506d29cced838901e6346027aac1529e39a89da9028abbded"
+    },
+    {
+      "role": "three_engine_canonical_prone_to_standing_decision",
+      "path": "sdk/recovery/r24d173_three_engine_canonical_prone_to_standing_decision_v1.json",
+      "git_blob_oid": "9a84d2891ffc042537faef325468843e5a499054",
+      "byte_length": 13023,
+      "raw_sha256": "sha256:c2d6edf090ab80a55eb8a6996f52984c14c453bf513e9d8d058d81603817425f"
+    },
+    {
+      "role": "consumed_exact_nominal_godot_recovery_positive",
+      "path": "sdk/recovery/r24d172_godot_jolt_initializer_receipt_retention_recovery_behavior_physical_closure_v1.json",
+      "git_blob_oid": "fab6a752688a5ca8cd471ea24f0c8d267f2e741a",
+      "byte_length": 29920,
+      "raw_sha256": "sha256:87b0c9497ab4fa91da8d58f9cba1be9ab906a0d2603cedd5b8abc92231f36fe8"
+    },
+    {
+      "role": "frozen_selected_locomotion_policy",
+      "path": "sdk/balanced_wave_selected_policy.json",
+      "git_blob_oid": "0cdb2b41cf062915ad65a757d75a6eee1f3c306d",
+      "byte_length": 4935,
+      "raw_sha256": "sha256:8e111aa9a0b3c7182d4bd7021f6652c50e9d678ff95a6d06d5056e94f7e299b6"
+    },
+    {
+      "role": "finite_selected_policy_morphology_walking_closure",
+      "path": "sdk/qsdk_r05e_exact_finite_morphology_physical_closure_v1.json",
+      "git_blob_oid": "090979d8998711c84daef7b07d97c0afb0ff1441",
+      "byte_length": 49049,
+      "raw_sha256": "sha256:dac4ac8790cd74d89da0286c36aaf541fbfe7011d2bea66077b941363d47b33e"
+    },
+    {
+      "role": "bounded_three_engine_turning_closure",
+      "path": "sdk/turning/r23d78_production_route_three_engine_turning_validation_closure_v1.json",
+      "git_blob_oid": "59b6a5320efc4a67eb7a0f5d8bf6be8c5776490d",
+      "byte_length": 103019,
+      "raw_sha256": "sha256:fb3b2addaa352529b43aee1906877084ef474f4ecdcf5752d54139b7818bd58e"
+    },
+    {
+      "role": "sdk1_milestone_mapping",
+      "path": "sdk/release/quadruped_sdk1_milestone_mapping_v1.json",
+      "git_blob_oid": "abadde74e619ae0a12818c367ab75fe68f6bf135",
+      "byte_length": 12351,
+      "raw_sha256": "sha256:bab238448639d90415d0ce4341a78278536fe7561075a92ec408b1674bce63bd"
+    },
+    {
+      "role": "qualified_recovery_native_world_source",
+      "path": "sdk/adapters/godot/gdscript/recovery_native_world_v1.gd",
+      "git_blob_oid": "c418010d7dd22baf00af8ad6f4cd9f0b870957f0",
+      "byte_length": 605131,
+      "raw_sha256": "sha256:c7b84a7fd0c59904e0f9619dfd0fa4ed559d3fd370ad2b54601e4948c3ac751a"
+    },
+    {
+      "role": "qualified_recovery_native_route_source",
+      "path": "sdk/adapters/godot/gdscript/recovery_native_route_v1.gd",
+      "git_blob_oid": "d1e4c5a9e61dac7f1e82643b09d92789dbb77855",
+      "byte_length": 337301,
+      "raw_sha256": "sha256:cd76c658ea378930621e1855ebb7705581c98d4791b0e25b4eb2dc60a3d0cf38"
+    },
+    {
+      "role": "qualified_contiguous_boundary_transport_source",
+      "path": "sdk/adapters/godot/gdscript/recovery_contiguous_boundary_transport_v1.gd",
+      "git_blob_oid": "60f99099274ab304de39c4b335f3d6c60f24152c",
+      "byte_length": 19902,
+      "raw_sha256": "sha256:8b95f3ca513b3667c6363000ebd2a47b21dde64044687a350fe56b15e1349a84"
+    },
+    {
+      "role": "qualified_discrete_staging_route_source",
+      "path": "sdk/adapters/godot/gdscript/recovery_discrete_staging_route_v1.gd",
+      "git_blob_oid": "668a7a6b14bbb3658b03b5f34241cc2053c368b4",
+      "byte_length": 23306,
+      "raw_sha256": "sha256:d0800c97920d96566fca186f54d40d8d0ab37069af8707977052da28d8e699fd"
+    },
+    {
+      "role": "portable_recovery_supervisor_source",
+      "path": "sdk/core/src/recovery.rs",
+      "git_blob_oid": "b6660a0b4d972ada92afd18e487146d68a5e0fc4",
+      "byte_length": 240774,
+      "raw_sha256": "sha256:9ab3a478e7fbfb610b5110ddce90879f7f1c19006462fa5916a205a8053399c2"
+    },
+    {
+      "role": "portable_recovery_command_policy_source",
+      "path": "sdk/core/src/recovery_runtime.rs",
+      "git_blob_oid": "1df4722ca859e9421ca4bffa039f1917619758d0",
+      "byte_length": 229800,
+      "raw_sha256": "sha256:08ced1fc6f31437f671e5811bb1eb2a6527f6b7c987d7f0106525a5d470eb6e3"
+    },
+    {
+      "role": "selected_policy_godot_adapter_source",
+      "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+      "git_blob_oid": "ef793ede82d63ee266ee815f2b0dd19866ef9596",
+      "byte_length": 331602,
+      "raw_sha256": "sha256:10679c11476f9b83cd23205580313caba9b348e1bee2bb8473189f8f05f61e63"
+    },
+    {
+      "role": "historical_walking_fixture_source",
+      "path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+      "git_blob_oid": "c7e146bd2487e9c72c0577db5d7604d03a137e75",
+      "byte_length": 450383,
+      "raw_sha256": "sha256:80f5197940e971dbff6bba0720eb92d72843386754f327e5c533f3737fdf17eb"
+    }
+  ],
+  "preserved_predecessor_results": {
+    "r10e_l3": {
+      "classification": "valid_complete_behavior_finite_negative",
+      "declared_world_count": 6,
+      "valid_world_count": 6,
+      "valid_pair_count": 3,
+      "native_effect_confirmed_pair_count": 3,
+      "local_recovery_window_found_pair_count": 3,
+      "only_false_behavior_receipt": "bounded_anchor_error",
+      "first_over_limit_samples_preceded_push": true,
+      "same_identity_rerun_permitted": false,
+      "result_reclassification_permitted": false,
+      "threshold_relaxation_permitted": false,
+      "local_window_only_promotion_permitted": false
+    },
+    "r172": {
+      "classification": "valid_complete_finite_behavior_development_positive_exact_nominal_godot_jolt_prone_to_standing_observation",
+      "candidate_terminal_phase": "complete",
+      "candidate_terminal_step": 240,
+      "matched_zero_terminal_phase": "failed",
+      "matched_zero_terminal_step": 268,
+      "candidate_and_matched_world_count": 2,
+      "total_solver_step_count": 508,
+      "all_in_run_invariant_receipt_count": 508,
+      "all_in_run_physical_invariants_passed": true,
+      "same_identity_rerun_permitted": false,
+      "kick_or_push_entry_observed": false,
+      "arbitrary_fall_state_observed": false
+    },
+    "r173": {
+      "q_sdk_r24_satisfied": true,
+      "sdk1_m19_satisfied": true,
+      "godot_candidate_terminal_step": 240,
+      "new_physical_evidence_collected": false,
+      "cross_engine_equivalence_claimed": false,
+      "kick_or_push_recovery_claimed": false
+    },
+    "preservation_rule": "R10F may call qualified component APIs, but it neither reruns nor broadens any predecessor result. Every R10F world, state transition, threshold scope, and behavior result is new prospective evidence."
+  },
+  "identity_reconciliation": {
+    "base_morphology_id": "qsdk_r05_generated_s169",
+    "base_descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+    "base_morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "actuator_profile_id": "sporespore_qsdk_r23d60_selected_s169_actuator_cap_profile_v1",
+    "actuator_profile_sha256": "sha256:b65d41e3f30c42e0a8207f1385fe00daa8f03975f4e266a0bd0867970f674964",
+    "recovery_morphology_id": "qsdk_r24_recovery_s169_v1",
+    "recovery_descriptor_sha256": "sha256:431a9c8001931e751bb2f1f2750c31650dd2d994575a736c53adbef1b27a71f6",
+    "recovery_morphology_spec_sha256": "sha256:926551af3a72eb1fd1f3b71bfb103587a0b906a116775551a2463792e2c160f9",
+    "selected_locomotion_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "selected_locomotion_policy_sha256": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "recovery_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v6",
+    "recovery_task_id": "sporespore_canonical_ventral_prone_to_four_foot_stance_v1",
+    "recovery_threshold_profile_id": "sporespore_exact_s169_recovery_development_thresholds_v1",
+    "shared_base_identity_established": true,
+    "shared_physical_fixture_identity_established": false,
+    "shared_dynamic_outcome_established": false,
+    "r23d78_turning_behavior_reused_as_r10f_controller": false,
+    "r23d78_returns_at_sdk1_m20": true
+  },
+  "rejected_composition": {
+    "old_walking_fixture_reused_as_recovery_fixture": false,
+    "reason": "The historical walking fixture has box upper legs, sphere distal feet, direct-state/contact callbacks only on the torso and feet, legacy joint IDs, and a different material. The qualified recovery sampler requires capsule upper and distal bodies, all nine bodies as callback-aware semantic bodies, recovery joint IDs, and complete nine-body native measurements.",
+    "walking_fixture_upper_collision_kind": "box",
+    "walking_fixture_distal_collision_kind": "sphere",
+    "recovery_fixture_upper_collision_kind": "capsule",
+    "recovery_fixture_distal_collision_kind": "capsule",
+    "walking_fixture_direct_state_body_count": 5,
+    "recovery_fixture_direct_state_body_count": 9,
+    "walking_fixture_friction": 0.95,
+    "recovery_fixture_friction": 1.8,
+    "label_only_adapter_wrap_permitted": false,
+    "retained_kick_plus_retained_prone_to_standing_composition_satisfies_m07": false
+  },
+  "selected_same_body_route": {
+    "outer_task_id": "sporespore_s169_kick_triggered_passive_fall_to_walk_resume_v1",
+    "orchestrator_id": "sporespore_qsdk_r10f_event_triggered_passive_recovery_orchestrator_v1",
+    "world_builder": "qualified_recovery_native_world_v1",
+    "physical_body_population_created_once": true,
+    "body_count": 9,
+    "joint_count": 8,
+    "body_node_identity_must_remain_constant": true,
+    "joint_node_identity_must_remain_constant": true,
+    "scene_tree_reparenting_after_world_start_permitted": false,
+    "post_construction_transform_write_permitted": false,
+    "post_construction_velocity_write_permitted": false,
+    "teleport_or_pose_reset_permitted": false,
+    "solver_state_reset_permitted": false,
+    "contact_state_synthesis_permitted": false,
+    "missing_measurement_synthesis_permitted": false,
+    "ordered_phases": [
+      "canonical_prone_precondition_recovery",
+      "fresh_selected_policy_walking_prefix",
+      "native_kick_or_matched_no_kick_step",
+      "kick_triggered_zero_actuation_passive_fall",
+      "offset_bound_recovery_epoch",
+      "stable_stance_completion",
+      "fresh_selected_policy_walking_resume"
+    ],
+    "canonical_prone_precondition_recovery": {
+      "purpose": "Obtain a standing live body through an already-implemented physical transition instead of inventing a new standing initializer.",
+      "uses_v6_controller": true,
+      "uses_original_world_start_boundary_transport": true,
+      "maximum_outer_steps": 1200,
+      "must_complete_before_locomotion": true,
+      "counts_as_post_kick_recovery_evidence": false
+    },
+    "walking_session_rule": {
+      "pre_kick_session_is_fresh": true,
+      "post_recovery_session_is_fresh": true,
+      "controller_memory_continues_across_recovery": false,
+      "native_body_state_continues_across_recovery": true,
+      "local_policy_semantic_step_restarts_at_zero": true,
+      "global_native_solver_sequence_restarts": false,
+      "task_frame_reanchor_at_each_fresh_session": true,
+      "task_frame_reanchor_moves_or_rotates_body": false,
+      "selected_policy_or_profile_changes": false
+    },
+    "native_kick": {
+      "application_api": "RigidBody3D.apply_central_impulse",
+      "target_body_id": "torso",
+      "task_frame_impulse_n_s": [
+        0.0,
+        0.0,
+        0.25
+      ],
+      "magnitude_n_s": 0.25,
+      "application_count_active_arm": 1,
+      "application_count_baseline_arm": 0,
+      "native_effect_floor_m_s": 0.0001,
+      "effect_measured_on_first_completed_step_after_application": true,
+      "uses_r10e_exported_scalar_receipt_validation": true,
+      "impulse_magnitude_or_direction_selected_from_r10f_outcome": false
+    },
+    "passive_fall_rule": {
+      "trigger": "successful_source_measured_native_kick_application_receipt",
+      "walking_motors_disabled_in_same_pre_solver_event_as_kick_application": true,
+      "walking_motors_remain_enabled_through_kick_effect_solve": false,
+      "walking_or_recovery_actuation_during_first_completed_kick_step": false,
+      "recovery_epoch_opens_after_first_completed_kick_step": true,
+      "recovery_confirm_prone_phase_emits_zero_actuation": true,
+      "required_consecutive_prone_samples_before_active_recovery": 12,
+      "maximum_confirm_prone_steps": 60,
+      "kick_impulse_alone_mechanically_causes_fall_claimed": false,
+      "continuous_force_estimation_used": false,
+      "force_aware_bracing_used": false,
+      "force_aware_recovery_used": false
+    }
+  },
+  "recovery_epoch_contract": {
+    "epoch_contract_id": "godot_jolt_r10f_completed_boundary_recovery_epoch_v1",
+    "global_step_symbol": "G",
+    "epoch_start_global_step_symbol": "E",
+    "epoch_local_step_definition": "L = G - E",
+    "epoch_start_condition": "The source-measured direct-state callbacks and native space telemetry for the completed kick-effect step E are coherent across all nine bodies and retained before any recovery command for E+1 is applied.",
+    "first_recovery_observation_global_step": "E + 1",
+    "first_recovery_observation_local_step": 1,
+    "portable_recovery_memory_uses_global_semantic_steps": true,
+    "portable_recovery_memory_allows_nonzero_first_global_step": true,
+    "global_callback_sequence_preserved": true,
+    "global_native_space_sequence_preserved": true,
+    "global_host_step_sequence_preserved": true,
+    "callback_or_space_sequence_rewrite_permitted": false,
+    "boundary_transport": {
+      "initializer_source_kind": "completed_step_direct_state_callback_v1",
+      "initializer_boundary_sequence": "E",
+      "initializer_body_count": 9,
+      "accepted_pair_count_at_initializer": 0,
+      "state_revision_at_initializer": 0,
+      "first_pair_sequences": [
+        "E",
+        "E + 1"
+      ],
+      "pair_count_after_global_step_G": "G - E",
+      "state_revision_after_global_step_G": "G - E",
+      "skipped_or_duplicate_global_boundary_permitted": false
+    },
+    "energy_baseline": {
+      "baseline_boundary_sequence": "E",
+      "baseline_is_source_measured": true,
+      "translational_kinetic_energy_included": true,
+      "rotational_kinetic_energy_included": true,
+      "gravitational_potential_energy_included": true,
+      "canonical_world_start_pose_reconstruction_used": false,
+      "initial_mechanical_energy_equals_live_boundary_E_energy": true,
+      "cumulative_actuator_work_at_epoch_start_j": 0.0,
+      "cumulative_external_work_at_epoch_start_j": 0.0,
+      "cumulative_constraint_exchange_at_epoch_start_j": 0.0,
+      "cumulative_discrete_staging_exchange_at_epoch_start_j": 0.0,
+      "cumulative_passive_dissipation_at_epoch_start_j": 0.0,
+      "kick_work_included_in_recovery_epoch_ledger": false,
+      "kick_exclusion_reason": "The epoch baseline is the completed post-kick boundary E; the kick and its immediate solver response are retained by the separate native interaction receipt rather than silently reconstructed as recovery work."
+    },
+    "staging_accumulator": {
+      "sequence_at_initializer": "E",
+      "event_count_at_initializer": 0,
+      "sequence_after_global_step_G": "G",
+      "event_count_after_global_step_G": "G - E",
+      "event_count_claims_unobserved_walking_or_kick_steps": false,
+      "previous_accumulator_digest_chain_required": true,
+      "observer_receipt_digest_chain_required": true
+    },
+    "old_world_start_transport_or_accumulator_mutated": false,
+    "new_versioned_transport_and_accumulator_required": true
+  },
+  "prospective_population": {
+    "development_route_ghost": {
+      "question_class": "development",
+      "campaign_seed": 40200,
+      "ordered_arm_ids": [
+        "matched_no_kick_continuation",
+        "kick_passive_recovery_resume"
+      ],
+      "world_count": 2,
+      "behavioral_success_required_to_complete_route": false,
+      "complete_valid_physics_negative_counts_as_route_success": true,
+      "held_out_cells_accessible": false,
+      "maximum_campaign_attempt_count": 1
+    },
+    "held_out_finite_decision": {
+      "question_class": "finite decision",
+      "campaign_seeds": [
+        40201,
+        40202,
+        40203
+      ],
+      "ordered_arm_ids": [
+        "matched_no_kick_continuation",
+        "kick_passive_recovery_resume"
+      ],
+      "world_count": 6,
+      "all_cells_run_regardless_of_intermediate_behavior": true,
+      "pooling_across_seeds_permitted": false,
+      "selective_completion_or_failed_cell_replacement_permitted": false,
+      "sealed_until_development_route_positive_and_new_authority_graph_complete": true,
+      "maximum_campaign_attempt_count": 1
+    },
+    "campaign_seed_controls_only_gait_phase_fixture": true,
+    "campaign_seed_changes_canonical_prone_initializer": false,
+    "r10f_physical_outcome_known": false
+  },
+  "prospective_behavior_contract": {
+    "physics_hz": 120,
+    "maximum_canonical_precondition_recovery_steps": 1200,
+    "walking_prefix_steps": 720,
+    "kick_effect_step_count": 1,
+    "maximum_passive_confirm_prone_steps": 60,
+    "maximum_post_kick_recovery_epoch_steps": 1200,
+    "post_kick_recovery_epoch_includes_passive_confirm_prone_steps": true,
+    "walking_resume_steps": 720,
+    "maximum_active_arm_solver_steps": 3841,
+    "baseline_arm_runs_equal_global_horizon": true,
+    "ordinary_walking_receipt_count": 27,
+    "bounded_anchor_error_limit_m": 0.025,
+    "bounded_anchor_error_receipt_removed_or_relaxed": false,
+    "full_world_anchor_error_history_preserved": true,
+    "minimum_walking_prefix_forward_advance_m": 0.02,
+    "minimum_walking_resume_forward_advance_m": 0.02,
+    "maximum_walking_segment_absolute_lateral_drift_m": 0.25,
+    "pre_kick_stable_stance_required": true,
+    "native_kick_effect_required": true,
+    "ventral_prone_confirmation_required": true,
+    "post_kick_v6_terminal_phase_required": "complete",
+    "stable_four_foot_stance_required": true,
+    "post_recovery_forward_resume_required": true,
+    "same_body_identity_across_every_phase_required": true,
+    "zero_root_actuation_required": true,
+    "zero_transform_or_velocity_rewrite_required": true,
+    "all_native_engine_health_receipts_required": true,
+    "all_recovery_energy_invariants_required": true,
+    "threshold_controller_impulse_material_solver_or_policy_change_after_outcome_permitted": false
+  },
+  "implementation_surface": {
+    "new_versioned_epoch_boundary_transport_module_required": true,
+    "new_versioned_epoch_staging_accumulator_module_required": true,
+    "new_recovery_epoch_initializer_required": true,
+    "new_same_body_locomotion_facade_required": true,
+    "new_event_triggered_orchestrator_required": true,
+    "new_zero_world_source_and_negative_controls_required": true,
+    "new_dependency_manifest_required": true,
+    "new_development_supervisor_required": true,
+    "existing_r172_world_start_transport_changed": false,
+    "existing_r172_accumulator_changed": false,
+    "existing_r172_physical_result_changed": false,
+    "existing_r173_decision_changed": false,
+    "existing_r10e_result_changed": false,
+    "core_recovery_threshold_values_changed": false,
+    "selected_locomotion_policy_changed": false,
+    "native_kick_magnitude_or_direction_changed_from_r10e": false
+  },
+  "forward_authority_sequence": {
+    "ordered_steps": [
+      "commit_and_push_r10f_design",
+      "implement_complete_zero_world_source_and_negative_controls",
+      "commit_and_push_implementation_source",
+      "run_one_official_development_zero_world_qualification",
+      "commit_and_push_development_freeze_only_child",
+      "commit_and_push_development_execution_authority_only_child",
+      "pass_committed_graph_check",
+      "run_one_two_world_development_route_ghost",
+      "close_and_preserve_development_result",
+      "only_if_development_positive_declare_a_distinct_held_out_finite_decision_graph"
+    ],
+    "maximum_development_route_ghost_campaign_attempt_count": 1,
+    "maximum_development_route_ghost_world_count": 2,
+    "held_out_cells_remain_sealed": true,
+    "physical_execution_blocked_until_sequence_complete": true,
+    "development_result_may_be_negative_without_being_infrastructure_invalid": true
+  },
+  "required_zero_world_controls": {
+    "bound_authority_digest_checks": true,
+    "repository_root_and_remote_checks": true,
+    "portable_nonzero_first_semantic_step_canary": true,
+    "epoch_boundary_initializer_canary": true,
+    "epoch_boundary_duplicate_stale_and_skipped_refusals": true,
+    "epoch_accumulator_offset_and_digest_chain_canary": true,
+    "live_energy_baseline_projection_canary": true,
+    "kick_work_exclusion_and_separate_receipt_binding_canary": true,
+    "same_body_identity_transition_canary": true,
+    "walking_fixture_label_only_wrap_refusal": true,
+    "post_construction_transform_velocity_and_solver_reset_refusals": true,
+    "force_aware_claim_refusal": true,
+    "outcome_derived_threshold_mutation_refusal": true,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "native_readback_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  },
+  "claim_boundary": {
+    "design_complete": true,
+    "retained_diagnosis_complete": true,
+    "zero_world_implementation_authorized": true,
+    "physical_execution_authorized": false,
+    "r10e_l3_finite_negative_preserved": true,
+    "r172_exact_nominal_positive_preserved": true,
+    "r173_three_engine_prone_to_standing_preserved": true,
+    "selected_policy_identity_preserved": true,
+    "r10f_behavior_observed": false,
+    "r10f_continuous_same_body_path_observed": false,
+    "event_triggered_passive_recovery": false,
+    "external_push_recovery": false,
+    "kick_impulse_alone_causes_fall": false,
+    "force_aware_recovery": false,
+    "force_aware_bracing": false,
+    "arbitrary_fall_recovery": false,
+    "general_self_righting": false,
+    "arbitrary_push_direction_or_magnitude": false,
+    "cross_engine_push_recovery": false,
+    "cross_engine_effect_equivalence": false,
+    "population_robustness": false,
+    "sdk1_m07_advanced": false,
+    "q_sdk_r10_advanced": false,
+    "sdk1_m20_advanced": false,
+    "clean_room_candidate_authorized": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "decision": {
+    "selected_successor_gate_id": "QSDK-R10F",
+    "selected_successor_kind": "continuous_same_body_event_triggered_passive_fall_recovery_resume",
+    "q_sdk_r10f_zero_world_implementation_authorized": true,
+    "q_sdk_r10f_physical_execution_authorized": false,
+    "sdk1_m07_satisfied": false,
+    "scores_unchanged": true,
+    "next_required_work": "Implement and exhaustively zero-world qualify the offset-aware recovery epoch and the recovery-native S169 locomotion facade. Do not construct a model or world until a clean pushed source, official qualification, separate freeze and execution-authority commits, and committed-graph check all pass."
+  }
+}

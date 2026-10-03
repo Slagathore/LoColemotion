@@ -1,0 +1,241 @@
+{
+  "schema_version": "sporespore_rapier_c6_bw19v_actuation_semantics_diagnostic_v1",
+  "status": "retained_zero_world_and_existing_trace_source_diagnostic_not_acceptance",
+  "recorded_utc": "2026-07-31T12:46:11Z",
+  "diagnostic_id": "C6-RAP-BW19V-ASD1",
+  "audited_source": {
+    "commit": "22ca385a80070c3cbbc1d71a341dd4a879f8bfce",
+    "branch": "main",
+    "clean": true,
+    "matches_origin_main": true
+  },
+  "predecessor_campaign_id": "C6-RAPIER-BW19V-EARLY-HORIZON-MECHANISM-DEVELOPMENT-ED1",
+  "predecessor_gate_id": "C6-RAP-BW19V-ED1",
+  "study_class": "posthoc_source_and_retained_trace_semantics_diagnostic",
+  "question": "Did the portable selected-policy command and the Godot/Jolt and Rapier host adapters realize one canonical joint-actuation meaning before ED1?",
+  "world_build_count": 0,
+  "scene_insertion_count": 0,
+  "physics_state_mutation_count": 0,
+  "new_physical_observation_count": 0,
+  "source_artifacts": {
+    "repository_sha256_scope": "git_blob_bytes_at_audited_source_commit",
+    "repository_sources": [
+      {
+        "path": "sdk/core/src/runtime.rs",
+        "git_blob_oid": "8230f228e1af96d726e77f3c4e5ca54a326eae72",
+        "sha256": "e409610fd61f3144504acbe48d6870eb1c87c085a0e403a5b283048f933ba06e",
+        "semantic_claim": "The selected portable runtime computes a complete position-error and measured-rate velocity command and then multiplies it by the fixed legacy motor-direction sign minus one."
+      },
+      {
+        "path": "sdk/core/src/protocol.rs",
+        "git_blob_oid": "dc129929deb72731f81e328581f79e2e83a36dfa",
+        "sha256": "f32ac57fb48b2082209094eaf9aceee6d70ac4ad3ab2f8b3530c17bb385057da",
+        "semantic_claim": "ActuatorCommand transports requested and clamped position plus target velocity but does not encode whether position is an independently load-bearing native spring setpoint."
+      },
+      {
+        "path": "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+        "git_blob_oid": "ec890ccda7d6f65c764eda7cdfe8df701647d516",
+        "sha256": "5cf58a7d89a385b3cf9e37c62a6d27f2e13f6f644a0bcbe9d972ce70d274d2b1",
+        "semantic_claim": "The evidence-bearing Godot/Jolt path declares a target-velocity motor with per-step impulse cap, identifies the host velocity sign as minus one per canonical positive, and applies only PARAM_MOTOR_TARGET_VELOCITY."
+      },
+      {
+        "path": "sdk/adapters/rapier/src/locomotion.rs",
+        "git_blob_oid": "9361960afecf739fa17dfc274acf0969ab80bf9d",
+        "sha256": "ca6ded37da147794f04edf3058b429a12bd91d00479c3ed56ecf7a67456985a4",
+        "semantic_claim": "The ED1 Rapier path applies both the portable base position and composed velocity to one ForceBased motor with stiffness 40 and damping 10."
+      },
+      {
+        "path": "sdk/adapters/rapier/src/bw19v_composition.rs",
+        "git_blob_oid": "e5ce8921e45db2a36b0802880ba5b2af205b2812",
+        "sha256": "c4a21e4fc2330c4b9ce02481cbdf02a0304328ef03c94fee0108831ef5efb493",
+        "semantic_claim": "The Rapier residual path correctly declares canonical-to-host velocity sign plus one but adds that canonical residual directly to the base command that already contains the Godot legacy minus-one sign."
+      },
+      {
+        "path": "sdk/adapter_kit/adapter_contract_v1.json",
+        "git_blob_oid": "e463a9a4a95c54c899347b13fd790f36e0c43cc2",
+        "sha256": "9d4c46b9ac214ff6222ed61f2c0268b90e2bf104b1ec88a0b5f1034f937049d1",
+        "semantic_claim": "The public authority partition assigns canonical-to-host actuation mapping to the host adapter, not to the portable controller."
+      },
+      {
+        "path": "sdk/adapter_kit/reference_adapter.py",
+        "git_blob_oid": "294d8e32a50aba9d38d0dfe590a4833a2b749b75",
+        "sha256": "f033e7474226c9a3e85c85fa52c409b7423237c38e750142830aa21d1b1bab36",
+        "semantic_claim": "The zero-world reference adapter copies both fields into transport receipts but opens no world and cannot establish that both are independent physical servo terms."
+      },
+      {
+        "path": "docs/LOCOMOTION_SEMANTICS_V1.md",
+        "git_blob_oid": "4501efbd5e8e5f1deb4b87932f68455277a72fc2",
+        "sha256": "e8f95d47a18f8cd04576a35f8243ba1383cd6e12dd32e2a7ff3facd2ec88c36f",
+        "semantic_claim": "The frozen semantics require adapters to apply returned commands and record their host conversion but do not disambiguate complete portable velocity feedback from independent host position feedback."
+      },
+      {
+        "path": "docs/LOCOMOTION_ARCHITECTURE.md",
+        "git_blob_oid": "1229af13b65a7be8c329a876b5048130fef13fee",
+        "sha256": "335eea48794f7541844f6fccb19a1a051663d4054c1edb6ce6d049c1536c9cc3",
+        "semantic_claim": "The architecture requires reference tracking through bounded joint actuation and keeps host coordinate conversion outside controller policy."
+      },
+      {
+        "path": "sdk/rapier_c6_bw19v_early_horizon_mechanism_development_ed1_closure.json",
+        "git_blob_oid": "08cd1674e875083901dbb643603211e0a822f362",
+        "sha256": "8155effd3e0141839964a18b59733fc256e3b5c130f936824b6a34c0cd21f3d4",
+        "semantic_claim": "ED1 closed as a complete both-arms-failure exact-pair diagnostic and explicitly left portable-base versus Rapier-host interaction unresolved."
+      },
+      {
+        "path": "sdk/Cargo.lock",
+        "git_blob_oid": "7e0249cbbbb883af105d178bb27197d7da6ae87b",
+        "sha256": "0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+        "semantic_claim": "The audited Rapier dependency is exactly rapier3d 0.34.0."
+      }
+    ],
+    "rapier_package": "rapier3d",
+    "rapier_version": "0.34.0",
+    "rapier_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "rapier_source_sha256_scope": "installed_registry_source_file_bytes",
+    "rapier_sources": [
+      {
+        "path": "src/dynamics/joint/motor_model.rs",
+        "sha256": "474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648",
+        "semantic_claim": "ForceBased interprets stiffness and damping as absolute-force coefficients and retains a nonzero position ERP term whenever stiffness is nonzero."
+      },
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "sha256": "69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f",
+        "semantic_claim": "JointMotor explicitly permits combined target position and velocity and converts maximum force to a per-small-step impulse limit."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraint_builder.rs",
+        "sha256": "07628f6f865f612db096adb828cf329cf5b55a82d239659b094f0ee214da4ac9",
+        "semantic_claim": "The angular motor right-hand side contains both position error times ERP inverse-dt and the target-velocity term."
+      }
+    ],
+    "retained_ed1_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-bw19v-early-horizon-ed1-54efdee\\report.json",
+    "retained_ed1_report_sha256": "145431d9ba1583e3c65c2d86460aa06c4d3dbd7f4f45be6d11580383a4f4e1fd"
+  },
+  "source_reconstruction": {
+    "portable_selected_policy": {
+      "position_gain_per_s": 8.0,
+      "rate_damping": 0.65,
+      "legacy_motor_direction_sign": -1.0,
+      "raw_canonical_velocity_formula": "8 * (requested_target_position_rad - measured_position_rad) - 0.65 * measured_velocity_rad_s",
+      "emitted_velocity_formula": "raw_canonical_velocity_rad_s * -1",
+      "target_velocity_is_already_complete_closed_loop_feedback": true,
+      "emitted_target_velocity_is_canonical": false,
+      "host_specific_sign_is_embedded_in_portable_core": true
+    },
+    "godot_jolt_realization": {
+      "declared_actuator_model": "hinge_target_velocity_with_impulse_cap",
+      "declared_position_target_route": "adapter_pd_to_velocity",
+      "declared_host_target_velocity_sign_per_canonical_positive": -1.0,
+      "load_bearing_native_parameter": "HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY",
+      "independent_native_position_spring_applied": false,
+      "existing_portable_emitted_velocity_matches_legacy_host_command": true
+    },
+    "rapier_realization": {
+      "declared_canonical_to_host_velocity_sign": 1.0,
+      "base_velocity_sign_conversion_applied": false,
+      "canonical_residual_sign_conversion_applied": true,
+      "base_and_residual_velocity_spaces_mixed": true,
+      "motor_model": "ForceBased",
+      "stiffness_nm_per_rad": 40.0,
+      "damping_nm_s_per_rad": 10.0,
+      "portable_position_applied_as_native_spring_target": true,
+      "portable_velocity_applied_as_native_velocity_target": true,
+      "additional_native_position_feedback_present": true
+    },
+    "analytic_zero_state_counterexample": {
+      "requested_target_position_rad": 0.3,
+      "measured_position_rad": 0.0,
+      "measured_velocity_rad_s": 0.0,
+      "raw_canonical_velocity_rad_s": 2.4,
+      "portable_emitted_legacy_godot_host_velocity_rad_s": -2.4,
+      "rapier_unlimited_nominal_force_nm": -12.0,
+      "rapier_nominal_force_formula": "40 * (0.3 - 0.0) + 10 * (-2.4 - 0.0)",
+      "rapier_force_sign_matches_position_error": false,
+      "purpose": "Constructive source counterexample to semantic equivalence, not a prediction of an ED1 whole-body outcome."
+    }
+  },
+  "retained_ed1_step_zero_observation": {
+    "arm_id": "ED1-A",
+    "semantic_step": 0,
+    "nonzero_position_target_count": 5,
+    "opposite_position_and_velocity_target_sign_count": 5,
+    "opposite_position_target_and_post_step_angle_sign_count": 5,
+    "matching_velocity_target_and_post_step_angle_sign_count": 5,
+    "representative_actuator_id": "front_right_hip_motor",
+    "representative_target_position_rad": 0.32291965834746944,
+    "representative_target_velocity_rad_s": -2.5806550975692217,
+    "representative_post_step_joint_angle_rad": -0.004242065828293562,
+    "semantic_mismatch_physically_active": true,
+    "whole_body_failure_causation_established": false,
+    "posthoc_acceptance_threshold": false
+  },
+  "diagnosis": {
+    "classification": "confirmed_cross_host_actuation_semantics_defect_with_unresolved_whole_body_causal_effect",
+    "confirmed": [
+      "The selected portable velocity output contains the Godot/Jolt host motor sign and is therefore not canonical at audited source 22ca385.",
+      "The Rapier selected-policy path treats that Godot-oriented base velocity as a plus-one Rapier host velocity.",
+      "The Rapier composition adds plus-one canonical residual velocity to a base velocity in the legacy Godot host sign space.",
+      "The Rapier selected-policy motor adds native position feedback even though the portable velocity already contains complete position-error and measured-rate feedback.",
+      "The Godot/Jolt and Rapier paths did not realize one canonical selected-policy actuation meaning.",
+      "ED1 step zero physically exhibits the opposing position/velocity target signs and joint motion with the velocity sign."
+    ],
+    "not_confirmed": [
+      "This diagnostic does not establish that the semantic defect alone caused ED1 torso contact or tilt.",
+      "It does not establish that a corrected Rapier realization will walk.",
+      "It does not invalidate the bounded Godot/Jolt physical evidence under its captured velocity-only host realization.",
+      "It does not invalidate Rapier ForceBased 40/10 host characterization for that explicitly named combined native PD motor.",
+      "It does not convert ED1 into an acceptance or superiority result."
+    ],
+    "working_godot_architecture_killed": false,
+    "rapier_engine_architecture_killed": false,
+    "portable_policy_mechanism_disproved": false,
+    "ed1_reclassified": false,
+    "cross_engine_selected_policy_equivalence_at_audited_source": false,
+    "additional_rapier_physical_world_allowed_before_successor_freeze": false
+  },
+  "successor_contract": {
+    "classification": "new_versioned_semantic_correction_then_distinct_host_characterization",
+    "new_source_identity_required": true,
+    "new_policy_or_explicit_semantic_profile_identity_required": true,
+    "frozen_predecessor_outputs_may_not_be_rewritten": true,
+    "canonical_joint_position_and_velocity_signs_must_be_host_independent": true,
+    "canonical_to_host_sign_mapping_must_exist_only_in_adapter": true,
+    "complete_portable_closed_loop_velocity_is_the_load_bearing_selected_policy_command": true,
+    "requested_and_clamped_position_remain_controller_provenance_and_bounds_evidence": true,
+    "adapter_may_not_add_independent_position_feedback_for_this_profile": true,
+    "godot_jolt_successor_must_prove_exact_host_command_equivalence_to_the_retained_velocity_only_behavior": true,
+    "rapier_successor_requires_zero_stiffness_velocity_only_force_based_realization": true,
+    "rapier_velocity_servo_damping_and_force_mapping_require_separate_prospective_characterization": true,
+    "base_and_stability_residual_must_be_composed_in_one_canonical_velocity_space_before_host_conversion": true,
+    "builder_and_mutable_readback_required": true,
+    "complete_zero_world_whole_gate_preflight_required": true,
+    "first_new_physical_work_is_host_characterization_not_locomotion_acceptance": true,
+    "corrected_host_requires_distinct_paired_early_horizon_screen": true,
+    "fresh_selected_policy_validation_required_before_c6_acceptance": true,
+    "population_or_equivalence_claim_requires_prospective_margin_and_adequacy_argument": true
+  },
+  "negative_controls": {
+    "world_count_inflation_must_fail": true,
+    "canonical_output_relabel_must_fail": true,
+    "cross_host_equivalence_relabel_must_fail": true,
+    "whole_body_causation_relabel_must_fail": true,
+    "ed1_reclassification_must_fail": true,
+    "architecture_killed_relabel_must_fail": true,
+    "physical_authority_inflation_must_fail": true
+  },
+  "claims": {
+    "rapier_selected_policy_semantics_conformant": false,
+    "rapier_selected_policy_physical_c6": false,
+    "rapier_locomotion_acceptance": false,
+    "ed1_whole_body_failure_cause_identified": false,
+    "cross_engine_selected_policy_equivalence": false,
+    "different_physics_engines": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

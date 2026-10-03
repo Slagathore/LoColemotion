@@ -1,0 +1,114 @@
+{
+  "schema_version": "sporespore_development_recovery_smooth_swing_closure_audit_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "cold_retained_observation_audit",
+    "question_class": "development"
+  },
+  "source_parent_commit": "77988eefde092a3ff0d618803b998d7f169ce7ba",
+  "attempt_id": "9959c99703944cbd80789ac00ed2d90c",
+  "source_and_output_bindings": [
+    {
+      "path": "sdk/development/recovery_attempts/9959c99703944cbd80789ac00ed2d90c.json",
+      "byte_length": 259639,
+      "raw_sha256": "sha256:950aa372d1f15d72b92245c2f3ce472d51289356fbc823759fbdd021772c6777"
+    },
+    {
+      "path": "sdk/development/recovery_smooth_swing_observation_v1.json",
+      "byte_length": 11707,
+      "raw_sha256": "sha256:41f7eeda449657ad95f141f8e30b4823a0be610bb334ef54c827bc861e5acbe7"
+    },
+    {
+      "path": "tests/test_development_v36_recovery_checkpoint.py",
+      "byte_length": 11667,
+      "raw_sha256": "sha256:315cd968fb2587797175d0f8b08a0cbb23839f6d662a0eaa5818d46af3ae9f9c"
+    },
+    {
+      "path": "tests/test_development_v27_recovery_checkpoint.py",
+      "byte_length": 11694,
+      "raw_sha256": "sha256:abfa90975f37659cb4031c7a2d4b3ba60f11246b22c693c9b9ca2ab233b93737"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_feasible_support_observation.py",
+      "byte_length": 7157,
+      "raw_sha256": "sha256:06474c20e16524d7fba517ae09e80e886e6c5c72e6c7f0a1a4a0b115b3752ee8"
+    },
+    {
+      "path": "sdk/conformance/development_recovery_candidate_checkpoint.py",
+      "byte_length": 55281,
+      "raw_sha256": "sha256:4af20b14750fad01d3214c9898d53dfbaaf3fffd37f39a9cd5a1e4d03297adb8"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v36-cold-closure-36e92af3e6424afaa3fd6c7f177e89fe/v36_closure.stdout.log",
+      "byte_length": 118,
+      "raw_sha256": "sha256:baacf4ec8f019b8a23d3a3b572ada1b5607a21bd2d2e79a63b60226a5c78055e"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v36-cold-closure-36e92af3e6424afaa3fd6c7f177e89fe/v36_closure.stderr.log",
+      "byte_length": 1174,
+      "raw_sha256": "sha256:9bd55e0a2ad33559db889002fa799051a23e1a8f0e2053e456dfcb0987645122"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v36-cold-closure-36e92af3e6424afaa3fd6c7f177e89fe/readiness.json",
+      "byte_length": 14236,
+      "raw_sha256": "sha256:2cbfddf932bcba0dae21c1c5194e5e52427783588de2d9a1ec7c9db3fe8e2570"
+    }
+  ],
+  "passed": true,
+  "test_count": 6,
+  "seconds": 34.8426917,
+  "original_closure_reconstructed_exactly": true,
+  "observed_controller_commands_checked": 3200,
+  "observed_lift_goals_checked": 1600,
+  "maximum_lift_fraction_arithmetic_error": 1.1102230246251565e-16,
+  "original_walking_behavior_passed": false,
+  "original_false_walking_receipts": [
+    "every_limb_forward_relocation",
+    "every_limb_two_contact_cycles",
+    "terminal_four_contact_recovery"
+  ],
+  "retained_contact_cycles": 10,
+  "cycles_below_unchanged_minimum_relocation": 8,
+  "cycles_without_scheduled_swing_or_landing_overlap": 6,
+  "empty_common_height_intervals": 0,
+  "finite_remaining_blockers": [
+    {
+      "id": "first_swing",
+      "problem": "Front-left scheduled swing still contains two distinct contact cycles; both fall below the unchanged 12 mm forward-relocation rule.",
+      "next_action": "Use retained command and measured foot/body geometry to separate target progression, native joint tracking and torso rotation; do not retune the threshold."
+    },
+    {
+      "id": "landing",
+      "problem": "Rear-right landing hold lasts 79 commands; front-right is still in its 69-command landing hold at cutoff.",
+      "next_action": "Inspect full held-landing target reachability and tracking against the actual floor before selecting a distinct controller change."
+    },
+    {
+      "id": "stance_contact",
+      "problem": "Six original dwell-qualified cycles have no scheduled swing or landing overlap; rear-left has two counted interruptions without any scheduled swing.",
+      "next_action": "Retain these stance contact losses in the original evaluator and the next diagnosis; do not equate counted interruptions with intended gait cycles."
+    },
+    {
+      "id": "coverage",
+      "problem": "Rear-left scheduled swing and front-right touchdown remain unexercised; two intended cycles per limb are not established.",
+      "next_action": "Keep the finite coverage gap explicit. More time cannot repair the eight already-completed relocation negatives; any later coverage change needs its own declared question."
+    }
+  ],
+  "next_work": "Retained-data landing and stance-contact diagnosis, then select a scientifically distinct successor if justified. No physical rerun or horizon extension is selected by this closure.",
+  "readiness": {
+    "sdk1_passed": 14,
+    "sdk1_total": 20,
+    "full_program_passed": 14,
+    "full_program_total": 25,
+    "invalid_proof_count": 0
+  },
+  "r173_raw_sha256": "sha256:c2d6edf090ab80a55eb8a6996f52984c14c453bf513e9d8d058d81603817425f",
+  "new_world_build_count": 0,
+  "new_solver_step_count": 0,
+  "new_native_physics_read_count": 0,
+  "original_evaluation_changed": false,
+  "physical_cause_proven": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "repeat_consumed_attempt_permitted": false
+}

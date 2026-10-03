@@ -1,0 +1,63 @@
+{
+  "schema_version": "sporespore_qsdk_r23d32_pre_attestation_checkout_filter_incident_v1",
+  "status": "closed_pre_physics_infrastructure_invalid",
+  "campaign_id": "QSDK-R23D32-RAPIER-FINITE-TURNING-REPLICATION-VALIDATION",
+  "gate_id": "QSDK-R23D32",
+  "failed_source_commit": "95a73d9a54310a8117891de95583727a28a0c6a5",
+  "failed_attestation_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\campaign-attestation-r23d32-20260812T193527Z",
+  "failure_receipt": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\campaign-attestation-r23d32-20260812T193527Z\\failure.json",
+    "sha256": "sha256:5ec86bd35decfc431c931eac05eeebdc77f8128aedde2640fdd76413e7837b04",
+    "byte_length": 616
+  },
+  "failed_gate_receipt": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\campaign-attestation-r23d32-20260812T193527Z\\004-CAK1-EVIDENCE-PROVENANCE.receipt.json",
+    "sha256": "sha256:283f2c2aad9ef068dfb6db13273eacacb8fd73e2fafdf8314d1d702031c80ee3",
+    "byte_length": 2691,
+    "ordinal": 4,
+    "gate_id": "CAK1-EVIDENCE-PROVENANCE",
+    "exit_code": 1,
+    "timed_out": false
+  },
+  "failure_excerpt": {
+    "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\campaign-attestation-r23d32-20260812T193527Z\\004-CAK1-EVIDENCE-PROVENANCE.stderr.log",
+    "sha256": "sha256:5711f47ac287d62f35b3873beef13056bd603858940b18af7b8e1b29f729db31",
+    "byte_length": 475,
+    "message": "Checkout-filter migration moved without its distinct provenance boundary"
+  },
+  "mechanism": {
+    "classification": "prospective_source_provenance_boundary_violation",
+    "cause": "The R23D32 freeze added a campaign-specific .gitattributes LF rule, changing the globally frozen checkout-filter migration bytes without declaring a distinct migration successor.",
+    "scientific_question_changed": false,
+    "controller_changed": false,
+    "measurement_changed": false,
+    "threshold_changed": false,
+    "fixture_changed": false
+  },
+  "execution": {
+    "passed_gate_count_before_failure": 3,
+    "physical_process_launch_count": 0,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "one_shot_physical_identity_consumed": false,
+    "physical_launch_prerequisite_satisfied": false
+  },
+  "resolution": {
+    "remove_nonessential_r23d32_gitattributes_rule": true,
+    "preserve_existing_checkout_filter_migration_boundary": true,
+    "git_blob_exact_source_materialization_remains_required": true,
+    "ambient_checkout_remains_non_authoritative": true,
+    "fresh_clean_push_required": true,
+    "fresh_scoped_attestation_required": true,
+    "failed_attestation_may_authorize_corrected_source": false
+  },
+  "claims": {
+    "scientific_result": false,
+    "finite_rapier_turning_validation": false,
+    "portable_basic_turning": false,
+    "cross_engine_equivalence": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

@@ -1,0 +1,306 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_selected_configuration_validation_preregistration_v1",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-SELECTED-CONFIGURATION-VALIDATION",
+  "gate_id": "C6-RAP-HC-SPV1",
+  "status": "frozen_before_first_c6_rap_hc_spv1_physics_world",
+  "recorded_utc": "2026-07-31T09:14:27Z",
+  "implementation_parent_commit": "478c68764a1106e6f77c8c4137da5e0482616b78",
+  "study_class": "exact_finite_cell_independent_host_validation",
+  "estimand": {
+    "question": "Does the fixed SPD1-selected Rapier ForceBased 3/5 solver-phase allocation satisfy the complete declared host behavior and loaded-convergence gate on eight fresh signed cells?",
+    "decision_unit": "the exact ordered eight-cell validation grid",
+    "population_inference": false,
+    "superiority": false,
+    "non_inferiority": false,
+    "equivalence": false,
+    "development_selection": false,
+    "selector_present": false,
+    "cohort_size_or_sequential_stopping_argument_required": false,
+    "scope_if_confirmed": "exact finite host validation for Rapier 0.34.0, ForceBased, solver count 16, internal PGS 3, internal stabilization 5, the declared fixture, motor parameters, targets, arms, timestep, and thresholds"
+  },
+  "predecessor": {
+    "spd1_closure_path": "sdk/rapier_c6_force_based_solver_phase_development_spd1_closure.json",
+    "spd1_closure_raw_sha256": "sha256:e39f8f2621cf55177342ea757dbd6b2262256393b3add65a8c62441cf5e36e52",
+    "spd1_experiment_source_commit": "4bd4c925a51fe09eb260a6fdb56f3616e36cd036",
+    "spd1_status": "closed_positive_development_configuration_selected_requires_fresh_validation",
+    "selected_candidate_id": "SPD1-B",
+    "selected_num_internal_pgs_iterations": 3,
+    "selected_num_internal_stabilization_iterations": 5,
+    "selected_total_constraint_passes_per_small_step": 8,
+    "same_identity_rerun_forbidden": true,
+    "selector_reinvocation_forbidden": true,
+    "all_spd1_arms_and_allocations_outcome_exposed": true,
+    "fb1_lr1_and_cw1_remain_closed_negative": true
+  },
+  "outcome_exclusion": {
+    "fb1_signed_arms_m": [
+      -0.3,
+      0.3
+    ],
+    "lr1_signed_arms_m": [
+      -0.15,
+      0.15,
+      -0.35,
+      0.35
+    ],
+    "cw1_signed_arms_m": [
+      -0.2,
+      0.2,
+      -0.4,
+      0.4
+    ],
+    "spd1_signed_arms_m": [
+      -0.25,
+      0.25,
+      -0.45,
+      0.45
+    ],
+    "fb1_position_targets_rad": [
+      -0.4,
+      0.4
+    ],
+    "fb1_velocity_targets_rad_s": [
+      -1.0,
+      1.0
+    ],
+    "spv1_uses_only_fresh_targets_and_arms": true
+  },
+  "host_source_semantics": {
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "cargo_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "cargo_lock_path": "sdk/Cargo.lock",
+    "cargo_lock_raw_sha256": "0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+    "upstream_files": [
+      {
+        "path": "src/dynamics/integration_parameters.rs",
+        "raw_sha256": "0e5d5f76e1d569a5f07f1afb00c2858784f5c142eb886d4619652c58eca96498"
+      },
+      {
+        "path": "src/dynamics/joint/motor_model.rs",
+        "raw_sha256": "474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648"
+      },
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "raw_sha256": "69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f"
+      },
+      {
+        "path": "src/dynamics/solver/island_solver.rs",
+        "raw_sha256": "61f7fea43b03e3979a225ddb6632fb8dea5e670e54636c3060057663feccf14a"
+      },
+      {
+        "path": "src/dynamics/solver/velocity_solver.rs",
+        "raw_sha256": "b7bc9274c8ed285b4908c6010f97087f2199704eea0b37bc0e89fac2cda18e1d"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraints_set.rs",
+        "raw_sha256": "12eb1dfe1723a702f5e21b3e4f2c2c59631e8def8abfedb65b52af640298db8a"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs",
+        "raw_sha256": "a05c33a3770aada74587eebbbfae053c682bc014f9d1cd34e19658f64bc6a0a6"
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_constraint_builder.rs",
+        "raw_sha256": "07628f6f865f612db096adb828cf329cf5b55a82d239659b094f0ee214da4ac9"
+      }
+    ],
+    "runner_must_hash_installed_crate_source_before_preflight": true,
+    "source_hash_mismatch_fails_before_any_world": true
+  },
+  "pinned_host_configuration": {
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "motor_model": "ForceBased",
+    "outer_timestep_s": 0.008333333333333333,
+    "solver_iterations": 16,
+    "num_internal_pgs_iterations": 3,
+    "num_internal_stabilization_iterations": 5,
+    "total_constraint_passes_per_small_step": 8,
+    "maximum_motor_force_nm": 6.0,
+    "position_stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "child_shape": "cuboid",
+    "child_half_extents_m": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "child_mass_kg": 1.0,
+    "mass_properties_source": "shape_derived_from_nonzero_mass_collider",
+    "sleeping_disabled": true,
+    "joint_axis": "parent_positive_x"
+  },
+  "physical_grid": {
+    "expected_world_count": 8,
+    "early_stop_forbidden": true,
+    "unloaded_position_validation": {
+      "world_count": 2,
+      "target_positions_rad": [
+        -0.55,
+        0.55
+      ],
+      "target_velocity_rad_s": 0.0,
+      "gravity_m_s2": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "observation_outer_steps": 240,
+      "maximum_absolute_relative_position_error": 0.01,
+      "relative_error_definition": "abs(final_position_rad - target_position_rad) / abs(target_position_rad)",
+      "signed_target_and_final_position_must_match": true,
+      "paired_absolute_relative_error_asymmetry_maximum": 0.005
+    },
+    "signed_velocity_validation": {
+      "world_count": 2,
+      "target_velocities_rad_s": [
+        -1.25,
+        1.25
+      ],
+      "target_position_rad": 0.0,
+      "position_stiffness_nm_per_rad": 0.0,
+      "gravity_m_s2": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "observation_outer_steps": 120,
+      "normalized_final_velocity_response_minimum": 0.98,
+      "normalized_final_velocity_response_maximum": 1.02,
+      "normalized_response_definition": "abs(final_velocity_rad_s) / abs(target_velocity_rad_s)",
+      "final_position_and_velocity_signs_must_match_target": true,
+      "paired_normalized_velocity_response_asymmetry_maximum": 0.005
+    },
+    "gravity_loaded_convergence_validation": {
+      "world_count": 4,
+      "signed_lever_arms_z_m": [
+        -0.1,
+        0.1,
+        -0.5,
+        0.5
+      ],
+      "gravity_m_s2": [
+        0.0,
+        -9.8,
+        0.0
+      ],
+      "target_position_rad": 0.0,
+      "target_velocity_rad_s": 0.0,
+      "minimum_acceptance_outer_step": 120,
+      "required_consecutive_converged_outer_steps": 60,
+      "maximum_observation_outer_steps": 1440,
+      "normalized_terminal_small_step_impulse_response_minimum": 0.98,
+      "normalized_terminal_small_step_impulse_response_maximum": 1.02,
+      "maximum_spring_only_static_residual": 0.01,
+      "maximum_damping_load_fraction": 0.005,
+      "maximum_full_pd_gravity_residual": 0.005,
+      "maximum_anchor_error_m": 0.00001,
+      "maximum_signed_pair_relative_asymmetry": 0.005,
+      "signed_pairs_must_have_equal_convergence_window_end_steps": true,
+      "arm_magnitude_ordering_required": true
+    }
+  },
+  "threshold_grounding": {
+    "position_relative_error": "The one-percent dimensionless bound is the same declared accuracy scale as the retained spring-only static residual gate, applied directly to an unloaded position target.",
+    "velocity_response": "The final-velocity response uses the retained dimensionless [0.98, 1.02] source-response band and a fresh target magnitude.",
+    "loaded_response": "The expected JointMotor.impulse is the gravity torque multiplied by outer timestep and divided by solver iterations, as pinned by Rapier 0.34.0 solver semantics and retained LR1/CW1/SPD1 observations.",
+    "loaded_convergence": "The static, damping, full-PD, signed-pair, anchor, force, and 60-consecutive-step gates are unchanged from the frozen SPD1 development contract.",
+    "force_limit": "The per-small-step impulse ceiling is maximum_motor_force_nm multiplied by outer_timestep_s and divided by solver_iterations, plus only the frozen 0.000001 N m s numeric tolerance.",
+    "no_posthoc_numeric_threshold": true
+  },
+  "cell_success_contract": {
+    "every_world_must_build": true,
+    "every_joint_must_read_back_force_based": true,
+    "zero_motor_model_mismatches_required": true,
+    "zero_nonfinite_values_required": true,
+    "zero_small_step_impulse_limit_violations_required": true,
+    "fixed_3_5_allocation_readback_required": true,
+    "unloaded_position_cells_must_pass_their_relative_error_sign_and_pair_gates": true,
+    "signed_velocity_cells_must_pass_their_response_sign_and_pair_gates": true,
+    "loaded_cells_must_retain_the_complete_consecutive_convergence_window": true,
+    "all_eight_cells_must_pass": true
+  },
+  "aggregate_success_contract": {
+    "world_attempt_count": 8,
+    "world_build_count": 8,
+    "cell_count": 8,
+    "passed_cell_count": 8,
+    "failed_cell_count": 0,
+    "motor_model_readback_count": 8,
+    "motor_model_mismatch_count": 0,
+    "nonfinite_value_count": 0,
+    "step_impulse_limit_violation_count": 0,
+    "unloaded_position_pair_passed": true,
+    "signed_velocity_pair_passed": true,
+    "gravity_loaded_convergence_grid_passed": true,
+    "complete_eight_cell_validation_passed": true,
+    "boundary_failure_codes_empty": true
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "perfect_synthetic_eight_cell_result_must_pass_the_real_cell_pair_and_aggregate_gate": true,
+    "default_model_canary_must_read_acceleration_based": true,
+    "explicit_builder_model_must_read_force_based": true,
+    "mutable_update_model_must_read_force_based": true,
+    "missing_cell_canary_must_fail_closed": true,
+    "wrong_allocation_canary_must_fail_closed": true,
+    "position_error_canary_must_fail_closed": true,
+    "velocity_response_canary_must_fail_closed": true,
+    "loaded_window_gap_canary_must_fail_closed": true,
+    "motor_model_mismatch_canary_must_fail_closed": true,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "execution_contract": {
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "all_eight_worlds_required_before_decision": true,
+    "early_stop_forbidden": true,
+    "retained_positive_or_negative_report_required": true,
+    "same_identity_rerun_forbidden": true,
+    "important_artifacts_must_be_outside_temporary_directories": true
+  },
+  "success_authority": {
+    "rapier_force_based_selected_configuration_validation": true,
+    "rapier_force_based_static_convergence_characterization": true,
+    "rapier_force_based_host_characterization": true,
+    "validation_authority": true,
+    "scope": "exact finite SPV1 host cells and pinned Rapier/configuration identity only",
+    "adapter_default_change_automatically_performed": false,
+    "separate_adapter_change_and_conformance_boundary_required": true,
+    "separate_selected_policy_campaign_may_be_preregistered": true,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  },
+  "negative_disposition": {
+    "no_threshold_or_grid_may_change_after_observation": true,
+    "failed_cells_may_not_be_deleted_replaced_or_averaged": true,
+    "a_failed_validation_must_close_negative": true,
+    "mechanism_may_inform_only_a_new_distinct_successor": true,
+    "spd1_selection_remains_a_valid_development_result_even_if_spv1_fails": true
+  },
+  "declaration_claims": {
+    "rapier_force_based_selected_configuration_validation": false,
+    "rapier_force_based_static_convergence_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "validation_authority": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

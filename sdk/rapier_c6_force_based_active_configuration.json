@@ -1,0 +1,74 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_active_configuration_v1",
+  "status": "active_after_positive_spv1_exact_finite_host_validation",
+  "adapter_id": "sporespore_rapier3d_adapter",
+  "host": {
+    "engine": "rapier3d",
+    "engine_version": "0.34.0",
+    "motor_model": "ForceBased",
+    "outer_timestep_s": 0.008333333767950535,
+    "solver_iterations": 16,
+    "num_internal_pgs_iterations": 3,
+    "num_internal_stabilization_iterations": 5,
+    "total_constraint_passes_per_small_step": 8
+  },
+  "authority": {
+    "path": "sdk/rapier_c6_force_based_selected_configuration_validation_spv1_closure.json",
+    "raw_sha256": "7830f66de49f1d7c2d5b88d151c0c2d5077782903457837d7ecd0da2fb724203",
+    "campaign_id": "C6-RAPIER-FORCE-BASED-SELECTED-CONFIGURATION-VALIDATION",
+    "gate_id": "C6-RAP-HC-SPV1",
+    "experiment_source_commit": "b8e3442d88ff3e6340117bcc70e1f109ad532068",
+    "exact_finite_selected_configuration_validation_passed": true,
+    "adapter_configuration_change_explicitly_authorized": true
+  },
+  "active_surfaces": [
+    {
+      "path": "sdk/adapters/rapier/src/active_configuration.rs",
+      "role": "single active world-construction authority"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/lib.rs",
+      "role": "adapter capability manifest"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/conformance.rs",
+      "role": "active C2-C5 conformance worlds"
+    },
+    {
+      "path": "sdk/adapters/rapier/src/locomotion.rs",
+      "role": "active selected-policy locomotion worlds"
+    }
+  ],
+  "historical_exclusions": {
+    "closed_campaign_modules_keep_experiment_local_configuration": true,
+    "modules": [
+      "sdk/adapters/rapier/src/characterization.rs",
+      "sdk/adapters/rapier/src/force_based_characterization.rs",
+      "sdk/adapters/rapier/src/force_based_load_response.rs",
+      "sdk/adapters/rapier/src/force_based_convergence_window.rs",
+      "sdk/adapters/rapier/src/force_based_solver_phase_development.rs",
+      "sdk/adapters/rapier/src/force_based_selected_configuration_validation.rs"
+    ],
+    "frozen_preregistrations_and_closures_were_not_rewritten": true
+  },
+  "claim_boundary": {
+    "adapter_configuration_is_active": true,
+    "active_c2_c5_and_locomotion_worlds_share_the_validated_configuration": true,
+    "force_based_builder_and_mutable_readback_remain_required": true,
+    "selected_policy_locomotion_evaluated_by_this_change": false,
+    "rapier_locomotion_acceptance": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  },
+  "next_allowed_work": {
+    "distinct_selected_policy_rapier_campaign_may_be_preregistered": true,
+    "selected_policy_campaign_must_use_exact_bw19v_scale_0_5": true,
+    "selected_policy_campaign_must_use_current_portable_support_contribution": true,
+    "complete_zero_world_synthetic_gate_required_before_any_world": true,
+    "spv1_must_not_be_rerun_or_reinterpreted": true
+  }
+}

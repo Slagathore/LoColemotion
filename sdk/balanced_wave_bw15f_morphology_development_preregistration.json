@@ -1,0 +1,357 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw15f_morphology_development_preregistration_v1",
+  "status": "frozen_before_first_bw15f_physics_world",
+  "gate_id": "BW15F",
+  "campaign_id": "BW15F-MORPHOLOGY-DEVELOPMENT",
+  "implementation_parent_commit": "632c22dc429c7f1c7e610e72b2ac9950fcea26cb",
+  "campaign_role": "paired_outcome_exposed_global_sign_gain_hypothesis_selection",
+  "development_data_only": true,
+  "development_candidate_selected": false,
+  "predecessor_interlocks": {
+    "bw14v_closure_manifest_path": "sdk/balanced_wave_bw14v_closure_manifest.json",
+    "bw14v_closure_manifest_sha256": "sha256:d12f899aab5a6eeb1445b6a7e7d1ea9b7342344dcdb0327f5c2e042d9a7ce618",
+    "bw14v_posthoc_diagnostic_path": "sdk/balanced_wave_bw14v_posthoc_diagnostic.json",
+    "bw14v_posthoc_diagnostic_sha256": "sha256:d25692264d21358c885a25bacfdbb89124310abf2061911c2bfd0ffe363be84e",
+    "bw14v_world_count": 72,
+    "bw14v_control_walking_count": 33,
+    "bw14v_treatment_walking_count": 0,
+    "bw14v_treatment_reached_declared_correction_cap_count": 36,
+    "bw14v_treatment_evidence_forward_less_than_control_count": 36,
+    "bw14v_treatment_any_release_timeout_count": 31,
+    "bw14v_repair_rerun_reclassification_or_selection_forbidden": true,
+    "r05b_cohort_outcome_exposed": true,
+    "r05c_generator_indices": [193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204],
+    "r05c_campaign_seeds": [38101, 38102, 38103],
+    "r05c_opened": false,
+    "r05c_may_not_be_opened_by_bw15f": true,
+    "unbiased_friction_reservation_opened": false
+  },
+  "mechanism_hypothesis": {
+    "problem": "BW14V-B saturated its full 0.30-rad desired-minus-measured correction in every cell and degraded forward motion, torso height, and tilt in every matched cell.",
+    "hypothesis": "A global small-gain forward-velocity correction can distinguish the legacy error orientation from the mechanically opposed orientation without morphology-specific branches; if the opposed orientation is useful, a second global gain tests whether its effect increases within a prospectively bounded small-gain interval.",
+    "factorial_interpretation": {
+      "a_to_b": "mechanism_on_at_one_tenth_bw14v_gain_with_legacy_orientation",
+      "b_to_c": "error_orientation_only_at_fixed_0_03_rad_gain",
+      "c_to_d": "gain_only_with_fixed_measured_minus_desired_orientation"
+    },
+    "desired_velocity_source": "motion_command.desired_planar_velocity_task_m_s.x",
+    "measured_velocity_source": "dot(state.base_twist_world.linear_velocity_m_s, task_frame.forward_axis_world_unit)",
+    "desired_minus_measured_formula": "clamp((desired-measured)/abs(desired),-1,1); exact_zero_when_abs(desired)<=1e-12",
+    "measured_minus_desired_formula": "-clamp((desired-measured)/abs(desired),-1,1); exact_zero_when_abs(desired)<=1e-12",
+    "gain_values_rad": [0.0, 0.03, 0.06],
+    "gain_basis": "0.03_is_one_tenth_of_the_falsified_bw14v_cap;0.06_is_two_times_the_prospective_small_gain_unit",
+    "cycle_envelope": "unchanged_bw14v_smoothstep_swing_and_one_minus_smoothstep_stance",
+    "phase_factor_varied": false,
+    "phase_experiment_requires_a_distinct_future_identity_if_no_treatment_wins": true,
+    "continuous_at_touchdown": true,
+    "continuous_at_cycle_boundary": true,
+    "morphology_condition_count": 0,
+    "material_condition_count": 0,
+    "seed_condition_count": 0,
+    "failure_identity_condition_count": 0,
+    "outcome_condition_count": 0,
+    "portable_core_owns_mechanism": true,
+    "host_specific_feedback_forbidden": true
+  },
+  "candidate_order": ["BW15F-A", "BW15F-B", "BW15F-C", "BW15F-D"],
+  "candidates": [
+    {
+      "candidate_id": "BW15F-A",
+      "controller_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "mode": "control",
+      "parent_candidate_id": "BW5R-B",
+      "parent_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "profile_schema_version": "sporespore_balanced_wave_filtered_profile_v1",
+      "runtime_profile_sha256": "sha256:e02fa9c7599cffe8b331f7d8c10b6cc4dbffe7408e319169c09cbcb7d9b3890e",
+      "forward_velocity_foot_placement_mode_id": null,
+      "velocity_error_orientation_id": null,
+      "normalized_error_formula": "none",
+      "maximum_hip_target_correction_rad": 0.0,
+      "cycle_envelope": "none",
+      "morphology_condition_count": 0,
+      "material_condition_count": 0,
+      "seed_condition_count": 0,
+      "failure_identity_condition_count": 0,
+      "outcome_condition_count": 0,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW15F-B",
+      "controller_policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+      "mode": "forward_velocity_foot_placement",
+      "parent_candidate_id": "BW5R-B",
+      "parent_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "profile_schema_version": "sporespore_balanced_wave_signed_forward_velocity_foot_placement_profile_v1",
+      "runtime_profile_sha256": "sha256:1134302a1566e12d1e1179beebed893176eeed88065920855026e903738bb413",
+      "forward_velocity_foot_placement_mode_id": "forward_velocity_foot_placement_v1",
+      "velocity_error_orientation_id": "desired_minus_measured_forward_velocity_error_v1",
+      "normalized_error_formula": "clamp((desired-measured)/abs(desired),-1,1); exact_zero_when_abs(desired)<=1e-12",
+      "maximum_hip_target_correction_rad": 0.03,
+      "cycle_envelope": "unchanged_bw14v_smoothstep_swing_and_one_minus_smoothstep_stance",
+      "morphology_condition_count": 0,
+      "material_condition_count": 0,
+      "seed_condition_count": 0,
+      "failure_identity_condition_count": 0,
+      "outcome_condition_count": 0,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW15F-C",
+      "controller_policy_id": "sporespore_balanced_wave_bw15f_c_v1",
+      "mode": "forward_velocity_foot_placement",
+      "parent_candidate_id": "BW5R-B",
+      "parent_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "profile_schema_version": "sporespore_balanced_wave_signed_forward_velocity_foot_placement_profile_v1",
+      "runtime_profile_sha256": "sha256:c18b5ff2202060a4f6e8e0a93c57eb9137e5394c99170e4b8edb9a569340f796",
+      "forward_velocity_foot_placement_mode_id": "forward_velocity_foot_placement_v1",
+      "velocity_error_orientation_id": "measured_minus_desired_forward_velocity_error_v1",
+      "normalized_error_formula": "-clamp((desired-measured)/abs(desired),-1,1); exact_zero_when_abs(desired)<=1e-12",
+      "maximum_hip_target_correction_rad": 0.03,
+      "cycle_envelope": "unchanged_bw14v_smoothstep_swing_and_one_minus_smoothstep_stance",
+      "morphology_condition_count": 0,
+      "material_condition_count": 0,
+      "seed_condition_count": 0,
+      "failure_identity_condition_count": 0,
+      "outcome_condition_count": 0,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW15F-D",
+      "controller_policy_id": "sporespore_balanced_wave_bw15f_d_v1",
+      "mode": "forward_velocity_foot_placement",
+      "parent_candidate_id": "BW5R-B",
+      "parent_policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+      "profile_schema_version": "sporespore_balanced_wave_signed_forward_velocity_foot_placement_profile_v1",
+      "runtime_profile_sha256": "sha256:7355df08b7650412326535fdc51fba0e805dc20b1b8fe7d3d018537eeb503466",
+      "forward_velocity_foot_placement_mode_id": "forward_velocity_foot_placement_v1",
+      "velocity_error_orientation_id": "measured_minus_desired_forward_velocity_error_v1",
+      "normalized_error_formula": "-clamp((desired-measured)/abs(desired),-1,1); exact_zero_when_abs(desired)<=1e-12",
+      "maximum_hip_target_correction_rad": 0.06,
+      "cycle_envelope": "unchanged_bw14v_smoothstep_swing_and_one_minus_smoothstep_stance",
+      "morphology_condition_count": 0,
+      "material_condition_count": 0,
+      "seed_condition_count": 0,
+      "failure_identity_condition_count": 0,
+      "outcome_condition_count": 0,
+      "branch_surfaces": []
+    }
+  ],
+  "candidate_policy_digests": {
+    "BW15F-A": "sha256:ac9fe7e62493ed2d21d3c95f0eb51cde45d7a53e7e22365ce422c68ad031a423",
+    "BW15F-B": "sha256:7e6004c57a1f2b193beb3757c5b45ecc3589aabd1b70c103920f0a74dd1207cd",
+    "BW15F-C": "sha256:7ba445b2756a8fc43e245334f3215fc77dd5c68142dd0be33a3dfeaf2c75433f",
+    "BW15F-D": "sha256:f26320a4019a86f1ec700f297af12156a61ea41a026d489b69d1b649fafdcf60"
+  },
+  "engine": {
+    "adapter_id": "godot_jolt_gdextension_v1",
+    "physics_engine": "Jolt Physics",
+    "physics_hz": 120,
+    "solver_policy_id": "jolt_120hz_20v_7p_v1",
+    "solver_velocity_steps": 20,
+    "solver_position_steps": 7,
+    "authority_scope": "post_settle_full",
+    "exclusive_native_motor_authority_required": true,
+    "direct_body_writes_forbidden": true
+  },
+  "material": {
+    "profile_id": "godot_jolt_bw5c_mu095_v1",
+    "authored_friction": 0.95,
+    "characterized_friction_coefficient": 0.94,
+    "held_constant_across_every_cell": true,
+    "material_robustness_claim": false
+  },
+  "morphology_generator": {
+    "source_path": "scripts/lab/gait/physical_quadruped_proportion_spec.gd",
+    "generator_policy_id": "qsdk_r05b_radical_inverse_piecewise_shell_v1",
+    "generator_indices": [181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192],
+    "cohort_was_outcome_exposed_before_this_freeze": true,
+    "cohort_role": "paired_development_only",
+    "cells": [
+      {
+        "generator_index": 181,
+        "morphology_id": "qsdk_r05b_generated_s181",
+        "generator_receipt_sha256": "sha256:25ff2236011856d76fd458750ef97cf2532b85dff6bbb619fdc8b9e38d8b77ed",
+        "proportion_spec_sha256": "sha256:b7759aa817b678f99a92ed14ba7897e161174a4ec7e89798516458f847fd3142"
+      },
+      {
+        "generator_index": 182,
+        "morphology_id": "qsdk_r05b_generated_s182",
+        "generator_receipt_sha256": "sha256:c791399ed4a1ef687395d091538a1a35cd0958f5dfc84291e655c17ec8b9b664",
+        "proportion_spec_sha256": "sha256:df95cb35efc9dc98a511aa33ebc87d20035837bb4441249ae4786c75433ca984"
+      },
+      {
+        "generator_index": 183,
+        "morphology_id": "qsdk_r05b_generated_s183",
+        "generator_receipt_sha256": "sha256:7c14d4758a8278c042e33b67fe00cebf7a52028fad6519c191d8e0935534f860",
+        "proportion_spec_sha256": "sha256:c2a3a6dbbdcb7c2fc1403a912384aeb3231fe4bbd82f3a883ab4fe23478ff32d"
+      },
+      {
+        "generator_index": 184,
+        "morphology_id": "qsdk_r05b_generated_s184",
+        "generator_receipt_sha256": "sha256:1e025fc3c3edcc6b002b21281e32f867a502f0dcc06764012cefd1ccbdc9409d",
+        "proportion_spec_sha256": "sha256:fd379ed073df23945f3dc94b1f6591f616f4d6d16e58ad57f2ea81d746513cc2"
+      },
+      {
+        "generator_index": 185,
+        "morphology_id": "qsdk_r05b_generated_s185",
+        "generator_receipt_sha256": "sha256:e91689553b2730bff295256908270412a504af42ed233113b3717d2cdb2ade22",
+        "proportion_spec_sha256": "sha256:831c4ca7c0f84b3e2069f5b4104abdbfd88e3b8987efd06e47be3a8c4e989512"
+      },
+      {
+        "generator_index": 186,
+        "morphology_id": "qsdk_r05b_generated_s186",
+        "generator_receipt_sha256": "sha256:b4289832e91c540cf7bf229cd37bad355e9be5d3936b0cc3b6f2a0f6bdebaaa1",
+        "proportion_spec_sha256": "sha256:667e62efa3b8a0c5e60b9d3aa17776677460040867d80970b1f7a96f5989c642"
+      },
+      {
+        "generator_index": 187,
+        "morphology_id": "qsdk_r05b_generated_s187",
+        "generator_receipt_sha256": "sha256:98563bd7ee960b670d57d5e91e8c30e34d13e3b4515650eb8dd6fc22a0fb26c2",
+        "proportion_spec_sha256": "sha256:95cfd1541b7c91b8b213a8a46ce26d02c9510d143e546885e1e4fcbc13d95e5f"
+      },
+      {
+        "generator_index": 188,
+        "morphology_id": "qsdk_r05b_generated_s188",
+        "generator_receipt_sha256": "sha256:8052d548d01cba6fcfb7aeba407e22f354c1b75d36b8b44c5feac3bd822282f7",
+        "proportion_spec_sha256": "sha256:3f8ad516a82a8060472b101833ef77a3c2e69b8cb7728367fea677f95b4bac54"
+      },
+      {
+        "generator_index": 189,
+        "morphology_id": "qsdk_r05b_generated_s189",
+        "generator_receipt_sha256": "sha256:25911d0fc9ba44c49b3380f4ee1ebf290e46d4e76896b4d6852db129fda90c3a",
+        "proportion_spec_sha256": "sha256:a6a1741063b1c7a4fefffc06c15fce74289113bf4a708e13a59a5bbdad5dd39f"
+      },
+      {
+        "generator_index": 190,
+        "morphology_id": "qsdk_r05b_generated_s190",
+        "generator_receipt_sha256": "sha256:0c4277f8b2741dbd6c1fd074f02b2561e0205ae3881f2e76798116007cdca27a",
+        "proportion_spec_sha256": "sha256:1fdca6501ca00f0f3bd00326800ab922294d2231c474a2621da3d7547c287d93"
+      },
+      {
+        "generator_index": 191,
+        "morphology_id": "qsdk_r05b_generated_s191",
+        "generator_receipt_sha256": "sha256:dd0aeccdfde410de198e900b7775f14200172cd5c9fb7638d9d7e149f9a89706",
+        "proportion_spec_sha256": "sha256:276cdce02776558a37da1ac9f847460e2e388f97be820d4f87a75b7c501924f8"
+      },
+      {
+        "generator_index": 192,
+        "morphology_id": "qsdk_r05b_generated_s192",
+        "generator_receipt_sha256": "sha256:dbc81685425704ffbdb1414c783189fc6cdb55ee273c5ffb1b9d97e344d5b302",
+        "proportion_spec_sha256": "sha256:7702f4594dc69232dd4c7678797e467d16676a17ef82045f3ec9ff9a2806efb1"
+      }
+    ]
+  },
+  "repetitions": {
+    "campaign_seeds": [21601, 21602, 21603],
+    "same_three_seeded_initial_perturbations_apply_to_every_candidate": true,
+    "expected_world_count": 36,
+    "expected_world_count_per_candidate": 36,
+    "expected_complete_world_count": 144,
+    "early_stop_for_outcome_forbidden": true,
+    "failed_cell_deletion_replacement_averaging_or_threshold_change_forbidden": true,
+    "first_complete_result_is_final_for_each_candidate_source_identity": true
+  },
+  "mechanism_receipt_eligibility": {
+    "control_requires_mechanism_disabled_and_zero_receipt_count": true,
+    "treatments_require_one_forward_velocity_receipt_per_sdk_step": true,
+    "treatments_require_four_ordered_limb_corrections_per_receipt": true,
+    "receipt_orientation_must_equal_candidate_declaration": true,
+    "normalized_error_must_remain_in_closed_unit_interval": true,
+    "hip_correction_magnitude_must_not_exceed_candidate_declared_gain": true,
+    "all_candidates_require_exact_native_motor_writes_per_sdk_step": true,
+    "all_candidates_require_zero_direct_body_writes": true
+  },
+  "report_aggregation_revision": {
+    "source_path": "sdk/experiment_result_integrity.ps1",
+    "perfect_all_zero_36_cell_matrix_must_pass_exact_production_aggregate_gate": true,
+    "nonzero_ordered_dictionary_canary_required": true,
+    "canary_failed_production_walking_gate_count": 3,
+    "canary_release_timeout_count": 2,
+    "measure_object_property_aggregation_forbidden": true
+  },
+  "mandatory_launch_preflights": [
+    {
+      "test_path": "tests/test_bw14v_closure.ps1",
+      "requirement": "The closed BW14V family and sealed reservations remain byte- and hash-exact."
+    },
+    {
+      "test_path": "tests/test_bw14v_posthoc_diagnostic.ps1",
+      "requirement": "The matched sign-gain diagnostic recomputes exactly from all 72 retained BW14V worlds."
+    },
+    {
+      "test_path": "tests/test_experiment_result_integrity_preflight.ps1",
+      "requirement": "The production result-integrity gate accepts a declared perfect all-zero matrix and preserves a nonzero ordered-dictionary canary before any world."
+    },
+    {
+      "test_path": "tests/test_sdk_balanced_wave_bw15f_authority_contract.gd",
+      "requirement": "All four portable policy identities, typed v5 receipts, orientation signs, gain ratios, profile inheritance, Godot routing, and full-authority boundaries pass with zero worlds."
+    },
+    {
+      "test_path": "tests/test_sdk_balanced_wave_bw15f_morphology_development.gd",
+      "mode": "preflight",
+      "requirement": "All 36 exact candidate/cohort entrypoints pass before any world."
+    },
+    {
+      "test_path": "tests/test_bw15f_selector.ps1",
+      "requirement": "The four-report selector proves strict treatment selection, declared treatment tie order, control-tie rejection, and fail-closed handling of missing or identity-invalid reports."
+    },
+    {
+      "test_path": "sdk/run_balanced_wave_bw15f_morphology_development.ps1",
+      "mode": "synthetic_runner_report_preflight",
+      "requirement": "The exact launcher aggregate and report path pass both all-zero and nonzero canaries before evidence-directory creation."
+    }
+  ],
+  "selection": {
+    "control_candidate": "BW15F-A",
+    "selectable_treatments": ["BW15F-B", "BW15F-C", "BW15F-D"],
+    "all_candidate_reports_required": true,
+    "metric_order": [
+      "walking_conjunction_failure_count",
+      "aggregate_failed_production_walking_gate_count",
+      "aggregate_release_timeout_count",
+      "maximum_normalized_absolute_task_frame_lateral_displacement",
+      "aggregate_normalized_absolute_task_frame_lateral_displacement",
+      "aggregate_cumulative_absolute_cross_track_error_m_s"
+    ],
+    "best_treatment_must_be_strictly_lexicographically_better_than_control": true,
+    "treatment_tie_order": ["BW15F-B", "BW15F-C", "BW15F-D"],
+    "ties_with_control_reject_every_treatment": true,
+    "selection_does_not_authorize_walking_or_independent_validation": true,
+    "selected_treatment_requires_new_prospectively_frozen_independent_validation": true
+  },
+  "claim_boundary": {
+    "walking_acceptance": false,
+    "balance_improvement": false,
+    "independent_morphology_validation": false,
+    "finite_population_only": true,
+    "finite_outcome_exposed_development_cohort_only": true,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "different_physics_engines": false,
+    "running": false,
+    "completed_engine_neutral_sdk": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md"
+    }
+  ]
+}

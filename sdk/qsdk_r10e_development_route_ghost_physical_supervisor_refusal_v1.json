@@ -1,0 +1,118 @@
+{
+  "schema_version": "sporespore_qsdk_r10e_physical_supervisor_refusal_v1",
+  "status": "closed_infrastructure_invalid_pre_physics_output_identity_unconsumed",
+  "gate_id": "QSDK-R10E",
+  "repair_id": "QSDK-R10E-L2",
+  "campaign_id": "QSDK-R10E-OBSERVER-MINIMIZED-UPRIGHT-PUSH-RECOVERY-ROUTE-GHOST",
+  "campaign_role": "development_route_ghost",
+  "question_class": "development",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "closed_pre_physics_supervisor_refusal",
+    "question_class": "development"
+  },
+  "observed_date": "2026-09-04",
+  "invocation": {
+    "mode": "Physical",
+    "command": "pwsh -NoProfile -File sdk/run_qsdk_r10e_observer_minimized_upright_push_recovery.ps1 -Mode Physical -CampaignRole development_route_ghost -AuthorizePhysical",
+    "process_exit_code": 1,
+    "terminal_error_first_line": "The term 'if' is not recognized as a name of a cmdlet, function, script file, or executable program.",
+    "same_authority_graph_rerun_permitted": false
+  },
+  "source": {
+    "source_commit": "0dbd259477d01c6de026f4c99587619a69b59b44",
+    "source_tree_git_oid": "42364f743ce3226868537436259b24f715df0469",
+    "qualification_commit": "047739f02306d20f28153ef34758ec3d30fbcb2e",
+    "qualification_tree_git_oid": "956853461fbd1fadd15d27b6778cf6402aed38f9",
+    "authorization_commit": "716feb860ba3ca980d90cb96cc4d72cd2e24b808",
+    "authorization_tree_git_oid": "975426eac66af7e85e9181528cd2da6775e3690d",
+    "branch": "main",
+    "remote": "https://github.com/Slagathore/sporespore.git",
+    "local_origin_live_equal_before_invocation": true,
+    "worktree_clean_before_invocation": true
+  },
+  "authority_bindings": {
+    "stage_freeze": {
+      "path": "sdk/qsdk_r10e_development_route_ghost_zero_world_qualification_closure_v1.json",
+      "byte_length": 3934,
+      "raw_sha256": "sha256:485e4f198c0cdeb3d86eb53251f858ca6753fc601590f7b94721aff17ac5ceb3",
+      "git_blob_oid": "8699d019c12f210eca321ae70b36a4b7f63fa59b"
+    },
+    "execution_authority": {
+      "path": "sdk/qsdk_r10e_development_route_ghost_execution_authority_v1.json",
+      "byte_length": 2067,
+      "raw_sha256": "sha256:be404df1a74445032dbadcd3624534fe66d524a82d7b4dcd25cb6516497d1131",
+      "git_blob_oid": "b47d0a79638210268b1c256d067f96f6a6544ba0"
+    },
+    "qualification_completion": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10e-development-route-ghost-zero-world-qualification-0dbd259477d0/qualification_completion.json",
+      "byte_length": 2731,
+      "raw_sha256": "sha256:a05693864ac28ce6cc11addf093a10de8e9986b194650a73b0a1d52f51ef7ba9"
+    },
+    "qualified_source_path_count": 85,
+    "qualified_source_path_sha256": "sha256:fa7dd62aa503db13c15818a5a66df1fbbf94351348da7a047de950cc99888a1d",
+    "authorized_output_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10e-development-route-ghost-physical-0dbd259477d0",
+    "authorized_output_root_absent_after_refusal": true
+  },
+  "diagnosis": {
+    "classification": "infrastructure_invalid_supervisor_runtime_expression",
+    "failure_predicate": "physical_closure_output_path_selection",
+    "mechanism": "The physical supervisor passed an if statement to Join-Path inside ordinary grouping parentheses. PowerShell's parser accepted that form as a command expression, so physical mode tried to invoke a command named if.",
+    "powershell_parse_error_count": 0,
+    "command_ast_named_if_count": 1,
+    "command_ast_start_line": 1441,
+    "root_cause_expression_start_line": 1440,
+    "authority_check_passed_before_invocation": true,
+    "stage_freeze_sha256_matched": true,
+    "execution_authority_sha256_matched": true,
+    "runtime_identity_sha256_matched": true,
+    "sole_observed_runtime_expression_failure": true
+  },
+  "execution_boundary": {
+    "physical_supervisor_invocation_count": 1,
+    "operation_lock_acquisition_count": 1,
+    "operation_lock_explicit_release_count": 0,
+    "post_process_lock_probe_created_new": true,
+    "post_process_lock_probe_abandoned_owner_recovered": false,
+    "durable_evidence_directory_created": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "scene_tree_insertion_count": 0,
+    "native_readback_count": 0,
+    "solver_step_count": 0,
+    "locomotion_outcome_exposure_count": 0,
+    "physics_state_modified": false,
+    "physical_attempt_identity_consumed": false
+  },
+  "successor_policy": {
+    "repeat_failed_supervisor_invocation": false,
+    "old_stage_freeze_reusable": false,
+    "old_execution_authority_reusable": false,
+    "new_clean_pushed_source_required": true,
+    "new_official_zero_world_qualification_required": true,
+    "new_stage_freeze_required": true,
+    "new_execution_authority_required": true,
+    "repair_scope": "Declare physical closure paths as role data, exercise both paths in zero-world mode, reject command-AST nodes named if, and begin guaranteed lock release immediately after acquisition.",
+    "controller_changed": false,
+    "fixture_changed": false,
+    "challenge_changed": false,
+    "impulse_changed": false,
+    "threshold_changed": false,
+    "population_changed": false,
+    "physical_canary_added": false
+  },
+  "claim_boundary": {
+    "production_route_construct_step_finalize_retain_pair_evaluate_qualified": false,
+    "bounded_upright_push_recovery_claimed": false,
+    "locomotion_negative_claimed": false,
+    "fall_recovery_claimed": false,
+    "prone_to_standing_claimed": false,
+    "force_aware_recovery_claimed": false,
+    "other_engine_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

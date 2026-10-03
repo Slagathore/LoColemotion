@@ -1,0 +1,235 @@
+{
+  "schema_version": "sporespore_v55_initialized_zero_brake_component_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_core_and_native_c_abi",
+    "authority_mode": "finite_native_component_validation",
+    "question_class": "development"
+  },
+  "status": "native_component_verified_physical_route_pending",
+  "design": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10o_initialized_zero_brake_successor_design_v1.json",
+    "byte_length": 11677,
+    "raw_sha256": "sha256:9a4bb652285cbf468568a6313405bf034d2fdd7944a08c19671c78dd5c648a2b"
+  },
+  "pre_execution_refusal": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-preflight-6ee81c5acf2e4486bca302e1e9c15881/preflight_failure.json",
+    "byte_length": 490643,
+    "raw_sha256": "sha256:8319c754eed753e476c065223e4a06ffa6c1a82ba1f56350a2793bd28806253e"
+  },
+  "failed_test_attempt": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/execution.json",
+      "byte_length": 801,
+      "raw_sha256": "sha256:c66179ff09e69b7085c4a903a02de313757e59422f6e8d75d0e84861e04839b6"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/source-stability.json",
+      "byte_length": 31,
+      "raw_sha256": "sha256:b664e7ad8c408835bdfefe88b0b8d2fae5d32c0e51d8c0698ecc1674d5890de5"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/source_after.json",
+      "byte_length": 490160,
+      "raw_sha256": "sha256:18ec1fb28836bc1aef45b5beea5ffe095cfee92c15623af8404cbcd535ebf068"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/source_before.json",
+      "byte_length": 490160,
+      "raw_sha256": "sha256:18ec1fb28836bc1aef45b5beea5ffe095cfee92c15623af8404cbcd535ebf068"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/stderr.log",
+      "byte_length": 1738,
+      "raw_sha256": "sha256:b0cd8c829239f8e93d00c5bd2cdaf29c16cd97db91c95933d4e9ce08e0c7e555"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/stdout.log",
+      "byte_length": 0,
+      "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/v55/crossed-packet-refusals.json",
+      "byte_length": 107496,
+      "raw_sha256": "sha256:4b0b6d89016ceca27494a6bedfb59aa5e6b7cd34e4b9b2ae7b7b68b26fa33bb4"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/v55/identity.json",
+      "byte_length": 2953,
+      "raw_sha256": "sha256:ac9e444bca03cb7cb5550acf33c96666646a87fbc098046d96b3b874b3493ecc"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/v55/legacy-current-memory.json",
+      "byte_length": 84166,
+      "raw_sha256": "sha256:0179f1043e0b56991029f647a3447330e646ac3e02d5509368f5c9b59d92dd90"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-0eedef7acac649338e601e6592da5e82/v55/original-byte-compatibility.json",
+      "byte_length": 348270,
+      "raw_sha256": "sha256:5c1eded5eabad9401e35910b761408b871bc2e6b651cd396bd9ecfcfe2f3cbfd"
+    }
+  ],
+  "test_expectation_repair": "The initialization cap is an upper bound, not a requirement that every motor saturate. Corrected both consumers to enforce <=0.25 and exact original V53 motor-command equality. Native DLL and scientific thresholds unchanged.",
+  "cold_auditor_diagnosis": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-cold-audit-diagnosis-3ceb1ec53f2441968ac07ee85799b83e/diagnosis.json",
+    "byte_length": 580134,
+    "raw_sha256": "sha256:bd8168fd7e21b65e3269deecab75d3fd410e1ede2dac3e61fdc54c6295f71cf8"
+  },
+  "cold_auditor_correction": "Thread exact native-emitted memory through every copied measurement sequence, as the component tests do. Re-normalizing old recorded memory can erase signed zero and cannot reconstruct the new native response bytes.",
+  "auditor": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/v55_initialized_zero_brake.py",
+    "byte_length": 19343,
+    "raw_sha256": "sha256:6edac989d45dece649ae3ce31e15e7bfc029e5d4bc613dd607b8f512d9473bf7"
+  },
+  "test_source": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/tests/test_development_v55_initialized_zero_brake.py",
+    "byte_length": 13754,
+    "raw_sha256": "sha256:81ffbc5d4b3db003a79253beeebd15b58c1af1711657426d4677f3817383bb09"
+  },
+  "executed_driver_raw_sha256": "sha256:aa9da92e5c512a022cbfbc3cb62c6ab52e605f82c05bf37ec5640eba01beb96f",
+  "execution_driver_function_unchanged": true,
+  "predecessor_runtime_binding": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/development/recovery_candidates/v54-zero-velocity-brake-core-v1.runtime.json",
+    "byte_length": 26309,
+    "raw_sha256": "sha256:d6cc8b6f15b65f853990be0cde0918d23f361f2f47eaae59369fa90040db619d"
+  },
+  "original_recovery_fixtures_byte_exact": 6,
+  "runtime_binding": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/development/recovery_candidates/v55-initialized-zero-brake-core-v1.runtime.json",
+    "byte_length": 26524,
+    "raw_sha256": "sha256:1fa4034f94debaad2b910eedc51eba0c4d0a3a39f38fb812200b5f09afa295ab"
+  },
+  "runtime": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-candidate-build-bea09596be3f4184bd5df530217c826b/sporespore_godot_adapter.dll",
+    "byte_length": 9284608,
+    "raw_sha256": "sha256:c9303b0e7209f63c8b132a271d1ec32ce69f8768409f22d1f4cee6fcd12a5437"
+  },
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0",
+  "execution": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/execution.json",
+    "byte_length": 801,
+    "raw_sha256": "sha256:dd186df993e99285f4cfc95bd732666443c4808aa3961eaf67b70d95af4faed3"
+  },
+  "retained_evidence": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/execution.json",
+      "byte_length": 801,
+      "raw_sha256": "sha256:dd186df993e99285f4cfc95bd732666443c4808aa3961eaf67b70d95af4faed3"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/source-stability.json",
+      "byte_length": 31,
+      "raw_sha256": "sha256:b664e7ad8c408835bdfefe88b0b8d2fae5d32c0e51d8c0698ecc1674d5890de5"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/source_after.json",
+      "byte_length": 491736,
+      "raw_sha256": "sha256:ec16b6682174ddcacc5cc9ebd5b65b581e6c9d309acb03432bca1d3fa03d5daf"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/source_before.json",
+      "byte_length": 491736,
+      "raw_sha256": "sha256:ec16b6682174ddcacc5cc9ebd5b65b581e6c9d309acb03432bca1d3fa03d5daf"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/stderr.log",
+      "byte_length": 1386,
+      "raw_sha256": "sha256:97cacad52b81c2098037e82610b56d95284dffc3b15a2248a7d2f59bea177061"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/stdout.log",
+      "byte_length": 1711,
+      "raw_sha256": "sha256:32313847862584d2bbf07e8a5b96d2707aa200f14adbd75a938d40f61686a4b3"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/v55/crossed-packet-refusals.json",
+      "byte_length": 107496,
+      "raw_sha256": "sha256:4b0b6d89016ceca27494a6bedfb59aa5e6b7cd34e4b9b2ae7b7b68b26fa33bb4"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/v55/identity.json",
+      "byte_length": 2953,
+      "raw_sha256": "sha256:ac9e444bca03cb7cb5550acf33c96666646a87fbc098046d96b3b874b3493ecc"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/v55/legacy-current-memory.json",
+      "byte_length": 84166,
+      "raw_sha256": "sha256:0179f1043e0b56991029f647a3447330e646ac3e02d5509368f5c9b59d92dd90"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/v55/original-byte-compatibility.json",
+      "byte_length": 348270,
+      "raw_sha256": "sha256:5c1eded5eabad9401e35910b761408b871bc2e6b651cd396bd9ecfcfe2f3cbfd"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/v55/r10m-law-and-session.json",
+      "byte_length": 194905,
+      "raw_sha256": "sha256:85fd176f5c9d7a91b415186b271d525585841a25e3fb0dd00012658811d2ec9a"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/v55/startup-360-full-blend.json",
+      "byte_length": 96435743,
+      "raw_sha256": "sha256:5d6d9c2f1d305673317add8f5d2c4be6214f5d8829bfd0c34a2b776b32bcb773"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-v55-component-2bb2cf457ea648958eaf8dfe3e8415d0/v55/unchanged-r10n-timeout.json",
+      "byte_length": 98349,
+      "raw_sha256": "sha256:13ca993ed414aab94264086999ec61a15e4ed7dc32b0c17e1928321e3647c028"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/tests/test_development_v55_initialized_zero_brake.py",
+      "byte_length": 13754,
+      "raw_sha256": "sha256:81ffbc5d4b3db003a79253beeebd15b58c1af1711657426d4677f3817383bb09"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/v55_initialized_zero_brake.py",
+      "byte_length": 19343,
+      "raw_sha256": "sha256:6edac989d45dece649ae3ce31e15e7bfc029e5d4bc613dd607b8f512d9473bf7"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/development_recovery_refusal.py",
+      "byte_length": 8141,
+      "raw_sha256": "sha256:eb2b5904d944802dc5fc83a4508e15cfe159810676dd007e33c4a89cdd648862"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10n_zero_world_state_sweep.py",
+      "byte_length": 9185,
+      "raw_sha256": "sha256:0487712ad0b66e68fd0969a71277b549314790f90497ee407af76be79ad5ff4c"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/python/sporespore_locomotion.py",
+      "byte_length": 39220,
+      "raw_sha256": "sha256:e6f12c94535b052e52f2edd8af6b5c1431a875fc3461ac73b88afbf98b390e61"
+    }
+  ],
+  "core_tests_passed": 391,
+  "component_tests_passed": 7,
+  "original_native_responses_byte_exact": 4170,
+  "v55_r10m_commands_verified": 2302,
+  "v55_legacy_current_memory_commands": 1010,
+  "v55_r10n_valid_commands": 857,
+  "v55_r10n_timeout_preserved": true,
+  "startup_cases": 1800,
+  "startup_calls": 131400,
+  "complete_startup_blend_cases": 1800,
+  "startup_refusal_counts": {},
+  "cold_native_reproductions": 5976,
+  "cold_negative_control_reproductions": 4,
+  "verification_limits": [
+    "Cold reproduction covers every regular-history command and all 1800 synthetic startup terminal inputs; interior synthetic startup steps are retained by response hashes and frozen test execution.",
+    "The 360 synthetic gait clocks reuse five exposed measured sequences, not 360 physically generated prefix-phase handoff states.",
+    "Copied measurements do not predict the physical response to changed motor commands. No recovery, locomotion or settled-stop acceptance follows."
+  ],
+  "claim_boundary": {
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_route_integrated": false,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "original_attempt_reclassified": false,
+    "sdk1_score": "14/20"
+  }
+}

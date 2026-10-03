@@ -1,0 +1,127 @@
+{
+  "schema_version": "sporespore_r23d52_godot_origin_timing_analysis_manifest_v1",
+  "analysis_id": "QSDK-R23D52-GODOT-ORIGIN-TIMING-D1",
+  "status": "postclosure_outcome_exposed_descriptive_diagnosis",
+  "purpose": "Determine whether R23D52 isolated its task-origin change to the commanded-turn onset, identify the first same-seed controller and physical divergence from R23D48, and constrain any later origin-timing successor without changing either frozen verdict.",
+  "data_exposure_boundary": {
+    "r23d48_and_r23d52_outcomes_already_observed": true,
+    "projection_is_descriptive_not_confirmatory": true,
+    "r23d48_verdict_unchanged": true,
+    "r23d52_verdict_unchanged": true,
+    "r23d52_exact_policy_rejected": true,
+    "future_successor_physical_outcome_known": false
+  },
+  "source_closures": [
+    {
+      "gate_id": "QSDK-R23D48",
+      "path": "sdk/turning/r23d48_support_loss_conditioned_three_engine_turning_closure_v1.json",
+      "addition_commit": "2553aad64ca695bbb55a426207c7b9e21cdb85c4",
+      "git_blob_oid": "9f0a1d7d3a90bf7b8558b310f1fb773ff47f4b1d",
+      "raw_sha256": "sha256:5b2ce3553a78836035c6a7b6ff11ee585cb615f0ebcc70341902e7bca58b7063",
+      "status": "closed_consumed_invalid_complete_rapier_trace_publication_failure_with_valid_mujoco_turning_and_godot_turning_negative"
+    },
+    {
+      "gate_id": "QSDK-R23D52",
+      "path": "sdk/turning/r23d52_godot_segment_origin_reanchor_closure_v1.json",
+      "addition_commit": "f86f4fa51f749d9dd100b9d90b6950167fc650ca",
+      "git_blob_oid": "28402394a92ced33d6ad2dc229a9bbe9e7c9a80c",
+      "raw_sha256": "sha256:7b0a223362b33f58a40c82f7abb472215dead910ab8d2b3f3d4661943c557bea",
+      "status": "closed_consumed_valid_complete_negative_outcome_exposed_godot_segment_origin_implementation_replay"
+    }
+  ],
+  "trace_contract": {
+    "trace_schema_version": "sporespore_qsdk_r23d48_turning_trace_row_v1",
+    "expected_trace_row_count": 2992,
+    "turn_start_semantic_step": 600,
+    "turn_end_semantic_step_exclusive": 1800,
+    "gait_cycle_steps": 360,
+    "r23d48_task_frame_origin_policy_id": "fixed_initial_origin_v1",
+    "r23d52_task_frame_origin_policy_id": "heading_segment_origin_reanchor_v1",
+    "r23d52_expected_reanchor_steps": [0, 600, 1800, 2400],
+    "physical_observation_fields": [
+      "torso_position_world_m",
+      "torso_height_m",
+      "torso_tilt_rad",
+      "measured_yaw_rad",
+      "ordered_foot_contacts_before",
+      "ordered_foot_contacts_after",
+      "ordered_limb_phase_before",
+      "torso_ground_contact"
+    ],
+    "controller_projection_fields": [
+      "cross_track_error_m",
+      "cross_track_velocity_m_s",
+      "desired_heading_error_rad",
+      "yaw_tracking_error_rad",
+      "requested_steering_fraction",
+      "held_steering_fraction"
+    ]
+  },
+  "pairs": [
+    {
+      "arm_id": "reference_zero",
+      "command_sign": 0,
+      "r23d48": {
+        "cell_id": "godot_jolt__r23d29_support_loss_conditioned_turning_validation__reference_zero",
+        "trace_sha256": "sha256:b4ba0c4e54dc499a201b863810f9a5a6f8b4cc1b9c9d46125fd4e518b4505abe",
+        "trace_byte_length": 6812082
+      },
+      "r23d52": {
+        "cell_id": "godot_jolt__r23d29_heading_segment_origin_reanchor_implementation_replay__reference_zero",
+        "trace_sha256": "sha256:0970708298a5657f287bbc9b97e162c63d79cd2427b36a50a38a696e9941ca5e",
+        "trace_byte_length": 7543944
+      }
+    },
+    {
+      "arm_id": "positive_heading",
+      "command_sign": 1,
+      "r23d48": {
+        "cell_id": "godot_jolt__r23d29_support_loss_conditioned_turning_validation__positive_heading",
+        "trace_sha256": "sha256:5923d24c3a8e6473a32614164d07887e7fd576650be0f5a3bf7606a4ec2b207b",
+        "trace_byte_length": 6803360
+      },
+      "r23d52": {
+        "cell_id": "godot_jolt__r23d29_heading_segment_origin_reanchor_implementation_replay__positive_heading",
+        "trace_sha256": "sha256:18a4ebf11f1a777c14fcd98bf285535ef2fcbd4ce295d7df08ed90cb9033cb28",
+        "trace_byte_length": 7551955
+      }
+    },
+    {
+      "arm_id": "negative_heading",
+      "command_sign": -1,
+      "r23d48": {
+        "cell_id": "godot_jolt__r23d29_support_loss_conditioned_turning_validation__negative_heading",
+        "trace_sha256": "sha256:42db2b00ddd13d67c36af550f78b2f695a2b504983f0d1adbc605956492e589d",
+        "trace_byte_length": 6798989
+      },
+      "r23d52": {
+        "cell_id": "godot_jolt__r23d29_heading_segment_origin_reanchor_implementation_replay__negative_heading",
+        "trace_sha256": "sha256:cda390fcfbca5a36d6571b391048767b481dcc1d450915925877057555cb6622",
+        "trace_byte_length": 7524947
+      }
+    }
+  ],
+  "successor_constraint": {
+    "supported_mechanism_question": "warmup_preserving_command_onset_origin_reanchor",
+    "fixed_initial_origin_required_through_semantic_step": 599,
+    "earliest_permitted_reanchor_semantic_step": 600,
+    "same_outcome_exposed_seed_permitted_for_development_only": true,
+    "fresh_held_out_validation_required_after_selection": true,
+    "engine_identity_branch_permitted": false,
+    "arm_identity_branch_permitted": false
+  },
+  "claim_limits": {
+    "historical_result_reinterpreted": false,
+    "r23d52_exact_policy_selected": false,
+    "turn_onset_only_reanchor_tested": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "godot_jolt_turning_validation": false,
+    "portable_basic_turning": false,
+    "finite_three_engine_turning": false,
+    "cross_engine_equivalence": false,
+    "prone_to_standing": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

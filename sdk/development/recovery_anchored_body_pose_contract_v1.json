@@ -1,0 +1,42 @@
+{
+  "schema_version": "sporespore_recovery_anchored_body_pose_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": [
+      "core"
+    ],
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V47",
+  "policy_id": "sporespore_balanced_wave_recovery_anchored_body_pose_v1",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_measured_pose_support_v1",
+  "evidence_basis": "sdk/development/v46_mujoco_closed_loop_closure_v1.json",
+  "question": "Can stationary world foot references and a separate upright body pose retain support through the existing measured transfer gate and finite walking/stop schedule?",
+  "change": "Replace the drifting-pose floor and common-lowering goal calculation with analytically checked two-link inverse kinematics relative to an independent upright yaw-only body reference. Initialize each foot endpoint reference from synchronized measured bodies (horizontal coordinates) and the declared floor plus capsule radius (height); references are commands, never contact estimates. Keep stance endpoints fixed. Map the existing measured-transfer hip bias to a bounded body translation -leg_length*bias along the initial measured anatomical forward axis. Smoothly lower the desired body from its measured initial height to floor+foot_radius+0.33 m over the same first 72 intervals. Swing the selected foot 0.06 m forward with a cubic horizontal path and 0.02 m sinusoidal lift over the existing 72-step swing. Commit its new planned anchor only at the following stance phase. A phase hold freezes the trajectory; preparation at phase zero has no lift. Zero amplitude retains the last supported reference rather than requesting straight knees. Track the bounded reference with the existing position gain, rate damping, full reference velocity, motor sign, speed and native force caps. Reject unreachable or out-of-joint-bound targets before producing actuation.",
+  "unchanged": [
+    "strict v3 measured body/floor input and native contact truth",
+    "V45 measured COM triangle readiness, dwell, bias limits and finite preparation timeout",
+    "inherited support guard and gait clock ownership",
+    "old policy identities, output bytes, evidence and acceptance thresholds",
+    "native morphology, contact, motor-force and stepping route"
+  ],
+  "parameters": {
+    "reference_leg_vertical_m": 0.33,
+    "body_height_ramp_steps": 72,
+    "step_length_m": 0.06,
+    "swing_lift_m": 0.02,
+    "swing_steps": 72
+  },
+  "limitations": "A bounded fixed-heading development controller for this declared recovery morphology. Upright/reference geometry does not replace measured orientation or contact. No force control, arbitrary morphology, successful recovery, release or cross-engine equivalence claim. Feasibility refusals remain negative observations.",
+  "verification": [
+    "independent IK/FK and joint bounds through body translation and complete swing path",
+    "reference memory clock, identity, finite domains and crossed-policy refusals",
+    "old policy byte-exact C ABI regressions",
+    "stateless/cached identity and chained measured frames",
+    "complete affected-route zero-world safety gate before a fresh bounded native diagnostic"
+  ],
+  "physical_attempt_selected": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

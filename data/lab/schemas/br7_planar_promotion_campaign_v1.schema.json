@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br7_planar_promotion_campaign_v1.schema.json",
+  "title": "SporeSpore BR7 planar stance promotion campaign v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "campaign_id",
+    "campaign_version",
+    "milestone_id",
+    "claim_boundary",
+    "process_policy",
+    "source_policy",
+    "br1_inventory_guard",
+    "role_accounting",
+    "programs",
+    "does_not_establish"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br7_planar_promotion_campaign.v1"
+    },
+    "campaign_id": {
+      "const": "BR7_PLANAR_PROMOTION_CAMPAIGN_V1"
+    },
+    "campaign_version": {
+      "const": 1
+    },
+    "milestone_id": {
+      "const": "BR7_PLANAR_MULTI_CONTACT_STANCE"
+    },
+    "claim_boundary": {
+      "const": "This campaign can certify only the exact BR7.0 two-contact planar allocation, BR7.1 friction and unilateral rejection, BR7.2 support/capture segment and support-loss supervision, and BR7.3 live two-leg planar stance program scopes named by the source-pinned programs; BR7.4 is integrity-only containment and cannot substitute for a milestone program. The unpowered Generic6DOF out-of-plane guide is an explicit material scaffold: sagittal X/Y translation and pitch are released while out-of-plane translation, roll, and yaw remain locked, and all guide motors and springs remain off. Two ordinary distal contacts, four paired finite joint actuators, strict non-clamping allocation, whole-system aggregate support and pitch-wrench reconstruction, the declared positive pitch impulse, and the declared right-support removal retain their exact fixture, geometry, mass, timestep, solver, controller, and actuator scopes. Commanded left/right contact shares are not measured per-foot loads. This establishes scaffold-constrained planar height/pitch stance and support-loss detection only, not free 3D standing, unconstrained balance, per-foot measured load allocation, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance."
+    },
+    "process_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clean_committed_source",
+        "fresh_godot_process_per_replicate",
+        "required_replicates_per_program",
+        "pid_recycle_policy",
+        "test_timeout_seconds",
+        "complete_campaign_required",
+        "cherry_pick_policy"
+      ],
+      "properties": {
+        "clean_committed_source": {"const": true},
+        "fresh_godot_process_per_replicate": {"const": true},
+        "required_replicates_per_program": {"const": 2},
+        "pid_recycle_policy": {"const": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded"},
+        "test_timeout_seconds": {"const": 300},
+        "complete_campaign_required": {"const": true},
+        "cherry_pick_policy": {"const": "forbidden_all_declared_runs_retained"}
+      }
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "inventory_roots"],
+      "properties": {
+        "identity": {
+          "const": "clean_git_commit_plus_exact_declared_byte_inventory_v1"
+        },
+        "inventory_roots": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/inventory_root"}
+        }
+      }
+    },
+    "br1_inventory_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_path", "sha256", "test_count", "mutation_forbidden"],
+      "properties": {
+        "resource_path": {
+          "const": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json"
+        },
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "test_count": {"const": 62},
+        "mutation_forbidden": {"const": true}
+      }
+    },
+    "role_accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["milestone", "supplementary", "integrity", "total"],
+      "properties": {
+        "milestone": {"$ref": "#/$defs/milestone_role_count"},
+        "supplementary": {"$ref": "#/$defs/zero_role_count"},
+        "integrity": {"$ref": "#/$defs/integrity_role_count"},
+        "total": {"$ref": "#/$defs/total_role_count"}
+      }
+    },
+    "programs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/program"}
+    },
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "Per-contact, per-foot, or per-toe measured load allocation",
+          "Free 3D standing or unconstrained balance",
+          "An absent, negligible, or measured out-of-plane scaffold reaction",
+          "Bracing or fall arrest",
+          "Self-righting or getting up",
+          "Gait, candidate walking, or walking",
+          "Morphology, terrain, complex-foot, or endurance generalization",
+          "Accepted encyclopedia knowledge or automatic creature guidance"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "inventory_root": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "extensions"],
+      "properties": {
+        "kind": {"enum": ["file", "tree"]},
+        "path": {
+          "type": "string",
+          "pattern": "^(?:[A-Za-z0-9_-][A-Za-z0-9_.-]*|\\.[A-Za-z0-9_-][A-Za-z0-9_.-]*)(?:/(?:[A-Za-z0-9_-][A-Za-z0-9_.-]*|\\.[A-Za-z0-9_-][A-Za-z0-9_.-]*))*$"
+        },
+        "extensions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"pattern": "^\\.[a-z0-9]+$"}
+        }
+      }
+    },
+    "role_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["programs", "assertions_per_replicate"],
+      "properties": {
+        "programs": {"type": "integer", "minimum": 0},
+        "assertions_per_replicate": {"type": "integer", "minimum": 0}
+      }
+    },
+    "milestone_role_count": {
+      "allOf": [
+        {"$ref": "#/$defs/role_count"},
+        {
+          "properties": {
+            "programs": {"const": 4},
+            "assertions_per_replicate": {"const": 40}
+          }
+        }
+      ]
+    },
+    "zero_role_count": {
+      "allOf": [
+        {"$ref": "#/$defs/role_count"},
+        {
+          "properties": {
+            "programs": {"const": 0},
+            "assertions_per_replicate": {"const": 0}
+          }
+        }
+      ]
+    },
+    "integrity_role_count": {
+      "allOf": [
+        {"$ref": "#/$defs/role_count"},
+        {
+          "properties": {
+            "programs": {"const": 1},
+            "assertions_per_replicate": {"const": 12}
+          }
+        }
+      ]
+    },
+    "total_role_count": {
+      "allOf": [
+        {"$ref": "#/$defs/role_count"},
+        {
+          "properties": {
+            "programs": {"const": 5},
+            "assertions_per_replicate": {"const": 52}
+          }
+        }
+      ]
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program_id",
+        "cell_id",
+        "evidence_role",
+        "test_resource_path",
+        "expected_assertions",
+        "claim_scope"
+      ],
+      "properties": {
+        "program_id": {
+          "type": "string",
+          "pattern": "^BR7_[A-Z0-9_]+_V1$"
+        },
+        "cell_id": {
+          "enum": ["BR7.0", "BR7.1", "BR7.2", "BR7.3", "BR7.4"]
+        },
+        "evidence_role": {
+          "enum": ["milestone", "supplementary", "integrity"]
+        },
+        "test_resource_path": {
+          "type": "string",
+          "pattern": "^res://tests/test_(?:lab|experimental)_[A-Za-z0-9_.-]+\\.gd$"
+        },
+        "expected_assertions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "claim_scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

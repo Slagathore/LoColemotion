@@ -1,0 +1,71 @@
+{
+  "schema_version": "sporespore_qsdk_r23d63_evaluator_zero_world_rejection_v1",
+  "status": "rejected_before_physical_qualification_or_world_opening",
+  "campaign_id": "QSDK-R23D63-RECEIPT-SCHEMA-REPAIRED-SELECTED-PROFILE-MATCHED-THREE-ENGINE-TURNING-VALIDATION",
+  "gate_id": "QSDK-R23D63",
+  "question_class": "non_physical_evaluator_implementation_validation",
+  "rejected_implementation": {
+    "path": "sdk/turning/r23d63_selected_profile_three_engine_turning_validation_evaluator.py",
+    "raw_sha256": "sha256:74b029e94061dc601b95f26b391b7c1d5e1117507a3e639e3f71c3bedce83336",
+    "zero_world_gate_path": "tests/test_qsdk_r23d63_evaluator.ps1",
+    "zero_world_gate_raw_sha256": "sha256:c58144b434542d03ec75083b0c5c285510100ff00b8d02ca7fd4b85ffd241406",
+    "synthetic_preflight_passed": true,
+    "synthetic_preflight_was_adequate_for_native_trace_compatibility": false,
+    "rejection_reason": "The evaluator fixed TRACE_ACTUATOR_IDS to synthetic placeholder identities derived as <limb>_joint_<index>. Genuine retained Godot/Jolt traces use the public ordered actuator identities front_left_hip_motor through rear_right_knee_motor. The evaluator therefore rejected a genuine 2992-row retained trace at row zero before evaluating its cap values.",
+    "observed_failure_codes": [
+      "R23D63_TRACE_CAP_ORDER_INVALID:0"
+    ]
+  },
+  "cold_native_shape_counterexample": {
+    "source_campaign_id": "QSDK-R23D60-GODOT-KNEE-SOURCE-FROZEN-PROFILE-HELD-OUT-TURNING-VALIDATION",
+    "source_commit": "3d884af6dc0a15aa9bd2cde15de4535a24bb44a2",
+    "cell_id": "godot_jolt__s21516__portable_hip__fixture_knee__reference_zero",
+    "retained_trace_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r23d60-physical-20260816T000359Z/traces/godot_jolt__s21516__portable_hip__fixture_knee__reference_zero.ndjson",
+    "retained_trace_raw_sha256": "sha256:5a90a4b11d9cab5f49513752a0cd2beb3da7346672db3f0747a1b071cab3ccbc",
+    "retained_trace_row_count": 2992,
+    "ordered_actuator_ids": [
+      "front_left_hip_motor",
+      "front_left_knee_motor",
+      "front_right_hip_motor",
+      "front_right_knee_motor",
+      "rear_left_hip_motor",
+      "rear_left_knee_motor",
+      "rear_right_hip_motor",
+      "rear_right_knee_motor"
+    ],
+    "legacy_evaluator_failure_codes": [
+      "R23D63_TRACE_CAP_ORDER_INVALID:0"
+    ],
+    "corrected_public_identity_projection_failure_codes": [],
+    "historical_result_reinterpreted": false,
+    "historical_world_reused_as_r23d63_cell": false,
+    "physical_claim_derived": false
+  },
+  "successor": {
+    "implementation_id": "sporespore_qsdk_r23d63_retained_evidence_evaluator_v2",
+    "path": "sdk/turning/r23d63_selected_profile_three_engine_turning_validation_evaluator_v2.py",
+    "distinct_file_required": true,
+    "legacy_file_mutation_permitted": false,
+    "genuine_native_trace_identity_cold_baseline_required": true,
+    "complete_mutation_suite_required": true
+  },
+  "counts": {
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0
+  },
+  "claims": {
+    "r23d63_complete_zero_world_gate_passed": false,
+    "r23d63_physical_campaign_opened": false,
+    "r23d63_seed_consumed": false,
+    "finite_three_engine_turning": false,
+    "portable_basic_turning": false,
+    "q_sdk_r23_satisfied": false,
+    "cross_engine_equivalence": false,
+    "population_robustness": false,
+    "prone_to_standing": false,
+    "release_authority": false,
+    "physical_acceptance_authority": false
+  }
+}

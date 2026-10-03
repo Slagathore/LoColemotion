@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/matrix_summary_v1.schema.json",
+  "title": "SporeSpore campaign matrix summary v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "campaign_id",
+    "declared_cell_count",
+    "observed_cell_count",
+    "cells",
+    "evidence_validity"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.matrix_summary.v1"},
+    "campaign_id": {"$ref": "#/$defs/stable_id"},
+    "declared_cell_count": {"type": "integer", "minimum": 0},
+    "observed_cell_count": {"type": "integer", "minimum": 0},
+    "cells": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/cell"},
+      "uniqueItems": true
+    },
+    "evidence_validity": {"enum": ["valid", "invalid"]}
+  },
+  "$defs": {
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cell_id", "status", "policy"],
+      "properties": {
+        "cell_id": {"$ref": "#/$defs/stable_id"},
+        "status": {"type": "string", "minLength": 1},
+        "policy": {
+          "enum": [
+            "required_feasible",
+            "expected_infeasible",
+            "exploratory"
+          ]
+        }
+      }
+    }
+  }
+}

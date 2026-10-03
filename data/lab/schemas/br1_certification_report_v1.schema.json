@@ -1,0 +1,1230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br1_certification_report_v1.schema.json",
+  "title": "SporeSpore BR1 L0 evidence-pipeline certification report v1",
+  "description": "The complete, closed report contract accepted by the detached BR1 report attester. A syntactically passing report must still satisfy the attester's cross-record semantic checks.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "certification",
+    "claim_boundary",
+    "generated_utc",
+    "serialization",
+    "repository",
+    "engine",
+    "timeout_policy",
+    "operator_self_tests",
+    "attestation",
+    "detached_report_attestation",
+    "test_inventory",
+    "campaign"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br1_certification_report.v1"
+    },
+    "status": {
+      "const": "pass"
+    },
+    "certification": {
+      "const": "BR1_L0_EVIDENCE_PIPELINE"
+    },
+    "claim_boundary": {
+      "const": "BR1 certifies only the L0 evidence pipeline. It establishes no standing, bracing, recovery, or walking capability."
+    },
+    "generated_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "serialization": {
+      "const": "ordered_compact_utf8_no_bom_v1"
+    },
+    "repository": {
+      "$ref": "#/$defs/repository"
+    },
+    "engine": {
+      "$ref": "#/$defs/engine"
+    },
+    "timeout_policy": {
+      "$ref": "#/$defs/timeout_policy"
+    },
+    "operator_self_tests": {
+      "$ref": "#/$defs/operator_self_tests"
+    },
+    "attestation": {
+      "$ref": "#/$defs/bundle_attestation_policy"
+    },
+    "detached_report_attestation": {
+      "$ref": "#/$defs/report_attestation_policy"
+    },
+    "test_inventory": {
+      "$ref": "#/$defs/test_inventory"
+    },
+    "campaign": {
+      "$ref": "#/$defs/campaign"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 32767
+    },
+    "source_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clean",
+        "commit_sha",
+        "repository_root",
+        "checked_stage"
+      ],
+      "properties": {
+        "clean": {
+          "const": true
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "repository_root": {
+          "$ref": "#/$defs/path"
+        },
+        "checked_stage": {
+          "enum": [
+            "INITIAL",
+            "AFTER_TESTS",
+            "BEFORE_FINAL_SWEEP",
+            "AFTER_FINAL_SWEEP"
+          ]
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "root",
+        "commit_sha",
+        "clean_at_all_recorded_gates",
+        "commit_unchanged_at_all_recorded_gates",
+        "temporal_claim",
+        "gates"
+      ],
+      "properties": {
+        "root": {
+          "$ref": "#/$defs/path"
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "clean_at_all_recorded_gates": {
+          "const": true
+        },
+        "commit_unchanged_at_all_recorded_gates": {
+          "const": true
+        },
+        "temporal_claim": {
+          "const": "Cleanliness and commit identity were observed at the listed gates; this does not claim continuous monitoring between gates."
+        },
+        "gates": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/source_gate"
+          }
+        }
+      }
+    },
+    "engine_identity_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "executable_sha256",
+        "product_version",
+        "file_description",
+        "matches_pinned_build"
+      ],
+      "properties": {
+        "stage": {
+          "enum": [
+            "INITIAL",
+            "AFTER_TESTS",
+            "BEFORE_FINAL_SWEEP",
+            "AFTER_FINAL_SWEEP"
+          ]
+        },
+        "executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "product_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "matches_pinned_build": {
+          "const": true
+        }
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "executable",
+        "expected_version",
+        "observed_version",
+        "expected_executable_sha256",
+        "observed_executable_sha256",
+        "product_version",
+        "file_description",
+        "exact_build_match_at_all_recorded_gates",
+        "identity_gates",
+        "physics_child_executable",
+        "expected_physics_child_executable_sha256",
+        "observed_physics_child_executable_sha256",
+        "physics_child_product_version",
+        "physics_child_file_description",
+        "physics_child_exact_build_match_at_all_recorded_gates",
+        "physics_child_identity_gates"
+      ],
+      "properties": {
+        "executable": {
+          "$ref": "#/$defs/path"
+        },
+        "expected_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observed_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "observed_executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "product_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exact_build_match_at_all_recorded_gates": {
+          "const": true
+        },
+        "identity_gates": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/engine_identity_gate"
+          }
+        },
+        "physics_child_executable": {
+          "$ref": "#/$defs/path"
+        },
+        "expected_physics_child_executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "observed_physics_child_executable_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "physics_child_product_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "physics_child_file_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "physics_child_exact_build_match_at_all_recorded_gates": {
+          "const": true
+        },
+        "physics_child_identity_gates": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/engine_identity_gate"
+          }
+        }
+      }
+    },
+    "timeout_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "per_test_seconds",
+        "lab_suite_seconds",
+        "per_step_seconds",
+        "process_tree_kill_on_timeout",
+        "process_runner_self_test"
+      ],
+      "properties": {
+        "per_test_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600
+        },
+        "lab_suite_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        },
+        "per_step_seconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 86400
+        },
+        "process_tree_kill_on_timeout": {
+          "const": true
+        },
+        "process_runner_self_test": {
+          "const": true
+        }
+      }
+    },
+    "operator_self_tests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "process_runner",
+        "attestation_initializer"
+      ],
+      "properties": {
+        "process_runner": {
+          "$ref": "#/$defs/process_runner_self_test"
+        },
+        "attestation_initializer": {
+          "$ref": "#/$defs/attestation_initializer_self_test"
+        }
+      }
+    },
+    "process_runner_self_test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "success_exit",
+        "nonzero_exit",
+        "timeout_detected",
+        "process_tree_killed",
+        "inherited_descendant_terminated",
+        "containment_tree_closed",
+        "transcript_path",
+        "transcript_sha256"
+      ],
+      "properties": {
+        "pass": {
+          "const": true
+        },
+        "success_exit": {
+          "const": 0
+        },
+        "nonzero_exit": {
+          "const": 37
+        },
+        "timeout_detected": {
+          "const": true
+        },
+        "process_tree_killed": {
+          "const": true
+        },
+        "inherited_descendant_terminated": {
+          "const": true
+        },
+        "containment_tree_closed": {
+          "const": true
+        },
+        "transcript_path": {
+          "$ref": "#/$defs/path"
+        },
+        "transcript_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "attestation_initializer_self_test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "assertions",
+        "production_store_touched",
+        "transcript_path",
+        "transcript_sha256"
+      ],
+      "properties": {
+        "pass": {
+          "const": true
+        },
+        "assertions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "production_store_touched": {
+          "const": false
+        },
+        "transcript_path": {
+          "$ref": "#/$defs/path"
+        },
+        "transcript_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "bundle_attestation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirement",
+        "algorithm",
+        "key_id",
+        "trust_root",
+        "scope"
+      ],
+      "properties": {
+        "requirement": {
+          "const": "production_required"
+        },
+        "algorithm": {
+          "const": "hmac-sha256"
+        },
+        "key_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "trust_root": {
+          "$ref": "#/$defs/path"
+        },
+        "scope": {
+          "const": "Detects post-publication bundle replacement by a writer that cannot read or alter the external trust store."
+        }
+      }
+    },
+    "report_attestation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "timing",
+        "report_rewrite_after_attestation_forbidden",
+        "cli_resource",
+        "receipt_schema",
+        "algorithm",
+        "trust_mode",
+        "certification_id"
+      ],
+      "properties": {
+        "required": {
+          "const": true
+        },
+        "timing": {
+          "const": "after_complete_report_serialization"
+        },
+        "report_rewrite_after_attestation_forbidden": {
+          "const": true
+        },
+        "cli_resource": {
+          "const": "res://scripts/lab/certification_report_attestation_cli.gd"
+        },
+        "receipt_schema": {
+          "const": "sporespore.lab.br1_certification_report_attestation.v1"
+        },
+        "algorithm": {
+          "const": "hmac-sha256"
+        },
+        "trust_mode": {
+          "const": "production"
+        },
+        "certification_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+        }
+      }
+    },
+    "test_inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "required",
+        "executed",
+        "passed",
+        "failed",
+        "missing",
+        "extra",
+        "report_path",
+        "report_sha256",
+        "report_bytes",
+        "report_payload_base64",
+        "artifacts",
+        "production_trust_store"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "required": {
+          "const": 51
+        },
+        "executed": {
+          "const": 51
+        },
+        "passed": {
+          "const": 51
+        },
+        "failed": {
+          "const": 0
+        },
+        "missing": {
+          "const": 0
+        },
+        "extra": {
+          "const": 0
+        },
+        "report_path": {
+          "$ref": "#/$defs/path"
+        },
+        "report_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "report_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "report_payload_base64": {
+          "type": "string",
+          "minLength": 4,
+          "pattern": "^[A-Za-z0-9+/]*={0,2}$"
+        },
+        "artifacts": {
+          "type": "array",
+          "minItems": 102,
+          "maxItems": 102,
+          "items": {
+            "$ref": "#/$defs/test_artifact"
+          }
+        },
+        "production_trust_store": {
+          "$ref": "#/$defs/production_trust_store"
+        }
+      }
+    },
+    "test_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "test",
+        "kind",
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "properties": {
+        "test": {
+          "type": "string",
+          "pattern": "^test_lab_[A-Za-z0-9_.-]+\\.gd$"
+        },
+        "kind": {
+          "enum": [
+            "engine_log",
+            "transcript_log"
+          ]
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "production_trust_store": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unchanged",
+        "before_sha256",
+        "after_sha256",
+        "entry_count"
+      ],
+      "properties": {
+        "unchanged": {
+          "const": true
+        },
+        "before_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "after_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "entry_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "launch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "exit_code",
+        "duration_ms",
+        "engine_log",
+        "sealed_child_engine_log",
+        "transcript"
+      ],
+      "properties": {
+        "exit_code": {
+          "const": 0
+        },
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "engine_log": {
+          "$ref": "#/$defs/path"
+        },
+        "sealed_child_engine_log": {
+          "$ref": "#/$defs/path"
+        },
+        "transcript": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "publication_attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valid",
+        "trust_mode",
+        "key_id",
+        "receipt_path",
+        "receipt_sha256",
+        "run_id",
+        "attested_utc"
+      ],
+      "properties": {
+        "valid": {
+          "const": true
+        },
+        "trust_mode": {
+          "const": "production"
+        },
+        "key_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receipt_path": {
+          "$ref": "#/$defs/path"
+        },
+        "receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "attested_utc": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "replicate_attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valid",
+        "algorithm",
+        "key_id",
+        "receipt_path",
+        "receipt_sha256",
+        "trust_mode"
+      ],
+      "properties": {
+        "valid": {
+          "const": true
+        },
+        "algorithm": {
+          "const": "hmac-sha256"
+        },
+        "key_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receipt_path": {
+          "$ref": "#/$defs/path"
+        },
+        "receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "trust_mode": {
+          "const": "production"
+        }
+      }
+    },
+    "process_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outer_parent_process_id",
+        "physics_child_process_id",
+        "termination_observer_process_id",
+        "reservation_id",
+        "process_metadata_sha256",
+        "launch_plan_sha256",
+        "launch_plan_payload_sha256",
+        "started_utc",
+        "ended_utc",
+        "executable",
+        "argument_capture_quality",
+        "exact_argument_match",
+        "run_id_parent_pid_binding"
+      ],
+      "properties": {
+        "outer_parent_process_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "physics_child_process_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "termination_observer_process_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reservation_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "process_metadata_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "launch_plan_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "launch_plan_payload_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "started_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ended_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "executable": {
+          "$ref": "#/$defs/path"
+        },
+        "argument_capture_quality": {
+          "const": "launcher_exact"
+        },
+        "exact_argument_match": {
+          "const": true
+        },
+        "run_id_parent_pid_binding": {
+          "const": true
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "can_finalize",
+        "can_promote",
+        "result_sha256",
+        "publication_attestation",
+        "engine_log",
+        "transcript"
+      ],
+      "properties": {
+        "can_finalize": {
+          "const": true
+        },
+        "can_promote": {
+          "const": true
+        },
+        "result_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "publication_attestation": {
+          "$ref": "#/$defs/publication_attestation"
+        },
+        "engine_log": {
+          "$ref": "#/$defs/path"
+        },
+        "transcript": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "simulation_steps",
+        "frames",
+        "events",
+        "production_attestation_required",
+        "engine_log",
+        "transcript"
+      ],
+      "properties": {
+        "pass": {
+          "const": true
+        },
+        "simulation_steps": {
+          "const": 0
+        },
+        "frames": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "events": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "production_attestation_required": {
+          "const": true
+        },
+        "engine_log": {
+          "$ref": "#/$defs/path"
+        },
+        "transcript": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "final_sweep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "retained_witness_match",
+        "production_attestation_required",
+        "promotion_required",
+        "manifest_sha256",
+        "checksums_sha256",
+        "summary_sha256",
+        "process_metadata_sha256",
+        "launch_plan_sha256",
+        "receipt_path",
+        "receipt_sha256",
+        "process_identity",
+        "validation",
+        "replay"
+      ],
+      "properties": {
+        "pass": {
+          "const": true
+        },
+        "retained_witness_match": {
+          "const": true
+        },
+        "production_attestation_required": {
+          "const": true
+        },
+        "promotion_required": {
+          "const": true
+        },
+        "manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "checksums_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "summary_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "process_metadata_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "launch_plan_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receipt_path": {
+          "$ref": "#/$defs/path"
+        },
+        "receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "process_identity": {
+          "$ref": "#/$defs/process_identity"
+        },
+        "validation": {
+          "$ref": "#/$defs/validation"
+        },
+        "replay": {
+          "$ref": "#/$defs/replay"
+        }
+      }
+    },
+    "replicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "replicate",
+        "run_id",
+        "experiment_id",
+        "physics_ticks_per_second",
+        "bundle_path",
+        "bundle_manifest_sha256",
+        "bundle_checksums_sha256",
+        "bundle_summary_sha256",
+        "process_metadata_sha256",
+        "launch_plan_sha256",
+        "replicate_root",
+        "launch",
+        "attestation",
+        "process_identity",
+        "independent_validation",
+        "replay",
+        "final_sweep"
+      ],
+      "properties": {
+        "replicate": {
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "run_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "experiment_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "physics_ticks_per_second": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bundle_path": {
+          "$ref": "#/$defs/path"
+        },
+        "bundle_manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "bundle_checksums_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "bundle_summary_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "process_metadata_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "launch_plan_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "replicate_root": {
+          "$ref": "#/$defs/path"
+        },
+        "launch": {
+          "$ref": "#/$defs/launch"
+        },
+        "attestation": {
+          "$ref": "#/$defs/replicate_attestation"
+        },
+        "process_identity": {
+          "$ref": "#/$defs/process_identity"
+        },
+        "independent_validation": {
+          "$ref": "#/$defs/validation"
+        },
+        "replay": {
+          "$ref": "#/$defs/replay"
+        },
+        "final_sweep": {
+          "$ref": "#/$defs/final_sweep"
+        }
+      }
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "comparator_id",
+        "mismatch_count",
+        "production_attestation_required",
+        "left_evidence_digest",
+        "right_evidence_digest",
+        "result_sha256",
+        "engine_log",
+        "transcript"
+      ],
+      "properties": {
+        "pass": {
+          "const": true
+        },
+        "comparator_id": {
+          "const": "sporespore.lab.br1_l0_replicate_comparator.v1"
+        },
+        "mismatch_count": {
+          "const": 0
+        },
+        "production_attestation_required": {
+          "const": true
+        },
+        "left_evidence_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "right_evidence_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "result_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "engine_log": {
+          "$ref": "#/$defs/path"
+        },
+        "transcript": {
+          "$ref": "#/$defs/path"
+        }
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cell_id",
+        "resource_path",
+        "resource_sha256",
+        "root_seed",
+        "observer_adapter",
+        "observer_profile",
+        "replicates",
+        "comparison",
+        "final_comparison"
+      ],
+      "properties": {
+        "cell_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resource_path": {
+          "type": "string",
+          "pattern": "^res://data/lab/experiments/br1/[A-Za-z0-9_.-]+\\.tres$"
+        },
+        "resource_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "root_seed": {
+          "type": "integer"
+        },
+        "observer_adapter": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observer_profile": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replicates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/replicate"
+          }
+        },
+        "comparison": {
+          "$ref": "#/$defs/comparison"
+        },
+        "final_comparison": {
+          "$ref": "#/$defs/comparison"
+        }
+      }
+    },
+    "final_readback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundles_required",
+        "bundles_passed",
+        "replays_required",
+        "replays_passed",
+        "replicate_comparisons_required",
+        "replicate_comparisons_passed",
+        "retained_witnesses_match",
+        "receipt_identities_match"
+      ],
+      "properties": {
+        "bundles_required": {
+          "const": 14
+        },
+        "bundles_passed": {
+          "const": 14
+        },
+        "replays_required": {
+          "const": 14
+        },
+        "replays_passed": {
+          "const": 14
+        },
+        "replicate_comparisons_required": {
+          "const": 7
+        },
+        "replicate_comparisons_passed": {
+          "const": 7
+        },
+        "retained_witnesses_match": {
+          "const": true
+        },
+        "receipt_identities_match": {
+          "const": true
+        }
+      }
+    },
+    "campaign": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "campaign_id",
+        "cells_required",
+        "cells_passed",
+        "bundles_required",
+        "bundles_passed",
+        "replays_required",
+        "replays_passed",
+        "replicate_comparisons_required",
+        "replicate_comparisons_passed",
+        "unique_outer_parent_processes",
+        "unique_physics_child_processes",
+        "pid_recycle_events",
+        "final_readback",
+        "cells"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "campaign_id": {
+          "const": "BR1_L0_CERTIFICATION_V1"
+        },
+        "cells_required": {
+          "const": 7
+        },
+        "cells_passed": {
+          "const": 7
+        },
+        "bundles_required": {
+          "const": 14
+        },
+        "bundles_passed": {
+          "const": 14
+        },
+        "replays_required": {
+          "const": 14
+        },
+        "replays_passed": {
+          "const": 14
+        },
+        "replicate_comparisons_required": {
+          "const": 7
+        },
+        "replicate_comparisons_passed": {
+          "const": 7
+        },
+        "unique_outer_parent_processes": {
+          "const": 14
+        },
+        "unique_physics_child_processes": {
+          "const": 14
+        },
+        "pid_recycle_events": {
+          "type": "array",
+          "maxItems": 26,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "role",
+              "process_id",
+              "earlier_run_id",
+              "earlier_ended_utc",
+              "later_run_id",
+              "later_started_utc"
+            ],
+            "properties": {
+              "role": {
+                "enum": [
+                  "outer_parent",
+                  "physics_child"
+                ]
+              },
+              "process_id": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "earlier_run_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "earlier_ended_utc": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "later_run_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "later_started_utc": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "final_readback": {
+          "$ref": "#/$defs/final_readback"
+        },
+        "cells": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/cell"
+          }
+        }
+      }
+    }
+  }
+}

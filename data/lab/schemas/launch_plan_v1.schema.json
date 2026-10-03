@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/launch_plan_v1.schema.json",
+  "title": "SporeSpore frozen lab launch plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "reservation_id",
+    "status",
+    "payload_sha256",
+    "payload"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.launch_plan.v1"},
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+    },
+    "reservation_id": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{32}$"
+    },
+    "status": {"const": "FROZEN"},
+    "payload_sha256": {"$ref": "#/$defs/sha256"},
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_id",
+        "reservation_id",
+        "adoption_token_sha256",
+        "token_descriptor_path",
+        "partial_path",
+        "final_path",
+        "output_root",
+        "parent_process_id",
+        "executable",
+        "arguments",
+        "engine_arguments",
+        "user_arguments",
+        "requested_user_arguments",
+        "working_directory",
+        "log_paths",
+        "experiment_identity",
+        "created_utc"
+      ],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 1},
+        "reservation_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$"
+        },
+        "adoption_token_sha256": {"$ref": "#/$defs/sha256"},
+        "token_descriptor_path": {"type": "string", "minLength": 1},
+        "partial_path": {"type": "string", "minLength": 1},
+        "final_path": {"type": "string", "minLength": 1},
+        "output_root": {"type": "string", "minLength": 1},
+        "parent_process_id": {"type": "integer", "minimum": 1},
+        "executable": {"type": "string", "minLength": 1},
+        "arguments": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "engine_arguments": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "user_arguments": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "requested_user_arguments": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "working_directory": {"type": "string", "minLength": 1},
+        "log_paths": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["engine_log", "stdout", "stderr"],
+          "properties": {
+            "engine_log": {"$ref": "#/$defs/log_descriptor"},
+            "stdout": {"$ref": "#/$defs/log_descriptor"},
+            "stderr": {"$ref": "#/$defs/log_descriptor"}
+          }
+        },
+        "experiment_identity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "resource_path",
+            "resource_sha256",
+            "expanded_spec_sha256",
+            "experiment_id",
+            "root_seed",
+            "observer_profile_id"
+          ],
+          "properties": {
+            "resource_path": {"type": "string", "minLength": 1},
+            "resource_sha256": {"$ref": "#/$defs/sha256"},
+            "expanded_spec_sha256": {"$ref": "#/$defs/sha256"},
+            "experiment_id": {"type": "string", "minLength": 1},
+            "root_seed": {"type": "integer"},
+            "observer_profile_id": {"type": "string", "minLength": 1}
+          }
+        },
+        "created_utc": {"type": "string", "format": "date-time"}
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "log_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "path", "mechanism", "reason"],
+      "properties": {
+        "status": {"enum": ["captured", "unavailable"]},
+        "path": {"type": ["string", "null"]},
+        "mechanism": {"type": "string", "minLength": 1},
+        "reason": {"type": ["string", "null"]}
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "status": {"const": "captured"},
+                "path": {"type": "string", "minLength": 1},
+                "reason": {"type": "null"}
+              }
+            },
+            {
+              "properties": {
+                "status": {"const": "unavailable"},
+                "path": {"type": "null"},
+                "reason": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

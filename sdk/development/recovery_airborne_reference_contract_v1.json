@@ -1,0 +1,69 @@
+{
+  "schema_version": "sporespore_development_recovery_airborne_reference_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_development_controller_contract",
+    "question_class": "development"
+  },
+  "component_id": "V39",
+  "parent_policy_id": "sporespore_balanced_wave_recovery_wave_velocity_v1",
+  "policy_id": "sporespore_balanced_wave_recovery_airborne_reference_v1",
+  "native_profile_schema": "sporespore_balanced_wave_recovery_airborne_reference_profile_v1",
+  "native_memory_schema": "sporespore_balanced_wave_recovery_airborne_reference_memory_v1",
+  "native_actuation_receipt_schema": "sporespore_recovery_airborne_reference_controller_step_receipt_v1",
+  "reference_velocity_mode_id": "contact_selected_airborne_reference_velocity_tracking_v1",
+  "unchanged_swing_lift_mode_id": "phase_only_existing_loaded_peak_swing_lift_v1",
+  "unchanged_stance_support_mode_id": "explicit_floor_joint_feasible_stance_height_reference_slew_v1",
+  "rule": "Preserve V38 geometry, position targets and reference slew. For a limb whose existing scheduled command phase is in 0..72 inclusive, both current native-derived contact booleans explicitly say absent (presence=false and bears_support=false), both previous/current wave snapshots are active, and dt>0, use the bounded full finite difference of that joint's actual slewed position reference. Otherwise use V38's pose-separated wave rate exactly. This is a development tracking hypothesis, not a new landing predicate, timer, force-aware recovery or predicted complete fix.",
+  "formula": {
+    "actual_reference": "r_new = r_previous + clamp(current_goal-r_previous,-current_cap*dt,current_cap*dt), unchanged from V38.",
+    "wave_reference_rate": "V38's bounded same-current-pose, same-floor, same-slew-origin comparison between current and previous wave inputs; zero on initialization or either inactive wave.",
+    "airborne_selection": "dt>0 AND previous_wave.active AND current_wave.active AND 0<=current_scheduled_phase<=72 AND presence is explicitly false AND bears_support is explicitly false. Both joints of one limb share this selection.",
+    "airborne_reference_rate": "clamp((r_new-r_previous)/dt,-current_cap,current_cap). Use only for the explicit airborne selection.",
+    "selected_reference_rate": "airborne_reference_rate when selected; otherwise exactly wave_reference_rate.",
+    "geometric_velocity_before_clamp": "8.0*(r_new-q_measured) - 0.65*q_dot_measured + 1.65*selected_reference_rate.",
+    "final_motor_velocity": "The existing selected speed clamp and motor-direction sign -1.0; preserve force limits, position/slew bounds and truthful saturation."
+  },
+  "contact_contract": {
+    "source": "The already validated, same-model/same-step canonical ordered_contact_observations. No new read, inferred force, geometry-based contact predicate, or extra sensor.",
+    "identity": "Exact compiled limb/contact-site order. Missing or malformed observations retain existing fail-closed state validation; never interpret missing, unknown or malformed as absent.",
+    "ambiguous_contact": "Any presence=true or bears_support=true retains the V38 rate. This selector must not equate non-bearing contact with airborne.",
+    "timing": "The contact observation is pre-command; do not use post-command trace values or look ahead to a recorded touchdown."
+  },
+  "memory_contract": {
+    "identity": "Distinct V39 identity. Reuse V38 support-reference positions/time and previous-wave snapshot semantics with no new learned or integrated state.",
+    "initialization": "Preserve neutral first reference and zero initial/activation feedforward. Retain both-wave-active requirement.",
+    "update": "Store exactly the same current upstream wave snapshot and positions/time as V38; no hidden phase reset or same-input memory divergence except policy memory identity."
+  },
+  "required_receipt": "Distinct top-level/profile/memory identities and mode, V38 wave snapshots and comparison references, selected ordered reference rates, explicit per-limb airborne-selection and pre-command contact provenance, and bounded full-reference rates sufficient to reconstruct every chosen joint rate. Old policies omit any new optional fields byte-exactly.",
+  "preserve": [
+    "All V38 actual position goals, feasible-support plans, reference slew and all gains, speed/force and joint limits.",
+    "Exact V38 velocity output whenever the airborne selector is false, including all supported contacts, ambiguous/non-bearing contacts and scheduled stance.",
+    "Existing phase clocks, release/recontact/phase-sync gates, dwell counts, held landing and native contact truth.",
+    "V20 standing recovery, stance V7, BW5R-B prefix and every older policy's raw output bytes.",
+    "Explicit static floor provenance, original evaluator/thresholds, seed partition, 400 resumed commands, 986-step tail and 1338-step child cap."
+  ],
+  "required_zero_world_checks": [
+    "Selector truth table: active/inactive, initialization/dt=0, phases 0/72/73/359, explicit absent contact, presence-only and bearing-only cases, malformed and crossed state refusal.",
+    "Full-rate formula and caps, same-slew endpoints, retained V38 rate for unselected joints, old neutral startup and activation behavior.",
+    "All 400 saved V38 inputs through real stateless and stateful exports with the new memory chained, not independent per-row resets.",
+    "Same-input V38 comparison: exact position references, plans, gait memory and unselected motor command fields; only declared selected velocity outputs, new identity and receipt may differ.",
+    "Independent reconstruction of every selector, full reference rate, V38 fallback rate, and final motor velocity. Preserve exact input precision.",
+    "Byte-exact predecessor policies and recovery fixtures. Use a distinct non-runnable component before explicit shared-route integration."
+  ],
+  "risks": [
+    "The extra rate includes direct pose-driven correction and target catch-up during selected airborne motion. Switching as contact appears/disappears can produce abrupt bounded velocity changes.",
+    "120 saturated commands in the saved-input sketch versus V38's 19 is not a forecast of native saturation, contact quality, or success. Speed limits do not establish acceleration or impact bounds.",
+    "This branch does not directly repair the 17 observed stance-phase contact losses, unreachable stance targets, or inadequate-relocation cycles. Those remain explicit blockers.",
+    "Faster airborne tracking may change later body pose and contact timing for better or worse. Frozen-input arithmetic cannot establish the next trajectory.",
+    "Native contact absence does not mean a limb is dynamically unloaded in every sense; no force estimate or general force-aware recovery is claimed.",
+    "Do not extend the horizon or relax gates if the next run leaves a cycle incomplete. Any later scope change needs its own prospective adequacy argument."
+  ],
+  "native_component_implemented": false,
+  "route_integrated": false,
+  "physical_attempt_selected": false,
+  "physical_outcome_predicted": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

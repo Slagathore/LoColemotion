@@ -1,0 +1,39 @@
+{
+  "schema_version": "sporespore_development_exact_context_cache_source_retention_v1",
+  "ledger_scope": {
+    "subsystem": "workflow",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "zero_world_exact_executed_source_reconstruction",
+    "question_class": "development"
+  },
+  "checkpoint_path": "sdk/development_exact_context_cache_checkpoint_v1.json",
+  "source_commit": "23cbcb02383bee2fdd171e2988e31ff05b5dc1a1",
+  "source_retention": [
+    {
+      "path": "sdk/adapters/godot/gdscript/development_exact_context_cache_v1.gd",
+      "git_blob": "ac593c980ca164c23d1a683677e254fefadeb54d",
+      "executed_byte_encoding": "utf8_crlf",
+      "byte_length": 3349,
+      "raw_sha256": "sha256:3b65f610c6e1757634bf1809a0b23e46b0b1ff614452949467f35556f3b6bf56"
+    },
+    {
+      "path": "tests/test_development_exact_context_cache.gd",
+      "git_blob": "72901ce46b28ecbff49d52d7bfdfdb10d5047c72",
+      "executed_byte_encoding": "utf8_crlf",
+      "byte_length": 10845,
+      "raw_sha256": "sha256:d775f26dfdc552c8ea6447d015933e1b1034500505bb0561ed08e0e1ad29a8bc"
+    },
+    {
+      "path": "tests/test_development_exact_context_cache.py",
+      "git_blob": "779e00ad3312b325594e5c76fa2127cdfcf0fcef",
+      "executed_byte_encoding": "utf8_lf",
+      "byte_length": 2999,
+      "raw_sha256": "sha256:88a6c248263181436b63336731a346ba204a663f703ce9fef7cd7627bc0e5db6"
+    }
+  ],
+  "reconstruction_rule": "Read each exact Git blob as bytes. For utf8_lf retain its bytes. For utf8_crlf replace each LF byte with CRLF. The blobs contain LF-only newlines, UTF-8 without a BOM, and a final newline. Verify both byte length and SHA-256 against the original benchmark checkpoint. Never rewrite the checkpoint or the evidence to match a checkout's line endings.",
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

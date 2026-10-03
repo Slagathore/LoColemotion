@@ -1,0 +1,93 @@
+{
+  "schema_version": "sporespore_qsdk_r24d21_exact_s169_prone_geometry_feasibility_contract_v1",
+  "gate_id": "QSDK-R24D21",
+  "authored_local_date": "2026-08-26",
+  "declaration_parent_commit": "d97bb469f53bed6decec3ca127674196ca4fdfda",
+  "status": "prospective_zero_world_finite_decision_declared",
+  "question": "Does the exact compiled s169 morphology admit any joint-limit-valid nominal-roll pose in which the torso ventral face is in nonpenetrating contact with a flat ground plane while every upper-leg capsule is also nonpenetrating?",
+  "question_class": "finite_decision",
+  "superiority_question_declared": false,
+  "equivalence_or_non_inferiority_question_declared": false,
+  "lineage": {
+    "predecessor_gate_id": "QSDK-R24D20",
+    "predecessor_closure_path": "sdk/recovery/r24d20_mujoco_native_recovery_development_incomplete_closure_v1.json",
+    "predecessor_closure_raw_sha256": "sha256:752121f1c5ba02e53ddd50eee62092fb8d016b6e911fd6fcb0a2b403622fbb0b",
+    "predecessor_source_commit": "0d8fe6391ab9e9f2c9f6fafb2cdb24d444011e62",
+    "predecessor_result": "valid_physical_development_incomplete",
+    "predecessor_observation": "twenty active initial contacts and deep nonfoot penetration passively ejected both zero-actuation arms from the entry-prone gate",
+    "predecessor_result_rewritten": false,
+    "predecessor_rerun": false
+  },
+  "population": {
+    "kind": "finite_exact_morphology_and_pose_family",
+    "descriptor_count": 1,
+    "morphology_id": "qsdk_r05_generated_s169",
+    "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+    "morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "torso_roll_rad": 0.0,
+    "ground": "flat_plane_y_equals_zero",
+    "contact_condition": "torso_ventral_face_tangent_to_ground_without_penetration",
+    "joint_domain": "each_compiled_hip_joint_closed_lower_to_upper_limit",
+    "arbitrary_morphology_claimed": false,
+    "continuous_morphology_claimed": false,
+    "population_inference_claimed": false
+  },
+  "decision_rule": {
+    "feasibility_threshold_m": 0.0,
+    "threshold_provenance": "Ordinary rigid nonpenetration on the declared y=0 plane requires every collision shape's exact lowest support coordinate to be greater than or equal to zero.",
+    "threshold_adequacy": "Zero is the complete necessary and sufficient boundary between penetration and nonpenetration for the analytic capsule-plane support coordinate; no empirical tolerance or statistical margin is involved.",
+    "new_threshold_count": 1,
+    "new_margin_count": 0,
+    "post_outcome_rethresholding_permitted": false,
+    "upper_link_bound": "For each limb, compute the maximum over its closed hip range of min(proximal_endpoint_y, distal_endpoint_y) minus the capsule radius while the torso ventral face is tangent to y=0.",
+    "finite_decision": "feasible_if_and_only_if_every_upper_link_maximum_clearance_is_greater_than_or_equal_to_zero",
+    "early_rejection_permitted": "An upper-link maximum below zero is a necessary-condition violation independent of every knee angle, so one such exact violation is sufficient to reject the pose family.",
+    "adequacy_argument": "The upper body is upstream of the knee and its capsule geometry is independent of knee configuration. The compiled nominal s169 hips share the same vertical anchor, link length, radius, axis, and symmetric closed range; evaluating the exact global maximum on that range completely answers this finite pose-family question without constructing a physics model."
+  },
+  "execution_contract": {
+    "evaluator_path": "sdk/recovery/r24d21_exact_s169_prone_geometry_feasibility.py",
+    "core_library_path": "sdk/target/debug/sporespore_locomotion_core.dll",
+    "compile_exact_descriptor_through_public_core": true,
+    "read_compiled_geometry_and_morphology_spec": true,
+    "mujoco_import_permitted": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "held_out_cell_access_count": 0,
+    "held_out_selector_invocation_count": 0
+  },
+  "mutation_controls": [
+    {
+      "mutation_id": "raise_hip_anchor_until_current_range_is_exactly_tangent",
+      "purpose": "prove the evaluator changes its decision at the declared zero-clearance boundary"
+    },
+    {
+      "mutation_id": "increase_hip_anchor_by_one_binary64_step_above_tangent",
+      "purpose": "prove strict nonpenetration accepts a representably positive clearance without relaxing the threshold"
+    }
+  ],
+  "source_inventory": [
+    "sdk/core/src/quadruped.rs",
+    "sdk/python/sporespore_locomotion.py",
+    "sdk/recovery/r24d20_mujoco_native_recovery_development_incomplete_closure_v1.json",
+    "sdk/recovery/r24d21_exact_s169_prone_geometry_feasibility.py",
+    "sdk/recovery/r24d21_exact_s169_prone_geometry_feasibility_contract_v1.json",
+    "tests/test_qsdk_r24d21_exact_s169_prone_geometry_feasibility_source.py"
+  ],
+  "claim_boundary": {
+    "finite_geometry_question_declared": true,
+    "finite_geometry_decision_observed": false,
+    "initializer_successor_implemented": false,
+    "physical_question_opened": false,
+    "controller_physical_viability_proven": false,
+    "prone_to_standing_claimed": false,
+    "held_out_validation_claimed": false,
+    "cross_engine_recovery_claimed": false,
+    "cross_engine_equivalence_claimed": false,
+    "sdk1_milestone_advanced": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

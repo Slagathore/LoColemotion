@@ -1,0 +1,118 @@
+{
+  "schema_version": "sporespore_godot_jolt_phase_timing_gjpt2_closure_v1",
+  "contract_id": "GJPT2",
+  "status": "completed_development_measurement",
+  "scientific_class": "bounded_one_cell_performance_phase_characterization",
+  "source_commit": "fdaf2a6577b1e2d4d04e0767ba05cc08491883e6",
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/godot-jolt-phase-timing-gjpt2-20260805T094120Z",
+  "source_identity": {
+    "contract_path": "sdk/godot_jolt_phase_timing_gjpt2_contract.json",
+    "contract_raw_sha256": "sha256:a047721c9944a93f35f45379fa929c6afa375561017fdbe9159814ead929afc8",
+    "worker_path": "tests/probe_godot_jolt_phase_timing_gjpt2.gd",
+    "worker_raw_sha256": "sha256:11f47aa37e84f6c9dd7c75914619cbf229b7df60f32c23e56d27782e5ca31116",
+    "instrumented_runner_raw_sha256": "sha256:ac9310ce50ef5649d407ff38ff0f726c9ff0d3458aaad32f4e43610605ea7e09",
+    "godot_adapter_artifact_raw_sha256": "sha256:8132396391f0545366cae2a670796f824b7519327382284f97c63f38361d36f6",
+    "gjpt1_invalid_closure_raw_sha256": "sha256:17b2b2754288d22707a67a2a89375c159a2a90df5f0373176724652218231d50",
+    "clean_pushed_live_at_authorization": true
+  },
+  "execution": {
+    "cell_id": "gjpt2_baseline_s21001_bw32n_b",
+    "source_cell_template_id": "baseline_s21001_bw32n_b",
+    "process_duration_seconds": 64.3766288,
+    "instrumented_tick_count": 3472,
+    "instrumented_denominator_usec": 62929861,
+    "physical_world_count": 1,
+    "physical_identity_consumed": true,
+    "same_identity_rerun_allowed": false,
+    "synthetic_projection_canary_passed_before_world": true
+  },
+  "phase_durations_usec": {
+    "pre_physics_active_exclusive_boundary": 52843550,
+    "native_boundary": 6253585,
+    "physics_frame_wait": 3463239,
+    "post_physics_observation_evidence": 354203,
+    "setup_summary_cleanup_residual": 13947,
+    "evidence_writing_total": 1337,
+    "exact_sum": 62929861
+  },
+  "phase_shares": {
+    "pre_physics_active_exclusive_boundary": 0.8397213844155798,
+    "native_boundary": 0.09937388865359166,
+    "physics_frame_wait": 0.055033317171954345,
+    "post_physics_observation_evidence": 0.005628536188884955,
+    "setup_summary_cleanup_residual": 0.00022162769436277635,
+    "evidence_writing_total": 0.000021245875626516957,
+    "reported_binary64_sum": 0.9999999999999999
+  },
+  "persistent_session_analysis": {
+    "gjps1_native_boundary_speedup": 9.0828,
+    "observed_native_share_is_post_optimization": true,
+    "estimated_recovered_stateless_to_persistent_total_cell_speedup": 1.8032192672092506,
+    "estimate_formula": "1 + post_optimization_native_share * (native_boundary_speedup - 1)",
+    "estimate_assumes_non_boundary_work_is_unchanged": true,
+    "estimated_stateless_native_boundary_usec": 56800061.838,
+    "estimated_native_time_saved_usec": 50546476.838,
+    "direct_total_cell_speedup_measured": false,
+    "decision": "Retain GJPS1. The isolated boundary optimization is material to this one measured cell."
+  },
+  "next_optimization_boundary": {
+    "dominant_measured_phase": "pre_physics_active_exclusive_boundary",
+    "dominant_measured_share": 0.8397213844155798,
+    "process_time_outside_instrumented_denominator_seconds": 1.4467678,
+    "process_time_outside_instrumented_denominator_share": 0.0224734942939417,
+    "decision": "Do not prioritize a persistent multi-cell Godot process solely to remove boot and teardown. Instrument or optimize the active pre-physics path first; treat load-independent process parallelism as a separate characterization question."
+  },
+  "retained_artifacts": {
+    "authorization": {
+      "relative_path": "authorization.json",
+      "raw_sha256": "sha256:ba7986593ce96c5ccca19850fd51a1835958303ebcfcc7bd88e03f39b83945cb",
+      "byte_length": 2728
+    },
+    "completion": {
+      "relative_path": "completion.json",
+      "raw_sha256": "sha256:586d1c7260f5261fbfc8644ed6d84514cb0b0d76def4d8d5b10790399606f3ba",
+      "byte_length": 516
+    },
+    "engine_log": {
+      "relative_path": "engine.log",
+      "raw_sha256": "sha256:093a3779780ce8d803aecaa5010e5ac174227a59988e14f47f8848301097b787",
+      "byte_length": 24768
+    },
+    "evidence_workload": {
+      "relative_path": "evidence_workload.json",
+      "raw_sha256": "sha256:727fb55fdc92dd422b161d97af443d8a4a6fff0de4cb26a4882b1b4a8ccf2701",
+      "byte_length": 24013
+    },
+    "instrumented_runner": {
+      "relative_path": "instrumented_runner.gd",
+      "raw_sha256": "sha256:ac9310ce50ef5649d407ff38ff0f726c9ff0d3458aaad32f4e43610605ea7e09",
+      "byte_length": 202468
+    },
+    "phase_report": {
+      "relative_path": "phase_report.json",
+      "raw_sha256": "sha256:4bb7cd06047cdd26245a2a380c5cb2943769787f6122258716c68a21f5e9d106",
+      "byte_length": 3817
+    },
+    "worker_godot_log": {
+      "relative_path": "worker/appdata/Godot/app_userdata/sporespore/logs/godot.log",
+      "raw_sha256": "sha256:622f64306685fbfef5e9b34377e9fa36dc4b7cef1d38480da4af663da55b6834",
+      "byte_length": 24630
+    }
+  },
+  "content_addressed_inputs": {
+    "instrumented_runner_payload": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/artifacts/sha256/ac9310ce50ef5649d407ff38ff0f726c9ff0d3458aaad32f4e43610605ea7e09/payload.bin",
+    "godot_adapter_payload": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/artifacts/sha256/8132396391f0545366cae2a670796f824b7519327382284f97c63f38361d36f6/payload.bin"
+  },
+  "claims": {
+    "one_cell_phase_measurement": true,
+    "gjps1_is_material_for_this_measured_cell_under_stated_estimate": true,
+    "total_cell_speedup_directly_measured": false,
+    "performance_generalization_authorized": false,
+    "physics_frame_wait_is_solver_only": false,
+    "source_world_outcome_interpreted": false,
+    "walking_claim_authorized": false,
+    "determinism_or_load_independence_claim_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false
+  }
+}

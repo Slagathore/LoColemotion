@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/process_metadata_v1.schema.json",
+  "title": "SporeSpore isolated child-process metadata v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "status",
+    "parent_process_id",
+    "child_process_id",
+    "executable",
+    "arguments",
+    "engine_arguments",
+    "user_arguments",
+    "requested_user_arguments",
+    "argument_capture_quality",
+    "working_directory",
+    "started_utc",
+    "ended_utc",
+    "exit_disposition",
+    "exit_code",
+    "log_paths",
+    "reservation_id",
+    "launch_plan_path",
+    "launch_plan_sha256",
+    "launch_plan_payload_sha256",
+    "adoption_token_sha256",
+    "partial_path",
+    "final_path",
+    "termination_observer_process_id"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.process_metadata.v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["RUNNING", "COMPLETE", "ABORTED", "CRASHED"]},
+    "parent_process_id": {"type": "integer", "minimum": -1},
+    "child_process_id": {"type": "integer", "minimum": -1},
+    "executable": {"type": "string", "minLength": 1},
+    "arguments": {"type": "array", "items": {"type": "string"}},
+    "engine_arguments": {"type": "array", "items": {"type": "string"}},
+    "user_arguments": {"type": "array", "items": {"type": "string"}},
+    "requested_user_arguments": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "argument_capture_quality": {
+      "enum": ["launcher_exact", "godot_runtime_observed"]
+    },
+    "working_directory": {"type": "string", "minLength": 1},
+    "started_utc": {"type": "string", "format": "date-time"},
+    "ended_utc": {"type": ["string", "null"], "format": "date-time"},
+    "exit_disposition": {"type": ["string", "null"], "minLength": 1},
+    "exit_code": {"type": ["integer", "null"]},
+    "log_paths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine_log", "stdout", "stderr"],
+      "properties": {
+        "engine_log": {"$ref": "#/$defs/log_descriptor"},
+        "stdout": {"$ref": "#/$defs/log_descriptor"},
+        "stderr": {"$ref": "#/$defs/log_descriptor"}
+      }
+    },
+    "reservation_id": {
+      "type": ["string", "null"],
+      "pattern": "^([a-f0-9]{32})?$"
+    },
+    "launch_plan_path": {"type": ["string", "null"]},
+    "launch_plan_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^(sha256:[a-f0-9]{64})?$"
+    },
+    "launch_plan_payload_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^(sha256:[a-f0-9]{64})?$"
+    },
+    "adoption_token_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^(sha256:[a-f0-9]{64})?$"
+    },
+    "partial_path": {"type": ["string", "null"]},
+    "final_path": {"type": ["string", "null"]},
+    "termination_observer_process_id": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    }
+  },
+  "$defs": {
+    "log_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "path", "mechanism", "reason"],
+      "properties": {
+        "status": {"enum": ["captured", "unavailable"]},
+        "path": {"type": ["string", "null"]},
+        "mechanism": {"type": "string", "minLength": 1},
+        "reason": {"type": ["string", "null"]}
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "status": {"const": "captured"},
+                "path": {"type": "string", "minLength": 1},
+                "reason": {"type": "null"}
+              }
+            },
+            {
+              "properties": {
+                "status": {"const": "unavailable"},
+                "path": {"type": "null"},
+                "reason": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "status": {"const": "RUNNING"},
+            "ended_utc": {"type": "null"},
+            "exit_disposition": {"type": "null"},
+            "exit_code": {"type": "null"},
+            "termination_observer_process_id": {"type": "null"}
+          }
+        },
+        {
+          "properties": {
+            "status": {"enum": ["COMPLETE", "ABORTED", "CRASHED"]},
+            "ended_utc": {"type": "string", "format": "date-time"},
+            "exit_disposition": {"type": "string", "minLength": 1},
+            "exit_code": {"type": "integer"},
+            "termination_observer_process_id": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

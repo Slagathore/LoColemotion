@@ -1,0 +1,85 @@
+{
+  "schema_version": "sporespore_windows_rust_reproducible_build_contract_v1",
+  "contract_id": "WRB1",
+  "status": "prospective_successor_build_contract",
+  "platform": "windows",
+  "target_triple": "x86_64-pc-windows-msvc",
+  "toolchain": {
+    "rustc_version": "1.97.0",
+    "rustc_commit": "2d8144b7880597b6e6d3dfd63a9a9efae3f533d3",
+    "llvm_version": "22.1.6",
+    "cargo_version": "1.97.0",
+    "cargo_commit": "c980f4866141969fab6254a680546a277789d6f0"
+  },
+  "build": {
+    "manifest_relative_path": "sdk/Cargo.toml",
+    "package_name": "sporespore-locomotion-core",
+    "artifact_name": "sporespore_locomotion_core.dll",
+    "cargo_lock_git_blob_oid_at_characterization_source": "7e0249cbbbb883af105d178bb27197d7da6ae87b",
+    "cargo_arguments": ["build", "--release", "--locked", "--offline"],
+    "cargo_incremental": false,
+    "source_date_epoch": "source_commit_epoch",
+    "codegen_units_override": false,
+    "rustflags": [
+      "--remap-path-prefix=<source-root>=/sporespore",
+      "--remap-path-prefix=<cargo-home>=/cargo-home",
+      "--remap-path-prefix=<rust-sysroot>=/rust-sysroot",
+      "-Clink-arg=/Brepro",
+      "-Clink-arg=/PDBALTPATH:%_PDB%"
+    ]
+  },
+  "two_clean_root_gate": {
+    "required": true,
+    "separate_source_roots": true,
+    "separate_target_roots": true,
+    "exact_byte_length_required": true,
+    "exact_raw_sha256_required": true,
+    "differing_byte_count_required": 0,
+    "windows_absolute_path_count_required": 0,
+    "bare_pdb_name_required": true
+  },
+  "pe_nondeterminism_diagnostic": {
+    "characterized_baseline_byte_length": 1580032,
+    "characterized_baseline_differing_byte_count": 20,
+    "fields": [
+      {"file_offset": 248, "length": 4, "observed_differing_bytes": 1, "name": "IMAGE_FILE_HEADER.TimeDateStamp"},
+      {"file_offset": 1393636, "length": 4, "observed_differing_bytes": 1, "name": "IMAGE_DEBUG_DIRECTORY[0].TimeDateStamp_CODEVIEW"},
+      {"file_offset": 1393664, "length": 4, "observed_differing_bytes": 1, "name": "IMAGE_DEBUG_DIRECTORY[1].TimeDateStamp_VC_FEATURE"},
+      {"file_offset": 1393692, "length": 4, "observed_differing_bytes": 1, "name": "IMAGE_DEBUG_DIRECTORY[2].TimeDateStamp_POGO"},
+      {"file_offset": 1394036, "length": 16, "observed_differing_bytes": 16, "name": "RSDS_CodeView_GUID"}
+    ],
+    "normalized_pe_projection_is_fallback_only": true,
+    "raw_byte_equality_is_required_for_promotion": true
+  },
+  "content_addressed_retention": {
+    "required_before_first_consumer_process": true,
+    "evidence_root_directory_name": "SporeSpore_Evidence",
+    "relative_root": "artifacts/sha256",
+    "relative_payload_template": "<lowercase-sha256>/payload.bin",
+    "relative_manifest_template": "<lowercase-sha256>/manifest.json",
+    "mutable_cargo_target_is_not_evidence": true
+  },
+  "characterization_observation": {
+    "receipt_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/mv6-build-repro-characterization-20260805/receipt.json",
+    "receipt_raw_sha256": "sha256:fd913b34096c9c208d279955846386ea9d45b7b3458a9701e778db2708270b1f",
+    "source_commit": "3ad4d5fb1920fef863330d39200007f09fed7b9d",
+    "winning_artifact_raw_sha256": "sha256:c124f52ceb3ce928950bf31653813fb4787e04cdb9e6ee05b0b2998c3fd5e409",
+    "winning_artifact_byte_length": 1579008,
+    "world_count": 0
+  },
+  "historical_boundary": {
+    "mv6_expected_artifact_raw_sha256": "sha256:a345625986b7eafdd77a59dd1f9fb96bf5a9bde5bc5e78b54b3d027a356ae957",
+    "mv6_original_artifact_bytes_retained": false,
+    "mv6_closure_may_be_modified": false,
+    "successor_artifact_may_substitute_for_mv6": false
+  },
+  "claims": {
+    "physical_worlds": 0,
+    "physical_acceptance_authority": false,
+    "mv6_artifact_recovered": false,
+    "cross_machine_reproducibility": false,
+    "cross_toolchain_reproducibility": false,
+    "cross_platform_reproducibility": false,
+    "release_authorized": false
+  }
+}

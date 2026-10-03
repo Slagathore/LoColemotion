@@ -1,0 +1,122 @@
+{
+  "schema_version": "sporespore_retained_trace_lineage_manifest_v1",
+  "analysis_id": "QSDK-R23D28-AUTHORITY-PERSISTENCE-D1",
+  "question_class": "postclosure_development_diagnosis",
+  "status": "prospective_analyzer_over_already_exposed_closed_evidence",
+  "purpose": "Determine which simultaneously declared whole-swing steering-floor hold durations eliminate recorded returns to expanded authority between the first predictive floor and the first actual 0.10 rad tilt crossing in both failed R23D28 commands, while reporting the zero-command reference unchanged and making no counterfactual recovery claim.",
+  "data_exposure_boundary": {
+    "r23d28_outcomes_already_observed": true,
+    "projection_is_descriptive_not_confirmatory": true,
+    "all_declared_hold_durations_reported_simultaneously": true,
+    "duration_grid_spans_every_integer_swing_multiple_through_one_scheduler_cycle": true,
+    "future_controller_parameter_selected_by_this_analysis": false,
+    "future_stateful_guard_requires_distinct_policy_memory_receipt_and_physical_identity": true
+  },
+  "source_closure": {
+    "path": "sdk/turning/r23d28_predictive_stability_guarded_steering_closure_v1.json",
+    "source_commit": "352b7a27cd09613b172aa35c55fbd1a907ab4808",
+    "git_blob_oid": "bd3b553e59bb04b9c0268e66e8c1cd4b93ec4f29",
+    "raw_sha256": "sha256:0dbfe50617277b0df262ea790a8bef6615709d626afa21b2cd4dfdd5b5b8c194",
+    "status": "closed_valid_complete_negative_no_development_candidate"
+  },
+  "trace_contract": {
+    "trace_schema_version": "sporespore_qsdk_r23d28_physical_trace_row_v1",
+    "expected_row_count": 2992,
+    "phase_order": [
+      { "phase_id": "reference_warmup", "row_count": 600 },
+      { "phase_id": "commanded_turn", "row_count": 1200 },
+      { "phase_id": "reference_recovery", "row_count": 600 },
+      { "phase_id": "reference_continuation", "row_count": 592 }
+    ],
+    "analysis_phase_id": "commanded_turn",
+    "final_window_row_count": 120,
+    "authority_reach_fraction": 0.95,
+    "ordered_contact_limbs": [
+      "front_left",
+      "front_right",
+      "rear_left",
+      "rear_right"
+    ],
+    "ordered_actuator_names": [
+      "front_left_hip_motor",
+      "front_left_knee_motor",
+      "front_right_hip_motor",
+      "front_right_knee_motor",
+      "rear_left_hip_motor",
+      "rear_left_knee_motor",
+      "rear_right_hip_motor",
+      "rear_right_knee_motor"
+    ],
+    "ordered_actuator_velocity_limits_rad_s": [3.5, 3.5, 3.5, 3.5, 3.5, 3.0, 3.5, 3.5],
+    "limiting_actuator_claim_requires_complete_final_commands_and_limits": true,
+    "steering_floor_hold_projection": {
+      "enabled": true,
+      "scheduler_swing_steps": 72,
+      "scheduler_cycle_steps": 360,
+      "hold_duration_steps": [72, 144, 216, 288, 360],
+      "duration_grid_provenance": "every positive integer multiple of the inherited 72-step swing through the complete inherited 360-step balanced-wave scheduler cycle",
+      "full_authority_maximum_tilt_rad": 0.1,
+      "baseline_maximum_steering_fraction": 0.2,
+      "expanded_maximum_steering_fraction": 0.28,
+      "required_guard_schema_version": "sporespore_steering_authority_guard_receipt_v2",
+      "required_guard_mode_id": "predicted_tilt_and_contact_steering_authority_guard_v1",
+      "threshold_provenance": "unchanged R23D28 guard thresholds and authority bounds replayed descriptively"
+    }
+  },
+  "cells": [
+    {
+      "cell_id": "rapier_parry__predictive_stability_guarded_0p20_to_0p28__reference_zero",
+      "engine_id": "rapier_parry",
+      "candidate_id": "predictive_stability_guarded_0p20_to_0p28",
+      "arm_id": "reference_zero",
+      "command_sign": 0,
+      "steering_cap": 0.28,
+      "trace_sha256": "sha256:6eef72fba77308e670a587eff00af7667d9830468dcb117687f7c34c44b08ee8",
+      "trace_byte_length": 10895022
+    },
+    {
+      "cell_id": "rapier_parry__predictive_stability_guarded_0p20_to_0p28__positive_heading",
+      "engine_id": "rapier_parry",
+      "candidate_id": "predictive_stability_guarded_0p20_to_0p28",
+      "arm_id": "positive_heading",
+      "command_sign": 1,
+      "steering_cap": 0.28,
+      "trace_sha256": "sha256:8cc7225136f2a5581fbb8568f5f9cc5bbae77cacfc9cc38ae44b895dbf0960f5",
+      "trace_byte_length": 10870344
+    },
+    {
+      "cell_id": "rapier_parry__predictive_stability_guarded_0p20_to_0p28__negative_heading",
+      "engine_id": "rapier_parry",
+      "candidate_id": "predictive_stability_guarded_0p20_to_0p28",
+      "arm_id": "negative_heading",
+      "command_sign": -1,
+      "steering_cap": 0.28,
+      "trace_sha256": "sha256:5334804870ef2faf1cdb1c4f8b4540d06c2fbd4973897f842916ea59e463d280",
+      "trace_byte_length": 10874643
+    }
+  ],
+  "comparison_groups": [
+    {
+      "candidate_id": "predictive_stability_guarded_0p20_to_0p28",
+      "reference_cell_id": "rapier_parry__predictive_stability_guarded_0p20_to_0p28__reference_zero",
+      "positive_cell_id": "rapier_parry__predictive_stability_guarded_0p20_to_0p28__positive_heading",
+      "negative_cell_id": "rapier_parry__predictive_stability_guarded_0p20_to_0p28__negative_heading"
+    }
+  ],
+  "replayed_thresholds": {
+    "minimum_command_conditioned_yaw_separation_rad": 0.01,
+    "threshold_provenance": "immutable R23D28 outcome contract; replayed only for report continuity",
+    "threshold_change_authorized": false
+  },
+  "claim_limits": {
+    "closed_campaign_reinterpreted": false,
+    "candidate_selection_authorized": false,
+    "threshold_change_authorized": false,
+    "physical_campaign_opened": false,
+    "physical_execution_authorized": false,
+    "turning_validation": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false
+  }
+}

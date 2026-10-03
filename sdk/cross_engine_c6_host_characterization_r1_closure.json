@@ -1,0 +1,112 @@
+{
+  "schema_version": "sporespore_cross_engine_c6_host_characterization_r1_closure_v1",
+  "campaign_id": "C6-HOST-CHARACTERIZATION-R1",
+  "gate_id": "C6-HC1-R1",
+  "status": "closed_mixed_result_rapier_pass_mujoco_actuator_integrator_invalid",
+  "source_commit": "f54375ad1a4ba3d1e02c01b77983c3879e110bf4",
+  "source_was_clean_and_equal_to_origin_main": true,
+  "preregistration": {
+    "path": "sdk/cross_engine_c6_host_characterization_r1_preregistration.json",
+    "raw_sha256": "sha256:a5ebb5c3fa827ec6d4952326f63ef68a87134d2cea71186ca15bd3174df84e11"
+  },
+  "predecessor_closure": {
+    "path": "sdk/cross_engine_c6_host_characterization_closure.json",
+    "raw_sha256": "sha256:dadd1e8a44dca2e66136c496a91bf2d4e579300459af4f0884b9040aa3faff21"
+  },
+  "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r1-f54375a",
+  "artifacts": {
+    "rapier_report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r1-f54375a\\rapier\\report.json",
+      "bytes": 25172,
+      "sha256": "sha256:e706f53c1f7cc4658de5601728a571be695a294c25bcbe39955b1c7c585607dd"
+    },
+    "rapier_stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r1-f54375a\\rapier\\stdout.log",
+      "bytes": 25172,
+      "sha256": "sha256:e706f53c1f7cc4658de5601728a571be695a294c25bcbe39955b1c7c585607dd"
+    },
+    "rapier_stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r1-f54375a\\rapier\\stderr.log",
+      "bytes": 549,
+      "sha256": "sha256:247efa914560eab80f9eefb40803bfc6681b39059f89657ff5e69e5eaf00775a"
+    },
+    "mujoco_report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r1-f54375a\\mujoco\\report.json",
+      "bytes": 22603,
+      "sha256": "sha256:156c76457a0f0d630cf98cf4eab11ebea1bd939b15c0d7bcf6be7a2f41b7a0cc"
+    },
+    "mujoco_stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r1-f54375a\\mujoco\\stdout.log",
+      "bytes": 23225,
+      "sha256": "sha256:a38e7e9eba9805d620f52e2fba3ea4ababf88f5b5fa47e446fc2c5fe6764782c"
+    },
+    "mujoco_stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r1-f54375a\\mujoco\\stderr.log",
+      "bytes": 71,
+      "sha256": "sha256:086f6d40cf94b0cbd8bf820ca0389c053efa256e67dd5ae41992b940edce07cb"
+    }
+  },
+  "rapier_result": {
+    "ok": true,
+    "world_attempt_count": 28,
+    "world_build_count": 28,
+    "material_characterization_complete_for_declared_grid": true,
+    "actuator_characterization_complete_for_declared_grid": true,
+    "failed_actuator_cell_count": 0,
+    "measured_child_mass_kg": 1.0,
+    "measured_child_principal_inertia_kg_m2": [
+      0.0266666691750288,
+      0.0266666691750288,
+      0.0266666691750288
+    ]
+  },
+  "mujoco_result": {
+    "ok": false,
+    "world_attempt_count": 28,
+    "world_build_count": 24,
+    "material_characterization_complete_for_declared_grid": true,
+    "actuator_characterization_complete_for_declared_grid": false,
+    "failed_actuator_cell_count": 4,
+    "symmetric_final_positions_rad": {
+      "target_negative_0.4_impulse_0.05": -0.484165691716,
+      "target_negative_0.4_impulse_0.25": -0.625,
+      "target_positive_0.4_impulse_0.05": 0.484165691716,
+      "target_positive_0.4_impulse_0.25": 0.625
+    }
+  },
+  "diagnosis": {
+    "classification": "mujoco_actuator_fixture_invalid_explicit_euler_for_actuator_applied_damping",
+    "observed_source_pattern": "The shared MuJoCo option helper forced integrator Euler while the position actuator used kv=10 actuator-applied damping on the aligned low-inertia cube.",
+    "mujoco_3_11_semantics": "MuJoCo documents kv on position actuators as actuator-applied damping and recommends implicitfast or implicit integration when it is used.",
+    "why_overshoot_is_numerically_coherent": "The symmetric sign-correct overshoot appeared only after removal of the predecessor armature exposed the lower shape-derived inertia. It is consistent with explicit integration of a stiff damped servo and is not evidence of a sign, target, mass, or inertia mismatch.",
+    "authoritative_sources": [
+      {
+        "source": "MuJoCo 3.11 documentation",
+        "path": "doc/XMLreference.rst",
+        "relevance": "documents position-actuator kv and recommends implicitfast or implicit integration"
+      },
+      {
+        "source": "https://github.com/google-deepmind/mujoco",
+        "relevance": "official MuJoCo source and API authority"
+      },
+      {
+        "source": "sdk/adapters/mujoco/sporespore_mujoco_adapter/conformance.py",
+        "relevance": "shows the predecessor helper forced Euler"
+      }
+    ]
+  },
+  "decision": {
+    "overall_gate_passed": false,
+    "rapier_host_characterization_pass_retained": true,
+    "mujoco_engine_failure_claimed": false,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "material_robustness": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false,
+    "same_identity_rerun_forbidden": true,
+    "successor": "A distinct C6-HC1-R2 may change only the MuJoCo actuator fixture from Euler to the documented implicitfast integrator; every material cell and all other actuator inputs and gates must remain frozen."
+  }
+}

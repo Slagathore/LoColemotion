@@ -1,0 +1,297 @@
+diff --git a/modules/jolt_physics/jolt_physics_server_3d.cpp b/modules/jolt_physics/jolt_physics_server_3d.cpp
+--- a/modules/jolt_physics/jolt_physics_server_3d.cpp
++++ b/modules/jolt_physics/jolt_physics_server_3d.cpp
+@@ -58,6 +58,8 @@
+ #include "core/object/class_db.h"
+ 
+ void JoltPhysicsServer3D::_bind_methods() {
++	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("space_set_contact_frames_enabled", "space", "enabled"), &JoltPhysicsServer3D::space_set_contact_frames_enabled);
++	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("space_get_contact_frames", "space"), &JoltPhysicsServer3D::space_get_contact_frames);
+ 	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("hinge_joint_get_motor_telemetry", "joint"), &JoltPhysicsServer3D::hinge_joint_get_motor_telemetry);
+ 	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("space_get_solved_contact_telemetry", "space"), &JoltPhysicsServer3D::space_get_solved_contact_telemetry);
+ 	ClassDB::bind_static_method("JoltPhysicsServer3D", D_METHOD("space_get_solver_energy_exchange_telemetry", "space"), &JoltPhysicsServer3D::space_get_solver_energy_exchange_telemetry);
+@@ -114,6 +116,37 @@
+ 	result["positive_motor_work_j"] = motor_telemetry.positive_motor_work_j;
+ 	result["absorbed_motor_work_j"] = motor_telemetry.absorbed_motor_work_j;
+ 	result["net_motor_work_j"] = motor_telemetry.positive_motor_work_j - motor_telemetry.absorbed_motor_work_j;
++	return result;
++}
++
++bool JoltPhysicsServer3D::space_set_contact_frames_enabled(RID p_space, bool p_enabled) {
++	JoltPhysicsServer3D *physics_server = get_singleton();
++	if (physics_server == nullptr || (physics_server->on_separate_thread && !physics_server->doing_sync)) {
++		return false;
++	}
++	JoltSpace3D *space = physics_server->space_owner.get_or_null(p_space);
++	if (space == nullptr || space->is_stepping()) {
++		return false;
++	}
++	space->set_contact_frames_enabled(p_enabled);
++	return true;
++}
++
++Variant JoltPhysicsServer3D::space_get_contact_frames(RID p_space) {
++	JoltPhysicsServer3D *physics_server = get_singleton();
++	if (physics_server == nullptr || (physics_server->on_separate_thread && !physics_server->doing_sync)) {
++		return Variant();
++	}
++	JoltSpace3D *space = physics_server->space_owner.get_or_null(p_space);
++	if (space == nullptr || space->is_stepping()) {
++		return Variant();
++	}
++	Dictionary result = space->get_contact_frames();
++	if (result.is_empty()) {
++		return Variant();
++	}
++	result["read_space_step_sequence"] = static_cast<int64_t>(space->get_step_sequence());
++	result["snapshot_is_current_space_step"] = int64_t(result["capture_space_step_sequence"]) == static_cast<int64_t>(space->get_step_sequence());
+ 	return result;
+ }
+ 
+diff --git a/modules/jolt_physics/jolt_physics_server_3d.h b/modules/jolt_physics/jolt_physics_server_3d.h
+--- a/modules/jolt_physics/jolt_physics_server_3d.h
++++ b/modules/jolt_physics/jolt_physics_server_3d.h
+@@ -127,6 +127,8 @@
+ 
+ 	static JoltPhysicsServer3D *get_singleton() { return singleton; }
+ 	static Variant hinge_joint_get_motor_telemetry(RID p_joint);
++	static bool space_set_contact_frames_enabled(RID p_space, bool p_enabled);
++	static Variant space_get_contact_frames(RID p_space);
+ 	static Variant space_get_solved_contact_telemetry(RID p_space);
+ 	static Variant space_get_solver_energy_exchange_telemetry(RID p_space);
+ 
+diff --git a/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp b/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp
+--- a/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp
++++ b/modules/jolt_physics/spaces/jolt_contact_listener_3d.cpp
+@@ -30,6 +30,8 @@
+ 
+ #include "jolt_contact_listener_3d.h"
+ 
++#include "core/variant/array.h"
++
+ #include "../jolt_project_settings.h"
+ #include "../misc/jolt_type_conversions.h"
+ #include "../objects/jolt_area_3d.h"
+@@ -197,9 +199,20 @@
+ 	}();
+ 
+ 	if (unlikely(!manifold.contacts1.is_empty())) {
++		if (contact_frames_enabled) {
++			manifold.frame_duplicate_callback_count++;
++		}
+ 		// CCD collisions can result in two contact callbacks for the same shape pair, one in the earlier discrete stage and one in the later CCD stage.
+ 		// We want the manifolds from the discrete stage, as the bodies still have their original velocities at that point, so we early-out if we've already stored something.
+ 		return false;
++	}
++
++	if (contact_frames_enabled) {
++		// Same shape-origin and local scale convention as get_transform_scaled().
++		// Use the callback bodies directly: do not re-lock them from this callback.
++		manifold.frame_transform1 = Transform3D(to_godot(p_jolt_body1.GetRotation()), to_godot(p_jolt_body1.GetPosition())).scaled_local(body1->get_scale());
++		manifold.frame_transform2 = Transform3D(to_godot(p_jolt_body2.GetRotation()), to_godot(p_jolt_body2.GetPosition())).scaled_local(body2->get_scale());
++		manifold.frame_captured = true;
+ 	}
+ 
+ 	const JPH::uint contact_count = p_manifold.mRelativeContactPointsOn1.size();
+@@ -553,7 +566,23 @@
+ 	area_soft_body_overlaps.clear();
+ }
+ 
++void JoltContactListener3D::set_contact_frames_enabled(bool p_enabled) {
++	contact_frames_enabled = p_enabled;
++	contact_frames_snapshot.clear();
++}
++
++Dictionary JoltContactListener3D::get_contact_frames() const {
++	return contact_frames_snapshot.duplicate(true);
++}
++
+ void JoltContactListener3D::pre_step() {
++	if (contact_frames_enabled) {
++		contact_frames_snapshot.clear();
++		for (KeyValue<JPH::SubShapeIDPair, Manifold> &E : manifolds_by_shape_pair) {
++			E.value.frame_captured = false;
++			E.value.frame_duplicate_callback_count = 0;
++		}
++	}
+ 	_clear_area_soft_body_overlaps();
+ 
+ #ifdef DEBUG_ENABLED
+@@ -628,6 +657,96 @@
+ 			solved_contact_telemetry.ccd_only_manifold_count == 0 &&
+ 			solved_contact_telemetry.point_count_mismatch_count == 0 &&
+ 			solved_contact_telemetry.nonfinite_impulse_count == 0;
++	if (contact_frames_enabled) {
++		_capture_contact_frames(p_space_step_sequence);
++	}
++}
++
++void JoltContactListener3D::_capture_contact_frames(uint64_t p_space_step_sequence) {
++	Array points;
++	uint32_t missing_frames = 0;
++	uint32_t duplicate_callbacks = 0;
++	uint32_t invalid_frames = 0;
++	bool overflow = false;
++	for (const KeyValue<JPH::SubShapeIDPair, Manifold> &E : manifolds_by_shape_pair) {
++		const Manifold &manifold = E.value;
++		if (manifold.contacts1.is_empty() && manifold.contacts2.is_empty()) {
++			continue;
++		}
++		duplicate_callbacks += manifold.frame_duplicate_callback_count;
++		if (!manifold.frame_captured) {
++			missing_frames++;
++			continue;
++		}
++		if (!manifold.frame_transform1.is_finite() || !manifold.frame_transform2.is_finite() ||
++				Math::is_zero_approx(manifold.frame_transform1.basis.determinant()) ||
++				Math::is_zero_approx(manifold.frame_transform2.basis.determinant())) {
++			invalid_frames++;
++			continue;
++		}
++		JoltBody3D *body1 = space->try_get_body(E.key.GetBody1ID());
++		JoltBody3D *body2 = space->try_get_body(E.key.GetBody2ID());
++		if (body1 == nullptr || body2 == nullptr || manifold.contacts1.size() != manifold.contacts2.size()) {
++			missing_frames++;
++			continue;
++		}
++		const Transform3D inverse1 = manifold.frame_transform1.affine_inverse();
++		const Transform3D inverse2 = manifold.frame_transform2.affine_inverse();
++		for (uint32_t i = 0; i < manifold.contacts1.size(); i++) {
++			if (points.size() >= 4096) {
++				overflow = true;
++				break;
++			}
++			const Contact &contact1 = manifold.contacts1[i];
++			const Contact &contact2 = manifold.contacts2[i];
++			if (!contact1.point_self.is_finite() || !contact2.point_self.is_finite() ||
++					!contact1.normal.is_finite() || !contact2.normal.is_finite() ||
++					!contact1.impulse.is_finite() || !contact2.impulse.is_finite()) {
++				invalid_frames++;
++				continue;
++			}
++			Dictionary point;
++			point["body1_jolt_id"] = static_cast<int64_t>(E.key.GetBody1ID().GetIndexAndSequenceNumber());
++			point["body2_jolt_id"] = static_cast<int64_t>(E.key.GetBody2ID().GetIndexAndSequenceNumber());
++			point["body1_instance_id"] = static_cast<int64_t>(body1->get_instance_id());
++			point["body2_instance_id"] = static_cast<int64_t>(body2->get_instance_id());
++			point["subshape1_id"] = static_cast<int64_t>(E.key.GetSubShapeID1().GetValue());
++			point["subshape2_id"] = static_cast<int64_t>(E.key.GetSubShapeID2().GetValue());
++			point["shape1_index"] = body1->find_shape_index(E.key.GetSubShapeID1());
++			point["shape2_index"] = body2->find_shape_index(E.key.GetSubShapeID2());
++			point["manifold_point_index"] = i;
++			point["body1_transform_at_detection"] = manifold.frame_transform1;
++			point["body2_transform_at_detection"] = manifold.frame_transform2;
++			point["point1_world_m"] = contact1.point_self;
++			point["point2_world_m"] = contact2.point_self;
++			point["point1_body_local_m"] = inverse1.xform(contact1.point_self);
++			point["point2_body_local_m"] = inverse2.xform(contact2.point_self);
++			point["normal1_world_unit"] = contact1.normal;
++			point["normal2_world_unit"] = contact2.normal;
++			point["impulse1_world_ns"] = contact1.impulse;
++			point["impulse2_world_ns"] = contact2.impulse;
++			points.push_back(point);
++		}
++	}
++	contact_frames_snapshot["schema"] = "sporespore.godot_jolt_contact_frames.v1";
++	contact_frames_snapshot["profile_id"] = "godot_4_7_jolt_sporespore_contact_frames_v7";
++	contact_frames_snapshot["capture_space_step_sequence"] = static_cast<int64_t>(p_space_step_sequence);
++	contact_frames_snapshot["captured_during_active_step"] = space->is_stepping();
++	contact_frames_snapshot["sampling_stage"] = solved_contact_telemetry.complete && duplicate_callbacks == 0 ? "contact_detection_before_integration" : "unqualified_contact_callback";
++	contact_frames_snapshot["discrete_sampling_qualified"] = solved_contact_telemetry.complete && duplicate_callbacks == 0;
++	contact_frames_snapshot["reported_point_count"] = solved_contact_telemetry.reported_contact_point_count;
++	contact_frames_snapshot["missing_manifold_count"] = solved_contact_telemetry.missing_manifold_count;
++	contact_frames_snapshot["ccd_only_manifold_count"] = solved_contact_telemetry.ccd_only_manifold_count;
++	contact_frames_snapshot["point_count_mismatch_count"] = solved_contact_telemetry.point_count_mismatch_count;
++	contact_frames_snapshot["nonfinite_impulse_count"] = solved_contact_telemetry.nonfinite_impulse_count;
++	contact_frames_snapshot["missing_frame_count"] = missing_frames;
++	contact_frames_snapshot["duplicate_callback_count"] = duplicate_callbacks;
++	contact_frames_snapshot["invalid_frame_count"] = invalid_frames;
++	contact_frames_snapshot["point_limit_exceeded"] = overflow;
++	contact_frames_snapshot["points"] = points;
++	contact_frames_snapshot["complete"] = solved_contact_telemetry.complete && missing_frames == 0 &&
++			duplicate_callbacks == 0 && invalid_frames == 0 && !overflow &&
++			static_cast<uint32_t>(points.size()) == solved_contact_telemetry.reported_contact_point_count;
+ }
+ 
+ bool JoltContactListener3D::try_get_solved_contact_telemetry(JoltSolvedContactTelemetry3D &r_telemetry) const {
+diff --git a/modules/jolt_physics/spaces/jolt_contact_listener_3d.h b/modules/jolt_physics/spaces/jolt_contact_listener_3d.h
+--- a/modules/jolt_physics/spaces/jolt_contact_listener_3d.h
++++ b/modules/jolt_physics/spaces/jolt_contact_listener_3d.h
+@@ -36,6 +36,7 @@
+ #include "core/templates/hashfuncs.h"
+ #include "core/templates/local_vector.h"
+ #include "core/variant/variant.h"
++#include "core/variant/dictionary.h"
+ 
+ #include <Jolt/Jolt.h>
+ 
+@@ -95,6 +96,11 @@
+ 		Contacts contacts1;
+ 		Contacts contacts2;
+ 		float depth = 0.0f;
++		// Diagnostic snapshots only; neither collision points nor constraints change.
++		Transform3D frame_transform1;
++		Transform3D frame_transform2;
++		bool frame_captured = false;
++		uint32_t frame_duplicate_callback_count = 0;
+ 	};
+ 
+ 	HashMap<JPH::SubShapeIDPair, Manifold, ShapePairHasher> manifolds_by_shape_pair;
+@@ -106,6 +112,9 @@
+ 	JoltSpace3D *space = nullptr;
+ 	JoltSolvedContactTelemetry3D solved_contact_telemetry;
+ 	bool solved_contact_telemetry_valid = false;
++	bool contact_frames_enabled = false;
++	Dictionary contact_frames_snapshot;
++	void _capture_contact_frames(uint64_t p_space_step_sequence);
+ 
+ #ifdef DEBUG_ENABLED
+ 	PackedVector3Array debug_contacts;
+@@ -147,6 +156,8 @@
+ 	explicit JoltContactListener3D(JoltSpace3D *p_space) :
+ 			space(p_space) {}
+ 
++	void set_contact_frames_enabled(bool p_enabled);
++	Dictionary get_contact_frames() const;
+ 	void pre_step();
+ 	void capture_solved_contact_impulses(uint64_t p_space_step_sequence);
+ 	void post_step();
+diff --git a/modules/jolt_physics/spaces/jolt_space_3d.cpp b/modules/jolt_physics/spaces/jolt_space_3d.cpp
+--- a/modules/jolt_physics/spaces/jolt_space_3d.cpp
++++ b/modules/jolt_physics/spaces/jolt_space_3d.cpp
+@@ -262,6 +262,14 @@
+ 	stepping = false;
+ }
+ 
++void JoltSpace3D::set_contact_frames_enabled(bool p_enabled) {
++	contact_listener->set_contact_frames_enabled(p_enabled);
++}
++
++Dictionary JoltSpace3D::get_contact_frames() const {
++	return contact_listener->get_contact_frames();
++}
++
+ void JoltSpace3D::call_queries() {
+ 	while (body_call_queries_list.first()) {
+ 		JoltBody3D *body = body_call_queries_list.first()->self();
+diff --git a/modules/jolt_physics/spaces/jolt_space_3d.h b/modules/jolt_physics/spaces/jolt_space_3d.h
+--- a/modules/jolt_physics/spaces/jolt_space_3d.h
++++ b/modules/jolt_physics/spaces/jolt_space_3d.h
+@@ -29,6 +29,8 @@
+ /**************************************************************************/
+ 
+ #pragma once
++
++#include "core/variant/dictionary.h"
+ 
+ #include "servers/physics_3d/physics_server_3d.h"
+ 
+@@ -101,6 +103,8 @@
+ 
+ 	void step(float p_step);
+ 
++	void set_contact_frames_enabled(bool p_enabled);
++	Dictionary get_contact_frames() const;
+ 	void call_queries();
+ 
+ 	RID get_rid() const { return rid; }

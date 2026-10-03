@@ -1,0 +1,50 @@
+{
+  "schema_version": "sporespore_conformance_audit_profiler_contract_v1",
+  "contract_id": "CAP1-CEP1-SERIALIZED-AUDIT-DURATION-PROFILER",
+  "status": "prospective_development_profiler_no_reuse_authority",
+  "purpose": "Measure and retain per-audit duration and output for the exact CEP1 historical-audit inventory so acceleration targets are selected from observed cost rather than guessed.",
+  "production_inventory": {
+    "path": "sdk/closure_evidence_mode_inventory.json",
+    "schema_version": "sporespore_closure_evidence_mode_inventory_v1",
+    "expected_audit_count": 95,
+    "required_world_build_count": 0,
+    "physical_execution_authorized": false
+  },
+  "execution": {
+    "serialized": true,
+    "command": "pwsh -NoLogo -NoProfile -File <audit-path>",
+    "production_requires_clean_equal_origin_main": true,
+    "continue_after_failure_for_complete_ranking": true,
+    "final_exit_nonzero_if_any_audit_failed": true,
+    "hard_safety_timeout_seconds": 900,
+    "timeout_is_not_classified_as_a_proven_hang": true,
+    "test_only_subset_and_inventory_override_permitted": true
+  },
+  "retention": {
+    "profile_create_only": true,
+    "stdout_and_stderr_content_addressed_per_audit": true,
+    "profile_content_addressed": true,
+    "failure_excerpt_printed": true,
+    "raw_absolute_repository_root_in_profile": false,
+    "raw_environment_values_retained": false
+  },
+  "ranking": {
+    "primary_order": "duration_seconds_descending",
+    "tie_break": "audit_path_ordinal",
+    "reuse_candidate_requires_direct_cost_above_verification_cost": true,
+    "batch_amortization_may_be_considered": true,
+    "profiling_result_is_not_cache_equivalence": true
+  },
+  "claims": {
+    "development_observation_only": true,
+    "audit_dependency_complete": false,
+    "runtime_profile_complete": false,
+    "cold_equivalence_complete": false,
+    "production_cache_lookup_permitted": false,
+    "production_result_reuse_permitted": false,
+    "historical_audit_waiver_permitted": false,
+    "physical_execution_authorized": false,
+    "scientific_authority": false,
+    "release_authority": false
+  }
+}

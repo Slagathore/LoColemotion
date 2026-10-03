@@ -1,0 +1,184 @@
+{
+  "schema_version": "sporespore_conformance_authorization_kernel_manifest_v1",
+  "status": "declared_global_gates_unexecuted_campaign_roles_unbound",
+  "global_gate_count": 12,
+  "gates": [
+    {
+      "ordinal": 1,
+      "gate_id": "CAK1-REPOSITORY-AUTHORITY",
+      "safeguard_id": "repository_authority_boundary",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_repository_agent_boundary.ps1",
+      "arguments": [],
+      "canonical_runner_marker": "tests\\test_repository_agent_boundary.ps1",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 2,
+      "gate_id": "CAK1-REPRODUCIBLE-ARTIFACTS",
+      "safeguard_id": "reproducible_artifacts",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_windows_rust_reproducible_build_contract.ps1",
+      "arguments": [],
+      "canonical_runner_marker": "tests\\test_windows_rust_reproducible_build_contract.ps1",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 3,
+      "gate_id": "CAK1-OPERATION-LOCK",
+      "safeguard_id": "operation_serialization",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_locomotion_operation_lock.ps1",
+      "arguments": [
+        "-ExpectProductionConformanceLockHeld"
+      ],
+      "canonical_runner_marker": "tests\\test_locomotion_operation_lock.ps1",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 4,
+      "gate_id": "CAK1-EVIDENCE-PROVENANCE",
+      "safeguard_id": "cas_and_provenance_integrity",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_closure_evidence_provenance_contract.ps1",
+      "arguments": [],
+      "canonical_runner_marker": "tests\\test_closure_evidence_provenance_contract.ps1",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 5,
+      "gate_id": "CAK1-FULL-ATTESTATION",
+      "safeguard_id": "source_and_host_attestation",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_locomotion_full_conformance_attestation.ps1",
+      "arguments": [
+        "-Godot",
+        "<canonical-godot>"
+      ],
+      "canonical_runner_marker": "tests\\test_locomotion_full_conformance_attestation.ps1",
+      "requires_godot": true
+    },
+    {
+      "ordinal": 6,
+      "gate_id": "CAK1-RESULT-INTEGRITY",
+      "safeguard_id": "result_integrity",
+      "invocation_kind": "powershell_file",
+      "path": "tests/test_experiment_result_integrity_preflight.ps1",
+      "arguments": [],
+      "canonical_runner_marker": "tests\\test_experiment_result_integrity_preflight.ps1",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 7,
+      "gate_id": "CAK1-PHYSICAL-ENTRYPOINT-INTEGRITY",
+      "safeguard_id": "physical_entrypoint_integrity",
+      "invocation_kind": "godot_script",
+      "path": "tests/test_sdk_full_integrity_gate_satisfiability.gd",
+      "arguments": [
+        "--headless",
+        "--path",
+        "<repo-root>",
+        "--script"
+      ],
+      "canonical_runner_marker": "res://tests/test_sdk_full_integrity_gate_satisfiability.gd",
+      "requires_godot": true
+    },
+    {
+      "ordinal": 8,
+      "gate_id": "CAK1-PHYSICAL-RECEIPT-INTEGRITY",
+      "safeguard_id": "physical_receipt_integrity",
+      "invocation_kind": "godot_script",
+      "path": "tests/test_sdk_policy_relative_execution_integrity.gd",
+      "arguments": [
+        "--headless",
+        "--path",
+        "<repo-root>",
+        "--script"
+      ],
+      "canonical_runner_marker": "res://tests/test_sdk_policy_relative_execution_integrity.gd",
+      "requires_godot": true
+    },
+    {
+      "ordinal": 9,
+      "gate_id": "CAK1-SHARED-ADAPTER-INVARIANTS",
+      "safeguard_id": "shared_adapter_invariants",
+      "invocation_kind": "powershell_file",
+      "path": "sdk/run_adapter_authoring_conformance.ps1",
+      "arguments": [
+        "-SkipBuild"
+      ],
+      "canonical_runner_marker": "run_adapter_authoring_conformance.ps1",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 10,
+      "gate_id": "CAK1-SHARED-ABI-INVARIANTS",
+      "safeguard_id": "shared_abi_invariants",
+      "invocation_kind": "powershell_file",
+      "path": "sdk/run_versioning_conformance.ps1",
+      "arguments": [
+        "-SkipBuild"
+      ],
+      "canonical_runner_marker": "run_versioning_conformance.ps1",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 11,
+      "gate_id": "CAK1-LANGUAGE-BINDING-INVARIANTS",
+      "safeguard_id": "language_binding_invariants",
+      "invocation_kind": "python_unittest",
+      "path": "sdk/python/test_ctypes_smoke.py",
+      "arguments": [
+        "-m",
+        "unittest",
+        "-v"
+      ],
+      "canonical_runner_marker": "python\\test_ctypes_smoke.py",
+      "requires_godot": false
+    },
+    {
+      "ordinal": 12,
+      "gate_id": "CAK1-RELEASE-CLAIM-REFUSAL",
+      "safeguard_id": "release_claim_fail_closed",
+      "invocation_kind": "powershell_file",
+      "path": "sdk/test_quadruped_sdk_release_readiness.ps1",
+      "arguments": [],
+      "canonical_runner_marker": "test_quadruped_sdk_release_readiness.ps1",
+      "requires_godot": false
+    }
+  ],
+  "required_campaign_negative_control_roles": [
+    {
+      "role": "worker",
+      "binding_status": "unbound_until_distinct_successor_preregistration",
+      "requires_exact_source_digest": true,
+      "requires_exact_test_digest": true,
+      "requires_retained_refusal_receipt": true,
+      "bound": false
+    },
+    {
+      "role": "evaluator",
+      "binding_status": "unbound_until_distinct_successor_preregistration",
+      "requires_exact_source_digest": true,
+      "requires_exact_test_digest": true,
+      "requires_retained_refusal_receipt": true,
+      "bound": false
+    },
+    {
+      "role": "supervisor",
+      "binding_status": "unbound_until_distinct_successor_preregistration",
+      "requires_exact_source_digest": true,
+      "requires_exact_test_digest": true,
+      "requires_retained_refusal_receipt": true,
+      "bound": false
+    }
+  ],
+  "global_gate_execution_complete": false,
+  "campaign_negative_controls_complete": false,
+  "cold_equivalence_complete": false,
+  "kernel_commissioned": false,
+  "cache_lookup_permitted": false,
+  "result_reuse_permitted": false,
+  "physical_launch_permitted": false,
+  "release_authority": false
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": "sporespore_r10ao_progressive_headroom_study_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral_geometry",
+    "authority_mode": "prospective_retained_input_model_study",
+    "question_class": "development"
+  },
+  "source_parent_commit": "e4cbcbea9153afbe3049510db0e3248a4ced34ad",
+  "question": "Can a joint-by-joint nonworsening headroom rule replace the R10AN hard-margin deadlock while retaining bounded support-preserving geometric moves and a partial-support standing-height goal?",
+  "dependencies": [
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10an_support_transfer_result_v1.json",
+      "byte_length": 3059105,
+      "raw_sha256": "sha256:4d332ae75c3194cb913d17e792ca5b33632f26b70681983d121aae516c82cc14"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/recovery/r10an_support_transfer_study_v1.json",
+      "byte_length": 6102,
+      "raw_sha256": "sha256:aa29c463d6d8783d2739e721c13e245151ff09c6da34fc99213aef296a2846d8"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10an_support_transfer_study.py",
+      "byte_length": 13919,
+      "raw_sha256": "sha256:c57935dd075cfef964f81cf4c7c1c0b34ffd54aef08244b6d995eb57b77c927a"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10am_support_tracking_diagnosis.py",
+      "byte_length": 12576,
+      "raw_sha256": "sha256:25a1ee136c9bc9becf2072697a17114552ac206f35a58a27c9c5a02e6dc48841"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10al_support_anchored_model.py",
+      "byte_length": 6675,
+      "raw_sha256": "sha256:6a24fd07325253b0efdffc86afa7010462ea615d763ebc1da24f9f6eb643aa4a"
+    },
+    {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore/sdk/conformance/r10ab_loaded_rise_diagnosis.py",
+      "byte_length": 13267,
+      "raw_sha256": "sha256:bfbb9eedc1d7041d15825fdc503c0a52747531fd17d0d588219c022d967ca975"
+    }
+  ],
+  "population": {
+    "report": {
+      "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-899ecfdea2914711a39b7b0d5db0b621/children/kick_passive_recovery_resume/worker_report.json",
+      "byte_length": 620534747,
+      "raw_sha256": "sha256:d4f9ba6de5f10404c4272ff256155814ebd224cb0f2a6afe22e288315be2658a"
+    },
+    "section": "r10am_partial_recovery",
+    "command_samples": 600,
+    "selection": "All 600 nonterminal observations in original order.",
+    "held_out": false
+  },
+  "algorithm": {
+    "candidates": "Original 90 torso candidates, original exact anchors and free-foot placement; no new candidate directions, velocities, blending or IK branches.",
+    "headroom_rad": 0.02,
+    "deficit": "For each hip/knee: max(0, 0.02-(original_limit-abs(q))). Original limits and speed bounds still apply to every target.",
+    "admissibility": "No target may increase any joint deficit by more than 1e-12 rad. If any input deficit is positive, the sum of deficits must strictly decrease by more than 1e-12 rad.",
+    "ranking": "Lexicographic minimum of maximum joint deficit, total joint deficit, and the R10AN partial-support-standing-height cost. Compare each rank component with epsilon 1e-12. During deficit recovery geometry cost may increase; this is explicitly retained. Once deficits are zero, require strict geometry cost improvement.",
+    "geometry": "Same anchor residual <=0.0005m, unsupported endpoint nonascending, local free-foot displacement <=0.1*dt, torso-up nondecreasing, 4 rad/s speed and original compiled joint limits.",
+    "refusal": "Explicit no_positive_bearing_plane, no_geometric_candidate, no_nonworsening_headroom_candidate, no_headroom_progress_candidate or no_improving_candidate; never an undeclared fallback."
+  },
+  "checks": [
+    "Synthetic rank and joint-deficit controls before retained-input evaluation.",
+    "Independent FK, per-joint deficit, lexicographic selection and original geometric bounds on every selected plan.",
+    "Retain all 600 rows, rejection counts and signed original height-cost changes.",
+    "No propagation or assumed contact acquisition. The original nonfoot contacts and actuator saturation remain physical uncertainties."
+  ],
+  "decision_rule": "This tests one declared law, with no post-result weight, margin or candidate sweep. A selected plan is not a physical controller or recovery success.",
+  "claim_boundary": {
+    "controller_selected": false,
+    "controller_changed": false,
+    "physical_execution_authorized": false,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "sporespore_qsdk_r10d_zero_world_audit_invalid_v1",
+  "status": "closed_invalid_scope_breach_no_r10d_behavior_claim",
+  "gate_id": "QSDK-R10D",
+  "attempt_id": "QSDK-R10D-ZW-A1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "rapier_parry_incidental_test_process",
+    "authority_mode": "closed_invalid_zero_world_implementation_audit_attempt",
+    "question_class": "development"
+  },
+  "intended_scope": {
+    "purpose": "development-time validation of the prospective R10D zero-world implementation audit",
+    "top_level_command": "python sdk/conformance/qsdk_r10d_zero_world_implementation.py",
+    "required_model_construction_count": 0,
+    "required_world_attempt_count": 0,
+    "required_world_build_count": 0,
+    "required_solver_step_count": 0,
+    "physical_execution_authorized": false
+  },
+  "observed_scope_breach": {
+    "started_local_time_from_parent_process_observation": "2026-09-04T01:14:36-05:00",
+    "nested_command": "cargo test --manifest-path C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore\\sdk\\Cargo.toml --workspace --all-targets",
+    "observed_running_child_process": "sporespore_rapier_adapter-be1ad39bec505c15.exe",
+    "observed_parent_cargo_process_id": 90840,
+    "observed_child_test_process_id": 53592,
+    "test_inventory_contains_physical_fixture_test": true,
+    "example_physical_test_name": "tests::physical_c2_c5_fixtures_pass_as_one_report",
+    "captured_parent_stdout_retained": false,
+    "captured_parent_stderr_retained": false,
+    "native_world_attempt_count": null,
+    "native_world_build_count": null,
+    "native_solver_step_count": null,
+    "native_physics_state_may_have_been_modified": true,
+    "r10d_godot_source_gate_started": false,
+    "r10d_godot_worker_started": false,
+    "r10d_physical_attempt_document_created": false,
+    "r10d_physical_execution_authority_present": false,
+    "r10d_locomotion_outcome_exposed": false
+  },
+  "observed_native_test_executable": {
+    "path": "sdk/target/debug/deps/sporespore_rapier_adapter-be1ad39bec505c15.exe",
+    "byte_length": 18337792,
+    "raw_sha256": "sha256:176e01140a3795d0d8d7a103fd0e3ae7437e3b9d497d29ba157482aa224a08a9",
+    "last_write_utc": "2026-09-04T06:15:23Z",
+    "runtime_artifact_is_not_source_authority": true
+  },
+  "termination": {
+    "reason": "The zero-world audit must not execute a test harness that may construct or step a native physics world.",
+    "action": "Sent an interrupt to the top-level audit process and verified that its Python, Cargo, and Rapier test child processes no longer existed.",
+    "terminated_before_utc": "2026-09-04T06:20:28.2207514Z",
+    "process_tree_absent_after_interrupt": true,
+    "repository_source_mutated_by_process": false,
+    "durable_physical_evidence_directory_created": false
+  },
+  "correction": {
+    "unbounded_rust_test_execution_removed": true,
+    "replacement": "cargo check --workspace --all-targets plus cargo fmt --check",
+    "replacement_executes_test_bodies": false,
+    "same_invalid_attempt_may_be_reclassified": false,
+    "new_zero_world_audit_run_must_produce_a_distinct_terminal_receipt": true
+  },
+  "identity_and_claim_boundary": {
+    "invalid_audit_attempt_preserved": true,
+    "r10d_physical_campaign_identity_consumed": false,
+    "r10d_behavior_result_created": false,
+    "r10b_result_reclassified": false,
+    "r05e_result_reclassified": false,
+    "sdk1_m07_satisfied": false,
+    "q_sdk_r10_satisfied": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

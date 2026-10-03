@@ -1,0 +1,163 @@
+{
+  "schema_version": "sporespore_mujoco_warp_semantic_ceiling_readiness_contract_v1",
+  "contract_id": "sporespore_mujoco_warp_precalibration_semantic_ceiling_readiness_v1",
+  "status": "zero_world_source_only_all_production_semantic_ceilings_unresolved",
+  "question_class": "development",
+  "purpose": "Make semantic-ceiling provenance executable before any production MuJoCo-Warp calibration plan is frozen, while retaining the current absence of an adequate source for every required metric and refusing fixture-only, outcome-derived, unit-mismatched, or scope-inflated values.",
+  "predecessor_boundary": {
+    "calibration_contract_path": "sdk/adaptation_provider/mujoco_warp_equivalence_calibration_contract_v1.json",
+    "calibration_contract_raw_sha256": "sha256:c38f26211882f3349266f7381fcc5dc34acc9b20e5485d3b18d7f1185c35e374",
+    "calibration_compiler_path": "sdk/adaptation_provider/mujoco_warp_equivalence_calibration.py",
+    "calibration_compiler_raw_sha256": "sha256:d5f3440f7d1a46f9c67953b0ac85f4418fde46191d923f13a08fbf8e99231b46",
+    "calibration_validation_manifest_path": "sdk/adaptation_provider/mujoco_warp_equivalence_calibration_validation_manifest.json",
+    "calibration_validation_manifest_raw_sha256": "sha256:d1d3cd016574bca53fbe1447832b3104e5495c7f5de6f63fd9b2b01d3d6d485a",
+    "calibration_source_commit": "daca13321288ba27e5c619509c554bf2126e362e",
+    "calibration_report_sha256": "sha256:d45b7e3499775e846f8b77d36bf06a265fbf2238fd9cb2e71125888ed910b3d0",
+    "calibration_report_is_fixture_only": true,
+    "fixture_semantic_values_have_production_authority": false,
+    "production_plan_exists": false,
+    "production_margins_frozen": false,
+    "physical_calibration_series_open": false,
+    "heldout_qualification_series_open": false
+  },
+  "required_metric_readiness": [
+    {
+      "metric_id": "one_step_state_linf_normalized",
+      "unit": "normalized_ratio",
+      "allowed_semantic_sources": [
+        "downstream_training_label_stability",
+        "canonical_state_or_action_normalization_resolution",
+        "safety_gate_guard_band"
+      ],
+      "status": "unresolved_no_accepted_production_source",
+      "unresolved_reason": "No versioned source currently binds every state component, normalization scale, effective dtype, downstream consumer, and decision-preservation check for this metric."
+    },
+    {
+      "metric_id": "one_step_actuator_linf_normalized",
+      "unit": "normalized_ratio",
+      "allowed_semantic_sources": [
+        "downstream_training_label_stability",
+        "canonical_state_or_action_normalization_resolution",
+        "safety_gate_guard_band"
+      ],
+      "status": "unresolved_no_accepted_production_source",
+      "unresolved_reason": "No versioned source currently binds every actuator component, normalization scale, effective dtype, downstream consumer, and decision-preservation check for this metric."
+    },
+    {
+      "metric_id": "bounded_horizon_pose_velocity_rms_normalized",
+      "unit": "normalized_ratio",
+      "allowed_semantic_sources": [
+        "downstream_training_label_stability",
+        "canonical_state_or_action_normalization_resolution",
+        "safety_gate_guard_band"
+      ],
+      "status": "unresolved_no_accepted_production_source",
+      "unresolved_reason": "No versioned bounded-horizon pose/velocity normalization and downstream invariance study currently supplies this ceiling."
+    },
+    {
+      "metric_id": "bounded_horizon_energy_relative_error",
+      "unit": "relative_ratio",
+      "allowed_semantic_sources": [
+        "downstream_training_label_stability",
+        "safety_gate_guard_band"
+      ],
+      "status": "unresolved_no_accepted_production_source",
+      "unresolved_reason": "No versioned downstream label or safety decision currently defines a permissible relative energy perturbation for this use."
+    },
+    {
+      "metric_id": "contact_event_time_error_steps",
+      "unit": "step",
+      "allowed_semantic_sources": [
+        "downstream_training_label_stability",
+        "contact_event_label_tolerance",
+        "safety_gate_guard_band"
+      ],
+      "status": "unresolved_no_accepted_production_source",
+      "unresolved_reason": "No versioned contact-event label contract currently declares how many semantic steps may move while preserving the downstream label or safety decision."
+    }
+  ],
+  "provenance_record_contract": {
+    "schema_version": "sporespore_mujoco_warp_semantic_ceiling_provenance_record_v1",
+    "exact_metric_and_unit_required": true,
+    "finite_strictly_positive_ceiling_required": true,
+    "allowed_semantic_source_required": true,
+    "repo_relative_source_path_required": true,
+    "source_raw_sha256_byte_length_locator_and_commit_required": true,
+    "source_bytes_must_rehash_exactly": true,
+    "source_must_be_strict_json": true,
+    "source_locator_must_resolve_exact_metric_unit_value_and_source_class": true,
+    "source_commit_must_be_on_head_and_origin_main_lineage": true,
+    "source_must_precede_calibration_outcomes": true,
+    "calibration_heldout_or_historical_physics_outcome_may_supply_value": false,
+    "fixture_source_may_enter_production_inventory": false,
+    "downstream_consumer_decision_and_verification_method_required": true,
+    "bounded_adequacy_argument_required": true,
+    "preservation_below_ceiling_must_be_explicit": true,
+    "topology_contact_material_and_horizon_scope_required": true,
+    "broader_population_claim_permitted": false,
+    "this_gate_freezes_a_margin": false,
+    "this_gate_authorizes_calibration": false
+  },
+  "explicit_non_sources": [
+    {
+      "source_class": "mjcal_synthetic_fixture_margins",
+      "disposition": "rejected_for_production",
+      "reason": "They exist only to mutation-test the compiler and are marked fixture_only."
+    },
+    {
+      "source_class": "engine_specific_configured_readback_comparison_tolerance",
+      "disposition": "rejected_without_metric_specific_invariance_evidence",
+      "reason": "A configured adapter readback tolerance does not define normalized state, normalized actuator, bounded-horizon pose/velocity, energy, or contact-label semantics."
+    },
+    {
+      "source_class": "historical_locomotion_acceptance_threshold",
+      "disposition": "rejected_for_semantic_ceiling_selection",
+      "reason": "Historical campaign thresholds are outcome-exposed, target different estimands, and may not be repurposed as CPU-MuJoCo/MuJoCo-Warp equivalence margins."
+    }
+  ],
+  "current_inventory": {
+    "inventory_id": "mujoco_warp_semantic_ceiling_readiness_current_unresolved_v1",
+    "accepted_production_source_count": 0,
+    "required_metric_count": 5,
+    "unresolved_metric_count": 5,
+    "production_semantic_ceiling_sources_complete": false,
+    "production_plan_exists": false,
+    "production_margins_frozen": false,
+    "calibration_authorized": false
+  },
+  "source_conformance": {
+    "fixture_only_positive_path": true,
+    "required_cells": [
+      "mjsc0_contract_and_predecessor_boundary",
+      "mjsc1_current_incomplete_inventory",
+      "mjsc2_positive_fixture_compilation",
+      "mjsc3_content_binding_controls",
+      "mjsc4_chronology_and_outcome_controls",
+      "mjsc5_unit_scope_and_invariance_controls",
+      "mjsc6_mutation_controls",
+      "mjsc7_authority_boundary"
+    ],
+    "minimum_mutation_control_count": 25,
+    "model_construction_count": 0,
+    "step_invocation_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "claims": {
+    "production_semantic_ceiling_sources_complete": false,
+    "production_calibration_plan_frozen": false,
+    "calibration_physics_executed": false,
+    "production_margins_frozen": false,
+    "heldout_cohort_frozen": false,
+    "supported_physics_subset_qualified": false,
+    "throughput_measured": false,
+    "training_plane_authorized": false,
+    "training_data_authority": false,
+    "native_mujoco_equivalence": false,
+    "cross_engine_equivalence": false,
+    "scientific_result": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false
+  }
+}

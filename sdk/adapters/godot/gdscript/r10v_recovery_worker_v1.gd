@@ -1,0 +1,349 @@
+extends "res://sdk/adapters/godot/gdscript/development_recovery_candidate_worker_v1.gd"
+# gdlint: disable=max-line-length
+
+## R10V production hooks. Prospective profile/launcher integration must bind
+## this worker separately; the native component profile cannot launch a route.
+const R10VSeed := preload("res://sdk/adapters/godot/gdscript/r10v_development_seed_v1.gd")
+const R10V := preload("res://sdk/adapters/godot/gdscript/r10v_recovery_orchestrator_v1.gd")
+const R10VRoute := preload("res://sdk/adapters/godot/gdscript/r10v_recovery_route_v1.gd")
+const UprightBridge := preload("res://sdk/adapters/godot/gdscript/r10r_upright_recovery_stage_v1.gd")
+var _r10v_upright_packets: Array = []
+var _r10v_first_upright_application: Dictionary = {}
+var _post_recovery_hold_entry_source: Dictionary = {}
+var _post_recovery_hold_control_rows: Array = []
+var _post_recovery_hold_readiness_rows: Array = []
+
+func _r10k_selected_v1() -> bool:
+	# Reuse original partial/prone worker hooks only under this own route.
+	return _candidate_selection.get("diagnostic_schedule", {}).get("walking_policy_id") == R10V.ROUTE
+
+func _initialize_orchestrator_v1(arm_id: String, model_id: String, population: String) -> Dictionary:
+	return R10V.initialize_v1(_sdk, _attempt_id, arm_id, model_id, _configuration_sha256, population)
+
+func _build_orchestrator_event_v1(state: Dictionary, fields: Dictionary) -> Dictionary:
+	# These are fresh event inputs from shared hooks, not retained old events.
+	var own := fields.duplicate(true)
+	if own.has("r10k_native_receipt"):
+		if own.has("r10v_native_receipt"): return {"ok": false, "failure_code": "R10V_COMPETING_NATIVE_EVENT"}
+		own["r10v_native_receipt"] = own.r10k_native_receipt
+		own.erase("r10k_native_receipt")
+	if state.phase == R10V.PHASE_UPRIGHT and own.get("recovery_controller_terminal_phase") == "complete":
+		if _kicked_entry_checked: return {"ok": false, "failure_code": "R10V_REPEATED_COMPLETION_READINESS"}
+		var measured := _entry_measurement_v1(_arms[state.arm_id])
+		if measured.get("ok") != true: return measured
+		_kicked_entry_checked = true
+		_post_recovery_hold_entry_source = measured.duplicate(true)
+		_entry_readiness_rows.append({"role": state.arm_id, "purpose": "post_recovery_entry",
+			"global_semantic_step": own.global_semantic_step, "source": measured.duplicate(true)})
+		own.post_recovery_readiness = measured.readiness
+		own.post_recovery_readiness_source_sha256 = _canonical_sha256_v1(measured)
+	return R10V.build_event_v1(_sdk, state, own)
+
+func _advance_orchestrator_step_v1(state: Dictionary, event: Dictionary) -> Dictionary:
+	var result := R10V.advance_v1(_sdk, state, event)
+	_entry_transitions.append({"state_before": state.duplicate(true), "event": event.duplicate(true), "advance": result.duplicate(true)})
+	if result.get("ok") == true and state.phase == Orchestrator.PHASE_INTERACTION and result.next_phase == EntryOrchestrator.PHASE_DESCENT:
+		# Setup remains retained in its genuine terminal source. Neither post-kick
+		# branch owns canonical memory while passive descent is still running.
+		var arm: Dictionary = _arms[state.arm_id]
+		arm.recovery_memory = {}
+		arm.next_recovery_control = {}
+		arm.last_recovery_terminal = false
+		arm["passive_entry_state"] = {}
+		arm["passive_entry_handoff_receipt"] = {}
+		arm["r10k_partial_declaration"] = {}
+		arm["r10k_partial_memory"] = {}
+		arm["r10k_native_receipt"] = {}
+		arm["r10v_upright_declaration"] = {}
+		arm["r10v_upright_memory"] = {}
+		arm["r10v_native_receipt"] = {}
+		_arms[state.arm_id] = arm
+	return result
+
+func _process_descent_v1(arm_id: String, global_step: int) -> Dictionary:
+	var arm: Dictionary = _arms[arm_id]
+	var state: Dictionary = arm.orchestrator_state
+	var collection: Dictionary = arm.last_collection
+	var bound: Dictionary = collection.get("epoch_result", {}).get("bound_epoch_observations", {})
+	var packet := UprightBridge.entry_v1(_sdk, _context, _attempt_id, bound, arm.get("passive_entry_state", {}))
+	packet["source_application"] = arm.pending_application.duplicate(true)
+	_entry_packets.append(packet)
+	if packet.get("ok") != true: return packet
+	var original: Dictionary = packet.original_passive_receipt
+	arm.passive_entry_state = packet.entry_state
+	arm.last_recovery_classification = original.classification.duplicate(true)
+	arm.trace_rows[-1]["recovery_classification"] = original.classification.duplicate(true)
+	var kind: String = packet.entry_kind
+	if kind in ["prone", "partial", "upright"]:
+		if (not arm.recovery_memory.is_empty() or not arm.passive_entry_handoff_receipt.is_empty()
+			or not arm.get("r10k_partial_memory", {}).is_empty() or not arm.get("r10v_upright_memory", {}).is_empty()):
+			return {"ok": false, "failure_code": "R10V_RECOVERY_REINITIALIZATION"}
+		if kind == "prone":
+			if not (original.get("canonical_memory") is Dictionary): return {"ok": false, "failure_code": "R10V_PRONE_MEMORY_MISSING"}
+			arm.recovery_memory = original.canonical_memory.duplicate(true)
+			arm.passive_entry_handoff_receipt = original.duplicate(true)
+			arm["first_post_entry_application_pending"] = true
+		elif kind == "partial":
+			var entry: Dictionary = packet.original_control_receipt.entry
+			arm.r10k_partial_declaration = entry.partial_declaration.duplicate(true)
+			arm.r10k_partial_memory = entry.partial_memory.duplicate(true)
+			arm.r10k_native_receipt = packet.original_control_receipt.duplicate(true)
+			arm.next_recovery_control = packet.original_control_receipt.initial_partial_control.duplicate(true)
+		else:
+			arm.r10v_upright_declaration = packet.native_receipt.entry.upright_declaration.duplicate(true)
+			arm.r10v_upright_memory = packet.native_receipt.entry.upright_memory.duplicate(true)
+			arm.r10v_native_receipt = packet.native_receipt.duplicate(true)
+			arm.next_recovery_control = packet.native_receipt.initial_upright_control.duplicate(true)
+	_arms[arm_id] = arm
+	var event := _build_orchestrator_event_v1(state, {
+		"event_kind": "passive_entry_observation", "global_semantic_step": global_step,
+		"recovery_epoch_local_step": global_step - state.epoch_start_global_step,
+		"control_owner": "none", "actuation_owner": "none", "no_actuation_requested": true,
+		"application_intent_sha256": _canonical_sha256_v1(arm.pending_application),
+		"energy_initializer_sha256": _arm_epoch_initializer_sha256_v1(arm),
+		"prone_sample": original.classification.entry_prone_gate, "stable_four_foot_stance": original.classification.stable_stance_gate,
+		"passive_entry_receipt_sha256": _canonical_sha256_v1(original), "passive_entry_status": original.memory.status,
+		"canonical_initialization_count": original.canonical_initialization_count, "r10v_native_receipt": packet.native_receipt,
+		"body_population_rebuild_count": arm.body_population_rebuild_count, "body_transform_write_count": arm.body_transform_write_count,
+		"body_velocity_write_count": arm.body_velocity_write_count, "solver_reset_count": arm.solver_reset_count})
+	return _install_orchestrator_event_v1(arm_id, state, arm.pending_application, collection, bound, event)
+
+func _apply_recovery_control_v1(arm_id: String, completed_global_step: int) -> Dictionary:
+	var upright: bool = _r10k_selected_v1() and _arms[arm_id].orchestrator_state.phase == R10V.PHASE_UPRIGHT
+	if not upright: return super._apply_recovery_control_v1(arm_id, completed_global_step)
+	var arm: Dictionary = _arms[arm_id]
+	var context := UprightBridge.Source.control_context_v1(_sdk, arm.get("r10v_native_receipt", {}))
+	if (context.get("ok") != true or context.get("memory_sha256") != _canonical_sha256_v1(arm.get("r10v_upright_memory", {}))
+		or context.get("declaration_sha256") != _canonical_sha256_v1(arm.get("r10v_upright_declaration", {}))
+		or context.get("semantic_step") != completed_global_step + 1):
+		return {"ok": false, "failure_code": "R10V_APPLY_UPRIGHT_SOURCE_CROSSED"}
+	# Apply the original R10R V20/V12/V7 control through the unchanged motor applier.
+	var applied := super._apply_recovery_control_v1(arm_id, completed_global_step)
+	if applied.get("ok") != true: return applied
+	arm = _arms[arm_id]
+	var tagged := UprightBridge.Source.bind_application_v1(_sdk, arm.r10v_native_receipt, arm.pending_application)
+	if tagged.get("ok") != true: return tagged
+	arm.pending_application = tagged.application
+	arm.model[UprightBridge.Source.KEY] = tagged.model_binding
+	if _r10v_first_upright_application.is_empty(): _r10v_first_upright_application = tagged.application.duplicate(true)
+	_arms[arm_id] = arm
+	return {"ok": true}
+
+func _process_r10v_upright_v1(arm_id: String, global_step: int) -> Dictionary:
+	var arm: Dictionary = _arms[arm_id]
+	var state: Dictionary = arm.orchestrator_state
+	var collection: Dictionary = arm.last_collection
+	var bound: Dictionary = collection.get("epoch_result", {}).get("bound_epoch_observations", {})
+	var prior_memory: Dictionary = arm.get("r10v_upright_memory", {})
+	var packet := UprightBridge.step_v1(_sdk, _context, _attempt_id, bound, arm.get("r10v_upright_declaration", {}), prior_memory)
+	packet["source_application"] = arm.pending_application.duplicate(true)
+	packet["prior_memory"] = prior_memory.duplicate(true)
+	_r10v_upright_packets.append(packet)
+	if packet.get("ok") != true: return packet
+	var native: Dictionary = packet.native_receipt
+	var step: Dictionary = native.step
+	var terminal: bool = step.next_phase in ["complete", "failed"]
+	arm.r10v_upright_memory = step.memory.duplicate(true)
+	arm.r10v_native_receipt = native.duplicate(true)
+	arm.next_recovery_control = native.next_control.duplicate(true) if native.next_control is Dictionary else {}
+	arm.last_recovery_global_semantic_step = global_step
+	arm.last_recovery_terminal = terminal
+	arm.last_recovery_terminal_phase = step.next_phase if terminal else ""
+	arm.last_recovery_terminal_failure_code = step.memory.terminal_failure_code if step.next_phase == "failed" else ""
+	arm.last_recovery_classification = step.classification.duplicate(true)
+	arm.trace_rows[-1]["recovery_classification"] = step.classification.duplicate(true)
+	_arms[arm_id] = arm
+	var event := _build_orchestrator_event_v1(state, {
+		"event_kind": "upright_recovery_controller_step", "global_semantic_step": global_step,
+		"recovery_epoch_local_step": global_step - state.epoch_start_global_step,
+		"control_owner": "recovery_candidate", "actuation_owner": "recovery_candidate", "recovery_actuation_applied": true,
+		"application_intent_sha256": _canonical_sha256_v1(arm.pending_application),
+		"energy_initializer_sha256": _arm_epoch_initializer_sha256_v1(arm),
+		"stable_four_foot_stance": step.classification.stable_stance_gate,
+		"recovery_controller_terminal_phase": arm.last_recovery_terminal_phase,
+		"recovery_controller_terminal_reason": arm.last_recovery_terminal_failure_code,
+		"r10v_native_receipt": native, "upright_prior_memory_sha256": _canonical_sha256_v1(prior_memory),
+		"body_population_rebuild_count": arm.body_population_rebuild_count, "body_transform_write_count": arm.body_transform_write_count,
+		"body_velocity_write_count": arm.body_velocity_write_count, "solver_reset_count": arm.solver_reset_count})
+	var result := _install_orchestrator_event_v1(arm_id, state, arm.pending_application, collection, bound, event)
+	if result.get("ok") == true and step.next_phase == "complete":
+		# The next application belongs to a fresh walking task. Keep the final
+		# upright observation and memory in retention, and end only its producer tag.
+		_arms[arm_id].model.erase(UprightBridge.Source.KEY)
+	return result
+
+func _collect_arm_completed_step_v1(arm_id: String, global_step: int) -> Dictionary:
+	var arm: Dictionary = _arms[arm_id]
+	if arm.orchestrator_state.phase == R10V.PHASE_UPRIGHT:
+		var selected := UprightBridge.Source.select_v1(_sdk, arm.model, arm.pending_application, global_step)
+		var binding: Dictionary = arm.pending_application.get(UprightBridge.Source.KEY, {})
+		if (selected.get("ok") != true or selected.get("upright_task_selected") != true
+			or binding.get("memory_sha256") != _canonical_sha256_v1(arm.get("r10v_upright_memory", {}))
+			or binding.get("declaration_sha256") != _canonical_sha256_v1(arm.get("r10v_upright_declaration", {}))):
+			return {"ok": false, "failure_code": "R10V_PENDING_UPRIGHT_SOURCE_CROSSED"}
+	return super._collect_arm_completed_step_v1(arm_id, global_step)
+
+func _plan_next_process_isolated_frame_v1(global_step: int) -> Dictionary:
+	if _arms.get(_authorized_arm_id, {}).get("orchestrator_state", {}).get("phase") == R10V.PHASE_SETTLING:
+		var arm: Dictionary = _arms[_authorized_arm_id]
+		if not _completed_upright_memory_preserved_v1(arm): return {"ok": false, "failure_code": "R10V_HOLD_RECOVERY_MEMORY_CHANGED"}
+		var session: Dictionary = arm.get("active_walking_session", {})
+		if not session.is_empty() and session.get("evaluation_segment_id") != R10VRoute.POST_HOLD_SEGMENT:
+			return {"ok": false, "failure_code": "R10V_HOLD_SESSION_CROSSED"}
+		_cost.begin_v1("plan_step/" + R10V.PHASE_SETTLING)
+		var held := (_start_walking_session_v1(_authorized_arm_id, R10VRoute.POST_HOLD_SEGMENT, global_step)
+			if session.is_empty() else _apply_next_walking_step_v1(_authorized_arm_id, global_step))
+		_cost.end_v1("plan_step/" + R10V.PHASE_SETTLING)
+		return held
+	if _arms.get(_authorized_arm_id, {}).get("orchestrator_state", {}).get("phase") != R10V.PHASE_UPRIGHT:
+		return super._plan_next_process_isolated_frame_v1(global_step)
+	_cost.begin_v1("plan_step/" + R10V.PHASE_UPRIGHT)
+	var result := _apply_recovery_control_v1(_authorized_arm_id, global_step)
+	_cost.end_v1("plan_step/" + R10V.PHASE_UPRIGHT)
+	return result
+
+func _process_completed_arm_step_v1(arm_id: String, global_step: int, active_terminal_after_step: bool) -> Dictionary:
+	if _arms[arm_id].orchestrator_state.phase == R10V.PHASE_SETTLING:
+		_cost.begin_v1("process_step/" + R10V.PHASE_SETTLING)
+		var held := _process_post_recovery_hold_v1(arm_id, global_step)
+		_cost.end_v1("process_step/" + R10V.PHASE_SETTLING)
+		return held
+	if _arms[arm_id].orchestrator_state.phase != R10V.PHASE_UPRIGHT:
+		return super._process_completed_arm_step_v1(arm_id, global_step, active_terminal_after_step)
+	_cost.begin_v1("process_step/" + R10V.PHASE_UPRIGHT)
+	var result := _process_r10v_upright_v1(arm_id, global_step)
+	_cost.end_v1("process_step/" + R10V.PHASE_UPRIGHT)
+	return result
+
+func _recovery_controller_for_phase_v1(phase: String) -> String:
+	if phase == R10V.PHASE_UPRIGHT:
+		var memory: Dictionary = _arms.get(_authorized_arm_id, {}).get("r10v_upright_memory", {})
+		return UprightBridge.Source.recovery_controller_for_phase_v1(memory.get("phase", ""))
+	return super._recovery_controller_for_phase_v1(phase)
+
+func _ramp_to_hold_ready_v1(entry_memory: Dictionary, measured: Dictionary) -> bool:
+	# This transfers controller ownership. The existing hold still requires
+	# all five measured readiness checks for 30 consecutive samples.
+	var checks: Dictionary = measured.get("readiness", {}).get("checks", {})
+	return (entry_memory.get("reference_ramp_complete") == true
+		and checks.get("upright") == true and checks.get("zero_bias_reference_path_feasible") == true)
+
+func _authorized_seed_binding_v1(seed_text: String, label: String, digest: String) -> bool:
+	if not _r10k_selected_v1(): return false
+	var role := OS.get_environment(CHILD_ROLE_ENV)
+	var descriptors: Array = _campaign_declaration.get("children", []).filter(func(child): return child.get("role") == role)
+	if descriptors.size() != 1 or _campaign_declaration.get("attempt_id") != OS.get_environment(PARENT_ATTEMPT_ID_ENV): return false
+	if descriptors[0].get("child_attempt_id") != OS.get_environment(ATTEMPT_ID_ENV) or descriptors[0].get("termination_nonce") != OS.get_environment(NONCE_ENV): return false
+	return R10VSeed.authorized_v1(_campaign_declaration, seed_text, label, digest, role, OS.get_environment(SOURCE_COMMIT_ENV))
+
+func _walking_prefix_profile_id_v1(segment_id: String) -> String:
+	return "r10v_declared_development_prefix_phase_v1" if segment_id == "walking_prefix" else ""
+
+func _attach_profile_seed_context_v1(report: Dictionary) -> bool:
+	return R10VSeed.attach_report_context_v1(report, _campaign_declaration, _seed)
+
+func _attach_profile_recovery_retention_v1(report: Dictionary) -> void:
+	var arm: Dictionary = _arms.get(_authorized_arm_id, {})
+	var kind: String = arm.get("orchestrator_state", {}).get("r10v_entry_kind", "unselected")
+	report.passive_entry.schema_version = "sporespore_r10v_recovery_entry_retention_v1"
+	report["r10v_partial_recovery"] = {"schema_version": "sporespore_r10v_partial_recovery_retention_v1",
+		"entry_kind": kind, "declaration": arm.get("r10k_partial_declaration", {}).duplicate(true),
+		"final_memory": arm.get("r10k_partial_memory", {}).duplicate(true),
+		"first_partial_application": _r10k_first_partial_application.duplicate(true), "step_packets": _r10k_partial_packets.duplicate(true),
+		"canonical_supervisor_synthesized": false, "source_observation_rewritten": false,
+		"energy_epoch_reset": false, "physical_acceptance_authority": false, "release_authority": false}
+	report["r10v_upright_recovery"] = {"schema_version": "sporespore_r10v_upright_recovery_retention_v1",
+		"entry_kind": kind, "declaration": arm.get("r10v_upright_declaration", {}).duplicate(true),
+		"final_memory": arm.get("r10v_upright_memory", {}).duplicate(true),
+		"first_upright_application": _r10v_first_upright_application.duplicate(true), "step_packets": _r10v_upright_packets.duplicate(true),
+		"canonical_supervisor_synthesized": false, "partial_supervisor_synthesized": false, "source_observation_rewritten": false,
+		"energy_epoch_reset": false, "physical_acceptance_authority": false, "release_authority": false}
+	report["post_recovery_settling"] = {"schema_version": "sporespore_r10v_post_recovery_settling_retention_v1",
+		"entry_source": _post_recovery_hold_entry_source.duplicate(true),
+		"final_memory": arm.get("orchestrator_state", {}).get("post_recovery_settling", {}).duplicate(true),
+		"control_rows": _post_recovery_hold_control_rows.duplicate(true),
+		"readiness_rows": _post_recovery_hold_readiness_rows.duplicate(true),
+		"task_contract_sha256": "sha256:" + FileAccess.get_sha256(R10VRoute.TASK_PATH),
+		"energy_epoch_reset": false, "physical_acceptance_authority": false, "release_authority": false}
+
+func _completed_upright_memory_preserved_v1(arm: Dictionary) -> bool:
+	var state: Dictionary = arm.get("orchestrator_state", {})
+	var memory: Dictionary = arm.get("r10v_upright_memory", {})
+	return (state.get("upright_phase") == "complete" and memory.get("phase") == "complete"
+		and _canonical_sha256_v1(memory) == state.get("upright_memory_sha256")
+		and _canonical_sha256_v1(arm.get("r10v_native_receipt", {}).get("step", {}).get("memory", {})) == state.get("upright_memory_sha256")
+		and not arm.get("model", {}).has(UprightBridge.Source.KEY))
+
+func _walking_segment_valid_v1(segment: String) -> bool:
+	return _r10k_selected_v1() and segment == R10VRoute.POST_HOLD_SEGMENT or super._walking_segment_valid_v1(segment)
+
+func _walking_facade_evaluation_segment_v1(segment: String) -> String:
+	return "matched_continuation" if segment == R10VRoute.POST_HOLD_SEGMENT else super._walking_facade_evaluation_segment_v1(segment)
+
+func _walking_policy_id_v1(segment: String) -> String:
+	return R10VRoute.POST_HOLD_ALIAS if segment == R10VRoute.POST_HOLD_SEGMENT and _r10k_selected_v1() else super._walking_policy_id_v1(segment)
+
+func _walking_frame_id_v1(segment: String) -> String:
+	return super._walking_frame_id_v1(StanceEntry.HOLD_SEGMENT if segment == R10VRoute.POST_HOLD_SEGMENT else segment)
+
+func _walking_contact_profile_id_v1(segment: String) -> String:
+	return super._walking_contact_profile_id_v1(StanceEntry.HOLD_SEGMENT if segment == R10VRoute.POST_HOLD_SEGMENT else segment)
+
+func _walking_start_profile_id_v1(segment: String) -> String:
+	return super._walking_start_profile_id_v1(StanceEntry.HOLD_SEGMENT if segment == R10VRoute.POST_HOLD_SEGMENT else segment)
+
+func _walking_phase_progression_mode_v1(segment: String, local_step: int) -> String:
+	return super._walking_phase_progression_mode_v1(StanceEntry.HOLD_SEGMENT if segment == R10VRoute.POST_HOLD_SEGMENT else segment, local_step)
+
+func _walking_gait_amplitude_v1(segment: String, local_step: int) -> float:
+	return 0.0 if segment == R10VRoute.POST_HOLD_SEGMENT else super._walking_gait_amplitude_v1(segment, local_step)
+
+func _walking_session_step_limit_v1(segment: String) -> int:
+	return 240 if segment == R10VRoute.POST_HOLD_SEGMENT else super._walking_session_step_limit_v1(segment)
+
+func _walking_owner_for_phase_v1(phase: String) -> String:
+	return "stance" if phase == R10V.PHASE_SETTLING else super._walking_owner_for_phase_v1(phase)
+
+func _retain_development_walking_source_v1(segment: String, step: Dictionary, digest: String) -> Dictionary:
+	if segment != R10VRoute.POST_HOLD_SEGMENT: return super._retain_development_walking_source_v1(segment, step, digest)
+	var command: Dictionary = step.get("sample_receipt", {}).get("request", {}).get("command", {})
+	var velocity: Dictionary = command.get("desired_planar_velocity_task_m_s", {})
+	if (command.get("gait_amplitude") != 0.0 or velocity.get("x") != 0.0 or velocity.get("y") != 0.0 or velocity.get("z") != 0.0):
+		return {"ok": false, "failure_code": "R10V_HOLD_NONSTATIONARY_COMMAND"}
+	_post_recovery_hold_control_rows.append({"segment_id": segment, "full_step_receipt_sha256": digest, "step": step.duplicate(true)})
+	return {"ok": true}
+
+func _process_post_recovery_hold_v1(arm_id: String, global_step: int) -> Dictionary:
+	var arm: Dictionary = _arms[arm_id]
+	var state: Dictionary = arm.orchestrator_state
+	if not _completed_upright_memory_preserved_v1(arm): return {"ok": false, "failure_code": "R10V_HOLD_RECOVERY_MEMORY_CHANGED"}
+	if (_post_recovery_hold_control_rows.is_empty()
+		or _post_recovery_hold_control_rows[-1].step.get("global_semantic_step") != global_step):
+		return {"ok": false, "failure_code": "R10V_HOLD_APPLIED_COMMAND_MISSING"}
+	var measured := _entry_measurement_v1(arm)
+	if measured.get("ok") != true: return measured
+	_post_recovery_hold_readiness_rows.append({"role": arm_id, "purpose": "post_recovery_hold_dwell",
+		"global_semantic_step": global_step, "source": measured.duplicate(true)})
+	var application: Dictionary = arm.pending_application
+	var fields := {"event_kind": "post_recovery_hold_step", "global_semantic_step": global_step,
+		"recovery_epoch_local_step": global_step - state.epoch_start_global_step,
+		"control_owner": "stance", "actuation_owner": "stance", "walking_actuation_applied": true,
+		"walking_session_id": application.get("walking_session_id", ""),
+		"walking_session_local_step": application.get("walking_session_local_step", 0),
+		"application_intent_sha256": _canonical_sha256_v1(application), "energy_initializer_sha256": state.energy_initializer_sha256,
+		"post_recovery_readiness": measured.readiness, "post_recovery_readiness_source_sha256": _canonical_sha256_v1(measured),
+		"body_population_rebuild_count": arm.body_population_rebuild_count, "body_transform_write_count": arm.body_transform_write_count,
+		"body_velocity_write_count": arm.body_velocity_write_count, "solver_reset_count": arm.solver_reset_count}
+	var event := _build_orchestrator_event_v1(state, fields)
+	var result := _install_orchestrator_event_v1(arm_id, state, application, arm.last_collection, null, event)
+	if result.get("ok") == true and result.get("phase_after") != R10V.PHASE_SETTLING:
+		var closed := _finish_walking_session_v1(arm_id)
+		if closed.get("ok") != true: return closed
+	return result
+
+func _after_completed_process_isolated_step_v1() -> bool:
+	var state: Dictionary = _arms.get(_authorized_arm_id, {}).get("orchestrator_state", {})
+	if state.get("phase") == Orchestrator.PHASE_FAILED and state.get("post_recovery_settling", {}).get("outcome") in ["timeout", "entry_refused"]:
+		_finish_smoke_v1("diagnostic_" + state.terminal_reason)
+		return true
+	return super._after_completed_process_isolated_step_v1()

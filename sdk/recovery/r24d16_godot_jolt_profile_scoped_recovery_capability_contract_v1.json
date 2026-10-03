@@ -1,0 +1,209 @@
+{
+  "schema_version": "sporespore_qsdk_r24d16_godot_jolt_profile_scoped_recovery_capability_contract_v1",
+  "gate_id": "QSDK-R24D16",
+  "work_id": "QSDK-R24D16-GODOT-JOLT-PROFILE-SCOPED-RECOVERY-CAPABILITY-MAPPING",
+  "question_class": "non_physical_source_conformance",
+  "status": "implemented_prospective_source_freeze_qualification_pending",
+  "recorded_utc": "2026-08-27T01:38:05.5746549Z",
+  "question": "Does a profile-scoped Godot/Jolt adapter mapping expose all ten canonical recovery-observation channels only on the exact R24D15-promoted instrumented runtime, while every stock or unqualified runtime retains the historical eight-channel mapping and typed unsupported-capability refusal, without constructing a model or opening physics?",
+  "answer_before_qualification": "implemented_not_yet_qualified",
+  "source_boundary": {
+    "repository_root": "C:/Users/Cole/CodeStuff/games/SporeSpore",
+    "remote": "https://github.com/Slagathore/sporespore.git",
+    "branch": "main",
+    "parent_commit": "b8c5ec5919d9d890946262d923f79259a6c8662a",
+    "parent_tree_git_oid": "3e0bab787046baf7cdedf26e706fa38fd510c83c",
+    "source_freeze_commit": null,
+    "source_freeze_tree_git_oid": null,
+    "qualification_must_use_clean_pushed_freeze": true,
+    "historical_stock_mapping_rewritten": false,
+    "historical_r24d15_decision_rewritten": false,
+    "observed_campaign_rewritten": false,
+    "observed_threshold_rewritten": false,
+    "observed_selector_rewritten": false,
+    "observed_evaluator_rewritten": false
+  },
+  "predecessor": {
+    "gate_id": "QSDK-R24D15",
+    "decision_path": "sdk/recovery/r24d15_godot_jolt_instrumented_profile_promotion_decision_v1.json",
+    "decision_raw_sha256": "sha256:ae5359f106732cecda253d6c346e9ac14703568883344982326597db79bd4aed",
+    "decision_byte_length": 12491,
+    "decision_git_blob_oid": "025a705a0034f10d9fc9f9a926dabdb4d15e4797",
+    "instrumented_profile_promoted": true,
+    "stock_profile_promoted": false,
+    "numerical_accuracy_accepted": false,
+    "adapter_capability_mapping_implemented": false,
+    "adapter_capability_mapping_qualified": false
+  },
+  "historical_stock_mapping": {
+    "path": "sdk/adapters/godot/gdscript/recovery_capability.gd",
+    "raw_sha256": "sha256:4c341284bc4816b309ae7fc7b165dfb281d6df2decb51b1b03ceb991bbc5a8c2",
+    "byte_length": 8173,
+    "git_blob_oid": "3f249226830441ff37d23db9b6e9ed83577da65e",
+    "mapping_id": "sporespore_godot_jolt_recovery_observation_capability_v1",
+    "required_channel_count": 10,
+    "supported_channel_count": 8,
+    "unsupported_channel_count": 2,
+    "unsupported_channels": [
+      "applied_actuation_receipts",
+      "energy_balance_ledger"
+    ],
+    "typed_support_status": "unsupported_capability",
+    "must_remain_unchanged": true
+  },
+  "profile_scoped_mapping": {
+    "path": "sdk/adapters/godot/gdscript/recovery_capability_instrumented_v2.gd",
+    "profile_receipt_schema_version": "sporespore_godot_jolt_recovery_capability_profile_receipt_v1",
+    "instrumented_profile_id": "godot_4_7_jolt_sporespore_motor_telemetry_active_step_snapshot_v2",
+    "fallback_profile_id": "godot_4_7_jolt_stock_or_unqualified_v1",
+    "canonical_adapter_id": "sporespore_godot_jolt_adapter",
+    "canonical_engine_id": "godot_jolt4_7",
+    "canonical_engine_version": "godot-4.7-stable-jolt-physics",
+    "canonical_mapping_id": "sporespore_godot_jolt_recovery_observation_capability_v1",
+    "canonical_mapping_identity_changed": false,
+    "required_channel_count": 10,
+    "instrumented_supported_channel_count": 10,
+    "instrumented_unsupported_channel_count": 0,
+    "fallback_supported_channel_count": 8,
+    "fallback_unsupported_channel_count": 2,
+    "promoted_channels": [
+      {
+        "channel": "applied_actuation_receipts",
+        "mapping_rule_id": "godot_jolt_active_step_snapshot_v2_applied_actuation_receipt_projection_v1",
+        "source": "JoltPhysicsServer3D.hinge_joint_get_motor_telemetry",
+        "source_measurement_only": true,
+        "synthesized_when_missing": false
+      },
+      {
+        "channel": "energy_balance_ledger",
+        "mapping_rule_id": "godot_jolt_active_step_snapshot_v2_energy_balance_ledger_projection_v1",
+        "source": "JoltPhysicsServer3D.hinge_joint_get_motor_telemetry plus PhysicsDirectBodyState3D state-energy terms",
+        "source_measurement_only": true,
+        "synthesized_when_missing": false
+      }
+    ],
+    "selection_inputs": [
+      "OS.get_executable_path",
+      "sibling console executable byte length and SHA-256",
+      "sibling engine executable byte length and SHA-256",
+      "ClassDB registration of JoltPhysicsServer3D.hinge_joint_get_motor_telemetry"
+    ],
+    "caller_supplied_profile_label_can_promote": false,
+    "environment_variable_can_promote": false,
+    "configured_motor_limit_can_be_relabelled_as_applied_impulse": false,
+    "missing_measurement_can_be_synthesized": false,
+    "engine_identity_exposed_to_policy": false
+  },
+  "exact_instrumented_runtime": {
+    "godot_source_commit": "5b4e0cb0fd279832bbdd69fed5354d4e5ad26f88",
+    "combined_patch_raw_sha256": "sha256:9629982deb74da1d3e16ea8eaff7cefef7c37a33f407c4cd777e332f05ff376c",
+    "console_binary_raw_sha256": "sha256:ff655a567d31f51628d5b21742a0618e53f9fbf8a94937dd07d9882a0739872f",
+    "console_binary_byte_length": 293376,
+    "engine_binary_raw_sha256": "sha256:2d68ed7ae53704ffb532cd5633241c74d599d69e3bf1968de0ef261553030ffb",
+    "engine_binary_byte_length": 188829184,
+    "telemetry_class_name": "JoltPhysicsServer3D",
+    "telemetry_method_name": "hinge_joint_get_motor_telemetry",
+    "binary_pair_and_api_conjunction_required": true,
+    "partial_identity_match_can_promote": false,
+    "different_custom_build_can_promote": false
+  },
+  "stock_runtime_negative_control": {
+    "invoked_console_path": "C:/Users/Cole/CodeStuff/Misc/Godot/Godot_v4.7-stable_mono_win64_console.exe",
+    "invoked_console_raw_sha256": "sha256:c5fc2d0bb24826a6757fa1e6bf2991effb294859c7dd03d09a122ef217484896",
+    "invoked_console_byte_length": 198152,
+    "expected_runtime_api_version": "4.7-stable (official)",
+    "instrumented_profile_must_be_selected": false,
+    "profile_capability_must_equal_historical_stock_mapping": true,
+    "expected_supported_channel_count": 8,
+    "expected_unsupported_channel_count": 2,
+    "expected_support_status": "unsupported_capability",
+    "expected_refusal_reason_prefix": "required_channel_unsupported:AppliedActuationReceipts"
+  },
+  "qualification_contract": {
+    "runner_path": "sdk/run_qsdk_r24d16_profile_scoped_recovery_capability_zero_world.ps1",
+    "source_audit_path": "tests/test_qsdk_r24d16_godot_jolt_profile_scoped_recovery_capability_source.py",
+    "runtime_worker_path": "tests/test_sdk_qsdk_r24d16_godot_profile_scoped_recovery_capability_zero_world.gd",
+    "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence",
+    "evidence_relative_root": "qsdk-r24d16-profile-scoped-recovery-capability/qualification",
+    "stage_count": 4,
+    "stages": [
+      "immutable source and contract audit",
+      "offline recovery core and Godot adapter build",
+      "exact retained instrumented runtime positive",
+      "exact stock runtime typed-refusal negative control"
+    ],
+    "required_runtime_process_count": 2,
+    "required_instrumented_positive_count": 1,
+    "required_stock_negative_control_count": 1,
+    "capability_mutation_count_per_runtime": 4,
+    "capability_mutation_rejection_count_per_runtime": 4,
+    "declared_runtime_and_mutation_negative_control_count": 5,
+    "development_checks_are_repeatable_and_non_authoritative": true,
+    "qualification_is_single_clean_pushed_finite_decision": true,
+    "same_freeze_qualification_rerun_permitted_after_terminal_receipt": false,
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false,
+    "physical_question_opened": false,
+    "physical_execution_authorized": false
+  },
+  "decision_rule_provenance": {
+    "empirical_performance_threshold_count": 0,
+    "superiority_margin_count": 0,
+    "equivalence_or_non_inferiority_margin_count": 0,
+    "held_out_validation_cohort_count": 0,
+    "population_claim_count": 0,
+    "decision_rule": "Accept the profile-scoped mapping only if clean pushed source passes its immutable audit, the exact retained instrumented binary pair selects the promoted profile and obtains a supported_exact core receipt with all ten measured channels, the exact stock runtime selects the unchanged historical mapping and obtains the predeclared typed refusal, all eight runtime-local capability mutations are rejected, and both processes retain zero model/world/build/solver counts.",
+    "adequacy_argument": "R24D15 already decided mechanism adequacy for this exact instrumented profile. R24D16 asks only whether the implementation binds that decision to the right runtime and fails closed elsewhere. An exact positive runtime and an exact stock negative runtime, each crossing the public Godot extension into the portable core and exercising targeted capability mutations without opening physics, are adequate for that source-conformance question. They are not adequate for numerical accuracy, collector completeness, recovery performance, prone-to-standing, robustness, morphology generalization, cross-engine equivalence, or release claims."
+  },
+  "prospective_outcomes": {
+    "positive": {
+      "status": "qualified_exact_profile_mapping_positive_stock_refusal_preserved",
+      "instrumented_profile_mapping_qualified": true,
+      "stock_profile_promoted": false,
+      "exact_profile_native_capability_conjunction_complete": true,
+      "native_observation_collectors_complete": false,
+      "recovery_controller_implemented": false,
+      "recovery_physical_execution_authorized": false
+    },
+    "negative_or_invalid": {
+      "status": "qualification_failed_or_invalid_profile_mapping_not_adopted",
+      "instrumented_profile_mapping_qualified": false,
+      "exact_profile_native_capability_conjunction_complete": false,
+      "same_freeze_qualification_rerun_permitted": false,
+      "distinct_successor_required": true
+    }
+  },
+  "next_boundary_if_positive": {
+    "work": "implement_and_zero_world_qualify_native_recovery_observation_collectors_controller_and_physical_threshold_cohort_contracts",
+    "question_class": "non_physical_source_conformance",
+    "physical_world_permitted_immediately": false,
+    "complete_zero_world_gate_required_before_physics": true,
+    "development_and_held_out_native_validation_must_remain_separate": true
+  },
+  "claims": {
+    "profile_scoped_mapping_implemented": true,
+    "profile_scoped_mapping_qualified": false,
+    "historical_stock_mapping_preserved": true,
+    "new_physical_world_opened": false,
+    "new_model_constructed": false,
+    "new_solver_step_executed": false,
+    "numerical_accuracy_accepted": false,
+    "native_capability_conjunction_complete": false,
+    "native_recovery_observation_collectors_complete": false,
+    "recovery_controller_implemented": false,
+    "recovery_world_opened": false,
+    "prone_to_standing_world_opened": false,
+    "turning_claim_changed": false,
+    "cross_engine_equivalence_claimed": false,
+    "q_sdk_r24_satisfied": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_milestone_score_before": "11/20",
+    "sdk1_milestone_score_after": "11/20",
+    "full_program_score_before": "11/25",
+    "full_program_score_after": "11/25"
+  }
+}

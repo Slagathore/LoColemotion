@@ -1,0 +1,188 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw2r_preregistration_v1",
+  "status": "frozen_before_first_bw2r_physics_world",
+  "freeze_parent_commit": "60a94c5985f565067d1f07c1ced7c50a290b9eea",
+  "development_data_only": true,
+  "reason_for_successor": {
+    "rejected_source_commit": "81acb534fd4564074d13d6cc0dd802e39e4484a6",
+    "rejected_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw3-validation-81acb53\\report.json",
+    "rejected_report_sha256": "e3f590c090b3d352b0e2385e0342db98032cb478d136dc811ddeb524c972c9d1",
+    "failed_cell_id": "validation_mu070_s17002_treatment",
+    "failed_gate": "bounded_lateral_drift",
+    "observed_absolute_lateral_drift_m": 0.13563382625579834,
+    "frozen_maximum_absolute_lateral_drift_m": 0.1,
+    "gate_change_forbidden": true,
+    "failed_cell_rerun_under_rejected_policy_forbidden": true
+  },
+  "candidate_order": [
+    "BW2R-A",
+    "BW2R-B",
+    "BW2R-C"
+  ],
+  "one_factor_design": {
+    "factor": "yaw_error_stride_gain_per_rad",
+    "rationale": "The portable runtime multiplies yaw tracking error by this global gain before the existing plus-or-minus 0.40 steering clamp. The ladder changes path correction strength without adding any friction, seed, material, morphology, or failure-cell branch.",
+    "parent_policy_id": "sporespore_balanced_wave_bw2_c_v1",
+    "all_other_profile_fields_exactly_inherited": true,
+    "feature_or_outcome_conditioning_forbidden": true,
+    "branch_topology_frozen_empty": true
+  },
+  "candidates": [
+    {
+      "candidate_id": "BW2R-A",
+      "policy_id": "sporespore_balanced_wave_bw2r_a_v1",
+      "parent_policy_id": "sporespore_balanced_wave_bw2_c_v1",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.1,
+      "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+      "anchor_error_guard_activation_fraction": 0.8,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW2R-B",
+      "policy_id": "sporespore_balanced_wave_bw2r_b_v1",
+      "parent_policy_id": "sporespore_balanced_wave_bw2_c_v1",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.2,
+      "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+      "anchor_error_guard_activation_fraction": 0.8,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+      "branch_surfaces": []
+    },
+    {
+      "candidate_id": "BW2R-C",
+      "policy_id": "sporespore_balanced_wave_bw2r_c_v1",
+      "parent_policy_id": "sporespore_balanced_wave_bw2_c_v1",
+      "heading_gain_formula": "1.0 / torso_length_scale",
+      "yaw_error_stride_gain_per_rad": 1.3,
+      "velocity_heading_gain_formula": "0.35 * sqrt(torso_length_scale)",
+      "contact_loaded_swing_knee_maximum_motor_target_speed_rad_s": 3.0,
+      "anchor_error_guard_activation_fraction": 0.8,
+      "anchor_error_guard_maximum_motor_target_speed_rad_s": 2.0,
+      "branch_surfaces": []
+    }
+  ],
+  "candidate_digest_scope": "Each digest is SHA-256 over the recursively key-sorted canonical JSON bytes of the corresponding candidates array element.",
+  "candidate_policy_digests": {
+    "BW2R-A": "sha256:4ffb7abd947f60287b81c9105fb99b2964355d0e16e13b64bc8b18d9fcec6343",
+    "BW2R-B": "sha256:44e8bfd0e4e1227db56ace8c58fc62fa6dd6bfc0d1cb993367510214272da144",
+    "BW2R-C": "sha256:709aacc898e62a0c1902a04a201006f5501934562cabec4b68c1613811ae0ad0"
+  },
+  "shared_authority": {
+    "authority_scope": "stability_contribution_overlay",
+    "base_command_source": "portable_controller_ordered_commands",
+    "stability_policy_id": "p5i3c_support_centroid_tilt_feedback_v1",
+    "stability_runtime_id": "sporespore_godot_jolt_stability_overlay_runtime_v1",
+    "stability_memory_id": "sporespore_stability_overlay_memory_v1",
+    "maximum_absolute_velocity_delta_rad_s": 0.075,
+    "maximum_velocity_delta_slew_per_step_rad_s": 0.01,
+    "direct_body_write_count": 0,
+    "physical_acceptance_authority": false
+  },
+  "opened_evidence_inputs": [
+    {
+      "input_id": "bw2_complete_selection",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw2-selection-4c42c2d\\report.json",
+      "sha256": "f307a8e51054a98a75fb580a54299f030700a11d22d1801196ff2719fe85d4ea"
+    },
+    {
+      "input_id": "rejected_bw3_first_result",
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\balanced-wave-bw3-validation-81acb53\\report.json",
+      "sha256": "e3f590c090b3d352b0e2385e0342db98032cb478d136dc811ddeb524c972c9d1"
+    }
+  ],
+  "physics_matrix": {
+    "repeat_complete_bw2": true,
+    "reference_pair_world_count": 2,
+    "material_world_count": 23,
+    "opened_counterexample_morphology_ids": [
+      "gq15_generated_s160",
+      "gq15_generated_s167",
+      "gq15_generated_s1404",
+      "gq15_generated_s1408"
+    ],
+    "counterexample_world_count": 4,
+    "opened_bw3_replay_world_count": 12,
+    "opened_bw3_treatment_world_count": 9,
+    "opened_bw3_control_world_count": 3,
+    "total_world_count_per_opened_candidate": 41,
+    "reference_material_and_opened_bw3_exposure_steps": 1514,
+    "expected_commands_and_motor_writes_per_treatment": 12112,
+    "failed_cells_may_not_be_deleted_replaced_or_averaged": true
+  },
+  "eligibility": {
+    "complete_matrix_required": true,
+    "expected_world_count": 41,
+    "infrastructure_failure_count": 0,
+    "adapter_schema_order_time_memory_capability_failure_count": 0,
+    "safe_no_actuation_count": 0,
+    "direct_body_write_count": 0,
+    "native_motor_write_count_must_equal_step_count_times_actuator_count": true,
+    "nonzero_stability_contribution_required_in_every_eligible_nonzero_friction_treatment": true,
+    "zero_friction_requires_typed_exact_zero_fallback_and_no_walking_claim": true,
+    "opened_bw3_controls_must_retain_integrity_and_pair_identity": true
+  },
+  "selection": {
+    "lexicographic_metrics": [
+      {
+        "metric": "infrastructure_and_integrity_failure_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "opened_bw3_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "eligible_nonzero_material_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "opened_counterexample_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "reference_treatment_nonwalk_count",
+        "direction": "ascending"
+      },
+      {
+        "metric": "aggregate_walking_gate_failure_count",
+        "direction": "ascending"
+      }
+    ],
+    "tie_rule": "candidate_order_ascending",
+    "early_stop_rule": "Stop after the first eligible candidate with zero opened-BW3 treatment nonwalks, no more than the BW2-C baseline of one eligible nonzero BW2 material nonwalk, zero opened counterexample nonwalks, and zero reference treatment nonwalks.",
+    "otherwise_run_next_candidate_in_candidate_order": true,
+    "if_no_early_stop_select_best_eligible_candidate_after_bw2r_c": true,
+    "selected_implementation_must_be_committed_before_new_validation": true
+  },
+  "post_selection_validation": {
+    "old_bw3_is_development_data_after_first_result": true,
+    "old_bw3_may_not_be_relabelled_cold_or_independent": true,
+    "new_material_values_required": true,
+    "new_campaign_seeds_required": true,
+    "new_material_characterization_and_profile_publication_required": true,
+    "new_validation_must_be_frozen_before_its_first_physics_world": true,
+    "bw4_values_may_not_be_consumed_by_the_new_bw3_successor": true
+  },
+  "claims": {
+    "physical_influence_may_be_observed": true,
+    "development_selection_authority": true,
+    "walking_acceptance": false,
+    "material_robustness": false,
+    "arbitrary_material_robustness": false,
+    "continuous_friction_coverage": false,
+    "balance_improvement": false,
+    "physical_balance_recovery": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_fault_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

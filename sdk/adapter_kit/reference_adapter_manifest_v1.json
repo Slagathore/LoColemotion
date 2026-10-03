@@ -1,0 +1,65 @@
+{
+  "schema_version": "sporespore_adapter_capability_manifest_v1",
+  "adapter_id": "sporespore_reference_external_adapter",
+  "adapter_version": "0.1.0",
+  "fixture_role": "independent_public_surface_reference",
+  "locomotion_semantics": [
+    "sporespore_locomotion_semantics_v1"
+  ],
+  "host": {
+    "engine": "deterministic_mock_host",
+    "engine_version": "1",
+    "scalar": "binary64",
+    "dimension": 3,
+    "coordinate_mapping": "canonical_identity",
+    "fixed_step_numerator_s": 1,
+    "fixed_step_denominator_s": 120,
+    "world_construction": false
+  },
+  "conformance": {
+    "a0_contract": true,
+    "a1_named_policy": true,
+    "a2_order_and_time": true,
+    "a3_applied_feedback": true,
+    "a4_safe_zero": true,
+    "a5_negative_paths": true,
+    "a6_import_boundary": true,
+    "c0_schema": true,
+    "c1_pure_controller": true,
+    "c2_kinematic": false,
+    "c3_passive_dynamics": false,
+    "c4_actuator": false,
+    "c5_contact": false,
+    "c6_locomotion": false
+  },
+  "observation_capabilities": {
+    "base_pose_twist": true,
+    "joint_position_velocity": true,
+    "joint_anchor_error": true,
+    "contact_presence": true,
+    "contact_bearing": true,
+    "contact_normal_load": false,
+    "previous_applied_actuation": true
+  },
+  "actuator_capabilities": {
+    "position_velocity": true,
+    "per_step_impulse_limit": true,
+    "host_clamping_receipt": true,
+    "direct_effort_torque": false,
+    "direct_root_locomotion": false
+  },
+  "material_characterization": {
+    "authored_friction": false,
+    "effective_solver_friction": false,
+    "effective_breakaway": false,
+    "steady_slide": false,
+    "restitution": false
+  },
+  "claims": {
+    "controller_policy_authority": false,
+    "walking_acceptance": false,
+    "physical_acceptance_authority": false,
+    "engine_c6": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

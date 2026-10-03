@@ -1,0 +1,66 @@
+{
+  "schema_version": "sporespore_conformance_transitive_historical_audit_closure_v1",
+  "closure_id": "THA1-MATERIAL-PUBLICATION-TRANSITIVE-EXECUTION-CLOSURE",
+  "contract_id": "THA1-MATERIAL-PUBLICATION-TRANSITIVE-EXECUTION",
+  "status": "closed_negative_legacy_verifier_incompatible",
+  "implementation_commit": "2890ce0e8ffdcd0cdf8e3493ed3574c03a9ed32e",
+  "eligible_execution_commit": "d342691bd1ce79c74b947ea5201121e22a2a43b6",
+  "attempts": [
+    {
+      "run_id": "20260811T024304Z-2890ce0e-d53f72b69f1346d0ba7ecd380c9b3476",
+      "source_commit": "2890ce0e8ffdcd0cdf8e3493ed3574c03a9ed32e",
+      "classification": "invalid_precondition_checkout_provenance_registration_missing",
+      "status": "failed",
+      "duration_seconds": 168.1014775,
+      "receipt_sha256": "sha256:c734fb910acc97c8dba5b048b145ece6059a9831cccb5677bf22ee9799e5fbef",
+      "receipt_byte_length": 11711,
+      "failure": "CEP1 rejected seven unregistered scoped LF rules before commissioning could be measured",
+      "worlds": 0
+    },
+    {
+      "run_id": "20260811T024923Z-d342691b-952a695c0dad4173ab99f384f29dc6ff",
+      "source_commit": "d342691bd1ce79c74b947ea5201121e22a2a43b6",
+      "classification": "eligible_full_conformance_negative",
+      "status": "failed",
+      "duration_seconds": 1165.9176374,
+      "receipt_sha256": "sha256:054089e052d59382525930de5b34348ce3bf442e3c1cf63c215f09af8200cc37",
+      "receipt_byte_length": 14623,
+      "full_log_sha256": "sha256:692cbe05647f724d36763876abac4b89a3777644cde5f830117447b31af0c6b0",
+      "failure_excerpt_sha256": "sha256:2f37a4fb0c2672da20390289f8f07342439b442b81f38f30e609546150bff963",
+      "passed_stages": [
+        {
+          "stage_id": "authority_and_historical_closures",
+          "duration_seconds": 471.0811037
+        },
+        {
+          "stage_id": "source_inventory_and_zero_world_preflights",
+          "duration_seconds": 83.3615717
+        },
+        {
+          "stage_id": "portable_core_and_release_source",
+          "duration_seconds": 551.3455788
+        }
+      ],
+      "failed_stage": {
+        "stage_id": "campaign_closures_and_zero_world_gates",
+        "duration_seconds": 59.8217908,
+        "exception": "BW27P material-profile closure audit failed with exit code 1"
+      },
+      "root_cause": "THA1 removed the literal BW27M closure-audit path from the canonical runner, while the immutable BW27M legacy verifier equates direct path visibility with canonical closure coverage even when the same audit is reached through BW27P",
+      "actual_replay_flag_detected": false,
+      "worlds": 0
+    }
+  ],
+  "disposition": {
+    "tha1_commissioned": false,
+    "tha1_may_be_retried_or_rewritten": false,
+    "distinct_successor_required": true,
+    "successor_id": "THA2-MATERIAL-PUBLICATION-VERIFIER-AWARE-TRANSITIVE-EXECUTION",
+    "historical_audit_waiver_permitted": false,
+    "production_cache_lookup_permitted": false,
+    "production_result_reuse_permitted": false,
+    "physical_execution_authorized": false,
+    "scientific_locomotion_authority": false,
+    "release_authority": false
+  }
+}

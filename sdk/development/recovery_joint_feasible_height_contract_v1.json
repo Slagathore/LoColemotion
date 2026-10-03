@@ -1,0 +1,64 @@
+{
+  "schema_version": "sporespore_recovery_joint_feasible_height_contract_v1",
+  "design_id": "v51_joint_feasible_body_height_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core",
+    "authority_mode": "prospective_successor_design",
+    "question_class": "development"
+  },
+  "source_parent_commit": "9ba23e2ca35531c348069265827802199e6a76aa",
+  "evidence": {
+    "path": "sdk/recovery/r10j_held_out_physical_closure_v1.json",
+    "raw_sha256": "sha256:68267d60c58d39713705224e61cb356826a70012b49586be0ecc53a4d16a4420",
+    "observed_failure": "Two original no-kick children refused with anchored_body_pose_unreachable_endpoint, after 725 and 283 completed walking commands. The original invalid results remain invalid."
+  },
+  "question": "Can a bounded body-height correction keep the actual four commanded leg endpoints within reach and actuator angle limits while preserving V50 foot paths, measured support gates, and motor law?",
+  "policy_id": "sporespore_balanced_wave_recovery_joint_feasible_height_v1",
+  "memory_schema": "sporespore_balanced_wave_recovery_joint_feasible_height_memory_v1",
+  "selected_law": {
+    "parent": "sporespore_balanced_wave_recovery_startup_reference_velocity_v1",
+    "nominal_body_height_and_startup_blend": "Unchanged V50 nominal 0.33 m vertical leg reference and 72-command smooth startup.",
+    "correction_range_m": [-0.02, 0.0],
+    "correction_grid_spacing_m": 0.00025,
+    "maximum_correction_rate_m_s": 0.24,
+    "reach_reserve_m": 0.001,
+    "reserve_startup": "Multiply reserve by the unchanged V50 startup scale, so the initial straight-leg geometry is not assigned an impossible full reserve.",
+    "selection": "Search the fixed grid from zero correction downward. Select the highest candidate within the correction rate bound for which all four planar endpoints satisfy the native positive-knee IK, every hip/knee target bound, and the required reach reserve. No feasible grid candidate means a verified safe refusal, not projection or bound relaxation.",
+    "correction_rate_scope": "Bounds the new height correction, not the unchanged parent nominal startup trajectory. Existing joint-reference slew and motor caps remain authoritative.",
+    "initialization": "Preserve the first neutral command and initialize correction to zero.",
+    "zero_amplitude": "Keep the previous body and foot references and correction; recheck actual IK through the parent path. Do not consume or restart walking startup time.",
+    "memory": "Add an optional, explicitly selected finite height correction to anchored pose memory. Historical policies omit it and reject cross-policy injection.",
+    "receipt": "Record nominal and selected height, prior and selected correction, actual correction interval, required reserve, selected four-leg reserves, and evaluated grid count. Geometry has no measured-contact authority."
+  },
+  "alternatives": [
+    {
+      "choice": "Fixed lower body height",
+      "advantage": "Small implementation surface.",
+      "reason_not_selected": "Read-only arithmetic on retained targets found that lowering to 0.320 m introduces hip-bound violations and 0.315 m also introduces knee-bound violations. Feasibility must check all constraints together. The retained-input calculation is not counterfactual physics evidence."
+    },
+    {
+      "choice": "Project foot targets or relax unreachable-endpoint refusal",
+      "reason_not_selected": "Would alter foot anchoring or accept an impossible request and obscure the observed failure."
+    }
+  ],
+  "required_validation": [
+    "Native unit tests for reach, hip and knee constraints jointly; impossible populations; finite domain; and correction-rate limits.",
+    "Actual new DLL selection and stateless/session consistency with fresh V51 memory.",
+    "Exact original V50 responses reproduced with the new DLL, including both zero-actuation refusals.",
+    "Explicitly labeled counterfactual native calls on copies of the retained failed requests with new V51 memory; do not rewrite or regrade the originals.",
+    "Complete affected-path safety gate before a fresh development world through the production route."
+  ],
+  "not_covered": [
+    "Partial-fall recovery entry and standing-dwell timeout are separate successor work.",
+    "Retained-input acceptance does not prove closed-loop walking or recovery success.",
+    "No new held-out population or physical execution authority is created by this component design."
+  ],
+  "claim_boundary": {
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_score": "14/20"
+  }
+}

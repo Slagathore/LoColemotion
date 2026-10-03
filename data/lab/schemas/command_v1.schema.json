@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/command_v1.schema.json",
+  "title": "SporeSpore sealed command envelope v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["command_payload_sha256", "payload"],
+  "properties": {
+    "command_payload_sha256": {"$ref": "#/$defs/sha256"},
+    "payload": {"$ref": "#/$defs/payload"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "stable_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$"
+    },
+    "transition": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation_id", "body_id"],
+      "properties": {
+        "operation_id": {"$ref": "#/$defs/stable_id"},
+        "body_id": {"$ref": "#/$defs/stable_id"},
+        "api": {"type": "string"},
+        "torque_world_nm": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"type": "number"}
+        },
+        "arguments": {"type": "object"}
+      }
+    },
+    "joint_command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["joint_id", "planned_application_operations"],
+      "properties": {
+        "tick": {"type": "integer", "minimum": 0},
+        "joint_id": {"$ref": "#/$defs/stable_id"},
+        "planned_application_operations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/operation"}
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "run_id",
+        "command_id",
+        "source_frame_id",
+        "applied_transition",
+        "mode",
+        "joint_commands",
+        "intervention_operation_ids"
+      ],
+      "properties": {
+        "schema": {"const": "sporespore.lab.command.v1"},
+        "run_id": {"$ref": "#/$defs/stable_id"},
+        "command_id": {"type": "integer", "minimum": 0},
+        "source_frame_id": {"type": "integer", "minimum": 0},
+        "applied_transition": {"$ref": "#/$defs/transition"},
+        "mode": {"type": "string", "minLength": 1},
+        "joint_commands": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/joint_command"}
+        },
+        "intervention_operation_ids": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/stable_id"},
+          "uniqueItems": true
+        },
+        "status": {"type": "string"},
+        "availability": {"type": "object"}
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "sporespore_conformance_runtime_profile_contract_v1",
+  "contract_id": "CRP1-DECLARED-PER-AUDIT-RUNTIME-PROFILE",
+  "status": "active_one_complete_profile_cache_disabled",
+  "purpose": "Bind small declared runtime file/configuration/host closures per audit instead of hashing every installed runtime while refusing aggregate reuse until every audit profile and cold equivalence are complete.",
+  "registry_path": "sdk/conformance_runtime_profile_registry_v1.json",
+  "profile_authority": {
+    "registered_profile_count": 1,
+    "complete_profile_count": 1,
+    "registered_audit_binding_count": 1,
+    "complete_audit_binding_count": 1
+  },
+  "runtime_identity": {
+    "powershell": [
+      "PSVersion",
+      "PSEdition",
+      "GitCommitId",
+      "ProcessArchitecture",
+      "OSArchitecture",
+      "OSDescription"
+    ],
+    "git": [
+      "resolved_command_relative_path",
+      "version_output",
+      "exec_path_relative_to_install_root"
+    ],
+    "host": [
+      "exact measured source bindings",
+      "loaded Windows and Defender module bytes",
+      "Windows build and installation identity",
+      "dotnet and architecture identity",
+      "culture UI culture timezone and console encodings",
+      "source volume format"
+    ],
+    "raw_git_configuration_values_retained": false,
+    "git_configuration_file_bytes_hashed": true,
+    "runtime_install_root_paths_in_digest": false
+  },
+  "required_invalidation": {
+    "declared_runtime_file_mutation_changes_digest": true,
+    "declared_runtime_file_missing_fails_closed": true,
+    "runtime_config_mutation_changes_digest": true,
+    "unexpected_git_config_origin_fails_closed": true,
+    "reparse_point_fails_closed": true,
+    "profile_registry_mutation_changes_source_key": true
+  },
+  "known_incomplete_boundaries": [
+    "the completed profile is narrowly bound to the exact R23D13 parent audit and its already-closed child refusal route",
+    "a measured source change invalidates the completed profile and requires a distinct successor observation",
+    "Git historical object availability is bound by the separate CAD1 git_object_set shape",
+    "runtime profiles for the other 94 CEP1 audits are absent"
+  ],
+  "claims": {
+    "runtime_inventory_complete": false,
+    "host_semantics_complete": false,
+    "transitive_dependency_key_complete": false,
+    "cache_lookup_permitted": false,
+    "result_reuse_permitted": false,
+    "historical_audit_waiver": false,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "scientific_result": false,
+    "release_authority": false
+  }
+}

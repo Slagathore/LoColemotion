@@ -1,0 +1,178 @@
+{
+  "schema_version": "sporespore_rapier_c6_force_based_load_response_preregistration_v1",
+  "campaign_id": "C6-RAPIER-FORCE-BASED-LOAD-RESPONSE",
+  "gate_id": "C6-RAP-HC-LR1",
+  "status": "frozen_before_first_c6_rap_hc_lr1_physics_world",
+  "recorded_utc": "2026-07-31T07:40:46Z",
+  "implementation_parent_commit": "d59800fb196916102e1e20714d7bcd3f21629c91",
+  "scientifically_distinct_from_fb1": true,
+  "purpose": "Characterize Rapier 0.34 ForceBased revolute-motor load response using the solver small-step impulse semantics exposed by pinned source, over fresh lever arms and solver-iteration counts, without rewriting or rethresholding FB1.",
+  "estimand": {
+    "class": "exact_finite_cell_host_characterization",
+    "question": "Across the eight declared Rapier 0.34 worlds, does explicit ForceBased JointMotor.impulse writeback track the analytically expected signed gravity-load impulse for the solver small step while the position motor settles near static torque balance?",
+    "population_superiority": false,
+    "noninferiority_or_equivalence": false,
+    "population_sampling_process": false,
+    "statistical_effect_margin_required": false,
+    "authority_boundary": "Only the exact Rapier 0.34 host, source semantics, motor parameters, body fixture, lever arms, solver-iteration values, timestep, gravity, and finite response grid declared here."
+  },
+  "predecessor_fb1": {
+    "closure_path": "sdk/rapier_c6_force_based_host_characterization_closure.json",
+    "closure_raw_sha256": "sha256:48a46e3533a45226f8dddab64d962814bd88e3526202d48242b0400ec9d32416",
+    "report_path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/c6-rapier-force-based-host-characterization-331ebe3/report.json",
+    "report_raw_sha256": "sha256:5b053de8f9128920ba4b64407a4c3867171579a1aca74aff4e50dfaffa308bd3",
+    "status": "closed_negative_loaded_support_terminal_impulse_threshold",
+    "same_identity_rerun_forbidden": true,
+    "threshold_change_forbidden": true,
+    "result_reclassification_forbidden": true,
+    "retained_learning": "At lever arm magnitude 0.30 m and 20 solver iterations, the signed terminal writeback magnitude was approximately 0.001221695 N m s; multiplying by 20 closely matched the outer-step static gravity-load impulse. This is outcome-exposed predecessor calibration, not LR1 validation evidence.",
+    "lr1_excludes_fb1_loaded_cells": true
+  },
+  "host_source_semantics": {
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "cargo_registry_checksum": "4592f61e65aa81ecb8701576336c8e66e893f4ad6a1238efe9ff17f2c77006ef",
+    "cargo_lock_raw_sha256": "sha256:0b8c50eac716ebd82fd323fcf52dad357f2e3128c382be26f291a224139c5cbc",
+    "upstream_files": [
+      {
+        "path": "src/dynamics/joint/motor_model.rs",
+        "raw_sha256": "sha256:474478e4cdf7b91d78037ae404bdb973e225f324d512d635fed01a03e23f8648",
+        "semantic_claim": "ForceBased interprets stiffness and damping as absolute force or torque gains."
+      },
+      {
+        "path": "src/dynamics/joint/generic_joint.rs",
+        "raw_sha256": "sha256:69cfcfb5aad4a3fe8133d8c48237dd95e4e8441e216ae6234990a43864cd4e2f",
+        "semantic_claim": "JointMotor.max_force is a force or torque, JointMotor.impulse is the current applied impulse, and motor_params limits impulse to max_force times the supplied dt."
+      },
+      {
+        "path": "src/dynamics/solver/island_solver.rs",
+        "raw_sha256": "sha256:61f7fea43b03e3979a225ddb6632fb8dea5e670e54636c3060057663feccf14a",
+        "semantic_claim": "The solver divides the outer integration dt by num_solver_iterations before constructing and solving constraints, then writes impulses back after the small-step solve sequence."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs",
+        "raw_sha256": "sha256:a05c33a3770aada74587eebbbfae053c682bc014f9d1cd34e19658f64bc6a0a6",
+        "semantic_claim": "Motor constraint writeback assigns the solved constraint impulse to joint.data.motors[i].impulse."
+      },
+      {
+        "path": "src/dynamics/solver/joint_constraint/generic_joint_constraint_builder.rs",
+        "raw_sha256": "sha256:540cbf2c0b549d10ddabe288db97cdf6c214476aeb081fa390cc2002256f0305",
+        "semantic_claim": "The motor constraint uses motor_params built from the small-step dt and clamps against its derived impulse bounds."
+      }
+    ],
+    "runner_must_hash_installed_crate_source_before_preflight": true,
+    "source_hash_mismatch_fails_before_any_world": true
+  },
+  "analytic_contract": {
+    "outer_timestep_s": 0.008333333333333333,
+    "small_step_timestep_formula": "outer_timestep_s / solver_iterations",
+    "static_gravity_torque_formula": "mass_kg * gravity_m_s2 * abs(lever_arm_z_m) * cos(abs(final_angle_rad))",
+    "expected_terminal_small_step_impulse_formula": "static_gravity_torque_nm * outer_timestep_s / solver_iterations",
+    "normalized_terminal_impulse_response_formula": "abs(terminal_motor_impulse_nms) / expected_terminal_small_step_impulse_nms",
+    "static_motor_torque_formula": "position_stiffness_nm_per_rad * abs(final_angle_rad)",
+    "normalized_static_torque_residual_formula": "abs(static_motor_torque_nm - static_gravity_torque_nm) / static_gravity_torque_nm",
+    "signed_geometry_contract": "lever-arm sign, final-angle sign, and terminal-motor-impulse sign must match; each negative cell has an otherwise identical positive pair",
+    "expected_solver_scaling": "For fixed signed arm, terminal impulse magnitude at 10 iterations divided by magnitude at 40 iterations must track 40/10 = 4.",
+    "expected_arm_ordering": "For fixed sign and solver iterations, the 0.35 m arm must produce greater terminal impulse magnitude than the 0.15 m arm."
+  },
+  "physical_grid": {
+    "expected_world_count": 8,
+    "mass_kg": 1.0,
+    "shape": "cuboid",
+    "half_extents_m": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "gravity_m_s2": [
+      0.0,
+      -9.8,
+      0.0
+    ],
+    "signed_lever_arms_z_m": [
+      -0.15,
+      0.15,
+      -0.35,
+      0.35
+    ],
+    "solver_iterations": [
+      10,
+      40
+    ],
+    "fb1_exposed_lever_arm_m": 0.3,
+    "fb1_exposed_solver_iterations": 20,
+    "fb1_exposed_cells_excluded": true,
+    "target_position_rad": 0.0,
+    "target_velocity_rad_s": 0.0,
+    "position_stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "maximum_motor_force_nm": 6.0,
+    "observation_steps": 240,
+    "internal_pgs_iterations": 1,
+    "internal_stabilization_iterations": 7
+  },
+  "prospective_numeric_gates": {
+    "normalized_terminal_impulse_response_minimum": 0.98,
+    "normalized_terminal_impulse_response_maximum": 1.02,
+    "maximum_normalized_static_torque_residual": 0.02,
+    "maximum_absolute_terminal_angular_velocity_rad_s": 0.01,
+    "maximum_final_anchor_error_m": 0.00001,
+    "maximum_signed_pair_relative_asymmetry": 0.005,
+    "maximum_solver_scaling_relative_error": 0.02,
+    "step_impulse_tolerance_nms": 0.000001,
+    "threshold_provenance": {
+      "response_center": "Pinned Rapier small-step source semantics plus gravitational impulse dimensional derivation.",
+      "response_and_static_tolerances": "Prospective two-percent numerical-integration envelope; the LR1 cells are fresh and were not physically probed before freeze.",
+      "terminal_velocity": "Prospective static-observation requirement bounded to one percent of the 1 rad/s signed-velocity scale used in FB1.",
+      "anchor_error": "Existing Rapier C2 and FB1 anchor-integrity family, retained as a host constraint-integrity bound.",
+      "signed_pair_asymmetry": "Prospective half-percent symmetry envelope for mirrored source-identical fixtures.",
+      "force_limit": "Pinned JointMotor.max_force times solver small-step dt semantics."
+    }
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "default_acceleration_based_canary_must_pass": true,
+    "explicit_force_based_builder_readback_must_pass": true,
+    "mutable_force_based_update_readback_must_pass": true,
+    "perfect_analytic_eight_cell_result_must_pass_entire_gate": true,
+    "whole_outer_step_impulse_canary_must_fail": true,
+    "wrong_signed_response_canary_must_fail": true,
+    "missing_cell_canary_must_fail": true,
+    "world_build_count": 0,
+    "physics_state_modified": false
+  },
+  "execution_contract": {
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_report_overwrite_forbidden": true,
+    "all_eight_worlds_required_before_decision": true,
+    "early_stop_forbidden": true,
+    "retained_negative_report_required_on_gate_failure": true,
+    "evidence_must_be_outside_repository_and_beneath_SporeSpore_Evidence": true
+  },
+  "success_contract": {
+    "all_eight_cells_must_pass": true,
+    "every_physical_motor_model_readback_must_be_force_based": true,
+    "zero_motor_model_mismatches_required": true,
+    "zero_nonfinite_values_required": true,
+    "zero_small_step_impulse_limit_violations_required": true,
+    "load_response_grid_must_pass": true,
+    "signed_pair_symmetry_must_pass": true,
+    "arm_magnitude_ordering_must_pass": true,
+    "solver_iteration_inverse_scaling_must_pass": true
+  },
+  "claims": {
+    "rapier_force_based_load_response_characterization": false,
+    "rapier_force_based_host_characterization": false,
+    "rapier_selected_policy_physical_authority": false,
+    "rapier_locomotion_acceptance": false,
+    "different_physics_engines": false,
+    "cross_engine_c6": false,
+    "friction_or_material_robustness": false,
+    "walking_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "sporespore_godot_transport_execution_contract_declaration_v1",
+  "contract_id": "GJTP1",
+  "status": "active_zero_world_contract",
+  "purpose": "Remove the Godot adapter's mandatory duplicate execution of every pure native JSON operation while making the selected transport fail closed before any physical world.",
+  "execution_identity": {
+    "transport_execution_version": "sporespore_godot_json_preallocated_single_pass_v1",
+    "runtime_contract_schema_version": "sporespore_godot_transport_execution_contract_v1",
+    "input_transport": "normalized_json_utf8",
+    "output_transport": "json_utf8",
+    "initial_output_capacity_bytes": 16384,
+    "normal_path_native_invocation_count": 1,
+    "overflow_retry_limit": 1,
+    "overflow_retry_trigger": "SS_BUFFER_TOO_SMALL_with_required_size_strictly_greater_than_initial_capacity"
+  },
+  "implementation_scope": {
+    "changed": [
+      "Godot GDExtension JSON output allocation and invocation count",
+      "native transport identity and runtime contract reporting",
+      "Godot adapter startup validation",
+      "pre-world transport validation in both real-physics runner variants",
+      "transport provenance in adapter manifests, preflight receipts, and physical summaries"
+    ],
+    "unchanged": [
+      "controller request and response schemas",
+      "controller policy identity and numerical implementation",
+      "morphology compilation semantics",
+      "state observation semantics",
+      "actuation semantics",
+      "physics timestep and Jolt solver settings",
+      "physical horizons, seeds, thresholds, selectors, and completed campaign records"
+    ]
+  },
+  "required_source_routes": [
+    "sdk/adapters/godot/src/lib.rs",
+    "scripts/lab/gait/sdk_godot_jolt_adapter.gd",
+    "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+    "scripts/lab/gait/physical_wave_gait_quadruped_bw30n_fixed_horizon.gd",
+    "sdk/run_godot_jolt_transport_benchmark.ps1"
+  ],
+  "benchmark_execution_contract": {
+    "entrypoint": "sdk/run_godot_jolt_transport_benchmark.ps1",
+    "cargo_target_must_be_outside_repository": true,
+    "canonical_sdk_target_permitted": false,
+    "reusable_isolated_cargo_cache_permitted": true,
+    "durable_evidence_root_required": true,
+    "existing_evidence_root_permitted": false,
+    "source_drift_permitted": false,
+    "canonical_release_artifact_hashes_verified_unchanged": true,
+    "canonical_release_artifact_backups_retained": true,
+    "direct_release_benchmark_in_canonical_sdk_target_permitted": false,
+    "world_build_count": 0,
+    "physical_acceptance_authority": false,
+    "claim_scope": "development_native_boundary_microbenchmark_only"
+  },
+  "development_benchmark_observation": {
+    "status": "complete_dirty_source_zero_world",
+    "source_head": "416b2fb67c48c15c2aebc89315db913154f0cc31",
+    "source_worktree_clean": false,
+    "iterations": 2000,
+    "input_bytes": 5162,
+    "output_bytes": 5524,
+    "single_pass_seconds": 0.578064,
+    "legacy_two_pass_seconds": 1.078275,
+    "native_boundary_speedup": 1.8653,
+    "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/gjtp1-transport-benchmark-20260805T074344Z",
+    "receipt_sha256": "sha256:2acd9011499707b4e6822b120cae9d982b8d4cb3d7a5b762a098def4c9612949",
+    "transcript_sha256": "sha256:409dec4c32f9aab345b685966eeec6d7089117de74a14c02b78dd8aedcde2a6e",
+    "canonical_release_artifacts_unchanged": true,
+    "world_build_count": 0,
+    "total_cell_speedup_claimed": false,
+    "physical_acceptance_authority": false
+  },
+  "fail_closed_contract": {
+    "validation_order": [
+      "load GDExtension resource",
+      "instantiate native SporeLocomotionSdk class",
+      "require transport_execution_version method",
+      "require transport_execution_contract_json method",
+      "compare the exact execution version",
+      "compare every runtime contract field",
+      "emit a zero-world transport receipt",
+      "only then permit fixture construction or scene-tree insertion"
+    ],
+    "wrong_or_missing_version": "reject",
+    "wrong_or_missing_contract_field": "reject",
+    "silent_legacy_fallback": false,
+    "failure_world_build_count": 0,
+    "failure_scene_tree_insertion_count": 0,
+    "failure_physics_state_modified": false,
+    "failure_physical_acceptance_authority": false
+  },
+  "future_campaign_requirements": {
+    "all_new_godot_jolt_physical_declarations_must_pin": [
+      "transport_execution_version",
+      "runtime_contract_schema_version",
+      "transport contract declaration SHA-256",
+      "Godot adapter source SHA-256",
+      "selected physical runner source SHA-256",
+      "built GDExtension SHA-256"
+    ],
+    "all_new_worker_preflights_must_assert": [
+      "transport receipt ok=true",
+      "exact transport_execution_version",
+      "exact runtime contract fields",
+      "world_build_count=0",
+      "scene_tree_insertion_count=0",
+      "physics_state_modified=false",
+      "physical_acceptance_authority=false"
+    ],
+    "freeze_mismatch_timing": "before_physics_world_entry",
+    "old_campaign_interpretation_changes_allowed": false
+  },
+  "evidence_boundary": {
+    "world_build_count": 0,
+    "physical_acceptance_authority": false,
+    "walking_acceptance": false,
+    "performance_improvement_claimed_before_benchmark": false,
+    "cross_engine_equivalence": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

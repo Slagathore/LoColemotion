@@ -1,0 +1,120 @@
+{
+  "schema_version": "sporespore_qsdk_r24d100_godot_jolt_guard_refinement_zero_world_diagnosis_v1",
+  "gate_id": "QSDK-R24D100",
+  "status": "zero_world_refinement_terminal_discriminated_safe_zero_impulse_fallback_proven_for_counterexample",
+  "recorded_at_utc": "2026-08-31T19:23:36.950Z",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot",
+    "authority_mode": "zero_world_development_diagnosis",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "gate_id": "QSDK-R24D99",
+    "source_commit": "7c5338347513d9ee42f11a671185b1c8629ddc36",
+    "invalid_closure_path": "sdk/recovery/r24d99_godot_jolt_component_norm_recovery_behavior_invalid_closure_v1.json",
+    "invalid_closure_bytes": 12632,
+    "invalid_closure_sha256": "sha256:40c5d3eeb2836d23523d9460736846de4c4103b405ab320932a8cf203320b464",
+    "observed_failure_code": "QSDK_R24D99_GUARD_REFINEMENT_FAILED:3",
+    "observed_failure_detail_was_empty": true,
+    "same_identity_rerun_permitted": false
+  },
+  "reproduction": {
+    "runtime_version": "4.7.stable.custom_build.5b4e0cb0f",
+    "worker_path": "tests/test_sdk_godot_r24d100_guard_refinement_diagnostic_zero_world.gd",
+    "worker_bytes": 5704,
+    "worker_sha256": "sha256:5a20b242608591ece810efe5109caa5cd6008f9c00c711f9aa35affc5dae9516",
+    "implementation_path": "sdk/adapters/godot/gdscript/recovery_native_world_v1.gd",
+    "implementation_bytes": 315376,
+    "implementation_sha256": "sha256:25dd3ce39afcc71b226099a15d6bf33552ef0fea2227202e80ffe85df1a22809",
+    "search_seed": 100099003,
+    "case_index": 0,
+    "searched_case_count": 1,
+    "actuator_index": 3,
+    "source_angular_velocity_world_rad_s": {
+      "x": 26.682987213134766,
+      "y": 35.20936965942383,
+      "z": 16.363828659057617
+    },
+    "requested_parent_impulse_world_nms": {
+      "x": -0.00968948844820261,
+      "y": 0.006877976004034281,
+      "z": 0.004875261336565018
+    },
+    "requested_child_impulse_world_nms": {
+      "x": 0.00968948844820261,
+      "y": -0.006877976004034281,
+      "z": -0.004875261336565018
+    }
+  },
+  "terminal_diagnosis": {
+    "numeric_predicate_id": "godot_vector3_components_widened_to_float64_euclidean_squared_norm_v1",
+    "guard_limit_rad_s": 47.11238479614258,
+    "guard_limit_squared_rad2_s2": 2219.5768011798064,
+    "feasible_scale_lower": 0.0,
+    "feasible_scale_upper": 0.948272987356176,
+    "initial_scale": 0.9482729434967041,
+    "initial_scale_binary32_hex": "0x3f72c204",
+    "terminal_scale": 0.9482691287994385,
+    "terminal_scale_binary32_hex": "0x3f72c1c4",
+    "scale_refinement_count": 64,
+    "scale_refinement_limit": 64,
+    "scale_refinement_limit_exhausted": true,
+    "failed_terminal_predicates": [
+      "child_inside_or_on_limit",
+      "parent_inside_or_on_limit"
+    ],
+    "terminal_parent_component_squared_norm_rad2_s2": 2219.576908912124,
+    "terminal_child_component_squared_norm_rad2_s2": 2219.576908912124,
+    "terminal_projection_valid": false,
+    "all_other_terminal_predicates_passed": true,
+    "legacy_length_predicate_inside": true,
+    "legacy_squared_predicate_inside": false,
+    "legacy_predicates_disagree": true
+  },
+  "fallback_adequacy": {
+    "candidate": "representational_failure_only_zero_impulse_fallback",
+    "source_parent_component_squared_norm_rad2_s2": 2219.456406813264,
+    "source_child_component_squared_norm_rad2_s2": 2219.456406813264,
+    "source_parent_inside_or_on_limit": true,
+    "source_child_inside_or_on_limit": true,
+    "pairing_residual_zero": true,
+    "zero_impulse_fallback_safe_for_this_counterexample": true,
+    "threshold_changed": false,
+    "controller_changed": false,
+    "evaluator_changed": false,
+    "physical_acceptance_authority": false
+  },
+  "execution_counts": {
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "body_impulse_write_count": 0,
+    "solver_step_count": 0,
+    "physics_state_modified": false
+  },
+  "interpretation": {
+    "established": [
+      "The R99 64-ULP refinement limit can exhaust while both rounded predicted component norms remain outside the unchanged inner target.",
+      "For the retained deterministic counterexample, every terminal predicate except the parent and child component-norm relations passes.",
+      "The same counterexample is safely inside the target at zero applied impulse, so a versioned fallback can fail safe without changing a threshold."
+    ],
+    "not_established": [
+      "The exact terminal values of the consumed R99 physical attempt.",
+      "That every possible refinement failure admits a zero-impulse fallback.",
+      "Any physical behavior, prone-to-standing, acceptance, release, or SDK milestone result."
+    ]
+  },
+  "next_boundary": {
+    "required_work": "implement_and_mutation_test_versioned_fallback_with_exact_terminal_retention",
+    "additional_full_seeded_ghost_presumed_required": false,
+    "physical_question_declared": false,
+    "physical_execution_authorized": false
+  },
+  "sdk_status": {
+    "sdk1_completed_steps": 11,
+    "sdk1_total_steps": 20,
+    "full_program_completed_steps": 11,
+    "full_program_total_steps": 25
+  }
+}

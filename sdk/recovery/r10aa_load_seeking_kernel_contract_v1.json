@@ -1,0 +1,79 @@
+{
+  "schema_version": "sporespore_r10aa_load_seeking_kernel_contract_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "engine_neutral",
+    "authority_mode": "prospective_development_kernel",
+    "question_class": "development"
+  },
+  "diagnosis": {
+    "path": "sdk/recovery/r10aa_support_first_diagnosis_v1.json",
+    "raw_sha256": "sha256:9bc14dbbb3a7e7dd6cc0abf6a554b276181bf2cc93cc4616ec835547344a08b2"
+  },
+  "scope": "Exact s169 partial support and rise references; not an integrated controller or native launch authority.",
+  "input": "Actual source observation V3, descriptor, and independently validated partial phase. Full native ownership, source and energy validation belongs to the future distinct route.",
+  "native_loading": "A foot qualifies only with native presence, bears_support, ordinary unilateral contact and impulse >= 0.019293 N s. Absent flags imply zero load for seeking even if a nonzero impulse is reported.",
+  "phase_behavior": {
+    "establish_distal_support": "Seek missing load. With all feet qualified, emit bounded measured hold; never request rise in this phase.",
+    "raise_body": "Use unchanged R10Z geometry rise only while all four feet qualify. On load loss seek support without resetting or extending any task clock.",
+    "other_phases": "Refuse; the future composition must dispatch unchanged V7 stance and terminal behavior."
+  },
+  "target_rule": "For each weak foot, lower its measured-pose modeled endpoint by 0.1 * dt * scale * clamp((0.019293 - qualified_native_impulse)/0.019293, 0, 1). Apply this even below any inferred plane; do not use inferred ground height as a substitute for measured load. Keep qualified feet endpoints fixed in the virtual calculation.",
+  "search": {
+    "scales": [
+      1,
+      0.5,
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "forward_speeds_m_s": [
+      -0.1,
+      0,
+      0.1
+    ],
+    "vertical_speeds_m_s": [
+      0,
+      -0.1
+    ],
+    "level_blend_rates_s_inverse": [
+      0,
+      0.6
+    ],
+    "candidate_count": 60,
+    "order": "scale, forward, vertical, blend",
+    "selection": "First maximize feasible load-seeking scale, then minimize squared virtual translation plus 0.04 * squared level blend; keep first exact tie.",
+    "maximum_joint_increment_rad": 0.03333333333333333,
+    "hip_limit_rad": 1.6,
+    "knee_limit_rad": 1.1,
+    "maximum_lateral_residual_m": 0.0005,
+    "ik": "Both analytic knee branches, nearest admissible branch; no unreachable cosine clamp."
+  },
+  "fallback": "Bounded measured hold if no feasible candidate or undefined horizontal heading. Record reason; never report this as support success.",
+  "missing_reference": "Load-seeking uses observed feet and world vertical without inferring a terrain plane. No positive bearing reference is required; no contact is fabricated.",
+  "preserved": [
+    "Native task threshold 0.019293 N s per foot",
+    "240 support / 600 rise / 360 stance / 1200 total limits",
+    "Strict success and joint-limit predicates",
+    "Motor/energy authority; ordinary joint commands only",
+    "Consumed historical populations and old controller behavior"
+  ],
+  "required_checks": [
+    "Four original exposed entries and selected retained R10Z states",
+    "All 240 retained R10Z support inputs before physical route qualification",
+    "Deterministic bounded targets and independent FK reconstruction",
+    "No lift in support or during rise load loss",
+    "Below-plane weak feet still seek load; full load in support holds",
+    "Missing/crossed/nonfinite sources and phase refusal",
+    "Small measured overshoot return without observation rewrite",
+    "Quaternion sign and world translation invariance",
+    "No feasible candidate retains explicit hold"
+  ],
+  "controller_physics_proven": false,
+  "native_route_integrated": false,
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "validation_reuse": "The unchanged R10Z reference first validates inputs and computes at most 135 candidates. Load seeking adds at most 60 candidates, for 195 total; only the new selected reference may be emitted during support."
+}

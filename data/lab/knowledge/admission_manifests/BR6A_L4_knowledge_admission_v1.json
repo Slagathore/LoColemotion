@@ -1,0 +1,129 @@
+{
+  "schema": "sporespore.lab.br6a_knowledge_admission_manifest.v1",
+  "manifest_id": "BR6A_L4_KNOWLEDGE_ADMISSION_V1",
+  "status": "authorized",
+  "authorized_by": "Cole",
+  "authorization_basis": "standing_authority_to_admit_recommended_observation_only_br6a_knowledge",
+  "authorization_instruction": "continue from here to as far as you can. dont stop for reports. you know i trust in your recommendations.",
+  "decision": {
+    "decision_id": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT_DECISION_V1",
+    "decision_sha256": "sha256:ab580fe2f146f74eaa413c8105f0852863faabae5e0139032b8854b438a3d289"
+  },
+  "guidance_policy": {
+    "mode": "observation_only",
+    "automatic_creature_guidance_allowed": false,
+    "automatic_application_allowed": false,
+    "unlock_requires": [
+      "ACCEPTED_FREE_ROOT_SUPPORT_CONTROL_MILESTONE",
+      "SEPARATE_GUIDANCE_DECISION"
+    ]
+  },
+  "entries": [
+    {
+      "entry_id": "L4.0.rigid_strut_vertical_rail_support.v1",
+      "cell_id": "L4.0",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br6a_l4_0_rigid_strut_rail.v1.json",
+      "program_id": "BR6A_L4_0_RIGID_STRUT_RAIL_V1",
+      "authoring": {
+        "title": "The certified rigid strut distinguishes rail freefall from ordinary distal support",
+        "claim": "In the exact certified L4.0 fixture, the declared rigid strut on an explicit motorless and springless vertical rail free-falls at gravity without a floor and reconstructs approximately 29.4 newtons of aggregate external support through ordinary distal floor contact when the floor is present.",
+        "scope": "Only the exact rigid-strut geometry and mass, Generic6DOF vertical-translation rail, ordinary distal floor contact, timestep, solver, thresholds, engine, source, and program claim scope certified by br6a_20260723T121533Z_c0e72549.",
+        "mechanism": "Unlocking vertical rail translation supplies no vertical support by itself. With the floor absent, gravity changes vertical momentum normally; with ordinary distal contact present, whole-system momentum balance reconstructs the external floor impulse carrying the declared weight.",
+        "applicability": [
+          "Checking that a constrained support fixture does not obtain vertical support from its rail",
+          "Separating ordinary distal contact support from a mere position constraint"
+        ],
+        "failure_boundaries": [
+          "The rail still locks lateral root translation and all root rotation and is therefore a material scaffold",
+          "Aggregate external support is not per-contact, per-foot, or per-toe load allocation",
+          "No free-root standing, balance, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "body_agnostic",
+          "rigid_strut",
+          "vertical_rail",
+          "aggregate_support"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "How support changes when lateral root translation or root rotation is released",
+          "How an articulated multi-link controller shares load across simultaneous distal contacts"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L4.1.hinged_strut_static_torque_curve.v1",
+      "cell_id": "L4.1",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br6a_l4_1_hinged_strut_rail.v1.json",
+      "program_id": "BR6A_L4_1_HINGED_STRUT_RAIL_V1",
+      "authoring": {
+        "title": "The certified one-hinge rail strut matches its static holding-torque curve",
+        "claim": "In the exact certified L4.1 one-hinge rail fixture under reconstructed 29.4 newtons of support, applied holding torque matches the analytic values at 0, 15, 30, and 45 degrees, while the matched 30-degree zero-torque control fails to hold and leaves the target by approximately 1.140038 radians.",
+        "scope": "Only the exact one-hinge strut geometry, masses, custom center of mass, recessed collider, angle grid, vertical rail, ordinary distal contact, timestep, solver, torque application, engine, source, and program claim scope certified by br6a_20260723T121533Z_c0e72549.",
+        "mechanism": "The declared external support load and link moment arm produce an analytic gravity moment about the hinge. Equal and opposite finite joint torque holds the target, while removing that torque exposes the causal rotation instead of allowing hard limits or fixture overlap to masquerade as actuator strength.",
+        "applicability": [
+          "Checking static force-to-joint mapping before a multi-link support controller is trusted",
+          "Detecting accidental support from collider overlap, compound-center-of-mass drift, or hard-limit reaction"
+        ],
+        "failure_boundaries": [
+          "The parent remains on a material vertical rail and the result is not free-root support",
+          "Static holding torque at four angles is not a general dynamic tracking or endurance result",
+          "No free-root standing, balance, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "one_hinge_strut",
+          "vertical_rail",
+          "static_torque",
+          "analytic_oracle"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Dynamic tracking error and energy under changing targets and loads",
+          "How restored root degrees of freedom couple into the required joint moment"
+        ],
+        "supersedes": []
+      }
+    },
+    {
+      "entry_id": "L4.3.two_link_vertical_rail_support.v1",
+      "cell_id": "L4.3",
+      "knowledge_class": "milestone_observation",
+      "output_name": "br6a_l4_3_rail_leg_support.v1.json",
+      "program_id": "BR6A_L4_3_RAIL_LEG_SUPPORT_V1",
+      "authoring": {
+        "title": "The certified two-link leg supports and moves a vertical carriage within explicit limits",
+        "claim": "In the exact certified L4.3 fixture, the declared two-link leg carries aggregate weight through ordinary distal contact, crouches approximately 0.09995 meters, rises with 2.44760 joules of potential-energy gain and 2.43723 joules of measured joint work, and recovers an approximately 0.01147 meter drop from the declared 1.5 newton-second downward carriage impulse in 17 physics ticks.",
+        "scope": "Only the exact two-link geometry and masses, Generic6DOF vertical carriage, ordinary distal contact, height targets, downward impulse, vertical allocator, force-to-joint map, finite 50 newton-meter actuator ceiling, timestep, solver, engine, source, and program claim scope certified by br6a_20260723T121533Z_c0e72549.",
+        "mechanism": "A strict vertical body-wrench request is rate-limited and anti-windup controlled, then mapped into paired finite joint torques while aggregate external support and joint work are measured. Exact preflight controls reject unreachable height and insufficient static torque before execution.",
+        "applicability": [
+          "Checking controlled articulated vertical support before any lateral or rotational root degree of freedom is released",
+          "Checking saturation, anti-windup, energy, disturbance recovery, and feasibility as separate causal signals"
+        ],
+        "failure_boundaries": [
+          "The rail carried up to approximately 16.12362 newtons of tangential reaction and cannot be erased or called negligible",
+          "No foot pin, built-in joint motor, passive tissue, or controller root-rescue force was present, but the vertical rail remains a material scaffold",
+          "Only aggregate external load is reconstructed; no per-contact, per-foot, or per-toe allocation is established",
+          "No free-root standing, balance, bracing, fall arrest, getting up, gait, or walking is established"
+        ],
+        "morphology_tags": [
+          "two_link_leg",
+          "vertical_rail",
+          "finite_actuator",
+          "aggregate_support",
+          "crouch_rise",
+          "declared_impulse_recovery"
+        ],
+        "parameter_effects": [],
+        "unknowns": [
+          "Whether the controller remains stable when lateral translation or root rotation is released",
+          "How multiple legs allocate load and coordinate support without hidden scaffold reaction",
+          "Support robustness across morphology, terrain, impact direction, and endurance"
+        ],
+        "supersedes": []
+      }
+    }
+  ]
+}

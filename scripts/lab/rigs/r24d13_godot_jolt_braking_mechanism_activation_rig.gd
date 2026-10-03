@@ -1,0 +1,282 @@
+class_name R24D13GodotJoltBrakingMechanismActivationRig
+extends RefCounted
+
+## Prospectively frozen minimal QSDK-R24D13 braking-mechanism fixture.
+##
+## The activation order is the scientific change: every child enters the native
+## world, changes from static to rigid, and only then receives its signed angular
+## velocity through the public RigidBody3D property. This avoids the R24D10 route
+## in which Jolt stored a static body's write as surface velocity and cleared it
+## while changing modes.
+
+const FIXTURE_ID := "QSDK.R24D13.godot_jolt_braking_mechanism_activation.v1"
+const ACTIVATION_ROUTE_ID := "godot_jolt_unfreeze_then_public_angular_velocity_write_v1"
+const CHILD_MASS_KG := 1.0
+const CHILD_INERTIA_KG_M2 := Vector3(0.05, 0.05, 0.05)
+const CANONICAL_AXIS_PARENT_LOCAL := Vector3.BACK
+const MAXIMUM_PHYSICS_STEP_COUNT := 1
+const RETAINED_SAMPLE_COUNT := 4
+const CELL_SPECS := [
+	{
+		"cell_id": "brake_positive",
+		"family": "signed_braking",
+		"motor_enabled": true,
+		"canonical_target_velocity_rad_s": 0.0,
+		"initial_canonical_rate_rad_s": 0.4,
+		"public_maximum_motor_impulse_nms": 0.002,
+	},
+	{
+		"cell_id": "brake_negative",
+		"family": "signed_braking",
+		"motor_enabled": true,
+		"canonical_target_velocity_rad_s": 0.0,
+		"initial_canonical_rate_rad_s": -0.4,
+		"public_maximum_motor_impulse_nms": 0.002,
+	},
+	{
+		"cell_id": "disabled_positive",
+		"family": "motor_disabled",
+		"motor_enabled": false,
+		"canonical_target_velocity_rad_s": 0.0,
+		"initial_canonical_rate_rad_s": 0.4,
+		"public_maximum_motor_impulse_nms": 0.002,
+	},
+	{
+		"cell_id": "disabled_negative",
+		"family": "motor_disabled",
+		"motor_enabled": false,
+		"canonical_target_velocity_rad_s": 0.0,
+		"initial_canonical_rate_rad_s": -0.4,
+		"public_maximum_motor_impulse_nms": 0.002,
+	},
+]
+
+
+static func describe() -> Dictionary:
+	var ids: Array[String] = []
+	for spec_value in CELL_SPECS:
+		var spec: Dictionary = spec_value
+		ids.append(String(spec["cell_id"]))
+	return {
+		"fixture_id": FIXTURE_ID,
+		"activation_route_id": ACTIVATION_ROUTE_ID,
+		"world_count": 1,
+		"isolated_cell_count": CELL_SPECS.size(),
+		"cell_ids_in_order": ids,
+		"hinges_per_cell": 1,
+		"dynamic_bodies_per_cell": 1,
+		"static_parents_per_cell": 1,
+		"child_mass_kg": CHILD_MASS_KG,
+		"child_inertia_diagonal_kg_m2": _vector(CHILD_INERTIA_KG_M2),
+		"hinge_axis_parent_local": _vector(CANONICAL_AXIS_PARENT_LOCAL),
+		"maximum_physics_step_count": MAXIMUM_PHYSICS_STEP_COUNT,
+		"retained_sample_count": RETAINED_SAMPLE_COUNT,
+		"gravity_scale": 0.0,
+		"linear_damping": 0.0,
+		"angular_damping": 0.0,
+		"collision_layer": 0,
+		"collision_mask": 0,
+		"contact_count": 0,
+		"joint_limits_enabled": false,
+		"lower_limit_rad": -1.0,
+		"upper_limit_rad": 1.0,
+		"world_attempt_count": 0,
+		"world_build_count": 0,
+		"solver_step_count": 0,
+	}
+
+
+static func declared_cell_specs() -> Array[Dictionary]:
+	var copies: Array[Dictionary] = []
+	for spec_value in CELL_SPECS:
+		var spec: Dictionary = spec_value
+		copies.append(spec.duplicate(true))
+	return copies
+
+
+static func build() -> Dictionary:
+	var viewport := SubViewport.new()
+	viewport.name = "QsdkR24D13BrakingMechanismActivationViewport"
+	viewport.size = Vector2i(1, 1)
+	viewport.own_world_3d = true
+	viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
+	var world := Node3D.new()
+	world.name = "QsdkR24D13BrakingMechanismActivationWorld"
+	viewport.add_child(world)
+
+	var cells: Array[Dictionary] = []
+	var pre_tree_refusals := {}
+	for index in range(CELL_SPECS.size()):
+		var cell := _build_cell(world, index, CELL_SPECS[index])
+		var joint: HingeJoint3D = cell["joint"]
+		var pre_tree_value: Variant = (
+			JoltPhysicsServer3D.hinge_joint_get_motor_telemetry(joint.get_rid())
+		)
+		cell["pre_tree_read_refused"] = pre_tree_value == null
+		pre_tree_refusals[String(cell["cell_id"])] = pre_tree_value == null
+		cells.append(cell)
+	return {
+		"ok": true,
+		"fixture_id": FIXTURE_ID,
+		"viewport": viewport,
+		"world": world,
+		"cells": cells,
+		"pre_tree_refusals": pre_tree_refusals,
+		"world_attempt_count": 1,
+		"world_build_count": 1,
+	}
+
+
+static func activate_unfreeze_then_write(cell: Dictionary) -> Dictionary:
+	var child: RigidBody3D = cell["child"]
+	var declared_rate := float(cell["initial_canonical_rate_rad_s"])
+	child.freeze = false
+	child.can_sleep = false
+	child.sleeping = false
+	child.angular_velocity = canonical_axis_world(cell) * declared_rate
+	var server_value: Variant = PhysicsServer3D.body_get_state(
+		child.get_rid(),
+		PhysicsServer3D.BODY_STATE_ANGULAR_VELOCITY,
+	)
+	var server_velocity := Vector3.INF
+	if server_value is Vector3:
+		server_velocity = server_value as Vector3
+	return {
+		"ok": server_velocity.is_finite(),
+		"activation_route_id": ACTIVATION_ROUTE_ID,
+		"unfreeze_write_count": 1,
+		"can_sleep_write_count": 1,
+		"sleeping_write_count": 1,
+		"scene_property_angular_velocity_write_count": 1,
+		"physics_server_state_write_count": 0,
+		"declared_canonical_rate_rad_s": declared_rate,
+		"scene_canonical_rate_readback_rad_s": canonical_rate_rad_s(cell),
+		"physics_server_canonical_rate_readback_rad_s": (
+			(server_velocity - cell["parent"].angular_velocity).dot(
+				canonical_axis_world(cell)
+			)
+		),
+	}
+
+
+static func canonical_axis_world(cell: Dictionary) -> Vector3:
+	var parent: RigidBody3D = cell["parent"]
+	return (parent.global_basis * CANONICAL_AXIS_PARENT_LOCAL).normalized()
+
+
+static func canonical_rate_rad_s(cell: Dictionary) -> float:
+	var parent: RigidBody3D = cell["parent"]
+	var child: RigidBody3D = cell["child"]
+	return (child.angular_velocity - parent.angular_velocity).dot(
+		canonical_axis_world(cell)
+	)
+
+
+static func inverse_inertia_axis_kg_inv_m2(cell: Dictionary) -> float:
+	var child: RigidBody3D = cell["child"]
+	var axis_world := canonical_axis_world(cell)
+	return axis_world.dot(child.get_inverse_inertia_tensor() * axis_world)
+
+
+static func parameter_readback(cell: Dictionary) -> Dictionary:
+	var child: RigidBody3D = cell["child"]
+	var joint: HingeJoint3D = cell["joint"]
+	var parent: RigidBody3D = cell["parent"]
+	var parent_axis := canonical_axis_world(cell)
+	var joint_axis := (joint.global_basis * Vector3.BACK).normalized()
+	return {
+		"child_mass_kg": child.mass,
+		"child_inertia_diagonal_kg_m2": _vector(child.inertia),
+		"gravity_scale": child.gravity_scale,
+		"linear_damping": child.linear_damp,
+		"angular_damping": child.angular_damp,
+		"collision_layer": child.collision_layer,
+		"collision_mask": child.collision_mask,
+		"motor_enabled": joint.get_flag(HingeJoint3D.FLAG_ENABLE_MOTOR),
+		"joint_limits_enabled": joint.get_flag(HingeJoint3D.FLAG_USE_LIMIT),
+		"host_target_velocity_rad_s": joint.get_param(
+			HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY
+		),
+		"public_maximum_motor_impulse_nms": joint.get_param(
+			HingeJoint3D.PARAM_MOTOR_MAX_IMPULSE
+		),
+		"lower_limit_rad": joint.get_param(HingeJoint3D.PARAM_LIMIT_LOWER),
+		"upper_limit_rad": joint.get_param(HingeJoint3D.PARAM_LIMIT_UPPER),
+		"anchor_error_m": parent.global_position.distance_to(child.global_position),
+		"axis_error_rad": acos(
+			clampf(absf(parent_axis.dot(joint_axis)), 0.0, 1.0)
+		),
+	}
+
+
+static func _build_cell(
+	world: Node3D,
+	cell_index: int,
+	spec_value: Dictionary,
+) -> Dictionary:
+	var spec := spec_value.duplicate(true)
+	var pivot := Vector3(float(cell_index) * 2.0, 2.0, 0.0)
+	var cell_id := String(spec["cell_id"])
+
+	var parent := RigidBody3D.new()
+	parent.name = "%sParent" % cell_id
+	parent.position = pivot
+	parent.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	parent.freeze = true
+	parent.can_sleep = false
+	parent.gravity_scale = 0.0
+	parent.collision_layer = 0
+	parent.collision_mask = 0
+	world.add_child(parent)
+
+	var child := RigidBody3D.new()
+	child.name = "%sChild" % cell_id
+	child.position = pivot
+	child.mass = CHILD_MASS_KG
+	child.inertia = CHILD_INERTIA_KG_M2
+	child.gravity_scale = 0.0
+	child.can_sleep = false
+	child.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	child.freeze = true
+	child.linear_damp_mode = RigidBody3D.DAMP_MODE_REPLACE
+	child.angular_damp_mode = RigidBody3D.DAMP_MODE_REPLACE
+	child.linear_damp = 0.0
+	child.angular_damp = 0.0
+	child.collision_layer = 0
+	child.collision_mask = 0
+	var collision := CollisionShape3D.new()
+	var shape := BoxShape3D.new()
+	shape.size = Vector3(0.10, 0.10, 0.10)
+	collision.shape = shape
+	child.add_child(collision)
+	world.add_child(child)
+
+	var joint := HingeJoint3D.new()
+	joint.name = "%sHinge" % cell_id
+	joint.position = pivot
+	joint.basis = Basis(Vector3.DOWN, Vector3.RIGHT, Vector3.BACK)
+	joint.set_param(HingeJoint3D.PARAM_LIMIT_LOWER, -1.0)
+	joint.set_param(HingeJoint3D.PARAM_LIMIT_UPPER, 1.0)
+	joint.set_flag(HingeJoint3D.FLAG_USE_LIMIT, false)
+	joint.set_param(HingeJoint3D.PARAM_MOTOR_TARGET_VELOCITY, 0.0)
+	joint.set_param(
+		HingeJoint3D.PARAM_MOTOR_MAX_IMPULSE,
+		float(spec["public_maximum_motor_impulse_nms"]),
+	)
+	joint.set_flag(
+		HingeJoint3D.FLAG_ENABLE_MOTOR,
+		bool(spec["motor_enabled"]),
+	)
+	world.add_child(joint)
+	joint.node_a = joint.get_path_to(parent)
+	joint.node_b = joint.get_path_to(child)
+
+	spec["parent"] = parent
+	spec["child"] = child
+	spec["joint"] = joint
+	spec["pre_tree_read_refused"] = false
+	return spec
+
+
+static func _vector(value: Vector3) -> Array[float]:
+	return [value.x, value.y, value.z]

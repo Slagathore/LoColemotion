@@ -1,0 +1,85 @@
+{
+  "schema": "sporespore.lab.br6a_l4_promotion_campaign.v1",
+  "campaign_id": "BR6A_L4_PROMOTION_CAMPAIGN_V1",
+  "campaign_version": 1,
+  "milestone_id": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT",
+  "claim_boundary": "This campaign can certify only the exact L4.0 rigid-strut rail oracle, L4.1 hinged-strut static load curve, and L4.3 two-link vertical-carriage support program scopes named by the source-pinned programs. The Generic6DOF vertical rail is an explicit material scaffold whose vertical axis is unlocked and whose observed reaction is retained; ordinary distal floor contact, paired finite joint torque, aggregate external-load reconstruction, crouch/rise work, the declared downward impulse, and exact infeasibility controls retain their fixture, geometry, mass, timestep, solver, controller, and actuator scopes. It establishes rail-constrained articulated vertical support only, not general per-foot allocation, free-root standing or balance, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance.",
+  "process_policy": {
+    "clean_committed_source": true,
+    "fresh_godot_process_per_replicate": true,
+    "required_replicates_per_program": 2,
+    "pid_recycle_policy": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded",
+    "test_timeout_seconds": 300,
+    "complete_campaign_required": true,
+    "cherry_pick_policy": "forbidden_all_declared_runs_retained"
+  },
+  "source_policy": {
+    "identity": "clean_git_commit_plus_exact_declared_byte_inventory_v1",
+    "inventory_roots": [
+      {"kind": "file", "path": ".gitattributes", "extensions": [".gitattributes"]},
+      {"kind": "file", "path": "project.godot", "extensions": [".godot"]},
+      {"kind": "file", "path": "scripts/process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/process_runner_containment_host.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_lab_tests.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_br6a_l4_certification.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "tree", "path": "scripts/lab", "extensions": [".gd"]},
+      {"kind": "tree", "path": "tests/helpers", "extensions": [".gd"]},
+      {"kind": "file", "path": "tests/test_experimental_br6a_promotion_contracts.gd", "extensions": [".gd"]},
+      {"kind": "tree", "path": "data/lab/schemas", "extensions": [".json"]},
+      {"kind": "tree", "path": "data/lab/knowledge", "extensions": [".json", ".md"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR6A_L4_promotion_campaign_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR1_required_lab_tests_v2.json", "extensions": [".json"]}
+    ]
+  },
+  "br1_inventory_guard": {
+    "resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json",
+    "sha256": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+    "test_count": 62,
+    "mutation_forbidden": true
+  },
+  "role_accounting": {
+    "milestone": {"programs": 3, "assertions_per_replicate": 40},
+    "supplementary": {"programs": 0, "assertions_per_replicate": 0},
+    "integrity": {"programs": 0, "assertions_per_replicate": 0},
+    "total": {"programs": 3, "assertions_per_replicate": 40}
+  },
+  "programs": [
+    {
+      "program_id": "BR6A_L4_0_RIGID_STRUT_RAIL_V1",
+      "cell_id": "L4.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l4_0_rigid_strut_rail.gd",
+      "expected_assertions": 12,
+      "claim_scope": "The declared rigid strut on an explicit motorless and springless vertical rail free-falls at gravity without a floor and reconstructs 29.4 N support through ordinary floor contact, establishing only the exact rail and rigid-geometry oracle."
+    },
+    {
+      "program_id": "BR6A_L4_1_HINGED_STRUT_RAIL_V1",
+      "cell_id": "L4.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l4_1_hinged_strut_rail.gd",
+      "expected_assertions": 12,
+      "claim_scope": "The declared one-hinge rail strut matches the analytic static holding-torque curve at 0, 15, 30, and 45 degrees under reconstructed 29.4 N support, while the matched 30-degree zero-torque control fails to hold."
+    },
+    {
+      "program_id": "BR6A_L4_3_RAIL_LEG_SUPPORT_V1",
+      "cell_id": "L4.3",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l4_3_rail_leg_support.gd",
+      "expected_assertions": 16,
+      "claim_scope": "The declared two-link rail leg carries aggregate weight through ordinary distal contact, performs a bounded crouch/rise with measured joint work and potential-energy gain, recovers from the declared downward carriage impulse, exposes material rail reaction, and refuses unreachable height and insufficient actuator controls."
+    }
+  ],
+  "does_not_establish": [
+    "General per-contact, per-foot, or per-toe load allocation",
+    "Free-root standing, balance, or rail-independent support",
+    "A negligible or absent scaffold reaction",
+    "Bracing or fall arrest",
+    "Self-righting or getting up",
+    "Gait, candidate walking, or walking",
+    "Morphology, terrain, complex-foot, or endurance generalization",
+    "Accepted encyclopedia knowledge or automatic creature guidance"
+  ]
+}

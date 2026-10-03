@@ -1,0 +1,55 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw34y_rough_yaw_rescue_candidates_v1",
+  "status": "prospective_stage_zero_zero_world_only_physical_execution_blocked",
+  "campaign_id": "BW34Y-BW33N-ROUGH-YAW-RESCUE-DEVELOPMENT",
+  "gate_id": "BW34Y",
+  "implementation_parent_commit": "ec0b583a8a39b8e417720224307edc8d6163e819",
+  "study_classification": "single_arm_outcome_exposed_rough_rescue_development_screen_against_retained_comparator",
+  "candidate_order": ["BW34Y-A"],
+  "derivation": {
+    "retained_comparator_candidate_id": "BW33N-C",
+    "retained_comparator_yaw_error_stride_gain_per_rad": 1.0,
+    "retained_predecessor_gain_per_rad": 1.3,
+    "equal_step_continuation": 0.3,
+    "candidate_yaw_error_stride_gain_per_rad": 0.7,
+    "formula": "1.0 - (1.3 - 1.0) = 0.7",
+    "outcome_basis": "BW33N-C reduced both failed comparator rough cells to the sole bounded_lateral_drift gate while preserving the comparator-passing seed",
+    "rejected_repeat_surfaces": [
+      "stronger_cross_track_proportional_feedback",
+      "stronger_cross_track_velocity_feedback",
+      "global_requested_correction_scale_above_0.5"
+    ],
+    "runtime_failure_seed_or_outcome_conditioning_forbidden": true,
+    "morphology_conditioning_forbidden": true,
+    "rough_profile_conditioning_forbidden": true
+  },
+  "candidates": [
+    {
+      "schema_version": "sporespore_bw34y_rough_yaw_rescue_candidate_v1",
+      "candidate_id": "BW34Y-A",
+      "candidate_role": "single_treatment_against_retained_bw33n_c_comparator",
+      "controller_policy_id": "sporespore_balanced_wave_bw34y_a_v1",
+      "runtime_profile_sha256": "sha256:f95e63ae3af945715c8a4e1030351caaf46e0cf947aa5f6711f2b9c9b5582eb5",
+      "yaw_error_stride_gain_per_rad": 0.7,
+      "global_requested_correction_scale": 0.5,
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+      "authority_scope": "post_settle_full",
+      "execution_mode": "native_balanced_wave_base_with_stability_contribution",
+      "stability_composition_order": "portable_core_before_existing_magnitude_and_slew_limits",
+      "authority_horizon_policy_sha256": "sha256:ec8291ecd54dbc8299d79d6b3adf176bf67fe851e4bacffc3df253c9a0a605df",
+      "exact_candidate_authority_observation_count": 3232,
+      "expected_native_motor_write_count": 25856,
+      "branch_surfaces": [],
+      "candidate_composition_digest_algorithm": "sha256_utf8_exact_binding_string_v1",
+      "exact_binding_string": "BW34Y-A|sporespore_balanced_wave_bw34y_a_v1|sha256:f95e63ae3af945715c8a4e1030351caaf46e0cf947aa5f6711f2b9c9b5582eb5|0.7|sporespore_scheduled_load_transfer_bw13p_a_v3|post_settle_full|native_balanced_wave_base_with_stability_contribution|0.5|portable_core_before_existing_magnitude_and_slew_limits|sha256:ec8291ecd54dbc8299d79d6b3adf176bf67fe851e4bacffc3df253c9a0a605df|3232|25856|branch_surface_count=0",
+      "candidate_composition_digest": "sha256:031d9fdb41626c7b2d62ec889b25089ee731d6587f16502c05b7d2284e1332c1",
+      "controller_authority": true,
+      "physical_acceptance_authority": false
+    }
+  ],
+  "physical_execution_authorized": false,
+  "rough_terrain_acceptance": false,
+  "fresh_validation_authority": false,
+  "release_authorized": false,
+  "physical_acceptance_authority": false
+}

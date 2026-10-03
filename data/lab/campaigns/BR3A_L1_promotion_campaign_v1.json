@@ -1,0 +1,215 @@
+{
+  "schema": "sporespore.lab.br3a_l1_promotion_campaign.v1",
+  "campaign_id": "BR3A_L1_PROMOTION_CAMPAIGN_V1",
+  "campaign_version": 1,
+  "milestone_id": "BR3A_L1_ENGINE_CONTACT_TRUTH",
+  "claim_boundary": "This campaign can certify only the L1.0-L1.7 contact-engine observations named by the exact source-pinned programs. L1.8 and the knowledge guard are supplementary constraints. It establishes no articulated load-bearing limb, standing, bracing, fall arrest, getting up, walking, accepted knowledge, automatic creature guidance, or per-foot allocation of reconstructed whole-system load.",
+  "process_policy": {
+    "clean_committed_source": true,
+    "fresh_godot_process_per_replicate": true,
+    "required_replicates_per_program": 2,
+    "pid_recycle_policy": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded",
+    "test_timeout_seconds": 300,
+    "complete_campaign_required": true,
+    "cherry_pick_policy": "forbidden_all_declared_runs_retained"
+  },
+  "source_policy": {
+    "identity": "clean_git_commit_plus_exact_declared_byte_inventory_v1",
+    "inventory_roots": [
+      {"kind": "file", "path": ".gitattributes", "extensions": [".gitattributes"]},
+      {"kind": "file", "path": "project.godot", "extensions": [".godot"]},
+      {"kind": "file", "path": "scripts/process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/process_runner_containment_host.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_process_runner.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_lab_tests.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/run_br3a_l1_certification.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "file", "path": "scripts/test_initialize_lab_attestation.ps1", "extensions": [".ps1"]},
+      {"kind": "tree", "path": "scripts/lab", "extensions": [".gd"]},
+      {"kind": "tree", "path": "tests/helpers", "extensions": [".gd"]},
+      {"kind": "file", "path": "tests/test_experimental_br3a_promotion_contracts.gd", "extensions": [".gd"]},
+      {"kind": "tree", "path": "data/lab/schemas", "extensions": [".json"]},
+      {"kind": "tree", "path": "data/lab/knowledge", "extensions": [".json", ".md"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR3A_L1_promotion_campaign_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR3A_L1_commissioning_status_v1.json", "extensions": [".json"]},
+      {"kind": "file", "path": "data/lab/campaigns/BR1_required_lab_tests_v2.json", "extensions": [".json"]}
+    ]
+  },
+  "br1_inventory_guard": {
+    "resource_path": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json",
+    "sha256": "sha256:f22a43c3125d2a87c3f4b154af40d5e99a2a9dd1da35e159825e79635357605e",
+    "test_count": 62,
+    "mutation_forbidden": true
+  },
+  "role_accounting": {
+    "milestone": {"programs": 16, "assertions_per_replicate": 236},
+    "supplementary": {"programs": 2, "assertions_per_replicate": 43},
+    "integrity": {"programs": 1, "assertions_per_replicate": 13},
+    "total": {"programs": 19, "assertions_per_replicate": 292}
+  },
+  "programs": [
+    {
+      "program_id": "BR3A_L1_0_CONTACT_POSITION_FRAME_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_contact_position_frame.gd",
+      "expected_assertions": 14,
+      "claim_scope": "Contact positions retain their declared world and local frame identities."
+    },
+    {
+      "program_id": "BR3A_L1_0_CONTACT_NORMAL_SIGN_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_contact_normal_sign.gd",
+      "expected_assertions": 18,
+      "claim_scope": "Contact normal direction and impulse sign conventions are explicit and checked."
+    },
+    {
+      "program_id": "BR3A_L1_0_CONTACT_BUFFER_SATURATION_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_contact_buffer_saturation.gd",
+      "expected_assertions": 9,
+      "claim_scope": "Contact-cap saturation is observable and fails closed instead of silently truncating."
+    },
+    {
+      "program_id": "BR3A_L1_0_CONTACT_LIFETIME_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_contact_lifetime.gd",
+      "expected_assertions": 5,
+      "claim_scope": "Contact lifetime tracking preserves start, continuation, and end identity."
+    },
+    {
+      "program_id": "BR3A_L1_0_EXTERNAL_CONTACT_DEDUP_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_external_contact_dedup.gd",
+      "expected_assertions": 6,
+      "claim_scope": "Mirrored external-contact observations deduplicate without losing identity."
+    },
+    {
+      "program_id": "BR3A_L1_0_SELF_CONTACT_EXCLUSION_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_self_contact_not_support.gd",
+      "expected_assertions": 8,
+      "claim_scope": "Self-contact is not misclassified as external support."
+    },
+    {
+      "program_id": "BR3A_L1_0_SUPPORT_GEOMETRY_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_support_point_segment_polygon.gd",
+      "expected_assertions": 9,
+      "claim_scope": "Support geometry distinguishes point, segment, and polygon cases."
+    },
+    {
+      "program_id": "BR3A_L1_0_CONTACT_SUPPORT_STATE_V1",
+      "cell_id": "L1.0",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_lab_contact_support_state.gd",
+      "expected_assertions": 14,
+      "claim_scope": "Contact support state is derived from qualified external-contact evidence."
+    },
+    {
+      "program_id": "BR3A_L1_1_CONTACT_SLIP_OBSERVER_V1",
+      "cell_id": "L1.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_1_contact_slip.gd",
+      "expected_assertions": 29,
+      "claim_scope": "Tangential slip observation and breakaway bracketing fail closed on invalid evidence."
+    },
+    {
+      "program_id": "BR3A_L1_1_FRICTION_BREAKAWAY_V1",
+      "cell_id": "L1.1",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_1_friction_breakaway.gd",
+      "expected_assertions": 20,
+      "claim_scope": "The finite-friction sled brackets hold, breakaway, and sliding under its declared ramp."
+    },
+    {
+      "program_id": "BR3A_L1_2_INCLINE_THRESHOLD_V1",
+      "cell_id": "L1.2",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_2_incline_threshold.gd",
+      "expected_assertions": 19,
+      "claim_scope": "The declared incline fixture brackets static retention and downhill sliding."
+    },
+    {
+      "program_id": "BR3A_L1_3_TIPPING_EDGE_V1",
+      "cell_id": "L1.3",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_3_tipping_edge.gd",
+      "expected_assertions": 15,
+      "claim_scope": "The static prism distinguishes COM inside and outside the analytic support edge."
+    },
+    {
+      "program_id": "BR3A_L1_4_PAD_CENTER_OF_PRESSURE_V1",
+      "cell_id": "L1.4",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_4_pad_center_of_pressure.gd",
+      "expected_assertions": 20,
+      "claim_scope": "The finite pad's static center-of-pressure estimate tracks declared internal load offsets."
+    },
+    {
+      "program_id": "BR3A_L1_5_TIMESTEP_ENVELOPE_V1",
+      "cell_id": "L1.5",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_5_timestep_convergence.gd",
+      "expected_assertions": 13,
+      "claim_scope": "The exact fixture accepts its measured 60-240 Hz interval and rejects 30 Hz without universalizing the rate."
+    },
+    {
+      "program_id": "BR3A_L1_6_SOLVER_SENSITIVITY_V1",
+      "cell_id": "L1.6",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_6_solver_step_sensitivity.gd",
+      "expected_assertions": 17,
+      "claim_scope": "Exact solver cells are measured after the required settings/world lifecycle, and whole-system support is reconstructed separately from local contact transmission."
+    },
+    {
+      "program_id": "BR3A_L1_7_MASS_RATIO_GRID_V1",
+      "cell_id": "L1.7",
+      "evidence_role": "milestone",
+      "test_resource_path": "res://tests/test_experimental_l1_7_mass_ratio_grid.gd",
+      "expected_assertions": 20,
+      "claim_scope": "The unjointed two-body stack records orientation-dependent stability across only its exact mass-ratio grid."
+    },
+    {
+      "program_id": "BR3A_L1_8_CONTACT_DISCRETIZATION_V1",
+      "cell_id": "L1.8",
+      "evidence_role": "supplementary",
+      "test_resource_path": "res://tests/test_experimental_l1_8_contact_discretization.gd",
+      "expected_assertions": 28,
+      "claim_scope": "Same-body multi-manifold raw predicted impulse sums are non-additive; closed-system momentum reconstruction remains the authoritative total-load observation."
+    },
+    {
+      "program_id": "BR3A_KNOWLEDGE_DRAFT_GUARD_V1",
+      "cell_id": "BR3A_INTEGRITY",
+      "evidence_role": "supplementary",
+      "test_resource_path": "res://tests/test_experimental_br3a_knowledge_draft_guard.gd",
+      "expected_assertions": 15,
+      "claim_scope": "Development observations cannot enter accepted knowledge or automatic repair through any tested entry point."
+    },
+    {
+      "program_id": "BR3A_COMMISSIONING_REGISTRY_INTEGRITY_V1",
+      "cell_id": "BR3A_INTEGRITY",
+      "evidence_role": "integrity",
+      "test_resource_path": "res://tests/test_experimental_br3a_commissioning_status.gd",
+      "expected_assertions": 13,
+      "claim_scope": "The pinned commissioning registry, BR1 inventory separation, source hashes, blocker vocabulary, and zero-locomotion boundary remain internally valid."
+    }
+  ],
+  "does_not_establish": [
+    "Exact continuous contact force",
+    "Per-contact, per-foot, or per-toe allocation of reconstructed whole-system load",
+    "Independent actuator semantics for collision shapes or contact manifolds",
+    "Articulated parent-child mass-ratio stability",
+    "A load-bearing joint, foot, limb, or creature",
+    "Bracing, standing, or fall arrest",
+    "Self-righting or getting up",
+    "Gait, candidate walking, or walking",
+    "Accepted encyclopedia knowledge or automatic creature guidance"
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "schema_version": "sporespore_development_recovery_build_cache_checkpoint_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "core_and_godot",
+    "authority_mode": "zero_world_compiler_reuse_controls",
+    "question_class": "development"
+  },
+  "bindings": [
+    {
+      "path": "sdk/development/recovery_candidates/v11-compiler-cache-cold-v1.runtime.json",
+      "byte_length": 15434,
+      "raw_sha256": "sha256:987ece8b2a3a8186fbe16b8c7827504c6b21db2de1593eca2260e27763578ccc"
+    },
+    {
+      "path": "sdk/development/recovery_candidates/v11-compiler-cache-warm-v1.runtime.json",
+      "byte_length": 15421,
+      "raw_sha256": "sha256:6890f99b7e856adeb696843a1c610c28b0ccea13c446a25106e2d3091b95a160"
+    }
+  ],
+  "observed_build_stage_seconds": [
+    {
+      "candidate_id": "v11-compiler-cache-cold-v1",
+      "total": 253.109,
+      "stages": [
+        {
+          "stage": "core_tests",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--manifest-path",
+            "sdk/Cargo.toml",
+            "--target-dir",
+            "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+            "--release",
+            "-p",
+            "sporespore-locomotion-core",
+            "--lib"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 73.78099999995902
+        },
+        {
+          "stage": "fixtures",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--manifest-path",
+            "sdk/Cargo.toml",
+            "--target-dir",
+            "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+            "--release",
+            "-p",
+            "sporespore-locomotion-core",
+            "--lib",
+            "v11_public_json_buffer_and_exported_native_shaped_fixtures",
+            "--",
+            "--nocapture"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.25
+        },
+        {
+          "stage": "adapter",
+          "command": [
+            "cargo",
+            "build",
+            "--locked",
+            "--manifest-path",
+            "sdk/Cargo.toml",
+            "--target-dir",
+            "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+            "--release",
+            "-p",
+            "sporespore-godot-adapter"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 179.0779999999795
+        }
+      ]
+    },
+    {
+      "candidate_id": "v11-compiler-cache-warm-v1",
+      "total": 1.765,
+      "stages": [
+        {
+          "stage": "core_tests",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--manifest-path",
+            "sdk/Cargo.toml",
+            "--target-dir",
+            "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+            "--release",
+            "-p",
+            "sporespore-locomotion-core",
+            "--lib"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 1.25
+        },
+        {
+          "stage": "fixtures",
+          "command": [
+            "cargo",
+            "test",
+            "--locked",
+            "--manifest-path",
+            "sdk/Cargo.toml",
+            "--target-dir",
+            "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+            "--release",
+            "-p",
+            "sporespore-locomotion-core",
+            "--lib",
+            "v11_public_json_buffer_and_exported_native_shaped_fixtures",
+            "--",
+            "--nocapture"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.26500000013038516
+        },
+        {
+          "stage": "adapter",
+          "command": [
+            "cargo",
+            "build",
+            "--locked",
+            "--manifest-path",
+            "sdk/Cargo.toml",
+            "--target-dir",
+            "sdk/target/development-compiler-cache-v1/5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+            "--release",
+            "-p",
+            "sporespore-godot-adapter"
+          ],
+          "exit_code": 0,
+          "elapsed_seconds": 0.25
+        }
+      ]
+    }
+  ],
+  "copied_dll_sha256": "sha256:6447c5006cffcf01a653695412951d447e36144a0e7ad333b23c62ec19d2451b",
+  "independent_retained_copy_count": 4,
+  "cache_key": "5e0d45ea06dd5f412858e913af5f37cacdd13fe3380646f57db6fc0ed0c01b56",
+  "full_core_tests_each": 234,
+  "original_controller_fixtures_preserved": 6,
+  "runtime_controls": {
+    "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-build-cache-runtime-a26196eeefae46baa37928461b8b91ac/execution.json",
+    "byte_length": 399,
+    "raw_sha256": "sha256:35f7489ee118e27ee1c3dcc22cf4cb01e3412d79f0210dc9ce4746442cd3918b"
+  },
+  "original_v11_dll_unchanged": true,
+  "limitation": "One cold/warm unchanged-Rust-source build pair. Times cover three build stages, not controller design, helper overhead, changed-source compilation, safety gates, or physical runs. Cargo still checks dependencies and all tests run anew.",
+  "world_build_count": 0,
+  "solver_step_count": 0,
+  "qualification_evidence_reused": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

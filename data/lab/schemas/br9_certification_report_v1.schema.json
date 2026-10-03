@@ -1,0 +1,752 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br9_certification_report_v1.schema.json",
+  "title": "SporeSpore BR9 certification report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "certification",
+    "certification_id",
+    "milestone_id",
+    "claim_boundary",
+    "generated_utc",
+    "source",
+    "engine",
+    "bundle_policy",
+    "report_attestation_policy",
+    "accounting",
+    "cells",
+    "programs",
+    "final_readback",
+    "existing_contact_brace_constraints",
+    "capabilities",
+    "does_not_establish"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br9_certification_report.v1"
+    },
+    "status": {
+      "const": "pass"
+    },
+    "certification": {
+      "const": "BR9_EXISTING_CONTACT_PLANAR_BRACE"
+    },
+    "certification_id": {
+      "type": "string",
+      "pattern": "^br9_[0-9]{8}T[0-9]{6}Z_[a-f0-9]{8}$"
+    },
+    "milestone_id": {
+      "const": "BR9_EXISTING_CONTACT_PLANAR_BRACE"
+    },
+    "claim_boundary": {
+      "const": "This campaign can certify only the exact BR9.0 digest-bound existing-contact brace-controller arithmetic, mirrored arrest, bounded load-rate redistribution, explicit residual, and stable-dwell handoff scope; BR9.1 reserve, friction, existing-contact-set, detector-state, finiteness, strict-field, monotonic-tick, and delayed-reaction refusal scope; BR9.2 controller-to-force-map-to-finite-paired-actuator-to-command-ledger-to-executor-to-append-only-receipt scope; and BR9.3 paired no-brace-control and active-brace Godot/Jolt program scope named by the source-pinned programs. BR9.4 is integrity-only containment and cannot substitute for a milestone program. The live pair retains the exact BR7 material scaffold: an explicit unpowered Generic6DOF guide releases sagittal X/Y translation and pitch while locking out-of-plane translation, roll, and yaw; all guide motors and springs remain off; four hinges remain passive; and two ordinary distal contacts are already bearing before the one declared positive pitch impulse. The active controller begins only on the first post-impulse observation, redistributes commanded contact loads inside the declared unilateral, friction, reserve, load-rate, and finite-actuator boundaries, and is compared with a no-brace control receiving the same impulse. Whole-system angular-momentum reconstruction supplies the aggregate external pitch-moment check. Commanded left/right shares are not measured per-foot loads. This establishes scaffold-constrained planar existing-contact pitch arrest only, not a new-contact catch step, per-foot measured load allocation, free-3D bracing or standing, articulated-limb generality, fall arrest, getting up, gait, walking, creature repair, accepted knowledge, or automatic creature guidance."
+    },
+    "generated_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "engine": {
+      "$ref": "#/$defs/engine"
+    },
+    "bundle_policy": {
+      "$ref": "#/$defs/bundle_policy"
+    },
+    "report_attestation_policy": {
+      "$ref": "#/$defs/report_attestation_policy"
+    },
+    "accounting": {
+      "$ref": "#/$defs/accounting"
+    },
+    "cells": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/cell"
+      }
+    },
+    "programs": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "$ref": "#/$defs/program"
+      }
+    },
+    "final_readback": {
+      "$ref": "#/$defs/final_readback"
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accepted_knowledge_entries",
+        "automatic_creature_guidance_allowed",
+        "per_foot_measured_load_allocation",
+        "scaffold_constrained_planar_existing_contact_brace",
+        "paired_no_brace_control_improvement",
+        "new_contact_catch_step",
+        "free_3d_bracing",
+        "free_3d_standing",
+        "unconstrained_balance",
+        "fall_arrest",
+        "getting_up",
+        "walking"
+      ],
+      "properties": {
+        "accepted_knowledge_entries": {
+          "const": 0
+        },
+        "automatic_creature_guidance_allowed": {
+          "const": false
+        },
+        "per_foot_measured_load_allocation": {
+          "const": false
+        },
+        "scaffold_constrained_planar_existing_contact_brace": {
+          "const": true
+        },
+        "paired_no_brace_control_improvement": {
+          "const": true
+        },
+        "new_contact_catch_step": {
+          "const": false
+        },
+        "free_3d_bracing": {
+          "const": false
+        },
+        "free_3d_standing": {
+          "const": false
+        },
+        "unconstrained_balance": {
+          "const": false
+        },
+        "fall_arrest": {
+          "const": false
+        },
+        "getting_up": {
+          "const": false
+        },
+        "walking": {
+          "const": false
+        }
+      }
+    },
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "A new-contact catch step",
+          "Per-contact, per-foot, or per-toe measured load allocation",
+          "Free 3D bracing, standing, or unconstrained balance",
+          "An absent, negligible, or measured out-of-plane scaffold reaction",
+          "Articulated-limb, morphology, terrain, complex-foot, or endurance generalization",
+          "Fall arrest",
+          "Self-righting or getting up",
+          "Gait, candidate walking, or walking",
+          "Creature repair, accepted encyclopedia knowledge, or automatic creature guidance"
+        ]
+      }
+    },
+    "existing_contact_brace_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "guide_type",
+        "sagittal_x_y_translation_released",
+        "pitch_released",
+        "out_of_plane_translation_locked",
+        "roll_and_yaw_locked",
+        "guide_motors_or_springs_enabled",
+        "built_in_joint_motors_enabled",
+        "joint_limits_enabled",
+        "passive_tissues_enabled",
+        "foot_pin_enabled",
+        "controller_root_rescue_enabled",
+        "ordinary_distal_contacts",
+        "aggregate_external_support_reconstruction",
+        "aggregate_external_pitch_wrench_reconstruction",
+        "commanded_contact_shares_are_measurements",
+        "per_foot_measured_load_allocation_available",
+        "existing_contacts_retained_required",
+        "first_post_impulse_command_required",
+        "scaffold_constrained_planar_existing_contact_brace_established",
+        "paired_no_brace_control_required",
+        "new_support_contact_enabled",
+        "actuator_saturation_allowed"
+      ],
+      "properties": {
+        "guide_type": {
+          "const": "Generic6DOFJoint3D_out_of_plane_scaffold"
+        },
+        "sagittal_x_y_translation_released": {
+          "const": true
+        },
+        "pitch_released": {
+          "const": true
+        },
+        "out_of_plane_translation_locked": {
+          "const": true
+        },
+        "roll_and_yaw_locked": {
+          "const": true
+        },
+        "guide_motors_or_springs_enabled": {
+          "const": false
+        },
+        "built_in_joint_motors_enabled": {
+          "const": false
+        },
+        "joint_limits_enabled": {
+          "const": false
+        },
+        "passive_tissues_enabled": {
+          "const": false
+        },
+        "foot_pin_enabled": {
+          "const": false
+        },
+        "controller_root_rescue_enabled": {
+          "const": false
+        },
+        "ordinary_distal_contacts": {
+          "const": 2
+        },
+        "aggregate_external_support_reconstruction": {
+          "const": true
+        },
+        "aggregate_external_pitch_wrench_reconstruction": {
+          "const": true
+        },
+        "commanded_contact_shares_are_measurements": {
+          "const": false
+        },
+        "per_foot_measured_load_allocation_available": {
+          "const": false
+        },
+        "existing_contacts_retained_required": {
+          "const": true
+        },
+        "first_post_impulse_command_required": {
+          "const": true
+        },
+        "scaffold_constrained_planar_existing_contact_brace_established": {
+          "const": true
+        },
+        "paired_no_brace_control_required": {
+          "const": true
+        },
+        "new_support_contact_enabled": {
+          "const": false
+        },
+        "actuator_saturation_allowed": {
+          "const": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository_root",
+        "commit_sha",
+        "clean_at_start",
+        "clean_at_end",
+        "campaign_path",
+        "campaign_sha256",
+        "source_inventory_sha256",
+        "source_file_count",
+        "br1_inventory_path",
+        "br1_inventory_sha256",
+        "br1_inventory_unchanged"
+      ],
+      "properties": {
+        "repository_root": {
+          "$ref": "#/$defs/path"
+        },
+        "commit_sha": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "clean_at_start": {
+          "const": true
+        },
+        "clean_at_end": {
+          "const": true
+        },
+        "campaign_path": {
+          "$ref": "#/$defs/path"
+        },
+        "campaign_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_inventory_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_file_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "br1_inventory_path": {
+          "$ref": "#/$defs/path"
+        },
+        "br1_inventory_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "br1_inventory_unchanged": {
+          "const": true
+        }
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "executable",
+        "sha256",
+        "version",
+        "fresh_target_process_invocations",
+        "pid_recycle_events_recorded"
+      ],
+      "properties": {
+        "executable": {
+          "$ref": "#/$defs/path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "version": {
+          "const": "4.7.stable.mono.official.5b4e0cb0f"
+        },
+        "fresh_target_process_invocations": {
+          "const": 10
+        },
+        "pid_recycle_events_recorded": {
+          "const": true
+        }
+      }
+    },
+    "bundle_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_schema",
+        "capsule_schema",
+        "metrics_schema",
+        "receipt_schema",
+        "receipt_domain",
+        "trust_mode"
+      ],
+      "properties": {
+        "manifest_schema": {
+          "const": "sporespore.lab.manifest.v1"
+        },
+        "capsule_schema": {
+          "const": "sporespore.lab.br9_existing_contact_brace_evidence_capsule.v1"
+        },
+        "metrics_schema": {
+          "const": "sporespore.lab.br9_existing_contact_brace_evidence_metrics.v1"
+        },
+        "receipt_schema": {
+          "const": "sporespore.lab.publication_attestation.v1"
+        },
+        "receipt_domain": {
+          "const": "sporespore.lab.publication_attestation.v1"
+        },
+        "trust_mode": {
+          "const": "production"
+        }
+      }
+    },
+    "report_attestation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_schema",
+        "receipt_domain",
+        "trust_mode",
+        "detached",
+        "report_rewrite_after_attestation_forbidden"
+      ],
+      "properties": {
+        "receipt_schema": {
+          "const": "sporespore.lab.br9_certification_report_attestation.v1"
+        },
+        "receipt_domain": {
+          "const": "sporespore.lab.br9_certification_report_attestation.v1"
+        },
+        "trust_mode": {
+          "const": "production"
+        },
+        "detached": {
+          "const": true
+        },
+        "report_rewrite_after_attestation_forbidden": {
+          "const": true
+        }
+      }
+    },
+    "accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "programs_required",
+        "programs_passed",
+        "replicates_per_program",
+        "bundles_required",
+        "bundles_passed",
+        "assertions_required",
+        "assertions_passed",
+        "milestone_programs",
+        "milestone_assertions",
+        "supplementary_programs",
+        "supplementary_assertions",
+        "integrity_programs",
+        "integrity_assertions"
+      ],
+      "properties": {
+        "programs_required": {
+          "const": 5
+        },
+        "programs_passed": {
+          "const": 5
+        },
+        "replicates_per_program": {
+          "const": 2
+        },
+        "bundles_required": {
+          "const": 10
+        },
+        "bundles_passed": {
+          "const": 10
+        },
+        "assertions_required": {
+          "const": 120
+        },
+        "assertions_passed": {
+          "const": 120
+        },
+        "milestone_programs": {
+          "const": 4
+        },
+        "milestone_assertions": {
+          "const": 78
+        },
+        "supplementary_programs": {
+          "const": 0
+        },
+        "supplementary_assertions": {
+          "const": 0
+        },
+        "integrity_programs": {
+          "const": 1
+        },
+        "integrity_assertions": {
+          "const": 42
+        }
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cell_id",
+        "programs_required",
+        "programs_passed",
+        "assertions_per_replicate",
+        "status"
+      ],
+      "properties": {
+        "cell_id": {
+          "enum": [
+            "BR9.0",
+            "BR9.1",
+            "BR9.2",
+            "BR9.3"
+          ]
+        },
+        "programs_required": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "programs_passed": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "assertions_per_replicate": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "status": {
+          "const": "pass"
+        }
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "valid",
+        "trust_mode",
+        "key_id",
+        "receipt_path",
+        "receipt_sha256"
+      ],
+      "properties": {
+        "valid": {
+          "const": true
+        },
+        "trust_mode": {
+          "const": "production"
+        },
+        "key_id": {
+          "$ref": "#/$defs/sha256"
+        },
+        "receipt_path": {
+          "$ref": "#/$defs/path"
+        },
+        "receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "replicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "replicate",
+        "bundle_id",
+        "bundle_path",
+        "manifest_sha256",
+        "checksums_sha256",
+        "capsule_sha256",
+        "metrics_sha256",
+        "source_inventory_sha256",
+        "containment_host_process_id",
+        "target_process_id",
+        "started_utc",
+        "ended_utc",
+        "assertions_passed",
+        "assertion_labels_sha256",
+        "transcript_sha256",
+        "attestation"
+      ],
+      "properties": {
+        "replicate": {
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "bundle_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle_path": {
+          "$ref": "#/$defs/path"
+        },
+        "manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "checksums_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "capsule_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "metrics_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_inventory_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "containment_host_process_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "target_process_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "started_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ended_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "assertions_passed": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "assertion_labels_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "transcript_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "attestation": {
+          "$ref": "#/$defs/attestation"
+        }
+      }
+    },
+    "reconciliation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "source_identity_match",
+        "assertion_count_match",
+        "ordered_assertion_labels_match",
+        "both_raw_transcripts_retained",
+        "raw_transcript_identity_required"
+      ],
+      "properties": {
+        "pass": {
+          "const": true
+        },
+        "source_identity_match": {
+          "const": true
+        },
+        "assertion_count_match": {
+          "const": true
+        },
+        "ordered_assertion_labels_match": {
+          "const": true
+        },
+        "both_raw_transcripts_retained": {
+          "const": true
+        },
+        "raw_transcript_identity_required": {
+          "const": false
+        }
+      }
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program_id",
+        "cell_id",
+        "evidence_role",
+        "test",
+        "expected_assertions",
+        "claim_scope",
+        "replicates",
+        "reconciliation"
+      ],
+      "properties": {
+        "program_id": {
+          "type": "string",
+          "pattern": "^BR9_[A-Z0-9_]+_V1$"
+        },
+        "cell_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_role": {
+          "enum": [
+            "milestone",
+            "supplementary",
+            "integrity"
+          ]
+        },
+        "test": {
+          "type": "string",
+          "pattern": "^test_(?:lab|experimental)_[A-Za-z0-9_.-]+\\.gd$"
+        },
+        "expected_assertions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "claim_scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replicates": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/replicate"
+          }
+        },
+        "reconciliation": {
+          "$ref": "#/$defs/reconciliation"
+        }
+      }
+    },
+    "final_readback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "bundles_required",
+        "bundles_verified",
+        "receipts_required",
+        "receipts_verified",
+        "source_inventories_verified",
+        "metrics_verified",
+        "target_process_invocations",
+        "unique_target_processes",
+        "pid_recycle_events",
+        "complete_campaign"
+      ],
+      "properties": {
+        "bundles_required": {
+          "const": 10
+        },
+        "bundles_verified": {
+          "const": 10
+        },
+        "receipts_required": {
+          "const": 10
+        },
+        "receipts_verified": {
+          "const": 10
+        },
+        "source_inventories_verified": {
+          "const": 10
+        },
+        "metrics_verified": {
+          "const": 10
+        },
+        "target_process_invocations": {
+          "const": 10
+        },
+        "unique_target_processes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "pid_recycle_events": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9
+        },
+        "complete_campaign": {
+          "const": true
+        }
+      }
+    }
+  }
+}

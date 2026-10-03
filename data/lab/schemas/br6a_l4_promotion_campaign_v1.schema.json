@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br6a_l4_promotion_campaign_v1.schema.json",
+  "title": "SporeSpore BR6A L4 promotion campaign v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "campaign_id",
+    "campaign_version",
+    "milestone_id",
+    "claim_boundary",
+    "process_policy",
+    "source_policy",
+    "br1_inventory_guard",
+    "role_accounting",
+    "programs",
+    "does_not_establish"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.br6a_l4_promotion_campaign.v1"
+    },
+    "campaign_id": {
+      "const": "BR6A_L4_PROMOTION_CAMPAIGN_V1"
+    },
+    "campaign_version": {
+      "const": 1
+    },
+    "milestone_id": {
+      "const": "BR6A_L4_VERTICAL_RAIL_LEG_SUPPORT"
+    },
+    "claim_boundary": {
+      "const": "This campaign can certify only the exact L4.0 rigid-strut rail oracle, L4.1 hinged-strut static load curve, and L4.3 two-link vertical-carriage support program scopes named by the source-pinned programs. The Generic6DOF vertical rail is an explicit material scaffold whose vertical axis is unlocked and whose observed reaction is retained; ordinary distal floor contact, paired finite joint torque, aggregate external-load reconstruction, crouch/rise work, the declared downward impulse, and exact infeasibility controls retain their fixture, geometry, mass, timestep, solver, controller, and actuator scopes. It establishes rail-constrained articulated vertical support only, not general per-foot allocation, free-root standing or balance, bracing, fall arrest, getting up, gait, walking, accepted knowledge, or automatic creature guidance."
+    },
+    "process_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clean_committed_source",
+        "fresh_godot_process_per_replicate",
+        "required_replicates_per_program",
+        "pid_recycle_policy",
+        "test_timeout_seconds",
+        "complete_campaign_required",
+        "cherry_pick_policy"
+      ],
+      "properties": {
+        "clean_committed_source": {"const": true},
+        "fresh_godot_process_per_replicate": {"const": true},
+        "required_replicates_per_program": {"const": 2},
+        "pid_recycle_policy": {"const": "allowed_only_for_nonoverlapping_completed_invocations_and_recorded"},
+        "test_timeout_seconds": {"const": 300},
+        "complete_campaign_required": {"const": true},
+        "cherry_pick_policy": {"const": "forbidden_all_declared_runs_retained"}
+      }
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "inventory_roots"],
+      "properties": {
+        "identity": {
+          "const": "clean_git_commit_plus_exact_declared_byte_inventory_v1"
+        },
+        "inventory_roots": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/inventory_root"}
+        }
+      }
+    },
+    "br1_inventory_guard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_path", "sha256", "test_count", "mutation_forbidden"],
+      "properties": {
+        "resource_path": {
+          "const": "res://data/lab/campaigns/BR1_required_lab_tests_v2.json"
+        },
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "test_count": {"const": 62},
+        "mutation_forbidden": {"const": true}
+      }
+    },
+    "role_accounting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["milestone", "supplementary", "integrity", "total"],
+      "properties": {
+        "milestone": {"$ref": "#/$defs/milestone_role_count"},
+        "supplementary": {"$ref": "#/$defs/zero_role_count"},
+        "integrity": {"$ref": "#/$defs/zero_role_count"},
+        "total": {"$ref": "#/$defs/milestone_role_count"}
+      }
+    },
+    "programs": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/program"}
+    },
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "General per-contact, per-foot, or per-toe load allocation",
+          "Free-root standing, balance, or rail-independent support",
+          "A negligible or absent scaffold reaction",
+          "Bracing or fall arrest",
+          "Self-righting or getting up",
+          "Gait, candidate walking, or walking",
+          "Morphology, terrain, complex-foot, or endurance generalization",
+          "Accepted encyclopedia knowledge or automatic creature guidance"
+        ]
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "inventory_root": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "extensions"],
+      "properties": {
+        "kind": {"enum": ["file", "tree"]},
+        "path": {
+          "type": "string",
+          "pattern": "^(?:[A-Za-z0-9_-][A-Za-z0-9_.-]*|\\.[A-Za-z0-9_-][A-Za-z0-9_.-]*)(?:/(?:[A-Za-z0-9_-][A-Za-z0-9_.-]*|\\.[A-Za-z0-9_-][A-Za-z0-9_.-]*))*$"
+        },
+        "extensions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"pattern": "^\\.[a-z0-9]+$"}
+        }
+      }
+    },
+    "role_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["programs", "assertions_per_replicate"],
+      "properties": {
+        "programs": {"type": "integer", "minimum": 0},
+        "assertions_per_replicate": {"type": "integer", "minimum": 0}
+      }
+    },
+    "milestone_role_count": {
+      "allOf": [
+        {"$ref": "#/$defs/role_count"},
+        {
+          "properties": {
+            "programs": {"const": 3},
+            "assertions_per_replicate": {"const": 40}
+          }
+        }
+      ]
+    },
+    "zero_role_count": {
+      "allOf": [
+        {"$ref": "#/$defs/role_count"},
+        {
+          "properties": {
+            "programs": {"const": 0},
+            "assertions_per_replicate": {"const": 0}
+          }
+        }
+      ]
+    },
+    "program": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "program_id",
+        "cell_id",
+        "evidence_role",
+        "test_resource_path",
+        "expected_assertions",
+        "claim_scope"
+      ],
+      "properties": {
+        "program_id": {
+          "type": "string",
+          "pattern": "^BR6A_[A-Z0-9_]+_V1$"
+        },
+        "cell_id": {
+          "enum": ["L4.0", "L4.1", "L4.3"]
+        },
+        "evidence_role": {
+          "enum": ["milestone", "supplementary", "integrity"]
+        },
+        "test_resource_path": {
+          "type": "string",
+          "pattern": "^res://tests/test_(?:lab|experimental)_[A-Za-z0-9_.-]+\\.gd$"
+        },
+        "expected_assertions": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "claim_scope": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

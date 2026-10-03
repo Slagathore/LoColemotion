@@ -1,0 +1,17 @@
+{
+  "schema_version": "sporespore_recovery_candidate_stance_profiles_v1",
+  "default_controller_id": "sporespore_exact_s169_stance_handoff_controller_v1",
+  "profiles": [
+    {
+      "ledger_scope": {"subsystem": "recovery", "engine_scope": "engine_neutral", "authority_mode": "prospective_development_controller", "question_class": "development"},
+      "recovery_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v15",
+      "controller_id": "sporespore_exact_s169_stance_handoff_controller_v2",
+      "profile_id": "sporespore_exact_s169_measured_pose_stance_relaxation_v1",
+      "response_time_s": 0.1,
+      "rule": "Keep the zero-joint standing goal and existing speed/cap bounds. Each target advances from the actual measured joint position by outer_step_duration_s times clamp(position_error / response_time_s, -maximum_target_speed_rad_s, maximum_target_speed_rad_s). No force feedback or observation rewrite.",
+      "parameter_basis": "Development design choice: distribute near-goal position correction over 0.1 seconds (12 nominal outer steps), instead of demanding correction within one 1/120-second step. This is a controller parameter, not a changed success threshold or an empirically proved optimum.",
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    }
+  ]
+}

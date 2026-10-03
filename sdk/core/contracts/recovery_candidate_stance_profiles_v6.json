@@ -1,0 +1,33 @@
+{
+  "schema_version": "sporespore_recovery_candidate_stance_profiles_v6",
+  "preserved_predecessor": "sdk/core/contracts/recovery_candidate_stance_profiles_v5.json",
+  "profiles": [
+    {
+      "ledger_scope": {"subsystem": "recovery", "engine_scope": "engine_neutral", "authority_mode": "prospective_development_controller", "question_class": "development"},
+      "recovery_controller_id": "sporespore_exact_s169_prone_to_standing_controller_v20",
+      "controller_id": "sporespore_exact_s169_stance_handoff_controller_v7",
+      "profile_id": "sporespore_exact_s169_ramped_neutral_stance_v1",
+      "response_time_s": 0.1,
+      "measured_velocity_damping_gain": 0.5,
+      "reference_ramp": {
+        "rule_id": "flexed_to_neutral_joint_reference_smoothstep_v1",
+        "initial_stance_controller_id": "sporespore_exact_s169_stance_handoff_controller_v5",
+        "duration_steps": 60,
+        "clock_basis": "zero during stance_handoff; completed stance_dwell steps plus one for the upcoming command",
+        "blend": "t*t*(3-2*t), t=min(upcoming_dwell_step/60,1)",
+        "terminal_goal": "existing STANCE_TARGETS_RAD: all zero"
+      },
+      "rule": "Start the separately owned stance reference at V18's existing flexed target. Smoothly interpolate joint-space references to the unchanged neutral goal over the first 60 dwell commands, then remain exactly neutral. Preserve every pre-stance command, the 0.1-second response, 0.5 measured-velocity damping, 0.75 rad/s motor speed cap, impulse caps, body, walking policy, standing evaluator and 240-step stance timeout. This is a reference trajectory, not an observed pose or guaranteed foot-placement path.",
+      "parameter_basis": "Use the existing -0.25 rad knee origin, zero terminal target, 120 Hz timestep and 0.75 rad/s stance cap. Smoothstep has peak normalized derivative 1.5, so 60 steps (0.5 s) bound the largest reference-coordinate speed at 1.5*0.25/0.5 = 0.75 rad/s. This also reaches the terminal reference before the earliest possible consecutive-60 standing completion. No duration is fitted to observed success or timeout. Reference speed is not a guarantee of actual joint speed, contact, stability, or recovery.",
+      "diagnostic_basis": {
+        "v26_closure": "sdk/development/recovery_attempts/4ed1bcc619b64a4284505e44e122ee82.json",
+        "v26_closure_sha256": "sha256:35c056aad379c0e96d917053d4808fc3e4f4aeee2240ec1e337b729fc73f06d7",
+        "v26_report_sha256": "sha256:b147debd22eb00dd1c75a2f51437bde96f5a50954e9cc921b027e9b271ec7757",
+        "v25_closure": "sdk/development/recovery_attempts/d8f05d136e4849248b7246e3e546ecf2.json",
+        "interpretation": "V26 retains a 0.2524440884590149 rad first walking target mismatch, six inadequate warmup contact cycles and prolonged rear-left support loss. V25's constant neutral stance times out. Test a smooth route to neutral under the same limits; neither result proves that this change will help or explains the later contact loss. Both original results remain unchanged."
+      },
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    }
+  ]
+}

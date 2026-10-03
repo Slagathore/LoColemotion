@@ -1,0 +1,164 @@
+{
+  "schema_version": "sporespore_r10l_extended_support_transfer_successor_design_v1",
+  "design_id": "r10l_v52_extended_support_transfer_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "prospective_successor_design",
+    "question_class": "development"
+  },
+  "source_parent_commit": "0c054dbcada96ad3e544aa784c85bea682877739",
+  "status_at_declaration": "declared_not_implemented_no_physical_authority",
+  "sdk1_milestone_id": "SDK1-M07",
+  "release_gate_id": "QSDK-R10",
+  "question": "Can a bounded increase in fore/aft reference range complete measured support transfer and the full recovery-to-walking task while preserving joint feasibility, contact release requirements, motor caps and existing time budgets?",
+  "bound_evidence": [
+    {
+      "path": "sdk/recovery/r10k_phase241_development_failure_v1.json",
+      "byte_length": 31155,
+      "raw_sha256": "sha256:880a69168cc379cdada7c0f205e78c189bdc1ebb683d2ac88bcc0d92eb5b66ac"
+    },
+    {
+      "path": "sdk/recovery/r10k_support_transfer_geometry_diagnosis_v1.json",
+      "byte_length": 5884,
+      "raw_sha256": "sha256:9097ef3af4aba73d431a58d589edc44ed4efb4b84356d7add55d504d99eda59c"
+    },
+    {
+      "path": "sdk/development/recovery_joint_feasible_height_contract_v1.json",
+      "byte_length": 4664,
+      "raw_sha256": "sha256:f5bdc867a3d65eb19e8c8e29abeca7f6b7111a4a35436bcaca316e182269d037"
+    },
+    {
+      "path": "sdk/recovery/r10k_partial_fall_successor_design_v1.json",
+      "byte_length": 11117,
+      "raw_sha256": "sha256:c69912dd0da30e492e346b38b1164abfa15cf6cfa0ec04be8f578012dc6415a7"
+    }
+  ],
+  "observed_problem": {
+    "walking_command_refused": 840,
+    "planned_swing_limb": "rear_left",
+    "preparation_commands": 240,
+    "bias_saturated_commands": 67,
+    "terminal_reference_bias_rad": -0.25,
+    "terminal_support_margin_m": 0.017076065810519805,
+    "required_release_margin_m": 0.02,
+    "other_terminal_release_conditions_passed": true,
+    "completed_planned_cycles": 3,
+    "stopping_commands": 0,
+    "kicked_child_opened": false
+  },
+  "native_component": {
+    "policy_id": "sporespore_balanced_wave_recovery_extended_support_transfer_v1",
+    "memory_schema": "sporespore_balanced_wave_recovery_extended_support_transfer_memory_v1",
+    "profile_id": "sporespore_balanced_wave_recovery_extended_support_transfer_profile_v1",
+    "receipt_schema": "sporespore_recovery_extended_support_transfer_controller_step_receipt_v1",
+    "parent_policy_id": "sporespore_balanced_wave_recovery_joint_feasible_height_v1",
+    "maximum_absolute_reference_bias_rad": 0.3,
+    "predecessor_maximum_absolute_reference_bias_rad": 0.25,
+    "reference_translation_for_exact_035_m_leg_m": 0.105,
+    "additional_reference_translation_at_bound_m": 0.0175,
+    "maximum_bias_rate_rad_s": 0.6,
+    "position_rate_gain": 4.0,
+    "velocity_damping": 1.5,
+    "preparation_timeout_commands": 240,
+    "release_margin_m": 0.02,
+    "target_margin_m": 0.025,
+    "release_dwell_commands": 6,
+    "selection": "Only the distinct V52 policy selects the new bias bound. Validate memory, support-transfer clamping and coordinate recentering against that same explicit bound. The scalar controls a body reference; actual hip and knee limits and actuator caps are unchanged.",
+    "compatibility": "All predecessor policy and memory identities retain the 0.25 bound and original bytes. Never inject extended-range memory into V51 or change its profile digest.",
+    "retained_laws": "Preserve V51 all-leg IK and reach reserve, 20 mm height-correction range and its rate bound, foot anchoring and paths, support contact predicates, startup law, reference/motor slew, feedback, energy accounting and no-cheat checks.",
+    "receipt": "Expose the selected reference bound in the V52-specific evidence without adding fields to predecessor outputs."
+  },
+  "geometric_basis": {
+    "scope": "Frozen terminal pose and fixed foot targets only; not predicted physical response.",
+    "bias_minus_028": {
+      "additional_translation_m": 0.01050000000000001,
+      "height_correction_m": -0.0105,
+      "assumed_rigid_com_triangle_margin_m": 0.02516960033521848
+    },
+    "selected_bound_minus_030": {
+      "additional_translation_m": 0.017499999999999995,
+      "height_correction_m": -0.01375,
+      "assumed_rigid_com_triangle_margin_m": 0.0305652900183509
+    },
+    "rejected_minus_035": "No joint-feasible height on the original 20 mm grid for these terminal targets.",
+    "rate_transition_verified": false
+  },
+  "production_route": {
+    "route_id": "r10l_v52_partial_fall_recovery_route_v1",
+    "scope": "A distinct successor of the complete R10K route. Preserve its ramp/hold and separate partial/prone recovery histories, then use a fresh V52 session for finite walking and stopping.",
+    "required_surfaces": [
+      "exact DLL and native policy registration",
+      "immutable candidate, schedule, start, entry, route and finite-task contracts",
+      "real sampler, facade, worker and motor application",
+      "launcher seed and role declaration and source binding",
+      "native transport and independent readers",
+      "complete native report and negative controls for preparation, partial recovery, prone recovery and walking",
+      "complete affected-path safety gate"
+    ],
+    "unchanged_task": "Preserve all R10K entry, recovery, finite walking, four-cycle, 120-command stop, settled tail, whole-envelope and solver/time requirements. Only native walking reference range and successor identities change."
+  },
+  "development_coverage": {
+    "first_attempt": {
+      "label": "R10L-DEVELOPMENT-PREFIX-241-PAIR-V1",
+      "seed": 40441,
+      "prefix_phase": 241,
+      "fresh_roles": [
+        "matched_no_kick_continuation",
+        "kick_passive_recovery_resume"
+      ]
+    },
+    "additional_branch_diagnostic": {
+      "label": "R10L-DEVELOPMENT-PREFIX-243-SINGLE-KICK-V1",
+      "seed": 40443,
+      "prefix_phase": 243,
+      "fresh_roles": [
+        "kick_passive_recovery_resume"
+      ],
+      "prerequisite": "The exact selected R10L pair must close valid and positive under independent audit."
+    },
+    "adequacy": "The phase-241 pair covers the exposed no-kick transfer refusal and partial-fall branch. The separate phase-243 kicked diagnostic covers the mutually exclusive genuine-prone branch. Both are development on exposed phases; neither is held-out evidence.",
+    "reuse": "Fresh attempt and child identities, fresh world/setup and baseline. Never continue the old child, reuse its baseline, or run the unopened peer under the consumed R10K attempt."
+  },
+  "required_validation": [
+    "Native memory, clamp and recenter boundaries at 0.30 for V52 and unchanged 0.25 for predecessor policies; reject nonfinite and crossed-policy states.",
+    "Reproduce original V51 native responses including its command-840 refusal with the new DLL.",
+    "Use declared copies of pre-timeout exposed requests to demonstrate the new bounded reference and joint-feasible height through actual native APIs; do not reset preparation clocks or fabricate readiness.",
+    "The original 240-command deadline must still refuse an unready request under V52. Retained measurements do not become a new physical trajectory.",
+    "Verify stateless and session output agreement, complete native memory evolution, actual adapter/motor application and cold report replay before fresh physics.",
+    "Run the complete applicable source-bound safety gate on the assembled production route before fresh development.",
+    "After successful development, declare and qualify a new held-out finite decision, independently close its result and adopt successful evidence into QSDK-R10/M07."
+  ],
+  "alternatives": [
+    {
+      "choice": "Extend the preparation timeout only",
+      "advantage": "Smaller controller change.",
+      "reason_not_selected": "The reference was saturated for 67 commands and the final body was settled below the release margin. More time does not supply additional reference range."
+    },
+    {
+      "choice": "Lower the required support margin or omit the remaining foot cycle",
+      "advantage": "Would make an easier task.",
+      "reason_not_selected": "Does not satisfy the intended existing finite walking and measured-support requirements."
+    },
+    {
+      "choice": "Raise the bias bound to 0.35",
+      "advantage": "More translation range.",
+      "reason_not_selected": "The frozen terminal targets have no feasible pose within the existing height correction and joint constraints at this bound."
+    },
+    {
+      "choice": "Select 0.30 with existing native feasibility guards",
+      "advantage": "Provides bounded range beyond the 0.28 terminal geometric target while preserving all task thresholds.",
+      "risk": "Changed geometry can change contacts, transfer timing and later walking. Only fresh physics can establish success; other phases may still fail."
+    }
+  ],
+  "claim_boundary": {
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "new_native_component_implemented": false,
+    "production_route_integrated": false,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "sdk1_score": "14/20"
+  }
+}

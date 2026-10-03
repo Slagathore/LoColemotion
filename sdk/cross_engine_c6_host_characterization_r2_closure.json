@@ -1,0 +1,120 @@
+{
+  "schema_version": "sporespore_cross_engine_c6_host_characterization_r2_closure_v1",
+  "campaign_id": "C6-HOST-CHARACTERIZATION-R2",
+  "gate_id": "C6-HC1-R2",
+  "status": "closed_pass_host_characterization_only",
+  "source_commit": "7c0373f213a9f61f9570b316221c1f9753048c43",
+  "source_was_clean_and_equal_to_origin_main": true,
+  "preregistration": {
+    "path": "sdk/cross_engine_c6_host_characterization_r2_preregistration.json",
+    "raw_sha256": "sha256:690dc6e5ed4d8d0be2c0c5e4eb294d8160f9ac9ec4309de7ded82aa89951f451"
+  },
+  "predecessor_closure": {
+    "path": "sdk/cross_engine_c6_host_characterization_r1_closure.json",
+    "raw_sha256": "sha256:c4fac9d63428e747ac052169d97b344e2b774ce728f1a368f3e842f70248da12"
+  },
+  "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f",
+  "artifacts": {
+    "rapier_report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f\\rapier\\report.json",
+      "bytes": 25471,
+      "sha256": "sha256:7ec18fbe8d6cb1efd3dcbbfce86f400e1cfed6c284df3fcf9183030e856a95e0"
+    },
+    "rapier_stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f\\rapier\\stdout.log",
+      "bytes": 25471,
+      "sha256": "sha256:7ec18fbe8d6cb1efd3dcbbfce86f400e1cfed6c284df3fcf9183030e856a95e0"
+    },
+    "rapier_stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f\\rapier\\stderr.log",
+      "bytes": 549,
+      "sha256": "sha256:b51a4f9d77b405c53d4deb16009e406e9301c014986174d4173dbb40b9f49d0b"
+    },
+    "mujoco_report": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f\\mujoco\\report.json",
+      "bytes": 25010,
+      "sha256": "sha256:f941fa6a416cc862623419bfb6d91ae2dbd9bd021f577989afad76cafd599c2c"
+    },
+    "mujoco_stdout": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f\\mujoco\\stdout.log",
+      "bytes": 25683,
+      "sha256": "sha256:05b9ef8da7a83394acfacc59c2a28723fd5fb7eb3410fb7b25321c215c13c1e9"
+    },
+    "mujoco_stderr": {
+      "path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f\\mujoco\\stderr.log",
+      "bytes": 0,
+      "sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "rapier_result": {
+    "version": "0.34.0",
+    "adapter_manifest_sha256": "sha256:adc04560e8ad99367c1dc5349dec8a66a17765766c1669f8faf3be8569059a8c",
+    "ok": true,
+    "world_attempt_count": 28,
+    "world_build_count": 28,
+    "material_characterization_complete_for_declared_grid": true,
+    "actuator_characterization_complete_for_declared_grid": true,
+    "failed_material_cell_count": 0,
+    "failed_actuator_cell_count": 0,
+    "measured_child_mass_kg": 1.0,
+    "measured_child_principal_inertia_kg_m2": [
+      0.0266666691750288,
+      0.0266666691750288,
+      0.0266666691750288
+    ],
+    "maximum_final_actuator_error_rad": 0.000029832124710083008
+  },
+  "mujoco_result": {
+    "version": "3.11.0",
+    "numpy_version": "2.4.6",
+    "adapter_manifest_sha256": "sha256:761dc96304865e0e4aea0edd8fa85beae8051326b590edc7a9dbb6a7af312520",
+    "material_integrator": "Euler",
+    "actuator_integrator": "implicitfast",
+    "ok": true,
+    "world_attempt_count": 28,
+    "world_build_count": 28,
+    "material_characterization_complete_for_declared_grid": true,
+    "actuator_characterization_complete_for_declared_grid": true,
+    "failed_material_cell_count": 0,
+    "failed_actuator_cell_count": 0,
+    "measured_child_mass_kg": 1.0,
+    "measured_child_principal_inertia_kg_m2": [
+      0.026666666666666672,
+      0.026666666666666672,
+      0.026666666666666672
+    ],
+    "maximum_final_actuator_error_rad": 0.00010789424369872513
+  },
+  "result_scope": {
+    "established": [
+      "Rapier and MuJoCo each completed the exact preregistered 24-world discrete material grid and four-cell actuator grid.",
+      "The aligned one-kilogram cuboid actuator fixtures passed their preregistered mass, inertia, force-limit, target-sign, and final-error checks.",
+      "The retained reports provide engine-specific material and actuator characterization inputs for later physical C6 work."
+    ],
+    "not_established": [
+      "controller-policy behavior",
+      "selected-policy physical behavior",
+      "locomotion",
+      "cross-engine C6",
+      "friction or material robustness",
+      "different-physics-engine locomotion",
+      "release readiness",
+      "a completed engine-neutral SDK"
+    ]
+  },
+  "decision": {
+    "overall_gate_passed": true,
+    "rapier_host_characterization_pass_retained": true,
+    "mujoco_host_characterization_pass_retained": true,
+    "cross_engine_host_characterization_grid_completed": true,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "material_robustness": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false,
+    "completed_engine_neutral_sdk": false,
+    "same_identity_rerun_forbidden": true,
+    "next_dependency": "Use the retained engine-specific profiles as declared inputs to distinct, prospectively frozen selected-policy physical C6 campaigns; do not reinterpret C6-HC1-R2 as locomotion or robustness evidence."
+  }
+}

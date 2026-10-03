@@ -1,0 +1,203 @@
+{
+  "schema_version": "sporespore_rapier_c6_selected_policy_commissioning_r1_preregistration_v1",
+  "campaign_id": "C6-RAPIER-SELECTED-POLICY-COMMISSIONING-R1",
+  "gate_id": "C6-RAP-SP1-R1",
+  "status": "frozen_before_first_c6_rap_sp1_r1_physics_world",
+  "recorded_utc": "2026-07-30T13:58:00Z",
+  "implementation_parent_commit": "cdc2341823ec46c65d07679e82b0481ff1cef01d",
+  "purpose": "Retest the exact selected portable BW5R-B policy in one Rapier world after the closed predecessor exposed a host quaternion transport failure.",
+  "predecessor": {
+    "closure_path": "sdk/rapier_c6_selected_policy_commissioning_closure.json",
+    "closure_raw_sha256": "sha256:b7f461bcadff96069e14b85357e58b97c61c555903792b99c37116e17ee31557",
+    "status": "closed_negative_adapter_transport",
+    "same_identity_rerun": false,
+    "predecessor_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-rapier-selected-policy-1df9c70\\report.json",
+    "predecessor_report_sha256": "sha256:05d6a300364d2a1a1f05b3007bbc00b94db7f4f4079da785558d72cb19ec39cd"
+  },
+  "scope": {
+    "campaign_role": "outcome_exposed_single_body_technical_commissioning_correction",
+    "host": "rapier3d",
+    "host_version": "0.34.0",
+    "geometry_query_backend": "parry3d",
+    "geometry_query_backend_version": "0.29.0",
+    "world_count": 1,
+    "fresh_morphology": false,
+    "independent_validation": false,
+    "selection_or_tuning_authority": false
+  },
+  "frozen_inputs": {
+    "selected_candidate_id": "BW5R-B",
+    "policy_id": "sporespore_balanced_wave_bw5r_b_v1",
+    "policy_digest": "sha256:9dfade277ff0dd28f47aa807447c51a24363ce9d10671930ae01b61273d5f59f",
+    "selected_policy_path": "sdk/balanced_wave_selected_policy.json",
+    "selected_policy_raw_sha256": "sha256:ba9498aa8b709703a578f52e496079a87d3bfd11fc60095a6b5100f8722b4bb9",
+    "morphology_branch_surface_count": 0,
+    "portable_morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "portable_controller_profile_sha256": "sha256:6a0ce16101b8522ce844d40cf71e7129b23dcb0a64b7ff988d86c34c2dd35934"
+  },
+  "host_characterization": {
+    "closure_path": "sdk/cross_engine_c6_host_characterization_r2_closure.json",
+    "closure_raw_sha256": "sha256:a7b1b3c172b98780f574cec9dbb18bebda35429ece5105a0385ecb7d67d6ddd9",
+    "rapier_report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\c6-host-characterization-r2-7c0373f\\rapier\\report.json",
+    "rapier_report_sha256": "sha256:7ec18fbe8d6cb1efd3dcbbfce86f400e1cfed6c284df3fcf9183030e856a95e0",
+    "material_grid_passed": true,
+    "actuator_grid_passed": true
+  },
+  "morphology": {
+    "descriptor": {
+      "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+      "morphology_id": "qsdk_r05_generated_s169",
+      "torso_length_scale": 1.0041015625,
+      "torso_width_scale": 1.0031893004115227,
+      "upper_length_fraction": 0.5219571428571428,
+      "hip_span_scale": 0.9856413994169096,
+      "foot_radius_scale": 0.9987180691209617,
+      "front_limb_mass_scale": 0.975022758306782
+    },
+    "generator_index": 169,
+    "generator_receipt_sha256": "sha256:53d637771ebd848c604470beaf7609c16bb877aa87d083053fa451e0d5b54a49",
+    "proportion_spec_sha256": "sha256:91867919d91512b7be1e24e7614b6274b52a7ddca3e3438d241056fe723365fb",
+    "godot_compiled_morphology_spec_sha256": "sha256:30893a75e8362dcab69f0fb46b0560cacbe5d5c034cb0152e67eb520ff35f45e",
+    "portable_compiler_is_authoritative_for_rapier_geometry_mass_inertia_and_order": true
+  },
+  "allowed_changes_from_predecessor": {
+    "host_quaternion_transport": "Normalize promoted f32 x/y/z/w components in f64 before constructing the portable Quaternion.",
+    "numeric_finiteness_counter": "Inspect only numeric state fields with is_finite; do not search serialized JSON for null.",
+    "diagnostic_receipts": "Retain exact controller error strings and counts.",
+    "physics_or_policy_changes_allowed": false,
+    "geometry_mass_inertia_changes_allowed": false,
+    "motor_gain_or_limit_changes_allowed": false,
+    "clock_or_threshold_changes_allowed": false
+  },
+  "world": {
+    "coordinate_frame": "right_handed_x_forward_y_up_z_right_si_v1",
+    "gravity_m_s2": 9.8,
+    "timestep_s": 0.008333333333333333,
+    "solver_velocity_iterations": 20,
+    "solver_internal_pgs_iterations": 1,
+    "solver_internal_stabilization_iterations": 7,
+    "ground_top_y_m": 0.0,
+    "ground_half_extents_m": [
+      10.0,
+      0.05,
+      10.0
+    ],
+    "authored_ground_and_robot_friction": 1.0,
+    "friction_combine_rule": "min",
+    "restitution": 0.0,
+    "robot_self_collision": false,
+    "direct_body_force_impulse_velocity_or_transform_commands": false,
+    "world_reset_allowed": false
+  },
+  "actuation": {
+    "model": "rapier_revolute_position_velocity_force_based",
+    "motor_model": "force_based",
+    "stiffness_nm_per_rad": 40.0,
+    "damping_nm_s_per_rad": 10.0,
+    "maximum_force_mapping": "maximum_force_nm = compiled_maximum_impulse_nms * 1.015 / timestep_s",
+    "target_position_source": "portable_core_clamped_target_position_rad",
+    "target_velocity_source": "portable_core_target_velocity_rad_s",
+    "one_application_per_actuator_per_semantic_step": true
+  },
+  "clock": {
+    "settle_steps": 240,
+    "settle_motor_target_position_rad": 0.0,
+    "settle_motor_target_velocity_rad_s": 0.0,
+    "clocked_warmup_and_alignment_semantic_steps": 472,
+    "contact_gated_evidence_steps_per_limb": 1440,
+    "maximum_contact_gated_extension_steps": 720,
+    "cooldown_steps": 360,
+    "terminal_settle_steps": 240,
+    "maximum_controller_semantic_steps": 3232,
+    "desired_forward_velocity_task_m_s": 0.2,
+    "desired_heading_rad": 0.0,
+    "gait_amplitude": 1.0,
+    "initial_perturbation": "none"
+  },
+  "walking_thresholds": {
+    "policy_id": "nonuniform_dimensionless_thresholds_v1",
+    "minimum_foot_relocation_m": 0.01194880859375,
+    "minimum_evidence_torso_advance_m": 0.0401640625,
+    "minimum_final_torso_advance_m": 0.030123046875,
+    "maximum_lateral_drift_m": 0.10031893004115228,
+    "maximum_yaw_drift_rad": 0.45,
+    "maximum_tilt_rad": 0.6,
+    "minimum_torso_height_m": 0.2499708652072946,
+    "maximum_anchor_error_m": 0.025575899999999995,
+    "maximum_hinge_axis_error_rad": 0.2,
+    "minimum_contact_cycles_per_limb": 2,
+    "minimum_airborne_dwell_steps": 3,
+    "initial_four_contact_stance_required": true,
+    "terminal_four_contact_recovery_required": true,
+    "zero_torso_ground_contact_required": true
+  },
+  "preflight_contract": {
+    "must_run_before_any_physics_world": true,
+    "compile_descriptor_and_selected_policy_without_world": true,
+    "perfect_synthetic_zero_failure_result_must_pass_full_integrity_gate": true,
+    "nonzero_failure_canary_must_fail_full_integrity_gate": true,
+    "nonidentity_host_quaternion_conversion_must_pass_portable_unit_norm_validation": true,
+    "intentional_null_must_not_increment_numeric_nonfinite_count": true,
+    "report_serialization_round_trip_required": true,
+    "preflight_world_build_count": 0,
+    "preflight_scene_insertion_count": 0,
+    "preflight_physics_state_mutation_count": 0
+  },
+  "execution_contract": {
+    "clean_source_required": true,
+    "head_must_equal_origin_main": true,
+    "first_complete_report_for_source_is_final": true,
+    "existing_artifact_overwrite_forbidden": true,
+    "early_stop_forbidden": true,
+    "every_declared_step_attempted_until_terminal_condition": true,
+    "negative_report_retention_required": true,
+    "same_identity_rerun_forbidden_after_closure": true
+  },
+  "method_sources": {
+    "api_authority": {
+      "library": "Rapier",
+      "version": "0.34.0",
+      "source": "https://github.com/dimforge/rapier",
+      "crate_source_paths": [
+        "rapier3d-0.34.0/src/dynamics/joint/revolute_joint.rs",
+        "rapier3d-0.34.0/src/dynamics/joint/impulse_joint/impulse_joint_set.rs",
+        "rapier3d-0.34.0/src/geometry/narrow_phase.rs"
+      ]
+    },
+    "local_research_inputs": [
+      {
+        "path": "DReCon.pdf",
+        "sha256": "sha256:aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+      },
+      {
+        "path": "2604.08780v1.pdf",
+        "sha256": "sha256:ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+      },
+      {
+        "path": "2507.22653v2.pdf",
+        "sha256": "sha256:6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+      },
+      {
+        "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md",
+        "sha256": "sha256:b86aaaf47c62d514759b3912340a61c0213aec79d725e5d5e02a252d57dacd63"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "technical_commissioning_only": true,
+    "rapier_selected_policy_physical_c6": false,
+    "same_selected_policy_independent_morphology_evidence": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "cross_engine_c6": false,
+    "different_physics_engines": false,
+    "locomotion_acceptance": false,
+    "release_authorized": false,
+    "physical_acceptance_authority": false,
+    "completed_engine_neutral_sdk": false
+  }
+}

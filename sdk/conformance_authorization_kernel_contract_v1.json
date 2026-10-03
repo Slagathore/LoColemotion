@@ -1,0 +1,61 @@
+{
+  "schema_version": "sporespore_conformance_authorization_kernel_contract_v1",
+  "contract_id": "CAK1-GLOBAL-PHYSICAL-AUTHORIZATION-SAFETY-KERNEL",
+  "status": "active_declared_uncommissioned_authority_disabled",
+  "purpose": "Declare the permanent fail-closed safeguards and campaign-role interface that every future physical authorization tier must satisfy without binding the kernel to one historical campaign.",
+  "authority": {
+    "manifest_path": "sdk/conformance_authorization_kernel_manifest_v1.json",
+    "canonical_runner_path": "sdk/run_conformance.ps1",
+    "global_gate_count": 12,
+    "required_campaign_negative_control_role_count": 3
+  },
+  "required_global_safeguards": [
+    "repository_authority_boundary",
+    "reproducible_artifacts",
+    "operation_serialization",
+    "cas_and_provenance_integrity",
+    "source_and_host_attestation",
+    "result_integrity",
+    "physical_entrypoint_integrity",
+    "physical_receipt_integrity",
+    "shared_adapter_invariants",
+    "shared_abi_invariants",
+    "language_binding_invariants",
+    "release_claim_fail_closed"
+  ],
+  "campaign_negative_control_interface": {
+    "required_roles": [
+      "worker",
+      "evaluator",
+      "supervisor"
+    ],
+    "role_bindings_are_campaign_specific": true,
+    "historical_campaign_binding_forbidden": true,
+    "each_role_requires_exact_source_and_test_digests": true,
+    "each_role_requires_retained_negative_control_receipts": true,
+    "all_roles_bound_for_current_campaign": false
+  },
+  "execution_boundary": {
+    "global_gate_source_inventory_required": true,
+    "canonical_runner_binding_required": true,
+    "godot_including_execution_required": true,
+    "skip_godot_authority_forbidden": true,
+    "compact_execution_receipts_required": true,
+    "cold_executed_vs_reused_equivalence_required": true,
+    "kernel_may_launch_physics": false,
+    "kernel_may_select_or_accept_a_campaign": false
+  },
+  "claims": {
+    "global_gate_declaration_complete": true,
+    "global_gate_execution_complete": false,
+    "campaign_negative_controls_complete": false,
+    "cold_equivalence_complete": false,
+    "kernel_commissioned": false,
+    "cache_lookup_permitted": false,
+    "result_reuse_permitted": false,
+    "physical_launch_permitted": false,
+    "physical_acceptance_authority": false,
+    "scientific_result": false,
+    "release_authority": false
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "sporespore_development_recovery_entry_initialization_diagnosis_v1",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_data_diagnosis",
+    "question_class": "development"
+  },
+  "source_commit": "ea8c699f6816143356c5a6b95159cf79f59677f6",
+  "source_bindings": [
+    {
+      "path": "sdk/core/src/recovery.rs",
+      "commit": "ea8c699f6816143356c5a6b95159cf79f59677f6",
+      "byte_length": 242268,
+      "git_blob_content_sha256": "sha256:f7666db0e1f6d92797eefd4a4c13f92499c30f2c8afc4d287f030e79e507c3c6"
+    },
+    {
+      "path": "sdk/adapters/godot/gdscript/qsdk_r10f_l15_no_actuation_worker_stage_v1.gd",
+      "commit": "ea8c699f6816143356c5a6b95159cf79f59677f6",
+      "byte_length": 6769,
+      "git_blob_content_sha256": "sha256:37de7c56be48d882de05204129cf75adf2331051880e17bef8950a6325d02084"
+    },
+    {
+      "path": "tests/test_sdk_qsdk_r10f_continuous_passive_recovery_worker.gd",
+      "commit": "ea8c699f6816143356c5a6b95159cf79f59677f6",
+      "byte_length": 286264,
+      "git_blob_content_sha256": "sha256:1e901eaaf0e0cc4754047982f67ca5849457a970c7a3948c5d826d9c531bb9e2"
+    }
+  ],
+  "evidence_root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/development-recovery-smoke-4b4c9c059591449a92c32c131239c487",
+  "worker_report_sha256": "sha256:8de24d7420f12779c07d07dd50932b3e017e8887031a2f9132165e26d752d3fd",
+  "observed": {
+    "canonical_prone_reference_com_m": 0.07006509602069855,
+    "postkick_reference_com_m": 0.3235965073108673,
+    "postkick_controller_first_sample_global_step": 273.0,
+    "postkick_controller_samples": 60.0,
+    "postkick_prone_samples": 0,
+    "terminal_com_m": 0.24478216469287872,
+    "terminal_com_vertical_speed_m_s": -0.3887898325920105,
+    "terminal_applied_motor_impulses_nms": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "terminal_feet_bearing": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "observed_failure": "phase_timeout:confirm_prone"
+  },
+  "derived": {
+    "minimum_com_rise_m": 0.22,
+    "precondition_standing_com_m_from_retained_reference_and_gain": 0.3271356225013733,
+    "required_com_using_prone_reference_m": 0.2900650960206985,
+    "required_com_using_postkick_reference_m": 0.5435965073108673,
+    "same_precondition_stance_gain_using_postkick_reference_m": 0.0035391151905059814
+  },
+  "diagnosis": {
+    "confirmation_clock_includes_passive_descent": true,
+    "rise_reference_captured_before_prone": true,
+    "later_rise_reference_obstacle_is_counterfactual_not_an_observed_raise_body_failure": true,
+    "longer_timeout_alone_does_not_change_rise_reference": true
+  },
+  "selected_successor_requirements": [
+    "Separate bounded passive descent from canonical prone confirmation.",
+    "Start canonical get-up from an actual measured prone boundary, with explicit ownership and sequence checks.",
+    "Keep the original 12-sample dwell, 60-step confirmation timeout and 0.22 m rise predicate unchanged.",
+    "Keep the post-kick energy ledger continuous; a control reference boundary is not an energy reset.",
+    "Retain descent samples, refusal and timeout outcomes; do not repeatedly reinitialize to hide failures.",
+    "Declare new source/runtime/attempt bindings before a fresh physical diagnostic."
+  ],
+  "physical_worlds_started": 0,
+  "native_physics_reads": 0,
+  "solver_steps": 0,
+  "runtime_fix_integrated": false,
+  "later_stance_physically_observed": false,
+  "behavioral_conclusion": "none",
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}

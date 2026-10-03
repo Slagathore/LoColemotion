@@ -1,0 +1,998 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index fb3d75a..be81a8a 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -97,6 +97,8 @@ simd-stable = [
+     "simba/wide",
+     "simd-is-enabled",
+ ]
++sporespore-motor-work-telemetry = []
++sporespore-energy-exchange-telemetry = ["sporespore-motor-work-telemetry"]
+ std = [
+     "alloc",
+     "parry3d/std",
+diff --git a/src/dynamics/joint/generic_joint.rs b/src/dynamics/joint/generic_joint.rs
+index 75ff45f..e81cbab 100644
+--- a/src/dynamics/joint/generic_joint.rs
++++ b/src/dynamics/joint/generic_joint.rs
+@@ -160,6 +160,45 @@ impl<N: SimdRealCopy> From<[N; 2]> for JointLimits<N> {
+     }
+ }
+ 
++/// Exact per-outer-step telemetry accumulated by the SporeSpore solver patch.
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++#[cfg_attr(feature = "serde-serialize", derive(Serialize, Deserialize))]
++#[derive(Copy, Clone, Debug, PartialEq)]
++pub struct JointMotorWorkTelemetry {
++    /// Monotonic publication sequence for active outer solver steps.
++    pub sequence: u64,
++    /// Sum of signed generalized motor impulse in the body2-minus-body1 coordinate.
++    pub generalized_impulse: Real,
++    /// Sum of absolute generalized motor impulse.
++    pub absolute_generalized_impulse: Real,
++    /// Positive work supplied by the motor.
++    pub supplied_work: Real,
++    /// Positive magnitude of work absorbed by the motor.
++    pub absorbed_work: Real,
++    /// Signed net motor work accumulated at every solver application.
++    pub net_work: Real,
++    /// Number of iterative motor-constraint applications observed.
++    pub application_count: u32,
++    /// Number of solver small steps in which this motor constraint was built.
++    pub small_step_count: u32,
++}
++
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++impl Default for JointMotorWorkTelemetry {
++    fn default() -> Self {
++        Self {
++            sequence: 0,
++            generalized_impulse: 0.0,
++            absolute_generalized_impulse: 0.0,
++            supplied_work: 0.0,
++            absorbed_work: 0.0,
++            net_work: 0.0,
++            application_count: 0,
++            small_step_count: 0,
++        }
++    }
++}
++
+ /// A powered motor that drives a joint toward a target position/velocity.
+ ///
+ /// Motors add actuation to joints - they apply forces to make the joint move toward
+@@ -207,6 +246,9 @@ pub struct JointMotor {
+     pub impulse: Real,
+     /// Force-based or acceleration-based motor model.
+     pub model: MotorModel,
++    /// Exact per-outer-step solver work telemetry for the SporeSpore patch.
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    pub sporespore_solver_work: JointMotorWorkTelemetry,
+ }
+ 
+ impl Default for JointMotor {
+@@ -219,6 +261,8 @@ impl Default for JointMotor {
+             max_force: Real::MAX,
+             impulse: 0.0,
+             model: MotorModel::AccelerationBased,
++            #[cfg(feature = "sporespore-motor-work-telemetry")]
++            sporespore_solver_work: JointMotorWorkTelemetry::default(),
+         }
+     }
+ }
+diff --git a/src/dynamics/mod.rs b/src/dynamics/mod.rs
+index 186fd95..0a14ab1 100644
+--- a/src/dynamics/mod.rs
++++ b/src/dynamics/mod.rs
+@@ -23,6 +23,8 @@ pub(crate) use self::rigid_body_set::ModifiedRigidBodies;
+ // #[cfg(not(feature = "parallel"))]
+ #[cfg(feature = "alloc")]
+ pub(crate) use self::solver::IslandSolver;
++#[cfg(all(feature = "alloc", feature = "sporespore-energy-exchange-telemetry"))]
++pub(crate) use self::solver::SporeSporeSolverEnergyExchange;
+ // #[cfg(feature = "parallel")]
+ // pub(crate) use self::solver::ParallelIslandSolver;
+ pub use parry::mass_properties::MassProperties;
+diff --git a/src/dynamics/solver/island_solver.rs b/src/dynamics/solver/island_solver.rs
+index 96aa56e..94aff6e 100644
+--- a/src/dynamics/solver/island_solver.rs
++++ b/src/dynamics/solver/island_solver.rs
+@@ -1,4 +1,6 @@
+ use super::{JointConstraintsSet, VelocitySolver};
++#[cfg(feature = "sporespore-energy-exchange-telemetry")]
++use super::SporeSporeSolverEnergyExchange;
+ use crate::counters::Counters;
+ use crate::dynamics::IslandManager;
+ use crate::dynamics::solver::contact_constraint::ContactConstraintsSet;
+@@ -28,6 +30,11 @@ impl IslandSolver {
+         }
+     }
+ 
++    #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++    pub(crate) fn sporespore_energy_exchange(&self) -> SporeSporeSolverEnergyExchange {
++        self.velocity_solver.sporespore_energy_exchange
++    }
++
+     #[profiling::function]
+     pub fn init_and_solve(
+         &mut self,
+diff --git a/src/dynamics/solver/joint_constraint/any_joint_constraint.rs b/src/dynamics/solver/joint_constraint/any_joint_constraint.rs
+index d08d1dd..9a2d775 100644
+--- a/src/dynamics/solver/joint_constraint/any_joint_constraint.rs
++++ b/src/dynamics/solver/joint_constraint/any_joint_constraint.rs
+@@ -16,6 +16,7 @@ pub enum AnyJointConstraintMut<'a> {
+     SimdRigid(&'a mut JointConstraint<SimdReal, SIMD_WIDTH>),
+ }
+ 
++#[cfg_attr(feature = "sporespore-motor-work-telemetry", allow(dead_code))]
+ impl AnyJointConstraintMut<'_> {
+     pub fn remove_bias(&mut self) {
+         match self {
+diff --git a/src/dynamics/solver/joint_constraint/joint_constraints_set.rs b/src/dynamics/solver/joint_constraint/joint_constraints_set.rs
+index 762a5ac..87d40e2 100644
+--- a/src/dynamics/solver/joint_constraint/joint_constraints_set.rs
++++ b/src/dynamics/solver/joint_constraint/joint_constraints_set.rs
+@@ -16,12 +16,40 @@ use crate::dynamics::solver::joint_constraint::generic_joint_constraint_builder:
+ use crate::dynamics::solver::joint_constraint::joint_constraint_builder::JointConstraintBuilder;
+ use crate::dynamics::solver::joint_constraint::joint_velocity_constraint::JointConstraint;
+ use crate::dynamics::solver::solver_body::SolverBodies;
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++use crate::dynamics::solver::joint_constraint::joint_velocity_constraint::{
++    SporeSporeMotorWorkSample, WritebackId,
++};
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++use crate::dynamics::JointMotorWorkTelemetry;
+ #[cfg(feature = "simd-is-enabled")]
+ use {
+     crate::dynamics::solver::joint_constraint::joint_constraint_builder::JointConstraintBuilderSimd,
+     crate::math::{SIMD_WIDTH, SimdReal},
+ };
+ 
++#[cfg(all(
++    feature = "sporespore-motor-work-telemetry",
++    feature = "simd-is-enabled"
++))]
++compile_error!(
++    "sporespore-motor-work-telemetry is qualified only for scalar rigid impulse-joint constraints"
++);
++
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++#[derive(Copy, Clone, Debug)]
++struct SporeSporeMotorWorkEntry {
++    joint_id: JointIndex,
++    motor_axis: usize,
++    generalized_impulse: Real,
++    absolute_generalized_impulse: Real,
++    supplied_work: Real,
++    absorbed_work: Real,
++    net_work: Real,
++    application_count: u32,
++    small_step_count: u32,
++}
++
+ pub struct JointConstraintsSet {
+     pub generic_jacobians: DVector,
+     pub two_body_interactions: Vec<usize>,
+@@ -37,6 +65,8 @@ pub struct JointConstraintsSet {
+     pub velocity_constraints_builder: Vec<JointConstraintBuilder>,
+     #[cfg(feature = "simd-is-enabled")]
+     pub simd_velocity_constraints_builder: Vec<JointConstraintBuilderSimd>,
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    sporespore_motor_work: Vec<SporeSporeMotorWorkEntry>,
+ }
+ 
+ impl JointConstraintsSet {
+@@ -54,6 +84,8 @@ impl JointConstraintsSet {
+             generic_velocity_constraints_builder: vec![],
+             #[cfg(feature = "simd-is-enabled")]
+             simd_velocity_constraints_builder: vec![],
++            #[cfg(feature = "sporespore-motor-work-telemetry")]
++            sporespore_motor_work: vec![],
+         }
+     }
+ 
+@@ -96,6 +128,94 @@ impl JointConstraintsSet {
+ }
+ 
+ impl JointConstraintsSet {
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn sporespore_motor_work_entry_mut(
++        entries: &mut Vec<SporeSporeMotorWorkEntry>,
++        joint_id: JointIndex,
++        motor_axis: usize,
++    ) -> &mut SporeSporeMotorWorkEntry {
++        if let Some(index) = entries
++            .iter()
++            .position(|entry| entry.joint_id == joint_id && entry.motor_axis == motor_axis)
++        {
++            return &mut entries[index];
++        }
++        entries.push(SporeSporeMotorWorkEntry {
++            joint_id,
++            motor_axis,
++            generalized_impulse: 0.0,
++            absolute_generalized_impulse: 0.0,
++            supplied_work: 0.0,
++            absorbed_work: 0.0,
++            net_work: 0.0,
++            application_count: 0,
++            small_step_count: 0,
++        });
++        entries
++            .last_mut()
++            .expect("the SporeSpore motor-work entry was just inserted")
++    }
++
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn record_sporespore_motor_work(
++        entries: &mut Vec<SporeSporeMotorWorkEntry>,
++        sample: SporeSporeMotorWorkSample,
++    ) {
++        let entry = Self::sporespore_motor_work_entry_mut(
++            entries,
++            sample.joint_id,
++            sample.motor_axis,
++        );
++        entry.generalized_impulse += sample.generalized_impulse;
++        entry.absolute_generalized_impulse += sample.generalized_impulse.abs();
++        entry.net_work += sample.work;
++        if sample.work >= 0.0 {
++            entry.supplied_work += sample.work;
++        } else {
++            entry.absorbed_work += -sample.work;
++        }
++        entry.application_count = entry.application_count.saturating_add(1);
++    }
++
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn record_sporespore_motor_small_step(
++        entries: &mut Vec<SporeSporeMotorWorkEntry>,
++        joint_id: JointIndex,
++        motor_axis: usize,
++    ) {
++        let entry = Self::sporespore_motor_work_entry_mut(entries, joint_id, motor_axis);
++        entry.small_step_count = entry.small_step_count.saturating_add(1);
++    }
++
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    fn solve_with_sporespore_motor_work(
++        &mut self,
++        solver_vels: &mut SolverBodies,
++        generic_solver_vels: &mut DVector,
++        remove_bias: bool,
++    ) {
++        for constraint in &mut self.generic_velocity_constraints {
++            if remove_bias {
++                constraint.remove_bias_from_rhs();
++            }
++            constraint.solve(
++                &self.generic_jacobians,
++                solver_vels,
++                generic_solver_vels,
++            );
++        }
++
++        let entries = &mut self.sporespore_motor_work;
++        for constraint in &mut self.velocity_constraints {
++            if remove_bias {
++                constraint.remove_bias_from_rhs();
++            }
++            if let Some(sample) = constraint.solve_with_sporespore_motor_work(solver_vels) {
++                Self::record_sporespore_motor_work(entries, sample);
++            }
++        }
++    }
++
+     pub fn init(
+         &mut self,
+         island_id: usize,
+@@ -119,6 +239,8 @@ impl JointConstraintsSet {
+ 
+         self.clear_constraints();
+         self.clear_builders();
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        self.sporespore_motor_work.clear();
+ 
+         self.interaction_groups.clear_groups();
+         self.interaction_groups.group_joints(
+@@ -295,10 +417,17 @@ impl JointConstraintsSet {
+ 
+     #[profiling::function]
+     pub fn solve(&mut self, solver_vels: &mut SolverBodies, generic_solver_vels: &mut DVector) {
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        {
++            self.solve_with_sporespore_motor_work(solver_vels, generic_solver_vels, false);
++        }
++        #[cfg(not(feature = "sporespore-motor-work-telemetry"))]
++        {
+         let (jac, constraints) = self.iter_constraints_mut();
+         for mut c in constraints {
+             c.solve(jac, solver_vels, generic_solver_vels);
+         }
++        }
+     }
+ 
+     pub fn solve_wo_bias(
+@@ -306,11 +435,18 @@ impl JointConstraintsSet {
+         solver_vels: &mut SolverBodies,
+         generic_solver_vels: &mut DVector,
+     ) {
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        {
++            self.solve_with_sporespore_motor_work(solver_vels, generic_solver_vels, true);
++        }
++        #[cfg(not(feature = "sporespore-motor-work-telemetry"))]
++        {
+         let (jac, constraints) = self.iter_constraints_mut();
+         for mut c in constraints {
+             c.remove_bias();
+             c.solve(jac, solver_vels, generic_solver_vels);
+         }
++        }
+     }
+ 
+     pub fn writeback_impulses(&mut self, joints_all: &mut [JointGraphEdge]) {
+@@ -318,6 +454,21 @@ impl JointConstraintsSet {
+         for mut c in constraints {
+             c.writeback_impulses(joints_all);
+         }
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        for entry in &self.sporespore_motor_work {
++            let motor = &mut joints_all[entry.joint_id].weight.data.motors[entry.motor_axis];
++            let sequence = motor.sporespore_solver_work.sequence.saturating_add(1);
++            motor.sporespore_solver_work = JointMotorWorkTelemetry {
++                sequence,
++                generalized_impulse: entry.generalized_impulse,
++                absolute_generalized_impulse: entry.absolute_generalized_impulse,
++                supplied_work: entry.supplied_work,
++                absorbed_work: entry.absorbed_work,
++                net_work: entry.net_work,
++                application_count: entry.application_count,
++                small_step_count: entry.small_step_count,
++            };
++        }
+     }
+ 
+     #[profiling::function]
+@@ -358,5 +509,19 @@ impl JointConstraintsSet {
+         for builder in &mut self.simd_velocity_constraints_builder {
+             builder.update(params, solver_bodies, &mut self.simd_velocity_constraints);
+         }
++
++        #[cfg(feature = "sporespore-motor-work-telemetry")]
++        {
++            let entries = &mut self.sporespore_motor_work;
++            for constraint in &self.velocity_constraints {
++                if let WritebackId::Motor(motor_axis) = constraint.writeback_id {
++                    Self::record_sporespore_motor_small_step(
++                        entries,
++                        constraint.joint_id[0],
++                        motor_axis,
++                    );
++                }
++            }
++        }
+     }
+ }
+diff --git a/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs b/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs
+index 9090a85..b0a03d0 100644
+--- a/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs
++++ b/src/dynamics/solver/joint_constraint/joint_velocity_constraint.rs
+@@ -43,6 +43,15 @@ pub enum WritebackId {
+     Motor(usize),
+ }
+ 
++#[cfg(feature = "sporespore-motor-work-telemetry")]
++#[derive(Copy, Clone, Debug)]
++pub(crate) struct SporeSporeMotorWorkSample {
++    pub joint_id: JointIndex,
++    pub motor_axis: usize,
++    pub generalized_impulse: Real,
++    pub work: Real,
++}
++
+ // TODO: right now we only use this for impulse_joints.
+ // However, it may actually be a good idea to use this everywhere in
+ // the solver, to avoid fetching data from the rigid-body set
+@@ -337,6 +346,7 @@ impl JointConstraint<Real, 1> {
+         len
+     }
+ 
++    #[cfg_attr(feature = "sporespore-motor-work-telemetry", allow(dead_code))]
+     pub fn solve(&mut self, solver_vels: &mut SolverBodies) {
+         let mut solver_vel1 = solver_vels.get_vel(self.solver_vel1[0]);
+         let mut solver_vel2 = solver_vels.get_vel(self.solver_vel2[0]);
+@@ -347,6 +357,48 @@ impl JointConstraint<Real, 1> {
+         solver_vels.set_vel(self.solver_vel2[0], solver_vel2);
+     }
+ 
++    #[cfg(feature = "sporespore-motor-work-telemetry")]
++    pub(crate) fn solve_with_sporespore_motor_work(
++        &mut self,
++        solver_vels: &mut SolverBodies,
++    ) -> Option<SporeSporeMotorWorkSample> {
++        let motor_axis = match self.writeback_id {
++            WritebackId::Motor(axis) => Some(axis),
++            _ => None,
++        };
++        let mut solver_vel1 = solver_vels.get_vel(self.solver_vel1[0]);
++        let mut solver_vel2 = solver_vels.get_vel(self.solver_vel2[0]);
++        let relative_velocity_before = self
++            .lin_jac
++            .gdot(solver_vel2.linear - solver_vel1.linear)
++            + self.ang_jac2.gdot(solver_vel2.angular)
++            - self.ang_jac1.gdot(solver_vel1.angular);
++        let constraint_impulse_before = self.impulse;
++
++        self.solve_generic(&mut solver_vel1, &mut solver_vel2);
++
++        let relative_velocity_after = self
++            .lin_jac
++            .gdot(solver_vel2.linear - solver_vel1.linear)
++            + self.ang_jac2.gdot(solver_vel2.angular)
++            - self.ang_jac1.gdot(solver_vel1.angular);
++        let constraint_delta_impulse = self.impulse - constraint_impulse_before;
++        let generalized_impulse = -constraint_delta_impulse;
++        let work = generalized_impulse
++            * (relative_velocity_before + relative_velocity_after)
++            * 0.5;
++
++        solver_vels.set_vel(self.solver_vel1[0], solver_vel1);
++        solver_vels.set_vel(self.solver_vel2[0], solver_vel2);
++
++        motor_axis.map(|motor_axis| SporeSporeMotorWorkSample {
++            joint_id: self.joint_id[0],
++            motor_axis,
++            generalized_impulse,
++            work,
++        })
++    }
++
+     pub fn writeback_impulses(&self, joints_all: &mut [JointGraphEdge]) {
+         let joint = &mut joints_all[self.joint_id[0]].weight;
+         match self.writeback_id {
+diff --git a/src/dynamics/solver/mod.rs b/src/dynamics/solver/mod.rs
+index 5a3ffba..a35e46a 100644
+--- a/src/dynamics/solver/mod.rs
++++ b/src/dynamics/solver/mod.rs
+@@ -9,6 +9,8 @@ pub(crate) use self::island_solver::IslandSolver;
+ // pub(self) use self::parallel_velocity_solver::ParallelVelocitySolver;
+ // #[cfg(not(feature = "parallel"))]
+ use self::velocity_solver::VelocitySolver;
++#[cfg(feature = "sporespore-energy-exchange-telemetry")]
++pub(crate) use self::velocity_solver::SporeSporeSolverEnergyExchange;
+ 
+ use contact_constraint::*;
+ pub(crate) use joint_constraint::MotorParameters;
+diff --git a/src/dynamics/solver/solver_body.rs b/src/dynamics/solver/solver_body.rs
+index 47382ee..1c058db 100644
+--- a/src/dynamics/solver/solver_body.rs
++++ b/src/dynamics/solver/solver_body.rs
+@@ -92,6 +92,27 @@ impl SolverBodies {
+         self.vels.len()
+     }
+ 
++    #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++    pub fn sporespore_kinetic_energy(&self) -> Real {
++        let mut energy = 0.0;
++
++        for (vel, pose) in self.vels.iter().zip(&self.poses) {
++            for axis in 0..3 {
++                let inv_mass = pose.im[axis];
++                if inv_mass != 0.0 {
++                    energy += vel.linear[axis] * vel.linear[axis] / inv_mass * 0.5;
++                }
++            }
++
++            if !pose.ii.is_zero() {
++                let inertia = pose.ii.inverse_unchecked();
++                energy += vel.angular.dot(inertia * vel.angular) * 0.5;
++            }
++        }
++
++        energy
++    }
++
+     // TODO: add a SIMD version?
+     pub fn copy_from(&mut self, _dt: Real, i: usize, rb: &RigidBody) {
+         let poses = &mut self.poses[i];
+diff --git a/src/dynamics/solver/velocity_solver.rs b/src/dynamics/solver/velocity_solver.rs
+index d4b3170..0da488c 100644
+--- a/src/dynamics/solver/velocity_solver.rs
++++ b/src/dynamics/solver/velocity_solver.rs
+@@ -3,14 +3,48 @@ use crate::dynamics::solver::JointConstraintsSet;
+ use crate::dynamics::solver::contact_constraint::ContactConstraintsSet;
+ use crate::dynamics::solver::solver_body::SolverBodies;
+ use crate::dynamics::{
+-    IntegrationParameters, IslandManager, JointGraphEdge, JointIndex, MultibodyJointSet,
+-    MultibodyLinkId, RigidBodySet, RigidBodyType, solver::SolverVel,
++    IntegrationParameters, IslandManager, JointGraphEdge, JointIndex, LockedAxes,
++    MultibodyJointSet, MultibodyLinkId, RigidBodySet, RigidBodyType, solver::SolverVel,
+ };
+ use crate::geometry::{ContactManifold, ContactManifoldIndex};
+ use crate::math::{DVector, Real};
+ use crate::prelude::RigidBodyVelocity;
+ use parry::math::SIMD_WIDTH;
+ 
++#[cfg(all(
++    feature = "sporespore-energy-exchange-telemetry",
++    feature = "parallel"
++))]
++compile_error!(
++    "sporespore-energy-exchange-telemetry is qualified only for the sequential scalar solver"
++);
++
++#[cfg(feature = "sporespore-energy-exchange-telemetry")]
++#[derive(Copy, Clone, Debug, Default)]
++pub(crate) struct SporeSporeSolverEnergyExchange {
++    pub(crate) total_constraint_exchange: Real,
++    pub(crate) joint_constraint_exchange: Real,
++    pub(crate) contact_constraint_exchange: Real,
++    pub(crate) contact_warmstart_exchange: Real,
++    pub(crate) constraint_phase_count: u32,
++    pub(crate) joint_phase_count: u32,
++    pub(crate) contact_phase_count: u32,
++    pub(crate) contact_warmstart_phase_count: u32,
++    pub(crate) small_step_count: u32,
++    pub(crate) active_body_observation_count: u32,
++    pub(crate) non_dynamic_body_count: u32,
++    pub(crate) locked_axis_body_count: u32,
++    pub(crate) nonzero_linear_damping_body_count: u32,
++    pub(crate) nonzero_angular_damping_body_count: u32,
++    pub(crate) nonunit_gravity_scale_body_count: u32,
++    pub(crate) nonzero_user_force_body_count: u32,
++    pub(crate) nonzero_user_torque_body_count: u32,
++    pub(crate) gyroscopic_force_body_count: u32,
++    pub(crate) multibody_link_body_count: u32,
++    pub(crate) multibody_root_count: u32,
++    pub(crate) generic_solver_dof_count: u32,
++}
++
+ #[cfg(feature = "dim3")]
+ use crate::dynamics::FrictionModel;
+ 
+@@ -20,6 +54,8 @@ pub(crate) struct VelocitySolver {
+     pub generic_solver_vels: DVector,
+     pub generic_solver_vels_increment: DVector,
+     pub multibody_roots: Vec<MultibodyLinkId>,
++    #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++    pub sporespore_energy_exchange: SporeSporeSolverEnergyExchange,
+ }
+ 
+ impl VelocitySolver {
+@@ -30,6 +66,8 @@ impl VelocitySolver {
+             generic_solver_vels: DVector::zeros(0),
+             generic_solver_vels_increment: DVector::zeros(0),
+             multibody_roots: Vec::new(),
++            #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++            sporespore_energy_exchange: SporeSporeSolverEnergyExchange::default(),
+         }
+     }
+ 
+@@ -78,6 +116,10 @@ impl VelocitySolver {
+         bodies: &mut RigidBodySet,
+         multibodies: &mut MultibodyJointSet,
+     ) {
++        #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++        {
++            self.sporespore_energy_exchange = SporeSporeSolverEnergyExchange::default();
++        }
+         self.multibody_roots.clear();
+         self.solver_bodies.clear();
+ 
+@@ -100,6 +142,13 @@ impl VelocitySolver {
+ 
+         for (offset, handle) in islands.island(island_id).bodies().iter().enumerate() {
+             if let Some(link) = multibodies.rigid_body_link(*handle).copied() {
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    self.sporespore_energy_exchange.multibody_link_body_count = self
++                        .sporespore_energy_exchange
++                        .multibody_link_body_count
++                        .saturating_add(1);
++                }
+                 let multibody = multibodies
+                     .get_multibody_mut_internal(link.multibody)
+                     .unwrap();
+@@ -111,6 +160,50 @@ impl VelocitySolver {
+                 }
+             } else {
+                 let rb = &bodies[*handle];
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    let telemetry = &mut self.sporespore_energy_exchange;
++                    telemetry.active_body_observation_count =
++                        telemetry.active_body_observation_count.saturating_add(1);
++                    if rb.body_type() != RigidBodyType::Dynamic {
++                        telemetry.non_dynamic_body_count =
++                            telemetry.non_dynamic_body_count.saturating_add(1);
++                    }
++                    if rb.locked_axes() != LockedAxes::empty() {
++                        telemetry.locked_axis_body_count =
++                            telemetry.locked_axis_body_count.saturating_add(1);
++                    }
++                    if rb.linear_damping() != 0.0 {
++                        telemetry.nonzero_linear_damping_body_count = telemetry
++                            .nonzero_linear_damping_body_count
++                            .saturating_add(1);
++                    }
++                    if rb.angular_damping() != 0.0 {
++                        telemetry.nonzero_angular_damping_body_count = telemetry
++                            .nonzero_angular_damping_body_count
++                            .saturating_add(1);
++                    }
++                    if rb.gravity_scale() != 1.0 {
++                        telemetry.nonunit_gravity_scale_body_count = telemetry
++                            .nonunit_gravity_scale_body_count
++                            .saturating_add(1);
++                    }
++                    if rb.user_force() != crate::math::Vector::ZERO {
++                        telemetry.nonzero_user_force_body_count = telemetry
++                            .nonzero_user_force_body_count
++                            .saturating_add(1);
++                    }
++                    if rb.user_torque() != Default::default() {
++                        telemetry.nonzero_user_torque_body_count = telemetry
++                            .nonzero_user_torque_body_count
++                            .saturating_add(1);
++                    }
++                    if rb.gyroscopic_forces_enabled() {
++                        telemetry.gyroscopic_force_body_count = telemetry
++                            .gyroscopic_force_body_count
++                            .saturating_add(1);
++                    }
++                }
+                 assert_eq!(offset, rb.ids.active_set_id);
+                 let solver_vel_incr = &mut self.solver_vels_increment[rb.ids.active_set_id];
+                 self.solver_bodies
+@@ -145,6 +238,14 @@ impl VelocitySolver {
+             solver_vels_incr.axpy(params.dt, &multibody.accelerations, 0.0);
+             solver_vels.copy_from(&multibody.velocities);
+         }
++
++        #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++        {
++            self.sporespore_energy_exchange.multibody_root_count =
++                u32::try_from(self.multibody_roots.len()).unwrap_or(u32::MAX);
++            self.sporespore_energy_exchange.generic_solver_dof_count =
++                u32::try_from(self.generic_solver_vels.len()).unwrap_or(u32::MAX);
++        }
+     }
+ 
+     #[profiling::function]
+@@ -159,6 +260,13 @@ impl VelocitySolver {
+     ) {
+         for substep_id in 0..num_substeps {
+             let is_last_substep = substep_id == num_substeps - 1;
++            #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++            {
++                self.sporespore_energy_exchange.small_step_count = self
++                    .sporespore_energy_exchange
++                    .small_step_count
++                    .saturating_add(1);
++            }
+ 
+             // TODO PERF: could easily use SIMD.
+             for (solver_vels, incr) in self
+@@ -184,13 +292,67 @@ impl VelocitySolver {
+                 //            step_id > 0? Maybe for that to happen `solver_vels` needs to
+                 //            represent velocity changes instead of total rigid-body velocities.
+                 //            Need to be careful wrt. multibody and joints too.
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                let sporespore_energy_before = self.solver_bodies.sporespore_kinetic_energy();
+                 contact_constraints
+                     .warmstart(&mut self.solver_bodies, &mut self.generic_solver_vels);
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    let exchange = self.solver_bodies.sporespore_kinetic_energy()
++                        - sporespore_energy_before;
++                    self.sporespore_energy_exchange.total_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.contact_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.contact_warmstart_exchange += exchange;
++                    self.sporespore_energy_exchange.constraint_phase_count = self
++                        .sporespore_energy_exchange
++                        .constraint_phase_count
++                        .saturating_add(1);
++                    self.sporespore_energy_exchange.contact_warmstart_phase_count = self
++                        .sporespore_energy_exchange
++                        .contact_warmstart_phase_count
++                        .saturating_add(1);
++                }
+             }
+ 
+             for _ in 0..params.num_internal_pgs_iterations {
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                let sporespore_joint_energy_before =
++                    self.solver_bodies.sporespore_kinetic_energy();
+                 joint_constraints.solve(&mut self.solver_bodies, &mut self.generic_solver_vels);
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    let exchange = self.solver_bodies.sporespore_kinetic_energy()
++                        - sporespore_joint_energy_before;
++                    self.sporespore_energy_exchange.total_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.joint_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.constraint_phase_count = self
++                        .sporespore_energy_exchange
++                        .constraint_phase_count
++                        .saturating_add(1);
++                    self.sporespore_energy_exchange.joint_phase_count = self
++                        .sporespore_energy_exchange
++                        .joint_phase_count
++                        .saturating_add(1);
++                }
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                let sporespore_contact_energy_before =
++                    self.solver_bodies.sporespore_kinetic_energy();
+                 contact_constraints.solve(&mut self.solver_bodies, &mut self.generic_solver_vels);
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    let exchange = self.solver_bodies.sporespore_kinetic_energy()
++                        - sporespore_contact_energy_before;
++                    self.sporespore_energy_exchange.total_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.contact_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.constraint_phase_count = self
++                        .sporespore_energy_exchange
++                        .constraint_phase_count
++                        .saturating_add(1);
++                    self.sporespore_energy_exchange.contact_phase_count = self
++                        .sporespore_energy_exchange
++                        .contact_phase_count
++                        .saturating_add(1);
++                }
+             }
+ 
+             /*
+@@ -202,10 +364,46 @@ impl VelocitySolver {
+              * Resolution without bias.
+              */
+             for _ in 0..params.num_internal_stabilization_iterations {
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                let sporespore_joint_energy_before =
++                    self.solver_bodies.sporespore_kinetic_energy();
+                 joint_constraints
+                     .solve_wo_bias(&mut self.solver_bodies, &mut self.generic_solver_vels);
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    let exchange = self.solver_bodies.sporespore_kinetic_energy()
++                        - sporespore_joint_energy_before;
++                    self.sporespore_energy_exchange.total_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.joint_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.constraint_phase_count = self
++                        .sporespore_energy_exchange
++                        .constraint_phase_count
++                        .saturating_add(1);
++                    self.sporespore_energy_exchange.joint_phase_count = self
++                        .sporespore_energy_exchange
++                        .joint_phase_count
++                        .saturating_add(1);
++                }
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                let sporespore_contact_energy_before =
++                    self.solver_bodies.sporespore_kinetic_energy();
+                 contact_constraints
+                     .solve_wo_bias(&mut self.solver_bodies, &mut self.generic_solver_vels);
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    let exchange = self.solver_bodies.sporespore_kinetic_energy()
++                        - sporespore_contact_energy_before;
++                    self.sporespore_energy_exchange.total_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.contact_constraint_exchange += exchange;
++                    self.sporespore_energy_exchange.constraint_phase_count = self
++                        .sporespore_energy_exchange
++                        .constraint_phase_count
++                        .saturating_add(1);
++                    self.sporespore_energy_exchange.contact_phase_count = self
++                        .sporespore_energy_exchange
++                        .contact_phase_count
++                        .saturating_add(1);
++                }
+             }
+         }
+     }
+diff --git a/src/pipeline/mod.rs b/src/pipeline/mod.rs
+index 1d808a6..343054f 100644
+--- a/src/pipeline/mod.rs
++++ b/src/pipeline/mod.rs
+@@ -12,6 +12,8 @@ pub use physics_hooks::ActiveHooks;
+ pub use physics_hooks::{ContactModificationContext, PairFilterContext, PhysicsHooks};
+ #[cfg(feature = "alloc")]
+ pub use physics_pipeline::PhysicsPipeline;
++#[cfg(all(feature = "alloc", feature = "sporespore-energy-exchange-telemetry"))]
++pub use physics_pipeline::SporeSporeEnergyExchangeTelemetry;
+ #[cfg(feature = "alloc")]
+ pub use physics_world::PhysicsWorld;
+ #[cfg(feature = "alloc")]
+diff --git a/src/pipeline/physics_pipeline.rs b/src/pipeline/physics_pipeline.rs
+index ce65b77..c166171 100644
+--- a/src/pipeline/physics_pipeline.rs
++++ b/src/pipeline/physics_pipeline.rs
+@@ -11,6 +11,8 @@ use crate::dynamics::{
+     CCDSolver, ImpulseJointSet, IntegrationParameters, IslandManager, MultibodyJointSet,
+     RigidBodyChanges, RigidBodyType,
+ };
++#[cfg(feature = "sporespore-energy-exchange-telemetry")]
++use crate::dynamics::SporeSporeSolverEnergyExchange;
+ use crate::geometry::{
+     BroadPhaseBvh, BroadPhasePairEvent, ColliderChanges, ColliderHandle, ColliderPair,
+     ContactManifoldIndex, ModifiedColliders, NarrowPhase, TemporaryInteractionIndex,
+@@ -20,6 +22,124 @@ use crate::pipeline::{EventHandler, PhysicsHooks};
+ use crate::prelude::ModifiedRigidBodies;
+ use {crate::dynamics::RigidBodySet, crate::geometry::ColliderSet};
+ 
++/// Exact per-outer-step scalar solver-phase energy telemetry for SporeSpore.
++#[cfg(feature = "sporespore-energy-exchange-telemetry")]
++#[derive(Copy, Clone, Debug, Default, PartialEq)]
++pub struct SporeSporeEnergyExchangeTelemetry {
++    /// Monotonic publication sequence for completed outer pipeline steps.
++    pub sequence: u64,
++    /// Independently accumulated exchange across every measured constraint phase.
++    pub total_constraint_exchange_j: Real,
++    /// Exchange accumulated across joint phases, including motor constraints.
++    pub joint_constraint_exchange_j: Real,
++    /// Exchange accumulated across contact, friction, and contact warmstart phases.
++    pub contact_constraint_exchange_j: Real,
++    /// Contact exchange attributable specifically to warmstart phases.
++    pub contact_warmstart_exchange_j: Real,
++    /// Total number of measured velocity-mutating constraint phases.
++    pub constraint_phase_count: u32,
++    /// Number of measured joint solve phases.
++    pub joint_phase_count: u32,
++    /// Number of measured contact solve phases, excluding warmstart.
++    pub contact_phase_count: u32,
++    /// Number of measured contact warmstart phases.
++    pub contact_warmstart_phase_count: u32,
++    /// Number of solver small steps observed across supported islands.
++    pub small_step_count: u32,
++    /// Number of supported island solves accumulated into this publication.
++    pub island_solve_count: u32,
++    /// Number of CCD time slices accumulated into this publication.
++    pub ccd_substep_count: u32,
++    /// Number of active scalar rigid-body observations.
++    pub active_body_observation_count: u32,
++    /// Number of active scalar bodies that were not dynamic.
++    pub non_dynamic_body_count: u32,
++    /// Number of active scalar bodies with any locked degree of freedom.
++    pub locked_axis_body_count: u32,
++    /// Number of active scalar bodies with nonzero linear damping.
++    pub nonzero_linear_damping_body_count: u32,
++    /// Number of active scalar bodies with nonzero angular damping.
++    pub nonzero_angular_damping_body_count: u32,
++    /// Number of active scalar bodies whose gravity scale was not one.
++    pub nonunit_gravity_scale_body_count: u32,
++    /// Number of active scalar bodies with nonzero persistent user force.
++    pub nonzero_user_force_body_count: u32,
++    /// Number of active scalar bodies with nonzero persistent user torque.
++    pub nonzero_user_torque_body_count: u32,
++    /// Number of active scalar bodies with gyroscopic-force integration enabled.
++    pub gyroscopic_force_body_count: u32,
++    /// Number of active bodies routed through a multibody link.
++    pub multibody_link_body_count: u32,
++    /// Number of multibody roots present in the generic solver.
++    pub multibody_root_count: u32,
++    /// Number of generic solver degrees of freedom.
++    pub generic_solver_dof_count: u32,
++}
++
++#[cfg(feature = "sporespore-energy-exchange-telemetry")]
++impl SporeSporeEnergyExchangeTelemetry {
++    fn begin_outer_step(&mut self) {
++        let sequence = self.sequence.saturating_add(1);
++        *self = Self::default();
++        self.sequence = sequence;
++    }
++
++    fn accumulate(&mut self, sample: SporeSporeSolverEnergyExchange) {
++        self.total_constraint_exchange_j += sample.total_constraint_exchange;
++        self.joint_constraint_exchange_j += sample.joint_constraint_exchange;
++        self.contact_constraint_exchange_j += sample.contact_constraint_exchange;
++        self.contact_warmstart_exchange_j += sample.contact_warmstart_exchange;
++        self.constraint_phase_count = self
++            .constraint_phase_count
++            .saturating_add(sample.constraint_phase_count);
++        self.joint_phase_count = self.joint_phase_count.saturating_add(sample.joint_phase_count);
++        self.contact_phase_count = self
++            .contact_phase_count
++            .saturating_add(sample.contact_phase_count);
++        self.contact_warmstart_phase_count = self
++            .contact_warmstart_phase_count
++            .saturating_add(sample.contact_warmstart_phase_count);
++        self.small_step_count = self.small_step_count.saturating_add(sample.small_step_count);
++        self.island_solve_count = self.island_solve_count.saturating_add(1);
++        self.active_body_observation_count = self
++            .active_body_observation_count
++            .saturating_add(sample.active_body_observation_count);
++        self.non_dynamic_body_count = self
++            .non_dynamic_body_count
++            .saturating_add(sample.non_dynamic_body_count);
++        self.locked_axis_body_count = self
++            .locked_axis_body_count
++            .saturating_add(sample.locked_axis_body_count);
++        self.nonzero_linear_damping_body_count = self
++            .nonzero_linear_damping_body_count
++            .saturating_add(sample.nonzero_linear_damping_body_count);
++        self.nonzero_angular_damping_body_count = self
++            .nonzero_angular_damping_body_count
++            .saturating_add(sample.nonzero_angular_damping_body_count);
++        self.nonunit_gravity_scale_body_count = self
++            .nonunit_gravity_scale_body_count
++            .saturating_add(sample.nonunit_gravity_scale_body_count);
++        self.nonzero_user_force_body_count = self
++            .nonzero_user_force_body_count
++            .saturating_add(sample.nonzero_user_force_body_count);
++        self.nonzero_user_torque_body_count = self
++            .nonzero_user_torque_body_count
++            .saturating_add(sample.nonzero_user_torque_body_count);
++        self.gyroscopic_force_body_count = self
++            .gyroscopic_force_body_count
++            .saturating_add(sample.gyroscopic_force_body_count);
++        self.multibody_link_body_count = self
++            .multibody_link_body_count
++            .saturating_add(sample.multibody_link_body_count);
++        self.multibody_root_count = self
++            .multibody_root_count
++            .saturating_add(sample.multibody_root_count);
++        self.generic_solver_dof_count = self
++            .generic_solver_dof_count
++            .saturating_add(sample.generic_solver_dof_count);
++    }
++}
++
+ /// The main physics simulation engine that runs your physics world forward in time.
+ ///
+ /// Think of this as the "game loop" for your physics simulation. Each frame, you call
+@@ -42,6 +162,9 @@ use {crate::dynamics::RigidBodySet, crate::geometry::ColliderSet};
+ pub struct PhysicsPipeline {
+     /// Counters used for benchmarking only.
+     pub counters: Counters,
++    /// Exact scalar solver-phase exchange telemetry for the most recent outer step.
++    #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++    pub sporespore_energy_exchange: SporeSporeEnergyExchangeTelemetry,
+     contact_pair_indices: Vec<TemporaryInteractionIndex>,
+     manifold_indices: Vec<Vec<ContactManifoldIndex>>,
+     joint_constraint_indices: Vec<Vec<ContactManifoldIndex>>,
+@@ -70,6 +193,8 @@ impl PhysicsPipeline {
+     pub fn new() -> PhysicsPipeline {
+         PhysicsPipeline {
+             counters: Counters::new(true),
++            #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++            sporespore_energy_exchange: SporeSporeEnergyExchangeTelemetry::default(),
+             solvers: vec![],
+             contact_pair_indices: vec![],
+             manifold_indices: vec![],
+@@ -197,6 +322,13 @@ impl PhysicsPipeline {
+         multibody_joints: &mut MultibodyJointSet,
+         events: &dyn EventHandler,
+     ) {
++        #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++        {
++            self.sporespore_energy_exchange.ccd_substep_count = self
++                .sporespore_energy_exchange
++                .ccd_substep_count
++                .saturating_add(1);
++        }
+         self.counters.stages.island_construction_time.resume();
+         // NOTE: islands update must be done after the narrow-phase.
+         islands.update_islands(
+@@ -277,7 +409,12 @@ impl PhysicsPipeline {
+                     impulse_joints.joints_mut(),
+                     &self.joint_constraint_indices[island_awake_id],
+                     multibody_joints,
+-                )
++                );
++                #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++                {
++                    let sample = self.solvers[island_awake_id].sporespore_energy_exchange();
++                    self.sporespore_energy_exchange.accumulate(sample);
++                }
+             }
+         }
+ 
+@@ -502,6 +639,8 @@ impl PhysicsPipeline {
+         hooks: &dyn PhysicsHooks,
+         events: &dyn EventHandler,
+     ) {
++        #[cfg(feature = "sporespore-energy-exchange-telemetry")]
++        self.sporespore_energy_exchange.begin_outer_step();
+         self.counters.reset();
+         self.counters.step_started();
+ 

@@ -1,0 +1,134 @@
+{
+  "schema_version": "sporespore_balanced_wave_bw13p_r2_closure_manifest_v1",
+  "status": "stopped_after_control_by_live_report_aggregation_integrity_failure",
+  "closed_utc": "2026-07-29T23:15:22.5151634Z",
+  "experiment_source_commit": "35348c76cf063af08961a16d8f636fa4aa9278d7",
+  "development_data_only": true,
+  "preregistration": {
+    "path": "sdk/balanced_wave_bw13p_r2_morphology_development_preregistration.json",
+    "raw_sha256": "0d5429d6b58cff495fec6ac75dfb1fd5f536b21ca726a7a1bdbab9862dd012f6",
+    "implementation_parent_commit": "acf97c87d54fdf8d51cbd1a31bae5c8fbba1d95e",
+    "status": "frozen_before_first_bw13p_r2_physics_world"
+  },
+  "opened_candidate": {
+    "candidate_id": "BW13P-A",
+    "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+    "root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw13p-r2-morphology-development-35348c7\\BW13P-A",
+    "report_path": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\bw13p-r2-morphology-development-35348c7\\BW13P-A\\report.json",
+    "report_sha256": "00de55bb38d35ff7dd215cd191ee05a4a20ff6e227c0af6fc10d6c3589d07769",
+    "observed_world_count": 36,
+    "complete_receipt_count": 36,
+    "harness_pass_count": 36,
+    "integrity_pass_count": 36,
+    "mechanism_pass_count": 36,
+    "combined_application_pass_count": 36,
+    "walking_conjunction_pass_count": 35,
+    "walking_conjunction_failure_count": 1,
+    "candidate_mechanism_eligible": true,
+    "walking_acceptance": false,
+    "physical_acceptance_authority": false
+  },
+  "unopened_candidates": [
+    {
+      "candidate_id": "BW13P-B",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_b_v3",
+      "durable_candidate_directory_exists": false,
+      "physics_world_count": 0
+    },
+    {
+      "candidate_id": "BW13P-C",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_c_v3",
+      "durable_candidate_directory_exists": false,
+      "physics_world_count": 0
+    },
+    {
+      "candidate_id": "BW13P-D",
+      "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_d_v3",
+      "durable_candidate_directory_exists": false,
+      "physics_world_count": 0
+    }
+  ],
+  "report_integrity_failure": {
+    "affected_metric": "aggregate_failed_production_walking_gate_count",
+    "retained_report_value": 0,
+    "exact_reconstruction_from_36_top_level_results": 1,
+    "exact_reconstruction_from_36_nested_receipts": 1,
+    "failing_morphology_id": "qsdk_r05b_generated_s191",
+    "failing_seed": 21601,
+    "failing_result_value": 1,
+    "failing_nested_receipt_value": 1,
+    "root_cause": "The live runner passed System.Collections.Specialized.OrderedDictionary result objects to Measure-Object -Property. PowerShell's property adapter did not expose those dictionary keys, so .Sum was null and the report's later Int32 cast silently converted null to zero.",
+    "reproduced_without_world": true,
+    "json_round_trip_difference": "ConvertFrom-Json -AsHashtable objects expose the same keys differently, so post-run property aggregation returns one and must not be mistaken for proof that the live path was correct.",
+    "perfect_zero_preflight_limitation": "The mandatory all-zero synthetic matrix passed because both correct aggregation and the broken null-to-zero path produce zero.",
+    "required_successor_addition": "Keep the complete perfect-input gate, replace property-adapter aggregation with explicit required-key extraction, and require a deliberately nonzero aggregation canary to survive serialization and exact reconciliation before any world."
+  },
+  "reconstructed_metrics": {
+    "walking_conjunction_pass_count": 35,
+    "walking_conjunction_failure_count": 1,
+    "aggregate_failed_production_walking_gate_count": 1,
+    "aggregate_release_timeout_count": 0,
+    "maximum_normalized_absolute_task_frame_lateral_displacement": 1.5042360732234015,
+    "aggregate_normalized_absolute_task_frame_lateral_displacement": 13.087811089741336,
+    "aggregate_cumulative_absolute_cross_track_error_m_s": 30.55782672740262
+  },
+  "scientific_disposition": {
+    "control_worlds_are_retained_physical_development_observations": true,
+    "individual_cell_receipts_may_be_used_as_development_diagnostics": true,
+    "reported_aggregate_failed_gate_counter_may_not_be_used": true,
+    "reconstructed_metrics_are_closure_diagnostics_only": true,
+    "candidate_family_complete": false,
+    "candidate_comparison_authority": false,
+    "development_selection_authority": false,
+    "early_stop_was_outcome_conditioned": false,
+    "stop_reason": "The experiment was stopped before BW13P-B because a selector input contradicted its retained cell results.",
+    "candidate_outcome_did_not_trigger_stop": true
+  },
+  "immutability": {
+    "r2_repair_or_resume_forbidden": true,
+    "r2_report_rewrite_forbidden": true,
+    "r2_report_reclassification_forbidden": true,
+    "r2_candidate_selection_forbidden": true,
+    "r2_unopened_candidate_launch_forbidden": true,
+    "failed_cell_deletion_replacement_or_averaging_forbidden": true,
+    "new_successor_source_and_preregistration_identity_required": true
+  },
+  "reservations": {
+    "r05c_generator_indices": [193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204],
+    "r05c_campaign_seeds": [38101, 38102, 38103],
+    "r05c_opened": false,
+    "unbiased_friction_reservation_opened": false
+  },
+  "research_sources": [
+    {
+      "path": "DReCon.pdf",
+      "sha256": "aee8a67b3532ca3cd3cc80b51248b2db94dfb175fcae0d653f90c9b3c70c2a54"
+    },
+    {
+      "path": "2604.08780v1.pdf",
+      "sha256": "ae0ecb7fa7b16659b6a9ae5561176fa5c4d76788528b2ba8fc4bc533792824ae"
+    },
+    {
+      "path": "2507.22653v2.pdf",
+      "sha256": "6734394082dac95355277f477f01ea9e0ee90cb03e28cc20508632f7d11ddb31"
+    },
+    {
+      "path": "docs/research/LOCOMOTION_RESEARCH_SOURCES.md"
+    }
+  ],
+  "claims": {
+    "development_selection_authority": false,
+    "walking_acceptance": false,
+    "balance_improvement": false,
+    "independent_morphology_validation": false,
+    "arbitrary_quadruped_coverage": false,
+    "continuous_full_volume_coverage": false,
+    "material_or_friction_robustness": false,
+    "rough_terrain_robustness": false,
+    "external_push_recovery": false,
+    "sensor_noise_or_latency_robustness": false,
+    "cross_engine_c6": false,
+    "completed_engine_neutral_sdk": false,
+    "physical_acceptance_authority": false
+  }
+}

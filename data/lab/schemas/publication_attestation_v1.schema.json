@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/publication_attestation_v1.schema.json",
+  "title": "SporeSpore detached publication attestation v1",
+  "description": "A detached HMAC receipt over the exact immutable bundle index bytes and the exact manifest bytes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "domain",
+    "algorithm",
+    "key_id",
+    "run_id",
+    "checksums_sha256",
+    "manifest_sha256",
+    "artifact_count",
+    "attested_utc",
+    "tag"
+  ],
+  "properties": {
+    "schema": {
+      "const": "sporespore.lab.publication_attestation.v1"
+    },
+    "domain": {
+      "const": "sporespore.lab.publication_attestation.v1"
+    },
+    "algorithm": {
+      "const": "hmac-sha256"
+    },
+    "key_id": {
+      "$ref": "#/$defs/sha256"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,159}$"
+    },
+    "checksums_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "manifest_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "artifact_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "attested_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tag": {
+      "type": "string",
+      "pattern": "^hmac-sha256:[a-f0-9]{64}$"
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  }
+}

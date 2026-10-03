@@ -1,0 +1,130 @@
+{
+  "schema_version": "sporespore_qsdk_r10f_l14_qualified_source_retirement_v1",
+  "status": "retired_passing_qualified_source_before_stage_creation",
+  "gate_id": "QSDK-R10F",
+  "repair_id": "QSDK-R10F-L14",
+  "ledger_scope": {
+    "subsystem": "recovery",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_qualification_and_freeze_reader_refusal",
+    "question_class": "development"
+  },
+  "source_commit": "8a05eddb32e6f3837dbad866f3ecde652fbb6f4a",
+  "source_tree_git_oid": "66ed2d78c3ad16139e53ed9da7099dfb8c943f88",
+  "qualification_still_passed": true,
+  "qualification_wall_seconds": 371.2966666,
+  "retained_evidence": {
+    "root": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-8a05eddb32e6",
+    "file_count": 6,
+    "total_byte_length": 95755,
+    "files": [
+      {
+        "byte_length": 42445,
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-8a05eddb32e6/implementation_audit.json",
+        "raw_sha256": "sha256:69b4aee2105b526954ea2c1ba7f735a179804b44a40266ec9eeecf66c54c9805"
+      },
+      {
+        "byte_length": 6188,
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-8a05eddb32e6/qualification_attempt.json",
+        "raw_sha256": "sha256:1dd59b752bbeef3be2b0a1d7f787cb2f6dfc05bf836181801978607ede620175"
+      },
+      {
+        "byte_length": 6423,
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-8a05eddb32e6/qualification_completion.json",
+        "raw_sha256": "sha256:26031a902f6273cb492fecc7fadf4d4271f76fc2979842d14d936999acc6a25d"
+      },
+      {
+        "byte_length": 0,
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-8a05eddb32e6/qualification_stderr.log",
+        "raw_sha256": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "byte_length": 37289,
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-8a05eddb32e6/qualification_stdout.log",
+        "raw_sha256": "sha256:90d9660c04191bcf0e2c7addb02d587f787d1d64d061e277a98cc76309666474"
+      },
+      {
+        "byte_length": 3410,
+        "path": "C:/Users/Cole/CodeStuff/games/SporeSpore_Evidence/qsdk-r10f-development-route-ghost-zero-world-qualification-8a05eddb32e6/runtime_identity.json",
+        "raw_sha256": "sha256:ca40ebd4e1e737a57b4aca00dc73aced98a78ea7e5ef2438dd55ebcb33755e96"
+      }
+    ]
+  },
+  "frozen_sources": [
+    {
+      "byte_length": 96015,
+      "git_blob_oid": "075831825ed449da55c69f1cbe4936d40ed1c0e5",
+      "path": "sdk/conformance/qsdk_r10f_authority_materializer.py",
+      "raw_sha256": "sha256:22abc0c94a5205c4edb9b4455715386551e3ffd61520e4e9af76b04685841fcc"
+    },
+    {
+      "byte_length": 168584,
+      "git_blob_oid": "00ee158404c4ce94b91db1aee4a67fdf3715ad12",
+      "path": "sdk/conformance/qsdk_r10f_zero_world_implementation.py",
+      "raw_sha256": "sha256:6c6484a00a4b9b54706672c7e90b6fabdcb8845b9f547d05ac360b6eb75239a9"
+    },
+    {
+      "byte_length": 34134,
+      "git_blob_oid": "a4a953e15390413dc4ef89af6fae6ee005fcd146",
+      "path": "sdk/qsdk_r10f_zero_world_qualification.ps1",
+      "raw_sha256": "sha256:5141b53f69600417aae18209855436e8880b5029534b0d5e5c3a79de5cf1893d"
+    },
+    {
+      "byte_length": 22047,
+      "git_blob_oid": "d8bfb39c3b823e2674410d2067fd4aaeb17e9ce2",
+      "path": "sdk/qsdk_r10f_dependency_manifest_v18.json",
+      "raw_sha256": "sha256:cc12459c7fba636bae1d12bc24703eb641c856afd980bda41c69b46dee4b4953"
+    }
+  ],
+  "observed_refusal": {
+    "code": "QUALIFICATION_IMPLEMENTATION_FIELDS",
+    "consumer": "sdk/conformance/qsdk_r10f_authority_materializer.py::validate_qualification",
+    "actual_producer_field": "branch_completeness_addendum_sha256",
+    "consumer_requested_field": "branch_completeness_addendum_raw_sha256",
+    "actual_digest": "sha256:01f40035e6cbae84621b28bdca1cd8d18a7a15876ceb44adfd668956d6b14f76",
+    "requested_field_present": false,
+    "official_wrapper_accepted_actual_producer_field": true,
+    "read_only_preflight": true
+  },
+  "isolated_diagnosis": {
+    "actual_frozen_full_reader_refusal_reproduced": true,
+    "one_field_name_substitution_in_memory_passed_all_remaining_reader_checks": true,
+    "source_or_retained_file_rewritten": false,
+    "diagnostic_substitution_is_execution_authority": false
+  },
+  "test_coverage_gap": "The complete implementation audit exercised the actual qualification wrapper and stage/authority builders, but not the complete qualification-directory reader on that same produced implementation receipt before consuming official qualification.",
+  "selected_successor": {
+    "change": "Consume the producer's existing branch_completeness_addendum_sha256 field in the qualification-directory reader. Add producer-to-reader integration controls before a new official qualification.",
+    "producer_schema_or_digest_changed": false,
+    "legacy_field_alias_fallback_permitted": false,
+    "new_clean_pushed_exact_source_and_official_qualification_required": true,
+    "old_qualification_may_be_adopted_by_new_source": false,
+    "separate_coverage_adequate_route_and_v15_graph_still_required": true
+  },
+  "stage_identity_created": false,
+  "execution_authority_created": false,
+  "physical_identity_created": false,
+  "same_qualification_identity_rerun_permitted": false,
+  "same_physical_identity_rerun_permitted": false,
+  "model_construction_count": 0,
+  "world_attempt_count": 0,
+  "world_build_count": 0,
+  "scene_tree_insertion_count": 0,
+  "native_readback_count": 0,
+  "solver_step_count": 0,
+  "physics_state_modified": false,
+  "physical_execution_authorized": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "preserved_boundaries": {
+    "native_images_changed": false,
+    "controller_solver_inputs_caps_thresholds_or_horizon_changed": false,
+    "all_consumed_physical_results_unchanged": true,
+    "r173_unchanged": true,
+    "sdk1_m07_satisfied": false,
+    "support_matrix_changed": false,
+    "release_contract_changed": false,
+    "sdk1_score": "14/20",
+    "full_program_score": "14/25"
+  }
+}

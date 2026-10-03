@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sporespore.local/schemas/lab/br3a_development_observation_v1.schema.json",
+  "title": "SporeSpore BR3A development observation draft v1",
+  "description": "Development-only draft of one BR3A L1 experimental finding. Drafts live outside the accepted knowledge namespace, cite test reports rather than promotion-grade bundles, and can never be consumed as admitted knowledge. Admission requires the separate promotion-grade BR3A trust family and an explicit milestone decision.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "entry_id",
+    "cell_id",
+    "claim_status_ceiling",
+    "admissible_now",
+    "admission_blockers",
+    "evidence_source",
+    "title",
+    "claim",
+    "scope",
+    "mechanism",
+    "applicability",
+    "failure_boundaries",
+    "morphology_tags",
+    "parameter_effects",
+    "minimal_repair_rules",
+    "unknowns",
+    "does_not_establish",
+    "supersedes"
+  ],
+  "properties": {
+    "schema": {"const": "sporespore.lab.br3a_development_observation.v1"},
+    "entry_id": {
+      "type": "string",
+      "pattern": "^L1\\.[1-8]\\.[a-z0-9_.]+\\.draft_v[0-9]+$"
+    },
+    "cell_id": {"type": "string", "pattern": "^L1\\.[1-8]$"},
+    "claim_status_ceiling": {"const": "development_observation"},
+    "admissible_now": {"const": false},
+    "admission_blockers": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "PROMOTION_GRADE_L1_BUNDLE_FAMILY_MISSING",
+          "BR3A_CERTIFICATION_REPORT_FAMILY_MISSING",
+          "BR3A_DETACHED_ATTESTATION_DOMAIN_MISSING",
+          "CLEAN_FRESH_PROCESS_BR3A_CAMPAIGN_MISSING",
+          "EXPLICIT_BR3A_MILESTONE_DECISION_MISSING"
+        ]
+      }
+    },
+    "evidence_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "test_files",
+        "evidence_grade",
+        "promotion_grade_bundle_exists"
+      ],
+      "properties": {
+        "test_files": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^res://tests/test_experimental_[a-z0-9_]+\\.gd$"
+          }
+        },
+        "evidence_grade": {
+          "const": "experimental_commissioning_test_report_only"
+        },
+        "promotion_grade_bundle_exists": {"const": false}
+      }
+    },
+    "title": {"type": "string", "minLength": 8},
+    "claim": {"type": "string", "minLength": 32},
+    "scope": {"type": "string", "minLength": 32},
+    "mechanism": {"type": "string", "minLength": 32},
+    "applicability": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "failure_boundaries": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "morphology_tags": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9_]+$"}
+    },
+    "parameter_effects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "parameter",
+          "change",
+          "affects",
+          "mechanism",
+          "hinges_on"
+        ],
+        "properties": {
+          "parameter": {"type": "string", "minLength": 2},
+          "change": {"type": "string", "minLength": 4},
+          "affects": {"type": "string", "minLength": 4},
+          "mechanism": {"type": "string", "minLength": 8},
+          "hinges_on": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 8}
+          }
+        }
+      }
+    },
+    "minimal_repair_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "advisory_only",
+          "automatic_application_forbidden",
+          "symptom",
+          "diagnosis",
+          "smallest_change",
+          "expected_effect",
+          "identity_preserved",
+          "do_not_apply_when"
+        ],
+        "properties": {
+          "advisory_only": {"const": true},
+          "automatic_application_forbidden": {"const": true},
+          "symptom": {"type": "string", "minLength": 8},
+          "diagnosis": {"type": "string", "minLength": 8},
+          "smallest_change": {"type": "string", "minLength": 8},
+          "expected_effect": {"type": "string", "minLength": 8},
+          "identity_preserved": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 2}
+          },
+          "do_not_apply_when": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 8}
+          }
+        }
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 8}
+    },
+    "does_not_establish": {
+      "type": "array",
+      "minItems": 5,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 2}
+    },
+    "supersedes": {
+      "type": "array",
+      "maxItems": 0
+    }
+  }
+}

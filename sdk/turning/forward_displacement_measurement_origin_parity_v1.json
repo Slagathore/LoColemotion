@@ -1,0 +1,146 @@
+{
+  "schema_version": "sporespore_forward_displacement_measurement_origin_parity_v1",
+  "implementation_id": "QSDK-FORWARD-DISPLACEMENT-MEASUREMENT-ORIGIN-PARITY-V1",
+  "status": "implemented_complete_zero_world_source_conformance_passed_physical_not_opened",
+  "ledger_scope": {
+    "subsystem": "turning",
+    "engine_scope": "3e",
+    "question_class": "development",
+    "authority_mode": "prospective_source_conformance"
+  },
+  "question": "Can future Rapier and MuJoCo turning reports measure final forward displacement from the same immutable evidence-window origin already used by Godot, while leaving mutable controller task-frame reanchors and every historical result unchanged?",
+  "source_authority": {
+    "implementation_parent_commit": "faea0fadf31268699ec7c0ef5d96ca549423c0f5",
+    "branch": "main",
+    "origin_url": "https://github.com/Slagathore/sporespore.git",
+    "diagnosis_path": "sdk/turning/r23d71_forward_displacement_measurement_origin_diagnosis_v1.json",
+    "diagnosis_canonical_lf_sha256": "sha256:eac08e3f2adb5a6603a8f40c8421dc18b69b347c4f4acee92f63a5835572acab"
+  },
+  "measurement_contract": {
+    "receipt_schema_version": "sporespore_forward_displacement_measurement_origin_receipt_v1",
+    "legacy_policy_id": "mutable_task_frame_origin_legacy_v1",
+    "prospective_policy_id": "evidence_window_start_semantic_step_v1",
+    "evidence_start_controller_semantic_step": 472,
+    "turn_command_start_semantic_step": 600,
+    "last_selected_profile_task_frame_reanchor_semantic_step": 2400,
+    "evidence_step_derivation": "(settle_ticks 240 + warmup_cycle_steps 360 + evidence_boundary_alignment_ticks 112) - controller_authority_start_world_tick 240 = 472",
+    "capture_timing": "immediately_before_controller_step_472",
+    "measurement_axis": "initial_reference_heading_forward_axis_world_unit",
+    "measurement_expression": "dot(final_torso_position_world_m - immutable_evidence_origin_world_m, initial_reference_heading_forward_axis_world_unit)",
+    "controller_task_frame_reanchors_change_measurement_origin": false,
+    "controller_task_frame_reanchors_changed": false,
+    "terminal_threshold_changed": false,
+    "selector_changed": false,
+    "evaluator_changed": false,
+    "historical_report_changed": false
+  },
+  "complete_engine_population": {
+    "population_kind": "all_three_advertised_native_turning_producers",
+    "declared_engine_count": 3,
+    "source_conforming_engine_count": 3,
+    "sampled": false,
+    "population_inference_attempted": false,
+    "engines": {
+      "godot_jolt": {
+        "status": "existing_evidence_window_origin_reference_unchanged",
+        "producer_path": "scripts/lab/gait/physical_wave_gait_quadruped.gd",
+        "producer_canonical_lf_sha256": "sha256:0205268af835da3c390032a8ecb865779a1ecc756b4d824236fb1ad93cc44c73",
+        "producer_canonical_lf_byte_length": 429155,
+        "measurement_expression_present": "torso.global_position - evidence_start_torso_position",
+        "source_changed_by_this_implementation": false,
+        "new_common_receipt_emitted": false
+      },
+      "rapier_parry": {
+        "status": "prospective_evidence_window_origin_opt_in_implemented",
+        "producer_path": "sdk/adapters/rapier/src/qsdk_r23d3_phase_balanced/r23d27_physical.rs",
+        "producer_canonical_lf_sha256": "sha256:8b6b02bd22ac6f6dfb6c09a2028a244177e50a12fdb5312d48bd45b552d497f6",
+        "producer_canonical_lf_byte_length": 476480,
+        "immutable_capture_before_controller_step": true,
+        "common_receipt_emitted_when_opted_in": true,
+        "historical_execution_plan_count": 8,
+        "historical_execution_plans_remain_legacy": true,
+        "physical_path_validates_plan_before_world_construction": true
+      },
+      "mujoco": {
+        "status": "prospective_evidence_window_origin_opt_in_implemented",
+        "producer_path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/qsdk_r23d3_phase_balanced.py",
+        "producer_canonical_lf_sha256": "sha256:e87c51e56db57600e5d68e88db45b2a9894898d2ebc25f5e8fce1048d8315b98",
+        "producer_canonical_lf_byte_length": 43933,
+        "immutable_capture_before_controller_step": true,
+        "common_receipt_emitted_when_opted_in": true,
+        "default_preflight_and_physical_routes_remain_legacy": true,
+        "physical_path_validates_plan_before_world_construction": true
+      }
+    }
+  },
+  "zero_world_conformance": {
+    "rapier_test_filter": "forward_measurement",
+    "rapier_test_count": 2,
+    "rapier_test_result": "passed",
+    "mujoco_test_path": "sdk/adapters/mujoco/test_forward_displacement_measurement_origin.py",
+    "mujoco_test_canonical_lf_sha256": "sha256:eafb74619b2201fe01b8eb2434e3cd2b6dd2609cd0ed684be165c2c2ff06772a",
+    "mujoco_test_canonical_lf_byte_length": 6893,
+    "mujoco_test_count": 4,
+    "mujoco_test_result": "passed",
+    "existing_mujoco_r23d3_test_count": 4,
+    "existing_mujoco_r23d3_test_result": "passed",
+    "negative_control_classes": [
+      "unknown_policy",
+      "missing_semantic_step",
+      "boolean_semantic_step",
+      "out_of_horizon_semantic_step",
+      "missing_evidence_capture",
+      "legacy_capture_ambiguity",
+      "nonfinite_evidence_capture",
+      "implicit_default_receipt_exposure"
+    ],
+    "model_construction_count": 0,
+    "world_attempt_count": 0,
+    "world_build_count": 0,
+    "solver_step_count": 0,
+    "physical_execution_authorized": false,
+    "physical_acceptance_authority": false
+  },
+  "historical_preservation": {
+    "r23d71_official_result_changed": false,
+    "r23d71_threshold_changed": false,
+    "r23d71_selector_changed": false,
+    "r23d71_evaluator_changed": false,
+    "r23d71_interpretation_changed": false,
+    "same_identity_rerun_performed": false,
+    "retained_evidence_rewritten": false,
+    "legacy_measurement_is_still_the_default": true,
+    "prospective_opt_in_required": true
+  },
+  "adequacy": {
+    "adequate_for_future_three_engine_measurement_origin_selection": true,
+    "adequate_for_proving_default_historical_route_preservation": true,
+    "adequate_for_new_physical_turning_claim": false,
+    "adequate_for_cross_engine_physical_equivalence": false,
+    "adequate_for_report_receipt_schema_parity_across_all_three_engines": false,
+    "population_claim_limited_to_source_producer_implementation": true,
+    "physical_world_opened": false
+  },
+  "next_work": {
+    "measurement_origin_source_repair_required": false,
+    "rapier_behavior_development_required_before_mujoco_work": false,
+    "mujoco_pre_turn_stability_development_required": true,
+    "fresh_finite_turning_decision_authorized": false,
+    "release_score_before": "10/25",
+    "release_score_after": "10/25"
+  },
+  "audit_path": "sdk/audit_forward_displacement_measurement_origin_parity_v1.ps1",
+  "claims": {
+    "prospective_measurement_origin_source_parity": true,
+    "historical_result_reinterpreted": false,
+    "finite_three_engine_turning": false,
+    "portable_basic_turning": false,
+    "q_sdk_r23_satisfied": false,
+    "cross_engine_physical_equivalence": false,
+    "population_robustness": false,
+    "arbitrary_quadruped_coverage": false,
+    "prone_to_standing": false,
+    "physical_acceptance_authority": false,
+    "release_authorized": false
+  }
+}
