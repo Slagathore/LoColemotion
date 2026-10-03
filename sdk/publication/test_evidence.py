@@ -87,6 +87,42 @@ class EvidenceControls(unittest.TestCase):
         finally:
             path.write_bytes(original)
 
+    def test_prose_accepts_native_line_endings_without_changing_content(self):
+        path = self.root / "sdk/docs/ENGINE_INTEGRATION_COMPARISON.md"
+        original = path.read_bytes()
+        try:
+            for ending in [b"\n", b"\r\n"]:
+                path.write_bytes(original.replace(b"\r\n", b"\n").replace(b"\n", ending))
+                self.assertTrue(verify(self.index, self.root)["ok"])
+        finally:
+            path.write_bytes(original)
+
+    def test_receipts_cannot_opt_into_text_normalization(self):
+        broken = copy.deepcopy(self.index)
+        next(row for row in broken["local_files"] if row["path"].endswith("sdk1-clean-readiness.json"))["byte_basis"] = "lf_normalized_text"
+        with self.assertRaisesRegex(ValueError, "Normalization is limited to indexed prose"):
+            verify(broken, self.root)
+
+    def test_exported_source_accepts_only_the_declared_checkout_identities(self):
+        binding = next(row for row in self.index["local_files"] if row.get("checkout_alternatives"))
+        path = self.root / binding["path"]
+        original = path.read_bytes()
+        try:
+            path.write_bytes(original.replace(b"\r\n", b"\n"))
+            self.assertTrue(verify(self.index, self.root)["ok"])
+            path.write_bytes(path.read_bytes() + b" ")
+            with self.assertRaisesRegex(ValueError, "Source checkout content mismatch"):
+                verify(self.index, self.root)
+        finally:
+            path.write_bytes(original)
+
+    def test_receipts_cannot_opt_into_checkout_alternatives(self):
+        broken = copy.deepcopy(self.index)
+        row = next(row for row in broken["local_files"] if row["path"].endswith("sdk1-clean-readiness.json"))
+        row["checkout_alternatives"] = [{"sha256": row["sha256"], "byte_length": row["byte_length"]}]
+        with self.assertRaisesRegex(ValueError, "Checkout alternatives are limited to exported SDK source"):
+            verify(broken, self.root)
+
 
 if __name__ == "__main__":
     unittest.main()

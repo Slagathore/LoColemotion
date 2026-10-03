@@ -43,10 +43,30 @@ def check_bytes(root: Path, binding: dict, key: str = "path") -> None:
     require(type(binding["byte_length"]) is int and binding["byte_length"] >= 0,
             "Invalid byte length: " + binding[key])
     require(path.is_file(), "Missing file: " + binding[key])
-    require(path.stat().st_size == binding["byte_length"], "Byte length mismatch: " + binding[key])
-    with path.open("rb") as handle:
-        observed = hashlib.file_digest(handle, "sha256").hexdigest()
-    require(observed == expected, "SHA-256 mismatch: " + binding[key])
+    basis = binding.get("byte_basis", "raw")
+    if basis == "lf_normalized_text":
+        require(key == "path" and path.suffix == ".md", "Normalization is limited to indexed prose")
+        raw = path.read_bytes().replace(b"\r\n", b"\n")
+        observed = hashlib.sha256(raw).hexdigest()
+        size = len(raw)
+    else:
+        require(basis == "raw", "Unknown byte basis")
+        size = path.stat().st_size
+        with path.open("rb") as handle:
+            observed = hashlib.file_digest(handle, "sha256").hexdigest()
+    alternatives = binding.get("checkout_alternatives", [])
+    if alternatives:
+        # Exported source can have two known checkout encodings. Bind both exact
+        # digests rather than converting or weakening any retained receipt hash.
+        require(key == "path" and binding[key].startswith("sdk/") and basis == "raw",
+                "Checkout alternatives are limited to exported SDK source")
+        raw = path.read_bytes()
+        require(hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest() == expected,
+                "Source checkout content mismatch: " + binding[key])
+    candidates = [binding, *alternatives]
+    require(any(size == candidate["byte_length"] for candidate in candidates), "Byte length mismatch: " + binding[key])
+    require(any(size == candidate["byte_length"] and observed == candidate["sha256"] for candidate in candidates),
+            "SHA-256 mismatch: " + binding[key])
 
 
 def pointer(document, location: str | None):

@@ -32,7 +32,12 @@ not a replacement for its declarations, evaluators or dependency closure.
 | Full research archive | Roughly 517 GB by the owner's estimate; historical runs, failures, traces and runtime/package records | External; not a clone or onboarding requirement |
 
 The machine-readable [index](EVIDENCE_INDEX.json) gives each selected local file
-its SHA-256 and byte count. External entries preserve archive-relative locations,
+its SHA-256 and byte count. Retained receipts and replay data use exact raw bytes.
+Four exported SDK source files have Git LF content and historical Windows CRLF
+checkouts; the index lists both exact byte identities explicitly. This recognizes
+a checkout encoding, not a newly qualified scientific dependency. The integration
+prose uses LF-normalized text so Windows and Unix checkouts agree.
+External entries preserve archive-relative locations,
 hashes, sizes and pointers into their source records. `download_url: null` means
 the bytes are not downloadable here. The selected artifacts do not form the full
 transitive dependency closure of a campaign.
