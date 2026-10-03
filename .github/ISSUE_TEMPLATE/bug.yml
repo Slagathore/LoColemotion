@@ -1,0 +1,39 @@
+name: Bug or setup problem
+description: A build, API, replay or runtime problem.
+title: "[Bug] "
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did it fail?
+      options:
+        - Core or bindings
+        - Engine adapter
+        - Harness qualification or authorization
+        - Retention or evaluation
+        - Browser replay
+        - Native Explorer or Studio
+        - Documentation or setup
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction and expected result
+      description: Include the exact command and the smallest useful example.
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What actually happened?
+      description: Include the relevant error or receipt. Avoid full archive uploads and private configuration.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Commit and environment
+      description: OS, toolchain, engine version, runtime identity and any local changes.
+    validations:
+      required: true

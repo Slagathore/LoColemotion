@@ -1,0 +1,51 @@
+:root {color-scheme: dark; --bg:#111718; --panel:#192123; --line:#354346; --muted:#a9b8b9; --text:#edf3ef; --accent:#a3dfbd; --warm:#f3bc78}
+* {box-sizing:border-box}
+body {margin:0; background:var(--bg); color:var(--text); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main {max-width:1240px; margin:auto; padding:28px 36px 20px}
+header {display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--line); padding-bottom:22px; gap:20px}
+a {color:var(--accent); text-underline-offset:4px}
+.wordmark {color:var(--text); text-decoration:none; font-size:23px; font-weight:720; letter-spacing:-.8px}
+.wordmark span {color:var(--accent)}
+nav {display:flex; gap:26px; font-size:14px}
+nav a {color:var(--muted); text-decoration:none}
+nav a:hover {color:var(--text)}
+.intro {display:flex; justify-content:space-between; align-items:center; gap:30px; margin:34px 0 28px}
+.eyebrow {text-transform:uppercase; letter-spacing:2px; color:var(--accent); font-size:11px; font-weight:700; margin:0 0 9px}
+h1 {font-size:clamp(30px,4vw,46px); line-height:1.12; font-weight:650; letter-spacing:-1.6px; margin:0 0 13px}
+.intro p:not(.eyebrow) {margin:0; color:var(--muted); font-size:16px}
+.mode {color:var(--warm); font:12px/1.8 ui-monospace,monospace; white-space:nowrap; text-align:right}
+.mode small {color:var(--muted); font:12px system-ui,sans-serif}
+.dot,.contact-dot {display:inline-block; width:7px; height:7px; background:var(--warm); border-radius:50%; margin-right:7px}
+.viewer {border:1px solid var(--line); border-radius:10px; overflow:hidden; background:var(--panel)}
+.toolbar {display:flex; align-items:center; gap:20px; padding:13px 18px; border-bottom:1px solid var(--line); flex-wrap:wrap; font-size:13px}
+.toolbar label {display:flex; align-items:center; gap:12px; color:var(--muted)}
+#session-scope {color:var(--muted); flex:1; font-size:12px}
+button,select {font:inherit; color:var(--text); background:#253033; border:1px solid #4b5a5e; border-radius:5px; padding:8px 12px; cursor:pointer; min-height:38px}
+button:hover,select:hover {border-color:var(--accent)}
+button:disabled {opacity:.4; cursor:default}
+:focus-visible {outline:3px solid var(--warm); outline-offset:3px}
+.stage {height:420px; position:relative; background:#151d1f}
+canvas {width:100%; height:100%; display:block; touch-action:none; cursor:grab}
+canvas:active {cursor:grabbing}
+.stage-label {position:absolute; top:20px; left:22px; pointer-events:none; font-size:13px; color:var(--accent); max-width:70%}
+.stage-label small {display:block; font-size:11px; margin-top:5px; color:var(--muted)}
+.legend {position:absolute; bottom:16px; right:20px; font-size:11px; color:var(--muted); pointer-events:none}
+.contact-dot {background:var(--accent); width:5px; height:5px}
+.transport {display:flex; align-items:center; gap:14px; padding:14px 18px; border-top:1px solid var(--line); font-size:13px}
+#play {background:var(--accent); color:#12231a; border-color:var(--accent); font-weight:650; min-width:76px}
+.timeline-label {flex:1; display:flex; min-width:70px}
+input[type=range] {width:100%; accent-color:var(--accent); cursor:pointer; min-height:30px}
+#time {font:12px ui-monospace,monospace; white-space:nowrap; min-width:126px}
+.observations {display:grid; grid-template-columns:repeat(4,1fr); padding:23px 0 17px; border-bottom:1px solid var(--line); gap:20px}
+.observations span,.observations strong,.observations small {display:block}
+.observations span {color:var(--muted); font-size:12px}
+.observations strong {font:25px/1.5 ui-monospace,monospace; font-weight:500}
+.observations small {color:var(--muted); font-size:10px}
+#status {color:var(--warm); font-size:12px; min-height:19px; margin:12px 0 22px}
+.notes {display:grid; grid-template-columns:1fr 1fr; gap:48px}
+h2 {font-size:16px; margin:0 0 9px; font-weight:600}
+.notes p {color:var(--muted); font-size:13px; margin:0 0 12px}
+.identity code {color:var(--text); font-size:10px; overflow-wrap:anywhere}
+footer {display:flex; justify-content:space-between; gap:20px; color:var(--muted); font-size:11px; border-top:1px solid var(--line); padding-top:19px; margin-top:23px}
+.sr-only {position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+@media(max-width:760px) {main{padding:20px 16px}.intro{display:block}.mode{text-align:left;margin-top:20px}.stage{height:340px}.transport{flex-wrap:wrap;gap:10px}.timeline-label{min-width:50%;order:1}.observations{grid-template-columns:1fr 1fr}.notes{grid-template-columns:1fr;gap:18px}nav{gap:14px}#session-scope{display:none}footer{display:block}footer span{display:block;margin-top:6px}}

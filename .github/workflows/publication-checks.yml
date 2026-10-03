@@ -1,0 +1,20 @@
+name: Public documentation and evidence index
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Check local proof bytes, provenance and documentation links
+        run: python3 sdk/publication/check_publication.py
+      - name: Exercise corruption and missing-evidence refusals
+        run: python3 -m unittest discover -s sdk/publication -p 'test_*.py' -v
+      - name: Exercise replay controls without launching engines
+        run: node sdk/publication/test_viewer.cjs

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Replay retained LoColemotion observations from Godot/Jolt, MuJoCo and Rapier/Parry without installing a physics engine.">
+  <title>LoColemotion — retained motion</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="bundle.js"></script>
+  <script defer src="viewer.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <a class="wordmark" href="../README.md">Lo<span>Cole</span>motion</a>
+      <nav aria-label="Project"><a href="../docs/LOCOMOTION.md">Locomotion</a><a href="../harness/README.md">Harness</a><a href="../proof/README.md">Proof</a></nav>
+    </header>
+    <div class="intro">
+      <div><p class="eyebrow">Recorded native observations</p><h1>See what actually ran.</h1>
+      <p>Three physics engines. Three retained sessions.<br>Pick one and follow the motion, frame by frame.</p></div>
+      <div class="mode"><span class="dot"></span> RECORDED PLAYBACK<br><small>No live physics. No new acceptance claim.</small></div>
+    </div>
+    <section class="viewer" aria-label="Recorded motion player">
+      <div class="toolbar">
+        <label>Engine <select id="engine"><option value="godot_jolt">Godot / Jolt</option><option value="mujoco">MuJoCo</option><option value="rapier_parry">Rapier / Parry</option></select></label>
+        <span id="session-scope">Explorer development session · exact S169</span>
+        <button id="reset-view" type="button">Reset view</button>
+      </div>
+      <div class="stage">
+        <canvas id="canvas" aria-label="Recorded quadruped body poses. Numeric observations are listed below.">Use a browser with Canvas support. Recorded frame, position and contact values appear below.</canvas>
+        <div class="stage-label"><span id="phase">Loading recording…</span><small>Drag to orbit · scroll to zoom</small></div>
+        <div class="legend"><span class="contact-dot"></span> recorded ground contact</div>
+      </div>
+      <div class="transport">
+        <button id="play" type="button" disabled>Play</button>
+        <label class="timeline-label"><span class="sr-only">Recorded frame</span><input id="timeline" type="range" min="0" max="1" value="0" disabled></label>
+        <output id="time" for="timeline">0.00 / 0.00 s</output>
+        <label><span class="sr-only">Playback speed</span><select id="speed"><option value="0.25">0.25×</option><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+        <button id="jump" type="button" disabled>Recorded impulse</button>
+      </div>
+    </section>
+    <div class="observations" aria-label="Recorded values">
+      <div><span>Native frame</span><strong id="frame">—</strong><small id="frame-count">—</small></div>
+      <div><span>Torso height</span><strong id="height">—</strong><small>metres above world origin</small></div>
+      <div><span>Forward displacement</span><strong id="distance">—</strong><small>from first published torso pose</small></div>
+      <div><span>Ground contacts</span><strong id="contacts">—</strong><small>recorded body contact flags</small></div>
+    </div>
+    <p id="status" role="status">Loading the local recording.</p>
+    <div class="notes">
+      <section><h2>What you’re seeing</h2><p id="engine-note"></p><p>Playback follows recorded simulation time and holds the latest published pose. Speed controls change playback only. These sessions used different setups and schedules, so this is not an engine benchmark or equivalence study.</p></section>
+      <section><h2>Where it came from</h2><p>Every published body pose, contact flag and impulse event is preserved in the viewing bundle. Full solver and controller telemetry stay in the retained archive.</p><p><a href="manifest.json">Hashes and source manifest</a> · <a href="../sdk/explorer/showcase_closure_v1.json">Original Explorer closure</a> · <a href="README.md">Replay guide</a></p><p class="identity">Source <code id="source">—</code></p></section>
+    </div>
+    <footer>LoColemotion · Charles Chambers <span>Portable locomotion + experimental evidence</span></footer>
+    <noscript>This player needs JavaScript enabled. All scripts and recordings are included locally.</noscript>
+  </main>
+</body>
+</html>

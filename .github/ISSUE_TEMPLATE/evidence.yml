@@ -1,0 +1,25 @@
+name: Evidence or claim correction
+description: A broken reference, mismatched digest, missing artifact or overbroad claim.
+title: "[Evidence] "
+body:
+  - type: input
+    id: record
+    attributes:
+      label: Record, campaign or claim
+      description: Link to the exact file and commit, or give the evidence-index ID.
+    validations:
+      required: true
+  - type: textarea
+    id: mismatch
+    attributes:
+      label: What does not agree?
+      description: Expected and observed bytes, hashes, fields or wording. Keep the original evidence intact.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope of the correction
+      description: Distinguish a presentation error, infrastructure failure, physical negative and unsupported inference.
+    validations:
+      required: true
