@@ -24,8 +24,8 @@ $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
 $repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
-$expectedRoot = "C:\Users\Cole\CodeStuff\games\SporeSpore"
-$expectedRemote = "https://github.com/Slagathore/sporespore.git"
+$expectedRoot = "C:\Users\Cole\CodeStuff\games\LoColemotion"
+$expectedRemote = "https://github.com/Slagathore/LoColemotion.git"
 $expectedEvidenceRoot = "C:\Users\Cole\CodeStuff\games\SporeSpore_Evidence"
 . (Join-Path $PSScriptRoot "locomotion_operation_lock.ps1")
 . (Join-Path $PSScriptRoot "godot_receipt_terminated_process.ps1")

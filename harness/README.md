@@ -28,5 +28,6 @@ and bytes. It has not been extracted into an independent general-purpose package
 
 The architecture may be useful outside locomotion. Portability of the harness to
 another domain is still engineering work, not an already-qualified claim.
-Licensing also follows the source: `sdk/` is covered by the SDK terms; other
-parts retain their existing scope. See the [license FAQ](../LICENSE-FAQ.md).
+The covered lab and harness use the same SDK terms. The root notice lists
+the included paths; simulation, training and other unlisted material remain
+outside that grant. See the [license FAQ](../LICENSE-FAQ.md).

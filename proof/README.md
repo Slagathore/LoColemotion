@@ -33,8 +33,8 @@ not a replacement for its declarations, evaluators or dependency closure.
 
 The machine-readable [index](EVIDENCE_INDEX.json) gives each selected local file
 its SHA-256 and byte count. Retained receipts and replay data use exact raw bytes.
-Four exported SDK source files have Git LF content and historical Windows CRLF
-checkouts; the index lists both exact byte identities explicitly. This recognizes
+Selected exported SDK source files have Git LF content and historical Windows
+CRLF checkouts; the index lists both exact byte identities explicitly. This recognizes
 a checkout encoding, not a newly qualified scientific dependency. The integration
 prose uses LF-normalized text so Windows and Unix checkouts agree.
 External entries preserve archive-relative locations,
@@ -81,3 +81,11 @@ Publish outside Git, then add exact artifact URLs to a new index revision after
 checking downloads and hashes from a clean environment. Never replace a consumed
 run or rewrite a failed record to simplify the presentation. The current index
 does not implement fetching and does not promise that the full archive is public.
+
+## Historical source copies
+
+The [retained package-adoption source](sources/package_adoption_at_snapshot.py)
+is an exact copy from the initial public snapshot, `c3643d35`. The index binds
+its SHA-256 and records its original Git blob. Active tooling now expects the
+LoColemotion repository; the consumed package evidence still refers to the
+earlier source. Publication checks read this copy and never execute it.

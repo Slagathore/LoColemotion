@@ -478,7 +478,7 @@ if ($RequireIsolatedPackage) {
     $sourceRemoteUrl = (& git -C $sourceRepoRoot remote get-url origin).Trim()
     Assert-Exact (
         $LASTEXITCODE -eq 0 -and
-        $sourceRemoteUrl -ceq "https://github.com/Slagathore/sporespore.git"
+        $sourceRemoteUrl -ceq "https://github.com/Slagathore/LoColemotion.git"
     ) "Source origin is not the authoritative SporeSpore remote"
     $sourceStatus = @(
         & git -C $sourceRepoRoot status --porcelain=v1 --untracked-files=all

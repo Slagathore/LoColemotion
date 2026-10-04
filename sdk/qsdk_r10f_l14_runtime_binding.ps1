@@ -121,7 +121,7 @@ function Get-QsdkR10fL14RuntimeBinding {
         [AllowNull()]$ExpectedBinding
     )
     $runtimeRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
-    if ($runtimeRoot -cne "C:\Users\Cole\CodeStuff\games\SporeSpore") {
+    if ($runtimeRoot -cne "C:\Users\Cole\CodeStuff\games\LoColemotion") {
         throw "L14_RUNTIME_ROOT"
     }
     $policy = Get-QsdkR10fL14ExpectedRuntimeBinding

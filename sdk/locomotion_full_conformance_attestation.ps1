@@ -95,7 +95,7 @@ function Get-SporeSporeAttestationSourceIdentity {
     $clean = [string]::IsNullOrWhiteSpace($statusText)
     $eligible = (
         $clean -and $head -ceq $origin -and $head -ceq $live -and
-        $remoteUrl -ceq "https://github.com/Slagathore/sporespore.git"
+        $remoteUrl -ceq "https://github.com/Slagathore/LoColemotion.git"
     )
     if ($RequireCleanPushedLive -and -not $eligible) {
         throw (

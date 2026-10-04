@@ -71,7 +71,7 @@ def git(*args):
 
 def repository():
     require(git('rev-parse', '--show-toplevel').replace('\\', '/') == ROOT.as_posix(), 'REPO_ROOT')
-    require(git('remote', 'get-url', 'origin') == 'https://github.com/Slagathore/sporespore.git', 'REPO_REMOTE')
+    require(git('remote', 'get-url', 'origin') == 'https://github.com/Slagathore/LoColemotion.git', 'REPO_REMOTE')
 
 
 def validate_design(value):

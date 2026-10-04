@@ -20,7 +20,7 @@ separate decisions.
 | Decision | Recommended next step | Tradeoff |
 | --- | --- | --- |
 | Repository visibility | Public source publication completed October 3, 2026 | People can inspect and cite it. Visibility is not native binary redistribution permission. |
-| Harness and non-SDK licensing | Keep the current terms until you decide whether to extend them or issue separate harness terms | Existing scope preserves your options, but users cannot assume the complete harness, replay or root docs have the SDK's reuse permissions. |
+| Lab licensing | The root notice now lists the covered lab, harness, proof and replay under the SDK terms | Simulation and training folders, general tools, root docs and the game remain outside the grant. Extending those four named areas needs a separate owner decision. |
 | Evidence hosting | Publish a small, versioned proof pack with checksums before offering the full archive | Lower storage and onboarding cost; deeper independent audits still need the missing dependency closure and original source history. |
 | Commercial contact | Choose a public business address or contact page | A GitHub issue works for a first non-confidential inquiry; a dedicated route is better for actual negotiations. |
 | Native distribution | Define and qualify a relocatable runtime/evidence package | More engineering and third-party license work, but much easier live adoption. The retained candidate packages are not release artifacts. |

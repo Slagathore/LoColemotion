@@ -30,6 +30,8 @@ have separate guides, and they meet at the same retained evidence.
 
 ## Research history
 
+Before publishing a change, read [repository hygiene](REPOSITORY_HYGIENE.md).
+
 The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) contains the
 SDK1 completion boundary and earlier checkpoints. The
 [original documentation history](RESEARCH_HISTORY.md) preserves the previous

@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+if command -v python >/dev/null 2>&1 && python -c 'import sys; sys.exit(sys.version_info < (3, 11))' >/dev/null 2>&1; then
+    exec python tools/hygiene/check.py "$@"
+fi
+if command -v py >/dev/null 2>&1 && py -3 -c 'import sys; sys.exit(sys.version_info < (3, 11))' >/dev/null 2>&1; then
+    exec py -3 tools/hygiene/check.py "$@"
+fi
+echo 'Publication refused: Python 3.11 or newer is required for the repository hooks.' >&2
+exit 1

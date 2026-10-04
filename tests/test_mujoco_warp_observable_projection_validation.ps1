@@ -11,8 +11,8 @@ $manifestPath = Join-Path $repoRoot (
     "sdk\adaptation_provider\" +
     "mujoco_warp_observable_projection_validation_manifest.json"
 )
-$expectedRoot = "C:\Users\Cole\CodeStuff\games\SporeSpore"
-$expectedRemote = "https://github.com/Slagathore/sporespore.git"
+$expectedRoot = "C:\Users\Cole\CodeStuff\games\LoColemotion"
+$expectedRemote = "https://github.com/Slagathore/LoColemotion.git"
 $expectedSource = "c163524c95b4c0dddf6624d1a42825daa4259ab6"
 $expectedMetricSource = "ba3ba521a8570c623ce26c06fb0c4148ac2e0a27"
 $expectedMetricIntegration = "424992016f3f770930025ceed00c8a0f15a53707"

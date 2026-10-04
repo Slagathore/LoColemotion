@@ -62,9 +62,10 @@ at the October 3, 2026 source snapshot. The broader program remains 19/25. The
 three engine routes have finite, per-engine evidence; formal cross-engine
 equivalence is still outside the claim.
 
-The [SDK license](../LICENSE-FAQ.md) covers `sdk/`. The complete harness spans
-that directory and other parts of the repository, so the SDK's reuse permissions
-do not cover everything shown here.
+The [SDK and lab license](../LICENSE-FAQ.md) covers the SDK, the listed lab
+source, harness entry point, curated proof and replay under the same terms.
+Simulation and training folders, general tools and root documentation remain
+outside the grant. The root notice lists the exact boundary.
 
 If you work on experiment runners, simulation or reproducibility, I would like
 to know which part of this chain you would need to inspect first. The

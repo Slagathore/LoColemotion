@@ -4,11 +4,11 @@ $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $false
 
 $repoRoot = [IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
-$expectedRoot = "C:\Users\Cole\CodeStuff\games\SporeSpore"
+$expectedRoot = "C:\Users\Cole\CodeStuff\games\LoColemotion"
 if ($repoRoot -cne $expectedRoot) {
     throw "LIVE_EXPLORER_TEST_REPOSITORY_ROOT_MISMATCH:$repoRoot"
 }
-if ((git -C $repoRoot remote get-url origin).Trim() -cne "https://github.com/Slagathore/sporespore.git") {
+if ((git -C $repoRoot remote get-url origin).Trim() -cne "https://github.com/Slagathore/LoColemotion.git") {
     throw "LIVE_EXPLORER_TEST_ORIGIN_MISMATCH"
 }
 

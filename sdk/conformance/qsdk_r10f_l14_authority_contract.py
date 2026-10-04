@@ -49,7 +49,7 @@ def verify_repository() -> None:
     )
     require(
         git("remote", "get-url", "origin")
-        == "https://github.com/Slagathore/sporespore.git",
+        == "https://github.com/Slagathore/LoColemotion.git",
         "L14_REMOTE",
     )
 

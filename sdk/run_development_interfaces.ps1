@@ -10,11 +10,11 @@ param([switch]$Library)
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-if ($repoRoot -cne 'C:\Users\Cole\CodeStuff\games\SporeSpore') { throw 'DEVELOPMENT_ROOT' }
+if ($repoRoot -cne 'C:\Users\Cole\CodeStuff\games\LoColemotion') { throw 'DEVELOPMENT_ROOT' }
 if ((& git -C $repoRoot rev-parse --show-toplevel) -cne $repoRoot.Replace('\', '/')) {
     throw 'DEVELOPMENT_GIT_ROOT'
 }
-if ((& git -C $repoRoot remote get-url origin) -cne 'https://github.com/Slagathore/sporespore.git') {
+if ((& git -C $repoRoot remote get-url origin) -cne 'https://github.com/Slagathore/LoColemotion.git') {
     throw 'DEVELOPMENT_REMOTE'
 }
 . (Join-Path $PSScriptRoot 'locomotion_operation_lock.ps1')

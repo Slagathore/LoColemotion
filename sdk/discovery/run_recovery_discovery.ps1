@@ -4,7 +4,7 @@ param([Parameter(Mandatory)][string]$Batch, [int]$MaximumCells = 1, [int]$Worker
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 . (Join-Path $PSScriptRoot '../run_r10dg_physical.ps1') -Library
-$repo = 'C:/Users/Cole/CodeStuff/games/SporeSpore'
+$repo = 'C:/Users/Cole/CodeStuff/games/LoColemotion'
 $python = 'C:/Program Files/Python311/python.exe'
 if ($MaximumCells -lt 1 -or $MaximumCells -gt 24) { throw 'DISCOVERY_CELL_LIMIT' }
 $ownsOperation = [string]::IsNullOrWhiteSpace($CellId)

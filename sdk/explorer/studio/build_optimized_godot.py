@@ -31,7 +31,7 @@ def main():
     args = parser.parse_args()
     def git(*words):
         return subprocess.check_output(['git', *words], cwd=ROOT, text=True).strip()
-    if Path(git('rev-parse', '--show-toplevel')).resolve() != ROOT or git('remote', 'get-url', 'origin') != 'https://github.com/Slagathore/sporespore.git':
+    if Path(git('rev-parse', '--show-toplevel')).resolve() != ROOT or git('remote', 'get-url', 'origin') != 'https://github.com/Slagathore/LoColemotion.git':
         raise RuntimeError('Repository identity')
     source = git('rev-parse', 'HEAD')
     if args.build and (git('status', '--porcelain') or git('ls-remote', 'origin', 'refs/heads/main').split()[0] != source):

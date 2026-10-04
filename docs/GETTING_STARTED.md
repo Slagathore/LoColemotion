@@ -57,6 +57,25 @@ inputs produce the same policy outputs. It does not mean a native engine repeats
 a trajectory. The [integration guide](../sdk/docs/QUADRUPED_SDK_INTEGRATION.md)
 continues from here.
 
+## Check the current licensing inputs
+
+From the repository root, with Python 3.11+ and the locked Cargo dependencies
+available locally, run:
+
+```powershell
+python sdk/publication/check_licensing.py
+```
+
+Look for `checks_passed: true`, fourteen verified source pins and nineteen
+passed refusal controls. The report also identifies the current commit and
+whether the checkout is clean. It opens no physics world.
+
+This is a separate check for the current public source and the covered lab
+notice. The earlier licensing audit and its source bindings remain preserved.
+The result grants no SDK1 qualification, release permission, binary distribution
+permission or legal opinion. See the [license FAQ](../LICENSE-FAQ.md) for the
+scope and the [repository rules](REPOSITORY_HYGIENE.md) before publishing changes.
+
 ## If it does not start
 
 | Symptom | Check |

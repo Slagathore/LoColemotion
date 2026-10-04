@@ -4,7 +4,7 @@ param([ValidateSet('Live', 'Validate', 'ProducerReject')][string]$Mode = 'Valida
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $l15Root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-if ($l15Root -cne 'C:\Users\Cole\CodeStuff\games\SporeSpore') { throw 'L15_TEST_ROOT' }
+if ($l15Root -cne 'C:\Users\Cole\CodeStuff\games\LoColemotion') { throw 'L15_TEST_ROOT' }
 . (Join-Path $l15Root 'sdk/qsdk_r10f_l15_launch_relationship.ps1')
 . (Join-Path $l15Root 'sdk/godot_receipt_terminated_process.ps1')
 $fixture = [Console]::In.ReadToEnd() | ConvertFrom-Json -AsHashtable -Depth 100 -DateKind String

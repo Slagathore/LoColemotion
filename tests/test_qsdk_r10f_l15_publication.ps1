@@ -3,7 +3,7 @@ param([Parameter(Mandatory)][string]$Case)
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $root = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-if ($root -cne 'C:\Users\Cole\CodeStuff\games\SporeSpore') { throw 'L15_PUBLICATION_TEST_ROOT' }
+if ($root -cne 'C:\Users\Cole\CodeStuff\games\LoColemotion') { throw 'L15_PUBLICATION_TEST_ROOT' }
 . (Join-Path $root 'sdk/qsdk_r10f_l15_launch_relationship.ps1')
 . (Join-Path $root 'sdk/qsdk_r10f_process_isolated_pair_evaluator.ps1')
 . (Join-Path $root 'sdk/exact_json_transport.ps1')

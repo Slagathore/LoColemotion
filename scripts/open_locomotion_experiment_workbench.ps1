@@ -15,7 +15,7 @@ $repoRoot = [System.IO.Path]::GetFullPath(
     (Split-Path -Parent $PSScriptRoot)
 )
 $scene = "res://scenes/tools/locomotion_experiment_workbench.tscn"
-$expectedRemote = "https://github.com/Slagathore/sporespore.git"
+$expectedRemote = "https://github.com/Slagathore/LoColemotion.git"
 
 if (-not (Test-Path -LiteralPath $Godot -PathType Leaf)) {
     throw "Godot 4.7 executable does not exist: $Godot"

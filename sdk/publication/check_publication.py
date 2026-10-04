@@ -7,11 +7,12 @@ import re
 from urllib.parse import unquote, urlsplit
 
 from evidence import ROOT, check_bytes, read_json, require, verify, within
+from check_licensing import CONTRACT, validate_public_contract
 
 DOCS = ["README.md", "LICENSE-FAQ.md", "COMMERCIAL.md", "CONTRIBUTING.md",
         "docs/README.md", "docs/GETTING_STARTED.md", "docs/LOCOMOTION.md",
         "docs/HARNESS.md", "docs/SHOWCASE.md", "docs/LAUNCH_CHECKLIST.md",
-        "docs/WHY_THE_HARNESS_EXISTS.md",
+        "docs/WHY_THE_HARNESS_EXISTS.md", "docs/REPOSITORY_HYGIENE.md",
         "harness/README.md", "proof/README.md", "replay/README.md"]
 
 
@@ -45,7 +46,14 @@ def check_links() -> int:
 
 def main():
     report = verify(read_json(ROOT / "proof/EVIDENCE_INDEX.json"), ROOT)
+    current_license = read_json(CONTRACT)
+    validate_public_contract(current_license)
+    report["current_license_source_pins_verified"] = len(current_license["source_pins"])
     report["local_links_checked"] = check_links()
+    for source in read_json(ROOT / "proof/EVIDENCE_INDEX.json").get("historical_source_copies", []):
+        raw = within(ROOT, source["path"]).read_bytes()
+        identity = hashlib.sha1(b"blob " + str(len(raw)).encode() + b"\0" + raw).hexdigest()
+        require(identity == source["git_blob"], "Historical source blob changed: " + source["path"])
     manifest = read_json(ROOT / "proof/PUBLICATION_PROVENANCE.json")
     require(manifest["schema_version"] == "locolemotion_publication_curation_v1", "Publication schema")
     require(manifest["scientific_records_changed"] is False, "Scientific records changed")

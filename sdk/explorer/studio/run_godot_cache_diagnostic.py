@@ -41,7 +41,7 @@ def main():
     if (args.walking_steps!=119 or args.probe_impulses) and not args.live_walking:raise ValueError('Live walking option required')
     if args.probe_impulses and args.walking_steps!=1800:raise ValueError('Two-command probe requires the 15-second walking horizon')
     def git(*words):return subprocess.check_output(['git',*words],cwd=ROOT,text=True).strip()
-    if Path(git('rev-parse','--show-toplevel')).resolve()!=ROOT or git('remote','get-url','origin')!='https://github.com/Slagathore/sporespore.git':raise RuntimeError('Repository identity')
+    if Path(git('rev-parse','--show-toplevel')).resolve()!=ROOT or git('remote','get-url','origin')!='https://github.com/Slagathore/LoColemotion.git':raise RuntimeError('Repository identity')
     source=git('rev-parse','HEAD')
     if args.run and (git('status','--porcelain') or git('ls-remote','origin','refs/heads/main').split()[0]!=source):raise RuntimeError('Physics requires clean pushed source')
     folder=args.output.resolve()

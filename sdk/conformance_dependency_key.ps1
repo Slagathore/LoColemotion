@@ -534,7 +534,7 @@ function New-SporeSporeConformanceDependencyKeyCandidate {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)][string]$RepoRoot,
-        [string]$ExpectedRemote = "https://github.com/Slagathore/sporespore.git"
+        [string]$ExpectedRemote = "https://github.com/Slagathore/LoColemotion.git"
     )
     $contract = Get-SporeSporeConformanceDependencyContract
     $repo = [System.IO.Path]::GetFullPath($RepoRoot).TrimEnd('\', '/')

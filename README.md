@@ -88,16 +88,20 @@ the original archive. This clone does not claim to reproduce the whole lab.
 
 ## License and contributions
 
-The original SDK source and accompanying materials in `sdk/` use the custom
+The SDK and the covered lab, harness, proof and replay use the custom
 **LoColemotion SDK Community License 1.0**, or a separately executed commercial
 agreement. Eligible business use is free at or below **US$100,000 gross revenue
 over the preceding twelve months**, assessed across the controlled group.
 A **90-day non-production business evaluation** is also available under the terms.
 
-This is **source available**. Material outside `sdk/` remains all rights reserved
-unless separately licensed; that includes parts of the lab and harness.
+This is **source available**. The grant covers `sdk/`, `scripts/lab/`,
+`data/lab/`, `tests/`, the top-level lab runners listed in the root notice,
+`scenes/tools/`, `harness/`, `proof/` and `replay/` under the same terms.
+`scripts/sim/`, `scenes/sim/`, `scripts/tools/`, `docs/`, the editor, the game
+and other unlisted material remain reserved unless separately licensed.
 Third-party terms still apply. Read the [license FAQ](LICENSE-FAQ.md),
 [complete terms](LICENSE), and [commercial options](COMMERCIAL.md).
+Before publishing a change, read [repository hygiene](docs/REPOSITORY_HYGIENE.md).
 
 [Contributions and bug reports](CONTRIBUTING.md) are welcome. Evidence corrections
 need the record, the mismatch and the proposed scope of the correction.

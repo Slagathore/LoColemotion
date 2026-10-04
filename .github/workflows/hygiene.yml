@@ -1,0 +1,35 @@
+name: Repository hygiene
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  hygiene:
+    name: Publication hygiene
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Exercise publication refusal controls
+        run: python3 -m unittest discover -s tools/hygiene -p 'test_*.py' -v
+      - name: Inspect the committed tree
+        run: python3 tools/hygiene/check.py tree
+      - name: Inspect every introduced commit
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD: ${{ github.event.pull_request.head.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = pull_request ]; then
+            BEFORE="$PR_BASE"
+            AFTER="$PR_HEAD"
+          elif [ -z "$BEFORE" ]; then
+            BEFORE=0000000000000000000000000000000000000000
+          fi
+          python3 tools/hygiene/check.py range "$BEFORE" "$AFTER"

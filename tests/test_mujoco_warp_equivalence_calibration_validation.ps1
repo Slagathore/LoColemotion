@@ -11,8 +11,8 @@ $manifestPath = Join-Path $repoRoot (
     "sdk\adaptation_provider\" +
     "mujoco_warp_equivalence_calibration_validation_manifest.json"
 )
-$expectedRoot = "C:\Users\Cole\CodeStuff\games\SporeSpore"
-$expectedRemote = "https://github.com/Slagathore/sporespore.git"
+$expectedRoot = "C:\Users\Cole\CodeStuff\games\LoColemotion"
+$expectedRemote = "https://github.com/Slagathore/LoColemotion.git"
 $expectedSource = "daca13321288ba27e5c619509c554bf2126e362e"
 $expectedCells = @(
     "mjcal0_contract_and_predecessor_boundary",

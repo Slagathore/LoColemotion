@@ -14,8 +14,8 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-EXPECTED_ROOT = Path(r"C:\Users\Cole\CodeStuff\games\SporeSpore")
-EXPECTED_REMOTE = "https://github.com/Slagathore/sporespore.git"
+EXPECTED_ROOT = Path(r"C:\Users\Cole\CodeStuff\games\LoColemotion")
+EXPECTED_REMOTE = "https://github.com/Slagathore/LoColemotion.git"
 DIGEST = re.compile(r"^sha256:[0-9a-f]{64}$")
 GATE = re.compile(r"^QSDK-R24D[0-9]+$")
 

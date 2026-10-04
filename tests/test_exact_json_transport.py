@@ -12,6 +12,8 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'sdk/conformance'))
+sys.path.insert(0, str(ROOT / 'sdk/publication'))
+from historical_source import read_blob
 import qsdk_r10f_l15_retained_integrity_failure as frozen_failure
 
 
@@ -20,7 +22,7 @@ class ExactJsonTransport(unittest.TestCase):
     def setUpClass(cls):
         frozen_failure.verify_population(frozen_failure.EVIDENCE, frozen_failure.inventory())
         cls.same = staticmethod(frozen_failure.frozen_functions(
-            frozen_failure.git('show', frozen_failure.SOURCE + ':' + frozen_failure.RETENTION))['same'])
+            read_blob(frozen_failure.SOURCE, frozen_failure.RETENTION))['same'])
 
     def host(self, payload, *arguments, success=True):
         result = subprocess.run([

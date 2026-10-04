@@ -142,7 +142,7 @@ def main():
     args=parser.parse_args();spec=validate(json.loads(args.spec.read_text(encoding='utf-8-sig')))
     cfg=json.loads(args.config.read_text(encoding='utf-8-sig'))
     def git(*words):return subprocess.check_output(['git',*words],cwd=ROOT,text=True).strip()
-    if Path(git('rev-parse','--show-toplevel')).resolve()!=ROOT or git('remote','get-url','origin')!='https://github.com/Slagathore/sporespore.git':raise RuntimeError('Repository identity')
+    if Path(git('rev-parse','--show-toplevel')).resolve()!=ROOT or git('remote','get-url','origin')!='https://github.com/Slagathore/LoColemotion.git':raise RuntimeError('Repository identity')
     source=git('rev-parse','HEAD')
     if args.run and (git('status','--porcelain') or git('ls-remote','origin','refs/heads/main').split()[0]!=source):raise RuntimeError('Physics requires clean pushed source')
     output=args.output.resolve()

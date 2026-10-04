@@ -17,7 +17,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-EXPECTED_ROOT = Path(r"C:\Users\Cole\CodeStuff\games\SporeSpore")
+EXPECTED_ROOT = Path(r"C:\Users\Cole\CodeStuff\games\LoColemotion")
 SOURCE = "0eee653968c75fe66e0dd5522011611cb5f1e282"
 CLOSURE_PATH = ROOT / "sdk/qsdk_r10f_development_route_ghost_physical_closure_v14.json"
 CLOSURE_SHA = "sha256:1df9bd1896deb23989d6a3c080948a21805a1465b2682748d7e31c7fa1bdd4cb"
@@ -189,7 +189,7 @@ def diagnose() -> dict[str, Any]:
     )
     require(
         git("remote", "get-url", "origin").decode().strip()
-        == "https://github.com/Slagathore/sporespore.git",
+        == "https://github.com/Slagathore/LoColemotion.git",
         "REMOTE",
     )
     closure_bytes = CLOSURE_PATH.read_bytes()

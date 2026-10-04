@@ -50,6 +50,6 @@ All scripts and data are local. There are no analytics, remote assets or externa
 JavaScript dependencies. See [live setup](../docs/SHOWCASE.md) for the native
 Explorer/Studio and [the proof index](../proof/README.md) for acceptance records.
 
-This viewing code and data live outside `sdk/`; the root license's existing
-scope applies. Displayed development sessions do not establish new acceptance,
+This viewing code and data are included in the root license's covered SDK and
+lab scope. Third-party terms still apply. Displayed development sessions do not establish new acceptance,
 general recovery or formal cross-engine equivalence.

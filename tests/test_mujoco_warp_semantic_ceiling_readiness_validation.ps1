@@ -11,8 +11,8 @@ $manifestPath = Join-Path $repoRoot (
     "sdk\adaptation_provider\" +
     "mujoco_warp_semantic_ceiling_readiness_validation_manifest.json"
 )
-$expectedRoot = "C:\Users\Cole\CodeStuff\games\SporeSpore"
-$expectedRemote = "https://github.com/Slagathore/sporespore.git"
+$expectedRoot = "C:\Users\Cole\CodeStuff\games\LoColemotion"
+$expectedRemote = "https://github.com/Slagathore/LoColemotion.git"
 $expectedSource = "faaf057ad6379ba66ec1a4425f479082f28cb1b6"
 $expectedContractHash = (
     "sha256:eddc0afaabdafd483319007384cb5184e3fae792a74ae19002dd2b982caa1ceb"

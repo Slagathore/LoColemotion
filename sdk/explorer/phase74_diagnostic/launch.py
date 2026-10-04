@@ -9,7 +9,7 @@ import r10v_windows_job as W
 cfg_path=Path((Path(__file__).parent/'active_config.txt').read_text(encoding='utf-8'))
 cfg=json.loads(cfg_path.read_text(encoding='utf-8')); folder=cfg_path.parent
 assert subprocess.check_output(['git','rev-parse','--show-toplevel'],cwd=ROOT,text=True).strip().replace('\\','/')==ROOT.as_posix()
-assert subprocess.check_output(['git','remote','get-url','origin'],cwd=ROOT,text=True).strip()=='https://github.com/Slagathore/sporespore.git'
+assert subprocess.check_output(['git','remote','get-url','origin'],cwd=ROOT,text=True).strip()=='https://github.com/Slagathore/LoColemotion.git'
 for image in cfg['images'].values(): assert hashlib.sha256(Path(image['path']).read_bytes()).hexdigest()==image['sha256']
 create=W.api('CreateMutexW',[C.c_void_p,T.BOOL,T.LPCWSTR],T.HANDLE)
 release=W.api('ReleaseMutex',[T.HANDLE])

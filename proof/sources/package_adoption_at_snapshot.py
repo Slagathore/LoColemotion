@@ -25,7 +25,7 @@ def run(output):
     require(subprocess.check_output(["git", "rev-parse", "--show-toplevel"], cwd=ROOT,
                                    text=True).strip().replace("\\", "/") == ROOT.as_posix(), "Repository root")
     require(subprocess.check_output(["git", "remote", "get-url", "origin"], cwd=ROOT,
-                                   text=True).strip() == "https://github.com/Slagathore/LoColemotion.git", "Origin")
+                                   text=True).strip() == "https://github.com/Slagathore/sporespore.git", "Origin")
     output = output.resolve()
     require(output.is_relative_to(ROOT.parent / "SporeSpore_Evidence"), "Use durable evidence root")
     output.mkdir(parents=True, exist_ok=False)

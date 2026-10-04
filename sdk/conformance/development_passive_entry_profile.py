@@ -184,7 +184,7 @@ def _source_snapshot():
         return subprocess.check_output(['git', *args], cwd=ROOT, creationflags=subprocess.CREATE_NO_WINDOW)
     require(Path(git('rev-parse', '--show-toplevel').decode().strip()).resolve() == ROOT, 'SOURCE_ROOT')
     remote = git('remote', 'get-url', 'origin').decode().strip()
-    require(remote == 'https://github.com/Slagathore/sporespore.git', 'SOURCE_REMOTE')
+    require(remote == 'https://github.com/Slagathore/LoColemotion.git', 'SOURCE_REMOTE')
     paths = set(git('diff', '--name-only', 'HEAD', '-z').decode().split('\0'))
     paths.update(git('ls-files', '--others', '--exclude-standard', '-z').decode().split('\0'))
     replacements = []

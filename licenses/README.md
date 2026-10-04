@@ -1,6 +1,7 @@
 # LoColemotion SDK licensing
 
-Charles Chambers is the licensor. The SDK source in `sdk/` is offered under:
+Charles Chambers is the licensor. The SDK and the covered lab, harness, proof
+and replay are offered under:
 
 - [Community License 1.0](COMMUNITY-LICENSE.md): free for personal learning and
   hobbies, evaluation, monetized tutorials, and business use at or below
@@ -12,9 +13,16 @@ Charles Chambers is the licensor. The SDK source in `sdk/` is offered under:
   contribution can be relicensed commercially. A pull request or fork does not
   accept it.
 
+The [root notice](../LICENSE) covers `sdk/`, `scripts/lab/`, `data/lab/`,
+`tests/`, the named top-level lab runners and their tests, `scenes/tools/`,
+`harness/`, `proof/` and `replay/`. The covered lab material is part of the SDK
+for these terms. `scripts/sim/`, `scenes/sim/`, `scripts/tools/`, `docs/`, the
+editor, game and all other unlisted material remain reserved unless separately
+licensed.
+
 These are renamed copies of the SporeSpore SDK texts adopted on 2026-10-03, with
 the same terms. The originals stay unchanged in `sdk/LICENSE` and
-`sdk/release/licensing/` because other records pin their exact bytes. The
+the legal texts in `sdk/release/licensing/` because other records pin their exact bytes. The
 detailed rules, worked review cases and the audit that checks them are kept there.
 
 Third party material keeps its own licenses. See

@@ -17,7 +17,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument("output",type=Path);args=parser.parse_args()
     root=subprocess.check_output(["git","rev-parse","--show-toplevel"],cwd=ROOT,text=True).strip()
     remote=subprocess.check_output(["git","remote","get-url","origin"],cwd=ROOT,text=True).strip()
-    if Path(root).resolve()!=ROOT or remote!="https://github.com/Slagathore/sporespore.git": raise RuntimeError("Repository identity mismatch")
+    if Path(root).resolve()!=ROOT or remote!="https://github.com/Slagathore/LoColemotion.git": raise RuntimeError("Repository identity mismatch")
     if subprocess.check_output(["git","status","--porcelain"],cwd=ROOT,text=True).strip(): raise RuntimeError("Commit and push before materializing validation source")
     head=subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip()
     live=subprocess.check_output(["git","ls-remote","origin","refs/heads/main"],cwd=ROOT,text=True).split()[0]

@@ -9,8 +9,8 @@ Set-StrictMode -Version Latest
 $repoRoot = [System.IO.Path]::GetFullPath((Split-Path -Parent $PSScriptRoot))
 $manifestPath = Join-Path $repoRoot `
     "sdk\adaptation_provider\experience_encyclopedia_validation_manifest.json"
-$expectedRoot = "C:\Users\Cole\CodeStuff\games\SporeSpore"
-$expectedRemote = "https://github.com/Slagathore/sporespore.git"
+$expectedRoot = "C:\Users\Cole\CodeStuff\games\LoColemotion"
+$expectedRemote = "https://github.com/Slagathore/LoColemotion.git"
 $expectedSource = "ac20bcdbca7d3f76fa01f2024f44d062c298ade7"
 $resultClasses = @("positive", "negative", "rejected", "invalid", "incomplete")
 
