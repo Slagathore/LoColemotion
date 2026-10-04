@@ -15,13 +15,16 @@ Both parts are the project.
 | Finite walking, turning and recovery results with explicit per-engine limits. | Positive, negative and invalid results stay distinguishable. A passed check does not automatically authorize the next step. |
 | **[Explore locomotion](docs/LOCOMOTION.md)** | **[Explore the harness](harness/README.md)** |
 
-**[Open the replay guide](replay/README.md)** · **[Inspect the proof](proof/README.md)** · **[Build the core](docs/GETTING_STARTED.md)** · **[License](LICENSE-FAQ.md)**
+**[Watch the recordings](https://Slagathore.github.io/LoColemotion/)** · **[Inspect the proof](proof/README.md)** · **[Build the core](docs/GETTING_STARTED.md)** · **[License](LICENSE-FAQ.md)**
 
 ## Try it without the lab
 
-Clone or download this repository, then open **`replay/index.html`** in a browser.
-Choose an engine, play or scrub the recording, and rotate the view. Everything
-it needs is included. No engine install, build, account or evidence archive.
+[Open the browser replay](https://Slagathore.github.io/LoColemotion/). Choose an
+engine, play or scrub the recording, and rotate the view. No engine install,
+build, account or evidence archive.
+
+For offline playback, clone or download this repository and open
+**`replay/index.html`** in a browser. Everything it needs is included.
 
 The replay contains recorded body poses from three retained Explorer development
 sessions. It shows what those sessions did. It does not run new physics, replay

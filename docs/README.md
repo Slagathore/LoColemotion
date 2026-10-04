@@ -9,6 +9,7 @@ have separate guides, and they meet at the same retained evidence.
 | Build the portable core and run its first example | [Getting started](GETTING_STARTED.md) |
 | Understand what each engine has actually shown | [Locomotion and support](LOCOMOTION.md) |
 | Understand qualification, authorization and retained failures | [The harness](HARNESS.md) |
+| Read why I built the harness alongside the controller | [The harness is half the project](WHY_THE_HARNESS_EXISTS.md) |
 | Inspect the 20/20 result or a counterexample | [Proof index](../proof/README.md) |
 | Use the desktop Studio or work toward a live setup | [Replay, Explorer and Studio](SHOWCASE.md) |
 | Understand the license or discuss commercial use | [License FAQ](../LICENSE-FAQ.md) / [Commercial terms](../COMMERCIAL.md) |

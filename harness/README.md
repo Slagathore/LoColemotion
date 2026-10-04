@@ -8,6 +8,7 @@ I want to be able to come back to a result months later and answer: which code,
 which conditions, what failed, and why does this count? The answer should be in
 the retained records, not in my memory.
 
+**[Why I built it](../docs/WHY_THE_HARNESS_EXISTS.md)** ·
 **[Read the lifecycle](../docs/HARNESS.md)** ·
 **[Inspect a negative or refusal](../proof/README.md)** ·
 **[Verify the curated bytes](../sdk/publication/evidence.py)**

@@ -1,8 +1,10 @@
 # Watch the retained runs
 
-Open **`index.html` in this folder** with a browser after cloning or downloading
-the repository. You can double-click it; no local server or package install is
-required. GitHub's file view displays HTML source, so download the checkout first.
+[Watch the recordings online](https://Slagathore.github.io/LoColemotion/).
+
+For offline playback, open **`index.html` in this folder** with a browser after
+cloning or downloading the repository. You can double-click it; no local server
+or package install is required.
 
 Choose Godot/Jolt, MuJoCo or Rapier/Parry. Play, scrub the timeline, jump to the
 recorded impulse, change playback speed, and drag to rotate the view. The camera

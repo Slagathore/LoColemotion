@@ -11,6 +11,7 @@ from evidence import ROOT, check_bytes, read_json, require, verify, within
 DOCS = ["README.md", "LICENSE-FAQ.md", "COMMERCIAL.md", "CONTRIBUTING.md",
         "docs/README.md", "docs/GETTING_STARTED.md", "docs/LOCOMOTION.md",
         "docs/HARNESS.md", "docs/SHOWCASE.md", "docs/LAUNCH_CHECKLIST.md",
+        "docs/WHY_THE_HARNESS_EXISTS.md",
         "harness/README.md", "proof/README.md", "replay/README.md"]
 
 

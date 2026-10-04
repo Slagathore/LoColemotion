@@ -1,0 +1,58 @@
+name: Publish recorded replay
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'replay/**'
+      - 'proof/**'
+      - 'sdk/publication/**'
+      - '.github/workflows/replay-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recorded-replay-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Check publication and recorded data
+        run: python3 sdk/publication/check_publication.py
+      - name: Check evidence refusals
+        run: python3 -m unittest discover -s sdk/publication -p 'test_*.py' -v
+      - name: Check replay controls
+        run: node sdk/publication/test_viewer.cjs
+      - name: Configure Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - name: Prepare the five public viewer files
+        run: |
+          mkdir _site
+          cp replay/index.html replay/style.css replay/viewer.js replay/bundle.js replay/manifest.json _site/
+      - name: Upload viewer
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: _site
+          retention-days: 1
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy recorded replay
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
