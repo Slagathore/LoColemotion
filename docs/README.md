@@ -21,6 +21,8 @@ have separate guides, and they meet at the same retained evidence.
   descriptors, policy calls, capability/refusal semantics and record/replay.
 - [Three-engine integration comparison](../sdk/docs/ENGINE_INTEGRATION_COMPARISON.md):
   actuator mapping, joint frames, solver timing and observation time.
+- [Engine review packet](../sdk/docs/ENGINE_REVIEW_PACKET.md): exact profiles,
+  retained force trace and the qualification and failure records behind it.
 - [Adapter authoring kit](../sdk/adapter_kit/README.md).
 - [Portable API contracts](../sdk/portable_api/README.md).
 - [Architecture](LOCOMOTION_ARCHITECTURE.md) and
