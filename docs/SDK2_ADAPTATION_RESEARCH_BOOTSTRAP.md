@@ -371,6 +371,24 @@ support.
 - **Thresholds:** set `maximum_support_distance` and `minimum_confidence` by S5
   conformal calibration on a held-out calibration set, not by hand.
 
+**Upgrade path that REGENT shows.** REGENT blends the two models by retrieval
+distance:
+
+```text
+action = e^(−λd) · nearest_neighbour_action + (1 − e^(−λd)) · model_output
+```
+
+Here `d` is the normalized distance to the closest retrieved state and λ = 10 in
+the paper. Near stored experience it replays what worked; farther away the
+learned model takes over, acting in effect as a residual on top of retrieval.
+The paper reports that without this interpolation its model did not generalize
+to unseen environments. For LoColemotion the corresponding design is:
+
+1. the first provider is retrieval alone;
+2. the first learned provider is a residual on top of retrieval, weighted by
+   retrieval distance;
+3. both still pass through the core's support and confidence gate.
+
 **Pros.** Days rather than weeks; fully auditable; deterministic; natural Tier 3
 substrate; a strong baseline for every later learned provider.
 
@@ -448,6 +466,21 @@ imperfect. PMTG and CPG-RL apply the same idea to legged gait generators: the
 policy modulates the generator's parameters (and optionally adds a residual),
 which keeps the gait structure.
 
+**Why PMTG in particular is worth reading closely.**
+
+- PMTG's Minitaur has **eight actuators, like S169**. Each step its policy output
+  three trajectory-generator parameters (frequency, amplitude, walking height)
+  plus eight residual leg actions.
+- A *linear* policy of 77 parameters learned speed-controllable walking in under
+  1,000 rollouts and transferred to the real robot.
+- Lee et al. 2020 used the same structure (per-leg frequency offsets plus
+  foot-position residuals on periodic trajectory generators) for their
+  challenging-terrain ANYmal controller.
+- *Walk These Ways* conditioned one policy on an eight-value behavior vector
+  (foot-timing offsets, step frequency, body height and pitch, stance width,
+  footswing height). It found that no single gait setting worked everywhere,
+  which supports the archive-of-behaviors approach in L1.
+
 **Two recipes the papers make cheap.**
 
 1. **Zero-initialize the output layer.** At step 0 the residual is exactly zero,
@@ -513,7 +546,16 @@ state-action history. At deployment the frozen policy adapts within a fraction o
 a second with no weight change and no memory store.
 
 **Fit.** The request already carries 64 history entries (about 0.53 s at the
-1/120 s command rate). If a longer or decimated window is needed, the provider
+1/120 s command rate). That matches RMA closely:
+
+- RMA estimated its latent from the last 50 state-action pairs (about 0.5 s);
+- its base policy ran at 100 Hz;
+- its adaptation module ran asynchronously at 10 Hz.
+
+UP-OSI estimated **explicit** physical parameters rather than a learned latent.
+For LoColemotion explicit estimates (effective friction, effective actuator
+strength) are easier to audit and to bound, so start there and move to a
+latent only if explicit estimates are insufficient. If a longer or decimated window is needed, the provider
 can keep its own downsampled history in opaque memory within the 64 KiB cap.
 Reset is trivial: clear the window.
 
@@ -614,9 +656,17 @@ Huang et al. 2020 (Shared Modular Policies). Several are already in the ledger.
 **Assessment.** These solve variable-topology control. SDK2's body space is a
 six-axis box with fixed topology. For it, a plain network that takes the six
 normalized descriptor values as input is adequate and easier to qualify.
-GenLoco's lesson that matters now is about the training distribution: randomize
-morphology across the declared box during training, and evaluate on held-out
-bodies.
+GenLoco's lesson that matters now is about the training distribution. It
+randomized a size factor over 0.8–1.2 (about ±20%) plus separate link
+proportions, densities and masses around the A1 robot, then deployed one
+controller zero-shot to unseen real quadrupeds. LoColemotion's declared box is
+±10% on most axes. That is narrower, which is good news for the first coverage
+claims. Randomize across the declared box during training, and evaluate on
+held-out bodies.
+
+Amorpheus (Kurin et al., ICLR 2021) is a caution against over-engineering the
+encoder. Encoding the body graph into message passing did not help, and a
+transformer that ignored the graph did better.
 
 Use the transformer-style encoders when the topology tokens from the UniLegs
 adoption (ledger Source 3) become real, and use URMA or MetaMorph as a
@@ -861,12 +911,12 @@ own ledger row with the exact reviewed version.
 
 | Source | Link | Code / license | Use here |
 | --- | --- | --- | --- |
-| Silver, Allen, Tenenbaum, Kaelbling 2018, *Residual Policy Learning* | [arXiv:1812.06298](https://arxiv.org/abs/1812.06298) | check | L4 core idea |
+| Silver, Allen, Tenenbaum, Kaelbling 2018, *Residual Policy Learning* (arXiv preprint) | [arXiv:1812.06298](https://arxiv.org/abs/1812.06298) | [repo](https://github.com/k-r-allen/residual-policy-learning); no license file | L4 core idea; zero-initialized residual |
 | Johannink et al., ICRA 2019, *Residual Reinforcement Learning for Robot Control* | [arXiv:1812.03201](https://arxiv.org/abs/1812.03201) | none known | L4 |
-| Iscen et al., CoRL 2018, *Policies Modulating Trajectory Generators* | [arXiv:1910.02812](https://arxiv.org/abs/1910.02812) | none known | L4 v2 parameter channel |
-| Bellegarda and Ijspeert 2022, *CPG-RL* | [arXiv:2211.00458](https://arxiv.org/abs/2211.00458) | check | L4 v2 |
-| Margolis and Agrawal, CoRL 2022, *Walk These Ways* | [arXiv:2212.03238](https://arxiv.org/abs/2212.03238) | check | L4 v2: gait parameters as inputs |
-| Sha 2001, *Using Simplicity to Control Complexity* (Simplex) | [IEEE Software](https://doi.org/10.1109/MS.2001.936213) | n/a | L3 |
+| Iscen et al., CoRL 2018 (PMLR 87), *Policies Modulating Trajectory Generators* | [PMLR](https://proceedings.mlr.press/v87/iscen18a.html), [arXiv:1910.02812](https://arxiv.org/abs/1910.02812) | none official | L4 v2 parameter channel |
+| Bellegarda and Ijspeert, *IEEE RA-L* 2022, *CPG-RL* | [arXiv:2211.00458](https://arxiv.org/abs/2211.00458) | none official | L4 v2 |
+| Margolis and Agrawal, CoRL 2022, *Walk These Ways* | [arXiv:2212.03238](https://arxiv.org/abs/2212.03238) | [repo](https://github.com/Improbable-AI/walk-these-ways), MIT (bundled parts BSD) | L4 v2: gait parameters as inputs |
+| Sha 2001, *Using Simplicity to Control Complexity* (overview of Simplex, which dates from mid-1990s reports) | [IEEE Software](https://doi.org/10.1109/MS.2001.936213) | n/a | L3 |
 | Alshiekh et al., AAAI 2018, *Safe Reinforcement Learning via Shielding* | [arXiv:1708.08611](https://arxiv.org/abs/1708.08611) | n/a | L3 |
 | Ames et al., ECC 2019, *Control Barrier Functions: Theory and Applications* | [arXiv:1903.11199](https://arxiv.org/abs/1903.11199) | n/a | L3 (why not directly) |
 | Wabersich and Zeilinger, *Automatica* 2021, predictive safety filter | [arXiv:1812.05506](https://arxiv.org/abs/1812.05506) | n/a | L3 later option |
@@ -880,17 +930,17 @@ own ledger row with the exact reviewed version.
 
 | Source | Link | Code / license | Use here |
 | --- | --- | --- | --- |
-| Kumar, Fu, Pathak, Malik, RSS 2021, *RMA* | [arXiv:2107.04034](https://arxiv.org/abs/2107.04034) | check | L5 |
-| Yu, Tan, Liu, Turk, RSS 2017, *UP-OSI* | [arXiv:1702.02453](https://arxiv.org/abs/1702.02453) | check | L5 |
-| Lee et al., *Science Robotics* 2020, challenging-terrain teacher-student | [arXiv:2010.11251](https://arxiv.org/abs/2010.11251) | check | L5, R09 |
-| Nagabandi et al., ICLR 2019, fast adaptation via meta-learning | [arXiv:1803.11347](https://arxiv.org/abs/1803.11347) | check | L5 background |
+| Kumar, Fu, Pathak, Malik, RSS 2021, *RMA* | [arXiv:2107.04034](https://arxiv.org/abs/2107.04034) | linked follow-up code is GPL-3.0: do not copy into covered paths | L5 |
+| Yu, Tan, Liu, Turk, RSS 2017, *UP-OSI* | [arXiv:1702.02453](https://arxiv.org/abs/1702.02453) | author repo, no license file | L5 |
+| Lee et al., *Science Robotics* 2020, challenging-terrain teacher-student | [arXiv:2010.11251](https://arxiv.org/abs/2010.11251) | supplementary repo MIT (policies only, no training code) | L5, R09 |
+| Nagabandi et al., ICLR 2019, fast adaptation via meta-learning | [arXiv:1803.11347](https://arxiv.org/abs/1803.11347) | author repo, no license file | L5 background |
 | Blundell et al. 2016, *Model-Free Episodic Control* | [arXiv:1606.04460](https://arxiv.org/abs/1606.04460) | n/a | L2 |
 | Pritzel et al., ICML 2017, *Neural Episodic Control* | [arXiv:1703.01988](https://arxiv.org/abs/1703.01988) | n/a | L2 |
-| Sridhar et al., *REGENT* | [arXiv:2412.04759](https://arxiv.org/abs/2412.04759) | check | L2, L6 |
-| Schmied et al. 2024, *Retrieval-Augmented Decision Transformer* | [arXiv:2410.07071](https://arxiv.org/abs/2410.07071) | check | L6 |
+| Sridhar, Dutta, Jayaraman, Lee, ICLR 2025, *REGENT* | [arXiv:2412.04759](https://arxiv.org/abs/2412.04759) | [repo](https://github.com/regent-research/regent), Apache-2.0 | L2, L6 |
+| Schmied et al., CoLLAs 2025, *Retrieval-Augmented Decision Transformer* | [arXiv:2410.07071](https://arxiv.org/abs/2410.07071) | [repo](https://github.com/ml-jku/RA-DT), MIT | L6 |
 | Atkeson, Moore, Schaal 1997, *Locally Weighted Learning for Control* | [doi:10.1023/A:1006511328852](https://doi.org/10.1023/A:1006511328852) | n/a | L2 interpolation |
-| Duan et al. 2016, *RL²* | [arXiv:1611.02779](https://arxiv.org/abs/1611.02779) | n/a | L6: deferred, with reasons |
-| Laskin et al., *In-context RL with Algorithm Distillation* | [arXiv:2210.14215](https://arxiv.org/abs/2210.14215) | n/a | L6: deferred, with reasons |
+| Duan et al. 2016, *RL²* (arXiv preprint) | [arXiv:1611.02779](https://arxiv.org/abs/1611.02779) | n/a | L6: deferred, with reasons |
+| Laskin et al., ICLR 2023, *In-context RL with Algorithm Distillation* | [arXiv:2210.14215](https://arxiv.org/abs/2210.14215) | n/a | L6: deferred, with reasons |
 | Press et al., NeurIPS 2023, *RDumb* | [arXiv:2306.05401](https://arxiv.org/abs/2306.05401) | check | L6 reset baseline |
 | Wang et al. 2026, *RTPC* (failed replication) | [arXiv:2610.24573](https://arxiv.org/abs/2610.24573) | check | L2/L6 shuffled-memory control |
 | Qin et al. 2026, governed capability evolution | [arXiv:2604.08059](https://arxiv.org/abs/2604.08059) | check | Section 17 |
@@ -930,11 +980,12 @@ own ledger row with the exact reviewed version.
 
 | Source | Link | Code / license | Use here |
 | --- | --- | --- | --- |
-| Feng et al., CoRL 2022, *GenLoco* | [arXiv:2209.05309](https://arxiv.org/abs/2209.05309) | check | L8 training distribution |
-| Gupta et al., ICLR 2022, *MetaMorph* | [arXiv:2203.11931](https://arxiv.org/abs/2203.11931) | check | L8 (also in ledger) |
-| Bohlinger et al., CoRL 2024, *URMA*; URMAv2 2025 | [PMLR v270](https://proceedings.mlr.press/v270/bohlinger25a.html), [arXiv:2509.02815](https://arxiv.org/abs/2509.02815) | check | L8 comparison |
-| Sferrazza et al. 2024, *Body Transformer* | [arXiv:2408.06316](https://arxiv.org/abs/2408.06316) | check | L8 |
-| Huang, Mordatch, Pathak, ICML 2020, *Shared Modular Policies* | [PMLR v119](https://proceedings.mlr.press/v119/huang20d.html) | check | L8 (also in ledger) |
+| Feng et al., CoRL 2022, *GenLoco* | [arXiv:2209.05309](https://arxiv.org/abs/2209.05309) | [repo](https://github.com/HybridRobotics/GenLoco), Apache-2.0 | L8 training distribution |
+| Gupta, Fan, Ganguli, Fei-Fei, ICLR 2022, *MetaMorph* | [arXiv:2203.11931](https://arxiv.org/abs/2203.11931) | author repo, no license file | L8 (also in ledger) |
+| Bohlinger et al., CoRL 2024, *URMA*; URMAv2 2025 | [arXiv:2409.06366](https://arxiv.org/abs/2409.06366), [arXiv:2509.02815](https://arxiv.org/abs/2509.02815) | [repo](https://github.com/nico-bohlinger/one_policy_to_run_them_all), MIT | L8 comparison |
+| Sferrazza et al., CoRL 2024, *Body Transformer* | [arXiv:2408.06316](https://arxiv.org/abs/2408.06316) | [repo](https://github.com/carlosferrazza/BodyTransformer), MIT | L8 |
+| Huang, Mordatch, Pathak, ICML 2020, *Shared Modular Policies* | [arXiv:2007.04976](https://arxiv.org/abs/2007.04976) | [repo](https://github.com/huangwl18/modular-rl), MIT | L8 (also in ledger) |
+| Kurin et al., ICLR 2021, *My Body is a Cage* (Amorpheus) | [arXiv:2010.01856](https://arxiv.org/abs/2010.01856) | [repo](https://github.com/yobibyte/amorpheus), MIT | L8: graph structure did not help |
 | *Towards Embodiment Scaling Laws* 2025 | [arXiv:2505.05753](https://arxiv.org/abs/2505.05753) | check | Section 17 |
 | PAL 2025, procedural quadrupeds | [arXiv:2505.16042](https://arxiv.org/abs/2505.16042) | check | Section 17 |
 | LocoFormer 2025 | [arXiv:2509.23745](https://arxiv.org/abs/2509.23745) | check | L6 (also in ledger) |
@@ -953,7 +1004,7 @@ own ledger row with the exact reviewed version.
 | Kress-Gazit et al. 2024, *Robot Learning as an Empirical Science* | [arXiv:2409.09491](https://arxiv.org/abs/2409.09491) | n/a | Harness positioning |
 | Gotovos, Casati, Hitz, Krause, IJCAI 2013, active level-set estimation | [IJCAI 2013](https://www.ijcai.org/Abstract/13/202) | n/a | S4 |
 | Wilks 1941, tolerance limits | [doi:10.1214/aoms/1177731788](https://doi.org/10.1214/aoms/1177731788) | n/a | S4, the 59-sample rule |
-| Angelopoulos and Bates, *A Gentle Introduction to Conformal Prediction* | [arXiv:2107.07511](https://arxiv.org/abs/2107.07511) | n/a | S5 |
+| Angelopoulos and Bates, *A Gentle Introduction to Conformal Prediction* (journal version FnTML 2023) | [arXiv:2107.07511](https://arxiv.org/abs/2107.07511) | [repo](https://github.com/aangelopoulos/conformal-prediction), MIT | S5 |
 | Lakshminarayanan, Pritzel, Blundell, NeurIPS 2017, *Deep Ensembles* | [arXiv:1612.01474](https://arxiv.org/abs/1612.01474) | n/a | S6 |
 | Lehman et al., *Artificial Life* 2020, *Surprising Creativity of Digital Evolution* | [arXiv:1803.03453](https://arxiv.org/abs/1803.03453) | n/a | S7 |
 
