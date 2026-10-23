@@ -578,6 +578,54 @@ accounting before comparison. `calibration_0` is now exposed; the other
 calibration groups and all evaluation groups remain unopened. The empirical
 withdrawal monitor and three-engine promotion remain separate required gates.
 
+### Prospective native influence comparison - 2026-10-23
+
+The [distinct influence campaign](../sdk/discovery/gpu_retrieval_influence_v1.json)
+implements six fresh worlds for each remaining calibration group: baseline,
+disabled retrieval, frozen retrieval, shuffled proposals, episode memory, and
+shuffled feedback. The three batches rotate mode order and retain 8,640 control
+decisions and 43,200 internal samples over four seconds per world. Evaluation
+groups remain unopened. This declaration is prospective; implementation alone
+establishes no physical result.
+
+The [host](../sdk/discovery/retrieval_influence_control.py) recomputes the full
+production baseline from each world's current observations, carries the core's
+bounded correction history, applies the resolved native commands, and commits
+private provider memory only after every host mapping passes. Failed provider
+calls retain their errors and return to the exact current baseline. An invalid
+host transaction closes its already-advanced sessions. No checkpoint, rollback
+or reset is scheduled inside these comparisons; those operations have a separate
+verified lifecycle. The base model and training corpus remain immutable.
+
+The [reader](../sdk/discovery/audit_gpu_retrieval_influence.py) independently
+replays scalar baseline and provider decisions, checks the actual slew history
+and all five held solver inputs, and measures influence before and after final
+speed projection and float32 transfer. Equal proposed magnitudes do not establish
+equal native exposure after trajectories diverge. The
+[comparison accounting](../sdk/discovery/retrieval_influence_accounting.py)
+requires exact trigger and absolute-magnitude matching before reporting a
+matched-influence memory benefit; all unmatched comparisons remain visible.
+
+The primary development metric is the mean of sixteen 30-command forward/lateral
+tracking-quality windows. A 0.001 m/s gain floor is a finite development direction,
+not a statistical or practical release margin. Frozen retrieval must exceed both
+fresh baseline and disabled control; episode memory must exceed both frozen and
+shuffled-feedback controls. Each group is reported separately. Every eligibility
+failure remains in the denominator. Feedback uses only completed action windows
+observed by a subsequent provider call; the last unobserved endpoint cannot be
+credited to memory, although it remains part of physical quality measurement.
+The complete safety gate, clean pushed freeze and fresh consumed identity are
+required before native collection. This campaign grants no training-data,
+held-out, noninferiority, superiority, qualification or release authority.
+
+The complete **77-test zero-world gate** now passes in retained attempt
+`sdk2-gpu-retrieval-influence-f4d804eaf0cc4ae4a517c2f54684516c`. This includes
+six new synthetic route controls, three host transaction controls and five
+comparison-accounting controls, plus the baseline, graph, fitting, shadow,
+provider and containment gates. Runtime preflight reports zero worlds and
+solver steps. The native launcher must repeat this gate from the published
+prospective freeze before opening the declared 18 worlds.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

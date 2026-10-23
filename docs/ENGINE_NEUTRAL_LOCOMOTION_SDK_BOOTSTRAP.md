@@ -37,6 +37,15 @@ Only `calibration_0` is exposed; evaluation remains unopened. A distinct bounded
 influence campaign is next, with the actual applied-correction history and
 prospective baseline/disabled/shuffled/memory controls.
 
+The [prospective influence comparison](../sdk/discovery/gpu_retrieval_influence_v1.json)
+now has its host, worker, independent reader and trigger/magnitude accounting.
+It declares six modes in each of the three remaining calibration groups, with
+actual correction history and private feedback from applied trajectories.
+The complete 77-test zero-world gate passes in retained attempt
+`sdk2-gpu-retrieval-influence-f4d804eaf0cc4ae4a517c2f54684516c`. A clean pushed
+freeze and repeated gate precede native collection. This establishes no learned benefit;
+all evaluation groups and provider-promotion gates remain untouched.
+
 The [upstream discussion adoption](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-22-upstream-discussion-follow-through)
 adds explicit force-sampling semantics. Seven new measurement controls pass,
 including all 1,800 retained VH4 example rows. The new

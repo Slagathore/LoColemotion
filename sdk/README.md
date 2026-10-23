@@ -1,5 +1,17 @@
 # LoColemotion Locomotion SDK
 
+SDK2 influence successor (prospective, 2026-10-23): the
+[declared comparison](discovery/gpu_retrieval_influence_v1.json) implements six
+fresh modes across the three remaining calibration groups. It carries actual
+correction history, applies each world's resolved commands, and confines
+feedback to private episode memory. The immutable fitted model remains a
+candidate. The independent reader reports every arm, quality window, trigger
+and correction magnitude; failed controls and unmatched native exposure cannot
+be relabeled as memory benefit. The complete 77-test zero-world gate passes;
+native collection requires its repetition from the clean pushed freeze. See the
+[roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-influence-comparison---2026-10-23)
+for metrics and claim boundaries.
+
 SDK2 shadow integration checkpoint (2026-10-23): the
 [native shadow closure](discovery/gpu_retrieval_shadow_closure_v1.json) passes the
 complete 68-test gate and independent native replay at clean pushed `fd472c76`.
