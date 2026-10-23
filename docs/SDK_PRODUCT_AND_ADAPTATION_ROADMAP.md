@@ -401,6 +401,33 @@ baseline, disabled, shuffled-proposal and shuffled-memory challenges must preced
 claims of working native Tier 2/Tier 3; three-engine promotion and the empirical
 withdrawal monitor remain separate required work.
 
+The [native repertoire successor](../sdk/discovery/gpu_repertoire_v1.json)
+now declares 36 training episodes: nine bounded bilateral correction choices in
+each of four training condition groups. Every episode has 480 outer commands and
+2,400 internal physics samples. The production baseline, v1 resolver, native
+adapter observations, per-substep capture and operation containment remain in the
+route. Initial native roll and lateral velocity vary by group; calibration and
+evaluation groups are excluded. This new campaign alone permits development
+model fitting after complete independent replay. Older training-false campaigns
+keep their original authority.
+
+The [launcher](../sdk/discovery/run_gpu_repertoire.py) adds six repertoire controls,
+eight retrieval controls and three corpus-pipeline controls to the previous
+45-test safety gate. The zero-world development attempts
+`sdk2-gpu-repertoire-4cde081d8e5b49b896883de3ae890c7e` and
+`sdk2-gpu-repertoire-38d7085a2a72455991c48793fbd8d1f9` passed their complete applicable
+gates. The latter also discovered the imported retrieval tests a second time;
+this duplicate discovery is removed prospectively, leaving 62 distinct tests.
+The initial synthetic root-precision mismatch remains retained in
+`sdk2-repertoire-development-4ba0bf4e4a6c44d994494f2698b5b137`.
+
+The [offline corpus step](../sdk/discovery/freeze_retrieval_corpus.py) rehashes the
+verified native inputs, then uses the existing Tier 2 candidate-chapter,
+frozen-corpus and model-registration pipeline. It starts a separately labeled
+empty development lineage and cannot rewrite an installed encyclopedia or
+promote a provider. Native collection has not run at this source checkpoint.
+A clean pushed freeze and the complete gate must precede its one-time execution.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

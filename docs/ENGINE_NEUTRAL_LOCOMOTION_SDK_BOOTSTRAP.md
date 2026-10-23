@@ -190,6 +190,17 @@ corpus or physical provider result exists yet. Fresh training, frozen artifacts,
 controlled native evaluation and three-engine promotion remain required. SDK1,
 full-program and release scores are unchanged.
 
+The [native training repertoire](../sdk/discovery/gpu_repertoire_v1.json) is now
+implemented prospectively: four training groups, nine actions each, 480 commands
+and 2,400 internal samples per episode. New development-only fitting authority
+belongs solely to this successor. Full native observation/control replay and
+raw-to-window joins feed the existing Tier 2 chapter/corpus/model pipeline;
+calibration and evaluation groups stay excluded. Six repertoire, eight retrieval
+and three corpus controls supplement the original 45-test gate. The full
+zero-world development gate passed, retaining the initial fixture failure.
+Native collection and fitting still require the clean pushed source and complete
+prelaunch gate; this source checkpoint is not a trained native provider.
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,
