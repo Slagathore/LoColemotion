@@ -1,12 +1,15 @@
 # LoColemotion Locomotion SDK
 
-The [stance-feedback successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#stance-feedback-discovery-prepared---2026-10-23)
-is prepared after all 105 zero-world controls passed. Its canonical feedback
-provider adds body-attitude/rate and optional speed feedback through the same
-bounded velocity-delta interface. The planned discovery has 12 candidates and
-two starts, with every baseline, fixed-profile and feedback outcome retained.
-Component geometry and real-ABI checks pass; fresh physical benefit remains
-unproved until the declared 24-world CPU batch and later confirmation.
+The [CPU stance-feedback discovery](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
+is closed after all 105 safety controls and 24 fresh worlds at published
+`53cc81c9`. Complete independent replay verified 11,520 decisions and 57,600
+internal samples: **0/24 eligible**, with no candidate selected. The
+[closure verifier](discovery/audit_cpu_stance_closure.py) binds 3,761 artifacts
+and the original full replay; all six closure controls pass. A post-hoc analysis
+retains clipping and supported-knee geometry before each first tilt violation.
+The next experiment should separate correction authority from stance posture.
+This result supplies verified development discovery data, but no adaptation
+benefit, fresh confirmation, qualification or release authority.
 
 The [native CPU motor challenge](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
 completed all four fresh worlds after all 88 controls passed at published

@@ -2,14 +2,17 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Prepared next (2026-10-23): [stance-feedback discovery](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#stance-feedback-discovery-prepared---2026-10-23)
-has passed all 105 zero-world controls. The new canonical provider converts
-body-attitude/rate feedback into support-conditioned foot motions and bounded
-joint-velocity corrections. Its geometry agrees with 1,920 retained native
-frames, and real-ABI checks verify limits, exact fallback and independent core
-replay. The declaration covers all 12 candidates at two development starts:
-24 fresh CPU worlds, 11,520 decisions and 57,600 internal samples. No new
-physical outcome or adaptation benefit is claimed at this preparation checkpoint.
+Latest discovery (2026-10-23): the [closed CPU stance-feedback family](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
+completed all 24 worlds from published `53cc81c9` after all 105 controls passed.
+Complete independent replay verified 11,520 decisions and 57,600 internal samples.
+Every candidate failed both starts: **0/24 eligible**, with an empty shortlist.
+The closure binds 3,761 artifacts, 344 frozen sources and 1,359 runtime files;
+all six closure controls pass. Before first failure, 1,597/2,551 feedback
+decisions hit the correction cap and 4,229/5,105 supported knee observations
+met the stated post-hoc near-straight rule. These are descriptive findings,
+not proven causes. Next separate correction authority from stance-posture
+bias in a new prospective experiment. Only verified development fitting data
+is earned here; confirmation, adaptation benefit and release remain unproved.
 
 Latest native result (2026-10-23): the [closed CPU motor challenge](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
 completed four fresh worlds from published `47511ec0` after all 88 safety

@@ -2013,3 +2013,13 @@ straight leg; it does not create a missing degree of freedom or enforce actuator
 limits. The existing resolver separately enforces correction, slew and speed
 bounds. No external source code or runtime dependency was copied. The family is
 untrained, and fresh declared physics must establish whether the feedback helps.
+
+The subsequent [closed native discovery](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
+retained **0/24 eligible episodes** and an empty shortlist. Complete independent
+replay validates execution, not this control design's usefulness. A separately
+labeled post-hoc diagnostic finds correction clipping in 1,597/2,551 pre-failure
+feedback decisions and near-straight posture in 4,229/5,105 supported-knee
+observations under its explicit trigonometric rule. These local counts support
+separating correction authority and posture bias in a successor; they do not
+prove either is causal or import a result from PMTG or the IK survey. No policy
+was trained and no Tier 2/Tier 3 benefit was established by this family.

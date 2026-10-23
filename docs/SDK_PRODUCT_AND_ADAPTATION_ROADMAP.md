@@ -60,10 +60,15 @@ has now completed: baseline and profile 6 failed at both starts, leaving
 0/4 eligible episodes. Strengthening phase/state-dependent control remains the
 immediate task; these diagnostic episodes grant no fitting authority.
 
-The [stance-feedback successor](#stance-feedback-discovery-prepared---2026-10-23)
-now implements that controller component and has passed its full 105-control
-zero-world gate. A 24-world CPU discovery batch is declared; no new physical
-result follows from the component checks.
+The [stance-feedback discovery](#completed-cpu-stance-discovery---2026-10-23)
+completed all 24 CPU worlds from published `53cc81c9` after all 105 controls
+passed. Independent replay verified every decision and internal sample: **0/24
+eligible**, with an empty shortlist. The closure retains all failures and a
+post-hoc account of clipping and supported-knee posture before each first tilt
+violation. Next separate correction authority from stance-posture effects in a
+distinct prospective experiment; no gain sweep or history estimator is promoted
+from this negative family. Verified discovery data may support later development
+fitting, but no fresh confirmation or adaptation benefit has been established.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1286,6 +1291,72 @@ fitting. The selected shortlist must be frozen and challenged in fresh native
 confirmation before any benefit claim. Nominal-body preservation, GPU transfer,
 unopened evaluation, history inference, Tier 3, qualification and release remain
 outside this declaration. No physical world has run at this preparation checkpoint.
+
+### Completed CPU stance discovery - 2026-10-23
+
+The [immutable closure](../sdk/discovery/cpu_stance_discovery_closure_v1.json)
+records `sdk2-cpu-stance-discovery-d6928fed6753439abd2151b137196809`, launched
+from clean published `53cc81c9fe69a2024cf8172a9cc29ef6fd4e909d` after the complete
+105-control safety gate. All **24 fresh CPU worlds** completed; no GPU or
+evaluation worlds were constructed. The independent reader replayed **11,520
+controller decisions and 57,600 internal samples**, including native force,
+contact, state, timing, private memory and public-resolver joins.
+
+Every candidate failed both development starts. Baseline retained **0/2 eligible**,
+fixed profile 6 **0/2**, and the ten feedback variants **0/20**. All 24 exceeded
+the original tilt and torso-contact limits; 13 also failed minimum height. Every
+failed episode has null quality and no eligible scoring windows. Recomputing
+the declared ranking over the full population yields an **empty shortlist** and
+no selected candidate. No fresh confirmation ran.
+
+The [closure verifier](../sdk/discovery/audit_cpu_stance_closure.py) binds
+**3,761 artifacts / 1,224,149,785 bytes**, 344 frozen sources and 1,359 runtime
+files. It verifies the original full independent reader and optionally reruns
+that replay; its ordinary closure pass constructs no worlds. Native worker wall
+time was **153.974 s**, and the original independent replay took **136.673 s**.
+Receipt SHA-256:
+`f9ada73b625b67c219f3da928792c8bf7971248984f163b5c1e1e5d94bdb36cf`.
+Independent-audit SHA-256:
+`3584c9c6476dc1b365ba197c5075bec481ec2486b009b33e916aac5dc1decee0`.
+Closure SHA-256:
+`fd462951fff66fd5f791e36367a1888b141ba77cf34f48243b2cfc6a0ee0fca3`.
+
+All **six closure controls passed** in
+`sdk2-cpu-stance-closure-controls-82c98205e64c49239f80e095c96fccb4`.
+They cover complete evidence, source/runtime tampering, false authority,
+erased failures, false selection, post-hoc count changes, and a hand-constructed
+cutoff/support/clipping example. The physical result and its original reader
+were not edited to obtain this pass.
+
+The [post-hoc diagnostic](../sdk/discovery/stance_pre_failure_diagnostic.py)
+counts only commands prepared before the first completed internal sample that
+violates an original physical eligibility predicate. For all 24 episodes that
+first violation was tilt, at **0.935-1.333 seconds**. Across the 20 feedback
+episodes before that cutoff:
+
+| Descriptive count | Numerator / denominator |
+| --- | --- |
+| Decisions with at least one absolute correction clamp | 1,597 / 2,551 |
+| Actuator commands with an absolute correction clamp | 4,704 / 20,408 |
+| Actuator commands with a slew clamp | 3,492 / 20,408 |
+| Actuator commands with a final speed clamp | 312 / 20,408 |
+| Supported knee observations with `abs(sin(knee_angle)) <= 0.1` | 4,229 / 5,105 |
+
+The supported-knee rule is explicitly post hoc. These counts identify control
+limits and frequently near-straight support geometry; they do not establish a
+cause of falling, an improved survival target, or a new selection criterion.
+The inverse-kinematics model remains finite at straight legs, but damping alone
+does not create vertical authority there. The next distinct experiment should
+separate correction magnitude/slew from posture bias, keep force and final-speed
+limits explicit, and retain the original eligibility criteria. No such successor
+has run at this closure checkpoint.
+
+The complete verified discovery population may supply later development fitting,
+including its failures. That permission does not create useful eligible windows,
+a qualified provider, statistical superiority, cross-engine equivalence or
+Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
+their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
+at 19/25; qualification and release authority remain false.
 
 ### SDK2 claim targets
 
