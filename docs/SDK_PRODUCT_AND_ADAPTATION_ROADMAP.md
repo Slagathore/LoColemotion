@@ -70,13 +70,15 @@ distinct prospective experiment; no gain sweep or history estimator is promoted
 from this negative family. Verified discovery data may support later development
 fitting, but no fresh confirmation or adaptation benefit has been established.
 
-The [posture/envelope factorial](#posture-and-envelope-factorial-prepared---2026-10-23)
-now passes all 123 zero-world controls. It declares every corner of three binary
-factors and a baseline at both development starts: 18 fresh CPU worlds. The
-posture preference and each child's host-owned envelope are model-bound. The
-reader will retain first physical violations, control activity and all 24
-single-factor contrasts while ranking only complete eligible pairs. No new
-physical result follows at this preparation checkpoint.
+The [posture/envelope factorial](#completed-posture-and-envelope-factorial---2026-10-23)
+completed all 18 CPU worlds from published `f9a0509d` after all 123 controls
+passed. Independent replay verified **1/18 eligible and 17/18 negative**. The
+all-high corner walked forward for the complete four-second horizon at the
+0.005 m/s start, but failed at 0.002 m/s. No candidate passes both, leaving the
+shortlist empty. The next successor must address this start sensitivity before
+fresh confirmation and healthy-body preservation; history inference remains
+later. The retained result supplies verified development fitting data, with no
+new adaptation-benefit, qualification or release authority.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1365,6 +1367,83 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed posture and envelope factorial - 2026-10-23
+
+The [prospective declaration](../sdk/discovery/cpu_posture_discovery_v1.json)
+ran from clean, published freeze `f9a0509ddb77aa49ddddae5d681fabd222786c7f`.
+Attempt `sdk2-cpu-posture-discovery-fd02e08111c54c4e8ff850109e65ed7b` repeated the
+complete **123-control safety gate**, then completed **18 fresh sequential CPU
+worlds**, **8,640 controller decisions** and **43,200 internal samples**. No GPU
+or evaluation world was opened. The original independent reader replayed every
+controller decision and native stream, with **360 source bindings and 1,359
+runtime bindings**. Native execution took 130.431 s; independent replay took
+111.646 s. Exit success certifies the complete execution and audit, not a
+successful controller family.
+
+The complete outcome is **1 eligible and 17 negative episodes**. Each candidate
+still requires two eligible starts before ranking, and none qualifies:
+
+| Correction cap (rad/s) | Slew per command (rad/s) | Posture gain (/s) | First physical violation at 0.002 m/s | First physical violation at 0.005 m/s | Eligible / 2 |
+| --- | --- | --- | --- | --- | --- |
+| Baseline | Baseline | 0 | Tilt at 1.0117 s | Tilt at 0.9467 s | 0/2 |
+| 0.25 | 0.02 | 0 | Tilt at 1.0517 s | Tilt at 1.1533 s | 0/2 |
+| 0.25 | 0.02 | 8 | Tilt at 1.1317 s | Tilt at 1.3150 s | 0/2 |
+| 0.25 | 0.08 | 0 | Tilt at 1.0000 s | Tilt at 1.0283 s | 0/2 |
+| 0.25 | 0.08 | 8 | Tilt at 1.1017 s | Tilt at 1.2250 s | 0/2 |
+| 3.5 | 0.02 | 0 | Tilt at 1.0683 s | Tilt at 1.1617 s | 0/2 |
+| 3.5 | 0.02 | 8 | Tilt at 1.1950 s | Tilt at 1.5567 s | 0/2 |
+| 3.5 | 0.08 | 0 | Tilt at 1.0283 s | Tilt at 1.0500 s | 0/2 |
+| 3.5 | 0.08 | 8 | Tilt at 1.6900 s | Eligible through 4.0000 s | 1/2 |
+
+All 17 negative episodes failed the original tilt and torso-contact criteria;
+four also failed minimum height. None is removed or assigned an eligible
+quality window. The sole positive, `start_005_feedback_a350_s008_p8`, retained
+16 eligible windows, zero torso contacts, minimum height **0.41337 m**, maximum
+tilt **0.23341 rad**, net forward travel **0.38040 m** and lateral displacement
+**-0.02111 m**. Its mean quality **-0.12938 m/s** is a negative velocity-tracking
+error score; zero is perfect, and a negative score does not mean backward
+travel. These observations establish one finite upright forward-walking episode,
+not reliable adaptation or a selected controller.
+
+All **24 prospectively declared single-factor contrasts** are retained. Each
+axis has one finite eligibility improvement at the all-high corner, but no
+pair has two eligible members for a quality difference. A surviving four-second
+horizon is censored: the reader does not invent a failure time or subtract it
+from an observed failure time. Failure timing never enters selection. Activity
+counts use each trial's declared pre-violation prefix, which differs in length;
+clipping and supported-posture proportions do not establish a population effect
+or isolate a general cause.
+
+The [closure](../sdk/discovery/cpu_posture_discovery_closure_v1.json) inventories
+**4,821 artifacts / 1,044,859,064 bytes** under the durable evidence root.
+Original receipt SHA-256:
+`ce86a75b6db14bd230c57f08f5e21ecf63740f15660f0bcfdf3f403a8a985186`.
+Original full-replay audit SHA-256:
+`33b629fef53c0975c5cde5385aabcd2d120b24fe0b6dc8251817c1c55fb66de3`.
+The [closure reader](../sdk/discovery/audit_cpu_posture_closure.py) checks exact
+retained bytes, frozen Git sources, installed runtime hashes, complete plans,
+all gate terminals, full outcome denominators, positive-window scoring,
+first-violation activity, all factorial pairs and the empty shortlist. It opens
+no physical world; an explicit option repeats the original full controller
+replay. Original physical streams and the consumed declaration remain immutable.
+
+All **six closure controls passed** in
+`sdk2-cpu-posture-closure-controls-8efddabb199649f88df8483cd4c5ee8e`
+(129.627 s). They refuse changed source/runtime or retained bytes, missing
+population, erased failures, false selection, changed positive scoring and
+factorial/activity tampering; they also enforce zero physical construction.
+The original test log SHA-256 is
+`b948beee83801d2943cad6532cbcfb6ccdbb825388d47e6a2979b7910b490119`.
+
+The next question is whether a distinct body-feedback successor can preserve
+this finite walking behavior at both exposed starts. The prospective design
+must keep the full baseline/candidate denominator and original eligibility
+rules. A successful discovery pair would still need a separately frozen fresh
+confirmation and healthy-body preservation before training or evaluating
+history-conditioned behavior. This family is untrained. Only verified
+development discovery fitting authority is earned; useful Tier 2/Tier 3
+adaptation, population inference, equivalence and release remain unproved.
 
 ### Posture and envelope factorial prepared - 2026-10-23
 

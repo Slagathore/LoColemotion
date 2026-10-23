@@ -2043,3 +2043,11 @@ native force limits and final speed limits. This follows the retained clipping
 and posture observations; it does not turn them into causal proof. The model is
 untrained, all 123 zero-world controls pass, and native benefit remains open at
 this preparation checkpoint. No external source code or dependency was imported.
+
+The subsequent [complete native factorial](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
+retains **1/18 eligible and 17/18 negative** episodes. The all-high corner walked
+0.3804 m forward through four seconds at one start and failed the other, leaving
+no complete eligible pair. All 24 predeclared contrasts and the original
+failures remain in the closure. This is one finite local walking observation;
+it does not import a locomotion guarantee from the inverse-kinematics source or
+establish useful adaptation. Start sensitivity remains the next control question.

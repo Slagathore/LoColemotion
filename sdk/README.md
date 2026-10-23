@@ -1,11 +1,15 @@
 # LoColemotion Locomotion SDK
 
-The [posture/envelope successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#posture-and-envelope-factorial-prepared---2026-10-23)
-is prepared after all 123 zero-world controls passed. Its full factorial separates
-correction magnitude, slew and supported-leg posture preference, with a baseline
-control at each start. The declared 18 CPU worlds retain every outcome and all
-24 single-factor contrasts. The previous 0/24 result remains unchanged; this
-preparation has no physical benefit, fitting, qualification or release authority.
+The [posture/envelope factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
+is closed after all 123 controls and 18 fresh CPU worlds at published
+`f9a0509d`. Complete independent replay verified 8,640 decisions and 43,200
+internal samples: **1/18 eligible, 17/18 negative**. The all-high corner walked
+0.3804 m forward through four seconds at one start and failed the other, so
+no candidate meets the two-start selection rule. The [closure verifier](discovery/audit_cpu_posture_closure.py)
+binds 4,821 artifacts and all 24 prospective single-factor contrasts; all six
+closure controls pass. Start
+sensitivity is the next controller problem; fresh confirmation, healthy-body
+preservation, useful adaptation and release remain unproved.
 
 The [CPU stance-feedback discovery](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
 is closed after all 105 safety controls and 24 fresh worlds at published
@@ -14,7 +18,7 @@ internal samples: **0/24 eligible**, with no candidate selected. The
 [closure verifier](discovery/audit_cpu_stance_closure.py) binds 3,761 artifacts
 and the original full replay; all six closure controls pass. A post-hoc analysis
 retains clipping and supported-knee geometry before each first tilt violation.
-The next experiment should separate correction authority from stance posture.
+The factorial successor above separates correction authority from stance posture.
 This result supplies verified development discovery data, but no adaptation
 benefit, fresh confirmation, qualification or release authority.
 

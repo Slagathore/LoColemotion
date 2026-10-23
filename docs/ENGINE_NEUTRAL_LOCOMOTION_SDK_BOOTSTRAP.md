@@ -2,15 +2,20 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Prepared next (2026-10-23): the [posture/envelope factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#posture-and-envelope-factorial-prepared---2026-10-23)
-has passed all 123 zero-world controls. Eight feedback corners independently
-vary correction cap, slew and support-posture preference; baseline supplies the
-ninth role. All nine roles reproduced 1,152 decisions across two core binaries,
-including exact original-controller targets at the unchanged corner and exact
-fallback on unsupported inputs. The prospective run covers 18 fresh CPU worlds,
-8,640 decisions and 43,200 internal samples. No physical result follows yet.
+Latest discovery (2026-10-23): the [closed posture/envelope factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
+completed all 18 CPU worlds from published `f9a0509d` after all 123 controls
+passed. Independent replay verified 8,640 decisions and 43,200 internal samples:
+**1/18 eligible, 17/18 negative**. The all-high corner walked 0.3804 m forward
+through four seconds at the 0.005 m/s start, but failed the 0.002 m/s start.
+No controller met the two-start rule, so the shortlist remains empty. The
+closure binds 4,821 artifacts, 360 frozen sources and 1,359 runtime files,
+including all 24 prospective single-factor contrasts; all six closure controls
+pass. Next address the observed
+start sensitivity in a distinct controller successor, then require fresh
+confirmation and healthy-body preservation before history inference. This is
+verified development discovery data; adaptation and release remain unproved.
 
-Latest discovery (2026-10-23): the [closed CPU stance-feedback family](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
+Earlier discovery (2026-10-23): the [closed CPU stance-feedback family](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
 completed all 24 worlds from published `53cc81c9` after all 105 controls passed.
 Complete independent replay verified 11,520 decisions and 57,600 internal samples.
 Every candidate failed both starts: **0/24 eligible**, with an empty shortlist.
@@ -18,8 +23,8 @@ The closure binds 3,761 artifacts, 344 frozen sources and 1,359 runtime files;
 all six closure controls pass. Before first failure, 1,597/2,551 feedback
 decisions hit the correction cap and 4,229/5,105 supported knee observations
 met the stated post-hoc near-straight rule. These are descriptive findings,
-not proven causes. Next separate correction authority from stance-posture
-bias in a new prospective experiment. Only verified development fitting data
+not proven causes. The factorial successor above separates correction authority
+from stance-posture bias. Only verified development fitting data
 is earned here; confirmation, adaptation benefit and release remain unproved.
 
 Latest native result (2026-10-23): the [closed CPU motor challenge](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
