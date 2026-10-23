@@ -28,6 +28,10 @@ queue. The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) and
 claims. The native development candidate below grants no new qualification or
 provider promotion.
 
+Current learning boundary: native fitting and the fresh native shadow route are
+complete in their declared development scope. Bounded learned influence and
+real episode-adaptation comparisons are next; shadow feedback is diagnostic.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -538,6 +542,41 @@ Shadow readiness requires an eligible baseline, a supported nonzero frozen
 proposal and no provider/protocol errors; even a positive opens no learned
 influence or promotion authority. Native execution remains next at this source
 checkpoint.
+
+Clean pushed `fd472c76` repeated the full 68-test gate and consumed the
+[native shadow attempt](../sdk/discovery/gpu_retrieval_shadow_closure_v1.json).
+The fresh `calibration_0` baseline world completed all **480 controller steps**
+and **2,400 physics steps**. The independent reader also replayed all **2,400
+provider decisions**. Frozen retrieval produced nonzero hypothetical corrections
+on **447/480 steps**, with three unsupported and 30 no-proposal outcomes. Every
+mode had zero provider errors and zero unexpected protocol fallbacks; disabled
+retrieval produced no correction. All physical provider-influence rows are zero.
+
+Both episodic modes executed checkpoint, rollback and reset at the declared
+steps, then continued with reset epoch 1 and sequence 119. This verifies the
+native-observation memory lifecycle while the base model remains immutable.
+Because the proposed actions were never applied, the feedback has no causal
+action-effect meaning and establishes no useful Tier 3 adaptation. Baseline
+displacement was 0.411363 m, minimum height 0.424404 m, maximum tilt 0.071902 rad,
+with no torso-contact or safe-no-actuation step. Native execution took
+208.154688 s including compilation and capture; the full audit took 25.267103 s.
+
+The [shadow closure verifier](../sdk/discovery/audit_gpu_retrieval_shadow_closure.py)
+rehashes 770 artifacts, verifies 277 frozen-source, 1,359 runtime and two
+external candidate bindings, checks the complete gate and memory lifecycle,
+and recomputes timing. Its default binds the original complete reader;
+`--replay` repeats it without opening worlds. The consumed shadow population
+cannot supply training data or be relabeled as learned physical influence.
+Four corruption controls pass in retained attempt
+`sdk2-shadow-closure-controls-920552a68930443184c0813de926c114`, including source,
+runtime/model, population, memory-summary and attempted authority changes.
+
+Next is a distinct bounded influence campaign carrying actual applied-correction
+history through the core's slew limiter, with fresh baseline, disabled,
+shuffled-proposal and episode-memory controls. Freeze the trigger/influence
+accounting before comparison. `calibration_0` is now exposed; the other
+calibration groups and all evaluation groups remain unopened. The empirical
+withdrawal monitor and three-engine promotion remain separate required gates.
 
 ### SDK2 claim targets
 

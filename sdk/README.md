@@ -1,29 +1,37 @@
 # LoColemotion Locomotion SDK
 
 SDK2 shadow integration checkpoint (2026-10-23): the
-[prospective native route](discovery/gpu_retrieval_shadow_v1.json) passes its
-complete 68-test zero-world development gate. One fresh calibration world will
-retain 480 baseline decisions, 2,400 physics samples and 2,400 hypothetical
-provider decisions across five isolated modes. The two episodic modes exercise
-checkpoint, rollback and reset. All physical commands remain the baseline;
+[native shadow closure](discovery/gpu_retrieval_shadow_closure_v1.json) passes the
+complete 68-test gate and independent native replay at clean pushed `fd472c76`.
+One fresh calibration world retained 480 baseline decisions, 2,400 physics
+samples and 2,400 hypothetical provider decisions across five isolated modes.
+Frozen retrieval proposed nonzero corrections in 447/480 steps, with no provider
+or protocol errors. The two episodic modes exercised checkpoint, rollback,
+reset and continued observation. All physical commands remained the baseline;
 shadow feedback cannot establish an unexecuted action's effect or train a model.
 The [reader](discovery/audit_gpu_retrieval_shadow.py) independently checks the
 native joins, scalar baseline, request/memory transport and hypothetical clamps.
 
-From PowerShell at this repository root, run the complete gate with the exact
-bound runtime images:
+The [closure verifier](discovery/audit_gpu_retrieval_shadow_closure.py) rehashes
+770 artifacts and checks frozen-source, runtime and external model bindings.
+Four corruption controls pass without opening worlds.
+From PowerShell at this repository root, reopen the retained result with the
+exact bound runtime images:
 
 ```powershell
 & ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B `
-  ./sdk/discovery/run_gpu_retrieval_shadow.py `
+  ./sdk/discovery/audit_gpu_retrieval_shadow_closure.py `
+  ./sdk/discovery/gpu_retrieval_shadow_closure_v1.json `
+  --evidence-root ../SporeSpore_Evidence `
   --core PATH_TO_BOUND_BATCH_CORE_DLL `
   --baseline-core PATH_TO_BOUND_SCALAR_CORE_DLL
 ```
 
-Success reports `ok: true` and `physical_started: false`. A clean pushed source
-freeze is required before adding `--run`, which repeats the full gate and
-consumes a fresh contained attempt. A positive shadow result does not qualify
-learned influence, native Tier 3 benefit or provider promotion.
+Success reports `ok: true`, `physical_provider_influence_rows: 0` and
+`full_controller_replay_performed: false`. Add `--replay` to repeat the complete
+retained reader, also without new worlds. The consumed native attempt cannot be
+rerun or promoted to learned influence. A distinct influence campaign is next;
+native Tier 3 benefit and provider promotion remain unproven.
 
 SDK2 native-learning checkpoint (2026-10-23): the
 [flat-start v2 repertoire and fit](discovery/gpu_repertoire_fit_closure_v2.json)
@@ -31,7 +39,8 @@ now provide one immutable native development candidate. All 36 episodes met the
 unchanged eligibility limits after the full 63-test gate at clean pushed
 `2ab77fcf`. The independent reader replayed 17,280 decisions and checked 86,400
 physics samples. Offline fitting produced 576 cases, with two of 48 archive bins
-occupied. Calibration and evaluation groups remain unopened.
+occupied. Fitting used training groups only. The separate shadow run above opens
+`calibration_0`; evaluation groups remain unopened.
 
 The [fit verifier](discovery/audit_gpu_repertoire_fit_closure_v2.py) rehashes 768
 artifacts, checks 267 frozen-source and 1,359 runtime bindings, recomputes timing
@@ -40,7 +49,7 @@ corruption controls pass. The [first repertoire](discovery/gpu_repertoire_negati
 remains execution-valid and all-negative: none of its 36 episodes supplies a
 fitted case. Its thresholds, retained failures and fitting refusal are unchanged.
 
-Fresh native shadow/influence and controlled Tier 2/Tier 3 evaluation are next;
+Bounded native influence and controlled Tier 2/Tier 3 evaluation are next;
 the fitted candidate has no physical acceptance, promotion or release authority.
 The empirical withdrawal monitor and three-engine qualification remain open.
 See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23).

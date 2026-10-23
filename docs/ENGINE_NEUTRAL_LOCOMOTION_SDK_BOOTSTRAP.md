@@ -13,9 +13,9 @@ upright-start training episodes. Clean pushed `2ab77fcf` passed the complete
 63-test gate; all 17,280 decisions and 86,400 internal rows passed independent
 replay. The closure reader rehashes 768 artifacts and independently reconstructs
 the corpus/model/registration chain; five corruption controls pass. Only two
-archive bins are occupied, and calibration/evaluation groups remain unopened.
-Fresh native shadow/influence, reversible-memory comparisons and qualification
-are next. This is native fitting, not completed Tier 2 or Tier 3 behavior.
+archive bins are occupied, and fitting excludes calibration/evaluation data.
+Bounded native influence, reversible-memory comparisons and qualification are
+next. This is native fitting, not completed Tier 2 or Tier 3 behavior.
 
 The [shadow implementation](../sdk/discovery/gpu_retrieval_shadow_v1.json) now
 passes its complete 68-test development gate. It declares one fresh calibration
@@ -23,8 +23,19 @@ world with baseline-only actuation and five isolated provider memories, retainin
 all hypothetical resolutions and checkpoint/rollback/reset transitions. The
 independent reader checks native joins, scalar baseline equality and provider
 replay. Shadow feedback has no action-effect or training authority. A clean
-pushed freeze and repeated gate must precede native execution; learned influence
-and Tier 3 benefit remain untested.
+pushed freeze and repeated gate preceded the native result below; learned
+influence and Tier 3 benefit remain untested.
+
+The [native shadow closure](../sdk/discovery/gpu_retrieval_shadow_closure_v1.json)
+now closes that integration gate at `fd472c76`: one fresh calibration world,
+480 baseline decisions, 2,400 physics rows and 2,400 independently replayed
+provider decisions. Frozen retrieval proposed nonzero hypothetical corrections
+in 447/480 steps, with zero provider/protocol errors. Checkpoint, rollback, reset
+and continued observation all passed; physical learned influence stayed zero.
+The closure verifier checks 770 artifacts plus source/runtime/model bindings.
+Only `calibration_0` is exposed; evaluation remains unopened. A distinct bounded
+influence campaign is next, with the actual applied-correction history and
+prospective baseline/disabled/shuffled/memory controls.
 
 The [upstream discussion adoption](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-22-upstream-discussion-follow-through)
 adds explicit force-sampling semantics. Seven new measurement controls pass,
