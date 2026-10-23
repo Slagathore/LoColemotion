@@ -2,6 +2,15 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Prepared next (2026-10-23): [stance-feedback discovery](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#stance-feedback-discovery-prepared---2026-10-23)
+has passed all 105 zero-world controls. The new canonical provider converts
+body-attitude/rate feedback into support-conditioned foot motions and bounded
+joint-velocity corrections. Its geometry agrees with 1,920 retained native
+frames, and real-ABI checks verify limits, exact fallback and independent core
+replay. The declaration covers all 12 candidates at two development starts:
+24 fresh CPU worlds, 11,520 decisions and 57,600 internal samples. No new
+physical outcome or adaptation benefit is claimed at this preparation checkpoint.
+
 Latest native result (2026-10-23): the [closed CPU motor challenge](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
 completed four fresh worlds from published `47511ec0` after all 88 safety
 controls passed. Complete independent replay verified 1,920 decisions and

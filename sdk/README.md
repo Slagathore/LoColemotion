@@ -1,5 +1,13 @@
 # LoColemotion Locomotion SDK
 
+The [stance-feedback successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#stance-feedback-discovery-prepared---2026-10-23)
+is prepared after all 105 zero-world controls passed. Its canonical feedback
+provider adds body-attitude/rate and optional speed feedback through the same
+bounded velocity-delta interface. The planned discovery has 12 candidates and
+two starts, with every baseline, fixed-profile and feedback outcome retained.
+Component geometry and real-ABI checks pass; fresh physical benefit remains
+unproved until the declared 24-world CPU batch and later confirmation.
+
 The [native CPU motor challenge](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
 completed all four fresh worlds after all 88 controls passed at published
 `47511ec0`. Independent replay verified 1,920 decisions and 9,600 internal rows:

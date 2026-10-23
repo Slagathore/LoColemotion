@@ -1,0 +1,318 @@
+{
+  "schema_version": "locolemotion_stance_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "descriptor": {
+    "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+    "morphology_id": "qsdk_r05_generated_s169",
+    "torso_length_scale": 1.0041015625,
+    "torso_width_scale": 1.0031893004115227,
+    "upper_length_fraction": 0.5219571428571428,
+    "hip_span_scale": 0.9856413994169096,
+    "foot_radius_scale": 0.9987180691209617,
+    "front_limb_mass_scale": 0.975022758306782
+  },
+  "ordered_joint_ids": [
+    "front_left_hip",
+    "front_left_knee",
+    "front_right_hip",
+    "front_right_knee",
+    "rear_left_hip",
+    "rear_left_knee",
+    "rear_right_hip",
+    "rear_right_knee"
+  ],
+  "legs": [
+    {
+      "id": "front_left",
+      "hip_anchor_body_m": {
+        "x": 0.19712827988338194,
+        "y": -0.05,
+        "z": -0.17741545189504374
+      },
+      "upper_length_m": 0.18268499999999996,
+      "lower_length_m": 0.16731500000000002
+    },
+    {
+      "id": "front_right",
+      "hip_anchor_body_m": {
+        "x": 0.19712827988338194,
+        "y": -0.05,
+        "z": 0.17741545189504374
+      },
+      "upper_length_m": 0.18268499999999996,
+      "lower_length_m": 0.16731500000000002
+    },
+    {
+      "id": "rear_left",
+      "hip_anchor_body_m": {
+        "x": -0.19712827988338194,
+        "y": -0.05,
+        "z": -0.17741545189504374
+      },
+      "upper_length_m": 0.18268499999999996,
+      "lower_length_m": 0.16731500000000002
+    },
+    {
+      "id": "rear_right",
+      "hip_anchor_body_m": {
+        "x": -0.19712827988338194,
+        "y": -0.05,
+        "z": 0.17741545189504374
+      },
+      "upper_length_m": 0.18268499999999996,
+      "lower_length_m": 0.16731500000000002
+    }
+  ],
+  "maximum_absolute_correction_rad_s": 0.25,
+  "maximum_slew_per_step_rad_s": 0.02,
+  "jacobian_damping_m": 0.03,
+  "maximum_tilt_rad": 0.6,
+  "maximum_angular_speed_rad_s": 20.0,
+  "maximum_linear_speed_m_s": 10.0,
+  "support_gate": "presence_and_bears_support",
+  "kinematic_point": "foot_sphere_center_in_torso_frame",
+  "candidate_count": 12,
+  "candidates": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "factor": null,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "fixed_profile_6",
+      "mode": "fixed",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_low",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 1.0,
+      "angular_damping": 0.25,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_low_profile6",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25
+      ],
+      "attitude_gain_s_inv": 1.0,
+      "angular_damping": 0.25,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_medium",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_medium_profile6",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_high",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 6.0,
+      "angular_damping": 1.0,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_high_profile6",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25
+      ],
+      "attitude_gain_s_inv": 6.0,
+      "angular_damping": 1.0,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_rate_only",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 1.0,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_attitude_only",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0
+    },
+    {
+      "id": "stance_medium_speed",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.5
+    },
+    {
+      "id": "stance_medium_speed_profile6",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.5
+    }
+  ],
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "coverage": [
+    "exact S169 canonical geometry",
+    "current body attitude and angular rate",
+    "support-conditioned planar damped inverse kinematics",
+    "bounded v1 velocity residual and unchanged fallback"
+  ],
+  "not_covered": [
+    "closed-loop improvement",
+    "phase-clock or gait-frequency modulation",
+    "lateral joint actuation",
+    "arbitrary morphology",
+    "learned history inference",
+    "Tier 3 benefit",
+    "physical qualification"
+  ]
+}

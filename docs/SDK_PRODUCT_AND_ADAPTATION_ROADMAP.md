@@ -60,6 +60,11 @@ has now completed: baseline and profile 6 failed at both starts, leaving
 0/4 eligible episodes. Strengthening phase/state-dependent control remains the
 immediate task; these diagnostic episodes grant no fitting authority.
 
+The [stance-feedback successor](#stance-feedback-discovery-prepared---2026-10-23)
+now implements that controller component and has passed its full 105-control
+zero-world gate. A 24-world CPU discovery batch is declared; no new physical
+result follows from the component checks.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -1225,6 +1230,62 @@ challenge a frozen shortlist on CPU, and establish useful control before fitting
 a history estimator or extending Tier 3 memory. These four diagnostic worlds
 remain excluded from fitting and selection. No adaptation, statistical inference,
 qualification or release authority is granted by this closure.
+
+### Stance-feedback discovery prepared - 2026-10-23
+
+The [canonical feedback model](../sdk/adaptation_provider/stance_feedback_v1.py)
+uses current body orientation, angular velocity, task velocity and observed
+support. It requests stance-foot motions opposite the desired body correction,
+then applies analytic planar inverse kinematics with fixed damping. Foot-sphere
+centres and Jacobians come from the exact S169 geometry. A straight leg's
+singularity remains finite; the model has no lateral joint degree of freedom.
+The scalar host uses the unchanged portable baseline and public v1 resolver.
+
+The [12-candidate family](../sdk/adaptation_provider/stance_feedback_v1.json)
+contains baseline, fixed profile 6, low/medium/high attitude-and-rate feedback
+with and without the fixed profile, rate-only and attitude-only controls, and
+two optional speed-feedback variants. Gains remain untrained. The existing
+0.25 rad/s correction and 0.02 rad/s per-command slew bounds remain in force.
+On a valid host request, unsupported feedback inputs, tilt beyond 0.6 rad,
+linear speed beyond 10 m/s, or angular speed beyond 20 rad/s withdraw the provider
+and restore the exact baseline. Invalid host requests retain the core's typed
+error behavior. These are declared input limits, not a recoverability certificate.
+The model gates feedback on observed support; it does not change the gait clock.
+
+Eight component controls pass. Geometry checks cover all **1,920 retained CPU
+frames**, with maximum foot-centre error **1.055e-15 m** and Jacobian error
+**9.923e-16 m/rad**. They compare against native body poses and joint axes,
+including the failed trajectories. These are kinematic checks, not fitting.
+Further controls cover analytic derivatives, straight-leg damping, correction
+direction, yaw-invariant feedback and speed-domain membership, support gating,
+invalid inputs, model binding and public-resolver refusal. In **128 real-ABI
+steps**, feedback was supported at 122 and withdrawn at six; the independent
+core build reproduced the complete decisions, and baseline velocities matched
+the retained bits. No new worlds were constructed by these checks.
+
+The [new discovery declaration](../sdk/discovery/cpu_stance_discovery_v1.json)
+uses one development seed and **24 fresh CPU worlds**: every candidate at
+0.002 and 0.005 m/s initial lateral velocity under the unchanged left-75 motor
+model. Each world has a fresh native data instance and private controller memory,
+480 commands and five internal steps per command. Full capture and independent
+replay cover **11,520 decisions and 57,600 internal samples**. The reader ranks
+only feedback candidates with two complete eligible episodes, using mean quality
+and candidate index for deterministic ordering. It retains all failed controls
+and candidates; a missing or failed start cannot be dropped from ranking.
+
+The complete **105-control zero-world gate passed** in
+`sdk2-cpu-stance-discovery-899c0bda7360444d8a654a4bd97cb029`, with 344 source
+bindings and 1,359 runtime bindings. Receipt SHA-256:
+`d553bccf74645aa76e968720066d21a07c4ad6352731c16e46aed7895baa1f51`.
+The gate includes the eight component controls, nine route/ranking controls,
+the complete inherited controls, provider refusals and process containment.
+Its runtime preflight confirms zero worlds and zero solver steps.
+
+Only complete independently verified discovery may supply later development
+fitting. The selected shortlist must be frozen and challenged in fresh native
+confirmation before any benefit claim. Nominal-body preservation, GPU transfer,
+unopened evaluation, history inference, Tier 3, qualification and release remain
+outside this declaration. No physical world has run at this preparation checkpoint.
 
 ### SDK2 claim targets
 

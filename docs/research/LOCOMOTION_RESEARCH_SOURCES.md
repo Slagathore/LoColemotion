@@ -1991,3 +1991,25 @@ the reason to establish a useful phase/state-dependent control family before
 fitting an RMA-inspired history estimator: inference cannot supply control
 authority that the tested action family has not demonstrated. The diagnostic
 has no fitting or selection authority; fresh development discovery is required.
+
+## 2026-10-23 support-conditioned body feedback
+
+[Iscen et al., PMTG, CoRL 2018](https://proceedings.mlr.press/v87/iscen18a.html)
+demonstrates that compact observation-conditioned policies can complement a
+trajectory generator. Its learned controller also modulates generator parameters.
+The [stance-feedback component](../../sdk/adaptation_provider/stance_feedback_v1.py)
+uses that architectural motivation while keeping this project's generator fixed:
+current attitude/rate feedback and optional speed error request small planted-foot
+motions through the existing velocity-residual interface. No PMTG implementation,
+weights or performance claim is imported.
+
+The inverse-kinematics calculation uses the damped least-squares expression
+`J^T (J J^T + lambda^2 I)^-1 v`, described in
+[Buss's author-hosted IK survey](https://mathweb.ucsd.edu/~sbuss/ResearchWeb/ikmethods/iksurvey.pdf).
+This local implementation specializes the calculation to the exact planar
+two-joint S169 leg and verifies its forward kinematics and Jacobians against
+retained native body poses and axes. Fixed damping makes the solve finite at a
+straight leg; it does not create a missing degree of freedom or enforce actuator
+limits. The existing resolver separately enforces correction, slew and speed
+bounds. No external source code or runtime dependency was copied. The family is
+untrained, and fresh declared physics must establish whether the feedback helps.
