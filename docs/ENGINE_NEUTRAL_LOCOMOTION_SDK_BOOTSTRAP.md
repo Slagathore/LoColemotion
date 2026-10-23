@@ -2,6 +2,18 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest feasibility result (2026-10-23): the [16-command context diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
+correctly classifies **8/8 authorized training groups** with each start's two
+conditions held out together, versus 4/8 for constant nominal and 0/8 for
+synthetically reversed associations. It uses only the first 0.133333 s of
+actual baseline actions and observed joint response. Seven component controls
+and three closure controls pass; zero new worlds are opened. This is internal
+training validation, not reserved evaluation or physical control benefit.
+The fitted label estimator has no action mapping or control authority. Next
+prepare a matched immediate-versus-16-command height comparison on the four
+exposed degraded-body training starts, with fresh baseline worlds. The failed
+64-command repertoire and every reserved split retain their original scope.
+
 Latest closure (2026-10-23): the [causal-prefix training repertoire](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)
 completed 24 fresh CPU worlds from `e15bd02b` after all 192 controls passed.
 Independent replay verified 34,560 decisions and 172,800 internal samples:

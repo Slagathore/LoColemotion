@@ -2170,3 +2170,23 @@ chosen control can help at the declared activation time. Do not reinterpret
 this failed delayed repertoire as a positive selector, fit from the earlier
 confirmation, or expose reserved calibration/evaluation to tuning. No external
 code or dependency was imported; no published performance claim transfers here.
+
+## 2026-10-23 early causal context feasibility
+
+The [16-command diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
+implements a small local label estimator over the already authorized training
+prefixes. In four blocked folds it classifies 8/8 condition/start groups; the
+constant-nominal and synthetic association-reversal controls score 4/8 and 0/8.
+Each fold holds both conditions at one initial velocity out together, and the
+three repeated role prefixes count once. The complete source population retains
+all twelve negative trials. Seven component and three final closure controls
+pass, with a deterministic regeneration from the original native records.
+
+This is an observability result for the two exposed profiles at the specified
+training starts, not a reproduction of RMA or a physical adaptation result.
+The fixed 16-command window was chosen before this analysis; no feature/window
+search, confidence calibration or reserved evaluation was performed. The fitted
+centroids have no action mapping or control authority. A matched native timing
+comparison must establish usable feedback before the inferred context can be
+credited with useful control. Continuously updated adaptation still needs
+coverage of the histories its own choices produce, as discussed above.

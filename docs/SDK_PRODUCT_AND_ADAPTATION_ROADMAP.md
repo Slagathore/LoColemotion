@@ -108,6 +108,14 @@ is empty; nominal baseline ranks first. Eight shared prefixes are verified
 training groups. Earlier observation and initial control now need a distinct
 successor. Learned selection and reserved calibration/evaluation remain unopened.
 
+The [16-command training diagnostic](#completed-early-context-feasibility---2026-10-23)
+now classifies 8/8 groups with both conditions of each start held out together,
+versus constant nominal 4/8 and synthetically reversed associations 0/8. Seven
+component and three closure controls pass. Zero new worlds opened; no action
+mapping or control authority is assigned. Next compare immediate and 16-command
+height feedback at the same exposed degraded-body starts before using the
+classifier for control. This internal check does not expose reserved groups.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -1395,6 +1403,71 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed early-context feasibility - 2026-10-23
+
+The [fixed 16-command diagnostic](../sdk/discovery/early_context_feasibility_v1.json)
+uses only authorized training histories from the closed 24-world repertoire.
+Its shorter window was fixed before this analysis at one quarter of the prior
+64-command prefix; there was no window or feature sweep. It is retrospective
+development fitting, not fresh calibration or evaluation. The extractor joins
+actual issued baseline commands, canonical observations and seventeen position
+samples into sixteen per-joint mean/RMS response features at 0.133333 s.
+All three fresh role prefixes match within each of eight training groups.
+Labels, model identities, actuator-force metadata and future outcomes do not
+enter feature values. All twelve failed source trials remain accounted for.
+
+The [estimator](../sdk/discovery/early_context_v1.py) uses unscaled nearest
+centroids in the common rad/s units. Each validation fold excludes both body
+conditions at one initial lateral velocity, fits six groups and classifies two.
+This prevents the three repeated prefixes or the other condition at the same
+start from entering the fold's fitting data. No confidence threshold is fitted;
+exact distance ties are ambiguous. The final model fits all eight training
+groups and is retained for future development, with **no action mapping and
+no control authority**.
+
+| Internal training check | Correct groups | Physical control tested |
+|---|---|---|
+| Leave one training start out, both conditions blocked | 8/8 | No |
+| Constant nominal prediction | 4/8 | No |
+| Synthetic reversal of condition associations | 0/8 | No |
+
+Correct-class squared distances range from 0.002615 to 0.041416; opposite-class
+distances range from 0.585567 to 0.789162. These distances are descriptive,
+not calibrated confidence or an acceptance threshold. The two exposed actuator
+profiles, one morphology and four closely spaced training starts are a narrow
+population. Neither internal fold accuracy nor the full-training fit establishes
+reserved performance, recognition of unknown conditions, useful control or
+population generalization. The 64-command degraded shortlist remains empty.
+
+Seven component controls passed in 38.564 s in
+`sdk2-early-context-controls-7d6e0f9e814b4736ba4da8b73cb07fed`. They test analytic
+joint motion, actual actions and the endpoint, chronology and unsupported
+history refusals, metadata leakage, grouped fitting, split contamination,
+ambiguous predictions and an exact native-data rejoin. The [closure](../sdk/discovery/early_context_feasibility_closure_v1.json)
+retains the complete fitted models and per-fold predictions, nine diagnostic
+artifacts, exact tested sources and the parent closure. Its [reader](../sdk/discovery/audit_early_context_feasibility.py)
+rechecks all 9,181 parent artifacts and regenerates the full training analysis.
+All three closure controls pass in 39.054 s in
+`sdk2-early-context-closure-controls-c90af070a6d648d59c2dda777f10c674`, including
+missing source inventory, altered labels/centroids, changed proofs and unearned
+control authority. Earlier passing closure controls remain retained in
+`sdk2-early-context-closure-controls-f53acc21dd334db3a05d3558f5542607`; the final
+reader adds an explicit complete-tested-source inventory requirement.
+All analysis and verification construct **zero new worlds**.
+
+The next bounded native question is a **new matched activation comparison**:
+fresh baseline, height feedback from command zero, and height feedback after
+sixteen actual baseline commands, at each of the four exposed degraded-body
+training starts. That is twelve proposed fresh CPU worlds at the existing
+twelve-second horizon. The prospective declaration, production-route controls,
+full applicable safety gate and clean pushed freeze must precede launch; this
+paragraph is not an executable campaign or a result. Retain all failures and
+require all four starts for any eligible controller choice. Nominal condition,
+learned-choice challenge, reserved calibration/evaluation and memory-benefit
+comparisons remain later distinct questions. If sixteen-command activation
+works, freeze its action mapping and challenge the inferred choice against
+condition-known, baseline, disabled and association controls on fresh groups.
 
 ### Completed causal-prefix repertoire - 2026-10-23
 

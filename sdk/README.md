@@ -1,5 +1,13 @@
 # LoColemotion Locomotion SDK
 
+The [early-context diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
+classifies 8/8 training groups from sixteen past commands in blocked internal
+validation. Constant nominal scores 4/8 and synthetically reversed associations
+score 0/8. Seven component and three closure controls pass with zero new
+worlds. The fitted label model has no action mapping or control authority.
+Matched immediate-versus-16-command native feedback is the next question;
+reserved evaluation and useful adaptation remain unproved.
+
 The [causal-prefix repertoire](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)
 is closed after all 192 controls and 24 fresh CPU worlds. Independent replay
 verified 34,560 decisions and 172,800 internal samples: **12/24 eligible**.
