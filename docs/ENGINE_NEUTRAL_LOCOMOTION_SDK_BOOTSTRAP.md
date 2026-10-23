@@ -2,14 +2,18 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Latest prepared successor (2026-10-23): the [body-height comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-successor-prepared---2026-10-23)
-adds one bounded height/vertical-rate candidate to the unchanged reference and
-baseline at both exposed starts. All 159 zero-world controls pass, binding 394
-source and 1,359 runtime files. The six CPU worlds remain unopened pending a
-clean pushed prospective freeze. Two corrected synthetic fixture failures and
-their original bytes remain retained. No adaptation or release claim is earned.
+Latest discovery (2026-10-23): the [closed body-height comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
+completed six CPU worlds from published `d2ff50fc` after all 159 controls passed.
+Independent replay verified 2,880 decisions and 14,400 internal samples:
+**3/6 eligible, 3/6 negative**. Height feedback passed both starts and is selected
+for fresh confirmation; baseline passed neither and the reference passed one.
+The selected role moved 0.314898 m and 0.310418 m forward with no torso contact.
+At the previously successful start its tracking quality was 0.0275593 m/s worse
+than the reference. The closure binds 5,841 artifacts; all five closure controls
+pass. Next require longer-horizon confirmation and healthy-body preservation.
+No adaptation or release claim is earned.
 
-Latest discovery (2026-10-23): the [closed body-gain factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
+Earlier discovery (2026-10-23): the [closed body-gain factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
 completed all ten CPU worlds from published `82dc9bfe` after all 141 controls
 passed. Independent replay verified 4,800 decisions and 24,000 internal samples:
 **4/10 eligible, 6/10 negative**. Every feedback corner passed the 0.005 m/s

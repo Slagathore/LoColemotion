@@ -2100,3 +2100,12 @@ or a locomotion guarantee; planar inverse kinematics does not guarantee the
 requested torso translation under contact and force limits. No external code
 or dependency was imported. Independent normal-equation and real-ABI controls
 pass; fresh native physics must establish usefulness.
+
+The subsequent [closed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
+retains three eligible and three negative episodes. The height role passes
+both starts, while the unchanged reference passes one and baseline neither.
+At the already successful start, the height role has worse tracking quality
+by 0.0275593 m/s. This local finite result selects a candidate for confirmation;
+it establishes no general robustness, learned adaptation or literature-derived
+performance guarantee. Fresh longer-horizon and healthy-body comparisons are
+required before using the candidate in another adaptation comparison.

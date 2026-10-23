@@ -89,10 +89,12 @@ post-hoc common prefix shows different front-right support return. The
 [ground-reach diagnosis](#fixed-pose-ground-reach-diagnosis---2026-10-23) now
 verifies that the front-right foot cannot reach the floor at 173/180 sampled
 torso poses in each failing trial; successful trials regain reachable poses.
-The [body-height successor](#body-height-successor-prepared---2026-10-23) is now
-implemented with all 159 zero-world controls passing. Its six fresh CPU worlds
-remain unopened until publication of the prospective freeze. The geometric
-result and component checks supply no causal or benefit claim.
+The [body-height successor](#completed-body-height-discovery---2026-10-23) has
+now completed all six CPU worlds after the full 159-control gate. Independent
+replay verifies 3/6 eligible episodes: the height-enabled candidate passes both
+starts and is selected for fresh confirmation. It has worse tracking quality
+than the reference at the previously successful start. Longer-horizon
+confirmation and healthy-body preservation are next; adaptation remains unproved.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1381,6 +1383,60 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed body-height discovery - 2026-10-23
+
+The [declared six-world successor](../sdk/discovery/cpu_body_height_discovery_v1.json)
+completed from published `d2ff50fc` after all **159 safety controls** passed again.
+Attempt `sdk2-cpu-body-height-discovery-49a059f2497e43f787f7097a406f4222`
+constructed six fresh CPU worlds and no GPU or evaluation world. Independent
+replay verified every one of **2,880 controller decisions and 14,400 internal
+samples**. The complete result is **3/6 eligible and 3/6 negative**.
+
+| Role | 0.002 m/s start | 0.005 m/s start | Complete eligible pair |
+|---|---|---|---|
+| Baseline | Negative: height, tilt, torso contact | Negative: height, tilt, torso contact | No |
+| Existing attitude/posture reference | Negative: tilt, torso contact | Eligible | No |
+| Height-enabled candidate | Eligible | Eligible | Yes |
+
+The height candidate moved forward **0.314898 m and 0.310418 m** through the
+four-second horizon. Minimum torso heights were 0.410127 m and 0.418833 m;
+maximum tilts were 0.261144 rad and 0.203551 rad. Neither trial had torso contact
+or safe-no-actuation commands. Both yielded all 16 eligible scoring windows.
+Candidate index **2**, `feedback_height_v1`, is the sole complete eligible pair
+and is selected for fresh confirmation under the unchanged finite rule.
+
+The two predeclared contrasts retain the tradeoff. At 0.002 m/s, the reference
+first violated tilt at 1.690 s while the height candidate remained eligible;
+the reference has no eligible quality score, so no quality difference is
+reported. At 0.005 m/s, both passed, but height-enabled tracking quality was
+**0.0275593 m/s worse**: -0.156943 versus -0.129383. Its forward travel was also
+smaller than the reference's 0.380400 m. Scores measure negative tracking error,
+not signed distance. This result supplies a candidate that meets the two-start
+rule; it does not establish a generally superior controller or learned adaptation.
+
+The [closure](../sdk/discovery/cpu_body_height_discovery_closure_v1.json) binds
+**5,841 artifacts, 644,733,843 bytes, 394 frozen source files and 1,359 runtime
+files**, including the original gate, receipt, complete native streams,
+independent audit and both planned contrasts. Native worker wall time was
+48.9321 s and independent audit wall time 43.7498 s. The [closure reader](../sdk/discovery/audit_cpu_body_height_closure.py)
+checks the complete inventory, source/runtime identity, all trial joins,
+scoring windows, failures, first violations and selection without constructing
+new worlds. All five [closure controls](../sdk/discovery/test_cpu_body_height_closure.py)
+pass in 105.961 s under
+`sdk2-body-height-closure-controls-b0f47279878e4ef98364e4caa321009a`, including
+refusal of erased failures, wrong selection and a removed tracking regression.
+Tested source copies and original logs are retained.
+
+Next freeze fresh, longer-horizon confirmation and nominal healthy-body
+comparisons for this exact selected candidate. Preserve the reference because
+it has better tracking at the already successful start. Only after those
+checks should the candidate enter a new retrieval/history-based adaptation
+comparison with memory-off and shuffled controls. Verified development fitting
+data and finite selection are earned; confirmation, healthy-body preservation,
+unopened evaluation, useful Tier 2/Tier 3 adaptation, population inference,
+equivalence and release remain unproved. SDK1 remains 20/20 and full-program
+readiness 19/25.
 
 ### Body-height successor prepared - 2026-10-23
 

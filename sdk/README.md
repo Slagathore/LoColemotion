@@ -1,11 +1,14 @@
 # LoColemotion Locomotion SDK
 
-The [body-height successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-successor-prepared---2026-10-23)
-is implemented and passes all 159 zero-world controls. It declares six fresh CPU
-worlds comparing baseline, the existing reference and one bounded height/rate
-candidate at two starts. Reference and withdrawal target bits remain exact
-across two independent core builds. No new physics has run at this checkpoint;
-publication of the prospective freeze and complete native replay are next.
+The [body-height successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
+is closed after all 159 safety controls and six fresh CPU worlds. Independent
+replay verified 2,880 decisions and 14,400 internal samples: **3/6 eligible**.
+The height role passes both starts and is selected for fresh confirmation;
+baseline passes neither and the reference passes one. Height feedback moves
+0.314898 m and 0.310418 m forward, with worse tracking than the reference at
+the latter start. The [closure verifier](discovery/audit_cpu_body_height_closure.py)
+binds 5,841 artifacts; all five closure controls pass. Longer-horizon
+confirmation and healthy-body preservation precede new adaptation comparisons.
 
 The [body-gain factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
 is closed after all 141 controls and ten fresh CPU worlds at published
