@@ -158,13 +158,25 @@ median scalar/batch time ratios are 1.4202, 1.4457 and 2.2981 at batch sizes 1,
 This is zero-world component/timing evidence. CUDA-graph execution, fresh native
 batch timings and provider training remain open; no old campaign is regraded.
 
-The L0 [GPU execution successor](../sdk/discovery/gpu_batch_execution_v1.json)
-is now source-ready for a contained full-capture comparison at 1/4/16 worlds.
-Seven synthetic controls pass. Its launcher requires the complete safety gate
-and a clean pushed prospective freeze; native execution and throughput remain
-unverified. It creates no training or physical authority. The product roadmap
-records the exact workload and keeps Tier 2 frozen retrieval and Tier 3 reversible
-episode memory as the subsequent learning targets.
+The L0 [GPU execution closure](../sdk/discovery/gpu_batch_execution_closure_v1.json)
+now closes the declared S169 batching/graph comparison at clean pushed `15b1fa17`.
+The complete 45-test safety gate and zero-world preflight preceded 18 fresh
+trials, covering 126 GPU worlds. Every trial completed; the independent reader
+replayed all 15,120 portable/provider decisions against the scalar route and
+checked all 75,600 internal force/contact/state rows. Named force pairs agree
+exactly. Median scalar/batch full-capture time ratios are **2.7284**, **1.8777**
+and **1.4945** for 1, 4 and 16 creatures, respectively. Native execution took
+430.189135 s and complete independent replay took 464.424087 s.
+
+The closure verifier rehashes 715 artifacts, 239 frozen-source bindings and
+1,359 runtime bindings, checks the original reader and recomputes timing. Four
+corruption controls pass; optional `--replay` repeats the full unchanged reader.
+The 16-creature route yields 68.77 controller steps/s, with readback and host
+control dominating its measured cost. This supports the next modest S169
+repertoire and frozen retrieval candidate, not a high-throughput training claim.
+No training corpus, trained Tier 2/Tier 3 provider, physical acceptance or engine
+equivalence is claimed. Reversible episode memory remains next after retrieval;
+SDK1, full-program and release scores remain unchanged.
 
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 

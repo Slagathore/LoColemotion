@@ -1,5 +1,40 @@
 # LoColemotion Locomotion SDK
 
+SDK2 native batching checkpoint (2026-10-23): the
+[GPU execution closure](discovery/gpu_batch_execution_closure_v1.json) completes
+L0 in its declared S169 development scope. Clean pushed `15b1fa17` passed the
+complete 45-test safety gate and zero-world preflight before 18 contained fresh
+trials. All 126 GPU worlds finished; the independent reader replayed **15,120**
+controller/provider decisions against the original scalar path and checked
+**75,600** internal state, control, force and contact rows.
+
+At 1, 4 and 16 creatures, observed median scalar/direct-to-batch/graph time
+ratios are **2.7284**, **1.8777** and **1.4945**. These combine host batching, graph
+dispatch and buffered full capture; they do not isolate each contribution or
+establish statistical superiority or trajectory equivalence. The full native
+worker took 430.189135 s, and the full reader 464.424087 s. At 16 creatures the
+measured batch route yields 68.77 controller steps/s; readback and host control
+remain the main costs. A modest frozen retrieval corpus and reversible episode
+memory are next. No trained provider or training-data authority follows here.
+
+The [closure verifier](discovery/audit_gpu_batch_execution_closure.py) rehashes
+715 artifacts, verifies frozen source/current runtime bytes, binds the original
+full audit and recomputes the timing table. Four corruption controls pass. From
+PowerShell at this repository root, provide the exact bound runtime images:
+
+```powershell
+& ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B `
+  ./sdk/discovery/audit_gpu_batch_execution_closure.py `
+  ./sdk/discovery/gpu_batch_execution_closure_v1.json `
+  --evidence-root ../SporeSpore_Evidence `
+  --core PATH_TO_BOUND_BATCH_CORE_DLL `
+  --baseline-core PATH_TO_BOUND_SCALAR_CORE_DLL
+```
+
+Success prints `ok: true` and `full_controller_replay_performed: false`. Add
+`--replay` to repeat all controller/internal checks as well. Both verification
+modes open zero worlds; they do not rerun the consumed native campaign.
+
 SDK2 host-batching development checkpoint (2026-10-23): the
 [pure component](discovery/portable_batch_component_v1.json) adds optional C/Python
 batch APIs without changing the consumed GPU search or installed Studio runtime.
@@ -38,10 +73,10 @@ recompute all host timing summaries without opening worlds:
 & ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B ./sdk/discovery/audit_portable_batch.py
 ```
 
-A fresh GPU integration still requires its own prospective source/runtime binding,
-complete safety gate, graph/readback checks and native benchmark. The API and
-host benchmark alone do not close L0, train a provider or change SDK1 release
-qualification. See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23).
+The separate GPU successor above now supplies fresh integration and measured
+execution evidence. The host benchmark alone supplies no physics or training
+authority. See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
+for the next frozen-retrieval and reversible-memory targets.
 
 Current SDK1 checkpoint (2026-10-03): **20/20**, full program **19/25**.
 The [package acceptance closure](release/sdk1_package_acceptance_closure_v1.json)

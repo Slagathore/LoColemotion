@@ -263,7 +263,7 @@ records adoption limits; this roadmap remains the sequencing authority.
 
 | Order | Development target | Exit evidence before advancing |
 | --- | --- | --- |
-| L0 | Batch the existing complete portable/controller/provider path on the host; graph held-control GPU substeps with correct sampling stages | Scalar/batch command, memory and refusal conformance; full safety gate; fresh comparison at three declared batch sizes with compilation, transfers, control, physics, capture and audit costs separated |
+| L0 complete in the declared S169 development scope | Batch the existing complete portable/controller/provider path on the host; graph held-control GPU substeps with correct sampling stages | Scalar/batch command, memory and refusal conformance; full safety gate; fresh comparison at three declared batch sizes with compilation, transfers, control, physics, capture and audit costs separated |
 | L1 | Build a diverse S169 repertoire before expanding body or task scope | Declared bounded genome, two or three behavior axes and eligibility rules; append-only record of every trial and replaced elite; frozen shortlist challenged in fresh native worlds |
 | L2 | Use deterministic retrieval of frozen, characterized residual proposals as the first Tier 2 candidate | Grouped corpus and calibration/evaluation splits; bounded provider output; shadow then fresh influence trials against baseline, retrieval-disabled and shuffled-association controls, with trigger/influence matching |
 | L3 | Add an empirical monitor that withdraws provider influence using existing refusal states first | Frozen fitting set, hysteresis and explicit unsupported states; fresh non-inferiority evaluation under a prospectively chosen practical margin |
@@ -322,24 +322,48 @@ four corruption controls pass. The next L0 successor must integrate this path
 with CUDA-graph substeps and checked capture/readback, qualify the complete gate,
 and measure fresh native workloads before scalable search is claimed.
 
-The prospective [GPU execution comparison](../sdk/discovery/gpu_batch_execution_v1.json)
-now implements the next L0 route. It compares scalar/direct execution with
-batched control, CUDA graphs and device-buffered full capture at 1, 4 and 16
-creatures. Three fresh trials per route and size alternate their order. Each
-trial retains 120 outer commands and all 600 internal steps; the first 24 outer
-commands are declared warm-up. Setup, cold compilation/capture, warm-up,
-readback, control, integration, retention and independent audit costs remain
-separate. The combined route comparison does not identify each optimization's
-individual contribution or establish trajectory equivalence.
+L0's [native GPU execution comparison](../sdk/discovery/gpu_batch_execution_closure_v1.json)
+is complete at clean pushed source `15b1fa17`. The full 45-test safety gate and
+zero-world runtime preflight passed before the contained worker opened 18 fresh
+trials: three repeats per route at 1, 4 and 16 creatures, with alternating order.
+All 126 worlds completed 120 outer commands and 600 internal steps. The first 24
+outer commands per trial were declared warm-up; all remain retained. The
+independent reader replayed every one of the **15,120 controller decisions**
+against the original scalar path and checked all **75,600 internal rows**.
+Named actuator/joint force samples agree exactly, every world exercised contact
+and nonzero force, and no safe-no-actuation step occurred.
 
-Seven new zero-world controls cover complete scalar replay, graph step ordering,
-force retention, memory isolation, corrupted evidence and timing denominators.
-The [contained launcher](../sdk/discovery/run_gpu_batch_execution.py) repeats the
-full applicable measurement, quadruped, portable, host-batch, graph, provider,
-containment and runtime gates before any native world. Use the declared new and
-baseline DLLs with `--core` and `--baseline-core`; `--run` additionally requires a
-clean pushed source freeze and consumes a fresh identity. Physical execution
-and throughput are not yet verified. No training corpus or provider is claimed.
+| Creatures | Scalar/direct median for 96 measured outer commands | Batch/graph median | Observed scalar/batch time ratio |
+| --- | --- | --- | --- |
+| 1 | 6.375737 s | 2.336767 s | 2.7284 |
+| 4 | 12.691322 s | 6.759074 s | 1.8777 |
+| 16 | 33.379350 s | 22.334917 s | 1.4945 |
+
+These are combined full-capture route timings; they do not identify the separate
+contribution of host batching, graph dispatch or buffered readback. Native
+execution, including setup, cold compilation and all warm-up, took **430.189135 s**;
+the complete independent audit took **464.424087 s**. The largest observed paired
+final-displacement difference was 3.908 micrometres, without an equivalence
+margin or equivalence claim. No training data, trained provider, statistical
+superiority or physical acceptance is inferred.
+
+At 16 creatures the measured batch route delivers **68.77 controller steps/s**.
+In its median-time trial, prepared observation readback takes 11.488260 of
+22.334917 s, portable control 5.796857 s, and integration plus device history
+1.359247 s. This supports a modest full-capture retrieval corpus; it does not
+establish high-throughput neural training. The next work is L1/L2's bounded S169
+repertoire, prospective group splits and frozen retrieval provider. Reversible
+Tier 3 memory follows over that model. Further performance work should respond
+to measured corpus cost rather than delay the first fitted provider.
+
+The [closure verifier](../sdk/discovery/audit_gpu_batch_execution_closure.py)
+rehashes 715 artifacts, verifies 239 frozen-source and 1,359 runtime bindings,
+checks the retained full reader and recomputes the timing table. Four corruption
+controls pass. Its default does not repeat the unchanged full controller replay;
+`--replay` explicitly does so. The [contained launcher](../sdk/discovery/run_gpu_batch_execution.py)
+uses `--core` and `--baseline-core`; a new `--run` always consumes a fresh identity
+from a clean pushed source after the complete gate. This observed campaign must
+not be rerun or regraded. This closure creates no learning corpus or trained provider.
 
 ### SDK2 claim targets
 
