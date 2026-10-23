@@ -2,17 +2,23 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Current preparation (2026-10-23): a retained post-hoc diagnosis finds that 34
-of the 35 memory-driven changed choices lack matching-context feedback. The
-[distinct contextual successor](../sdk/discovery/gpu_contextual_influence_v1.json)
-keeps completed windows keyed by action-time phase/contact/state and passes six
-actual-ABI component controls and nine host/route controls. It declares a fresh
-eight-second, six-arm comparison on three exposed development starts. No
-successor native benefit is claimed yet; the original result and unopened
-evaluation are preserved. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contextual-episode-memory-successor---2026-10-23)
-records the diagnosis, source tests, retained failures and next launch boundary.
+Latest learning result (2026-10-23): the [contextual-memory comparison](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
+completed all 18 eight-second development worlds from clean published `0828885f`
+after the complete 100-test gate. Independent replay passed 17,280 decisions and
+86,400 internal rows; all arms remained eligible with zero provider/protocol
+errors. It verifies 176 feedback updates, 84 matching-context feedback selections
+and 27 changed decisions. Frozen retrieval is favorable against baseline/disabled
+in 3/3 groups and beats shuffled proposals in 2/3. Contextual memory meets its
+benefit criterion in 0/3 and scores below frozen and shuffled feedback in each
+group. Correct context reuse is verified; useful Tier 3 benefit remains unproved.
+The closure binds 988 artifacts, 303 frozen sources, 1,359 runtime files, two
+candidate artifacts and the earlier diagnostic. Learned influence remains
+unmatched, evaluation stays unopened, and no qualification is granted. The
+[roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contextual-comparison---2026-10-23)
+records scores, measured cost, the negative result and the next credit-assignment
+and empirical-monitor work. The old four-second result remains unchanged.
 
-Latest completed native learning result (2026-10-23): the
+Earlier four-second native learning result (2026-10-23): the
 [native influence closure](../sdk/discovery/gpu_retrieval_influence_closure_v1.json)
 at clean pushed `19c13b8e` passed the complete 77-test gate and independent replay
 of 8,640 decisions and 43,200 physics rows across 18 fresh worlds. All arms were

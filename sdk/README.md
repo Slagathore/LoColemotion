@@ -1,16 +1,20 @@
 # LoColemotion Locomotion SDK
 
-SDK2 contextual-memory preparation (2026-10-23): the
-[distinct successor](discovery/gpu_contextual_influence_v1.json) passes six
-synthetic component controls through the real ABI and nine host/route controls.
-It stores completed feedback with its starting phase, contact mask and body-state
-cue; unrelated contexts receive no offset. A fresh eight-second comparison on
-exposed development starts is declared, but has no native outcome yet. The
-retained diagnosis found 34/35 changed choices in the old memory design lacked
-matching-context feedback. See the [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contextual-episode-memory-successor---2026-10-23)
-for exact records, boundaries and next steps.
+SDK2 contextual-memory result (2026-10-23): the
+[distinct successor closure](discovery/gpu_contextual_influence_closure_v1.json)
+retains 18 fresh eight-second development worlds after the complete 100-test
+gate at clean published `0828885f`. Independent replay passed all 17,280 decisions
+and 86,400 internal samples. All arms remained eligible with no provider errors.
+Frozen retrieval meets its baseline/disabled gain criterion in 3/3 groups;
+contextual memory meets its benefit criterion in 0/3. The reader verifies 176
+feedback updates, 84 matching-context feedback selections and 27 changed choices.
+Correct memory mechanics have native evidence; useful Tier 3 benefit remains
+unproved. The [closure reader](discovery/audit_gpu_contextual_influence_closure.py)
+checks 988 artifacts and exact source/runtime/model bindings. Evaluation remains
+unopened. See the [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contextual-comparison---2026-10-23)
+for scores, retained failures, measured runtime and next steps.
 
-Latest completed SDK2 native influence checkpoint (2026-10-23): the
+Earlier four-second SDK2 native influence checkpoint (2026-10-23): the
 [consumed comparison](discovery/gpu_retrieval_influence_closure_v1.json) completed
 18 fresh worlds after the 77-test gate at clean pushed `19c13b8e`. Independent
 replay passed all 8,640 control decisions and 43,200 internal physics samples.

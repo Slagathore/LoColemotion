@@ -1854,3 +1854,12 @@ third-party code was imported. The native successor must earn its own result
 with memory-off, shuffled-proposal and shuffled-feedback controls, unchanged
 command bounds and measured influence exposure. Empirical withdrawal monitoring,
 unopened evaluation and qualification remain separate work.
+
+The [native contextual comparison](../../sdk/discovery/gpu_contextual_influence_closure_v1.json)
+subsequently verifies 176 feedback updates and 84 selections using matching
+context, but memory benefit remains 0/3. Correct implementation of a borrowed
+memory mechanism is therefore insufficient evidence of useful adaptation here.
+The result motivates investigation of action credit, prediction error and a
+declared task that actually requires adaptation; it does not refute either
+paper's distinct algorithm or domain. Both the global and contextual negative
+results remain retained, and evaluation groups remain unopened.

@@ -31,11 +31,12 @@ provider promotion.
 Current learning boundary: bounded native retrieval and episode feedback now
 have a complete independently audited comparison. Frozen retrieval meets its
 finite quality-gain floor against both controls in 3/3 calibration groups;
-episode memory meets its benefit floor in 0/3. A distinct contextual-memory
-successor now passes its synthetic component and route controls and has a fresh
-native comparison declared below. Native benefit remains untested. The empirical
+episode memory meets its benefit floor in 0/3. The distinct contextual-memory
+successor also completed its full native comparison: matching-context feedback
+was verified, but its benefit floor was met in 0/3 exposed development groups.
+Frozen retrieval remained favorable against baseline and disabled control in
+3/3 at the longer horizon. Useful Tier 3 behavior remains unproved. The empirical
 withdrawal monitor, unopened evaluation and promotion gates remain required.
-The frozen model remains a development candidate.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -735,8 +736,63 @@ different regime from the old 480-step campaign; it cannot establish a causal
 improvement over that historical memory design. The launcher's full gate adds
 context, host, reader, diagnosis and predecessor-closure controls before a clean,
 pushed freeze can start physics. Retain every comparison and influence exposure.
-All held-out evaluation groups remain unopened. Native benefit of this successor
-is untested at this preparation boundary; the old 0/3 result remains unchanged.
+All held-out evaluation groups remain unopened. This preparation was consumed
+by the result below; the original global-memory 0/3 result remains unchanged.
+
+### Completed contextual comparison - 2026-10-23
+
+The [contextual closure](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
+records one clean, published run from `0828885f`, after all **100 safety controls**
+and the zero-world runtime preflight passed. Its 18 fresh exposed-development
+worlds completed eight seconds each. Independent scalar/provider/native replay
+passed all **17,280 decisions and 86,400 internal rows**. All 18 arms remained
+eligible, with zero provider errors or unexpected fallbacks. Actual nonzero
+solver influence occurred on 10,289 controller rows. The base model did not
+change, and no evaluation or training worlds were opened.
+
+| Exposed development group | Frozen minus baseline quality | Contextual memory minus frozen | Contextual memory minus shuffled feedback |
+| --- | ---: | ---: | ---: |
+| 0 | +0.005508240 | -0.000611342 | -0.000488345 |
+| 1 | +0.003541729 | -0.000396314 | -0.000525983 |
+| 2 | +0.008215564 | -0.000104606 | -0.000164416 |
+
+Units are m/s in the declared tracking-error score, averaged across all 32
+windows. Positive differences favor the first arm; the frozen development
+gain floor is 0.001. Frozen retrieval meets its baseline/disabled criterion in
+**3/3** groups and beats shuffled proposals in **2/3**. Contextual memory meets
+its frozen/shuffled-feedback criterion in **0/3**, scoring below both in every
+group. These are finite exposed-development observations, not statistical
+inferiority or a causal comparison with the earlier four-second design.
+
+The reader verifies **176 completed feedback updates**, **84 selections using
+matching-context feedback**, and **27 changed same-input choices** (22 ordinary,
+five shuffled). Correct context reuse and actual decision changes are established;
+useful Tier 3 benefit is not. All learned-arm comparisons have unmatched influence;
+baseline/disabled alone have matched zero influence. The final unobserved window
+remains uncredited. Preserve this valid negative result alongside its predecessor.
+
+The [closure reader](../sdk/discovery/audit_gpu_contextual_influence_closure.py)
+rehashes **988 artifacts**, checks **303 frozen sources**, **1,359 runtime files**,
+two candidate artifacts and the retained design diagnostic, then rejoins every
+group, context count and timing summary. The consumed attempt is
+`sdk2-gpu-contextual-influence-20fe9aa17fee473bbc8b1e67585b9e8e`.
+Four closure-corruption controls pass in
+`sdk2-contextual-closure-controls-6536a9c3aeae4a30a4e04788f55a1761`, including
+altered context counts, invented memory benefit, crossed source/runtime/model
+bindings, changed diagnostics and attempted authority escalation.
+The worker took 620.298 seconds and full independent replay 609.616 seconds.
+Measured worker sections include 312.353 seconds of host control, 153.522 seconds
+of observation readback and 40.864 seconds of integration/device-history work.
+These measurements identify profiling targets; they are not a matched throughput
+comparison or permission to weaken capture.
+
+Next, diagnose whether short-window prediction residuals distinguish an action's
+effect from phase-dependent performance variation and model error. Context
+restriction alone did not deliver benefit. Keep the useful frozen candidate
+while building the empirical withdrawal monitor and defining a distinct adaptive
+task with an explicit, bounded change to learn from. Any new memory rule or task
+needs its own prospective comparison and controls. Keep held-out evaluation
+sealed until the design and criteria are frozen; retain the full SDK2 target list.
 
 ### SDK2 claim targets
 
