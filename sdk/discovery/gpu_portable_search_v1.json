@@ -1,0 +1,53 @@
+{
+  "schema_version": "locolemotion_gpu_portable_search_v1",
+  "ledger_scope": {"subsystem": "discovery", "engine_scope": "mujoco_cpu_and_warp", "authority_mode": "development", "question_class": "development"},
+  "purpose": "Connect the unchanged BW19V portable controller and public optional-provider ABI to native GPU quadrupeds, then conduct a finite parameter discovery batch and fresh CPU challenge.",
+  "core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "model_xml_sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06",
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "runtime": {"mujoco": "3.11.0", "mujoco-warp": "3.11.0", "warp-lang": "1.16.0", "numpy": "2.4.6"},
+  "device": "cuda:0",
+  "gpu_dtype": "float32",
+  "cpu_dtype": "float64",
+  "cuda_graph": false,
+  "seed": 1042302,
+  "worlds_per_backend": 4,
+  "outer_steps": 480,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "cpu_warning_count": 7,
+  "naconmax": 256,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "maximum_worker_wall_seconds": 900,
+  "maximum_trace_bytes": 805306368,
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+  "phase_mode": "clocked",
+  "provider": {
+    "kind": "untrained_proportional_canonical_velocity_proposal",
+    "maximum_absolute_correction_rad_s": 0.25,
+    "maximum_slew_per_step_rad_s": 0.02,
+    "candidates": [
+      {"id": "baseline", "factor": null},
+      {"id": "minus_010", "factor": -0.1},
+      {"id": "plus_010", "factor": 0.1},
+      {"id": "plus_020", "factor": 0.2}
+    ]
+  },
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0,
+    "rule": "Rank eligible GPU candidates including the unchanged baseline by descending final native-X displacement; break exact ties by declared index. Freeze the ranking before constructing CPU challenge worlds. Challenge all four profiles regardless of rank; report whether the GPU choice improves CPU displacement over its fresh baseline. This is an exposed finite discovery observation, never superiority or acceptance."
+  },
+  "initialization": "Same default S169 pose and same one-seed native-Y initial velocity in [-0.005,0.005] for all candidates. Float32 GPU projection is explicit. Each CPU challenge starts fresh after the GPU ranking is retained.",
+  "sampling": "step1 prepares the current state before portable feedback; step2 integrates under the resolved target. Capture every completed internal step's generalized state, controls, named forces, contact world ids and capacity counters before any next step1. Once per outer step retain the full native readback fields used by the existing adapter, portable state/stability/kinematics, controller request/output, baseline composition, provider request/response/resolution and final adapter-owned native target mapping. GPU-to-MjData readback copies/reorders arrays and may factor the copied mass matrix; CPU dynamics and forward calls are trapped during GPU execution.",
+  "coverage": ["actual portable policy and stability composition", "public provider ABI and exact absent-provider fallback", "per-world memory isolation", "GPU native observation copies without CPU dynamics", "complete internal force/contact capture", "all-candidate denominator", "prospective finite ranking and fresh CPU challenge", "owned containment and retained partial failures"],
+  "not_covered": ["high-throughput device-resident controller", "trained provider", "held-out evaluation", "broad morphology support", "locomotion acceptance", "engine equivalence", "Studio recovery handoff", "force-aware recovery"],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false
+}

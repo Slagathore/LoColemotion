@@ -170,6 +170,33 @@ provider seam. Production portable-policy execution on GPU, trained providers,
 episodic adaptation and the remaining Studio work are still open. The old
 production Warp qualification contracts and support-matrix flags are unchanged.
 
+The next [portable parameter search](../sdk/discovery/gpu_portable_search_v1.json)
+now has an executable prospective route. It uses the unchanged BW19V controller
+and stability composition through the public ABI, followed by the actual optional
+provider resolver. The absent-provider baseline is compared with three explicitly
+untrained proportional velocity-correction proposals. Four matched GPU worlds
+receive 480 outer steps with five internal steps each. Their exposed ranking is
+retained before four fresh CPU challenge worlds are constructed; all candidates
+are challenged regardless of rank. Provider absolute/slew/speed clamps remain
+owned by the core, and the adapter owns canonical-to-native mapping.
+
+GPU observations use split stepping and checked native readback views. CPU
+dynamics/forward calls are trapped during GPU execution; a readback may factor
+its copied mass matrix without advancing a CPU world. The independent reader
+reconstructs body velocities from retained native spatial data, replays all
+portable/controller/provider ABI inputs and checks every internal solver input,
+force/contact capture and ranking decision. Full telemetry costs are measured
+before any reduced-capture or device-resident successor is considered.
+
+The complete zero-world gate is retained as
+`sdk2-gpu-portable-search-832c06fa8ef4408f9a4d2c1d11c6503c`: eight new search
+controls, ten quadruped controls, seven measurement controls, the eight-cell
+public provider conformance, process containment and pinned runtime preflight.
+No physical search has run yet. This is candidate search, not a trained Tier 2
+provider or held-out evaluation. Use `run_gpu_portable_search.py --core
+PATH_TO_BOUND_CORE_DLL` in the pinned Python environment; `--run` requires a
+clean pushed prospective freeze and repeats the complete gate before physics.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

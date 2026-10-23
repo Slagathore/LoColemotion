@@ -67,6 +67,21 @@ Next is a separately declared candidate-search route, device-side batching and
 measured capture cost, followed by fresh native challenges of frozen candidates.
 No accepted portable policy, trained provider or locomotion acceptance follows.
 
+The [portable parameter-search successor](../sdk/discovery/gpu_portable_search_v1.json)
+now connects unchanged BW19V baseline/stability output to the public provider
+resolver and adapter-owned native targets. It declares an absent-provider
+baseline plus three untrained bounded proportional proposals, 480 outer steps
+per candidate/backend and complete five-substep capture. The GPU ranking is
+frozen before constructing all four fresh CPU challenge worlds. A new reader
+replays actual ABI inputs, checks native observation/command joins, and computes
+the exposed finite ranking. No old acceptance threshold or result changes.
+
+Its complete zero-world gate passes eight new controls, ten quadruped controls,
+seven measurement controls, public provider A0-A7, real process containment and
+runtime preflight. The retained attempt is
+`sdk2-gpu-portable-search-832c06fa8ef4408f9a4d2c1d11c6503c`. Physical execution,
+trained providers, high-throughput batching and Tier 3 remain open.
+
 The scalar and quadruped probes commission measurement/execution only. GPU
 candidate discovery, provisional training, native candidate transfer, provider training,
 episodic adaptation and Studio recovery handoff/performance remain
