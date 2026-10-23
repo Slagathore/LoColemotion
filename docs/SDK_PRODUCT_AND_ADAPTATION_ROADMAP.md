@@ -80,11 +80,13 @@ fresh confirmation and healthy-body preservation; history inference remains
 later. The retained result supplies verified development fitting data, with no
 new adaptation-benefit, qualification or release authority.
 
-The [body-gain successor](#body-gain-factorial-prepared---2026-10-23) now passes
-all 141 zero-world controls. It holds posture and correction limits fixed while
-separating attitude gain from rate damping. Ten fresh worlds cover baseline and
-all four corners at the same two exposed starts; the original gain combination
-is repeated freshly. No physical success is implied by this preparation.
+The [body-gain factorial](#completed-body-gain-factorial---2026-10-23) completed
+all ten CPU worlds from published `82dc9bfe` after all 141 controls passed.
+Independent replay verified **4/10 eligible and 6/10 negative**. Every feedback
+corner passed 0.005 m/s and failed 0.002 m/s, so the shortlist remains empty.
+The tested gain range did not resolve start sensitivity. A separately labeled
+post-hoc common prefix shows different front-right support return; next inspect
+forefoot reach and support transfer before a distinct controller successor.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1373,6 +1375,87 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed body-gain factorial - 2026-10-23
+
+The [prospective declaration](../sdk/discovery/cpu_body_gain_discovery_v1.json)
+ran from clean, published freeze `82dc9bfea45e1e4ca5812066fe1bc4e3de347840`.
+Attempt `sdk2-cpu-body-gain-discovery-54047c7d83df4b298c93b34b8e5469a0` repeated
+the complete **141-control safety gate**, then completed **ten fresh CPU
+worlds**, **4,800 decisions** and **24,000 internal samples**. The complete
+independent replay passed. The source/runtime binding retains **375 source
+files / 1,359 runtime files**. Native execution took **58.300 s** and independent
+replay **51.378 s**. No GPU or evaluation world was opened.
+
+The full result is **four eligible and six negative episodes**. All four
+feedback combinations passed the 0.005 m/s start and failed 0.002 m/s. Baseline
+failed both. Every feedback candidate is therefore **1/2 eligible** and no
+candidate is selected:
+
+| Attitude gain (/s) | Angular damping | First physical violation at 0.002 m/s | Eligible travel at 0.005 m/s | Eligible quality at 0.005 m/s |
+| --- | --- | --- | --- | --- |
+| 3 | 0.5 | Tilt at 1.6900 s | 0.38040 m forward | -0.12938 m/s |
+| 3 | 1.0 | Tilt at 1.7200 s | 0.37155 m forward | -0.12878 m/s |
+| 6 | 0.5 | Tilt at 1.6650 s | 0.33653 m forward | -0.14482 m/s |
+| 6 | 1.0 | Tilt at 1.7383 s | 0.34931 m forward | -0.14726 m/s |
+
+Each positive supplies 16 eligible windows and zero torso contacts. Quality is
+negative velocity-tracking error, with zero best; it is not signed travel.
+All six negative episodes failed tilt and torso contact; both baseline episodes
+also failed minimum height. Negative episodes retain no eligible windows or
+finite quality score. The fresh 3/s, 0.5 reference repeats the preceding
+one-start success/failure pattern. These are finite exposed development
+outcomes, not a robust controller or independent confirmation.
+
+All **eight prospective single-factor contrasts** have zero eligibility change.
+The four same-start comparisons at 0.005 m/s have eligible quality differences;
+the four at 0.002 m/s do not. A score from one start cannot substitute for the
+required complete eligible pair. Failure time remains diagnostic only, and no
+failure time is invented for a surviving horizon. Stronger attitude gain does
+not improve eligible quality in this tested grid; no population or causal
+generalization is inferred.
+
+A separately labeled [post-hoc diagnostic](../sdk/discovery/body_gain_contact_diagnostic.py)
+uses the same first **180 prepared decisions / 1.5 seconds** for all eight
+feedback episodes. The prefix was chosen after outcome exposure and lies
+before every feedback episode's first physical violation. Baseline is excluded
+from this prefix because it fails earlier, while remaining in the complete
+outcome denominator. Each failing feedback episode has **five front-right
+support observations** in this prefix, all in steps 1 and 3-6. The successful
+episodes have **36, 41, 34 and 33** respectively, with additional support runs
+starting at steps **149, 144, 151 and 152**. All four feet's complete support runs
+and counts are retained. This is a descriptive association; it does not prove
+whether contact loss causes or follows the divergence and never changes
+selection or eligibility.
+
+The [closure](../sdk/discovery/cpu_body_gain_discovery_closure_v1.json) binds
+**5,431 artifacts / 781,520,022 bytes**. Original receipt SHA-256:
+`f69df573e79c7b608015a52b069bdaa5637f7a264196c8bd9addbc28802640af`.
+Original complete independent audit SHA-256:
+`6a11e052e916c5f1c7b45d6ebd2847fb98a6c580c9657d5f5d2444e4785cd63a`.
+The [closure reader](../sdk/discovery/audit_cpu_body_gain_closure.py) verifies
+exact retained bytes, frozen Git sources, installed runtime bytes, all plans
+and gate terminals, every outcome, positive-window scores, all eight factorial
+contrasts and the post-hoc diagnostic's separate scope. It constructs no world;
+an explicit option repeats the complete original controller replay.
+
+All **seven closure controls passed** in
+`sdk2-cpu-body-gain-closure-controls-0a490141096e41b1894994ccd4e6d975`
+(151.117 s), with original test-log SHA-256
+`aba74c644a7741bbaf36939eab3eaba73fa4aec55d6a2b25f24ae5dca5f8a864`.
+The controls cover complete retained bytes, frozen source/runtime bindings,
+full outcomes and scores, all prospective pairs, post-hoc scope, corrupted
+contact histories and refusal of false selection or causal authority. They
+construct zero worlds.
+
+This experiment closes the proposed body-attitude/rate comparison without
+resolving the two-start problem. Next use retained force, foot-kinematic,
+velocity and phase traces to distinguish forefoot reach and support-transfer
+questions, then declare a distinct controller successor. The data do not
+justify selecting the longest-lived failed candidate or promoting the best
+single-start score. Verified development fitting data is available, but fresh
+confirmation, healthy-body preservation, learned history inference, useful
+Tier 2/Tier 3 adaptation, equivalence and release remain unproved.
 
 ### Body-gain factorial prepared - 2026-10-23
 

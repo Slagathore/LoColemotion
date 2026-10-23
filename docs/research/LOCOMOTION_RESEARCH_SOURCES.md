@@ -2062,3 +2062,11 @@ declared gain domain, motivated by the retained one-start walking result and
 failure at the other start. Eight analytic/ABI controls and ten route controls
 join the inherited gate for 141 passing zero-world controls. The native test
 must establish usefulness; source compatibility and literature do not supply it.
+
+The [completed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
+retains four eligible and six negative episodes. Every feedback corner passes
+only the 0.005 m/s start, so the tested attitude/rate gains do not resolve the
+start split. All eight planned contrasts remain intact. A separately labeled
+post-hoc common prefix describes different front-right support return, without
+causal or selection authority. The next design question is contact/kinematic
+support transfer; a further gain sweep is not promoted from single-start scores.

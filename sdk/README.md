@@ -1,11 +1,14 @@
 # LoColemotion Locomotion SDK
 
-The [body-gain successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-gain-factorial-prepared---2026-10-23)
-is prepared after all 141 zero-world controls passed. It separates attitude gain
-and rate damping with posture preference and correction limits fixed. Its five
-roles include baseline and the earlier gain combination as a fresh reference,
-at both exposed starts. The declared ten CPU worlds retain all outcomes and
-eight single-factor contrasts; no physical result is yet claimed.
+The [body-gain factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
+is closed after all 141 controls and ten fresh CPU worlds at published
+`82dc9bfe`. Independent replay verified 4,800 decisions and 24,000 internal
+samples: **4/10 eligible, 6/10 negative**. All four feedback roles passed only
+the 0.005 m/s start; no candidate meets the two-start rule. The [closure verifier](discovery/audit_cpu_body_gain_closure.py)
+binds 5,431 artifacts, eight prospective contrasts and a separately labeled
+post-hoc contact diagnostic; all seven closure controls pass. Forefoot reach
+and support transfer are the next
+control questions; useful adaptation and release remain unproved.
 
 The [posture/envelope factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
 is closed after all 123 controls and 18 fresh CPU worlds at published

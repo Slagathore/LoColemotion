@@ -2,15 +2,20 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Prepared next (2026-10-23): the [body-gain factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-gain-factorial-prepared---2026-10-23)
-passed all 141 zero-world controls. It varies attitude gain and angular damping
-while holding the previous all-high posture/envelope settings fixed. Baseline
-plus four feedback corners at both exposed starts gives 10 fresh CPU worlds,
-4,800 decisions, 24,000 internal samples and eight single-factor contrasts.
-The earlier gain combination is a fresh reference, never a cached result.
-No new physical outcome follows from this preparation checkpoint.
+Latest discovery (2026-10-23): the [closed body-gain factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
+completed all ten CPU worlds from published `82dc9bfe` after all 141 controls
+passed. Independent replay verified 4,800 decisions and 24,000 internal samples:
+**4/10 eligible, 6/10 negative**. Every feedback corner passed the 0.005 m/s
+start and failed 0.002 m/s; baseline failed both. The shortlist remains empty.
+The closure binds 5,431 artifacts and all eight prospective contrasts; all seven
+closure controls pass. A
+separately labeled post-hoc 180-decision prefix finds five front-right support
+observations in each failing feedback trial versus 33-41 in successful trials.
+Next inspect forefoot reach and support-transfer dynamics before another
+controller successor. This gain range did not resolve the start sensitivity;
+no adaptation or release authority is earned.
 
-Latest discovery (2026-10-23): the [closed posture/envelope factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
+Earlier discovery (2026-10-23): the [closed posture/envelope factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
 completed all 18 CPU worlds from published `f9a0509d` after all 123 controls
 passed. Independent replay verified 8,640 decisions and 43,200 internal samples:
 **1/18 eligible, 17/18 negative**. The all-high corner walked 0.3804 m forward
