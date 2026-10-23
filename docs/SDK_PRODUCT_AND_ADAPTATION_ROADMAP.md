@@ -138,7 +138,21 @@ completed all 1,920 rows. Two cells diverged at a force-clamp branch after a
 command reversal, reaching a 0.30 rad/s difference despite matching sensor
 semantics. Candidate search must retain such branch-sensitive cases and expose
 them to native transfer tests; they must not be hidden by a widened tolerance.
-Quadruped conversion/contact commissioning, training and Studio work remain open.
+The prospective [quadruped probe](../sdk/discovery/gpu_quadruped_probe_v1.json)
+now uses the actual compiled S169 body, eight velocity actuators and 16 named
+force sensors. Four bounded feedback profiles each receive 1,200 internal steps
+on GPU, followed by four fresh CPU worlds with the same profiles and seeded
+inputs. This commissions contacts, per-world attribution, control capture,
+capacity refusal and force-clamp labels. It does not run the accepted portable
+walking policy or train a provider. The independent reader checks every state
+transition and the full 9,600-row denominator; the closure reader reopens every
+retained artifact and recomputes that audit.
+
+Use `run_gpu_quadruped_probe.py --core PATH_TO_BOUND_CORE_DLL` in the same pinned
+Python environment for the complete zero-world safety gate. Add `--run` only
+after its prospective source is clean and pushed. Each invocation retains a
+fresh identity; native execution is contained and serialized. Quadruped native
+commissioning, training and the remaining Studio work are still open.
 
 ### SDK2 claim targets
 

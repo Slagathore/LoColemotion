@@ -37,6 +37,19 @@ Next: preserve clamp branch labels in the quadruped development/training route,
 commission contacts/capacities/control and challenge candidates natively.
 Broader equivalence remains separate from exploratory candidate generation.
 
+The [quadruped commissioning successor](../sdk/discovery/gpu_quadruped_probe_v1.json)
+now declares actual compiled S169 bodies, four bounded feedback profiles,
+1,200 internal steps per profile/backend and a fresh CPU challenge after the
+GPU batch. Its reader checks the complete 9,600-row population, contact world
+ids, state continuity, named forces, clamp branches and capacity/warning
+refusals. A closure reopens all retained bytes and recomputes the reader.
+The complete zero-world gate passes ten quadruped/reader controls, seven
+measurement controls, real process-tree cleanup and pinned runtime preflight.
+Attempt `sdk2-gpu-quadruped-925586c4cc8047b4af5caf4a5701d6ad` retains that
+preflight under the durable evidence root. This is prospective development
+source; no quadruped GPU result, trained provider or locomotion acceptance is
+claimed yet.
+
 This scalar probe commissions measurement/execution only. Quadruped GPU
 discovery, provisional training, native candidate transfer, provider training,
 episodic adaptation and Studio recovery handoff/performance remain
