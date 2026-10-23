@@ -120,10 +120,13 @@ The [matched activation comparison](#completed-matched-height-activation---2026-
 is now closed after all 217 controls and twelve fresh CPU worlds: **1/12
 eligible, 11/12 negative**. Baseline passes 0/4, immediate height 1/4 and
 sixteen-command-delayed height 0/4. Independent replay and all seven closure
-controls pass, but no role enters the four-start shortlist. Next diagnose the
-retained support and command-response histories and improve controller coverage
-before mapping inferred context to actions. Timing alone has not resolved the
-failure; reserved groups and prior confirmation remain excluded from tuning.
+controls pass, but no role enters the four-start shortlist. The [retained
+composition diagnosis](#completed-height-composition-diagnosis---2026-10-23)
+now verifies opposing baseline vertical motion in 744/994 supported-leg samples
+from a common first second of the four immediate trials. Seven controls pass.
+Next test support-only compensation of that opposing component under a distinct
+declaration before mapping inferred context to actions. Timing alone has not
+resolved the failure; reserved groups and prior confirmation remain excluded.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1412,6 +1415,70 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed height composition diagnosis - 2026-10-23
+
+The [executable reader](../sdk/discovery/height_composition_diagnostic.py) and
+[retained result](../sdk/discovery/height_composition_diagnostic_v1.json) first
+verify the complete matched-activation closure, including all twelve original
+outcomes. They then analyze the same first 120 commands from all four immediate
+height trials. The interval was chosen after seeing the outcomes and is labeled
+post-hoc. All 480 decisions, 2,400 completed internal samples and 1,920 leg
+evaluations precede each trial's first physical violation. No new world, fit,
+selection, counterfactual outcome or quality promotion is produced.
+
+The reader recomputes the exact height-feedback receipt, verifies foot geometry
+against native distal-body poses and projects joint velocities into torso-frame
+foot-center x/y motion. It distinguishes the baseline, raw feedback, unclamped
+sum, final bounded command and observed instantaneous joint velocity. The
+body-motion request contains attitude and height feedback, but excludes the
+baseline gait objective. Its discrepancy must not be called the campaign's
+walking-quality score or evidence that the baseline is universally incorrect.
+
+| Start (m/s) | Baseline opposes requested vertical / supported observations | Mean vertical discrepancy, raw feedback (m/s) | After adding baseline (m/s) | After bounds (m/s) |
+|---|---|---|---|---|
+| 0.001, positive | 187/250 | 0.062217 | 0.104129 | 0.114475 |
+| 0.003, negative | 186/249 | 0.064210 | 0.106054 | 0.114497 |
+| 0.004, negative | 187/248 | 0.063576 | 0.106209 | 0.115585 |
+| 0.006, negative | 184/247 | 0.068204 | 0.110278 | 0.116587 |
+
+These are fixed-state kinematic descriptions, including **744/994 opposing
+vertical observations**. The actual body and contacts still evolve dynamically.
+The positive and negative trials all show the interaction, so it does not
+explain their different outcomes. At the retained fixed torso poses, the
+front-right distal capsule cannot reach the floor in 113, 113, 111 and 112 of
+the 120 respective poses; this again occurs in the positive. Normal contact forces were not retained.
+Actuator torque and force-cap samples remain explicitly separate from ground
+reaction forces. Maximum native/FK endpoint discrepancy is 7.21645e-16 m.
+
+All **seven diagnostic controls** passed in 69.920 s in
+`sdk2-height-composition-controls-2e46d31a269745ecad477610004d4cf1`.
+The independent finite-difference oracle checks 144 joint-velocity cases, with
+maximum discrepancy 2.63227e-10 m/s. Other controls reject changed native poses,
+feedback/proposal joins, invented contact loads, reordered samples, omitted
+trials, a prefix crossing failure, altered authority/metrics and source bindings.
+The parent closure and every original outcome remain intact. The original
+generation is `sdk2-height-composition-generation-dc375af76bfd430e9f01b3aff4e61259`;
+exact tested source, result and original logs are retained in both attempts.
+
+Next prepare a distinct **support-only opposing-vertical compensation** test.
+For a currently supported leg, compute the baseline foot velocity `J b` from
+the real baseline joint command. If its y component opposes the combined
+attitude/height request, add the existing damped inverse of `[0, -(J b)_y]` to
+the unchanged feedback proposal. Otherwise add zero. This is a local design
+hypothesis, not an adopted controller or a result of the current diagnostic.
+It targets vertical opposition without intentionally replacing the forward gait
+objective; damping and resolver clamps can still couple both coordinates.
+Keep the existing correction, slew, speed, domain and withdrawal limits.
+
+The new declaration must compare fresh baseline and current-height roles with
+immediate and sixteen-command-delayed successor roles at all four exposed
+training starts. Require complete twelve-second eligibility before selection.
+Analytic projection, exact reference/fallback commands, causal history, full
+route replay and the complete applicable safety gate must pass before a clean
+pushed freeze can open those worlds. Calibration/evaluation and prior
+confirmation stay excluded. A failed family remains a failed family; neither
+this diagnostic nor a better local projection grants adaptation benefit.
 
 ### Completed matched height activation - 2026-10-23
 

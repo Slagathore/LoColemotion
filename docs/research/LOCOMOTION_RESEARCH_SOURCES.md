@@ -2225,3 +2225,29 @@ need mechanical diagnosis before another controller is proposed. The prior
 RMA discussion motivates context-dependent control; it does not make this
 available action reliable. No external code or dependency was imported and no
 published result or earlier confirmation is used as fresh training evidence.
+
+## 2026-10-23 retained command composition
+
+The [height-composition diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
+verifies a post-hoc common prefix from all four immediate-height training
+trials. It finds opposing baseline vertical motion in 744/994 supported-leg
+observations, including the positive trial. Seven controls pass, with a separate
+finite-difference projection oracle and full original-closure verification.
+The body-motion request excludes the gait objective; its fixed-state discrepancy
+is neither the declared quality metric nor evidence of a causal failure.
+
+The primary [MIT record for Di Carlo et al. (2018)](https://dspace.mit.edu/entities/publication/bc8c7e1e-5830-443f-a879-787947111fcf)
+describes convex predictive planning of ground reaction forces for a
+torque-controlled quadruped using simplified three-dimensional dynamics. Only
+the primary abstract was accessible in this review; the full accepted manuscript
+was not retrieved. This motivates examining combined body requests and contact
+constraints, but supplies no implementation or performance evidence here.
+The current provider emits velocity residuals, so force-control results cannot
+be transferred without a separately verified actuation mapping. No external
+code or dependency was imported.
+
+The next local hypothesis instead reuses the already reviewed damped inverse
+to compensate opposing baseline vertical motion during observed support. Its
+formula and fresh comparison roles are recorded in the roadmap. This proposal
+must still pass analytic, ABI and physical checks; an improved fixed-state
+projection alone cannot establish a useful controller or a learned selector.

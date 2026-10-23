@@ -1,13 +1,22 @@
 # LoColemotion Locomotion SDK
 
+The [height-composition diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
+verifies 480 retained decisions and 2,400 internal samples from all four
+immediate-height starts, with zero new worlds. The baseline's torso-frame
+vertical motion opposes the body-feedback request in 744/994 supported-leg
+observations. All seven controls pass. This also occurs in the positive trial;
+it supports a prospective composition test, not a causal or quality claim.
+The next controller hypothesis compensates only the opposing vertical component
+during observed support and keeps the existing bounded resolver.
+
 The [matched activation comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-height-activation---2026-10-23)
 is closed after all 217 controls and twelve fresh CPU worlds from `e6969e3c`.
 Independent replay verifies 17,280 decisions and 86,400 internal samples:
 **1/12 eligible, 11/12 negative**. Baseline passes 0/4, immediate height 1/4 and
 height after sixteen commands 0/4. No role passes the four-start rule, so the
-shortlist is empty. Seven closure controls pass. Retained support and command
-response need diagnosis before stronger feedback or a learned action mapping;
-the sixteen-command condition classifier alone cannot supply useful control.
+shortlist is empty. Seven closure controls pass. The retained diagnosis above
+precedes stronger feedback or a learned action mapping; the sixteen-command
+condition classifier alone cannot supply useful control.
 
 The [early-context diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
 classifies 8/8 training groups from sixteen past commands in blocked internal

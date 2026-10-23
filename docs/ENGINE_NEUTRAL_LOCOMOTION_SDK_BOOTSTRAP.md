@@ -2,6 +2,17 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest diagnosis (2026-10-23): the [retained height-composition reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
+verifies a common first second from all four immediate-height trials: 480
+decisions, 2,400 internal samples and 1,920 leg evaluations, with zero new worlds.
+Baseline torso-frame vertical motion opposes the body-feedback request in
+744/994 supported-leg observations. Seven controls pass, including independent
+finite differences and full parent verification. This interaction occurs in the
+positive and all three negative trials; it is not a causal explanation or a
+walking-quality score. Next declare a support-only opposing-vertical composition
+successor, preserving the existing limits and all four-start eligibility rules.
+Its usefulness, nominal preservation and context-selected behavior remain unproved.
+
 Latest closure (2026-10-23): the [matched height-activation comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-height-activation---2026-10-23)
 completed all twelve fresh CPU worlds from `e6969e3c` after all **217 controls**
 passed again. Independent replay verified 17,280 decisions and 86,400 internal
@@ -10,9 +21,9 @@ height 1/4 and height after sixteen baseline commands 0/4. The declared
 four-start shortlist is empty; all twelve quality contrasts remain censored.
 Seven closure controls pass. The one immediate-height positive is preserved,
 but immediate feedback also fails at three starts, so timing alone does not
-resolve controller coverage. Next diagnose retained support and command-response
-histories and develop stronger control before assigning the context estimator
-an action mapping. Reserved groups and prior confirmation remain excluded.
+resolve controller coverage. The retained diagnosis above now supplies a narrow
+composition hypothesis for a distinct control successor before assigning the
+context estimator an action mapping. Reserved groups and prior confirmation remain excluded.
 
 Latest feasibility result (2026-10-23): the [16-command context diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
 correctly classifies **8/8 authorized training groups** with each start's two
