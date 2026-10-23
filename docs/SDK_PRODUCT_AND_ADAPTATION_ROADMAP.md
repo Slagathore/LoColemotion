@@ -428,6 +428,41 @@ empty development lineage and cannot rewrite an installed encyclopedia or
 promote a provider. Native collection has not run at this source checkpoint.
 A clean pushed freeze and the complete gate must precede its one-time execution.
 
+The [native v1 closure](../sdk/discovery/gpu_repertoire_negative_closure_v1.json)
+is a valid complete negative at clean pushed `e87dba34`. All 36 training episodes
+ran, but **zero met eligibility**: every episode, including all four baselines,
+exceeded tilt and torso-contact limits; two also crossed the height limit. The
+independent reader replayed all 17,280 controller decisions and checked all
+86,400 internal rows. Native execution took 251.694971 s and the full audit
+137.677422 s. The offline fitting step refused with `No eligible baseline cases`
+and wrote no model. No failed window is reclaimed as positive training data.
+
+The [negative closure reader](../sdk/discovery/audit_gpu_repertoire_negative_closure.py)
+rehashes 759 artifacts, verifies 255 frozen-source and 1,359 runtime bindings,
+checks the complete 62-test gate and preserves the original synthetic precision
+failure. Four corruption controls pass. Its default binds the original full
+reader and recomputes timing; optional `--replay` repeats the unchanged reader.
+The consumed attempt, thresholds and negative classifications cannot be rerun
+or regraded.
+
+The distinct [flat-start v2 declaration](../sdk/discovery/gpu_repertoire_v2.json)
+keeps the actions, episode length, eligibility, features and memory algorithm.
+It replaces the starting-condition family with the default upright pose and
+small positive native lateral velocities of 0.002, 0.003, 0.004 and 0.005 m/s.
+This outcome-informed successor is near the earlier finite upright-start
+example; it establishes no continuous support region and isolates neither the
+roll nor velocity contribution to v1's failures. Calibration and evaluation
+use different prospectively declared conditions and remain excluded from fitting.
+
+The [versioned pure plan](../sdk/adaptation_provider/retrieval/flat_contract_v2.json)
+loads the unchanged retrieval algorithm in an isolated module so v1's contract,
+model identities and evidence remain intact. The complete **63-test** zero-world
+gate passes in `sdk2-gpu-repertoire-v2-11314f3b2b2b400ba3756b214d92a789`.
+The earlier v2 test attempt is retained: its copied corruption assigned zero to
+an already-zero roll component and was correctly not rejected. The repaired
+control introduces an actual changed component. Native v2 collection still
+requires its clean pushed source and repeated prelaunch gate.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

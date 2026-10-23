@@ -1,5 +1,19 @@
 # LoColemotion Locomotion SDK
 
+SDK2 native-learning checkpoint (2026-10-23): the first
+[36-episode repertoire](discovery/gpu_repertoire_negative_closure_v1.json) is
+execution-valid but entirely negative under its declared eligibility limits.
+All four baselines and all 32 correction episodes failed. The independent reader
+verified every one of 17,280 decisions and 86,400 physics samples; fitting refused
+and wrote no model. The [759-artifact reader](discovery/audit_gpu_repertoire_negative_closure.py)
+and four corruption controls retain that result without regrading it.
+
+The distinct [flat-start successor](discovery/gpu_repertoire_v2.json) passes its
+63-test zero-world gate and is ready for a clean pushed native freeze. Its
+narrower starting conditions do not relax the eligibility thresholds. A fitted
+native provider, controlled Tier 2/Tier 3 evaluation and three-engine promotion
+remain open. See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23).
+
 SDK2 retrieval implementation checkpoint (2026-10-23): the
 [bounded casebook and episode-memory component](adaptation_provider/retrieval/component_v1.json)
 implements immutable fitting, nearest-case proposals, explicit bounded feedback,

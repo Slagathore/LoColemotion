@@ -201,6 +201,17 @@ zero-world development gate passed, retaining the initial fixture failure.
 Native collection and fitting still require the clean pushed source and complete
 prelaunch gate; this source checkpoint is not a trained native provider.
 
+Native repertoire v1 at `e87dba34` is now closed as a [valid complete negative](../sdk/discovery/gpu_repertoire_negative_closure_v1.json):
+all 36 episodes failed the unchanged eligibility limits, including every baseline.
+The full reader verified 17,280 decisions and 86,400 internal rows. Fitting
+refused because there were no eligible baseline cases; no model was written.
+The 759-artifact closure and four corruption controls retain this result and its
+original source/runtime bindings. A distinct [flat-start v2 successor](../sdk/discovery/gpu_repertoire_v2.json)
+now passes 63 zero-world controls. It narrows the initial condition family while
+keeping actions, eligibility and the retrieval/memory algorithm unchanged.
+V1 remains consumed. Native v2 fitting and controlled Tier 2/Tier 3 evaluation
+are still open; SDK1, full-program and release marks do not change.
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,

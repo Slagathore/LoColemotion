@@ -1,0 +1,340 @@
+{
+  "schema_version": "locolemotion_bounded_retrieval_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "provider_id": "s169_bounded_retrieval_flat_v2",
+  "provider_version": "bounded_retrieval_flat_v2",
+  "ordered_actuator_ids": [
+    "front_left_hip_motor",
+    "front_left_knee_motor",
+    "front_right_hip_motor",
+    "front_right_knee_motor",
+    "rear_left_hip_motor",
+    "rear_left_knee_motor",
+    "rear_right_hip_motor",
+    "rear_right_knee_motor"
+  ],
+  "ordered_limb_ids": [
+    "front_left",
+    "front_right",
+    "rear_left",
+    "rear_right"
+  ],
+  "ordered_contact_site_ids": [
+    "front_left_foot",
+    "front_right_foot",
+    "rear_left_foot",
+    "rear_right_foot"
+  ],
+  "actions": [
+    {
+      "action_id": "baseline",
+      "global_scale": 0.0,
+      "side_bias": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "action_id": "action_1",
+      "global_scale": -0.15,
+      "side_bias": -0.1,
+      "ordered_coefficients": [
+        -0.25,
+        -0.25,
+        -0.04999999999999999,
+        -0.04999999999999999,
+        -0.25,
+        -0.25,
+        -0.04999999999999999,
+        -0.04999999999999999
+      ]
+    },
+    {
+      "action_id": "action_2",
+      "global_scale": -0.15,
+      "side_bias": 0.0,
+      "ordered_coefficients": [
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15
+      ]
+    },
+    {
+      "action_id": "action_3",
+      "global_scale": -0.15,
+      "side_bias": 0.1,
+      "ordered_coefficients": [
+        -0.04999999999999999,
+        -0.04999999999999999,
+        -0.25,
+        -0.25,
+        -0.04999999999999999,
+        -0.04999999999999999,
+        -0.25,
+        -0.25
+      ]
+    },
+    {
+      "action_id": "action_4",
+      "global_scale": 0.0,
+      "side_bias": -0.1,
+      "ordered_coefficients": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1,
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ]
+    },
+    {
+      "action_id": "action_5",
+      "global_scale": 0.0,
+      "side_bias": 0.1,
+      "ordered_coefficients": [
+        0.1,
+        0.1,
+        -0.1,
+        -0.1,
+        0.1,
+        0.1,
+        -0.1,
+        -0.1
+      ]
+    },
+    {
+      "action_id": "action_6",
+      "global_scale": 0.15,
+      "side_bias": -0.1,
+      "ordered_coefficients": [
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "action_id": "action_7",
+      "global_scale": 0.15,
+      "side_bias": 0.0,
+      "ordered_coefficients": [
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ]
+    },
+    {
+      "action_id": "action_8",
+      "global_scale": 0.15,
+      "side_bias": 0.1,
+      "ordered_coefficients": [
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999
+      ]
+    }
+  ],
+  "feature_names": [
+    "height_m",
+    "up_x",
+    "up_z",
+    "velocity_x_m_s",
+    "velocity_z_m_s",
+    "yaw_rate_rad_s"
+  ],
+  "feature_scales": [
+    0.1,
+    0.2,
+    0.2,
+    0.2,
+    0.1,
+    0.5
+  ],
+  "phase_cycle_steps": 360,
+  "phase_bin_steps": 30,
+  "decision_window_steps": 30,
+  "controller_dt_s": 0.008333333333333333,
+  "nearest_neighbors": 3,
+  "maximum_support_distance": 1.5,
+  "minimum_predicted_gain_m_s": 0.001,
+  "desired_forward_velocity_m_s": 0.2,
+  "lateral_error_weight": 0.25,
+  "minimum_height_m": 0.25,
+  "maximum_tilt_rad": 0.6,
+  "maximum_absolute_correction_rad_s": 0.25,
+  "maximum_slew_per_step_rad_s": 0.02,
+  "training_episode_outer_steps": 480,
+  "groups": [
+    {
+      "group_id": "train_0",
+      "partition": "train",
+      "seed": 104230700,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.002
+    },
+    {
+      "group_id": "train_1",
+      "partition": "train",
+      "seed": 104230701,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.003
+    },
+    {
+      "group_id": "train_2",
+      "partition": "train",
+      "seed": 104230702,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.004
+    },
+    {
+      "group_id": "train_3",
+      "partition": "train",
+      "seed": 104230703,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.005
+    },
+    {
+      "group_id": "calibration_0",
+      "partition": "calibration",
+      "seed": 104230800,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.0025
+    },
+    {
+      "group_id": "calibration_1",
+      "partition": "calibration",
+      "seed": 104230801,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.0035
+    },
+    {
+      "group_id": "calibration_2",
+      "partition": "calibration",
+      "seed": 104230802,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.0045
+    },
+    {
+      "group_id": "calibration_3",
+      "partition": "calibration",
+      "seed": 104230803,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.0055
+    },
+    {
+      "group_id": "evaluation_0",
+      "partition": "evaluation",
+      "seed": 104230900,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.00225
+    },
+    {
+      "group_id": "evaluation_1",
+      "partition": "evaluation",
+      "seed": 104230901,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.00325
+    },
+    {
+      "group_id": "evaluation_2",
+      "partition": "evaluation",
+      "seed": 104230902,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.00425
+    },
+    {
+      "group_id": "evaluation_3",
+      "partition": "evaluation",
+      "seed": 104230903,
+      "initial_native_roll_rad": 0.0,
+      "initial_native_lateral_velocity_m_s": 0.00475
+    }
+  ],
+  "archive": {
+    "axes": [
+      "mean_height_m",
+      "lateral_displacement_m"
+    ],
+    "edges": [
+      [
+        0.25,
+        0.35,
+        0.38,
+        0.41,
+        0.44,
+        0.5,
+        0.65
+      ],
+      [
+        -0.5,
+        -0.08,
+        -0.03,
+        -0.01,
+        0.0,
+        0.01,
+        0.03,
+        0.08,
+        0.5
+      ]
+    ],
+    "quality": "negative mean forward tracking error minus 0.25 times mean absolute lateral velocity; eligible episodes only",
+    "all_trials_retained_separately": true
+  },
+  "episodic_memory": {
+    "maximum_offset_m_s": 0.15,
+    "maximum_count": 32,
+    "maximum_opaque_state_bytes": 65536,
+    "base_model_immutable": true,
+    "reset_and_rollback_required": true
+  },
+  "fitting": {
+    "train_groups_only": true,
+    "calibration_and_evaluation_may_fit": false,
+    "failed_episodes_retained": true,
+    "invalid_or_incomplete_episodes_may_supply_cases": false
+  },
+  "authority": {
+    "development_model_fitting": true,
+    "physical_launch_authority": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "three_engine_promotion_requires_existing_tier2_architecture": true
+  },
+  "purpose": "Distinct flat-start development successor after the complete all-negative tilted-start v1. Same actions, posture eligibility, feature scales, fitting and memory rules; new grouped starts and fresh native identities. No old episode is reclassified or reused.",
+  "plan_id": "s169_flat_start_retrieval_v2"
+}
