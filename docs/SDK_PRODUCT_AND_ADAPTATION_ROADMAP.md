@@ -1416,6 +1416,63 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Prepared support-vertical comparison - 2026-10-23
+
+The [provider](../sdk/adaptation_provider/support_vertical_feedback_v1.py),
+[host](../sdk/discovery/support_vertical_control.py),
+[declaration](../sdk/discovery/cpu_support_vertical_v1.json),
+[native route](../sdk/discovery/cpu_support_vertical.py) and
+[independent reader](../sdk/discovery/audit_cpu_support_vertical.py) implement the
+composition hypothesis below. For a leg whose current observation has both
+presence and support, compute `J b` from the actual canonical baseline command.
+Only when its vertical component opposes the combined attitude/height request,
+add the existing damped inverse of `[0, -(J b)_y]` to the unchanged feedback.
+All other cases add zero. The existing resolver owns absolute correction, slew
+and final speed limits. No force controller, direct world write, learned action
+selection or future outcome input is introduced. Damping and clamps can couple
+horizontal motion; this is not a promise to preserve the gait trajectory.
+
+The S169 body, `left_075` actuator profile, ground domain, attitude/posture/height
+objectives and correction/slew/speed bounds remain fixed. Seed `104232500`
+identifies four fresh roles at each exposed lateral start, 0.001, 0.003, 0.004
+and 0.006 m/s:
+
+| Role | Candidate | First possible influence | Baseline-only history |
+|---|---|---|---|
+| Baseline | Existing baseline | None | Sixteen commands |
+| Height immediate | Unchanged current height feedback | Command zero | None |
+| Vertical immediate | Opposing-vertical successor | Command zero | None |
+| Vertical after sixteen | Same successor | Command sixteen | Sixteen commands |
+
+The complete population is **16 CPU worlds, 23,040 controller decisions and
+115,200 internal samples**, with twelve seconds per world. Baseline and delayed
+roles must share the actual initial baseline history; neither immediate role may
+claim that history. All four starts must remain eligible before a role can rank
+by mean whole-episode tracking quality, with role index as tie-break. Twenty
+prospective paired contrasts retain failed endpoints and censored quality.
+The unchanged eligibility limits are 0.25 m minimum height, 0.6 rad maximum tilt,
+zero torso contact and zero safe-no-actuation steps. Prior confirmation starts
+0.002 and 0.005 remain excluded from fitting; reserved calibration and evaluation
+starts remain unopened. Nominal preservation and learned choice are not covered.
+
+All **26 focused controls** passed in
+`sdk2-support-vertical-controls-d70010b83704461381babc65dcfeaa80`:
+eight mathematical/real-interface controls in 8.494 s, eight host controls in
+2.545 s and ten full-route controls in 7.885 s. On 480 retained-input decisions,
+two independent cores agree exactly, the height reference retains its target
+bits, and 374 supporting-leg observations exercise compensation. These are
+zero-world component checks, not native benefit evidence. Exact tested source
+and original logs remain retained.
+
+The [supervisor](../sdk/discovery/run_cpu_support_vertical.py) then passed all
+**250 controls**, containment and zero-world preflight in
+`sdk2-cpu-support-vertical-32b5487edae44d6482ff9a6781a448f3`.
+Source/runtime bindings were unchanged. It retains the operation mutex, fresh
+attempt identity, contained children, single-use population, full original
+streams and independent replay. Physical execution requires a clean pushed
+prospective freeze and a fresh complete gate. No native attempt has begun at
+this preparation boundary; no useful adaptation or release claim is earned.
+
 ### Completed height composition diagnosis - 2026-10-23
 
 The [executable reader](../sdk/discovery/height_composition_diagnostic.py) and

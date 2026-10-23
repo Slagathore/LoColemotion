@@ -2251,3 +2251,14 @@ to compensate opposing baseline vertical motion during observed support. Its
 formula and fresh comparison roles are recorded in the roadmap. This proposal
 must still pass analytic, ABI and physical checks; an improved fixed-state
 projection alone cannot establish a useful controller or a learned selector.
+
+## 2026-10-23 support-vertical composition preparation
+
+The [local successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-support-vertical-comparison---2026-10-23)
+implements the previously declared opposing-vertical hypothesis through the
+existing damped inverse and bounded velocity-residual ABI. Eight component
+controls include an independent damped normal equation and two-core agreement;
+eight host and ten synthetic route controls also pass. The complete applicable
+gate passes all 250 controls without new worlds. Sixteen fresh native trials
+remain prospective. This does not implement the cited predictive force planner
+or establish physical benefit. No third-party code or dependency was imported.

@@ -304,6 +304,180 @@
           "adaptation_benefit_established": false,
           "qualification_or_release_authority": false
         },
+        "support_vertical_discovery": {
+          "ledger_scope": {
+            "subsystem": "adaptation",
+            "engine_scope": "mujoco_cpu",
+            "authority_mode": "development_discovery",
+            "question_class": "development"
+          },
+          "status": "prepared_zero_world_gate_passed",
+          "declaration": "sdk/discovery/cpu_support_vertical_v1.json",
+          "declaration_sha256": "9886104ef6e84636b02a0039cf247a26fbf3693611d0306a48c726cdced2b5a0",
+          "provider": "sdk/adaptation_provider/support_vertical_feedback_v1.py",
+          "provider_sha256": "3bcc778ac1a1621a36f0da7b17a7b57a1a7eaca7c70a7723aac3dda36d90a01f",
+          "controller": "sdk/discovery/support_vertical_control.py",
+          "launcher": "sdk/discovery/run_cpu_support_vertical.py",
+          "reader": "sdk/discovery/audit_cpu_support_vertical.py",
+          "retained_gate": "sdk2-cpu-support-vertical-32b5487edae44d6482ff9a6781a448f3",
+          "retained_gate_receipt_sha256": "7cef089026ab9b852bb1b21acf28f55d941fe914625d3d7b4d89fa02c3f24972",
+          "complete_zero_world_gate": {
+            "measurement": 7,
+            "quadruped": 10,
+            "portable": 11,
+            "host-batch": 7,
+            "graph-execution": 7,
+            "repertoire": 6,
+            "corpus": 3,
+            "retrieval": 9,
+            "motor-task": 7,
+            "motor-route": 5,
+            "motor-batch": 6,
+            "cpu-motor": 7,
+            "stance-feedback": 8,
+            "cpu-stance": 9,
+            "posture-feedback": 8,
+            "cpu-posture": 10,
+            "body-gain-feedback": 8,
+            "cpu-body-gain": 10,
+            "body-height-feedback": 8,
+            "cpu-body-height": 10,
+            "cpu-height-confirmation": 10,
+            "causal-history": 5,
+            "context-probe": 8,
+            "cpu-context-repertoire": 10,
+            "early-context": 7,
+            "height-activation": 8,
+            "cpu-height-activation": 10,
+            "height-composition": 7,
+            "support-vertical-feedback": 8,
+            "support-vertical-control": 8,
+            "cpu-support-vertical": 10,
+            "provider": 2,
+            "containment": 1
+          },
+          "source_binding_count": 452,
+          "runtime_binding_count": 1359,
+          "retained_component_and_route_controls": "sdk2-support-vertical-controls-d70010b83704461381babc65dcfeaa80",
+          "component_controls": [
+            {
+              "source": "sdk/discovery/test_support_vertical_feedback.py",
+              "sha256": "9c3360ed2c69c46e4fa07eba218ebcc43a30f55da565b3267c9bf6c66c89b37b",
+              "count": 8,
+              "wall_seconds": 8.494,
+              "stderr_sha256": "68688aacc9c5c9b163e52d750748de83ae8e7347f9801093df86008f9edddaaf"
+            },
+            {
+              "source": "sdk/discovery/test_support_vertical_control.py",
+              "sha256": "9959ce0c84c7a590213190de6472379cb64cd6839f7f2fe1680a275d76ca91c6",
+              "count": 8,
+              "wall_seconds": 2.545,
+              "stderr_sha256": "25c668b6df5c10f82a2d442aeb24f73ec33201810cfff254c33e208282aaecef"
+            },
+            {
+              "source": "sdk/discovery/test_cpu_support_vertical.py",
+              "sha256": "1818579c2c3f4d4750a96eedc20aeef19a164695de0633d68ecb33357910b081",
+              "count": 10,
+              "wall_seconds": 7.885,
+              "stderr_sha256": "e918a0fc320640bd60cec297eb4b43a3f053257010158f9c7699b239bfab9769"
+            }
+          ],
+          "planned_cpu_worlds": 16,
+          "planned_gpu_worlds": 0,
+          "planned_controller_rows": 23040,
+          "planned_internal_rows": 115200,
+          "seed": 104232500,
+          "outer_steps": 1440,
+          "horizon_s": 12.0,
+          "roles": [
+            {
+              "id": "baseline",
+              "candidate_index": 0,
+              "activation_step": null,
+              "baseline_probe_steps": 16
+            },
+            {
+              "id": "height_immediate",
+              "candidate_index": 2,
+              "activation_step": 0,
+              "baseline_probe_steps": 0
+            },
+            {
+              "id": "vertical_immediate",
+              "candidate_index": 3,
+              "activation_step": 0,
+              "baseline_probe_steps": 0
+            },
+            {
+              "id": "vertical_after_16",
+              "candidate_index": 3,
+              "activation_step": 16,
+              "baseline_probe_steps": 16
+            }
+          ],
+          "partitions": {
+            "training": [
+              {
+                "id": "train_001",
+                "lateral_velocity_m_s": 0.001
+              },
+              {
+                "id": "train_003",
+                "lateral_velocity_m_s": 0.003
+              },
+              {
+                "id": "train_004",
+                "lateral_velocity_m_s": 0.004
+              },
+              {
+                "id": "train_006",
+                "lateral_velocity_m_s": 0.006
+              }
+            ],
+            "calibration": [
+              {
+                "id": "cal_0015",
+                "lateral_velocity_m_s": 0.0015
+              },
+              {
+                "id": "cal_0045",
+                "lateral_velocity_m_s": 0.0045
+              }
+            ],
+            "evaluation": [
+              {
+                "id": "eval_0025",
+                "lateral_velocity_m_s": 0.0025
+              },
+              {
+                "id": "eval_0055",
+                "lateral_velocity_m_s": 0.0055
+              }
+            ]
+          },
+          "excluded_confirmation_starts": [
+            0.002,
+            0.005
+          ],
+          "eligibility": {
+            "minimum_height_m": 0.25,
+            "maximum_tilt_rad": 0.6,
+            "maximum_torso_contact_steps": 0,
+            "maximum_safe_no_actuation_steps": 0
+          },
+          "selection_rule": "Require all four starts eligible per activation role; rank mean whole-episode tracking quality, then role index. Preserve failures and censored quality.",
+          "prospective_contrast_count": 20,
+          "physical_attempt_started": false,
+          "training_data_authority": false,
+          "controller_selection_authority": false,
+          "adaptation_benefit_established": false,
+          "nominal_preservation_established": false,
+          "learned_selection": false,
+          "calibration_worlds": 0,
+          "evaluation_worlds": 0,
+          "qualification_or_release_authority": false,
+          "next_question": "Publish the exact tested source, repeat the complete 250-control gate, execute all sixteen fresh CPU trials and independently replay the full population. Select only roles eligible at every declared start; preserve every failed or invalid outcome. Healthy-body preservation and learned control remain separate subsequent work."
+        },
         "height_activation_discovery": {
           "ledger_scope": {
             "subsystem": "adaptation",

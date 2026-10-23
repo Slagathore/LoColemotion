@@ -1,0 +1,125 @@
+{
+  "schema_version": "locolemotion_support_vertical_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "parent_model": {
+    "path": "sdk/adaptation_provider/body_height_feedback_v1.json",
+    "sha256": "ee4c18f55a6b386ae65374ffd711119577debdef9d2b5c7d608bce4161ddf5d3"
+  },
+  "parent_implementation": {
+    "path": "sdk/adaptation_provider/body_height_feedback_v1.py",
+    "sha256": "330b0c2626a1a14f3715b0a0e972a93323ffa54cb1cdc07caf2018f698e3c756"
+  },
+  "composition_rule": {
+    "coordinate_frame": "foot_center_relative_to_torso_canonical_xy",
+    "support_rule": "observed_presence_and_bears_support",
+    "activation_rule": "baseline_vertical_times_requested_body_vertical_strictly_negative",
+    "target_xy_m_s": "[0, -baseline_foot_velocity_y]",
+    "inverse": "existing_damped_J_transpose_JJ_transpose_inverse",
+    "no_support_or_no_opposition": "zero_added_correction",
+    "measured_contact_forces_used": false,
+    "baseline_gait_replaced": false
+  },
+  "candidate_count": 4,
+  "candidates": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "factor": null,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 0.0,
+      "height_enabled": false
+    },
+    {
+      "id": "feedback_kp3_kd05",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": false
+    },
+    {
+      "id": "feedback_height_v1",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": true
+    },
+    {
+      "id": "feedback_support_vertical_v1",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": true,
+      "support_vertical_compensation": true
+    }
+  ],
+  "envelope_selection": "prospectively_declared_candidate_bound_host_envelope",
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

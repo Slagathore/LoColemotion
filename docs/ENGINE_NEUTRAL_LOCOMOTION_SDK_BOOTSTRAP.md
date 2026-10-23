@@ -2,6 +2,16 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Prepared successor (2026-10-23): the [support-vertical comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-support-vertical-comparison---2026-10-23)
+passes all **250 applicable controls** and a zero-world runtime preflight.
+Twenty-six focused controls verify the opposing-motion rule, two-core command
+agreement, unchanged reference/fallback commands, truthful sixteen-command
+history and complete synthetic replay. The declaration fixes sixteen fresh CPU
+worlds: baseline, current height feedback, immediate successor and delayed
+successor at four exposed starts, each for twelve seconds. No new physical world
+has run at this preparation boundary. Next publish the exact source, repeat the
+complete gate and retain every native outcome before selecting any role.
+
 Latest diagnosis (2026-10-23): the [retained height-composition reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
 verifies a common first second from all four immediate-height trials: 480
 decisions, 2,400 internal samples and 1,920 leg evaluations, with zero new worlds.
