@@ -1,0 +1,108 @@
+{
+  "schema_version": "locolemotion_gpu_batch_execution_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "purpose": "Measure the complete scalar/direct and batched/graph GPU execution routes at declared sizes with full controller, force and contact evidence. This is execution development, not candidate training or physical qualification.",
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "model_xml_sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06",
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "gpu_dtype": "float32",
+  "cpu_dtype": "float64",
+  "cuda_graph": {
+    "scalar_direct": false,
+    "batch_graph": true
+  },
+  "seed": 1042303,
+  "outer_steps": 120,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "cpu_warning_count": 7,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "maximum_worker_wall_seconds": 1200,
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+  "phase_mode": "clocked",
+  "provider": {
+    "kind": "untrained_proportional_canonical_velocity_proposal",
+    "maximum_absolute_correction_rad_s": 0.25,
+    "maximum_slew_per_step_rad_s": 0.02,
+    "candidates": [
+      {
+        "id": "baseline",
+        "factor": null
+      },
+      {
+        "id": "minus_010",
+        "factor": -0.1
+      },
+      {
+        "id": "plus_010",
+        "factor": 0.1
+      },
+      {
+        "id": "plus_020",
+        "factor": 0.2
+      }
+    ]
+  },
+  "initialization": "Fresh native data and fresh controller/provider memory for every declared trial. Same default S169 pose and one-seed initial native-Y velocity shared across all cells and both routes; no state reset after physics begins. Capture must leave the initial qpos, qvel and clock unchanged.",
+  "sampling": "Both routes retain every completed internal state, held solver input, named force pair, contact, capacity counter and every portable/provider decision. Graph capture copies five internal snapshots into preallocated device history before the next step1 clears force sensors; host reads occur after graph launch. Prepared observations use checked production-adapter readback and the retained contact compatibility copy. CPU dynamics are forbidden.",
+  "coverage": [
+    "complete host scalar/batch portable and provider path",
+    "fresh 1/4/16-world GPU batches",
+    "CUDA-graph split-step ordering",
+    "per-substep force samples before sensor reset",
+    "complete contact allocation and compatibility-view joins",
+    "held controls and state continuity",
+    "graph capture does not advance initial worlds",
+    "every trial, cell and timing row retained",
+    "bounded owned worker and complete zero-world gate"
+  ],
+  "not_covered": [
+    "trained provider",
+    "training corpus",
+    "held-out learning evaluation",
+    "scalable training throughput",
+    "physical locomotion acceptance",
+    "cross-engine equivalence",
+    "Studio recovery handoff",
+    "force-aware recovery"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "predecessor": {
+    "host_component": "sdk/discovery/portable_batch_component_v1.json",
+    "physical_route": "sdk/discovery/gpu_portable_search_closure_v2.json"
+  },
+  "successor_change": "Optional batched host calls, captured GPU split steps and device-buffered complete internal evidence. Consumed scalar campaigns and their declarations stay unchanged.",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "batch_sizes": [
+    1,
+    4,
+    16
+  ],
+  "repeats": 3,
+  "arms": [
+    "scalar_direct",
+    "batch_graph"
+  ],
+  "warmup_outer_steps": 24,
+  "naconmax_per_world": 64,
+  "maximum_trace_bytes_per_trial": 268435456,
+  "timing": "Three fresh trials per arm and batch size; order alternates by repeat plus size index. Retain all 120 outer commands per trial. First 24 are declared warm-up, last 96 form measured totals. Setup, cold JIT/graph capture, all warm-up timings and full measured section timings remain reported. Combined route comparison only; graph, batching and buffered readback effects are not separately identified. No statistical superiority or trajectory equivalence decision."
+}

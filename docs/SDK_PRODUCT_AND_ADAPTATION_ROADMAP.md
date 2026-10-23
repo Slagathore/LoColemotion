@@ -322,6 +322,25 @@ four corruption controls pass. The next L0 successor must integrate this path
 with CUDA-graph substeps and checked capture/readback, qualify the complete gate,
 and measure fresh native workloads before scalable search is claimed.
 
+The prospective [GPU execution comparison](../sdk/discovery/gpu_batch_execution_v1.json)
+now implements the next L0 route. It compares scalar/direct execution with
+batched control, CUDA graphs and device-buffered full capture at 1, 4 and 16
+creatures. Three fresh trials per route and size alternate their order. Each
+trial retains 120 outer commands and all 600 internal steps; the first 24 outer
+commands are declared warm-up. Setup, cold compilation/capture, warm-up,
+readback, control, integration, retention and independent audit costs remain
+separate. The combined route comparison does not identify each optimization's
+individual contribution or establish trajectory equivalence.
+
+Seven new zero-world controls cover complete scalar replay, graph step ordering,
+force retention, memory isolation, corrupted evidence and timing denominators.
+The [contained launcher](../sdk/discovery/run_gpu_batch_execution.py) repeats the
+full applicable measurement, quadruped, portable, host-batch, graph, provider,
+containment and runtime gates before any native world. Use the declared new and
+baseline DLLs with `--core` and `--baseline-core`; `--run` additionally requires a
+clean pushed source freeze and consumes a fresh identity. Physical execution
+and throughput are not yet verified. No training corpus or provider is claimed.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

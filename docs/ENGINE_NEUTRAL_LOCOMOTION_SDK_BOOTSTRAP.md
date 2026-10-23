@@ -158,6 +158,14 @@ median scalar/batch time ratios are 1.4202, 1.4457 and 2.2981 at batch sizes 1,
 This is zero-world component/timing evidence. CUDA-graph execution, fresh native
 batch timings and provider training remain open; no old campaign is regraded.
 
+The L0 [GPU execution successor](../sdk/discovery/gpu_batch_execution_v1.json)
+is now source-ready for a contained full-capture comparison at 1/4/16 worlds.
+Seven synthetic controls pass. Its launcher requires the complete safety gate
+and a clean pushed prospective freeze; native execution and throughput remain
+unverified. It creates no training or physical authority. The product roadmap
+records the exact workload and keeps Tier 2 frozen retrieval and Tier 3 reversible
+episode memory as the subsequent learning targets.
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,
