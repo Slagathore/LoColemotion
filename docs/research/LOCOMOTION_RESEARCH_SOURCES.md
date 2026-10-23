@@ -2143,3 +2143,30 @@ declared before collection. The reader joins repeated fresh prefixes into one
 training group and preserves every fixed-role outcome. Only complete verified
 training data may support fitting. The earlier confirmation is excluded, and
 no native result, learned benefit or broad generalization follows yet.
+
+## 2026-10-23 completed causal-prefix repertoire and history coverage
+
+The [closed training repertoire](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)
+retains twelve eligible nominal trials and twelve failed degraded-body trials.
+All eight shared prefixes are verified training groups, but no degraded
+candidate survives the unchanged four-start selection rule. Nominal baseline
+ranks first. The sixty-four-command baseline observation design therefore has
+no useful degraded action mapping in this finite training population. The
+previous confirmation used different starts and immediate height feedback;
+this comparison does not isolate an activation-delay effect.
+
+Re-read [Kumar et al., RMA, sections III-B and III-C](https://arxiv.org/html/2107.04034v1)
+on 2026-10-23. Its estimator uses recent states and actions; training includes
+trajectories generated using imperfect estimated context, rather than only
+expert behavior. A controller that changes its own input distribution needs
+that training coverage. Its history window does not prescribe an initial
+period of baseline-only control. Our common baseline prefix and one-time fixed
+choice are local experimental restrictions, not a reproduction of the paper.
+
+The result motivates earlier causal observation and/or stronger initial
+control under a new declaration. Authorized training histories can test
+context feasibility, while fresh native worlds must establish whether the
+chosen control can help at the declared activation time. Do not reinterpret
+this failed delayed repertoire as a positive selector, fit from the earlier
+confirmation, or expose reserved calibration/evaluation to tuning. No external
+code or dependency was imported; no published performance claim transfers here.

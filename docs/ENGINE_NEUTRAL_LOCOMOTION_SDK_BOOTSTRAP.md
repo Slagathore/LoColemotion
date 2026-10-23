@@ -2,14 +2,18 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Latest preparation (2026-10-23): the [causal-prefix training successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-prefix-repertoire-discovery-prepared---2026-10-23)
-passes all 192 zero-world controls. It declares 24 fresh CPU worlds on new
-training starts, a common 64-command baseline observation period, and a fixed
-controller per world thereafter. Sixteen causal joint-response features use
-actual issued commands and observed states. Calibration and evaluation starts
-remain reserved; prior confirmation remains excluded from fitting. The next
-step is native collection from a clean pushed freeze. No learned selector or
-adaptation benefit is established.
+Latest closure (2026-10-23): the [causal-prefix training repertoire](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)
+completed 24 fresh CPU worlds from `e15bd02b` after all 192 controls passed.
+Independent replay verified 34,560 decisions and 172,800 internal samples:
+**12/24 eligible, 12/24 negative**. All twelve nominal trials passed; all twelve
+degraded-body trials failed. The degraded shortlist is empty; nominal baseline
+ranks first. Eight shared causal-prefix groups are verified development training
+data, but this 64-command observation design supplies no useful degraded-body
+choice. All seven closure controls pass over 9,181 retained artifacts. Next
+resolve earlier observation and initial control in a distinct successor; do not
+fit an action selector as if this empty shortlist were a viable repertoire.
+Prior confirmation and reserved calibration/evaluation remain excluded from
+fitting. No learned selector, adaptation benefit or release claim is established.
 
 Latest confirmation (2026-10-23): [twelve-second height confirmation](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
 completed twelve CPU worlds from `499ca1f3` after all 169 controls passed.

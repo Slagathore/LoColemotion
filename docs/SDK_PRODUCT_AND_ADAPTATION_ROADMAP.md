@@ -101,10 +101,12 @@ both starts on both bodies. Its nominal tracking score is below baseline at
 both starts, so the nominal quality guard is false. New discovery for causal
 history and context-dependent selection is next; confirmation grants no fitting
 or reselection authority.
-The [causal-prefix training successor](#causal-prefix-repertoire-discovery-prepared---2026-10-23)
-now passes all 192 zero-world controls. It declares 24 fresh worlds, eight
-training groups, a shared 64-command baseline prefix and disjoint reserved
-starts. Native collection and learned selection remain unopened.
+The [causal-prefix training repertoire](#completed-causal-prefix-repertoire---2026-10-23)
+is now closed after all 192 controls and 24 fresh CPU worlds: 12/24 eligible,
+all on the nominal body. All twelve degraded-body trials fail, so its shortlist
+is empty; nominal baseline ranks first. Eight shared prefixes are verified
+training groups. Earlier observation and initial control now need a distinct
+successor. Learned selection and reserved calibration/evaluation remain unopened.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1393,6 +1395,70 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed causal-prefix repertoire - 2026-10-23
+
+The [training declaration](../sdk/discovery/cpu_context_repertoire_v1.json)
+completed from published `e15bd02b` after all **192 controls** passed again.
+Attempt `sdk2-cpu-context-repertoire-9bdf4639cc51410cb2739ba07a55bc74` constructed
+24 fresh CPU worlds, with zero GPU, calibration or evaluation worlds. Complete
+independent replay verified **34,560 decisions and 172,800 internal samples**.
+Each world ran twelve seconds; its first 64 commands used actual `no_proposal`
+responses and exact baseline commands. The result is **12/24 eligible and
+12/24 negative** across all four new training starts on each condition.
+
+| Condition | Baseline eligible | Reference eligible | Height eligible | Declared selection |
+|---|---|---|---|---|
+| Left-side effectiveness 75 percent | 0/4 | 0/4 | 0/4 | Empty shortlist |
+| Nominal actuator profile | 4/4 | 4/4 | 4/4 | Baseline, index 0 |
+
+All twelve degraded trials first violate tilt between 0.941667 and 1.163333 s;
+their quality remains censored. Height feedback was active before failure, with
+49-75 supported feedback decisions before the first violation, but no candidate
+passes even one degraded training start. Nominal mean whole-episode tracking
+qualities are -0.0994551, -0.1008696 and -0.1323308 m/s for baseline, reference
+and height respectively; higher is better. All nominal trials have 48 complete
+scoring windows. The degraded shortlist stays empty under the unchanged
+four-start rule; a best failed trial is not a selected controller.
+
+All three fresh roles within each of eight groups have bit-identical causal
+inputs and sixteen joint-response features at command 64. Those repeated
+prefixes are one training example per group. The complete verified corpus,
+including failures, earns finite development fitting and controller-selection
+authority. It does not provide a useful degraded action mapping at this delayed
+selection point. No model has been fitted and no learned choice has run.
+
+The earlier immediate-height confirmation remains valid on its own starts.
+Both activation timing and initial velocities changed here, so this result
+does **not** isolate delay as the cause or refute history-based adaptation.
+Next resolve earlier observation and initial control in a distinct successor,
+using authorized training histories for feasibility work while leaving earlier
+confirmation and reserved calibration/evaluation outside fitting. A continuously
+updating selector also needs coverage of histories produced by its own choices.
+
+The [closure record](../sdk/discovery/cpu_context_repertoire_closure_v1.json)
+and [verifier](../sdk/discovery/audit_cpu_context_repertoire_closure.py) bind
+**9,181 artifacts / 4,075,817,332 bytes**, 415 frozen sources and 1,359 runtime
+files. Native execution took 441.484 s; independent replay took 424.154 s.
+All **seven closure controls** passed in 306.639 s in
+`sdk2-context-repertoire-closure-controls-9ba9a8d1a8ac419ca4a01ae98f23b7f1`.
+They reject invented winners, removed failures, changed causal inputs and
+receipt bindings, crossed condition models, altered runtime/source identities,
+and changed quality or authority. Their exact tested sources and logs remain
+retained. Verification constructs no new worlds.
+
+An earlier closure-development attempt,
+`sdk2-context-repertoire-closure-generation-f81158127fa74a9d8dfa800458eb0ec4`,
+failed with `Outcome denominator`: a copied verifier constant still expected
+three negatives. Its exact source and original failure log are retained. The
+new verifier was corrected to twelve negatives; original native data, receipt,
+audit and interpretation were unchanged. The corrected complete verification
+passed in `sdk2-context-repertoire-closure-generation-cb15ccab14c54b01a2aa0ff4a9ce1712`.
+
+No learned-selection benefit, Tier 3 memory benefit, population inference,
+non-inferiority, qualification or release authority is earned. SDK1 remains
+20/20 and full-program readiness remains 19/25 pending the next fresh compiler
+report; the six existing release blockers are unaffected by this discovery.
 
 ### Causal-prefix repertoire discovery prepared - 2026-10-23
 
