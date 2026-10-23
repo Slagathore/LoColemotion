@@ -46,12 +46,29 @@ refusals. A closure reopens all retained bytes and recomputes the reader.
 The complete zero-world gate passes ten quadruped/reader controls, seven
 measurement controls, real process-tree cleanup and pinned runtime preflight.
 Attempt `sdk2-gpu-quadruped-925586c4cc8047b4af5caf4a5701d6ad` retains that
-preflight under the durable evidence root. This is prospective development
-source; no quadruped GPU result, trained provider or locomotion acceptance is
-claimed yet.
+preflight under the durable evidence root.
 
-This scalar probe commissions measurement/execution only. Quadruped GPU
-discovery, provisional training, native candidate transfer, provider training,
+Clean pushed `affab906` repeated that gate and consumed
+`sdk2-gpu-quadruped-ea99d40f9bc14f04aca01829c17c0056`. The
+[native quadruped closure](../sdk/discovery/gpu_quadruped_probe_closure_v1.json)
+reopens 275 retained artifacts and independently recomputes all **9,600 rows**.
+All eight worlds completed 1,200 steps; each exercised ground contact. Named
+actuator/joint forces agree exactly, with no observed overflow, native warning
+or nonfinite capture. The maximum CPU/GPU root-position difference was
+**4.013546 mm**. Contact counts differ at 659 of 4,800 paired world-steps; clamp
+branches differ in 137 of 38,400 paired actuator samples, all in the strongest
+profile. These remain observed differences, without an equivalence margin.
+
+The cold first GPU step including compilation took 94.576994 seconds; later
+GPU stepping plus synchronization took 16.624734 seconds, and post-step capture
+took 3.273841 seconds. CPU execution plus capture took 2.654846 seconds. These
+four-world, fully captured diagnostic timings are not a throughput comparison.
+Next is a separately declared candidate-search route, device-side batching and
+measured capture cost, followed by fresh native challenges of frozen candidates.
+No accepted portable policy, trained provider or locomotion acceptance follows.
+
+The scalar and quadruped probes commission measurement/execution only. GPU
+candidate discovery, provisional training, native candidate transfer, provider training,
 episodic adaptation and Studio recovery handoff/performance remain
 required work. The older Warp calibration and accepted SDK1 records stay intact.
 

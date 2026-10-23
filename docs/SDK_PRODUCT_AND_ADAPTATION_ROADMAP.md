@@ -138,7 +138,7 @@ completed all 1,920 rows. Two cells diverged at a force-clamp branch after a
 command reversal, reaching a 0.30 rad/s difference despite matching sensor
 semantics. Candidate search must retain such branch-sensitive cases and expose
 them to native transfer tests; they must not be hidden by a widened tolerance.
-The prospective [quadruped probe](../sdk/discovery/gpu_quadruped_probe_v1.json)
+The [quadruped probe](../sdk/discovery/gpu_quadruped_probe_v1.json)
 now uses the actual compiled S169 body, eight velocity actuators and 16 named
 force sensors. Four bounded feedback profiles each receive 1,200 internal steps
 on GPU, followed by four fresh CPU worlds with the same profiles and seeded
@@ -151,8 +151,24 @@ retained artifact and recomputes that audit.
 Use `run_gpu_quadruped_probe.py --core PATH_TO_BOUND_CORE_DLL` in the same pinned
 Python environment for the complete zero-world safety gate. Add `--run` only
 after its prospective source is clean and pushed. Each invocation retains a
-fresh identity; native execution is contained and serialized. Quadruped native
-commissioning, training and the remaining Studio work are still open.
+fresh identity; native execution is contained and serialized.
+
+At clean pushed `affab906`, the complete gate passed again and all eight native
+worlds finished. The [quadruped closure](../sdk/discovery/gpu_quadruped_probe_closure_v1.json)
+reopens 275 artifacts and recomputes all 9,600 rows. Named force sensors agree
+exactly and every cell exercised ground contact. The maximum CPU/GPU root
+difference was 4.013546 mm; contact counts differ in 659/4,800 paired steps and
+clamp branches in 137/38,400 actuator samples. No equivalence margin or locomotion
+acceptance is asserted. The cold first GPU step took 94.576994 seconds; later
+stepping/synchronization took 16.624734 seconds. The deliberately small,
+synchronously captured batch does not establish high-throughput training.
+
+Next: declare a bounded candidate-search batch and its native challenge before
+opening worlds; measure device-side control/batching and capture costs; freeze
+the candidate shortlist; then integrate a learned proposal through the existing
+provider seam. Production portable-policy execution on GPU, trained providers,
+episodic adaptation and the remaining Studio work are still open. The old
+production Warp qualification contracts and support-matrix flags are unchanged.
 
 ### SDK2 claim targets
 
