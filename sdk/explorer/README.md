@@ -403,3 +403,47 @@ compiled execution path must preserve those numeric checks and state semantics
 while avoiding repeated JSON/provenance composition. Full diagnostic capture
 remains the oracle; recorded replay already exists but does not replace the
 requested live interactions.
+
+
+## Portable local Studio setup
+
+The portable successor is a local installation, not a redistributable native
+release. Supply the six native runtime images and an existing Windows CPython
+3.11 environment in the same explicit dependency configuration used above.
+The interpreter must contain the versions in
+[`requirements-lock.txt`](../adapters/mujoco/requirements-lock.txt).
+`materialize_studio.py --portable` copies the native images locally, retains
+relative paths and exact byte identities, and records the interpreter and package
+code identities. It does not copy a virtual environment or assume an author path.
+A rebuilt environment must reproduce the recorded runtime bytes; a different
+runtime requires a new setup identity and fresh native observations.
+
+From the repository root in PowerShell, with a clean pushed source and a fresh
+installation directory under the durable evidence root:
+
+```powershell
+# Supply your existing dependency JSON and choose a new local installation.
+& $python -B sdk/explorer/studio/materialize_studio.py --config $dependencyConfig --output $installation --portable
+# This command also works after moving the installation directory.
+& $python -B "$installation/source/sdk/explorer/studio/portable_setup.py" --installation $installation --mujoco-python $python
+# Exercise the actual UI without starting physics; a fresh session retains logs.
+& "$installation/source/sdk/explorer/studio/open_studio.ps1" -Config "$installation/dependencies.json" -EvidenceRoot $evidenceRoot -Python $python -SelfTest
+# Install a new shortcut; an existing shortcut is preserved and causes refusal.
+& "$installation/source/sdk/explorer/studio/install_studio.ps1" -Installation $installation -EvidenceRoot $evidenceRoot -Python $python
+```
+
+The setup verifier prints `ok: true`, zero worlds, the source commit and the
+verified viewing population. Missing, extra, changed, crossed or escaped runtime
+files fail before launch. Each native session still runs its own complete safety
+gate and process containment. The launcher creates a fresh session below the
+explicit durable evidence location. It never writes evidence into the source.
+The installed shortcut is named `LoColemotion Studio`; an older `SporeSpore
+Studio` shortcut remains intact. Reinstall a shortcut after moving an installation.
+
+Open `proof-pack/replay/index.html` for recorded motion without any native engine
+or network dependency. `proof-pack/raw/` contains the three unchanged source
+streams; `viewing-closure.json` binds their original identities and every viewing
+resource. Verification reconstructs every published pose, contact and impulse
+from those streams. The manifest separately enumerates scientific dependencies
+not included in this subset. Complete viewing resources do not constitute a
+complete experiment archive or new acceptance, training or release authority.

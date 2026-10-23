@@ -47,6 +47,18 @@ Native binary distribution remains a separate release/licensing decision.
 Reproducible local setup may use explicitly supplied or locally built runtimes;
 it must not imply permission to redistribute unapproved binaries.
 
+The portable setup successor is now implemented in
+[`materialize_studio.py`](../sdk/explorer/studio/materialize_studio.py) with
+`--portable`. It copies the supplied native images into relative runtime paths,
+binds the explicitly supplied Windows CPython 3.11 environment and exact package
+code, and includes a separately verified viewing pack. The pack preserves all
+5,962 published frames and their three original raw streams, while explicitly
+listing omitted scientific dependencies. `portable_setup.py` verifies the
+relocated source, runtime images, interpreter and projection without opening
+worlds. Five relocation/corruption controls pass. Fresh relocated native/UI
+observations and installed-launcher verification are still required before this
+product row can close; the recovery handoff remains separate open work.
+
 Fast walking currently bypasses the recovery ledger. Flipping its mode would
 revive stale clocks and energy history. The successor must close walking
 ownership and establish a current observation epoch, retaining the gap and

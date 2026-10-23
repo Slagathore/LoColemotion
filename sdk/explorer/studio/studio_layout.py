@@ -38,7 +38,7 @@ def verify_source(expected=None,physical=False,root=ROOT):
         source=isolated_source(root)
     else:
         def git(*words):return subprocess.check_output(['git',*words],cwd=root,text=True).strip()
-        if Path(git('rev-parse','--show-toplevel')).resolve()!=root or git('remote','get-url','origin')!='https://github.com/Slagathore/LoColemotion.git':raise RuntimeError('Repository identity')
+        if Path(git('rev-parse','--show-toplevel')).resolve()!=root or git('remote','get-url','origin')!='https://github.com/Slagathore/LoColemotion.git' or git('config','core.hooksPath')!='.githooks':raise RuntimeError('Repository identity')
         source=git('rev-parse','HEAD')
         if physical and (git('status','--porcelain') or git('ls-remote','origin','refs/heads/main').split()[0]!=source):raise RuntimeError('Physics requires clean pushed source')
     if expected is not None and source!=expected:raise RuntimeError('Studio source changed since launch')

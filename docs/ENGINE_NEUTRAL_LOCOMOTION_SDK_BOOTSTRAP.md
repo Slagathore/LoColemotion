@@ -42,6 +42,14 @@ discovery, provisional training, native candidate transfer, provider training,
 episodic adaptation, Studio recovery handoff and relocated installation remain
 required work. The older Warp calibration and accepted SDK1 records stay intact.
 
+The Studio portable-setup successor now has relative runtime bindings, explicit
+Python selection, checked evidence destinations and a relocatable proof subset.
+Its five zero-world controls include reconstruction of all 5,962 viewing frames
+from the original three raw streams and deliberate runtime/manifest corruption.
+This is source and read-only validation; fresh relocated native sessions and
+launcher readback remain pending. See the
+[setup instructions](../sdk/explorer/README.md#portable-local-studio-setup).
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,

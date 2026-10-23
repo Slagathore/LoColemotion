@@ -3,6 +3,7 @@ import argparse
 import ctypes as C
 from ctypes import wintypes as W
 import json
+import hashlib
 import os
 from pathlib import Path
 import shutil
@@ -20,6 +21,7 @@ from sandbox_spec import SCHEMA,validate
 from run_mujoco_sandbox import source_binding,runtime_binding,invoke,physical
 from scenario_catalog import load as load_catalog
 from studio_layout import EVIDENCE,verify_source
+from studio_portability import load_dependencies,evidence_destination
 
 
 class StudioOwner(Owner):
@@ -32,6 +34,9 @@ class StudioOwner(Owner):
 
     def command(self,value):
         if value.get('kind')=='start':verify_source(self.config['source_commit'],physical=True)
+        if value.get('kind')=='start' and hasattr(self,'dependency_path'):
+            if hashlib.sha256(self.dependency_path.read_bytes()).hexdigest()!=self.dependency_sha256:raise RuntimeError('Studio dependency manifest changed since launch')
+            if load_dependencies(self.dependency_path,self.config['source_commit'],self.config['mujoco_python'])!=self.config:raise RuntimeError('Studio runtime changed since launch')
         if value.get('kind')=='start' and value.get('engine')=='godot_jolt':
             if self.session_thread and self.session_thread.is_alive():raise ValueError('A native session already owns the app')
             if self.descriptor!=S169 or value.get('phase')!=74:raise ValueError('Live Godot currently requires the exact S169 body at phase 74')
@@ -144,6 +149,7 @@ class StudioOwner(Owner):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',type=Path,required=True)
+    parser.add_argument('--mujoco-python',type=Path,help='Explicit compatible environment; portable setup defaults to this process interpreter')
     destination=parser.add_mutually_exclusive_group(required=True)
     destination.add_argument('--output',type=Path)
     destination.add_argument('--evidence-root',type=Path,help='Create a fresh Studio session for each desktop launch')
@@ -154,9 +160,9 @@ def main():
     parser.add_argument('--replay-test',type=Path,help='Zero-world replay UI check of an independently audited retained sandbox')
     args=parser.parse_args()
     source=verify_source(physical=not args.ui_self_test)
-    cfg=json.loads(args.config.read_text(encoding='utf-8-sig'));cfg['source_commit']=source
+    cfg=load_dependencies(args.config,source,args.mujoco_python)
     folder=(args.output if args.output else args.evidence_root/('studio-'+uuid.uuid4().hex)).resolve()
-    if not folder.is_relative_to(EVIDENCE):raise ValueError('Durable evidence root required')
+    evidence_destination(folder,args.evidence_root or EVIDENCE,source_root=ROOT)
     folder.mkdir(parents=True,exist_ok=False);(folder/'commands').mkdir()
     project=folder/'app';(project/'sdk/explorer/studio').mkdir(parents=True);(project/'sdk/recovery').mkdir()
     for name in ['showcase.gd','recovery_evidence.gd']:shutil.copy2(SDK/'explorer'/name,project/'sdk/explorer'/name)
@@ -164,6 +170,11 @@ def main():
     for name in ['r10dh_release_gate_adoption_v2.json','r10dh_held_out_physical_closure_v2.json']:shutil.copy2(SDK/'recovery'/name,project/'sdk/recovery'/name)
     (project/'project.godot').write_text('[application]\nconfig/name="SporeSpore Studio"\n[rendering]\nrenderer/rendering_method="gl_compatibility"\n',encoding='utf-8')
     owner=StudioOwner(cfg,folder);write(folder/'catalog.json',load_catalog());ui=None;job=jobs.Job()
+    owner.dependency_path=args.config.resolve()
+    owner.dependency_sha256=hashlib.sha256(args.config.read_bytes()).hexdigest()
+    write(folder/'setup.json',dict(source_commit=source,dependencies_sha256=owner.dependency_sha256,
+        resolved_runtime=owner.identity,evidence_root=str((args.evidence_root or EVIDENCE).resolve()),
+        physical_acceptance_authority=False,release_authority=False))
     if args.replay_test:
         if not args.ui_self_test:raise ValueError('Replay test requires zero-world UI test mode')
         from audit_sandbox import audit
