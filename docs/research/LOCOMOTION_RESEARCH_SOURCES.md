@@ -1699,3 +1699,33 @@ remain retained. Synthetic packet injection does not prove native source/energy
 collection or physical setup. Complete-report links, entry-refusal disposition,
 launcher binding and full applicable smoke safety remain open. No world,
 held-out population or recovery acceptance was added; SDK1 remains 14/20.
+
+## 2026-10-22 upstream discussion follow-through
+
+[Rapier discussion 1032](https://github.com/dimforge/rapier/discussions/1032)
+contains a community reply supporting the final-substep interpretation. For the
+pinned profile, the per-substep cap is B/N. A final readback cannot reconstruct
+an outer-step sum under varying loads. The existing R24D46 application observer
+already supplies a stronger exact measurement for its qualified non-SIMD scope;
+use that surface rather than scaling a last readback. Changing N changes the
+experiment. This reply is advice, not upstream certification of this SDK.
+Source cross-check: [Rapier 0.34 JointMotor](https://github.com/dimforge/rapier/blob/v0.34.0/src/dynamics/joint/generic_joint.rs),
+and the [existing observer patch](../../sdk/adapters/rapier/engine_patches/README.md).
+
+[MuJoCo discussion 3652](https://github.com/google-deepmind/mujoco/discussions/3652)
+recommends named actuatorfrc/jointactuatorfrc sensors and distinct sampling stages.
+The owner's follow-up identifies the crucial clamp exception: the implicitfast
+velocity derivative is omitted at the force limit. Post-state force-time predicts
+the unsaturated unloaded scalar result; the clamped step instead uses the
+completed-step force. Contacts and other forces invalidate motor-only attribution
+from a raw momentum change. Named sensors prevent mapping mistakes but do not
+change sampling semantics or measure effective impulse automatically.
+Source cross-check: [MuJoCo 3.11 derivative](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_derivative.c#L2020)
+and [integration](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_forward.c).
+
+The new [measurement helpers](../../sdk/discovery/actuation_measurement.py)
+encode the scalar clamp distinction, explicit sensor-object binding and refusal
+to invent Rapier outer totals. Their archived-trace test checks all 1,800 rows
+of the published VH4 cell; it does not rescore VH4. Contact-rich accounting needs
+its own full generalized-force/integrator treatment, including bias, passive,
+applied and constraint channels. No scalar residual is promoted to that claim.

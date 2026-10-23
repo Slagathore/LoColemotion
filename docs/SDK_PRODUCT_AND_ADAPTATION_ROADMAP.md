@@ -19,7 +19,115 @@ It does not replace the executable evidence or release contracts:
 Frozen positive, negative, invalid, and rejected campaigns remain immutable.
 This roadmap can order a new successor, but it cannot change an old result.
 
-## Current product truth at the 2026-08-13 boundary
+## Current execution order - 2026-10-22
+
+SDK1 is complete at **20/20** under the October 3 retained receipt; the full
+program remains **19/25**. The August sections below are history, not the current
+queue. The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) and
+[support matrix](../sdk/release/quadruped_support_matrix.json) carry earned
+claims. This update claims no new qualification or trained provider.
+
+The objective is to finish the usable SDK1 Studio/setup experience and reach
+Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
+Broad morphology certification and engine equivalence are not prerequisites to
+experimental learning. They remain prerequisites to their respective advertised
+claims. SDK2 names product/research scope; Tier 2 and Tier 3 name adaptation
+strategies, not release versions.
+
+### Product work and required completion evidence
+
+| Work | Required result | Evidence still needed |
+| --- | --- | --- |
+| Live recovery | Fast Godot walking detects a fall, relinquishes control, establishes current recovery observations, recovers and resumes walking on the same bodies | Fresh contained user-timed destabilizing impulse, transition/command/state trace, independent reader and visible Studio exercise; explicit refusal for unsupported entry |
+| Startup/recovery cost | Remove measured avoidable preparation and serialization while preserving controller and observation semantics | Matched-workload section timings, command comparisons and safety refusals; startup, recovery and walking reported separately |
+| Portable Studio setup | Launch an isolated source bundle without the development checkout or author-specific paths | Relocated config, verified dependencies, curated resource closure, zero-world preflight, fresh native sessions and installed-launcher readback |
+| Relocatable proof subset | Separate raw evidence from viewing projections, with required viewing resources available | Manifest of digests, sizes, original identities and missing dependencies; verification after relocation |
+
+Native binary distribution remains a separate release/licensing decision.
+Reproducible local setup may use explicitly supplied or locally built runtimes;
+it must not imply permission to redistribute unapproved binaries.
+
+Fast walking currently bypasses the recovery ledger. Flipping its mode would
+revive stale clocks and energy history. The successor must close walking
+ownership and establish a current observation epoch, retaining the gap and
+applied impulse. It must not reset poses, velocities or the world, invent
+observations, or resume stale memory. Repeated kicks, unsupported orientation,
+timeout, cancellation and failed stance must have explicit outcomes. Original
+accepted recovery and Studio checkpoints remain immutable.
+
+### Trial, error, discovery, advancement
+
+Use **declare -> qualify safety -> trial -> retain every outcome -> select
+candidate -> fresh native challenge -> advance or reject**. Failed trials are
+expected data; infrastructure-invalid trials remain distinct from behavioral
+failures. Search can adapt between recorded batches, never by revising an
+observed batch or tuning against a sealed evaluation population.
+
+1. **Commission GPU execution and measurement.** Bind runtime bytes, device,
+   dtype, topology, timestep, solver, capacities and graph mode. Begin with a
+   bounded scalar conversion/sampling probe, then the actual quadruped model.
+   Exercise containment, cancellation, overflow/nonfinite refusal and complete
+   batch accounting. Separate compilation, transfer and simulation timing.
+2. **Search and train experimentally.** A distinct development lane permits
+   bounded candidate search and provisional model fitting. Retain parameters,
+   seeds, controls, outcomes, ranking and every attempted cell. GPU trajectories
+   generate candidates; they carry no CPU or three-engine physical authority.
+   Full equivalence is not required merely to test a promising hypothesis.
+3. **Test task-specific transfer.** Freeze a shortlist and challenge it in fresh
+   CPU MuJoCo and intended native targets, with the unchanged baseline. Keep
+   failed transfers as counterexamples. Separate numerical calibration from
+   candidate selection and evaluation. Reward never waives physical invariants.
+4. **Reach Tier 2 through the provider seam.** Fit one bounded morphology/task
+   provider; freeze data groups, splits, model, normalization and output limits.
+   Evaluate in shadow mode before bounded influence. Missing, stale, unsupported
+   or invalid proposals fall back to the deterministic baseline. Promotion uses
+   the existing independent native qualification lifecycle.
+5. **Reach Tier 3 through episodic memory.** Start with bounded context/retrieval
+   updates over the frozen Tier 2 model, with reset and rollback. Compare memory
+   enabled/disabled on fresh task groups and retain before/after decisions.
+   Durable encyclopedia promotion stays offline. Online base-weight mutation
+   needs its own later qualification.
+
+The August Warp equivalence/calibration contracts remain sealed at their
+recorded status. A versioned discovery successor can authorize candidate work
+without asserting those contracts passed. The owner reports earlier GPU
+rough-draft work contributing to SDK1 recovery; its exact artifact has not yet
+been located. It is useful history, not reproduced training qualification.
+
+The first executable route is
+[`run_gpu_measurement_probe.py`](../sdk/discovery/run_gpu_measurement_probe.py).
+From the repository root in PowerShell, use the pinned environment:
+
+```powershell
+& ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B ./sdk/discovery/run_gpu_measurement_probe.py
+# After a clean pushed source freeze, a fresh complete gate precedes physics:
+& ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B ./sdk/discovery/run_gpu_measurement_probe.py --run
+```
+
+Both commands print the fresh durable output location and a final `ok` field.
+The first builds zero worlds. The second consumes a new identity, owns one
+contained native process, measures eight scalar cells per backend, and runs an
+independent complete-trace reader. Its result is measurement commissioning,
+not quadruped training, a throughput benchmark, or an equivalence decision.
+
+### SDK2 claim targets
+
+| Gate / capability | Target |
+| --- | --- |
+| R06 | Physical support for a declared bounded quadruped family, with held-out bodies and explicit unsupported regions |
+| R07 | Continuous morphology coverage justified independently of compiler totality |
+| R09 | Prospectively declared rough-terrain acceptance |
+| R11 | Prospectively declared sensor-noise robustness |
+| R12 | Prospectively declared sensor-latency robustness |
+| R25 | Engine equivalence/non-inferiority with frozen outcomes, margins and adequate cohorts |
+| Force-aware recovery | Whole-body support/loading feedback beyond SDK1's bounded posture/contact routes |
+| Tier 2 / Tier 3 | Qualified bounded learned proposals, then reversible experience-dependent adaptation |
+
+Start learning in a diagnosable domain while retaining the full target list.
+Additional topology buckets and tasks must preserve old failures and results;
+the first successful demo does not redefine SDK2 completion.
+
+## Historical product truth at the 2026-08-13 boundary
 
 The project has a real engine-neutral SDK source foundation:
 

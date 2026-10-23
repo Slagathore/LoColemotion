@@ -94,3 +94,11 @@ it cannot reuse or revise the consumed experiments linked above.
 The [license FAQ](../../LICENSE-FAQ.md) explains the custom community/commercial
 terms and covered paths. Sharing a finding does not grant permission to
 relicense project code into an upstream engine.
+
+## Discussion follow-through
+
+The [Rapier reply](https://github.com/dimforge/rapier/discussions/1032) and
+[MuJoCo reply and follow-up](https://github.com/google-deepmind/mujoco/discussions/3652)
+are now tracked in the [research adoption ledger](../../docs/research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-22-upstream-discussion-follow-through).
+New discovery measurement controls incorporate their sampling and attribution
+lessons. These discussions do not reclassify any retained experiment.

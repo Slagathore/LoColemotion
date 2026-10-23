@@ -1,5 +1,27 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
+## Active - SDK2 discovery and Studio completion, 2026-10-22
+
+The [current product sequence](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-22)
+now carries the Studio recovery/setup requirements, six deferred SDK2 gates,
+force-aware recovery, and the accelerated Tier 2/Tier 3 path. SDK1 remains
+20/20 and the full program 19/25. No physical support or release flag changes.
+
+The [upstream discussion adoption](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-22-upstream-discussion-follow-through)
+adds explicit force-sampling semantics. Seven new measurement controls pass,
+including all 1,800 retained VH4 example rows. The new
+[GPU measurement probe](../sdk/discovery/gpu_measurement_probe_v1.json) passes
+its complete development zero-world gate: eight probe/reader controls, seven
+measurement controls, actual process-tree containment and runtime preflight.
+The retained gate is `sdk2-gpu-measurement-248ff38d227a4b60b8e458cb1e30bb7e`
+under the durable evidence root. It opened zero worlds. Native execution must
+use a fresh attempt after the clean pushed freeze; no GPU result is claimed yet.
+
+This scalar probe commissions measurement/execution only. Quadruped GPU
+discovery, provisional training, native candidate transfer, provider training,
+episodic adaptation, Studio recovery handoff and relocated installation remain
+required work. The older Warp calibration and accepted SDK1 records stay intact.
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,

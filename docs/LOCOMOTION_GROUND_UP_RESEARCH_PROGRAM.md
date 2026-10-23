@@ -7,6 +7,32 @@
 - **Supersedes as evidence:** Every prior statement, score, test, document, or optimizer result claiming that SporeSpore achieved walking
 - **Implementation companion:** [Bracing, Self-Support, and Recovery Implementation Bootstrap](BRACING_RECOVERY_IMPLEMENTATION_BOOTSTRAP.md)
 
+## SDK2 experimental learning boundary - 2026-10-22
+
+The current [product sequence](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-22)
+authorizes preparing a distinct bounded GPU discovery/training lane. The
+completed SDK1 baseline and every consumed campaign remain immutable.
+Exploratory GPU data may produce provisional candidates without first proving
+general CPU/GPU equivalence. Such data carries hypothesis authority only; a
+trained artifact cannot qualify itself, alter the deployed baseline, waive a
+physical invariant, or change support/release claims.
+
+Before each native batch, bind source/runtime, topology bucket, exact input
+population, seed, resource/step/time limits, sensor stages, output bounds and
+the applicable complete safety gate. Own the global operation mutex and native
+process tree, retain originals and partial failures, and count every attempted
+cell. Internal batched worlds are distinct cells even when one GPU process owns
+them. New trials get new identities; intentional search changes occur between
+recorded batches. Development, selection and sealed evaluation groups remain
+disjoint, including related seeds and morphology families where leakage matters.
+
+Promotion freezes the model/data/controller and uses independent native
+challenge and prospective acceptance. Formal equivalence, continuous coverage
+and population robustness retain their original evidential obligations. The
+August Warp qualification contracts are not amended or retroactively passed.
+The first [measurement probe](../sdk/discovery/gpu_measurement_probe_v1.json)
+is an execution/sampling prerequisite and itself grants no training authority.
+
 ## Repeatable ghost commissioning before held-out native validation
 
 Effective 2026-08-25, an end-to-end **ghost** is the default commissioning

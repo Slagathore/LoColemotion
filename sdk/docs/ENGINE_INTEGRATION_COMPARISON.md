@@ -164,3 +164,19 @@ Godot button-to-display observations were 47.009/52.489 ms; MuJoCo's were
 50.860/69.688 ms. Rapier retains its earlier scheduled command transport.
 Those results establish local live integration; differing bodies, schedules
 and capture profiles still prevent a controlled engine-performance ranking.
+
+## Follow-through from upstream discussions - 2026-10-22
+
+The [research adoption ledger](../../docs/research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-22-upstream-discussion-follow-through)
+records both discussion replies and pinned-source checks. New discovery uses
+explicitly named force sensors, preserves completed-step and post-state samples,
+and treats saturation separately in the scalar implicitfast oracle. Rapier's
+final-substep motor readback stays separate from an accumulated outer impulse;
+the existing exact application observer is available for its declared scope.
+
+The [executable measurement controls](../discovery/test_actuation_measurement.py)
+include the entire exported VH4 cell, force-limit equality, signed varying-load
+impulses and malformed measurements. They validate new measurement code only.
+All original figures, traces, thresholds and accepted/invalid outcomes above
+remain unchanged. Native contact-rich validation is still required before these
+scalar relationships become multi-body training labels.
