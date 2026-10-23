@@ -96,13 +96,30 @@ joins before retaining GPU controls. No physical state, candidate, ranking rule
 or provider envelope changes. Its complete zero-world gate passed eleven search
 controls, including real MuJoCo contact compatibility and retained-failure
 refusals, in `sdk2-gpu-portable-search-v2-ac4b85c7027b44318380cf8a30842037`.
-Fresh v2 execution, trained providers, high-throughput batching and Tier 3 remain
-open. The consumed v1 attempt stays invalid.
+Clean pushed `dd009d99` then repeated that gate and consumed
+`sdk2-gpu-portable-search-v2-54f8e263fbbc428fa4d6adee036e2b85`. The
+[v2 closure](../sdk/discovery/gpu_portable_search_closure_v2.json) inventories
+429 retained artifacts and independently replays all 3,840 portable/provider
+steps against all 19,200 internal physics rows. All eight worlds completed;
+named actuator/joint sensors agree exactly and every candidate meets the
+declared finite eligibility limits.
 
-The scalar and quadruped probes commission measurement/execution only. GPU
-candidate discovery, provisional training, native candidate transfer, provider training,
-episodic adaptation and Studio recovery handoff/performance remain
-required work. The older Warp calibration and accepted SDK1 records stay intact.
+GPU selected the -10% bounded correction before CPU construction. It moved
+0.415105 m in the fresh CPU trial versus baseline 0.394523 m, a 20.581641 mm
+gain in this one four-second observation. CPU instead ranked +20% first;
+rankings are not interchangeable and the GPU selection remains unchanged.
+The native worker took 170.181697 s including cold compilation and full capture.
+This establishes the finite discovery/transfer route, not trained adaptation,
+held-out superiority, throughput, equivalence or locomotion acceptance.
+The consumed v1 attempt stays invalid. Next is measured batching/readback work,
+a grouped corpus and bounded provider training, followed by shadow/native
+challenges and reversible Tier 3 memory. Studio handoff/performance remain open.
+
+The scalar and quadruped probes commission measurement/execution; portable v2
+adds one complete finite candidate search and fresh CPU challenge. Scalable
+candidate discovery, provisional/provider training, further native transfer,
+episodic adaptation and Studio recovery handoff/performance remain required work.
+The older Warp calibration and accepted SDK1 records stay intact.
 
 The Studio portable-setup successor now has relative runtime bindings, explicit
 Python selection, checked evidence destinations and a relocatable proof subset.

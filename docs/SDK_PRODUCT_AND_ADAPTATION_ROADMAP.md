@@ -163,12 +163,11 @@ acceptance is asserted. The cold first GPU step took 94.576994 seconds; later
 stepping/synchronization took 16.624734 seconds. The deliberately small,
 synchronously captured batch does not establish high-throughput training.
 
-Next: declare a bounded candidate-search batch and its native challenge before
-opening worlds; measure device-side control/batching and capture costs; freeze
-the candidate shortlist; then integrate a learned proposal through the existing
-provider seam. Production portable-policy execution on GPU, trained providers,
-episodic adaptation and the remaining Studio work are still open. The old
-production Warp qualification contracts and support-matrix flags are unchanged.
+That probe led to the bounded portable candidate search below. Device-side
+control/batching, a learned proposal through the existing provider seam,
+episodic adaptation and the remaining Studio work stay in the active queue.
+The old production Warp qualification contracts and support-matrix flags are
+unchanged.
 
 The next [portable parameter search](../sdk/discovery/gpu_portable_search_v1.json)
 now has an executable prospective route. It uses the unchanged BW19V controller
@@ -215,8 +214,41 @@ portable policy or provider safety envelope. Eleven zero-world controls now
 include a real standalone MuJoCo contact consumed by the production adapter,
 crossed compatibility fields, and revalidation of the complete failed closure.
 The complete safety gate passed at
-`sdk2-gpu-portable-search-v2-ac4b85c7027b44318380cf8a30842037`. A fresh clean-pushed
-v2 execution remains required; the v1 identity is consumed and stays invalid.
+`sdk2-gpu-portable-search-v2-ac4b85c7027b44318380cf8a30842037`.
+
+Clean pushed `dd009d99` then repeated the complete gate and consumed the fresh
+v2 attempt `sdk2-gpu-portable-search-v2-54f8e263fbbc428fa4d6adee036e2b85`.
+The [v2 closure](../sdk/discovery/gpu_portable_search_closure_v2.json) inventories
+429 artifacts and independently replays all **3,840 controller/provider steps**
+against all **19,200 internal physics rows**. All four GPU and four fresh CPU
+worlds completed; the force-sensor pairs agree exactly. All candidates satisfy
+this batch's height, tilt, torso-contact and no-actuation eligibility limits.
+
+| Untrained proposal | GPU displacement (m) | Fresh CPU displacement (m) |
+| --- | ---: | ---: |
+| Absent-provider baseline | 0.387820 | 0.394523 |
+| -10% of baseline velocity, then core limits | 0.413417 | 0.415105 |
+| +10%, then core limits | 0.404115 | 0.418829 |
+| +20%, then core limits | 0.403004 | 0.424904 |
+
+GPU selected the -10% proposal before any CPU challenge world was constructed.
+Its CPU displacement exceeded the fresh baseline by **20.581641 mm** in this
+one four-second trial. CPU's best observed profile was +20%; the different
+rankings are retained, and the selection is not changed after CPU inspection.
+This is finite exposed discovery, not a trained provider, held-out evaluation,
+general superiority or equivalence. The v1 attempt stays invalid.
+
+The native worker took **170.181697 s**, including cold compilation and full
+capture. Measured GPU preparation/integration took 81.009746 s, readback
+19.116879 s, portable control 24.642861 s and internal capture 8.512576 s.
+CPU preparation/control took 25.744654 s and integration/capture 3.833650 s.
+These are diagnostic sections, not a controlled throughput comparison; setup,
+controller-row serialization and other overhead are also in the total.
+Next measure a bounded batching/readback successor, freeze a grouped training
+and evaluation corpus, fit a bounded provider, then run shadow and fresh native
+influence challenges. Tier 3 follows with reversible episode memory over the
+frozen model. Studio recovery handoff and startup/walking performance remain
+required alongside that learning work.
 
 ### SDK2 claim targets
 
