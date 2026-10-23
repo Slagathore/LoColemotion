@@ -36,6 +36,9 @@ Before publishing a change, read [repository hygiene](REPOSITORY_HYGIENE.md).
 
 The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) contains the
 SDK1 completion boundary and earlier checkpoints. The
+[SDK2 adaptation research bootstrap](SDK2_ADAPTATION_RESEARCH_BOOTSTRAP.md)
+maps external research onto the Tier 2/Tier 3 provider seam and the SDK2 gates;
+it is a proposal, not evidence. The
 [original documentation history](RESEARCH_HISTORY.md) preserves the previous
 documentation map in full. Entries saying “current,” “active” or “next” refer to
 their own date. Read the completion boundary before treating one as present status.
