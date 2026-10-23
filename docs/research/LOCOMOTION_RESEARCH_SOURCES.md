@@ -2109,3 +2109,10 @@ by 0.0275593 m/s. This local finite result selects a candidate for confirmation;
 it establishes no general robustness, learned adaptation or literature-derived
 performance guarantee. Fresh longer-horizon and healthy-body comparisons are
 required before using the candidate in another adaptation comparison.
+
+The [fixed-candidate follow-up](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
+extends duration to twelve seconds and adds the nominal actuator profile, with
+fresh baseline and reference worlds. It changes no control equation or bound.
+Full-horizon eligibility and censored quality differences remain distinct; an
+exact finite comparison is not a statistical non-inferiority result. The new
+controls pass, but physical confirmation remains unopened.

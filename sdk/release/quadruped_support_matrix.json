@@ -304,6 +304,67 @@
           "adaptation_benefit_established": false,
           "qualification_or_release_authority": false
         },
+        "body_height_confirmation": {
+          "ledger_scope": {
+            "subsystem": "adaptation",
+            "engine_scope": "mujoco_cpu",
+            "authority_mode": "development_confirmation",
+            "question_class": "development"
+          },
+          "status": "prepared_zero_world_controls_passed_no_confirmation_worlds",
+          "declaration": "sdk/discovery/cpu_body_height_confirmation_v1.json",
+          "declaration_sha256": "03017e3c003242b0555db352d1bfd1427435bf5ee01fce2e56af88861c030c8a",
+          "launcher": "sdk/discovery/run_cpu_body_height_confirmation.py",
+          "reader": "sdk/discovery/audit_cpu_body_height_confirmation.py",
+          "predecessor": {
+            "path": "sdk/discovery/cpu_body_height_discovery_closure_v1.json",
+            "sha256": "56610a8e8b09835b873feedcdd2e36e60aa7dec75756b568c2433c721a222010"
+          },
+          "selected_candidate_index": 2,
+          "selected_candidate_id": "feedback_height_v1",
+          "controller_model": "sdk/adaptation_provider/body_height_feedback_v1.json",
+          "controller_model_sha256": "ee4c18f55a6b386ae65374ffd711119577debdef9d2b5c7d608bce4161ddf5d3",
+          "controller_source": "sdk/adaptation_provider/body_height_feedback_v1.py",
+          "controller_source_sha256": "330b0c2626a1a14f3715b0a0e972a93323ffa54cb1cdc07caf2018f698e3c756",
+          "zero_world_controls_passed": 169,
+          "route_controls_passed": 10,
+          "retained_gate": "sdk2-cpu-body-height-confirmation-77f395209fea41f1b6f8778c2c556fce",
+          "gate_receipt_sha256": "17ae3c0d96483bec3b6448af674d892da751e80ca9a5c8a66d97a81c3e2d9ca0",
+          "source_binding_count": 403,
+          "runtime_binding_count": 1359,
+          "retained_route_controls": "sdk2-height-confirmation-controls-b4f4f80f3ef1429ba032b7b786fbde4a",
+          "route_control_wall_s": 9.522,
+          "route_control_stderr_sha256": "b51a87105c226c2960ef6e9180ee66d713e59117c85bab52eb451c966b210cdb",
+          "route_control_source": "sdk/discovery/test_cpu_height_confirmation.py",
+          "route_control_source_sha256": "52578ad4a1c998d6a3d63ec0197bdf91ec632eb9a2f153ea9585d29e5fff2e4e",
+          "development_seed": 104232200,
+          "exposed_starts_m_s": [
+            0.002,
+            0.005
+          ],
+          "conditions": [
+            "left_075",
+            "nominal"
+          ],
+          "horizon_s": 12.0,
+          "controller_decisions_per_world": 1440,
+          "internal_samples_per_world": 7200,
+          "planned_cpu_worlds": 12,
+          "planned_controller_rows": 17280,
+          "planned_internal_rows": 86400,
+          "planned_prospective_contrasts": 8,
+          "native_worlds": 0,
+          "evaluation_worlds": 0,
+          "training_data_authority": false,
+          "controller_selection_authority": false,
+          "adaptation_benefit_established": false,
+          "population_inference": false,
+          "noninferiority_authority": false,
+          "qualification_or_release_authority": false,
+          "controller_and_eligibility_unchanged": true,
+          "physical_gate_rerun_required": true,
+          "next_question": "Publish the prospective freeze, repeat all 169 controls, execute the twelve fresh CPU worlds and independently audit duration/nominal results. Preserve any failures and tracking costs; no reselection or fitting from confirmation."
+        },
         "body_height_discovery": {
           "ledger_scope": {
             "subsystem": "adaptation",

@@ -1,0 +1,70 @@
+{
+  "schema_version": "locolemotion_cpu_body_height_confirmation_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_confirmation",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/cpu_body_height_discovery_closure_v1.json",
+    "sha256": "56610a8e8b09835b873feedcdd2e36e60aa7dec75756b568c2433c721a222010"
+  },
+  "selected_candidate_index": 2,
+  "selected_candidate_id": "feedback_height_v1",
+  "seed": 104232200,
+  "outer_steps": 1440,
+  "horizon_s": 12.0,
+  "internal_steps_per_outer": 5,
+  "conditions": [
+    "left_075",
+    "nominal"
+  ],
+  "starts": [
+    {
+      "id": "start_002",
+      "lateral_velocity_m_s": 0.002
+    },
+    {
+      "id": "start_005",
+      "lateral_velocity_m_s": 0.005
+    }
+  ],
+  "candidate_indices": [
+    0,
+    1,
+    2
+  ],
+  "planned_cpu_worlds": 12,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 1200,
+  "maximum_reader_wall_seconds": 1200,
+  "purpose": "Confirm the already selected exact height controller over three times the discovery horizon and characterize the nominal-body cost against fresh baseline and reference.",
+  "comparison_scope": "descriptive_fixed_candidate_no_reselection",
+  "quality_semantics": "negative_velocity_tracking_error_not_signed_travel",
+  "nominal_quality_guard": "Report exact candidate-minus-baseline and candidate-minus-reference differences only when both whole episodes are eligible; no statistical non-inferiority claim or tolerance.",
+  "failure_timing_used_for_selection": false,
+  "controller_selection_authority": false,
+  "population_inference": false,
+  "adaptation_benefit_established": false,
+  "coverage": [
+    "twelve private controller memories and fresh sequential CPU data instances",
+    "exact selected controller and unchanged baseline/reference; no parameter fitting",
+    "two exposed starts on left-75 and nominal actuator profiles",
+    "1440 commands and 7200 internal samples per world with unchanged sampling and eligibility",
+    "complete independent decision replay, native state/force/contact audit and censored pair reporting"
+  ],
+  "not_covered": [
+    "unopened evaluation groups",
+    "other starts, bodies, terrain or engines",
+    "GPU transfer",
+    "learned selection or memory benefit",
+    "population inference",
+    "formal non-inferiority",
+    "qualification or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false
+}

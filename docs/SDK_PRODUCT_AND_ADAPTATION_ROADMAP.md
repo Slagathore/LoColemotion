@@ -95,6 +95,8 @@ replay verifies 3/6 eligible episodes: the height-enabled candidate passes both
 starts and is selected for fresh confirmation. It has worse tracking quality
 than the reference at the previously successful start. Longer-horizon
 confirmation and healthy-body preservation are next; adaptation remains unproved.
+The [twelve-second confirmation](#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
+is now prepared with all 169 controls passing; its twelve CPU worlds remain unopened.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1383,6 +1385,45 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Body-height duration and nominal confirmation prepared - 2026-10-23
+
+The [fixed-candidate declaration](../sdk/discovery/cpu_body_height_confirmation_v1.json)
+extends the exact selected height controller from four to **twelve seconds**.
+It opens twelve fresh sequential CPU worlds: baseline, the unchanged reference
+and candidate 2 at the same 0.002/0.005 m/s starts, on both left-75 and nominal
+actuator profiles. Each world has a private controller memory and native data
+instance. The development seed remains 104232200 to retain the original command
+and initial-state design. This is a duration and nominal-body check on exposed
+conditions, not an unopened evaluation cohort or an independent population sample.
+
+The controller, final speed limits, native force limits, five substeps per
+command, full capture and eligibility thresholds are unchanged. The worker
+retains separate compiled/XML/native-profile records for each condition. The
+independent reader rejoins those records, replays every controller decision with
+the independent core build and checks all force, state, contact and timing rows.
+The planned denominator is **17,280 decisions and 86,400 internal samples**.
+
+The eight prospective contrasts compare candidate 2 with baseline and reference
+at each condition/start. A quality difference exists only when both complete
+episodes are eligible and scorable. Nominal quality below baseline is retained
+as a cost; a failed or unscorable pair is censored, never interpreted as no harm.
+The report's exact finite check for nominal quality at least equal to baseline
+is descriptive. It has no statistical margin, non-inferiority, fitting,
+reselection, adaptation-benefit, qualification or release authority. The selected
+candidate remains index 2 regardless of this confirmation's outcome.
+
+All **169 zero-world controls** pass under
+`sdk2-cpu-body-height-confirmation-77f395209fea41f1b6f8778c2c556fce`, including ten new
+condition/denominator/authority/corruption/comparison controls. The gate binds
+403 source and 1,359 runtime files and opens zero worlds. The ten route controls
+also passed independently in 9.522 s under
+`sdk2-height-confirmation-controls-b4f4f80f3ef1429ba032b7b786fbde4a`, with exact
+tested-source copies and original logs retained. The
+[contained supervisor](../sdk/discovery/run_cpu_body_height_confirmation.py)
+will repeat the full gate from a clean published prospective freeze before any
+physical execution. Longer-duration behavior and healthy-body preservation are
+unproved at this preparation checkpoint.
 
 ### Completed body-height discovery - 2026-10-23
 

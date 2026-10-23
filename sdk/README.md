@@ -1,5 +1,12 @@
 # LoColemotion Locomotion SDK
 
+The [twelve-second height confirmation](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
+is prepared with all 169 zero-world controls passing. Its twelve fresh CPU
+worlds will compare the fixed selected candidate, reference and baseline at
+both exposed starts on degraded and nominal profiles. The controller and pass
+criteria are unchanged; confirmation grants no fitting or reselection authority.
+No confirmation world has opened at this checkpoint.
+
 The [body-height successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
 is closed after all 159 safety controls and six fresh CPU worlds. Independent
 replay verified 2,880 decisions and 14,400 internal samples: **3/6 eligible**.

@@ -2,6 +2,13 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest prepared successor (2026-10-23): [twelve-second height confirmation](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
+compares the exact selected controller, reference and baseline at both starts on
+left-75 and nominal profiles. All 169 zero-world controls pass; 12 CPU worlds,
+17,280 decisions and 86,400 internal samples remain unopened until a clean
+published freeze and repeated complete gate. No fitting, reselection, formal
+non-inferiority or adaptation/release authority is granted.
+
 Latest discovery (2026-10-23): the [closed body-height comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
 completed six CPU worlds from published `d2ff50fc` after all 159 controls passed.
 Independent replay verified 2,880 decisions and 14,400 internal samples:
