@@ -2206,3 +2206,22 @@ checkpoint. No published research performance transfers to this local controller
 and an 8/8 internal condition classifier does not establish physical benefit.
 The campaign imports no external code or new dependency. Reserved groups and
 prior confirmation remain excluded from development fitting.
+
+## 2026-10-23 matched activation outcome
+
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-height-activation---2026-10-23)
+retains one eligible and eleven negative native CPU episodes after all 217
+controls. Immediate height passes only the 0.001 m/s start; baseline and delayed
+height pass none. All seven closure controls pass. The four-start shortlist is
+empty, while all twelve paired quality contrasts preserve censoring. The shared
+sixteen-command baseline histories are verified separately from immediate
+feedback histories, so the latter never supply mislabeled baseline features.
+
+This narrows the local design question: earlier context is observable, but
+immediate use of the existing controller still fails three training starts.
+The observation delay cannot by itself explain that coverage deficit. Retained
+support geometry, requested corrections, resolver clamps and observed response
+need mechanical diagnosis before another controller is proposed. The prior
+RMA discussion motivates context-dependent control; it does not make this
+available action reliable. No external code or dependency was imported and no
+published result or earlier confirmation is used as fresh training evidence.

@@ -1,19 +1,20 @@
 # LoColemotion Locomotion SDK
 
-The [matched activation successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-height-activation-prepared---2026-10-23)
-passes all 217 zero-world controls. It declares twelve fresh CPU worlds at the
-same four degraded-body training starts: baseline, immediate height feedback,
-and height feedback after sixteen baseline commands. No controller equation,
-clamp, horizon or eligibility rule changes. Eight host and ten route controls
-also pass separately. Native execution requires a clean pushed freeze and a
-fresh complete gate; it remains unopened at this preparation checkpoint.
+The [matched activation comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-height-activation---2026-10-23)
+is closed after all 217 controls and twelve fresh CPU worlds from `e6969e3c`.
+Independent replay verifies 17,280 decisions and 86,400 internal samples:
+**1/12 eligible, 11/12 negative**. Baseline passes 0/4, immediate height 1/4 and
+height after sixteen commands 0/4. No role passes the four-start rule, so the
+shortlist is empty. Seven closure controls pass. Retained support and command
+response need diagnosis before stronger feedback or a learned action mapping;
+the sixteen-command condition classifier alone cannot supply useful control.
 
 The [early-context diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
 classifies 8/8 training groups from sixteen past commands in blocked internal
 validation. Constant nominal scores 4/8 and synthetically reversed associations
 score 0/8. Seven component and three closure controls pass with zero new
 worlds. The fitted label model has no action mapping or control authority.
-Matched immediate-versus-16-command native feedback is the next question;
+The matched native result above exposes insufficient controller coverage;
 reserved evaluation and useful adaptation remain unproved.
 
 The [causal-prefix repertoire](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)

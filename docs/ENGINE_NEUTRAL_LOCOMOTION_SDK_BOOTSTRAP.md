@@ -2,14 +2,17 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Latest preparation (2026-10-23): the [matched height-activation successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-height-activation-prepared---2026-10-23)
-passes all **217 zero-world controls**. It declares twelve fresh CPU worlds:
-baseline, immediate height feedback and height feedback after sixteen commands
-at the same four exposed degraded-body training starts. Equations, clamps,
-initialization, twelve-second horizon and eligibility remain fixed. Its eight
-host and ten route controls pass separately, including exact immediate-controller
-commands and delayed baseline bits. Native launch is next from a clean pushed
-freeze, after the full gate runs again. No new physical result is established.
+Latest closure (2026-10-23): the [matched height-activation comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-height-activation---2026-10-23)
+completed all twelve fresh CPU worlds from `e6969e3c` after all **217 controls**
+passed again. Independent replay verified 17,280 decisions and 86,400 internal
+samples: **1/12 eligible, 11/12 negative**. Baseline passes 0/4 starts, immediate
+height 1/4 and height after sixteen baseline commands 0/4. The declared
+four-start shortlist is empty; all twelve quality contrasts remain censored.
+Seven closure controls pass. The one immediate-height positive is preserved,
+but immediate feedback also fails at three starts, so timing alone does not
+resolve controller coverage. Next diagnose retained support and command-response
+histories and develop stronger control before assigning the context estimator
+an action mapping. Reserved groups and prior confirmation remain excluded.
 
 Latest feasibility result (2026-10-23): the [16-command context diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
 correctly classifies **8/8 authorized training groups** with each start's two
@@ -18,10 +21,10 @@ synthetically reversed associations. It uses only the first 0.133333 s of
 actual baseline actions and observed joint response. Seven component controls
 and three closure controls pass; zero new worlds are opened. This is internal
 training validation, not reserved evaluation or physical control benefit.
-The fitted label estimator has no action mapping or control authority. Next
-prepare a matched immediate-versus-16-command height comparison on the four
-exposed degraded-body training starts, with fresh baseline worlds. The failed
-64-command repertoire and every reserved split retain their original scope.
+The fitted label estimator has no action mapping or control authority. The
+matched activation result above now shows that neither height role supplies a
+four-start choice. The failed 64-command repertoire and every reserved split
+retain their original scope.
 
 Latest closure (2026-10-23): the [causal-prefix training repertoire](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)
 completed 24 fresh CPU worlds from `e15bd02b` after all 192 controls passed.

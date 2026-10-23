@@ -311,7 +311,7 @@
             "authority_mode": "development_discovery",
             "question_class": "development"
           },
-          "status": "prepared_full_zero_world_gate_passed_native_unopened",
+          "status": "complete_native_cpu_height_activation_empty_shortlist",
           "declaration": "sdk/discovery/cpu_height_activation_v1.json",
           "declaration_sha256": "608f0ab2fd9eee7a3798f429917ba8a876c5217229c9dde5d6d02d35013749d2",
           "launcher": "sdk/discovery/run_cpu_height_activation.py",
@@ -415,7 +415,7 @@
             0.005
           ],
           "horizon_s": 12.0,
-          "native_worlds": 0,
+          "native_worlds": 12,
           "planned_cpu_worlds": 12,
           "planned_gpu_worlds": 0,
           "planned_controller_rows": 17280,
@@ -425,7 +425,7 @@
           "calibration_worlds": 0,
           "evaluation_worlds": 0,
           "ranking": "Require all four starts eligible per activation role; rank mean whole-episode tracking quality, then role index. Preserve failures and censored quality.",
-          "training_data_authority": false,
+          "training_data_authority": true,
           "prospective_training_scope": "complete_independently_verified_development_activation_training_only",
           "confirmation_fitting_permitted": false,
           "learned_selection": false,
@@ -433,8 +433,862 @@
           "population_inference": false,
           "noninferiority_authority": false,
           "qualification_or_release_authority": false,
-          "physical_gate_rerun_required": true,
-          "next_question": "Run and close the exact twelve fresh training worlds from a clean pushed freeze after the full gate reruns. Determine whether unchanged height feedback works after sixteen commands at matched starts before mapping inferred context to actions. Preserve every failure and all reserved/confirmation exclusions."
+          "physical_gate_rerun_required": false,
+          "next_question": "Diagnose retained support geometry, requested corrections, bounded commands and observed response over a common pre-failure interval, then strengthen controller coverage under a distinct declaration. Immediate height fails three of four training starts; delayed height fails all four. Do not relax four-start eligibility or map the condition classifier to the empty shortlist. Preserve reserved and confirmation exclusions.",
+          "preparation_status": "prepared_full_zero_world_gate_passed_native_unopened",
+          "source_commit": "e6969e3c4e24a091494c80c30d49fd0194a3f0e7",
+          "attempt_id": "sdk2-cpu-height-activation-79ebfb867748407098b71385a959f5d7",
+          "closure": "sdk/discovery/cpu_height_activation_closure_v1.json",
+          "closure_sha256": "654e9cab60a831e5a1afd4fe89e433050eba4b0bf5f7313c5b46b0c722f55685",
+          "closure_reader": "sdk/discovery/audit_cpu_height_activation_closure.py",
+          "closure_reader_sha256": "0a557d4469b720b8f747cb1123cb6b08b3380b52839d42bf5548a06f2d6a0cfb",
+          "receipt_sha256": "bd82cc87a05bc2849e77972948ebe35a31b91773f78bff1f1a50d1742f0a89b6",
+          "audit_sha256": "4ea8014b7fd54223b298d3fd5e33cd4c44c3eaef4e0113e3ba74b14f4c1ddb4c",
+          "constructed_cpu_worlds": 12,
+          "constructed_gpu_worlds": 0,
+          "controller_rows": 17280,
+          "internal_rows": 86400,
+          "native_worker_wall_s": 151.923744300002,
+          "independent_audit_wall_s": 141.46382429999358,
+          "artifact_count": 10246,
+          "artifact_bytes": 2081442262,
+          "eligible": 1,
+          "negative": 11,
+          "denominator": 12,
+          "repertoire": {
+            "roles": [
+              {
+                "role_index": 0,
+                "role_id": "baseline",
+                "candidate_index": 0,
+                "activation_step": null,
+                "eligible": 0,
+                "denominator": 4,
+                "outcomes": [
+                  "negative",
+                  "negative",
+                  "negative",
+                  "negative"
+                ],
+                "failure_codes": [
+                  "height;tilt;torso_contact",
+                  "tilt;torso_contact",
+                  "tilt;torso_contact",
+                  "height;tilt;torso_contact"
+                ],
+                "qualities_m_s": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "mean_quality_m_s": null,
+                "complete_eligible_group": false
+              },
+              {
+                "role_index": 1,
+                "role_id": "height_immediate",
+                "candidate_index": 2,
+                "activation_step": 0,
+                "eligible": 1,
+                "denominator": 4,
+                "outcomes": [
+                  "positive",
+                  "negative",
+                  "negative",
+                  "negative"
+                ],
+                "failure_codes": [
+                  null,
+                  "tilt;torso_contact",
+                  "tilt;torso_contact",
+                  "tilt;torso_contact"
+                ],
+                "qualities_m_s": [
+                  -0.12524272656931362,
+                  null,
+                  null,
+                  null
+                ],
+                "mean_quality_m_s": null,
+                "complete_eligible_group": false
+              },
+              {
+                "role_index": 2,
+                "role_id": "height_after_16",
+                "candidate_index": 2,
+                "activation_step": 16,
+                "eligible": 0,
+                "denominator": 4,
+                "outcomes": [
+                  "negative",
+                  "negative",
+                  "negative",
+                  "negative"
+                ],
+                "failure_codes": [
+                  "tilt;torso_contact",
+                  "tilt;torso_contact",
+                  "tilt;torso_contact",
+                  "tilt;torso_contact"
+                ],
+                "qualities_m_s": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "mean_quality_m_s": null,
+                "complete_eligible_group": false
+              }
+            ],
+            "ranked_role_indices": [],
+            "selected_role_index": null,
+            "contrasts": [
+              {
+                "start_id": "train_001",
+                "contrast_id": "immediate_minus_baseline",
+                "left_outcome": "positive",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_001",
+                "contrast_id": "early_minus_baseline",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_001",
+                "contrast_id": "early_minus_immediate",
+                "left_outcome": "negative",
+                "right_outcome": "positive",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_003",
+                "contrast_id": "immediate_minus_baseline",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_003",
+                "contrast_id": "early_minus_baseline",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_003",
+                "contrast_id": "early_minus_immediate",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_004",
+                "contrast_id": "immediate_minus_baseline",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_004",
+                "contrast_id": "early_minus_baseline",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_004",
+                "contrast_id": "early_minus_immediate",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_006",
+                "contrast_id": "immediate_minus_baseline",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_006",
+                "contrast_id": "early_minus_baseline",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              },
+              {
+                "start_id": "train_006",
+                "contrast_id": "early_minus_immediate",
+                "left_outcome": "negative",
+                "right_outcome": "negative",
+                "both_eligible": false,
+                "quality_difference_m_s": null
+              }
+            ],
+            "selection_scope": "exposed_activation_training_groups_only",
+            "learned_selection": false,
+            "adaptation_benefit_established": false,
+            "population_inference": false,
+            "qualification_or_release_authority": false
+          },
+          "verified_matched_groups": 4,
+          "matching_baseline_prefixes_per_group": 2,
+          "immediate_height_has_baseline_prefix": false,
+          "training_data_scope": "development_activation_discovery_only",
+          "controller_selection_authority": true,
+          "complete_physical_gate_passed": true,
+          "campaign_consumed": true,
+          "retry_permitted": false,
+          "closure_controls": {
+            "count": 7,
+            "wall_s": 158.839,
+            "attempt_id": "sdk2-height-activation-closure-controls-3ce72ac66b374717bc75e93acf866d90",
+            "stderr_sha256": "674da0d5c588716bbdcfcd56effbcaae8b7f5fb4b661630a92390b4bcf91eebd",
+            "source": "sdk/discovery/test_cpu_height_activation_closure.py",
+            "source_sha256": "01deba9c178deb3076dc73b393855cacf986e00908be1a6b35a90d6ec237fe8c",
+            "constructed_worlds": 0
+          },
+          "finite_trial_outcomes": [
+            {
+              "trial_id": "left_075_train_001_baseline",
+              "condition_id": "left_075",
+              "start_id": "train_001",
+              "role": "baseline",
+              "action_index": 0,
+              "activation_role_index": 0,
+              "activation_step": null,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "height;tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.1702426776484473,
+                "maximum_tilt_rad": 1.9483853813253045,
+                "torso_contact_steps": 6006,
+                "ground_contact_steps": 7196,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.4408540681595325,
+                "first_physical_violation": {
+                  "internal_step": 638,
+                  "time_s": 1.0633333333333443,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.21352545982975618,
+                "lateral_displacement_m": -0.5959424364631353,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 128,
+                "actuator_commands": 1024,
+                "absolute_clamped_commands": 0,
+                "slew_clamped_commands": 0,
+                "final_speed_clamped_commands": 0,
+                "steps_with_absolute_clamp": 0,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 258,
+                "near_straight_supported_knees": 208,
+                "nonzero_posture_supported_leg_observations": 0,
+                "minimum_supported_knee_rad": -0.02572989584224879,
+                "maximum_supported_knee_rad": 0.45032728415013423,
+                "maximum_absolute_proposed_rad_s": 0.0,
+                "feedback_statuses": {
+                  "baseline": 128
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_001_height_immediate",
+              "condition_id": "left_075",
+              "start_id": "train_001",
+              "role": "height_immediate",
+              "action_index": 2,
+              "activation_role_index": 1,
+              "activation_step": 0,
+              "baseline_probe_steps": 0,
+              "outcome": "positive",
+              "failure_code": null,
+              "native_metrics": {
+                "minimum_height_m": 0.40975023981328024,
+                "maximum_tilt_rad": 0.26375080514368976,
+                "torso_contact_steps": 0,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": 1.2160593213176805,
+                "first_physical_violation": null
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.4278118884744096,
+                "lateral_displacement_m": -0.03405399183982258,
+                "quality_m_s": -0.12524272656931362
+              },
+              "eligible_window_count": 48,
+              "pre_violation_activity": {
+                "controller_rows": 1440,
+                "actuator_commands": 11520,
+                "absolute_clamped_commands": 639,
+                "slew_clamped_commands": 2871,
+                "final_speed_clamped_commands": 120,
+                "steps_with_absolute_clamp": 519,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 3351,
+                "near_straight_supported_knees": 253,
+                "nonzero_posture_supported_leg_observations": 3351,
+                "minimum_supported_knee_rad": -0.0042998653715654745,
+                "maximum_supported_knee_rad": 0.5799013731652161,
+                "maximum_absolute_proposed_rad_s": 5.61403718047464,
+                "feedback_statuses": {
+                  "supported": 1440
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_001_height_after_16",
+              "condition_id": "left_075",
+              "start_id": "train_001",
+              "role": "height_after_16",
+              "action_index": 2,
+              "activation_role_index": 2,
+              "activation_step": 16,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.25023513450425733,
+                "maximum_tilt_rad": 1.7832600857327305,
+                "torso_contact_steps": 6143,
+                "ground_contact_steps": 7198,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.6364101738858187,
+                "first_physical_violation": {
+                  "internal_step": 846,
+                  "time_s": 1.410000000000019,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.275813971312519,
+                "lateral_displacement_m": -0.21354266410129324,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 170,
+                "actuator_commands": 1360,
+                "absolute_clamped_commands": 178,
+                "slew_clamped_commands": 267,
+                "final_speed_clamped_commands": 12,
+                "steps_with_absolute_clamp": 134,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 339,
+                "near_straight_supported_knees": 85,
+                "nonzero_posture_supported_leg_observations": 300,
+                "minimum_supported_knee_rad": -0.0065067600712353,
+                "maximum_supported_knee_rad": 0.4971891669278072,
+                "maximum_absolute_proposed_rad_s": 4.999390704485853,
+                "feedback_statuses": {
+                  "baseline": 16,
+                  "supported": 154
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_003_baseline",
+              "condition_id": "left_075",
+              "start_id": "train_003",
+              "role": "baseline",
+              "action_index": 0,
+              "activation_role_index": 0,
+              "activation_step": null,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.2507564716952488,
+                "maximum_tilt_rad": 1.781896930688015,
+                "torso_contact_steps": 6278,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.6247550186860238,
+                "first_physical_violation": {
+                  "internal_step": 691,
+                  "time_s": 1.1516666666666797,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.276066252488585,
+                "lateral_displacement_m": -0.2517675258429747,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 139,
+                "actuator_commands": 1112,
+                "absolute_clamped_commands": 0,
+                "slew_clamped_commands": 0,
+                "final_speed_clamped_commands": 0,
+                "steps_with_absolute_clamp": 0,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 278,
+                "near_straight_supported_knees": 226,
+                "nonzero_posture_supported_leg_observations": 0,
+                "minimum_supported_knee_rad": -0.02539495978650553,
+                "maximum_supported_knee_rad": 0.43096170815548596,
+                "maximum_absolute_proposed_rad_s": 0.0,
+                "feedback_statuses": {
+                  "baseline": 139
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_003_height_immediate",
+              "condition_id": "left_075",
+              "start_id": "train_003",
+              "role": "height_immediate",
+              "action_index": 2,
+              "activation_role_index": 1,
+              "activation_step": 0,
+              "baseline_probe_steps": 0,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.2503876957307751,
+                "maximum_tilt_rad": 1.800332390423126,
+                "torso_contact_steps": 5719,
+                "ground_contact_steps": 7198,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.5261464393095464,
+                "first_physical_violation": {
+                  "internal_step": 1266,
+                  "time_s": 2.1100000000000203,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.2848416754046569,
+                "lateral_displacement_m": 0.06514717126713299,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 254,
+                "actuator_commands": 2032,
+                "absolute_clamped_commands": 205,
+                "slew_clamped_commands": 575,
+                "final_speed_clamped_commands": 28,
+                "steps_with_absolute_clamp": 146,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 538,
+                "near_straight_supported_knees": 87,
+                "nonzero_posture_supported_leg_observations": 538,
+                "minimum_supported_knee_rad": -0.004299474573370695,
+                "maximum_supported_knee_rad": 0.8995769882924259,
+                "maximum_absolute_proposed_rad_s": 6.965033537667463,
+                "feedback_statuses": {
+                  "supported": 254
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_003_height_after_16",
+              "condition_id": "left_075",
+              "start_id": "train_003",
+              "role": "height_after_16",
+              "action_index": 2,
+              "activation_role_index": 2,
+              "activation_step": 16,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.25071944148316805,
+                "maximum_tilt_rad": 1.8015057888756316,
+                "torso_contact_steps": 5722,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.5680703153252308,
+                "first_physical_violation": {
+                  "internal_step": 1243,
+                  "time_s": 2.071666666666691,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.2844015844118749,
+                "lateral_displacement_m": 0.021734322548553238,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 249,
+                "actuator_commands": 1992,
+                "absolute_clamped_commands": 216,
+                "slew_clamped_commands": 540,
+                "final_speed_clamped_commands": 25,
+                "steps_with_absolute_clamp": 168,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 524,
+                "near_straight_supported_knees": 113,
+                "nonzero_posture_supported_leg_observations": 486,
+                "minimum_supported_knee_rad": -0.006044158051882502,
+                "maximum_supported_knee_rad": 1.0271586193557536,
+                "maximum_absolute_proposed_rad_s": 6.439975326023347,
+                "feedback_statuses": {
+                  "baseline": 16,
+                  "supported": 233
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_004_baseline",
+              "condition_id": "left_075",
+              "start_id": "train_004",
+              "role": "baseline",
+              "action_index": 0,
+              "activation_role_index": 0,
+              "activation_step": null,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.2507555640502549,
+                "maximum_tilt_rad": 1.7819296495617607,
+                "torso_contact_steps": 6268,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.6288907475803551,
+                "first_physical_violation": {
+                  "internal_step": 698,
+                  "time_s": 1.1633333333333467,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.2759770742195801,
+                "lateral_displacement_m": -0.2536218671892075,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 140,
+                "actuator_commands": 1120,
+                "absolute_clamped_commands": 0,
+                "slew_clamped_commands": 0,
+                "final_speed_clamped_commands": 0,
+                "steps_with_absolute_clamp": 0,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 277,
+                "near_straight_supported_knees": 223,
+                "nonzero_posture_supported_leg_observations": 0,
+                "minimum_supported_knee_rad": -0.025378532038149226,
+                "maximum_supported_knee_rad": 0.43076566720543874,
+                "maximum_absolute_proposed_rad_s": 0.0,
+                "feedback_statuses": {
+                  "baseline": 140
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_004_height_immediate",
+              "condition_id": "left_075",
+              "start_id": "train_004",
+              "role": "height_immediate",
+              "action_index": 2,
+              "activation_role_index": 1,
+              "activation_step": 0,
+              "baseline_probe_steps": 0,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.2508141604954618,
+                "maximum_tilt_rad": 1.7868338635098056,
+                "torso_contact_steps": 5517,
+                "ground_contact_steps": 7198,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.5548715491172271,
+                "first_physical_violation": {
+                  "internal_step": 1453,
+                  "time_s": 2.4216666666666526,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.2904619163581207,
+                "lateral_displacement_m": 0.05639186177649361,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 291,
+                "actuator_commands": 2328,
+                "absolute_clamped_commands": 194,
+                "slew_clamped_commands": 696,
+                "final_speed_clamped_commands": 15,
+                "steps_with_absolute_clamp": 146,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 616,
+                "near_straight_supported_knees": 94,
+                "nonzero_posture_supported_leg_observations": 616,
+                "minimum_supported_knee_rad": -0.004297832636467856,
+                "maximum_supported_knee_rad": 0.6181093640740696,
+                "maximum_absolute_proposed_rad_s": 5.216983984586976,
+                "feedback_statuses": {
+                  "supported": 291
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_004_height_after_16",
+              "condition_id": "left_075",
+              "start_id": "train_004",
+              "role": "height_after_16",
+              "action_index": 2,
+              "activation_role_index": 2,
+              "activation_step": 16,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.2507190287511998,
+                "maximum_tilt_rad": 1.80242769028897,
+                "torso_contact_steps": 5706,
+                "ground_contact_steps": 7194,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.5441452627421132,
+                "first_physical_violation": {
+                  "internal_step": 1301,
+                  "time_s": 2.168333333333347,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.28621332136637073,
+                "lateral_displacement_m": 0.08875868088474724,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 261,
+                "actuator_commands": 2088,
+                "absolute_clamped_commands": 239,
+                "slew_clamped_commands": 534,
+                "final_speed_clamped_commands": 27,
+                "steps_with_absolute_clamp": 186,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 549,
+                "near_straight_supported_knees": 112,
+                "nonzero_posture_supported_leg_observations": 512,
+                "minimum_supported_knee_rad": -0.006042617851998781,
+                "maximum_supported_knee_rad": 0.8155264978566931,
+                "maximum_absolute_proposed_rad_s": 7.363885369861527,
+                "feedback_statuses": {
+                  "baseline": 16,
+                  "supported": 245
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_006_baseline",
+              "condition_id": "left_075",
+              "start_id": "train_006",
+              "role": "baseline",
+              "action_index": 0,
+              "activation_role_index": 0,
+              "activation_step": null,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "height;tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.17057251870265125,
+                "maximum_tilt_rad": 1.9738797776923858,
+                "torso_contact_steps": 5623,
+                "ground_contact_steps": 7197,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.36604370006991166,
+                "first_physical_violation": {
+                  "internal_step": 567,
+                  "time_s": 0.9450000000000083,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.2038443551785045,
+                "lateral_displacement_m": -0.5689957637683101,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 114,
+                "actuator_commands": 912,
+                "absolute_clamped_commands": 0,
+                "slew_clamped_commands": 0,
+                "final_speed_clamped_commands": 0,
+                "steps_with_absolute_clamp": 0,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 229,
+                "near_straight_supported_knees": 191,
+                "nonzero_posture_supported_leg_observations": 0,
+                "minimum_supported_knee_rad": -0.025796918121460084,
+                "maximum_supported_knee_rad": 0.4886688043917461,
+                "maximum_absolute_proposed_rad_s": 0.0,
+                "feedback_statuses": {
+                  "baseline": 114
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_006_height_immediate",
+              "condition_id": "left_075",
+              "start_id": "train_006",
+              "role": "height_immediate",
+              "action_index": 2,
+              "activation_role_index": 1,
+              "activation_step": 0,
+              "baseline_probe_steps": 0,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.25068700808185074,
+                "maximum_tilt_rad": 1.783244711145385,
+                "torso_contact_steps": 6186,
+                "ground_contact_steps": 7197,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.6483428372784761,
+                "first_physical_violation": {
+                  "internal_step": 813,
+                  "time_s": 1.3550000000000177,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.2762868387914227,
+                "lateral_displacement_m": -0.20949867890985158,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 163,
+                "actuator_commands": 1304,
+                "absolute_clamped_commands": 136,
+                "slew_clamped_commands": 297,
+                "final_speed_clamped_commands": 7,
+                "steps_with_absolute_clamp": 86,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 331,
+                "near_straight_supported_knees": 59,
+                "nonzero_posture_supported_leg_observations": 331,
+                "minimum_supported_knee_rad": -0.004359920951913941,
+                "maximum_supported_knee_rad": 0.49059130515060306,
+                "maximum_absolute_proposed_rad_s": 4.97795619295865,
+                "feedback_statuses": {
+                  "supported": 163
+                }
+              }
+            },
+            {
+              "trial_id": "left_075_train_006_height_after_16",
+              "condition_id": "left_075",
+              "start_id": "train_006",
+              "role": "height_after_16",
+              "action_index": 2,
+              "activation_role_index": 2,
+              "activation_step": 16,
+              "baseline_probe_steps": 16,
+              "outcome": "negative",
+              "failure_code": "tilt;torso_contact",
+              "native_metrics": {
+                "minimum_height_m": 0.250360382227484,
+                "maximum_tilt_rad": 1.7853123166195073,
+                "torso_contact_steps": 6359,
+                "ground_contact_steps": 7197,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": -0.6209448255313881,
+                "first_physical_violation": {
+                  "internal_step": 647,
+                  "time_s": 1.0783333333333447,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                }
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.27320953713778084,
+                "lateral_displacement_m": -0.20963993257568955,
+                "quality_m_s": null
+              },
+              "eligible_window_count": 0,
+              "pre_violation_activity": {
+                "controller_rows": 130,
+                "actuator_commands": 1040,
+                "absolute_clamped_commands": 159,
+                "slew_clamped_commands": 256,
+                "final_speed_clamped_commands": 2,
+                "steps_with_absolute_clamp": 87,
+                "safe_no_actuation_decisions": 0,
+                "supported_leg_observations": 267,
+                "near_straight_supported_knees": 85,
+                "nonzero_posture_supported_leg_observations": 228,
+                "minimum_supported_knee_rad": -0.00828694116268398,
+                "maximum_supported_knee_rad": 0.48868423194352434,
+                "maximum_absolute_proposed_rad_s": 5.019555629014232,
+                "feedback_statuses": {
+                  "baseline": 16,
+                  "supported": 114
+                }
+              }
+            }
+          ]
         },
         "early_context_feasibility": {
           "ledger_scope": {

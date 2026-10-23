@@ -112,16 +112,18 @@ The [16-command training diagnostic](#completed-early-context-feasibility---2026
 now classifies 8/8 groups with both conditions of each start held out together,
 versus constant nominal 4/8 and synthetically reversed associations 0/8. Seven
 component and three closure controls pass. Zero new worlds opened; no action
-mapping or control authority is assigned. Next compare immediate and 16-command
-height feedback at the same exposed degraded-body starts before using the
-classifier for control. This internal check does not expose reserved groups.
+mapping or control authority is assigned. The matched comparison below now
+shows that the available feedback still lacks four-start coverage. This internal
+classification check does not expose reserved groups or establish useful control.
 
-The [matched activation successor](#matched-height-activation-prepared---2026-10-23)
-now passes all 217 zero-world controls. Its twelve prospective CPU worlds
-compare baseline, immediate height and sixteen-command-delayed height at the
-same four degraded-body starts. Native collection is next from a clean pushed
-freeze after the complete gate runs again. This preparation earns no physical
-result, learned-choice benefit or promotion.
+The [matched activation comparison](#completed-matched-height-activation---2026-10-23)
+is now closed after all 217 controls and twelve fresh CPU worlds: **1/12
+eligible, 11/12 negative**. Baseline passes 0/4, immediate height 1/4 and
+sixteen-command-delayed height 0/4. Independent replay and all seven closure
+controls pass, but no role enters the four-start shortlist. Next diagnose the
+retained support and command-response histories and improve controller coverage
+before mapping inferred context to actions. Timing alone has not resolved the
+failure; reserved groups and prior confirmation remain excluded from tuning.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1410,6 +1412,71 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed matched height activation - 2026-10-23
+
+The [closure](../sdk/discovery/cpu_height_activation_closure_v1.json) retains
+`sdk2-cpu-height-activation-79ebfb867748407098b71385a959f5d7`, executed from clean
+published `e6969e3c4e24a091494c80c30d49fd0194a3f0e7`. All **217 controls** passed
+again before twelve fresh CPU worlds. Complete independent replay verified
+**17,280 controller decisions and 86,400 internal samples**, with 434 source
+and 1,359 runtime bindings. Zero GPU, calibration or evaluation worlds opened.
+
+| Role | Eligible / total | Four-start eligible | Selected |
+|---|---|---|---|
+| Baseline | 0/4 | No | No |
+| Immediate height | 1/4 | No | No |
+| Height after sixteen baseline commands | 0/4 | No | No |
+
+The complete population is **1/12 eligible and 11/12 negative**. The sole
+positive is immediate height at the 0.001 m/s start: 1.2160593213 m forward
+travel, minimum height 0.4097502398 m, maximum tilt 0.2637508051 rad and zero
+torso-contact or safe-no-actuation samples. Its 48 eligible windows yield
+whole-episode tracking quality -0.1252427266 m/s. This is a finite development
+positive; the other three immediate-height starts fail.
+
+Every negative reaches the tilt limit and later records torso contact. All
+negative qualities remain censored. The original four-start eligibility rule
+leaves an empty shortlist, and every one of the twelve declared paired quality
+differences is null because no pair contains two eligible episodes. No winner
+is invented from the single positive or from partial pre-failure windows.
+
+The four matched groups each contain two bit-identical sixteen-command
+baseline prefixes and equal causal features. Immediate-height histories never
+claim to be baseline-only. At the 0.001 m/s start immediate feedback passes
+while delayed feedback fails; this is a finite matched onset result. Immediate
+feedback also fails at 0.003, 0.004 and 0.006 m/s, so removing observation delay
+alone does not solve the available controller's coverage. Earlier confirmation
+at 0.002 and 0.005 m/s remains valid within its own population and cannot be
+used to erase these training failures or fit the next controller.
+
+Feedback is active before the failed height trials cross the tilt threshold;
+they do not begin by immediately withdrawing. Original receipts retain requested
+corrections, support observations and the resolver's absolute, slew and final
+speed clamps. These descriptions do not establish which mechanism causes the
+falls. Next compare retained support geometry, requested motion, bounded
+commands and observed response over a common pre-failure interval. Any resulting
+controller change needs a distinct declaration and fresh worlds. Do not attach
+the 8/8 internal label estimator to an unavailable four-start action choice.
+
+The [closure reader](../sdk/discovery/audit_cpu_height_activation_closure.py)
+checks all **10,246 artifacts / 2,081,442,262 bytes**, frozen source/runtime
+bindings, actual controller receipts, native outcomes, quality censoring, causal
+prefixes, role eligibility and all paired contrasts. Native execution took
+151.923744 s and independent replay 141.463824 s. The original receipt and
+audit digests are respectively
+`bd82cc87a05bc2849e77972948ebe35a31b91773f78bff1f1a50d1742f0a89b6`
+and `4ea8014b7fd54223b298d3fd5e33cd4c44c3eaef4e0113e3ba74b14f4c1ddb4c`.
+
+All **seven closure controls** passed in 158.839 s in
+`sdk2-height-activation-closure-controls-3ce72ac66b374717bc75e93acf866d90`.
+They reject erased failures, invented winners, altered causal values, crossed
+model profiles, censored-quality changes and source/runtime/proof mutations.
+Exact tested sources and logs are retained; zero worlds were constructed by
+these checks. This closure grants finite development training and selection
+scope with an empty selected set. It establishes no learned adaptation benefit,
+Tier 3 memory benefit, population inference, non-inferiority, engine equivalence,
+qualification or release authority. The consumed physical identity must not rerun.
 
 ### Matched height activation prepared - 2026-10-23
 
