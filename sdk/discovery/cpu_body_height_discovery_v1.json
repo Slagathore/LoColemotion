@@ -1,0 +1,101 @@
+{
+  "schema_version": "locolemotion_cpu_body_height_discovery_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "feedback_model": {
+    "path": "sdk/adaptation_provider/body_height_feedback_v1.json",
+    "sha256": "ee4c18f55a6b386ae65374ffd711119577debdef9d2b5c7d608bce4161ddf5d3"
+  },
+  "cpu_predecessor": {
+    "path": "sdk/discovery/cpu_body_gain_discovery_closure_v1.json",
+    "sha256": "c677917a4b21d1b59823ec41aaf68db4e67e6d01573ec0496dbd072b565dc9ab"
+  },
+  "condition_id": "left_075",
+  "seed": 104232200,
+  "outer_steps": 480,
+  "candidate_count": 3,
+  "starts": [
+    {
+      "id": "start_002",
+      "lateral_velocity_m_s": 0.002
+    },
+    {
+      "id": "start_005",
+      "lateral_velocity_m_s": 0.005
+    }
+  ],
+  "planned_cpu_worlds": 6,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 600,
+  "maximum_reader_wall_seconds": 600,
+  "training_data_authority": true,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "purpose": "Test one bounded stance-body-height/vertical-rate correction against fresh baseline and the exact body/posture reference at both exposed starts. Rank only complete eligible pairs; no selection on failed survival time.",
+  "coverage": [
+    "complete inherited body-gain gate plus height geometry, vertical direction, bound, reference-bit and domain controls",
+    "six fresh sequential CPU data instances and private controller memories",
+    "unchanged left-75 XML, force caps, final speed limits and eligibility criteria",
+    "all 480 decisions and 2400 internal samples per world",
+    "prepared observations, held targets, actuator torques, contact geometry and warnings",
+    "complete independent scalar and native-stream replay",
+    "two prospective reference-versus-height contrasts and pre-violation activity",
+    "deterministic eligible-pair ranking over all three roles"
+  ],
+  "not_covered": [
+    "GPU physics or transfer",
+    "nominal healthy-body preservation",
+    "unopened evaluation groups",
+    "fresh selected-candidate confirmation",
+    "population inference or formal comparison",
+    "learned history inference",
+    "Tier 3 benefit",
+    "qualification or release",
+    "measured foot loads or terrain height",
+    "rough or sloped terrain",
+    "geometric reachability as a stability guarantee"
+  ],
+  "parent_contract": {
+    "path": "sdk/discovery/cpu_body_gain_discovery_v1.json",
+    "sha256": "302097641a8b5806aa41f2814efd2f5a78662d44277011139da4036ea47ab76c"
+  },
+  "diagnostic_scope": "Two predeclared finite same-start reference/height contrasts; no population, causal generalization or qualification authority.",
+  "activity_diagnostics": {
+    "near_straight_rule": "abs(sin(supported_knee_position_rad)) <= 0.1",
+    "cutoff_rule": "prepared command outer_step*5 strictly before first failed completed physical sample; whole horizon if none",
+    "safe_no_actuation_scope": "counted separately; original episode eligibility still refuses any safe-no-actuation command",
+    "physical_violation_time_used_for_selection": false
+  },
+  "fixed_feedback_settings": {
+    "maximum_absolute_correction_rad_s": 3.5,
+    "maximum_slew_per_step_rad_s": 0.08,
+    "posture_gain_s_inv": 8.0,
+    "velocity_gain_s_inv": 0.0
+  },
+  "reference_candidate": "feedback_kp3_kd05",
+  "physical_predecessor_scope": "Previously exposed finite discovery; reference reruns fresh and is not cached.",
+  "reach_diagnosis": {
+    "path": "sdk/discovery/support_reach_diagnostic_v1.json",
+    "sha256": "4935ae238e917cee975fe38ace06b1d70fb2130e1527682873c12551dfdafd83"
+  },
+  "height_control": {
+    "nominal_target_height_m": 0.4,
+    "minimum_target_height_m": 0.28,
+    "reach_margin_m": 0.01,
+    "height_gain_s_inv": 3.0,
+    "vertical_damping": 0.5,
+    "maximum_vertical_velocity_m_s": 0.2
+  },
+  "ground_domain": {
+    "kind": "declared_fixed_flat_plane",
+    "height_m": 0.0,
+    "up_axis": "canonical_y",
+    "measured_terrain_height": false
+  },
+  "comparison_axis": "height_enabled"
+}

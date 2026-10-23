@@ -1,0 +1,109 @@
+{
+  "schema_version": "locolemotion_body_height_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "parent_model": {
+    "path": "sdk/adaptation_provider/body_gain_feedback_v1.json",
+    "sha256": "ea7a87bf292dfb68250dd3129ce72b88836da4c39ea0fc1e59607d8635566471"
+  },
+  "parent_implementation": {
+    "path": "sdk/adaptation_provider/body_gain_feedback_v1.py",
+    "sha256": "ea31272abdbfda593d00cba3e36c1200f06f96b428e501dd78c544e0825b49bf"
+  },
+  "height_control": {
+    "nominal_target_height_m": 0.4,
+    "minimum_target_height_m": 0.28,
+    "reach_margin_m": 0.01,
+    "height_gain_s_inv": 3.0,
+    "vertical_damping": 0.5,
+    "maximum_vertical_velocity_m_s": 0.2
+  },
+  "ground_domain": {
+    "kind": "declared_fixed_flat_plane",
+    "height_m": 0.0,
+    "up_axis": "canonical_y",
+    "measured_terrain_height": false
+  },
+  "distal_capsule_radius_m": 0.03994872276483847,
+  "height_scope": "observed_support_only; current canonical pose and velocity; no future observations or force inference",
+  "target_rule": "clamp(min(nominal_height, minimum_all_leg_geometric_height_limit - reach_margin), minimum_target_height, nominal_height)",
+  "envelope_selection": "prospectively_declared_candidate_bound_host_envelope",
+  "candidate_count": 3,
+  "candidates": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "factor": null,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 0.0,
+      "height_enabled": false
+    },
+    {
+      "id": "feedback_kp3_kd05",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": false
+    },
+    {
+      "id": "feedback_height_v1",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": true
+    }
+  ],
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

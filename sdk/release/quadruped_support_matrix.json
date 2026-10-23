@@ -304,6 +304,82 @@
           "adaptation_benefit_established": false,
           "qualification_or_release_authority": false
         },
+        "body_height_discovery": {
+          "ledger_scope": {
+            "subsystem": "adaptation",
+            "engine_scope": "mujoco_cpu",
+            "authority_mode": "development_discovery",
+            "question_class": "development"
+          },
+          "status": "prepared_complete_zero_world_gate_no_physics",
+          "provider": "sdk/adaptation_provider/body_height_feedback_v1.py",
+          "provider_sha256": "330b0c2626a1a14f3715b0a0e972a93323ffa54cb1cdc07caf2018f698e3c756",
+          "model": "sdk/adaptation_provider/body_height_feedback_v1.json",
+          "model_sha256": "ee4c18f55a6b386ae65374ffd711119577debdef9d2b5c7d608bce4161ddf5d3",
+          "declaration": "sdk/discovery/cpu_body_height_discovery_v1.json",
+          "declaration_sha256": "f6213cef1717cf0eccf2145862f04987ea5cd803e3df75fac92bf45e3661612a",
+          "launcher": "sdk/discovery/run_cpu_body_height_discovery.py",
+          "reader": "sdk/discovery/audit_cpu_body_height_discovery.py",
+          "zero_world_controls_passed": 159,
+          "component_controls_passed": 8,
+          "route_controls_passed": 10,
+          "retained_gate": "sdk2-cpu-body-height-discovery-e18561b4bf61471f92f49535243726d7",
+          "gate_receipt_sha256": "c85ad71e6ac9ec192840f02dfbef4d8c46e7b9f7dd639bcf5abd51fede10f545",
+          "source_binding_count": 394,
+          "runtime_binding_count": 1359,
+          "component_control_wall_s": 9.172,
+          "route_control_wall_s": 5.484,
+          "real_abi_decisions_checked": 384,
+          "independent_core_builds": 2,
+          "supported_feedback_decisions": 244,
+          "withdrawn_feedback_decisions": 12,
+          "candidate_count": 3,
+          "reference_candidate": "feedback_kp3_kd05",
+          "height_candidate": "feedback_height_v1",
+          "height_control": {
+            "nominal_target_height_m": 0.4,
+            "minimum_target_height_m": 0.28,
+            "reach_margin_m": 0.01,
+            "height_gain_s_inv": 3.0,
+            "vertical_damping": 0.5,
+            "maximum_vertical_velocity_m_s": 0.2
+          },
+          "ground_domain": {
+            "kind": "declared_fixed_flat_plane",
+            "height_m": 0.0,
+            "up_axis": "canonical_y",
+            "measured_terrain_height": false
+          },
+          "development_seed": 104232200,
+          "exposed_starts_m_s": [
+            0.002,
+            0.005
+          ],
+          "planned_cpu_worlds": 6,
+          "planned_controller_rows": 2880,
+          "planned_internal_rows": 14400,
+          "planned_reference_height_contrasts": 2,
+          "native_worlds": 0,
+          "trained": false,
+          "fresh_confirmation_required": true,
+          "adaptation_benefit_established": false,
+          "qualification_or_release_authority": false,
+          "preparation_fixture_failures": [
+            {
+              "attempt": "sdk2-body-height-component-controls-418d9b64c3ad45388561acf2a6e3e8b7",
+              "stage": "test_cpu_body_height_discovery",
+              "reason": "Synthetic fixture emitted three substeps instead of the unchanged required five; full reader refused denominator before tests or physics.",
+              "stderr_sha256": "dfe8676c7610e09630aea8c75cf9f945698526dd8257af3da4812c8d0a027730"
+            },
+            {
+              "attempt": "sdk2-body-height-route-controls-a745817be2f343d78963e863eefb668a",
+              "stage": "tests",
+              "reason": "Two-command synthetic fixture has no complete 30-command quality window; the test incorrectly expected a finite contrast. Corrected to assert censoring and separately test complete-window values.",
+              "stderr_sha256": "f3357dae767db5c6d202f1691c0433585977e4ac9a53c247550811b74cff9b7e"
+            }
+          ],
+          "next_question": "Run the declared six fresh CPU worlds from a clean pushed freeze after the complete gate; retain every outcome and both prospective contrasts. No candidate selected before independent replay."
+        },
         "body_gain_discovery": {
           "ledger_scope": {
             "subsystem": "adaptation",

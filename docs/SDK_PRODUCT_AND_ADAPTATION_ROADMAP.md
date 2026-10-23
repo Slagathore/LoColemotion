@@ -89,8 +89,10 @@ post-hoc common prefix shows different front-right support return. The
 [ground-reach diagnosis](#fixed-pose-ground-reach-diagnosis---2026-10-23) now
 verifies that the front-right foot cannot reach the floor at 173/180 sampled
 torso poses in each failing trial; successful trials regain reachable poses.
-Next develop bounded body-height/vertical-rate feedback as a distinct
-controller successor. The geometric result alone supplies no causal or benefit claim.
+The [body-height successor](#body-height-successor-prepared---2026-10-23) is now
+implemented with all 159 zero-world controls passing. Its six fresh CPU worlds
+remain unopened until publication of the prospective freeze. The geometric
+result and component checks supply no causal or benefit claim.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1379,6 +1381,59 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Body-height successor prepared - 2026-10-23
+
+The [three-role declaration](../sdk/discovery/cpu_body_height_discovery_v1.json)
+now specifies six fresh CPU worlds: baseline, the unchanged `feedback_kp3_kd05`
+reference, and one `feedback_height_v1` candidate at each exposed lateral start,
+0.002 and 0.005 m/s. The development seed remains 104232200, with four seconds,
+480 controller decisions and 2,400 internal samples per world. The left-75
+motor condition, native XML, force limits, final speed bounds and physical
+eligibility criteria are unchanged. Both reference/height contrasts are
+prospective; only complete eligible pairs may enter the shortlist.
+
+The [component](../sdk/adaptation_provider/body_height_feedback_v1.py) reuses the
+frozen attitude/rate/posture reference. The height-enabled role adds a request
+`vy = clamp(3*(target_y-current_y) - 0.5*measured_vy, -0.20, 0.20)` in m/s.
+Its nominal torso target is 0.40 m. The target is reduced by the minimum
+all-leg geometric height limit minus a 0.01 m margin, with a lower target bound
+of 0.28 m. The receipt explicitly records when that lower bound exceeds the
+geometric cap; a target clamp is not proof of ground reach or safe support.
+
+For feet currently bearing support, the controller rotates the opposite
+vertical translation into the torso frame and maps its planar x/y components
+through the existing damped leg Jacobian. These joint-velocity corrections add
+to the unchanged attitude/posture proposal. Airborne feet receive no added
+translation. The host keeps the 3.5 rad/s correction cap, 0.08 rad/s per-command
+slew, final speed limits and exact baseline withdrawal. There is no body-pose
+write, force override, phase change, inferred foot load or future observation.
+The declared y-up plane at height zero is a narrow host-owned domain assumption,
+not an observed terrain height. Actual rigid-body motion is not guaranteed by
+the inverse-kinematics request.
+
+All **159 zero-world controls** pass under
+`sdk2-cpu-body-height-discovery-e18561b4bf61471f92f49535243726d7`, binding 394
+source files and 1,359 runtime files. The eight new component controls check
+height/velocity signs, geometric target and speed bounds, yaw invariance,
+support gating, independent damped normal equations, domain refusal and exact
+reference/fallback bits. Across two independent core builds, 384 real-ABI
+decisions include 244 supported feedback and 12 withdrawals. Ten route
+controls cover all roles, native timing/precision/force integrity, missing or
+crossed populations, corrupted height receipts, ranking and censored contrasts.
+
+Two preparation fixture failures remain retained with exact tested source
+copies and original logs. The first emitted three synthetic substeps where the
+unchanged reader required five. The second incorrectly expected a finite quality
+contrast from two commands, shorter than a scoring window. The corrected fixture
+preserves unscorable values and checks finite contrasts separately. Neither
+failure opened a physical world or changed an eligibility threshold.
+
+No physical world has run at this preparation checkpoint. Next publish this
+prospective freeze and execute the six fresh worlds through the contained
+supervisor, including its full gate and independent replay. Fresh confirmation,
+healthy-body preservation, unopened evaluation, learned history inference,
+Tier 2/Tier 3 benefit, equivalence and release remain open.
 
 ### Fixed-pose ground-reach diagnosis - 2026-10-23
 

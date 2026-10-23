@@ -2087,3 +2087,16 @@ body-height/vertical-rate successor is the next design hypothesis. Geometry
 does not establish achievable motion or controller benefit; no measured foot
 forces are available in these traces. Prospective fresh-world tests remain
 necessary, with original negative outcomes and the empty shortlist preserved.
+
+## 2026-10-23 bounded stance-height successor
+
+The [height successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-successor-prepared---2026-10-23)
+reuses the previously reviewed damped inverse from
+[Buss's survey](https://mathweb.ucsd.edu/~sbuss/ResearchWeb/ikmethods/iksurvey.pdf).
+It adds a local bounded height/vertical-rate request and a geometric height cap
+from the retained two-link reach diagnosis. The chosen height, margin, gains
+and bounds are project hypotheses. The survey does not supply these settings
+or a locomotion guarantee; planar inverse kinematics does not guarantee the
+requested torso translation under contact and force limits. No external code
+or dependency was imported. Independent normal-equation and real-ABI controls
+pass; fresh native physics must establish usefulness.

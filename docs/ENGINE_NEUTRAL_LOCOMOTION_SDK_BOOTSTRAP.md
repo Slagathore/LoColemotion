@@ -2,6 +2,13 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest prepared successor (2026-10-23): the [body-height comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-successor-prepared---2026-10-23)
+adds one bounded height/vertical-rate candidate to the unchanged reference and
+baseline at both exposed starts. All 159 zero-world controls pass, binding 394
+source and 1,359 runtime files. The six CPU worlds remain unopened pending a
+clean pushed prospective freeze. Two corrected synthetic fixture failures and
+their original bytes remain retained. No adaptation or release claim is earned.
+
 Latest discovery (2026-10-23): the [closed body-gain factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
 completed all ten CPU worlds from published `82dc9bfe` after all 141 controls
 passed. Independent replay verified 4,800 decisions and 24,000 internal samples:
