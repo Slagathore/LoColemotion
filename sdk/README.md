@@ -6,9 +6,13 @@ is closed after all 141 controls and ten fresh CPU worlds at published
 samples: **4/10 eligible, 6/10 negative**. All four feedback roles passed only
 the 0.005 m/s start; no candidate meets the two-start rule. The [closure verifier](discovery/audit_cpu_body_gain_closure.py)
 binds 5,431 artifacts, eight prospective contrasts and a separately labeled
-post-hoc contact diagnostic; all seven closure controls pass. Forefoot reach
-and support transfer are the next
-control questions; useful adaptation and release remain unproved.
+post-hoc contact diagnostic; all seven closure controls pass. A separate
+[ground-reach reader](discovery/support_reach_diagnostic.py) verifies 5,760
+fixed-torso capsule bounds with zero new worlds: the front-right foot cannot
+reach ground at 173/180 sampled poses in each failing trial. Its seven controls
+pass, including native geometry joins and an independent joint grid. Body-height
+and vertical-rate feedback are the next controller question; useful adaptation
+and release remain unproved.
 
 The [posture/envelope factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
 is closed after all 123 controls and 18 fresh CPU worlds at published

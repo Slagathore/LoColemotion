@@ -11,9 +11,14 @@ The closure binds 5,431 artifacts and all eight prospective contrasts; all seven
 closure controls pass. A
 separately labeled post-hoc 180-decision prefix finds five front-right support
 observations in each failing feedback trial versus 33-41 in successful trials.
-Next inspect forefoot reach and support-transfer dynamics before another
-controller successor. This gain range did not resolve the start sensitivity;
-no adaptation or release authority is earned.
+The [ground-reach diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#fixed-pose-ground-reach-diagnosis---2026-10-23)
+now verifies 5,760 exact fixed-torso capsule bounds with zero new worlds.
+Front-right ground reach is absent at 173/180 sampled poses in each failing
+trial; successful trials regain reachable poses. All seven controls pass.
+Measured foot loads are unavailable; actuator torques are retained separately.
+Next develop bounded body-height/vertical-rate feedback in a distinct
+successor. Neither the gain sweep nor this post-hoc geometry grants adaptation,
+causal or release authority.
 
 Earlier discovery (2026-10-23): the [closed posture/envelope factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
 completed all 18 CPU worlds from published `f9a0509d` after all 123 controls

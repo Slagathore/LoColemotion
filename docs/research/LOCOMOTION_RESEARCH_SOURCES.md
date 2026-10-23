@@ -2070,3 +2070,20 @@ start split. All eight planned contrasts remain intact. A separately labeled
 post-hoc common prefix describes different front-right support return, without
 causal or selection authority. The next design question is contact/kinematic
 support transfer; a further gain sweep is not promoted from single-start scores.
+
+## 2026-10-23 fixed-torso ground-reach diagnosis
+
+The [retained native diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#fixed-pose-ground-reach-diagnosis---2026-10-23)
+adds an elementary geometric bound derived from the exact local two-link
+morphology. Each rotated planar segment has vertical contribution at least
+`-L*hypot(R_yx,R_yy)`; the straight-leg witness attains the sum within the
+compiled joint limits. Independent numerical grid and native endpoint checks
+validate this calculation. No external algorithm, source code or dependency
+was imported. This is a local post-hoc observation, not a literature result.
+
+Both outcome groups initially include unreachable front-right poses, while
+only the successful group regains support within the chosen prefix. A bounded
+body-height/vertical-rate successor is the next design hypothesis. Geometry
+does not establish achievable motion or controller benefit; no measured foot
+forces are available in these traces. Prospective fresh-world tests remain
+necessary, with original negative outcomes and the empty shortlist preserved.

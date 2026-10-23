@@ -85,8 +85,12 @@ all ten CPU worlds from published `82dc9bfe` after all 141 controls passed.
 Independent replay verified **4/10 eligible and 6/10 negative**. Every feedback
 corner passed 0.005 m/s and failed 0.002 m/s, so the shortlist remains empty.
 The tested gain range did not resolve start sensitivity. A separately labeled
-post-hoc common prefix shows different front-right support return; next inspect
-forefoot reach and support transfer before a distinct controller successor.
+post-hoc common prefix shows different front-right support return. The
+[ground-reach diagnosis](#fixed-pose-ground-reach-diagnosis---2026-10-23) now
+verifies that the front-right foot cannot reach the floor at 173/180 sampled
+torso poses in each failing trial; successful trials regain reachable poses.
+Next develop bounded body-height/vertical-rate feedback as a distinct
+controller successor. The geometric result alone supplies no causal or benefit claim.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1375,6 +1379,65 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Fixed-pose ground-reach diagnosis - 2026-10-23
+
+The [retained diagnostic](../sdk/discovery/support_reach_diagnostic_v1.json)
+and its [executable reader](../sdk/discovery/support_reach_diagnostic.py) now
+check the same post-hoc 180-decision prefix of all eight feedback trials from
+the closed body-gain comparison. The two baselines remain in the original
+ten-trial denominator but are excluded from this common pre-failure prefix.
+This analysis opens zero worlds and performs zero solver steps: it recomputes
+1,440 controller rows, 7,200 completed internal samples and 5,760 leg-reach
+bounds from 20 exact source artifacts, after verifying the full parent closure.
+
+At a fixed torso pose, write `(A,B,C)` for the world-y row of its rotation.
+For hip anchor `a`, segment lengths `L1,L2` and capsule radius `r`, the exact
+minimum distal-capsule clearance above the declared flat ground is
+`base_y + (A,B,C) dot a - (L1+L2)*hypot(A,B) - r`.
+Both segments attain this bound at `hip=-atan2(A,B), knee=0`; every analyzed
+witness is inside the compiled joint limits. This is a frozen-pose geometric
+bound, not an achievable trajectory, force allocation or stability guarantee.
+A clearance above 1e-6 m is counted as ground below the reachable minimum.
+
+| Exposed start | Feedback trials | Front-right unreachable rows, out of 180 per trial | Maximum minimum clearance | Front-right support rows |
+|---|---:|---|---|---|
+| 0.002 m/s | 4 | 173, 173, 173, 173 | 0.06478-0.07332 m | 5, 5, 5, 5 |
+| 0.005 m/s | 4 | 142, 137, 144, 145 | 0.04838-0.05433 m | 36, 41, 34, 33 |
+
+For the unchanged reference, the failing start still has 0.05780 m minimum
+front-right clearance at outer step 179. The successful start has -0.00435 m
+minimum clearance there and has regained support. Both start groups initially
+have unreachable poses. The later difference does not prove a cause or a
+corrective policy's success. Original eligibility, failures and the empty
+shortlist remain unchanged; the prefix was chosen after outcomes were known.
+
+The reader derives both capsule endpoint centres from native distal-body
+poses, then checks them against torso/joint forward kinematics. It does not
+mistake a contact point for a sphere centre. Maximum endpoint discrepancy is
+7.21645e-16 m. Snapshots retain body pose, linear/angular velocity, gait counters,
+support and planning status. Scheduled transfer is inactive in all 1,440 rows,
+including positive trials. All 5,760 foot-load observations are unavailable;
+raw contacts contain geometry but no force. The 7,200 torque samples describe
+actuator torques and cap occupancy, not measured ground-reaction forces.
+
+All seven [controls](../sdk/discovery/test_support_reach_diagnostic.py) pass in
+91.371 s under `sdk2-support-reach-controls-f79178da21c5428181744fb3d3b3397d`,
+with tested source copies and original stdout/stderr retained. They include an
+independent 702,768-point joint grid, full native geometry joins, no-world
+guards, changed-floor/capsule/raw-order refusal and corrupted authority,
+denominator and measurement records. Grid minima remain above the analytic
+bound, within 1.884994e-6 m of its attaining witness.
+
+Next develop a distinct bounded body-height/vertical-rate correction for
+observed stance support, preserving the existing attitude/posture reference,
+provider withdrawal, correction/slew limits and native force caps. It must be
+tested against fresh baseline/reference worlds at both exposed starts under a
+new declaration and published freeze. Ground height must be an explicit domain
+assumption; this diagnostic does not supply a terrain sensor. A new controller
+must establish benefit before fresh confirmation and healthy-body preservation.
+No new fitting, selection, causal, population, adaptation or release authority
+is earned by the geometric analysis itself.
 
 ### Completed body-gain factorial - 2026-10-23
 
