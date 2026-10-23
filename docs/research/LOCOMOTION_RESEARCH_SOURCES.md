@@ -2023,3 +2023,23 @@ observations under its explicit trigonometric rule. These local counts support
 separating correction authority and posture bias in a successor; they do not
 prove either is causal or import a result from PMTG or the IK survey. No policy
 was trained and no Tier 2/Tier 3 benefit was established by this family.
+
+## 2026-10-23 posture preference and explicit correction authority
+
+The [posture successor](../../sdk/adaptation_provider/posture_feedback_v1.py)
+uses the damped least-squares objective described in
+[Buss's survey, section 5](https://mathweb.ucsd.edu/~sbuss/ResearchWeb/ikmethods/iksurvey.pdf)
+as its starting point. The local extension centres its regularizer on a supported
+joint-posture velocity preference. Its normal equation becomes
+`(J^T J + lambda^2 I) delta = J^T v + lambda^2 u`; this extension and the chosen
+reference/gains are project design decisions, not a locomotion result supplied
+by the survey. Independent tests check that equation and the objective minimum.
+Damping means `(I - J# J)` is not an exact nullspace map, and physical execution
+must determine attained posture and usefulness.
+
+The [declared factorial](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#posture-and-envelope-factorial-prepared---2026-10-23)
+separates correction magnitude, slew and posture preference while preserving
+native force limits and final speed limits. This follows the retained clipping
+and posture observations; it does not turn them into causal proof. The model is
+untrained, all 123 zero-world controls pass, and native benefit remains open at
+this preparation checkpoint. No external source code or dependency was imported.

@@ -1,0 +1,85 @@
+{
+  "schema_version": "locolemotion_cpu_posture_discovery_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "feedback_model": {
+    "path": "sdk/adaptation_provider/posture_feedback_v1.json",
+    "sha256": "0aaeb71ea2524f9e089e74e6a7d81f1e3a16e1901c918190d51aa682adb5b93d"
+  },
+  "cpu_predecessor": {
+    "path": "sdk/discovery/cpu_stance_discovery_closure_v1.json",
+    "sha256": "fd462951fff66fd5f791e36367a1888b141ba77cf34f48243b2cfc6a0ee0fca3"
+  },
+  "condition_id": "left_075",
+  "seed": 104232200,
+  "outer_steps": 480,
+  "candidate_count": 9,
+  "starts": [
+    {
+      "id": "start_002",
+      "lateral_velocity_m_s": 0.002
+    },
+    {
+      "id": "start_005",
+      "lateral_velocity_m_s": 0.005
+    }
+  ],
+  "planned_cpu_worlds": 18,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 600,
+  "maximum_reader_wall_seconds": 600,
+  "training_data_authority": true,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "purpose": "Separate correction magnitude, slew and support-posture preference in all eight factorial corners plus baseline at two exposed starts. Rank only complete eligible pairs. Retain first physical violation and control-activity diagnostics without selecting on failed survival time.",
+  "coverage": [
+    "complete inherited CPU stance gate plus posture objective, envelope ownership and factorial controls",
+    "18 fresh sequential CPU data instances and private controller memories",
+    "unchanged left-75 XML, force caps, final speed limits and eligibility criteria",
+    "all 480 decisions and 2400 internal samples per world",
+    "prepared observations, held targets, force sensors, contacts and warnings",
+    "complete independent scalar and native-stream replay",
+    "complete factorial pairs, first physical violation and pre-violation control activity",
+    "deterministic eligible-pair ranking over the full candidate denominator"
+  ],
+  "not_covered": [
+    "GPU physics or transfer",
+    "nominal healthy-body preservation",
+    "unopened evaluation groups",
+    "fresh selected-candidate confirmation",
+    "population inference or formal comparison",
+    "learned history inference",
+    "Tier 3 benefit",
+    "qualification or release"
+  ],
+  "parent_contract": {
+    "path": "sdk/discovery/cpu_stance_discovery_v1.json",
+    "sha256": "fa1533ae76b06f233c624770017e8f92fafdcd8bdb43402010bb86140f866dd7"
+  },
+  "factorial_axes": {
+    "maximum_absolute_correction_rad_s": [
+      0.25,
+      3.5
+    ],
+    "maximum_slew_per_step_rad_s": [
+      0.02,
+      0.08
+    ],
+    "posture_gain_s_inv": [
+      0.0,
+      8.0
+    ]
+  },
+  "diagnostic_scope": "Predeclared finite paired contrasts; no population, causal generalization or qualification authority.",
+  "activity_diagnostics": {
+    "near_straight_rule": "abs(sin(supported_knee_position_rad)) <= 0.1",
+    "cutoff_rule": "prepared command outer_step*5 strictly before first failed completed physical sample; whole horizon if none",
+    "safe_no_actuation_scope": "counted separately; original episode eligibility still refuses any safe-no-actuation command",
+    "physical_violation_time_used_for_selection": false
+  }
+}

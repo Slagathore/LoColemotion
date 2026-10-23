@@ -70,6 +70,14 @@ distinct prospective experiment; no gain sweep or history estimator is promoted
 from this negative family. Verified discovery data may support later development
 fitting, but no fresh confirmation or adaptation benefit has been established.
 
+The [posture/envelope factorial](#posture-and-envelope-factorial-prepared---2026-10-23)
+now passes all 123 zero-world controls. It declares every corner of three binary
+factors and a baseline at both development starts: 18 fresh CPU worlds. The
+posture preference and each child's host-owned envelope are model-bound. The
+reader will retain first physical violations, control activity and all 24
+single-factor contrasts while ranking only complete eligible pairs. No new
+physical result follows at this preparation checkpoint.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -1357,6 +1365,87 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Posture and envelope factorial prepared - 2026-10-23
+
+The [successor model](../sdk/adaptation_provider/posture_feedback_v1.py)
+retains the original canonical body feedback, geometry, observation domain and
+support gating. It adds a joint-posture preference to the damped solve. For
+supported legs, the posture-enabled corner uses `u = 8 * (q_reference - q)`,
+with hip reference **-0.3 rad** and knee reference **0.6 rad**, both strictly
+inside the compiled joint limits. It proposes `delta = J# v + (I - J# J) u`,
+where `J#` is the existing damped inverse and `v` is body-feedback foot velocity.
+This minimizes `||J delta - v||^2 + lambda^2 ||delta - u||^2`. Because the inverse
+is damped, the posture term is not an exact nullspace projection. The reference
+is a preference, not a commanded or guaranteed attained posture.
+
+The [nine-role model](../sdk/adaptation_provider/posture_feedback_v1.json)
+contains baseline plus all eight corners of these independent factors:
+
+| Factor | Low / off | High / on |
+| --- | --- | --- |
+| Absolute correction cap | 0.25 rad/s | 3.5 rad/s |
+| Correction slew per command | 0.02 rad/s | 0.08 rad/s |
+| Supported-leg posture preference gain | 0/s | 8/s |
+
+Body attitude gain stays at 3/s and rate damping at 0.5; no speed-feedback or
+fixed-profile blend is added. Each host session binds its candidate's envelope
+before execution, and provider responses cannot raise it. Native force caps,
+final motor speed limits, XML, initial values and original episode eligibility
+remain unchanged. Unsupported observations withdraw the complete provider,
+including its posture contribution, and return the exact baseline.
+
+Eight component controls cover the declared quadratic objective, independent
+normal equations, straight-leg behavior, geometry and reference limits,
+zero-preference compatibility, yaw invariance, family/envelope binding and
+real-ABI refusals. Across **1,152 decisions**, two independent core binaries
+reproduced the complete outputs. The eight feedback roles supplied 976 supported
+and 48 withdrawn decisions; the remaining 128 were baseline. The unchanged
+corner preserves the earlier controller's target bits. Ten route controls cover
+all synthetic roles, raw-stream corruption, pair completeness, activity cutoffs,
+unchanged native force semantics and refusal of false authority.
+
+Before this freeze, a weaker draft used a 1.0 rad/s high correction cap and a
+2/s posture preference. Its eight component and ten route controls passed, but
+it never ran physics. A separately retained inspection of the earlier medium
+feedback trajectory found active baseline knee-return commands: among 104
+supported observations with knee angle between 0.02 and 0.15 rad before feedback
+withdrawal, median angle was 0.04685 rad and median baseline target -0.3870 rad/s.
+The median negative-velocity/angle ratio was 8.672/s; this is a descriptive ratio,
+not an identified controller gain. It motivated a stronger prospective contrast.
+The earlier tested source bytes remain in `verified-source/` under
+`sdk2-posture-feedback-controls-4764c47fa0c64444a3a72a7f7dc04cb5` and
+`sdk2-cpu-posture-controls-8dc5b19009034d09baf3fbc7f01ebaba`. Both source-manifest
+SHA-256 values are
+`be7b77d877400fa88b3e23c47515f5897abdbfc4c0e07de23d58c9dc764709e1`.
+The first folder retains `retained-knee-return-inspection.json`, SHA-256
+`af11a070680f48858f58f6b7a08016ebce60503cc2065fd80cc1127ac046c1ef`.
+
+The revised family passed the complete **123-control zero-world gate** in
+`sdk2-cpu-posture-discovery-effaf0c859b4442ea9623e0276d7160d`, with **360 source
+bindings and 1,359 runtime bindings**. Receipt SHA-256:
+`35b1be1d16bb3721a574d5eaf0866b999520b80790a7562d28cd4a743c56307e`.
+The gate includes all 105 inherited controls, eight revised component controls,
+ten route controls and the inherited provider/process-containment checks. The
+preflight confirms zero constructed worlds and zero solver steps.
+
+The [prospective declaration](../sdk/discovery/cpu_posture_discovery_v1.json)
+uses one development seed, both exposed starts at 0.002 and 0.005 m/s, and all
+nine roles: **18 fresh sequential CPU worlds**, **8,640 decisions** and
+**43,200 internal samples**. The reader independently verifies every decision
+and native sample. It also retains the first original physical eligibility
+violation, control activity before it (or the entire horizon when absent), and
+all **24 single-factor contrasts**. Near-straight support uses the prospectively
+fixed `abs(sin(knee_angle)) <= 0.1` rule. Safe-no-actuation decisions remain
+separately counted and still make the original episode ineligible.
+
+First-violation time is diagnostic only and is never substituted for eligibility
+or quality. A candidate needs two complete eligible episodes before ranking;
+a missing or failed start stays in the denominator. No population inference,
+causal generalization, useful adaptation or release authority follows from these
+finite contrasts. Only complete independently verified discovery may support
+later development fitting, and a selected candidate still needs fresh frozen
+confirmation. No new physical world has run at this preparation checkpoint.
 
 ### SDK2 claim targets
 

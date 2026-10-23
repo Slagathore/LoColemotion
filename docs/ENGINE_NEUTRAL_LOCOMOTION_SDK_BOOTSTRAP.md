@@ -2,6 +2,14 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Prepared next (2026-10-23): the [posture/envelope factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#posture-and-envelope-factorial-prepared---2026-10-23)
+has passed all 123 zero-world controls. Eight feedback corners independently
+vary correction cap, slew and support-posture preference; baseline supplies the
+ninth role. All nine roles reproduced 1,152 decisions across two core binaries,
+including exact original-controller targets at the unchanged corner and exact
+fallback on unsupported inputs. The prospective run covers 18 fresh CPU worlds,
+8,640 decisions and 43,200 internal samples. No physical result follows yet.
+
 Latest discovery (2026-10-23): the [closed CPU stance-feedback family](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
 completed all 24 worlds from published `53cc81c9` after all 105 controls passed.
 Complete independent replay verified 11,520 decisions and 57,600 internal samples.

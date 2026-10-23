@@ -1,0 +1,221 @@
+{
+  "schema_version": "locolemotion_posture_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "parent_model": {
+    "path": "sdk/adaptation_provider/stance_feedback_v1.json",
+    "sha256": "e961f506a9dcabaa1ab55b0efee57b12f323bd4df20514a70719eb537fe36025"
+  },
+  "parent_implementation": {
+    "path": "sdk/adaptation_provider/stance_feedback_v1.py",
+    "sha256": "b40273b47f047f71263dd014bbec2bb24d623f64d39c039204c75c157ac2829a"
+  },
+  "posture_reference_rad": {
+    "hip": -0.3,
+    "knee": 0.6
+  },
+  "posture_objective": "minimize ||J delta - v_body_feedback||^2 + lambda^2 ||delta - posture_gain*(q_reference-q)||^2",
+  "posture_scope": "observed_support_only",
+  "envelope_selection": "prospectively_declared_candidate_bound_host_envelope",
+  "candidate_count": 9,
+  "candidates": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "factor": null,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 0.0
+    },
+    {
+      "id": "feedback_a025_s002_p0",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 0.0
+    },
+    {
+      "id": "feedback_a025_s002_p8",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 8.0
+    },
+    {
+      "id": "feedback_a025_s008_p0",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 0.0
+    },
+    {
+      "id": "feedback_a025_s008_p8",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0
+    },
+    {
+      "id": "feedback_a350_s002_p0",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 0.0
+    },
+    {
+      "id": "feedback_a350_s002_p8",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 8.0
+    },
+    {
+      "id": "feedback_a350_s008_p0",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 0.0
+    },
+    {
+      "id": "feedback_a350_s008_p8",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0
+    }
+  ],
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

@@ -1,5 +1,12 @@
 # LoColemotion Locomotion SDK
 
+The [posture/envelope successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#posture-and-envelope-factorial-prepared---2026-10-23)
+is prepared after all 123 zero-world controls passed. Its full factorial separates
+correction magnitude, slew and supported-leg posture preference, with a baseline
+control at each start. The declared 18 CPU worlds retain every outcome and all
+24 single-factor contrasts. The previous 0/24 result remains unchanged; this
+preparation has no physical benefit, fitting, qualification or release authority.
+
 The [CPU stance-feedback discovery](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
 is closed after all 105 safety controls and 24 fresh worlds at published
 `53cc81c9`. Complete independent replay verified 11,520 decisions and 57,600
