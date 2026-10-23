@@ -110,6 +110,60 @@ struct CanonicalJsonReceipt {
 
 #[derive(Deserialize)]
 #[serde(deny_unknown_fields)]
+struct Bw19vBatchCell {
+    cell_id: String,
+    session_handle: u64,
+    request: crate::bw19v_batch::StepRequest,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct Bw19vBatchRequest {
+    schema_version: String,
+    ordered_cells: Vec<Bw19vBatchCell>,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct PureBatchCell {
+    cell_id: String,
+    request: Value,
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct PureBatchRequest {
+    schema_version: String,
+    operation: String,
+    ordered_cells: Vec<PureBatchCell>,
+}
+
+fn validate_batch_ids<'a>(ids: impl Iterator<Item = &'a str>) -> crate::schema::Result<()> {
+    let mut seen = std::collections::HashSet::new();
+    let mut count = 0;
+    for id in ids {
+        count += 1;
+        if id.is_empty() || id.len() > 128 || !seen.insert(id) {
+            return Err(CoreError::Identity("batch_cell_id_empty_long_or_duplicate".to_owned()));
+        }
+    }
+    if !(1..=256).contains(&count) {
+        return Err(CoreError::Schema("batch_cell_count_outside_1_256".to_owned()));
+    }
+    Ok(())
+}
+
+fn batch_outcome<T: Serialize>(result: crate::schema::Result<T>) -> crate::schema::Result<Value> {
+    match result {
+        Ok(value) => serde_json::to_value(ApiSuccess { ok: true, value })
+            .map_err(|error| CoreError::Serialization(error.to_string())),
+        Err(error) => serde_json::from_slice(&failure_bytes(&error))
+            .map_err(|error| CoreError::Serialization(error.to_string())),
+    }
+}
+
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
 struct Candidate35StepRequest {
     schema_version: String,
     descriptor: BoundedQuadrupedDescriptor,
@@ -474,6 +528,78 @@ pub unsafe extern "C" fn ss_canonicalize_json(
             },
         )
     }
+}
+
+#[unsafe(no_mangle)]
+/// Batch the unchanged BW19V gait, stability composition and adapter mapping.
+/// All per-cell memory is explicit. Cell failures are retained in input order.
+///
+/// # Safety
+/// Input/output use the same non-overlapping caller-owned buffers as other JSON
+/// calls. Output length must be writable. No call mutates session memory.
+pub unsafe extern "C" fn ss_bw19v_composition_batch_v1_json(
+    input: *const u8, input_length: usize, output: *mut u8,
+    output_capacity: usize, output_length: *mut usize,
+) -> c_int {
+    unsafe { json_input_call(input, input_length, output, output_capacity, output_length,
+        |request: Bw19vBatchRequest| {
+            if request.schema_version != "sporespore_bw19v_composition_batch_request_v1" {
+                return Err(CoreError::Schema("bw19v_composition_batch_version".to_owned()));
+            }
+            validate_batch_ids(request.ordered_cells.iter().map(|cell| cell.cell_id.as_str()))?;
+            let mut rows = Vec::with_capacity(request.ordered_cells.len());
+            for cell in request.ordered_cells {
+                let controller = lock_balanced_wave_policy_sessions()?.get(&cell.session_handle).cloned();
+                let result = controller.ok_or_else(|| CoreError::Reference("balanced_wave_policy_session_handle_unknown".to_owned()))
+                    .and_then(|controller| crate::bw19v_batch::step(&controller, &cell.request));
+                rows.push(serde_json::json!({"cell_id": cell.cell_id, "outcome": batch_outcome(result)?}));
+            }
+            Ok(serde_json::json!({"schema_version": "sporespore_bw19v_composition_batch_receipt_v1",
+                "ordered_results": rows, "world_build_count": 0, "physics_state_modified": false,
+                "physical_acceptance_authority": false}))
+        }) }
+}
+
+#[unsafe(no_mangle)]
+/// Batch pure canonicalization or optional-provider resolution. No physics.
+///
+/// # Safety
+/// Input/output use non-overlapping caller-owned buffers; output length must be
+/// writable. Supplying sufficient output capacity avoids a duplicate size query.
+pub unsafe extern "C" fn ss_pure_json_batch_v1_json(
+    input: *const u8, input_length: usize, output: *mut u8,
+    output_capacity: usize, output_length: *mut usize,
+) -> c_int {
+    unsafe { json_input_call(input, input_length, output, output_capacity, output_length,
+        |request: PureBatchRequest| {
+            if request.schema_version != "sporespore_pure_json_batch_request_v1"
+                || !matches!(request.operation.as_str(), "canonicalize_json" | "resolve_adaptation_v1") {
+                return Err(CoreError::Schema("pure_json_batch_version_or_operation".to_owned()));
+            }
+            validate_batch_ids(request.ordered_cells.iter().map(|cell| cell.cell_id.as_str()))?;
+            let mut rows = Vec::with_capacity(request.ordered_cells.len());
+            for cell in request.ordered_cells {
+                let result = if request.operation == "canonicalize_json" {
+                    canonical_json_and_digest(&cell.request).map(|(canonical_json, sha256)|
+                        serde_json::json!({"schema_version": "sporespore_canonical_json_receipt_v1",
+                            "canonical_json": canonical_json, "sha256": sha256,
+                            "world_build_count": 0, "physical_acceptance_authority": false}))
+                } else {
+                    serde_json::from_value::<AdaptationResolutionRequestV1>(cell.request)
+                        .map_err(|error| CoreError::Schema(error.to_string()))
+                        .and_then(|resolution| {
+                            let compiled = compile_bounded_quadruped(resolution.provider_request.descriptor.clone())?;
+                            let result = resolve_adaptation_v1(&compiled, &resolution)?;
+                            serde_json::to_value(result).map_err(|error| CoreError::Serialization(error.to_string()))
+                        })
+                };
+                rows.push(serde_json::json!({"cell_id": cell.cell_id, "outcome": batch_outcome(result)?}));
+            }
+            Ok(serde_json::json!({"schema_version": "sporespore_pure_json_batch_receipt_v1",
+                "operation": request.operation, "ordered_results": rows,
+                "world_build_count": 0, "physics_state_modified": false,
+                "physical_acceptance_authority": false}))
+        }) }
 }
 
 #[unsafe(no_mangle)]

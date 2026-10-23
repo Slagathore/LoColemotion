@@ -1,5 +1,48 @@
 # LoColemotion Locomotion SDK
 
+SDK2 host-batching development checkpoint (2026-10-23): the
+[pure component](discovery/portable_batch_component_v1.json) adds optional C/Python
+batch APIs without changing the consumed GPU search or installed Studio runtime.
+`ss_bw19v_composition_batch_v1_json` executes the BW19V gait, scheduled support,
+endpoint mapping, bounded stability and host mapping using existing session
+handles and explicit caller memory. `ss_pure_json_batch_v1_json` batches canonical
+receipts or provider resolution. Each accepts 1..256 uniquely identified cells;
+outputs retain every cell in order, including refusals. Python's batch caller
+keeps prior output capacity and retries only growth, avoiding a duplicate pure
+calculation on ordinary calls. Older runtimes still load and explicitly refuse
+the new methods.
+
+[`BatchController`](discovery/portable_batch_control.py) joins the full path in
+four batched stages per outer command: baseline composition, memory digests,
+provider-request digests and provider resolution. Provider decisions remain
+between baseline and resolution, so later retrieval can use that seam. It
+commits host memory only after every cell's result and native mapping pass.
+The scalar path remains available for comparison. The component is qualified
+only against the MuJoCo development bridge and saved inputs described below;
+it supplies no new native-engine acceptance.
+
+Seven controls compare all 3,840 retained controller/provider decisions with
+binary64 equality and exercise unavailable support, failed cells, unchanged host
+memory on refusal, buffer growth and older-runtime refusal. All 524 core tests
+pass. An 18-trial saved-input benchmark compares another 3,528 full decisions:
+median scalar/batch host-time ratios are 1.4202, 1.4457 and 2.2981 for batches of
+1, 4 and 16. This excludes physics and is not GPU throughput qualification.
+The retained component includes the initial compile and synthetic-binding
+failures. Four reader controls check missing/reordered trials, differing outputs,
+changed timing summaries, artifact/source corruption and claim changes.
+
+From this repository root in PowerShell, rehash the 45 retained artifacts and
+recompute all host timing summaries without opening worlds:
+
+```powershell
+& ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B ./sdk/discovery/audit_portable_batch.py
+```
+
+A fresh GPU integration still requires its own prospective source/runtime binding,
+complete safety gate, graph/readback checks and native benchmark. The API and
+host benchmark alone do not close L0, train a provider or change SDK1 release
+qualification. See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23).
+
 Current SDK1 checkpoint (2026-10-03): **20/20**, full program **19/25**.
 The [package acceptance closure](release/sdk1_package_acceptance_closure_v1.json)
 closes M01/M11/M15 after two identical source packages and isolated build/API/

@@ -299,6 +299,29 @@ Choose archive axes before L1 and practical non-inferiority margins before L3's
 evaluation. Those decisions do not block L0. No claim score, release flag,
 physical acceptance threshold or old campaign changes in this review.
 
+The [host-batching component](../sdk/discovery/portable_batch_component_v1.json)
+now implements the full baseline composition and batches provider resolution.
+Its new optional C/Python entrypoints keep explicit per-cell memory and return
+ordered errors. The integrated caller uses four batch stages per outer command;
+it retains a distinct provider decision between baseline and resolution. Output
+capacity reuse avoids the old bindings' two evaluations on ordinary calls.
+The consumed scalar/GPU routes and installed runtimes remain unchanged.
+
+All 3,840 retained v2 controller/provider decisions reproduce bit for bit through
+the new path. Seven component controls and all 524 Rust core tests pass. A
+zero-world benchmark uses the same saved inputs, alternates execution order and
+checks every result outside timing. Across three repeats, median scalar/batch
+host-time ratios are **1.4202** at one creature, **1.4457** at four and **2.2981**
+at sixteen. All 3,528 compared benchmark decisions match. These are host-only
+observations, not GPU throughput or a statistical superiority result.
+
+The [component reader](../sdk/discovery/audit_portable_batch.py) rehashes 45
+artifacts and ten source bindings, including the candidate DLL, successful tests,
+complete benchmark rows and the initial compile/fixture-binding failures. Its
+four corruption controls pass. The next L0 successor must integrate this path
+with CUDA-graph substeps and checked capture/readback, qualify the complete gate,
+and measure fresh native workloads before scalable search is claimed.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

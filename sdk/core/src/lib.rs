@@ -7,6 +7,7 @@
 pub mod actuator_profile;
 pub mod adaptation;
 pub mod canonical;
+pub mod bw19v_batch;
 pub mod canonical_actuation;
 pub mod controller;
 pub mod coverage;

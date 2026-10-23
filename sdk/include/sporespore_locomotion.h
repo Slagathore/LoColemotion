@@ -53,6 +53,20 @@ SS_API ss_status ss_canonicalize_json(
     size_t output_capacity,
     size_t *output_length);
 
+/* Additive pure batch APIs: 1..256 uniquely identified cells in input order.
+ * Complete BW19V composition uses existing session handles and explicit memory.
+ * Pure JSON batches support canonicalization and provider resolution. A failed
+ * cell has an ordinary error envelope and cannot remove another cell's result.
+ * A sufficient output buffer may be supplied on the first call; all evaluation
+ * is pure, including a size query or retry. These calls construct zero worlds.
+ */
+SS_API ss_status ss_bw19v_composition_batch_v1_json(
+    const uint8_t *input, size_t input_length, uint8_t *output,
+    size_t output_capacity, size_t *output_length);
+SS_API ss_status ss_pure_json_batch_v1_json(
+    const uint8_t *input, size_t input_length, uint8_t *output,
+    size_t output_capacity, size_t *output_length);
+
 SS_API ss_status ss_compile_bounded_quadruped_json(
     const uint8_t *input,
     size_t input_length,

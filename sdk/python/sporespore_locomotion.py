@@ -162,7 +162,9 @@ class LocomotionCore:
             function.restype = ctypes.c_int
         # The additive development entry path is optional on older pinned
         # runtimes; ordinary clients must not stop loading those old binaries.
-        for name in ("ss_recovery_passive_entry_step_v1_json",
+        for name in ("ss_bw19v_composition_batch_v1_json",
+                     "ss_pure_json_batch_v1_json",
+                     "ss_recovery_passive_entry_step_v1_json",
                      "ss_recovery_collect_passive_native_v1_json",
                      "ss_recovery_r10k_entry_control_v1_json",
                      "ss_recovery_partial_fall_step_control_v1_json",
@@ -298,6 +300,52 @@ class LocomotionCore:
             ctypes.byref(required),
         )
         return self._decode(second_status, bytes(output[: required.value]))
+
+    def _call_batch_json(self, name: str, value: Mapping[str, Any]) -> dict[str, Any]:
+        """Call a pure batch once when capacity is sufficient; retry only growth.
+
+        Capacities are cached, but each call owns its byte buffer, so concurrent
+        calls cannot overwrite one another. Older pinned runtimes still load.
+        """
+        function = getattr(self._library, name, None)
+        if function is None:
+            raise LocomotionCoreError(SS_INVALID_ARGUMENT, "ABI_BATCH_API_UNAVAILABLE", name)
+        input_bytes = self._input_bytes(value)
+        input_array = (ctypes.c_uint8 * len(input_bytes)).from_buffer_copy(input_bytes)
+        maximum = 64 * 1024 * 1024
+        if len(input_bytes) > maximum:
+            raise ValueError("batch input exceeds 64 MiB")
+        capacities = getattr(self, "_batch_capacities", None)
+        if capacities is None:
+            capacities = self._batch_capacities = {}
+        capacity = capacities.get(name, 65536)
+        for attempt in range(2):
+            output = (ctypes.c_uint8 * capacity)()
+            required = ctypes.c_size_t(0)
+            status = function(input_array, len(input_bytes), output, capacity, ctypes.byref(required))
+            if status != SS_BUFFER_TOO_SMALL:
+                if required.value > capacity:
+                    raise LocomotionCoreError(status, "ABI_BATCH_INVALID_LENGTH", name)
+                capacities[name] = capacity
+                return self._decode(status, bytes(output[:required.value]))
+            if attempt or not capacity < required.value <= maximum:
+                raise LocomotionCoreError(status, "ABI_BATCH_CAPACITY_REFUSAL", name)
+            capacity = required.value
+        raise AssertionError("unreachable batch retry")
+
+    def bw19v_composition_batch_v1(self, ordered_cells: list[dict[str, Any]]) -> dict[str, Any]:
+        """Return all ordered per-cell outcomes; caller handles any refused cells."""
+        return self._call_batch_json("ss_bw19v_composition_batch_v1_json", {
+            "schema_version": "sporespore_bw19v_composition_batch_request_v1",
+            "ordered_cells": ordered_cells,
+        })
+
+    def pure_json_batch_v1(self, operation: str, ordered_cells: list[dict[str, Any]]) -> dict[str, Any]:
+        """Batch canonicalize_json or resolve_adaptation_v1, retaining failures."""
+        return self._call_batch_json("ss_pure_json_batch_v1_json", {
+            "schema_version": "sporespore_pure_json_batch_request_v1",
+            "operation": operation, "ordered_cells": ordered_cells,
+        })
 
     def compile_bounded_quadruped(
         self,
@@ -1163,6 +1211,13 @@ class BalancedWavePolicySession:
     @property
     def closed(self) -> bool:
         return self._handle == 0
+
+    @property
+    def batch_handle(self) -> int:
+        """Borrow this live process-local handle for a pure composition batch."""
+        if self.closed:
+            raise LocomotionCoreError(SS_INVALID_ARGUMENT, "ABI_CONTROLLER_SESSION_CLOSED", "batch handle is closed")
+        return self._handle
 
     def step(self, request: Mapping[str, Any]) -> dict[str, Any]:
         """Step the compiled controller; descriptor and policy are omitted."""

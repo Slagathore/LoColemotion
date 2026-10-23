@@ -149,6 +149,15 @@ reduced capture needs a prospective development successor with checks and
 full-trace canaries. No new provider, physical result or release authority is
 claimed by this planning update. Studio handoff and performance remain open.
 
+The [pure host-batching component](../sdk/discovery/portable_batch_component_v1.json)
+now reproduces all 3,840 retained portable decisions with binary64 equality.
+Seven component controls, 524 core tests and four evidence-reader controls pass.
+Its saved-input host benchmark compares all 3,528 decisions across 18 trials;
+median scalar/batch time ratios are 1.4202, 1.4457 and 2.2981 at batch sizes 1,
+4 and 16. The reader rehashes 45 artifacts and recomputes the timing summaries.
+This is zero-world component/timing evidence. CUDA-graph execution, fresh native
+batch timings and provider training remain open; no old campaign is regraded.
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,
