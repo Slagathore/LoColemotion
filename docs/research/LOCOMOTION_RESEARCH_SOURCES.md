@@ -1950,3 +1950,14 @@ host arrays for one prepared command boundary is a proposed local optimization,
 not an existing qualified batching API. It needs complete field, contact,
 clock, aliasing and controller-output conformance plus fresh native measurement.
 No library code was copied and no capture reduction was made in the pilot.
+
+The matched diagnostic separates batch width and neighboring controller
+composition from initial lateral velocity while preserving the same focus
+slot. The official [Warp collision implementation](https://github.com/google-deepmind/mujoco_warp/blob/main/mujoco_warp/_src/collision_core.py)
+uses a shared atomic contact counter and stores each contact's world identity.
+This motivates inspecting attributed native traces; it does not establish
+cross-world physical coupling. The installed solver's per-world convergence
+flags also do not promise bitwise trajectory equality across batch sizes.
+The new finite diagnostic retains numerical differences and every failed
+episode without changing tolerances or the original pilot result. No upstream
+source or pretrained model was copied and no runtime was upgraded.

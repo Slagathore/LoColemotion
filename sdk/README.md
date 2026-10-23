@@ -1,5 +1,11 @@
 # LoColemotion Locomotion SDK
 
+The [matched motor diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-motor-diagnostic-prepared---2026-10-23)
+is prepared after all 81 zero-world controls passed. Its prospective 48 fresh
+GPU worlds will isolate factors behind the failed pilot transfer. Physical
+execution, independent closure and useful adaptation remain unproved at this
+preparation checkpoint.
+
 SDK2 motor-effectiveness result (2026-10-23): the
 [closed pilot](discovery/gpu_motor_effectiveness_closure_v1.json) completed 90
 discovery and 30 fresh confirmation worlds from published `33c6506e` after all

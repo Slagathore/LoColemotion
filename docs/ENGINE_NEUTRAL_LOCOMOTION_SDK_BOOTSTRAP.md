@@ -2,6 +2,12 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Prepared next (2026-10-23): the [matched motor diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-motor-diagnostic-prepared---2026-10-23)
+passed its complete 81-control zero-world gate. Its prospective 48-world
+population separates start, batch width, neighboring-action composition and
+fresh-repeat effects. No physical result or adaptation authority exists yet
+for this successor.
+
 Latest physical-context result (2026-10-23): the
 [motor-effectiveness pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)
 completed 120 GPU worlds from clean published `33c6506e` after all 75 safety

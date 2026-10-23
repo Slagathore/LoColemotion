@@ -1035,6 +1035,36 @@ Only the complete verified discovery population has later development-fitting
 authority. There is no history-inference, memory-benefit, provider-promotion,
 statistical superiority, non-inferiority, robustness, equivalence or release claim.
 
+### Matched motor diagnostic prepared - 2026-10-23
+
+The [distinct declaration](../sdk/discovery/gpu_motor_batch_diagnostic_v1.json)
+fixes 48 fresh GPU worlds in the left-75 condition, using two previously exposed
+lateral starts (0.002 and 0.0035 m/s). Each start runs four layouts: nine mixed
+profiles, nine worlds repeating `[0, 6, 6]`, three worlds `[0, 6, 6]`, and a fresh
+repeat of that three-world layout. Profile 6 occupies the same focus slot in
+every layout. One common development seed, unchanged motor XML, residual
+envelope, graph execution, 480-command horizon and full internal telemetry keep
+the named comparisons matched. No physical baseline is cached.
+
+The reader predeclares 16 comparisons covering width, neighboring-action
+composition, fresh repeats, same-batch duplicates and start changes. It records
+the first differing internal step, maximum state/control/force difference and
+unchanged full-episode eligibility. The fixed order and small population do not
+establish a general causal mechanism or statistical effect. This diagnostic
+grants no fitting, profile selection, held-out, CPU transfer, adaptation-benefit
+or release authority. The earlier pilot's negative result remains unchanged.
+
+The complete **81-control zero-world gate passed** in
+`sdk2-gpu-motor-batch-diagnostic-468010b378a945a58e33c4d0c62b7f6e`;
+receipt SHA-256 is
+`e96edf0bafe49e84f14c331d77fb19f059efc58f1511c849b8afa451d850a58f`.
+The six successor controls cover real-ABI preflight, full synthetic replay,
+comparison clocks and denominators, and refusals for missing/crossed records,
+false authority, altered motor profiles and rehashed state changes. Standalone
+controls also passed in
+`sdk2-motor-matched-controls-19391b0f95d54c89b4828273b2538a8a`.
+No worlds have run for this declaration at this preparation checkpoint.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

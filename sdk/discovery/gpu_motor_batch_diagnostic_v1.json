@@ -1,0 +1,107 @@
+{
+  "schema_version": "locolemotion_gpu_motor_batch_diagnostic_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_diagnostic",
+    "question_class": "development"
+  },
+  "parent_contract": {
+    "path": "sdk/discovery/gpu_motor_effectiveness_v1.json",
+    "sha256": "ec1a00d8c63d0ba5b35b4c87e304538c4c15a414b8c8cd33fc8d63850d6cf269"
+  },
+  "condition_id": "left_075",
+  "seed": 104231700,
+  "outer_steps": 480,
+  "starts": [
+    {
+      "id": "start_002",
+      "lateral_velocity_m_s": 0.002
+    },
+    {
+      "id": "start_0035",
+      "lateral_velocity_m_s": 0.0035
+    }
+  ],
+  "layouts": [
+    {
+      "id": "mixed_nine",
+      "actions": [
+        0,
+        6,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8
+      ]
+    },
+    {
+      "id": "repeated_nine",
+      "actions": [
+        0,
+        6,
+        6,
+        0,
+        6,
+        6,
+        0,
+        6,
+        6
+      ]
+    },
+    {
+      "id": "narrow_three",
+      "actions": [
+        0,
+        6,
+        6
+      ]
+    },
+    {
+      "id": "repeat_three",
+      "actions": [
+        0,
+        6,
+        6
+      ]
+    }
+  ],
+  "focus_action_index": 6,
+  "focus_cell": 1,
+  "planned_worlds": 48,
+  "maximum_worker_wall_seconds": 2400,
+  "maximum_reader_wall_seconds": 2400,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "purpose": "Diagnose start, batch width, neighboring-action composition and repeated-execution sensitivity after the valid negative motor pilot. Every role is a fresh development world; no fitting, selection, threshold change or regrading.",
+  "comparisons": [
+    "repeated_nine_vs_narrow_three_same_focus_slot",
+    "mixed_nine_vs_repeated_nine_same_focus_slot",
+    "narrow_three_vs_repeat_three_same_focus_slot",
+    "start_002_vs_start_0035_within_each_layout"
+  ],
+  "coverage": [
+    "complete inherited safety gate plus successor controls",
+    "two fixed exposed start families",
+    "one common development seed",
+    "fresh state and private controller memory in all 48 worlds",
+    "unchanged motor model, controller envelope, graph route and 480 command horizon",
+    "complete controller and five-substep force/contact/state telemetry",
+    "independent scalar decision replay and native joins",
+    "full episode denominators and first state/control divergence"
+  ],
+  "not_covered": [
+    "CPU native transfer",
+    "all starts or all neighboring populations",
+    "statistical causal attribution or population inference",
+    "beneficial physical-context inference",
+    "Tier 2 or Tier 3 qualification",
+    "general morphology",
+    "release authority"
+  ]
+}
