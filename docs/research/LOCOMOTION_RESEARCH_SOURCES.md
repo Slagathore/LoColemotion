@@ -2125,3 +2125,21 @@ new discovery question about causal-history/context-dependent selection. It
 supplies no training data, replacement selection, learned benefit or statistical
 non-inferiority result. Future fitting must use separately authorized discovery;
 all three failures and the healthy-body costs remain part of the record.
+
+## 2026-10-23 causal-prefix repertoire preparation
+
+The [declared training successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-prefix-repertoire-discovery-prepared---2026-10-23)
+uses the earlier reviewed idea of inferring dynamics from recent states and
+issued actions. It introduces a local 16-value joint-response feature vector,
+not an implementation or reproduction of a published adaptation model. The
+64-command baseline prefix is a prospective design choice using the existing
+history capacity. It must leave enough physical opportunity for the fixed
+controller to work; immediate-feedback confirmation cannot establish that.
+No external source code or dependency was imported.
+
+Eight real-ABI host controls and ten route controls pass; the complete gate
+contains 192 passing controls. Training, calibration and evaluation starts are
+declared before collection. The reader joins repeated fresh prefixes into one
+training group and preserves every fixed-role outcome. Only complete verified
+training data may support fitting. The earlier confirmation is excluded, and
+no native result, learned benefit or broad generalization follows yet.

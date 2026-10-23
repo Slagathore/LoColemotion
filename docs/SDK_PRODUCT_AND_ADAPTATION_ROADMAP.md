@@ -101,6 +101,10 @@ both starts on both bodies. Its nominal tracking score is below baseline at
 both starts, so the nominal quality guard is false. New discovery for causal
 history and context-dependent selection is next; confirmation grants no fitting
 or reselection authority.
+The [causal-prefix training successor](#causal-prefix-repertoire-discovery-prepared---2026-10-23)
+now passes all 192 zero-world controls. It declares 24 fresh worlds, eight
+training groups, a shared 64-command baseline prefix and disjoint reserved
+starts. Native collection and learned selection remain unopened.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1389,6 +1393,67 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Causal-prefix repertoire discovery prepared - 2026-10-23
+
+The [new training declaration](../sdk/discovery/cpu_context_repertoire_v1.json)
+asks whether the fixed baseline/reference/height repertoire remains useful after
+a common observation prefix. Immediate height feedback passed the previous
+confirmation, but its nominal tracking cost prevents treating it as a universal
+replacement. That confirmation supplies the design question, not fitting data.
+
+Each fresh world first issues 64 real `no_proposal` responses, preserving the
+baseline commands bit for bit for 0.533333 s. At command 64 it activates its
+prospectively assigned fixed role. The [new host](../sdk/discovery/context_probe_control.py)
+retains the actual past states and resolved commands through the existing v1
+history contract. It never relabels an absent provider as a history status.
+Sixteen features measure each joint's mean and RMS response error: observed
+position change divided by command duration, minus the final issued velocity.
+The current state closes the last past interval. No condition label, actuator
+force, model identity or future outcome enters the feature values. This is a
+local untrained feature design, not an implemented RMA model or learned choice.
+
+| Partition | Initial native lateral velocities (m/s), on each condition | Worlds now |
+| --- | --- | --- |
+| Training | 0.001, 0.003, 0.004, 0.006 | 24: four starts, two conditions, three fresh roles |
+| Reserved calibration | 0.0015, 0.0045 | 0 |
+| Reserved evaluation | 0.0025, 0.0055 | 0 |
+
+The exposed 0.002 and 0.005 m/s confirmation starts are excluded. Both conditions
+remain the already exposed nominal and left-side 75-percent actuator profiles,
+on exact S169 and fixed flat ground. The new seed is `104232300`; each world
+runs 1,440 commands and 7,200 internal samples, totaling 34,560 and 172,800.
+The reader must reproduce every decision, verify native state/force/contact
+joins and establish that all three fresh roles in each training group observed
+the same causal prefix. Those repeated prefixes are one fitting group, not
+three independent training examples. World order is fixed and sequential.
+
+Per condition, a candidate must pass all four training starts before ranking
+by mean whole-episode tracking quality; ties resolve by candidate index. Every
+negative stays in the ledger with censored quality. Only a complete independent
+audit grants this campaign development fitting/selection authority. The
+controller equations, clamps, native timing and eligibility rules are unchanged.
+A delayed switch can fail even though immediate feedback worked; this question
+must be answered before a selector can claim to use the observation period.
+
+All **192 zero-world controls** passed in
+`sdk2-cpu-context-repertoire-25f4457df66341abb844f5b7d633a170`, binding 415 source
+and 1,359 runtime files. Eight new host controls and ten route controls also
+passed separately in
+`sdk2-context-repertoire-controls-b4add79f013244ebb2c90e90db1168c3`, in 42.248 s
+and 43.464 s. Their exact tested sources and original logs remain retained.
+They cover real-ABI baseline bits, truthful history, first-influence slew,
+analytic features, chronology/leakage refusals, close-on-partial-failure,
+full-prefix independent replay, native corruption, population and split rules.
+No failed preparation attempt or new native world occurred at this checkpoint.
+
+The [contained launcher](../sdk/discovery/run_cpu_context_repertoire.py) must
+rerun the complete gate from a clean pushed freeze before opening the 24 worlds.
+Next close those outcomes, freeze any useful training-only model, then challenge
+a condition-known comparator and a learned selector on fresh reserved groups.
+Prior confirmation remains excluded from fitting and reselection. Condition
+changes during a run, memory benefit, broader morphology, other engines,
+population inference, non-inferiority, qualification and release remain open.
 
 ### Completed body-height duration and nominal confirmation - 2026-10-23
 

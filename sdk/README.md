@@ -1,5 +1,12 @@
 # LoColemotion Locomotion SDK
 
+The [causal-prefix training successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-prefix-repertoire-discovery-prepared---2026-10-23)
+passes all 192 zero-world controls. It declares 24 fresh CPU training worlds,
+with a common 64-command baseline observation period before each fixed role.
+Sixteen features describe actual joint response to issued commands; no learned
+selection runs yet. Native collection is next. Reserved calibration/evaluation
+and the previous confirmation remain excluded from fitting.
+
 The [twelve-second height confirmation](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
 is closed after all 169 controls and twelve fresh CPU worlds. Independent replay
 verified 17,280 decisions and 86,400 internal samples: **9/12 eligible**. The

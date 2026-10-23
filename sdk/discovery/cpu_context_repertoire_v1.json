@@ -1,0 +1,124 @@
+{
+  "schema_version": "locolemotion_cpu_context_repertoire_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/cpu_body_height_confirmation_closure_v1.json",
+    "sha256": "d6a3ec7a79fc806ec64a397b1b0a6561e47f7b70db028c1b044f3903e3a1aef7"
+  },
+  "seed": 104232300,
+  "outer_steps": 1440,
+  "horizon_s": 12.0,
+  "internal_steps_per_outer": 5,
+  "conditions": [
+    "left_075",
+    "nominal"
+  ],
+  "candidate_indices": [
+    0,
+    1,
+    2
+  ],
+  "planned_cpu_worlds": 24,
+  "partitions": {
+    "training": [
+      {
+        "id": "train_001",
+        "lateral_velocity_m_s": 0.001
+      },
+      {
+        "id": "train_003",
+        "lateral_velocity_m_s": 0.003
+      },
+      {
+        "id": "train_004",
+        "lateral_velocity_m_s": 0.004
+      },
+      {
+        "id": "train_006",
+        "lateral_velocity_m_s": 0.006
+      }
+    ],
+    "calibration": [
+      {
+        "id": "cal_0015",
+        "lateral_velocity_m_s": 0.0015
+      },
+      {
+        "id": "cal_0045",
+        "lateral_velocity_m_s": 0.0045
+      }
+    ],
+    "evaluation": [
+      {
+        "id": "eval_0025",
+        "lateral_velocity_m_s": 0.0025
+      },
+      {
+        "id": "eval_0055",
+        "lateral_velocity_m_s": 0.0055
+      }
+    ]
+  },
+  "excluded_confirmation_starts": [
+    0.002,
+    0.005
+  ],
+  "probe": {
+    "baseline_commands": 64,
+    "duration_s": 0.5333333333333333,
+    "feature_schema": "locolemotion_causal_joint_response_v1",
+    "feature_names": [
+      "front_left_hip_mean_velocity_tracking_error_rad_s",
+      "front_left_knee_mean_velocity_tracking_error_rad_s",
+      "front_right_hip_mean_velocity_tracking_error_rad_s",
+      "front_right_knee_mean_velocity_tracking_error_rad_s",
+      "rear_left_hip_mean_velocity_tracking_error_rad_s",
+      "rear_left_knee_mean_velocity_tracking_error_rad_s",
+      "rear_right_hip_mean_velocity_tracking_error_rad_s",
+      "rear_right_knee_mean_velocity_tracking_error_rad_s",
+      "front_left_hip_rms_velocity_tracking_error_rad_s",
+      "front_left_knee_rms_velocity_tracking_error_rad_s",
+      "front_right_hip_rms_velocity_tracking_error_rad_s",
+      "front_right_knee_rms_velocity_tracking_error_rad_s",
+      "rear_left_hip_rms_velocity_tracking_error_rad_s",
+      "rear_left_knee_rms_velocity_tracking_error_rad_s",
+      "rear_right_hip_rms_velocity_tracking_error_rad_s",
+      "rear_right_knee_rms_velocity_tracking_error_rad_s"
+    ],
+    "decision": "fixed declared role after shared baseline prefix; no learned choice in this campaign",
+    "observations": "canonical past state, actual issued action, current endpoint; no condition/model/force labels"
+  },
+  "ranking": "Per condition, require all four training starts eligible; maximize mean whole-episode tracking quality; tie by candidate index; retain all negatives.",
+  "confirmation_fitting_permitted": false,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 2400,
+  "maximum_reader_wall_seconds": 2400,
+  "purpose": "Discover whether delayed fixed controllers remain useful after a shared causal baseline observation prefix, and retain authorized histories for later context fitting.",
+  "coverage": [
+    "24 fresh sequential CPU worlds and private controller memories",
+    "64 real no-proposal baseline commands and a 16-value causal joint-response vector",
+    "exact fixed baseline/reference/height repertoire with unchanged clamp and eligibility rules",
+    "complete independent controller replay, shared-prefix joins and native force/state/contact audit",
+    "training-only authority after full audit; calibration and evaluation starts remain unopened"
+  ],
+  "not_covered": [
+    "learned selection or memory benefit",
+    "changing conditions within an episode",
+    "other morphology, terrain or engines",
+    "GPU transfer",
+    "population inference",
+    "formal non-inferiority",
+    "qualification or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": true
+}

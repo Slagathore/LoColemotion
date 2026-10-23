@@ -304,6 +304,124 @@
           "adaptation_benefit_established": false,
           "qualification_or_release_authority": false
         },
+        "context_repertoire_discovery": {
+          "ledger_scope": {
+            "subsystem": "adaptation",
+            "engine_scope": "mujoco_cpu",
+            "authority_mode": "development_discovery",
+            "question_class": "development"
+          },
+          "status": "prepared_full_zero_world_gate_passed_native_unopened",
+          "declaration": "sdk/discovery/cpu_context_repertoire_v1.json",
+          "declaration_sha256": "642b916205efcec258a0fca18c5748b5c6dd0cbe5ead321645d94d53c217a318",
+          "launcher": "sdk/discovery/run_cpu_context_repertoire.py",
+          "reader": "sdk/discovery/audit_cpu_context_repertoire.py",
+          "controller": "sdk/discovery/context_probe_control.py",
+          "controller_sha256": "b9b551f3773027e6eadcf22a5ea447a28f56195581846b5c35996dd4b04674fa",
+          "predecessor": {
+            "path": "sdk/discovery/cpu_body_height_confirmation_closure_v1.json",
+            "sha256": "d6a3ec7a79fc806ec64a397b1b0a6561e47f7b70db028c1b044f3903e3a1aef7"
+          },
+          "zero_world_controls_passed": 192,
+          "retained_gate": "sdk2-cpu-context-repertoire-25f4457df66341abb844f5b7d633a170",
+          "gate_receipt_sha256": "611d2cee61b28c7a566324a3a144c6dde55bccbb22051060fae568d3811a5a83",
+          "source_binding_count": 415,
+          "runtime_binding_count": 1359,
+          "retained_component_and_route_controls": "sdk2-context-repertoire-controls-b4add79f013244ebb2c90e90db1168c3",
+          "component_and_route_controls": [
+            {
+              "name": "context_probe_control",
+              "count": 8,
+              "wall_s": 42.248,
+              "stderr_sha256": "0656c8ed3ded1ef2b9f443316cf59ca644e112d51c37ecd4abe477820ebbbd6d",
+              "source": "sdk/discovery/test_context_probe_control.py",
+              "source_sha256": "c4a98e3bf83ab8efe01d803120de5b5f159e2e1abca41e234d64e67a25350878"
+            },
+            {
+              "name": "cpu_context_repertoire",
+              "count": 10,
+              "wall_s": 43.464,
+              "stderr_sha256": "ead70e7039df8659fa39a3d8e1dcf3d9d9cc4fa4d6033d383a0da71774af9b0d",
+              "source": "sdk/discovery/test_cpu_context_repertoire.py",
+              "source_sha256": "9e8967afe3de116b568200fb712b46275bd15af42185a8ca8471769719087235"
+            }
+          ],
+          "development_seed": 104232300,
+          "conditions": [
+            "left_075",
+            "nominal"
+          ],
+          "partitions": {
+            "training": [
+              {
+                "id": "train_001",
+                "lateral_velocity_m_s": 0.001
+              },
+              {
+                "id": "train_003",
+                "lateral_velocity_m_s": 0.003
+              },
+              {
+                "id": "train_004",
+                "lateral_velocity_m_s": 0.004
+              },
+              {
+                "id": "train_006",
+                "lateral_velocity_m_s": 0.006
+              }
+            ],
+            "calibration": [
+              {
+                "id": "cal_0015",
+                "lateral_velocity_m_s": 0.0015
+              },
+              {
+                "id": "cal_0045",
+                "lateral_velocity_m_s": 0.0045
+              }
+            ],
+            "evaluation": [
+              {
+                "id": "eval_0025",
+                "lateral_velocity_m_s": 0.0025
+              },
+              {
+                "id": "eval_0055",
+                "lateral_velocity_m_s": 0.0055
+              }
+            ]
+          },
+          "excluded_confirmation_starts": [
+            0.002,
+            0.005
+          ],
+          "baseline_probe_commands": 64,
+          "baseline_probe_duration_s": 0.5333333333333333,
+          "causal_feature_count": 16,
+          "feature_schema": "locolemotion_causal_joint_response_v1",
+          "feature_inputs": "canonical past state, actual issued action, current endpoint; no condition/model/force labels",
+          "native_worlds": 0,
+          "planned_cpu_worlds": 24,
+          "planned_gpu_worlds": 0,
+          "horizon_s": 12.0,
+          "planned_controller_rows": 34560,
+          "planned_internal_rows": 172800,
+          "planned_training_groups": 8,
+          "fresh_fixed_roles_per_group": 3,
+          "calibration_worlds": 0,
+          "evaluation_worlds": 0,
+          "ranking": "Per condition, require all four training starts eligible; maximize mean whole-episode tracking quality; tie by candidate index; retain all negatives.",
+          "training_data_authority": false,
+          "prospective_training_scope": "complete_independently_verified_development_training_only",
+          "confirmation_fitting_permitted": false,
+          "learned_selection": false,
+          "adaptation_benefit_established": false,
+          "population_inference": false,
+          "noninferiority_authority": false,
+          "qualification_or_release_authority": false,
+          "physical_gate_rerun_required": true,
+          "next_question": "Run the declared 24 fresh training worlds. Verify shared causal prefixes and all fixed-role outcomes; fit from these training groups only if the delayed control repertoire is useful. Keep prior confirmation and the reserved calibration/evaluation groups excluded from fitting."
+        },
         "body_height_confirmation": {
           "ledger_scope": {
             "subsystem": "adaptation",

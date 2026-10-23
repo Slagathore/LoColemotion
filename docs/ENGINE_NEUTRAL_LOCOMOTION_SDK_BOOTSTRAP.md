@@ -2,6 +2,15 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest preparation (2026-10-23): the [causal-prefix training successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-prefix-repertoire-discovery-prepared---2026-10-23)
+passes all 192 zero-world controls. It declares 24 fresh CPU worlds on new
+training starts, a common 64-command baseline observation period, and a fixed
+controller per world thereafter. Sixteen causal joint-response features use
+actual issued commands and observed states. Calibration and evaluation starts
+remain reserved; prior confirmation remains excluded from fitting. The next
+step is native collection from a clean pushed freeze. No learned selector or
+adaptation benefit is established.
+
 Latest confirmation (2026-10-23): [twelve-second height confirmation](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
 completed twelve CPU worlds from `499ca1f3` after all 169 controls passed.
 Independent replay verified 17,280 decisions and 86,400 internal samples:
