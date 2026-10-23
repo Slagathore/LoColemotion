@@ -447,3 +447,20 @@ resource. Verification reconstructs every published pose, contact and impulse
 from those streams. The manifest separately enumerates scientific dependencies
 not included in this subset. Complete viewing resources do not constitute a
 complete experiment archive or new acceptance, training or release authority.
+
+The [portable installation checkpoint](studio/portable_installation_checkpoint_v1.json)
+records the completed local relocation and all three fresh native UI audits at
+source `e507c191`. The separately rebuilt Python environment matched all 3,707
+recorded runtime files. The new shortcut's read-back command passed the graphical
+self-test with zero worlds, preserving the old shortcut. Reopen and independently
+recompute the retained checkpoint from the repository root with:
+
+```powershell
+& $python -B sdk/explorer/studio/audit_studio_installation.py --checkpoint sdk/explorer/studio/portable_installation_checkpoint_v1.json
+```
+
+The audit requires the retained local artifact root recorded in the checkpoint.
+It verifies 1,344 artifact bindings, recomputes the native joins, checks the moved
+source and supplied runtime bytes, and refuses missing, crossed or promoted
+records. It opens no worlds. Local portability is verified on this Windows host;
+Godot's live recovery handoff and performance work remain open.

@@ -58,7 +58,65 @@ def audit(layout,godot,mujoco,rapier):
                 physical_acceptance_authority=False,release_authority=False)
 
 
+def verify_checkpoint(record,evidence_root=None):
+    """Reopen retained bytes and recompute the native joins; never start physics."""
+    from studio_portability import verify_files,within,SCOPE
+    from studio_layout import source_files
+    from portable_setup import verify as verify_setup
+    require(record['schema_version']=='locolemotion_studio_portable_checkpoint_v1','Portable checkpoint schema')
+    require(record['ledger_scope']==SCOPE,'Portable checkpoint ledger scope')
+    for flag in ['physical_acceptance_authority','release_authority','binary_distribution_authorized']:
+        require(record[flag] is False,'Portable checkpoint authority')
+    root=Path(evidence_root or record['artifact_root']).resolve()
+    locations=record['locations']
+    required={locations['plan'],locations['launcher_readback']}
+    for key in ['godot','mujoco','rapier','ui_preflight','ui_installed']:
+        required.update(p.relative_to(root).as_posix() for p in within(root,locations[key]).rglob('*') if p.is_file())
+    required.update(locations['installation']+'/'+name for name in ['dependencies.json','source/studio-layout.json','proof-pack/viewing-closure.json','installation.json'])
+    require(required<={row['path'] for row in record['artifacts']},'Portable checkpoint artifact inventory incomplete')
+    verify_files(root,record['artifacts'])
+    installation=within(root,locations['installation'])
+    source=isolated_source(installation/'source')
+    require(source==record['source_commit'],'Portable checkpoint source')
+    setup=verify_setup(installation,within(root,locations['python']))
+    require(setup==record['setup_audit'],'Portable setup audit changed')
+    native=audit(installation/'source',*[within(root,locations[key]) for key in ['godot','mujoco','rapier']])
+    require(native==record['native_audit'],'Native installation audit changed')
+    launcher=json.loads(within(root,locations['launcher_readback']).read_text())
+    require(launcher['ok'] is True and launcher['source_commit']==source and launcher['exit_code']==0
+            and launcher['prior_shortcut_preserved'] is True and launcher['world_build_count']==0,'Installed launcher readback')
+    dependencies=json.loads((installation/'dependencies.json').read_text())
+    install=json.loads((installation/'installation.json').read_text())
+    rebuilt=json.loads((root/'python-rebuild-check.json').read_text())
+    require(rebuilt==record['python_rebuild'] and rebuilt['ok'] is True,'Python rebuild identity')
+    expected=dict(isolated_source_files=len(source_files(installation/'source')),
+        native_images=len(dependencies['runtime_files']),python_runtime_files=len(dependencies['python_runtime']['files']),
+        viewing_pack_files=setup['proof']['files_verified'],viewing_frames=setup['proof']['viewing_frames'],
+        raw_viewing_source_streams=setup['proof']['raw_streams_verified'],omitted_scientific_dependencies=setup['proof']['missing_scientific_dependencies'],
+        installed_shortcut=Path(install['shortcut']).stem,prior_shortcut_preserved=launcher['prior_shortcut_preserved'])
+    require(expected==record['observed'],'Portable checkpoint summary differs from retained evidence')
+    for key in ['ui_preflight','ui_installed']:
+        folder=within(root,locations[key])
+        require('STUDIO_UI_PASS worlds=0 native_workers=0' in (folder/'ui.stdout.log').read_text(),'Portable graphical UI result')
+        require(not (folder/'ui.stderr.log').read_text().strip(),'Portable graphical UI error')
+        require(json.loads((folder/'setup.json').read_text())['source_commit']==source,'Portable graphical UI source')
+    plan=json.loads(within(root,locations['plan']).read_text())
+    require(plan['source_commit']==source and len(plan['worlds'])==3,'Prospective portability scope')
+    return dict(ok=True,source_commit=source,artifacts_verified=len(record['artifacts']),
+                native_engines_verified=sorted(native['results']),viewing_frames=setup['proof']['viewing_frames'],
+                worlds_opened_by_audit=0,physical_acceptance_authority=False,release_authority=False)
+
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
-    for key in ['layout','godot','mujoco','rapier']:parser.add_argument('--'+key,type=Path,required=True)
-    args=parser.parse_args();print(json.dumps(audit(**vars(args)),indent=2))
+    for key in ['layout','godot','mujoco','rapier']:parser.add_argument('--'+key,type=Path)
+    parser.add_argument('--checkpoint',type=Path)
+    parser.add_argument('--evidence-root',type=Path)
+    args=parser.parse_args()
+    if args.checkpoint:
+        if any(getattr(args,k) for k in ['layout','godot','mujoco','rapier']):parser.error('Choose checkpoint or individual sessions')
+        result=verify_checkpoint(json.loads(args.checkpoint.read_text()),args.evidence_root)
+    else:
+        if args.evidence_root or not all(getattr(args,k) for k in ['layout','godot','mujoco','rapier']):parser.error('Provide all four session/layout paths')
+        result=audit(**{k:getattr(args,k) for k in ['layout','godot','mujoco','rapier']})
+    print(json.dumps(result,indent=2))

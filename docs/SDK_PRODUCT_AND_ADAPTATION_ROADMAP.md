@@ -55,9 +55,20 @@ code, and includes a separately verified viewing pack. The pack preserves all
 5,962 published frames and their three original raw streams, while explicitly
 listing omitted scientific dependencies. `portable_setup.py` verifies the
 relocated source, runtime images, interpreter and projection without opening
-worlds. Five relocation/corruption controls pass. Fresh relocated native/UI
-observations and installed-launcher verification are still required before this
-product row can close; the recovery handoff remains separate open work.
+worlds. The [portable installation checkpoint](../sdk/explorer/studio/portable_installation_checkpoint_v1.json)
+now retains fresh relocated sessions for all three engines, the rebuilt Python
+environment, the graphical preflight and the installed-launcher self-test.
+Local Windows portability and the viewing subset are complete at source
+`e507c191`; this does not establish another machine/driver combination or native
+binary redistribution. Six controls cover relocation, corruption and checkpoint
+refusals. The reader reopens 1,344 artifacts and recomputes the native joins.
+
+The new Godot observation took **43.852625 s** through stand-up and **29.662299 s**
+for 15 walking seconds, with 68.344/99.537 ms button-to-display responses.
+It passes the declared portability/interaction checks but does not close the
+startup/walking speed objective. Fast walking still lacks the live recovery
+handoff. These are the remaining Studio priorities; no performance superiority
+or new recovery acceptance is inferred from the installation work.
 
 Fast walking currently bypasses the recovery ledger. Flipping its mode would
 revive stale clocks and energy history. The successor must close walking

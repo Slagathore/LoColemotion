@@ -39,15 +39,24 @@ Broader equivalence remains separate from exploratory candidate generation.
 
 This scalar probe commissions measurement/execution only. Quadruped GPU
 discovery, provisional training, native candidate transfer, provider training,
-episodic adaptation, Studio recovery handoff and relocated installation remain
+episodic adaptation and Studio recovery handoff/performance remain
 required work. The older Warp calibration and accepted SDK1 records stay intact.
 
 The Studio portable-setup successor now has relative runtime bindings, explicit
 Python selection, checked evidence destinations and a relocatable proof subset.
-Its five zero-world controls include reconstruction of all 5,962 viewing frames
-from the original three raw streams and deliberate runtime/manifest corruption.
-This is source and read-only validation; fresh relocated native sessions and
-launcher readback remain pending. See the
+Its six controls include reconstruction of all 5,962 viewing frames from the
+original three raw streams and deliberate runtime/manifest/checkpoint corruption.
+The [portable installation checkpoint](../sdk/explorer/studio/portable_installation_checkpoint_v1.json)
+closes local Windows relocation at source `e507c191`: 235 checked source files,
+six copied native images, a separate rebuilt Python environment matching 3,707
+runtime files, and fresh audited Godot/MuJoCo/Rapier UI sessions. The new
+`LoColemotion Studio` shortcut passed its read-back command self-test; the older
+shortcut is preserved. The viewing pack includes 33 files and explicitly omits
+21 scientific dependencies. Its 1,344-artifact audit opens zero worlds.
+
+Godot startup remains slow: 43.852625 seconds through stand-up, then 29.662299
+wall seconds for 15 walking seconds in this observation. Portability is verified;
+the speed and live recovery-handoff objectives remain open. See the
 [setup instructions](../sdk/explorer/README.md#portable-local-studio-setup).
 
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03

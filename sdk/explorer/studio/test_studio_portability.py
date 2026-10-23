@@ -117,6 +117,20 @@ class PortableStudio(unittest.TestCase):
             studio_proof.verify(moved)
         # Keep the failed synthetic copy for diagnosis; the source archive is untouched.
 
+    def test_checkpoint_refuses_missing_crossed_and_promoted_evidence(self):
+        from audit_studio_installation import verify_checkpoint
+        record=json.loads((Path(__file__).parent/'portable_installation_checkpoint_v1.json').read_text())
+        self.assertTrue(verify_checkpoint(record)['ok'])
+        cases=[]
+        for key,value in [('release_authority',True),('source_commit','b'*40)]:
+            cases.append(dict(record,**{key:value}))
+        absent=copy.deepcopy(record)
+        absent['artifacts']=[r for r in absent['artifacts'] if r['path']!=record['locations']['plan']]
+        cases.append(absent)
+        exaggerated=copy.deepcopy(record);exaggerated['observed']['viewing_frames']+=1;cases.append(exaggerated)
+        for case in cases:
+            with self.assertRaises(ValueError):verify_checkpoint(case)
+
 
 if __name__ == "__main__":
     unittest.main()
