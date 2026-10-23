@@ -1429,6 +1429,11 @@ contrast from two commands, shorter than a scoring window. The corrected fixture
 preserves unscorable values and checks finite contrasts separately. Neither
 failure opened a physical world or changed an eligibility threshold.
 
+The 394 tested source bindings reproduce at `0b8851da`. A subsequent
+checkout-rule change adds explicit LF rules for the two new model files; their
+tested implementation bytes are unchanged. The complete gate must rerun on
+the published successor before any world.
+
 No physical world has run at this preparation checkpoint. Next publish this
 prospective freeze and execute the six fresh worlds through the contained
 supervisor, including its full gate and independent replay. Fresh confirmation,
