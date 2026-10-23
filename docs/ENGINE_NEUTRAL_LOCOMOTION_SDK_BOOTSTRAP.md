@@ -2,6 +2,14 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest preparation (2026-10-23): the
+[motor-effectiveness oracle pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#motor-effectiveness-pilot---2026-10-23)
+passes its complete 75-control zero-world gate. Five declared motor conditions,
+nine bounded profiles, 90 discovery worlds and 30 fresh confirmation worlds are
+prospectively fixed. Selection uses discovery alone. This tests a finite profile
+family before fitting physical context from history; it grants no adaptation
+benefit, qualification or release claim. Physical execution is not yet recorded.
+
 Latest mechanism work (2026-10-23): the
 [action-credit diagnostic and history successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#action-credit-and-causal-history---2026-10-23)
 pass five controls each, without new physical worlds. In the retained ordinary

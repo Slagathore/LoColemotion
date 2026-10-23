@@ -45,6 +45,10 @@ supplies actual causal observation/action history through the existing v1 ABI;
 its five controls pass on retained inputs. No new physical worlds or useful
 adaptation claim follow from this component work.
 
+The [motor-effectiveness pilot](#motor-effectiveness-pilot---2026-10-23) now has
+its complete 75-control zero-world gate. It prospectively separates 90 discovery
+worlds from 30 fresh confirmation worlds. No physical result is recorded yet.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -872,6 +876,72 @@ controls, including measured influence and explicit reset/rollback behavior.
 Keep evaluation sealed and build the empirical withdrawal monitor before
 qualification. The [research ledger](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-23-action-credit-and-physical-context)
 records the relevant ideas and tradeoffs. The full SDK2 targets below remain.
+
+### Motor-effectiveness pilot - 2026-10-23
+
+The [declaration](../sdk/discovery/gpu_motor_effectiveness_v1.json) and
+[owned launcher](../sdk/discovery/run_gpu_motor_effectiveness.py) instantiate
+the oracle-first task above. The question is deliberately finite: does knowing
+the motor condition help select among **nine constant bounded residual profiles**
+compared with one shared profile? This candidate family does not bound the
+performance of all possible residual controllers. No history estimator or
+episode-memory update is fitted in this pilot.
+
+Five S169 environments are frozen: nominal, left or right motors at 90 percent,
+and left or right motors at 75 percent effectiveness. Both velocity-servo gain
+and symmetric force limits scale on all four affected-side actuators. Geometry,
+transmission and velocity-target units stay fixed. The altered actuator model
+is a separately declared development environment, not the nominal qualified
+adapter profile. Exact XML, native actuator arrays and GPU float32 arrays are
+checked before stepping. The [research rationale](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-23-motor-effectiveness-oracle-pilot)
+records the source semantics and adoption limits.
+
+Discovery uses two already exposed start families per condition and all nine
+profiles: **90 worlds**. The independent reader must validate every episode
+before selection. Each condition selects the highest-mean-quality profile
+eligible in both starts; the shared selector requires eligibility in all ten
+starts. Ties choose the smallest action index. No eligible profile means an
+explicit null selection and diagnostic baseline fallback, never a promoted
+winner. Action-to-world assignment is rotated and retained.
+
+Confirmation uses two fresh worlds per condition and role, at two already
+exposed calibration start families: **30 worlds**, comparing baseline,
+condition-known selection and shared selection. Confirmation cannot fit or
+change either selector. Each world lasts four simulated seconds: 480 commands
+at 120 Hz and five integration steps per command. The total budget is 120 GPU
+worlds, 57,600 controller rows and 288,000 internal rows, with zero CPU-stepped
+worlds and zero unopened evaluation worlds. Full capture remains enabled.
+
+The finite conditioning-value criterion requires all three roles to remain
+eligible and both selectors to exist in all ten confirmation groups. Across
+the eight degraded groups, mean condition-known minus shared quality must be
+at least 0.001 m/s, with no individual loss beyond 0.001 m/s. In both nominal
+groups the condition-known profile must stay within 0.001 m/s of baseline and
+shared. At least one degraded group must use a different profile from shared.
+Quality remains the existing forward-tracking and lateral-drift score; the
+height, tilt, torso-contact and no-actuation eligibility gates are unchanged.
+These are finite development criteria, not inferential margins, population
+non-inferiority or safety guarantees.
+
+The complete 75-control gate passed in
+`sdk2-gpu-motor-effectiveness-832103dda31148fb9bb05c73a0bc6d00` with zero worlds
+and zero solver steps. Its `receipt.json` SHA-256 is
+`6e4665bde8cadc5a240243272a04c61b7d477c89723e41c71d17cc0df8eb487b`.
+This includes seven task/selector controls, five full synthetic reader controls,
+the existing measurement/controller/provider checks, and real job containment.
+The standalone startup failure at
+`sdk2-motor-launcher-entry-0040b857d8f843eaa496aa9079e2aad6` is retained: the
+component test environment masked a missing SDK import path. The corrected
+standalone launcher passed the full gate. Physical work remains unconsumed
+until this prospective freeze is clean and published; the launcher repeats the
+complete gate under the operation mutex before its owned workers start.
+
+Only complete independently verified discovery episodes may inform later
+development fitting. Failed and invalid attempts remain retained. Confirmation,
+acceptance, release, robustness and engine-equivalence authority remain false.
+The next decision is whether this profile family offers useful condition-aware
+control; a negative result motivates a distinct controller family, not a claim
+that history adaptation is impossible.
 
 ### SDK2 claim targets
 

@@ -1901,3 +1901,30 @@ controls. Unsupported dynamics and withdrawal monitoring remain separate.
 These are primary-paper idea adoptions. No external code or model is imported.
 No new result establishes recoverability, safety probability, cross-engine
 transfer, statistical superiority or release authority.
+
+## 2026-10-23 motor-effectiveness oracle pilot
+
+The [MuJoCo velocity-actuator reference](https://mujoco.readthedocs.io/en/stable/XMLreference.html#actuator-velocity)
+defines a fixed gain `kv` and an affine velocity bias `-kv`. The
+[force-limit documentation](https://mujoco.readthedocs.io/en/stable/modeling.html#force-limits)
+distinguishes output-force clamping from input-control clamping. These semantics
+motivate scaling both gain and symmetric force caps while retaining velocity
+targets and the existing transmission. The pinned 3.11.0 native and Warp arrays
+are checked against the declared profile; current documentation is not a runtime
+upgrade or a substitute for those checks.
+
+The [new task](../../sdk/discovery/gpu_motor_effectiveness_v1.json) first asks
+whether a condition-known selector over nine constant bounded profiles is useful
+on fresh confirmation starts. Discovery alone chooses per-condition and shared
+profiles. This makes the control-authority question observable before spending
+trials fitting the RMA-inspired history estimator discussed above. Scaling gains
+and caps together is a declared model of motor effectiveness, not a calibrated
+model of damaged hardware. Five settings and two start families per phase do not
+establish continuous coverage, broad robustness or engine transfer.
+
+No external implementation or model was copied. This pilot fits no history
+encoder, does not reproduce RMA or Intelligent Trial and Error, and cannot bound
+all residual policies with its nine-profile oracle. Its finite comparison has
+no population-inference or non-inferiority authority. Only complete independently
+verified discovery episodes may be reused for later development fitting;
+confirmation is excluded and unopened evaluation groups remain sealed.

@@ -1,5 +1,15 @@
 # LoColemotion Locomotion SDK
 
+SDK2 prospective motor task (2026-10-23): the
+[motor-effectiveness launcher](discovery/run_gpu_motor_effectiveness.py) passes
+all 75 zero-world controls. Its [declaration](discovery/gpu_motor_effectiveness_v1.json)
+fixes five motor conditions, 90 discovery worlds and 30 fresh confirmation worlds.
+The condition-known selector is compared with baseline and one shared profile
+without using confirmation outcomes for selection. The family contains nine
+constant bounded residual profiles; no estimator or memory benefit is claimed.
+See the [prospective checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#motor-effectiveness-pilot---2026-10-23)
+for the retained gate, startup failure, exact criteria and authority limits.
+
 SDK2 mechanism checkpoint (2026-10-23): the
 [action-credit diagnostic](discovery/contextual_action_credit_diagnostic.py)
 rejoins the retained comparison and finds that 20/22 ordinary-memory choice

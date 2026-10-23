@@ -1,0 +1,275 @@
+{
+  "schema_version": "locolemotion_gpu_motor_effectiveness_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "purpose": "Finite control-authority and condition-value pilot. Compare nine constant bounded residual profiles across five declared motor-effectiveness environments, then confirm condition-known selection against baseline and one shared profile in fresh development worlds.",
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "model_xml_sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06",
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "gpu_dtype": "float32",
+  "cpu_dtype": "float64",
+  "seed": 104231100,
+  "outer_steps": 480,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "cpu_warning_count": 7,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "maximum_worker_wall_seconds": 2400,
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+  "phase_mode": "clocked",
+  "provider": {
+    "kind": "untrained_bilateral_canonical_velocity_proposal",
+    "maximum_absolute_correction_rad_s": 0.25,
+    "maximum_slew_per_step_rad_s": 0.02,
+    "candidates": [
+      {
+        "id": "baseline",
+        "factor": null,
+        "ordered_coefficients": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "id": "action_1",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          -0.25,
+          -0.25,
+          -0.04999999999999999,
+          -0.04999999999999999,
+          -0.25,
+          -0.25,
+          -0.04999999999999999,
+          -0.04999999999999999
+        ]
+      },
+      {
+        "id": "action_2",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          -0.15,
+          -0.15,
+          -0.15,
+          -0.15,
+          -0.15,
+          -0.15,
+          -0.15,
+          -0.15
+        ]
+      },
+      {
+        "id": "action_3",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          -0.04999999999999999,
+          -0.04999999999999999,
+          -0.25,
+          -0.25,
+          -0.04999999999999999,
+          -0.04999999999999999,
+          -0.25,
+          -0.25
+        ]
+      },
+      {
+        "id": "action_4",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          -0.1,
+          -0.1,
+          0.1,
+          0.1,
+          -0.1,
+          -0.1,
+          0.1,
+          0.1
+        ]
+      },
+      {
+        "id": "action_5",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.1,
+          0.1,
+          -0.1,
+          -0.1,
+          0.1,
+          0.1,
+          -0.1,
+          -0.1
+        ]
+      },
+      {
+        "id": "action_6",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.04999999999999999,
+          0.04999999999999999,
+          0.25,
+          0.25,
+          0.04999999999999999,
+          0.04999999999999999,
+          0.25,
+          0.25
+        ]
+      },
+      {
+        "id": "action_7",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ]
+      },
+      {
+        "id": "action_8",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.25,
+          0.25,
+          0.04999999999999999,
+          0.04999999999999999,
+          0.25,
+          0.25,
+          0.04999999999999999,
+          0.04999999999999999
+        ]
+      }
+    ]
+  },
+  "initialization": "Five separate condition models preserve S169 geometry and nominal descriptor upper limits. Each world has fresh native state and host memory. Start families were previously exposed. Discovery and confirmation are separate fresh populations; the existing evaluation groups remain unopened.",
+  "sampling": "Both routes retain every completed internal state, held solver input, named force pair, contact, capacity counter and every portable/provider decision. Graph capture copies five internal snapshots into preallocated device history before the next step1 clears force sensors; host reads occur after graph launch. Prepared observations use checked production-adapter readback and the retained contact compatibility copy. CPU dynamics are forbidden.",
+  "coverage": [
+    "five prospectively fixed motor effectiveness conditions",
+    "90 discovery and 30 fresh confirmation worlds",
+    "full scalar replay and internal force/contact/state capture",
+    "condition-known and shared-profile selectors frozen before confirmation",
+    "all eligible and failed candidates retained",
+    "finite individual guards and equal-weight comparisons",
+    "no post-construction gain or physics-state modification"
+  ],
+  "not_covered": [
+    "history-based inference",
+    "learned provider or Tier 3 benefit",
+    "empirical recoverability",
+    "held-out qualification",
+    "all possible bounded residual controllers",
+    "statistical superiority or noninferiority",
+    "native CPU transfer",
+    "three-engine equivalence",
+    "general morphology",
+    "release authority"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": true,
+  "predecessor": {
+    "contextual_comparison": "sdk/discovery/gpu_contextual_influence_closure_v1.json",
+    "action_credit_diagnostic": "sdk2-contextual-action-credit-8266899469ee44b2bd81f1b8f38dc969",
+    "causal_history": "sdk/adaptation_provider/retrieval/causal_history_v1.py"
+  },
+  "successor_change": "Scale velocity-servo gain and symmetric force cap on the declared left or right actuator set by 0.9 or 0.75. The target remains a velocity and all undeclared model bytes are preserved except the model name. This is a declared development environment and not the nominal adapter profile.",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "warmup_outer_steps": 0,
+  "naconmax_per_world": 64,
+  "maximum_trace_bytes_per_trial": 536870912,
+  "retrieval_contract_sha256": "717982eb5623106c5e34a75b69a5622ace43e6517e4f929076502606b2ec8741",
+  "training_scope": "development_discovery_only",
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0,
+    "maximum_safe_no_actuation_steps": 0
+  },
+  "corpus": "Only complete independently verified discovery episodes may inform later development fitting. Confirmation outcomes cannot fit or change selections. This campaign itself trains no model. Invalid/incomplete execution supplies no fitting data.",
+  "conditions": [
+    {
+      "condition_id": "nominal",
+      "side": "none",
+      "effectiveness": 1.0
+    },
+    {
+      "condition_id": "left_090",
+      "side": "left",
+      "effectiveness": 0.9
+    },
+    {
+      "condition_id": "right_090",
+      "side": "right",
+      "effectiveness": 0.9
+    },
+    {
+      "condition_id": "left_075",
+      "side": "left",
+      "effectiveness": 0.75
+    },
+    {
+      "condition_id": "right_075",
+      "side": "right",
+      "effectiveness": 0.75
+    }
+  ],
+  "condition_model_sha256": {
+    "nominal": "27ba35d5925099e22a757b232808ad3bbaae7fa7b55b912396ece2fd7bb1b6ec",
+    "left_090": "ecf753f45b1ce34191ef2209189f37a9ed965754c9db3a9b2837be5771d014fd",
+    "right_090": "13a5856bdc80032e74610b87b3319b1063cd5ce2e4bc2ba72ab4a1b9540b1fc8",
+    "left_075": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069",
+    "right_075": "cf7340a386cc8677e073143b5afeaa30c6ffbd5912e0e5e092a7f7e63ea247d1"
+  },
+  "discovery_starts": [
+    {
+      "source_group": "train_0",
+      "lateral_velocity_m_s": 0.002
+    },
+    {
+      "source_group": "train_3",
+      "lateral_velocity_m_s": 0.005
+    }
+  ],
+  "confirmation_starts": [
+    {
+      "source_group": "calibration_1",
+      "lateral_velocity_m_s": 0.0035
+    },
+    {
+      "source_group": "calibration_2",
+      "lateral_velocity_m_s": 0.0045
+    }
+  ],
+  "comparison": {
+    "minimum_gain_m_s": 0.001,
+    "maximum_individual_loss_m_s": 0.001,
+    "discovery_selector": "eligible_in_every_required_start_then_highest_mean_quality_then_smallest_action_index",
+    "primary_conditioning_population": "eight_degraded_confirmation_pairs",
+    "healthy_guard_population": "two_nominal_confirmation_pairs",
+    "population_inference": false
+  }
+}
