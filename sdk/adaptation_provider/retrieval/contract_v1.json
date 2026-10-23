@@ -1,0 +1,339 @@
+{
+  "schema_version": "locolemotion_bounded_retrieval_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "provider_id": "s169_bounded_retrieval_v1",
+  "provider_version": "bounded_retrieval_v1",
+  "ordered_actuator_ids": [
+    "front_left_hip_motor",
+    "front_left_knee_motor",
+    "front_right_hip_motor",
+    "front_right_knee_motor",
+    "rear_left_hip_motor",
+    "rear_left_knee_motor",
+    "rear_right_hip_motor",
+    "rear_right_knee_motor"
+  ],
+  "ordered_limb_ids": [
+    "front_left",
+    "front_right",
+    "rear_left",
+    "rear_right"
+  ],
+  "ordered_contact_site_ids": [
+    "front_left_foot",
+    "front_right_foot",
+    "rear_left_foot",
+    "rear_right_foot"
+  ],
+  "actions": [
+    {
+      "action_id": "baseline",
+      "global_scale": 0.0,
+      "side_bias": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "action_id": "action_1",
+      "global_scale": -0.15,
+      "side_bias": -0.1,
+      "ordered_coefficients": [
+        -0.25,
+        -0.25,
+        -0.04999999999999999,
+        -0.04999999999999999,
+        -0.25,
+        -0.25,
+        -0.04999999999999999,
+        -0.04999999999999999
+      ]
+    },
+    {
+      "action_id": "action_2",
+      "global_scale": -0.15,
+      "side_bias": 0.0,
+      "ordered_coefficients": [
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15,
+        -0.15
+      ]
+    },
+    {
+      "action_id": "action_3",
+      "global_scale": -0.15,
+      "side_bias": 0.1,
+      "ordered_coefficients": [
+        -0.04999999999999999,
+        -0.04999999999999999,
+        -0.25,
+        -0.25,
+        -0.04999999999999999,
+        -0.04999999999999999,
+        -0.25,
+        -0.25
+      ]
+    },
+    {
+      "action_id": "action_4",
+      "global_scale": 0.0,
+      "side_bias": -0.1,
+      "ordered_coefficients": [
+        -0.1,
+        -0.1,
+        0.1,
+        0.1,
+        -0.1,
+        -0.1,
+        0.1,
+        0.1
+      ]
+    },
+    {
+      "action_id": "action_5",
+      "global_scale": 0.0,
+      "side_bias": 0.1,
+      "ordered_coefficients": [
+        0.1,
+        0.1,
+        -0.1,
+        -0.1,
+        0.1,
+        0.1,
+        -0.1,
+        -0.1
+      ]
+    },
+    {
+      "action_id": "action_6",
+      "global_scale": 0.15,
+      "side_bias": -0.1,
+      "ordered_coefficients": [
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25
+      ]
+    },
+    {
+      "action_id": "action_7",
+      "global_scale": 0.15,
+      "side_bias": 0.0,
+      "ordered_coefficients": [
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ]
+    },
+    {
+      "action_id": "action_8",
+      "global_scale": 0.15,
+      "side_bias": 0.1,
+      "ordered_coefficients": [
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999,
+        0.25,
+        0.25,
+        0.04999999999999999,
+        0.04999999999999999
+      ]
+    }
+  ],
+  "feature_names": [
+    "height_m",
+    "up_x",
+    "up_z",
+    "velocity_x_m_s",
+    "velocity_z_m_s",
+    "yaw_rate_rad_s"
+  ],
+  "feature_scales": [
+    0.1,
+    0.2,
+    0.2,
+    0.2,
+    0.1,
+    0.5
+  ],
+  "phase_cycle_steps": 360,
+  "phase_bin_steps": 30,
+  "decision_window_steps": 30,
+  "controller_dt_s": 0.008333333333333333,
+  "nearest_neighbors": 3,
+  "maximum_support_distance": 1.5,
+  "minimum_predicted_gain_m_s": 0.001,
+  "desired_forward_velocity_m_s": 0.2,
+  "lateral_error_weight": 0.25,
+  "minimum_height_m": 0.25,
+  "maximum_tilt_rad": 0.6,
+  "maximum_absolute_correction_rad_s": 0.25,
+  "maximum_slew_per_step_rad_s": 0.02,
+  "training_episode_outer_steps": 480,
+  "groups": [
+    {
+      "group_id": "train_0",
+      "partition": "train",
+      "seed": 104230400,
+      "initial_native_roll_rad": -0.04,
+      "initial_native_lateral_velocity_m_s": -0.04
+    },
+    {
+      "group_id": "train_1",
+      "partition": "train",
+      "seed": 104230401,
+      "initial_native_roll_rad": -0.04,
+      "initial_native_lateral_velocity_m_s": 0.04
+    },
+    {
+      "group_id": "train_2",
+      "partition": "train",
+      "seed": 104230402,
+      "initial_native_roll_rad": 0.04,
+      "initial_native_lateral_velocity_m_s": -0.04
+    },
+    {
+      "group_id": "train_3",
+      "partition": "train",
+      "seed": 104230403,
+      "initial_native_roll_rad": 0.04,
+      "initial_native_lateral_velocity_m_s": 0.04
+    },
+    {
+      "group_id": "calibration_0",
+      "partition": "calibration",
+      "seed": 104230500,
+      "initial_native_roll_rad": -0.02,
+      "initial_native_lateral_velocity_m_s": -0.02
+    },
+    {
+      "group_id": "calibration_1",
+      "partition": "calibration",
+      "seed": 104230501,
+      "initial_native_roll_rad": -0.02,
+      "initial_native_lateral_velocity_m_s": 0.02
+    },
+    {
+      "group_id": "calibration_2",
+      "partition": "calibration",
+      "seed": 104230502,
+      "initial_native_roll_rad": 0.02,
+      "initial_native_lateral_velocity_m_s": -0.02
+    },
+    {
+      "group_id": "calibration_3",
+      "partition": "calibration",
+      "seed": 104230503,
+      "initial_native_roll_rad": 0.02,
+      "initial_native_lateral_velocity_m_s": 0.02
+    },
+    {
+      "group_id": "evaluation_0",
+      "partition": "evaluation",
+      "seed": 104230600,
+      "initial_native_roll_rad": -0.03,
+      "initial_native_lateral_velocity_m_s": -0.03
+    },
+    {
+      "group_id": "evaluation_1",
+      "partition": "evaluation",
+      "seed": 104230601,
+      "initial_native_roll_rad": -0.03,
+      "initial_native_lateral_velocity_m_s": 0.03
+    },
+    {
+      "group_id": "evaluation_2",
+      "partition": "evaluation",
+      "seed": 104230602,
+      "initial_native_roll_rad": 0.03,
+      "initial_native_lateral_velocity_m_s": -0.03
+    },
+    {
+      "group_id": "evaluation_3",
+      "partition": "evaluation",
+      "seed": 104230603,
+      "initial_native_roll_rad": 0.03,
+      "initial_native_lateral_velocity_m_s": 0.03
+    }
+  ],
+  "archive": {
+    "axes": [
+      "mean_height_m",
+      "lateral_displacement_m"
+    ],
+    "edges": [
+      [
+        0.25,
+        0.35,
+        0.38,
+        0.41,
+        0.44,
+        0.5,
+        0.65
+      ],
+      [
+        -0.5,
+        -0.08,
+        -0.03,
+        -0.01,
+        0.0,
+        0.01,
+        0.03,
+        0.08,
+        0.5
+      ]
+    ],
+    "quality": "negative mean forward tracking error minus 0.25 times mean absolute lateral velocity; eligible episodes only",
+    "all_trials_retained_separately": true
+  },
+  "episodic_memory": {
+    "maximum_offset_m_s": 0.15,
+    "maximum_count": 32,
+    "maximum_opaque_state_bytes": 65536,
+    "base_model_immutable": true,
+    "reset_and_rollback_required": true
+  },
+  "fitting": {
+    "train_groups_only": true,
+    "calibration_and_evaluation_may_fit": false,
+    "failed_episodes_retained": true,
+    "invalid_or_incomplete_episodes_may_supply_cases": false
+  },
+  "authority": {
+    "development_model_fitting": true,
+    "physical_launch_authority": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "three_engine_promotion_requires_existing_tier2_architecture": true
+  },
+  "purpose": "Prospective bounded retrieval and episodic-memory development. This pure contract defines candidate fitting and grouped splits; a separately frozen native campaign and complete gate must authorize data generation."
+}

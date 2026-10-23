@@ -365,6 +365,42 @@ uses `--core` and `--baseline-core`; a new `--run` always consumes a fresh ident
 from a clean pushed source after the complete gate. This observed campaign must
 not be rerun or regraded. This closure creates no learning corpus or trained provider.
 
+The [bounded retrieval component](../sdk/adaptation_provider/retrieval/component_v1.json)
+now fits an immutable casebook and exposes it through the existing v1 provider
+contract. Its prospective split declares four training, four calibration and
+four evaluation condition groups. Fitting refuses calibration/evaluation data,
+missing group/action pairs and malformed windows. A separate all-trial ledger
+retains negative and invalid identities; the elite index is only a selection
+view. This is an initial bounded repertoire design, not a completed MAP-Elites
+search or native learning corpus.
+
+The same provider supports frozen retrieval, disabled and sign-reversed proposal
+controls, reversible episode feedback, and a shuffled feedback-association
+control. Episode memory updates bounded score offsets while the fitted model
+stays immutable. Checkpoint, rollback and reset preserve the core's explicit
+memory and clock semantics. The existing absolute/slew clamps and exact absent-
+provider fallback remain in the actual ABI path. The sign-reversed control
+matches requested magnitudes at the same input; native exposure matching still
+requires a prospective physical evaluation.
+
+Eight actual-ABI component tests pass. The [component verifier](../sdk/adaptation_provider/retrieval/verify_component.py)
+rehashes 28 retained artifacts and ten source bindings, refits the synthetic
+36-episode corpus (35 eligible episodes and one retained negative), and replays
+all 183 provider/core decisions over 560 fitted cases. Synthetic episode feedback
+changes the selected action while the frozen and shuffled-memory controls keep
+the original choice. The initial invalid provider-version identifier is retained
+alongside the repaired results. These checks open zero worlds and establish
+implementation mechanics only: no native experience, physical acceptance,
+release or training-data authority is claimed.
+
+Next: freeze a distinct full-capture native training campaign, collect all 36
+training group/action episodes, independently join every observation and action
+to native state/control, then freeze the corpus and fitted artifact. Calibration
+and evaluation groups remain excluded from fitting. Fresh shadow/influence,
+baseline, disabled, shuffled-proposal and shuffled-memory challenges must precede
+claims of working native Tier 2/Tier 3; three-engine promotion and the empirical
+withdrawal monitor remain separate required work.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

@@ -178,6 +178,18 @@ No training corpus, trained Tier 2/Tier 3 provider, physical acceptance or engin
 equivalence is claimed. Reversible episode memory remains next after retrieval;
 SDK1, full-program and release scores remain unchanged.
 
+The [retrieval and reversible-memory component](../sdk/adaptation_provider/retrieval/component_v1.json)
+now implements immutable casebook fitting, bounded proposals and explicit episode
+feedback through the v1 ABI. Eight component tests pass. Its zero-world reader
+rehashes 28 artifacts and ten sources, refits 36 synthetic episodes into 560 cases,
+and replays 183 decisions. Episode feedback changes the selected action in the
+fixture; frozen and shuffled-memory controls do not. Reset and rollback preserve
+the base model, and the original identifier-validation failure remains retained.
+The prospective training/calibration/evaluation split is declared, but no native
+corpus or physical provider result exists yet. Fresh training, frozen artifacts,
+controlled native evaluation and three-engine promotion remain required. SDK1,
+full-program and release scores are unchanged.
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,

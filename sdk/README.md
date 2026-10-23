@@ -1,5 +1,27 @@
 # LoColemotion Locomotion SDK
 
+SDK2 retrieval implementation checkpoint (2026-10-23): the
+[bounded casebook and episode-memory component](adaptation_provider/retrieval/component_v1.json)
+implements immutable fitting, nearest-case proposals, explicit bounded feedback,
+checkpoint, rollback and reset using the existing provider ABI. Eight tests pass;
+the [reader](adaptation_provider/retrieval/verify_component.py) refits 36 synthetic
+episodes and replays 183 decisions against the actual core, rehashing 28 retained
+artifacts and ten sources. The negative episode and initial identifier refusal
+remain retained. This is zero-world implementation evidence. Native training,
+controlled physical evaluation and three-engine qualification are still required.
+
+From PowerShell at this repository root, provide the exact bound batch core:
+
+```powershell
+& ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B `
+  ./sdk/adaptation_provider/retrieval/verify_component.py `
+  --core PATH_TO_BOUND_BATCH_CORE_DLL
+```
+
+Success prints `ok: true`, `synthetic: true`, `replayed_decisions: 183` and
+`world_build_count: 0`. See the [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
+for the native training and evaluation sequence.
+
 SDK2 native batching checkpoint (2026-10-23): the
 [GPU execution closure](discovery/gpu_batch_execution_closure_v1.json) completes
 L0 in its declared S169 development scope. Clean pushed `15b1fa17` passed the
