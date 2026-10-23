@@ -105,7 +105,14 @@ class PortableStudio(unittest.TestCase):
         with self.assertRaises(ValueError):
             studio_proof.verify(moved)
         manifest.write_bytes(original)
-        (moved / "raw/godot_jolt/stream.jsonl").write_bytes(b"corrupt raw stream")
+        raw_path = moved / "raw/godot_jolt/stream.jsonl"
+        raw_path.write_bytes(raw_path.read_bytes() + b"\n")
+        # Even an updated copy manifest cannot redefine the original raw identity.
+        value = json.loads(original)
+        for index, row in enumerate(value["files"]):
+            if row["path"] == "raw/godot_jolt/stream.jsonl":
+                value["files"][index] = portable.binding(raw_path, row["path"])
+        manifest.write_text(json.dumps(value))
         with self.assertRaises(ValueError):
             studio_proof.verify(moved)
         # Keep the failed synthetic copy for diagnosis; the source archive is untouched.

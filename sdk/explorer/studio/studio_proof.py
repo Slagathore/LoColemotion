@@ -99,6 +99,10 @@ def verify(root):
     bundle = json.loads(raw[len(projector.PREFIX):-len(projector.SUFFIX)])
     if [r["original"] for r in closure["raw_sources"]] != replay["sources"]:
         raise ValueError("Crossed replay source identity")
+    for row in closure["raw_sources"]:
+        expected = dict(path=row["local_path"], byte_length=row["original"]["byte_length"], sha256=row["original"]["sha256"])
+        if binding(within(root, row["local_path"]), row["local_path"]) != expected:
+            raise ValueError("Raw stream differs from its original scientific identity")
     sessions = [projector.project_stream(within(root, r["local_path"]).read_bytes(), r["original"]["engine"])
                 for r in closure["raw_sources"]]
     if sessions != bundle["sessions"]:
