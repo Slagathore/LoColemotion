@@ -1,0 +1,132 @@
+{
+  "schema_version": "locolemotion_cpu_height_activation_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/early_context_feasibility_closure_v1.json",
+    "sha256": "56fc4ec807c734eab1e4b6d0e5bbc178d9f0cbbc699bd94d53a90128ac7d6c19"
+  },
+  "seed": 104232400,
+  "outer_steps": 1440,
+  "horizon_s": 12.0,
+  "internal_steps_per_outer": 5,
+  "conditions": [
+    "left_075"
+  ],
+  "roles": [
+    {
+      "id": "baseline",
+      "candidate_index": 0,
+      "activation_step": null,
+      "baseline_probe_steps": 16
+    },
+    {
+      "id": "height_immediate",
+      "candidate_index": 2,
+      "activation_step": 0,
+      "baseline_probe_steps": 0
+    },
+    {
+      "id": "height_after_16",
+      "candidate_index": 2,
+      "activation_step": 16,
+      "baseline_probe_steps": 16
+    }
+  ],
+  "planned_cpu_worlds": 12,
+  "partitions": {
+    "training": [
+      {
+        "id": "train_001",
+        "lateral_velocity_m_s": 0.001
+      },
+      {
+        "id": "train_003",
+        "lateral_velocity_m_s": 0.003
+      },
+      {
+        "id": "train_004",
+        "lateral_velocity_m_s": 0.004
+      },
+      {
+        "id": "train_006",
+        "lateral_velocity_m_s": 0.006
+      }
+    ],
+    "calibration": [
+      {
+        "id": "cal_0015",
+        "lateral_velocity_m_s": 0.0015
+      },
+      {
+        "id": "cal_0045",
+        "lateral_velocity_m_s": 0.0045
+      }
+    ],
+    "evaluation": [
+      {
+        "id": "eval_0025",
+        "lateral_velocity_m_s": 0.0025
+      },
+      {
+        "id": "eval_0055",
+        "lateral_velocity_m_s": 0.0055
+      }
+    ]
+  },
+  "excluded_confirmation_starts": [
+    0.002,
+    0.005
+  ],
+  "ranking": "Require all four starts eligible per activation role; rank mean whole-episode tracking quality, then role index. Preserve failures and censored quality.",
+  "contrasts": [
+    {
+      "id": "immediate_minus_baseline",
+      "left": "height_immediate",
+      "right": "baseline"
+    },
+    {
+      "id": "early_minus_baseline",
+      "left": "height_after_16",
+      "right": "baseline"
+    },
+    {
+      "id": "early_minus_immediate",
+      "left": "height_after_16",
+      "right": "height_immediate"
+    }
+  ],
+  "comparison": "Fresh paired starts, fixed body/model/control equations; only declared onset differs between height roles. No cached physical baseline.",
+  "confirmation_fitting_permitted": false,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 1800,
+  "maximum_reader_wall_seconds": 1800,
+  "purpose": "Determine whether unchanged height feedback remains useful after sixteen baseline commands at the same exposed degraded-body starts as immediate feedback.",
+  "coverage": [
+    "12 fresh sequential CPU worlds and private controller memories",
+    "baseline, immediate height and sixteen-command delayed height at four matched training starts",
+    "truthful baseline prefix only for baseline and delayed roles; no inferred action choice",
+    "unchanged height equations, safety clamps, native timing and full-horizon eligibility",
+    "complete independent controller/native replay and matched prefix/contrast joins"
+  ],
+  "not_covered": [
+    "nominal preservation",
+    "learned choice or memory benefit",
+    "new condition profiles",
+    "reserved calibration or evaluation",
+    "other morphology, terrain or engines",
+    "population inference",
+    "non-inferiority",
+    "qualification or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": true
+}

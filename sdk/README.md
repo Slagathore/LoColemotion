@@ -1,5 +1,13 @@
 # LoColemotion Locomotion SDK
 
+The [matched activation successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-height-activation-prepared---2026-10-23)
+passes all 217 zero-world controls. It declares twelve fresh CPU worlds at the
+same four degraded-body training starts: baseline, immediate height feedback,
+and height feedback after sixteen baseline commands. No controller equation,
+clamp, horizon or eligibility rule changes. Eight host and ten route controls
+also pass separately. Native execution requires a clean pushed freeze and a
+fresh complete gate; it remains unopened at this preparation checkpoint.
+
 The [early-context diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
 classifies 8/8 training groups from sixteen past commands in blocked internal
 validation. Constant nominal scores 4/8 and synthetically reversed associations

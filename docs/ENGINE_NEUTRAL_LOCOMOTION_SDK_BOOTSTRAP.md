@@ -2,6 +2,15 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest preparation (2026-10-23): the [matched height-activation successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-height-activation-prepared---2026-10-23)
+passes all **217 zero-world controls**. It declares twelve fresh CPU worlds:
+baseline, immediate height feedback and height feedback after sixteen commands
+at the same four exposed degraded-body training starts. Equations, clamps,
+initialization, twelve-second horizon and eligibility remain fixed. Its eight
+host and ten route controls pass separately, including exact immediate-controller
+commands and delayed baseline bits. Native launch is next from a clean pushed
+freeze, after the full gate runs again. No new physical result is established.
+
 Latest feasibility result (2026-10-23): the [16-command context diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
 correctly classifies **8/8 authorized training groups** with each start's two
 conditions held out together, versus 4/8 for constant nominal and 0/8 for

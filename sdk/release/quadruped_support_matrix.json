@@ -304,6 +304,138 @@
           "adaptation_benefit_established": false,
           "qualification_or_release_authority": false
         },
+        "height_activation_discovery": {
+          "ledger_scope": {
+            "subsystem": "adaptation",
+            "engine_scope": "mujoco_cpu",
+            "authority_mode": "development_discovery",
+            "question_class": "development"
+          },
+          "status": "prepared_full_zero_world_gate_passed_native_unopened",
+          "declaration": "sdk/discovery/cpu_height_activation_v1.json",
+          "declaration_sha256": "608f0ab2fd9eee7a3798f429917ba8a876c5217229c9dde5d6d02d35013749d2",
+          "launcher": "sdk/discovery/run_cpu_height_activation.py",
+          "reader": "sdk/discovery/audit_cpu_height_activation.py",
+          "controller": "sdk/discovery/height_activation_control.py",
+          "controller_sha256": "84d60de69186d491e6ebc29dbfbf8210b9754cc579350f4e8b9ea1fadac4aa41",
+          "predecessor": {
+            "path": "sdk/discovery/early_context_feasibility_closure_v1.json",
+            "sha256": "56fc4ec807c734eab1e4b6d0e5bbc178d9f0cbbc699bd94d53a90128ac7d6c19"
+          },
+          "zero_world_controls_passed": 217,
+          "retained_gate": "sdk2-cpu-height-activation-cdc8ac9ede204502b222bed971318afb",
+          "gate_receipt_sha256": "6afee05a4e370842d7fcef4353e7718b66be6afe78d9e6c43d6a3f223806b817",
+          "source_binding_count": 434,
+          "runtime_binding_count": 1359,
+          "retained_component_and_route_controls": "sdk2-height-activation-controls-ce8c359e7a46468c857ce36b1d39efed",
+          "component_and_route_controls": [
+            {
+              "name": "test_height_activation_control",
+              "count": 8,
+              "wall_s": 2.438,
+              "stderr_sha256": "927a640b7316e5ec4cc607fb0d9dd098db9f1a6a0f2f817f25d4b624fc5c8cb2",
+              "source": "sdk/discovery/test_height_activation_control.py",
+              "source_sha256": "3e261204a98b779b948a6be55cb1ab778c67d212269f125e03e5a9242c10e77f"
+            },
+            {
+              "name": "test_cpu_height_activation",
+              "count": 10,
+              "wall_s": 7.389,
+              "stderr_sha256": "24ef8058b5ffa65e6ae16528a2fc544dae594d5c40f7f0b3d9f929a132101db8",
+              "source": "sdk/discovery/test_cpu_height_activation.py",
+              "source_sha256": "e71c6b2e5a35d966d5349b930cf4446ccbbf790bbbfd45f555fcca60a9beb68b"
+            }
+          ],
+          "development_seed": 104232400,
+          "conditions": [
+            "left_075"
+          ],
+          "roles": [
+            {
+              "id": "baseline",
+              "candidate_index": 0,
+              "activation_step": null,
+              "baseline_probe_steps": 16
+            },
+            {
+              "id": "height_immediate",
+              "candidate_index": 2,
+              "activation_step": 0,
+              "baseline_probe_steps": 0
+            },
+            {
+              "id": "height_after_16",
+              "candidate_index": 2,
+              "activation_step": 16,
+              "baseline_probe_steps": 16
+            }
+          ],
+          "partitions": {
+            "training": [
+              {
+                "id": "train_001",
+                "lateral_velocity_m_s": 0.001
+              },
+              {
+                "id": "train_003",
+                "lateral_velocity_m_s": 0.003
+              },
+              {
+                "id": "train_004",
+                "lateral_velocity_m_s": 0.004
+              },
+              {
+                "id": "train_006",
+                "lateral_velocity_m_s": 0.006
+              }
+            ],
+            "calibration": [
+              {
+                "id": "cal_0015",
+                "lateral_velocity_m_s": 0.0015
+              },
+              {
+                "id": "cal_0045",
+                "lateral_velocity_m_s": 0.0045
+              }
+            ],
+            "evaluation": [
+              {
+                "id": "eval_0025",
+                "lateral_velocity_m_s": 0.0025
+              },
+              {
+                "id": "eval_0055",
+                "lateral_velocity_m_s": 0.0055
+              }
+            ]
+          },
+          "excluded_confirmation_starts": [
+            0.002,
+            0.005
+          ],
+          "horizon_s": 12.0,
+          "native_worlds": 0,
+          "planned_cpu_worlds": 12,
+          "planned_gpu_worlds": 0,
+          "planned_controller_rows": 17280,
+          "planned_internal_rows": 86400,
+          "planned_matched_start_groups": 4,
+          "planned_contrasts": 12,
+          "calibration_worlds": 0,
+          "evaluation_worlds": 0,
+          "ranking": "Require all four starts eligible per activation role; rank mean whole-episode tracking quality, then role index. Preserve failures and censored quality.",
+          "training_data_authority": false,
+          "prospective_training_scope": "complete_independently_verified_development_activation_training_only",
+          "confirmation_fitting_permitted": false,
+          "learned_selection": false,
+          "adaptation_benefit_established": false,
+          "population_inference": false,
+          "noninferiority_authority": false,
+          "qualification_or_release_authority": false,
+          "physical_gate_rerun_required": true,
+          "next_question": "Run and close the exact twelve fresh training worlds from a clean pushed freeze after the full gate reruns. Determine whether unchanged height feedback works after sixteen commands at matched starts before mapping inferred context to actions. Preserve every failure and all reserved/confirmation exclusions."
+        },
         "early_context_feasibility": {
           "ledger_scope": {
             "subsystem": "adaptation",

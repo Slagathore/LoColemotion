@@ -2190,3 +2190,19 @@ centroids have no action mapping or control authority. A matched native timing
 comparison must establish usable feedback before the inferred context can be
 credited with useful control. Continuously updated adaptation still needs
 coverage of the histories its own choices produce, as discussed above.
+
+## 2026-10-23 matched activation preparation
+
+The [matched activation declaration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-height-activation-prepared---2026-10-23)
+turns early context observability into a separate control question. Fresh
+baseline, immediate-height and sixteen-command-delayed-height worlds use the
+same four exposed degraded-body starts. It preserves the earlier local height
+controller and all eligibility limits, while isolating the declared onset
+between the height roles. The 64-command negative changed both onset and
+starts; this new comparison is needed before attributing a timing effect.
+
+All 217 zero-world controls pass; native execution remains unopened at this
+checkpoint. No published research performance transfers to this local controller,
+and an 8/8 internal condition classifier does not establish physical benefit.
+The campaign imports no external code or new dependency. Reserved groups and
+prior confirmation remain excluded from development fitting.

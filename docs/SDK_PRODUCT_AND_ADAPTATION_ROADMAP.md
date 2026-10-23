@@ -116,6 +116,13 @@ mapping or control authority is assigned. Next compare immediate and 16-command
 height feedback at the same exposed degraded-body starts before using the
 classifier for control. This internal check does not expose reserved groups.
 
+The [matched activation successor](#matched-height-activation-prepared---2026-10-23)
+now passes all 217 zero-world controls. Its twelve prospective CPU worlds
+compare baseline, immediate height and sixteen-command-delayed height at the
+same four degraded-body starts. Native collection is next from a clean pushed
+freeze after the complete gate runs again. This preparation earns no physical
+result, learned-choice benefit or promotion.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -1403,6 +1410,66 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Matched height activation prepared - 2026-10-23
+
+The [new declaration](../sdk/discovery/cpu_height_activation_v1.json) separates
+activation timing from the start changes in the failed 64-command repertoire.
+It keeps the exact S169 model, left-side 75-percent actuator profile, unchanged
+height equations, clamps, initial values and twelve-second horizon. It uses the
+four exposed training lateral velocities 0.001, 0.003, 0.004 and 0.006 m/s, with
+one development seed `104232400`. Every role receives a fresh world and private
+controller memory; no retained physical baseline is reused.
+
+| Role | First possible height influence | Baseline-only history retained |
+|---|---|---|
+| Baseline | Never | Sixteen commands, then retired |
+| Immediate height | Command 0 | None; its feedback history is not relabeled |
+| Early height | Command 16, after 0.133333 s | Sixteen actual baseline commands |
+
+The [new host](../sdk/discovery/height_activation_control.py) preserves the
+existing height controller's exact numeric commands for immediate activation.
+Baseline and delayed roles produce bit-identical baseline prefixes and measure
+the same sixteen causal response features at command 16. The immediate role
+never claims those baseline features. All roles retain the real resolver's
+clamp, slew and refusal behavior. No classifier selects actions in this campaign.
+
+Twelve fresh CPU worlds are planned: four starts times three roles, totaling
+17,280 controller decisions and 86,400 internal samples. Each role must pass all
+four full horizons before ranking by mean whole-episode tracking quality, with
+role-index ties. Twelve fixed paired contrasts cover immediate minus baseline,
+early minus baseline and early minus immediate at each start. Quality differences
+are reported only when both episodes have uncensored quality; failures remain
+in the denominator. This finite development comparison grants no statistical
+superiority or non-inferiority claim.
+
+All **217 controls** passed in
+`sdk2-cpu-height-activation-cdc8ac9ede204502b222bed971318afb`, binding 434 source
+and 1,359 runtime files. The eight host controls and ten route controls passed
+separately in 2.438 s and 7.389 s in
+`sdk2-height-activation-controls-ce8c359e7a46468c857ce36b1d39efed`. Their exact
+tested sources and original logs remain retained. Coverage includes unchanged
+immediate commands, truthful history, exact first influence and fresh slew,
+unsupported-state withdrawal, close-on-partial-failure, full transition replay,
+model/force/state corruption, matched contrasts and complete population/splits.
+No failed preparation attempt or native world occurred at this checkpoint.
+
+The [contained supervisor](../sdk/discovery/run_cpu_height_activation.py) holds
+the existing operation mutex, enforces native child containment and checks the
+complete source/runtime binding before and after execution. It must rerun the
+full applicable gate from a clean pushed freeze before opening worlds. The
+[independent reader](../sdk/discovery/audit_cpu_height_activation.py) replays
+every controller decision and joins native state, force, contact, timing and
+baseline-prefix evidence before assigning any development training authority.
+
+Next run and close this exact campaign. If early activation is useful across
+all four starts, freeze the inferred context-to-action mapping and challenge
+learned, condition-known, baseline, disabled and association controls on fresh
+groups. Nominal preservation, reserved calibration/evaluation, memory benefit,
+broader morphology and engine transfer remain separate later questions.
+Earlier confirmation is still excluded from fitting. The previous negative
+64-command repertoire and the limited 8/8 context diagnostic retain their
+original identities and claim limits.
 
 ### Completed early-context feasibility - 2026-10-23
 
