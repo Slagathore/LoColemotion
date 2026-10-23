@@ -80,6 +80,12 @@ fresh confirmation and healthy-body preservation; history inference remains
 later. The retained result supplies verified development fitting data, with no
 new adaptation-benefit, qualification or release authority.
 
+The [body-gain successor](#body-gain-factorial-prepared---2026-10-23) now passes
+all 141 zero-world controls. It holds posture and correction limits fixed while
+separating attitude gain from rate damping. Ten fresh worlds cover baseline and
+all four corners at the same two exposed starts; the original gain combination
+is repeated freshly. No physical success is implied by this preparation.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -1367,6 +1373,61 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Body-gain factorial prepared - 2026-10-23
+
+The [declared successor](../sdk/discovery/cpu_body_gain_discovery_v1.json)
+asks whether changed body feedback can preserve the preceding finite walking
+behavior at both exposed starts. The [five-role model](../sdk/adaptation_provider/body_gain_feedback_v1.json)
+contains baseline and all four combinations of **attitude gain 3 or 6 /s** and
+**angular damping 0.5 or 1.0**. Every feedback role holds correction cap at
+**3.5 rad/s**, slew at **0.08 rad/s per command**, supported-posture gain at
+**8/s**, hip/knee preference at **-0.3/0.6 rad**, and velocity-feedback gain at
+zero. Native force caps, final motor-speed limits, geometry, observation domain,
+support gating and eligibility rules remain unchanged.
+
+The 3/s, 0.5 combination is `feedback_kp3_kd05`, a fresh reference for the earlier
+all-high corner. Both reference episodes and both baseline episodes are newly
+constructed; previous physical output is never cached or substituted. The
+same exposed development seed **104232200** and starts **0.002/0.005 m/s** are
+retained for this local control question. This is not a held-out comparison or
+independent confirmation. All ten worlds receive private controller memories,
+480 decisions and 2,400 internal samples, giving **4,800 decisions / 24,000
+samples**. One contained owner holds the native-operation mutex for the entire
+sequential run. Full original streams are retained; worker and reader limits
+remain 600 seconds each.
+
+The [component](../sdk/adaptation_provider/body_gain_feedback_v1.py) reuses the
+pinned body-feedback equations and support-posture objective. It changes only
+the finite candidate family. Eight component controls verify the complete
+factorial, fixed settings, known rotation/rate responses, source pins, support
+and domain refusals, parent compatibility, host envelope ownership and real-ABI
+bounds. Across **640 decisions**, two independently built core binaries agree
+exactly: 488 supported feedback decisions, 24 withdrawn decisions and 128
+baseline decisions. The fresh reference reproduces the preceding controller's
+target bits on retained inputs. These controls do not predict locomotion.
+
+Ten complete-route controls cover synthetic native-stream replay, all roles,
+initial precision, force semantics, corruption refusal, complete ranking and
+eight prospective single-factor contrasts. The complete **141-control safety
+gate** passed in
+`sdk2-cpu-body-gain-discovery-e72ea3bd409c462ab45069f8866b758e`, binding **375
+source files / 1,359 runtime files**. Receipt SHA-256:
+`da6db00af3daaeaac9341accd24170b3112379f9899a63e472c19860674e3f6f`.
+It constructed zero worlds and executed zero solver steps. The earlier focused
+8+10-control run is retained in
+`sdk2-body-gain-component-controls-b6084f23215b4c01b5a607a4cf89752b`, including
+its exact tested source snapshot.
+
+The reader retains every first physical violation, the declared pre-violation
+activity counts, and all eight same-start single-factor contrasts. Failure time
+never enters ranking; a censored full horizon is not assigned a failure time.
+Selection still requires two complete eligible episodes and finite window
+quality. Any selected candidate needs a separately frozen fresh confirmation
+and healthy-body preservation before history-conditioned learning. No evaluation
+world, GPU transfer, learned history inference, Tier 3 benefit, population
+inference, equivalence, qualification or release is covered here. The family is
+untrained, and no new physical result has run at this preparation checkpoint.
 
 ### Completed posture and envelope factorial - 2026-10-23
 

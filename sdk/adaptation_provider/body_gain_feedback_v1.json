@@ -1,0 +1,137 @@
+{
+  "schema_version": "locolemotion_body_gain_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "parent_model": {
+    "path": "sdk/adaptation_provider/posture_feedback_v1.json",
+    "sha256": "0aaeb71ea2524f9e089e74e6a7d81f1e3a16e1901c918190d51aa682adb5b93d"
+  },
+  "parent_implementation": {
+    "path": "sdk/adaptation_provider/posture_feedback_v1.py",
+    "sha256": "a5bc04095e7dcffafdd0d984e4d958be754587ad45f624929f4e13f6a9e6ed2c"
+  },
+  "posture_reference_rad": {
+    "hip": -0.3,
+    "knee": 0.6
+  },
+  "posture_objective": "minimize ||J delta - v_body_feedback||^2 + lambda^2 ||delta - posture_gain*(q_reference-q)||^2",
+  "posture_scope": "observed_support_only",
+  "envelope_selection": "prospectively_declared_candidate_bound_host_envelope",
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "factor": null,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 0.0
+    },
+    {
+      "id": "feedback_kp3_kd05",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0
+    },
+    {
+      "id": "feedback_kp3_kd10",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 1.0,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0
+    },
+    {
+      "id": "feedback_kp6_kd05",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 6.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0
+    },
+    {
+      "id": "feedback_kp6_kd10",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 6.0,
+      "angular_damping": 1.0,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0
+    }
+  ],
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

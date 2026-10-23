@@ -2,6 +2,14 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Prepared next (2026-10-23): the [body-gain factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-gain-factorial-prepared---2026-10-23)
+passed all 141 zero-world controls. It varies attitude gain and angular damping
+while holding the previous all-high posture/envelope settings fixed. Baseline
+plus four feedback corners at both exposed starts gives 10 fresh CPU worlds,
+4,800 decisions, 24,000 internal samples and eight single-factor contrasts.
+The earlier gain combination is a fresh reference, never a cached result.
+No new physical outcome follows from this preparation checkpoint.
+
 Latest discovery (2026-10-23): the [closed posture/envelope factorial](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
 completed all 18 CPU worlds from published `f9a0509d` after all 123 controls
 passed. Independent replay verified 8,640 decisions and 43,200 internal samples:

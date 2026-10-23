@@ -2051,3 +2051,14 @@ no complete eligible pair. All 24 predeclared contrasts and the original
 failures remain in the closure. This is one finite local walking observation;
 it does not import a locomotion guarantee from the inverse-kinematics source or
 establish useful adaptation. Start sensitivity remains the next control question.
+
+## 2026-10-23 body-attitude and rate factorial
+
+The [body-gain successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-gain-factorial-prepared---2026-10-23)
+reuses the already reviewed damped inverse and the project's existing
+body-attitude/rate feedback. It adds no external algorithm, code or dependency.
+The two gain levels are local prospective design choices within the original
+declared gain domain, motivated by the retained one-start walking result and
+failure at the other start. Eight analytic/ABI controls and ten route controls
+join the inherited gate for 141 passing zero-world controls. The native test
+must establish usefulness; source compatibility and literature do not supply it.
