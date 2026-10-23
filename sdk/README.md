@@ -1,5 +1,10 @@
 # LoColemotion Locomotion SDK
 
+The [native CPU motor challenge](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-cpu-motor-challenge-prepared---2026-10-23)
+is prepared after all 88 zero-world controls passed. Four fresh worlds will
+challenge baseline and profile 6 at the two exposed starts. Physical transfer,
+learned adaptation and equivalence remain unproved at this preparation checkpoint.
+
 The [matched motor diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
 completed all 48 fresh GPU worlds after all 81 controls passed at published
 `68c3ede7`. Independent replay checked 23,040 decisions and 115,200 internal

@@ -2,6 +2,12 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Prepared next (2026-10-23): the [native CPU motor challenge](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-cpu-motor-challenge-prepared---2026-10-23)
+passed its complete 88-control zero-world gate. Four fresh worlds will test
+baseline and profile 6 at the two exposed starts, with float32-equalized inputs
+and native float64 dynamics. This preparation has no physical, adaptation,
+training or equivalence authority.
+
 Latest diagnostic (2026-10-23): the [matched motor experiment](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
 completed all 48 GPU worlds from published `68c3ede7` after the complete
 81-control gate. Independent replay verified 23,040 controller and 115,200

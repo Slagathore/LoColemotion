@@ -1971,3 +1971,13 @@ phase/state-dependent controller family before fitting a history estimator; it
 does not prove numerical determinism or identify a particular GPU kernel as
 the cause. All nine constant profiles fail at the second start in one fresh
 mixed batch. Their time-varying combinations remain an untested possibility.
+
+The subsequent CPU challenge follows MuJoCo's documented
+[split simulation loop](https://mujoco.readthedocs.io/en/stable/programming/simulation.html):
+prepare position/velocity observations with `mj_step1`, set motor targets,
+then advance dynamics with `mj_step2`. The documented split supports the pinned
+implicitfast integrator. Named actuator and joint force sensors are retained
+immediately after each completed step, before the next preparation recomputes
+the state-dependent quantities. The native model, sensor identities and full
+stream joins remain executable checks; current documentation does not upgrade
+the pinned runtime or establish CPU/GPU equivalence. No external code was copied.

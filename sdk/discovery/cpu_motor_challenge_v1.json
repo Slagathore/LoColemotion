@@ -1,0 +1,69 @@
+{
+  "schema_version": "locolemotion_cpu_motor_challenge_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_diagnostic",
+    "question_class": "development"
+  },
+  "parent_contract": {
+    "path": "sdk/discovery/gpu_motor_effectiveness_v1.json",
+    "sha256": "ec1a00d8c63d0ba5b35b4c87e304538c4c15a414b8c8cd33fc8d63850d6cf269"
+  },
+  "gpu_predecessor": {
+    "path": "sdk/discovery/gpu_motor_batch_closure_v1.json",
+    "sha256": "e016c4cd3c63c1e56d2bc25293ccb07ad0a0a031b04d7c0a15b067bb7b1af76f"
+  },
+  "condition_id": "left_075",
+  "seed": 104231900,
+  "outer_steps": 480,
+  "starts": [
+    {
+      "id": "start_002",
+      "lateral_velocity_m_s": 0.002
+    },
+    {
+      "id": "start_0035",
+      "lateral_velocity_m_s": 0.0035
+    }
+  ],
+  "roles": [
+    {
+      "id": "baseline",
+      "action_index": 0
+    },
+    {
+      "id": "selected_profile",
+      "action_index": 6
+    }
+  ],
+  "planned_cpu_worlds": 4,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 600,
+  "maximum_reader_wall_seconds": 600,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "purpose": "Fresh native CPU challenge of baseline and the fixed selected profile at two exposed starts after the matched GPU diagnostic. No selection, fitting, statistical comparison or predecessor regrading.",
+  "coverage": [
+    "complete inherited safety gate plus CPU route controls",
+    "four fresh CPU data instances and private controller memories",
+    "fixed float32-equalized initial qpos and qvel without later state edits",
+    "native implicitfast split stepping, five internal steps per command",
+    "prepared production observations and original scalar portable/provider controller",
+    "every held motor target, native state, named force sensor, contact and warning",
+    "independent complete scalar decision and native stream replay",
+    "original eligibility bounds and complete failure denominator"
+  ],
+  "not_covered": [
+    "general CPU/GPU equivalence",
+    "native Godot or Rapier transfer",
+    "all nine profiles on CPU",
+    "phase-dependent or state-dependent residual control",
+    "learned history inference or Tier 3 benefit",
+    "fitting or selection authority",
+    "unopened evaluation groups",
+    "robustness or release authority"
+  ]
+}

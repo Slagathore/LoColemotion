@@ -1129,6 +1129,33 @@ negatives, and frozen source/runtime/reader tampering.
 No adaptation benefit, statistical inference, training, qualification or release
 authority is granted.
 
+### Native CPU motor challenge prepared - 2026-10-23
+
+The [CPU successor](../sdk/discovery/cpu_motor_challenge_v1.json) fixes four fresh
+left-75 worlds: baseline and profile 6 at each of the 0.002 and 0.0035 m/s
+lateral starts. It uses one development seed, fresh native data and private
+controller memory for every role, unchanged motor XML and eligibility bounds,
+and the original scalar portable/provider route. Initial coordinates and
+velocities equal the GPU's float32 input values, then evolve using native CPU
+float64 dynamics and motor targets. This separates initial-value rounding from
+the backend change without claiming equal subsequent trajectories.
+
+Every trial retains 480 commands and five internal samples per command, for
+1,920 controller and 9,600 internal rows. The reader independently replays
+every controller decision and verifies state continuity, prepared observations,
+held targets, named force samples, contacts, warnings and episode eligibility.
+No GPU physics, profile selection, fitting, unopened evaluation or statistical
+equivalence is authorized. The earlier GPU results remain unchanged.
+
+The complete **88-control zero-world gate passed** in
+`sdk2-cpu-motor-challenge-4626110483034b91876eeafdcf2ba198`; receipt SHA-256:
+`1a7adcfa82da768eea82fab1183e16df2f624b3d08846b0ac770314caab494b2`.
+Seven new CPU controls passed, including full synthetic replay and refusal of
+float32-rounded CPU targets, changed initial values, force/warning corruption,
+wrong model precision, missing worlds and false authority. Standalone controls
+are retained in `sdk2-cpu-motor-controls-18a82f510b2d4c5e9d26d9b2778af76d`.
+No worlds have run for this declaration at this preparation checkpoint.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |
