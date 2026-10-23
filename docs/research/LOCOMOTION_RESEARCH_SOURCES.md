@@ -1863,3 +1863,41 @@ The result motivates investigation of action credit, prediction error and a
 declared task that actually requires adaptation; it does not refute either
 paper's distinct algorithm or domain. Both the global and contextual negative
 results remain retained, and evaluation groups remain unopened.
+
+## 2026-10-23 action credit and physical context
+
+The [retained action-credit diagnostic](../../sdk/discovery/contextual_action_credit_diagnostic.py)
+finds one-sided feedback in 20/22 ordinary-memory choice changes. Observed
+prediction error is often larger than the leading action-score gap. This
+motivates learning physical context and reporting uncertainty; it does not
+identify which unexecuted action would have performed better.
+
+[Kumar et al., RMA, v1](https://arxiv.org/html/2107.04034v1)
+estimates a latent physical context from recent state/action history. Section
+III-B also explains why expert trajectories alone are inadequate and trains
+the estimator on trajectories affected by its own prediction errors. Borrow
+the separation between persistent physical context and fast state, and the
+need to cover those deviations. A 64-entry ABI allowance is not an implemented
+estimator: the current host supplied empty history. The new causal-history
+host closes that input gap but has no learned encoder or RMA performance claim.
+
+[Cully et al., 2014 preprint v2](https://arxiv.org/html/1407.3501v2)
+models performance residuals over a repertoire with a Gaussian process and
+chooses experiments using prediction uncertainty. It is a useful alternative
+to treating unobserved action offsets as equally known. Its repeated physical
+trials and behavior-space assumptions differ from this continuous controller;
+an eight-second windowed comparison is not a replication of that method.
+
+For the next implementation, history-conditioned physical context offers a
+diagnosable target and an oracle-condition control, at the cost of new varied
+training data and estimator validation. Repertoire-based Bayesian search offers
+explicit exploration and uncertainty, but consumes additional trials and needs
+a declared exploration budget. Further offset tuning is inexpensive but leaves
+the action-identification problem unresolved. Start with a bounded motor-
+effectiveness family, establish that an oracle has useful control authority,
+then train and test context inference with history-off and shuffled-history
+controls. Unsupported dynamics and withdrawal monitoring remain separate.
+
+These are primary-paper idea adoptions. No external code or model is imported.
+No new result establishes recoverability, safety probability, cross-engine
+transfer, statistical superiority or release authority.

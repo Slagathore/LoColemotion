@@ -2,6 +2,20 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest mechanism work (2026-10-23): the
+[action-credit diagnostic and history successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#action-credit-and-causal-history---2026-10-23)
+pass five controls each, without new physical worlds. In the retained ordinary
+memory arm, 20/22 changed decisions penalized an observed action and selected
+one without matching feedback; only 2/22 had feedback for both. Prediction
+errors exceed the top-two score gap in 62/89 completed windows. These counts
+describe the existing negative result; they do not establish causal action
+effects. The distinct host now supplies a causal 64-entry observation/action
+window through the real v1 ABI and preserves commands on retained-input replay,
+including final speed projection. The current provider does not yet use that
+history to infer physical context. Next is a declared physical-context task
+with an oracle control, followed by inferred-context and shuffled-history
+comparisons, plus the empirical withdrawal monitor. Qualification stays false.
+
 Latest learning result (2026-10-23): the [contextual-memory comparison](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
 completed all 18 eight-second development worlds from clean published `0828885f`
 after the complete 100-test gate. Independent replay passed 17,280 decisions and

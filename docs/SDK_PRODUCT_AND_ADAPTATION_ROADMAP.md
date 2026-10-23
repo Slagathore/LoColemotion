@@ -38,6 +38,13 @@ Frozen retrieval remained favorable against baseline and disabled control in
 3/3 at the longer horizon. Useful Tier 3 behavior remains unproved. The empirical
 withdrawal monitor, unopened evaluation and promotion gates remain required.
 
+The subsequent [action-credit diagnosis](#action-credit-and-causal-history---2026-10-23)
+finds that 20/22 ordinary-memory decision changes penalized an observed action
+and selected an alternative without matching feedback. A distinct host now
+supplies actual causal observation/action history through the existing v1 ABI;
+its five controls pass on retained inputs. No new physical worlds or useful
+adaptation claim follow from this component work.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -786,13 +793,85 @@ of observation readback and 40.864 seconds of integration/device-history work.
 These measurements identify profiling targets; they are not a matched throughput
 comparison or permission to weaken capture.
 
-Next, diagnose whether short-window prediction residuals distinguish an action's
-effect from phase-dependent performance variation and model error. Context
-restriction alone did not deliver benefit. Keep the useful frozen candidate
-while building the empirical withdrawal monitor and defining a distinct adaptive
-task with an explicit, bounded change to learn from. Any new memory rule or task
-needs its own prospective comparison and controls. Keep held-out evaluation
-sealed until the design and criteria are frozen; retain the full SDK2 target list.
+The following diagnostic now examines action credit without assigning outcomes
+to unexecuted alternatives. Context restriction alone did not deliver benefit.
+Keep the useful frozen candidate while building the empirical withdrawal monitor
+and a distinct adaptive task with an explicit, bounded change to learn from.
+
+### Action credit and causal history - 2026-10-23
+
+The [executable diagnostic](../sdk/discovery/contextual_action_credit_diagnostic.py)
+first verifies the complete contextual closure, then reads all 17,280 controller
+rows. It independently reconstructs observed window scores and rejoins original
+feedback and decision denominators. Five controls pass in
+`sdk2-contextual-action-credit-8266899469ee44b2bd81f1b8f38dc969` (36.875 seconds
+including the contained wrapper). Its `diagnostic.json` SHA-256 is
+`1525dd1530056105edee78d01504ad05d06d7b6a7a44da11604a6feb9f856b96`.
+
+Ordinary memory changed 22 decisions. **20/22** switched from an action with
+negative matching feedback to an alternative with no matching feedback;
+**2/22** had feedback for both choices. Only 9/92 selections had matching
+feedback for two or more supported actions. Of its 89 completed feedback
+windows, 62 had an absolute prediction error greater than the predicted gap
+between the best two actions. Median absolute error was 0.006080106 m/s,
+against a median top-two gap of 0.003163276 m/s. These are descriptive window
+counts, not independent episode samples or a statistical error guarantee.
+
+The shuffled-feedback arm changed five choices, four through the same
+negative-feedback-to-unobserved pattern. Across the two memory arms the reader
+rejoins all 176 updates, 84 context-supported selections and 27 changed choices.
+It also reconstructs 90 observed frozen windows. Final windows without an
+observed endpoint remain uncredited. Cross-world error correlations are retained
+with exact pairing counts; most paired actions are the same, and diverged states
+are not counterfactuals. Neither a shared disturbance nor causal action credit
+is identified. No original comparison is regraded and no fitting is performed.
+
+The source inspection also found that the development host supplied **empty
+history**, although the v1 ABI permits 64 entries. The distinct
+[history host](../sdk/discovery/history_influence_control.py) now attaches each
+world's past canonical states, commands, resolved corrections and receipt hashes
+after provider binding. The [history component](../sdk/adaptation_provider/retrieval/causal_history_v1.py)
+keeps a contiguous 64-entry window, preserves final speed projection and commits
+all worlds' histories only after a complete host transaction. It never supplies
+the current or a future observation as past history. Missing status or a refused
+`applied` status cannot be represented truthfully by the v1 history enum, so
+those events clear the window and retain an explicit boundary reason; they are
+not relabeled. The original receipt remains in the trace.
+
+Five [history controls](../sdk/discovery/test_history_influence_control.py) pass
+in `sdk2-causal-history-326d2342d8104fd8aa4e9e282e7aa7f4` (16.609 seconds
+including the wrapper). Its `receipt.json` SHA-256 is
+`0e2fd364f8e7b4a2098022d3842e329a7465282b2a5dd4d87d8b71e478ae941b`.
+The real ABI accepts 66 retained-input requests through rollover; a four-round,
+six-mode host replay preserves command, native-target and private-memory bytes.
+Applied-action decoding is checked through final speed clamping. Tampered,
+missing or future history, provider errors, cross-world aliasing and partial
+mapping failure are covered. The earlier
+`sdk2-causal-history-223036fc685b4bbe90ed3926d309cdac` retains a fixture failure:
+an invalid response was incorrectly expected to retain its parsed status.
+The corrected five-control pass at
+`sdk2-causal-history-5a3d787c0b2e494f83f9e941cfa3abca` also remains retained;
+the latest pass adds the applied speed-projection assertion.
+
+This is tested source and actual-ABI replay, with **zero new physical worlds**.
+The current provider still ignores the history content. There is no latent
+inference, new trained model, adaptation benefit or empirical recoverability
+claim. The consumed physical hosts, model and both negative campaigns remain
+unchanged.
+
+The next successor should learn a persistent physical context from state/action
+history, with a declared motor-effectiveness change as the initial task family.
+Freeze exact strengths, affected actuators, exposure splits, horizons and a
+bounded experiment budget before any world. First test whether an oracle that
+knows the condition can improve behavior within the unchanged correction limits.
+If it cannot, preserve that negative result; an estimator cannot supply missing
+control authority. Then fit the estimator using varied action histories and
+on-policy deviations, with condition labels available only during fitting.
+Compare inferred context against the oracle, history-off and shuffled-history
+controls, including measured influence and explicit reset/rollback behavior.
+Keep evaluation sealed and build the empirical withdrawal monitor before
+qualification. The [research ledger](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-23-action-credit-and-physical-context)
+records the relevant ideas and tradeoffs. The full SDK2 targets below remain.
 
 ### SDK2 claim targets
 

@@ -1,5 +1,18 @@
 # LoColemotion Locomotion SDK
 
+SDK2 mechanism checkpoint (2026-10-23): the
+[action-credit diagnostic](discovery/contextual_action_credit_diagnostic.py)
+rejoins the retained comparison and finds that 20/22 ordinary-memory choice
+changes selected an action without matching feedback after penalizing an
+observed one. The distinct [history host](discovery/history_influence_control.py)
+now supplies the past 64 canonical observation/action entries through the v1
+ABI, which previously received an empty history. Five diagnostic and five
+history controls pass. Rollover and command-preserving host replay use retained
+inputs and construct no new worlds. The provider still does not infer physical
+context from history; useful Tier 3 benefit remains unproved. The
+[roadmap checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#action-credit-and-causal-history---2026-10-23)
+records digests, the retained fixture failure and the next bounded task.
+
 SDK2 contextual-memory result (2026-10-23): the
 [distinct successor closure](discovery/gpu_contextual_influence_closure_v1.json)
 retains 18 fresh eight-second development worlds after the complete 100-test
