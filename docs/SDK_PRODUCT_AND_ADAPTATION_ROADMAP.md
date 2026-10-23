@@ -45,9 +45,13 @@ supplies actual causal observation/action history through the existing v1 ABI;
 its five controls pass on retained inputs. No new physical worlds or useful
 adaptation claim follow from this component work.
 
-The [motor-effectiveness pilot](#motor-effectiveness-pilot---2026-10-23) now has
-its complete 75-control zero-world gate. It prospectively separates 90 discovery
-worlds from 30 fresh confirmation worlds. No physical result is recorded yet.
+The [motor-effectiveness pilot](#completed-motor-pilot---2026-10-23) is now closed
+after 120 native GPU worlds and complete independent replay. Discovery retained
+75/90 eligible episodes; fresh confirmation retained 24/30. Every arm failed
+both left-side 75-percent confirmation starts, including the profile selected
+from discovery. The declared conditioning-value criterion is false. Diagnose
+that failed transfer and strengthen the control repertoire before fitting a
+history estimator; no new adaptation benefit or qualification follows.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -136,9 +140,26 @@ observed batch or tuning against a sealed evaluation population.
 
 The August Warp equivalence/calibration contracts remain sealed at their
 recorded status. A versioned discovery successor can authorize candidate work
-without asserting those contracts passed. The owner reports earlier GPU
-rough-draft work contributing to SDK1 recovery; its exact artifact has not yet
-been located. It is useful history, not reproduced training qualification.
+without asserting those contracts passed. The located October 3 GPU activity
+behind the three-engine share video was offscreen rendering of retained poses.
+Its preparation and rendering scripts construct no new simulation. The Godot
+kick/recovery/walk source is the retained
+`development-recovery-smoke-960cdb887b00476895c27b012423b60a` report, whose
+`c67495bc72644cd3e1b91b0353fd03c579194e50b9c69fbe659e4484f867e3e8` digest was
+rechecked against the [existing recovery closure](../sdk/recovery/r10dh_held_out_physical_closure_v2.json).
+This resolves the located rendering job's provenance; it establishes no earlier
+GPU recovery-training run.
+
+Nine historical rendering inputs/output artifacts are now retained byte-for-byte
+in `<evidence-root>/historical-three-engine-render-20261023-e8109373d8784c078c16c079278e6402`.
+Its `manifest.json` SHA-256 is
+`632dbdf0b5ce492a0a26c15fbe56756e8f43b06507f33430ce2ec8dc5c0c5b4a` and also
+binds all five original physics sources. The three panels each have 1,200 frames
+at 60 Hz. MuJoCo/Rapier recovery limbs are reconstructed from measured torso
+poses and hinge angles; walking and Godot recovery use retained body poses.
+Original absolute paths and system-font dependencies remain in the archived
+renderer. This is provenance retention, not a relocated runnable render package
+or new physical evidence. The derived PNG cache was not copied or deleted.
 
 The first executable route is
 [`run_gpu_measurement_probe.py`](../sdk/discovery/run_gpu_measurement_probe.py).
@@ -923,7 +944,7 @@ height, tilt, torso-contact and no-actuation eligibility gates are unchanged.
 These are finite development criteria, not inferential margins, population
 non-inferiority or safety guarantees.
 
-The complete 75-control gate passed in
+The preparation's complete 75-control gate passed in
 `sdk2-gpu-motor-effectiveness-832103dda31148fb9bb05c73a0bc6d00` with zero worlds
 and zero solver steps. Its `receipt.json` SHA-256 is
 `6e4665bde8cadc5a240243272a04c61b7d477c89723e41c71d17cc0df8eb487b`.
@@ -932,9 +953,9 @@ the existing measurement/controller/provider checks, and real job containment.
 The standalone startup failure at
 `sdk2-motor-launcher-entry-0040b857d8f843eaa496aa9079e2aad6` is retained: the
 component test environment masked a missing SDK import path. The corrected
-standalone launcher passed the full gate. Physical work remains unconsumed
-until this prospective freeze is clean and published; the launcher repeats the
-complete gate under the operation mutex before its owned workers start.
+standalone launcher passed the full gate. This preparation opened no worlds.
+The subsequent execution below used the clean published prospective freeze and
+repeated the complete gate under the operation mutex before its owned workers.
 
 Only complete independently verified discovery episodes may inform later
 development fitting. Failed and invalid attempts remain retained. Confirmation,
@@ -942,6 +963,77 @@ acceptance, release, robustness and engine-equivalence authority remain false.
 The next decision is whether this profile family offers useful condition-aware
 control; a negative result motivates a distinct controller family, not a claim
 that history adaptation is impossible.
+
+### Completed motor pilot - 2026-10-23
+
+The [closure](../sdk/discovery/gpu_motor_effectiveness_closure_v1.json) binds
+`sdk2-gpu-motor-effectiveness-7440e3ead37d4c918c83244ce56b8c08` to clean published
+freeze `33c6506eeffb76ef3ee45cd654191e5d84ce8f03`. The complete 75-control gate
+passed again before physics. All 120 GPU worlds completed; neither reader
+constructed a world. Independent scalar/controller and native-stream replay
+passed all **57,600 controller rows and 288,000 internal rows**. There were no
+CPU-stepped worlds or unopened evaluation worlds.
+
+| Motor condition | Discovery eligible / 18 | Condition-informed profile | Confirmation eligible / 6 |
+| --- | --- | --- | --- |
+| Nominal | 18/18 | 8 | 6/6 |
+| Left 90 percent | 17/18 | 8 | 6/6 |
+| Right 90 percent | 18/18 | 8 | 6/6 |
+| Left 75 percent | 4/18 | 6 | 0/6 |
+| Right 75 percent | 18/18 | 7 | 6/6 |
+
+The shared selector froze profile 6. Discovery retained **75 eligible and 15
+negative** episodes. Confirmation retained **24 eligible and six negative**
+episodes: baseline, condition-informed and shared each remained eligible in
+8/10 groups. Every left-75 confirmation role failed height, tilt and torso-contact
+eligibility. Selected profile 6 stayed above 0.422 m in both discovery starts,
+but reached about 0.171 m and 1.97 rad tilt in both fresh confirmation starts.
+The failure is substantial, not a small crossing of the eligibility threshold.
+
+The declared `finite_conditioning_value` is **false**. The nominal guard passed,
+and the condition-informed arm met its baseline quality-gain floor in 6/8
+degraded groups, but the two failed groups stay in the denominator. The primary
+mean remains null because its full eligibility requirement was not met. No
+failed group is dropped and no alternative criterion replaces the frozen one.
+Knowing the condition and selecting the best eligible discovery mean did not
+make this nine-profile family reliable on confirmation. This is a valid negative
+result, not an invalid execution or a bound on all possible residual controllers.
+
+Discovery used nine worlds per batch and confirmation used three, while initial
+velocities and action-slot assignments also changed. These observations do not
+identify whether start sensitivity, GPU numerical variability, batch behavior
+or a combination caused the failed transfer. First run a distinct, bounded
+diagnostic that separates these factors for the selected profile, including a
+fresh native CPU challenge where applicable. Then expand phase/state-dependent
+bounded proposals if control brittleness remains. Keep the original declaration,
+selection and negative result immutable; confirmation remains excluded from
+fitting. Fit history inference only after a useful control repertoire has its
+own fresh evidence. Empirical withdrawal monitoring and qualification remain open.
+
+Discovery workers took 792.578 seconds and their reader 520.974 seconds;
+confirmation workers took 286.253 seconds and their reader 167.149 seconds.
+Discovery's measured outer-loop totals include 357.754 seconds of observation
+readback, 216.400 seconds of portable control and 35.742 seconds of integration
+plus device history, out of 748.178 seconds. The pinned readback implementation
+copies arrays separately for each requested world. A per-command batch snapshot
+is a measured optimization target, subject to its own observation/command
+conformance and fresh native proof; no capture reduction or runtime change was
+made in this consumed pilot.
+
+The [closure verifier](../sdk/discovery/audit_motor_effectiveness_closure.py)
+rehashes all 1,810 retained artifacts (4,979,359,925 bytes), verifies 312 frozen
+source and 1,359 runtime bindings, and rejoins selection, both complete original
+audits, timings, all roles and the unchanged comparison. Optional `--replay`
+repeats the full scalar/controller and internal-state checks without worlds.
+Four corruption controls passed in
+`sdk2-motor-closure-controls-fb14fdfca4cf4601a1ede4d5f33aa50f` (74.674 seconds
+including containment), covering provenance, source/runtime bytes, missing or
+duplicate artifacts, altered selections, erased negatives and false authority.
+The closure SHA-256 is
+`928c7ac7a7a37ac460396bfedaa4bff74e5240aa7490f1eb661d8467b50df839`.
+Only the complete verified discovery population has later development-fitting
+authority. There is no history-inference, memory-benefit, provider-promotion,
+statistical superiority, non-inferiority, robustness, equivalence or release claim.
 
 ### SDK2 claim targets
 

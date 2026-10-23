@@ -2,13 +2,17 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Latest preparation (2026-10-23): the
-[motor-effectiveness oracle pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#motor-effectiveness-pilot---2026-10-23)
-passes its complete 75-control zero-world gate. Five declared motor conditions,
-nine bounded profiles, 90 discovery worlds and 30 fresh confirmation worlds are
-prospectively fixed. Selection uses discovery alone. This tests a finite profile
-family before fitting physical context from history; it grants no adaptation
-benefit, qualification or release claim. Physical execution is not yet recorded.
+Latest physical-context result (2026-10-23): the
+[motor-effectiveness pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)
+completed 120 GPU worlds from clean published `33c6506e` after all 75 safety
+controls passed. Independent replay verified 57,600 controller and 288,000
+internal rows. Discovery retained 75/90 eligible episodes; fresh confirmation
+retained 24/30. Baseline, condition-informed and shared profiles all failed both
+left-75 confirmation starts. The frozen conditioning-value criterion is false.
+The closure binds 1,810 artifacts, 312 sources and 1,359 runtime files; its four
+integrity controls pass. Next isolate the failed transfer's start/batch/numerical
+sensitivity, then strengthen bounded control before fitting history inference.
+The result grants no adaptation benefit, qualification or release authority.
 
 Latest mechanism work (2026-10-23): the
 [action-credit diagnostic and history successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#action-credit-and-causal-history---2026-10-23)

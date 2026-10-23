@@ -1928,3 +1928,25 @@ all residual policies with its nine-profile oracle. Its finite comparison has
 no population-inference or non-inferiority authority. Only complete independently
 verified discovery episodes may be reused for later development fitting;
 confirmation is excluded and unopened evaluation groups remain sealed.
+
+The [completed pilot](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)
+is a valid negative: 75/90 discovery episodes were eligible, but all three roles
+failed both left-75 confirmation starts, leaving 24/30 eligible. The fixed
+conditioning-value criterion is false. Profile 6 survived both discovery starts
+and failed both confirmation starts; this is a concrete reason to diagnose and
+strengthen control before fitting an RMA-inspired estimator. Discovery and
+confirmation also differ in batch width, so the result does not isolate the
+cause as initial-state sensitivity. It does not prove that all nine profiles, or
+all bounded residual controllers, lack useful control authority.
+
+The measured discovery readback cost was 357.754 seconds, versus 35.742 seconds
+for integration and device history. The official
+[MuJoCo Warp tutorial](https://github.com/google-deepmind/mujoco_warp/blob/main/notebooks/tutorial.ipynb)
+uses `get_data_into` for host readback. Inspection of the pinned 3.11.0
+`mujoco_warp/_src/io.py` (SHA-256
+`6fe550047ed4b82c307741f84a8a4800587469c52e5ce292a3073824f3451fa6`)
+shows repeated `.numpy()` transfers in each per-world call. Caching immutable
+host arrays for one prepared command boundary is a proposed local optimization,
+not an existing qualified batching API. It needs complete field, contact,
+clock, aliasing and controller-output conformance plus fresh native measurement.
+No library code was copied and no capture reduction was made in the pilot.

@@ -1,14 +1,17 @@
 # LoColemotion Locomotion SDK
 
-SDK2 prospective motor task (2026-10-23): the
-[motor-effectiveness launcher](discovery/run_gpu_motor_effectiveness.py) passes
-all 75 zero-world controls. Its [declaration](discovery/gpu_motor_effectiveness_v1.json)
-fixes five motor conditions, 90 discovery worlds and 30 fresh confirmation worlds.
-The condition-known selector is compared with baseline and one shared profile
-without using confirmation outcomes for selection. The family contains nine
-constant bounded residual profiles; no estimator or memory benefit is claimed.
-See the [prospective checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#motor-effectiveness-pilot---2026-10-23)
-for the retained gate, startup failure, exact criteria and authority limits.
+SDK2 motor-effectiveness result (2026-10-23): the
+[closed pilot](discovery/gpu_motor_effectiveness_closure_v1.json) completed 90
+discovery and 30 fresh confirmation worlds from published `33c6506e` after all
+75 safety controls passed. Complete independent replay verified 57,600 controller
+and 288,000 internal rows. Discovery retained 75/90 eligible episodes;
+confirmation retained 24/30. Every arm failed both left-75 confirmation starts,
+including the profile selected from discovery. The frozen conditioning-value
+criterion is false; no estimator, memory benefit or qualification is claimed.
+The [closure reader](discovery/audit_motor_effectiveness_closure.py) verifies
+1,810 retained artifacts and exact source/runtime/selection bindings; its four
+corruption controls pass. See the [completed checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)
+for outcomes, failure scope, timings and the next diagnostic.
 
 SDK2 mechanism checkpoint (2026-10-23): the
 [action-credit diagnostic](discovery/contextual_action_credit_diagnostic.py)
