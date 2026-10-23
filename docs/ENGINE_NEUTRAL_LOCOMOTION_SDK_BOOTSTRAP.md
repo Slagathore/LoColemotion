@@ -138,6 +138,16 @@ wall seconds for 15 walking seconds in this observation. Portability is verified
 the speed and live recovery-handoff objectives remain open. See the
 [setup instructions](../sdk/explorer/README.md#portable-local-studio-setup).
 
+The [2026-10-23 research-informed sequence](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
+now prioritizes batching the complete deployed path, a diverse repertoire and
+a frozen retrieval provider before neural residual learning. The
+[proposal review](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-23-adaptation-proposal-review)
+qualifies the v1 compatibility, empirical monitor, statistical and GPU
+repeatability claims. Trial retention stays separate from elite selection;
+reduced capture needs a prospective development successor with checks and
+full-trace canaries. No new provider, physical result or release authority is
+claimed by this planning update. Studio handoff and performance remain open.
+
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
 The existing SDK1 compiler now reports **20/20**, with zero missing,

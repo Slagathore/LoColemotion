@@ -107,7 +107,8 @@ observed batch or tuning against a sealed evaluation population.
    the existing independent native qualification lifecycle.
 5. **Reach Tier 3 through episodic memory.** Start with bounded context/retrieval
    updates over the frozen Tier 2 model, with reset and rollback. Compare memory
-   enabled/disabled on fresh task groups and retain before/after decisions.
+   enabled/disabled and shuffled associations on fresh task groups, with matched
+   trigger/influence controls, and retain before/after decisions.
    Durable encyclopedia promotion stays offline. Online base-weight mutation
    needs its own later qualification.
 
@@ -250,6 +251,53 @@ influence challenges. Tier 3 follows with reversible episode memory over the
 frozen model. Studio recovery handoff and startup/walking performance remain
 required alongside that learning work.
 
+### Research-informed acceleration - 2026-10-23
+
+The [reviewed research proposal](https://github.com/Slagathore/LoColemotion/blob/f2a6d088b68ba16577f31ad834b3ddfe5f09576a/docs/SDK2_ADAPTATION_RESEARCH_BOOTSTRAP.md)
+provides useful implementation options. Its repository snapshot is `5062134`;
+the valid portable v2 search above supersedes its commissioning-only diagnosis.
+The controller already runs once per 1/120 s command with five held-control
+physics steps. Batched portable calls, fewer observation/capture transfers and
+graph execution remain open. The [research review](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-23-adaptation-proposal-review)
+records adoption limits; this roadmap remains the sequencing authority.
+
+| Order | Development target | Exit evidence before advancing |
+| --- | --- | --- |
+| L0 | Batch the existing complete portable/controller/provider path on the host; graph held-control GPU substeps with correct sampling stages | Scalar/batch command, memory and refusal conformance; full safety gate; fresh comparison at three declared batch sizes with compilation, transfers, control, physics, capture and audit costs separated |
+| L1 | Build a diverse S169 repertoire before expanding body or task scope | Declared bounded genome, two or three behavior axes and eligibility rules; append-only record of every trial and replaced elite; frozen shortlist challenged in fresh native worlds |
+| L2 | Use deterministic retrieval of frozen, characterized residual proposals as the first Tier 2 candidate | Grouped corpus and calibration/evaluation splits; bounded provider output; shadow then fresh influence trials against baseline, retrieval-disabled and shuffled-association controls, with trigger/influence matching |
+| L3 | Add an empirical monitor that withdraws provider influence using existing refusal states first | Frozen fitting set, hysteresis and explicit unsupported states; fresh non-inferiority evaluation under a prospectively chosen practical margin |
+| Later | Residual learning and history-based adaptation, then reversible Tier 3 episode memory | Compare with retrieval; preserve the deployed clamp chain, immutable base model, bounded memory, reset/rollback and fresh memory-off/shuffled controls |
+
+A retrieval provider need not train a neural network, but its frozen corpus and
+selection rule are still a fitted artifact requiring evaluation. L1 can begin
+with the existing residual channel. An arbitrary `BalancedWaveProfile` genome
+or a second shadow controller must first acquire a real, bounded implementation
+path; a public Rust struct is not by itself an arbitrary-profile C ABI.
+Batching must cover the full deployed composition, not only the gait kernel.
+
+The proposed lighter exploration capture is a development convention to declare
+and validate in a distinct successor before L1. It keeps every candidate's
+identity, parameters, source/runtime bindings, seed, outcome and failure reason,
+always-on capacity/nonfinite/control/contact/no-cheat checks, and predetermined
+full-trace canaries. The archive is a selection index, not the trial ledger.
+Shortlists run fresh with full traces and independent readers; acceptance keeps
+its existing lifecycle. No observed low-capture run is retroactively upgraded.
+The invalid v1 contact join shows why checks cannot disappear with telemetry.
+
+A conservative L3 refusal can use v1 `refused` or `uncertain` plus diagnostics.
+New core fallback enums or receipt fields require a versioned extension; scaling
+a correction after the slew clamp must not silently alter the deployed slew
+semantics. Neither bounded commands nor an empirical recoverability estimate
+proves an invariant safe region or that the provider can never make things worse.
+GPU numerical nondeterminism also does not erase scientific repeatability:
+retain original results and assess repeated outcomes separately. A fresh CPU
+challenge tests transfer, not reproduction of the original GPU trajectory.
+
+Choose archive axes before L1 and practical non-inferiority margins before L3's
+evaluation. Those decisions do not block L0. No claim score, release flag,
+physical acceptance threshold or old campaign changes in this review.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |
@@ -262,6 +310,10 @@ required alongside that learning work.
 | R25 | Engine equivalence/non-inferiority with frozen outcomes, margins and adequate cohorts |
 | Force-aware recovery | Whole-body support/loading feedback beyond SDK1's bounded posture/contact routes |
 | Tier 2 / Tier 3 | Qualified bounded learned proposals, then reversible experience-dependent adaptation |
+
+The release contract currently records R06, R07, R12 and R25 as missing.
+R09 and R11 have retained contradictory evidence (BW34Y and BW6N respectively);
+they require distinct successful successors, not completion of empty paperwork.
 
 Start learning in a diagnosable domain while retaining the full target list.
 Additional topology buckets and tasks must preserve old failures and results;

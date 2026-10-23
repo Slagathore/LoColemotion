@@ -1736,3 +1736,89 @@ scalar cells use different CPU/GPU derivative branches at the same step after
 command reversal. The observed equations remain locally consistent while the
 trajectories differ materially. Preserve both branch identity and the original
 result when designing training labels and fresh native transfer challenges.
+
+## 2026-10-23 adaptation proposal review
+
+Reviewed the complete [research proposal at f2a6d088](https://github.com/Slagathore/LoColemotion/blob/f2a6d088b68ba16577f31ad834b3ddfe5f09576a/docs/SDK2_ADAPTATION_RESEARCH_BOOTSTRAP.md)
+against the current provider implementation and the valid portable search v2.
+This is a research/sequencing decision, not a behavioral adoption or campaign
+result. The [existing roadmap](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
+carries the next work. No external code or model was imported.
+
+Adopt the ordering of host batching, diverse candidate search and deterministic
+retrieval before neural residual learning. Retain memory-off and shuffled-key
+controls, and match trigger/influence opportunities so another generic correction
+cannot masquerade as a retrieval benefit. The small, fixed-topology body family
+makes a bounded provider a useful first target without waiting for general
+morphology support or formal engine equivalence.
+
+Corrections and implementation boundaries:
+
+1. **Update the source baseline.** The proposal read `5062134`; portable search
+   v2 at `dd009d99` subsequently completed the actual controller/provider route
+   and fresh CPU transfer audit. It already holds each command for five internal
+   steps. Optimize measured host control, readback and capture costs rather than
+   restarting commissioning or claiming that control still runs every substep.
+2. **Separate the archive from the experiment log.** The default
+   [MAP-Elites algorithm, v1](https://arxiv.org/html/1504.04909v1#S3)
+   retains the best occupant per feature cell and can replace earlier occupants.
+   It does not preserve every evaluation by construction. Keep an append-only
+   trial ledger containing failures and replaced elites alongside the archive.
+3. **Qualify the v1 compatibility claim.** The current provider already accepts
+   refusal/uncertainty and diagnostics. A monitor using those responses can
+   preserve v1. The proposal's new fallback enum and receipt authority field are
+   schema changes: current structs deny unknown fields. A profile-difference
+   bridge also needs an implemented profile execution path and bounded memory;
+   it is not supplied merely by declaring a parameterized profile struct.
+4. **Treat recoverability as an empirical prediction.** Fit on declared data,
+   with unsupported-state refusal and hysteresis, then evaluate fresh. Command
+   bounds and bit-exact fallback preserve interface behavior; they do not prove
+   future recoverability or universal non-inferiority. Changing influence after
+   a slew clamp can change temporal constraints and needs explicit semantics.
+5. **Distinguish two statistical questions.**
+   [TOST](https://pmc.ncbi.nlm.nih.gov/articles/PMC5502906/) tests both sides of
+   an equivalence interval. Non-inferiority tests one unacceptable direction.
+   For a fall-rate difference defined as provider minus baseline, the declared
+   upper confidence bound must lie below the allowed increase. Freeze the
+   estimand, practical margin, error level, cohort/pairing, power and any interim
+   looks before evaluation. Dependent simulation frames are not independent
+   episodes; a nonsignificant difference does not establish either claim.
+6. **Do not promote marginal calibration to conditional safety.**
+   [Conformal prediction, v6](https://arxiv.org/html/2107.07511v6)
+   supplies marginal coverage under its assumptions, not an automatic bound on
+   fall risk among accepted proposals, out-of-domain states or a changing closed
+   loop. Split by episode/task groups, state the prediction target and check
+   calibration separately. A selective-risk claim needs an appropriate method
+   and validation; [conformal risk control, v4](https://arxiv.org/abs/2208.02814v4)
+   is an additional reference, not a drop-in proof for arbitrary thresholds.
+7. **Separate GPU replay, repeatability and native transfer.** The
+   [current MuJoCo Warp documentation](https://mujoco.readthedocs.io/en/stable/mjwarp/index.html#frequently-asked-questions)
+   warns that GPU runs can differ numerically and describes a CPU device mode.
+   That does not forbid reproducible methods or statistical replication. Keep
+   original observed traces, seeds, configuration and outcomes; measure repeat
+   variability under a pinned runtime. A fresh native CPU MuJoCo challenge is a
+   different backend experiment, not exact regeneration of a GPU trajectory.
+   The project remains on its pinned 3.11.0 runtime; no upgrade is implied.
+8. **Reduce capture only after qualifying its replacement checks.** Full capture
+   found the first search's 3,952 incorrect GPU contact observations. A faster
+   lane must retain on-device or boundary checks, complete candidate accounting
+   and prospectively selected full-trace canaries. Shortlist and acceptance work
+   rerun fresh at their stronger evidence level. Invalid trials remain invalid.
+
+Primary-source spot checks support narrower prior-art statements:
+
+- [Wu et al., PLOS ONE, 2026](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356505)
+  describes a CPG with bounded residuals, gait-parameter proposals and position/
+  command-rate projection on an eight-actuator robot. This is relevant prior
+  art, but it is not the same velocity-delta ABI or engine-transfer evidence.
+- [Wang et al., RTPC, v1](https://arxiv.org/abs/2610.24573v1) reports a retrieval
+  correction result that did not replicate and was not distinguishable from
+  random corrections in the tested family. Its task is VLA manipulation, not
+  quadruped locomotion. Use the control lesson without treating it as a result
+  about this provider or about retrieval generally.
+
+These checks used the linked primary HTML/abstract versions and repository
+source, not newly archived PDF bytes. They do not certify all sources or license
+entries in the proposal. Imported code remains subject to the repository's
+normal provenance/license review. Possible novelty of an integration is a
+research hypothesis, not established by this literature selection.
