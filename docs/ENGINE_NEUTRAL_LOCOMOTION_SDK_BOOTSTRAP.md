@@ -2,7 +2,17 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Latest learning result (2026-10-23): the
+Current preparation (2026-10-23): a retained post-hoc diagnosis finds that 34
+of the 35 memory-driven changed choices lack matching-context feedback. The
+[distinct contextual successor](../sdk/discovery/gpu_contextual_influence_v1.json)
+keeps completed windows keyed by action-time phase/contact/state and passes six
+actual-ABI component controls and nine host/route controls. It declares a fresh
+eight-second, six-arm comparison on three exposed development starts. No
+successor native benefit is claimed yet; the original result and unopened
+evaluation are preserved. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contextual-episode-memory-successor---2026-10-23)
+records the diagnosis, source tests, retained failures and next launch boundary.
+
+Latest completed native learning result (2026-10-23): the
 [native influence closure](../sdk/discovery/gpu_retrieval_influence_closure_v1.json)
 at clean pushed `19c13b8e` passed the complete 77-test gate and independent replay
 of 8,640 decisions and 43,200 physics rows across 18 fresh worlds. All arms were

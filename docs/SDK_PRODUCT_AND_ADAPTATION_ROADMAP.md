@@ -31,9 +31,11 @@ provider promotion.
 Current learning boundary: bounded native retrieval and episode feedback now
 have a complete independently audited comparison. Frozen retrieval meets its
 finite quality-gain floor against both controls in 3/3 calibration groups;
-episode memory meets its benefit floor in 0/3. The next work is a distinct
-memory successor and empirical withdrawal monitor, followed by unopened
-evaluation and promotion gates. The frozen model remains a development candidate.
+episode memory meets its benefit floor in 0/3. A distinct contextual-memory
+successor now passes its synthetic component and route controls and has a fresh
+native comparison declared below. Native benefit remains untested. The empirical
+withdrawal monitor, unopened evaluation and promotion gates remain required.
+The frozen model remains a development candidate.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -688,6 +690,53 @@ retrieval candidate and challenge any successor with disabled, shuffled-proposal
 and shuffled-feedback controls, retaining influence exposure. Open evaluation
 only after the design and criteria are frozen. Three-engine promotion and the
 full SDK2 targets below remain required.
+
+### Contextual episode-memory successor - 2026-10-23
+
+The [retained feedback diagnosis](../sdk/discovery/episode_feedback_diagnostic.py)
+reconstructs 2,880 controller rows, 87 completed feedback updates and 35 changed
+same-input choices from the consumed comparison. **34/35 changed choices lack
+matching-context feedback for either decisive nonzero-offset action**, using
+the frozen phase tuple, contact mask and scaled-distance definition. This is a
+post-hoc mechanism diagnosis, not proof of an alternative physical outcome.
+The complete diagnostic is retained in
+`sdk2-feedback-diagnostic-92e7d766b2cf4fee84bbe115e6783a60/diagnostic.json`, SHA-256
+`53dd6dc411bf54ae080e5a86ca14ad7b52b4d7b0ae5583f41f0ec5b13ee03712`.
+Four diagnostic controls pass without new worlds.
+
+The distinct [contextual component](../sdk/adaptation_provider/retrieval/contextual_contract_v1.json)
+retains up to 64 completed windows with their action-time canonical cues. A
+later choice uses up to three nearby records for the same action, exact phase
+tuple and contact mask, within the unchanged 1.5 support radius. Bounded
+residuals include negative outcomes; unmatched contexts receive zero offset.
+The frozen casebook, quality metric, decision window, command bounds and v1
+provider ABI stay intact. Checkpoint/rollback/reset remain explicit. The
+[research ledger](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-23-context-indexed-episode-feedback)
+records the algorithmic sources and the limits of this borrowing.
+
+Six actual-ABI component controls pass in
+`sdk2-contextual-component-055a4a4fd3884e9f8f6fc5382c8d36cb`: related feedback can
+change a synthetic decision on recurrence, unrelated contexts cannot, and
+negative records, oldest-first eviction, checkpoint capacity, rollback, reset,
+refusal and exact disabled fallback are checked. The earlier attempt
+`sdk2-contextual-component-ac2528d13fde4af7821ef4a079afe6a4` retains two fixture
+failures: an inexact decimal boundary assumption and an expired synthetic
+long-clock command. Nine host/route controls pass in
+`sdk2-contextual-route-0d03b1e635594a88a4832fc6d650576d`, including independent
+feedback arithmetic, action-time context and actual scalar/native-command replay.
+These controls construct no physical worlds.
+
+The [new prospective comparison](../sdk/discovery/gpu_contextual_influence_v1.json)
+declares three **exposed development** start families, six fresh worlds each,
+and 960 outer commands (eight seconds, 32 quality windows) per world. Baseline,
+disabled, frozen, shuffled proposals, contextual feedback and shuffled feedback
+remain separate arms. The longer horizon permits context recurrence but is a
+different regime from the old 480-step campaign; it cannot establish a causal
+improvement over that historical memory design. The launcher's full gate adds
+context, host, reader, diagnosis and predecessor-closure controls before a clean,
+pushed freeze can start physics. Retain every comparison and influence exposure.
+All held-out evaluation groups remain unopened. Native benefit of this successor
+is untested at this preparation boundary; the old 0/3 result remains unchanged.
 
 ### SDK2 claim targets
 

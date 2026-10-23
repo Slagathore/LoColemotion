@@ -1,0 +1,157 @@
+{
+  "schema_version": "locolemotion_gpu_contextual_influence_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "purpose": "Prospective development comparison of context-indexed private episode feedback over the unchanged fitted v2 casebook. Initial-condition families have already been exposed; no held-out or promotion authority.",
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "model_xml_sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06",
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "gpu_dtype": "float32",
+  "cpu_dtype": "float64",
+  "seed": 104231000,
+  "outer_steps": 960,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "cpu_warning_count": 7,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "maximum_worker_wall_seconds": 2400,
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+  "phase_mode": "clocked",
+  "provider": {
+    "kind": "absent_provider_same_input_reference",
+    "maximum_absolute_correction_rad_s": 0.25,
+    "maximum_slew_per_step_rad_s": 0.02,
+    "candidates": [
+      {
+        "id": "baseline",
+        "factor": null
+      }
+    ]
+  },
+  "initialization": "Three fresh six-world batches reuse exposed calibration_1..3 initial-condition families as explicitly labeled development groups, with fresh seeds and identities. Mode order rotates by two slots. No post-step reset or state modification.",
+  "sampling": "Both routes retain every completed internal state, held solver input, named force pair, contact, capacity counter and every portable/provider decision. Graph capture copies five internal snapshots into preallocated device history before the next step1 clears force sensors; host reads occur after graph launch. Prepared observations use checked production-adapter readback and the retained contact compatibility copy. CPU dynamics are forbidden.",
+  "coverage": [
+    "six modes in three previously exposed development start families over 960 outer commands",
+    "actual native influence with carried correction history",
+    "private episode feedback from applied trajectories",
+    "fresh baseline and disabled worlds",
+    "sign-reversed proposals and shuffled feedback",
+    "full native force/contact/capacity/timing capture",
+    "independent scalar baseline and provider replay",
+    "measured influence magnitude and trigger accounting",
+    "contained serialized worker",
+    "context-indexed completed-window feedback, matching-context reuse and record accounting"
+  ],
+  "not_covered": [
+    "held-out evaluation or acceptance",
+    "statistical superiority or noninferiority",
+    "empirical recoverability monitor",
+    "broad task or morphology coverage",
+    "three-engine promotion",
+    "engine equivalence",
+    "Studio recovery handoff",
+    "force-aware recovery"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "predecessor": {
+    "native_fit": "sdk/discovery/gpu_repertoire_fit_closure_v2.json",
+    "native_shadow": "sdk/discovery/gpu_retrieval_shadow_closure_v1.json",
+    "global_memory_influence": "sdk/discovery/gpu_retrieval_influence_closure_v1.json"
+  },
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "warmup_outer_steps": 0,
+  "naconmax_per_world": 64,
+  "maximum_trace_bytes_per_trial": 1073741824,
+  "retrieval_contract_sha256": "717982eb5623106c5e34a75b69a5622ace43e6517e4f929076502606b2ec8741",
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0,
+    "maximum_safe_no_actuation_steps": 0
+  },
+  "model": {
+    "closure_path": "sdk/discovery/gpu_repertoire_fit_closure_v2.json",
+    "closure_sha256": "5d3108cc71953ad1bd4f38aeb04125753d2bb45fedc2356c240788ec35e27dc5",
+    "attempt_id": "sdk2-gpu-repertoire-v2-c9c452eee9b144c7aa2ce95e68b99548",
+    "artifact": "fitted/fitted_model.json",
+    "artifact_sha256": "1688d7822630f0f018f3ee4e7bc164fc95ba6f62edb61c69966494e269d6acf2",
+    "canonical_sha256": "sha256:3388543fe3e4d7baef933395376cc3154501073c8fc72ee51c6733b356fb287a",
+    "fit_receipt_sha256": "ffa5ceb8d5b5a61a4e27a044116ba2d6d695198968d7fae39531e7d7e596a63d"
+  },
+  "modes": [
+    "baseline",
+    "disabled",
+    "frozen",
+    "shuffled",
+    "episodic",
+    "episodic_shuffled"
+  ],
+  "mode_rotation_per_group": 2,
+  "operations": [],
+  "influence_semantics": "Each world receives its own resolved commands, carries the resolver correction history and isolated provider memory, and supplies only its own observed outcome to episode feedback. Final speed projection and float32 solver transmission are measured separately. Frozen model and corpus remain immutable. Episode residuals reuse only the same phase tuple/contact mask and the base scaled-distance radius; the action-time cue is retained. Feedback remains private to each fresh world.",
+  "comparison": {
+    "primary_metric": "mean of all thirty-two nonoverlapping 30-command quality windows; -abs(forward_velocity-0.2)-0.25*abs(lateral_velocity)",
+    "development_quality_gain_floor_m_s": 0.001,
+    "gain_floor_scope": "Finite development direction only; not a practical release margin, statistical superiority threshold, or noninferiority margin.",
+    "tier2": "Eligible frozen retrieval must beat both fresh baseline and disabled worlds by the development floor in each reported group.",
+    "tier3": "Eligible episodic memory must beat frozen retrieval and shuffled-feedback memory by the floor; report each group separately.",
+    "matched_influence": "Require identical nonzero outer-step lists and bit-exact absolute per-actuator corrections for resolver, canonical post-speed-projection, and float32 solver deltas. Otherwise withhold matched-influence memory benefit.",
+    "eligibility_failures": "Retain every raw outcome and include all arms in denominators. Never drop a failed baseline or provider arm.",
+    "endpoint_feedback": "Only completed held action windows observed by a subsequent provider call receive feedback. The final unobserved endpoint is censored from feedback but included in physical quality metrics.",
+    "population_inference": false,
+    "historical_comparison": "The prior 480-step global-memory result stays unchanged. This 960-step regime cannot establish a direct causal improvement over that historical campaign."
+  },
+  "prerequisite_shadow": {
+    "path": "sdk/discovery/gpu_retrieval_shadow_closure_v1.json",
+    "sha256": "85fa6c9d0f233e1fe53f3265cf39f4f37d8669a548c7884eda93d4c1bf8c788d"
+  },
+  "prerequisite_influence": {
+    "path": "sdk/discovery/gpu_retrieval_influence_closure_v1.json",
+    "sha256": "21227c0b99dfcb67170bb8f6723b383c2d85e3e3f9a900596f26068119aa06b3"
+  },
+  "contextual_contract_sha256": "febf73824c04e92519e3a9717e79c07219253d06eccd75e8ab389f1115bd5edf",
+  "development_groups": [
+    {
+      "group_id": "context_development_0",
+      "source_group_id": "calibration_1",
+      "partition": "exposed_development",
+      "seed": 104231000
+    },
+    {
+      "group_id": "context_development_1",
+      "source_group_id": "calibration_2",
+      "partition": "exposed_development",
+      "seed": 104231001
+    },
+    {
+      "group_id": "context_development_2",
+      "source_group_id": "calibration_3",
+      "partition": "exposed_development",
+      "seed": 104231002
+    }
+  ],
+  "design_diagnostic": {
+    "attempt_id": "sdk2-feedback-diagnostic-92e7d766b2cf4fee84bbe115e6783a60",
+    "artifact": "diagnostic.json",
+    "sha256": "53dd6dc411bf54ae080e5a86ca14ad7b52b4d7b0ae5583f41f0ec5b13ee03712",
+    "posthoc": true,
+    "counterfactual_outcome_authority": false
+  }
+}

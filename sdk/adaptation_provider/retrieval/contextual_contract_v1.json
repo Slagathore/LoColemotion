@@ -1,0 +1,40 @@
+{
+  "schema_version": "locolemotion_contextual_episode_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "provider_id": "s169_contextual_retrieval_v1",
+  "provider_version": "contextual_retrieval_v1",
+  "base_contract": "flat_contract_v2.json",
+  "base_contract_sha256": "717982eb5623106c5e34a75b69a5622ace43e6517e4f929076502606b2ec8741",
+  "memory_schema_version": "locolemotion_contextual_episode_memory_v1",
+  "context": "exact_phase_tuple_and_contact_mask_with_base_scaled_distance",
+  "nearest_neighbors": 3,
+  "kernel_epsilon": 0.000001,
+  "maximum_records": 64,
+  "eviction": "oldest_completed_window_first",
+  "outcome": "completed_held_window_quality_minus_frozen_prediction",
+  "maximum_residual_m_s": 0.15,
+  "maximum_opaque_state_bytes": 65536,
+  "checkpoint": "records_updates_evictions_before_current_observation",
+  "rollback": "restore_checkpoint_discard_active_window_keep_controller_clock",
+  "shuffled_feedback": "credit_opposite_action_preserve_actual_applied_action_and_start_context",
+  "inherits": [
+    "frozen_casebook",
+    "feature_scales",
+    "maximum_support_distance",
+    "decision_window_steps",
+    "minimum_predicted_gain_m_s",
+    "absolute_and_slew_command_bounds"
+  ],
+  "authority": {
+    "development_only": true,
+    "base_model_immutable": true,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "safety_probability": false
+  }
+}

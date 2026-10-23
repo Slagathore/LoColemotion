@@ -1824,3 +1824,33 @@ source, not newly archived PDF bytes. They do not certify all sources or license
 entries in the proposal. Imported code remains subject to the repository's
 normal provenance/license review. Possible novelty of an integration is a
 research hypothesis, not established by this literature selection.
+
+## 2026-10-23 context-indexed episode feedback
+
+The retained native comparison supports frozen retrieval in its finite domain
+but gives episode memory a 0/3 benefit result. Its global per-action offsets
+reuse feedback across contexts: the diagnostic records 34/35 changed choices
+without matching phase/contact/nearby-state feedback for the decisive offsets.
+This observation motivates a distinct component; it does not prove its benefit.
+
+[Pritzel et al., Neural Episodic Control, ICML 2017](https://proceedings.mlr.press/v70/pritzel17a/pritzel17a.pdf),
+sections 3.1-3.3, indexes per-action memories by state representations and uses
+normalized kernel weights over nearby keys. The key represents the action-time
+state; insertion waits for the outcome estimate. Adopt context-indexed lookup
+and delayed credit, using the existing canonical cue and frozen casebook. The
+new component is not an NEC replication: it has no learned visual embedding,
+Q-value bootstrapping, gradient updates or Atari performance claim.
+
+[Blundell et al., Model-Free Episodic Control, v1](https://arxiv.org/html/1606.04460v1#S2)
+explains that retaining only the highest observed return can produce risk-seeking
+behavior in stochastic settings. This component retains negative residuals and
+uses weighted averaging rather than best-return selection. Its 64-record bound,
+oldest-first eviction and explicit checkpoint/rollback/reset are project choices,
+not results established by either paper. Neither source establishes locomotion
+safety or transfer across this project's engines.
+
+These are primary-paper idea adoptions. No external implementation, model or
+third-party code was imported. The native successor must earn its own result
+with memory-off, shuffled-proposal and shuffled-feedback controls, unchanged
+command bounds and measured influence exposure. Empirical withdrawal monitoring,
+unopened evaluation and qualification remain separate work.
