@@ -104,9 +104,19 @@ def verify(index: dict, root: Path, archive_root: Path | None = None) -> dict:
             == index["full_program_counts"], "Full-program count mismatch")
     require(receipt["claims"]["publication_authorized"] is False and receipt["claims"]["sdk1_released"] is False,
             "Milestone receipt is being presented as a release")
+    historical = index.get("historical_readiness_sources", {})
+    require(isinstance(historical, dict) and set(historical) <= {"support_matrix"},
+            "Unsupported historical readiness source")
     for key, path in [("mapping", "sdk/release/quadruped_sdk1_milestone_mapping_v1.json"),
                       ("contract", "sdk/release/quadruped_release_contract.json"),
                       ("support_matrix", "sdk/release/quadruped_support_matrix.json")]:
+        original_path = path
+        path = historical.get(key, path)
+        if path != original_path:
+            require(path in by_path and path.startswith("proof/sources/")
+                    and any(row["path"] == path and row["original_path"] == original_path
+                            for row in index.get("historical_source_copies", [])),
+                    "Unbound historical readiness source")
         require(receipt[key]["sha256"].removeprefix("sha256:") == by_path[path]["sha256"], "Readiness binding mismatch: " + key)
     matrix = read_json(within(root, "sdk/release/quadruped_support_matrix.json"))
     require(matrix["comparative_inference"]["formal_equivalence_study_accepted"] is False

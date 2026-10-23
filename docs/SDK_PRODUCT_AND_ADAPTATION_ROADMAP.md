@@ -463,6 +463,14 @@ an already-zero roll component and was correctly not rejected. The repaired
 control introduces an actual changed component. Native v2 collection still
 requires its clean pushed source and repeated prelaunch gate.
 
+The public evidence index now distinguishes the exact historical SDK1 support
+matrix from the current development matrix. The old readiness receipt still
+binds the byte-identical [snapshot](../proof/sources/quadruped_support_matrix_at_sdk1_snapshot.json);
+current status has its own checked digest. This forward correction follows a
+publication-check refusal at `632cc797`, preserves the old receipt and outcomes,
+and passes all 21 publication controls plus replay controls. It grants no new
+scientific authority and changes no training or evaluation rule.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

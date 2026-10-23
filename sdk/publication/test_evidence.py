@@ -123,6 +123,23 @@ class EvidenceControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Checkout alternatives are limited to exported SDK source"):
             verify(broken, self.root)
 
+    def test_historical_readiness_cannot_be_rebound_to_current_status(self):
+        broken = copy.deepcopy(self.index)
+        broken["historical_readiness_sources"]["support_matrix"] = "sdk/release/quadruped_support_matrix.json"
+        with self.assertRaisesRegex(ValueError, "Readiness binding mismatch"):
+            verify(broken, self.root)
+
+    def test_historical_readiness_requires_an_exact_indexed_source_copy(self):
+        for location in ["proof/receipts/sdk1-clean-readiness.json", "proof/sources/missing.json"]:
+            broken = copy.deepcopy(self.index)
+            broken["historical_readiness_sources"]["support_matrix"] = location
+            with self.assertRaisesRegex(ValueError, "Unbound historical readiness source"):
+                verify(broken, self.root)
+        broken = copy.deepcopy(self.index)
+        broken["historical_readiness_sources"]["contract"] = "sdk/release/quadruped_release_contract.json"
+        with self.assertRaisesRegex(ValueError, "Unsupported historical readiness source"):
+            verify(broken, self.root)
+
 
 if __name__ == "__main__":
     unittest.main()
