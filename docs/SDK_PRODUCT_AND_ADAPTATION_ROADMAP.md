@@ -267,7 +267,8 @@ records adoption limits; this roadmap remains the sequencing authority.
 | L1 | Build a diverse S169 repertoire before expanding body or task scope | Declared bounded genome, two or three behavior axes and eligibility rules; append-only record of every trial and replaced elite; frozen shortlist challenged in fresh native worlds |
 | L2 | Use deterministic retrieval of frozen, characterized residual proposals as the first Tier 2 candidate | Grouped corpus and calibration/evaluation splits; bounded provider output; shadow then fresh influence trials against baseline, retrieval-disabled and shuffled-association controls, with trigger/influence matching |
 | L3 | Add an empirical monitor that withdraws provider influence using existing refusal states first | Frozen fitting set, hysteresis and explicit unsupported states; fresh non-inferiority evaluation under a prospectively chosen practical margin |
-| Later | Residual learning and history-based adaptation, then reversible Tier 3 episode memory | Compare with retrieval; preserve the deployed clamp chain, immutable base model, bounded memory, reset/rollback and fresh memory-off/shuffled controls |
+| Next | Reversible Tier 3 episode memory over the frozen retrieval provider | Preserve the immutable base corpus/model, bounded memory, reset/rollback and fresh memory-off/shuffled controls |
+| Optional improvement | Residual learning and history-based adaptation | Beat the retrieval baseline on fresh groups while preserving the deployed clamp chain; these are not prerequisites to experimental Tier 3 |
 
 A retrieval provider need not train a neural network, but its frozen corpus and
 selection rule are still a fitted artifact requiring evaluation. L1 can begin

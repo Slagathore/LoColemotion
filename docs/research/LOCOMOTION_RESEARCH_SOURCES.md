@@ -1750,7 +1750,9 @@ retrieval before neural residual learning. Retain memory-off and shuffled-key
 controls, and match trigger/influence opportunities so another generic correction
 cannot masquerade as a retrieval benefit. The small, fixed-topology body family
 makes a bounded provider a useful first target without waiting for general
-morphology support or formal engine equivalence.
+morphology support or formal engine equivalence. Tier 3 can then test bounded,
+reversible episode memory over that frozen retrieval provider; residual neural
+learning and a history encoder are optional improvements, not prerequisites.
 
 Corrections and implementation boundaries:
 

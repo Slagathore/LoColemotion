@@ -140,7 +140,8 @@ the speed and live recovery-handoff objectives remain open. See the
 
 The [2026-10-23 research-informed sequence](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
 now prioritizes batching the complete deployed path, a diverse repertoire and
-a frozen retrieval provider before neural residual learning. The
+a frozen retrieval provider before neural residual learning. Reversible Tier 3
+episode memory can follow retrieval without waiting for a neural model. The
 [proposal review](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-23-adaptation-proposal-review)
 qualifies the v1 compatibility, empirical monitor, statistical and GPU
 repeatability claims. Trial retention stays separate from elite selection;
