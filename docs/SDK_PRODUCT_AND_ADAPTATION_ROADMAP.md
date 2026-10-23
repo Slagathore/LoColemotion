@@ -509,6 +509,36 @@ influence accounting before interpreting Tier 3 behavior. The empirical
 withdrawal monitor, fresh CPU/native transfer, three-engine promotion, Studio
 handoff/performance and all SDK2 claim targets remain open.
 
+The [fresh native shadow route](../sdk/discovery/gpu_retrieval_shadow_v1.json)
+is now implemented for the exact frozen casebook. One fresh `calibration_0`
+world runs 480 baseline commands and 2,400 physics steps. Frozen, disabled,
+shuffled, episodic and shuffled-episode providers observe that same trajectory
+with separate memory. Checkpoint, rollback and reset occur at steps 120, 240
+and 360 in the two episodic modes. Every hypothetical resolution records that
+its commands were not applied; previous applied correction remains exactly
+zero. Shadow feedback is diagnostic and cannot establish action-effect credit,
+become training data or promote the base model.
+
+The [independent reader](../sdk/discovery/audit_gpu_retrieval_shadow.py) replays
+the scalar baseline and all five provider streams, checks native observation
+joins, reconstructs request/model/memory bindings and independently computes
+the hypothetical clamps. Provider errors retain exact baseline actuation;
+an invalid host transaction closes its session rather than resuming partial
+memory. Nine new actual-ABI controls pass, including the abbreviated lifecycle
+exercise on 62 exposed training inputs with zero worlds. These are component
+inputs, not fresh calibration observations.
+
+The complete **68-test** development gate passes at
+`sdk2-gpu-retrieval-shadow-27cec5731b6f41709b7499ccfe4852e4`, including the native
+fit closure, measurement, contact observations, host/graph execution, provider
+and actual process-containment controls. Runtime preflight constructs zero
+worlds. The [launcher](../sdk/discovery/run_gpu_retrieval_shadow.py) must repeat
+this gate from clean pushed source before consuming its fresh one-world attempt.
+Shadow readiness requires an eligible baseline, a supported nonzero frozen
+proposal and no provider/protocol errors; even a positive opens no learned
+influence or promotion authority. Native execution remains next at this source
+checkpoint.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

@@ -1,0 +1,121 @@
+{
+  "schema_version": "locolemotion_gpu_retrieval_shadow_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "purpose": "Fresh native shadow integration of the exact fitted casebook. One calibration world uses unchanged baseline actuation; five independent shadow memories cannot affect physics or become training outcomes.",
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "model_xml_sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06",
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "gpu_dtype": "float32",
+  "cpu_dtype": "float64",
+  "seed": 104230800,
+  "outer_steps": 480,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "cpu_warning_count": 7,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "maximum_worker_wall_seconds": 900,
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+  "phase_mode": "clocked",
+  "provider": {
+    "kind": "absent_provider_shadow_baseline",
+    "maximum_absolute_correction_rad_s": 0.25,
+    "maximum_slew_per_step_rad_s": 0.02,
+    "candidates": [
+      {
+        "id": "baseline",
+        "factor": null
+      }
+    ]
+  },
+  "initialization": "One fresh upright S169 world with native lateral velocity 0.0025 m/s from calibration group calibration_0; no post-step reset or world-state modification.",
+  "sampling": "Both routes retain every completed internal state, held solver input, named force pair, contact, capacity counter and every portable/provider decision. Graph capture copies five internal snapshots into preallocated device history before the next step1 clears force sensors; host reads occur after graph launch. Prepared observations use checked production-adapter readback and the retained contact compatibility copy. CPU dynamics are forbidden.",
+  "coverage": [
+    "one fresh calibration condition and unchanged baseline production path",
+    "all five provider modes with isolated memory",
+    "checkpoint rollback reset and immutable model",
+    "every native observation and held solver input",
+    "full force contact capacity and timing capture",
+    "scalar replay and independent hypothetical-clamp arithmetic",
+    "contained serialized worker"
+  ],
+  "not_covered": [
+    "native learned influence",
+    "action-effect credit or useful episode adaptation",
+    "held-out performance",
+    "empirical recoverability monitor",
+    "three-engine promotion",
+    "engine equivalence",
+    "Studio recovery handoff",
+    "force-aware recovery"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "predecessor": {
+    "native_fit": "sdk/discovery/gpu_repertoire_fit_closure_v2.json"
+  },
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "warmup_outer_steps": 0,
+  "naconmax_per_world": 64,
+  "maximum_trace_bytes_per_trial": 536870912,
+  "retrieval_contract_sha256": "717982eb5623106c5e34a75b69a5622ace43e6517e4f929076502606b2ec8741",
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0,
+    "maximum_safe_no_actuation_steps": 0
+  },
+  "shadow_modes": [
+    "frozen",
+    "episodic",
+    "disabled",
+    "shuffled",
+    "episodic_shuffled"
+  ],
+  "shadow_operations": [
+    {
+      "outer_step": 120,
+      "operation": "checkpoint"
+    },
+    {
+      "outer_step": 240,
+      "operation": "rollback"
+    },
+    {
+      "outer_step": 360,
+      "operation": "reset"
+    }
+  ],
+  "shadow_operation_modes": [
+    "episodic",
+    "episodic_shuffled"
+  ],
+  "shadow_semantics": "All providers observe the same fresh baseline trajectory. Previous applied correction is always zero. Each hypothetical one-step resolution advances only its private shadow memory; no proposed command reaches physics. Feedback has no causal action-effect meaning and is never fitted or promoted.",
+  "calibration_group_id": "calibration_0",
+  "model": {
+    "closure_path": "sdk/discovery/gpu_repertoire_fit_closure_v2.json",
+    "closure_sha256": "5d3108cc71953ad1bd4f38aeb04125753d2bb45fedc2356c240788ec35e27dc5",
+    "attempt_id": "sdk2-gpu-repertoire-v2-c9c452eee9b144c7aa2ce95e68b99548",
+    "artifact": "fitted/fitted_model.json",
+    "artifact_sha256": "1688d7822630f0f018f3ee4e7bc164fc95ba6f62edb61c69966494e269d6acf2",
+    "canonical_sha256": "sha256:3388543fe3e4d7baef933395376cc3154501073c8fc72ee51c6733b356fb287a",
+    "fit_receipt_sha256": "ffa5ceb8d5b5a61a4e27a044116ba2d6d695198968d7fae39531e7d7e596a63d"
+  },
+  "readiness": "All rows must be valid and no provider errors or malformed responses may occur. Frozen retrieval must produce a supported nonzero hypothetical correction. This is only readiness to design a distinct influence campaign; it grants no physical influence or promotion authority."
+}

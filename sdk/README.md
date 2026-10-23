@@ -1,5 +1,30 @@
 # LoColemotion Locomotion SDK
 
+SDK2 shadow integration checkpoint (2026-10-23): the
+[prospective native route](discovery/gpu_retrieval_shadow_v1.json) passes its
+complete 68-test zero-world development gate. One fresh calibration world will
+retain 480 baseline decisions, 2,400 physics samples and 2,400 hypothetical
+provider decisions across five isolated modes. The two episodic modes exercise
+checkpoint, rollback and reset. All physical commands remain the baseline;
+shadow feedback cannot establish an unexecuted action's effect or train a model.
+The [reader](discovery/audit_gpu_retrieval_shadow.py) independently checks the
+native joins, scalar baseline, request/memory transport and hypothetical clamps.
+
+From PowerShell at this repository root, run the complete gate with the exact
+bound runtime images:
+
+```powershell
+& ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B `
+  ./sdk/discovery/run_gpu_retrieval_shadow.py `
+  --core PATH_TO_BOUND_BATCH_CORE_DLL `
+  --baseline-core PATH_TO_BOUND_SCALAR_CORE_DLL
+```
+
+Success reports `ok: true` and `physical_started: false`. A clean pushed source
+freeze is required before adding `--run`, which repeats the full gate and
+consumes a fresh contained attempt. A positive shadow result does not qualify
+learned influence, native Tier 3 benefit or provider promotion.
+
 SDK2 native-learning checkpoint (2026-10-23): the
 [flat-start v2 repertoire and fit](discovery/gpu_repertoire_fit_closure_v2.json)
 now provide one immutable native development candidate. All 36 episodes met the

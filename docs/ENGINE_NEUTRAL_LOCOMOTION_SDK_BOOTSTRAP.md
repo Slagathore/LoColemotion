@@ -17,6 +17,15 @@ archive bins are occupied, and calibration/evaluation groups remain unopened.
 Fresh native shadow/influence, reversible-memory comparisons and qualification
 are next. This is native fitting, not completed Tier 2 or Tier 3 behavior.
 
+The [shadow implementation](../sdk/discovery/gpu_retrieval_shadow_v1.json) now
+passes its complete 68-test development gate. It declares one fresh calibration
+world with baseline-only actuation and five isolated provider memories, retaining
+all hypothetical resolutions and checkpoint/rollback/reset transitions. The
+independent reader checks native joins, scalar baseline equality and provider
+replay. Shadow feedback has no action-effect or training authority. A clean
+pushed freeze and repeated gate must precede native execution; learned influence
+and Tier 3 benefit remain untested.
+
 The [upstream discussion adoption](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-22-upstream-discussion-follow-through)
 adds explicit force-sampling semantics. Seven new measurement controls pass,
 including all 1,800 retained VH4 example rows. The new
