@@ -84,3 +84,36 @@ def audit(folder: Path):
                 named_sensor_max_disagreement_nm=sensor_error, cpu_gpu_max_absolute_difference=maxima,
                 interpretation='Differences include CPU float64 versus GPU float32 input projection. No equivalence margin or acceptance test is asserted.',
                 physical_acceptance_authority=False, release_authority=False, training_data_authority=False)
+
+
+def verify_closure(closure_path: Path, evidence_root: Path):
+    """Authenticate the retained attempt and recompute its independent audit."""
+    closure = json.loads(closure_path.read_text())
+    evidence_root = evidence_root.resolve()
+    seen = set()
+    for artifact in closure['artifacts']:
+        relative = artifact['evidence_relative_path']
+        path = (evidence_root/relative).resolve()
+        if relative in seen or not path.is_relative_to(evidence_root):
+            raise ValueError('Duplicate or escaping evidence path')
+        seen.add(relative)
+        raw = path.read_bytes()
+        if len(raw) != artifact['byte_length'] or hashlib.sha256(raw).hexdigest() != artifact['sha256']:
+            raise ValueError('Retained artifact changed: '+relative)
+    attempt = (evidence_root/closure['attempt_id']).resolve()
+    required = ['receipt.json', 'declaration.json', 'consumed.json', 'independent-audit.json',
+                'physical/trace.csv', 'physical/inputs.json', 'physical/worker-result.json',
+                'physical/model.xml', 'physical/stdout.log', 'physical/stderr.log']
+    if not attempt.is_relative_to(evidence_root) or any(closure['attempt_id']+'/'+p not in seen for p in required):
+        raise ValueError('Incomplete closure inventory')
+    receipt = json.loads((attempt/'receipt.json').read_text())
+    if receipt['ok'] is not True or receipt['source_commit'] != closure['source_commit']:
+        raise ValueError('Attempt source or completion mismatch')
+    observed = audit(attempt/'physical')
+    if observed != closure['independent_audit']:
+        raise ValueError('Independent audit changed')
+    for flag in ['physical_acceptance_authority', 'release_authority', 'equivalence_authority', 'training_data_authority']:
+        if closure[flag] is not False:
+            raise ValueError('Closure authority changed')
+    return dict(ok=True, verified_artifacts=len(seen), rows=observed['rows'],
+                source_commit=closure['source_commit'], new_worlds=0)

@@ -1,0 +1,239 @@
+{
+  "schema_version": "sporespore_gpu_measurement_probe_closure_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_cpu_and_warp",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "source_commit": "91822bb872672f759b57b86c184e1eb615639be6",
+  "status": "execution_valid_measurement_with_clamp_branch_sensitive_disagreement",
+  "attempt_consumed": true,
+  "attempt_id": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2",
+  "declaration": "sdk/discovery/gpu_measurement_probe_v1.json",
+  "independent_audit": {
+    "ok": true,
+    "status": "complete_finite_measurement",
+    "rows": 1920,
+    "cpu_worlds": 8,
+    "gpu_worlds": 8,
+    "cpu_scalar_oracle_max_error": 1.9984014443252818e-15,
+    "named_sensor_max_disagreement_nm": 0.0,
+    "cpu_gpu_max_absolute_difference": {
+      "after_rad_s": 0.2999998450279235,
+      "completed_step_force_nm": 2.9999983310699454,
+      "post_state_force_nm": 2.999998211860656,
+      "scalar_net_impulse_nms": 0.004999999403953552
+    },
+    "interpretation": "Differences include CPU float64 versus GPU float32 input projection. No equivalence margin or acceptance test is asserted.",
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "training_data_authority": false
+  },
+  "worker": {
+    "ok": true,
+    "status": "completed_measurement_not_equivalence",
+    "ledger_scope": {
+      "subsystem": "discovery",
+      "engine_scope": "mujoco_cpu_and_warp",
+      "authority_mode": "development",
+      "question_class": "development"
+    },
+    "versions": {
+      "mujoco": "3.11.0",
+      "mujoco-warp": "3.11.0",
+      "warp-lang": "1.16.0",
+      "numpy": "2.4.6"
+    },
+    "device": {
+      "alias": "cuda:0",
+      "name": "NVIDIA GeForce RTX 4070 Ti",
+      "architecture": 89
+    },
+    "cpu_worlds": 8,
+    "gpu_worlds": 8,
+    "solver_steps_per_backend": 960,
+    "timings": {
+      "cpu_execution_and_capture_s": 0.04825139999957173,
+      "gpu_setup_s": 0.4394952000002377,
+      "gpu_first_step_including_jit_s": 52.67872069999794,
+      "gpu_later_steps_including_sync_s": 1.399182600012864,
+      "gpu_setup_execution_transfers_capture_s": 54.65021119999801
+    },
+    "total_wall_s": 54.70138140000199,
+    "trace_sha256": "40350faeb413ed9b1aa0c0ad34b21f3a0108ee0b2e7a87569f1c134b533e4915",
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "training_data_authority": false
+  },
+  "diagnosis": {
+    "source_path": "sdk/discovery/diagnose_gpu_measurement_probe.py",
+    "source_sha256": "ebe846892961c5a4c69259caf41c2ffc6ad4623c92181cb7fd90d4996d6f6fe2",
+    "input_trace_sha256": "40350faeb413ed9b1aa0c0ad34b21f3a0108ee0b2e7a87569f1c134b533e4915",
+    "branch_mismatch_cells": [
+      1,
+      5
+    ],
+    "branch_mismatch_steps_by_cell": {
+      "1": [
+        62
+      ],
+      "5": [
+        62
+      ]
+    },
+    "observed_branch_scalar_equation_max_residual_rad_s": {
+      "cpu": 1.1102230246251565e-16,
+      "gpu": 1.8477439878150648e-07
+    }
+  },
+  "artifacts": [
+    {
+      "evidence_relative_path": "sdk2-gpu-clamp-diagnosis-20261022-01/diagnosis.json",
+      "byte_length": 4170,
+      "sha256": "6718c4c4c0900813efa01f86c87d95fa827c1a14da0b8da3e4337055a017377f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/consumed.json",
+      "byte_length": 139,
+      "sha256": "0491bde8459ec694d04fd6d478569d2b1a23aef46a9ef511853140ce4a3605dd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/containment-gate/leaf.json",
+      "byte_length": 690,
+      "sha256": "55eb25924828bd0f830c535fc90a0af7b87b9c08504ad15ec1e5bb8c30f71181"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/containment-gate/stderr.log",
+      "byte_length": 103,
+      "sha256": "2f983e0f4b81c919fc684d72f65cd78141de0fccbb7ecaec8227af33ed0e5db1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/containment-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/declaration.json",
+      "byte_length": 297527,
+      "sha256": "c4860d4c5cd0d79967ea9f1988f53261572b780a5bf177e736c5a34a96c20268"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/independent-audit.json",
+      "byte_length": 699,
+      "sha256": "53347e15324039f1398e8f7bf99f441d0933af15f136da42ae0338ac28344898"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/measurement-gate/leaf.json",
+      "byte_length": 527,
+      "sha256": "1b57bbc4f0f0bde87bd90abd8a688c0755152ddb42ea69d24e6cdf27b67d26fc"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/measurement-gate/stderr.log",
+      "byte_length": 1181,
+      "sha256": "69641370e9f004446806b9c7f8b4e5c60abc84d7b002316fa756e0087cb10dfd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/measurement-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/ownership-a4f44250a5f74e31a9a2d18cbf6856b3/leaf.json",
+      "byte_length": 518,
+      "sha256": "c513f757a4098071015404d864ee3732089c68d744903511dcb365e747bc7a2e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/ownership-a4f44250a5f74e31a9a2d18cbf6856b3/stderr.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/ownership-a4f44250a5f74e31a9a2d18cbf6856b3/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/physical/inputs.json",
+      "byte_length": 358,
+      "sha256": "846f8caa7097a72e809a70a8ffe4a460d01fe71652ae4288d17d137a0868cbb5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/physical/leaf.json",
+      "byte_length": 752,
+      "sha256": "819d9268610276933f74d7280af3bd5911b54302e269576e3ae27c125b32b897"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/physical/model.xml",
+      "byte_length": 695,
+      "sha256": "08192c6b16734551ce6d7cb5253eb6158c8e54c5bd13b09f5e590c1bbab01bb0"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/physical/stderr.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/physical/stdout.log",
+      "byte_length": 3948,
+      "sha256": "37563f5fd1d656e46f301bc85baae5266a825641d38b4296edaeab2ab0ff4fd7"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/physical/trace.csv",
+      "byte_length": 290343,
+      "sha256": "40350faeb413ed9b1aa0c0ad34b21f3a0108ee0b2e7a87569f1c134b533e4915"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/physical/worker-result.json",
+      "byte_length": 1070,
+      "sha256": "2e2f3c4946db00e262cd02cce08297f3882e05689ec49e78bca41c3877af7d7a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/probe-gate/leaf.json",
+      "byte_length": 521,
+      "sha256": "880dab5e126dd468c7cfe63f67d4b543bf6486b0b8a0edc8ee80b7a18e7b2d04"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/probe-gate/stderr.log",
+      "byte_length": 1229,
+      "sha256": "da2300adf02731210096db89d6e0193a1b00e37737009ee3ffa9d47faab09d93"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/probe-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/receipt.json",
+      "byte_length": 298306,
+      "sha256": "4b601fe89d8f36c423654a83263137f1a3581267cea20961f2323365e29e54e6"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/runtime-gate/leaf.json",
+      "byte_length": 484,
+      "sha256": "cf00386128535ebb5b2236726bbbd4b58f7e23b0405304709f16ef8ce63b5281"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/runtime-gate/stderr.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2/runtime-gate/stdout.log",
+      "byte_length": 244,
+      "sha256": "761986c769bede0b1ebe9b5e4c6749a560b013b349e9c64e02cfa90a275cff29"
+    }
+  ],
+  "scope": "Eight unloaded scalar cells per backend, 120 steps each. Named force sampling and complete execution are commissioned. Differences are measured, not accepted as equivalent. No quadruped, contact, throughput, training or release result.",
+  "successor_requirements": [
+    "Retain clamp branch identity and near-boundary counterexamples in training and transfer diagnostics.",
+    "Commission the actual bounded quadruped GPU route with contact, capacity and control checks before candidate training.",
+    "Keep experimental candidate training separate from independent native promotion; do not require broad equivalence merely for hypothesis generation.",
+    "Complete Studio live recovery and portable setup; the scalar GPU result does not satisfy those product requirements."
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "declaration_sha256": "c4860d4c5cd0d79967ea9f1988f53261572b780a5bf177e736c5a34a96c20268"
+}

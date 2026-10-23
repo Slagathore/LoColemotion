@@ -110,6 +110,13 @@ contained native process, measures eight scalar cells per backend, and runs an
 independent complete-trace reader. Its result is measurement commissioning,
 not quadruped training, a throughput benchmark, or an equivalence decision.
 
+The [first native probe](../sdk/discovery/gpu_measurement_probe_closure_v1.json)
+completed all 1,920 rows. Two cells diverged at a force-clamp branch after a
+command reversal, reaching a 0.30 rad/s difference despite matching sensor
+semantics. Candidate search must retain such branch-sensitive cases and expose
+them to native transfer tests; they must not be hidden by a widened tolerance.
+Quadruped conversion/contact commissioning, training and Studio work remain open.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

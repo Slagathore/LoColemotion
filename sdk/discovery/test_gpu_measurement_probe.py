@@ -116,6 +116,44 @@ class ProbeControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'authority'):
             audit(folder)
 
+    def test_diagnosis_preserves_every_cell_and_grants_no_authority(self):
+        from diagnose_gpu_measurement_probe import diagnose
+        result = diagnose(self.fixture())
+        self.assertEqual(result['audited_rows'], 1920)
+        self.assertEqual([r['cell'] for r in result['per_cell']], list(range(8)))
+        self.assertFalse(result['equivalence_authority'])
+        self.assertFalse(result['thresholds_changed'])
+
+    def test_closure_rehashes_artifacts_and_recomputes_reader(self):
+        from audit_gpu_measurement_probe import verify_closure
+        physical = self.fixture()
+        attempt = physical.parent
+        source = '0'*40
+        (attempt/'receipt.json').write_text(json.dumps(dict(ok=True, source_commit=source, synthetic=True)))
+        (attempt/'consumed.json').write_text(json.dumps(dict(synthetic=True)))
+        observed = audit(physical)
+        (attempt/'independent-audit.json').write_text(json.dumps(observed))
+        for name in ['model.xml', 'stdout.log', 'stderr.log']:
+            (physical/name).write_text('synthetic fixture only')
+        artifacts = [dict(evidence_relative_path=p.relative_to(self.folder).as_posix(),
+            byte_length=p.stat().st_size, sha256=hashlib.sha256(p.read_bytes()).hexdigest())
+            for p in attempt.rglob('*') if p.is_file()]
+        closure = dict(artifacts=artifacts, attempt_id=attempt.name, source_commit=source,
+            independent_audit=observed, physical_acceptance_authority=False, release_authority=False,
+            equivalence_authority=False, training_data_authority=False, synthetic=True)
+        path = self.folder/(attempt.name+'-closure.json')
+        path.write_text(json.dumps(closure))
+        self.assertTrue(verify_closure(path, self.folder)['ok'])
+        changed = copy.deepcopy(closure)
+        changed['independent_audit']['rows'] = 1
+        path.write_text(json.dumps(changed))
+        with self.assertRaisesRegex(ValueError, 'audit changed'):
+            verify_closure(path, self.folder)
+        path.write_text(json.dumps(closure))
+        (physical/'stderr.log').write_text('changed artifact')
+        with self.assertRaisesRegex(ValueError, 'artifact changed'):
+            verify_closure(path, self.folder)
+
 
 if __name__ == '__main__':
     unittest.main()

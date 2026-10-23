@@ -14,8 +14,28 @@ including all 1,800 retained VH4 example rows. The new
 its complete development zero-world gate: eight probe/reader controls, seven
 measurement controls, actual process-tree containment and runtime preflight.
 The retained gate is `sdk2-gpu-measurement-248ff38d227a4b60b8e458cb1e30bb7e`
-under the durable evidence root. It opened zero worlds. Native execution must
-use a fresh attempt after the clean pushed freeze; no GPU result is claimed yet.
+under the durable evidence root. It opened zero worlds.
+
+Clean pushed source `91822bb8` then passed the complete gate again and consumed
+`sdk2-gpu-measurement-b1629194d6ad43e191c1d488e34ac6b2`. The
+[native closure](../sdk/discovery/gpu_measurement_probe_closure_v1.json) retains
+all **1,920 rows**, eight cells per backend and 120 steps per cell. Both backends'
+named actuator/joint sensor pairs agree exactly. The CPU scalar oracle maximum
+error is `1.9984e-15`.
+
+The measurement route passed, but trajectories are not interchangeable: maximum
+velocity difference is **0.299999845 rad/s**. Cells 1 and 5 switch clamp branches
+at step 62: CPU force is just inside the limit while GPU rounding reaches the
+limit. The retained diagnosis finds each observed branch locally consistent
+with the scalar equation (maximum residual `1.11e-16` CPU, `1.85e-7` GPU).
+This is a branch-sensitive counterexample, not an engine defect claim or an
+equivalence failure under a nonexistent margin. No tolerance changes. The cold
+first GPU step including compilation took 52.679 seconds; this small,
+synchronously captured probe is not a throughput benchmark.
+
+Next: preserve clamp branch labels in the quadruped development/training route,
+commission contacts/capacities/control and challenge candidates natively.
+Broader equivalence remains separate from exploratory candidate generation.
 
 This scalar probe commissions measurement/execution only. Quadruped GPU
 discovery, provisional training, native candidate transfer, provider training,

@@ -1729,3 +1729,10 @@ to invent Rapier outer totals. Their archived-trace test checks all 1,800 rows
 of the published VH4 cell; it does not rescore VH4. Contact-rich accounting needs
 its own full generalized-force/integrator treatment, including bias, passive,
 applied and constraint channels. No scalar residual is promoted to that claim.
+
+The distinct [GPU probe closure](../../sdk/discovery/gpu_measurement_probe_closure_v1.json)
+subsequently retained a concrete clamp-boundary counterexample: two of eight
+scalar cells use different CPU/GPU derivative branches at the same step after
+command reversal. The observed equations remain locally consistent while the
+trajectories differ materially. Preserve both branch identity and the original
+result when designing training labels and fresh native transfer challenges.
