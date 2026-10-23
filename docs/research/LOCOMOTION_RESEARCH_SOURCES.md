@@ -2116,3 +2116,12 @@ fresh baseline and reference worlds. It changes no control equation or bound.
 Full-horizon eligibility and censored quality differences remain distinct; an
 exact finite comparison is not a statistical non-inferiority result. The new
 controls pass, but physical confirmation remains unopened.
+
+The [completed duration/nominal comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
+retains nine eligible and three negative trials. The fixed height role passes
+all four twelve-second trials, but its nominal tracking score is below baseline
+at both starts; the declared nominal quality guard is false. This motivates a
+new discovery question about causal-history/context-dependent selection. It
+supplies no training data, replacement selection, learned benefit or statistical
+non-inferiority result. Future fitting must use separately authorized discovery;
+all three failures and the healthy-body costs remain part of the record.

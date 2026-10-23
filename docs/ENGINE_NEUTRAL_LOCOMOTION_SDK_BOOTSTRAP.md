@@ -2,14 +2,17 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Latest prepared successor (2026-10-23): [twelve-second height confirmation](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
-compares the exact selected controller, reference and baseline at both starts on
-left-75 and nominal profiles. All 169 zero-world controls pass; 12 CPU worlds,
-17,280 decisions and 86,400 internal samples remain unopened until a clean
-published freeze and repeated complete gate. No fitting, reselection, formal
-non-inferiority or adaptation/release authority is granted.
+Latest confirmation (2026-10-23): [twelve-second height confirmation](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
+completed twelve CPU worlds from `499ca1f3` after all 169 controls passed.
+Independent replay verified 17,280 decisions and 86,400 internal samples:
+**9/12 eligible, 3/12 negative**. The fixed height candidate passes both starts
+on degraded and nominal bodies, but nominal tracking is worse than baseline
+by 0.0538553 and 0.0123895 m/s. The nominal quality guard is false. All six
+closure controls pass over 6,955 retained artifacts. Next require separately
+declared discovery for causal-history/context selection; confirmation remains
+excluded from fitting and reselection. No adaptation or release claim is earned.
 
-Latest discovery (2026-10-23): the [closed body-height comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
+Earlier discovery (2026-10-23): the [closed body-height comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
 completed six CPU worlds from published `d2ff50fc` after all 159 controls passed.
 Independent replay verified 2,880 decisions and 14,400 internal samples:
 **3/6 eligible, 3/6 negative**. Height feedback passed both starts and is selected

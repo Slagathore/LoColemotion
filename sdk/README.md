@@ -1,11 +1,13 @@
 # LoColemotion Locomotion SDK
 
-The [twelve-second height confirmation](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
-is prepared with all 169 zero-world controls passing. Its twelve fresh CPU
-worlds will compare the fixed selected candidate, reference and baseline at
-both exposed starts on degraded and nominal profiles. The controller and pass
-criteria are unchanged; confirmation grants no fitting or reselection authority.
-No confirmation world has opened at this checkpoint.
+The [twelve-second height confirmation](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
+is closed after all 169 controls and twelve fresh CPU worlds. Independent replay
+verified 17,280 decisions and 86,400 internal samples: **9/12 eligible**. The
+fixed height candidate passes both starts on degraded and nominal bodies, but
+nominal tracking is worse than baseline at both starts. The nominal quality
+guard is false; duration eligibility does not establish performance preservation.
+All six closure controls pass. New discovery for context-dependent selection
+is next; these confirmation trials grant no fitting or reselection authority.
 
 The [body-height successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
 is closed after all 159 safety controls and six fresh CPU worlds. Independent

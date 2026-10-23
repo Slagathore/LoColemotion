@@ -93,10 +93,14 @@ The [body-height successor](#completed-body-height-discovery---2026-10-23) has
 now completed all six CPU worlds after the full 159-control gate. Independent
 replay verifies 3/6 eligible episodes: the height-enabled candidate passes both
 starts and is selected for fresh confirmation. It has worse tracking quality
-than the reference at the previously successful start. Longer-horizon
-confirmation and healthy-body preservation are next; adaptation remains unproved.
-The [twelve-second confirmation](#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
-is now prepared with all 169 controls passing; its twelve CPU worlds remain unopened.
+than the reference at the previously successful start. That discovery left
+longer-horizon behavior and healthy-body preservation unproved.
+The [twelve-second confirmation](#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
+is now complete after all 169 controls: 9/12 eligible, with candidate 2 passing
+both starts on both bodies. Its nominal tracking score is below baseline at
+both starts, so the nominal quality guard is false. New discovery for causal
+history and context-dependent selection is next; confirmation grants no fitting
+or reselection authority.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -1385,6 +1389,60 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed body-height duration and nominal confirmation - 2026-10-23
+
+The [fixed-candidate confirmation](../sdk/discovery/cpu_body_height_confirmation_v1.json)
+completed from published `499ca1f3` after all **169 controls** passed again.
+Attempt `sdk2-cpu-body-height-confirmation-aa7d02ac2ddd4ac3a4a52c5cae4d6053`
+constructed twelve fresh CPU worlds, with no GPU or evaluation world. Complete
+independent replay verified **17,280 decisions and 86,400 internal samples**.
+The result is **9/12 eligible and 3/12 negative** over twelve seconds per world.
+
+| Condition | Baseline eligible | Reference eligible | Fixed height candidate eligible |
+|---|---|---|---|
+| Left-side effectiveness 75 percent | 0/2 | 1/2 | 2/2 |
+| Nominal actuator profile | 2/2 | 2/2 | 2/2 |
+
+Candidate 2 passes all four trials, with 48 complete scoring windows each,
+zero torso contacts and zero safe-no-actuation commands. Forward travel is
+1.208788 m and 1.242721 m on the degraded body, and 1.262716 m and 1.318782 m
+on the nominal body. This confirms the exact candidate's finite duration result;
+it does not establish broad robustness, a learned selector or adaptation benefit.
+
+The **nominal quality guard is false**. Against fresh nominal baseline, height
+feedback's tracking score is worse by **0.0538553 m/s** at the 0.002 m/s start
+and **0.0123895 m/s** at the 0.005 m/s start. It is also worse than the nominal
+reference at both starts. On the degraded start where the reference remains
+eligible, the height role's score is worse by 0.0247385 m/s. These are differences
+in the declared negative tracking-error score, not simple forward-speed losses.
+The three contrasts against failed episodes have no eligible quality difference.
+All eight planned contrasts remain retained; no failed episode is treated as a
+zero-cost comparator and no replacement winner is selected from confirmation.
+
+The [closure](../sdk/discovery/cpu_body_height_confirmation_closure_v1.json) binds
+**6,955 artifacts and 1,894,759,202 bytes**, plus 403 frozen source and 1,359 runtime
+bindings. Native worker wall time is 274.3745 s; the complete independent audit
+took 228.7907 s. The [closure verifier](../sdk/discovery/audit_cpu_height_confirmation_closure.py)
+rehashes the inventory, checks both native model profiles, rejoins original
+receipts and trials, recomputes scoring windows and failures, and checks the
+fixed selection and nominal costs without new worlds. All six
+[closure controls](../sdk/discovery/test_cpu_height_confirmation_closure.py)
+pass in 268.949 s under
+`sdk2-height-confirmation-closure-controls-a47e481cd013479fb22b6865fa342256`.
+Original logs and exact tested-source copies are retained.
+
+Duration eligibility is established in this finite population; full nominal
+performance preservation is not. This is a reason to test context-dependent
+selection in a new discovery design, not to deploy height feedback universally.
+Collect separately declared fitting data for the unchanged control repertoire
+on nominal and degraded bodies, with actual causal state/action histories and
+separate calibration/evaluation groups. Fit or select only from authorized
+discovery data, then challenge a condition-known comparator and a learned selector
+in fresh worlds before another memory-off/shuffled Tier 3 comparison. The present
+confirmation remains excluded from fitting and reselection. No population,
+non-inferiority, qualification or release authority is earned; SDK1 stays 20/20
+and full-program readiness 19/25.
 
 ### Body-height duration and nominal confirmation prepared - 2026-10-23
 
