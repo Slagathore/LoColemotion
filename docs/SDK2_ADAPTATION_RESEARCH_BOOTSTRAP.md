@@ -206,12 +206,37 @@ The bottleneck is not a missing algorithm. It is ordering:
 copies them to the device every 1/600 s internal step. At 4 worlds that is fine;
 at thousands it is the whole cost.
 
-**What the sources show.** MuJoCo Playground trains locomotion policies on MJX
-and MuJoCo Warp with thousands of parallel worlds and reports minutes-scale
-training for quadruped joystick tasks. Rudin et al. (2021) showed that
-massively parallel PPO on one GPU trains blind quadruped locomotion in minutes,
-with a terrain curriculum. Both keep the policy and physics on the device and
-batch every step.
+**What the sources show.**
+
+- *MuJoCo Playground* (RSS 2025 demo paper) trains on MJX and, at its current
+  head, MuJoCo Warp. It reports a Go1 joystick policy trained on flat ground in
+  about five minutes on two RTX 4090s, then fine-tuned on rough terrain.
+  Joystick, getup and handstand policies transferred zero-shot to a real Go1.
+- Rudin et al. (2021) trained ANYmal with 4,096 parallel robots in under four
+  minutes on flat ground and about twenty on rough terrain, on one workstation
+  GPU.
+- Both keep the policy and the physics on the device and batch every step.
+
+Note that `legged_gym` depends on the deprecated Isaac Gym preview, so use it
+as a recipe, not a dependency.
+
+**MuJoCo Warp facts that change the plan** (README and documentation as of
+2026-10-23):
+
+- The PyPI package is still classified Alpha. The latest version is 3.17.0;
+  the project pins 3.11.0.
+- It computes in float32.
+- **GPU results are documented as nondeterministic**; the documentation points
+  to the CPU device for determinism.
+- Per-world contact and constraint capacities are hard caps, and overflow is
+  undefined behavior. The probe's capacity refusal already guards this.
+- A single step is slower than CPU MuJoCo. Its advantage is batch throughput.
+- The implicitfast midpoint feature and the PGS solver are unsupported. The
+  supported-subset contract already records this.
+
+Consequence: an exploration-weight GPU record cannot claim that re-running
+reproduces it. Record it as an observation, and get reproducibility from the
+deterministic CPU re-run of the shortlist.
 
 **Options.**
 
@@ -255,10 +280,12 @@ Vassiliades and Mouret 2018 (directional "iso+line" variation); Fontaine et al. 
 **What it is.** Instead of searching for one best parameter set, MAP-Elites
 divides a low-dimensional **behavior descriptor** space into cells and keeps the
 best-performing solution found for each cell. The result is an archive of many
-different working behaviors. Cully et al. built such an archive offline in
-simulation for a hexapod and then, after damage, used Bayesian optimization
-over the archive to find a compensating gait in a small number of physical
-trials.
+different working behaviors. Cully et al. built such an archive offline in simulation for a hexapod. It
+held about 13,000 gaits over a six-dimensional duty-factor descriptor, and
+building it took 40 million evaluations. After damage, the robot used Bayesian
+optimization over the archive to find a compensating gait. Across the damage
+cases the median was **8 trials and 66 s**, with a 5th–95th percentile range of
+3–16 trials and 24–134 s.
 
 **Why it fits LoColemotion unusually well.**
 
@@ -456,8 +483,10 @@ not a claim.
 Learning*); Johannink et al. 2019 (*Residual Reinforcement Learning for Robot
 Control*); Iscen et al. 2018 (PMTG); Bellegarda and Ijspeert 2022 (CPG-RL);
 Margolis and Agrawal 2022 (*Walk These Ways*); Rudin et al. 2021 and MuJoCo
-Playground for the training recipe; Tan et al. 2018, Peng et al. 2018 and Tobin
-et al. 2017 for dynamics and domain randomization.
+Playground for the training recipe; Tan et al. 2018 for actuator and latency
+modeling in locomotion; Peng et al. 2018 (dynamics randomization, shown on a
+manipulation task) and Tobin et al. 2017 (the original, visual, domain
+randomization) for the randomization idea.
 
 **What it is.** A policy learns a correction that is added to a hand-designed
 controller. Learning only the correction is far more sample-efficient than
@@ -505,6 +534,14 @@ which keeps the gait structure.
 - Randomize friction, masses, motor strength, **sensor noise** (motivated by the
   BW6N R11 contradiction) and **observation and actuation latency** (R12 has no
   campaign yet). Declare the ranges before training.
+
+  Tan et al. 2018 are the cautionary example. On the Minitaur, a policy trained
+  with the simulator's default actuator model only walked slowly, and the real
+  robot fell immediately. With a measured actuator model and simulated latency
+  (they report about 3 ms and 15–19 ms in different configurations), a gallop
+  emerged that reached 1.18 m/s on hardware. The project's VH1/VH4 host
+  characterizations are the sim-to-sim analogue: randomize around measured
+  host behavior, not around guesses.
 - Evaluate in shadow first, then bounded influence behind L3.
 
 **v1 velocity deltas versus a v2 parameter-modulation channel.** The roadmap
@@ -627,7 +664,7 @@ beat both controls is not a Tier 3 result.
 ## 11. L7: A GPU MPC teacher distilled into the provider
 
 **Sources.** Howell et al. 2022 (*Predictive Sampling*, MuJoCo MPC); Williams
-et al. 2017 (MPPI); Ross, Gordon and Bagnell 2011 (DAgger).
+et al. 2016 (MPPI); Ross, Gordon and Bagnell 2011 (DAgger).
 
 **What it is.** A sampling-based model-predictive controller rolls out many
 short candidate futures from the current state and picks the best. With batched
@@ -680,7 +717,9 @@ informative experiment.
 estimates over few runs mislead, and recommended the interquartile mean,
 stratified bootstrap confidence intervals and performance profiles (the
 `rliable` library). Henderson et al. 2018 documented how seeds and
-implementation details swing results. Use these for every development
+implementation details swing results. In one experiment, two groups of five
+seeds with identical settings produced statistically different learning
+curves. Use these for every development
 comparison between providers. They do not replace frozen pass/fail gates.
 
 **S2. Equivalence and non-inferiority.** R25 requires equivalence or
@@ -719,10 +758,21 @@ predictable rather than hand-tuned.
 L4 and L5 providers. Calibrate it with S5.
 
 **S7. Specification gaming.** Lehman et al. 2020 collect many cases of evolved
-or learned simulated creatures exploiting physics-engine quirks. Turn the
-relevant patterns (penetration-driven propulsion, jitter energy injection,
-solver instabilities, clamp-branch dependence) into explicit no-cheat gates for
-GPU search. LoColemotion has an unusual defense: a behavior that exploits one
+or learned simulated creatures exploiting simulators:
+
+- Sims' creatures harvested free energy from integration error and rode a
+  collision bug into the air.
+- Soft robots shrank to change the effective timestep, or sank into the floor
+  to ride the corrective force.
+- A controller used integer overflow to make a force read as zero.
+
+Turn the analogous patterns into explicit no-cheat gates for GPU search:
+
+- energy gained without actuator work;
+- penetration depth beyond a declared bound;
+- contact-capacity saturation;
+- clamp-branch dependence;
+- any nonfinite value or overflow. LoColemotion has an unusual defense: a behavior that exploits one
 engine's quirk will usually fail to transfer to the other two, so the three-engine
 native challenge doubles as an exploit filter. Retain those failures as a
 labeled counterexample set.
@@ -737,7 +787,7 @@ labeled counterexample set.
 | R11 sensor noise | contradicted (BW6N) | L4 and L5 with declared noise randomization, S6 | Shadow residual under BW6N-style noise; compare to baseline with S1 |
 | R12 sensor latency | missing | L4 and L5 with latency randomization (Tan et al. 2018) | First declared latency campaign for the baseline alone, then the residual |
 | R25 engine equivalence | missing | S2, S3, L5 | Freeze estimands and margins; run a sequential design |
-| Force-aware recovery | open | L7, L3 | MPC teacher on retained recovery entry states |
+| Force-aware recovery | open | L7, L3; Lee, Hwangbo and Hutter 2019 (a learned behavior selector over recovery policies on ANYmal) | MPC teacher on retained recovery entry states |
 | Tier 2 | interface only | L2, then L4 | Retrieval provider in shadow mode on S169 |
 | Tier 3 | architecture only | L6 over L1 | Memory on versus off on a perturbed body |
 
@@ -949,13 +999,14 @@ own ledger row with the exact reviewed version.
 
 | Source | Link | Code / license | Use here |
 | --- | --- | --- | --- |
-| Mouret and Clune 2015, *MAP-Elites* | [arXiv:1504.04909](https://arxiv.org/abs/1504.04909) | n/a | L1 |
-| Cully, Clune, Tarapore, Mouret, *Nature* 2015, *Robots that can adapt like animals* | [doi:10.1038/nature14422](https://doi.org/10.1038/nature14422) | check | L1, L6 |
+| Mouret and Clune 2015, *MAP-Elites* (arXiv preprint) | [arXiv:1504.04909](https://arxiv.org/abs/1504.04909) | reference code: [pymap_elites](https://github.com/resibots/pymap_elites), CeCILL 2.1 | L1 |
+| Cully, Clune, Tarapore, Mouret, *Nature* 2015, *Robots that can adapt like animals* | [doi:10.1038/nature14422](https://doi.org/10.1038/nature14422) | archival repo, no license file; libraries CeCILL | L1, L6 |
 | Vassiliades and Mouret, GECCO 2018, directional variation | [arXiv:1804.03906](https://arxiv.org/abs/1804.03906) | check | L1 variation operator |
 | Fontaine, Togelius, Nikolaidis, Hoover, GECCO 2020, *CMA-ME* | [arXiv:1912.02400](https://arxiv.org/abs/1912.02400) | check | L1 if progress stalls |
-| Chalumeau et al., JMLR 2024, *QDax* | [JMLR v25](https://www.jmlr.org/papers/v25/23-1027.html) | check | L1 reference implementation |
+| Chalumeau et al., JMLR 2024, *QDax* | [JMLR v25](https://www.jmlr.org/papers/v25/23-1027.html) | [repo](https://github.com/adaptive-intelligent-robotics/QDax), MIT | L1 reference implementation |
+| Hansen, *The CMA Evolution Strategy: A Tutorial* | [arXiv:1604.00772](https://arxiv.org/abs/1604.00772) | [pycma](https://github.com/CMA-ES/pycma), BSD-3-Clause | L1 emitters |
 | Lim, Allard, Grillotti, Cully 2022, *Accelerated QD through Massive Parallelism* | [arXiv:2202.01258](https://arxiv.org/abs/2202.01258) | check | L1 GPU recipe |
-| Chatzilygeroudis et al. 2018, reset-free trial and error | [arXiv:1610.04213](https://arxiv.org/abs/1610.04213) | check | L6 |
+| Chatzilygeroudis, Vassiliades, Mouret, *RAS* 2018, reset-free trial and error | [arXiv:1610.04213](https://arxiv.org/abs/1610.04213) | author repo, no license file | L6 |
 | Allard et al., ACM TELO 2023, hierarchical QD damage recovery | [doi:10.1145/3596912](https://doi.org/10.1145/3596912) | check | L6 |
 | Grillotti et al., ICML 2024, *QDAC*; URSA 2025 | [PMLR v235](https://proceedings.mlr.press/v235/grillotti24a.html), [arXiv:2508.19172](https://arxiv.org/abs/2508.19172) | check | L6 |
 | fcmaes-rust Rapier quadruped gait tutorial† | [GitHub](https://github.com/dietmarwo/fcmaes-rust/blob/main/tutorials/rapier-quadruped-gait/README.md) | check | L1 Rapier lane, held-out caution |
@@ -964,14 +1015,15 @@ own ledger row with the exact reviewed version.
 
 | Source | Link | Code / license | Use here |
 | --- | --- | --- | --- |
-| MuJoCo Warp | [GitHub](https://github.com/google-deepmind/mujoco_warp) | check | L0 |
-| Zakka et al. 2025, *MuJoCo Playground* | [arXiv:2502.08844](https://arxiv.org/abs/2502.08844) | check | L0, L4 recipe |
-| Rudin, Hoeller, Reist, Hutter, CoRL 2021, *Learning to Walk in Minutes* | [arXiv:2109.11978](https://arxiv.org/abs/2109.11978) | check | L0, L4, R09 curriculum |
-| Tan et al., RSS 2018, *Sim-to-Real: Learning Agile Locomotion for Quadruped Robots* | [arXiv:1804.10332](https://arxiv.org/abs/1804.10332) | n/a | L4 latency and actuator modeling, R12 |
-| Peng, Andrychowicz, Zaremba, Abbeel, ICRA 2018, dynamics randomization | [arXiv:1710.06537](https://arxiv.org/abs/1710.06537) | n/a | L4, L5 |
-| Tobin et al., IROS 2017, domain randomization | [arXiv:1703.06907](https://arxiv.org/abs/1703.06907) | n/a | L4 background |
-| Howell et al. 2022, *Predictive Sampling* (MuJoCo MPC) | [arXiv:2212.00541](https://arxiv.org/abs/2212.00541) | check | L7 teacher |
-| Williams et al., ICRA 2017, MPPI | [doi:10.1109/ICRA.2017.7989202](https://doi.org/10.1109/ICRA.2017.7989202) | n/a | L7 |
+| MuJoCo Warp (Alpha on PyPI; float32; GPU nondeterministic per docs) | [GitHub](https://github.com/google-deepmind/mujoco_warp) | Apache-2.0 | L0 |
+| Zakka et al., RSS 2025, *MuJoCo Playground* | [arXiv:2502.08844](https://arxiv.org/abs/2502.08844) | [repo](https://github.com/google-deepmind/mujoco_playground), Apache-2.0 | L0, L4 recipe |
+| Rudin, Hoeller, Reist, Hutter, CoRL 2021, *Learning to Walk in Minutes* | [arXiv:2109.11978](https://arxiv.org/abs/2109.11978) | [legged_gym](https://github.com/leggedrobotics/legged_gym), BSD-3-Clause (depends on deprecated Isaac Gym) | L0, L4, R09 curriculum |
+| Tan et al., RSS 2018, *Sim-to-Real: Learning Agile Locomotion for Quadruped Robots* | [arXiv:1804.10332](https://arxiv.org/abs/1804.10332) | environments in Bullet (zlib) | L4 latency and actuator modeling, R12 |
+| Peng, Andrychowicz, Zaremba, Abbeel, ICRA 2018, dynamics randomization (manipulation task) | [arXiv:1710.06537](https://arxiv.org/abs/1710.06537) | n/a | L4, L5 |
+| Tobin et al., IROS 2017, domain randomization (visual) | [arXiv:1703.06907](https://arxiv.org/abs/1703.06907) | n/a | L4 background |
+| Hwangbo et al., *Science Robotics* 2019, actuator networks | [arXiv:1901.08652](https://arxiv.org/abs/1901.08652) | n/a | L5: learned host actuation models |
+| Howell et al. 2022, *Predictive Sampling* (MuJoCo MPC) | [arXiv:2212.00541](https://arxiv.org/abs/2212.00541) | [mujoco_mpc](https://github.com/google-deepmind/mujoco_mpc), Apache-2.0 | L7 teacher |
+| Williams et al., ICRA 2016, MPPI (*Aggressive Driving with Model Predictive Path Integral Control*); journal version T-RO 2018 | [doi:10.1109/ICRA.2016.7487277](https://doi.org/10.1109/ICRA.2016.7487277), [T-RO](https://doi.org/10.1109/TRO.2018.2865891) | n/a | L7 |
 | Ross, Gordon, Bagnell, AISTATS 2011, DAgger | [arXiv:1011.0686](https://arxiv.org/abs/1011.0686) | n/a | L7 distillation |
 | PolySim 2025, multi-simulator training | [arXiv:2510.01708](https://arxiv.org/abs/2510.01708) | check | L5 |
 | Mohammed and Valdenegro-Toro 2020, RL across physics engines | [arXiv:2010.14444](https://arxiv.org/abs/2010.14444) | n/a | L5 caution |
@@ -994,10 +1046,10 @@ own ledger row with the exact reviewed version.
 
 | Source | Link | Code / license | Use here |
 | --- | --- | --- | --- |
-| Agarwal et al., NeurIPS 2021, *Statistical Precipice* (rliable) | [arXiv:2108.13264](https://arxiv.org/abs/2108.13264) | check | S1 |
+| Agarwal et al., NeurIPS 2021, *Statistical Precipice* (rliable) | [arXiv:2108.13264](https://arxiv.org/abs/2108.13264) | [rliable](https://github.com/google-research/rliable), Apache-2.0 | S1 |
 | Henderson et al., AAAI 2018, *Deep RL that Matters* | [arXiv:1709.06560](https://arxiv.org/abs/1709.06560) | n/a | S1 |
 | Schuirmann 1987, two one-sided tests | [doi:10.1007/BF01068419](https://doi.org/10.1007/BF01068419) | n/a | S2 |
-| Lakens 2017, *Equivalence Tests: A Practical Primer* | [doi:10.1177/1948550617697177](https://doi.org/10.1177/1948550617697177) | n/a | S2 |
+| Lakens 2017, *Equivalence Tests: A Practical Primer* | [doi:10.1177/1948550617697177](https://doi.org/10.1177/1948550617697177) | TOSTER R package is GPL-3: reimplement, do not copy | S2 |
 | O'Brien and Fleming 1979, group-sequential boundaries | [doi:10.2307/2530245](https://doi.org/10.2307/2530245) | n/a | S3 |
 | Ramdas, Grünwald, Vovk, Shafer, *Statistical Science* 2023, anytime-valid inference | [arXiv:2210.01948](https://arxiv.org/abs/2210.01948) | n/a | S3 |
 | Snyder et al. 2025, *STEP* sequential policy comparison | [arXiv:2503.10966](https://arxiv.org/abs/2503.10966) | check | S3 |
@@ -1006,7 +1058,8 @@ own ledger row with the exact reviewed version.
 | Wilks 1941, tolerance limits | [doi:10.1214/aoms/1177731788](https://doi.org/10.1214/aoms/1177731788) | n/a | S4, the 59-sample rule |
 | Angelopoulos and Bates, *A Gentle Introduction to Conformal Prediction* (journal version FnTML 2023) | [arXiv:2107.07511](https://arxiv.org/abs/2107.07511) | [repo](https://github.com/aangelopoulos/conformal-prediction), MIT | S5 |
 | Lakshminarayanan, Pritzel, Blundell, NeurIPS 2017, *Deep Ensembles* | [arXiv:1612.01474](https://arxiv.org/abs/1612.01474) | n/a | S6 |
-| Lehman et al., *Artificial Life* 2020, *Surprising Creativity of Digital Evolution* | [arXiv:1803.03453](https://arxiv.org/abs/1803.03453) | n/a | S7 |
+| Lehman et al., *Artificial Life* 2020, *Surprising Creativity of Digital Evolution* | [doi:10.1162/artl_a_00319](https://doi.org/10.1162/artl_a_00319) | n/a | S7 |
+| Lee, Hwangbo, Hutter 2019, robust recovery controller (arXiv) | [arXiv:1901.07517](https://arxiv.org/abs/1901.07517) | n/a | Force-aware recovery |
 
 ### Game-engine and creature context
 
