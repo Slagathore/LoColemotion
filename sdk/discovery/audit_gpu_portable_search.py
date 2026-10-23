@@ -53,7 +53,7 @@ def validate_observation(row,metadata,compiled):
         geom=metadata['ordered_bodies'].index(site['body_id'])
         hits=[(index,r) for index,r in enumerate(n['contacts']) if set(r['geom'])=={0,geom}]
         observed=state['ordered_contact_observations'][i]
-        require(observed['presence']==bool(hits) and observed['bears_support']==bool(hits),'Contact presence join')
+        require(observed['presence']==bool(hits) and observed['bears_support']==(bool(hits) and site['can_support']),'Contact presence join')
         require(observed['provenance']['engine_contact_ids']==['mujoco_contact_'+str(index) for index,r in hits],'Contact identity join')
         support=row['stability']['ordered_support_contacts'][i]
         require(support['presence']==bool(hits),'Support contact presence')
@@ -91,7 +91,7 @@ def audit(folder,core_path):
     declaration=json.loads((folder.parent/'declaration.json').read_text());c=declaration['contract'];result=json.loads((folder/'worker-result.json').read_text())
     synthetic=declaration.get('synthetic',False);outer_steps=c['outer_steps'];steps=outer_steps*5
     require(type(synthetic) is bool and result['synthetic'] is synthetic,'Synthetic/native identity')
-    require(c['schema_version']=='locolemotion_gpu_portable_search_v1' and (outer_steps==480 or synthetic and 1<=outer_steps<=480) and c['internal_steps_per_outer']==5,'Declaration population')
+    require(c['schema_version'] in ['locolemotion_gpu_portable_search_v1','locolemotion_gpu_portable_search_v2'] and (outer_steps==480 or synthetic and 1<=outer_steps<=480) and c['internal_steps_per_outer']==5,'Declaration population')
     require(result['ok'] is True and all(c[k] is False and result[k] is False for k in FLAGS),'Incomplete execution or changed authority')
     require(sha(core_path)==c['core_sha256'],'Core runtime pin')
     for name in ['trace','controller']:require(sha(folder/(name+'.jsonl'))==result[name+'_sha256'],'Raw trace digest')
@@ -115,6 +115,10 @@ def audit(folder,core_path):
                     memories[pair]=core.balanced_wave_initial_memory();composition_memories[pair]=bridge.CompositionMemory();previous[pair]=[0.]*8
                 require(row['request']['memory']==memories[pair],'Crossed controller memory')
                 validate_observation(row,metadata,compiled)
+                if c['schema_version']=='locolemotion_gpu_portable_search_v2' and backend=='gpu':
+                    n=row['native_observation'];copy=n['contact_compatibility_copy'];pairs=[x['geom'] for x in n['contacts']]
+                    require(copy['schema_version']=='locolemotion_gpu_contact_compatibility_copy_v1' and copy['unstepped_host_copy_only'] is True,'Contact compatibility copy identity')
+                    require(copy['native_geometry']==copy['legacy_geometry_after']==pairs and len(copy['legacy_geometry_before'])==len(pairs),'Contact compatibility copy join')
                 output=core.balanced_wave_policy_step(c['policy_id'],dict(row['request'],descriptor=bridge.s169_descriptor()))
                 require(same(core,output,row['output']),'Portable controller replay')
                 limb_steps=bridge._ordered_limb_steps(memories[pair],compiled['morphology']['ordered_limb_ids'])
@@ -182,5 +186,58 @@ def audit(folder,core_path):
         interpretation='Exposed finite parameter discovery and task-specific CPU observations. No trained provider, held-out result, superiority, locomotion acceptance or equivalence claim.',**{k:False for k in FLAGS})
 
 
+def contact_diagnosis(folder):
+    compiled=json.loads((folder/'compiled.json').read_text());metadata=json.loads((folder/'native-model.json').read_text())
+    stats={b:dict(controller_rows=0,site_rows=0,mismatched_sites=0,rows_with_mismatch=0) for b in ['gpu','cpu']}
+    with (folder/'controller.jsonl').open() as stream:
+        for line in stream:
+            row=json.loads(line);s=stats[row['backend']];s['controller_rows']+=1;bad=False
+            for site,observation in zip(compiled['morphology']['morphology_spec']['contact_sites'],row['request']['state']['ordered_contact_observations'],strict=True):
+                geom=metadata['ordered_bodies'].index(site['body_id']);present=any(set(r['geom'])=={0,geom} for r in row['native_observation']['contacts'])
+                s['site_rows']+=1
+                if observation['presence']!=present:s['mismatched_sites']+=1;bad=True
+            s['rows_with_mismatch']+=bad
+    return stats
+
+
+def verify_closure(path,evidence_root,core_path):
+    """Verify all bytes; failed attempts remain failed even when this audit passes."""
+    closure=json.loads(path.read_text());root=evidence_root.resolve(strict=True);attempt=(root/closure['attempt_id']).resolve(strict=True)
+    require(attempt.parent==root and closure['synthetic'] is False and all(closure[k] is False for k in FLAGS),'Closure identity/authority')
+    indexed=set()
+    for item in closure['artifacts']:
+        target=(root/item['evidence_relative_path']).resolve(strict=True)
+        require(target.is_relative_to(attempt) and target not in indexed,'Crossed/repeated artifact')
+        require(target.stat().st_size==item['byte_length'] and sha(target)==item['sha256'],'Retained artifact changed');indexed.add(target)
+    require(indexed=={p.resolve() for p in attempt.rglob('*') if p.is_file()},'Incomplete retained artifact inventory')
+    required=['declaration.json','consumed.json','receipt.json','physical/worker-result.json','physical/trace.jsonl','physical/controller.jsonl',
+        'physical/model.xml','physical/inputs.json','physical/compiled.json','physical/native-model.json','physical/gpu-selection.json','physical/stdout.log','physical/stderr.log']
+    require(all((attempt/name).resolve() in indexed for name in required),'Missing required retained artifact')
+    receipt=json.loads((attempt/'receipt.json').read_text());declaration=json.loads((attempt/'declaration.json').read_text());consumed=json.loads((attempt/'consumed.json').read_text())
+    worker=json.loads((attempt/'physical/worker-result.json').read_text())
+    require(receipt['source_commit']==declaration['source_commit']==consumed['source_commit']==closure['source_commit'],'Crossed source freeze')
+    require(consumed['attempt_id']==closure['attempt_id'] and receipt['binding']==declaration['binding'],'Crossed attempt/runtime binding')
+    require(receipt['physical_started'] is True and receipt['zero_world_gate_passed'] is True and receipt['synthetic'] is False,'Incomplete owned execution')
+    require(worker['ok'] is True and sha(core_path)==declaration['contract']['core_sha256'],'Worker/runtime identity')
+    for name in ['trace','controller']:require(sha(attempt/'physical'/(name+'.jsonl'))==worker[name+'_sha256'],'Worker trace digest')
+    if closure['status']=='invalid_native_contact_observation_join':
+        require(receipt['ok'] is False and receipt['error']==closure['supervisor_error']=='ValueError: Contact presence join','Original failure changed')
+        require(closure['independent_audit_passed'] is False and closure['execution_complete'] is True,'Invalid result promoted')
+        require(worker['completed_steps']==closure['native_completed_steps'] and worker['completed_outer_steps']==closure['native_completed_outer_steps'],'Failed attempt denominator')
+        diagnosis=contact_diagnosis(attempt/'physical')
+        require(all(diagnosis[b]==closure['diagnosis'][b] for b in diagnosis),'Contact diagnosis changed')
+        try:audit(attempt/'physical',core_path)
+        except ValueError as exc:require(str(exc)=='Contact presence join','Original reader failed elsewhere')
+        else:raise ValueError('Original contact failure no longer refused')
+        return dict(ok=True,artifacts=len(indexed),original_attempt_valid=False,original_failure_reproduced=True,contact_diagnosis=diagnosis,**{k:False for k in FLAGS})
+    require(receipt['ok'] is True and closure['status']=='complete_finite_parameter_search_and_fresh_cpu_challenge','Unknown or incomplete closure')
+    observed=audit(attempt/'physical',core_path)
+    require(observed==closure['independent_audit']==receipt['audit']==json.loads((attempt/'independent-audit.json').read_text()),'Recomputed audit changed')
+    return dict(ok=True,artifacts=len(indexed),original_attempt_valid=True,internal_rows=observed['internal_rows'],portable_steps_replayed=observed['portable_steps_replayed'],**{k:False for k in FLAGS})
+
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('folder',type=Path);p.add_argument('--core',type=Path,required=True);a=p.parse_args();print(json.dumps(audit(a.folder,a.core),indent=2))
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('folder',type=Path);p.add_argument('--core',type=Path,required=True)
+    p.add_argument('--closure',action='store_true');p.add_argument('--evidence-root',type=Path);a=p.parse_args()
+    if a.closure and a.evidence_root is None:p.error('Closure verification needs --evidence-root')
+    print(json.dumps(verify_closure(a.folder,a.evidence_root,a.core) if a.closure else audit(a.folder,a.core),indent=2))

@@ -79,8 +79,25 @@ the exposed finite ranking. No old acceptance threshold or result changes.
 Its complete zero-world gate passes eight new controls, ten quadruped controls,
 seven measurement controls, public provider A0-A7, real process containment and
 runtime preflight. The retained attempt is
-`sdk2-gpu-portable-search-832c06fa8ef4408f9a4d2c1d11c6503c`. Physical execution,
-trained providers, high-throughput batching and Tier 3 remain open.
+`sdk2-gpu-portable-search-832c06fa8ef4408f9a4d2c1d11c6503c`.
+
+The native v1 attempt at clean pushed `cf158067` then completed all 19,200
+internal steps and 3,840 controller decisions, but its independent reader
+correctly refused the native-to-canonical contact join. The
+[invalid closure](../sdk/discovery/gpu_portable_search_invalid_closure_v1.json)
+preserves 398 artifacts and reproduces that refusal: 3,952/7,680 GPU contact-site
+observations mismatched native presence; CPU observations had zero mismatches.
+Warp copied `geom`, but the unchanged adapter read the separate legacy
+`geom1`/`geom2` fields. The ranking and transfer observations are unusable.
+
+The [v2 successor](../sdk/discovery/gpu_portable_search_v2.json) explicitly binds
+both contact representations in unstepped host copies and checks observation
+joins before retaining GPU controls. No physical state, candidate, ranking rule
+or provider envelope changes. Its complete zero-world gate passed eleven search
+controls, including real MuJoCo contact compatibility and retained-failure
+refusals, in `sdk2-gpu-portable-search-v2-ac4b85c7027b44318380cf8a30842037`.
+Fresh v2 execution, trained providers, high-throughput batching and Tier 3 remain
+open. The consumed v1 attempt stays invalid.
 
 The scalar and quadruped probes commission measurement/execution only. GPU
 candidate discovery, provisional training, native candidate transfer, provider training,

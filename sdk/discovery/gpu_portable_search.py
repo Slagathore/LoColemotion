@@ -42,8 +42,27 @@ def verify_view(data,native,cell,contacts):
     if data.time!=native['time'][cell] or data.ncon!=len(contacts):raise ValueError('Readback time/contact population')
     for i,r in enumerate(contacts):
         v=data.contact[i]
-        if (list(map(int,v.geom))!=r['geom'] or float(v.dist)!=r['distance_m']
+        if (list(map(int,v.geom))!=r['geom'] or [int(v.geom1),int(v.geom2)]!=r['geom'] or float(v.dist)!=r['distance_m']
                 or list(v.pos)!=r['position_m'] or list(v.frame)!=r['frame']):raise ValueError('Crossed native contact readback')
+
+
+def bind_contact_compatibility_view(data,contacts):
+    """Populate legacy fields in the unstepped host copy, never in a native world.
+
+    MuJoCo 3.11 stores geom[2] separately from geom1/geom2. Warp copies geom;
+    the unchanged production adapter reads the legacy fields. Retain both.
+    """
+    if data.ncon!=len(contacts):raise ValueError('Contact bridge population')
+    before=[];after=[]
+    for i,row in enumerate(contacts):
+        contact=data.contact[i];pair=list(map(int,contact.geom))
+        if pair!=row['geom']:raise ValueError('Contact bridge crossed native pair')
+        before.append([int(contact.geom1),int(contact.geom2)])
+        contact.geom1,contact.geom2=pair
+        after.append([int(contact.geom1),int(contact.geom2)])
+        if list(map(int,contact.geom))!=pair or after[-1]!=pair:raise ValueError('Contact compatibility copy failed')
+    return dict(schema_version='locolemotion_gpu_contact_compatibility_copy_v1',legacy_geometry_before=before,
+                legacy_geometry_after=after,native_geometry=[r['geom'] for r in contacts],unstepped_host_copy_only=True)
 
 
 def gpu_snapshot(wd,c):
@@ -127,14 +146,19 @@ def run(folder,permit,core_path):
                     trap.enter_context(patch.object(mujoco,name,side_effect=AssertionError('CPU dynamics forbidden during GPU execution')))
                 for outer in range(c['outer_steps']):
                     stage=f'gpu_outer_{outer}';tick=time.perf_counter();mjw.step1(wm,wd);wp.synchronize_device(device);elapsed('gpu_prepare_s',tick)
-                    tick=time.perf_counter();snapshot=gpu_snapshot(wd,c)
+                    tick=time.perf_counter();snapshot=gpu_snapshot(wd,c);contact_bridges=[]
                     for cell,view in enumerate(views):
-                        mjw.get_data_into(view,model,wd,cell);verify_view(view,snapshot,cell,snapshot['contacts'][cell])
+                        mjw.get_data_into(view,model,wd,cell)
+                        contact_bridges.append(bind_contact_compatibility_view(view,snapshot['contacts'][cell]))
+                        verify_view(view,snapshot,cell,snapshot['contacts'][cell])
                     elapsed('gpu_readback_s',tick);targets=[]
                     for cell,(robot,controller) in enumerate(zip(robots,controllers)):
                         tick=time.perf_counter();state=robot.state_frame(outer,bridge._mujoco_to_canonical(spec['initial_qpos'][:3]));stability=robot.stability_state(outer);kinematics=robot.endpoint_kinematics(stability)
                         row=controller.step(state,stability,kinematics);elapsed('gpu_portable_control_s',tick)
                         row.update(backend='gpu',cell=cell,outer_step=outer,native_observation=observation_native(views[cell],snapshot['contacts'][cell]))
+                        row['native_observation']['contact_compatibility_copy']=contact_bridges[cell]
+                        from audit_gpu_portable_search import validate_observation
+                        validate_observation(row,metadata,compiled)
                         append(control,row);outer_counts['gpu'][cell]+=1;metrics['gpu'][cell]['safe_no_actuation_steps']+=int(row['output']['actuation']['safe_no_actuation']);targets.append(row['native_targets'])
                     projected=np.asarray(targets,np.float32);wp.copy(wd.ctrl,wp.array(projected,dtype=wp.float32,device=device))
                     for sub in range(5):

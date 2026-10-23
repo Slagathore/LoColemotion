@@ -14,8 +14,8 @@ import numpy as np
 import mujoco
 from portable_search_control import *
 from gpu_quadruped_model import f32
-from gpu_portable_search import preflight,verify_view
-from audit_gpu_portable_search import audit,validate_resolution
+from gpu_portable_search import preflight,verify_view,bind_contact_compatibility_view
+from audit_gpu_portable_search import audit,validate_resolution,verify_closure
 sys.path.insert(0,str(ROOT/'sdk'))
 from adaptation_provider.conformance import _fixture
 
@@ -62,7 +62,9 @@ class PortableSearchControls(unittest.TestCase):
         for i,site in enumerate(cls.compiled['morphology']['morphology_spec']['contact_sites']):
             geom=cls.names.index(site['body_id']);point=[pos[geom][0],pos[geom][1],0.]
             contacts.append(dict(world=cell,native_index=cell*4+i if b=='gpu' else i,geom=[0,geom],distance_m=0.,position_m=point,frame=np.eye(3).reshape(-1).tolist()))
-        return dict(qpos=list(map(project,cls.spec['initial_qpos'])),qvel=[0.,velocity]+[0.]*12,xpos=pos,xipos=pos,xmat=[np.eye(3).reshape(-1).tolist() for _ in pos],
+        return dict(contact_compatibility_copy=dict(schema_version='locolemotion_gpu_contact_compatibility_copy_v1',legacy_geometry_before=[[0,0] for r in contacts],
+                    legacy_geometry_after=[r['geom'] for r in contacts],native_geometry=[r['geom'] for r in contacts],unstepped_host_copy_only=True),
+            qpos=list(map(project,cls.spec['initial_qpos'])),qvel=[0.,velocity]+[0.]*12,xpos=pos,xipos=pos,xmat=[np.eye(3).reshape(-1).tolist() for _ in pos],
             subtree_com=[[0.,0.,0.] for _ in pos],cvel=[[0.,0.,0.,0.,velocity,0.] for _ in pos],
             xanchor=[[project(x) for x in r] for r in cls.anchors],xaxis=[[project(x) for x in r] for r in cls.axes],contacts=contacts,sampling_stage='prepared_before_control')
 
@@ -143,12 +145,45 @@ class PortableSearchControls(unittest.TestCase):
         from types import SimpleNamespace
         n=self.native('gpu',0);native={key:np.asarray([n[key]]*4) for key in VIEW_FIELDS};native['time']=[0.]*4
         view=SimpleNamespace(**{key:np.asarray(n[key]) for key in VIEW_FIELDS},time=0.,ncon=4,
-            contact=[SimpleNamespace(geom=r['geom'],dist=r['distance_m'],pos=r['position_m'],frame=r['frame']) for r in n['contacts']])
+            contact=[SimpleNamespace(geom=r['geom'],geom1=r['geom'][0],geom2=r['geom'][1],dist=r['distance_m'],pos=r['position_m'],frame=r['frame']) for r in n['contacts']])
         verify_view(view,native,0,n['contacts'])
         view.qpos=view.qpos.copy();view.qpos[0]+=.01
         with self.assertRaises(ValueError):verify_view(view,native,0,n['contacts'])
         view.qpos=np.asarray(n['qpos']);view.contact[0].geom=[0,1]
         with self.assertRaises(ValueError):verify_view(view,native,0,n['contacts'])
+
+    def test_real_contact_compatibility_copy_preserves_native_pair(self):
+        # A standalone contact struct is not a model, data world or solver.
+        contact=mujoco.MjContact();contact.geom[:]=[0,3]
+        self.assertEqual([contact.geom1,contact.geom2],[0,0])
+        view=SimpleNamespace(ncon=1,contact=[contact]);rows=[dict(geom=[0,3])]
+        copy=bind_contact_compatibility_view(view,rows)
+        self.assertEqual(copy['legacy_geometry_before'],[[0,0]])
+        self.assertEqual(copy['legacy_geometry_after'],[[0,3]])
+        self.assertEqual(contact.geom.tolist(),[0,3])
+        robot=object.__new__(bridge.MujocoBw19vRobot);robot.data=view;robot.ground_geom_id=0;robot.body_geom_ids={'foot':3}
+        contact.frame[:]=[0,0,1,0,1,0,-1,0,0]
+        self.assertTrue(robot._contact(dict(body_id='foot'))['present'])
+        with self.assertRaises(ValueError):bind_contact_compatibility_view(view,[dict(geom=[0,9])])
+
+    def test_contact_copy_and_native_presence_corruptions_refuse(self):
+        for field,value in [('legacy_geometry_after',[[0,0]]*4),('unstepped_host_copy_only',False)]:
+            controls=copy.deepcopy(self.controls);controls[0]['native_observation']['contact_compatibility_copy'][field]=value
+            with self.assertRaises(ValueError):audit(self.fixture(controls=controls),self.core_path)
+        controls=copy.deepcopy(self.controls);controls[0]['request']['state']['ordered_contact_observations'][0]['presence']=False
+        with self.assertRaisesRegex(ValueError,'Contact presence join'):audit(self.fixture(controls=controls),self.core_path)
+
+    def test_retained_invalid_closure_stays_invalid_and_corruptions_refuse(self):
+        path=Path(__file__).with_name('gpu_portable_search_invalid_closure_v1.json');evidence=ROOT.parent/'SporeSpore_Evidence'
+        result=verify_closure(path,evidence,self.core_path)
+        self.assertTrue(result['original_failure_reproduced']);self.assertFalse(result['original_attempt_valid'])
+        for mutation in ['digest','inventory','promoted']:
+            value=json.loads(path.read_text())
+            if mutation=='digest':value['artifacts'][0]['sha256']='0'*64
+            elif mutation=='inventory':value['artifacts'].pop()
+            else:value['independent_audit_passed']=True
+            changed=self.root/(mutation+'.json');changed.write_text(json.dumps(value))
+            with self.assertRaises(ValueError):verify_closure(changed,evidence,self.core_path)
 
     def test_fallback_is_exact_and_stale_response_falls_back(self):
         row=copy.deepcopy(next(r for r in self.controls if r['cell']==2));request=row['resolution_request'];request['provider_response']['request_id']='stale'

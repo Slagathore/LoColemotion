@@ -13,14 +13,14 @@ sys.path[:0]=[str(ROOT/'sdk/python'),str(ROOT/'sdk/adapters/mujoco'),str(ROOT/'s
 from sporespore_mujoco_adapter import selected_policy_development as bridge
 from showcase_model import S169
 
-CONTRACT=Path(__file__).with_name('gpu_portable_search_v1.json')
+CONTRACT=Path(__file__).with_name('gpu_portable_search_v2.json')
 EMPTY_CORPUS=dict(schema_version='locolemotion_untrained_candidate_origin_v1',trained=False,training_corpus=None)
 VIEW_FIELDS=['qpos','qvel','xpos','xmat','xipos','subtree_com','cvel','xanchor','xaxis']
 
 
 def contract():
     c=json.loads(CONTRACT.read_text())
-    if c['schema_version']!='locolemotion_gpu_portable_search_v1' or c['worlds_per_backend']!=4 or c['outer_steps']!=480 or any(c[k] is not False for k in FLAGS):
+    if c['schema_version']!='locolemotion_gpu_portable_search_v2' or c['worlds_per_backend']!=4 or c['outer_steps']!=480 or any(c[k] is not False for k in FLAGS):
         raise ValueError('Portable discovery contract')
     if c['policy_id']!=bridge.SELECTED_POLICY_ID or c['stability_policy_id']!=bridge.STABILITY_POLICY_ID:
         raise ValueError('Portable policy binding changed')

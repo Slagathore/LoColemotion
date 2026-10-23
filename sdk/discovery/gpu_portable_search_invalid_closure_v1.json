@@ -1,0 +1,2075 @@
+{
+  "schema_version": "locolemotion_gpu_portable_search_invalid_closure_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_cpu_and_warp",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "source_commit": "cf158067d5d4082b1faadea2e698afde4623a4c3",
+  "attempt_id": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c",
+  "evidence_root": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence",
+  "attempt_consumed": true,
+  "synthetic": false,
+  "status": "invalid_native_contact_observation_join",
+  "execution_complete": true,
+  "independent_audit_passed": false,
+  "supervisor_error": "ValueError: Contact presence join",
+  "native_completed_steps": {
+    "gpu": [
+      2400,
+      2400,
+      2400,
+      2400
+    ],
+    "cpu": [
+      2400,
+      2400,
+      2400,
+      2400
+    ]
+  },
+  "native_completed_outer_steps": {
+    "gpu": [
+      480,
+      480,
+      480,
+      480
+    ],
+    "cpu": [
+      480,
+      480,
+      480,
+      480
+    ]
+  },
+  "timings": {
+    "gpu_setup_s": 0.45482170000104816,
+    "gpu_prepare_s": 24.62118009995538,
+    "gpu_readback_s": 11.642787900047551,
+    "gpu_portable_control_s": 12.548827400045411,
+    "gpu_integrate_s": 29.332768899992516,
+    "gpu_internal_capture_s": 5.168260099977488,
+    "cpu_prepare_control_s": 14.152367199971195,
+    "cpu_integrate_capture_s": 2.2122296003472
+  },
+  "total_worker_wall_s": 103.0925614000007,
+  "diagnosis": {
+    "first_bad_row": {
+      "backend": "gpu",
+      "cell": 0,
+      "outer_step": 0
+    },
+    "gpu": {
+      "controller_rows": 1920,
+      "site_rows": 7680,
+      "mismatched_sites": 3952,
+      "rows_with_mismatch": 1786
+    },
+    "cpu": {
+      "controller_rows": 1920,
+      "site_rows": 7680,
+      "mismatched_sites": 0,
+      "rows_with_mismatch": 0
+    },
+    "cause": "Warp get_data_into copies contact.geom. The production adapter reads independent legacy geom1/geom2 fields, which remain stale. The original readback check verified only geom; the independent native-to-canonical observation join correctly refused.",
+    "provenance": "Installed MuJoCo 3.11.0 standalone MjContact reproduction and pinned mujoco_warp/_src/io.py get_data_into source."
+  },
+  "interpretation": "All native steps completed but GPU controller contact inputs were invalid. Candidate ranking and transfer observations are unusable. Preserve the failed supervisor receipt and raw traces unchanged; only a fresh successor may test the repaired path.",
+  "artifacts": [
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/consumed.json",
+      "byte_length": 197,
+      "sha256": "5ead021ecfa45f4445e4038f0060627dc8e28eda74daeaf85c0852d09d6a629f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/containment-gate/contained.permit",
+      "byte_length": 6,
+      "sha256": "493c325183220183473ade933d2bc1863c9ba8d3c71fb0e67dd9b2e101141b4b"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/containment-gate/leaf.json",
+      "byte_length": 1096,
+      "sha256": "371817b69bdd849cb90c87263b538b981aaaf12a97e51c08abfe6b104b457595"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/containment-gate/stderr.log",
+      "byte_length": 103,
+      "sha256": "7ed4961b42fd336ff479a6767e1cdbf0867e5fc340039019fd0807db0cf5a3e4"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/containment-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/declaration.json",
+      "byte_length": 329152,
+      "sha256": "c81284c90b1b316cd79c4622909d68c11010a686cd3f7e61e3875ea247a6add6"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/0467a08295894968aa2fb87a8b19c006/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/0467a08295894968aa2fb87a8b19c006/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/0467a08295894968aa2fb87a8b19c006/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/0467a08295894968aa2fb87a8b19c006/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/0467a08295894968aa2fb87a8b19c006/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/0467a08295894968aa2fb87a8b19c006/physical/trace.jsonl",
+      "byte_length": 115997,
+      "sha256": "6ed3a60e60dc49d10bb91bf8409a079c202d8ead94c68ab17385c29788e47d23"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/0467a08295894968aa2fb87a8b19c006/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "c0d99b990fbc3dcb222a1886d546ddb665fcc75f76969c0892b91af5115496c5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/134a84e17d604cd68da85818f78b2a35/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/134a84e17d604cd68da85818f78b2a35/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/134a84e17d604cd68da85818f78b2a35/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/134a84e17d604cd68da85818f78b2a35/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/134a84e17d604cd68da85818f78b2a35/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/134a84e17d604cd68da85818f78b2a35/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "ae6dfdbd4bd3bbbb1fadf75bd6a9b2825cbfb660d41c35875e56296d4262da87"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/134a84e17d604cd68da85818f78b2a35/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "d234bc3f70ef5093516a7a6c6bc687972451f2584b738c8d90d9a7fb6bc0f54f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/188c7aa15e3643f3a6dc44d77c63bff4/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/188c7aa15e3643f3a6dc44d77c63bff4/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/188c7aa15e3643f3a6dc44d77c63bff4/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/188c7aa15e3643f3a6dc44d77c63bff4/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/188c7aa15e3643f3a6dc44d77c63bff4/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/188c7aa15e3643f3a6dc44d77c63bff4/physical/trace.jsonl",
+      "byte_length": 117249,
+      "sha256": "60d3162e060623e098825418a30502a6cdeb5c3d8b2524349b47f57ea4178435"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/188c7aa15e3643f3a6dc44d77c63bff4/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "351e1009549f0488f27b4278a308c2b06cf98fb98ec9ce1dc20e53471eafaba8"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/25548741fb974b708675774620c98531/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/25548741fb974b708675774620c98531/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/25548741fb974b708675774620c98531/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/25548741fb974b708675774620c98531/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/25548741fb974b708675774620c98531/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/25548741fb974b708675774620c98531/physical/trace.jsonl",
+      "byte_length": 117267,
+      "sha256": "c6086a9d4af821ed6ffd29693d2f0c1d71de943e9d5e9bc33fe5d61901ecf4ff"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/25548741fb974b708675774620c98531/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "19581bcc8f88f1ba0430232a3f384fbf3279380547c3ff171f64e5ea1a54031b"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/2ac747d0e00548569e364b454b7f90e9/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/2ac747d0e00548569e364b454b7f90e9/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/2ac747d0e00548569e364b454b7f90e9/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/2ac747d0e00548569e364b454b7f90e9/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/2ac747d0e00548569e364b454b7f90e9/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/2ac747d0e00548569e364b454b7f90e9/physical/trace.jsonl",
+      "byte_length": 117253,
+      "sha256": "2d784ebffb7a6a7ba6cf69054378bcbaa4fb529e99d23d6c513196880f5b018c"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/2ac747d0e00548569e364b454b7f90e9/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "e5a9293a79b00448868d24983fc5bd7662be301676ddc51485583a0e972aae4d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/3aa53926166b4a188899449edb07b23a/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/3aa53926166b4a188899449edb07b23a/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/3aa53926166b4a188899449edb07b23a/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/3aa53926166b4a188899449edb07b23a/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/3aa53926166b4a188899449edb07b23a/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/3aa53926166b4a188899449edb07b23a/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "5c88fa06db8ae23d3809ff790310ea7c32354c60ec868cd4d0bd03a4feb85cac"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/3aa53926166b4a188899449edb07b23a/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "9cb50bcb19da642cea7669868d8b83eee381ab410c994664b8c92613652c8597"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4452d88212114718ba2b5ff0b607c63b/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4452d88212114718ba2b5ff0b607c63b/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4452d88212114718ba2b5ff0b607c63b/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4452d88212114718ba2b5ff0b607c63b/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4452d88212114718ba2b5ff0b607c63b/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4452d88212114718ba2b5ff0b607c63b/physical/trace.jsonl",
+      "byte_length": 118377,
+      "sha256": "9629ccb48f0a485f5b2e1f654435a69ac19d68144805cfcedfa8636ddf26db67"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4452d88212114718ba2b5ff0b607c63b/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "0a991a2f9db05f1301d54b88c4049636ee17a057dfcdf2f8c00c9a8ce9dbcc3d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/46ce34407f794cfa82a833d81426c942/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/46ce34407f794cfa82a833d81426c942/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/46ce34407f794cfa82a833d81426c942/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/46ce34407f794cfa82a833d81426c942/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/46ce34407f794cfa82a833d81426c942/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/46ce34407f794cfa82a833d81426c942/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "288d9f20fb9e696922479671dc4a99c5680afdea4977de39cd97efb97cc40a9f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/46ce34407f794cfa82a833d81426c942/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "74d2c6b18ba94e605312311185ffec8fe8ad7a7e16a9cdb2719541e3ccf4678b"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/472e94939cc04c41907fed13bfb28f8e/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/472e94939cc04c41907fed13bfb28f8e/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/472e94939cc04c41907fed13bfb28f8e/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/472e94939cc04c41907fed13bfb28f8e/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/472e94939cc04c41907fed13bfb28f8e/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "d5dc8831f2e663ae3a57153fe43d0d40b16db13c5ea503cea3dd1ab401efd5cb"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/472e94939cc04c41907fed13bfb28f8e/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "ae6dfdbd4bd3bbbb1fadf75bd6a9b2825cbfb660d41c35875e56296d4262da87"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/472e94939cc04c41907fed13bfb28f8e/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "d234bc3f70ef5093516a7a6c6bc687972451f2584b738c8d90d9a7fb6bc0f54f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4eab8c4638d74705828f335c0ffa026f/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4eab8c4638d74705828f335c0ffa026f/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4eab8c4638d74705828f335c0ffa026f/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4eab8c4638d74705828f335c0ffa026f/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4eab8c4638d74705828f335c0ffa026f/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4eab8c4638d74705828f335c0ffa026f/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "ae6dfdbd4bd3bbbb1fadf75bd6a9b2825cbfb660d41c35875e56296d4262da87"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/4eab8c4638d74705828f335c0ffa026f/physical/worker-result.json",
+      "byte_length": 447,
+      "sha256": "7f85f626112d7ae7cbc282e83ec1515f193d21653545094bb6e6806ff3918066"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/5466ebbbc346406fbf3a4dcd21974ec1/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/5466ebbbc346406fbf3a4dcd21974ec1/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/5466ebbbc346406fbf3a4dcd21974ec1/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/5466ebbbc346406fbf3a4dcd21974ec1/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/5466ebbbc346406fbf3a4dcd21974ec1/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/5466ebbbc346406fbf3a4dcd21974ec1/physical/trace.jsonl",
+      "byte_length": 117252,
+      "sha256": "4fbd4629b2e2f6af91ae7da01a363848da6a3fa1cffcfac4158cf93294bfc214"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/5466ebbbc346406fbf3a4dcd21974ec1/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "8a68f6546ca730de14b7d508e04aa8b6d73362d52234e3433d68859fd6c3e0d7"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/849993fe6eda426da750ee97a0273a36/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/849993fe6eda426da750ee97a0273a36/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/849993fe6eda426da750ee97a0273a36/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/849993fe6eda426da750ee97a0273a36/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/849993fe6eda426da750ee97a0273a36/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/849993fe6eda426da750ee97a0273a36/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "98ea008029cfb660bc63753939af114747f1ffc968233f84b55c974926557db9"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/849993fe6eda426da750ee97a0273a36/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "41d84fb2d78e8efbb2eb801583d9387521ce4434e687f68cd7680e7155e18a00"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/consumed.json",
+      "byte_length": 111,
+      "sha256": "8954515b9e36741a23445e515597cdee92c2f32e8d7fec82b52d9e3b78edb06c"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/declaration.json",
+      "byte_length": 3053,
+      "sha256": "8f686e431212d17fe21ae747d8eb97dea9218adeeb53b33a77e5e76e90247e52"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/independent-audit.json",
+      "byte_length": 3128,
+      "sha256": "1e92c44a4f10ff77e2ac6d8eaaa9f89889b81c5f34b801bbc6e1b4f4473362cf"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/stderr.log",
+      "byte_length": 13,
+      "sha256": "aa2353a76c07b8615467bb59085dc2d9867c94f2c1d2e7a15df72b196bfdebf0"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/stdout.log",
+      "byte_length": 22,
+      "sha256": "cff42ed2ceb7eec2e0adab497a1ddffef91b09a691e426491120489cff15d5ae"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "ae6dfdbd4bd3bbbb1fadf75bd6a9b2825cbfb660d41c35875e56296d4262da87"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "d234bc3f70ef5093516a7a6c6bc687972451f2584b738c8d90d9a7fb6bc0f54f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0/receipt.json",
+      "byte_length": 3304,
+      "sha256": "90f4228dbf000a6550c871fbec7341c0e183d3b320e0a89931c61b85d4772f70"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/8ff867af7b4149149847cbcb68a334f0-closure.json",
+      "byte_length": 5629,
+      "sha256": "f09b3fd4c620bda7b4eacfa17036b61ed6bcb14273a686f1735452c4722ac6e9"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/945b498122184dce9d4391beb3ad6d69/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/945b498122184dce9d4391beb3ad6d69/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/945b498122184dce9d4391beb3ad6d69/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/945b498122184dce9d4391beb3ad6d69/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/945b498122184dce9d4391beb3ad6d69/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/945b498122184dce9d4391beb3ad6d69/physical/trace.jsonl",
+      "byte_length": 117270,
+      "sha256": "a2da604e220d1d00637fac2f2fccc6e97512ccfb3c7353ef8ca71951ea7725a9"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/945b498122184dce9d4391beb3ad6d69/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "d234bc3f70ef5093516a7a6c6bc687972451f2584b738c8d90d9a7fb6bc0f54f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/abaa233287cc410591e2acb83219cd96/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/abaa233287cc410591e2acb83219cd96/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/abaa233287cc410591e2acb83219cd96/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/abaa233287cc410591e2acb83219cd96/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/abaa233287cc410591e2acb83219cd96/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/abaa233287cc410591e2acb83219cd96/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "14bdb6fa5d8476d6783932ee4a92ede6505e3d8fe8a3add960d9a58959f03f2a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/abaa233287cc410591e2acb83219cd96/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "1e72fd2cc127c44c284e110f990e2fbb2fe0b414ea8bcd4c5f057f982ab350e4"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/ce63262a63654b549111b813570c3b7d/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/ce63262a63654b549111b813570c3b7d/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/ce63262a63654b549111b813570c3b7d/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/ce63262a63654b549111b813570c3b7d/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/ce63262a63654b549111b813570c3b7d/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/ce63262a63654b549111b813570c3b7d/physical/trace.jsonl",
+      "byte_length": 117204,
+      "sha256": "ec01e2d0447f755887356716c033fe8637a6837260a1e89bd224bd45384e6dc2"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/ce63262a63654b549111b813570c3b7d/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "8e1d8b0105f4fd143d89d96a4480a7ebf02743b2a06c45bd265241607ed61c79"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/d0bea89cda9a439da8ad3433ee468076/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/d0bea89cda9a439da8ad3433ee468076/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/d0bea89cda9a439da8ad3433ee468076/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/d0bea89cda9a439da8ad3433ee468076/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/d0bea89cda9a439da8ad3433ee468076/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/d0bea89cda9a439da8ad3433ee468076/physical/trace.jsonl",
+      "byte_length": 117264,
+      "sha256": "98e6c7d6bc6429a2ac5af9c95d5f72ef9bacd7c3d8d944093496dcb796b93006"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/d0bea89cda9a439da8ad3433ee468076/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "42c64d37321e92736c4d4c6ce336b1ef15ae22e19270cb0ac8c8d49ca1c28a3d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/de21708c7d384089b33e07030dd53250/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/de21708c7d384089b33e07030dd53250/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/de21708c7d384089b33e07030dd53250/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/de21708c7d384089b33e07030dd53250/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/de21708c7d384089b33e07030dd53250/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/de21708c7d384089b33e07030dd53250/physical/trace.jsonl",
+      "byte_length": 117271,
+      "sha256": "1504195cd8e590d80e530c75785c743ee055bcc478d8056e2a886835b1733214"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/de21708c7d384089b33e07030dd53250/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "ea9f18e823122f29d61267ec853eb71db8fbf0241ed7df993c948246cf2fce9c"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e29b986b99fb4eb5a7d7f36f010e1996/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e29b986b99fb4eb5a7d7f36f010e1996/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e29b986b99fb4eb5a7d7f36f010e1996/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e29b986b99fb4eb5a7d7f36f010e1996/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e29b986b99fb4eb5a7d7f36f010e1996/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e29b986b99fb4eb5a7d7f36f010e1996/physical/trace.jsonl",
+      "byte_length": 117268,
+      "sha256": "19d316f14969a5cb65c471dc27f9d711b239541ca664f87a5a644500c0567120"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e29b986b99fb4eb5a7d7f36f010e1996/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "244081a435fdbec9f88486819b06e55548b989f69abfdd0da0020915a5f7c5b4"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e56bc32c098945fab93796f830167e30/declaration.json",
+      "byte_length": 2977,
+      "sha256": "c49b1b58859934f113c99d45720de0efb3c138523dc021050a734851af5bb8d3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e56bc32c098945fab93796f830167e30/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e56bc32c098945fab93796f830167e30/physical/inputs.json",
+      "byte_length": 1212,
+      "sha256": "620887ac6febeb074d00fdb700a0fcdacb8496810a2f3a36c824d2a72d5541cd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e56bc32c098945fab93796f830167e30/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e56bc32c098945fab93796f830167e30/physical/native-model.json",
+      "byte_length": 1102,
+      "sha256": "8fdfd00342af9661a9a23971092a22eef781a74df94275c3c5f925087098ab6d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e56bc32c098945fab93796f830167e30/physical/trace.jsonl",
+      "byte_length": 117270,
+      "sha256": "9299862160a199d4b7da8597dfda0fc11a813b6fea77eb8cbf1b587ae0d7b070"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/gpu-quadruped-synthetic-f841f43634d643f9810a4ca77f1de004/e56bc32c098945fab93796f830167e30/physical/worker-result.json",
+      "byte_length": 448,
+      "sha256": "3e30e3e750d2ae5755263c96538dca5634d6620ad6766338a224e541470a2d38"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/measurement-gate/contained.permit",
+      "byte_length": 5,
+      "sha256": "f42a35a78b5729263c2d5298190dc69d0b7594de3ff73b6f6394f498898aca55"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/measurement-gate/leaf.json",
+      "byte_length": 1201,
+      "sha256": "274c67cc7438ad25fc9a84b86d5fbbf248decc87c9351db314c8123853287ba7"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/measurement-gate/stderr.log",
+      "byte_length": 1181,
+      "sha256": "69641370e9f004446806b9c7f8b4e5c60abc84d7b002316fa756e0087cb10dfd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/measurement-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/ownership-d6a18610e1714e6dbefd60ce03afc63f/contained.permit",
+      "byte_length": 5,
+      "sha256": "7df5062fd83fa3214d7909a672cf8f9b9afa66a132d6da2d5e604dffcb0088dd"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/ownership-d6a18610e1714e6dbefd60ce03afc63f/leaf.json",
+      "byte_length": 526,
+      "sha256": "dbf27ce7d0cc2796d3865382d315333b5c5af9f109d8ccbc71d69486bd34f153"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/ownership-d6a18610e1714e6dbefd60ce03afc63f/stderr.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/ownership-d6a18610e1714e6dbefd60ce03afc63f/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/compiled.json",
+      "byte_length": 20968,
+      "sha256": "5999092da6f1ec2772d8fb869c123fd7881afacf538ef32ef1982638911be708"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/contained.permit",
+      "byte_length": 5,
+      "sha256": "01a5dfd1be5ad07651336ce120838a9c58c3d4777f18584b5a139d7d609c9e49"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/controller.jsonl",
+      "byte_length": 260522429,
+      "sha256": "4b825237417bdc2bdf6f438539b38cd7d00ea43e1bc629298d5f4f5126f429f2"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/gpu-selection.json",
+      "byte_length": 764,
+      "sha256": "67b0a22d92fc98384ff509977b9aebc38f978efc93a1275500b9c4da51ace1c0"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/inputs.json",
+      "byte_length": 1604,
+      "sha256": "1ae08d5548c7a727a7a3e60d449e9f3ccdbf92990bc754150e5cd2b10471e022"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/leaf.json",
+      "byte_length": 943,
+      "sha256": "3e2e118bd28bb89ddd1d09218a5e8cec3a3bc17c68437eb78b0552e77b81b6bf"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/native-model.json",
+      "byte_length": 1239,
+      "sha256": "760e1c313f26251d96c78d4b7030459df22ef6a8275844eccdb35305e1715925"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/stderr.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/stdout.log",
+      "byte_length": 3793,
+      "sha256": "fc1e9855cd0988c941abe43436b4cec9a7e633bad3aa16c2b3437423f5305dc1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/trace.jsonl",
+      "byte_length": 48546416,
+      "sha256": "bc66adfa6bbcf89991eacb76a97a54bc5636f87fc66a635ac71a09f85c6eae68"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/0a322653c491aef5.lto",
+      "byte_length": 1037820,
+      "sha256": "1b9cf9a28172866a5918d18c6bb7e3ee9ce55b328f913138ae5dd59a849ea11f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/0a322653c491aef5_fatbin.lto",
+      "byte_length": 506960,
+      "sha256": "c00d6412780b18f67e11a1d93fc34d51db9cdd687f26ec7bc926efbff5ddbd1f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/85a4166f8c6b2117.lto",
+      "byte_length": 1037920,
+      "sha256": "761e1e70758a913f7545aa4b426eed39236412b722c6c852312e294beea76d14"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/85a4166f8c6b2117_fatbin.lto",
+      "byte_length": 506960,
+      "sha256": "c00d6412780b18f67e11a1d93fc34d51db9cdd687f26ec7bc926efbff5ddbd1f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/8be129f58e81da3f.lto",
+      "byte_length": 1044180,
+      "sha256": "07468e51632f5c1c341b227a21384fdba523847edb0b557ff1ee8dd11136d14e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/8be129f58e81da3f_fatbin.lto",
+      "byte_length": 506960,
+      "sha256": "c00d6412780b18f67e11a1d93fc34d51db9cdd687f26ec7bc926efbff5ddbd1f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/d923dcb7f1d6c1a8.lto",
+      "byte_length": 1044096,
+      "sha256": "0b84b6c14619e2dac0c23faa8ce435061a7ba2ec78606eb2c8973540a924c90a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/lto/d923dcb7f1d6c1a8_fatbin.lto",
+      "byte_length": 506960,
+      "sha256": "c00d6412780b18f67e11a1d93fc34d51db9cdd687f26ec7bc926efbff5ddbd1f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_init__locals__kernel_26582b3e_26582b3/wp__efc_contact_init__locals__kernel_26582b3e_26582b3.cu",
+      "byte_length": 8394,
+      "sha256": "6fec256585de50e77995e28ef8a6cae6e38c6d665d63243a05a77ff656a53ef4"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_init__locals__kernel_26582b3e_26582b3/wp__efc_contact_init__locals__kernel_26582b3e_26582b3.meta",
+      "byte_length": 161,
+      "sha256": "fadf5195de8d5be413e885c853a1fadffe8bf10754cf72895f7e455e3b71936e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_init__locals__kernel_26582b3e_26582b3/wp__efc_contact_init__locals__kernel_26582b3e_26582b3.sm89.ptx",
+      "byte_length": 48015,
+      "sha256": "6dd0a9b04a05533762e170631d34b1ad9906f235360745fe8c358fc5586c8a8f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_jac_dense__locals__kernel_26dff411_9f67078/wp__efc_contact_jac_dense__locals__kernel_26dff411_9f67078.cu",
+      "byte_length": 28015,
+      "sha256": "72960d51972b141b85b0d2e083f9d944f2d1a9c61366c9f52bbd154fc64b487e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_jac_dense__locals__kernel_26dff411_9f67078/wp__efc_contact_jac_dense__locals__kernel_26dff411_9f67078.meta",
+      "byte_length": 172,
+      "sha256": "eaf13597d5ae3bb537ac7f5afb7aea277d88f4588a64da90e8215b7ea3c3a275"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_jac_dense__locals__kernel_26dff411_9f67078/wp__efc_contact_jac_dense__locals__kernel_26dff411_9f67078.sm89.ptx",
+      "byte_length": 54718,
+      "sha256": "135f21438ae5e99ac7c0251eb4f6916798d03ee1d049314517800cd1a92f5d5d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_update__locals__kernel_56019adc_56019ad/wp__efc_contact_update__locals__kernel_56019adc_56019ad.cu",
+      "byte_length": 33197,
+      "sha256": "40c8bd50e8351f209cc402d3002fdc23dc236476fce5c6692f6402ee14df67ec"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_update__locals__kernel_56019adc_56019ad/wp__efc_contact_update__locals__kernel_56019adc_56019ad.meta",
+      "byte_length": 165,
+      "sha256": "69e5cb210b5e6ee670a3c62effb5be05ed8f14ba729d7c51dc71ebadc75782f3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__efc_contact_update__locals__kernel_56019adc_56019ad/wp__efc_contact_update__locals__kernel_56019adc_56019ad.sm89.ptx",
+      "byte_length": 69568,
+      "sha256": "dd17d8bf07459cbec55a727f6426947562a385adf25a8666d151fa20023ef86d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__friction_dof__locals__kernel_a6ed3529_a6ed352/wp__friction_dof__locals__kernel_a6ed3529_a6ed352.cu",
+      "byte_length": 25626,
+      "sha256": "dd4108cee7d2f084302140de869c24bb830978475911940a280c934f0109721d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__friction_dof__locals__kernel_a6ed3529_a6ed352/wp__friction_dof__locals__kernel_a6ed3529_a6ed352.meta",
+      "byte_length": 153,
+      "sha256": "3db752224c6d7cbeb97e525286457897a876e1b71dfc67f1edfbde538f0100de"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__friction_dof__locals__kernel_a6ed3529_a6ed352/wp__friction_dof__locals__kernel_a6ed3529_a6ed352.sm89.ptx",
+      "byte_length": 66584,
+      "sha256": "3a1028a60d997da0b86f06356752b3efd83bbc7daf5a75bdec2cf6c5395f2dea"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__limit_slide_hinge__locals__kernel_56cb53b3_56cb53b/wp__limit_slide_hinge__locals__kernel_56cb53b3_56cb53b.cu",
+      "byte_length": 29038,
+      "sha256": "720ce80eb73a62c7e5fd293a7054bfc9fc89c05c009dc65a81955c0f21f57550"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__limit_slide_hinge__locals__kernel_56cb53b3_56cb53b/wp__limit_slide_hinge__locals__kernel_56cb53b3_56cb53b.meta",
+      "byte_length": 163,
+      "sha256": "c42349a272400db1b0301f5eadbd4aec2afd8fc018bacc5884175dc432025c99"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__limit_slide_hinge__locals__kernel_56cb53b3_56cb53b/wp__limit_slide_hinge__locals__kernel_56cb53b3_56cb53b.sm89.ptx",
+      "byte_length": 71607,
+      "sha256": "cf039a9b9f12f2c0b16e9d6092cfbfd23b531828775db5d78628faf688a6299e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__linesearch_iterative_kernel__locals__kernel_a3c64dfe_c51778b/wp__linesearch_iterative_kernel__locals__kernel_a3c64dfe_c51778b.cu",
+      "byte_length": 189355,
+      "sha256": "93c19109804479bf23f6f059d3b869cb4400f29813a537095c8258dd16226928"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__linesearch_iterative_kernel__locals__kernel_a3c64dfe_c51778b/wp__linesearch_iterative_kernel__locals__kernel_a3c64dfe_c51778b.meta",
+      "byte_length": 184,
+      "sha256": "39bb4252f898685171a0198ad1ee4775918d75a30a117692f0fe9da46b3dd214"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__linesearch_iterative_kernel__locals__kernel_a3c64dfe_c51778b/wp__linesearch_iterative_kernel__locals__kernel_a3c64dfe_c51778b.sm89.ptx",
+      "byte_length": 181581,
+      "sha256": "70c49977ef2560d57153faebfa1fedb840113cd1bf3a604b1c6d3576932b6558"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__next_time_builder__locals___next_time_a67f49d6_a67f49d/wp__next_time_builder__locals___next_time_a67f49d6_a67f49d.cu",
+      "byte_length": 11874,
+      "sha256": "11bf3d3240cdd6e6b7b13fe688ce7fefda40f3508bec6eed50fed16f39761f65"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__next_time_builder__locals___next_time_a67f49d6_a67f49d/wp__next_time_builder__locals___next_time_a67f49d6_a67f49d.meta",
+      "byte_length": 171,
+      "sha256": "3b458578e7c85d3fda721296944bf17a79ca622dfd41e8700df6a606161f783b"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__next_time_builder__locals___next_time_a67f49d6_a67f49d/wp__next_time_builder__locals___next_time_a67f49d6_a67f49d.sm89.ptx",
+      "byte_length": 39434,
+      "sha256": "5d8ca301a5ab4fb75486aa724120477302b1edf0d846f12b77ef54c2d0646e6c"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__nxn_broadphase__locals__kernel_3e896ca5_3e896ca/wp__nxn_broadphase__locals__kernel_3e896ca5_3e896ca.cu",
+      "byte_length": 96851,
+      "sha256": "6bb13293ae1501962b65792d8572e964d905ba69b2694006c106006a3d85a1c5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__nxn_broadphase__locals__kernel_3e896ca5_3e896ca/wp__nxn_broadphase__locals__kernel_3e896ca5_3e896ca.meta",
+      "byte_length": 157,
+      "sha256": "de0909322edd3c7d0020d9eb2956f9273872de1a7cebd0b59adf091b9ccd0293"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__nxn_broadphase__locals__kernel_3e896ca5_3e896ca/wp__nxn_broadphase__locals__kernel_3e896ca5_3e896ca.sm89.ptx",
+      "byte_length": 51577,
+      "sha256": "c249c3672aaf21c4921d9007d40800118c904109aba8aef52615255f93d5499d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__primitive_narrowphase__locals__primitive_narrowphase_3c2b0f5d_3c2b0f5/wp__primitive_narrowphase__locals__primitive_narrowphase_3c2b0f5d_3c2b0f5.cu",
+      "byte_length": 210150,
+      "sha256": "67307024ec6c09b2a7e2a429dd6a72b9b5c135a395fd8012051575bd8e0c3a1e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__primitive_narrowphase__locals__primitive_narrowphase_3c2b0f5d_3c2b0f5/wp__primitive_narrowphase__locals__primitive_narrowphase_3c2b0f5d_3c2b0f5.meta",
+      "byte_length": 201,
+      "sha256": "75601eaf94f35573ba80a295da61e13f4e00624ce9f23758014042b29f917d58"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__primitive_narrowphase__locals__primitive_narrowphase_3c2b0f5d_3c2b0f5/wp__primitive_narrowphase__locals__primitive_narrowphase_3c2b0f5d_3c2b0f5.sm89.ptx",
+      "byte_length": 135436,
+      "sha256": "cca3c0ee40176b4b9c03cde12f88924c9ac3e63b3197cc9bff284c9c0ae22f42"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__qfrc_smooth__locals__kernel_b98573a2_b98573a/wp__qfrc_smooth__locals__kernel_b98573a2_b98573a.cu",
+      "byte_length": 4330,
+      "sha256": "a51a0db914cef77940dc0b756d6494d5a62e6ec48649e43ffa7e3a85b1595d80"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__qfrc_smooth__locals__kernel_b98573a2_b98573a/wp__qfrc_smooth__locals__kernel_b98573a2_b98573a.meta",
+      "byte_length": 151,
+      "sha256": "ecc15d659b1bcf764058ff85f9e77b9185bc28c6eabee58cfa3b962fc2a763f7"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__qfrc_smooth__locals__kernel_b98573a2_b98573a/wp__qfrc_smooth__locals__kernel_b98573a2_b98573a.sm89.ptx",
+      "byte_length": 35176,
+      "sha256": "2ce2cdf4913367b273351cf264c06a79e72e5b382864a84b937fcaba199cac14"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__solve_init_dof__locals__kernel_befe379c_befe379/wp__solve_init_dof__locals__kernel_befe379c_befe379.cu",
+      "byte_length": 3102,
+      "sha256": "06b2ea819ac8e9bb75235da1afe0e30bb1984c2947125f16030e487d24083865"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__solve_init_dof__locals__kernel_befe379c_befe379/wp__solve_init_dof__locals__kernel_befe379c_befe379.meta",
+      "byte_length": 157,
+      "sha256": "841d4a73976f90b528e8039b1554fbcc346a657a060caf88eb51537e33d33685"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__solve_init_dof__locals__kernel_befe379c_befe379/wp__solve_init_dof__locals__kernel_befe379c_befe379.sm89.ptx",
+      "byte_length": 31341,
+      "sha256": "75155890537295c6da802b4ac153d28319790da2e72d62dde41c6a64eb491558"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__solve_init_jaref_kernel__locals__kernel_63e43afe_63e43af/wp__solve_init_jaref_kernel__locals__kernel_63e43afe_63e43af.cu",
+      "byte_length": 11280,
+      "sha256": "b11f1191cf44228792300f9f6c348bcb95b57588aaddc704ab6f898e8eac7625"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__solve_init_jaref_kernel__locals__kernel_63e43afe_63e43af/wp__solve_init_jaref_kernel__locals__kernel_63e43afe_63e43af.meta",
+      "byte_length": 175,
+      "sha256": "ac1b49d0a561b57cf064d7492df81c56f8cde61f1704f55d38d8b3eb7067d746"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__solve_init_jaref_kernel__locals__kernel_63e43afe_63e43af/wp__solve_init_jaref_kernel__locals__kernel_63e43afe_63e43af.sm89.ptx",
+      "byte_length": 35910,
+      "sha256": "5e7c6f32216e507a6294000acf087107ec90014c5aa02cef3fb2a5a4881efb43"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_factorize_block__locals__kernel_e4cbe10d_b7c5382/wp__tile_cholesky_factorize_block__locals__kernel_e4cbe10d_b7c5382.cu",
+      "byte_length": 6215,
+      "sha256": "cdbc15ce7572addf9fe34c6130cdff6cb897b6e1e783f25732670b7cef6c7aff"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_factorize_block__locals__kernel_e4cbe10d_b7c5382/wp__tile_cholesky_factorize_block__locals__kernel_e4cbe10d_b7c5382.meta",
+      "byte_length": 190,
+      "sha256": "7cba3df32d39964712ff98981be6017db5b53204a7464c0b5704091e8ff75e96"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_factorize_block__locals__kernel_e4cbe10d_b7c5382/wp__tile_cholesky_factorize_block__locals__kernel_e4cbe10d_b7c5382.sm89.ptx",
+      "byte_length": 1065044,
+      "sha256": "c8024550d64ddc7b82c55dacf673fee495be2a9053f16bafd4558c53a4f68ed5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_factorize_solve_block__locals__kernel_7b7e8b16_a1adcd5/wp__tile_cholesky_factorize_solve_block__locals__kernel_7b7e8b16_a1adcd5.cu",
+      "byte_length": 8042,
+      "sha256": "e3857e80c4a32b0cbf95852227d9879e9bae40934cc66487c727f40becaaeb30"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_factorize_solve_block__locals__kernel_7b7e8b16_a1adcd5/wp__tile_cholesky_factorize_solve_block__locals__kernel_7b7e8b16_a1adcd5.meta",
+      "byte_length": 202,
+      "sha256": "7bf8f25f30bd28ea355cf8b85cd7bcf3572bdbd9c3efb38364051e4829dd8911"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_factorize_solve_block__locals__kernel_7b7e8b16_a1adcd5/wp__tile_cholesky_factorize_solve_block__locals__kernel_7b7e8b16_a1adcd5.sm89.ptx",
+      "byte_length": 1632864,
+      "sha256": "2704d6d4432261acea254a4b05877e4f2638c8a8fe00de44b9f78f858d644cfb"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_solve_block__locals__kernel_8b3d87c8_3c93779/wp__tile_cholesky_solve_block__locals__kernel_8b3d87c8_3c93779.cu",
+      "byte_length": 6099,
+      "sha256": "ab74a25bc44018a4fbf216d4e26729d00c877db514aac425ffc80d91ce930ced"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_solve_block__locals__kernel_8b3d87c8_3c93779/wp__tile_cholesky_solve_block__locals__kernel_8b3d87c8_3c93779.meta",
+      "byte_length": 181,
+      "sha256": "3059f104dade2544f6bacf494dddc4435ebf43dd2279ae32e199c4992abfd292"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__tile_cholesky_solve_block__locals__kernel_8b3d87c8_3c93779/wp__tile_cholesky_solve_block__locals__kernel_8b3d87c8_3c93779.sm89.ptx",
+      "byte_length": 1057712,
+      "sha256": "50f5dce6ca4ce2b7633a0c298d658284a8b01c2d52a5f71eff8070438fe7f68f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_constraint_efc__locals__kernel_64b75440_64b7544/wp__update_constraint_efc__locals__kernel_64b75440_64b7544.cu",
+      "byte_length": 34830,
+      "sha256": "7d383a9e01cba18019fc133ac0223a53c4577b7a5b505d342b778850c0aa7737"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_constraint_efc__locals__kernel_64b75440_64b7544/wp__update_constraint_efc__locals__kernel_64b75440_64b7544.meta",
+      "byte_length": 171,
+      "sha256": "bdd0b3925a132f4654a7c31028d520dac12d91cc6b8f0f33c1103e86bb94f4ec"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_constraint_efc__locals__kernel_64b75440_64b7544/wp__update_constraint_efc__locals__kernel_64b75440_64b7544.sm89.ptx",
+      "byte_length": 47876,
+      "sha256": "d07efcd52dcf3e1e3637ea9e67f7979ac09d589c28596b5717f5f322fa9c1178"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_constraint_init_qfrc_constraint_dense__locals__kernel_88a8869f_88a8869/wp__update_constraint_init_qfrc_constraint_dense__locals__kernel_88a8869f_88a8869.cu",
+      "byte_length": 5161,
+      "sha256": "6bbed53206191e64a4b414e780cdbbeb82c5673967205e29cbfaff57fb2dbb5c"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_constraint_init_qfrc_constraint_dense__locals__kernel_88a8869f_88a8869/wp__update_constraint_init_qfrc_constraint_dense__locals__kernel_88a8869f_88a8869.meta",
+      "byte_length": 217,
+      "sha256": "368f7bc06a6017e8e65102bf7ea2a5155dafbe7166917b4e586be739f85293e5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_constraint_init_qfrc_constraint_dense__locals__kernel_88a8869f_88a8869/wp__update_constraint_init_qfrc_constraint_dense__locals__kernel_88a8869f_88a8869.sm89.ptx",
+      "byte_length": 41538,
+      "sha256": "3af9e8fd597c3f7b4e08757bdaf1ea887bf431a708dec329aad608b421c2a16e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_cholesky__locals__kernel_309e8119_6d9c2c3/wp__update_gradient_cholesky__locals__kernel_309e8119_6d9c2c3.cu",
+      "byte_length": 8995,
+      "sha256": "eaa6a6345489a028c593681313abfccbf59598b9ee373b268a389a8082a3fb97"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_cholesky__locals__kernel_309e8119_6d9c2c3/wp__update_gradient_cholesky__locals__kernel_309e8119_6d9c2c3.meta",
+      "byte_length": 179,
+      "sha256": "97619556b541ea1acf9f698f29ab38113747dd9635fa2a3c403babda97f6e187"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_cholesky__locals__kernel_309e8119_6d9c2c3/wp__update_gradient_cholesky__locals__kernel_309e8119_6d9c2c3.sm89.ptx",
+      "byte_length": 1629093,
+      "sha256": "6eb017ba88361567b7bfbef9662dc50c46fda5061a5c1e0df4e23c9d33cc5b4d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_grad__locals__kernel_00c9ca8d_00c9ca8/wp__update_gradient_grad__locals__kernel_00c9ca8d_00c9ca8.cu",
+      "byte_length": 4394,
+      "sha256": "8c4c6ebc2ce69febaa8d8e5cff0f26c9dcfc4210e5167a62c20ebdfae3d8f321"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_grad__locals__kernel_00c9ca8d_00c9ca8/wp__update_gradient_grad__locals__kernel_00c9ca8d_00c9ca8.meta",
+      "byte_length": 169,
+      "sha256": "88389d6ab40fe5e680b0ba547a9d6eaeb1bdd9bdeb84ccd7a434738b5f2cac7a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_grad__locals__kernel_00c9ca8d_00c9ca8/wp__update_gradient_grad__locals__kernel_00c9ca8d_00c9ca8.sm89.ptx",
+      "byte_length": 36092,
+      "sha256": "6854d025aa3ada7f0382f8dbe2fbf1225090d3cf62534666629763fdeff11f1a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_JTDAJ_dense_tiled__locals__kernel_9d0fed13_2cc9c0f/wp__update_gradient_JTDAJ_dense_tiled__locals__kernel_9d0fed13_2cc9c0f.cu",
+      "byte_length": 17401,
+      "sha256": "6dfcfad51f7d61b05ea12c6da112e5da28929beba2c29185f5ad1e6a733d45c0"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_JTDAJ_dense_tiled__locals__kernel_9d0fed13_2cc9c0f/wp__update_gradient_JTDAJ_dense_tiled__locals__kernel_9d0fed13_2cc9c0f.meta",
+      "byte_length": 198,
+      "sha256": "55904e3c412e7eb1723355c478e5526d048f11bf585a38a492b1807e120d60f0"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_JTDAJ_dense_tiled__locals__kernel_9d0fed13_2cc9c0f/wp__update_gradient_JTDAJ_dense_tiled__locals__kernel_9d0fed13_2cc9c0f.sm89.ptx",
+      "byte_length": 82345,
+      "sha256": "879e43022893db1d9ef4142b48efbf405946105c4bfeb998654bbea655dcb3f1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_zero_grad_dot__locals__kernel_817148e6_817148e/wp__update_gradient_zero_grad_dot__locals__kernel_817148e6_817148e.cu",
+      "byte_length": 4192,
+      "sha256": "78383b3a81d1373d3dfaf5771d7d6ec473509fc17a8c4d507c34725746b2cd7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_zero_grad_dot__locals__kernel_817148e6_817148e/wp__update_gradient_zero_grad_dot__locals__kernel_817148e6_817148e.meta",
+      "byte_length": 187,
+      "sha256": "ec49fb82aa5073a7b0225e002a59c0095cb5259aa5b2250bc1228c8851e377a0"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp__update_gradient_zero_grad_dot__locals__kernel_817148e6_817148e/wp__update_gradient_zero_grad_dot__locals__kernel_817148e6_817148e.sm89.ptx",
+      "byte_length": 32841,
+      "sha256": "3b46e85f5e3c7ff354308b8fcb7256ca667cdf61cb683805634efd346c6a9c71"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.constraint_36c8060/wp_mujoco_warp._src.constraint_36c8060.cu",
+      "byte_length": 3651,
+      "sha256": "7e2b672ce278f4fd9c5e5eceb6e1247f1e2fe057cd5c31b44d9f2b04b695f1e1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.constraint_36c8060/wp_mujoco_warp._src.constraint_36c8060.meta",
+      "byte_length": 141,
+      "sha256": "6ecffd426ca09144d1582cc327da9cba58d4b5b0532171bce7795187c1236051"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.constraint_36c8060/wp_mujoco_warp._src.constraint_36c8060.sm89.ptx",
+      "byte_length": 32293,
+      "sha256": "4ccc7778fdff69bab7bc4bf94332fc6a8514f0cd6ea07430b417dfe4658bf046"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.derivative_833f5d0/wp_mujoco_warp._src.derivative_833f5d0.cu",
+      "byte_length": 235176,
+      "sha256": "b19add9dcc8d14cc2a01ce790d7b20bcc8aef61a0b500eb0327b999efa38d28e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.derivative_833f5d0/wp_mujoco_warp._src.derivative_833f5d0.meta",
+      "byte_length": 1472,
+      "sha256": "c581d93eeaf088eed202147ba5cbc265d2cf15c0527ba1dd341018ff92c0a67e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.derivative_833f5d0/wp_mujoco_warp._src.derivative_833f5d0.sm89.ptx",
+      "byte_length": 243271,
+      "sha256": "cb08f67ce648ef2b83ce40a880b786ea53533bd68da471735133763360d2987d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.forward_b068ad6/wp_mujoco_warp._src.forward_b068ad6.cu",
+      "byte_length": 236273,
+      "sha256": "1793651aaa4cd89b8d2d0cd97bba60fe10b408b1c42459650b5d03c44de288b1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.forward_b068ad6/wp_mujoco_warp._src.forward_b068ad6.meta",
+      "byte_length": 2031,
+      "sha256": "4f27f9333b9c9cb835aa2d9bdf5f386478f027dd4da689898034de8c1be36ec1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.forward_b068ad6/wp_mujoco_warp._src.forward_b068ad6.sm89.ptx",
+      "byte_length": 286563,
+      "sha256": "b2f6f8e90f7425bdfca12912506f832add5205593b3bdbc4b5fd79b432bf34ac"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.forward_bfd9fb5/wp_mujoco_warp._src.forward_bfd9fb5.cu",
+      "byte_length": 236272,
+      "sha256": "e63639e14de9b1a008f589d4d5233af72743478575f90c46f0d9d0f8201c8a25"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.forward_bfd9fb5/wp_mujoco_warp._src.forward_bfd9fb5.meta",
+      "byte_length": 2031,
+      "sha256": "4f27f9333b9c9cb835aa2d9bdf5f386478f027dd4da689898034de8c1be36ec1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.forward_bfd9fb5/wp_mujoco_warp._src.forward_bfd9fb5.sm89.ptx",
+      "byte_length": 286554,
+      "sha256": "3fe4d15430914ab4afaa16b85ee0464919c09f8331b62eac23f69e9915206112"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.passive_d8c18c6/wp_mujoco_warp._src.passive_d8c18c6.cu",
+      "byte_length": 516696,
+      "sha256": "479354282acac0bc8b3554e00fa5875ba195943759a7a078e833db66f5002f52"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.passive_d8c18c6/wp_mujoco_warp._src.passive_d8c18c6.meta",
+      "byte_length": 1191,
+      "sha256": "e699e20808c58a805457a51abc44eb5fe46eed71fb437f7da6051d2ef1bcbf16"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.passive_d8c18c6/wp_mujoco_warp._src.passive_d8c18c6.sm89.ptx",
+      "byte_length": 419021,
+      "sha256": "54d711373e7046a1d02e8126a2a9218f2eb0cbeffae050b4f54268630e8db793"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.sensor_de892d8/wp_mujoco_warp._src.sensor_de892d8.cu",
+      "byte_length": 973865,
+      "sha256": "38581bdb838addca91d517cdeb2101a2a768e1a1b05acc5615b6fe1119bb2d02"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.sensor_de892d8/wp_mujoco_warp._src.sensor_de892d8.meta",
+      "byte_length": 2332,
+      "sha256": "e63d00de6deb7a4a4bf36494974b4988744457a4c8832d177f3bfbf72c0e83d6"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.sensor_de892d8/wp_mujoco_warp._src.sensor_de892d8.sm89.ptx",
+      "byte_length": 720964,
+      "sha256": "fd79f7743937cfeb8826a3aa7762f353c792eb57c2a639aa1073768406fd5c23"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.smooth_c4020f1/wp_mujoco_warp._src.smooth_c4020f1.cu",
+      "byte_length": 840672,
+      "sha256": "73cca32d857bebb8410aa765ced842873fe8f8c36a6fc8facdb7357f29fea564"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.smooth_c4020f1/wp_mujoco_warp._src.smooth_c4020f1.meta",
+      "byte_length": 5691,
+      "sha256": "25cc61363701f5df8fe0100a12f1e8d6b8155c74a107c727ea781e614bda9188"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.smooth_c4020f1/wp_mujoco_warp._src.smooth_c4020f1.sm89.ptx",
+      "byte_length": 932514,
+      "sha256": "ed41354ee0135ac877f510d49febe7d0b327f30a379fc96eb5a9aea0f4213bd8"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.solver_3a105a0/wp_mujoco_warp._src.solver_3a105a0.cu",
+      "byte_length": 195096,
+      "sha256": "924ced5bc355a435b02dfd43452b66a079a31f2289b3d68fecf01beae636c2e8"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.solver_3a105a0/wp_mujoco_warp._src.solver_3a105a0.meta",
+      "byte_length": 4128,
+      "sha256": "3227eafe54b39763b6267d3a36c43e8cc98b8cdbdc53a9f1c22d2053b048c8d4"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.solver_3a105a0/wp_mujoco_warp._src.solver_3a105a0.sm89.ptx",
+      "byte_length": 508477,
+      "sha256": "ff6630dd939db5f481271a97d908e8b9387ef5e7ea4de72fb3c77df2ce808053"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.support_ca784c5/wp_mujoco_warp._src.support_ca784c5.cu",
+      "byte_length": 28163,
+      "sha256": "c527b725c64e1521f82f1ba0f4b99794e4dc139082625c85649704fefba12448"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.support_ca784c5/wp_mujoco_warp._src.support_ca784c5.meta",
+      "byte_length": 248,
+      "sha256": "d912885560cc7b189fff245b43fc4ba610d1c9d0d2b57f3332fd77ff8a38d4ac"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mujoco_warp._src.support_ca784c5/wp_mujoco_warp._src.support_ca784c5.sm89.ptx",
+      "byte_length": 61369,
+      "sha256": "ee039a59ee50972d9d3384e5293b35763dfe91aace58b8d4dab48e07a30240ff"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mul_m_kernel__locals___mul_m_dc7994af_dc7994a/wp_mul_m_kernel__locals___mul_m_dc7994af_dc7994a.cu",
+      "byte_length": 14710,
+      "sha256": "364f870ab7869ca8930d65351035cc87cfea8fb0da273bef2d7afea4ba9737d6"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mul_m_kernel__locals___mul_m_dc7994af_dc7994a/wp_mul_m_kernel__locals___mul_m_dc7994af_dc7994a.meta",
+      "byte_length": 151,
+      "sha256": "5e8d29402f8f74afbe04a48861f090138eebbd82ffcaa59a068f8a6e9f3ecdd6"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/warp-cache/1.16.0/wp_mul_m_kernel__locals___mul_m_dc7994af_dc7994a/wp_mul_m_kernel__locals___mul_m_dc7994af_dc7994a.sm89.ptx",
+      "byte_length": 68047,
+      "sha256": "4f4da6c61b5cd76d64624fb9cd2a9b5cd80933ed3e1390e9abbc79b2252a8534"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/physical/worker-result.json",
+      "byte_length": 4456,
+      "sha256": "38b4b93db928d854b2b198cb5d234bc7e8aca21e4d4e96488dd7d052da12ed81"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-gate/contained.permit",
+      "byte_length": 6,
+      "sha256": "1384d084174ae16e3b143203174abe518b1643ee7eb2982e3df53cbbc161d257"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-gate/leaf.json",
+      "byte_length": 1192,
+      "sha256": "a3d654157e265fd29e1dd2dfe33d682afcdb42c6fe0bae4876f5c7e98fdc8bfc"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-gate/stderr.log",
+      "byte_length": 1393,
+      "sha256": "023aa2cdcfced1b55b5ce0e213e965d991fbd11cb6440d80a705c9ab1f10e03d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "78c7a42b84cb1bf927cb5c69d7a179fc3446c68ab9719817eaf5db1d1e40940a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/0fef96ad20d141b3b39c92b37e575bfd/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "0bfbaf081aa8bd536f2918ae5e791c95637b77a57cbcf36a59a13d9ba2249061"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "3addea53952e6ed8c8b261585dc28f9da1301778ad5c7b78214b1f530cbe679c"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "0149860a8817ad3fe487a65fe718adebd40b0ae400e4f6b9396f3b7ab2799b4e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/15caa5feab1a415681de3d8a5f47a2e1/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "5181cb655d84b7c21e0e5337cff6d62871ed4cc83c2268e4c21204ae9ae53918"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/controller.jsonl",
+      "byte_length": 1721909,
+      "sha256": "869c48811a0b477bd576677f51f18d13fff8cb9df84e9ae55efa3a85508b8f17"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "0149860a8817ad3fe487a65fe718adebd40b0ae400e4f6b9396f3b7ab2799b4e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/25b02bb3f4f34ffd9b17c2ce806f786f/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "2984aeddac07d6a7a970404cf75d28527eaddb32fb247901f5c56cda96596b88"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "b7e7290dc9a508bdb16e605c87ba8e1d2e25a6cde17271490360bbab0529b6a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/47cfd64592fc477eb76e252d0d988c0c/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "451c28fbf04f2107fff9d90139f13050f14a2aa668008ddd1fd67bd71f52c269"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/trace.jsonl",
+      "byte_length": 195474,
+      "sha256": "a07346e2c1abd126d317c9cc3f9b4eb1e3ac4d4f3a2ee6d45cc1e72f83341763"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/4bf9c846d0cd4411b37f4a4d9c8e537c/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "7b23026e1845decdfac37980e4a00246d78beda77956daa01defa64480b9ac5d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "bd799e05daebb75b4394a73fc6d04464d37d53fe7da3ba76001ec6122c0d17d2"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/5a682eeb5a0445f39c2440918e4f45fb/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "f0f1ea629de2b6454ed2382696305888726205023bcc55f73d99679cd8f77e39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/controller.jsonl",
+      "byte_length": 1721971,
+      "sha256": "bb06e98be6cfdea243544896999369ab5aabbc3f3cd7fd75c0dfdf4e13340232"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "0149860a8817ad3fe487a65fe718adebd40b0ae400e4f6b9396f3b7ab2799b4e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/631bf03ef73840eda5ca0fd71f884e8c/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "20953a025a5be34d3990778c97568befc2e327d5f36d387693d65baae2d4950d"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "0149860a8817ad3fe487a65fe718adebd40b0ae400e4f6b9396f3b7ab2799b4e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/79685931cfd04e2197ff88349c6723b5/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "1435435624c3068104931842d92ec8a5eb2a5a449d5984165465d8048f30a26c"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/trace.jsonl",
+      "byte_length": 195397,
+      "sha256": "13c056113c75f7e020f901ce6b5d6e650d4236a4975e9b594f408f658c39a471"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/7f84ecd65e1549ccbb015d61781d5a9e/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "48669183054b17b58ffa703b6a3cabe6562f5db1537d0f2349232fba785a4cc3"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/controller.jsonl",
+      "byte_length": 1649551,
+      "sha256": "cc233939ef3b5ae78157e3c75e12a819f6cabd1603c4a22780c78e56c9806892"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/trace.jsonl",
+      "byte_length": 195458,
+      "sha256": "0149860a8817ad3fe487a65fe718adebd40b0ae400e4f6b9396f3b7ab2799b4e"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/a61fc1e1bbc7472e8aedead7a3c6d2a3/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "441b1ce1e75f75702a6764e6d1abe254a0cdb7cdc36b6414dbb5896946e3c3a1"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/trace.jsonl",
+      "byte_length": 193830,
+      "sha256": "23dff4abf7027366afe84c8971da53260b0bf41f48e92dc8b57f34b292e266ea"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/b1c4cc3a7b4240b98bc5d43dbb93ff89/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "a6a844d404fd356e9541523ec69992ce17413c2795f4c961eabb750482aeae36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/declaration.json",
+      "byte_length": 3814,
+      "sha256": "621b003c522313d9f6aab43277f43f162c42894933c8a17ce31e58aec116e2a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/compiled.json",
+      "byte_length": 14245,
+      "sha256": "bafb9e7ed4f696b1b73318044d61136a2733d92129f62ecbadceae094639fe39"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/controller.jsonl",
+      "byte_length": 1721970,
+      "sha256": "e9b38cde7ca28800fd2a81701e349aae538a48da22052379a380acc1513b2054"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/gpu-selection.json",
+      "byte_length": 533,
+      "sha256": "07e2abc5a674baa58ad5f4450b2f913fd9ebe40ad8e12cf24ef0a84608104b7f"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/inputs.json",
+      "byte_length": 1209,
+      "sha256": "3a474aaf21b842945c842c58aaac693a33dbe517508b1a267b20c33dd3bd659a"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/model.xml",
+      "byte_length": 8844,
+      "sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/native-model.json",
+      "byte_length": 606,
+      "sha256": "99798863c444b1fce47f151e7569e94947cd63edc6bd4cdfcd3394beaddd8b36"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/trace.jsonl",
+      "byte_length": 195442,
+      "sha256": "59a975f8269a9cca58fb31418d2677406a00e133705cde2c5cca3b59f9176518"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/portable-search-synthetic-33ee1cc62b974dfe83e8af998acac36a/f5406e006aba4fa986f07f2660b42348/physical/worker-result.json",
+      "byte_length": 2445,
+      "sha256": "f20351b9ee7f410aac89733bddc35f2da807846fcc65a33e90214245588bef88"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/provider-gate/contained.permit",
+      "byte_length": 5,
+      "sha256": "657ed177c688ef23cee2eb7b83cd6ead3cf0bd08804e3e987c65f6e6e2ebf0b4"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/provider-gate/leaf.json",
+      "byte_length": 1114,
+      "sha256": "1615ae2b036f67a91645a1dc65b010129b07f3da80dd0d55bfc1c6a26720b0f6"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/provider-gate/stderr.log",
+      "byte_length": 495,
+      "sha256": "f0bf232f159b0f4a9f8431b06121ccc246845c282d2320474ec60e1b1e80ca79"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/provider-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/quadruped-gate/contained.permit",
+      "byte_length": 6,
+      "sha256": "1e325195213fb03f648bfef1d2e071cf0dcba3fc4d04c7ee8d118c80fb36b20b"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/quadruped-gate/leaf.json",
+      "byte_length": 1197,
+      "sha256": "f325b7b5b89ec8495ff33179a3e2591a3d205562f7e2f0949b3dcab3000937a5"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/quadruped-gate/stderr.log",
+      "byte_length": 1724,
+      "sha256": "2abed1a8400f483aab31bd7678346f68200b79e6f0e9e63e1774ad4bf3e0b561"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/quadruped-gate/stdout.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/receipt.json",
+      "byte_length": 334315,
+      "sha256": "ac25ce2e9713a8940ed53d11bd7f48aadbc8ce462a62ab865c4d3f516269c552"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/runtime-gate/contained.permit",
+      "byte_length": 6,
+      "sha256": "e8f636063fdd06826549dee1d7d9a2b69bad6c3a84e88b77d40138a912af964b"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/runtime-gate/leaf.json",
+      "byte_length": 667,
+      "sha256": "a9da775039028b11d2a26f71310b49098f6eb199818212f4849a45a9f9e20854"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/runtime-gate/stderr.log",
+      "byte_length": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "evidence_relative_path": "sdk2-gpu-portable-search-4c6c12a1680e4d94a00d137856db221c/runtime-gate/stdout.log",
+      "byte_length": 197,
+      "sha256": "7c5d0d74f8e0a739f3bfb280af9d594f77b347348c9001611769e6c3a8217f73"
+    }
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false
+}

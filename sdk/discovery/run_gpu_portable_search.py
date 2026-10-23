@@ -18,7 +18,7 @@ HERE=Path(__file__).resolve().parent
 
 
 def bindings(core):
-    value=previous_bindings(core);paths=[CONTRACT]
+    value=previous_bindings(core);paths=[CONTRACT,HERE/'gpu_portable_search_v1.json',HERE/'gpu_portable_search_invalid_closure_v1.json']
     for directory in ['sdk/adapter_kit','sdk/adaptation_provider']:
         paths.extend((ROOT/directory).glob('*.py'));paths.extend((ROOT/directory).glob('*.json'))
     value['source'].update({p.relative_to(ROOT).as_posix():sha(p) for p in paths})
@@ -29,7 +29,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--core',type=Path,required=True);p.add_argument('--run',action='store_true');a=p.parse_args()
     core=a.core.resolve(strict=True);source=source_identity(a.run);c=contract()
     if sha(core)!=c['core_sha256']:raise ValueError('Core runtime binding')
-    folder=ROOT.parent/'SporeSpore_Evidence'/('sdk2-gpu-portable-search-'+uuid.uuid4().hex);folder.mkdir();print(str(folder),flush=True)
+    folder=ROOT.parent/'SporeSpore_Evidence'/('sdk2-gpu-portable-search-v2-'+uuid.uuid4().hex);folder.mkdir();print(str(folder),flush=True)
     receipt=dict(ledger_scope=c['ledger_scope'],source_commit=source,contract=c,synthetic=False,ok=False,physical_started=False,planned_worlds=dict(gpu=4,cpu=4),**{k:False for k in FLAGS})
     create=jobs.api('CreateMutexW',[C.c_void_p,W.BOOL,W.LPCWSTR],W.HANDLE);release=jobs.api('ReleaseMutex',[W.HANDLE])
     handle=jobs.checked(create(None,False,'Global\\SporeSpore.Locomotion.PhysicalConformance.Serial.v1'));acquired=False

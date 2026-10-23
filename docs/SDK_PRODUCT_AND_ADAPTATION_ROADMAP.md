@@ -192,10 +192,31 @@ The complete zero-world gate is retained as
 `sdk2-gpu-portable-search-832c06fa8ef4408f9a4d2c1d11c6503c`: eight new search
 controls, ten quadruped controls, seven measurement controls, the eight-cell
 public provider conformance, process containment and pinned runtime preflight.
-No physical search has run yet. This is candidate search, not a trained Tier 2
+That gate opened zero worlds. This is candidate search, not a trained Tier 2
 provider or held-out evaluation. Use `run_gpu_portable_search.py --core
 PATH_TO_BOUND_CORE_DLL` in the pinned Python environment; `--run` requires a
 clean pushed prospective freeze and repeats the complete gate before physics.
+
+The first native search at clean pushed `cf158067` completed all 19,200 internal
+steps and 3,840 controller decisions, but its independent reader refused
+`Contact presence join`. The [invalid closure](../sdk/discovery/gpu_portable_search_invalid_closure_v1.json)
+preserves all 398 artifacts and reproduces the refusal. GPU contact presence
+was wrong in 3,952 of 7,680 site observations (1,786 of 1,920 controller rows);
+the CPU rows had no such mismatch. MuJoCo stores `geom` separately from legacy
+`geom1`/`geom2`; Warp populated the former while the unchanged adapter read the
+latter. Execution completion is not a valid candidate result. Its ranking and
+transfer observations are unusable and are not training data.
+
+The distinct [v2 successor](../sdk/discovery/gpu_portable_search_v2.json) copies
+checked native geometry ids into the legacy fields of the unstepped host view,
+retains before/after representations, and validates the observation join before
+retaining GPU control. It changes no native world, candidate, ranking threshold,
+portable policy or provider safety envelope. Eleven zero-world controls now
+include a real standalone MuJoCo contact consumed by the production adapter,
+crossed compatibility fields, and revalidation of the complete failed closure.
+The complete safety gate passed at
+`sdk2-gpu-portable-search-v2-ac4b85c7027b44318380cf8a30842037`. A fresh clean-pushed
+v2 execution remains required; the v1 identity is consumed and stays invalid.
 
 ### SDK2 claim targets
 
