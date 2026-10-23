@@ -2,6 +2,25 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest learning result (2026-10-23): the
+[native influence closure](../sdk/discovery/gpu_retrieval_influence_closure_v1.json)
+at clean pushed `19c13b8e` passed the complete 77-test gate and independent replay
+of 8,640 decisions and 43,200 physics rows across 18 fresh worlds. All arms were
+eligible, with no provider/protocol errors. Frozen retrieval met the predeclared
+quality-gain floor against baseline and disabled control in 3/3 groups, but beat
+shuffled proposals in only 2/3. Episode memory made actual feedback updates and
+changed decisions, yet met its benefit criterion in 0/3 groups. The base model
+remained immutable and learned influence was unmatched across comparisons.
+
+The closure binds 820 artifacts, 289 frozen sources, 1,359 runtime files and two
+candidate artifacts; four closure-corruption controls pass. Native influence
+and episode-feedback mechanics are now
+verified in this finite development scope; useful Tier 3 benefit, qualification
+and promotion remain unproved. All calibration groups are exposed and evaluation
+remains unopened. Next is a distinct memory successor informed by the retained
+negative result, plus the empirical withdrawal monitor before qualification.
+The earlier fitting and shadow checkpoints below remain historical evidence.
+
 The [current product sequence](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-22)
 now carries the Studio recovery/setup requirements, six deferred SDK2 gates,
 force-aware recovery, and the accelerated Tier 2/Tier 3 path. SDK1 remains

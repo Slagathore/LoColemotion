@@ -1,5 +1,38 @@
 # LoColemotion Locomotion SDK
 
+SDK2 native influence checkpoint (2026-10-23): the
+[consumed comparison](discovery/gpu_retrieval_influence_closure_v1.json) completed
+18 fresh worlds after the 77-test gate at clean pushed `19c13b8e`. Independent
+replay passed all 8,640 control decisions and 43,200 internal physics samples.
+All arms stayed eligible and had zero provider/protocol errors. Frozen retrieval
+met its finite quality-gain floor against baseline and disabled control in 3/3
+groups; it beat shuffled proposals in 2/3. Episode memory made 87 feedback
+updates across the two memory modes and changed 35 same-input choices, but met
+its benefit floor in 0/3 groups. Learned-arm influence was unmatched. This
+verifies native retrieval and feedback mechanics. Useful memory benefit,
+held-out generalization, statistical superiority, noninferiority and promotion
+remain unproved.
+
+The [influence closure verifier](discovery/audit_gpu_retrieval_influence_closure.py)
+checks 820 retained artifacts and frozen source/runtime/model bindings. Its
+four retained corruption controls pass. From PowerShell at this repository root, with the exact bound runtime images:
+
+```powershell
+& ./sdk/adapters/mujoco/.venv/Scripts/python.exe -B `
+  ./sdk/discovery/audit_gpu_retrieval_influence_closure.py `
+  ./sdk/discovery/gpu_retrieval_influence_closure_v1.json `
+  --evidence-root ../SporeSpore_Evidence `
+  --core PATH_TO_BOUND_BATCH_CORE_DLL `
+  --baseline-core PATH_TO_BOUND_SCALAR_CORE_DLL
+```
+
+Success reports `ok: true`, `physical_provider_influence_rows: 5294` and zero
+new worlds. The default binds the original complete independent reader;
+`--replay` repeats it. All calibration groups are now exposed; evaluation remains
+unopened. The next memory design must preserve this negative benefit result and
+use a distinct prospective comparison. The declaration and earlier checkpoints
+below describe the completed lineage.
+
 SDK2 influence successor (prospective, 2026-10-23): the
 [declared comparison](discovery/gpu_retrieval_influence_v1.json) implements six
 fresh modes across the three remaining calibration groups. It carries actual
@@ -8,7 +41,7 @@ feedback to private episode memory. The immutable fitted model remains a
 candidate. The independent reader reports every arm, quality window, trigger
 and correction magnitude; failed controls and unmatched native exposure cannot
 be relabeled as memory benefit. The complete 77-test zero-world gate passes;
-native collection requires its repetition from the clean pushed freeze. See the
+the clean pushed run and repeated gate are closed above. See the
 [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-influence-comparison---2026-10-23)
 for metrics and claim boundaries.
 

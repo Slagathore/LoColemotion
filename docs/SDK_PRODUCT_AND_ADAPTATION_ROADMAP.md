@@ -28,9 +28,12 @@ queue. The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) and
 claims. The native development candidate below grants no new qualification or
 provider promotion.
 
-Current learning boundary: native fitting and the fresh native shadow route are
-complete in their declared development scope. Bounded learned influence and
-real episode-adaptation comparisons are next; shadow feedback is diagnostic.
+Current learning boundary: bounded native retrieval and episode feedback now
+have a complete independently audited comparison. Frozen retrieval meets its
+finite quality-gain floor against both controls in 3/3 calibration groups;
+episode memory meets its benefit floor in 0/3. The next work is a distinct
+memory successor and empirical withdrawal monitor, followed by unopened
+evaluation and promotion gates. The frozen model remains a development candidate.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -625,6 +628,66 @@ comparison-accounting controls, plus the baseline, graph, fitting, shadow,
 provider and containment gates. Runtime preflight reports zero worlds and
 solver steps. The native launcher must repeat this gate from the published
 prospective freeze before opening the declared 18 worlds.
+
+### Native influence result - 2026-10-23
+
+Clean pushed `19c13b8e` repeated all **77 zero-world controls**, then consumed
+the [18-world comparison](../sdk/discovery/gpu_retrieval_influence_closure_v1.json).
+All **8,640 controller decisions** and **43,200 internal physics samples** passed
+the independent scalar/provider/native reader. All 18 arms met the unchanged
+posture/contact eligibility limits, with zero provider errors or unexpected
+protocol fallbacks. Actual nonzero solver influence occurred on **5,294 rows**.
+No CPU world was stepped. Native execution took 423.106087 s and the complete
+independent replay took 480.032543 s; these are diagnostic capture/replay costs,
+not a lean production latency benchmark.
+
+The metric below is tracking quality in m/s units: higher is better. It combines
+forward tracking error and lateral motion, so a gain is not necessarily a speed
+increase. Every value is from the frozen sixteen-window rule.
+
+| Group | Frozen minus baseline | Frozen minus disabled | Frozen minus shuffled proposals | Episode memory minus frozen | Episode memory minus shuffled feedback |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| calibration_1 | +0.009875 | +0.009875 | +0.006770 | -0.002024 | -0.001591 |
+| calibration_2 | +0.006201 | +0.006201 | -0.009589 | +0.000042 | +0.000108 |
+| calibration_3 | +0.014269 | +0.014269 | +0.016818 | -0.000031 | -0.000084 |
+
+Frozen retrieval meets the predeclared 0.001 m/s development gain floor against
+both fresh baseline and disabled control in **3/3 groups**, and exceeds shuffled
+proposals in only **2/3**. This is a finite favorable candidate result, not
+statistical superiority, broad generalization or provider promotion.
+
+The two episode-memory modes made **87 completed feedback updates** and changed
+**35 same-input action selections** relative to zero-offset retrieval: 21 in the
+ordinary episode mode and 14 in the shuffled-feedback mode. The immutable base
+model did not change. Ordinary episode memory meets its benefit criterion in
+**0/3 groups**. All learned-arm comparisons have unmatched influence timing or
+magnitude; only baseline/disabled have matched zero influence. Thus native
+feedback and decision changes are verified, but useful Tier 3 benefit is not.
+The final unobserved action window remains uncredited to feedback.
+
+The [closure verifier](../sdk/discovery/audit_gpu_retrieval_influence_closure.py)
+rehashes **820 artifacts**, verifies **289 frozen-source**, **1,359 runtime**
+and two external candidate bindings, checks every group and memory summary,
+and recomputes timing. Its default binds the original full reader; `--replay`
+repeats all scalar/provider/native checks without new worlds. The consumed
+attempt is `sdk2-gpu-retrieval-influence-b3bd8906889e47609b6653e31d7f027c`.
+All calibration groups are now exposed; all evaluation groups remain unopened.
+Four retained closure-corruption controls pass in
+`sdk2-influence-closure-controls-b3c7209f179d4a67b1364ec4a2699523`, including
+attempted quality, feedback-count, influence-matching and authority changes.
+The refreshed readiness compiler remains consistent at **19/25** required
+gates: four missing, two contradicted, zero invalid. SDK1 stays **20/20**;
+release and publication authority remain false.
+
+Next, diagnose the phase/context dependence and credit assignment of the
+current global per-action memory offsets using the retained traces. A different
+memory design needs a new component identity, complete safety controls and a
+fresh prospective comparison; it cannot regrade this negative result. Build
+the empirical withdrawal monitor before qualification. Preserve the frozen
+retrieval candidate and challenge any successor with disabled, shuffled-proposal
+and shuffled-feedback controls, retaining influence exposure. Open evaluation
+only after the design and criteria are frozen. Three-engine promotion and the
+full SDK2 targets below remain required.
 
 ### SDK2 claim targets
 
