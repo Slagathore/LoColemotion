@@ -1065,6 +1065,70 @@ controls also passed in
 `sdk2-motor-matched-controls-19391b0f95d54c89b4828273b2538a8a`.
 No worlds have run for this declaration at this preparation checkpoint.
 
+### Completed matched motor diagnostic - 2026-10-23
+
+The [closure](../sdk/discovery/gpu_motor_batch_closure_v1.json) retains
+`sdk2-gpu-motor-batch-diagnostic-aa28370f6c7a4c389e9c861af010c79e`, run from
+clean published `68c3ede738fda5fb8981eeb516c5d0b122777e17`. All 81 controls
+passed again under the operation lock before physics. All 48 GPU worlds
+completed, and independent replay verified **23,040 controller rows and
+115,200 internal rows** with no reader-constructed or CPU-stepped worlds.
+
+| Layout | All profiles eligible at 0.002 m/s | All profiles eligible at 0.0035 m/s | Focus profile 6 |
+| --- | --- | --- | --- |
+| Nine mixed profiles | 2/9 | 0/9 | Eligible, then negative |
+| Nine repeating profiles `[0, 6, 6]` | 6/9 | 0/9 | Eligible, then negative |
+| Three profiles `[0, 6, 6]` | 2/3 | 0/3 | Eligible, then negative |
+| Fresh repeat of three profiles | 2/3 | 0/3 | Eligible, then negative |
+
+The full population contains **12 eligible and 36 negative** episodes. Across
+all duplicate slots, profile 6 is eligible in 11/11 instances at 0.002 m/s and
+negative in 11/11 at 0.0035 m/s; these are finite instances within shared batches,
+not 22 independent statistical replicates. Its four focus-slot comparisons
+change eligibility when the start changes. None of the other 12 predeclared
+width, composition, repeat or duplicate-slot comparisons changes eligibility.
+Focus height stays above 0.42367 m at the first start and drops to about 0.17056 m
+at the second, with roughly 1.975 rad tilt and hundreds of torso-contact steps.
+
+This result supports start-sensitive failure of the fixed controller in this
+finite scope. The tested batch-width and composition changes do not explain
+away the failed start. All nine constant profiles fail in its fresh mixed
+batch. This does not rule out switching those profiles over time, other bounded
+residual controllers, or success on a different start. No original result is
+regraded, and the diagnostic supplies no fitting or selection authority.
+
+Numerical differences remain material. Same-start pairs diverge from the first
+internal state; a fresh repeat at 0.002 m/s reaches a maximum instantaneous
+target difference of about 3.3213 rad/s and actuator-force difference of about
+8.5991 N m. Their eligibility agrees, but their trajectories are not bitwise
+equal. Neither GPU determinism nor batch-neutral quality or CPU equivalence
+follows. The fixed execution order and two starts limit causal attribution.
+
+Next challenge the selected profile on fresh native CPU worlds at these two
+starts, then build a distinct bounded phase/state-dependent repertoire. Use
+fresh declared development discovery for fitting; do not repurpose this
+diagnostic or the pilot's confirmation as training data. A useful control
+family must precede history-based context inference and episodic adaptation.
+Empirical withdrawal monitoring, sealed evaluation and engine qualification
+remain required for the Tier 2/Tier 3 targets.
+
+Native workers took 449.347 seconds in total; the independent reader took
+267.953 seconds. The closure binds **2,103 artifacts (2,119,051,920 bytes),
+320 frozen sources and 1,359 runtime files**. Its
+[verifier](../sdk/discovery/audit_motor_batch_closure.py) rehashes all retained
+bytes, validates source/runtime and population joins, replays timing and the
+16 matched comparisons, and preserves the original complete audit. Optional
+`--replay` repeats every scalar decision and native-stream check without worlds.
+The closure SHA-256 is
+`e016c4cd3c63c1e56d2bc25293ccb07ad0a0a031b04d7c0a15b067bb7b1af76f`.
+Four closure integrity controls passed in
+`sdk2-motor-matched-closure-controls-ff2102d54938486dafcab3e0b77a2ca1`
+(88.054 seconds of tests), covering retained-byte verification without worlds,
+authority/population/inventory corruption, changed comparisons or erased
+negatives, and frozen source/runtime/reader tampering.
+No adaptation benefit, statistical inference, training, qualification or release
+authority is granted.
+
 ### SDK2 claim targets
 
 | Gate / capability | Target |

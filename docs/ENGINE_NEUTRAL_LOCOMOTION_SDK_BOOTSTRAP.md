@@ -2,11 +2,15 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Prepared next (2026-10-23): the [matched motor diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-motor-diagnostic-prepared---2026-10-23)
-passed its complete 81-control zero-world gate. Its prospective 48-world
-population separates start, batch width, neighboring-action composition and
-fresh-repeat effects. No physical result or adaptation authority exists yet
-for this successor.
+Latest diagnostic (2026-10-23): the [matched motor experiment](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
+completed all 48 GPU worlds from published `68c3ede7` after the complete
+81-control gate. Independent replay verified 23,040 controller and 115,200
+internal rows. Profile 6 remained eligible at the 0.002 m/s start and fell at
+0.0035 m/s in every tested layout and fresh repeat. The full population retains
+12 eligible and 36 negative episodes. Batch comparisons changed trajectories
+but did not change eligibility; determinism and equivalence remain unproved.
+Next is a fresh CPU challenge, then bounded phase/state-dependent control before
+history inference. This diagnostic has no fitting or adaptation authority.
 
 Latest physical-context result (2026-10-23): the
 [motor-effectiveness pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)

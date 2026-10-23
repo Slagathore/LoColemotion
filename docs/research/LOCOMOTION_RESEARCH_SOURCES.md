@@ -1961,3 +1961,13 @@ flags also do not promise bitwise trajectory equality across batch sizes.
 The new finite diagnostic retains numerical differences and every failed
 episode without changing tolerances or the original pilot result. No upstream
 source or pretrained model was copied and no runtime was upgraded.
+
+The [completed matched diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
+retains 12/48 eligible episodes. Profile 6 passes every tested 0.002 m/s instance
+and fails every 0.0035 m/s instance, across batch widths, neighbor compositions
+and fresh repeats. Eligibility does not flip in any same-start comparison,
+although native trajectories and commands differ. This supports developing a
+phase/state-dependent controller family before fitting a history estimator; it
+does not prove numerical determinism or identify a particular GPU kernel as
+the cause. All nine constant profiles fail at the second start in one fresh
+mixed batch. Their time-varying combinations remain an untested possibility.
