@@ -1,18 +1,24 @@
 # LoColemotion Locomotion SDK
 
-SDK2 native-learning checkpoint (2026-10-23): the first
-[36-episode repertoire](discovery/gpu_repertoire_negative_closure_v1.json) is
-execution-valid but entirely negative under its declared eligibility limits.
-All four baselines and all 32 correction episodes failed. The independent reader
-verified every one of 17,280 decisions and 86,400 physics samples; fitting refused
-and wrote no model. The [759-artifact reader](discovery/audit_gpu_repertoire_negative_closure.py)
-and four corruption controls retain that result without regrading it.
+SDK2 native-learning checkpoint (2026-10-23): the
+[flat-start v2 repertoire and fit](discovery/gpu_repertoire_fit_closure_v2.json)
+now provide one immutable native development candidate. All 36 episodes met the
+unchanged eligibility limits after the full 63-test gate at clean pushed
+`2ab77fcf`. The independent reader replayed 17,280 decisions and checked 86,400
+physics samples. Offline fitting produced 576 cases, with two of 48 archive bins
+occupied. Calibration and evaluation groups remain unopened.
 
-The distinct [flat-start successor](discovery/gpu_repertoire_v2.json) passes its
-63-test zero-world gate and is ready for a clean pushed native freeze. Its
-narrower starting conditions do not relax the eligibility thresholds. A fitted
-native provider, controlled Tier 2/Tier 3 evaluation and three-engine promotion
-remain open. See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23).
+The [fit verifier](discovery/audit_gpu_repertoire_fit_closure_v2.py) rehashes 768
+artifacts, checks 267 frozen-source and 1,359 runtime bindings, recomputes timing
+and independently rebuilds the complete corpus/model/registration chain. Five
+corruption controls pass. The [first repertoire](discovery/gpu_repertoire_negative_closure_v1.json)
+remains execution-valid and all-negative: none of its 36 episodes supplies a
+fitted case. Its thresholds, retained failures and fitting refusal are unchanged.
+
+Fresh native shadow/influence and controlled Tier 2/Tier 3 evaluation are next;
+the fitted candidate has no physical acceptance, promotion or release authority.
+The empirical withdrawal monitor and three-engine qualification remain open.
+See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23).
 
 SDK2 retrieval implementation checkpoint (2026-10-23): the
 [bounded casebook and episode-memory component](adaptation_provider/retrieval/component_v1.json)
@@ -21,8 +27,9 @@ checkpoint, rollback and reset using the existing provider ABI. Eight tests pass
 the [reader](adaptation_provider/retrieval/verify_component.py) refits 36 synthetic
 episodes and replays 183 decisions against the actual core, rehashing 28 retained
 artifacts and ten sources. The negative episode and initial identifier refusal
-remain retained. This is zero-world implementation evidence. Native training,
-controlled physical evaluation and three-engine qualification are still required.
+remain retained. This component is zero-world implementation evidence; the
+separate native fit above supplies training data. Controlled physical evaluation
+and three-engine qualification are still required.
 
 From PowerShell at this repository root, provide the exact bound batch core:
 

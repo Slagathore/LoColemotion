@@ -25,7 +25,8 @@ SDK1 is complete at **20/20** under the October 3 retained receipt; the full
 program remains **19/25**. The August sections below are history, not the current
 queue. The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) and
 [support matrix](../sdk/release/quadruped_support_matrix.json) carry earned
-claims. This update claims no new qualification or trained provider.
+claims. The native development candidate below grants no new qualification or
+provider promotion.
 
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
@@ -470,6 +471,43 @@ current status has its own checked digest. This forward correction follows a
 publication-check refusal at `632cc797`, preserves the old receipt and outcomes,
 and passes all 21 publication controls plus replay controls. It grants no new
 scientific authority and changes no training or evaluation rule.
+
+Clean pushed `2ab77fcf` repeated the complete 63-test gate and consumed the
+[flat-start v2 repertoire](../sdk/discovery/gpu_repertoire_fit_closure_v2.json).
+All **36 training episodes met the unchanged eligibility limits**. The full
+independent reader replayed **17,280 controller decisions** and checked
+**86,400 internal physics rows**. No CPU world was stepped; calibration and
+evaluation worlds remain zero. Native execution took **370.790278 s**, including
+cold compilation and full capture; the independent audit took **174.429230 s**.
+These timings are observations, not a performance comparison with v1.
+
+The create-only offline step froze the native episodes, candidate chapter,
+corpus and model registration. The immutable casebook contains **576 cases**;
+its canonical model digest is
+`sha256:3388543fe3e4d7baef933395376cc3154501073c8fc72ee51c6733b356fb287a`.
+Only **two of 48 archive bins** are occupied. This supplies a narrow native
+development candidate, not a diverse repertoire, continuous support region,
+trained-provider influence result or superiority claim. The original v1
+all-negative population and fitting refusal remain unchanged.
+
+The [fit closure reader](../sdk/discovery/audit_gpu_repertoire_fit_closure_v2.py)
+rehashes all 768 artifacts, verifies 267 frozen-source and 1,359 runtime bindings,
+recomputes timing and independently reconstructs every fitted record. Five
+corruption controls pass, including changed raw identities, measured outcomes,
+model/count bindings and attempted authority promotion. Their retained attempt is
+`sdk2-repertoire-fit-controls-38235e93298748e9b27bff834198656a` under the evidence
+root, including the exact reader/test/closure source bytes and original logs.
+Default verification
+does not repeat the already-retained full native reader; `--replay` does so
+without opening worlds. The initial v2 test-fixture failure stays bound as well.
+
+Next, implement and qualify the fresh native shadow route for this exact frozen
+model, then the bounded influence route. Use baseline, retrieval-disabled and
+shuffled-proposal controls before interpreting Tier 2 behavior. Compare frozen,
+episode-memory and shuffled-memory modes with prospectively declared trigger and
+influence accounting before interpreting Tier 3 behavior. The empirical
+withdrawal monitor, fresh CPU/native transfer, three-engine promotion, Studio
+handoff/performance and all SDK2 claim targets remain open.
 
 ### SDK2 claim targets
 

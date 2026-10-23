@@ -7,6 +7,16 @@ now carries the Studio recovery/setup requirements, six deferred SDK2 gates,
 force-aware recovery, and the accelerated Tier 2/Tier 3 path. SDK1 remains
 20/20 and the full program 19/25. No physical support or release flag changes.
 
+Current learning checkpoint: the [native v2 fit](../sdk/discovery/gpu_repertoire_fit_closure_v2.json)
+now supplies an immutable development candidate with 576 cases from 36 eligible
+upright-start training episodes. Clean pushed `2ab77fcf` passed the complete
+63-test gate; all 17,280 decisions and 86,400 internal rows passed independent
+replay. The closure reader rehashes 768 artifacts and independently reconstructs
+the corpus/model/registration chain; five corruption controls pass. Only two
+archive bins are occupied, and calibration/evaluation groups remain unopened.
+Fresh native shadow/influence, reversible-memory comparisons and qualification
+are next. This is native fitting, not completed Tier 2 or Tier 3 behavior.
+
 The [upstream discussion adoption](research/LOCOMOTION_RESEARCH_SOURCES.md#2026-10-22-upstream-discussion-follow-through)
 adds explicit force-sampling semantics. Seven new measurement controls pass,
 including all 1,800 retained VH4 example rows. The new
@@ -209,8 +219,9 @@ The 759-artifact closure and four corruption controls retain this result and its
 original source/runtime bindings. A distinct [flat-start v2 successor](../sdk/discovery/gpu_repertoire_v2.json)
 now passes 63 zero-world controls. It narrows the initial condition family while
 keeping actions, eligibility and the retrieval/memory algorithm unchanged.
-V1 remains consumed. Native v2 fitting and controlled Tier 2/Tier 3 evaluation
-are still open; SDK1, full-program and release marks do not change.
+V1 remains consumed. The current checkpoint above closes native v2 fitting;
+controlled Tier 2/Tier 3 evaluation remains open. SDK1, full-program and release
+marks do not change.
 
 ## Complete - SDK1 20/20 and installed live Studio, 2026-10-03
 
