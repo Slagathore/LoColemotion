@@ -1981,3 +1981,13 @@ immediately after each completed step, before the next preparation recomputes
 the state-dependent quantities. The native model, sensor identities and full
 stream joins remain executable checks; current documentation does not upgrade
 the pinned runtime or establish CPU/GPU equivalence. No external code was copied.
+
+The [completed CPU challenge](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
+retains four valid negative episodes: baseline and profile 6 fail at both exposed
+starts. The earlier GPU positive did not transfer under this finite native CPU
+challenge, despite equalized initial values. That observation does not identify
+the backend mechanism or justify changing the earlier result. It strengthens
+the reason to establish a useful phase/state-dependent control family before
+fitting an RMA-inspired history estimator: inference cannot supply control
+authority that the tested action family has not demonstrated. The diagnostic
+has no fitting or selection authority; fresh development discovery is required.

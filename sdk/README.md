@@ -1,9 +1,14 @@
 # LoColemotion Locomotion SDK
 
-The [native CPU motor challenge](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-cpu-motor-challenge-prepared---2026-10-23)
-is prepared after all 88 zero-world controls passed. Four fresh worlds will
-challenge baseline and profile 6 at the two exposed starts. Physical transfer,
-learned adaptation and equivalence remain unproved at this preparation checkpoint.
+The [native CPU motor challenge](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
+completed all four fresh worlds after all 88 controls passed at published
+`47511ec0`. Independent replay verified 1,920 decisions and 9,600 internal rows:
+baseline and profile 6 both failed at both starts, leaving **0/4 eligible**.
+The earlier GPU positive has not transferred to native CPU execution. The
+[closure reader](discovery/audit_cpu_motor_closure.py) verifies 2,241 retained
+artifacts and exact frozen source/runtime joins; all four closure controls pass.
+Stronger phase/state-dependent control is next, before history inference.
+This diagnostic grants no fitting, adaptation, equivalence or release authority.
 
 The [matched motor diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
 completed all 48 fresh GPU worlds after all 81 controls passed at published
@@ -11,8 +16,8 @@ completed all 48 fresh GPU worlds after all 81 controls passed at published
 rows: 12 episodes stayed eligible and 36 failed. Profile 6 survived at the
 0.002 m/s start and fell at 0.0035 m/s across every tested layout and repeat.
 Numerical trajectories differ, so matching eligibility establishes neither
-determinism nor engine equivalence. The closure preserves all evidence; fresh
-CPU transfer and stronger phase/state-dependent control are the next steps.
+determinism nor engine equivalence. The closure preserves all evidence. The
+subsequent CPU challenge is closed above.
 
 SDK2 motor-effectiveness result (2026-10-23): the
 [closed pilot](discovery/gpu_motor_effectiveness_closure_v1.json) completed 90

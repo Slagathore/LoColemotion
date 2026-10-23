@@ -2,11 +2,14 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
-Prepared next (2026-10-23): the [native CPU motor challenge](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-cpu-motor-challenge-prepared---2026-10-23)
-passed its complete 88-control zero-world gate. Four fresh worlds will test
-baseline and profile 6 at the two exposed starts, with float32-equalized inputs
-and native float64 dynamics. This preparation has no physical, adaptation,
-training or equivalence authority.
+Latest native result (2026-10-23): the [closed CPU motor challenge](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
+completed four fresh worlds from published `47511ec0` after all 88 safety
+controls passed. Complete independent replay verified 1,920 decisions and
+9,600 internal rows. Baseline and profile 6 failed at both starts: **0/4 eligible,
+4/4 negative**. The earlier GPU positive has not transferred to CPU execution.
+The closure verifies 2,241 artifacts, 329 frozen sources and 1,359 runtime files;
+all four closure controls pass. Next is bounded phase/state-dependent control
+before history inference. No fitting, adaptation or equivalence authority follows.
 
 Latest diagnostic (2026-10-23): the [matched motor experiment](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
 completed all 48 GPU worlds from published `68c3ede7` after the complete
@@ -15,8 +18,8 @@ internal rows. Profile 6 remained eligible at the 0.002 m/s start and fell at
 0.0035 m/s in every tested layout and fresh repeat. The full population retains
 12 eligible and 36 negative episodes. Batch comparisons changed trajectories
 but did not change eligibility; determinism and equivalence remain unproved.
-Next is a fresh CPU challenge, then bounded phase/state-dependent control before
-history inference. This diagnostic has no fitting or adaptation authority.
+The subsequent CPU challenge is closed above. This GPU diagnostic has no fitting
+or adaptation authority and its original result remains unchanged.
 
 Latest physical-context result (2026-10-23): the
 [motor-effectiveness pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)

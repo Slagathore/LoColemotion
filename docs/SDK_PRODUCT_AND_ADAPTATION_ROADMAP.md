@@ -53,6 +53,13 @@ from discovery. The declared conditioning-value criterion is false. Diagnose
 that failed transfer and strengthen the control repertoire before fitting a
 history estimator; no new adaptation benefit or qualification follows.
 
+The [matched GPU diagnostic](#completed-matched-motor-diagnostic---2026-10-23)
+then retained 12/48 eligible episodes, with profile 6 passing only the easier
+start across the tested layouts. The [native CPU challenge](#completed-native-cpu-motor-challenge---2026-10-23)
+has now completed: baseline and profile 6 failed at both starts, leaving
+0/4 eligible episodes. Strengthening phase/state-dependent control remains the
+immediate task; these diagnostic episodes grant no fitting authority.
+
 The objective is to finish the usable SDK1 Studio/setup experience and reach
 Tier 2 and Tier 3 quickly through bounded trial, error, discovery and advancement.
 Broad morphology certification and engine equivalence are not prerequisites to
@@ -1155,6 +1162,69 @@ float32-rounded CPU targets, changed initial values, force/warning corruption,
 wrong model precision, missing worlds and false authority. Standalone controls
 are retained in `sdk2-cpu-motor-controls-18a82f510b2d4c5e9d26d9b2778af76d`.
 No worlds have run for this declaration at this preparation checkpoint.
+
+### Completed native CPU motor challenge - 2026-10-23
+
+The [CPU declaration](../sdk/discovery/cpu_motor_challenge_v1.json) was executed
+once from clean published `47511ec01596f9edf723c221583c9a447ddeeb74` in
+`sdk2-cpu-motor-challenge-cb4a0973db81433893c77efe198475bb`. The complete
+**88-control zero-world gate** passed again under the operation mutex before
+four fresh CPU worlds. No GPU or evaluation worlds ran. Independent replay
+verified **all 1,920 controller decisions and 9,600 internal samples**, including
+scalar decisions, native observations, held targets, force sensors, contacts,
+warnings, clocks and complete outcome accounting.
+
+All four trials are valid negative outcomes under the original bounds:
+
+| Start / role | Minimum height (m) | Maximum tilt (rad) | Torso-contact steps / 2,400 | Failure |
+| --- | ---: | ---: | ---: | --- |
+| 0.002 m/s / baseline | 0.170580 | 1.975286 | 784 | Height, tilt, torso contact |
+| 0.002 m/s / profile 6 | 0.170529 | 1.974549 | 861 | Height, tilt, torso contact |
+| 0.0035 m/s / baseline | 0.250806 | 1.677223 | 1,533 | Tilt, torso contact |
+| 0.0035 m/s / profile 6 | 0.170445 | 1.985238 | 773 | Height, tilt, torso contact |
+
+Eligibility is **0/4**. Failed episodes retain null quality and no eligible
+training windows. All four worlds received nonzero native force in every
+internal step, with no safe-no-actuation step. Equalized float32 initial values
+then evolved in float64 CPU dynamics. The earlier GPU profile-6 positive at
+0.002 m/s did not transfer to this native CPU challenge. This result does not
+isolate a precision, integration, contact or controller mechanism and does not
+establish general CPU/GPU equivalence or superiority.
+
+The [closure](../sdk/discovery/cpu_motor_challenge_closure_v1.json) binds
+**2,241 artifacts / 429,371,727 bytes**, **329 frozen source files**, and
+**1,359 runtime files**. Its SHA-256 is
+`acf3471217f77dc20f1c8b9463226f61af0e0080a1a84e8ab6bcf5c962d2ac8d`.
+Original receipt SHA-256:
+`d9db05f8c1736efeffe8686dab44fe0a22cc94d981a0b18169a9529839cd0692`;
+independent audit SHA-256:
+`a972a2b2d89499cef1403d950f369ff8af6c7d4a041141928486f6f47d078668`.
+Native worker time was **19.322 s** and independent audit time **20.737 s**.
+These are measured section times for this workload, not a matched engine benchmark.
+
+The [closure verifier](../sdk/discovery/audit_cpu_motor_closure.py) rehashes all
+artifacts, checks source bytes at the frozen Git commit and installed runtime
+bytes, and rejoins declaration, consumption, gate logs, worker, raw streams,
+original reader, timing and negative outcomes. Optional `--replay` repeats the
+full scalar reader without new worlds. Its four controls passed in **26.394 s**
+in `sdk2-cpu-motor-closure-controls-9a2f4cbfe7a141168de1c3f02929ffd2`;
+terminal log SHA-256:
+`f7cf7e767482cafdf8b2ec507f5d2ee30a4bbc76f9bfbce57488d86f78dd0e21`.
+The earlier closure-test attempt
+`sdk2-cpu-motor-closure-controls-c3ee15304e4743318a36d0c5d0e6fa12`
+retains its failure log and draft source: the new verifier initially omitted
+the worker's progress messages from its expected log. The corrected verifier
+checks every progress and terminal row. Failed log SHA-256:
+`27bfcd465706ca3c84fd0603ce9af0f57141f3c2a3d77edffa68450659a46e30`.
+No physical worker, reader, threshold or original evidence was changed or rerun.
+
+Next, use the retained failures to diagnose phase, support and force-cap behavior,
+then declare a bounded phase/state-dependent controller family with fresh
+development fitting authority. Preserve baseline and fixed-profile controls,
+challenge a frozen shortlist on CPU, and establish useful control before fitting
+a history estimator or extending Tier 3 memory. These four diagnostic worlds
+remain excluded from fitting and selection. No adaptation, statistical inference,
+qualification or release authority is granted by this closure.
 
 ### SDK2 claim targets
 
