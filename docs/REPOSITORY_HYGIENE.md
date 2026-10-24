@@ -6,6 +6,12 @@ settings on disk.
 
 ## Retained archive storage
 
+The [completed storage relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
+records the archive on L:, the original sibling path retained as a junction,
+and removal of the verified C: backup. It binds the full 874,101-file checksum
+comparison, retained failed attempts, reopened evidence controls, unchanged
+readiness dispositions and a new-write check through the compatibility path.
+
 Historical records address the sibling `SporeSpore_Evidence` directory. When
 moving its storage to another volume, keep that logical path as a directory
 junction to the new ordinary directory. This preserves the recorded paths and

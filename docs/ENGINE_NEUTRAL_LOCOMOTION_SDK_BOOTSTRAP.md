@@ -2,6 +2,13 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-23
 
+Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
+moves the retained archive to L: while preserving the original sibling path.
+Every ordinary file passed the full checksum comparison; nine reopened evidence
+controls and all readiness dispositions are preserved. The original C: backup
+has been removed. This maintenance opens no worlds and adds no scientific or
+release authority; the conditioned-selection diagnosis below remains next.
+
 Latest native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
 completed all **40 fresh CPU worlds** from published `59aacf3c` after the full
 **349-control gate**. Independent replay verifies 57,600 decisions and 288,000
