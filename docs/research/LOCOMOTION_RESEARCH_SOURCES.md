@@ -2527,3 +2527,9 @@ This is preparation for collecting induced states, not training or replication
 of the referenced methods. Actual native route closure, prospectively defined
 group-balanced failure rewards and complete optimizer update replay still
 precede a training campaign. No new research claim or external code is imported.
+
+The first launch then stopped before tests or worlds on a source-path key
+mismatch. The [prospective manifest correction](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#corrected-residual-native-launch-manifest---2026-10-24)
+adds a real snapshot-manifest control: fourteen focused controls pass and the
+required launch gate is 86. The physical plan is unchanged. This retained
+infrastructure failure adds no physical observations or research authority.

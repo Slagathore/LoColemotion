@@ -129,7 +129,7 @@ class NativeResidualControls(unittest.TestCase):
 
     def test_prospective_scope_sources_roles_and_complete_gate_are_immutable(self):
         self.assertEqual(self.c,task.expected_declaration())
-        self.assertEqual(self.c["complete_safety_control_count"],85)
+        self.assertEqual(self.c["complete_safety_control_count"],86)
         self.assertEqual([(r["id"],r["mode"]) for r in self.c["roles"]],[("absent","absent"),("zero","frozen"),("probe","frozen")])
         self.assertTrue(all(self.c[k] is False for k in task.FLAGS))
         for mutation in (lambda c:c.__setitem__("outer_steps",121),lambda c:c.__setitem__("training_data_authority",True),
@@ -277,6 +277,15 @@ class NativeResidualControls(unittest.TestCase):
         corrupt=copy.deepcopy(self.result["trials"]);corrupt[1]["raw_hashes"]["trace"]="0"*64
         with self.assertRaisesRegex(ValueError,"zero changed native baseline"):
             reader.compare_native_paths(self.folder,corrupt,True)
+
+    def test_owner_manifest_binds_every_snapshot_with_canonical_paths(self):
+        bound=owner.bindings(self.core_path,self.baseline)
+        self.assertTrue(all("\\" not in name for name in bound["source"]))
+        for path in [task.HERE/name for name in task.SOURCES]+[task.CONTRACT]:
+            self.assertEqual(bound["source"][path.relative_to(task.ROOT).as_posix()],task.sha(path))
+        self.assertEqual(owner.normalize_source_bindings({"sdk/a.py":"a",r"sdk\a.py":"a"}),{"sdk/a.py":"a"})
+        with self.assertRaisesRegex(ValueError,"conflicting source aliases"):
+            owner.normalize_source_bindings({"sdk/a.py":"a",r"sdk\a.py":"b"})
 
     def test_partial_worker_receipt_preserves_error_and_unknown_world_count(self):
         folder=self.out/("partial-worker-control-"+uuid.uuid4().hex);folder.mkdir()

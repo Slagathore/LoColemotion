@@ -28,7 +28,7 @@ GATES=(
     ("causal-history","test_history_influence_control",5),
     ("residual-optimizer","test_bounded_residual_ars",10),
     ("residual-provider","test_bounded_residual_provider",12),
-    ("residual-native","test_residual_native",13))
+    ("residual-native","test_residual_native",14))
 EXPECTED_CONTROLS=sum(count for _,_,count in GATES)+3
 
 

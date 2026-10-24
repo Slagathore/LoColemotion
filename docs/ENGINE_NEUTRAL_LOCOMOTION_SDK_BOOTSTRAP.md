@@ -10,10 +10,12 @@ has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
 Prepared native route (2026-10-24): the [residual smoke route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-residual-native-execution-route---2026-10-24)
-now passes thirteen focused zero-world controls. The prospective CPU worker,
+now passes fourteen focused zero-world controls after a [retained zero-world
+manifest failure and correction](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#corrected-residual-native-launch-manifest---2026-10-24).
+The prospective CPU worker,
 independent baseline-core reader and contained owner declare three one-second
 absent/zero/probe worlds, 360 commands and 1,800 internal steps, only after all
-85 applicable safety controls from a clean published freeze. This preparation
+86 applicable safety controls from a clean published freeze. This preparation
 opens no worlds; the untrained probe has no training, selection or performance
 authority. Actual command transfer, exact zero-residual trajectory preservation
 and complete native replay must be observed before a separate training contract.

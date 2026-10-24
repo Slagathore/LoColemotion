@@ -16,12 +16,22 @@ from run_gpu_measurement_probe import source_identity,invoke,jobs
 from run_gpu_portable_search import bindings as parent_bindings
 
 
+def normalize_source_bindings(source):
+    canonical={}
+    for name,digest in source.items():
+        key=Path(name).as_posix()
+        require(key not in canonical or canonical[key]==digest,"Residual conflicting source aliases")
+        canonical[key]=digest
+    return canonical
+
+
 def bindings(core,baseline):
     value=parent_bindings(baseline)
     value["runtime"][str(core)]=sha(core)
     value["source"][CONTRACT.relative_to(ROOT).as_posix()]=sha(CONTRACT)
     for path in (ROOT/"sdk/adaptation_provider/retrieval").glob("*.py"):
         value["source"][path.relative_to(ROOT).as_posix()]=sha(path)
+    value["source"]=normalize_source_bindings(value["source"])
     return value
 
 

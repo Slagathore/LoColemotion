@@ -34,8 +34,11 @@ differences without assigning causation. A [bounded residual optimizer](#impleme
 passes ten numerical controls. The [residual production component](#implemented-residual-provider-and-continuous-history---2026-10-24)
 now passes 22 combined controls over 2,560 decisions on retained inputs through
 both core DLLs, with 88 canonical values and continuous resolved-action history.
-No native dynamics or training transitions were generated. Next freeze and
-verify the contained native training route, reward and budget. Learned-association
+No native dynamics or training transitions were generated. The [native launch
+manifest correction](#corrected-residual-native-launch-manifest---2026-10-24)
+retains a zero-world prelaunch failure and passes fourteen focused controls.
+Next run the unchanged three-world route after all 86 safety controls, then
+freeze the training reward, update audit and budget. Learned-association
 benefit, empirical recovery monitoring, reserved evaluation, useful Tier 3
 behavior and release remain unproved.
 
@@ -1527,6 +1530,27 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Corrected residual native launch manifest - 2026-10-24
+
+The first launch at published a2e9c9ce stopped before tests, the consumed claim
+or any world. The owner's snapshot lookup used forward slashes while its
+inherited source manifest carried Windows backslashes. The original failure is
+retained as sdk2-residual-native-dcfa27d9460c4da9ac741395f3f7a026, with zero CPU
+and GPU worlds. Receipt SHA-256: 63240b08ff2f591eed3850ea8e4f97c486a9d651ccda8225c37aa5cef157e32b.
+
+The prospective successor canonicalizes source keys, refuses conflicting
+aliases and exercises every snapshot lookup against the actual full binding
+manifest. **Fourteen focused controls pass with zero worlds.** The physical
+plan, model artifacts, limits and reader are unchanged. The complete required
+launch gate is now **86 controls**.
+
+Control attempt: sdk2-residual-native-controls-2f8cc91364354d80813f66a802713de0.
+Receipt SHA-256: f0597c056f296559d6f2e2caa83623d4800708051781e3c8b4d6d08a94928d2d.
+The support matrix binds all 460 control artifacts and
+both files from the failed launch; earlier preparation receipts remain intact.
+Next publish this correction and execute a fresh bounded native attempt.
+Neither the failed launch nor these controls is physical or training evidence.
 
 ### Prepared residual native execution route - 2026-10-24
 
