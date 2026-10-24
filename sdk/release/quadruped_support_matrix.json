@@ -167,6 +167,124 @@
       "episode_feedback_can_create_candidate_chapters": true,
       "automatic_live_encyclopedia_rewrite_permitted": false,
       "promotion_requires_frozen_data_model_and_cross_engine_validation": true,
+      "bounded_residual_training_selection": {
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "frozen_selected_artifact_development_comparison",
+          "question_class": "development"
+        },
+        "status": "selected_training_artifact_and_native_comparison_prepared",
+        "contract_path": "sdk/discovery/residual_selection_v1.json",
+        "contract_sha256": "e03ef77efdc5984e526c6b02c5faeb44b4589e71c8dc8d7715f22110bf787e43",
+        "selection_record_path": "sdk/discovery/residual_selection_fit_v1.json",
+        "selection_record_sha256": "15240c1e54bd92b4cff6fce1b7a706edfdd0a7a2b2aa2fd010c8f18f67c5b07a",
+        "selected_model_path": "sdk/discovery/residual_selection_model_v1.json",
+        "selected_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+        "selected_policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+        "selection_is_retrospective": true,
+        "candidate_count": 8,
+        "source_training_trial_count": 64,
+        "eligible_candidate_ids": [
+          "iteration_00/d00_plus"
+        ],
+        "selection_rule": {
+          "population": "all eight signed candidates from both completed pilot iterations",
+          "eligibility": "all eight training groups physically eligible",
+          "rank": "descending arithmetic mean of the eight original fixed-horizon training rewards",
+          "tie_break": "ascending stage/model_key identity",
+          "no_eligible": "refuse native launch",
+          "fit_partitions": [
+            "training"
+          ],
+          "comparison_data_may_fit": false,
+          "weights_may_change": false,
+          "normalization_may_change": false,
+          "prior_final_checkpoint_may_change": false,
+          "reserved_groups_may_open": false
+        },
+        "original_model_corpus": {
+          "corpus_id": "residual_pilot_initial_v1",
+          "kind": "untrained_development_probe",
+          "source_record_sha256": null,
+          "training_data_authority": false
+        },
+        "selected_artifact_preserved_byte_for_byte": true,
+        "comparison_trials_used_for_selection": 0,
+        "route_trials_used_for_selection": 0,
+        "source_bindings": {
+          "residual_selection.py": "8da0a962c9b8227218ca2c2f17821e9e31f4a9fd7f4fb4a6e4df549c2c8ab0c7",
+          "residual_selection_task.py": "50a45ccdee68fe9fd4647e54b0dde4d290771edce201b57770436d43764734ec",
+          "residual_selection_native.py": "340cf6a64fed787b2dae65bf3935f6bc592c3cd8051dac0b0ca3e407b314fb33",
+          "audit_residual_selection.py": "fabb5fe70023600cc98f9c49051d92cceda3c248f5e293d240ca66dab34b920b",
+          "run_residual_selection.py": "beecdc286a23cbf668040e9b3390dadfbbcf8f33978d2a904a5c701a2dfae51d",
+          "test_residual_selection.py": "e92aa56322236917f6d4c5ee4d1768a08a84e60ab48531c22c8633fb575700ff"
+        },
+        "preparation": {
+          "attempt_id": "sdk2-residual-selection-31246c70df464b7d9826fd70088950f4",
+          "receipt_sha256": "97a0ff5c6a0b72ea2b0f44bf525ab7a284df31a1774b6df979dbe47808fe1f15",
+          "source_commit": "5ecc8dc44c490575d1b6350dd29f36bce031ccd4",
+          "controls_passed": 138,
+          "safety_controls": {
+            "measurement": 7,
+            "quadruped": 10,
+            "portable": 11,
+            "motor-task": 7,
+            "cpu-motor": 7,
+            "causal-history": 5,
+            "residual-optimizer": 10,
+            "residual-provider": 12,
+            "residual-training": 26,
+            "native-closure": 6,
+            "residual-selection": 26,
+            "training-closure": 8,
+            "provider": 2,
+            "containment": 1
+          },
+          "worlds_opened": 0,
+          "solver_steps": 0,
+          "source_runtime_unchanged": true,
+          "source_binding_count": 514,
+          "runtime_binding_count": 1359,
+          "artifact_count": 1675,
+          "artifact_bytes": 1199414976
+        },
+        "comparison": {
+          "seed": 104240601,
+          "groups": [
+            "left_075_train_001",
+            "left_075_train_003",
+            "left_075_train_004",
+            "left_075_train_006",
+            "nominal_train_001",
+            "nominal_train_003",
+            "nominal_train_004",
+            "nominal_train_006"
+          ],
+          "roles": [
+            "baseline",
+            "disabled",
+            "selected"
+          ],
+          "horizon_s": 12.0,
+          "outer_steps": 1440,
+          "planned_cpu_worlds": 24,
+          "planned_gpu_worlds": 0,
+          "planned_controller_rows": 34560,
+          "planned_internal_rows": 172800,
+          "worlds_opened": 0,
+          "finite_screen": "All eight selected episodes eligible; no nominal quality loss against fresh baseline at any start; disabled raw traces exactly equal baseline. Development screen only.",
+          "training_data_authority": false,
+          "weights_or_normalizer_may_change": false
+        },
+        "tier2_complete": false,
+        "tier3_complete": false,
+        "tier3_benefit_established": false,
+        "physical_acceptance_authority": false,
+        "equivalence_authority": false,
+        "release_authority": false,
+        "next_development_question": "A separate retrospective training-only selection is frozen over all eight candidates and 64 training episodes. Only iteration_00/d00_plus is eligible in every training group; its original weights, identity normalization and initial-probe provenance are preserved byte-for-byte. All 138 zero-world safety controls pass, including complete prior training closure reconstruction and new selection/native-reader corruption controls. Publish the clean prospective freeze and run the fixed 24-world full-horizon baseline/disabled/selected comparison across the eight exposed groups. Neither the prior pilot comparison nor route outcomes fit this selection; the failed final checkpoint stays immutable. Reserved calibration/evaluation, empirical support and withdrawal, useful reversible Tier 3 memory and three-engine qualification remain required."
+      },
       "bounded_residual_native_training": {
         "ledger_scope": {
           "subsystem": "adaptation",
@@ -6939,7 +7057,7 @@
               "release_authority": false
             }
           },
-          "next_development_question": "The complete native residual training pipeline is observed: the three-world execution fixture and fixed 88-world pilot are independently verified. The final two-update checkpoint preserves healthy quality at all four starts but recovers 0/4 weakened starts, so its finite screen fails. Retain iteration_00/d00_plus, an initial random search perturbation eligible in all eight training groups, as an exposed-data discovery lead only. Freeze a separate candidate-selection successor over the complete training population, preserve its exact weights and normalizer, and challenge the selected artifact against fresh baseline and disabled controls before opening reserved calibration or evaluation. Do not replace the pilot's fixed final checkpoint, fit on its comparison data, or infer why the updates lost recovery without a distinct diagnosis. Empirical confidence/support calibration, recovery withdrawal, useful reversible Tier 3 memory, and prospective three-engine qualification remain required."
+          "next_development_question": "A separate retrospective training-only selection is frozen over all eight candidates and 64 training episodes. Only iteration_00/d00_plus is eligible in every training group; its original weights, identity normalization and initial-probe provenance are preserved byte-for-byte. All 138 zero-world safety controls pass, including complete prior training closure reconstruction and new selection/native-reader corruption controls. Publish the clean prospective freeze and run the fixed 24-world full-horizon baseline/disabled/selected comparison across the eight exposed groups. Neither the prior pilot comparison nor route outcomes fit this selection; the failed final checkpoint stays immutable. Reserved calibration/evaluation, empirical support and withdrawal, useful reversible Tier 3 memory and three-engine qualification remain required."
         },
         "first_response_repertoire": {
           "ledger_scope": {

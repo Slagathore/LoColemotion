@@ -1,0 +1,426 @@
+{
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "numpy": "2.4.6"
+  },
+  "provider_definition": {
+    "schema_version": "locolemotion_bounded_residual_provider_definition_v1",
+    "ledger_scope": {
+      "subsystem": "adaptation",
+      "engine_scope": "core",
+      "authority_mode": "development_component",
+      "question_class": "development"
+    },
+    "provider_id": "s169_bounded_residual_v1",
+    "provider_version": "bounded_residual_runtime_v1",
+    "observation": {
+      "schema_version": "locolemotion_residual_observation_v1",
+      "feature_names": [
+        "morphology_torso_length_scale",
+        "morphology_torso_width_scale",
+        "morphology_upper_length_fraction",
+        "morphology_hip_span_scale",
+        "morphology_foot_radius_scale",
+        "morphology_front_limb_mass_scale",
+        "height_m",
+        "up_body_x",
+        "up_body_y",
+        "up_body_z",
+        "linear_velocity_body_m_s_x",
+        "linear_velocity_body_m_s_y",
+        "linear_velocity_body_m_s_z",
+        "angular_velocity_body_rad_s_x",
+        "angular_velocity_body_rad_s_y",
+        "angular_velocity_body_rad_s_z",
+        "desired_velocity_body_m_s_x",
+        "desired_velocity_body_m_s_y",
+        "desired_velocity_body_m_s_z",
+        "front_left_hip_position_rad",
+        "front_left_knee_position_rad",
+        "front_right_hip_position_rad",
+        "front_right_knee_position_rad",
+        "rear_left_hip_position_rad",
+        "rear_left_knee_position_rad",
+        "rear_right_hip_position_rad",
+        "rear_right_knee_position_rad",
+        "front_left_hip_velocity_rad_s",
+        "front_left_knee_velocity_rad_s",
+        "front_right_hip_velocity_rad_s",
+        "front_right_knee_velocity_rad_s",
+        "rear_left_hip_velocity_rad_s",
+        "rear_left_knee_velocity_rad_s",
+        "rear_right_hip_velocity_rad_s",
+        "rear_right_knee_velocity_rad_s",
+        "front_left_hip_baseline_command_rad_s",
+        "front_left_knee_baseline_command_rad_s",
+        "front_right_hip_baseline_command_rad_s",
+        "front_right_knee_baseline_command_rad_s",
+        "rear_left_hip_baseline_command_rad_s",
+        "rear_left_knee_baseline_command_rad_s",
+        "rear_right_hip_baseline_command_rad_s",
+        "rear_right_knee_baseline_command_rad_s",
+        "front_left_hip_maximum_command_speed_rad_s",
+        "front_left_knee_maximum_command_speed_rad_s",
+        "front_right_hip_maximum_command_speed_rad_s",
+        "front_right_knee_maximum_command_speed_rad_s",
+        "rear_left_hip_maximum_command_speed_rad_s",
+        "rear_left_knee_maximum_command_speed_rad_s",
+        "rear_right_hip_maximum_command_speed_rad_s",
+        "rear_right_knee_maximum_command_speed_rad_s",
+        "front_left_hip_previous_final_command_rad_s",
+        "front_left_knee_previous_final_command_rad_s",
+        "front_right_hip_previous_final_command_rad_s",
+        "front_right_knee_previous_final_command_rad_s",
+        "rear_left_hip_previous_final_command_rad_s",
+        "rear_left_knee_previous_final_command_rad_s",
+        "rear_right_hip_previous_final_command_rad_s",
+        "rear_right_knee_previous_final_command_rad_s",
+        "front_left_hip_previous_correction_rad_s",
+        "front_left_knee_previous_correction_rad_s",
+        "front_right_hip_previous_correction_rad_s",
+        "front_right_knee_previous_correction_rad_s",
+        "rear_left_hip_previous_correction_rad_s",
+        "rear_left_knee_previous_correction_rad_s",
+        "rear_right_hip_previous_correction_rad_s",
+        "rear_right_knee_previous_correction_rad_s",
+        "front_left_hip_previous_response_error_rad_s",
+        "front_left_knee_previous_response_error_rad_s",
+        "front_right_hip_previous_response_error_rad_s",
+        "front_right_knee_previous_response_error_rad_s",
+        "rear_left_hip_previous_response_error_rad_s",
+        "rear_left_knee_previous_response_error_rad_s",
+        "rear_right_hip_previous_response_error_rad_s",
+        "rear_right_knee_previous_response_error_rad_s",
+        "front_left_phase_sin",
+        "front_left_phase_cos",
+        "front_right_phase_sin",
+        "front_right_phase_cos",
+        "rear_left_phase_sin",
+        "rear_left_phase_cos",
+        "rear_right_phase_sin",
+        "rear_right_phase_cos",
+        "front_left_observed_support",
+        "front_right_observed_support",
+        "rear_left_observed_support",
+        "rear_right_observed_support",
+        "previous_action_available"
+      ],
+      "feature_count": 88,
+      "controller_dt_s": 0.008333333333333333,
+      "history_entries": 1,
+      "history_source": "actual_prior_resolved_command",
+      "response_error": "(current_position - prior_position) / dt - prior_issued_command",
+      "phase_source": "current_output_memory_with_declared_limb_offsets",
+      "cycle_commands": 360,
+      "domain": {
+        "descriptor": {
+          "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+          "morphology_id": "qsdk_r05_generated_s169",
+          "torso_length_scale": 1.0041015625,
+          "torso_width_scale": 1.0031893004115227,
+          "upper_length_fraction": 0.5219571428571428,
+          "hip_span_scale": 0.9856413994169096,
+          "foot_radius_scale": 0.9987180691209617,
+          "front_limb_mass_scale": 0.975022758306782
+        },
+        "ground_height_m": 0.0,
+        "canonical_up_axis": "y",
+        "gravity_m_s2": 9.8,
+        "gravity_absolute_tolerance_m_s2": 1e-05,
+        "desired_forward_velocity_m_s": 0.2,
+        "minimum_height_m": 0.2,
+        "maximum_height_m": 1.0,
+        "maximum_tilt_rad": 0.6,
+        "maximum_linear_speed_m_s": 10.0,
+        "maximum_angular_speed_rad_s": 20.0,
+        "maximum_joint_position_rad": 3.141592653589793,
+        "maximum_joint_velocity_rad_s": 20.0,
+        "maximum_command_response_error_rad_s": 40.0,
+        "maximum_correction_rad_s": 3.5,
+        "maximum_slew_per_command_rad_s": 0.08,
+        "maximum_final_speed_rad_s": 3.5,
+        "empirical_recoverability_bound": false
+      },
+      "support_distance": "maximum_normalized_mechanical_envelope_occupancy_not_case_density",
+      "confidence_semantics": "declared_domain_indicator_not_calibrated_probability",
+      "engine_specific_inputs": false,
+      "privileged_motor_parameters": false,
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    },
+    "ordered_actuator_ids": [
+      "front_left_hip_motor",
+      "front_left_knee_motor",
+      "front_right_hip_motor",
+      "front_right_knee_motor",
+      "rear_left_hip_motor",
+      "rear_left_knee_motor",
+      "rear_right_hip_motor",
+      "rear_right_knee_motor"
+    ],
+    "modes": [
+      "frozen",
+      "disabled",
+      "absent"
+    ],
+    "controller_dt_s": 0.008333333333333333,
+    "maximum_correction_rad_s": 3.5,
+    "maximum_slew_per_command_rad_s": 0.08,
+    "maximum_final_speed_rad_s": 3.5,
+    "minimum_confidence": 1.0,
+    "maximum_support_distance": 1.0,
+    "maximum_memory_bytes": 4096,
+    "first_command": "baseline_only",
+    "history_entries": 1,
+    "model_digest_basis": "sha256_utf8_sorted_compact_json_without_numeric_rounding",
+    "final_speed_limit": "actual_per_actuator_baseline_limit_at_each_command",
+    "confidence_is_calibrated": false,
+    "weights_updated_online": false,
+    "source_implementations": {
+      "bounded_residual_ars_v1.py": "772864e6791aeb41de33e5ff4f425529289db6a0f67d5663621665ebce0ea2e7",
+      "bounded_residual_features_v1.py": "94529018cded25f45a0ae526859f8610222b8e0ebc2a580608c72130574bd8c7",
+      "bounded_residual_provider_v1.py": "f0df93218eb0a0f2832b984c28f5b89d6dac9f1cd7a5265062cf429dfb302f12",
+      "stance_feedback_v1.py": "b40273b47f047f71263dd014bbec2bb24d623f64d39c039204c75c157ac2829a",
+      "phase_release_feedback_v1.py": "06adf4ae7b7cc4fe7d959a0e10d0e4212c7d96864e6a98b4b662ebca833b0f44",
+      "retrieval/causal_history_v1.py": "f8d81c1a4891a747ce84b83aad107a4243d2c7e0aa979798e1add5ff72fe1c29"
+    },
+    "physical_launch_authority": false,
+    "physical_acceptance_authority": false,
+    "training_data_authority": false,
+    "tier3_benefit_established": false,
+    "release_authority": false
+  },
+  "model_xml_sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06",
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+  "phase_mode": "clocked",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "controller_dt_s": 0.008333333333333333,
+  "warmup_outer_steps": 0,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "cpu_warning_count": 7,
+  "naconmax": 256,
+  "naconmax_per_world": 256,
+  "njmax": 128,
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0
+  },
+  "source_host": {
+    "path": "sdk/discovery/residual_control.py",
+    "sha256": "0cebe211a4335c1adda971663e18ae05d14068414e3cabc59e9db9a4c6bc5ab7"
+  },
+  "conditions": [
+    {
+      "condition_id": "left_075",
+      "side": "left",
+      "effectiveness": 0.75
+    },
+    {
+      "condition_id": "nominal",
+      "side": "none",
+      "effectiveness": 1.0
+    }
+  ],
+  "condition_model_sha256": {
+    "left_075": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069",
+    "nominal": "27ba35d5925099e22a757b232808ad3bbaae7fa7b55b912396ece2fd7bb1b6ec"
+  },
+  "training_starts": [
+    {
+      "id": "train_001",
+      "lateral_velocity_m_s": 0.001
+    },
+    {
+      "id": "train_003",
+      "lateral_velocity_m_s": 0.003
+    },
+    {
+      "id": "train_004",
+      "lateral_velocity_m_s": 0.004
+    },
+    {
+      "id": "train_006",
+      "lateral_velocity_m_s": 0.006
+    }
+  ],
+  "reserved_starts": [
+    0.0015,
+    0.0045,
+    0.0025,
+    0.0055
+  ],
+  "excluded_confirmation_starts": [
+    0.002,
+    0.005
+  ],
+  "reward": {
+    "desired_forward_velocity_m_s": 0.2,
+    "lateral_error_weight": 0.25,
+    "error_scale_m_s": 0.4,
+    "per_step": "-min(1,(abs(native_vx-.2)+.25*abs(native_vy))/.4)",
+    "failure_value": -1.0,
+    "failure_rule": "first physical violation or safe-no-actuation command and every remaining internal sample",
+    "denominator": "complete fixed internal horizon",
+    "survival_bonus": 0.0,
+    "range": [
+      -1.0,
+      0.0
+    ],
+    "invalid_rollout": "reject complete update; retain attempt and remaining unopened population"
+  },
+  "official_quality": {
+    "contract_path": "sdk/adaptation_provider/retrieval/contract_v1.json",
+    "contract_sha256": "ec26ecd48b0af84489aba0cc97b63dbf0a74836f06911990e8754cb174ff89f2",
+    "window_commands": 30,
+    "desired_forward_velocity_m_s": 0.2,
+    "lateral_error_weight": 0.25,
+    "failed_episode_quality": null,
+    "route_quality": null
+  },
+  "nominal_quality_loss_margin_m_s": 0.0,
+  "maximum_trace_bytes_per_trial": 268435456,
+  "schema_version": "locolemotion_residual_selection_comparison_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "frozen_selected_artifact_development_comparison",
+    "question_class": "development"
+  },
+  "lane": "comparison",
+  "seed": 104240601,
+  "outer_steps": 1440,
+  "horizon_s": 12.0,
+  "groups": [
+    "left_075_train_001",
+    "left_075_train_003",
+    "left_075_train_004",
+    "left_075_train_006",
+    "nominal_train_001",
+    "nominal_train_003",
+    "nominal_train_004",
+    "nominal_train_006"
+  ],
+  "comparison_roles": [
+    "baseline",
+    "disabled",
+    "selected"
+  ],
+  "planned_cpu_worlds": 24,
+  "planned_gpu_worlds": 0,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "training_data_scope": "none_frozen_development_comparison",
+  "official_quality_enabled": true,
+  "selection_record_path": "sdk/discovery/residual_selection_fit_v1.json",
+  "selection_record_sha256": "15240c1e54bd92b4cff6fce1b7a706edfdd0a7a2b2aa2fd010c8f18f67c5b07a",
+  "selected_model_path": "sdk/discovery/residual_selection_model_v1.json",
+  "selected_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+  "predecessor_closure_sha256": "13ea3010c6759dc2bc18e1d126f323af2766f2b6b971a25b2ecc251873534c91",
+  "selection_is_retrospective": true,
+  "preserve_weights_and_normalizer": true,
+  "comparison_data_may_fit": false,
+  "finite_screen": "All eight selected episodes eligible; no nominal quality loss against fresh baseline at any start; disabled raw traces exactly equal baseline. Development screen only.",
+  "minimum_free_storage_bytes": 21474836480,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "cpu-motor",
+      "module": "test_cpu_motor_challenge",
+      "count": 7
+    },
+    {
+      "name": "causal-history",
+      "module": "test_history_influence_control",
+      "count": 5
+    },
+    {
+      "name": "residual-optimizer",
+      "module": "test_bounded_residual_ars",
+      "count": 10
+    },
+    {
+      "name": "residual-provider",
+      "module": "test_bounded_residual_provider",
+      "count": 12
+    },
+    {
+      "name": "residual-training",
+      "module": "test_residual_training",
+      "count": 26
+    },
+    {
+      "name": "native-closure",
+      "module": "test_residual_native_closure",
+      "count": 6
+    },
+    {
+      "name": "residual-selection",
+      "module": "test_residual_selection",
+      "count": 26
+    },
+    {
+      "name": "training-closure",
+      "module": "test_residual_training_closure",
+      "count": 8
+    }
+  ],
+  "provider_controls": 2,
+  "containment_controls": 1,
+  "complete_safety_control_count": 138,
+  "implementation_bindings": {
+    "residual_selection.py": "8da0a962c9b8227218ca2c2f17821e9e31f4a9fd7f4fb4a6e4df549c2c8ab0c7",
+    "residual_selection_task.py": "50a45ccdee68fe9fd4647e54b0dde4d290771edce201b57770436d43764734ec",
+    "residual_selection_native.py": "340cf6a64fed787b2dae65bf3935f6bc592c3cd8051dac0b0ca3e407b314fb33",
+    "audit_residual_selection.py": "fabb5fe70023600cc98f9c49051d92cceda3c248f5e293d240ca66dab34b920b",
+    "run_residual_selection.py": "beecdc286a23cbf668040e9b3390dadfbbcf8f33978d2a904a5c701a2dfae51d",
+    "test_residual_selection.py": "e92aa56322236917f6d4c5ee4d1768a08a84e60ab48531c22c8633fb575700ff"
+  },
+  "coverage": [
+    "complete eight-candidate/64-trial training-only selection with explicit retrospective status",
+    "exact selected artifact transfer into the unchanged native run_trial production loop",
+    "fresh baseline/disabled/selected roles, full 12-second native state/force capture",
+    "independent baseline-core decision replay and complete fixed-denominator comparison"
+  ],
+  "not_covered": [
+    "unopened calibration/evaluation starts",
+    "calibrated confidence or withdrawal",
+    "Tier 3 memory benefit",
+    "other morphologies or engines",
+    "multi-seed robustness",
+    "qualification or release"
+  ],
+  "controller_selection_authority": false,
+  "adaptation_benefit_established": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false
+}

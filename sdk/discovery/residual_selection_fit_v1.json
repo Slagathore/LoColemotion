@@ -1,0 +1,2794 @@
+{
+  "schema_version": "locolemotion_residual_training_selection_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retrospective_exposed_training_selection",
+    "question_class": "development"
+  },
+  "selection_is_retrospective": true,
+  "selection_data_scope": "complete exposed pilot training population only",
+  "source_closure_sha256": "13ea3010c6759dc2bc18e1d126f323af2766f2b6b971a25b2ecc251873534c91",
+  "pilot_attempt_id": "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1",
+  "pilot_receipt_sha256": "5289b79e1895ffc9450b9565eba06fa4f7575774b472194eb61bcd59ce1f4a90",
+  "selector_sha256": "8da0a962c9b8227218ca2c2f17821e9e31f4a9fd7f4fb4a6e4df549c2c8ab0c7",
+  "training_bindings": {
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_00/audit.json": "bd5470b83fdeaae5a8b4d11677aa9e109875d2714300f8b6b296a1a22ffe89c6",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_00/models/d00_plus.json": "f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_00/models/d00_minus.json": "868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_00/models/d01_plus.json": "306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_00/models/d01_minus.json": "16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_01/audit.json": "347515f725dc056abe8f7bc65a4a033e1fe7972352a779f544f3c5529171bb77",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_01/models/d00_plus.json": "4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_01/models/d00_minus.json": "435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_01/models/d01_plus.json": "564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+    "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1/stages/iteration_01/models/d01_minus.json": "28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7"
+  },
+  "decision": {
+    "rule": {
+      "population": "all eight signed candidates from both completed pilot iterations",
+      "eligibility": "all eight training groups physically eligible",
+      "rank": "descending arithmetic mean of the eight original fixed-horizon training rewards",
+      "tie_break": "ascending stage/model_key identity",
+      "no_eligible": "refuse native launch",
+      "fit_partitions": [
+        "training"
+      ],
+      "comparison_data_may_fit": false,
+      "weights_may_change": false,
+      "normalization_may_change": false,
+      "prior_final_checkpoint_may_change": false,
+      "reserved_groups_may_open": false
+    },
+    "candidate_count": 8,
+    "training_trial_count": 64,
+    "candidates": [
+      {
+        "stage": "iteration_00",
+        "model_key": "d00_plus",
+        "candidate_id": "iteration_00/d00_plus",
+        "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+        "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+        "eligible_groups": 8,
+        "total_groups": 8,
+        "mean_training_reward": -0.27794846282455526,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09665286969263888,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "464b9fcb7d5f16d21ef9c27666e32ece4cf70982d045a28665c6d20c45fc0a41",
+              "trace": "c732627c9a3108752f9b2dc175786e13292edc61a47b9c98c7595a103550907d",
+              "timing": "a511f8022fae00ee3ef63a0e9ac33c4fdd093e7cddb4dc2df9c73543fdd30c66"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.2811004654922126,
+            "trial_id": "iteration_00_d00_plus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09643403614167283,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "f2bb198c678629b66798f4c7dcae0b9bd022be1f6a8a277fffd2c4bab0b7fad1",
+              "trace": "013eec9526c1aa7dfde6f109845c62c512efbe39e30719829d6e8124f3c73287",
+              "timing": "bbd2e39a1dc9968869204f6a2ec3e14efa55df38637cfe97f493cf78b140d07d"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.2795572855314364,
+            "trial_id": "iteration_00_d00_plus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09837920376373167,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "72705a4afde0e48ec3deab97d62adfdca9d3c93d10032f06c96ff810f30fe0e0",
+              "trace": "29cd590b99f3d4e320bfd864bb8f4e06d979dac80f907bbe41af8d5c1ae9566e",
+              "timing": "ecbab15677593d9c96bae38ac54dd0e5f7720415398ba8044e40319f55741c77"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.27958405604857967,
+            "trial_id": "iteration_00_d00_plus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.097953632284009,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "6d20cff1d4ab62107a5b78a11b37c908bf39fea0c09a8c3b5ff7c0bb57afaacc",
+              "trace": "8a9ce12685d37001e7a473c20e598a3f548c8f22d4ebdd70d1945231aa9b874a",
+              "timing": "e3759ceaf582fdb4773836090a7b63f5d9a5ed347a1f45ed192bf4b47fb1b3ff"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.28066609397578407,
+            "trial_id": "iteration_00_d00_plus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09387660594733661,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "b7ea783c01758c412bb2a4ed583913bd7d5a5e90e29e87835868019a5ddf2b70",
+              "trace": "758363c62e656c290ad6bc64b1c2174b1218b2760f7d507917f52567e6793d3c",
+              "timing": "7ac0187cfd4baadd957d17a3a567a06859c6c046de24f4c04d2ecd9e1c1931f8"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.27300116410694186,
+            "trial_id": "iteration_00_d00_plus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09745613276669164,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "f6fa21cfe118c44395398a37ac0034a6713ca69c8c5b6bfa6ef87166db232b3c",
+              "trace": "b86c18d28670422b2913c23caced77cec456ecf7558a31035e02b044f5ed20c1",
+              "timing": "668ae57a8cdcf8789bcc4577515311eeb5f4499cac154ad01b75a025a0b43aeb"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.27694577646260105,
+            "trial_id": "iteration_00_d00_plus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09733241971566053,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "77b8f800c0240870752577f59c6e81ba81fe6c0baf2bb919e2639eaafb2195e1",
+              "trace": "6405c09d3577b9b5f87236e01ef92680f6a07472d14a301ee8c369337a45f8d9",
+              "timing": "8b05748e30ad814c159e7ea7b5911a1efc4e33e222a3740d0aafded9b75816d2"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.2758762888029209,
+            "trial_id": "iteration_00_d00_plus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 0,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09869946882947635,
+            "partition": "training",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "raw_hashes": {
+              "controller": "32ae1fb5aa0ff5eececb264c22d17e49caa2a178299fbfbe52adb5f6125a3808",
+              "trace": "734a481b05e3bc5e912830a11cf501e25abd98fdd82d0352c20111aaaf70d7dd",
+              "timing": "2f58ff91a40f8b374fec0765670665d3233d7a8801add5dff46ae685afde6f17"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.27685657217596543,
+            "trial_id": "iteration_00_d00_plus_nominal_train_006"
+          }
+        ]
+      },
+      {
+        "stage": "iteration_00",
+        "model_key": "d00_minus",
+        "candidate_id": "iteration_00/d00_minus",
+        "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "eligible_groups": 0,
+        "total_groups": 8,
+        "mean_training_reward": -0.9577503907850157,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 505,
+              "time_s": 0.8416666666666726,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "d11b6de6d3db5d68780d3269c23926003868020ad17bf7eaceb41e9d7c7b9d1d",
+              "trace": "3077813a767f2168980a2994ae5e0d35556dff529aebf02dace5f2e4091bcab6",
+              "timing": "78c758cbe9d2ea05605ed82ac5dcef87a834e2514d60c2e238d0961d53a3066a"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9923930718908226,
+            "trial_id": "iteration_00_d00_minus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 545,
+              "time_s": 0.9083333333333408,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "de537ac1ecf7d0391de89545cdc358db736783007a32abc87972e683d2982067",
+              "trace": "f4801152d7a634e5e3f9d9681eb50f44f4cc660a654c35bceee798a96a9b03ef",
+              "timing": "621fa600608b462335d6c09a40c72d6fe1df2d6a128127efa00b2199f7204a87"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.9900247770332153,
+            "trial_id": "iteration_00_d00_minus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 527,
+              "time_s": 0.8783333333333401,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "1f2b4e9bd54a67b580b90818875455ed2602ec565e4246e1151d399e670c0ef1",
+              "trace": "23409201da1a135d8f375e49c2ba6f4ff8005e28dbf1978f81eec1037f2629e1",
+              "timing": "8c9c008f604690437ed122f6ec7373ae2dda65bfdc0698895e7eb2572d2e5336"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9909401507722211,
+            "trial_id": "iteration_00_d00_minus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 528,
+              "time_s": 0.8800000000000068,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "40851431994e09b0552d590fe99867a11356393292d05115db759ccd567118f8",
+              "trace": "f1f16fc8e12cddd0da61061e42e3a4b72296415939d4fc65ebd55bf45dbcc211",
+              "timing": "a31899b808d175aebf6e5357c5993f81c6518fb56029930d96e0bd35398e0176"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9904911686269381,
+            "trial_id": "iteration_00_d00_minus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 760,
+              "time_s": 1.2666666666666824,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "62a40f59dc8186013a96216301f1fc323b85de5a42c3cfe3ec8cf0305374ea92",
+              "trace": "218bc03742e6ec793f88c9d59f4cd1719b310abec7aecfda45f120639cdb2759",
+              "timing": "3e3a1b1b3e6703a1611fed42bac63f2bd5437418cd7257a98b8f793ed753a955"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9795855003874965,
+            "trial_id": "iteration_00_d00_minus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 594,
+              "time_s": 0.9900000000000093,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "03daaa9b78519ae449e9543a50273d14e40dcb1cdc54ee835004e00c5e2d8458",
+              "trace": "e4e03c4b16df68818eee3d69945cc56c869c08281d8123dd196b145078c1bd46",
+              "timing": "e4830016124ba45001b951a3c5c7e2bcfe17692ac368637c0b52dd3acee00f81"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.9865420743905603,
+            "trial_id": "iteration_00_d00_minus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 2144,
+              "time_s": 3.5733333333331925,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "8cdb76ebe28488ed3b47452334207cfac5a9f353d3e6924df838c914c3123e0a",
+              "trace": "429eb1348aa397cde36fcf0a73d20723b644d080825ee27c7eaf19c40ecb2745",
+              "timing": "6dfea1ae7f5d579c022e4b8686eec3997b337a693ba8aec06bc1c787dc3b206f"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.8638639879966651,
+            "trial_id": "iteration_00_d00_minus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 2231,
+              "time_s": 3.7183333333331765,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "raw_hashes": {
+              "controller": "df2c289694f173f0d75a0e16799e70ff8b037b1ecc5cd6df2557d24f0c2a40ea",
+              "trace": "293743893b8e50c56c092a00aeb2e51ecbb68a99373af1d5a038b0fb34b9bf76",
+              "timing": "02248915d9c2cef3fb0b9ea85ff8edbcf5b31106c2c69c4715c982fd5e5de1f9"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.8681623951822061,
+            "trial_id": "iteration_00_d00_minus_nominal_train_006"
+          }
+        ]
+      },
+      {
+        "stage": "iteration_00",
+        "model_key": "d01_plus",
+        "candidate_id": "iteration_00/d01_plus",
+        "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+        "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+        "eligible_groups": 4,
+        "total_groups": 8,
+        "mean_training_reward": -0.6323054900924804,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 1207,
+              "time_s": 2.011666666666698,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "deb02790bd30001971eea177e2738706cf82d67ec4698907298e2210e90abf92",
+              "trace": "ecce04e2888ae2b83feb3e389cef8cadaac21e4ce387fe0e60981993fd796d61",
+              "timing": "4757934bb86cdb4acfab61a6800115faf5bf4c86690364f04b4bb33415227c91"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9491391958856733,
+            "trial_id": "iteration_00_d01_plus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 1212,
+              "time_s": 2.02000000000003,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "d16559f0c46ff0a10eba89a79231964f92f5154a6dd9aaa45314236b12af9dcb",
+              "trace": "ad95a4e6b91fd0a4abadd15e894a957949493d1ec21941c7490834cf0ced6668",
+              "timing": "69ae1048376430a04f5c716b2aa006aa3c4d788e08fd24597bbb6ef118a51f34"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.9318523638035074,
+            "trial_id": "iteration_00_d01_plus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 1198,
+              "time_s": 1.9966666666666992,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "577e7296bca3e4acac6b4fd026a2db5928180237c3c88bce5be1513bb7aaa220",
+              "trace": "f4fc6fecd731dbae2c3e6ecb2541344bf2b907caab3105313bfa1331c6cbe454",
+              "timing": "2a63f60dc12f9628a806710177b13f520a771bc7cd004c37355e8e6d7f52d8c3"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9520619639814019,
+            "trial_id": "iteration_00_d01_plus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 1315,
+              "time_s": 2.191666666666678,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "83e49c1d755eff41ca567e8d871abb8e4e6966d8624dede3d0e17290c062e00d",
+              "trace": "8b77f0c79bfbd9f4226bc8b701ea94b219aba94fa3621d6f77ae715a878f2077",
+              "timing": "7ad8dcfa9309b8476c26f67ae610e708fab717f84b63cac69f0cb972e4d27ada"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9116052284365924,
+            "trial_id": "iteration_00_d01_plus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 1,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.12158048590355415,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "4dc94ccd2959a7cc8936a9e4737a0665f4146706776e2a88849ca829ecfbf49b",
+              "trace": "394ea676f7a84eba08cf35dfac2416ab59b1da4092312b9b538b48b86d899733",
+              "timing": "62755f106deb7abe1d5a377292886ecb0d7e7f996603311dacdac32ffd2a5f41"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.32290978088819217,
+            "trial_id": "iteration_00_d01_plus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 1,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.13371725526164546,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "7b3e2817e85730a25c90cedaaec30d528ca7afd177b3a1480e0812c0718fd763",
+              "trace": "36326efdc7201eae58b9ae50a37b5e8127a40774a2fb29376bc403a490f34186",
+              "timing": "535a0c8726e538ea6986dcdd5d5181d4e3072bcd6734181ffb7cdf0388c04e0a"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.3489609084046297,
+            "trial_id": "iteration_00_d01_plus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 1,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.12141557048834321,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "cab58fca679a6156b4cda8b7933aea2cfa07a76062237fdad01897400f6e1191",
+              "trace": "960ff3f407c7779e8bbe6f75a6474cc34a014ab9a202250fb534cef5858fd1a1",
+              "timing": "d12bd538ac7ef5e99f184fc4fc415e7dce4ca1ddd667caeb5afa107394e18583"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.3208232418562349,
+            "trial_id": "iteration_00_d01_plus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 1,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.12036299851429089,
+            "partition": "training",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "raw_hashes": {
+              "controller": "daff7a1879739d561ea5a4b4067bb8c007fcd3c333f3eb7ecfbc608280d2273a",
+              "trace": "3620dc47415bfebb0a6cd214ac14f059504debcf41cb34250c47ee5d7d1716d4",
+              "timing": "d2ae5eb6c6637ab37cbb56bf7b9854dece739915f66c55f7ada37dfa5a18e846"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.32109123748361135,
+            "trial_id": "iteration_00_d01_plus_nominal_train_006"
+          }
+        ]
+      },
+      {
+        "stage": "iteration_00",
+        "model_key": "d01_minus",
+        "candidate_id": "iteration_00/d01_minus",
+        "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+        "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+        "eligible_groups": 0,
+        "total_groups": 8,
+        "mean_training_reward": -0.9852629797369251,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 505,
+              "time_s": 0.8416666666666726,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "de090159969d913ee02103a64504b8842e284e4657c915979f9b00bf2a63593d",
+              "trace": "296c0e78e9ca4b831a838e008e066c59bcabb168df1ffb85f96bce76b034b44c",
+              "timing": "20c61c189264a527a5440bb586ad19cdbeb06e87e97780229fe832216bf5954f"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.987662589088423,
+            "trial_id": "iteration_00_d01_minus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 517,
+              "time_s": 0.861666666666673,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "d50c0b3deb30c81893f08fa0ab7caac23fd84f2fd2b0b856cc8639958e572095",
+              "trace": "538f577d147bb3f22c942ddb531398c034b8cc9ebf007c9c487a7db95b17b8d8",
+              "timing": "b8707f7a206873159a0da0c13d0cd1e199cceea1b6bdf5144c90491be2cde0c0"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.9870180185655463,
+            "trial_id": "iteration_00_d01_minus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 502,
+              "time_s": 0.8366666666666724,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "a5b0e7d7c30fe09e315dc7b9caccb1bd204c019758a4f26b1a6535539c617bab",
+              "trace": "50064a831de6da4e63bf303e5b8d733fd2b68e2b6bb290d880b21c46ec8edd13",
+              "timing": "7ba2a849dc33aa46638c0700f6e38f2917f9cc58d43ef80088e7222418ccbac2"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.987810241682714,
+            "trial_id": "iteration_00_d01_minus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 500,
+              "time_s": 0.833333333333339,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "9834002108e3e2a11baef92c3a218a206fb62063a67802dfabcacc5ede0b9cfb",
+              "trace": "745fcd398ccf2673c022ef31d8c64e16361fdcab3850170a3de3d16c13a440c0",
+              "timing": "f358b1c13632cdd39c13ed2fc2fa3334626fec213e683960c2fcf570a43e6e40"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9878861587689693,
+            "trial_id": "iteration_00_d01_minus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 591,
+              "time_s": 0.9850000000000092,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "eeafa49f4af7031098d97289dd3ffad2f582460bdbf3b542605e0858d01acc02",
+              "trace": "468c44717ab114fd0c98f70ba52d54865a89caf88c9b7dcc007ae31cdce49765",
+              "timing": "aa8556d0aa728191273ce7595a396c489c9f99a8f21d1af61092531b0750a15b"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9829502389927938,
+            "trial_id": "iteration_00_d01_minus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 586,
+              "time_s": 0.9766666666666757,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "d0143bb5c2a7daecb9a42a47753ffeaa016690e5ac13cd1bb506b677ebe74d99",
+              "trace": "b547db042c28548daf2bd710bc36a0f65fdd6adadc82cbb026680e5e8e1b8e19",
+              "timing": "a4b7f7c0b8f7a025484702e92148bacb557e4e803e4863055d8ea23d8cbddd6c"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.983189077172531,
+            "trial_id": "iteration_00_d01_minus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 591,
+              "time_s": 0.9850000000000092,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "456cfa1970b9d44c9aa7d842c5032a78973cced39e9431b37f8f242aacb0b2ba",
+              "trace": "965afd75d74dd17e30813e17625ba23ec9802f7e942a21127c547e5a3edca286",
+              "timing": "7c783b15dcf866ee33b78c1ed7d02de32aa096128fde7d4bd4477b1a3ee3ae1a"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9829975153907429,
+            "trial_id": "iteration_00_d01_minus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 599,
+              "time_s": 0.9983333333333428,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "raw_hashes": {
+              "controller": "c46fe352a2970ec00c543b631ad84816594343b55496b5c38af3a67439708924",
+              "trace": "b2610e8fa3e22ca540c39f2b3a38f2607f5873165cd3179821c5c84122e0d7cb",
+              "timing": "7924e446949cde9f63a4d091a19171806f21d095e58b6b061e87ef0f3414d0c0"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_00",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9825899982336804,
+            "trial_id": "iteration_00_d01_minus_nominal_train_006"
+          }
+        ]
+      },
+      {
+        "stage": "iteration_01",
+        "model_key": "d00_plus",
+        "candidate_id": "iteration_01/d00_plus",
+        "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+        "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+        "eligible_groups": 0,
+        "total_groups": 8,
+        "mean_training_reward": -0.8518752017105126,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 2258,
+              "time_s": 3.7633333333331715,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "8f92a616d460c207ce1098b51f6de0d25c0bc4fefb23496b6f481c2fa51d58f4",
+              "trace": "fc3a22ab8e9a0102565cf0264834dd0a4a114c34d872a6a1b2fe24934e220da1",
+              "timing": "0f1471775ec1f2899b6b1f0c38a4bdfccb045f8ed2624b9275804593234520d7"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.8388235595492899,
+            "trial_id": "iteration_01_d00_plus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 2372,
+              "time_s": 3.9533333333331506,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "ce6f676024dceb239d19174f28597e6d282b9c51602420be7ef195d7f1f34f52",
+              "trace": "1d3ea2dc40ea3a06bf3fe79d158f0b4491283997286d405253672edcea952b76",
+              "timing": "6b1d061fe257da6df9d0fd8fd15c8a2282152309670d396fbe19ee0f2a2e2f96"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.8300278005048821,
+            "trial_id": "iteration_01_d00_plus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 625,
+              "time_s": 1.0416666666666772,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "fc7b6a9e555b6eaa0b070aab89367b58ff2c1891547aa76028cf66b9885005ce",
+              "trace": "7ab9eff22a3fa9caefaf9e6c47d6900792ee56f020ed707db0d013883a323eb8",
+              "timing": "ef3a859ebee9e68fc95f33855a4e77cd67da152e9d66cbddd6c56a71789cc746"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9707311709175647,
+            "trial_id": "iteration_01_d00_plus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 708,
+              "time_s": 1.1800000000000137,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "f553052c4b2831659085b4f030bdb0f12c2679bf695a1381d66cf3962c2f557b",
+              "trace": "6631c0dac2c2147125e0edfc73eb8b289aa56115f5990b2e8f5b4395b1be0afd",
+              "timing": "f1e5e1279a45de608019339d2fb98b32816a5263ce720d58a53e60a55aba6f64"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.967346331879324,
+            "trial_id": "iteration_01_d00_plus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 2229,
+              "time_s": 3.7149999999998435,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "ad26a757adad7390ffc8198a21461c2de933ecb812e61af79753c604d2888396",
+              "trace": "5f3674a215b5ade4b14aa9fe7fe1c20fe201d687ceafb73ac7fac156187328a9",
+              "timing": "af67652113a6c94823f342a415744f3e64bfa7a9fc2d9e1549bd43eb59abfa27"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.8318748021797788,
+            "trial_id": "iteration_01_d00_plus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 2466,
+              "time_s": 4.109999999999829,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "0001c2334f9ff9176a5cbbfe631032ea56641dbcc4f004ba89d25e38972bde3c",
+              "trace": "c44673afc74a43944d54fbe9ab1913ae76319262405ca55cfbf55189c4bd7bb6",
+              "timing": "a5d04f8a71c8189b55fbb2c7c4f69c9ec9b0a3e0d1026507c6082124982897b7"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.8249520361550703,
+            "trial_id": "iteration_01_d00_plus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 4172,
+              "time_s": 6.953333333333607,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "56a73fb2347e4c55d506ed05d440f7428d530c87edc3551476f3005e11a99962",
+              "trace": "53ef8c2f76c67cd6a18e75b6cc02cce861aafbec4af16f0fb513c1b05f7fbd4c",
+              "timing": "0e57d94cfda377a003d5a44f6934b7127250567e0a2243a984cbb1483996bb9d"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.7181754740007021,
+            "trial_id": "iteration_01_d00_plus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 2261,
+              "time_s": 3.768333333333171,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "raw_hashes": {
+              "controller": "b396fcb05ddc69928ae224efc0705593e3823909b897b0a777cbc89687e894d9",
+              "trace": "131c8626dce1ca992b80e012c5bde7bb265559a6d522cf9dd643aaea8c1c6d3d",
+              "timing": "e2cd9097a0c309f67800dc9c9cde698498716846c1e2126d7650cea3561610de"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.8330704384974883,
+            "trial_id": "iteration_01_d00_plus_nominal_train_006"
+          }
+        ]
+      },
+      {
+        "stage": "iteration_01",
+        "model_key": "d00_minus",
+        "candidate_id": "iteration_01/d00_minus",
+        "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+        "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+        "eligible_groups": 0,
+        "total_groups": 8,
+        "mean_training_reward": -0.98340115652393,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 527,
+              "time_s": 0.8783333333333401,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "491aaa73d931d52df94ce0610c32ed4ccec4a17c6a993142502be4dd14e70260",
+              "trace": "b7d4ae9b1f649a67b488e6cc37be644b54034d28a2a6024bc0722dcc13d17d99",
+              "timing": "12eec7bc938adca9e0bc35924a453a3b7725852c35f81bae076fb92bc8dda26a"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9849256285743846,
+            "trial_id": "iteration_01_d00_minus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 513,
+              "time_s": 0.8550000000000062,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "32ceb146d1487d59aac531d54b27aef34285d5b743692e45e790a981a4bc5acd",
+              "trace": "6e196b91a4a810890e891a797051bec633a1cbab148e008e112d866ea76bc297",
+              "timing": "06f5dd287fcd434d4ba670a18001422491bf6b00d0412b1b7e61f1dcb332bdfa"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.9860517934632534,
+            "trial_id": "iteration_01_d00_minus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 526,
+              "time_s": 0.8766666666666734,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "76e9d957bce2ac42662d917bd8e9963541cd9f48a774cf3bf84a3cb20cbcdf4c",
+              "trace": "8129ffeeffd3dc82413b3dc21892a65cdef85eba550e8e50c61ddc0ee903dba7",
+              "timing": "8fcd0db225cf2d7e94737201280b5a8c342e6f03a9b4b73058056832f0d84cee"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9849177560905032,
+            "trial_id": "iteration_01_d00_minus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 519,
+              "time_s": 0.8650000000000064,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "3bdc3db0583aae391134836092129bdecc05c5fe530c873a8b7ed6217d540286",
+              "trace": "b4b5bd3bca970e500a596e8550d655e0c5a8bc252f35f519d52ee3feb4d4e192",
+              "timing": "d0ad32cbe6e4a89bcd3d7076ebb9b7dc04efc2851e9c911cbe11e7c6f31f2d4b"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9856323518005642,
+            "trial_id": "iteration_01_d00_minus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 570,
+              "time_s": 0.9500000000000084,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "383aa5c35e3c62bfce6766b7fbf766711c9da6274578bda2605d3040a63eb42b",
+              "trace": "0e0e4f170dbbc6f7ef4d1ad42f193298b32f3b45bb6b004a108282163065ff48",
+              "timing": "658857483004974450d1d05494020c6baf3d9eb8941c0b2d0c3a9200ea38018a"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9814574691986019,
+            "trial_id": "iteration_01_d00_minus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 566,
+              "time_s": 0.9433333333333416,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "87759e22c8ef39bcff1c497169e9a845092576deca0ed6c27dcb0d9e089b76ee",
+              "trace": "6a870f924da6b3d618a9fb1017e6699892fa3fd3ccaf580bd108c79be07b879e",
+              "timing": "88fbb41de346d7c4b84880043d77f0d32fb917d8db0d8f8c580272920271ab59"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.9817743835147341,
+            "trial_id": "iteration_01_d00_minus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 572,
+              "time_s": 0.9533333333333418,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "33d8df4e2cfac14e31a542006cf917e8574d2c56e22f74b31e048cdef7a8d12e",
+              "trace": "93277d1f673670332ef863261497f17ae8ed44cfe8f5f913af9dec0c53aad73d",
+              "timing": "cb8a4b810a003010836aa337a36c153ab3e417fb53bb648b26c31c63929c3a18"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9812338647249499,
+            "trial_id": "iteration_01_d00_minus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 0,
+            "first_reward_failure": {
+              "internal_step": 570,
+              "time_s": 0.9500000000000084,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d00_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "raw_hashes": {
+              "controller": "7e388b1ab76b2fff97a0e734f33944aaec5e92ba5086e40b8eed641fd239e773",
+              "trace": "bf63e7c1d250456d597a051ab5653cc44e4c1bc815a7d08337619ad468b91e65",
+              "timing": "324a3af672c7403c36142fbdb985202266bb7715aff987536262edca6ad6b44e"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9812160048244489,
+            "trial_id": "iteration_01_d00_minus_nominal_train_006"
+          }
+        ]
+      },
+      {
+        "stage": "iteration_01",
+        "model_key": "d01_plus",
+        "candidate_id": "iteration_01/d01_plus",
+        "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+        "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+        "eligible_groups": 3,
+        "total_groups": 8,
+        "mean_training_reward": -0.6855024118022093,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 661,
+              "time_s": 1.1016666666666786,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "f41a5a9b938686b8a4f429eb31dc5ee796111bea7a8d4f69160ea44222a5a60a",
+              "trace": "194970ee282e6d41fee9b5e7738320cbd2e32d049f0a4878f6464c5248072b56",
+              "timing": "20726141eb1e75a0ead7cb49cba40b2a0b909e16886837536c529fea16e63602"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9775772333557896,
+            "trial_id": "iteration_01_d01_plus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 644,
+              "time_s": 1.0733333333333446,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "eb6b0a4240e5d90a6ffc4b6d453e056e3dacab01b8682ab532b9fb981d36747e",
+              "trace": "5194ab371bcc9c8dd399f725620536906d9366a6778009b7ade1f902654f63db",
+              "timing": "d8143d9a914f005894b9ea46dfc4ca7eb039a137f8bebd37818105499a70fe1d"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.977786607245798,
+            "trial_id": "iteration_01_d01_plus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 663,
+              "time_s": 1.105000000000012,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "1544611b9dcd8040745de646cedad2eace1e14422a0064b91bec939ceeea8383",
+              "trace": "d8651d91af1c197535b9ffaa6519423fab8b6a550259f6ca6d3c958283c57150",
+              "timing": "54564ce2083f0de27e7babb79ebd690515cff3eb4daa8eb0c788ecbdc4c1b4d5"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9769251033759759,
+            "trial_id": "iteration_01_d01_plus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 837,
+              "time_s": 1.3950000000000187,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "6739b528b179d85d774e457326a1ca920caa8b7617d4b6bfb9bccc72a18c1f54",
+              "trace": "4f516566385d691ee37826e835c20e6dbe5642cf5b9759e1f49da7d8be6d96d1",
+              "timing": "d2982a03722c7bf8d9dfcf9191dcb37a3d393c57dcd9432db12acb5375b12034"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9715820954762162,
+            "trial_id": "iteration_01_d01_plus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 1,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.11552827520722068,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "11f96ad44e6bac9128fcd698731936e2941c0f70e3b47d745242e5772ba4a398",
+              "trace": "4f45843c036be98615942d2f2a7eebc4d8e389a1cff323495e393c8a6e05961f",
+              "timing": "3b8ebf17d7f5d261f143625b761403b3a0ff58ad40366897275b5761b4e5f4c8"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.3239842339081403,
+            "trial_id": "iteration_01_d01_plus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 1,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.09899150680362669,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "64135934f5f5738287e3c913c19ec8e778eca8266baaed4f5103a7f39023e43b",
+              "trace": "59fa77ead5a71425155c0dab122a3c44ebe97d07feb50d0a5d3bf8ae510abd00",
+              "timing": "4459eb2ea8c7c25cc843ecf562ba628bc442391e13462f17e3531fb7d0ce2536"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.27912962133900626,
+            "trial_id": "iteration_01_d01_plus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 4073,
+              "time_s": 6.788333333333581,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "797f07c83596bcfd653daa13e0f57f7eb7b1134af9b794bc86ab7f736a40a044",
+              "trace": "6f882d3cf07605c16cfe432eeaff09183db13fb6fbb4a72d4a0b34c03bfc9388",
+              "timing": "741eba1536e9b250dfeed067c4cf0b8b82ab354723fa83cb945c379f078fdfbb"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.6842491992063375,
+            "trial_id": "iteration_01_d01_plus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "direction": 1,
+            "first_reward_failure": null,
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_plus",
+            "nworld": 1,
+            "official_quality_m_s": -0.10577772092408715,
+            "partition": "training",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "raw_hashes": {
+              "controller": "36c5f5e6fa79032f7a59fcc52c7b7b888d614db3256c17a5cc19ebe031232e9d",
+              "trace": "bc4924c44f40cf7fdda8f79f369cee0bc6043d8c44db1baf8dd1fd80ea1e2982",
+              "timing": "511b837cc0264bb1b52d2f5ad1c08ca7a067f5a2b4ddbbef5597f48033717de6"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": 1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.29278520051041007,
+            "trial_id": "iteration_01_d01_plus_nominal_train_006"
+          }
+        ]
+      },
+      {
+        "stage": "iteration_01",
+        "model_key": "d01_minus",
+        "candidate_id": "iteration_01/d01_minus",
+        "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+        "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+        "eligible_groups": 0,
+        "total_groups": 8,
+        "mean_training_reward": -0.8998332542981511,
+        "trials": [
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 495,
+              "time_s": 0.8250000000000055,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "44b7c48e7b9219bdf546d91ba196da5a7a169719d5c47b2ec10350b04aa0e847",
+              "trace": "31eb9010e78ced2359aab9eae60fb3936d0e800b46eb6ec40d004d6ad488f696",
+              "timing": "903dd1ad6112b0ac74b4a340ad0d673bba5bb468c4268d3f6860c332f1ef4ee0"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.9855313336517681,
+            "trial_id": "iteration_01_d01_minus_left_075_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 500,
+              "time_s": 0.833333333333339,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "f8af6997cf06e666f376e7ca8cc46c05d1ab1f3d9958b52327a8811c57a091d5",
+              "trace": "b369f4a6d82bf1df55259f308b90b1bcb42f7e3c01e18288cc3ef99efcecd1bf",
+              "timing": "ba59507a290d807ced64fb07ff7836e6d2e6187729c78f7aeeab748530e3de68"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.9851717377406506,
+            "trial_id": "iteration_01_d01_minus_left_075_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 500,
+              "time_s": 0.833333333333339,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "ed5d73e4f4af4de86ad829adb9599f764006d1c5ea42c9267594099c74d2918a",
+              "trace": "0399e60cec47d131cbe7a1192a3a0eb39e3d55cbe9c3872f5c1ba6fdfeb6ac5a",
+              "timing": "df0c08abe31cefd731c96b95e579b69e8a1f09424703ba532e2699516e86dc44"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.9851676095993696,
+            "trial_id": "iteration_01_d01_minus_left_075_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "left_075",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 496,
+              "time_s": 0.8266666666666722,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "left_075_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "9ee3cf951cf722e000ff5c2b5570f212bad7987090dc4b56ea37ecc0e8a4684f",
+              "trace": "27376f49eb8c0283be51beb4b86a6971843b7d6f78d8488d0fab3d163aaaec95",
+              "timing": "db2d4a9e36c6e42aacd6f8f78a3ed1d99439afc8468054737c707c22c32e2ece"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9854129543514696,
+            "trial_id": "iteration_01_d01_minus_left_075_train_006"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 4176,
+              "time_s": 6.960000000000274,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_001",
+            "initial_native_lateral_velocity_m_s": 0.001,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "e5648b4efea1771fd3da67355f9b551167c151fe8e7f827153a8b47f3500a32b",
+              "trace": "a8774180d09d6bdc7cb0f780322273a17caaef7d301a8a497bf1e42f1abb5d93",
+              "timing": "f0587f3c124a342d442bf325be9d77d91473e17bc8cbe4aefc1b35c58070101b"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_001",
+            "training_data_authority": true,
+            "training_reward": -0.70008222960433,
+            "trial_id": "iteration_01_d01_minus_nominal_train_001"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 2563,
+              "time_s": 4.271666666666521,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_003",
+            "initial_native_lateral_velocity_m_s": 0.003,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "612cf0f974b1d3a8371b2adb820080d86d1fa602b62622d156a3d2b680296853",
+              "trace": "d1488765deaf74b15583937c6289cfa8457bbf5da09cf49f21a5c7d4ee7dc411",
+              "timing": "24833d9d9305fbc21c42653a1b0d997771eb439da95f2ed6961c2ce02872a6c5"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_003",
+            "training_data_authority": true,
+            "training_reward": -0.8395225437915403,
+            "trial_id": "iteration_01_d01_minus_nominal_train_003"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 3876,
+              "time_s": 6.460000000000196,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_004",
+            "initial_native_lateral_velocity_m_s": 0.004,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "0761f27eae870d4c23c1e19ce24879ab0d9068bb11ca85f28f7ff852f86b6183",
+              "trace": "52c4a5606b91208dba9a609e4f099c9d832a9c32dd4c805a52b8df3ec531c270",
+              "timing": "080385e35f4f104e27f6e936ac6f5bf676b61a41cb0478af8082c4cf97d6124e"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_004",
+            "training_data_authority": true,
+            "training_reward": -0.7398216783655691,
+            "trial_id": "iteration_01_d01_minus_nominal_train_004"
+          },
+          {
+            "arm": "scalar_direct",
+            "comparison_data_used_for_training": false,
+            "condition_id": "nominal",
+            "controller_rows": 1440,
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "direction": 1,
+            "first_reward_failure": {
+              "internal_step": 690,
+              "time_s": 1.150000000000013,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "group_id": "nominal_train_006",
+            "initial_native_lateral_velocity_m_s": 0.006,
+            "internal_rows": 7200,
+            "mode": "frozen",
+            "model_key": "d01_minus",
+            "nworld": 1,
+            "official_quality_m_s": null,
+            "partition": "training",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "raw_hashes": {
+              "controller": "8367e5940ad8e2d48fea7e8145e5ac7eeca2c47ae22c6ad25fe362979672169c",
+              "trace": "495c688093761d5131c400348d8eb372f2dbc7d4267c416a211552e84d7143de",
+              "timing": "eb3ec857ddf45434e56273d88c50891bd69699377cc005e1ae6e154814e57989"
+            },
+            "reward_denominator": 7200,
+            "role": "search",
+            "seed": 104240501,
+            "sign": -1,
+            "stage": "iteration_01",
+            "start_id": "train_006",
+            "training_data_authority": true,
+            "training_reward": -0.9779559472805118,
+            "trial_id": "iteration_01_d01_minus_nominal_train_006"
+          }
+        ]
+      }
+    ],
+    "eligible_candidate_ids": [
+      "iteration_00/d00_plus"
+    ],
+    "selected_candidate_id": "iteration_00/d00_plus"
+  },
+  "selected_model_path": "sdk/discovery/residual_selection_model_v1.json",
+  "selected_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+  "selected_policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+  "original_model_corpus": {
+    "corpus_id": "residual_pilot_initial_v1",
+    "kind": "untrained_development_probe",
+    "source_record_sha256": null,
+    "training_data_authority": false
+  },
+  "selected_artifact_preserved_byte_for_byte": true,
+  "original_training_worlds": 64,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "comparison_trials_used_for_selection": 0,
+  "route_trials_used_for_selection": 0,
+  "fresh_baseline_comparison_complete": false,
+  "promotion_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "tier2_complete": false,
+  "tier3_complete": false,
+  "tier3_benefit_established": false
+}

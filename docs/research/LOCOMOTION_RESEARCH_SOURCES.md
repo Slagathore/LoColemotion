@@ -2596,3 +2596,27 @@ not reproduction of the ARS or residual-RL papers' benchmarks. The retained
 research motivations remain useful, while calibrated support, empirical
 withdrawal, unopened evaluation, useful Tier 3 memory and three-engine
 qualification still require their own prospective evidence.
+
+### Frozen search-candidate comparison follow-through - 2026-10-24
+
+The [training-selected successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-frozen-residual-selection-comparison---2026-10-24)
+preserves the exact initial random candidate that was eligible across all eight
+exposed training groups. This is a separately declared retrospective selection
+over the complete 64-episode training population, followed by a prospective
+fresh comparison. It does not change the pilot's failed fixed-final checkpoint
+or establish that an optimizer update improved recovery.
+
+The [ARS paper](https://arxiv.org/abs/1803.07055) motivates simple parameter-space
+search while reporting substantial variation across seeds and settings.
+[Agarwal et al.](https://arxiv.org/abs/2108.13264) explain why few-run point
+estimates can support unreliable comparisons and advocate uncertainty-aware
+evaluation. These findings support keeping this deterministic eight-group
+development comparison finite: fresh re-execution is not independent random
+sampling, held-out evidence or a statistical superiority claim. Those require
+separate prospective populations and estimands.
+
+All 138 launch controls pass without worlds. The selected model retains its
+original weights and normalization; this experiment therefore does not isolate
+the separate question of why later weight and moment updates lost recovery.
+No external code or model weights are imported, and no ARS benchmark result or
+qualified adaptation capability is claimed.

@@ -21,6 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
+Latest selection preparation: the [frozen training-selected comparison](#prepared-frozen-residual-selection-comparison---2026-10-24)
+passes all **138 zero-world controls**. Selection considers all eight candidates
+and 64 training episodes; only **iteration_00/d00_plus** is eligible in every
+training group. Its exact original artifact is frozen, including identity
+normalization and initial-probe provenance. Next run **24 fresh CPU worlds**
+with baseline, disabled and selected roles across all eight exposed groups,
+using unchanged 12-second horizons. No new world has opened at this boundary.
+The prior failed final checkpoint remains unchanged; reserved starts stay closed.
+
 Latest training closure: the [completed native residual pilot](#completed-native-residual-training---2026-10-24)
 verifies the three-world execution fixture and **88-world pilot** from published
 **b29ea283**, each after all **104 safety controls**. The final trained checkpoint
@@ -1553,6 +1562,55 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Prepared frozen residual selection comparison - 2026-10-24
+
+The [selection record](../sdk/discovery/residual_selection_fit_v1.json) binds the
+complete **eight-candidate / 64-episode training population** from the closed
+pilot. This is explicitly retrospective development selection: the training
+outcomes were already exposed when this rule was written. Every candidate
+must be eligible in all eight training groups before ranking by its mean
+original fixed-horizon reward, with lexical candidate identity resolving a tie.
+Missing, duplicated, crossed or reordered populations refuse selection.
+No eligible candidate means no native launch.
+
+The sole eligible candidate is **iteration_00/d00_plus**. Its
+[frozen model](../sdk/discovery/residual_selection_model_v1.json) is byte-identical
+to the original artifact, SHA-256
+`sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f`.
+Weights, count-zero identity normalization, output limits and the original
+initial-probe corpus label are preserved. Selection itself neither performs
+another optimizer update nor changes the failed pilot's fixed-final result.
+Route episodes, final-comparison outcomes and reserved starts do not fit this
+selection. The complete population includes all earlier negative candidates.
+
+The [comparison contract](../sdk/discovery/residual_selection_v1.json) declares
+one development seed, **24 fresh CPU worlds**, **34,560 commands** and
+**172,800 internal samples**. Baseline, disabled and selected roles each cover
+all four exposed starts under both nominal and weakened conditions, with the
+unchanged **12-second horizon**. The selected artifact must be eligible in
+all eight groups and preserve fresh baseline quality at every nominal start;
+disabled raw trajectories must equal baseline. All comparison observations
+remain excluded from fitting. This finite screen supplies no reserved,
+statistical robustness, calibrated confidence, Tier 2/Tier 3 or release claim.
+
+The native run_trial function and independent audit_trial function are
+byte-identical to their consumed training predecessors. The successor adds
+selection/model binding, fresh claims, complete comparison population checks
+and a separate contained owner. All **138 applicable zero-world controls**
+pass, including the prior training program, native closure, **26 selection/
+native-reader controls**, and **eight complete training-closure controls**.
+The latter reopen the original raw evidence and reconstruct rewards, moments
+and updates without physics. Provider conformance and containment also pass.
+
+Preparation is retained at
+`<evidence-root>/sdk2-residual-selection-31246c70df464b7d9826fd70088950f4`,
+receipt `97a0ff5c6a0b72ea2b0f44bf525ab7a284df31a1774b6df979dbe47808fe1f15`.
+Sources and runtime bindings remain unchanged; **zero new worlds** opened.
+Selection-record SHA-256 is `15240c1e54bd92b4cff6fce1b7a706edfdd0a7a2b2aa2fd010c8f18f67c5b07a`;
+comparison-contract SHA-256 is `e03ef77efdc5984e526c6b02c5faeb44b4589e71c8dc8d7715f22110bf787e43`.
+Publish this freeze before the fresh comparison. Retain any negative outcome
+without changing selection, horizons, quality or eligibility thresholds.
 
 ### Completed native residual training - 2026-10-24
 

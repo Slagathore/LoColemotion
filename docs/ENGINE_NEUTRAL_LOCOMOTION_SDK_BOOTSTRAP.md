@@ -9,6 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest selection preparation (2026-10-24): the [frozen training-selected comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-frozen-residual-selection-comparison---2026-10-24)
+passes all **138 zero-world controls**. The complete eight-candidate/64-trial
+training population yields one all-group-eligible candidate,
+**iteration_00/d00_plus**. Selection is explicitly retrospective; its original
+artifact, normalization and initial-probe provenance stay byte-identical.
+The clean published successor will compare fresh baseline, disabled and
+selected roles in **24 full-horizon CPU worlds**. No new worlds have opened.
+The failed final training checkpoint is not replaced; reserved groups,
+calibrated support, withdrawal, useful Tier 3 memory and qualification remain.
+
 Latest training closure (2026-10-24): the [completed native residual pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-residual-training---2026-10-24)
 verifies **91 CPU worlds** from clean published **b29ea283**: three execution
 fixture worlds and an 88-world pilot, each after all 104 safety controls.
