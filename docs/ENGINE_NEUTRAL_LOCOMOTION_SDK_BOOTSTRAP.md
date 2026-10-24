@@ -23,10 +23,15 @@ The [complete state/action diagnosis](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#comp
 now rechecks every trial and 21,165 fitted cases with ten passing controls.
 It identifies omitted-state differences, including a startup/later-cycle match,
 without establishing cause. The [bounded residual optimizer component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-bounded-residual-optimizer-component---2026-10-24)
-also passes ten numerical controls with zero worlds. Next integrate canonical
-joint/body state, exact phase and ongoing prior issued actions, then freeze
-bounded native training. No residual has been trained on locomotion. Reserved
-evaluation, empirical recovery, useful Tier 3 behavior and release remain open.
+also passes ten numerical controls with zero worlds. The [residual production
+component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-residual-provider-and-continuous-history---2026-10-24)
+now passes 22 combined controls and replays 2,560 decisions through both core
+DLLs with 88 canonical inputs, ongoing resolved-action history and unchanged
+core safety ownership. Retained states were reused; no new native transitions
+or training worlds ran. Next implement and freeze the contained native
+training route, reward and complete update audit. No residual has been trained
+on locomotion. Reserved evaluation, calibrated support, empirical recovery,
+useful Tier 3 behavior and release remain open.
 
 Earlier native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
 completed all **40 fresh CPU worlds** from published `59aacf3c` after the full

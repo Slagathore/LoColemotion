@@ -31,8 +31,11 @@ The declared shortlist remains empty, and this thirty-command rule is not
 promoted. Ten closure controls pass. The [complete state/action diagnosis](#completed-full-state-and-action-coverage-diagnosis---2026-10-24)
 now passes ten controls over all 48 trials and identifies omitted-state
 differences without assigning causation. A [bounded residual optimizer](#implemented-bounded-residual-optimizer-component---2026-10-24)
-passes ten numerical controls. Next integrate richer canonical observation
-and ongoing causal history, then freeze native training. Learned-association
+passes ten numerical controls. The [residual production component](#implemented-residual-provider-and-continuous-history---2026-10-24)
+now passes 22 combined controls over 2,560 decisions on retained inputs through
+both core DLLs, with 88 canonical values and continuous resolved-action history.
+No native dynamics or training transitions were generated. Next freeze and
+verify the contained native training route, reward and budget. Learned-association
 benefit, empirical recovery monitoring, reserved evaluation, useful Tier 3
 behavior and release remain unproved.
 
@@ -1524,6 +1527,74 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Implemented residual provider and continuous history - 2026-10-24
+
+The [provider](../sdk/adaptation_provider/bounded_residual_provider_v1.py),
+[feature contract](../sdk/adaptation_provider/bounded_residual_features_v1.py)
+and [production controller component](../sdk/discovery/residual_control.py)
+connect the immutable residual optimizer to the actual policy composition and
+public adaptation resolver. The [definition](../sdk/adaptation_provider/bounded_residual_provider_v1.json)
+binds all six directly used implementations and declares development scope.
+
+Each command supplies **88 canonical values**: the exact S169 descriptor,
+height, body-frame up/motion/desired motion, joint positions and velocities,
+baseline targets and their actual per-actuator speed limits, the previous
+resolved targets/corrections and one-command position-response error, exact
+sine/cosine gait phase, observed support and a history-availability flag.
+The latest resolved observation/action remains available on every command
+after startup. Private episode/model/seed identities prevent stale or crossed
+memory; weights and normalizer remain frozen within an episode.
+
+Scope is the declared S169 flat task and mechanical envelope. Domain refusal,
+uncertainty and disabled mode return the original baseline through the real
+core. Confidence is a declared-domain indicator, not calibrated safety or
+recoverability. An absent provider retains its actual receipt and empty history
+because v1 cannot represent that status; unexpected provider failures or
+unrepresentable resolutions close the host. No status is relabeled.
+
+The resolver keeps the **3.5 rad/s correction** and **0.08 rad/s per-command
+slew** bounds and each baseline command's own final-speed limit. The latter
+can be 3.0 rather than 3.5 rad/s. Frozen model storage uses lossless compact
+JSON and an exact byte digest. Core canonical JSON deliberately quantizes
+numbers for receipt identity and is not used to store weights/statistics.
+
+**22 controls pass**: ten optimizer controls and twelve
+[provider/host controls](../sdk/discovery/test_bounded_residual_provider.py).
+Both core DLLs reproduce all **2,560 decisions** bit-identically: eight retained
+condition/start groups, four roles and forty commands per group/core. Absent,
+disabled and zero-residual roles preserve baseline command bits. Controls
+also cover continuous receipt/history joins, exact phase wrapping, body
+coordinates, immutable model round trips and one-bit identity changes,
+domain refusal, private resets, provider failures, slew and deliberately
+injected absolute/final-speed clamps. Uncertainty fallback retains ongoing
+history. All guarded world/solver entrypoints remain unused.
+
+The original native baseline states were reused as test inputs. New residual
+commands were never transferred to a solver; these are not new physical
+outcomes or valid training transitions for the changed controller.
+
+Retained attempt: sdk2-residual-provider-controls-0e13e714051740eaaccec9bc8997038d.
+Receipt SHA-256: 8b803235b4eb8336f2b67ad102f7fbc8f6d85d3ce01e9b4b5c1def161194076c.
+The support matrix binds its source snapshots, input hashes, all
+81 artifacts and all three earlier failed attempts. The first run
+exposed the dynamic speed-limit assumption and lossy model serialization.
+The second run passed 21/22 controls but did not naturally reach final-speed
+clipping. The third correctly refused an inconsistent artificial baseline.
+The final control injects over-limit proposals against unchanged, actually
+saturated baseline commands, including the lower knee limit. This completes
+coverage without changing the runtime. No failed attempt was overwritten.
+
+Next implement the contained native worker, independent trajectory/reward
+reader and complete ARS update replay. Prospectively freeze failure handling,
+group-balanced rewards, training seeds/population, iteration/world budget and
+the applicable safety gate. First run the smallest declared route ghost that
+covers production construction, stepping, finalization, retention and audit.
+Then train on actual combined-controller trajectories; keep failed official
+quality null and its training reward separate. Fresh full-horizon weakened and
+healthy comparisons, calibrated support, reserved evaluation, empirical
+recovery withdrawal and three-engine qualification remain required. Useful
+Tier 3 memory benefit remains a separate test on an immutable base.
 
 ### Implemented bounded residual optimizer component - 2026-10-24
 

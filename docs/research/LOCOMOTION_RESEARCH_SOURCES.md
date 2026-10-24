@@ -2495,3 +2495,20 @@ policy, full benchmark replication or calibrated support estimator. Production
 history, morphology/task binding, support refusal, a prospective reward/budget,
 retained failures and complete independent update replay remain necessary.
 Fresh physical comparison and all Tier 2/Tier 3 promotion gates stay open.
+
+### Residual runtime integration follow-through - 2026-10-24
+
+The [runtime component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-residual-provider-and-continuous-history---2026-10-24)
+applies the already recorded RMA previous-action input and residual-control
+design motivations through our public ABI. Its 88 inputs include full joint
+state, exact phase, actual per-actuator limits and continuously supplied latest
+resolved actions. This is a local bounded linear development family, not a
+reproduction of RMA, its learned latent estimator or the Residual RL algorithm.
+
+Twenty-two combined controls verify the optimizer and real production
+composition/resolver on retained inputs through both core DLLs. Exact model
+bytes and changing actuator limits are now explicitly tested. Reusing original
+states while proposing different actions does not create induced trajectories:
+there is still no native residual training, learned confidence calibration or
+new locomotion benefit. The next evidence must come from the prospectively
+bounded native training route and independent complete reward/update replay.
