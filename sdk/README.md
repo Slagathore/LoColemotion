@@ -1,14 +1,16 @@
 # LoColemotion Locomotion SDK
 
-The [conditioned selection successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-conditioned-selection-comparison---2026-10-23)
-now runs frozen context and expert retrieval through the production host.
-Forty-eight fitting, closure, provider, host and synthetic route controls pass
-with zero new worlds. Both core binaries agree on 1,440 retained-input host
-decisions; disabled and healthy selection preserve baseline command bits.
-The distinct 21,165-case model retains the original trial denominator and
-failures. Forty fresh CPU worlds are prospective, behind the complete
-349-control gate. Physical selection benefit, recoverability monitoring,
-reserved evaluation and useful Tier 3 behavior remain unproved.
+The [conditioned selection comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
+is closed after all 349 safety controls and forty fresh CPU worlds from
+`59aacf3c`. Independent replay verifies **26/40 eligible and 14/40 negative**.
+Frozen selection passes two weakened starts while baseline and disabled
+control pass none; shuffled selection and the fixed reference also pass two.
+Healthy selection preserves baseline quality at all four starts. No role
+passes the complete screen, leaving an empty shortlist. Nine closure controls
+pass over the complete retained population and actual action sequences.
+Next diagnose selection and support failures before another frozen successor.
+Learned-association benefit, recoverability monitoring, reserved evaluation
+and useful Tier 3 behavior remain unproved.
 
 The [first-response repertoire fit](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
@@ -19,8 +21,8 @@ nine failures and **720 frozen cases**. Eight delayed composite-action episodes
 remain excluded from single-action fitting. Ten component and four closure
 controls pass with zero new worlds. The healthy condition has a complete
 baseline default; the weakened condition has no complete fixed-controller
-default. Next implement causal runtime retrieval and compare fresh full-horizon
-selection against baseline, disabled and shuffled controls, retaining the
+default. The completed comparison above now connects causal runtime retrieval
+to fresh full-horizon baseline, disabled and shuffled controls, retaining the
 uncovered start. This checkpoint establishes neither useful selection nor
 Tier 3 benefit, qualification or release.
 

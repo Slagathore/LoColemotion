@@ -2369,3 +2369,22 @@ and RMA; it does not reproduce either method. Supported correction opportunity
 and actual influence remain separate measurements. No third-party source,
 weights, numerical gains or dependency was imported. Useful physical selection
 and outcome-memory adaptation remain unproved until their own comparisons.
+
+## 2026-10-23 conditioned selection native comparison
+
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
+retains all forty fresh CPU trials: 26 eligible and fourteen negative after
+complete independent replay. Frozen selection passes two weakened starts,
+while baseline and disabled control pass none. Shuffled selection also passes
+two, with a different success set. Healthy selection preserves baseline quality
+at all four starts, but no role passes the complete declared screen. Nine
+closure controls verify the exact retained population and reject altered
+sequences, censored-quality changes and expanded authority.
+
+This result supports the local implementation of causal context and bounded
+retrieval, while leaving learned-association benefit unproved. The shuffled
+successes constrain the next hypothesis: inspect action choice and its
+full-episode consequences before introducing an outcome-memory successor.
+These finite observations do not replicate Cully et al. or RMA and do not
+establish useful Tier 3 adaptation. No external code, weights, gains or new
+dependency was imported. Reserved evaluation and promotion remain unopened.

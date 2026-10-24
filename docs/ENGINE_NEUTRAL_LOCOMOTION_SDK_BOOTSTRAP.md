@@ -2,18 +2,20 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-23
 
-Latest implementation (2026-10-23): the [conditioned selection successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-conditioned-selection-comparison---2026-10-23)
-connects the frozen first-response estimator to current-state expert retrieval.
-A distinct dense fit contains **21,165 overlapping cases from 15 eligible
-episodes**, retaining all nine failed fitted episodes and the full 32-trial
-source ledger. Forty-eight fitting, closure, provider, host and route controls
-pass with zero new worlds. Both core binaries agree on 1,440 retained-input
-host decisions; disabled and healthy selection preserve baseline commands.
-The prospective comparison declares **40 fresh CPU worlds**, five roles at
-four starts in both motor conditions, over twelve seconds each. Its launcher
-requires all **349 safety controls** before construction. Full-horizon physical
-benefit, the uncovered weakened start, recovery monitoring and reserved
-evaluation remain open; Tier 2/Tier 3 qualification and release remain false.
+Latest native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
+completed all **40 fresh CPU worlds** from published `59aacf3c` after the full
+**349-control gate**. Independent replay verifies 57,600 decisions and 288,000
+internal samples: **26/40 eligible, 14/40 negative**. Frozen selection passes
+2/4 weakened starts, baseline and disabled control 0/4, shuffled selection 2/4
+and the fixed reference 2/4. All twenty healthy trials are eligible; frozen,
+disabled and shuffled roles preserve baseline quality at every healthy start.
+The fixed reference loses healthy quality at all four. No role passes the
+complete declared screen, so the shortlist remains empty. Nine closure
+controls pass over 18,132 retained artifacts. Next diagnose action choice,
+switching and support loss against the complete episodes, including shuffled
+successes and the uncovered 0.006 m/s start. Learned-association benefit,
+recoverability monitoring, reserved evaluation, useful Tier 3 behavior,
+qualification and release remain unproved.
 
 Earlier fitting closure (2026-10-23): the [first-response repertoire fit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
@@ -24,12 +26,12 @@ nine failures and **720 frozen cases**. Eight delayed composite-action episodes
 remain excluded from single-action fitting. Ten component and four closure
 controls pass with zero new worlds. The healthy condition has a complete
 baseline default; the weakened condition has no complete fixed-controller
-default. Next implement causal runtime retrieval and compare fresh full-horizon
-selection against baseline, disabled and shuffled controls, retaining the
+default. The completed comparison above now connects causal runtime retrieval
+to fresh full-horizon baseline, disabled and shuffled controls, retaining the
 uncovered start. This checkpoint establishes neither useful selection nor
 Tier 3 benefit, qualification or release.
 
-Latest closure (2026-10-23): the [phase-release comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
+Earlier native closure (2026-10-23): the [phase-release comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
 completed all **32 CPU worlds** from published `e5589f8b`, after all **287
 controls** passed again. Independent replay verifies 46,080 decisions and
 230,400 internal samples: **19/32 eligible, 13/32 negative**. On weakened motors,

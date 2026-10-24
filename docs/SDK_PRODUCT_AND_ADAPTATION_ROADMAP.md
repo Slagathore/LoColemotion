@@ -21,17 +21,17 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-23
 
-Latest implementation: the [conditioned selection successor](#prepared-conditioned-selection-comparison---2026-10-23)
-connects frozen first-response inference to bounded current-state retrieval.
-The distinct dense fit has **21,165 overlapping cases**, with the original
-24-episode denominator and nine failures intact. Forty-eight focused controls
-pass with zero new worlds, including 1,440 retained-input host decisions on
-both core binaries. Disabled and healthy selection preserve baseline commands.
-Next execute the prospective five-role, eight-group comparison: **40 fresh CPU
-worlds**, twelve seconds each, after the complete **349-control gate** from a
-clean published freeze. Keep the failed weakened 0.006 m/s start, report
-opportunities and actual influence separately, and retain every result.
-Physical usefulness, recovery monitoring, reserved evaluation and useful
+Latest native closure: the [conditioned selection comparison](#completed-conditioned-selection-comparison---2026-10-23)
+completed **40 fresh CPU worlds** from published `59aacf3c` after all **349
+safety controls**. Independent replay verifies **26/40 eligible and 14/40
+negative**, with every decision and internal sample retained. Frozen selection
+passes 2/4 weakened starts, versus baseline and disabled control at 0/4;
+shuffled selection and the fixed reference also pass 2/4. Healthy selection
+preserves baseline quality at all four starts. No role passes the complete
+screen, so the shortlist stays empty. Nine closure controls pass. Next
+diagnose action choice, switching and support loss against complete episodes,
+retaining shuffled successes and the uncovered 0.006 m/s start. Learned
+association benefit, recovery monitoring, reserved evaluation and useful
 Tier 3 behavior remain unproved.
 
 Latest fitting closure: the [first-response repertoire fit](#completed-first-response-repertoire-fit---2026-10-23)
@@ -43,12 +43,12 @@ nine failures and **720 frozen cases**. Eight delayed composite-action episodes
 remain excluded from single-action fitting. Ten component and four closure
 controls pass with zero new worlds. The healthy condition has a complete
 baseline default; the weakened condition has no complete fixed-controller
-default. Next implement causal runtime retrieval and compare fresh full-horizon
-selection against baseline, disabled and shuffled controls, retaining the
+default. The completed comparison above now connects causal runtime retrieval
+to fresh full-horizon baseline, disabled and shuffled controls, retaining the
 uncovered start. This checkpoint establishes neither useful selection nor
 Tier 3 benefit, qualification or release.
 
-Latest closure: the [phase-release comparison](#completed-phase-release-comparison---2026-10-23)
+Earlier native closure: the [phase-release comparison](#completed-phase-release-comparison---2026-10-23)
 completed all 32 CPU worlds from published `e5589f8b` after all 287 controls.
 Independent replay verifies **19/32 eligible and 13/32 negative**. Immediate
 phase release passes two weakened starts and the vertical reference passes a
@@ -1468,6 +1468,85 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Completed conditioned selection comparison - 2026-10-23
+
+The [prospective declaration](../sdk/discovery/cpu_conditioned_feedback_v1.json)
+ran from clean published `59aacf3cfc361f4ed2d102c32558721053e441a6` under
+`sdk2-cpu-conditioned-feedback-258191c7b334449093301732f6e097ba`.
+All 349 safety controls passed before construction. Forty fresh sequential
+CPU worlds completed the twelve-second horizon, with no GPU, calibration or
+evaluation worlds. Independent baseline-core replay verifies every one of
+**57,600 controller decisions and 288,000 internal samples**. The full
+population contains **26 eligible episodes and 14 negatives**.
+
+| Role | Weakened eligible / 4 | Healthy eligible / 4 | Healthy quality versus fresh baseline |
+| --- | ---: | ---: | --- |
+| Baseline | 0 | 4 | Reference |
+| Provider disabled | 0 | 4 | Equal at all four starts |
+| Frozen selection | 2 | 4 | Equal at all four starts |
+| Shuffled selection | 2 | 4 | Equal at all four starts |
+| Immediate phase reference | 2 | 4 | Lower at all four starts |
+
+Frozen selection and the phase reference pass weakened starts 0.003 and
+0.004 m/s. Shuffled selection passes 0.001 and 0.004 m/s. Every role fails at
+0.006 m/s. Thus the learned association does not establish improved eligible
+coverage over the shuffled control, and no role satisfies the declared
+eight-episode eligibility and healthy-preservation screen. The shortlist is
+empty. Frozen versus reference quality is higher by 0.004131265 m/s at the
+eligible 0.003 start and lower by 0.006300043 m/s at 0.004. Frozen versus
+shuffled quality is higher by 0.008010674 m/s at their only shared eligible
+weakened start, 0.004. These are finite observations, not superiority or
+non-inferiority claims. Only 23/40 declared paired contrasts have two eligible
+episodes; the other seventeen retain null quality differences.
+
+All twenty nominal episodes are eligible. Disabled, frozen and shuffled roles
+make no nonzero corrections and reproduce baseline whole-episode quality at
+each nominal start. The fixed reference loses 0.003218 to 0.004270 m/s of
+quality there. This preserves healthy behavior in these exposed training
+groups; it does not establish robustness or population-level non-inferiority.
+
+The weakened actual nonzero correction counts, in start order 0.001, 0.003,
+0.004, 0.006, are `[275, 1400, 1435, 147]` for frozen selection and
+`[1430, 208, 1429, 124]` for shuffled selection. Disabled control has
+`[99, 111, 114, 78]` supported correction opportunities but zero actual
+influence. The fixed reference applies `[262, 1439, 1439, 163]` nonzero
+corrections; a learned selection-opportunity count does not apply to that
+role. Every influencing role first changes a command at step one. Provider
+errors are zero throughout. Opportunity, influence and survival differ and
+remain separate measurements; the comparison does not assume matched influence.
+
+The [closure](../sdk/discovery/cpu_conditioned_feedback_closure_v1.json) and
+[reader](../sdk/discovery/audit_cpu_conditioned_feedback_closure.py) bind
+**18,132 artifacts, 6,368,093,273 bytes, 506 frozen source bindings and 1,359
+runtime bindings**. Closure SHA-256 is
+`9727d866d7f1ca81f18c12b2b568e6918cb0be24ad40d0bc8c045bb63246e6c9`.
+Original receipt SHA-256 is
+`cd4183855cb68f12535829c155e1f4b8843b4a05b23ea2e4462fce6f6297b21a`;
+the independent audit is
+`401ce91402d6d0f7df9f340d6dda41bc8bea4768ad015b6296222e59785ab9c3`.
+The worker took 948.100414 s and independent replay 1003.374134 s. These are
+full-capture development timings, not product latency or an engine benchmark.
+
+Nine [closure controls](../sdk/discovery/test_cpu_conditioned_feedback_closure.py)
+pass in 224.846 s under
+`sdk2-conditioned-closure-controls-fc03cd0898d446669e72d583f96dcd83`, with zero
+new worlds. They rehash the complete population, resolve frozen Git sources,
+verify current runtime and reader bytes, rejoin actual first-response history,
+recompute eligible quality, retain failure censoring and bind every dynamic
+action sequence and influence count. They reject crossed condition models,
+changed receipts, invented fixed-expert labels and expanded claims. The default
+closure verifies the retained independent replay; explicit `--replay` can repeat
+all controller and native-trace checks.
+
+Next diagnose how local predicted action quality, switching and support loss
+relate to full-episode failures across the complete population. Keep the
+shuffled successes as counterexamples and the uncovered start in scope. A new
+selection or outcome-memory rule needs its own frozen comparison; this result
+does not justify relabeling dynamic episodes as fixed experts, relaxing an old
+threshold or opening reserved evaluation. The empirical recoverability monitor,
+useful Tier 3 adaptation and three-engine promotion remain open. SDK1 remains
+20/20 and the full program 19/25; qualification and release remain false.
+
 ### Prepared conditioned selection comparison - 2026-10-23
 
 The first runtime check exposed a sampling limit: the original 720-case model
@@ -1543,8 +1622,8 @@ Twelve synthetic route controls pass in 46.898 s under
 `sdk2-conditioned-route-controls-79a1c230740a4dab8f5b29ffe9393d53`.
 They use retained states as explicitly synthetic transport fixtures and reject
 crossed history, forces, targets, dynamic identities and expanded authority.
-The 48 focused controls above open zero worlds. The full launcher still must
-pass all 349 controls from a clean published freeze before physical execution.
+The 48 focused controls above opened zero worlds. The completed comparison
+above subsequently passed all 349 controls from its clean published freeze.
 Calibration and evaluation remain unopened. The empirical recoverability
 monitor and useful Tier 3 outcome-memory comparison remain separate work.
 SDK1 stays 20/20, the full program stays 19/25, and qualification and release
