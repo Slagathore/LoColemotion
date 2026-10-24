@@ -21,6 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
+Latest recovery-training preparation (2026-10-24): the [prospective successor](#prospective-bounded-recovery-training---2026-10-24)
+implements a separate post-handoff stability objective, fixed input scaling,
+training-only candidate selection and independent update verification.
+**18 analytical controls** and the **327-control complete zero-world gate**
+pass. No new training world has opened at this checkpoint. Next publish this
+freeze, complete the **seven-world execution fixture**, then run the declared
+**112-world CPU pilot**. All four reserved starts remain unopened; recovery
+benefit, useful Tier 3 memory and Tier 2/Tier 3 qualification remain unproved.
+
 Latest recovery result (2026-10-24): the [completed paired handoff diagnostic](#completed-paired-recovery-handoff-diagnostic---2026-10-24)
 verifies **14 fresh CPU worlds**, **20,160 commands** and **100,800 internal
 samples** from published `24e1ee2d`. All eight interventions match their fresh
@@ -1596,6 +1605,90 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Prospective bounded recovery training - 2026-10-24
+
+The completed handoff comparison found no rescue from the existing task actor.
+The [new declaration](../sdk/discovery/residual_recovery_training_v1.json)
+therefore trains a recovery actor on states reached by the frozen challenge
+controller. Every world starts afresh, follows the challenge through command
+59 and switches once at **command 60 / 0.5 seconds**. The destination remains
+latched. The challenge actor, warning, production controller host, native
+stepping loop, physical eligibility limits and actual-action slew remain
+unchanged. No unverified native-state restoration is used.
+
+The warm start is the original exposed-training selection
+`iteration_00/d00_plus`, not the earlier final optimizer checkpoint. Its
+normalizer remains byte-identical through all updates. Every mechanically
+supported observation and unsupported reason is retained; these moments are
+diagnostic and never replace deployed scaling. The complete-population
+antithetic update keeps the original **0.02 noise / 0.01 step size** and uses
+all declared directions. Equal rewards preserve the policy exactly.
+
+The [objective](../sdk/discovery/residual_recovery_training_objective.py)
+scores only internal samples **301 onward**. Before the first original
+physical or safe-no-actuation violation, each sample receives
+`-0.5 * (tilt / 0.6)^2`; from the first failure through the fixed horizon,
+every sample receives **-1**. A failure in the challenge prefix leaves the
+entire post-handoff interval negative. The denominator is always **300 samples**
+in the fixture or **6,900 samples** in the pilot. Original walking reward,
+full-horizon failure, and official quality remain separate diagnostics;
+failed official quality remains null.
+
+| Lane | Training search | Fresh challenge references | Fresh comparisons | Horizon and seed |
+| --- | --- | --- | --- | --- |
+| Execution fixture | 2 worlds, one direction, one update | 1 world | 4 worlds | 1 s; 104240901 |
+| Bounded pilot | 64 worlds, two directions, two updates | 16 worlds | 32 worlds | 12 s; 104241001 |
+
+The pilot includes weakened-left and healthy motors at all four exposed
+training starts. Each training stage has its own challenge-only reference
+for every group. Every candidate must exactly match that stage's reference
+through the native prefix and the handoff observation. The fixture must
+complete on the same source freeze before pilot launch; its data cannot
+initialize the pilot. The pilot declares **161,280 controller commands /
+806,400 internal samples**. No GPU or reserved calibration/evaluation world
+is declared.
+
+Before comparison, all **eight candidate families** across both iterations
+are ranked by descending eligible-group count, descending worst-group
+recovery reward, descending mean recovery reward, then lexical identity.
+Every group and negative trial is required. The initial and final optimizer
+checkpoints remain separate controls and cannot enter this perturbation-only
+selection. Comparison results cannot fit or reselect a model.
+
+The four comparison roles are fresh challenge-only, unchanged initial
+recovery, fixed final checkpoint and training-selected recovery. The finite
+pilot screen requires the selected recovery to remain eligible for the full
+horizon in **8/8 groups**. Completing the pipeline does not require that
+screen to pass. Survival alone does not establish walking quality, a safe
+backup region, robustness, useful memory, Tier 2/Tier 3 qualification or
+release authority.
+
+The [native owner](../sdk/discovery/run_residual_recovery_training.py) holds
+the global operation mutex, contains every child, requires clean published
+source for physical work and retains every consumed identity and partial
+failure. The worker directly reuses the published native trial function.
+The [reader](../sdk/discovery/audit_residual_recovery_training.py) directly
+reuses the published other-core raw replay, then reconstructs the new reward,
+actual handoff and fresh paired prefix. Separate zero-world processes verify
+each complete update and the selected original model bytes before later
+stages can use them.
+
+All **18 analytical component controls** pass at
+`<evidence-root>/sdk2-recovery-training-component-c6458c730f9f4f0ab6d0ea99853f280c`,
+receipt `d167b523de2eaff2544adc2a7135f83efb6707b21c2925fd6b6310b2d2ff203d`.
+The complete gate passes **327 controls**, including **24 new integration
+and corruption controls**, at `<evidence-root>/sdk2-recovery-training-759251e9f52f46ae875daf5bc472937c`,
+receipt `3e432941d9c7e13525a79bf19c8694be7ac240220c922a37fe692888ad5a2818`. It retains **579 source / 1,359 runtime bindings**
+unchanged. The new integration fixture replays the first 120 commands of a
+retained recovery trial, with its original violation at internal sample 479;
+counterfactual actor replays and analytical updates open no physics and supply
+no pilot training data.
+
+The [research notes](research/LOCOMOTION_RESEARCH_SOURCES.md#recovery-specific-objective-and-fixed-scaling---2026-10-24)
+explain the separation of task and recovery objectives and the fixed-scaling
+choice. No external code or model weights are imported. Native route and
+pilot execution remain pending at this prospective checkpoint.
 
 ### Completed paired recovery handoff diagnostic - 2026-10-24
 

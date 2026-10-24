@@ -9,6 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest recovery-training preparation (2026-10-24): the [prospective successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-bounded-recovery-training---2026-10-24)
+implements a separate post-handoff stability objective, fixed input scaling,
+training-only candidate selection and independent update verification.
+**18 analytical controls** and the **327-control complete zero-world gate**
+pass. No new training world has opened at this checkpoint. Next publish this
+freeze, complete the **seven-world execution fixture**, then run the declared
+**112-world CPU pilot**. All four reserved starts remain unopened; recovery
+benefit, useful Tier 3 memory and Tier 2/Tier 3 qualification remain unproved.
+
 Latest recovery result (2026-10-24): the [completed paired handoff diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-paired-recovery-handoff-diagnostic---2026-10-24)
 verifies **14 fresh CPU worlds**, **20,160 commands** and **100,800 internal
 samples** from published `24e1ee2d`. All eight interventions match their fresh

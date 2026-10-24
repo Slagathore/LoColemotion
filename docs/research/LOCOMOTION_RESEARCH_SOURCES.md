@@ -2765,3 +2765,30 @@ adding reentry. This applies the cited separation of task and recovery
 objectives; it does not reproduce either paper's training method or inherit a
 safety guarantee. All fourteen outcomes remain retained, no external code or
 weights are imported, and reserved starts stay unopened.
+
+### Recovery-specific objective and fixed scaling - 2026-10-24
+
+[Recovery RL](https://arxiv.org/abs/2010.15920) separates task optimization
+from a recovery policy trained to avoid constraint violations.
+[Safe Reinforcement Learning for Legged Locomotion](https://arxiv.org/abs/2203.02638)
+similarly separates a learner and a recovery controller. These methods
+motivate the local decision to test recovery capability from the actual
+challenge-generated state before altering warning timing or permitting
+return to the task. The new bounded experiment does not reproduce their
+learning algorithms or inherit their safety guarantees.
+
+[Augmented Random Search](https://arxiv.org/abs/1803.07055) distinguishes
+reward-standard-deviation scaling from its additional online state-whitening
+variant. The local successor retains the complete paired weight update but
+freezes the warm-start normalizer. This isolates weight changes from changes
+to the input coordinate system. All observed moments remain in the update
+diagnostic. This is a prospective design choice, not evidence that
+normalization caused the earlier failed checkpoint.
+
+The [declared recovery experiment](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-bounded-recovery-training---2026-10-24)
+scores post-handoff tilt and full-horizon failure padding, keeping walking
+quality separate. Fresh challenge prefixes, actual resolved-action history,
+fixed comparison roles and a training-only selector preserve the evidence
+boundary. The small exposed pilot cannot establish broad robustness; the
+ARS paper's reported seed and parameter variability is a further reason to
+keep this result finite. No external code or weights are imported.
