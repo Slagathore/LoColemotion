@@ -19,21 +19,25 @@ It does not replace the executable evidence or release contracts:
 Frozen positive, negative, invalid, and rejected campaigns remain immutable.
 This roadmap can order a new successor, but it cannot change an old result.
 
-## Current execution order - 2026-10-22
+## Current execution order - 2026-10-23
 
-Latest preparation: the [phase-release comparison](#prepared-phase-release-comparison---2026-10-23)
-passes all 287 zero-world controls. The provider, host, native route and
-independent reader are implemented. Next execute the prospective 32-world
-comparison from a clean pushed freeze, after repeating the complete gate.
-The four-start degraded/nominal population, full twelve-second horizon and
-finite healthy-body preservation rule are fixed before observing outcomes.
+Latest closure: the [phase-release comparison](#completed-phase-release-comparison---2026-10-23)
+completed all 32 CPU worlds from published `e5589f8b` after all 287 controls.
+Independent replay verifies **19/32 eligible and 13/32 negative**. Immediate
+phase release passes two weakened starts and the vertical reference passes a
+different one; neither covers all four. Delayed release passes none. All
+nominal trials survive, but every corrected role loses nominal tracking
+quality at every start. The declared fixed-controller shortlist is empty.
+Eight closure controls pass. Next pursue a distinct repertoire/early-selection
+successor that retains the uncovered start and the healthy baseline; no
+learned action mapping or useful Tier 3 behavior follows from this result.
 
 Latest diagnosis: the [phase/contact and response reader](#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 verifies all sixteen trials over a common 0.8-second prefix with zero new
 worlds. Scheduled stance lacks observed support in 1,868/4,896 leg observations,
-including both eventual positives. Eight controls pass. The prepared successor
+including both eventual positives. Eight controls pass. The completed successor
 above uses actual controller memory and keeps the resolver limits unchanged;
-its full-horizon and healthy-body comparisons are the next physical task.
+its full-horizon and healthy-body results now constrain further development.
 
 Latest controller result: the [support-vertical comparison](#completed-support-vertical-comparison---2026-10-23)
 retains 2/16 eligible trials and 14/16 negatives after complete independent
@@ -1437,7 +1441,77 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Completed phase-release comparison - 2026-10-23
+
+The [closure](../sdk/discovery/cpu_phase_release_closure_v1.json),
+[executable reader](../sdk/discovery/audit_cpu_phase_release_closure.py) and
+[eight controls](../sdk/discovery/test_cpu_phase_release_closure.py) retain the
+complete prospective population. Published freeze `e5589f8b` passed all **287
+zero-world controls** again before any physical construction. The fresh attempt
+`sdk2-cpu-phase-release-ad8e0e7c7f074f5f95415ae68598d453` then completed **32 CPU
+worlds**, with zero GPU, calibration or evaluation worlds. Each trial retained
+all 1,440 decisions and 7,200 internal samples over twelve simulated seconds.
+Independent replay with the separate baseline core verified **46,080 decisions
+and 230,400 samples**, plus native inputs, phase proposals, resolver outputs,
+timing, actual history receipts and all eight condition/start groups.
+
+| Role | Weakened motors | Nominal motors | Nominal quality preserved at every start |
+| --- | ---: | ---: | --- |
+| Baseline | 0/4 | 4/4 | Yes, identical reference |
+| Vertical reference, immediate | 1/4 | 4/4 | No |
+| Phase release, immediate | 2/4 | 4/4 | No |
+| Phase release, after 16 commands | 0/4 | 4/4 | No |
+
+There are **19 eligible episodes and 13 physical negatives**. The vertical
+reference succeeds at the 0.001 m/s weakened start. Immediate phase release
+fails there but succeeds at 0.003 and 0.004 m/s, traveling 1.178274 and 1.176264 m
+forward respectively. Every tested role fails the 0.006 m/s weakened start.
+The union of these exposed successes covers three of four weakened starts;
+this is an observation about retained trials, not a qualified portfolio or
+learned selection result. All thirteen negatives first violate tilt, and their
+quality remains censored. The delayed role supplies no successful weakened
+action for the existing sixteen-command context estimate.
+
+All sixteen nominal episodes pass physical eligibility. Nevertheless every
+corrected role has a lower tracking-quality score than its fresh nominal
+baseline at every start. For immediate phase release, the differences range
+from -0.004269788 to -0.003217977 m/s in the declared score. All **forty** planned
+contrasts are retained: twenty nominal contrasts have two eligible endpoints;
+all twenty weakened contrasts retain censored quality differences. No role
+satisfies all-eight eligibility and the zero-observed-loss nominal screen, so
+the prospective ranked shortlist is empty. This does not estimate a population
+non-inferiority margin or decide the performance of a future conditional policy.
+
+The closure binds **14,636 artifacts / 4,878,019,860 bytes**, 470 frozen source
+files and 1,359 runtime files. Native execution took 410.037441 s; independent
+audit took 411.358642 s. Receipt SHA-256 is
+`e90fd34733b950bf0f626f500e2f8d64414f0f84aa25ebbbb384a8d5eb05dd64`,
+audit SHA-256 is
+`24ede3147d9f15f937601bda4a89862c986ec43860c7c4037e66a44e8a30aa09`,
+and closure SHA-256 is
+`df78a08932a8d3ba262190c3ce8c55ba07bced79979985cb9fa17c4dd586983b`.
+All eight closure controls pass at
+`sdk2-phase-release-closure-controls-268d29fd84404a8995657d03947b58d2`, with zero
+new worlds. They verify the complete inventory and outcome denominator and
+reject changed dependencies, erased failures, invented winners, altered
+healthy-body comparisons, false history and crossed native models. The
+preparation failure and its corrected zero-world gate below remain retained.
+
+Next retain both immediate behaviors as development leads for a distinct
+repertoire and early-selection successor. The uncovered 0.006 m/s start,
+failure after a sixteen-command delay, and healthy-body score loss are explicit
+requirements, not exclusions. Use retained causal responses to investigate
+earlier condition information and a control transition that leaves the nominal
+baseline useful, then prospectively test any resulting policy across the full
+declared population. Verified training data can support development fitting;
+this result itself selects no controller and establishes no learned choice,
+memory benefit, qualification or release authority. Reserved groups remain
+unopened.
+
 ### Prepared phase-release comparison - 2026-10-23
+
+This is the prospective preparation retained at `e5589f8b`; the execution and
+closure above now supersede its pending-work status without changing its rules.
 
 The [provider](../sdk/adaptation_provider/phase_release_feedback_v1.py),
 [host](../sdk/discovery/phase_release_control.py),

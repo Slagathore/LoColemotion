@@ -2310,3 +2310,21 @@ independent taper calculation. The prospective comparison includes all four
 training starts and healthy/degraded motors, with a finite zero-observed-loss
 healthy-body screen. Physical usefulness and experience-dependent adaptation
 remain unproved until fresh execution and closure.
+
+## 2026-10-23 phase-release physical comparison
+
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
+retains all 32 CPU trials after the full 287-control gate and independent
+replay: 19 eligible and 13 negative. Immediate phase release succeeds at two
+weakened starts where the vertical reference fails, but fails at the reference's
+successful start. Delayed release succeeds at none of the four weakened starts.
+All nominal trials survive, while every corrected role loses nominal tracking
+quality at every start. Eight closure controls pass; the declared fixed-role
+shortlist remains empty.
+
+These finite observations support investigating a repertoire of complementary
+behaviors and earlier causal selection. They do not establish that the local
+rule reproduces Wu et al.'s learned position controller, explains a cause, or
+provides useful adaptation. A future successor must retain the uncovered
+weakened start, delayed-control failure and healthy baseline in its question.
+No third-party code, weights or gains were imported; no claim gate changed.

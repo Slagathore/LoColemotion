@@ -1,13 +1,15 @@
 # LoColemotion Locomotion SDK
 
-The [phase-release successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-phase-release-comparison---2026-10-23)
-passes all 287 zero-world controls. Actual controller phase drives a bounded
-44-command release before swing, with the existing public resolver unchanged.
-The declared 32-world CPU comparison covers four roles and four starts under
-degraded and nominal motors. Selection requires full-horizon eligibility and
-zero observed nominal quality loss against fresh baseline at every start.
-Next run the frozen comparison after the repeated gate; no new physical
-phase-release result, adaptation benefit or release authority is yet earned.
+The [phase-release comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
+is closed after all 287 controls and 32 fresh CPU worlds from `e5589f8b`.
+Independent replay verifies 46,080 decisions and 230,400 internal samples:
+**19/32 eligible, 13/32 negative**. Immediate release passes two weakened starts;
+the reference passes a different one, and delayed release passes none. All
+sixteen nominal trials survive, but every corrected role loses nominal
+tracking quality at every start. No role qualifies for the declared shortlist.
+Eight closure controls pass. Next develop a distinct repertoire/early-selection
+successor, preserving the uncovered 0.006 m/s start and healthy baseline;
+learned choice, adaptation benefit and release remain unproved.
 
 The [phase/contact diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 verifies 1,536 decisions and 7,680 internal samples from all sixteen retained
@@ -15,9 +17,9 @@ trials, with zero new worlds. Scheduled stance lacks support in 1,868/4,896
 leg observations; 1,442 of those poses cannot geometrically reach the floor.
 Both positives show the mismatch too. Eight controls pass, joining actual
 controller phase and the response after each command's five substeps. The
-existing v1 context exposes the required phase. Next prospectively test
-phase-aware residual release and healthy-body preservation; no cause, new
-winner, useful adaptation or release authority follows from this diagnosis.
+existing v1 context exposes the required phase. The completed comparison above
+now tests residual release and healthy-body preservation; no cause, new winner,
+useful adaptation or release authority follows from this diagnosis.
 
 The [support-vertical comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
 is closed after all 250 controls and sixteen fresh CPU worlds from `cdc77feb`.

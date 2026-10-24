@@ -1,18 +1,20 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-10-22
+## Active - SDK2 discovery and Studio completion, 2026-10-23
 
-Latest preparation (2026-10-23): the [phase-release successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-phase-release-comparison---2026-10-23)
-passes all **287 zero-world controls**. It uses actual v1 controller phase,
-bounds the parent correction and releases it over 44 commands before swing;
-the public resolver and deterministic gait clock remain unchanged. A complete
-cycle verifies 1,440 real-ABI decisions using both frozen cores. The declared
-comparison has 32 fresh CPU worlds: four roles, four training starts, and both
-degraded and nominal motors. Selection requires eight eligible episodes per
-role and zero observed nominal quality loss against the fresh baseline at
-every start. This finite rule grants no statistical non-inferiority claim.
-Next publish the clean freeze, repeat the full gate and run the declared
-comparison. No physical phase-release result or adaptation benefit is yet earned.
+Latest closure (2026-10-23): the [phase-release comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
+completed all **32 CPU worlds** from published `e5589f8b`, after all **287
+controls** passed again. Independent replay verifies 46,080 decisions and
+230,400 internal samples: **19/32 eligible, 13/32 negative**. On weakened motors,
+baseline passes 0/4 starts, the vertical reference 1/4, immediate phase release
+2/4 and delayed phase release 0/4. The immediate controllers succeed at
+different starts; 0.006 m/s remains uncovered. All sixteen nominal trials pass
+physical eligibility, but every corrected role loses nominal tracking quality
+at every start. The fixed-controller shortlist stays empty. Eight closure
+controls pass over 14,636 retained artifacts. Next develop a distinct
+repertoire/early-selection successor while retaining the uncovered start and
+healthy baseline. These finite training results grant no learned-selection,
+Tier 3 benefit, statistical non-inferiority, qualification or release claim.
 
 Latest diagnosis (2026-10-23): the [phase/contact reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 verifies the same first 96 commands from all sixteen support-vertical trials:
@@ -22,10 +24,10 @@ leg observations; 1,442 of those poses cannot geometrically reach the floor.
 The front-right leg accounts for 1,462 missing-stance observations. The pattern
 also occurs in both positives. Eight controls pass, including complete parent
 verification and refusal of crossed phase, response timing and invented loads.
-Next declare a phase-aware release successor through the existing provider
-context, preserving resolver limits and testing full horizons and healthy
-bodies. These post-hoc measurements establish no cause, winner or adaptation
-benefit; the previous shortlist remains empty.
+The comparison above now tests phase-aware release through the existing
+provider context while preserving resolver limits. These post-hoc measurements
+establish no cause, winner or adaptation benefit; the previous shortlist remains
+empty.
 
 Latest closure (2026-10-23): the [support-vertical comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
 completed all sixteen CPU worlds from `cdc77feb` after all **250 controls**
