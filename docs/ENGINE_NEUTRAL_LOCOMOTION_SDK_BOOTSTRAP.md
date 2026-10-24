@@ -9,7 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest native closure (2026-10-24): the [committed selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-committed-selection-comparison---2026-10-24)
+Prepared native route (2026-10-24): the [residual smoke route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-residual-native-execution-route---2026-10-24)
+now passes thirteen focused zero-world controls. The prospective CPU worker,
+independent baseline-core reader and contained owner declare three one-second
+absent/zero/probe worlds, 360 commands and 1,800 internal steps, only after all
+85 applicable safety controls from a clean published freeze. This preparation
+opens no worlds; the untrained probe has no training, selection or performance
+authority. Actual command transfer, exact zero-residual trajectory preservation
+and complete native replay must be observed before a separate training contract.
+
+Latest native comparison closure (2026-10-24): the [committed selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-committed-selection-comparison---2026-10-24)
 completed **48 fresh CPU worlds** from published `d228a4d4` after all **388
 safety controls**. Independent replay verifies **69,120 decisions and 345,600
 internal samples**, with **29/48 eligible and 19/48 negative**. The committed
@@ -28,8 +37,8 @@ component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-residual-provider-a
 now passes 22 combined controls and replays 2,560 decisions through both core
 DLLs with 88 canonical inputs, ongoing resolved-action history and unchanged
 core safety ownership. Retained states were reused; no new native transitions
-or training worlds ran. Next implement and freeze the contained native
-training route, reward and complete update audit. No residual has been trained
+or training worlds ran. The prepared native route above is the next check;
+training reward and complete update replay remain open. No residual has been trained
 on locomotion. Reserved evaluation, calibrated support, empirical recovery,
 useful Tier 3 behavior and release remain open.
 

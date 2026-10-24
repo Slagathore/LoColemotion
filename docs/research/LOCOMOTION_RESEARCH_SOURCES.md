@@ -2512,3 +2512,18 @@ states while proposing different actions does not create induced trajectories:
 there is still no native residual training, learned confidence calibration or
 new locomotion benefit. The next evidence must come from the prospectively
 bounded native training route and independent complete reward/update replay.
+
+### Prepared native residual route follow-through - 2026-10-24
+
+The [three-world route declaration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-residual-native-execution-route---2026-10-24)
+turns the existing residual-control motivation into a bounded native interface
+check. Thirteen controls pass without constructing physics; the full launch
+requires 85 controls and clean published source. Absent, zero and untrained
+probe roles retain complete native transitions and independently replay the
+production resolver. Synthetic test states are explicitly ineligible as
+changed-controller training transitions.
+
+This is preparation for collecting induced states, not training or replication
+of the referenced methods. Actual native route closure, prospectively defined
+group-balanced failure rewards and complete optimizer update replay still
+precede a training campaign. No new research claim or external code is imported.

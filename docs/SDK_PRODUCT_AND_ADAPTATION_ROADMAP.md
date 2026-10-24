@@ -1528,6 +1528,51 @@ The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
 
+### Prepared residual native execution route - 2026-10-24
+
+The [prospective declaration](../sdk/discovery/residual_native_smoke_v1.json)
+binds a contained [CPU worker](../sdk/discovery/residual_native.py),
+[independent reader](../sdk/discovery/audit_residual_native.py) and
+[coordinator](../sdk/discovery/run_residual_native.py). It declares **three fresh
+worlds** at one development start: absent provider, frozen zero residual and
+a small untrained frozen probe. Each world has **120 commands / 600 internal
+steps / one second**. No weakened, training or reserved partition is opened by
+this preparation.
+
+**Thirteen focused controls pass with zero worlds and zero solver steps.**
+They verify both-core preflight, lossless model loading, full controller replay
+and native observation/endpoint/history joins. Corruption controls cover
+missing populations, identities, held inputs, state continuity, clock, forces,
+contacts, warning counts, model topology, containment and the consumed launch
+record. A provider error is retained before any control transfer. A partial
+worker result preserves the original error and reports a marker lower bound or
+an unknown actual world count. Synthetic changed-action fixtures reuse original
+states and cannot pass as new native trajectories or training evidence.
+
+Retained attempt: sdk2-residual-native-controls-55186daa67414ae49c0b50633c1ef22b.
+Receipt SHA-256: 2b2c25c42b3902d53b010170fc723940df73699337f7ba0425df5505d6cee1d4.
+The support matrix binds **460 artifacts / 474,374,986 bytes**, all six source
+files, 492 shared source bindings and 1,359 runtime bindings without drift.
+The earlier twelve-control success remains retained. A separate harness
+quoting error stopped before imports or tests; its original script and failure
+observation are retained and are not counted as an executed control failure.
+
+The clean published launch must pass **all 85 applicable safety controls**
+and zero-world preflight while holding the global operation mutex. Every native
+child and reader is job-contained. Success requires exact absent/zero raw
+trajectory identity, a nonzero probe command followed by a changed native
+state, all **360 controller / 1,800 internal rows**, and independent replay
+through the baseline core. These are route requirements, not a locomotion
+success threshold. All official trial qualities remain null; all acceptance,
+selection, training and release flags remain false.
+
+Next execute this bounded route and retain its actual outcome. Then freeze
+training rewards and failure treatment, all condition/start groups, seeds and
+iteration/world budgets, and implement independent complete reward/update
+replay before training. Full-horizon healthy/degraded comparisons, calibrated
+support, empirical recovery, useful Tier 3 memory and three-engine
+qualification remain separate gates.
+
 ### Implemented residual provider and continuous history - 2026-10-24
 
 The [provider](../sdk/adaptation_provider/bounded_residual_provider_v1.py),
