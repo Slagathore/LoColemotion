@@ -21,6 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
+Latest withdrawal implementation (2026-10-24): the [prospective native diagnostic](#prospective-residual-withdrawal-diagnostic---2026-10-24)
+combines the unchanged selected actor and frozen warning through the public v1
+resolver. **26 component controls** verify 2,800 new-host decisions through both
+core DLLs on retained inputs. The native contract declares **ten fresh CPU
+worlds** on two exposed development groups: selected shadow, automatic guard,
+explicit withdrawal, and a failing actor with and without the guard. Its complete
+gate has **218 controls**. Native execution and useful intervention remain
+pending at this freeze; reserved starts and Tier 3 benefit remain open.
+
 Latest warning component (2026-10-24): the [completed shadow-warning fit](#completed-residual-failure-warning-component---2026-10-24)
 reconstructs all **64 training episodes**, including **49 failures**, with
 zero worlds. Both crossfit tuning diagnostics and the full-data model warn
@@ -1575,6 +1584,74 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Prospective residual withdrawal diagnostic - 2026-10-24
+
+The [new provider](../sdk/adaptation_provider/warning/control_v1.py) and
+[production host](../sdk/discovery/residual_withdrawal_control.py) join the exact
+selected residual with the frozen full-data warning. They preserve both original
+model identities and thresholds. An automatic warning produces the existing v1
+`uncertain` response, immediately removing the residual correction. The host
+continues to record the commands actually resolved and issued while the residual
+is withheld. Reentry needs 30 consecutive supported scores below the exit
+threshold and resumes slew limiting from the actual zero correction.
+
+The component owner passes **26 controls** over **2,800 new-host decisions** and
+**560 original-actor comparator decisions**, using two exposed input groups,
+five modes and both core DLLs. Silent-monitor targets match the original actor;
+the explicit command-90 request reaches zero immediately and the retained-input
+control reenters at command 120. These are counterfactual retained-input replays,
+not new physical transitions. The component attempt is
+`<evidence-root>/sdk2-residual-withdrawal-component-bf6f25819f144f2398dffaad3d00e5e9`,
+receipt `b06a07ed6a4883404b1b3555981bd6ce6c41aa4231b399e96e7d5dafa314b11b`.
+It binds **537 source** and **1,359 runtime** files without drift and opens no
+worlds or solver steps.
+
+The [prospective campaign](../sdk/discovery/residual_withdrawal_v1.json) declares
+one development seed, **104240701**, and only `train_001` under the weakened and
+healthy body conditions. Each role receives fresh native setup and the complete
+**12-second / 1,440-command / 7,200-internal-sample** horizon:
+
+| Role in each condition | Actor | Withdrawal behavior |
+| --- | --- | --- |
+| Selected shadow | Unchanged `iteration_00/d00_plus` | Records warnings; retains supported actor control |
+| Selected guarded | Same selected artifact | Frozen warning and hysteresis control withdrawal |
+| Selected forced | Same selected artifact | One explicit command-90 request; unchanged natural reentry rule |
+| Challenge shadow | Unchanged `iteration_00/d00_minus` | Records warnings; retains supported actor control |
+| Challenge guarded | Same challenge artifact | Frozen warning and hysteresis control withdrawal |
+
+The challenge is the selected actor's antithetic partner from the original
+training population, where all eight groups failed. This is an explicit
+retrospective challenge choice, not a new fitted model. The forced request changes
+neither observations nor prediction scores; it is a route control. No comparison
+data may alter the actors, warning, normalization, thresholds or selection.
+
+The [single owner](../sdk/discovery/run_residual_withdrawal.py) requires all
+**218 applicable zero-world controls**, process containment, the operation mutex
+and a clean published source freeze before launch. The native worker preserves
+the established full-capture loop. The
+[independent reader](../sdk/discovery/audit_residual_withdrawal.py) replays every
+controller decision through the other core DLL, checks every held solver input
+and native state transition, and independently reconstructs the warning state,
+immediate-zero handoff and reentry accounting.
+
+Completion does not require rescue. All ten outcomes remain in the denominator;
+failed episodes keep null official quality. Quality changes are reported only
+when both compared episodes are eligible, and failure-time changes only when
+both fail. A silent monitor must preserve the selected shadow trajectory exactly.
+The campaign records actual intervention lead without declaring it sufficient
+for safety. Bare-baseline and disabled native worlds are covered by the
+predecessor comparison, not repeated in this ten-world diagnostic.
+
+The complete zero-world owner also passes all **218 controls** at
+`<evidence-root>/sdk2-residual-withdrawal-0ea65707f9a3440c87d32f760ee2b5e6`, receipt
+`2d469e34f3d59b44816d187dab86812c192554c2af733fd5c9f4aa9426a0ab9c`. Runtime preflight constructs no worlds;
+all source/runtime bindings remain unchanged. Native execution is
+**pending at this prospective freeze**. The deterministic
+baseline remains an unproved backup in the weakened condition. Reserved
+calibration/evaluation starts, useful Tier 3 memory, other engines, robustness,
+qualification and release remain outside this campaign.
+
 
 ### Completed residual failure-warning component - 2026-10-24
 

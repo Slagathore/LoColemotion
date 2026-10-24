@@ -9,6 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest withdrawal implementation (2026-10-24): the [prospective native diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-residual-withdrawal-diagnostic---2026-10-24)
+combines the unchanged selected actor and frozen warning through the public v1
+resolver. **26 component controls** verify 2,800 new-host decisions through both
+core DLLs on retained inputs. The native contract declares **ten fresh CPU
+worlds** on two exposed development groups: selected shadow, automatic guard,
+explicit withdrawal, and a failing actor with and without the guard. Its complete
+gate has **218 controls**. Native execution and useful intervention remain
+pending at this freeze; reserved starts and Tier 3 benefit remain open.
+
 Latest warning component (2026-10-24): the [completed shadow-warning fit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-failure-warning-component---2026-10-24)
 reconstructs all **64 training episodes**, including **49 failures**, with
 zero worlds. Both crossfit tuning diagnostics and the full-data model warn

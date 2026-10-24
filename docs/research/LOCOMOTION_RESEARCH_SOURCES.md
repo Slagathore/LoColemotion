@@ -2667,3 +2667,21 @@ path and its required lead time; they do not establish recoverability,
 independent calibration or a safety guarantee. The threshold was fitted to
 the crossfit scores, so alarm rates at that threshold remain tuning diagnostics.
 No external code or weights are imported. All reserved groups remain unopened.
+
+
+### Native withdrawal as an intervention question - 2026-10-24
+
+The [prospective diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-residual-withdrawal-diagnostic---2026-10-24)
+turns the preceding rejection-rule and runtime-assurance distinction into three
+separate checks: preserving control when the monitor is silent, delivering an
+actual baseline handoff and hysteresis reentry, and observing whether a natural
+warning changes a known failure. The explicit route request does not change the
+warning's prediction or manufacture a positive label.
+
+Both original actors, the full-data warning and all thresholds remain immutable.
+The failing actor is an exposed training challenge, not independent evaluation.
+Ten fresh CPU worlds are declared prospectively; none has run at this freeze.
+A successful handoff will establish execution only. The baseline has no safety
+proof and already fails the weakened condition. Finite intervention outcomes
+cannot inherit the cited methods' statistical or formal safety guarantees.
+No external code or weights are imported, and all reserved starts stay unopened.
