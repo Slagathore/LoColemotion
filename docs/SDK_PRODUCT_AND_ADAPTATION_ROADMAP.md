@@ -21,12 +21,19 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-22
 
+Latest diagnosis: the [phase/contact and response reader](#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
+verifies all sixteen trials over a common 0.8-second prefix with zero new
+worlds. Scheduled stance lacks observed support in 1,868/4,896 leg observations,
+including both eventual positives. Eight controls pass. Next implement and
+prospectively compare phase-aware residual release through actual controller
+memory, with unchanged resolver limits and full-horizon/healthy-body checks.
+
 Latest controller result: the [support-vertical comparison](#completed-support-vertical-comparison---2026-10-23)
 retains 2/16 eligible trials and 14/16 negatives after complete independent
 replay. No role passes all four starts. The immediate successor improves one
-eligible paired tracking score but does not broaden coverage. Next diagnose
-phase/contact coordination and command tracking from retained data before a
-new controller; useful context-selected behavior remains unproved.
+eligible paired tracking score but does not broaden coverage. The diagnosis
+above supplies the next development question; useful context-selected
+behavior remains unproved.
 
 SDK1 is complete at **20/20** under the October 3 retained receipt; the full
 program remains **19/25**. The August sections below are history, not the current
@@ -1423,6 +1430,85 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Completed phase/contact and command-response diagnosis - 2026-10-23
+
+The [record](../sdk/discovery/phase_contact_diagnostic_v1.json),
+[executable reader](../sdk/discovery/phase_contact_diagnostic.py) and
+[eight controls](../sdk/discovery/test_phase_contact_diagnostic.py) cover the
+same first **96 commands (0.8 s) from all sixteen** support-vertical trials.
+This interval was chosen after observing outcomes and ends before the earliest
+violation at 0.945 s. It contains **1,536 controller decisions, 7,680 completed
+internal samples, 6,144 leg evaluations and 12,288 joint command/response
+pairs**. No role or start is excluded; the original 2 positives, 14 negatives,
+censored contrasts and empty shortlist remain unchanged. Zero worlds were
+built and zero solver steps executed.
+
+Phase is joined to the actual actuation receipt, output memory and provider
+`controller_context.controller_memory`. The existing v1 input therefore
+already exposes the phase needed by a successor; elapsed time need not stand
+in for actual controller state. The frozen wave has 360 commands per cycle,
+72 swing commands and the ordered offsets rear-left, front-left, rear-right,
+front-right. Scheduled stance is intent, not measured support.
+
+Each command's response uses the measured joint velocity **after its five
+held-control substeps**. The prepared observation remains the before-command
+measurement. Canonical/native signs, commands, phase, raw feedback and original
+artifact hashes are checked. Foot-velocity projections use the start-of-command
+Jacobian, including the projected end velocity; these are fixed-configuration
+projections, not measured world foot velocities. Joint-response error is not
+the campaign's tracking-quality score. Contact loads are unavailable; actuator
+force-cap counts are not ground-reaction forces.
+
+| Scheduled phase / observed support | Leg observations | Floor beyond geometric reach at that torso pose | Nonzero applied residual without support |
+| --- | ---: | ---: | ---: |
+| Stance / support | 3,028 | 0 | 0 |
+| Stance / missing | 1,868 | 1,442 | 110 |
+| Swing / support | 127 | 0 | 0 |
+| Swing / missing | 1,121 | 34 | 113 |
+
+The front-right foot contributes **1,462/1,868** missing-stance observations:
+91 or 92 of its 96 scheduled-stance commands per trial, with uninterrupted
+gaps of 89 or 90 commands. This also occurs in both positive trials. A leg
+extension alone cannot reach the floor at a geometrically unreachable torso
+pose; that geometric result does not prove which body/control change will
+succeed.
+
+The resolver retains nonzero corrections through **223/2,989** observations
+without support as it slews toward the requested zero. Eleven joint commands
+have opposing raw/applied correction signs. Across all 12,288 joint commands,
+1,622 absolute, 2,587 slew and 72 final-speed clamp labels are present; labels
+can overlap. There are 3,781 force-cap samples out of 61,440 internal joint
+samples. Per-trial end-response RMS ranges from 0.30765 to 0.39691 rad/s.
+These interactions occur across successful and unsuccessful trials and are
+not causal findings or a post-hoc ranking rule. Scheduled load-transfer
+influence is inactive throughout this prefix, with its original available
+and unavailable planning outcomes retained.
+
+Generation is retained at
+`sdk2-phase-contact-generation-a824b7c019724b2589488c14764a715c`.
+The eight controls passed in **37.190 s** at
+`sdk2-phase-contact-controls-6c5feeebeae64eaa87f59695bfbf3a1b`, with exact tested
+source/record copies and bindings. They verify the complete parent, original
+files and all diagnostic values; reject phase/response timing substitutions,
+missing trials, crossed failure boundaries, invented loads and promoted
+authority; and test wrap boundaries and zero-denominator groups. The maximum
+native endpoint versus independent geometry discrepancy is
+7.077671781985373e-16 m.
+
+Next declare a **phase-aware residual-release successor** using actual v1
+controller context. A concrete candidate can taper a bounded stance residual
+before scheduled liftoff and request zero during swing while retaining the
+same public correction/slew/speed resolver. Any taper duration must follow
+the declared bound and slew budget, and its components must be tested before
+fresh worlds. This may avoid opposing intended swing, but can remove useful
+attitude support from a foot that stays in contact; it also cannot by itself
+solve unreachable touchdown poses. Compare against the parent across every
+declared training start and include healthy-body preservation. Retain full
+horizons, failures and all denominators before any learned action mapping.
+Calibration/evaluation and prior confirmation stay excluded. The present
+diagnostic grants no new training, selection, causal, qualification or
+release authority.
+
 ### Completed support-vertical comparison - 2026-10-23
 
 The [closure](../sdk/discovery/cpu_support_vertical_closure_v1.json) and
@@ -1479,13 +1565,14 @@ The original closure generation is
 `sdk2-support-vertical-closure-generation-324af96a042b410b890e46f66d701c45`.
 No new physics is used by generation or closure controls.
 
-Next use a **post-hoc common first 96 commands (0.8 s)** from all sixteen retained
-trials to examine actual gait phase, expected versus observed contact, joint
+The [completed diagnosis above](#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
+uses the proposed **post-hoc common first 96 commands (0.8 s)** from all sixteen
+retained trials to examine actual gait phase, expected versus observed contact, joint
 command versus measured response, and clamp effects. That interval precedes the
 earliest retained violation at 0.945 s and keeps every role/start in the
 comparison. Rejoin phase to the actual controller receipt/memory and contacts
 to their recorded observation stage; do not invent unavailable contact loads.
-This proposed diagnosis will not prove a cause or retroactively choose a
+This diagnosis proves no cause and does not retroactively choose a
 controller. Use its findings to declare a distinct coordination/control
 successor, then require fresh full-horizon and healthy-body checks before
 mapping the context estimator to actions. Calibration/evaluation and prior

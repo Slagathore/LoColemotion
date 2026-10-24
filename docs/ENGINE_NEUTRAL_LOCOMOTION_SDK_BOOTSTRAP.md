@@ -2,6 +2,19 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest diagnosis (2026-10-23): the [phase/contact reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
+verifies the same first 96 commands from all sixteen support-vertical trials:
+1,536 decisions, 7,680 internal samples and 12,288 joint command/response pairs,
+with zero new worlds. Scheduled stance lacks observed support in 1,868/4,896
+leg observations; 1,442 of those poses cannot geometrically reach the floor.
+The front-right leg accounts for 1,462 missing-stance observations. The pattern
+also occurs in both positives. Eight controls pass, including complete parent
+verification and refusal of crossed phase, response timing and invented loads.
+Next declare a phase-aware release successor through the existing provider
+context, preserving resolver limits and testing full horizons and healthy
+bodies. These post-hoc measurements establish no cause, winner or adaptation
+benefit; the previous shortlist remains empty.
+
 Latest closure (2026-10-23): the [support-vertical comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
 completed all sixteen CPU worlds from `cdc77feb` after all **250 controls**
 passed again. Independent replay verified 23,040 decisions and 115,200 internal
@@ -10,9 +23,8 @@ height 1/4, immediate successor 1/4 and delayed successor 0/4. The shortlist is
 empty. At the sole jointly eligible start, the successor improves the declared
 tracking score by 0.00885561 m/s while advancing less far. The other nineteen
 contrasts remain censored. Seven closure controls pass over 11,725 artifacts.
-Next diagnose phase/contact coordination and joint-command tracking across a
-common retained prefix before declaring another controller. Useful adaptation,
-healthy-body preservation and release remain unproved.
+The common-prefix diagnosis above now precedes the next controller. Useful
+adaptation, healthy-body preservation and release remain unproved.
 
 Latest diagnosis (2026-10-23): the [retained height-composition reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
 verifies a common first second from all four immediate-height trials: 480

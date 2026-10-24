@@ -1,5 +1,15 @@
 # LoColemotion Locomotion SDK
 
+The [phase/contact diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
+verifies 1,536 decisions and 7,680 internal samples from all sixteen retained
+trials, with zero new worlds. Scheduled stance lacks support in 1,868/4,896
+leg observations; 1,442 of those poses cannot geometrically reach the floor.
+Both positives show the mismatch too. Eight controls pass, joining actual
+controller phase and the response after each command's five substeps. The
+existing v1 context exposes the required phase. Next prospectively test
+phase-aware residual release and healthy-body preservation; no cause, new
+winner, useful adaptation or release authority follows from this diagnosis.
+
 The [support-vertical comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
 is closed after all 250 controls and sixteen fresh CPU worlds from `cdc77feb`.
 Independent replay verifies 23,040 decisions and 115,200 internal samples:
@@ -7,8 +17,8 @@ Independent replay verifies 23,040 decisions and 115,200 internal samples:
 pass one of four starts; baseline and delayed compensation pass none. No role
 qualifies for selection. One eligible paired score improves by 0.00885561 m/s,
 with slightly less forward travel; this does not establish a useful family.
-Seven closure controls pass. Phase/contact coordination and command tracking
-are the next retained-data questions; adaptation and release remain unproved.
+Seven closure controls pass. The phase/contact diagnosis above now informs
+the next controller; adaptation and release remain unproved.
 
 The [height-composition diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
 verifies 480 retained decisions and 2,400 internal samples from all four

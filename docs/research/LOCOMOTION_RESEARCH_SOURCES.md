@@ -2279,3 +2279,22 @@ retained-data diagnosis, not a causal conclusion about the present failures.
 Their position-servo and gait-parameter interface does not implement this
 project's velocity-residual ABI. No code, weights or numerical gains were
 imported. The next controller still requires its own prospective comparison.
+
+## 2026-10-23 phase/contact and command-response diagnosis
+
+The [retained-data reader](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
+now covers all sixteen trials over the same 96-command prefix. Eight controls
+pass with zero new worlds. Actual phase memory is already exposed through the
+v1 provider context. Scheduled stance lacks observed support in 1,868/4,896
+leg observations, and the fixed-torso reach bound excludes floor contact in
+1,442 of those. Both positive trials share this pattern, preventing a causal
+or success-predictor interpretation.
+
+The primary [Wu et al. method](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356505),
+sections 2.2-2.4, motivates using actual phase/contact context to coordinate
+residuals. The local next hypothesis is bounded release before scheduled
+liftoff, with the existing slew resolver retained. This is a development
+inference from the local measurements, not a replication of their learned
+position controller. It may remove useful support as well as conflicting
+corrections; fresh full-horizon and healthy-body comparisons remain necessary.
+No third-party code, weights or gains were imported, and no claim gate changed.
