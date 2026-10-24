@@ -21,6 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
+Latest recovery implementation (2026-10-24): the [prospective paired handoff diagnostic](#prospective-paired-recovery-handoff-diagnostic---2026-10-24)
+separates switching time from recovery-controller choice. The unchanged failing
+actor hands control to either baseline or the unchanged selected actor at
+command 60 or the frozen warning's first request. A one-way episode latch
+excludes return to the failing actor. **26 component controls** verify **5,120
+new-host decisions** and **1,280 original-actor comparisons** through both core
+DLLs with zero worlds. The contract declares **14 fresh CPU worlds** and a
+**275-control gate**, which now passes. Native recovery remains pending at this freeze; all
+reserved starts and Tier 2/Tier 3 qualification remain open.
+
 Latest withdrawal result (2026-10-24): the [completed native diagnostic](#completed-residual-withdrawal-diagnostic---2026-10-24)
 verifies **ten fresh CPU worlds**, **14,400 commands** and **72,000 internal
 samples** from published `d8d80cc3`, after **218 safety controls**. Silent
@@ -1585,6 +1595,87 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Prospective paired recovery handoff diagnostic - 2026-10-24
+
+The completed withdrawal diagnostic below delivered the requested baseline
+handoff but rescued neither challenge group. The [new prospective contract](../sdk/discovery/residual_recovery_v1.json)
+separates two development variables: **command-60 intervention** versus the
+unchanged warning's first request, and **baseline** versus the unchanged
+selected actor as the recovery controller. The early command is a scheduled
+route intervention at **0.5 seconds**, not a new prediction threshold.
+
+The [provider](../sdk/adaptation_provider/warning/recovery_v1.py) packages both
+original actors and the same full-data warning in one immutable composite.
+The selected actor remains the original random search perturbation
+`iteration_00/d00_plus`; it is not the final optimizer checkpoint or a newly
+trained recovery policy. Its ability to succeed from the initial state does
+not establish recovery from a state produced by the challenge actor.
+
+| Role in each condition | Before handoff | After handoff |
+| --- | --- | --- |
+| Selected only | Selected actor | Same actor for the full horizon |
+| Challenge only | Challenge actor | Same actor for the full horizon |
+| Baseline only | Deterministic baseline | Same baseline for the full horizon |
+| Early baseline | Challenge actor through command 59 | Baseline from command 60 |
+| Warning baseline | Challenge actor until the first frozen warning request | Baseline |
+| Early selected | Challenge actor through command 59 | Selected actor from command 60 |
+| Warning selected | Challenge actor until the first frozen warning request | Selected actor |
+
+Every role has fresh native model/data/controller setup under each of the
+weakened and healthy `train_001` conditions. The single development seed is
+**104240801**; each of the **14 CPU worlds** has **1,440 commands / 7,200 internal
+samples / 12 seconds**. No GPU, fitting, reserved calibration or evaluation
+world is declared. All fourteen outcomes remain in the denominator.
+
+The [production host](../sdk/discovery/residual_recovery_control.py) preserves
+actual issued-action history continuously. Baseline handoff removes the residual
+immediately through the existing v1 refusal. Selected-actor handoff retains the
+**0.08 rad/s per-command slew** from the actual preceding correction and the
+existing correction/final-speed bounds. Unsupported observations still refuse
+to baseline, including after selected-actor handoff.
+
+The first handoff latches its destination for the remainder of the episode.
+This isolates timing and recovery capability from the return-to-task rule;
+it does not evaluate reentry to the challenge actor. The warning remains in
+shadow after handoff. A later successor must measure any return-to-task rule
+prospectively rather than inferring it from this latch.
+
+**26 component controls** pass over **5,120 new-host decisions** and **1,280
+original-actor comparisons** from two retained exposed groups, 160 commands,
+eight modes and both core DLLs. The pure actor modes preserve original command
+bits; baseline-only matches provider absence. The controls exercise the exact
+natural warning, scheduled request, latch, real-history continuity, handoff
+slew, unsupported fallback, immutable models and fail-closed lifecycle.
+These are counterfactual retained-input replays, not new physical outcomes.
+Attempt: `<evidence-root>/sdk2-residual-recovery-component-fb31589031eb4dc3a3955365577f84b2`,
+receipt `4a2e811822d1e8ca6ed73c0a4d9439a3fc6d96f1a2d38f148064f69e5a167e42`.
+All **551 source / 1,359 runtime bindings** remained unchanged.
+
+The complete zero-world owner passes **all 275 controls** at
+`<evidence-root>/sdk2-residual-recovery-04602631ecfd4146a771aee8b1b5d6ef`,
+receipt `72ad484bf1d8d774c841f9efdee2469fb04b951ecc0999618b9d5e4d78a6e55c`. It binds
+**565 source / 1,359 runtime files** without drift. Runtime preflight opens no
+worlds or solver steps and declares **20,160 controller rows / 100,800 internal
+samples** for the future native comparison. Native execution is pending at
+this prospective freeze.
+
+The [native owner](../sdk/discovery/run_residual_recovery.py) requires the
+complete **275-control zero-world gate**, containment, operation mutex and clean
+published freeze. The native capture loop is byte-identical to the closed
+withdrawal loop. The [independent reader](../sdk/discovery/audit_residual_recovery.py)
+replays every decision through the other core DLL, audits every native input/
+state/force/timing sample, and compares each intervention against its fresh
+challenge-only reference up to handoff. Pre-handoff traces and the handoff
+observation must match exactly; no retained physical baseline is substituted.
+
+Recovery success is not required for a complete record. Failed episodes retain
+null official quality; quality differences require two eligible episodes and
+failure-time differences require two failures. Fresh selected-only and baseline-
+only controls provide additional context. This is a finite development
+comparison informed by the [recovery-capacity research notes](research/LOCOMOTION_RESEARCH_SOURCES.md#recovery-capacity-and-action-provenance---2026-10-24),
+with no automatic actor promotion, learned recovery-region claim, safe-backup
+guarantee, Tier 2/Tier 3 completion or release authority.
 
 ### Completed residual withdrawal diagnostic - 2026-10-24
 

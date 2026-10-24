@@ -2726,3 +2726,20 @@ separate variables. Use prospective fresh paired interventions to distinguish
 them, preserve failed transfers, and keep reserved evaluation data out of this
 design loop. These sources inform the successor design; no code or weights are
 imported and no published performance number is adopted as a local claim.
+
+### Separating recovery timing from controller choice - 2026-10-24
+
+The [prospective paired handoff diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-recovery-handoff-diagnostic---2026-10-24)
+implements the preceding research inference as a fixed development comparison.
+It crosses a scheduled command-60 handoff and the unchanged warning trigger
+with baseline and selected-actor destinations. Three fresh pure-controller
+roles provide context. Each intervention must match its fresh challenge-only
+native prefix and handoff observation before a paired outcome is interpreted.
+
+The destination remains latched to separate recovery capability from return-to-
+task timing. Actual command history and slew limiting continue across actor
+handoff; unsupported observations still refuse to baseline. The selected actor
+is an unchanged exposed discovery artifact, not a recovery policy trained using
+either cited method. Its initial-state successes do not prove capability from
+challenge-generated states. No external code or weights are imported. Reserved
+starts remain unopened, and all fourteen outcomes must be retained.
