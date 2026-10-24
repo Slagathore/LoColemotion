@@ -9,15 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest selection preparation (2026-10-24): the [frozen training-selected comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-frozen-residual-selection-comparison---2026-10-24)
-passes all **138 zero-world controls**. The complete eight-candidate/64-trial
-training population yields one all-group-eligible candidate,
-**iteration_00/d00_plus**. Selection is explicitly retrospective; its original
-artifact, normalization and initial-probe provenance stay byte-identical.
-The clean published successor will compare fresh baseline, disabled and
-selected roles in **24 full-horizon CPU worlds**. No new worlds have opened.
-The failed final training checkpoint is not replaced; reserved groups,
-calibrated support, withdrawal, useful Tier 3 memory and qualification remain.
+Latest selected-artifact closure (2026-10-24): the [completed fresh comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-frozen-residual-selection-comparison---2026-10-24)
+verifies **24 CPU worlds**, **34,560 commands** and **172,800 internal samples**
+from published **3a04722f**, after all **138 safety controls**. The fixed artifact
+passes **4/4 weakened** and **4/4 healthy** groups and preserves healthy
+quality at **4/4 starts**. Disabled traces exactly match all eight fresh
+baselines. The declared finite screen **passes**. Eight closure controls reopen
+every artifact and reconstruct the scores with zero new worlds. Selection
+remains retrospective; the earlier failed final optimizer checkpoint stays
+unchanged. Calibrated support, withdrawal, unopened evaluation, useful Tier 3
+memory and qualification remain open.
 
 Latest training closure (2026-10-24): the [completed native residual pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-residual-training---2026-10-24)
 verifies **91 CPU worlds** from clean published **b29ea283**: three execution
@@ -27,12 +28,12 @@ Both pilot updates are reconstructed. The fixed final checkpoint preserves
 and improves healthy quality at all four starts, but recovers **0/4 weakened
 starts** and fails the declared finite screen. Disabled traces exactly match
 baseline. An initial random perturbation passes **8/8 training groups** and
-remains an exposed-data lead for a distinct fresh comparison; it cannot replace
+supplied the lead for the distinct fresh comparison above; it cannot replace
 the failed final checkpoint. Eight zero-world closure controls reopen all
 artifacts and reconstruct raw rewards, moments and updates. Source/runtime
-bindings remain unchanged. Next freeze a separate training-only candidate
-selection, then challenge it with fresh baseline and disabled controls before
-reserved calibration/evaluation. Tier 2/Tier 3 and release remain unqualified.
+bindings remain unchanged. The separate training-only selection and fresh
+comparison are now closed above. Calibrated support, withdrawal and reserved
+evaluation remain next; Tier 2/Tier 3 and release remain unqualified.
 
 Latest native route (2026-10-24): the [residual smoke closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-native-execution-route---2026-10-24)
 completes three fresh CPU worlds from published 2f8fb95e after all 86 controls.
@@ -76,7 +77,8 @@ DLLs with 88 canonical inputs, ongoing resolved-action history and unchanged
 core safety ownership. Retained states were reused; no new native transitions
 or training worlds ran in that component check. The native route is now closed
 above; training reward and complete update replay are implemented and tested
-in the preparation above. No residual has yet been trained on locomotion. Reserved evaluation, calibrated support, empirical recovery,
+in the completed training closure above. Actual locomotion training and both
+updates are retained. Reserved evaluation, calibrated support, empirical recovery,
 useful Tier 3 behavior and release remain open.
 
 Earlier native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)

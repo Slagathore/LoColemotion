@@ -21,14 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
-Latest selection preparation: the [frozen training-selected comparison](#prepared-frozen-residual-selection-comparison---2026-10-24)
-passes all **138 zero-world controls**. Selection considers all eight candidates
-and 64 training episodes; only **iteration_00/d00_plus** is eligible in every
-training group. Its exact original artifact is frozen, including identity
-normalization and initial-probe provenance. Next run **24 fresh CPU worlds**
-with baseline, disabled and selected roles across all eight exposed groups,
-using unchanged 12-second horizons. No new world has opened at this boundary.
-The prior failed final checkpoint remains unchanged; reserved starts stay closed.
+Latest selected-artifact closure: the [completed fresh comparison](#completed-frozen-residual-selection-comparison---2026-10-24)
+verifies **24 CPU worlds**, **34,560 commands** and **172,800 internal samples**
+from published **3a04722f**, after all **138 safety controls**. The fixed artifact
+passes **4/4 weakened** and **4/4 healthy** groups and preserves healthy
+quality at **4/4 starts**. Disabled traces exactly match all eight fresh
+baselines. The declared finite screen **passes**. Eight closure controls reopen
+every artifact and reconstruct the scores with zero new worlds. Selection
+remains retrospective; the earlier failed final optimizer checkpoint stays
+unchanged. Calibrated support, withdrawal, unopened evaluation, useful Tier 3
+memory and qualification remain open.
 
 Latest training closure: the [completed native residual pilot](#completed-native-residual-training---2026-10-24)
 verifies the three-world execution fixture and **88-world pilot** from published
@@ -36,11 +38,11 @@ verifies the three-world execution fixture and **88-world pilot** from published
 passes all four healthy comparison groups and improves their quality scores,
 but fails all four weakened groups. Disabled traces exactly match baseline.
 Its declared finite screen fails. An initial random search perturbation passes
-all eight training groups and remains a discovery lead for a distinct fresh
-comparison; it does not replace the failed fixed final checkpoint. Eight
+all eight training groups and supplied the lead for the fresh comparison above;
+it does not replace the failed fixed final checkpoint. Eight
 closure controls reconstruct rewards, moments and updates with zero new worlds.
-Next freeze a separate training-only candidate selection and fresh comparison,
-then pursue calibrated support, withdrawal and useful reversible Tier 3 memory.
+The separate training-only selection and fresh comparison are now closed above.
+Next pursue calibrated support, withdrawal and useful reversible Tier 3 memory.
 Reserved starts remain unopened; Tier 2/Tier 3 qualification remains unproved.
 
 Latest native route: the [residual smoke closure](#completed-residual-native-execution-route---2026-10-24)
@@ -1562,6 +1564,74 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Completed frozen residual selection comparison - 2026-10-24
+
+The [complete selected-artifact closure](../sdk/discovery/residual_selection_closure_v1.json)
+binds the fresh **24-world CPU comparison** from clean published **3a04722f**.
+All **138 applicable zero-world controls** pass before launch. Every role has
+fresh native setup; the one development seed and all **eight exposed groups**
+retain their frozen **12-second / 1,440-command** horizons. No GPU worlds run,
+and no comparison data fit weights, normalization or selection.
+
+The selected initial perturbation **iteration_00/d00_plus** is unchanged at
+`sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f`.
+It is eligible in **4/4 weakened** and **4/4 healthy** groups.
+Healthy quality is preserved at **4/4 starts**. The declared complete
+finite development screen **passes**. All four healthy scores change by
+**+0.00069041 to +0.00591300 m/s** relative to fresh baseline.
+These are changes in the existing tracking-quality metric, not raw walking
+speed or a population-wide performance claim.
+
+| Development group | Selected eligible | Selected quality (m/s) | Baseline quality (m/s) | Paired quality change (m/s) |
+| --- | --- | ---: | ---: | ---: |
+| left_075_train_001 | yes | -0.09665287 | null | not comparable |
+| left_075_train_003 | yes | -0.09643404 | null | not comparable |
+| left_075_train_004 | yes | -0.09837920 | null | not comparable |
+| left_075_train_006 | yes | -0.09795363 | null | not comparable |
+| nominal_train_001 | yes | -0.09387661 | -0.09978961 | +0.00591300 |
+| nominal_train_003 | yes | -0.09745613 | -0.09994397 | +0.00248783 |
+| nominal_train_004 | yes | -0.09733242 | -0.09869678 | +0.00136436 |
+| nominal_train_006 | yes | -0.09869947 | -0.09938988 | +0.00069041 |
+
+All **eight disabled raw trajectories exactly equal their fresh baseline
+trajectories**. The complete population contains **16 eligible
+and 8 negative episodes**; every negative remains retained
+with null official quality. Independent replay checks **34,560 commands and
+172,800 internal samples** using the baseline core reader and unchanged
+production semantics. All **514 source and 1,359 runtime bindings** remain
+unchanged. The owner retains **1,953 artifacts / 4,488,194,058 bytes**.
+
+The [closing reader](../sdk/discovery/audit_residual_selection_closure.py) and
+[eight contained controls](../sdk/discovery/run_residual_selection_closure.py)
+reopen the full artifact population, rederive the training-only selection,
+recompute raw rewards and quality, and reconstruct the fixed comparison.
+They preserve the original complete command-replay receipt; they do not
+perform a second production replay or open new worlds. Corrupt population,
+model/fit/receipt bindings, authority, scores and summary controls refuse.
+
+- Native attempt: `<evidence-root>/sdk2-residual-selection-3a1a5cb9863c4e8aaf0daa805ab8802f`,
+  receipt `9b7a0c160672c61c5d85bea47554a1b3d65694df072194605ae752af86f2254b`.
+- Closure controls: `<evidence-root>/sdk2-residual-selection-closure-controls-f7894710f4084a059b8b2d971780f22a`,
+  receipt `9958f2068a50a8c2beb8048a74eddd27d55779107be62492df1ae585c2a5f45a`.
+- Repository closure SHA-256: `2a6326d3f3edb8c31d5d0ba644fe370b6bb51de2b6ae749847f7503d033ca5e4`.
+
+This remains an explicitly retrospective training selection followed by fresh
+development re-execution. It does not replace the prior pilot's failed fixed
+final checkpoint, relabel the original random artifact as an optimizer update,
+or establish held-out or statistical robustness. All four reserved starts stay
+unopened; the excluded earlier confirmation starts remain excluded.
+
+The fixed training-selected artifact has completed its fresh 24-world
+development comparison. It passes all eight groups and preserves healthy
+quality at every start. Freeze a separate calibration and empirical withdrawal
+design before opening any reserved group. Selection remains retrospective and
+uses only the complete prior training population; the failed final optimizer
+checkpoint remains immutable. Calibrated confidence, withdrawal, unopened
+evaluation, useful reversible Tier 3 memory and prospective three-engine
+qualification remain required. Tier 3 must compare actual memory-on behavior
+against memory-off and shuffled-feedback controls while preserving immutable
+weights and reset/rollback.
 
 ### Prepared frozen residual selection comparison - 2026-10-24
 

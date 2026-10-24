@@ -174,7 +174,7 @@
           "authority_mode": "frozen_selected_artifact_development_comparison",
           "question_class": "development"
         },
-        "status": "selected_training_artifact_and_native_comparison_prepared",
+        "status": "complete_finite_development_screen_positive",
         "contract_path": "sdk/discovery/residual_selection_v1.json",
         "contract_sha256": "e03ef77efdc5984e526c6b02c5faeb44b4589e71c8dc8d7715f22110bf787e43",
         "selection_record_path": "sdk/discovery/residual_selection_fit_v1.json",
@@ -272,10 +272,115 @@
           "planned_gpu_worlds": 0,
           "planned_controller_rows": 34560,
           "planned_internal_rows": 172800,
-          "worlds_opened": 0,
+          "worlds_opened": 24,
           "finite_screen": "All eight selected episodes eligible; no nominal quality loss against fresh baseline at any start; disabled raw traces exactly equal baseline. Development screen only.",
           "training_data_authority": false,
-          "weights_or_normalizer_may_change": false
+          "weights_or_normalizer_may_change": false,
+          "constructed_cpu_worlds": 24,
+          "constructed_gpu_worlds": 0,
+          "controller_rows": 34560,
+          "internal_rows": 172800,
+          "eligible_trials": 16,
+          "negative_trials": 8,
+          "source_commit": "3a04722f3bd4eb982b160c76dd3fc7696c64908c",
+          "attempt_id": "sdk2-residual-selection-3a1a5cb9863c4e8aaf0daa805ab8802f",
+          "receipt_sha256": "9b7a0c160672c61c5d85bea47554a1b3d65694df072194605ae752af86f2254b",
+          "complete_safety_controls_passed": 138,
+          "source_runtime_unchanged": true,
+          "source_binding_count": 514,
+          "runtime_binding_count": 1359,
+          "artifact_count": 1953,
+          "artifact_bytes": 4488194058,
+          "independent_command_replay_complete": true,
+          "final_comparison": {
+            "fixed_selected_artifact": true,
+            "groups": [
+              {
+                "group_id": "left_075_train_001",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.09665286969263888,
+                "baseline_eligible": false,
+                "baseline_quality_m_s": null,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": null,
+                "nominal_preserved": null
+              },
+              {
+                "group_id": "left_075_train_003",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.09643403614167283,
+                "baseline_eligible": false,
+                "baseline_quality_m_s": null,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": null,
+                "nominal_preserved": null
+              },
+              {
+                "group_id": "left_075_train_004",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.09837920376373167,
+                "baseline_eligible": false,
+                "baseline_quality_m_s": null,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": null,
+                "nominal_preserved": null
+              },
+              {
+                "group_id": "left_075_train_006",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.097953632284009,
+                "baseline_eligible": false,
+                "baseline_quality_m_s": null,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": null,
+                "nominal_preserved": null
+              },
+              {
+                "group_id": "nominal_train_001",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.09387660594733661,
+                "baseline_eligible": true,
+                "baseline_quality_m_s": -0.09978960607936949,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": 0.005913000132032872,
+                "nominal_preserved": true
+              },
+              {
+                "group_id": "nominal_train_003",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.09745613276669164,
+                "baseline_eligible": true,
+                "baseline_quality_m_s": -0.09994396721276905,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": 0.0024878344460774054,
+                "nominal_preserved": true
+              },
+              {
+                "group_id": "nominal_train_004",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.09733241971566053,
+                "baseline_eligible": true,
+                "baseline_quality_m_s": -0.09869677777797993,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": 0.0013643580623193957,
+                "nominal_preserved": true
+              },
+              {
+                "group_id": "nominal_train_006",
+                "selected_eligible": true,
+                "selected_quality_m_s": -0.09869946882947635,
+                "baseline_eligible": true,
+                "baseline_quality_m_s": -0.09938988167121922,
+                "disabled_trace_identical": true,
+                "quality_change_m_s": 0.0006904128417428712,
+                "nominal_preserved": true
+              }
+            ],
+            "finite_development_screen_passed": true,
+            "tier2_qualified": false,
+            "tier3_benefit_established": false,
+            "release_authority": false
+          }
         },
         "tier2_complete": false,
         "tier3_complete": false,
@@ -283,7 +388,27 @@
         "physical_acceptance_authority": false,
         "equivalence_authority": false,
         "release_authority": false,
-        "next_development_question": "A separate retrospective training-only selection is frozen over all eight candidates and 64 training episodes. Only iteration_00/d00_plus is eligible in every training group; its original weights, identity normalization and initial-probe provenance are preserved byte-for-byte. All 138 zero-world safety controls pass, including complete prior training closure reconstruction and new selection/native-reader corruption controls. Publish the clean prospective freeze and run the fixed 24-world full-horizon baseline/disabled/selected comparison across the eight exposed groups. Neither the prior pilot comparison nor route outcomes fit this selection; the failed final checkpoint stays immutable. Reserved calibration/evaluation, empirical support and withdrawal, useful reversible Tier 3 memory and three-engine qualification remain required."
+        "next_development_question": "The fixed training-selected artifact has completed its fresh 24-world development comparison. It passes all eight groups and preserves healthy quality at every start. Freeze a separate calibration and empirical withdrawal design before opening any reserved group. Selection remains retrospective and uses only the complete prior training population; the failed final optimizer checkpoint remains immutable. Calibrated confidence, withdrawal, unopened evaluation, useful reversible Tier 3 memory and prospective three-engine qualification remain required. Tier 3 must compare actual memory-on behavior against memory-off and shuffled-feedback controls while preserving immutable weights and reset/rollback.",
+        "closure_path": "sdk/discovery/residual_selection_closure_v1.json",
+        "closure_sha256": "2a6326d3f3edb8c31d5d0ba644fe370b6bb51de2b6ae749847f7503d033ca5e4",
+        "closure_reader_path": "sdk/discovery/audit_residual_selection_closure.py",
+        "closure_reader_sha256": "1145e606c504614faa3befec845fc1728694ae12f7dd91e2bd8082d95a3613c8",
+        "comparison_complete": true,
+        "finite_development_screen_passed": true,
+        "closure_controls": {
+          "attempt_id": "sdk2-residual-selection-closure-controls-f7894710f4084a059b8b2d971780f22a",
+          "receipt_sha256": "9958f2068a50a8c2beb8048a74eddd27d55779107be62492df1ae585c2a5f45a",
+          "controls_passed": 8,
+          "worlds_opened": 0,
+          "solver_steps": 0,
+          "complete_raw_scores_and_comparison_recomputed": true,
+          "frozen_training_selection_reconstructed": true,
+          "original_independent_replay_preserved": true,
+          "control_decisions_replayed_again": false,
+          "source_runtime_unchanged": true,
+          "source_binding_count": 518,
+          "runtime_binding_count": 1359
+        }
       },
       "bounded_residual_native_training": {
         "ledger_scope": {
@@ -7057,7 +7182,7 @@
               "release_authority": false
             }
           },
-          "next_development_question": "A separate retrospective training-only selection is frozen over all eight candidates and 64 training episodes. Only iteration_00/d00_plus is eligible in every training group; its original weights, identity normalization and initial-probe provenance are preserved byte-for-byte. All 138 zero-world safety controls pass, including complete prior training closure reconstruction and new selection/native-reader corruption controls. Publish the clean prospective freeze and run the fixed 24-world full-horizon baseline/disabled/selected comparison across the eight exposed groups. Neither the prior pilot comparison nor route outcomes fit this selection; the failed final checkpoint stays immutable. Reserved calibration/evaluation, empirical support and withdrawal, useful reversible Tier 3 memory and three-engine qualification remain required."
+          "next_development_question": "The fixed training-selected artifact has completed its fresh 24-world development comparison. It passes all eight groups and preserves healthy quality at every start. Freeze a separate calibration and empirical withdrawal design before opening any reserved group. Selection remains retrospective and uses only the complete prior training population; the failed final optimizer checkpoint remains immutable. Calibrated confidence, withdrawal, unopened evaluation, useful reversible Tier 3 memory and prospective three-engine qualification remain required. Tier 3 must compare actual memory-on behavior against memory-off and shuffled-feedback controls while preserving immutable weights and reset/rollback."
         },
         "first_response_repertoire": {
           "ledger_scope": {

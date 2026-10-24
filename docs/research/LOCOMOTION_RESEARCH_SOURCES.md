@@ -2620,3 +2620,21 @@ original weights and normalization; this experiment therefore does not isolate
 the separate question of why later weight and moment updates lost recovery.
 No external code or model weights are imported, and no ARS benchmark result or
 qualified adaptation capability is claimed.
+
+### Frozen search-candidate native result - 2026-10-24
+
+The [completed selected-artifact comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-frozen-residual-selection-comparison---2026-10-24)
+now verifies 24 fresh CPU worlds and complete independent replay after all
+138 launch controls. The fixed initial perturbation is eligible in 4/4
+weakened and 4/4 healthy groups, preserving healthy quality at
+4/4 starts. The full finite development screen passes; all eight
+disabled trajectories match baseline. Eight closure controls reopen all raw
+evidence and reconstruct scores with zero worlds.
+
+The useful research distinction remains selection versus optimizer update:
+this selected artifact retains its original weights and identity normalization.
+Its outcome does not establish why the fixed final checkpoint failed the
+weakened condition. Fresh deterministic execution on exposed groups
+does not become held-out evidence or independent random sampling. The next
+calibration, withdrawal and reserved-evaluation contracts must preserve those
+separations before any broader adaptation claim.
