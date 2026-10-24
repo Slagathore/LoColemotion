@@ -2414,3 +2414,12 @@ runtime coverage. This project has neither run DAgger nor supplied its expert
 labels or guarantees. No external source code, weights, gains or dependency
 was imported. Temporal commitment, additional state and coverage are local
 hypotheses; useful physical selection and Tier 3 adaptation remain unproved.
+
+The separately implemented [commitment component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-committed-selection-component---2026-10-24)
+now passes sixteen controls with zero worlds, including expiry and support
+withdrawal through both actual core DLLs. It adds temporal selection state
+without refitting the repertoire or updating outcome memory. The original
+invalid command-lease fixture and its successful successor remain distinct.
+Host integration and a fresh matched native comparison are still required;
+this component result does not demonstrate an options-learning algorithm,
+coverage improvement, physical benefit or Tier 3 learning.

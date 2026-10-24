@@ -23,6 +23,17 @@ shuffled successes and the uncovered 0.006 m/s start. Learned-association benefi
 recoverability monitoring, reserved evaluation, useful Tier 3 behavior,
 qualification and release remain unproved.
 
+Latest implementation (2026-10-24): the [supported commitment component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-committed-selection-component---2026-10-24)
+passes **sixteen controls, including both core DLLs**, with zero worlds. It keeps a
+supported logical expert for thirty commands, reconsiders at expiry, and
+terminates commitment immediately on support loss. The casebook, context fit,
+feedback experts, resolver limits and healthy default remain unchanged. An
+invalid command-lease test fixture remains retained; its fresh successor uses
+the actual command-31 input. Host integration and a distinct forty-eight-world
+comparison are next, retaining current and committed frozen/shuffled roles,
+fresh baseline and disabled control across all eight condition/start groups.
+Native usefulness and outcome-memory benefit remain unproved.
+
 Latest diagnosis (2026-10-24): the [complete selection reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-selection-window-and-case-support-diagnosis---2026-10-24)
 reopens all forty trials and passes eight controls with zero new worlds.
 Of the scored thirty-command prediction windows, **2,044/3,199 frozen** and

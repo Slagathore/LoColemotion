@@ -1468,6 +1468,58 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Implemented committed selection component - 2026-10-24
+
+The distinct [provider](../sdk/adaptation_provider/retrieval/committed_feedback_v1.py)
+and [definition](../sdk/adaptation_provider/retrieval/committed_feedback_v1.json)
+implement the timing hypothesis from the complete-population diagnosis below.
+A supported logical expert chosen at command one persists through command
+thirty; command thirty-one reconsiders it using the original gain rule. Loss
+of that expert's current case support ends the commitment immediately, allowing
+another supported selection or exact baseline fallback. Posture and safe-no-
+actuation checks still apply at every command. The shuffled control deliberately
+corrupts the expert association after logical support and commitment checks;
+that support does not establish safety of the mapped expert.
+
+The new model identity is
+`sha256:2b41a1b8c48b8157a077ba98398c1ca8332aa079bbfa394516f385d82c23fd11`.
+It binds the new timing definition while retaining the same 21,165-case fit,
+context estimator, context bounds, feedback experts and corpus. Healthy context
+still chooses baseline. Resolver limits remain 3.5 rad/s absolute correction
+and 0.08 rad/s per-command slew. No weights, cases or outcome memories update.
+This is a Tier 2 component; commitment state is not Tier 3 outcome learning.
+
+All sixteen [component controls](../sdk/discovery/test_committed_feedback_provider.py)
+pass under `sdk2-committed-provider-controls-c3e81e53a643441782a72149a9e59013`.
+They include both real core DLLs, baseline bits, context/case filtering, exact
+expiry, support withdrawal without residual correction, immutable fitted bytes,
+and rejection of crossed identities, stale sequence and rehashed invalid
+commitment state. The suite takes 8.561 s and opens zero worlds. Execution binds
+published `158c334d` plus the three explicitly owned new component files;
+513 source and 1,359 runtime bindings remain unchanged. Receipt SHA-256 is
+`3f41a7fec0866dc129a346157ae51c4379ff095ccb44b99532f956841c9d3392`.
+The [support matrix](../sdk/release/quadruped_support_matrix.json) binds the
+source snapshots, definition, declaration, owner, model and control log.
+
+The earlier attempt
+`sdk2-committed-provider-controls-31328f93e4114af7b05e79512b0bb8de` retains
+fifteen passes and one invalid expiry fixture. Advancing only its state clock
+left the motion command expired, and the actual resolver correctly refused
+`TIME_INVALID:command_expired_or_early`. The fresh attempt uses the original
+retained command-31 observation and command together. Neither the resolver nor
+the observed refusal was changed; the failed receipt remains
+`2662d55066823a1f22ff2261256cfee6ca603e1f630934fe7924e455d1ebee40`.
+
+Next integrate this provider into a distinct host and independent reader,
+then declare a forty-eight-world comparison with six fresh roles: baseline,
+disabled, current frozen, current shuffled, committed frozen and committed
+shuffled. Retain all four healthy and all four weakened starts, including the
+uncovered 0.006 m/s start. The complete safety gate and clean published
+prospective freeze remain prerequisites. No native successor world has run.
+The hardest-start prediction/coverage problem, empirical recoverability,
+useful Tier 3 outcome memory, reserved evaluation and three-engine promotion
+remain open. No qualification or release claim changes.
+
 ### Completed selection-window and case-support diagnosis - 2026-10-24
 
 The [record](../sdk/discovery/conditioned_selection_diagnostic_v1.json) and
