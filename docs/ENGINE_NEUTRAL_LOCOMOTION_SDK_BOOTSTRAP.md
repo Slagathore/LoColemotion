@@ -9,25 +9,26 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest withdrawal implementation (2026-10-24): the [prospective native diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-residual-withdrawal-diagnostic---2026-10-24)
-combines the unchanged selected actor and frozen warning through the public v1
-resolver. **26 component controls** verify 2,800 new-host decisions through both
-core DLLs on retained inputs. The native contract declares **ten fresh CPU
-worlds** on two exposed development groups: selected shadow, automatic guard,
-explicit withdrawal, and a failing actor with and without the guard. Its complete
-gate has **218 controls**. Native execution and useful intervention remain
-pending at this freeze; reserved starts and Tier 3 benefit remain open.
+Latest withdrawal result (2026-10-24): the [completed native diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-withdrawal-diagnostic---2026-10-24)
+verifies **ten fresh CPU worlds**, **14,400 commands** and **72,000 internal
+samples** from published `d8d80cc3`, after **218 safety controls**. Silent
+guarding preserves both selected-controller trajectories exactly. Explicit
+withdrawal reaches zero residual at 0.75 seconds and reenters at 1.0 seconds.
+Automatic withdrawal **rescues neither failing-actor run**: the first tilt
+violation is 1.67 ms later when weakened and 15 ms earlier when healthy.
+All **nine closure controls** pass. Next distinguish intervention timing from
+recovery-controller capability; reserved evaluation and useful Tier 3 memory
+remain open.
 
 Latest warning component (2026-10-24): the [completed shadow-warning fit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-failure-warning-component---2026-10-24)
 reconstructs all **64 training episodes**, including **49 failures**, with
 zero worlds. Both crossfit tuning diagnostics and the full-data model warn
 within the target window for **49/49 failures**, with **0/15 successful
 episodes warned**. These are exposed-training diagnostics, not independent
-calibration. The shortest crossfit warning lead is only **3.33 ms**; empirical
-withdrawal and sufficient intervention time remain unproved. All **20 component,
-eight reader and six closure controls** pass. The next work is a declared
-withdrawal/lead-time study before reserved calibration, evaluation and useful
-reversible Tier 3 memory.
+calibration. The shortest crossfit warning lead is only **3.33 ms**; the native
+intervention results are recorded above. All **20 component, eight reader and
+six closure controls** pass. Sufficient recovery time, independent calibration,
+reserved evaluation and useful reversible Tier 3 memory remain unproved.
 
 Latest selected-artifact closure (2026-10-24): the [completed fresh comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-frozen-residual-selection-comparison---2026-10-24)
 verifies **24 CPU worlds**, **34,560 commands** and **172,800 internal samples**

@@ -21,25 +21,26 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
-Latest withdrawal implementation (2026-10-24): the [prospective native diagnostic](#prospective-residual-withdrawal-diagnostic---2026-10-24)
-combines the unchanged selected actor and frozen warning through the public v1
-resolver. **26 component controls** verify 2,800 new-host decisions through both
-core DLLs on retained inputs. The native contract declares **ten fresh CPU
-worlds** on two exposed development groups: selected shadow, automatic guard,
-explicit withdrawal, and a failing actor with and without the guard. Its complete
-gate has **218 controls**. Native execution and useful intervention remain
-pending at this freeze; reserved starts and Tier 3 benefit remain open.
+Latest withdrawal result (2026-10-24): the [completed native diagnostic](#completed-residual-withdrawal-diagnostic---2026-10-24)
+verifies **ten fresh CPU worlds**, **14,400 commands** and **72,000 internal
+samples** from published `d8d80cc3`, after **218 safety controls**. Silent
+guarding preserves both selected-controller trajectories exactly. Explicit
+withdrawal reaches zero residual at 0.75 seconds and reenters at 1.0 seconds.
+Automatic withdrawal **rescues neither failing-actor run**: the first tilt
+violation is 1.67 ms later when weakened and 15 ms earlier when healthy.
+All **nine closure controls** pass. Next distinguish intervention timing from
+recovery-controller capability; reserved evaluation and useful Tier 3 memory
+remain open.
 
 Latest warning component (2026-10-24): the [completed shadow-warning fit](#completed-residual-failure-warning-component---2026-10-24)
 reconstructs all **64 training episodes**, including **49 failures**, with
 zero worlds. Both crossfit tuning diagnostics and the full-data model warn
 within the target window for **49/49 failures**, with **0/15 successful
 episodes warned**. These are exposed-training diagnostics, not independent
-calibration. The shortest crossfit warning lead is only **3.33 ms**; empirical
-withdrawal and sufficient intervention time remain unproved. All **20 component,
-eight reader and six closure controls** pass. The next work is a declared
-withdrawal/lead-time study before reserved calibration, evaluation and useful
-reversible Tier 3 memory.
+calibration. The shortest crossfit warning lead is only **3.33 ms**; the native
+intervention results are recorded above. All **20 component, eight reader and
+six closure controls** pass. Sufficient recovery time, independent calibration,
+reserved evaluation and useful reversible Tier 3 memory remain unproved.
 
 Latest selected-artifact closure: the [completed fresh comparison](#completed-frozen-residual-selection-comparison---2026-10-24)
 verifies **24 CPU worlds**, **34,560 commands** and **172,800 internal samples**
@@ -1585,6 +1586,68 @@ The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
 
+### Completed residual withdrawal diagnostic - 2026-10-24
+
+The [complete closure](../sdk/discovery/residual_withdrawal_closure_v1.json)
+retains **ten fresh CPU worlds** from clean published `d8d80cc3`, following
+all **218 applicable zero-world controls**. Every declared role completes its
+12-second capture: **14,400 commands / 72,000 internal samples**, with **six
+eligible and four negative trials**. Both exposed `train_001` conditions and
+seed **104240701** match the prospective declaration. The actors, warning and
+thresholds are unchanged; no comparison data fits or selects a model.
+
+**Execution is verified; the two automatic interventions do not rescue the
+challenge actor.** In both selected-actor groups, the silent guard preserves
+the shadow native trace byte-for-byte and changes quality by exactly zero.
+The explicit command-90 request removes a nonzero residual immediately at
+**0.75 seconds**, withholds it for **30 commands**, and reenters at command
+120 / **1.0 seconds**. The first resumed correction is bounded by **0.08 rad/s**
+from the actual zero residual. Both forced-route trials remain eligible.
+Their tracking-quality changes versus shadow are **-0.002607374 m/s**
+(weakened) and **-0.004828619 m/s** (healthy). These are quality-score changes,
+not walking speeds. The explicit request is a route control, not a warning
+prediction or successful rescue.
+
+| Challenge condition | Natural warning and withdrawal | First tilt violation, shadow | First tilt violation, guarded | Guarded change |
+| --- | ---: | ---: | ---: | ---: |
+| Weakened | 0.716667 s | 0.841667 s | 0.843333 s | 1.67 ms later |
+| Healthy | 1.166667 s | 1.266667 s | 1.251667 s | 15 ms earlier |
+
+The warning leads the guarded trial's own first violation by **126.67 ms**
+and **85 ms**, respectively. Neither challenge reenters before its retained
+failure; later unsupported observations continue baseline fallback. All four
+challenge episodes remain negative with null official quality. Their paired
+capped training rewards are equal despite changed failure times, so reward
+equality is not evidence of physical equivalence.
+
+The original independent reader replays every controller decision through
+the other core DLL and checks native state continuity, held commands, forces
+and timing. It does not independently resimulate physics. The
+[closure reader](../sdk/discovery/audit_residual_withdrawal_closure.py) reopens
+the complete retained inventory, reconstructs raw scores and warning/withdrawal/
+reentry events, and preserves that original replay receipt. Its **nine controls**
+open **zero worlds** and perform **zero solver steps**.
+
+- Native attempt: `<evidence-root>/sdk2-residual-withdrawal-d2fee1da3f3d41a18ff1cb838b49320a`,
+  receipt `21c6b6a3ea9b01f49b6e1c811b386d613288eb00eccc74b2c0fb667f0d92e2cc`.
+- Closure controls: `<evidence-root>/sdk2-residual-withdrawal-closure-controls-e86f113370d14311a8218eb716df3791`,
+  receipt `8edfe44fcca337cd0af8488701719a5205bb54d87aade7e5c814f99839fa85cc`.
+- Repository closure SHA-256: `245ffbe943ec9849c1f58e773c8ce962deb2847abbf9b9264b05cc35a4eb733d`.
+- Native execution retains **2,121 artifacts** and unchanged **548 source /
+  1,359 runtime bindings**. Closure controls bind **552 source** files and the
+  same runtime population. Full evidence remains in the durable archive on L:.
+
+The next distinct development question is whether an earlier intervention or a
+more capable recovery action changes these failures. Prospectively separate
+trigger timing, recovery-controller choice and reentry; use fresh paired
+worlds and preserve all failed transfers. The [research follow-up](research/LOCOMOTION_RESEARCH_SOURCES.md#recovery-capacity-and-action-provenance---2026-10-24)
+motivates this separation without importing another method's safety guarantees.
+Do not retune the observed warning contract or treat baseline withdrawal as
+a proven backup. Keep all four reserved starts unopened until a separate
+calibration/evaluation contract, then test useful reversible Tier 3 memory
+against matched frozen, disabled and shuffled controls. This diagnostic grants
+no Tier 2/Tier 3 completion, cross-engine equivalence or release authority.
+
 ### Prospective residual withdrawal diagnostic - 2026-10-24
 
 The [new provider](../sdk/adaptation_provider/warning/control_v1.py) and
@@ -1660,8 +1723,9 @@ causal, immutable linear score for the first original physical violation or
 safe-no-actuation within the next 30 commands (0.25 seconds). The runtime uses
 current canonical observations and the actual prior resolved command.
 Unsupported observations request withdrawal, and reentry requires 30 consecutive
-supported scores below the separate exit threshold. This component runs in
-shadow mode; no host has been authorized to act on its withdrawal requests.
+supported scores below the separate exit threshold. This component ran in
+shadow mode at its freeze. The separately declared native withdrawal successor
+above now records actual interventions without changing this fitted artifact.
 
 All **64 original training episodes**, including **49 failures**, remain in the
 source population. The complete **92,160-command / 460,800-internal-sample**

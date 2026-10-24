@@ -2685,3 +2685,44 @@ A successful handoff will establish execution only. The baseline has no safety
 proof and already fails the weakened condition. Finite intervention outcomes
 cannot inherit the cited methods' statistical or formal safety guarantees.
 No external code or weights are imported, and all reserved starts stay unopened.
+
+### Observed native withdrawal result - 2026-10-24
+
+The [completed diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-withdrawal-diagnostic---2026-10-24)
+preserves the silent selected-controller trajectory in both exposed conditions
+and executes immediate-zero withdrawal plus natural hysteresis reentry in both
+explicit route controls. Automatic withdrawal rescues **0/2 challenge groups**:
+the first tilt violation moves 1.67 ms later in the weakened condition and
+15 ms earlier in the healthy condition. These are paired finite development
+outcomes, not an estimate of robustness or a proof that earlier withdrawal or
+another recovery controller could never work. The result motivates separating
+warning lead from the fallback controller's actual recovery capability.
+All ten outcomes, including four negative trials, remain in the closure.
+
+### Recovery capacity and action provenance - 2026-10-24
+
+[Thananjeyan et al., Recovery RL](https://arxiv.org/abs/2010.15920) separate task
+performance from recovery and use offline failure experience to learn the
+recovery region. Their Algorithm 1 uses different action semantics in two
+buffers: task learning can retain the proposed action under a composite
+environment interpretation, while recovery learning uses the executed action.
+The transferable design idea is explicit separation of objectives and data
+views. Our retained physical history continues to record the command actually
+issued. Any future relabelled training view needs its own declared derivation;
+it cannot replace physical history or prove an unexecuted action's effect.
+
+[Yang et al., Safe Reinforcement Learning for Legged Locomotion](https://arxiv.org/abs/2203.02638)
+tie switching to a recovery controller's capabilities and use predicted future
+states when deciding when to return control. Their experiments also expose the
+cost of planning: the hardware configuration uses a fixed recovery duration,
+and the paper reports remaining failures from controller and trigger-set
+imperfections. Neither their trigger values nor formal assumptions transfer
+automatically to this morphology and velocity-actuation path.
+
+The local next-step inference is to measure the recovery controller's effective
+region before treating a warning threshold or clear-command count as a safety
+boundary. Earlier warnings, capable recovery actions and justified reentry are
+separate variables. Use prospective fresh paired interventions to distinguish
+them, preserve failed transfers, and keep reserved evaluation data out of this
+design loop. These sources inform the successor design; no code or weights are
+imported and no published performance number is adopted as a local claim.
