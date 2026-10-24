@@ -15,7 +15,7 @@ class ClosureControls(unittest.TestCase):
     def setUpClass(cls):
         cls.path = Path(__file__).with_name("cpu_conditioned_feedback_closure_v1.json")
         cls.record = reader.read(cls.path)
-        cls.root = Path(cls.record["evidence_root"])
+        cls.root = Path(cls.record["evidence_root"]).resolve(strict=True)
         cls.attempt = cls.root/cls.record["attempt_id"]
         cls.observed = reader.read(cls.attempt/"independent-audit.json")
         cls.c = reader.declaration()
@@ -202,9 +202,17 @@ class ClosureControls(unittest.TestCase):
             target = self.attempt/"physical/models"/condition/"native-model.json"
             altered = original(target)
             altered["condition_id"] = wrong
-            with patch.object(reader, "read", side_effect=lambda p: altered if Path(p) == target else original(p)):
+            injected = []
+            def read_with_crossed_model(path):
+                # Resolve both aliases so the corruption reaches the actual reader.
+                if Path(path).resolve(strict=True) == target:
+                    injected.append(str(path))
+                    return altered
+                return original(path)
+            with patch.object(reader, "read", side_effect=read_with_crossed_model):
                 with self.assertRaisesRegex(ValueError, "Condition native profile"):
                     self.verify(self.path)
+            self.assertTrue(injected, "Crossed-model stimulus never reached the evidence reader")
 
 
 if __name__ == "__main__":

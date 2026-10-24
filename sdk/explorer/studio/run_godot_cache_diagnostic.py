@@ -45,7 +45,7 @@ def main():
     source=git('rev-parse','HEAD')
     if args.run and (git('status','--porcelain') or git('ls-remote','origin','refs/heads/main').split()[0]!=source):raise RuntimeError('Physics requires clean pushed source')
     folder=args.output.resolve()
-    if not folder.is_relative_to(ROOT.parent/'SporeSpore_Evidence'):raise ValueError('Durable evidence root required')
+    if not folder.is_relative_to((ROOT.parent/'SporeSpore_Evidence').resolve()):raise ValueError('Durable evidence root required')
     folder.mkdir(parents=True,exist_ok=False)
     cfg=json.loads(args.config.read_text(encoding='utf-8-sig'));cfg['source_commit']=source
     if args.live_walking:

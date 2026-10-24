@@ -13,7 +13,7 @@ from studio_layout import ROOT,EVIDENCE,SCHEMA,source_files,verify_source
 def materialize(output,config,portable=False):
     source=verify_source(physical=True)
     output=output.resolve()
-    if not output.is_relative_to(EVIDENCE):raise ValueError('Use the durable evidence root')
+    if not output.is_relative_to(EVIDENCE.resolve()):raise ValueError('Use the durable evidence root')
     paths=['sdk/explorer',':(exclude)sdk/explorer/phase74_diagnostic/**',
            'sdk/conformance/r10v_windows_job.py','sdk/python/sporespore_locomotion.py',
            'sdk/adapters/mujoco/sporespore_mujoco_adapter',

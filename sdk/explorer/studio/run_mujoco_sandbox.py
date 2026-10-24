@@ -146,7 +146,7 @@ def main():
     source=git('rev-parse','HEAD')
     if args.run and (git('status','--porcelain') or git('ls-remote','origin','refs/heads/main').split()[0]!=source):raise RuntimeError('Physics requires clean pushed source')
     output=args.output.resolve()
-    if not output.is_relative_to(ROOT.parent/'SporeSpore_Evidence'):raise ValueError('Durable evidence root required')
+    if not output.is_relative_to((ROOT.parent/'SporeSpore_Evidence').resolve()):raise ValueError('Durable evidence root required')
     output.mkdir(parents=True,exist_ok=False)
     create=jobs.api('CreateMutexW',[C.c_void_p,W.BOOL,W.LPCWSTR],W.HANDLE);release=jobs.api('ReleaseMutex',[W.HANDLE])
     mutex=jobs.checked(create(None,False,'Global\\SporeSpore.Locomotion.PhysicalConformance.Serial.v1'));acquired=False

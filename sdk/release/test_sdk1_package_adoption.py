@@ -27,7 +27,7 @@ def run(output):
     require(subprocess.check_output(["git", "remote", "get-url", "origin"], cwd=ROOT,
                                    text=True).strip() == "https://github.com/Slagathore/LoColemotion.git", "Origin")
     output = output.resolve()
-    require(output.is_relative_to(ROOT.parent / "SporeSpore_Evidence"), "Use durable evidence root")
+    require(output.is_relative_to((ROOT.parent / "SporeSpore_Evidence").resolve()), "Use durable evidence root")
     output.mkdir(parents=True, exist_ok=False)
     compiler = ROOT / "sdk/compile_quadruped_sdk_release_readiness.ps1"
     contract = read(ROOT / "sdk/release/quadruped_release_contract.json")

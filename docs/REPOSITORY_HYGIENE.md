@@ -36,6 +36,15 @@ recursively removing the backup. Both stages hold the project operation mutex;
 no scientific worlds may overlap the migration. Keep validation output outside
 the copied tree until cleanup completes.
 
+If reopened controls fail, preserve their attempt and diagnose the failure.
+A fresh validation directory may carry byte-identical verified copy and switch
+inputs under the original migration basename, with a new parent identity and
+explicit predecessor hashes. This keeps the original backup binding while
+retaining the failed validation. The cleanup program and its acceptance checks
+remain unchanged. Active output guards and corruption fixtures compare
+resolved paths so a compatibility junction neither blocks valid output nor
+turns a negative control into a no-op.
+
 Retain the inventory, file hash manifest, original logs and stage receipts in
 the migration audit, and record its final location and digests in a repository
 closure. Storage verification does not create new physical, adaptation or

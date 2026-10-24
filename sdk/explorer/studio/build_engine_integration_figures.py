@@ -46,7 +46,7 @@ def export(folder):
 
     closure_path, report_path, report, cell = load_trace()
     folder = folder.resolve()
-    if not folder.is_relative_to(ROOT.parent / 'SporeSpore_Evidence'):
+    if not folder.is_relative_to((ROOT.parent / 'SporeSpore_Evidence').resolve()):
         raise ValueError('Durable evidence root required')
     folder.mkdir(parents=True, exist_ok=False)
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'font.size': 11,

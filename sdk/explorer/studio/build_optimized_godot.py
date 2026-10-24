@@ -37,7 +37,7 @@ def main():
     if args.build and (git('status', '--porcelain') or git('ls-remote', 'origin', 'refs/heads/main').split()[0] != source):
         raise RuntimeError('Build requires clean pushed source')
     folder = args.output.resolve()
-    if not folder.is_relative_to(ROOT.parent / 'SporeSpore_Evidence'):
+    if not folder.is_relative_to((ROOT.parent / 'SporeSpore_Evidence').resolve()):
         raise ValueError('Durable evidence root required')
     cfg = json.loads(args.config.read_text(encoding='utf-8-sig'))
     checkout = Path('C:/Users/Cole/CodeStuff/dependencies/godot-sporespore-4.7-r10ac-contact-frames-v7')
