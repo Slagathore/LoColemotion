@@ -21,15 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
-Latest recovery implementation (2026-10-24): the [prospective paired handoff diagnostic](#prospective-paired-recovery-handoff-diagnostic---2026-10-24)
-separates switching time from recovery-controller choice. The unchanged failing
-actor hands control to either baseline or the unchanged selected actor at
-command 60 or the frozen warning's first request. A one-way episode latch
-excludes return to the failing actor. **26 component controls** verify **5,120
-new-host decisions** and **1,280 original-actor comparisons** through both core
-DLLs with zero worlds. The contract declares **14 fresh CPU worlds** and a
-**275-control gate**, which now passes. Native recovery remains pending at this freeze; all
-reserved starts and Tier 2/Tier 3 qualification remain open.
+Latest recovery result (2026-10-24): the [completed paired handoff diagnostic](#completed-paired-recovery-handoff-diagnostic---2026-10-24)
+verifies **14 fresh CPU worlds**, **20,160 commands** and **100,800 internal
+samples** from published `24e1ee2d`. All eight interventions match their fresh
+challenge prefix exactly, but **0/8 rescue the failing trajectory**. Earlier
+handoff delays healthy failure by 0.790 seconds with baseline and 0.955 seconds
+with the selected actor; it makes the weakened failures earlier. All **275
+prelaunch controls** and **ten closure controls** pass. Next develop a distinct
+bounded recovery objective from exposed challenge prefixes and test that
+capability before changing warning thresholds or reopening reentry. Reserved
+starts, useful Tier 3 memory and Tier 2/Tier 3 qualification remain open.
 
 Latest withdrawal result (2026-10-24): the [completed native diagnostic](#completed-residual-withdrawal-diagnostic---2026-10-24)
 verifies **ten fresh CPU worlds**, **14,400 commands** and **72,000 internal
@@ -1595,6 +1596,66 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Completed paired recovery handoff diagnostic - 2026-10-24
+
+The [native closure](../sdk/discovery/residual_recovery_closure_v1.json)
+records the complete comparison from clean, published **24e1ee2d15a14720940525dc4103a03dde10060b**.
+All **275 safety controls** pass before **14 fresh CPU MuJoCo worlds** open:
+**20,160 controller commands**, **100,800 internal samples**, two exposed groups,
+seed **104240801**, and a fixed **12-second** horizon. No GPU, training,
+reserved calibration or evaluation world opens.
+
+**None of the eight interventions rescues its challenge trajectory.** The
+table accounts for every world; a time denotes the first declared tilt
+violation, and completion means eligibility through this finite horizon.
+
+| Controller arrangement | Weakened left motors | Healthy motors |
+| --- | --- | --- |
+| Selected actor throughout | Completes 12 s | Completes 12 s |
+| Challenge actor throughout | 0.841667 s | 1.266667 s |
+| Baseline throughout | 1.063333 s | Completes 12 s |
+| Baseline from command 60 | 0.825000 s | 2.056667 s |
+| Baseline at warning | 0.843333 s | 1.251667 s |
+| Selected actor from command 60 | 0.798333 s | 2.221667 s |
+| Selected actor at warning | 0.841667 s | 1.253333 s |
+
+The scheduled handoff occurs at **0.5 seconds** in both conditions. The unchanged
+warning triggers at **command 86 / 0.716667 seconds** when weakened and
+**command 140 / 1.166667 seconds** when healthy. Every handoff is delivered.
+Baseline handoff removes the residual immediately; selected-actor handoff
+applies the original actor while preserving the **0.08 rad/s per-command slew**
+from actual preceding corrections. The one-way latch and unsupported fallback
+remain intact.
+
+All **8/8 native prefixes and handoff observations** exactly match their fresh
+challenge-only reference. Earlier intervention is not uniformly beneficial:
+relative to challenge-only, early baseline/selected handoff moves weakened
+failure **16.67/43.33 ms earlier**, while delaying healthy failure
+**0.790/0.955 seconds**. These are failure-time changes, not successful recovery
+or quality improvement. All **11 negative trials** retain null official
+quality; only the three eligible controls receive quality scores.
+
+The original independent reader reconstructs every command with the other
+core DLL and verifies native state, held inputs, forces and timing without
+new physics. The [closure reader](../sdk/discovery/audit_residual_recovery_closure.py)
+reopens all **2,520 retained artifacts**, reconstructs raw scores, handoff
+transitions and paired prefixes, and preserves that original replay receipt.
+All **ten closure controls** pass with zero new worlds. The native owner retains
+**565 source / 1,359 runtime bindings** unchanged. Exact attempt identities and
+digests are in the closure and support matrix.
+
+**Next:** develop recovery as a distinct bounded objective using the exposed
+challenge prefixes and actual executed-action history. Fresh starts can
+reproduce the declared challenge prefix before a candidate handoff, avoiding
+unverified native-state restoration. Freeze any new training objective,
+candidate population, handoff times and comparison rules prospectively, then
+run the complete gate before new worlds. Evaluate recovery capability before
+retuning warnings or introducing return-to-task decisions. This result does
+not prove that every earlier timing or another controller must fail.
+No weights or thresholds were fitted here; all four reserved starts remain
+unopened. Safe-backup, Tier 2/Tier 3, broader robustness and release authority
+remain false.
 
 ### Prospective paired recovery handoff diagnostic - 2026-10-24
 

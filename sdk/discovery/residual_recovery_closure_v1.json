@@ -1,0 +1,1141 @@
+{
+  "schema_version": "locolemotion_residual_recovery_closure_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "frozen_actor_recovery_development",
+    "question_class": "development"
+  },
+  "status": "complete_native_recovery_diagnostic",
+  "synthetic": false,
+  "source_commit": "24e1ee2d15a14720940525dc4103a03dde10060b",
+  "contract_path": "sdk/discovery/residual_recovery_v1.json",
+  "contract_sha256": "647a31a611ef11df2c323428e7f08a8697814c95031e3564b2437b060eae8470",
+  "selection_record_sha256": "15240c1e54bd92b4cff6fce1b7a706edfdd0a7a2b2aa2fd010c8f18f67c5b07a",
+  "model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+  "challenge_actor_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+  "recovery_actor_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+  "warning_model_sha256": "sha256:1ca62d154320deb1159f9370bbc3da3660346750297cc1d06b437133cb3548b5",
+  "predecessor_closure_sha256": "245ffbe943ec9849c1f58e773c8ce962deb2847abbf9b9264b05cc35a4eb733d",
+  "attempt_id": "sdk2-residual-recovery-e204ffc107da4cfdbfadacdf3fcd03d0",
+  "receipt_sha256": "1a47baef6ef448baf97ad99181d60e4cde1df54e3733e6bd8457d86a46cc0822",
+  "declaration_sha256": "578ea84e914768191c667970a69e4ffcd6fcd5791bad79c4703ddb03e485ff5c",
+  "audit_sha256": "45c5e4a21e3f7ee00a9868af5c150e5957144171290d02d74179681990b6cf9f",
+  "gate_receipt_sha256": "743f036acaa5feb3182b7ba39b9a285c8645fd09bc105ce19e1ce4cd8a2747bf",
+  "closure_reader_path": "sdk/discovery/audit_residual_recovery_closure.py",
+  "closure_reader_sha256": "c50f8930fdc3b415b7e57d4fe2b8c87acb58474591bea73f3f364c66742077a5",
+  "summary": {
+    "source_commit": "24e1ee2d15a14720940525dc4103a03dde10060b",
+    "lane": "comparison",
+    "constructed_cpu_worlds": 14,
+    "constructed_gpu_worlds": 0,
+    "training_worlds": 0,
+    "comparison_worlds": 14,
+    "controller_rows": 20160,
+    "internal_rows": 100800,
+    "eligible_trials": 3,
+    "negative_trials": 11,
+    "training_supported_features": 0,
+    "training_unsupported_features": 0,
+    "completed_stages": [
+      "comparison"
+    ],
+    "stage_records": [
+      {
+        "stage": "comparison",
+        "stage_claim_sha256": "ec8427fb2b96fca693dbf9251c2ddfc750852c45051f1f3984b747d87c2712ba",
+        "audit_sha256": "45c5e4a21e3f7ee00a9868af5c150e5957144171290d02d74179681990b6cf9f",
+        "constructed_cpu_worlds": 14,
+        "controller_rows": 20160,
+        "internal_rows": 100800
+      }
+    ],
+    "final_comparison": {
+      "groups": [
+        {
+          "group_id": "left_075_train_001",
+          "controls": {
+            "selected_only": {
+              "eligible": true,
+              "quality_m_s": -0.09665286969263888,
+              "first_failure": null
+            },
+            "challenge_only": {
+              "eligible": false,
+              "quality_m_s": null,
+              "first_failure": {
+                "internal_step": 505,
+                "time_s": 0.8416666666666726,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            "baseline_only": {
+              "eligible": false,
+              "quality_m_s": null,
+              "first_failure": {
+                "internal_step": 638,
+                "time_s": 1.0633333333333443,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            }
+          },
+          "interventions": [
+            {
+              "role": "early_baseline",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": -0.01666666666666705,
+              "first_failure": {
+                "internal_step": 495,
+                "time_s": 0.8250000000000055,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 60,
+                  "time_s": 0.49999999999999806,
+                  "reason": "scheduled_early",
+                  "destination": "baseline",
+                  "prediction_score": 0.21003692818663774,
+                  "provider_status": "uncertain",
+                  "adaptation_applied": false,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": true,
+                  "maximum_actual_correction_delta_rad_s": 1.365938836562293,
+                  "active_actor_model_sha256": null
+                },
+                "handoff_command": 60,
+                "scheduled_request_commands": [
+                  60
+                ],
+                "requested_actor_commands": {
+                  "selected": 0,
+                  "challenge": 60,
+                  "baseline": 1380
+                },
+                "selected_applied_commands": 0,
+                "challenge_applied_commands": 59,
+                "actual_baseline_commands": 1381,
+                "prediction_threshold_commands": 13,
+                "first_prediction_command": 86,
+                "unsupported_commands": 1341,
+                "first_unsupported_command": 99,
+                "first_failure": {
+                  "internal_step": 495,
+                  "time_s": 0.8250000000000055,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 0.32500000000000745,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_left_075_train_001",
+                "handoff_command": 60,
+                "compared_commands": 60,
+                "compared_internal_samples": 300,
+                "prefix_trace_sha256": "b2f08f703376d6b348347052c2b1579fbb2439af8f0752f32dc7ce86f38473be",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            },
+            {
+              "role": "warning_baseline",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": 0.0016666666666667052,
+              "first_failure": {
+                "internal_step": 506,
+                "time_s": 0.8433333333333393,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 86,
+                  "time_s": 0.7166666666666697,
+                  "reason": "prediction_threshold",
+                  "destination": "baseline",
+                  "prediction_score": 0.9665811362900734,
+                  "provider_status": "uncertain",
+                  "adaptation_applied": false,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": true,
+                  "maximum_actual_correction_delta_rad_s": 1.1240853244420161,
+                  "active_actor_model_sha256": null
+                },
+                "handoff_command": 86,
+                "scheduled_request_commands": [],
+                "requested_actor_commands": {
+                  "selected": 0,
+                  "challenge": 86,
+                  "baseline": 1354
+                },
+                "selected_applied_commands": 0,
+                "challenge_applied_commands": 85,
+                "actual_baseline_commands": 1355,
+                "prediction_threshold_commands": 15,
+                "first_prediction_command": 86,
+                "unsupported_commands": 1338,
+                "first_unsupported_command": 102,
+                "first_failure": {
+                  "internal_step": 506,
+                  "time_s": 0.8433333333333393,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 0.1266666666666696,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_left_075_train_001",
+                "handoff_command": 86,
+                "compared_commands": 86,
+                "compared_internal_samples": 430,
+                "prefix_trace_sha256": "9b5706bcd6078930fadefb6413d649b677f8e4213cf068966faffbfc4d2dead0",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            },
+            {
+              "role": "early_selected",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": -0.043333333333334334,
+              "first_failure": {
+                "internal_step": 479,
+                "time_s": 0.7983333333333382,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 60,
+                  "time_s": 0.49999999999999806,
+                  "reason": "scheduled_early",
+                  "destination": "selected",
+                  "prediction_score": 0.21003692818663774,
+                  "provider_status": "applied",
+                  "adaptation_applied": true,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": false,
+                  "maximum_actual_correction_delta_rad_s": 0.08000000000000007,
+                  "active_actor_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f"
+                },
+                "handoff_command": 60,
+                "scheduled_request_commands": [
+                  60
+                ],
+                "requested_actor_commands": {
+                  "selected": 1380,
+                  "challenge": 60,
+                  "baseline": 0
+                },
+                "selected_applied_commands": 36,
+                "challenge_applied_commands": 59,
+                "actual_baseline_commands": 1345,
+                "prediction_threshold_commands": 15,
+                "first_prediction_command": 81,
+                "unsupported_commands": 1344,
+                "first_unsupported_command": 96,
+                "first_failure": {
+                  "internal_step": 479,
+                  "time_s": 0.7983333333333382,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 0.29833333333334017,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_left_075_train_001",
+                "handoff_command": 60,
+                "compared_commands": 60,
+                "compared_internal_samples": 300,
+                "prefix_trace_sha256": "b2f08f703376d6b348347052c2b1579fbb2439af8f0752f32dc7ce86f38473be",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            },
+            {
+              "role": "warning_selected",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": 0.0,
+              "first_failure": {
+                "internal_step": 505,
+                "time_s": 0.8416666666666726,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 86,
+                  "time_s": 0.7166666666666697,
+                  "reason": "prediction_threshold",
+                  "destination": "selected",
+                  "prediction_score": 0.9665811362900734,
+                  "provider_status": "applied",
+                  "adaptation_applied": true,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": false,
+                  "maximum_actual_correction_delta_rad_s": 0.08000000000000007,
+                  "active_actor_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f"
+                },
+                "handoff_command": 86,
+                "scheduled_request_commands": [],
+                "requested_actor_commands": {
+                  "selected": 1354,
+                  "challenge": 86,
+                  "baseline": 0
+                },
+                "selected_applied_commands": 15,
+                "challenge_applied_commands": 85,
+                "actual_baseline_commands": 1340,
+                "prediction_threshold_commands": 15,
+                "first_prediction_command": 86,
+                "unsupported_commands": 1339,
+                "first_unsupported_command": 101,
+                "first_failure": {
+                  "internal_step": 505,
+                  "time_s": 0.8416666666666726,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 0.1250000000000029,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_left_075_train_001",
+                "handoff_command": 86,
+                "compared_commands": 86,
+                "compared_internal_samples": 430,
+                "prefix_trace_sha256": "9b5706bcd6078930fadefb6413d649b677f8e4213cf068966faffbfc4d2dead0",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            }
+          ],
+          "early_minus_warning_failure_time_s": {
+            "baseline": -0.018333333333333757,
+            "selected": -0.043333333333334334
+          },
+          "selected_minus_baseline_failure_time_s": {
+            "early": -0.026666666666667282,
+            "warning": -0.0016666666666667052
+          }
+        },
+        {
+          "group_id": "nominal_train_001",
+          "controls": {
+            "selected_only": {
+              "eligible": true,
+              "quality_m_s": -0.09387660594733661,
+              "first_failure": null
+            },
+            "challenge_only": {
+              "eligible": false,
+              "quality_m_s": null,
+              "first_failure": {
+                "internal_step": 760,
+                "time_s": 1.2666666666666824,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            "baseline_only": {
+              "eligible": true,
+              "quality_m_s": -0.09978960607936949,
+              "first_failure": null
+            }
+          },
+          "interventions": [
+            {
+              "role": "early_baseline",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": 0.7900000000000105,
+              "first_failure": {
+                "internal_step": 1234,
+                "time_s": 2.056666666666693,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 60,
+                  "time_s": 0.49999999999999806,
+                  "reason": "scheduled_early",
+                  "destination": "baseline",
+                  "prediction_score": 0.0972526643933263,
+                  "provider_status": "uncertain",
+                  "adaptation_applied": false,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": true,
+                  "maximum_actual_correction_delta_rad_s": 1.3211421049341594,
+                  "active_actor_model_sha256": null
+                },
+                "handoff_command": 60,
+                "scheduled_request_commands": [
+                  60
+                ],
+                "requested_actor_commands": {
+                  "selected": 0,
+                  "challenge": 60,
+                  "baseline": 1380
+                },
+                "selected_applied_commands": 0,
+                "challenge_applied_commands": 59,
+                "actual_baseline_commands": 1381,
+                "prediction_threshold_commands": 15,
+                "first_prediction_command": 232,
+                "unsupported_commands": 1193,
+                "first_unsupported_command": 247,
+                "first_failure": {
+                  "internal_step": 1234,
+                  "time_s": 2.056666666666693,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 1.5566666666666948,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_nominal_train_001",
+                "handoff_command": 60,
+                "compared_commands": 60,
+                "compared_internal_samples": 300,
+                "prefix_trace_sha256": "5f148d0e5737f6d34bfaef35bcecb78eab43f57451e1dbaa03b984012f100081",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            },
+            {
+              "role": "warning_baseline",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": -0.015000000000000346,
+              "first_failure": {
+                "internal_step": 751,
+                "time_s": 1.251666666666682,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 140,
+                  "time_s": 1.16666666666668,
+                  "reason": "prediction_threshold",
+                  "destination": "baseline",
+                  "prediction_score": 0.9468905604384411,
+                  "provider_status": "uncertain",
+                  "adaptation_applied": false,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": true,
+                  "maximum_actual_correction_delta_rad_s": 0.7887078501626263,
+                  "active_actor_model_sha256": null
+                },
+                "handoff_command": 140,
+                "scheduled_request_commands": [],
+                "requested_actor_commands": {
+                  "selected": 0,
+                  "challenge": 140,
+                  "baseline": 1300
+                },
+                "selected_applied_commands": 0,
+                "challenge_applied_commands": 139,
+                "actual_baseline_commands": 1301,
+                "prediction_threshold_commands": 11,
+                "first_prediction_command": 140,
+                "unsupported_commands": 1289,
+                "first_unsupported_command": 151,
+                "first_failure": {
+                  "internal_step": 751,
+                  "time_s": 1.251666666666682,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 0.08500000000000196,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_nominal_train_001",
+                "handoff_command": 140,
+                "compared_commands": 140,
+                "compared_internal_samples": 700,
+                "prefix_trace_sha256": "ced0758c8bc502e00aee67c6caf8841c2f58c2cd1f6aa1a0e9fcc512191d4dbd",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            },
+            {
+              "role": "early_selected",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": 0.9549999999999923,
+              "first_failure": {
+                "internal_step": 1333,
+                "time_s": 2.2216666666666747,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 60,
+                  "time_s": 0.49999999999999806,
+                  "reason": "scheduled_early",
+                  "destination": "selected",
+                  "prediction_score": 0.0972526643933263,
+                  "provider_status": "applied",
+                  "adaptation_applied": true,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": false,
+                  "maximum_actual_correction_delta_rad_s": 0.08000000000000007,
+                  "active_actor_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f"
+                },
+                "handoff_command": 60,
+                "scheduled_request_commands": [
+                  60
+                ],
+                "requested_actor_commands": {
+                  "selected": 1380,
+                  "challenge": 60,
+                  "baseline": 0
+                },
+                "selected_applied_commands": 207,
+                "challenge_applied_commands": 59,
+                "actual_baseline_commands": 1174,
+                "prediction_threshold_commands": 18,
+                "first_prediction_command": 249,
+                "unsupported_commands": 1173,
+                "first_unsupported_command": 267,
+                "first_failure": {
+                  "internal_step": 1333,
+                  "time_s": 2.2216666666666747,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 1.7216666666666767,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_nominal_train_001",
+                "handoff_command": 60,
+                "compared_commands": 60,
+                "compared_internal_samples": 300,
+                "prefix_trace_sha256": "5f148d0e5737f6d34bfaef35bcecb78eab43f57451e1dbaa03b984012f100081",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            },
+            {
+              "role": "warning_selected",
+              "eligible": false,
+              "challenge_negative_and_intervention_eligible": false,
+              "quality_m_s": null,
+              "quality_change_from_selected_control_m_s": null,
+              "quality_change_from_baseline_control_m_s": null,
+              "failure_time_change_from_challenge_s": -0.013333333333333641,
+              "first_failure": {
+                "internal_step": 752,
+                "time_s": 1.2533333333333487,
+                "failure_codes": [
+                  "tilt"
+                ]
+              },
+              "recovery": {
+                "command_count": 1440,
+                "handoff": {
+                  "command": 140,
+                  "time_s": 1.16666666666668,
+                  "reason": "prediction_threshold",
+                  "destination": "selected",
+                  "prediction_score": 0.9468905604384411,
+                  "provider_status": "applied",
+                  "adaptation_applied": true,
+                  "previous_nonzero_residual": true,
+                  "actual_zero_residual": false,
+                  "maximum_actual_correction_delta_rad_s": 0.08000000000000002,
+                  "active_actor_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f"
+                },
+                "handoff_command": 140,
+                "scheduled_request_commands": [],
+                "requested_actor_commands": {
+                  "selected": 1300,
+                  "challenge": 140,
+                  "baseline": 0
+                },
+                "selected_applied_commands": 11,
+                "challenge_applied_commands": 139,
+                "actual_baseline_commands": 1290,
+                "prediction_threshold_commands": 11,
+                "first_prediction_command": 140,
+                "unsupported_commands": 1289,
+                "first_unsupported_command": 151,
+                "first_failure": {
+                  "internal_step": 752,
+                  "time_s": 1.2533333333333487,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "handoff_lead_to_own_failure_s": 0.08666666666666867,
+                "reentry_permitted": false,
+                "safe_backup_established": false,
+                "sufficient_intervention_lead_established": false,
+                "calibrated_probability": false
+              },
+              "paired_prefix": {
+                "reference_trial_id": "comparison_challenge_only_nominal_train_001",
+                "handoff_command": 140,
+                "compared_commands": 140,
+                "compared_internal_samples": 700,
+                "prefix_trace_sha256": "ced0758c8bc502e00aee67c6caf8841c2f58c2cd1f6aa1a0e9fcc512191d4dbd",
+                "identical_before_handoff": true,
+                "handoff_observation_identical": true,
+                "no_handoff_full_horizon": false
+              }
+            }
+          ],
+          "early_minus_warning_failure_time_s": {
+            "baseline": 0.8050000000000108,
+            "selected": 0.9683333333333259
+          },
+          "selected_minus_baseline_failure_time_s": {
+            "early": 0.16499999999998183,
+            "warning": 0.0016666666666667052
+          }
+        }
+      ],
+      "fixed_models_and_thresholds": true,
+      "reentry_permitted": false,
+      "tier2_qualified": false,
+      "tier3_benefit_established": false,
+      "safe_backup_established": false,
+      "release_authority": false
+    },
+    "owner_wall_s": 1286.0930000000008,
+    "artifact_count": 2520,
+    "trials": [
+      {
+        "trial_id": "comparison_selected_only_left_075_train_001",
+        "stage": "comparison",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "role": "selected_only",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": true,
+        "diagnostic_failure_codes": [],
+        "training_reward": -0.2811004654922126,
+        "reward_denominator": 7200,
+        "first_reward_failure": null,
+        "failure_padded_samples": 0,
+        "official_quality_m_s": -0.09665286969263888,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 1439,
+        "refused_commands": 0
+      },
+      {
+        "trial_id": "comparison_challenge_only_left_075_train_001",
+        "stage": "comparison",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "role": "challenge_only",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9923930718908226,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 505,
+          "time_s": 0.8416666666666726,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6696,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 100,
+        "refused_commands": 1339
+      },
+      {
+        "trial_id": "comparison_baseline_only_left_075_train_001",
+        "stage": "comparison",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "role": "baseline_only",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "height",
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9803332439340117,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 638,
+          "time_s": 1.0633333333333443,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6563,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 0,
+        "refused_commands": 1312
+      },
+      {
+        "trial_id": "comparison_early_baseline_left_075_train_001",
+        "stage": "comparison",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "role": "early_baseline",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9921747657193085,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 495,
+          "time_s": 0.8250000000000055,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6706,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 59,
+        "refused_commands": 1380
+      },
+      {
+        "trial_id": "comparison_warning_baseline_left_075_train_001",
+        "stage": "comparison",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "role": "warning_baseline",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9923930718908226,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 506,
+          "time_s": 0.8433333333333393,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6695,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 85,
+        "refused_commands": 1354
+      },
+      {
+        "trial_id": "comparison_early_selected_left_075_train_001",
+        "stage": "comparison",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "role": "early_selected",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9923923838150247,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 479,
+          "time_s": 0.7983333333333382,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6722,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 95,
+        "refused_commands": 1344
+      },
+      {
+        "trial_id": "comparison_warning_selected_left_075_train_001",
+        "stage": "comparison",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "role": "warning_selected",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9923930718908226,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 505,
+          "time_s": 0.8416666666666726,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6696,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 100,
+        "refused_commands": 1339
+      },
+      {
+        "trial_id": "comparison_selected_only_nominal_train_001",
+        "stage": "comparison",
+        "group_id": "nominal_train_001",
+        "condition_id": "nominal",
+        "role": "selected_only",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": true,
+        "diagnostic_failure_codes": [],
+        "training_reward": -0.27300116410694186,
+        "reward_denominator": 7200,
+        "first_reward_failure": null,
+        "failure_padded_samples": 0,
+        "official_quality_m_s": -0.09387660594733661,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 1439,
+        "refused_commands": 0
+      },
+      {
+        "trial_id": "comparison_challenge_only_nominal_train_001",
+        "stage": "comparison",
+        "group_id": "nominal_train_001",
+        "condition_id": "nominal",
+        "role": "challenge_only",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "height",
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9795855003874965,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 760,
+          "time_s": 1.2666666666666824,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6441,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 151,
+        "refused_commands": 1288
+      },
+      {
+        "trial_id": "comparison_baseline_only_nominal_train_001",
+        "stage": "comparison",
+        "group_id": "nominal_train_001",
+        "condition_id": "nominal",
+        "role": "baseline_only",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": true,
+        "diagnostic_failure_codes": [],
+        "training_reward": -0.2686300561135256,
+        "reward_denominator": 7200,
+        "first_reward_failure": null,
+        "failure_padded_samples": 0,
+        "official_quality_m_s": -0.09978960607936949,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 0,
+        "refused_commands": 0
+      },
+      {
+        "trial_id": "comparison_early_baseline_nominal_train_001",
+        "stage": "comparison",
+        "group_id": "nominal_train_001",
+        "condition_id": "nominal",
+        "role": "early_baseline",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9486470092605543,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 1234,
+          "time_s": 2.056666666666693,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 5967,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 59,
+        "refused_commands": 1380
+      },
+      {
+        "trial_id": "comparison_warning_baseline_nominal_train_001",
+        "stage": "comparison",
+        "group_id": "nominal_train_001",
+        "condition_id": "nominal",
+        "role": "warning_baseline",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "height",
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9795855003874965,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 751,
+          "time_s": 1.251666666666682,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6450,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 139,
+        "refused_commands": 1300
+      },
+      {
+        "trial_id": "comparison_early_selected_nominal_train_001",
+        "stage": "comparison",
+        "group_id": "nominal_train_001",
+        "condition_id": "nominal",
+        "role": "early_selected",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.929568426385749,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 1333,
+          "time_s": 2.2216666666666747,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 5868,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 266,
+        "refused_commands": 1173
+      },
+      {
+        "trial_id": "comparison_warning_selected_nominal_train_001",
+        "stage": "comparison",
+        "group_id": "nominal_train_001",
+        "condition_id": "nominal",
+        "role": "warning_selected",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "provider_model_sha256": "sha256:f568930ea6abd95e525c6c7806bf5674a4c81ec16378e0ea320eaf3abd70b9f0",
+        "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+        "diagnostic_eligible": false,
+        "diagnostic_failure_codes": [
+          "height",
+          "tilt",
+          "torso_contact"
+        ],
+        "training_reward": -0.9795855003874965,
+        "reward_denominator": 7200,
+        "first_reward_failure": {
+          "internal_step": 752,
+          "time_s": 1.2533333333333487,
+          "failure_codes": [
+            "tilt"
+          ]
+        },
+        "failure_padded_samples": 6449,
+        "official_quality_m_s": null,
+        "supported_feature_rows": null,
+        "unsupported_feature_rows": null,
+        "nonzero_correction_commands": 150,
+        "refused_commands": 1289
+      }
+    ]
+  },
+  "complete_safety_controls": 275,
+  "source_binding_count": 565,
+  "runtime_binding_count": 1359,
+  "closure_controls_required": 10,
+  "reserved_starts_opened": 0,
+  "training_worlds_opened": 0,
+  "comparison_data_used_for_fitting": false,
+  "return_to_challenge_permitted": false,
+  "reader_scope": "Reopens the complete original artifact inventory and reconstructs raw rewards, censored quality, controller handoff transitions and all eight fresh paired prefixes. Preserves the original full other-core command replay receipt; opens no native worlds and does not repeat physics or the command replay.",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "tier2_complete": false,
+  "tier3_complete": false,
+  "tier3_benefit_established": false,
+  "safe_backup_established": false,
+  "sufficient_intervention_lead_established": false,
+  "threshold_has_independent_validation": false
+}

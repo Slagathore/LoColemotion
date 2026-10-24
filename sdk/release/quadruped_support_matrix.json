@@ -168,7 +168,7 @@
       "automatic_live_encyclopedia_rewrite_permitted": false,
       "promotion_requires_frozen_data_model_and_cross_engine_validation": true,
       "bounded_residual_recovery": {
-        "status": "implemented_zero_world_validated_native_pending",
+        "status": "complete_native_recovery_diagnostic_no_rescues",
         "ledger_scope": {
           "subsystem": "adaptation",
           "engine_scope": "mujoco_cpu",
@@ -205,10 +205,10 @@
           "warning_selected"
         ],
         "planned_cpu_worlds": 14,
-        "constructed_cpu_worlds": 0,
+        "constructed_cpu_worlds": 14,
         "constructed_gpu_worlds": 0,
         "reserved_starts_opened": 0,
-        "new_physical_outcomes": false,
+        "new_physical_outcomes": true,
         "comparison_data_used_for_fitting": false,
         "return_to_challenge_permitted": false,
         "native_recovery_verified": false,
@@ -218,7 +218,57 @@
         "tier2_complete": false,
         "tier3_complete": false,
         "physical_acceptance_authority": false,
-        "release_authority": false
+        "release_authority": false,
+        "native_freeze_commit": "24e1ee2d15a14720940525dc4103a03dde10060b",
+        "native_attempt_id": "sdk2-residual-recovery-e204ffc107da4cfdbfadacdf3fcd03d0",
+        "native_receipt_sha256": "1a47baef6ef448baf97ad99181d60e4cde1df54e3733e6bd8457d86a46cc0822",
+        "native_gate_receipt_sha256": "743f036acaa5feb3182b7ba39b9a285c8645fd09bc105ce19e1ce4cd8a2747bf",
+        "native_audit_sha256": "45c5e4a21e3f7ee00a9868af5c150e5957144171290d02d74179681990b6cf9f",
+        "closure_path": "sdk/discovery/residual_recovery_closure_v1.json",
+        "closure_sha256": "a8109b24df55de1ceb1d337a7ea7ad9bf5ef70f4e2337f375b47402e15e766a3",
+        "closure_controls_attempt_id": "sdk2-residual-recovery-closure-controls-c348c1194c9a467b8c7f5618bed27979",
+        "closure_controls_receipt_sha256": "fb33617568df3823253d08f986df16fd0ab63d12f87950eeb96f7cecc76ecb5d",
+        "closure_controls_passed": 10,
+        "controller_rows": 20160,
+        "internal_rows": 100800,
+        "retained_artifact_count": 2520,
+        "original_source_binding_count": 565,
+        "original_runtime_binding_count": 1359,
+        "native_handoff_execution_verified": true,
+        "finite_outcomes": {
+          "eligible_trials": 3,
+          "negative_trials": 11,
+          "intervention_trials": 8,
+          "successful_interventions": 0,
+          "exact_fresh_paired_prefixes": 8,
+          "selected_initial_state_successes": 2,
+          "selected_initial_state_trials": 2,
+          "baseline_initial_state_successes": 1,
+          "baseline_initial_state_trials": 2,
+          "failed_official_quality_is_null": true,
+          "all_first_failures": "tilt"
+        },
+        "first_failure_times_s": {
+          "left_075_train_001": {
+            "selected_only": null,
+            "challenge_only": 0.8416666666666726,
+            "baseline_only": 1.0633333333333443,
+            "early_baseline": 0.8250000000000055,
+            "warning_baseline": 0.8433333333333393,
+            "early_selected": 0.7983333333333382,
+            "warning_selected": 0.8416666666666726
+          },
+          "nominal_train_001": {
+            "selected_only": null,
+            "challenge_only": 1.2666666666666824,
+            "baseline_only": null,
+            "early_baseline": 2.056666666666693,
+            "warning_baseline": 1.251666666666682,
+            "early_selected": 2.2216666666666747,
+            "warning_selected": 1.2533333333333487
+          }
+        },
+        "next_step": "Prospectively define bounded recovery training from exposed challenge prefixes with actual executed-action history; evaluate capability before warning retuning or reentry."
       },
       "bounded_residual_withdrawal": {
         "status": "complete_native_execution_no_challenge_rescue",

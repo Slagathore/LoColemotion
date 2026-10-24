@@ -2743,3 +2743,25 @@ is an unchanged exposed discovery artifact, not a recovery policy trained using
 either cited method. Its initial-state successes do not prove capability from
 challenge-generated states. No external code or weights are imported. Reserved
 starts remain unopened, and all fourteen outcomes must be retained.
+
+### Observed paired recovery handoffs - 2026-10-24
+
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-paired-recovery-handoff-diagnostic---2026-10-24)
+finds **0/8 successful interventions** on two exposed groups with exact fresh
+pre-handoff prefixes. The selected actor succeeds from both initial states but
+fails after all four challenge-to-selected transfers. Earlier handoff delays
+healthy failure by 0.790 seconds with baseline and 0.955 seconds with the
+selected actor, while moving weakened failure earlier. Timing has a
+condition-dependent effect within this finite comparison; neither an initial-
+state success nor a warning establishes a recoverable region.
+
+The local next-step inference is to develop a distinct bounded recovery
+objective from exposed challenge prefixes, keeping proposed actions, actual
+issued commands and any derived training view explicit. Reproduce the prefix
+from fresh setup before handoff rather than assuming that partial native-state
+restoration is valid. Freeze new training and comparison rules before
+execution, and evaluate recovery capability before retuning the trigger or
+adding reentry. This applies the cited separation of task and recovery
+objectives; it does not reproduce either paper's training method or inherit a
+safety guarantee. All fourteen outcomes remain retained, no external code or
+weights are imported, and reserved starts stay unopened.

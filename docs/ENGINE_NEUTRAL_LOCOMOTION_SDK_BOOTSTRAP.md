@@ -9,15 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest recovery implementation (2026-10-24): the [prospective paired handoff diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-recovery-handoff-diagnostic---2026-10-24)
-separates switching time from recovery-controller choice. The unchanged failing
-actor hands control to either baseline or the unchanged selected actor at
-command 60 or the frozen warning's first request. A one-way episode latch
-excludes return to the failing actor. **26 component controls** verify **5,120
-new-host decisions** and **1,280 original-actor comparisons** through both core
-DLLs with zero worlds. The contract declares **14 fresh CPU worlds** and a
-**275-control gate**, which now passes. Native recovery remains pending at this freeze; all
-reserved starts and Tier 2/Tier 3 qualification remain open.
+Latest recovery result (2026-10-24): the [completed paired handoff diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-paired-recovery-handoff-diagnostic---2026-10-24)
+verifies **14 fresh CPU worlds**, **20,160 commands** and **100,800 internal
+samples** from published `24e1ee2d`. All eight interventions match their fresh
+challenge prefix exactly, but **0/8 rescue the failing trajectory**. Earlier
+handoff delays healthy failure by 0.790 seconds with baseline and 0.955 seconds
+with the selected actor; it makes the weakened failures earlier. All **275
+prelaunch controls** and **ten closure controls** pass. Next develop a distinct
+bounded recovery objective from exposed challenge prefixes and test that
+capability before changing warning thresholds or reopening reentry. Reserved
+starts, useful Tier 3 memory and Tier 2/Tier 3 qualification remain open.
 
 Latest withdrawal result (2026-10-24): the [completed native diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-withdrawal-diagnostic---2026-10-24)
 verifies **ten fresh CPU worlds**, **14,400 commands** and **72,000 internal
