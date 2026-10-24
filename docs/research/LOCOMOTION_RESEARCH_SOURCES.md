@@ -2533,3 +2533,19 @@ mismatch. The [prospective manifest correction](../SDK_PRODUCT_AND_ADAPTATION_RO
 adds a real snapshot-manifest control: fourteen focused controls pass and the
 required launch gate is 86. The physical plan is unchanged. This retained
 infrastructure failure adds no physical observations or research authority.
+
+### Completed native residual route follow-through - 2026-10-24
+
+The [native route closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-native-execution-route---2026-10-24)
+now verifies actual combined-controller transitions in three one-second CPU
+worlds, with all 86 launch controls and six closure controls. Zero residual
+preserves the complete baseline trace; the untrained probe changes actual
+inputs and positions. This closes the interface question and supplies no
+training-data, policy-improvement or method-replication authority.
+
+Portable control consumed 4.738 s of the measured 6.179 s loop total, while
+native integration consumed 0.062 s. This small descriptive observation
+motivates production-path profiling before a larger training budget; it is
+not a GPU scaling result. Group-balanced failure rewards, prospective
+conditions/seeds/budget and complete reward/update replay still precede
+learning. The original research motivations and all promotion gates remain.

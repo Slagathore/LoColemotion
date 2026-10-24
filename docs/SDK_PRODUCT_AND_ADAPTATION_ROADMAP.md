@@ -21,7 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
-Latest native closure: the [committed selection comparison](#completed-committed-selection-comparison---2026-10-24)
+Latest native route: the [residual smoke closure](#completed-residual-native-execution-route---2026-10-24)
+completes three fresh CPU worlds from 2f8fb95e after all 86 controls, with full
+independent replay of 360 commands and 1,800 internal steps. Zero residual
+preserves the absent-provider trajectory exactly; the untrained probe changes
+both held input and native position at internal step 6. Six closure controls
+reopen all 1,202 artifacts without new worlds. This verifies execution, not
+training or locomotion benefit. Measured portable-control cost dominates this
+short run; profile it before scaling the separately declared training successor.
+
+Latest controller-comparison closure: the [committed selection comparison](#completed-committed-selection-comparison---2026-10-24)
 completed **48 fresh CPU worlds** from published `d228a4d4` after all **388
 safety controls**. Independent replay verifies **29/48 eligible and 19/48
 negative**. The current frozen/shuffled selectors each pass 2/4 weakened
@@ -37,8 +46,8 @@ both core DLLs, with 88 canonical values and continuous resolved-action history.
 No native dynamics or training transitions were generated. The [native launch
 manifest correction](#corrected-residual-native-launch-manifest---2026-10-24)
 retains a zero-world prelaunch failure and passes fourteen focused controls.
-Next run the unchanged three-world route after all 86 safety controls, then
-freeze the training reward, update audit and budget. Learned-association
+The native route is now closed above. Next profile the production control
+path and freeze the training reward, update audit and budget. Learned-association
 benefit, empirical recovery monitoring, reserved evaluation, useful Tier 3
 behavior and release remain unproved.
 
@@ -1530,6 +1539,61 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Completed residual native execution route - 2026-10-24
+
+The [native closure](../sdk/discovery/residual_native_closure_v1.json) records
+**three fresh CPU worlds**, zero GPU worlds and zero training/evaluation worlds
+from clean published **2f8fb95e**. All **86 applicable safety controls** and the
+zero-world preflight passed before the single-use launch. Each absent, frozen
+zero-residual and untrained frozen-probe role completed 120 commands and 600
+internal steps at the single declared nominal start: **360 commands / 1,800
+internal samples** in total.
+
+The zero-residual raw native trajectory is **byte-identical to absent provider**.
+The probe transferred nonzero corrections on **119 commands**; its first
+different held solver input and first different native position both occur at
+**internal step 6**. The independent baseline-core reader reproduces every
+controller decision and observation/history/solver-input join. All controllers
+close, all three diagnostic prefixes stay within the declared height, tilt and
+torso-contact limits, and all official quality scores remain null. One-second
+untrained interface stimuli establish neither whole-cycle/full-horizon
+performance nor locomotion improvement, calibrated support or useful memory.
+
+Native attempt: sdk2-residual-native-04bd979f12d44cc1afa32b8a61c07de6.
+Receipt SHA-256: 309892e72cbc40c373d43750472ef980a68ff54703f4a16ad207bfb4d93bbbc1.
+Closure SHA-256: 8bd842a5997762d2e0776c47e589584d03c23bf1f0c1fe9d9a9405a7a992270d.
+The complete inventory binds **1,202 artifacts / 757,742,870 bytes**, **492 source
+bindings** at the frozen Git commit and **1,359 runtime bindings**. Native work
+took **6.520 s**; the complete gate, execution and original audit took **153.703 s**.
+The earlier prelaunch manifest failure remains separately retained with zero
+worlds and no consumed claim.
+
+Six [closure controls](../sdk/discovery/test_residual_native_closure.py) pass:
+complete original replay with guarded world APIs, authority/population refusal,
+exact path/inventory/digest checks, crossed or incomplete records, null official
+quality, changed-reader refusal and missing historical source refusal. The
+[closure reader](../sdk/discovery/audit_residual_native_closure.py) reopens every
+artifact and checks the frozen source instead of substituting current HEAD.
+It conservatively requires unchanged replay dependencies. It opens no worlds.
+Verification attempt: sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140.
+Verification receipt SHA-256: b50e30342e6b0dbe2b9e541332001f4064262a1f74d46e53385628fcca3590dc.
+
+The three captured loops spent **4.738 s in portable control** versus **0.062 s
+in native integration**, out of **6.179 s** total loop time. Their JSONL streams
+occupy **33,296,125 bytes**. These are descriptive costs for this small CPU route,
+not a throughput or scaling benchmark. Profile the composition/provider/resolver
+before expanding the training budget; GPU physics alone does not address the
+dominant measured cost here. Preserve complete solver inputs and timing when
+considering capture changes.
+
+Next freeze an actual training contract: group-balanced rewards and failure
+treatment, complete condition/start groups, seeds, iteration/world limits and
+independent reward/ARS-update replay. Training must use combined-controller
+transitions from new worlds; the smoke stimuli have no training-data authority.
+Fresh full-horizon healthy/degraded comparison, calibrated support, empirical
+withdrawal, reserved evaluation and three-engine qualification remain open.
+Tier 2 and useful Tier 3 remain incomplete.
 
 ### Corrected residual native launch manifest - 2026-10-24
 

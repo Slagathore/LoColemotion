@@ -167,6 +167,278 @@
       "episode_feedback_can_create_candidate_chapters": true,
       "automatic_live_encyclopedia_rewrite_permitted": false,
       "promotion_requires_frozen_data_model_and_cross_engine_validation": true,
+      "bounded_residual_native_route": {
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "development_smoke",
+          "question_class": "development"
+        },
+        "status": "complete_native_residual_route",
+        "attempt_id": "sdk2-residual-native-04bd979f12d44cc1afa32b8a61c07de6",
+        "source_commit": "2f8fb95ec1acad9f09f913632ab67335a19b432f",
+        "receipt_sha256": "309892e72cbc40c373d43750472ef980a68ff54703f4a16ad207bfb4d93bbbc1",
+        "audit_sha256": "6e83934ea5085fa1c3f4388ffdcedabf5f66b4a2cda9ae000764a02b72ec45fe",
+        "source_binding_count": 492,
+        "runtime_binding_count": 1359,
+        "trial_count": 3,
+        "constructed_cpu_worlds": 3,
+        "constructed_gpu_worlds": 0,
+        "controller_rows": 360,
+        "internal_rows": 1800,
+        "training_worlds": 0,
+        "evaluation_worlds": 0,
+        "native_route_verified": true,
+        "adaptation_benefit_established": false,
+        "trained_residual_provider": false,
+        "weights_updated_online": false,
+        "confidence_calibrated": false,
+        "tier2_complete": false,
+        "tier3_complete": false,
+        "complete_zero_world_gate": {
+          "measurement": 7,
+          "quadruped": 10,
+          "portable": 11,
+          "motor-task": 7,
+          "cpu-motor": 7,
+          "causal-history": 5,
+          "residual-optimizer": 10,
+          "residual-provider": 12,
+          "residual-native": 14,
+          "provider": 2,
+          "containment": 1
+        },
+        "finite_outcomes": {
+          "native_path_comparison": {
+            "zero_residual_native_trace_bit_identical": true,
+            "probe_first_different_internal_input": 6,
+            "probe_first_different_native_position": 6,
+            "native_response_verified": true,
+            "locomotion_benefit_established": false
+          },
+          "trials": [
+            {
+              "trial_id": "route_nominal_absent",
+              "role": "absent",
+              "condition_id": "nominal",
+              "partition": "development_smoke",
+              "seed": 104240301,
+              "controller_rows": 120,
+              "internal_rows": 600,
+              "provider_model_sha256": "sha256:51c918ead960c17cd16d9954030b05a03a14775f1c5c6ec93362808b5fdf8fac",
+              "control_applied_commands": 0,
+              "nonzero_correction_commands": 0,
+              "refused_commands": 0,
+              "diagnostic_metrics": {
+                "minimum_height_m": 0.4266144156195515,
+                "maximum_tilt_rad": 0.12073568547823481,
+                "torso_contact_steps": 0,
+                "ground_contact_steps": 599,
+                "nonzero_force_steps": 600,
+                "safe_no_actuation_steps": 0,
+                "first_physical_violation": null,
+                "forward_displacement_m": 0.05243506108382611
+              },
+              "diagnostic_failure_codes": [],
+              "diagnostic_eligible": true,
+              "official_quality_m_s": null,
+              "selection_authority": false
+            },
+            {
+              "trial_id": "route_nominal_zero",
+              "role": "zero",
+              "condition_id": "nominal",
+              "partition": "development_smoke",
+              "seed": 104240301,
+              "controller_rows": 120,
+              "internal_rows": 600,
+              "provider_model_sha256": "sha256:51c918ead960c17cd16d9954030b05a03a14775f1c5c6ec93362808b5fdf8fac",
+              "control_applied_commands": 119,
+              "nonzero_correction_commands": 0,
+              "refused_commands": 0,
+              "diagnostic_metrics": {
+                "minimum_height_m": 0.4266144156195515,
+                "maximum_tilt_rad": 0.12073568547823481,
+                "torso_contact_steps": 0,
+                "ground_contact_steps": 599,
+                "nonzero_force_steps": 600,
+                "safe_no_actuation_steps": 0,
+                "first_physical_violation": null,
+                "forward_displacement_m": 0.05243506108382611
+              },
+              "diagnostic_failure_codes": [],
+              "diagnostic_eligible": true,
+              "official_quality_m_s": null,
+              "selection_authority": false
+            },
+            {
+              "trial_id": "route_nominal_probe",
+              "role": "probe",
+              "condition_id": "nominal",
+              "partition": "development_smoke",
+              "seed": 104240301,
+              "controller_rows": 120,
+              "internal_rows": 600,
+              "provider_model_sha256": "sha256:1116bc2cf7f4efdead1263d53ffc7091bc249ba6509b2b70e1db545d43b1c8b1",
+              "control_applied_commands": 119,
+              "nonzero_correction_commands": 119,
+              "refused_commands": 0,
+              "diagnostic_metrics": {
+                "minimum_height_m": 0.42813865352648733,
+                "maximum_tilt_rad": 0.05827976273228993,
+                "torso_contact_steps": 0,
+                "ground_contact_steps": 599,
+                "nonzero_force_steps": 600,
+                "safe_no_actuation_steps": 0,
+                "first_physical_violation": null,
+                "forward_displacement_m": 0.06456541422629215
+              },
+              "diagnostic_failure_codes": [],
+              "diagnostic_eligible": true,
+              "official_quality_m_s": null,
+              "selection_authority": false
+            }
+          ],
+          "training_data_authority": false,
+          "controller_selection_authority": false,
+          "adaptation_benefit_established": false,
+          "tier3_benefit_established": false,
+          "release_authority": false
+        },
+        "artifact_count": 1202,
+        "artifact_bytes": 757742870,
+        "closure_path": "sdk/discovery/residual_native_closure_v1.json",
+        "closure_sha256": "8bd842a5997762d2e0776c47e589584d03c23bf1f0c1fe9d9a9405a7a992270d",
+        "native_worker_wall_s": 6.520456000000195,
+        "owner_wall_s": 153.70299999999952,
+        "original_sources_and_runtime_unchanged": true,
+        "physical_acceptance_authority": false,
+        "training_data_authority": false,
+        "controller_selection_authority": false,
+        "release_authority": false,
+        "capture_cost_observation": {
+          "scope": "three_one_second_CPU_development_loops_at_one_start; descriptive_not_a_scaling_benchmark",
+          "capture_profile": "complete_controller_internal_force_contact_state_and_timing_streams",
+          "jsonl_capture_bytes": 33296125,
+          "per_role_measured_s": {
+            "absent": {
+              "prepare_s": 0.0011813000091933645,
+              "observation_readback_s": 0.11720830000740534,
+              "portable_control_s": 0.8828500999843527,
+              "controller_capture_and_control_transfer_s": 0.1964669999997568,
+              "integration_and_device_history_s": 0.019749799994315254,
+              "internal_readback_and_capture_s": 0.113873699978285,
+              "outer_total_s": 1.3321123000023363
+            },
+            "zero": {
+              "prepare_s": 0.001285299989831401,
+              "observation_readback_s": 0.12326020000364224,
+              "portable_control_s": 2.0752881999997044,
+              "controller_capture_and_control_transfer_s": 0.24583879999408964,
+              "integration_and_device_history_s": 0.022113200018793577,
+              "internal_readback_and_capture_s": 0.13246650000110094,
+              "outer_total_s": 2.601221799986888
+            },
+            "probe": {
+              "prepare_s": 0.001290499994865968,
+              "observation_readback_s": 0.1115692999901512,
+              "portable_control_s": 1.7800964999987627,
+              "controller_capture_and_control_transfer_s": 0.2167216999878292,
+              "integration_and_device_history_s": 0.020152100021732622,
+              "internal_readback_and_capture_s": 0.11468629998671531,
+              "outer_total_s": 2.245406299987735
+            }
+          },
+          "total_measured_s": {
+            "prepare_s": 0.0037570999938907335,
+            "observation_readback_s": 0.3520378000011988,
+            "portable_control_s": 4.73823479998282,
+            "controller_capture_and_control_transfer_s": 0.6590274999816756,
+            "integration_and_device_history_s": 0.06201510003484145,
+            "internal_readback_and_capture_s": 0.36102649996610126,
+            "outer_total_s": 6.1787403999769595
+          },
+          "portable_control_fraction": 0.7668609608522294,
+          "native_integration_fraction": 0.010036851529653635
+        },
+        "closure_verification": {
+          "attempt_id": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140",
+          "receipt_sha256": "b50e30342e6b0dbe2b9e541332001f4064262a1f74d46e53385628fcca3590dc",
+          "declaration_sha256": "ff321fda5adc6319ca86046073fb563ebab83dcf9df13ac44742c1613cc27dd5",
+          "owner_sha256": "da46d764e0d98a375e4e5ecc9a79512864f9dc9f9660d4989679b876b369f8ce",
+          "controls_passed": 6,
+          "stderr_sha256": "6990f61fbb3ab45c2683153c31ee12dd161fafd837bee870b0b1b0270a96321f",
+          "source_bindings": {
+            "sdk/discovery/audit_residual_native_closure.py": "592170c718f51b43f76a2e394806ead6c8ea86d796442ac4f5f932b9462eed9f",
+            "sdk/discovery/test_residual_native_closure.py": "817c21ebe1a071fc472498619d1338cddc67cc3962cf626962a48996cb31c6ea",
+            "sdk/discovery/residual_native_closure_v1.json": "8bd842a5997762d2e0776c47e589584d03c23bf1f0c1fe9d9a9405a7a992270d"
+          },
+          "source_binding_count": 494,
+          "runtime_binding_count": 1359,
+          "source_runtime_unchanged": true,
+          "worlds_opened": 0,
+          "solver_steps": 0,
+          "artifact_count": 11,
+          "artifact_bytes": 779018,
+          "artifacts": [
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/artifacts/complete-replay.json",
+              "byte_length": 4182,
+              "sha256": "79f7ae3f12b8f49ca8811f0f1b7a0d3a0317029012bcb529392675d54aecd6e8"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/controls/contained.permit",
+              "byte_length": 5,
+              "sha256": "38f5814a6bc595a68b9554ff4c5eba9791e775a47e658c3f04dc6d63f10f0c57"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/controls/leaf.json",
+              "byte_length": 1191,
+              "sha256": "d30289140e40d1a710e9a515ab0832ee3b1216d98a42c9b8de78bbc6993c8cf4"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/controls/stderr.log",
+              "byte_length": 1144,
+              "sha256": "6990f61fbb3ab45c2683153c31ee12dd161fafd837bee870b0b1b0270a96321f"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/controls/stdout.log",
+              "byte_length": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/declaration.json",
+              "byte_length": 358266,
+              "sha256": "ff321fda5adc6319ca86046073fb563ebab83dcf9df13ac44742c1613cc27dd5"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/owner.py",
+              "byte_length": 4283,
+              "sha256": "da46d764e0d98a375e4e5ecc9a79512864f9dc9f9660d4989679b876b369f8ce"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/receipt.json",
+              "byte_length": 1423,
+              "sha256": "b50e30342e6b0dbe2b9e541332001f4064262a1f74d46e53385628fcca3590dc"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/source/audit_residual_native_closure.py",
+              "byte_length": 12683,
+              "sha256": "592170c718f51b43f76a2e394806ead6c8ea86d796442ac4f5f932b9462eed9f"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/source/residual_native_closure_v1.json",
+              "byte_length": 389811,
+              "sha256": "8bd842a5997762d2e0776c47e589584d03c23bf1f0c1fe9d9a9405a7a992270d"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-native-closure-controls-5d51c9ee39bf45ad97a0197b895da140/source/test_residual_native_closure.py",
+              "byte_length": 6030,
+              "sha256": "817c21ebe1a071fc472498619d1338cddc67cc3962cf626962a48996cb31c6ea"
+            }
+          ]
+        }
+      },
       "bounded_residual_native_route_launch_fix": {
         "ledger_scope": {
           "subsystem": "adaptation",
@@ -6092,7 +6364,7 @@
               "release_authority": false
             }
           },
-          "next_development_question": "The first prospective residual launch stopped before tests or worlds because the owner used forward-slash lookup keys against inherited Windows source paths; its zero-world failure is retained. The corrected manifest canonicalizes aliases, rejects conflicts and passes fourteen focused controls. Publish this successor, then require all 86 applicable safety controls before the unchanged three one-second absent/zero/probe development worlds. After actual native route closure, define group-balanced failure rewards, complete conditions/starts, seeds, iterations and a world budget, and implement independent reward and ARS update replay before training on combined-controller transitions. Full-horizon healthy/degraded comparisons, calibrated support, empirical recovery withdrawal, useful Tier 3 memory and three-engine qualification remain open; reserved partitions stay unopened."
+          "next_development_question": "The contained residual route is now physically verified: three fresh CPU smoke worlds, exact absent/zero trajectory identity, nonzero input and native position divergence at internal step 6, and full independent replay after all 86 controls. Six closure controls reopen all 1202 artifacts with zero new worlds; this is not training or locomotion-benefit evidence. In these three one-second loops portable control consumed 4.738 s and native integration 0.062 s, so profile the production composition/provider/resolver before scaling training; retain full solver inputs and timing. Then freeze group-balanced training/failure rewards, all condition/start groups, seeds, iterations and world budget, and implement complete independent reward/ARS-update replay before training on actual combined-controller transitions. Full-horizon healthy/degraded comparisons, calibrated support, empirical recovery withdrawal, useful Tier 3 memory and three-engine qualification remain open; reserved partitions stay unopened."
         },
         "first_response_repertoire": {
           "ledger_scope": {
