@@ -311,7 +311,7 @@
             "authority_mode": "development_discovery",
             "question_class": "development"
           },
-          "status": "prepared_zero_world_gate_passed",
+          "status": "complete_native_cpu_support_vertical_empty_shortlist",
           "declaration": "sdk/discovery/cpu_support_vertical_v1.json",
           "declaration_sha256": "9886104ef6e84636b02a0039cf247a26fbf3693611d0306a48c726cdced2b5a0",
           "provider": "sdk/adaptation_provider/support_vertical_feedback_v1.py",
@@ -467,16 +467,526 @@
           },
           "selection_rule": "Require all four starts eligible per activation role; rank mean whole-episode tracking quality, then role index. Preserve failures and censored quality.",
           "prospective_contrast_count": 20,
-          "physical_attempt_started": false,
-          "training_data_authority": false,
-          "controller_selection_authority": false,
+          "physical_attempt_started": true,
+          "training_data_authority": true,
+          "controller_selection_authority": true,
           "adaptation_benefit_established": false,
           "nominal_preservation_established": false,
           "learned_selection": false,
           "calibration_worlds": 0,
           "evaluation_worlds": 0,
           "qualification_or_release_authority": false,
-          "next_question": "Publish the exact tested source, repeat the complete 250-control gate, execute all sixteen fresh CPU trials and independently replay the full population. Select only roles eligible at every declared start; preserve every failed or invalid outcome. Healthy-body preservation and learned control remain separate subsequent work."
+          "next_question": "Diagnose the common first 96 commands (0.8 s) from all sixteen retained training trials: actual gait phase, expected versus observed contact, joint-command tracking and clamp effects. Label the interval post-hoc and preserve all roles and outcomes without causal promotion. Then declare a distinct coordination/control successor before fresh full-horizon and healthy-body checks or a learned action mapping. Reserved calibration/evaluation and prior confirmation remain excluded.",
+          "attempt_id": "sdk2-cpu-support-vertical-50c80cec5ebe4ac8beb2d8dcc5f40b8e",
+          "source_commit": "cdc77febb454528284eb8ce561d9693012e89cee",
+          "closure": "sdk/discovery/cpu_support_vertical_closure_v1.json",
+          "closure_sha256": "e094dfadc2178da94c17b69696a6ac776871cbe48900f4d7edd93bc4eb2253db",
+          "closure_reader": "sdk/discovery/audit_cpu_support_vertical_closure.py",
+          "closure_reader_sha256": "9aafac1665bdc61a535b4749e9beaab3727cdd46cec64804219f942ae84de9fb",
+          "receipt_sha256": "84392b96ddd59744c26dd6ad6bc9def3c8624f6d167b3fc06485740ecfc74c64",
+          "audit_sha256": "d1a055544eb080757a1381854e02587c62c26eb36c55e21efe4e0e0f5eff81d8",
+          "controller_rows": 23040,
+          "internal_rows": 115200,
+          "eligible_episodes": 2,
+          "negative_episodes": 14,
+          "episode_denominator": 16,
+          "selected_role_index": null,
+          "ranked_role_indices": [],
+          "role_results": [
+            {
+              "role_index": 0,
+              "role_id": "baseline",
+              "candidate_index": 0,
+              "activation_step": null,
+              "eligible": 0,
+              "denominator": 4,
+              "outcomes": [
+                "negative",
+                "negative",
+                "negative",
+                "negative"
+              ],
+              "failure_codes": [
+                "height;tilt;torso_contact",
+                "tilt;torso_contact",
+                "tilt;torso_contact",
+                "height;tilt;torso_contact"
+              ],
+              "qualities_m_s": [
+                null,
+                null,
+                null,
+                null
+              ],
+              "mean_quality_m_s": null,
+              "complete_eligible_group": false
+            },
+            {
+              "role_index": 1,
+              "role_id": "height_immediate",
+              "candidate_index": 2,
+              "activation_step": 0,
+              "eligible": 1,
+              "denominator": 4,
+              "outcomes": [
+                "positive",
+                "negative",
+                "negative",
+                "negative"
+              ],
+              "failure_codes": [
+                null,
+                "tilt;torso_contact",
+                "tilt;torso_contact",
+                "tilt;torso_contact"
+              ],
+              "qualities_m_s": [
+                -0.12524272656931362,
+                null,
+                null,
+                null
+              ],
+              "mean_quality_m_s": null,
+              "complete_eligible_group": false
+            },
+            {
+              "role_index": 2,
+              "role_id": "vertical_immediate",
+              "candidate_index": 3,
+              "activation_step": 0,
+              "eligible": 1,
+              "denominator": 4,
+              "outcomes": [
+                "positive",
+                "negative",
+                "negative",
+                "negative"
+              ],
+              "failure_codes": [
+                null,
+                "tilt;torso_contact",
+                "tilt;torso_contact",
+                "tilt;torso_contact"
+              ],
+              "qualities_m_s": [
+                -0.11638711366704119,
+                null,
+                null,
+                null
+              ],
+              "mean_quality_m_s": null,
+              "complete_eligible_group": false
+            },
+            {
+              "role_index": 3,
+              "role_id": "vertical_after_16",
+              "candidate_index": 3,
+              "activation_step": 16,
+              "eligible": 0,
+              "denominator": 4,
+              "outcomes": [
+                "negative",
+                "negative",
+                "negative",
+                "negative"
+              ],
+              "failure_codes": [
+                "tilt;torso_contact",
+                "tilt;torso_contact",
+                "tilt;torso_contact",
+                "tilt;torso_contact"
+              ],
+              "qualities_m_s": [
+                null,
+                null,
+                null,
+                null
+              ],
+              "mean_quality_m_s": null,
+              "complete_eligible_group": false
+            }
+          ],
+          "paired_contrasts": [
+            {
+              "start_id": "train_001",
+              "contrast_id": "height_minus_baseline",
+              "left_outcome": "positive",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_001",
+              "contrast_id": "immediate_minus_baseline",
+              "left_outcome": "positive",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_001",
+              "contrast_id": "early_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_001",
+              "contrast_id": "immediate_minus_height",
+              "left_outcome": "positive",
+              "right_outcome": "positive",
+              "both_eligible": true,
+              "quality_difference_m_s": 0.008855612902272436
+            },
+            {
+              "start_id": "train_001",
+              "contrast_id": "early_minus_immediate",
+              "left_outcome": "negative",
+              "right_outcome": "positive",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_003",
+              "contrast_id": "height_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_003",
+              "contrast_id": "immediate_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_003",
+              "contrast_id": "early_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_003",
+              "contrast_id": "immediate_minus_height",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_003",
+              "contrast_id": "early_minus_immediate",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_004",
+              "contrast_id": "height_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_004",
+              "contrast_id": "immediate_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_004",
+              "contrast_id": "early_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_004",
+              "contrast_id": "immediate_minus_height",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_004",
+              "contrast_id": "early_minus_immediate",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_006",
+              "contrast_id": "height_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_006",
+              "contrast_id": "immediate_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_006",
+              "contrast_id": "early_minus_baseline",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_006",
+              "contrast_id": "immediate_minus_height",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            },
+            {
+              "start_id": "train_006",
+              "contrast_id": "early_minus_immediate",
+              "left_outcome": "negative",
+              "right_outcome": "negative",
+              "both_eligible": false,
+              "quality_difference_m_s": null
+            }
+          ],
+          "positive_trials": [
+            {
+              "trial_id": "left_075_train_001_height_immediate",
+              "native_metrics": {
+                "minimum_height_m": 0.40975023981328024,
+                "maximum_tilt_rad": 0.26375080514368976,
+                "torso_contact_steps": 0,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": 1.2160593213176805,
+                "first_physical_violation": null
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.4278118884744096,
+                "lateral_displacement_m": -0.03405399183982258,
+                "quality_m_s": -0.12524272656931362
+              },
+              "eligible_window_count": 48
+            },
+            {
+              "trial_id": "left_075_train_001_vertical_immediate",
+              "native_metrics": {
+                "minimum_height_m": 0.40321001454013433,
+                "maximum_tilt_rad": 0.25753022835321376,
+                "torso_contact_steps": 0,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "forward_displacement_m": 1.1711269184548219,
+                "first_physical_violation": null
+              },
+              "episode_metrics": {
+                "mean_height_m": 0.4261075408622696,
+                "lateral_displacement_m": -0.006493140446891328,
+                "quality_m_s": -0.11638711366704119
+              },
+              "eligible_window_count": 48
+            }
+          ],
+          "first_physical_violations": [
+            {
+              "trial_id": "left_075_train_001_baseline",
+              "failure_code": "height;tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 638,
+                "time_s": 1.0633333333333443,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_001_height_immediate",
+              "failure_code": null,
+              "first_physical_violation": null
+            },
+            {
+              "trial_id": "left_075_train_001_vertical_immediate",
+              "failure_code": null,
+              "first_physical_violation": null
+            },
+            {
+              "trial_id": "left_075_train_001_vertical_after_16",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 834,
+                "time_s": 1.3900000000000186,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_003_baseline",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 691,
+                "time_s": 1.1516666666666797,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_003_height_immediate",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 1266,
+                "time_s": 2.1100000000000203,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_003_vertical_immediate",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 1250,
+                "time_s": 2.0833333333333566,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_003_vertical_after_16",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 1238,
+                "time_s": 2.0633333333333588,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_004_baseline",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 698,
+                "time_s": 1.1633333333333467,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_004_height_immediate",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 1453,
+                "time_s": 2.4216666666666526,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_004_vertical_immediate",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 1329,
+                "time_s": 2.2150000000000087,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_004_vertical_after_16",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 1259,
+                "time_s": 2.098333333333355,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_006_baseline",
+              "failure_code": "height;tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 567,
+                "time_s": 0.9450000000000083,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_006_height_immediate",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 813,
+                "time_s": 1.3550000000000177,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_006_vertical_immediate",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 842,
+                "time_s": 1.4033333333333522,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            },
+            {
+              "trial_id": "left_075_train_006_vertical_after_16",
+              "failure_code": "tilt;torso_contact",
+              "first_physical_violation": {
+                "internal_step": 636,
+                "time_s": 1.060000000000011,
+                "failure_codes": [
+                  "tilt"
+                ]
+              }
+            }
+          ],
+          "artifact_count": 11725,
+          "artifact_bytes": 2617732655,
+          "native_worker_wall_s": 248.09404840000207,
+          "independent_audit_wall_s": 196.2004933999997,
+          "closure_generation_attempt": "sdk2-support-vertical-closure-generation-324af96a042b410b890e46f66d701c45",
+          "closure_controls": {
+            "attempt_id": "sdk2-support-vertical-closure-controls-76d9430d9493484cb553fc0780edf47c",
+            "count": 7,
+            "source": "sdk/discovery/test_cpu_support_vertical_closure.py",
+            "source_sha256": "700d2dff06016698261f53413fd33dfd29bb4edb2df3da7872e6ff77fcf9013e",
+            "wall_seconds": 261.979,
+            "stderr_sha256": "5944c41338c22ea170e32ceca46144c4ef03d529babea01e82817d717761251e"
+          }
         },
         "height_activation_discovery": {
           "ledger_scope": {

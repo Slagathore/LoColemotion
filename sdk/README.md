@@ -1,12 +1,14 @@
 # LoColemotion Locomotion SDK
 
-The [support-vertical successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-support-vertical-comparison---2026-10-23)
-is implemented and passes all **250 applicable controls** with zero new worlds.
-It compensates only opposing baseline vertical motion during observed support,
-while retaining the existing height equations and resolver limits. The next
-fresh comparison declares four roles at four starts for twelve seconds each;
-a role must pass all four before selection. Native usefulness, healthy-body
-preservation, learned choice and release remain unproved.
+The [support-vertical comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
+is closed after all 250 controls and sixteen fresh CPU worlds from `cdc77feb`.
+Independent replay verifies 23,040 decisions and 115,200 internal samples:
+**2/16 eligible, 14/16 negative**. Current height and immediate compensation each
+pass one of four starts; baseline and delayed compensation pass none. No role
+qualifies for selection. One eligible paired score improves by 0.00885561 m/s,
+with slightly less forward travel; this does not establish a useful family.
+Seven closure controls pass. Phase/contact coordination and command tracking
+are the next retained-data questions; adaptation and release remain unproved.
 
 The [height-composition diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
 verifies 480 retained decisions and 2,400 internal samples from all four

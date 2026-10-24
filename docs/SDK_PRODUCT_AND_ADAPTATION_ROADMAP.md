@@ -21,6 +21,13 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-22
 
+Latest controller result: the [support-vertical comparison](#completed-support-vertical-comparison---2026-10-23)
+retains 2/16 eligible trials and 14/16 negatives after complete independent
+replay. No role passes all four starts. The immediate successor improves one
+eligible paired tracking score but does not broaden coverage. Next diagnose
+phase/contact coordination and command tracking from retained data before a
+new controller; useful context-selected behavior remains unproved.
+
 SDK1 is complete at **20/20** under the October 3 retained receipt; the full
 program remains **19/25**. The August sections below are history, not the current
 queue. The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) and
@@ -1415,6 +1422,75 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed support-vertical comparison - 2026-10-23
+
+The [closure](../sdk/discovery/cpu_support_vertical_closure_v1.json) and
+[executable verifier](../sdk/discovery/audit_cpu_support_vertical_closure.py)
+retain the complete attempt
+`sdk2-cpu-support-vertical-50c80cec5ebe4ac8beb2d8dcc5f40b8e` at clean pushed
+source `cdc77febb454528284eb8ce561d9693012e89cee`. All **250 applicable controls**
+and the zero-world preflight passed again before the sixteen fresh native CPU
+worlds. Independent replay verifies every one of **23,040 controller decisions**
+and **115,200 internal samples**. Execution is valid; the finite controller
+family does not meet its selection rule.
+
+| Role | Eligible starts | Negative starts | Four-start selection |
+|---|---|---|---|
+| Baseline | 0/4 | 4/4 | Ineligible |
+| Current height, immediate | 1/4 | 3/4 | Ineligible |
+| Opposing-vertical successor, immediate | 1/4 | 3/4 | Ineligible |
+| Same successor after sixteen commands | 0/4 | 4/4 | Ineligible |
+
+Both positives occur at the 0.001 m/s start and remain eligible for the full
+twelve seconds, each with 48 quality windows and no torso contact or
+safe-no-actuation step. Current height advances **1.2160593 m**, with minimum
+height 0.4097502 m, maximum tilt 0.2637508 rad and quality -0.125242727 m/s.
+The immediate successor advances **1.1711269 m**, with minimum height 0.4032100 m,
+maximum tilt 0.2575302 rad and quality -0.116387114 m/s. Their declared paired
+tracking-score difference is **+0.008855613 m/s**. This is a combined tracking
+score, not an increase in forward speed. All other nineteen contrasts remain
+censored because at least one endpoint is negative. The four-start shortlist
+and selected role remain empty.
+
+| Start (m/s) | Baseline first tilt (s) | Height immediate (s) | Successor immediate (s) | Successor after sixteen (s) |
+|---|---|---|---|---|
+| 0.001 | 1.063333 | None | None | 1.390000 |
+| 0.003 | 1.151667 | 2.110000 | 2.083333 | 2.063333 |
+| 0.004 | 1.163333 | 2.421667 | 2.215000 | 2.098333 |
+| 0.006 | 0.945000 | 1.355000 | 1.403333 | 1.060000 |
+
+Every negative also records torso contact later in the episode; baseline at
+0.001 and 0.006 additionally violates minimum height. The successor's feedback
+is supported before every first violation after its declared onset. Four
+baseline/delayed prefix groups retain genuine sixteen-command histories, while
+both immediate roles retain no claimed baseline prefix. Thus this experiment
+retains a local score improvement but no broader eligibility, learned choice,
+nominal-preservation, memory-benefit, non-inferiority or release result.
+
+The closure binds **11,725 artifacts / 2,617,732,655 bytes**, 452 frozen source
+files and 1,359 runtime files. Native execution took 248.094048 s and independent
+replay 196.200493 s. All **seven closure controls** passed in 261.979 s in
+`sdk2-support-vertical-closure-controls-76d9430d9493484cb553fc0780edf47c`.
+They reject altered population/authority, omitted or duplicate artifacts,
+invented winners, erased failures, changed positive or censored scores, false
+causal history, crossed model profiles and changed source/runtime/reader pins.
+The original closure generation is
+`sdk2-support-vertical-closure-generation-324af96a042b410b890e46f66d701c45`.
+No new physics is used by generation or closure controls.
+
+Next use a **post-hoc common first 96 commands (0.8 s)** from all sixteen retained
+trials to examine actual gait phase, expected versus observed contact, joint
+command versus measured response, and clamp effects. That interval precedes the
+earliest retained violation at 0.945 s and keeps every role/start in the
+comparison. Rejoin phase to the actual controller receipt/memory and contacts
+to their recorded observation stage; do not invent unavailable contact loads.
+This proposed diagnosis will not prove a cause or retroactively choose a
+controller. Use its findings to declare a distinct coordination/control
+successor, then require fresh full-horizon and healthy-body checks before
+mapping the context estimator to actions. Calibration/evaluation and prior
+confirmation stay excluded. A single favorable score cannot replace the
+failed family-selection rule.
 
 ### Prepared support-vertical comparison - 2026-10-23
 

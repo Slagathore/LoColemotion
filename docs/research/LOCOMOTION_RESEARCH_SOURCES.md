@@ -2262,3 +2262,20 @@ eight host and ten synthetic route controls also pass. The complete applicable
 gate passes all 250 controls without new worlds. Sixteen fresh native trials
 remain prospective. This does not implement the cited predictive force planner
 or establish physical benefit. No third-party code or dependency was imported.
+
+## 2026-10-23 support-vertical outcome and coordination question
+
+The [complete comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
+retains 2/16 eligible trials and an empty four-start shortlist. One positive
+paired tracking score improves; eligibility coverage does not. All seven
+closure controls pass. The current hypothesis has not produced a usable
+condition-dependent controller family.
+
+Re-read [Wu et al., primary HTML](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0356505),
+sections 2.2-2.4 and 2.7. Their feedback uses contact mismatch and body attitude
+to adjust phase; leg residuals observe phase/contact context, while shared
+frequency and clearance proposals preserve coordination. This motivates a
+retained-data diagnosis, not a causal conclusion about the present failures.
+Their position-servo and gait-parameter interface does not implement this
+project's velocity-residual ABI. No code, weights or numerical gains were
+imported. The next controller still requires its own prospective comparison.
