@@ -7,6 +7,7 @@ Its SQLite manifest and receipts belong in a durable migration audit directory.
 import argparse
 import ctypes
 from ctypes import wintypes
+from functools import lru_cache
 import hashlib
 import json
 import os
@@ -22,8 +23,9 @@ JUNCTION = 0xA0000003
 SYMLINK = 0xA000000C
 
 
-def access_rules(path):
-    """Read the ordinary file/directory DACL without changing its security."""
+@lru_cache(maxsize=1)
+def security_api():
+    """Bind the read-only API once for the million-entry archive scan."""
     api = ctypes.WinDLL("advapi32", use_last_error=True)
     kernel = ctypes.WinDLL("kernel32", use_last_error=True)
     pointer = ctypes.c_void_p
@@ -36,6 +38,15 @@ def access_rules(path):
     convert.restype = wintypes.BOOL
     kernel.LocalFree.argtypes = [pointer]
     kernel.LocalFree.restype = pointer
+    return api, kernel
+
+
+def access_rules(path):
+    """Read the ordinary file/directory DACL without changing its security."""
+    api, kernel = security_api()
+    pointer = ctypes.c_void_p
+    get = api.GetNamedSecurityInfoW
+    convert = api.ConvertSecurityDescriptorToStringSecurityDescriptorW
     descriptor, dacl, output = pointer(), pointer(), pointer()
     error = get(str(path), 1, 4, None, None, ctypes.byref(dacl), None, ctypes.byref(descriptor))
     require(error == 0, "Cannot read access rules: " + str(path) + " error=" + str(error))
@@ -135,10 +146,15 @@ def inventory(source, database, summary):
 def check_tree(root, expected):
     """Refuse additions, omissions, changed file metadata and crossed links."""
     unseen = set(expected)
+    last = time.monotonic()
     for row in entries(root):
         require(row[0] in unseen, "Extra or duplicate path: " + row[0])
         require(tuple(row[1:]) == tuple(expected[row[0]]), "Tree entry changed: " + row[0])
         unseen.remove(row[0])
+        if time.monotonic()-last >= 15:
+            print(json.dumps(dict(stage="metadata", root=str(root),
+                entries_checked=len(expected)-len(unseen), entries_total=len(expected))), flush=True)
+            last = time.monotonic()
     require(not unseen, "Missing paths: " + repr(sorted(unseen)[:10]))
 
 
@@ -164,6 +180,10 @@ def verify(source, destination, database, receipt):
     result = dict(ok=False, source=str(source), destination=str(destination), files_hashed=0, bytes_hashed_per_tree=0)
     try:
         with sqlite3.connect(database) as connection:
+            # Keep the manifest's active pages in memory instead of repeatedly
+            # seeking between archive data and tiny SQLite pages on the HDD.
+            # Durability and the complete per-file comparison remain unchanged.
+            connection.execute("PRAGMA cache_size=-262144")
             require(connection.execute("SELECT value FROM metadata WHERE key='source'").fetchone() == (str(source),),
                     "Manifest source changed")
             expected = {r[0]: r[1:] for r in connection.execute("SELECT path,kind,size,mtime_ns,link_target FROM entries")}

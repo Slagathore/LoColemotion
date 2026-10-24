@@ -19,6 +19,14 @@ audit directory must remain outside the copied tree. Its receipt authorizes no
 source removal. A failed attempt and its partial copy remain available for
 diagnosis.
 
+If that complete comparison finds historical child permissions that differ
+from the copied root's inherited rules, keep the failure and use a fresh
+`resume_evidence_verification.ps1` audit. Its permission repair records each
+original copied DACL before changing it, rejects linked destinations, and uses
+a non-propagating operation to preserve stored junction targets. It reuses the
+completed data copy, then compares every file again from the beginning. A
+partial prior hash population never counts as completed verification.
+
 `tools/storage/switch_evidence.ps1` separates the path switch from cleanup. The
 switch retains the original ordinary directory under an exact backup name.
 Cleanup requires successful reopened evidence controls, unchanged readiness

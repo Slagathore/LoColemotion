@@ -7,6 +7,7 @@ import unittest
 import uuid
 
 import verify_evidence_copy as storage
+import repair_evidence_permissions as permissions
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -158,6 +159,67 @@ catch { Rename-Item -LiteralPath $Backup -NewName (Split-Path -Leaf $Source) }
         self.assertEqual(storage.ordinary_root(self.source), self.source)
         self.assertEqual((self.source/"first.bin").read_bytes(), b"evidence\x00\x01")
         self.assertEqual((self.outside/"sentinel.txt").read_bytes(), b"outside evidence; preserve me")
+
+    def test_historical_acl_repair_does_not_propagate_or_change_data(self):
+        nested = self.source/"nested"
+        source_child = nested/"second.txt"
+        child_acl = storage.access_rules(source_child)
+        target_acl = storage.access_rules(self.outside/"sentinel.txt")
+        # The additional read rule applies only to disposable fixture content.
+        custom = storage.access_rules(nested)+"(A;OICIID;FR;;;WD)"
+        permissions.set_access_rules(nested, custom, self.source)
+        source_acl = storage.access_rules(nested)
+        self.assertEqual(storage.access_key(custom), storage.access_key(source_acl))
+        self.assertEqual(storage.access_rules(source_child), child_acl)
+        self.copy()
+        with self.assertRaisesRegex(ValueError,"Access rules differ"):
+            self.verify("before-repair.json")
+        result = permissions.repair(self.source,self.destination,self.database,self.root/"permissions")
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["entries_repaired"],1)
+        self.assertEqual(result["ordinary_entries_checked"],3)
+        self.assertEqual(storage.access_rules(nested),source_acl)
+        self.assertEqual(storage.access_rules(self.destination/"nested/second.txt"),child_acl)
+        self.assertEqual(storage.access_rules(self.outside/"sentinel.txt"),target_acl)
+        self.assertTrue(self.verify("after-repair.json")["ok"])
+
+    def test_permission_setter_rejects_junctions_and_crossed_roots(self):
+        self.copy()
+        before = storage.access_rules(self.outside/"sentinel.txt")
+        for path in [self.destination/"stored-junction", self.destination/"stored-junction/sentinel.txt"]:
+            with self.assertRaisesRegex(ValueError,"Linked permission target"):
+                permissions.set_access_rules(path,before,self.destination)
+        with self.assertRaisesRegex(ValueError,"escaped root"):
+            permissions.set_access_rules(self.outside/"sentinel.txt",before,self.destination)
+        self.assertEqual(storage.access_rules(self.outside/"sentinel.txt"),before)
+
+    def test_protected_file_acl_is_restored_exactly(self):
+        file = self.source/"first.bin"
+        original = storage.access_rules(file)
+        permissions.set_access_rules(file,"D:P"+original[original.index("("):],self.source)
+        protected = storage.access_rules(file)
+        self.assertTrue(storage.access_key(protected)[0])
+        self.copy()
+        result = permissions.repair(self.source,self.destination,self.database,self.root/"permissions")
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["entries_repaired"],1)
+        self.assertEqual(storage.access_key(protected),storage.access_key(storage.access_rules(self.destination/"first.bin")))
+        self.assertTrue(self.verify()["ok"])
+
+    def test_permission_batches_retain_before_records_and_complete_tail(self):
+        for index in range(101):
+            path=self.source/"nested"/(str(index)+".bin")
+            path.write_bytes(b"retained fixture data")
+            permissions.set_access_rules(path,storage.access_rules(path)+"(A;ID;FR;;;WD)",self.source)
+        self.database=self.root/"batch-manifest.sqlite"
+        storage.inventory(self.source,self.database,self.root/"batch-inventory.json")
+        self.copy()
+        result=permissions.repair(self.source,self.destination,self.database,self.root/"permissions")
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["entries_repaired"],101)
+        events=[json.loads(line)["event"] for line in (self.root/"permissions/changes.jsonl").read_text().splitlines()]
+        self.assertEqual(events,["before"]*100+["after"]*100+["before","after"])
+        self.assertEqual(self.verify()["files_hashed"],103)
 
 
 if __name__ == "__main__":
