@@ -1,0 +1,57 @@
+{
+  "schema_version": "locolemotion_first_response_repertoire_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_training",
+    "question_class": "development"
+  },
+  "parent_closure": {
+    "path": "sdk/discovery/cpu_phase_release_closure_v1.json",
+    "sha256": "df78a08932a8d3ba262190c3ce8c55ba07bced79979985cb9fa17c4dd586983b"
+  },
+  "analysis": "retrospective_authorized_training_only",
+  "decision_step": 1,
+  "duration_s": 0.008333333333333333,
+  "feature_count": 16,
+  "feature_schema": "locolemotion_first_joint_response_v1",
+  "choice_basis": "Earliest causal response: one issued command and two observed joint positions. Fixed before fitting; no window sweep.",
+  "training_groups": 8,
+  "matching_baseline_prefixes_per_group": 2,
+  "labels": [
+    "left_075",
+    "nominal"
+  ],
+  "training_start_ids": [
+    "train_001",
+    "train_003",
+    "train_004",
+    "train_006"
+  ],
+  "classifier": "unscaled nearest centroid; no feature search or confidence fitting",
+  "internal_validation": "four folds, hold both conditions of one training start out together",
+  "controls": [
+    "constant nominal prediction",
+    "synthetic reversal of condition associations"
+  ],
+  "source_trial_count": 32,
+  "fitted_episode_count": 24,
+  "immediate_roles": [
+    "baseline",
+    "vertical_immediate",
+    "phase_immediate"
+  ],
+  "excluded_role": "phase_after_16",
+  "exclusion_reason": "composite action does not label a single immediate controller",
+  "retrieval_contract": "sdk/adaptation_provider/retrieval/feedback_contract_v1.json",
+  "condition_default_rule": "Rank complete four-start eligible controllers by mean whole-episode quality, then action index; no default when none is complete.",
+  "previous_confirmation_fitting": false,
+  "reserved_calibration_exposed": false,
+  "reserved_evaluation_exposed": false,
+  "worlds_opened": 0,
+  "action_mapping": null,
+  "learned_control_selection": false,
+  "adaptation_benefit": false,
+  "population_inference": false,
+  "qualification_or_release_authority": false
+}

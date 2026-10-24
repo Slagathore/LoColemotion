@@ -21,6 +21,20 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-23
 
+Latest fitting closure: the [first-response repertoire fit](#completed-first-response-repertoire-fit---2026-10-23)
+classifies **8/8 training groups** from one actual command response (1/120 s),
+with both conditions of each start held out together. Constant nominal scores
+4/8 and synthetic reversed associations score 0/8. The complete 32-trial source
+ledger is retained; 24 immediate-role episodes supply 15 eligible episodes,
+nine failures and **720 frozen cases**. Eight delayed composite-action episodes
+remain excluded from single-action fitting. Ten component and four closure
+controls pass with zero new worlds. The healthy condition has a complete
+baseline default; the weakened condition has no complete fixed-controller
+default. Next implement causal runtime retrieval and compare fresh full-horizon
+selection against baseline, disabled and shuffled controls, retaining the
+uncovered start. This checkpoint establishes neither useful selection nor
+Tier 3 benefit, qualification or release.
+
 Latest closure: the [phase-release comparison](#completed-phase-release-comparison---2026-10-23)
 completed all 32 CPU worlds from published `e5589f8b` after all 287 controls.
 Independent replay verifies **19/32 eligible and 13/32 negative**. Immediate
@@ -1440,6 +1454,71 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed first-response repertoire fit - 2026-10-23
+
+The [declaration](../sdk/discovery/first_response_repertoire_v1.json),
+[fit](../sdk/discovery/first_response_repertoire.py),
+[closure](../sdk/discovery/first_response_repertoire_closure_v1.json) and
+[reader](../sdk/discovery/audit_first_response_repertoire.py) reuse only the
+closed phase-release training campaign. Complete parent verification binds
+14,636 artifacts and preserves all 32 native outcomes. This work constructs
+zero worlds and changes no consumed controller, window, threshold or result.
+
+The [distinct feature definition](../sdk/discovery/first_response_v1.py) uses
+one actual baseline command and its two observed joint positions. The one-step
+window was chosen as the earliest causal response before fitting, without a
+window sweep. At 120 Hz this is 0.008333333 s of simulated observation, not
+measured host inference latency. Eight groups each rejoin two matching fresh
+baseline prefixes. Neither condition labels, future outcomes nor provider
+identity enter the feature vector. Four internal folds hold both conditions of
+one training start out together. The result is **8/8 correctly classified**,
+versus 4/8 for constant nominal and 0/8 for synthetic reversed associations.
+This is exposed-training validation, not reserved evaluation or noise robustness.
+The reader independently recomputes centroids, predictions and all three scores.
+
+The [feedback case contract](../sdk/adaptation_provider/retrieval/feedback_contract_v1.json)
+binds the unchanged fitting algorithm to baseline, immediate vertical feedback
+and immediate phase release. All 24 immediate-role episodes remain in its
+ledger: **15 eligible and nine negative**. Only eligible episodes supply cases,
+producing **720 thirty-command windows**. All eight delayed episodes, including
+four failures, remain in the full source ledger but are excluded from this fit
+because their action sequence combines a baseline prefix and a different
+controller. The failed weakened 0.006 m/s start remains represented and uncovered.
+
+A declared whole-episode rule ranks only controllers eligible at every training
+start within a condition, then uses mean tracking quality and an action-index
+tie break. Nominal baseline ranks first; no weakened controller qualifies.
+These are fitted options, not privileged runtime condition labels or a live
+action selector. The frozen model is
+`sha256:4f80591a7964c50a13f11fb4e92115f0d223c4f169071900efce18d69fe55c7f`.
+It changes neither base weights nor the consumed retrieval contracts.
+
+Ten component controls pass in 51.432 s under
+`sdk2-first-response-controls-cd45f6ecbb7346708efe82845ff16b4b`; original stderr
+SHA-256 is `a40f013e27cfb1c822f2939c60a4359efc4a59a58ea9ddaa94cb43aca99c3462`.
+The fitting attempt retains thirteen artifacts, including exact tested sources,
+original streams, declaration, source/runtime bindings and fitted result.
+Four closure controls pass in 40.088 s under
+`sdk2-first-response-closure-controls-7fd386e316a84e24be6e1dbe9d39512c`; stderr
+SHA-256 is `e25fec6127e51eb321954420497d3ffda25b2fc6e43e3f81e469b768ef3d4e94`.
+They rebuild the complete fit, refuse crossed source bytes, labels, cases,
+fold identities, scores and expanded authority, and block world constructors
+and stepping. Closure SHA-256 is
+`dcd829f123b0ec15aa383049ebed5ba2b8d1bc0fc3854109b880d2435f6aefec`.
+
+Next connect a distinct provider to these immutable context/case artifacts:
+infer context from actual history, evaluate current phase/contact support,
+retain bounded resolver outputs and explicit fallback, and keep private,
+versioned memory. A fresh comparison must retain both motor conditions, all
+four starts and the full twelve-second horizon, with baseline, disabled,
+frozen-selector and shuffled-association controls. Influence opportunity and
+actual application must be reported separately. No new native comparison is
+authorized by this fitting closure. The empirical withdrawal monitor, reserved
+evaluation, healthy-body preservation and three-engine promotion remain open.
+Useful Tier 3 adaptation still requires a separate memory-on/off/shuffled test.
+SDK1 remains 20/20; full-program readiness remains 19/25, and Tier 2/Tier 3
+qualification and release claims remain false.
 
 ### Completed phase-release comparison - 2026-10-23
 

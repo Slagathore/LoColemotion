@@ -1,5 +1,19 @@
 # LoColemotion Locomotion SDK
 
+The [first-response repertoire fit](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
+classifies **8/8 training groups** from one actual command response (1/120 s),
+with both conditions of each start held out together. Constant nominal scores
+4/8 and synthetic reversed associations score 0/8. The complete 32-trial source
+ledger is retained; 24 immediate-role episodes supply 15 eligible episodes,
+nine failures and **720 frozen cases**. Eight delayed composite-action episodes
+remain excluded from single-action fitting. Ten component and four closure
+controls pass with zero new worlds. The healthy condition has a complete
+baseline default; the weakened condition has no complete fixed-controller
+default. Next implement causal runtime retrieval and compare fresh full-horizon
+selection against baseline, disabled and shuffled controls, retaining the
+uncovered start. This checkpoint establishes neither useful selection nor
+Tier 3 benefit, qualification or release.
+
 The [phase-release comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
 is closed after all 287 controls and 32 fresh CPU worlds from `e5589f8b`.
 Independent replay verifies 46,080 decisions and 230,400 internal samples:

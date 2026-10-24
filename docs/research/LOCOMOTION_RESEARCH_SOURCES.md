@@ -2328,3 +2328,25 @@ rule reproduces Wu et al.'s learned position controller, explains a cause, or
 provides useful adaptation. A future successor must retain the uncovered
 weakened start, delayed-control failure and healthy baseline in its question.
 No third-party code, weights or gains were imported; no claim gate changed.
+
+## 2026-10-23 first-response context and feedback repertoire
+
+The [completed fit](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
+reuses all 32 closed training outcomes and constructs zero worlds. The earliest
+causal response classifies 8/8 groups in paired-start internal validation; 24
+immediate episodes retain nine failures and yield 720 eligible cases. Ten
+component and four closure controls pass. The healthy baseline remains an
+explicit fitted option, and the uncovered weakened start is not removed.
+Runtime selection and useful adaptation remain unproved.
+
+Re-read the primary sources for [Cully et al., Robots that can adapt like
+animals](https://arxiv.org/abs/1407.3501v4) and [Kumar et al., RMA](https://www.roboticsproceedings.org/rss17/p011.html).
+The first constructs a behavior map before deployment and uses it to guide
+trial-and-error adaptation after damage without requiring self-diagnosis. RMA
+combines a base policy with a simulation-trained adaptation module. These
+motivate maintaining complementary behaviors and estimating hidden conditions
+from experience. Our one-command window, centroid classifier, velocity-feedback
+experts and selection rules are local hypotheses; they are not reproductions
+of either method or imported paper constants. No third-party code, weights or
+dependencies were copied. Internal context accuracy and repertoire coverage
+remain separate from physical control benefit and reserved evaluation.

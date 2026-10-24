@@ -1,0 +1,181 @@
+{
+  "schema_version": "locolemotion_bounded_retrieval_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "provider_id": "s169_conditioned_feedback_retrieval_v1",
+  "provider_version": "conditioned_feedback_retrieval_v1",
+  "ordered_actuator_ids": [
+    "front_left_hip_motor",
+    "front_left_knee_motor",
+    "front_right_hip_motor",
+    "front_right_knee_motor",
+    "rear_left_hip_motor",
+    "rear_left_knee_motor",
+    "rear_right_hip_motor",
+    "rear_right_knee_motor"
+  ],
+  "ordered_limb_ids": [
+    "front_left",
+    "front_right",
+    "rear_left",
+    "rear_right"
+  ],
+  "ordered_contact_site_ids": [
+    "front_left_foot",
+    "front_right_foot",
+    "rear_left_foot",
+    "rear_right_foot"
+  ],
+  "actions": [
+    {
+      "action_id": "baseline",
+      "candidate_index": 0
+    },
+    {
+      "action_id": "feedback_support_vertical_v1",
+      "candidate_index": 3
+    },
+    {
+      "action_id": "feedback_phase_release_v1",
+      "candidate_index": 4
+    }
+  ],
+  "feature_names": [
+    "height_m",
+    "up_x",
+    "up_z",
+    "velocity_x_m_s",
+    "velocity_z_m_s",
+    "yaw_rate_rad_s"
+  ],
+  "feature_scales": [
+    0.1,
+    0.2,
+    0.2,
+    0.2,
+    0.1,
+    0.5
+  ],
+  "phase_cycle_steps": 360,
+  "phase_bin_steps": 30,
+  "decision_window_steps": 30,
+  "controller_dt_s": 0.008333333333333333,
+  "nearest_neighbors": 3,
+  "maximum_support_distance": 1.5,
+  "minimum_predicted_gain_m_s": 0.001,
+  "desired_forward_velocity_m_s": 0.2,
+  "lateral_error_weight": 0.25,
+  "minimum_height_m": 0.25,
+  "maximum_tilt_rad": 0.6,
+  "maximum_absolute_correction_rad_s": 3.5,
+  "maximum_slew_per_step_rad_s": 0.08,
+  "training_episode_outer_steps": 1440,
+  "groups": [
+    {
+      "group_id": "left_075_train_001",
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "partition": "train"
+    },
+    {
+      "group_id": "left_075_train_003",
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "partition": "train"
+    },
+    {
+      "group_id": "left_075_train_004",
+      "condition_id": "left_075",
+      "start_id": "train_004",
+      "partition": "train"
+    },
+    {
+      "group_id": "left_075_train_006",
+      "condition_id": "left_075",
+      "start_id": "train_006",
+      "partition": "train"
+    },
+    {
+      "group_id": "nominal_train_001",
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "partition": "train"
+    },
+    {
+      "group_id": "nominal_train_003",
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "partition": "train"
+    },
+    {
+      "group_id": "nominal_train_004",
+      "condition_id": "nominal",
+      "start_id": "train_004",
+      "partition": "train"
+    },
+    {
+      "group_id": "nominal_train_006",
+      "condition_id": "nominal",
+      "start_id": "train_006",
+      "partition": "train"
+    }
+  ],
+  "archive": {
+    "axes": [
+      "mean_height_m",
+      "lateral_displacement_m"
+    ],
+    "edges": [
+      [
+        0.25,
+        0.35,
+        0.38,
+        0.41,
+        0.44,
+        0.5,
+        0.65
+      ],
+      [
+        -0.5,
+        -0.08,
+        -0.03,
+        -0.01,
+        0.0,
+        0.01,
+        0.03,
+        0.08,
+        0.5
+      ]
+    ],
+    "quality": "negative mean forward tracking error minus 0.25 times mean absolute lateral velocity; eligible episodes only",
+    "all_trials_retained_separately": true
+  },
+  "episodic_memory": {
+    "maximum_offset_m_s": 0.15,
+    "maximum_count": 32,
+    "maximum_opaque_state_bytes": 65536,
+    "base_model_immutable": true,
+    "reset_and_rollback_required": true
+  },
+  "fitting": {
+    "train_groups_only": true,
+    "calibration_and_evaluation_may_fit": false,
+    "failed_episodes_retained": true,
+    "invalid_or_incomplete_episodes_may_supply_cases": false
+  },
+  "authority": {
+    "development_model_fitting": true,
+    "physical_launch_authority": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "three_engine_promotion_requires_existing_tier2_architecture": true
+  },
+  "purpose": "Fit the unchanged retrieval case algorithm to complete immediate-role training episodes from the closed phase-release comparison. A separately fitted one-command response estimate selects context; the healthy context may retain a complete preserving baseline. Delayed composite-action episodes stay in the source ledger but supply no single-action cases. This is a distinct development model, not qualification or an action-benefit claim.",
+  "plan_id": "s169_conditioned_feedback_retrieval_v1"
+}
