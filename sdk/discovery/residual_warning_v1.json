@@ -1,0 +1,93 @@
+{
+  "schema_version": "locolemotion_residual_warning_recipe_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retrospective_shadow_warning_development",
+    "question_class": "development"
+  },
+  "definition_sha256": "4a7d351357ea5c1a2aa5b285ebf43d6550fbdad17b23139d225f73d4414631da",
+  "source_closure_sha256": "13ea3010c6759dc2bc18e1d126f323af2766f2b6b971a25b2ecc251873534c91",
+  "pilot_attempt_id": "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1",
+  "pilot_receipt_sha256": "5289b79e1895ffc9450b9565eba06fa4f7575774b472194eb61bcd59ce1f4a90",
+  "source_bindings": {
+    "residual_warning_data.py": "cde03815b4f3e568599ab1ec35d10fc65b8ea8ef6b1cbf6adb58639e288f6098",
+    "residual_warning_metrics.py": "a1b959f2dc8bad6c2b66e4bbc17bf5a959a42a1fe47f72f9e713b239a951e235",
+    "residual_warning_fit.py": "1e3ac6991c671773cedc0ca7cd6e522aef3f392b43c6d89ade799239028434d6",
+    "test_residual_warning.py": "5c8ab0fd1a9abf4916ab09871e638f992d4b48c8a15c7bbea9b7295c601b25af",
+    "audit_residual_warning.py": "ec119d3d911050134ace292ea2ce954c77f699d9a676bc932b9e9abb25570b75",
+    "run_residual_warning.py": "af92e5ef9066017487eb86de42a72d5d13406fc995e2008687de6f1449d69ca9"
+  },
+  "training_trial_count": 64,
+  "eligible_episodes": 15,
+  "failed_episodes": 49,
+  "complete_controller_rows": 92160,
+  "complete_internal_rows": 460800,
+  "starts": [
+    "train_001",
+    "train_003",
+    "train_004",
+    "train_006"
+  ],
+  "conditions": [
+    "left_075",
+    "nominal"
+  ],
+  "row_priority": [
+    "already_failed",
+    "unsupported",
+    "positive",
+    "right_censored",
+    "negative"
+  ],
+  "first_failure": "original physical predicate or safe-no-actuation",
+  "positive": "5*step < first_failure_internal_step <= 5*(step+30)",
+  "already_failed": "first_failure_internal_step <= 5*step",
+  "unsupported": "feature unavailable; retain reason; never invent vector or fit row",
+  "right_censored": "no observed failure within next30 and step+30 > 1440",
+  "negative": "supported, not already failed, full next30 observed and no failure",
+  "feature_input": "fixed mechanically scaled current feature plus seven causal derived values",
+  "fit": {
+    "objective": "sum(weight*(intercept+x@beta-label)^2)+lambda*sum(beta^2)",
+    "ridge": 0.001,
+    "intercept_penalized": false,
+    "weights": "1/episode_fit_rows, then normalize each class to mass 0.5",
+    "algorithm": "float64 normal equations; solve; infinity residual <= 1e-10",
+    "threads": 1,
+    "versions": {
+      "numpy": "2.4.6"
+    }
+  },
+  "crossfit": {
+    "folds": 4,
+    "unit": "same start across both body conditions and all eight policies",
+    "held_out_start_ids": [
+      "train_001",
+      "train_003",
+      "train_004",
+      "train_006"
+    ],
+    "fold_training_episodes": 48,
+    "fold_diagnostic_episodes": 16,
+    "row_random_split": false,
+    "exposed_training_data_only": true
+  },
+  "threshold": "minimum, over failed episodes having supported positive rows, of their maximum crossfit score in that window",
+  "threshold_data": "same crossfit rows; alarm metrics at selected threshold are tuning diagnostics",
+  "unsupported_warning": true,
+  "hysteresis_exit_offset": 0.05,
+  "reentry_commands": 30,
+  "final_model": "refit same recipe on all training rows; report full-fit alarms separately",
+  "comparison_trials_used": 0,
+  "route_trials_used": 0,
+  "reserved_starts_opened": 0,
+  "excluded_confirmation_trials_used": 0,
+  "physical_launch_authority": false,
+  "automatic_withdrawal_authority": false,
+  "calibrated_probability": false,
+  "probabilistic_risk_guarantee": false,
+  "safe_backup_established": false,
+  "tier2_complete": false,
+  "tier3_complete": false,
+  "release_authority": false
+}

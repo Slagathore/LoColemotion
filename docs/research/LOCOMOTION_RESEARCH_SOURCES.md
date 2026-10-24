@@ -2638,3 +2638,32 @@ weakened condition. Fresh deterministic execution on exposed groups
 does not become held-out evidence or independent random sampling. The next
 calibration, withdrawal and reserved-evaluation contracts must preserve those
 separations before any broader adaptation claim.
+
+### Causal failure warnings and the unsafe-backup boundary - 2026-10-24
+
+[Geifman and El-Yaniv, Selective Classification for Deep Neural Networks](https://proceedings.neurips.cc/paper/7073-selective-classification-for-deep-neural-networks.pdf)
+separate a prediction score from a rejection rule and study the tradeoff between
+risk and coverage. Their statistical setting assumes independently sampled
+labelled data. The local warning component adopts separate reporting of missed
+failures and unnecessary withdrawal requests. It does not reproduce their
+neural classifier or inherit their probability guarantees: our deterministic,
+correlated training trajectories, exposed starts and tuned threshold do not
+supply that sampling basis.
+
+[Chen et al., Runtime Safety Assurance for Learning-enabled Control of Autonomous Driving Vehicles](https://arxiv.org/abs/2109.13446)
+combine an advanced controller, a baseline controller with a safety argument,
+and verified mode management. Here the deterministic baseline fails the
+weakened condition while the selected residual succeeds on the exposed groups.
+It therefore cannot be described as a proved-safe backup. A failure warning
+and a physically effective intervention are separate engineering questions.
+
+The [completed shadow-warning component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-failure-warning-component---2026-10-24)
+uses a local regularized linear fit, complete retained training episodes and
+four start-grouped folds. Both the threshold-tuning diagnostics and full-data
+model warn on all 49 failures with no warnings on 15 successful episodes.
+All first failures are tilt violations, and the shortest crossfit warning is
+only 3.33 ms before failure. These facts motivate measuring the real withdrawal
+path and its required lead time; they do not establish recoverability,
+independent calibration or a safety guarantee. The threshold was fitted to
+the crossfit scores, so alarm rates at that threshold remain tuning diagnostics.
+No external code or weights are imported. All reserved groups remain unopened.

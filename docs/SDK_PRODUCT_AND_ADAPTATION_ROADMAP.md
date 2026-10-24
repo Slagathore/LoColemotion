@@ -21,6 +21,17 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
+Latest warning component (2026-10-24): the [completed shadow-warning fit](#completed-residual-failure-warning-component---2026-10-24)
+reconstructs all **64 training episodes**, including **49 failures**, with
+zero worlds. Both crossfit tuning diagnostics and the full-data model warn
+within the target window for **49/49 failures**, with **0/15 successful
+episodes warned**. These are exposed-training diagnostics, not independent
+calibration. The shortest crossfit warning lead is only **3.33 ms**; empirical
+withdrawal and sufficient intervention time remain unproved. All **20 component,
+eight reader and six closure controls** pass. The next work is a declared
+withdrawal/lead-time study before reserved calibration, evaluation and useful
+reversible Tier 3 memory.
+
 Latest selected-artifact closure: the [completed fresh comparison](#completed-frozen-residual-selection-comparison---2026-10-24)
 verifies **24 CPU worlds**, **34,560 commands** and **172,800 internal samples**
 from published **3a04722f**, after all **138 safety controls**. The fixed artifact
@@ -1564,6 +1575,83 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Completed residual failure-warning component - 2026-10-24
+
+The [warning closure](../sdk/discovery/residual_warning_closure_v1.json) retains a
+causal, immutable linear score for the first original physical violation or
+safe-no-actuation within the next 30 commands (0.25 seconds). The runtime uses
+current canonical observations and the actual prior resolved command.
+Unsupported observations request withdrawal, and reentry requires 30 consecutive
+supported scores below the separate exit threshold. This component runs in
+shadow mode; no host has been authorized to act on its withdrawal requests.
+
+All **64 original training episodes**, including **49 failures**, remain in the
+source population. The complete **92,160-command / 460,800-internal-sample**
+reconstruction retains **1,470 positive**, **31,472 negative**, **435
+right-censored** and **58,783 already-failed** command rows. Every already-failed
+row also lacked the original mechanical feature; no pre-failure observation
+was unsupported. The fit never invents features, treats censored futures as
+negative, or removes a failed episode from the denominator.
+
+A regularized linear fit uses fixed mechanical scales and episode balancing
+before class balancing. Four folds omit each entire start across both body
+conditions and all eight policies. The threshold is chosen on those crossfit
+scores, then the same fitting rule produces a full-data frozen model. Therefore
+the alarm metrics below are **threshold-tuning and training diagnostics**,
+not independent calibration, unopened evaluation, or probability estimates.
+
+| Retained training diagnostic | Crossfit scores at tuned threshold | Full-data model |
+| --- | ---: | ---: |
+| Failed episodes warned within the target window | 49/49 | 49/49 |
+| Successful episodes receiving any warning | 0/15 | 0/15 |
+| Selected-controller successful episodes receiving any warning | 0/8 | 0/8 |
+| Warnings on 31,472 known-negative commands | 0 | 0 |
+| Warning-active positive commands | 600/1,470 | 623/1,470 |
+| First-warning lead range | 3.33-168.33 ms | 51.67-158.33 ms |
+
+All observed first failures are tilt violations. In particular, the minimum
+crossfit lead is only **3.33 ms**. Warning before a failure does not demonstrate
+enough time to change its outcome. The deterministic baseline fails the weakened
+body condition, so withdrawing the residual is not an established safe backup.
+
+The frozen [full-data model](../sdk/discovery/residual_warning_model_v1.json)
+has canonical digest
+`sha256:1ca62d154320deb1159f9370bbc3da3660346750297cc1d06b437133cb3548b5`.
+Its score threshold is **0.9391314053184975**, exit threshold is 0.05 lower, and
+the score is not a probability. The [recipe](../sdk/discovery/residual_warning_v1.json)
+binds the exact population, label order, fixed features, weighting, numerical
+method and fold identities. Route, final-comparison, selected-artifact comparison,
+reserved and excluded-confirmation data do not fit the warning.
+
+**20 component controls**, **eight independent-reader corruption controls** and
+**six closure controls** pass. The reader reopens all original training streams,
+reconstructs first failures, features, labels, fits and shadow decisions, and
+checks all five fitted models with augmented least squares as a second numerical
+method. The closure controls verify the complete retained artifact inventory and
+that reader's receipt; they do not repeat fitting or production-controller replay.
+Source and runtime bindings remain unchanged during each owner operation.
+All work opens **zero worlds** and performs **zero solver steps**.
+
+- Fit attempt: `<evidence-root>/sdk2-residual-warning-fit-181bfb8ddc6d48ecaa78aec031294cab`,
+  receipt `1751edcf121cbc7b0ac2ff855219d6c14fdca243b3a7316bf7a61844fff80f9d`.
+- Closure controls: `<evidence-root>/sdk2-residual-warning-closure-controls-0bf57d9875f84498b1ddc0140fb0734f`,
+  receipt `d51588c5052b83cef40d92c2dbd661716149cbde67b85515df847d94d08c2c5d`.
+- Repository closure SHA-256: `95532a01598e27ae5b75e7a8a903de762f366b9cdde58e0ecb9078ffb0a739df`.
+- The fit retained **35 artifacts / 117,138,453 bytes**, with **528 source**
+  and **1,359 runtime** bindings unchanged. Closure controls bind **533 source**
+  and the same runtime population. The original training worlds are reused only
+  as retained data; this component opens no new worlds.
+
+The next work is a separately declared intervention study: measure whether the
+actual v1 withdrawal and reentry path has enough lead time and preserves control,
+including the immediate-zero residual handoff. A timely-warning requirement must
+be chosen before any safety-oriented threshold successor. Keep the selected
+actor's eight-group result unchanged, preserve all four reserved starts unopened
+until a new prospective calibration/evaluation contract, and then test reversible
+Tier 3 memory against matched frozen and disabled controls. Tier 2/Tier 3,
+cross-engine qualification and release remain unproved.
+
 
 ### Completed frozen residual selection comparison - 2026-10-24
 

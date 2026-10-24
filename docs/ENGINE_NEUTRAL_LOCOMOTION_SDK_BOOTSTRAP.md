@@ -9,6 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest warning component (2026-10-24): the [completed shadow-warning fit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-failure-warning-component---2026-10-24)
+reconstructs all **64 training episodes**, including **49 failures**, with
+zero worlds. Both crossfit tuning diagnostics and the full-data model warn
+within the target window for **49/49 failures**, with **0/15 successful
+episodes warned**. These are exposed-training diagnostics, not independent
+calibration. The shortest crossfit warning lead is only **3.33 ms**; empirical
+withdrawal and sufficient intervention time remain unproved. All **20 component,
+eight reader and six closure controls** pass. The next work is a declared
+withdrawal/lead-time study before reserved calibration, evaluation and useful
+reversible Tier 3 memory.
+
 Latest selected-artifact closure (2026-10-24): the [completed fresh comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-frozen-residual-selection-comparison---2026-10-24)
 verifies **24 CPU worlds**, **34,560 commands** and **172,800 internal samples**
 from published **3a04722f**, after all **138 safety controls**. The fixed artifact
