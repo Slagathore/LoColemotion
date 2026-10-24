@@ -4,6 +4,36 @@ Everything pushed here is public. Keep source, small proof records and the
 replay here. Keep installed runtimes, the full evidence archive and local
 settings on disk.
 
+## Retained archive storage
+
+Historical records address the sibling `SporeSpore_Evidence` directory. When
+moving its storage to another volume, keep that logical path as a directory
+junction to the new ordinary directory. This preserves the recorded paths and
+file bytes without rewriting scientific records or following stored links into
+the frozen source archive.
+
+`tools/storage/copy_evidence.ps1` takes a fresh destination and audit directory,
+inventories the source, copies ordinary data and stored junctions, then compares
+the complete population, access rules and SHA-256 of every ordinary file. The
+audit directory must remain outside the copied tree. Its receipt authorizes no
+source removal. A failed attempt and its partial copy remain available for
+diagnosis.
+
+`tools/storage/switch_evidence.ps1` separates the path switch from cleanup. The
+switch retains the original ordinary directory under an exact backup name.
+Cleanup requires successful reopened evidence controls, unchanged readiness
+dispositions, another population check, and verification that the deletion
+target is that ordinary backup. It removes stored junctions themselves before
+recursively removing the backup. Both stages hold the project operation mutex;
+no scientific worlds may overlap the migration. Keep validation output outside
+the copied tree until cleanup completes.
+
+Retain the inventory, file hash manifest, original logs and stage receipts in
+the migration audit, and record its final location and digests in a repository
+closure. Storage verification does not create new physical, adaptation or
+release evidence. Keep the new volume mounted at its recorded drive letter;
+the compatibility junction depends on it being available.
+
 ## Set up every writing checkout
 
 From the repository root, run these commands in PowerShell or your terminal:
