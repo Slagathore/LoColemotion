@@ -19,20 +19,19 @@ It does not replace the executable evidence or release contracts:
 Frozen positive, negative, invalid, and rejected campaigns remain immutable.
 This roadmap can order a new successor, but it cannot change an old result.
 
-## Current execution order - 2026-10-23
+## Current execution order - 2026-10-24
 
-Latest native closure: the [conditioned selection comparison](#completed-conditioned-selection-comparison---2026-10-23)
-completed **40 fresh CPU worlds** from published `59aacf3c` after all **349
-safety controls**. Independent replay verifies **26/40 eligible and 14/40
-negative**, with every decision and internal sample retained. Frozen selection
-passes 2/4 weakened starts, versus baseline and disabled control at 0/4;
-shuffled selection and the fixed reference also pass 2/4. Healthy selection
-preserves baseline quality at all four starts. No role passes the complete
-screen, so the shortlist stays empty. Nine closure controls pass. Next
-diagnose action choice, switching and support loss against complete episodes,
-retaining shuffled successes and the uncovered 0.006 m/s start. Learned
-association benefit, recovery monitoring, reserved evaluation and useful
-Tier 3 behavior remain unproved.
+Latest native closure: the [committed selection comparison](#completed-committed-selection-comparison---2026-10-24)
+completed **48 fresh CPU worlds** from published `d228a4d4` after all **388
+safety controls**. Independent replay verifies **29/48 eligible and 19/48
+negative**. The current frozen/shuffled selectors each pass 2/4 weakened
+starts; committed frozen passes 1/4 and committed shuffled 0/4. Baseline and
+disabled controls pass 0/4. All 24 healthy trials preserve baseline quality.
+The declared shortlist remains empty, and this thirty-command rule is not
+promoted. Ten closure controls pass. Next inspect early divergence and
+state and action history coverage, then freeze a distinct successor that improves control
+coverage. Learned-association benefit, empirical recovery monitoring,
+reserved evaluation, useful Tier 3 behavior and release remain unproved.
 
 Latest fitting closure: the [first-response repertoire fit](#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
@@ -1468,7 +1467,78 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Completed committed selection comparison - 2026-10-24
+
+The [closure](../sdk/discovery/cpu_committed_feedback_closure_v1.json) retains
+`sdk2-cpu-committed-feedback-b4b51448289b40d4a5263d3bc83b6d56`, executed from
+clean published `d228a4d40b3bbb4719a1d897e2e94eb84cf258e7`. All **388 controls**
+passed before any new world. The owner completed **48 fresh sequential CPU
+worlds**, with six roles at each of eight condition/start groups and no
+calibration, evaluation or GPU worlds. All original source/runtime bindings
+remained unchanged: **522 source files and 1,359 runtime files**.
+
+Independent replay verified **69,120 controller decisions and 345,600 internal
+samples** and constructed zero worlds. The result is **29 eligible episodes
+and 19 negatives**:
+
+| Role | Weakened starts eligible | Healthy starts eligible | Healthy quality loss |
+| --- | ---: | ---: | --- |
+| Baseline | 0/4 | 4/4 | Zero at every start |
+| Disabled | 0/4 | 4/4 | Zero at every start |
+| Current frozen | 2/4 | 4/4 | Zero at every start |
+| Current shuffled | 2/4 | 4/4 | Zero at every start |
+| Committed frozen | 1/4 | 4/4 | Zero at every start |
+| Committed shuffled | 0/4 | 4/4 | Zero at every start |
+
+The committed frozen role passes only the 0.003 m/s weakened start; current
+frozen passes 0.003 and 0.004 m/s. Current shuffled passes 0.001 and 0.004 m/s.
+Every role fails the 0.006 m/s weakened start. On the sole weakened start where
+current and committed frozen are both eligible, the committed tracking-quality
+score is lower by **0.00218997082690287 m/s**. This is a finite paired score
+difference, not a population inference or a change in the failure threshold.
+
+Of the **56 declared contrasts, 30 are eligible and 26 remain censored**.
+Failed whole-episode qualities stay null. No role passes all eight episodes,
+so the complete-screen shortlist remains empty. The tested thirty-command
+rule is not promoted. Opportunity, actual correction and commitment-event
+counts remain distinct, and full dynamic action sequences are retained rather
+than labeled as fixed experts.
+
+The [closure reader](../sdk/discovery/audit_cpu_committed_feedback_closure.py)
+rechecks the complete **23,243-artifact / 7,962,598,846-byte** inventory,
+prospective population, source and runtime bindings, causal prefixes, action
+sequences, physical failure censoring, quality windows and healthy comparisons.
+Ten [closure controls](../sdk/discovery/test_cpu_committed_feedback_closure.py)
+pass in `sdk2-committed-closure-controls-797879304fde4098b1ac386cf1166fe1`.
+They include crossed roles and resolver memory, erased failures, altered
+quality and denominators, crossed native conditions, and source/runtime
+changes. They open zero worlds and do not repeat the already completed full
+controller replay. The closure source bytes match the retained tested copies.
+
+Native execution took **1,023.725 s** and independent replay **1,030.881 s**.
+Closure SHA-256 is
+`5aeb46084f5431386656a029f3a887433945c0df97f3180a6ac58d0ba2b5d633`;
+the original receipt is
+`0e9391b705e4dbaaa8112f2bc336e3169436f432c57b9c2d634ff6676dee9b9e`
+and original independent audit is
+`2c6648bfcbac08f9980e2d560d946691701b30526aa5f1543cae1d9d042d9323`.
+Large artifacts remain in the relocated durable evidence store through the
+unchanged compatibility path.
+
+This rejects the tested timing rule as the next candidate. It does not prove
+that every temporal policy will fail or that switching alone caused the
+observed failures. Next diagnose early control divergence and state and action
+history coverage, then declare a distinct successor that can strengthen
+control on the states it actually reaches. A bounded learned residual is a
+research option through the existing provider seam. Keep all failed training
+episodes, the healthy baseline, original eligibility and unopened reserved
+partitions. No outcome-memory updates, useful Tier 3 behavior, statistical
+superiority, cross-engine qualification or release authority is established.
+
 ### Prepared committed selection comparison - 2026-10-24
+
+This preparation checkpoint is retained below; the completed comparison above
+records its subsequent execution and outcome.
 
 The [prospective declaration](../sdk/discovery/cpu_committed_feedback_v1.json)
 compares six fresh roles at all four exposed starts in both weakened and healthy

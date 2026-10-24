@@ -1,6 +1,6 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-10-23
+## Active - SDK2 discovery and Studio completion, 2026-10-24
 
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.
@@ -9,7 +9,21 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
+Latest native closure (2026-10-24): the [committed selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-committed-selection-comparison---2026-10-24)
+completed **48 fresh CPU worlds** from published `d228a4d4` after all **388
+safety controls**. Independent replay verifies **69,120 decisions and 345,600
+internal samples**, with **29/48 eligible and 19/48 negative**. The committed
+selector passes 1/4 weakened starts versus 2/4 for the current selector;
+committed shuffled passes 0/4 versus 2/4 for current shuffled. Baseline and
+disabled controls pass 0/4. All 24 healthy trials are eligible and every role
+preserves baseline quality at every healthy start. No role passes the complete
+screen, so the shortlist stays empty and this commitment rule is not promoted.
+Ten closure controls pass over **23,243 artifacts / 7,962,598,846 bytes**.
+Next diagnose control divergence and state and action history coverage before a
+distinct successor that improves control coverage. Reserved evaluation, empirical recovery
+monitoring, useful Tier 3 behavior, qualification and release remain open.
+
+Earlier native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
 completed all **40 fresh CPU worlds** from published `59aacf3c` after the full
 **349-control gate**. Independent replay verifies 57,600 decisions and 288,000
 internal samples: **26/40 eligible, 14/40 negative**. Frozen selection passes
@@ -23,7 +37,7 @@ shuffled successes and the uncovered 0.006 m/s start. Learned-association benefi
 recoverability monitoring, reserved evaluation, useful Tier 3 behavior,
 qualification and release remain unproved.
 
-Latest preparation (2026-10-24): the [committed-selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-committed-selection-comparison---2026-10-24)
+Preparation of the completed comparison (2026-10-24): the [committed-selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-committed-selection-comparison---2026-10-24)
 now has its six-role production host, independent reader and **48-world**
 prospective declaration. Nine host controls verify 3,360 retained-input decisions
 through both core DLLs, and fourteen route controls pass with zero worlds. A
@@ -50,8 +64,8 @@ Of the scored thirty-command prediction windows, **2,044/3,199 frozen** and
 **2,022/2,710 shuffled** windows change or withdraw the proposed expert. These
 windows overlap and are not independent trials. Both learned roles first lose
 case support at 0.725 s on the uncovered start, before their physical failures;
-constant-expert windows there are also optimistic. A distinct temporal
-commitment comparison is next, with immediate support refusal and the original
+constant-expert windows there are also optimistic. The completed temporal
+commitment comparison above retains immediate support refusal and the original
 healthy/weakened population. Switching is not an established cause, and case
 coverage and missing state remain open. Failed official qualities stay null;
 this diagnosis creates no fitting, selection, recoverability or release authority.

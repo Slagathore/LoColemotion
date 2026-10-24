@@ -2432,3 +2432,33 @@ will compare current and committed frozen/shuffled selectors with baseline and
 disabled controls across the full exposed population. All 388 safety controls
 remain required before physics. This tests the local temporal-abstraction
 hypothesis; no native result or paper-method replication is claimed here.
+
+## 2026-10-24 committed selection result and control coverage
+
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-committed-selection-comparison---2026-10-24)
+retains 29/48 eligible and 19/48 negative native CPU episodes after all 388
+controls and full independent replay. Committed frozen passes 1/4 weakened
+starts against current frozen at 2/4; committed shuffled passes 0/4 against
+current shuffled at 2/4. All 24 healthy episodes preserve baseline quality.
+The shortlist is empty. This specific timing rule is not promoted, and the
+result does not isolate switching as the general cause or repair missing
+state/control coverage.
+
+Read [Ross et al., section 3 and Algorithm 3.1](https://proceedings.mlr.press/v15/ross11a/ross11a.pdf).
+DAgger labels states visited by the current policy with expert actions and
+aggregates those labeled examples. Our dynamic outcomes are not those expert
+queries or counterfactual labels. The [RMA method, sections III-B/C](https://arxiv.org/html/2107.04034v1),
+already recorded above, likewise trains its estimator on trajectories driven
+by imperfect estimated context. These methods motivate covering induced
+states; neither has been reproduced by this comparison.
+
+Read [Johannink et al., Residual Reinforcement Learning for Robot Control,
+v2, section III and Algorithm 1](https://arxiv.org/pdf/1812.03201v2). It adds a
+learned correction to a fixed feedback controller and learns from the
+combined policy's transitions; its experiments concern block assembly. A
+separately declared bounded residual-training successor is an option for
+broadening our control coverage through the existing proposal interface.
+Preserve zero-residual baseline identity, current clamps, complete failures
+and prospective eligibility. No external code, weights, trainer, constants or
+performance claim transfers here; adding a residual does not establish
+empirical recovery or Tier 3 benefit.

@@ -450,7 +450,7 @@
               "authority_mode": "development_component",
               "question_class": "development"
             },
-            "status": "prepared_native_comparison_complete_gate_pending",
+            "status": "native_comparison_complete_no_complete_candidate",
             "provider": "sdk/adaptation_provider/retrieval/committed_feedback_v1.py",
             "definition": "sdk/adaptation_provider/retrieval/committed_feedback_v1.json",
             "controls": "sdk/discovery/test_committed_feedback_provider.py",
@@ -495,9 +495,9 @@
               "reason": "Expiry fixture advanced state without advancing its command lease; real resolver refused TIME_INVALID. Fresh successor uses the retained command-31 input."
             },
             "host_integrated": true,
-            "complete_native_safety_gate_passed": false,
-            "worlds_opened": 0,
-            "physical_validation_completed": false,
+            "complete_native_safety_gate_passed": true,
+            "worlds_opened": 48,
+            "physical_validation_completed": true,
             "adaptation_benefit_established": false,
             "tier3_benefit_established": false,
             "qualification_or_release_authority": false,
@@ -555,9 +555,9 @@
               "internal_samples_per_world": 7200,
               "planned_paired_contrasts": 56,
               "required_safety_controls": 388,
-              "complete_gate_passed": false,
-              "physical_started": false,
-              "consumed": false,
+              "complete_gate_passed": true,
+              "physical_started": true,
+              "consumed": true,
               "reserved_calibration_worlds": 0,
               "reserved_evaluation_worlds": 0,
               "unchanged_eligibility_and_zero_observed_healthy_loss_screen": true,
@@ -576,11 +576,139 @@
                 "runtime_bindings": 1359,
                 "worlds_opened": 0,
                 "source_runtime_unchanged": true
-              }
+              },
+              "source_commit": "d228a4d40b3bbb4719a1d897e2e94eb84cf258e7",
+              "attempt_id": "sdk2-cpu-committed-feedback-b4b51448289b40d4a5263d3bc83b6d56"
             },
-            "focused_component_host_route_controls": 39
+            "focused_component_host_route_controls": 39,
+            "component_controls_worlds_opened": 0,
+            "tested_rule_promoted": false,
+            "native_comparison": {
+              "ledger_scope": {
+                "subsystem": "adaptation",
+                "engine_scope": "mujoco_cpu",
+                "authority_mode": "development_discovery",
+                "question_class": "development"
+              },
+              "status": "complete_native_cpu_committed_feedback",
+              "closure": "sdk/discovery/cpu_committed_feedback_closure_v1.json",
+              "closure_sha256": "5aeb46084f5431386656a029f3a887433945c0df97f3180a6ac58d0ba2b5d633",
+              "reader": "sdk/discovery/audit_cpu_committed_feedback_closure.py",
+              "source_commit": "d228a4d40b3bbb4719a1d897e2e94eb84cf258e7",
+              "attempt_id": "sdk2-cpu-committed-feedback-b4b51448289b40d4a5263d3bc83b6d56",
+              "receipt_sha256": "0e9391b705e4dbaaa8112f2bc336e3169436f432c57b9c2d634ff6676dee9b9e",
+              "audit_sha256": "2c6648bfcbac08f9980e2d560d946691701b30526aa5f1543cae1d9d042d9323",
+              "safety_controls_passed": 388,
+              "worlds_opened": 48,
+              "eligible_episodes": 29,
+              "negative_episodes": 19,
+              "controller_rows": 69120,
+              "internal_rows": 345600,
+              "source_bindings": 522,
+              "runtime_bindings": 1359,
+              "artifact_count": 23243,
+              "artifact_bytes": 7962598846,
+              "reader_worlds_opened": 0,
+              "role_order": [
+                "baseline",
+                "disabled",
+                "current_frozen",
+                "current_shuffled",
+                "committed_frozen",
+                "committed_shuffled"
+              ],
+              "eligible_by_condition": {
+                "left_075": [
+                  0,
+                  0,
+                  2,
+                  2,
+                  1,
+                  0
+                ],
+                "nominal": [
+                  4,
+                  4,
+                  4,
+                  4,
+                  4,
+                  4
+                ]
+              },
+              "nominal_quality_difference_by_role": {
+                "baseline": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "disabled": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "current_frozen": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "current_shuffled": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "committed_frozen": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "committed_shuffled": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              },
+              "paired_contrasts": 56,
+              "eligible_paired_contrasts": 30,
+              "censored_paired_contrasts": 26,
+              "selected_role_index": null,
+              "ranked_role_indices": [],
+              "matched_influence_assumed": false,
+              "native_worker_wall_s": 1023.725159499998,
+              "independent_reader_wall_s": 1030.8806516999903,
+              "training_data_authority": true,
+              "training_data_scope": "development_committed_feedback_discovery_only",
+              "controller_selection_authority": true,
+              "selection_scope": "exposed_committed_feedback_training_groups_only",
+              "adaptation_benefit_established": false,
+              "tier3_benefit_established": false,
+              "population_inference": false,
+              "qualification_or_release_authority": false,
+              "reserved_calibration_worlds": 0,
+              "reserved_evaluation_worlds": 0,
+              "closure_controls": {
+                "attempt_id": "sdk2-committed-closure-controls-797879304fde4098b1ac386cf1166fe1",
+                "controls_passed": 10,
+                "source_commit": "d228a4d40b3bbb4719a1d897e2e94eb84cf258e7",
+                "owned_uncommitted_sources_at_execution": true,
+                "worlds_opened": 0,
+                "source_runtime_unchanged": true,
+                "source_bindings": 524,
+                "runtime_bindings": 1359,
+                "receipt_sha256": "a4a7276ca44555c8f3d5169133a11d11d2c52345b3647b3c997c499a371b0649",
+                "declaration_sha256": "e177488b7a38a37efe33e38d3715b78c020228ef9569e039c442dde8a67d219c",
+                "owner_sha256": "7357eaffb78e62fbbc8b921490ea1d43dad7863be195bc41d38f4f0dc2d6a881",
+                "stderr_sha256": "af719094641271613b1d98e1838187b4e7dc911f5d2ce08846ebde56228772b4",
+                "full_controller_replay_repeated": false
+              }
+            }
           },
-          "next_development_question": "Publish the prepared 48-world committed-selection freeze, pass all 388 applicable controls from that clean pushed source, then execute and independently replay all fresh roles and starts. Retain the uncovered-start coverage problem; native usefulness and Tier 3 outcome-memory benefit remain unproved."
+          "next_development_question": "The tested thirty-command commitment rule is not promoted: it reduces eligible weakened starts and leaves the hardest start uncovered. Diagnose early control divergence and state and action history coverage on the complete matched episodes, then freeze a distinct successor that improves control coverage. Consider a bounded learned residual using actual rollout data through the existing proposal seam. Retain all failures and original quality rules, preserve every healthy baseline, and keep reserved calibration/evaluation unopened; no Tier 3 or release claim."
         },
         "first_response_repertoire": {
           "ledger_scope": {
