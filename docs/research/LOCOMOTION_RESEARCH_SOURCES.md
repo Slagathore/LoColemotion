@@ -2298,3 +2298,15 @@ inference from the local measurements, not a replication of their learned
 position controller. It may remove useful support as well as conflicting
 corrections; fresh full-horizon and healthy-body comparisons remain necessary.
 No third-party code, weights or gains were imported, and no claim gate changed.
+
+## 2026-10-23 phase-aware residual-release preparation
+
+The [local successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-phase-release-comparison---2026-10-23)
+now implements bounded release using actual v1 phase context. It derives the
+44-command interval from this project's existing correction and slew limits;
+it does not copy paper gains, policies or code. All 287 zero-world controls
+pass, including complete-cycle real-ABI agreement on both frozen cores and an
+independent taper calculation. The prospective comparison includes all four
+training starts and healthy/degraded motors, with a finite zero-observed-loss
+healthy-body screen. Physical usefulness and experience-dependent adaptation
+remain unproved until fresh execution and closure.

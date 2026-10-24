@@ -1,0 +1,150 @@
+{
+  "schema_version": "locolemotion_cpu_phase_release_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/phase_contact_diagnostic_v1.json",
+    "sha256": "aacd554c392c319ce876da241fb3b96979573127e25bef979a955adcaedaeacc"
+  },
+  "seed": 104232600,
+  "outer_steps": 1440,
+  "horizon_s": 12.0,
+  "internal_steps_per_outer": 5,
+  "conditions": [
+    "left_075",
+    "nominal"
+  ],
+  "roles": [
+    {
+      "id": "baseline",
+      "candidate_index": 0,
+      "activation_step": null,
+      "baseline_probe_steps": 16
+    },
+    {
+      "id": "vertical_immediate",
+      "candidate_index": 3,
+      "activation_step": 0,
+      "baseline_probe_steps": 0
+    },
+    {
+      "id": "phase_immediate",
+      "candidate_index": 4,
+      "activation_step": 0,
+      "baseline_probe_steps": 0
+    },
+    {
+      "id": "phase_after_16",
+      "candidate_index": 4,
+      "activation_step": 16,
+      "baseline_probe_steps": 16
+    }
+  ],
+  "planned_cpu_worlds": 32,
+  "partitions": {
+    "training": [
+      {
+        "id": "train_001",
+        "lateral_velocity_m_s": 0.001
+      },
+      {
+        "id": "train_003",
+        "lateral_velocity_m_s": 0.003
+      },
+      {
+        "id": "train_004",
+        "lateral_velocity_m_s": 0.004
+      },
+      {
+        "id": "train_006",
+        "lateral_velocity_m_s": 0.006
+      }
+    ],
+    "calibration": [
+      {
+        "id": "cal_0015",
+        "lateral_velocity_m_s": 0.0015
+      },
+      {
+        "id": "cal_0045",
+        "lateral_velocity_m_s": 0.0045
+      }
+    ],
+    "evaluation": [
+      {
+        "id": "eval_0025",
+        "lateral_velocity_m_s": 0.0025
+      },
+      {
+        "id": "eval_0055",
+        "lateral_velocity_m_s": 0.0055
+      }
+    ]
+  },
+  "excluded_confirmation_starts": [
+    0.002,
+    0.005
+  ],
+  "ranking": "Require all eight condition/start episodes eligible and zero observed nominal quality loss against fresh baseline at every start; rank mean whole-episode quality, then role index. No statistical non-inferiority claim.",
+  "nominal_quality_loss_margin_m_s": 0.0,
+  "contrasts": [
+    {
+      "id": "reference_minus_baseline",
+      "left": "vertical_immediate",
+      "right": "baseline"
+    },
+    {
+      "id": "immediate_minus_baseline",
+      "left": "phase_immediate",
+      "right": "baseline"
+    },
+    {
+      "id": "early_minus_baseline",
+      "left": "phase_after_16",
+      "right": "baseline"
+    },
+    {
+      "id": "immediate_minus_reference",
+      "left": "phase_immediate",
+      "right": "vertical_immediate"
+    },
+    {
+      "id": "early_minus_immediate",
+      "left": "phase_after_16",
+      "right": "phase_immediate"
+    }
+  ],
+  "comparison": "Fresh baseline, unchanged vertical parent, immediate phase release and delayed phase release in each degraded and healthy condition/start group. No cached baseline.",
+  "confirmation_fitting_permitted": false,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 1800,
+  "maximum_reader_wall_seconds": 1800,
+  "purpose": "Test whether phase-aware release yields full-horizon control across four starts while preserving observed healthy-body baseline quality.",
+  "coverage": [
+    "32 fresh sequential CPU worlds and private controller memories",
+    "four roles at all four training starts in both left_075 and nominal conditions",
+    "actual current provider context phase and 44-command bounded release before swing",
+    "truthful sixteen-command baseline history only for baseline and delayed roles",
+    "unchanged parent feedback, resolver limits, physical timing and eligibility",
+    "independent full controller replay, native trace joins, contrasts and finite nominal preservation"
+  ],
+  "not_covered": [
+    "learned choice or memory benefit",
+    "new condition profiles",
+    "reserved calibration or evaluation",
+    "other morphology, terrain or engines",
+    "population inference",
+    "statistical non-inferiority",
+    "qualification or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": true
+}

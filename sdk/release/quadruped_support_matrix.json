@@ -304,6 +304,135 @@
           "adaptation_benefit_established": false,
           "qualification_or_release_authority": false
         },
+        "phase_release_discovery": {
+          "ledger_scope": {
+            "subsystem": "adaptation",
+            "engine_scope": "mujoco_cpu",
+            "authority_mode": "development_discovery",
+            "question_class": "development"
+          },
+          "status": "prepared_zero_world_gate_passed",
+          "declaration": "sdk/discovery/cpu_phase_release_v1.json",
+          "declaration_sha256": "d4cd1a99fde2973800a82fadb409f16edb6ee15efe857f8482fe1fdc7a8752b8",
+          "provider": "sdk/adaptation_provider/phase_release_feedback_v1.py",
+          "provider_sha256": "06adf4ae7b7cc4fe7d959a0e10d0e4212c7d96864e6a98b4b662ebca833b0f44",
+          "provider_model": "sdk/adaptation_provider/phase_release_feedback_v1.json",
+          "provider_model_sha256": "3ff2c4231f063ee36a08899eb77029278e30d797885824ec01f9161f48a442c1",
+          "controller": "sdk/discovery/phase_release_control.py",
+          "launcher": "sdk/discovery/run_cpu_phase_release.py",
+          "reader": "sdk/discovery/audit_cpu_phase_release.py",
+          "retained_gate": "sdk2-cpu-phase-release-0928389ea10849c3acf76fc0c247e001",
+          "retained_gate_receipt_sha256": "694468d60665afa31aa244393f21a9763f06f934b7ed10bcac93242206c5bf1b",
+          "complete_zero_world_gate": 287,
+          "source_binding_count": 470,
+          "runtime_binding_count": 1359,
+          "retained_tested_sources": "sdk2-phase-release-preparation-a00e7507727640a4879ea9386587c5a5",
+          "retained_failed_focused_controls": "sdk2-phase-release-controls-7172ce5f7ef244f5affc565d347fa8c4",
+          "failed_focused_reason": "Incorrect test expectation of 32 features; unchanged schema contains 16. Corrected before the complete gate; zero worlds involved.",
+          "component_controls": {
+            "phase_contact": 8,
+            "provider": 10,
+            "host": 8,
+            "route": 11
+          },
+          "planned_cpu_worlds": 32,
+          "planned_gpu_worlds": 0,
+          "planned_controller_rows": 46080,
+          "planned_internal_rows": 230400,
+          "seed": 104232600,
+          "outer_steps": 1440,
+          "horizon_s": 12.0,
+          "conditions": [
+            "left_075",
+            "nominal"
+          ],
+          "roles": [
+            {
+              "id": "baseline",
+              "candidate_index": 0,
+              "activation_step": null,
+              "baseline_probe_steps": 16
+            },
+            {
+              "id": "vertical_immediate",
+              "candidate_index": 3,
+              "activation_step": 0,
+              "baseline_probe_steps": 0
+            },
+            {
+              "id": "phase_immediate",
+              "candidate_index": 4,
+              "activation_step": 0,
+              "baseline_probe_steps": 0
+            },
+            {
+              "id": "phase_after_16",
+              "candidate_index": 4,
+              "activation_step": 16,
+              "baseline_probe_steps": 16
+            }
+          ],
+          "partitions": {
+            "training": [
+              {
+                "id": "train_001",
+                "lateral_velocity_m_s": 0.001
+              },
+              {
+                "id": "train_003",
+                "lateral_velocity_m_s": 0.003
+              },
+              {
+                "id": "train_004",
+                "lateral_velocity_m_s": 0.004
+              },
+              {
+                "id": "train_006",
+                "lateral_velocity_m_s": 0.006
+              }
+            ],
+            "calibration": [
+              {
+                "id": "cal_0015",
+                "lateral_velocity_m_s": 0.0015
+              },
+              {
+                "id": "cal_0045",
+                "lateral_velocity_m_s": 0.0045
+              }
+            ],
+            "evaluation": [
+              {
+                "id": "eval_0025",
+                "lateral_velocity_m_s": 0.0025
+              },
+              {
+                "id": "eval_0055",
+                "lateral_velocity_m_s": 0.0055
+              }
+            ]
+          },
+          "excluded_confirmation_starts": [
+            0.002,
+            0.005
+          ],
+          "selection_rule": "Require all eight condition/start episodes eligible and zero observed nominal quality loss against fresh baseline at every start; rank mean whole-episode quality, then role index. No statistical non-inferiority claim.",
+          "nominal_quality_loss_margin_m_s": 0.0,
+          "prospective_contrast_count": 40,
+          "phase_taper_commands": 44,
+          "correction_and_slew_limits_unchanged": true,
+          "phase_clock_unchanged": true,
+          "physical_attempt_started": false,
+          "training_data_authority": false,
+          "controller_selection_authority": false,
+          "adaptation_benefit_established": false,
+          "nominal_preservation_established": false,
+          "learned_selection": false,
+          "calibration_worlds": 0,
+          "evaluation_worlds": 0,
+          "qualification_or_release_authority": false,
+          "next_question": "Run the declared 32 fresh CPU worlds from the clean pushed freeze after all 287 controls pass again. Preserve all outcomes and complete independent closure before selection, fitting or an action mapping."
+        },
         "support_vertical_discovery": {
           "ledger_scope": {
             "subsystem": "adaptation",

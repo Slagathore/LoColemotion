@@ -1,0 +1,160 @@
+{
+  "schema_version": "locolemotion_phase_release_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "parent_model": {
+    "path": "sdk/adaptation_provider/support_vertical_feedback_v1.json",
+    "sha256": "ffce5ea22410d378d6a9a2c6a7bdee83d9d09d6a499eaf149dee71016247fcf5"
+  },
+  "parent_implementation": {
+    "path": "sdk/adaptation_provider/support_vertical_feedback_v1.py",
+    "sha256": "3bcc778ac1a1621a36f0da7b17a7b57a1a7eaca7c70a7723aac3dda36d90a01f"
+  },
+  "phase_release_rule": {
+    "phase_source": "v1_controller_context_current_output_memory",
+    "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+    "phase_progression_mode": "clocked",
+    "cycle_steps": 360,
+    "swing_steps": 72,
+    "ordered_phase_limb_ids": [
+      "rear_left",
+      "front_left",
+      "rear_right",
+      "front_right"
+    ],
+    "taper_commands": 44,
+    "taper_derivation": "ceil(3.5_rad_s / 0.08_rad_s_per_command)",
+    "stance_weight": "min(1, (360-local_phase_step)/44)",
+    "swing_weight": 0.0,
+    "proposal": "phase_weight * clamp(parent_raw_correction, -3.5, +3.5)",
+    "phase_modified": false,
+    "resolver_limits_modified": false,
+    "measured_contact_forces_used": false
+  },
+  "candidate_count": 5,
+  "candidates": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "factor": null,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 0.0,
+      "angular_damping": 0.0,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 0.25,
+      "maximum_slew_per_step_rad_s": 0.02,
+      "posture_gain_s_inv": 0.0,
+      "height_enabled": false
+    },
+    {
+      "id": "feedback_kp3_kd05",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": false
+    },
+    {
+      "id": "feedback_height_v1",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": true
+    },
+    {
+      "id": "feedback_support_vertical_v1",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": true,
+      "support_vertical_compensation": true
+    },
+    {
+      "id": "feedback_phase_release_v1",
+      "mode": "feedback",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "attitude_gain_s_inv": 3.0,
+      "angular_damping": 0.5,
+      "velocity_gain_s_inv": 0.0,
+      "maximum_absolute_correction_rad_s": 3.5,
+      "maximum_slew_per_step_rad_s": 0.08,
+      "posture_gain_s_inv": 8.0,
+      "height_enabled": true,
+      "support_vertical_compensation": true,
+      "phase_release": true
+    }
+  ],
+  "envelope_selection": "prospectively_declared_candidate_bound_host_envelope",
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

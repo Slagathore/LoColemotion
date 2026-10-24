@@ -1,5 +1,14 @@
 # LoColemotion Locomotion SDK
 
+The [phase-release successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-phase-release-comparison---2026-10-23)
+passes all 287 zero-world controls. Actual controller phase drives a bounded
+44-command release before swing, with the existing public resolver unchanged.
+The declared 32-world CPU comparison covers four roles and four starts under
+degraded and nominal motors. Selection requires full-horizon eligibility and
+zero observed nominal quality loss against fresh baseline at every start.
+Next run the frozen comparison after the repeated gate; no new physical
+phase-release result, adaptation benefit or release authority is yet earned.
+
 The [phase/contact diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 verifies 1,536 decisions and 7,680 internal samples from all sixteen retained
 trials, with zero new worlds. Scheduled stance lacks support in 1,868/4,896

@@ -21,12 +21,19 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-22
 
+Latest preparation: the [phase-release comparison](#prepared-phase-release-comparison---2026-10-23)
+passes all 287 zero-world controls. The provider, host, native route and
+independent reader are implemented. Next execute the prospective 32-world
+comparison from a clean pushed freeze, after repeating the complete gate.
+The four-start degraded/nominal population, full twelve-second horizon and
+finite healthy-body preservation rule are fixed before observing outcomes.
+
 Latest diagnosis: the [phase/contact and response reader](#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 verifies all sixteen trials over a common 0.8-second prefix with zero new
 worlds. Scheduled stance lacks observed support in 1,868/4,896 leg observations,
-including both eventual positives. Eight controls pass. Next implement and
-prospectively compare phase-aware residual release through actual controller
-memory, with unchanged resolver limits and full-horizon/healthy-body checks.
+including both eventual positives. Eight controls pass. The prepared successor
+above uses actual controller memory and keeps the resolver limits unchanged;
+its full-horizon and healthy-body comparisons are the next physical task.
 
 Latest controller result: the [support-vertical comparison](#completed-support-vertical-comparison---2026-10-23)
 retains 2/16 eligible trials and 14/16 negatives after complete independent
@@ -1429,6 +1436,84 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Prepared phase-release comparison - 2026-10-23
+
+The [provider](../sdk/adaptation_provider/phase_release_feedback_v1.py),
+[host](../sdk/discovery/phase_release_control.py),
+[declaration](../sdk/discovery/cpu_phase_release_v1.json),
+[native route](../sdk/discovery/cpu_phase_release.py) and
+[independent reader](../sdk/discovery/audit_cpu_phase_release.py) implement a
+distinct successor to the complete phase/contact diagnosis. No previous
+campaign, threshold, source pin or interpretation changes.
+
+The parent remains the support-vertical controller. The new candidate uses
+the actual current `controller_context.controller_memory` for the unchanged
+360-command wave and 72-command swing. It first bounds the parent's proposed
+joint correction to +/-3.5 rad/s, then applies weight
+`min(1, (360 - local_phase_step) / 44)` during stance and zero during swing.
+The 44-command release interval is `ceil(3.5 / 0.08)`, derived from the existing
+correction and per-command slew limits. The public resolver still applies
+correction, slew and final-speed limits. The provider changes neither the gait
+clock nor the baseline. Unsupported phase context withdraws the proposal.
+
+The full-cycle controls verify release through adversarial raw sign changes,
+actual phase/receipt joins, 172 partial-release leg observations and 288
+scheduled-swing observations. Both frozen cores agree across 1,440 real-ABI
+controller decisions, and the unchanged parent's target bits are preserved.
+The independent reader separately computes phase weights, bounds and proposals
+from the original parent equations; it rejects altered weights or commands.
+No counterfactual trajectory or physical success follows from these controls.
+
+| Role | Candidate | Influence begins | Truthful baseline history |
+| --- | --- | ---: | ---: |
+| Baseline | 0 | None | 16 commands |
+| Vertical reference | 3 | Command 0 | None |
+| Immediate phase release | 4 | Command 0 | None |
+| Delayed phase release | 4 | Command 16 | 16 commands |
+
+Each role runs at all four training starts (0.001, 0.003, 0.004 and 0.006 m/s
+initial lateral velocity), under both left-side 75-percent motors and nominal
+motors. The declaration fixes **32 fresh sequential CPU worlds**, seed
+104232600, 1,440 commands and five substeps per command: **46,080 decisions and
+230,400 internal samples**, with complete original streams. All forty planned
+paired contrasts remain visible; failed-episode quality stays censored. Prior
+confirmation and reserved calibration/evaluation starts are excluded.
+
+Eligibility remains minimum torso height 0.25 m, maximum tilt 0.6 rad, zero
+torso contacts and zero safe-no-actuation commands over the full twelve seconds.
+To enter the fixed-controller shortlist, a role must pass all eight episodes
+and show **zero observed nominal tracking-quality loss against the fresh
+baseline at each start**. Both endpoints must be eligible with measured
+quality; missing or failed nominal baselines cannot establish preservation.
+Rank only eligible, preserving roles by mean whole-episode tracking quality,
+then role index. This is a finite development screening rule, not a population
+non-inferiority margin or a claim about future context-selected behavior.
+
+The first focused controls at
+`sdk2-phase-release-controls-7172ce5f7ef244f5affc565d347fa8c4` retained one route
+test failure: its expectation accidentally counted 32 history features,
+where the unchanged feature schema has 16. The expectation was corrected;
+the failed logs and tested source remain. A fixture input stream was also
+closed explicitly. No physical world was involved.
+
+The [supervisor](../sdk/discovery/run_cpu_phase_release.py) then passed all
+**287 controls** at `sdk2-cpu-phase-release-0928389ea10849c3acf76fc0c247e001`:
+470 source and 1,359 runtime bindings remained unchanged, preflight opened zero
+worlds, and physical execution remained false. The receipt SHA-256 is
+`694468d60665afa31aa244393f21a9763f06f934b7ed10bcac93242206c5bf1b`.
+Its new phase/contact, provider, host and route stages passed 8, 10, 8 and 11
+controls in 40.561, 13.830, 4.163 and 12.284 seconds respectively. Exact copies
+of all twelve new files and their bindings are retained in
+`sdk2-phase-release-preparation-a00e7507727640a4879ea9386587c5a5`.
+
+Next use a clean pushed prospective freeze, repeat the complete gate and run
+this declared population under the operation mutex and Windows containment.
+Releasing a correction may improve swing coordination or remove useful support;
+it cannot alone establish reachable touchdown. The physical comparison must
+decide its usefulness. Training/selection authority requires complete execution
+and independent closure; learned choice, Tier 3 benefit, qualification and
+release remain unproved.
 
 ### Completed phase/contact and command-response diagnosis - 2026-10-23
 

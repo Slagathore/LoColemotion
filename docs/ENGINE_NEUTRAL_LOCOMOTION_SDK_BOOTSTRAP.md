@@ -2,6 +2,18 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-22
 
+Latest preparation (2026-10-23): the [phase-release successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-phase-release-comparison---2026-10-23)
+passes all **287 zero-world controls**. It uses actual v1 controller phase,
+bounds the parent correction and releases it over 44 commands before swing;
+the public resolver and deterministic gait clock remain unchanged. A complete
+cycle verifies 1,440 real-ABI decisions using both frozen cores. The declared
+comparison has 32 fresh CPU worlds: four roles, four training starts, and both
+degraded and nominal motors. Selection requires eight eligible episodes per
+role and zero observed nominal quality loss against the fresh baseline at
+every start. This finite rule grants no statistical non-inferiority claim.
+Next publish the clean freeze, repeat the full gate and run the declared
+comparison. No physical phase-release result or adaptation benefit is yet earned.
+
 Latest diagnosis (2026-10-23): the [phase/contact reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 verifies the same first 96 commands from all sixteen support-vertical trials:
 1,536 decisions, 7,680 internal samples and 12,288 joint command/response pairs,
