@@ -2388,3 +2388,29 @@ full-episode consequences before introducing an outcome-memory successor.
 These finite observations do not replicate Cully et al. or RMA and do not
 establish useful Tier 3 adaptation. No external code, weights, gains or new
 dependency was imported. Reserved evaluation and promotion remain unopened.
+
+## 2026-10-24 selection windows and policy-induced state coverage
+
+The [complete selection diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-selection-window-and-case-support-diagnosis---2026-10-24)
+retains all forty trials and independently regenerates them with eight passing
+controls and zero worlds. Most scored thirty-command windows change or withdraw
+their proposed expert. The hardest start also has optimistic constant-expert
+windows and early support loss; a low-switch failure prevents attributing all
+failures to switching. Original failures and null official qualities remain.
+
+Sutton, Precup and Singh's [Between MDPs and semi-MDPs](https://www.sciencedirect.com/science/article/pii/S0004370299000521)
+(1999; primary abstract consulted) motivates considering policies that persist
+for multiple steps. The local prospective hypothesis uses thirty commands
+because that is this repository's label horizon, not a constant from the paper.
+It would retain immediate support refusal. No options-learning algorithm or
+performance guarantee has been reproduced.
+
+Ross, Gordon and Bagnell's [A Reduction of Imitation Learning and Structured
+Prediction to No-Regret Online Learning](https://proceedings.mlr.press/v15/ross11a.html)
+(2011; primary abstract consulted) explains why sequential actions change the
+states subsequently observed. That motivates checking coverage under the
+selected policy rather than treating fixed-expert trajectories as complete
+runtime coverage. This project has neither run DAgger nor supplied its expert
+labels or guarantees. No external source code, weights, gains or dependency
+was imported. Temporal commitment, additional state and coverage are local
+hypotheses; useful physical selection and Tier 3 adaptation remain unproved.

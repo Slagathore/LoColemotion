@@ -1468,6 +1468,67 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Completed selection-window and case-support diagnosis - 2026-10-24
+
+The [record](../sdk/discovery/conditioned_selection_diagnostic_v1.json) and
+[reader](../sdk/discovery/conditioned_selection_diagnostic.py) reopen every
+original conditioned-selection episode: forty trials, 57,600 decisions and
+288,000 internal samples. All 26 eligible episodes and fourteen negatives keep
+their original disposition. A failed episode's official quality remains null.
+No new worlds, fitting, selection or outcome-memory update occurred.
+
+A case predicts a fixed expert's next thirty commands. The diagnostic joins
+that prediction to the expert actually proposed, including shuffled mappings,
+and measures the actual subsequent trajectory. Disabled or rejected proposals
+receive no prediction-error score. Only complete windows strictly before the
+first physical violation enter the following table. Windows that change or
+withdraw their expert describe mixed behavior, not fixed-expert counterfactuals.
+
+| Weakened role | Scored windows | Constant expert | Mixed or withdrawn | Constant mean prediction minus actual quality | Mixed mean prediction minus actual quality |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Frozen | 3,199 | 1,155 | 2,044 | +0.00748503 m/s | +0.02474633 m/s |
+| Shuffled | 2,710 | 688 | 2,022 | -0.01029450 m/s | -0.00131169 m/s |
+
+The denominator includes available predictions for the actual proposed expert;
+434 applied shuffled correction commands have no such prediction. A further
+58 frozen and 47 shuffled predicted windows are censored at the twelve-second
+horizon. These overlapping windows are not independent trials. Their errors
+do not establish survival probabilities, causes or whole-episode benefit.
+
+On the uncovered 0.006 m/s start, both learned roles first lose case support at
+**0.725 s**, before physical failure at **1.703333 s frozen** and **1.393333 s
+shuffled**. Frozen has 24 direct expert switches before failure; shuffled has
+only two. Successful learned episodes have 89 to 108 direct switches. Therefore
+switching alone does not explain failure. All nineteen constant-expert frozen
+windows and all thirty-three constant-expert shuffled windows at this start
+are optimistic, with mean errors **+0.05263396** and **+0.01918781 m/s**.
+Temporal commitment cannot be assumed to repair unsupported or aliased states.
+
+Seven focused controls and all eight [full controls](../sdk/discovery/test_conditioned_selection_diagnostic.py)
+pass under `sdk2-conditioned-selection-diagnostic-79009d42ea1b4507ab830569d684d8cb`.
+The full suite regenerates the complete parent and diagnostic, and rejects
+crossed role/state/time, altered raw traces, invented fixed-expert attribution,
+changed failed quality and incorrect boundary censoring. It forbids world
+construction and stepping. Execution used published `e1d20b6f` plus the two
+explicitly owned new reader/test files; all 260 source and 1,357 runtime
+bindings remained unchanged. The report SHA-256 is
+`030bcb41c5c248645a57d969f3867304f97adcd1ed226627b361393a683c5030`;
+the retained receipt is
+`d55998b57d7d5a9623ec8e7840be04b012951ef76dd5ccbd9088b4a09069d9d9`.
+The [support matrix](../sdk/release/quadruped_support_matrix.json) binds the
+execution declaration, owner, receipt and control log.
+
+The next distinct hypothesis holds a supported selected expert for the same
+thirty-command horizon used by its labels, with immediate termination when
+support is absent. Compare it prospectively against current frozen selection,
+shuffled association, disabled control and fresh baseline across all four
+healthy and four weakened starts. Keep resolver limits and failure thresholds.
+This is a timing hypothesis, not a selected winner or a presumed coverage fix.
+Missing state and the uncovered start remain required work. The empirical
+recoverability monitor, useful Tier 3 outcome memory, reserved evaluation and
+three-engine promotion remain open. SDK1 remains 20/20 and full-program
+readiness 19/25; qualification and release authority remain false.
+
 ### Completed conditioned selection comparison - 2026-10-23
 
 The [prospective declaration](../sdk/discovery/cpu_conditioned_feedback_v1.json)
@@ -1538,9 +1599,9 @@ changed receipts, invented fixed-expert labels and expanded claims. The default
 closure verifies the retained independent replay; explicit `--replay` can repeat
 all controller and native-trace checks.
 
-Next diagnose how local predicted action quality, switching and support loss
-relate to full-episode failures across the complete population. Keep the
-shuffled successes as counterexamples and the uncovered start in scope. A new
+The complete-population diagnosis above now measures local predicted action
+quality, switching and support loss while preserving shuffled successes and
+the uncovered start. A new
 selection or outcome-memory rule needs its own frozen comparison; this result
 does not justify relabeling dynamic episodes as fixed experts, relaxing an old
 threshold or opening reserved evaluation. The empirical recoverability monitor,

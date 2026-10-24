@@ -7,7 +7,7 @@ moves the retained archive to L: while preserving the original sibling path.
 Every ordinary file passed the full checksum comparison; nine reopened evidence
 controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
-release authority; the conditioned-selection diagnosis below remains next.
+release authority; the completed conditioned-selection diagnosis is recorded below.
 
 Latest native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
 completed all **40 fresh CPU worlds** from published `59aacf3c` after the full
@@ -18,11 +18,22 @@ and the fixed reference 2/4. All twenty healthy trials are eligible; frozen,
 disabled and shuffled roles preserve baseline quality at every healthy start.
 The fixed reference loses healthy quality at all four. No role passes the
 complete declared screen, so the shortlist remains empty. Nine closure
-controls pass over 18,132 retained artifacts. Next diagnose action choice,
-switching and support loss against the complete episodes, including shuffled
-successes and the uncovered 0.006 m/s start. Learned-association benefit,
+controls pass over 18,132 retained artifacts. The diagnosis below retains
+shuffled successes and the uncovered 0.006 m/s start. Learned-association benefit,
 recoverability monitoring, reserved evaluation, useful Tier 3 behavior,
 qualification and release remain unproved.
+
+Latest diagnosis (2026-10-24): the [complete selection reader](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-selection-window-and-case-support-diagnosis---2026-10-24)
+reopens all forty trials and passes eight controls with zero new worlds.
+Of the scored thirty-command prediction windows, **2,044/3,199 frozen** and
+**2,022/2,710 shuffled** windows change or withdraw the proposed expert. These
+windows overlap and are not independent trials. Both learned roles first lose
+case support at 0.725 s on the uncovered start, before their physical failures;
+constant-expert windows there are also optimistic. A distinct temporal
+commitment comparison is next, with immediate support refusal and the original
+healthy/weakened population. Switching is not an established cause, and case
+coverage and missing state remain open. Failed official qualities stay null;
+this diagnosis creates no fitting, selection, recoverability or release authority.
 
 Earlier fitting closure (2026-10-23): the [first-response repertoire fit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),

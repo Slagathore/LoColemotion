@@ -1,0 +1,4352 @@
+{
+  "schema_version": "locolemotion_conditioned_selection_diagnostic_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_evidence_diagnostic",
+    "question_class": "development"
+  },
+  "parent_closure": {
+    "path": "sdk/discovery/cpu_conditioned_feedback_closure_v1.json",
+    "sha256": "9727d866d7f1ca81f18c12b2b568e6918cb0be24ad40d0bc8c045bb63246e6c9"
+  },
+  "original_source_commit": "59aacf3cfc361f4ed2d102c32558721053e441a6",
+  "source_attempt": "sdk2-cpu-conditioned-feedback-258191c7b334449093301732f6e097ba",
+  "rules": {
+    "post_hoc": true,
+    "all_roles_and_starts_retained": true,
+    "pre_failure_command": "all five substeps strictly precede the first recorded physical violation",
+    "diagnostic_window_commands": 30,
+    "diagnostic_window": "starts before first violation; quality only if its complete future strictly precedes that violation",
+    "right_censoring": "fewer than thirty future commands remain",
+    "mixed_window": "proposed expert changes or withdraws within the thirty held commands",
+    "prediction": "prediction associated with the proposed expert, not the shuffled logical label",
+    "uninfluenced_proposals": "disabled or rejected proposals are counted separately and receive no prediction-error score",
+    "short_window_quality_is_official_failed_episode_quality": false,
+    "predicted_quality_is_survival_probability": false,
+    "action_switches_establish_causation": false
+  },
+  "source_trials": 40,
+  "controller_rows": 57600,
+  "internal_samples": 288000,
+  "original_eligible": 26,
+  "original_negative": 14,
+  "implementation_bindings": [
+    {
+      "path": "sdk/discovery/conditioned_selection_diagnostic.py",
+      "sha256": "33c5dd8b5ee10bc86fc784f4efce7c953e636e9d6df6a236e5b4e0b84345203f"
+    },
+    {
+      "path": "sdk/discovery/audit_cpu_conditioned_feedback_closure.py",
+      "sha256": "2755bdc0261c8cb2dde270683e4a660dc90ebe7aa9ac3354fe270abd1a5e597e"
+    },
+    {
+      "path": "sdk/discovery/body_height_diagnostic.py",
+      "sha256": "076d4c8faab64490cab81744bf40c38993fb90ec2cfd763640a239df527c7da9"
+    },
+    {
+      "path": "sdk/adaptation_provider/retrieval/learner.py",
+      "sha256": "2b6b8d080ace4de19467793aba2d8e220386df6b665213307b7efa20b4199d65"
+    }
+  ],
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "trials": [
+    {
+      "trial_id": "left_075_train_001_baseline",
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "role": "baseline",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 638,
+        "time_s": 1.0633333333333443,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": {
+          "step": 157,
+          "time_s": 1.3083333333333333,
+          "before_first_violation": false,
+          "proposed_expert": 0,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1148,
+          "1": 158,
+          "2": 122,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 127,
+        "proposed_expert_counts": {
+          "0": 127
+        },
+        "reasons": {
+          "fixed_baseline": 127
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 9,
+          "2": 105,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "ede0e77df4655f93351905f61324cd17db3476ad618826f9f337a133e7fa8552",
+        "trace": "4062f7e84572a924d3978b0d5e027e20ba008f17f07f27e0ca9d4a8299201cf1"
+      }
+    },
+    {
+      "trial_id": "left_075_train_001_disabled",
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "role": "disabled",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 638,
+        "time_s": 1.0633333333333443,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 86,
+          "time_s": 0.7166666666666667,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": {
+          "step": 128,
+          "time_s": 1.0666666666666667,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_zero_support": {
+          "step": 157,
+          "time_s": 1.3083333333333333,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 34,
+          "2": 65,
+          "None": 1341
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 99,
+          "no_current_case_support": 28,
+          "unsupported_current_observation: Outside posture domain": 1312
+        },
+        "direct_expert_switches": 4,
+        "first_expert_switch_step": 19,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 2,
+          "1->None": 1,
+          "2->1": 2,
+          "2->None": 1,
+          "None->1": 1,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1148,
+          "1": 158,
+          "2": 122,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 127,
+        "proposed_expert_counts": {
+          "1": 34,
+          "2": 65,
+          "None": 28
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 99,
+          "no_current_case_support": 27
+        },
+        "direct_expert_switches": 4,
+        "first_expert_switch_step": 19,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 2,
+          "1->None": 1,
+          "2->1": 2,
+          "2->None": 1,
+          "None->1": 1,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 9,
+          "2": 105,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 99,
+          "proposal_not_applied": 99,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "822229e2fccc072e4796699543562ef2576e63c95a4d14d97f4d60a48aff188c",
+        "trace": "4062f7e84572a924d3978b0d5e027e20ba008f17f07f27e0ca9d4a8299201cf1"
+      }
+    },
+    {
+      "trial_id": "left_075_train_001_frozen",
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "role": "frozen",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 1773,
+        "time_s": 2.9549999999999272,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 89,
+          "time_s": 0.7416666666666667,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": {
+          "step": 355,
+          "time_s": 2.9583333333333335,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_zero_support": {
+          "step": 403,
+          "time_s": 3.3583333333333334,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 170,
+          "2": 105,
+          "None": 1165
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 275,
+          "no_current_case_support": 79,
+          "unsupported_current_observation: Outside posture domain": 1085
+        },
+        "direct_expert_switches": 16,
+        "first_expert_switch_step": 71,
+        "mean_switch_applied_correction_l1_rad_s": 0.2870310841927133,
+        "transitions": {
+          "1->2": 8,
+          "1->None": 2,
+          "2->1": 8,
+          "2->None": 1,
+          "None->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 275,
+        "slew_clamped_actuator_commands": 686,
+        "absolute_clamped_actuator_commands": 259,
+        "speed_clamped_actuator_commands": 26,
+        "support_count_histogram": {
+          "0": 194,
+          "1": 901,
+          "2": 304,
+          "3": 39,
+          "4": 2
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 354,
+        "proposed_expert_counts": {
+          "1": 170,
+          "2": 105,
+          "None": 79
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 275,
+          "no_current_case_support": 78
+        },
+        "direct_expert_switches": 16,
+        "first_expert_switch_step": 71,
+        "mean_switch_applied_correction_l1_rad_s": 0.2870310841927133,
+        "transitions": {
+          "1->2": 8,
+          "1->None": 2,
+          "2->1": 8,
+          "2->None": 1,
+          "None->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 275,
+        "slew_clamped_actuator_commands": 686,
+        "absolute_clamped_actuator_commands": 259,
+        "speed_clamped_actuator_commands": 26,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 22,
+          "2": 290,
+          "3": 39,
+          "4": 2
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 275,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 275
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 99,
+            "mean": 0.01998980367373112,
+            "mean_absolute": 0.02559113815622453,
+            "optimistic_count": 75
+          },
+          "mixed_or_withdrawn": {
+            "count": 176,
+            "mean": 0.05900474164220846,
+            "mean_absolute": 0.06513865154449706,
+            "optimistic_count": 125
+          }
+        },
+        "maximum_used_support_distance": 1.4592204889892275
+      },
+      "raw_bindings": {
+        "controller": "281bd55be0b409d5aabf49aa479f4b98b397140419447496de68ad9ec7e5351c",
+        "trace": "74031459b7a938300f5f8073a8c45e99b640d7bc12dc31d3eba92c7f5cba5e7d"
+      }
+    },
+    {
+      "trial_id": "left_075_train_001_shuffled",
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "role": "shuffled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.1546356420125834,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": {
+          "step": 674,
+          "time_s": 5.616666666666666,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 1
+        },
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 732,
+          "2": 698,
+          "None": 10
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1430,
+          "no_current_case_support": 9
+        },
+        "direct_expert_switches": 103,
+        "first_expert_switch_step": 72,
+        "mean_switch_applied_correction_l1_rad_s": 0.32151828465115745,
+        "transitions": {
+          "1->2": 52,
+          "1->None": 1,
+          "2->1": 51,
+          "2->None": 4,
+          "None->1": 2,
+          "None->2": 4
+        },
+        "correction_nonzero_commands": 1430,
+        "slew_clamped_actuator_commands": 2762,
+        "absolute_clamped_actuator_commands": 1241,
+        "speed_clamped_actuator_commands": 77,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 15,
+          "2": 970,
+          "3": 441,
+          "4": 13
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 732,
+          "2": 698,
+          "None": 10
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1430,
+          "no_current_case_support": 9
+        },
+        "direct_expert_switches": 103,
+        "first_expert_switch_step": 72,
+        "mean_switch_applied_correction_l1_rad_s": 0.32151828465115745,
+        "transitions": {
+          "1->2": 52,
+          "1->None": 1,
+          "2->1": 51,
+          "2->None": 4,
+          "None->1": 2,
+          "None->2": 4
+        },
+        "correction_nonzero_commands": 1430,
+        "slew_clamped_actuator_commands": 2762,
+        "absolute_clamped_actuator_commands": 1241,
+        "speed_clamped_actuator_commands": 77,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 15,
+          "2": 970,
+          "3": 441,
+          "4": 13
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 1271,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 18,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 1253
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 309,
+            "mean": -0.013454182353022552,
+            "mean_absolute": 0.017870056400282334,
+            "optimistic_count": 80
+          },
+          "mixed_or_withdrawn": {
+            "count": 944,
+            "mean": -0.009290312873092251,
+            "mean_absolute": 0.04047440132177779,
+            "optimistic_count": 526
+          }
+        },
+        "maximum_used_support_distance": 1.494024459083229
+      },
+      "raw_bindings": {
+        "controller": "ccaca8299cb76a2cb854a9dee7de3781fb88f4e91fdd9146e4e93987551f103f",
+        "trace": "535ae44293479f7cd6c852fa119183fede5e1a21db2db9bf39e07bec30651d0d"
+      }
+    },
+    {
+      "trial_id": "left_075_train_001_phase_reference",
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "role": "phase_reference",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 1312,
+        "time_s": 2.1866666666666785,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": {
+          "step": 283,
+          "time_s": 2.3583333333333334,
+          "before_first_violation": false,
+          "proposed_expert": 2,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 262,
+        "slew_clamped_actuator_commands": 672,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 84,
+        "support_count_histogram": {
+          "0": 214,
+          "1": 962,
+          "2": 209,
+          "3": 50,
+          "4": 5
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 262,
+        "proposed_expert_counts": {
+          "2": 262
+        },
+        "reasons": {
+          "fixed_phase_reference": 262
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 261,
+        "slew_clamped_actuator_commands": 667,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 83,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 22,
+          "2": 184,
+          "3": 50,
+          "4": 5
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "366c9a6919d1c06fc82e7844f7d0339f6ff40142c829f6bd5b44aadbfd6a1b48",
+        "trace": "3388f2742c648bf09fbcbf675f9dc959a23dfa64aa92d1e8ea98397b9d361961"
+      }
+    },
+    {
+      "trial_id": "left_075_train_003_baseline",
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "role": "baseline",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 691,
+        "time_s": 1.1516666666666797,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": {
+          "step": 169,
+          "time_s": 1.4083333333333332,
+          "before_first_violation": false,
+          "proposed_expert": 0,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 242,
+          "1": 1051,
+          "2": 135,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 138,
+        "proposed_expert_counts": {
+          "0": 138
+        },
+        "reasons": {
+          "fixed_baseline": 138
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 11,
+          "2": 114,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "cd47fc2445687b80d065c7301aca3228305b9e58685f16e718fb8153f19e3478",
+        "trace": "3441b96b0d4dfbe13b9f964a4dddbbac56e215ccfc787f7bc5e568fb8c26cba0"
+      }
+    },
+    {
+      "trial_id": "left_075_train_003_disabled",
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "role": "disabled",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 691,
+        "time_s": 1.1516666666666797,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 88,
+          "time_s": 0.7333333333333333,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": {
+          "step": 139,
+          "time_s": 1.1583333333333332,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_zero_support": {
+          "step": 169,
+          "time_s": 1.4083333333333332,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 35,
+          "2": 76,
+          "None": 1329
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 111,
+          "no_current_case_support": 27,
+          "unsupported_current_observation: Outside posture domain": 1301
+        },
+        "direct_expert_switches": 4,
+        "first_expert_switch_step": 60,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 2,
+          "1->None": 1,
+          "2->1": 2,
+          "2->None": 2,
+          "None->1": 1,
+          "None->2": 2
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 242,
+          "1": 1051,
+          "2": 135,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 138,
+        "proposed_expert_counts": {
+          "1": 35,
+          "2": 76,
+          "None": 27
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 111,
+          "no_current_case_support": 26
+        },
+        "direct_expert_switches": 4,
+        "first_expert_switch_step": 60,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 2,
+          "1->None": 1,
+          "2->1": 2,
+          "2->None": 2,
+          "None->1": 1,
+          "None->2": 2
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 11,
+          "2": 114,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 111,
+          "proposal_not_applied": 111,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "ee4ea568cb917e321acd8e2354bcf555c3fe207538eef8777d3cc6fb8ac9746a",
+        "trace": "3441b96b0d4dfbe13b9f964a4dddbbac56e215ccfc787f7bc5e568fb8c26cba0"
+      }
+    },
+    {
+      "trial_id": "left_075_train_003_frozen",
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "role": "frozen",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.12479933936413003,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": {
+          "step": 268,
+          "time_s": 2.2333333333333334,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 371,
+          "2": 1029,
+          "None": 40
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1400,
+          "no_current_case_support": 39
+        },
+        "direct_expert_switches": 108,
+        "first_expert_switch_step": 82,
+        "mean_switch_applied_correction_l1_rad_s": 0.34048211962128905,
+        "transitions": {
+          "1->2": 53,
+          "1->None": 4,
+          "2->1": 55,
+          "2->None": 5,
+          "None->1": 2,
+          "None->2": 8
+        },
+        "correction_nonzero_commands": 1400,
+        "slew_clamped_actuator_commands": 3226,
+        "absolute_clamped_actuator_commands": 635,
+        "speed_clamped_actuator_commands": 66,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 18,
+          "2": 651,
+          "3": 747,
+          "4": 23
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 371,
+          "2": 1029,
+          "None": 40
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1400,
+          "no_current_case_support": 39
+        },
+        "direct_expert_switches": 108,
+        "first_expert_switch_step": 82,
+        "mean_switch_applied_correction_l1_rad_s": 0.34048211962128905,
+        "transitions": {
+          "1->2": 53,
+          "1->None": 4,
+          "2->1": 55,
+          "2->None": 5,
+          "None->1": 2,
+          "None->2": 8
+        },
+        "correction_nonzero_commands": 1400,
+        "slew_clamped_actuator_commands": 3226,
+        "absolute_clamped_actuator_commands": 635,
+        "speed_clamped_actuator_commands": 66,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 18,
+          "2": 651,
+          "3": 747,
+          "4": 23
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 1400,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 29,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 1371
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 450,
+            "mean": 0.005019029386310005,
+            "mean_absolute": 0.021968866046939244,
+            "optimistic_count": 174
+          },
+          "mixed_or_withdrawn": {
+            "count": 921,
+            "mean": 0.02244758605409272,
+            "mean_absolute": 0.045209663972661164,
+            "optimistic_count": 583
+          }
+        },
+        "maximum_used_support_distance": 1.4990182973184505
+      },
+      "raw_bindings": {
+        "controller": "a0aebede208a7a5a91717b69e25fd0d8b0646a210b0d77ca7196b2055ecf1819",
+        "trace": "48b7853b6b6110a33266904cfe87c1eb417a839d92cee23af2eb1eaa1126982b"
+      }
+    },
+    {
+      "trial_id": "left_075_train_003_shuffled",
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "role": "shuffled",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 1375,
+        "time_s": 2.291666666666667,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 166,
+          "time_s": 1.3833333333333333,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 3
+        },
+        "first_posture_refusal": {
+          "step": 275,
+          "time_s": 2.2916666666666665,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_zero_support": {
+          "step": 303,
+          "time_s": 2.525,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 135,
+          "2": 73,
+          "None": 1232
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 208,
+          "no_current_case_support": 66,
+          "unsupported_current_observation: Outside posture domain": 1165
+        },
+        "direct_expert_switches": 13,
+        "first_expert_switch_step": 45,
+        "mean_switch_applied_correction_l1_rad_s": 0.31164792279978065,
+        "transitions": {
+          "1->2": 7,
+          "1->None": 5,
+          "2->1": 6,
+          "2->None": 1,
+          "None->1": 6
+        },
+        "correction_nonzero_commands": 208,
+        "slew_clamped_actuator_commands": 609,
+        "absolute_clamped_actuator_commands": 263,
+        "speed_clamped_actuator_commands": 39,
+        "support_count_histogram": {
+          "0": 254,
+          "1": 898,
+          "2": 245,
+          "3": 34,
+          "4": 9
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 274,
+        "proposed_expert_counts": {
+          "1": 135,
+          "2": 73,
+          "None": 66
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 208,
+          "no_current_case_support": 65
+        },
+        "direct_expert_switches": 13,
+        "first_expert_switch_step": 45,
+        "mean_switch_applied_correction_l1_rad_s": 0.31164792279978065,
+        "transitions": {
+          "1->2": 7,
+          "1->None": 5,
+          "2->1": 6,
+          "2->None": 1,
+          "None->1": 6
+        },
+        "correction_nonzero_commands": 208,
+        "slew_clamped_actuator_commands": 609,
+        "absolute_clamped_actuator_commands": 263,
+        "speed_clamped_actuator_commands": 39,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 18,
+          "2": 212,
+          "3": 34,
+          "4": 9
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 163,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 163
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 36,
+            "mean": 0.020968098841228727,
+            "mean_absolute": 0.02121473439344894,
+            "optimistic_count": 35
+          },
+          "mixed_or_withdrawn": {
+            "count": 127,
+            "mean": 0.020293795804172763,
+            "mean_absolute": 0.0265977044117487,
+            "optimistic_count": 110
+          }
+        },
+        "maximum_used_support_distance": 1.1675183217176146
+      },
+      "raw_bindings": {
+        "controller": "e82ede0c704bfe1ac62b65138c8ba88fc04e17d52c888a9c27a9c1dd436a7994",
+        "trace": "60470322fedaf796a151989010404f427f975175751cb4235a00d6ab65f09f4e"
+      }
+    },
+    {
+      "trial_id": "left_075_train_003_phase_reference",
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "role": "phase_reference",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.12893060440267687,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2118,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 21,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 15,
+          "2": 609,
+          "3": 794,
+          "4": 21
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2118,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 21,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 15,
+          "2": 609,
+          "3": 794,
+          "4": 21
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "6eac6c2546fb3b7ffac562e95cd768ca6b1df9ca0f1bbc80050b6f5f36fec090",
+        "trace": "b5ee645826144ff6de36b74919ab256bdb2d160284fdab1d2a0d7acf03267020"
+      }
+    },
+    {
+      "trial_id": "left_075_train_004_baseline",
+      "condition_id": "left_075",
+      "start_id": "train_004",
+      "role": "baseline",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 698,
+        "time_s": 1.1633333333333467,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": {
+          "step": 170,
+          "time_s": 1.4166666666666667,
+          "before_first_violation": false,
+          "proposed_expert": 0,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 240,
+          "1": 1058,
+          "2": 130,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 139,
+        "proposed_expert_counts": {
+          "0": 139
+        },
+        "reasons": {
+          "fixed_baseline": 139
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 13,
+          "2": 113,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "14007f3d1f83081cafdf1e0ea4f842ca5cc66009242a7a26edd305f0ebbf03e3",
+        "trace": "c19af2bbc34a470c32b44a4ca79dc90c1e7416ae0f5502f39e03e49081f4490b"
+      }
+    },
+    {
+      "trial_id": "left_075_train_004_disabled",
+      "condition_id": "left_075",
+      "start_id": "train_004",
+      "role": "disabled",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 698,
+        "time_s": 1.1633333333333467,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 88,
+          "time_s": 0.7333333333333333,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": {
+          "step": 140,
+          "time_s": 1.1666666666666667,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 1
+        },
+        "first_zero_support": {
+          "step": 170,
+          "time_s": 1.4166666666666667,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 37,
+          "2": 77,
+          "None": 1326
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 114,
+          "no_current_case_support": 25,
+          "unsupported_current_observation: Outside posture domain": 1300
+        },
+        "direct_expert_switches": 6,
+        "first_expert_switch_step": 60,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 3,
+          "1->None": 1,
+          "2->1": 3,
+          "2->None": 1,
+          "None->1": 1,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 240,
+          "1": 1058,
+          "2": 130,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 139,
+        "proposed_expert_counts": {
+          "1": 37,
+          "2": 77,
+          "None": 25
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 114,
+          "no_current_case_support": 24
+        },
+        "direct_expert_switches": 6,
+        "first_expert_switch_step": 60,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 3,
+          "1->None": 1,
+          "2->1": 3,
+          "2->None": 1,
+          "None->1": 1,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 13,
+          "2": 113,
+          "3": 11,
+          "4": 1
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 114,
+          "proposal_not_applied": 114,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "622d6aaa66ba9c48a2f6e24fbb800e02ebba1a2d8b870227e8f853de9283a01b",
+        "trace": "c19af2bbc34a470c32b44a4ca79dc90c1e7416ae0f5502f39e03e49081f4490b"
+      }
+    },
+    {
+      "trial_id": "left_075_train_004_frozen",
+      "condition_id": "left_075",
+      "start_id": "train_004",
+      "role": "frozen",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.11692198111850766,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": {
+          "step": 646,
+          "time_s": 5.383333333333333,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 1
+        },
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 398,
+          "2": 1037,
+          "None": 5
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1435,
+          "no_current_case_support": 4
+        },
+        "direct_expert_switches": 89,
+        "first_expert_switch_step": 73,
+        "mean_switch_applied_correction_l1_rad_s": 0.3485770897101421,
+        "transitions": {
+          "1->2": 44,
+          "1->None": 1,
+          "2->1": 45,
+          "2->None": 1,
+          "None->2": 3
+        },
+        "correction_nonzero_commands": 1435,
+        "slew_clamped_actuator_commands": 2727,
+        "absolute_clamped_actuator_commands": 640,
+        "speed_clamped_actuator_commands": 76,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 13,
+          "2": 519,
+          "3": 891,
+          "4": 16
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 398,
+          "2": 1037,
+          "None": 5
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1435,
+          "no_current_case_support": 4
+        },
+        "direct_expert_switches": 89,
+        "first_expert_switch_step": 73,
+        "mean_switch_applied_correction_l1_rad_s": 0.3485770897101421,
+        "transitions": {
+          "1->2": 44,
+          "1->None": 1,
+          "2->1": 45,
+          "2->None": 1,
+          "None->2": 3
+        },
+        "correction_nonzero_commands": 1435,
+        "slew_clamped_actuator_commands": 2727,
+        "absolute_clamped_actuator_commands": 640,
+        "speed_clamped_actuator_commands": 76,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 13,
+          "2": 519,
+          "3": 891,
+          "4": 16
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 1435,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 29,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 1406
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 587,
+            "mean": 0.005805135253852455,
+            "mean_absolute": 0.0096932347594432,
+            "optimistic_count": 379
+          },
+          "mixed_or_withdrawn": {
+            "count": 819,
+            "mean": 0.007522550885902634,
+            "mean_absolute": 0.016137270670746415,
+            "optimistic_count": 540
+          }
+        },
+        "maximum_used_support_distance": 1.498750551349855
+      },
+      "raw_bindings": {
+        "controller": "4bce17fdb1515df9c541bac1f5e91e6e0cbd4d4f2d3509753a7d414423f1b6bd",
+        "trace": "c195e1f0ffa501a0a161ab20c24d086f8fb7b9f2f1a2e5fd62b7d4dc9f26576b"
+      }
+    },
+    {
+      "trial_id": "left_075_train_004_shuffled",
+      "condition_id": "left_075",
+      "start_id": "train_004",
+      "role": "shuffled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.12493265502505707,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": {
+          "step": 189,
+          "time_s": 1.575,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 968,
+          "2": 461,
+          "None": 11
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1429,
+          "no_current_case_support": 10
+        },
+        "direct_expert_switches": 98,
+        "first_expert_switch_step": 45,
+        "mean_switch_applied_correction_l1_rad_s": 0.3199469841740113,
+        "transitions": {
+          "1->2": 49,
+          "1->None": 2,
+          "2->1": 49,
+          "2->None": 3,
+          "None->1": 3,
+          "None->2": 3
+        },
+        "correction_nonzero_commands": 1429,
+        "slew_clamped_actuator_commands": 3186,
+        "absolute_clamped_actuator_commands": 1614,
+        "speed_clamped_actuator_commands": 111,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 14,
+          "2": 837,
+          "3": 572,
+          "4": 16
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 968,
+          "2": 461,
+          "None": 11
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 1429,
+          "no_current_case_support": 10
+        },
+        "direct_expert_switches": 98,
+        "first_expert_switch_step": 45,
+        "mean_switch_applied_correction_l1_rad_s": 0.3199469841740113,
+        "transitions": {
+          "1->2": 49,
+          "1->None": 2,
+          "2->1": 49,
+          "2->None": 3,
+          "None->1": 3,
+          "None->2": 3
+        },
+        "correction_nonzero_commands": 1429,
+        "slew_clamped_actuator_commands": 3186,
+        "absolute_clamped_actuator_commands": 1614,
+        "speed_clamped_actuator_commands": 111,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 14,
+          "2": 837,
+          "3": 572,
+          "4": 16
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 1207,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 29,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 1178
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 310,
+            "mean": -0.01391393554453749,
+            "mean_absolute": 0.024062888262325357,
+            "optimistic_count": 136
+          },
+          "mixed_or_withdrawn": {
+            "count": 868,
+            "mean": -0.0049193242125623,
+            "mean_absolute": 0.04268511385101406,
+            "optimistic_count": 499
+          }
+        },
+        "maximum_used_support_distance": 1.49283120883551
+      },
+      "raw_bindings": {
+        "controller": "6a6c3f6b7ec7513fceb4f3297ca53035b0b0ef4fd24a5593e68994eb6c66d2d2",
+        "trace": "90bb37419f87f183137c5f3b56ecd023ae8809b3622ff51c8e289951e85a7921"
+      }
+    },
+    {
+      "trial_id": "left_075_train_004_phase_reference",
+      "condition_id": "left_075",
+      "start_id": "train_004",
+      "role": "phase_reference",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.11062193841302809,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2153,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 47,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 13,
+          "2": 419,
+          "3": 974,
+          "4": 33
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2153,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 47,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 13,
+          "2": 419,
+          "3": 974,
+          "4": 33
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "b45f9ee04c267728b36e5ee678ef044e9dd4311f46ac4678ea9ddde4ee4bb4ad",
+        "trace": "35c5f395e9eb500fb8d7506e1b2670e3bc4be137a84f3a7d2dd35b4dcb90e8cf"
+      }
+    },
+    {
+      "trial_id": "left_075_train_006_baseline",
+      "condition_id": "left_075",
+      "start_id": "train_006",
+      "role": "baseline",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 567,
+        "time_s": 0.9450000000000083,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": {
+          "step": 141,
+          "time_s": 1.175,
+          "before_first_violation": false,
+          "proposed_expert": 0,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1231,
+          "1": 87,
+          "2": 112,
+          "3": 8,
+          "4": 2
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 113,
+        "proposed_expert_counts": {
+          "0": 113
+        },
+        "reasons": {
+          "fixed_baseline": 113
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 8,
+          "2": 94,
+          "3": 8,
+          "4": 2
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "cfa349c23f4d1ecf6cd9f3919d1228a08152017def402a399c5cfede5927c3f2",
+        "trace": "a6a9ffbd3f1475528403701381eeea1231e2ebaa8409c29a44906219e4de0e13"
+      }
+    },
+    {
+      "trial_id": "left_075_train_006_disabled",
+      "condition_id": "left_075",
+      "start_id": "train_006",
+      "role": "disabled",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 567,
+        "time_s": 0.9450000000000083,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 79,
+          "time_s": 0.6583333333333333,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": {
+          "step": 114,
+          "time_s": 0.95,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_zero_support": {
+          "step": 141,
+          "time_s": 1.175,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 33,
+          "2": 45,
+          "None": 1362
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 78,
+          "no_current_case_support": 35,
+          "unsupported_current_observation: Outside posture domain": 1326
+        },
+        "direct_expert_switches": 3,
+        "first_expert_switch_step": 16,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 1,
+          "1->None": 1,
+          "2->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1231,
+          "1": 87,
+          "2": 112,
+          "3": 8,
+          "4": 2
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 113,
+        "proposed_expert_counts": {
+          "1": 33,
+          "2": 45,
+          "None": 35
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 78,
+          "no_current_case_support": 34
+        },
+        "direct_expert_switches": 3,
+        "first_expert_switch_step": 16,
+        "mean_switch_applied_correction_l1_rad_s": 0.0,
+        "transitions": {
+          "1->2": 1,
+          "1->None": 1,
+          "2->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 8,
+          "2": 94,
+          "3": 8,
+          "4": 2
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 78,
+          "proposal_not_applied": 78,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "9009d8330272ffa725e7fc085855fafb479ebd2f66679a18711b916af12fc157",
+        "trace": "a6a9ffbd3f1475528403701381eeea1231e2ebaa8409c29a44906219e4de0e13"
+      }
+    },
+    {
+      "trial_id": "left_075_train_006_frozen",
+      "condition_id": "left_075",
+      "start_id": "train_006",
+      "role": "frozen",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 1022,
+        "time_s": 1.7033333333333591,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 87,
+          "time_s": 0.725,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": {
+          "step": 205,
+          "time_s": 1.7083333333333333,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 1
+        },
+        "first_zero_support": {
+          "step": 254,
+          "time_s": 2.1166666666666667,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 71,
+          "2": 76,
+          "None": 1293
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 147,
+          "no_current_case_support": 57,
+          "unsupported_current_observation: Outside posture domain": 1235
+        },
+        "direct_expert_switches": 24,
+        "first_expert_switch_step": 44,
+        "mean_switch_applied_correction_l1_rad_s": 0.29077584943353835,
+        "transitions": {
+          "1->2": 12,
+          "1->None": 2,
+          "2->1": 12,
+          "2->None": 1,
+          "None->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 147,
+        "slew_clamped_actuator_commands": 391,
+        "absolute_clamped_actuator_commands": 127,
+        "speed_clamped_actuator_commands": 16,
+        "support_count_histogram": {
+          "0": 237,
+          "1": 1008,
+          "2": 162,
+          "3": 30,
+          "4": 3
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 204,
+        "proposed_expert_counts": {
+          "1": 71,
+          "2": 76,
+          "None": 57
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 147,
+          "no_current_case_support": 56
+        },
+        "direct_expert_switches": 24,
+        "first_expert_switch_step": 44,
+        "mean_switch_applied_correction_l1_rad_s": 0.29077584943353835,
+        "transitions": {
+          "1->2": 12,
+          "1->None": 2,
+          "2->1": 12,
+          "2->None": 1,
+          "None->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 147,
+        "slew_clamped_actuator_commands": 391,
+        "absolute_clamped_actuator_commands": 127,
+        "speed_clamped_actuator_commands": 16,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 33,
+          "2": 137,
+          "3": 30,
+          "4": 3
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 147,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 147
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 19,
+            "mean": 0.05263395823769316,
+            "mean_absolute": 0.05263395823769316,
+            "optimistic_count": 19
+          },
+          "mixed_or_withdrawn": {
+            "count": 128,
+            "mean": 0.10438642421580087,
+            "mean_absolute": 0.10438642421580087,
+            "optimistic_count": 128
+          }
+        },
+        "maximum_used_support_distance": 1.4924321253436434
+      },
+      "raw_bindings": {
+        "controller": "9a445c6ddaa0f604e5f4469d30829067ac9924177e70050c1ce923c3721061fb",
+        "trace": "375a9a7abc2ea542b6ae6b7ff9ae0a4c3ec60529aeb5b643534f287bfa203e79"
+      }
+    },
+    {
+      "trial_id": "left_075_train_006_shuffled",
+      "condition_id": "left_075",
+      "start_id": "train_006",
+      "role": "shuffled",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 836,
+        "time_s": 1.393333333333352,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": {
+          "step": 87,
+          "time_s": 0.725,
+          "before_first_violation": true,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_posture_refusal": {
+          "step": 168,
+          "time_s": 1.4,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 2
+        },
+        "first_zero_support": {
+          "step": 210,
+          "time_s": 1.75,
+          "before_first_violation": false,
+          "proposed_expert": null,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "1": 69,
+          "2": 55,
+          "None": 1316
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 124,
+          "no_current_case_support": 43,
+          "unsupported_current_observation: Outside posture domain": 1272
+        },
+        "direct_expert_switches": 2,
+        "first_expert_switch_step": 62,
+        "mean_switch_applied_correction_l1_rad_s": 0.22339216930246975,
+        "transitions": {
+          "1->2": 1,
+          "1->None": 2,
+          "2->1": 1,
+          "2->None": 1,
+          "None->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 124,
+        "slew_clamped_actuator_commands": 318,
+        "absolute_clamped_actuator_commands": 118,
+        "speed_clamped_actuator_commands": 7,
+        "support_count_histogram": {
+          "0": 236,
+          "1": 1044,
+          "2": 149,
+          "3": 9,
+          "4": 2
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 167,
+        "proposed_expert_counts": {
+          "1": 69,
+          "2": 55,
+          "None": 43
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "current_case_retrieval": 124,
+          "no_current_case_support": 42
+        },
+        "direct_expert_switches": 2,
+        "first_expert_switch_step": 62,
+        "mean_switch_applied_correction_l1_rad_s": 0.22339216930246975,
+        "transitions": {
+          "1->2": 1,
+          "1->None": 2,
+          "2->1": 1,
+          "2->None": 1,
+          "None->1": 2,
+          "None->2": 1
+        },
+        "correction_nonzero_commands": 124,
+        "slew_clamped_actuator_commands": 318,
+        "absolute_clamped_actuator_commands": 118,
+        "speed_clamped_actuator_commands": 7,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 18,
+          "2": 137,
+          "3": 9,
+          "4": 2
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 116,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 116
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 33,
+            "mean": 0.01918781411819755,
+            "mean_absolute": 0.01918781411819755,
+            "optimistic_count": 33
+          },
+          "mixed_or_withdrawn": {
+            "count": 83,
+            "mean": 0.09410227985000882,
+            "mean_absolute": 0.09410227985000882,
+            "optimistic_count": 83
+          }
+        },
+        "maximum_used_support_distance": 0.8577100085989845
+      },
+      "raw_bindings": {
+        "controller": "af8f7823f318f0f4950c23dd5ba60058c83300803d9f64f1b7f22541956304ad",
+        "trace": "f7ef01882bc6e33ac91fd7b799fda7a958553765092ce946e0c93a83e7ab9445"
+      }
+    },
+    {
+      "trial_id": "left_075_train_006_phase_reference",
+      "condition_id": "left_075",
+      "start_id": "train_006",
+      "role": "phase_reference",
+      "original_outcome": "negative",
+      "official_quality_m_s": null,
+      "first_physical_violation": {
+        "internal_step": 820,
+        "time_s": 1.3666666666666847,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": {
+          "step": 204,
+          "time_s": 1.7,
+          "before_first_violation": false,
+          "proposed_expert": 2,
+          "support_count": 0
+        }
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 163,
+        "slew_clamped_actuator_commands": 321,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 6,
+        "support_count_histogram": {
+          "0": 243,
+          "1": 1039,
+          "2": 142,
+          "3": 13,
+          "4": 3
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 163,
+        "proposed_expert_counts": {
+          "2": 163
+        },
+        "reasons": {
+          "fixed_phase_reference": 163
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 162,
+        "slew_clamped_actuator_commands": 319,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 5,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 16,
+          "2": 130,
+          "3": 13,
+          "4": 3
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "e27210f442d71f80cc89f26e4d15474fb9f2623cb25f48de7069ab4136bf2ef2",
+        "trace": "16e710ddfc9225852231f636d8cf03bb82aa8aed404a59db1423efff518b51cc"
+      }
+    },
+    {
+      "trial_id": "nominal_train_001_baseline",
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "role": "baseline",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09978960607936949,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "0c69f1dac61617dda43cd9d4865cc387f78972947f6f47b5a66de5b4f77b46f3",
+        "trace": "cfdb8562ee7717549c494f6882b2279c426270c8320fb17fa07df05a6a587992"
+      }
+    },
+    {
+      "trial_id": "nominal_train_001_disabled",
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "role": "disabled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09978960607936949,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "8d0749d11d99f7ccd03c6409ef0068eef9777160bd77541c42b6050f04973b42",
+        "trace": "cfdb8562ee7717549c494f6882b2279c426270c8320fb17fa07df05a6a587992"
+      }
+    },
+    {
+      "trial_id": "nominal_train_001_frozen",
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "role": "frozen",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09978960607936949,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "3bdc53ca44df0fbbaf68525eb66d52641e8d3b8a3e09a35513ea2828ca35b2c1",
+        "trace": "cfdb8562ee7717549c494f6882b2279c426270c8320fb17fa07df05a6a587992"
+      }
+    },
+    {
+      "trial_id": "nominal_train_001_shuffled",
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "role": "shuffled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09978960607936949,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 4,
+          "2": 540,
+          "3": 882,
+          "4": 13
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "f2e2a8afe7ba26ebc0776030a5ca7aba2a7502d6966ff1d9b01eb52639743363",
+        "trace": "cfdb8562ee7717549c494f6882b2279c426270c8320fb17fa07df05a6a587992"
+      }
+    },
+    {
+      "trial_id": "nominal_train_001_phase_reference",
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "role": "phase_reference",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.10344290251495737,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2007,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 308,
+          "3": 1107,
+          "4": 19
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2007,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 308,
+          "3": 1107,
+          "4": 19
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "5fd7db89f1833f0c63df31f1cfa60371d177eba00bbe40fc1b2826436ddf1221",
+        "trace": "8714754aefc0f8b9e3243de91e694292877f86fe8cffa262b2977f652a01a744"
+      }
+    },
+    {
+      "trial_id": "nominal_train_003_baseline",
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "role": "baseline",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09994396721276905,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "a7bdb7e43c493672790bd3077aa3133904f02ea90bfa7c49eb128651b6b2dba9",
+        "trace": "8ac417a6deb9868dc4a9c771d5171e3bb2c1f8e659717d59fe0194332cf17788"
+      }
+    },
+    {
+      "trial_id": "nominal_train_003_disabled",
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "role": "disabled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09994396721276905,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "94cdcad8c9e27b434fef369580ffa37c124b2db2c1b15daa82b7a4f80547e0a6",
+        "trace": "8ac417a6deb9868dc4a9c771d5171e3bb2c1f8e659717d59fe0194332cf17788"
+      }
+    },
+    {
+      "trial_id": "nominal_train_003_frozen",
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "role": "frozen",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09994396721276905,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "99340387fe8437dd39f5329461d23ba50a02b08e356f04fc3b7ab85b384a8f23",
+        "trace": "8ac417a6deb9868dc4a9c771d5171e3bb2c1f8e659717d59fe0194332cf17788"
+      }
+    },
+    {
+      "trial_id": "nominal_train_003_shuffled",
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "role": "shuffled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09994396721276905,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 5,
+          "2": 548,
+          "3": 871,
+          "4": 15
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "76774817a7263e53a26cca7de099062dd50a98eba445ac8f8a228465958b8c82",
+        "trace": "8ac417a6deb9868dc4a9c771d5171e3bb2c1f8e659717d59fe0194332cf17788"
+      }
+    },
+    {
+      "trial_id": "nominal_train_003_phase_reference",
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "role": "phase_reference",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.10316194451071535,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2070,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 9,
+          "2": 324,
+          "3": 1085,
+          "4": 21
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2070,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 9,
+          "2": 324,
+          "3": 1085,
+          "4": 21
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "b0d809416dd9f74d480e6d165ae70dee002fc61ed456c960dc387ad75f2cab4e",
+        "trace": "482f72e231d97228f7ab12e94ce3d40d15f99d6dfda4f33597cce96a8f188425"
+      }
+    },
+    {
+      "trial_id": "nominal_train_004_baseline",
+      "condition_id": "nominal",
+      "start_id": "train_004",
+      "role": "baseline",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09869677777797993,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "d06a7d5121ddaafd336332b54919681777acdf03a38680031838538681221dd6",
+        "trace": "b2de197a4ec46c7ae1e8231f84e6c4284565af3175cbac568773768130d3f5ac"
+      }
+    },
+    {
+      "trial_id": "nominal_train_004_disabled",
+      "condition_id": "nominal",
+      "start_id": "train_004",
+      "role": "disabled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09869677777797993,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "540c525e530fc1e86aaacd5b629c7766df98ad6f1f6659f10870df8b70bacf7e",
+        "trace": "b2de197a4ec46c7ae1e8231f84e6c4284565af3175cbac568773768130d3f5ac"
+      }
+    },
+    {
+      "trial_id": "nominal_train_004_frozen",
+      "condition_id": "nominal",
+      "start_id": "train_004",
+      "role": "frozen",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09869677777797993,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "61e4800a6eaec2bc02978f9b32b6d9d37cc914eaa1af7ad573fc0e8b5f78f655",
+        "trace": "b2de197a4ec46c7ae1e8231f84e6c4284565af3175cbac568773768130d3f5ac"
+      }
+    },
+    {
+      "trial_id": "nominal_train_004_shuffled",
+      "condition_id": "nominal",
+      "start_id": "train_004",
+      "role": "shuffled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09869677777797993,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 2,
+          "2": 574,
+          "3": 844,
+          "4": 19
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "8371cafadff6f940c9acb3ceb82ab8a678a780cbca57f0f5fd8a6deb1ad18c2d",
+        "trace": "b2de197a4ec46c7ae1e8231f84e6c4284565af3175cbac568773768130d3f5ac"
+      }
+    },
+    {
+      "trial_id": "nominal_train_004_phase_reference",
+      "condition_id": "nominal",
+      "start_id": "train_004",
+      "role": "phase_reference",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.10296656555260558,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2010,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 10,
+          "2": 313,
+          "3": 1092,
+          "4": 24
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2010,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 10,
+          "2": 313,
+          "3": 1092,
+          "4": 24
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "8b78458551f2a1e4f002671f579c8485a9bbf43da88a639892245a27e4d5ac7a",
+        "trace": "4f113539d2ba86269f401cbacf8ede14fda55cb06e8b75265407ff5f8d3bf5af"
+      }
+    },
+    {
+      "trial_id": "nominal_train_006_baseline",
+      "condition_id": "nominal",
+      "start_id": "train_006",
+      "role": "baseline",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09938988167121922,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1440
+        },
+        "reasons": {
+          "fixed_baseline": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "418e4a868a9a1c9429d176b72ef27d04c0ca3a8e24621226d8983d436fc60860",
+        "trace": "c5f0e422cd73263d69b0b0252205f4929d7ce9373c0d8316ce42b25ec9458a22"
+      }
+    },
+    {
+      "trial_id": "nominal_train_006_disabled",
+      "condition_id": "nominal",
+      "start_id": "train_006",
+      "role": "disabled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09938988167121922,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "8eddd3f3b4a260dce9447b4b9e353bcd720352827e5acaf2d90fd659b7066144",
+        "trace": "c5f0e422cd73263d69b0b0252205f4929d7ce9373c0d8316ce42b25ec9458a22"
+      }
+    },
+    {
+      "trial_id": "nominal_train_006_frozen",
+      "condition_id": "nominal",
+      "start_id": "train_006",
+      "role": "frozen",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09938988167121922,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "48446d97735dae27cc8f2b33082355730230b1259d6898456e11f0e2fba7805a",
+        "trace": "c5f0e422cd73263d69b0b0252205f4929d7ce9373c0d8316ce42b25ec9458a22"
+      }
+    },
+    {
+      "trial_id": "nominal_train_006_shuffled",
+      "condition_id": "nominal",
+      "start_id": "train_006",
+      "role": "shuffled",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.09938988167121922,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "0": 1439,
+          "None": 1
+        },
+        "reasons": {
+          "baseline_observation": 1,
+          "complete_condition_default": 1439
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {
+          "None->0": 1
+        },
+        "correction_nonzero_commands": 0,
+        "slew_clamped_actuator_commands": 0,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 1,
+          "2": 595,
+          "3": 826,
+          "4": 17
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "79026ca56c5ed4bde8d86f9eabc08ee9908404c94706b146613f606a66f36f53",
+        "trace": "c5f0e422cd73263d69b0b0252205f4929d7ce9373c0d8316ce42b25ec9458a22"
+      }
+    },
+    {
+      "trial_id": "nominal_train_006_phase_reference",
+      "condition_id": "nominal",
+      "start_id": "train_006",
+      "role": "phase_reference",
+      "original_outcome": "positive",
+      "official_quality_m_s": -0.1033270127303913,
+      "first_physical_violation": null,
+      "events": {
+        "first_no_case_support": null,
+        "first_posture_refusal": null,
+        "first_zero_support": null
+      },
+      "full": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2024,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 7,
+          "2": 322,
+          "3": 1089,
+          "4": 21
+        }
+      },
+      "complete_commands_before_violation": {
+        "commands": 1440,
+        "proposed_expert_counts": {
+          "2": 1440
+        },
+        "reasons": {
+          "fixed_phase_reference": 1440
+        },
+        "direct_expert_switches": 0,
+        "first_expert_switch_step": null,
+        "mean_switch_applied_correction_l1_rad_s": null,
+        "transitions": {},
+        "correction_nonzero_commands": 1439,
+        "slew_clamped_actuator_commands": 2024,
+        "absolute_clamped_actuator_commands": 0,
+        "speed_clamped_actuator_commands": 0,
+        "support_count_histogram": {
+          "0": 1,
+          "1": 7,
+          "2": 322,
+          "3": 1089,
+          "4": 21
+        }
+      },
+      "diagnostic_windows": {
+        "counts": {
+          "predicted_correction_starts": 0,
+          "proposal_not_applied": 0,
+          "starts_after_first_violation": 0,
+          "right_censored": 0,
+          "crosses_first_violation": 0,
+          "complete_pre_failure_windows": 0
+        },
+        "prediction_minus_actual_window_quality_m_s": {
+          "constant_proposal": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          },
+          "mixed_or_withdrawn": {
+            "count": 0,
+            "mean": null,
+            "mean_absolute": null,
+            "optimistic_count": 0
+          }
+        },
+        "maximum_used_support_distance": null
+      },
+      "raw_bindings": {
+        "controller": "153b849cfe1d42b5d171a2823939e911805b7e79e15a36a0a2ef94a2ca88ecf8",
+        "trace": "a733a141a0c77944ed3a7ea4c0779f2e988c94b9e30d718d5e9d3e41cee17373"
+      }
+    }
+  ],
+  "training_data_authority": false,
+  "selection_authority": false,
+  "causal_authority": false,
+  "counterfactual_performance_authority": false,
+  "recoverability_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "population_inference": false
+}
