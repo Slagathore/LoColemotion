@@ -19,9 +19,14 @@ disabled controls pass 0/4. All 24 healthy trials are eligible and every role
 preserves baseline quality at every healthy start. No role passes the complete
 screen, so the shortlist stays empty and this commitment rule is not promoted.
 Ten closure controls pass over **23,243 artifacts / 7,962,598,846 bytes**.
-Next diagnose control divergence and state and action history coverage before a
-distinct successor that improves control coverage. Reserved evaluation, empirical recovery
-monitoring, useful Tier 3 behavior, qualification and release remain open.
+The [complete state/action diagnosis](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-full-state-and-action-coverage-diagnosis---2026-10-24)
+now rechecks every trial and 21,165 fitted cases with ten passing controls.
+It identifies omitted-state differences, including a startup/later-cycle match,
+without establishing cause. The [bounded residual optimizer component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-bounded-residual-optimizer-component---2026-10-24)
+also passes ten numerical controls with zero worlds. Next integrate canonical
+joint/body state, exact phase and ongoing prior issued actions, then freeze
+bounded native training. No residual has been trained on locomotion. Reserved
+evaluation, empirical recovery, useful Tier 3 behavior and release remain open.
 
 Earlier native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
 completed all **40 fresh CPU worlds** from published `59aacf3c` after the full

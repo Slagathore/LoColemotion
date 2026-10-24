@@ -28,10 +28,13 @@ negative**. The current frozen/shuffled selectors each pass 2/4 weakened
 starts; committed frozen passes 1/4 and committed shuffled 0/4. Baseline and
 disabled controls pass 0/4. All 24 healthy trials preserve baseline quality.
 The declared shortlist remains empty, and this thirty-command rule is not
-promoted. Ten closure controls pass. Next inspect early divergence and
-state and action history coverage, then freeze a distinct successor that improves control
-coverage. Learned-association benefit, empirical recovery monitoring,
-reserved evaluation, useful Tier 3 behavior and release remain unproved.
+promoted. Ten closure controls pass. The [complete state/action diagnosis](#completed-full-state-and-action-coverage-diagnosis---2026-10-24)
+now passes ten controls over all 48 trials and identifies omitted-state
+differences without assigning causation. A [bounded residual optimizer](#implemented-bounded-residual-optimizer-component---2026-10-24)
+passes ten numerical controls. Next integrate richer canonical observation
+and ongoing causal history, then freeze native training. Learned-association
+benefit, empirical recovery monitoring, reserved evaluation, useful Tier 3
+behavior and release remain unproved.
 
 Latest fitting closure: the [first-response repertoire fit](#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
@@ -1466,6 +1469,113 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Completed full-state and action-coverage diagnosis - 2026-10-24
+
+The [report](../sdk/discovery/committed_state_coverage_diagnostic_v1.json) and
+[reader](../sdk/discovery/committed_state_coverage_diagnostic.py) reopen all
+**48 trials, 69,120 controller rows and 345,600 internal samples**. All 24 fitted
+source streams are hash-checked: 15 eligible episodes supply 21,600 feature
+rows and 21,165 cases; nine failed episodes still supply zero positive cases.
+Every original negative, null official quality and empty shortlist is preserved.
+
+All ten [controls](../sdk/discovery/test_committed_state_coverage_diagnostic.py)
+pass in sdk2-state-coverage-verification-4496c364e22c425b960cf18e68857ecf,
+including complete regeneration, causal action joins, actual shuffled expert
+identity, pre-violation censoring and corruption refusal. The earlier
+sdk2-committed-state-coverage-6d964a58631615e9a9f0932e848 generated the report
+and passed nine focused controls before an explicit editor-update pause
+interrupted verification. Its original files and incomplete log remain retained.
+The successor verifies identical report/source bytes with zero new worlds.
+
+The six-dimensional cue omits joint positions/velocities, vertical velocity,
+roll/pitch rates and previous issued commands/corrections. Its phase bins omit
+exact phase. At runtime command **6** (0.05 s) of the uncovered 0.006 m/s start,
+current frozen selection uses a phase-release case from source command **389**.
+The rear-left knee is at **0.091423 rad** versus **0.724419 rad**, a **0.632996 rad**
+gap despite accepted cue/phase/contact support. Across that trial's **204
+complete pre-violation commands and 434 selected neighbors**, maximum joint
+velocity and previous-command differences approach **4 rad/s**.
+
+Large differences also occur in positives: successful committed-frozen
+0.003 m/s reaches **0.702889 rad** joint-position and **5.464182 rad/s**
+joint-velocity gaps. These are omitted-state differences, not a failure
+classifier, new support threshold or proof of causation. The tested host
+supplies history only at command one. Later issued commands reconstructed
+from adjacent raw rows here were not inputs the tested selector received.
+
+| Weakened start | First current/committed frozen correction difference | First native-position difference |
+| --- | ---: | ---: |
+| 0.001 m/s | 71 | 72 |
+| 0.003 m/s | 82 | 83 |
+| 0.004 m/s | 73 | 74 |
+| 0.006 m/s | 65 | 66 |
+
+Both roles have identical native state at the first correction difference.
+All 56 pairings, shuffled roles and healthy/baseline identities are retained.
+Force-cap labels are recomputed from every sample. Pre-failure fractions use
+different trial durations; they are not common-duration effect estimates or
+proof of unavailable counterfactual force.
+
+Report SHA-256:
+c35964ba310370f1ccbca69de2d112c692c8f4c8ef97e63207726f190e71e9f2.
+Verification receipt SHA-256:
+5e2a8b2ce36775a06cf04d553e18b1baced2d3d3b7b93640f941ea59dbfcc36f.
+The owner checked 273 shared source files, both exact diagnostic sources,
+1,357 runtime files and the bound core DLLs without drift. This descriptive
+record grants no fitting, selection, causal, recovery or release authority.
+
+### Implemented bounded residual optimizer component - 2026-10-24
+
+The [pure optimizer](../sdk/adaptation_provider/bounded_residual_ars_v1.py)
+implements paired Gaussian parameter search for an immutable linear policy
+with bounded tanh outputs. Each iteration freezes its normalizer/perturbations,
+requires every declared group in both signs of every direction, averages group
+rewards and scales the selected-direction update by paired reward deviation.
+All training observations update the next normalizer, including negative runs
+and directions omitted from the weight update. Equal rewards leave weights
+unchanged; normalizer statistics can still change. Constant coordinates
+normalize to zero, which is explicitly not an OOD or support check.
+
+Ten [controls](../sdk/discovery/test_bounded_residual_ars.py) pass in
+sdk2-residual-ars-publication-controls-fa37dc4685284f4ea666c6ad9cab5914: analytical update,
+complete paired populations, reserved-data refusal, crossed model identities,
+arrival-order independence, immutable inputs, finite extreme rewards, bounded
+outputs, population moments and twelve optimization iterations on an analytical
+plant. That plant is a numerical control, not locomotion. Zero native worlds
+or solver steps run. Receipt SHA-256:
+0bbdc5c856c04adbeff9f265c128eff2589517a8b1343b9488c4be95aa53effb.
+The original ten-control run remains retained. This publication successor
+removes only trailing blank lines and adds an optimizer-only LF rule; it
+rechecks the identical numerical implementation and exact final source bytes.
+
+This component follows [Mania, Guy and Recht, Algorithm 2](https://arxiv.org/pdf/1803.07055)
+with local group averaging, bounds, complete-population checks and a zero
+reward-variance rule. [Residual RL](https://arxiv.org/pdf/1812.03201v2)
+motivates correction learning on combined-controller transitions;
+[RMA's inputs](https://arxiv.org/html/2107.04034v1) motivate richer state and
+actual previous actions. No external code, weights, defaults or performance
+result was imported, and none of those complete systems has been reproduced.
+
+The next choice is a bounded residual trained on actual induced trajectories.
+Richer retrieval alone is cheaper and reuses audited cases, but retains the
+finite action family and can reduce support. Residual training can introduce
+new corrections at the cost of more simulation and explicit reward/support
+validation. The linear component keeps inference small; a later nonlinear
+successor can preserve the public proposal ABI if this declared family is
+insufficient. Neither option guarantees benefit.
+
+Next connect canonical joint/body state, exact phase and actual prior issued
+commands through ongoing causal history. Bind morphology/task/model identity
+and explicit support/confidence refusal; verify absent/disabled/zero influence
+through both core DLLs. Freeze reward, failure treatment, seed/population,
+iteration/world budget, containment and independent update replay before
+training worlds. Official failed quality stays null; training reward cannot
+replace eligibility. Fresh full-horizon/healthy comparisons, reserved evaluation,
+three-engine qualification and empirical recovery withdrawal still precede
+promotion. Tier 3 then needs demonstrated benefit from bounded resettable
+memory on an immutable base. This checkpoint has no native host integration,
+trained residual, calibrated confidence or Tier 2/Tier 3 completion claim.
 
 ### Completed committed selection comparison - 2026-10-24
 

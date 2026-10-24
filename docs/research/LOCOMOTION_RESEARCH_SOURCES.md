@@ -2462,3 +2462,36 @@ Preserve zero-residual baseline identity, current clamps, complete failures
 and prospective eligibility. No external code, weights, trainer, constants or
 performance claim transfers here; adding a residual does not establish
 empirical recovery or Tier 3 benefit.
+
+
+## 2026-10-24 state/action coverage and bounded residual optimizer
+
+The [complete diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-full-state-and-action-coverage-diagnosis---2026-10-24)
+passes ten controls over 48 retained trials and 21,165 fitted cases. Accepted
+cues can pair very different joints and previous commands, including startup
+command 6 with command 389. Similar differences occur in positives; this is
+neither causation nor a support threshold. Commands reconstructed after step
+one were not present in the tested provider's history.
+
+Re-read [RMA, section III-A](https://arxiv.org/html/2107.04034v1): its base policy
+uses current state, previous action and estimated context. Re-read
+[Residual RL, section III / Algorithm 1](https://arxiv.org/pdf/1812.03201v2):
+corrections learn from transitions under the combined controller. These motivate
+local inputs/training; neither implementation or demonstrated benefit transfers.
+
+Read [Mania, Guy and Recht, Simple random search provides a competitive
+approach to reinforcement learning, v1, section 3 / Algorithm 2](https://arxiv.org/pdf/1803.07055).
+ARS uses antithetic Gaussian directions, reward-deviation scaling, optional
+top-direction selection and training-state normalization; its experiments also
+document substantial run variability. The local pure component adds bounded
+outputs, complete condition/start group averaging, immutable identities,
+reserved-partition refusal, all-direction training moments and an explicit
+zero-reward-variance rule. No external code, weights or numerical defaults
+were imported.
+
+Ten numerical controls pass, including an analytical update and analytical
+plant optimization, with zero native worlds. This is not a trained locomotion
+policy, full benchmark replication or calibrated support estimator. Production
+history, morphology/task binding, support refusal, a prospective reward/budget,
+retained failures and complete independent update replay remain necessary.
+Fresh physical comparison and all Tier 2/Tier 3 promotion gates stay open.

@@ -166,7 +166,50 @@
       "training_artifact_has_physical_authority": false,
       "episode_feedback_can_create_candidate_chapters": true,
       "automatic_live_encyclopedia_rewrite_permitted": false,
-      "promotion_requires_frozen_data_model_and_cross_engine_validation": true
+      "promotion_requires_frozen_data_model_and_cross_engine_validation": true,
+      "bounded_residual_training_component": {
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "core",
+          "authority_mode": "development_training_component",
+          "question_class": "development"
+        },
+        "status": "numerical_component_verified",
+        "source": "sdk/adaptation_provider/bounded_residual_ars_v1.py",
+        "controls": "sdk/discovery/test_bounded_residual_ars.py",
+        "source_bindings": {
+          "sdk/adaptation_provider/bounded_residual_ars_v1.py": "772864e6791aeb41de33e5ff4f425529289db6a0f67d5663621665ebce0ea2e7",
+          "sdk/discovery/test_bounded_residual_ars.py": "1ca76f8b0f88575ef74930fb642418af561d58e4a2dea784c3652413e5632668",
+          "sdk/adaptation_provider/.gitattributes": "c0bcba61eb2a73dc036ce003f230cec87037d15e8f6fd92b96be851c31cd50af"
+        },
+        "controls_passed": 10,
+        "attempt_id": "sdk2-residual-ars-publication-controls-fa37dc4685284f4ea666c6ad9cab5914",
+        "receipt_sha256": "0bbdc5c856c04adbeff9f265c128eff2589517a8b1343b9488c4be95aa53effb",
+        "declaration_sha256": "e94c6bf29c2b0c3a358e15e5c4f9d7e95899fc81dcdd7ce24596205fc960c92d",
+        "owner_sha256": "bef8925243ce4a0dbc3d24fa587c1ccfc98455755af37cf111c4138c59c02ebe",
+        "stderr_sha256": "0bb4c91c08640b46367e568a6047105764e825508f7a63127e67b290cfea26ca",
+        "source_commit": "b9d556f7b139f34cebf19d5b2eef15c0c547975f",
+        "owned_uncommitted_sources_at_execution": true,
+        "source_runtime_unchanged": true,
+        "worlds_opened": 0,
+        "solver_steps": 0,
+        "training_worlds": 0,
+        "native_host_integrated": false,
+        "trained_residual_provider": false,
+        "calibrated_confidence": false,
+        "runtime_support_gate_implemented": false,
+        "physical_launch_authority": false,
+        "physical_acceptance_authority": false,
+        "tier2_complete": false,
+        "tier3_complete": false,
+        "release_authority": false,
+        "previous_control_attempt": {
+          "attempt": "sdk2-residual-ars-controls-4ebf4f3a30ce401d916e82cec959cfc8",
+          "receipt_sha256": "d79c7a9fbd529efb7d92be8f4f3761ffb014807cd012a196a958bad8609bc563",
+          "controls_passed": 10,
+          "reason": "Same numerical code; remove one trailing blank line from each new source and explicitly bind new optimizer file to LF for reproducible publication"
+        }
+      }
     },
     "tier3": {
       "development_memory_checkpoint": {
@@ -706,9 +749,63 @@
                 "stderr_sha256": "af719094641271613b1d98e1838187b4e7dc911f5d2ce08846ebde56228772b4",
                 "full_controller_replay_repeated": false
               }
+            },
+            "state_coverage_diagnostic": {
+              "ledger_scope": {
+                "subsystem": "adaptation",
+                "engine_scope": "mujoco_cpu",
+                "authority_mode": "retained_evidence_diagnostic",
+                "question_class": "development"
+              },
+              "status": "complete_retained_full_state_diagnosis",
+              "record": "sdk/discovery/committed_state_coverage_diagnostic_v1.json",
+              "record_sha256": "c35964ba310370f1ccbca69de2d112c692c8f4c8ef97e63207726f190e71e9f2",
+              "reader": "sdk/discovery/committed_state_coverage_diagnostic.py",
+              "controls": "sdk/discovery/test_committed_state_coverage_diagnostic.py",
+              "source_trials": 48,
+              "controller_rows": 69120,
+              "internal_samples": 345600,
+              "fitted_source_streams": 24,
+              "fitted_feature_rows": 21600,
+              "fitted_cases": 21165,
+              "controls_passed": 10,
+              "verification_attempt": "sdk2-state-coverage-verification-4496c364e22c425b960cf18e68857ecf",
+              "receipt_sha256": "5e2a8b2ce36775a06cf04d553e18b1baced2d3d3b7b93640f941ea59dbfcc36f",
+              "declaration_sha256": "00d94c858a6b2293c1c783c3e380b45c33f737ce116fe9760018d11f079299f6",
+              "owner_sha256": "821e00324606456a8cdd87bd98477288878f32e76c443e9a40c2842f8867bc8b",
+              "stderr_sha256": "2e03e672228695f5b913a0854856a89fddd97492f73dac9736b69fc388dc1e35",
+              "interrupted_predecessor": {
+                "attempt": "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-committed-state-coverage-6d964a58631615e9a9f0932e848",
+                "reason": "Explicit user pause for editor update interrupted full verification; original generation and logs preserved",
+                "terminal_receipt_present": false,
+                "bindings": {
+                  "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-committed-state-coverage-6d964a58631615e9a9f0932e848\\owner.py": "82e8f6b3dbfbd5cd6e8fe2cad6cdcf327ac89142d4a0d9d9aa989b5a1cc1053b",
+                  "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-committed-state-coverage-6d964a58631615e9a9f0932e848\\declaration.json": "dc1743ed2efafe8163aec2c72819d81ebd793fd8241b5431bb64087b380718ce",
+                  "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-committed-state-coverage-6d964a58631615e9a9f0932e848\\diagnostic.json": "c35964ba310370f1ccbca69de2d112c692c8f4c8ef97e63207726f190e71e9f2",
+                  "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-committed-state-coverage-6d964a58631615e9a9f0932e848\\component-controls\\stderr.log": "7346a54e5653347492c84833bf9aab3a687f9a87ca55d9e48e2fdfd205b5ea88",
+                  "C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-committed-state-coverage-6d964a58631615e9a9f0932e848\\full-controls\\stderr.log": "ab00b5c960658051bf8335ef2b45ff5da3326e932f5e996dcd307a6d7f81c591"
+                }
+              },
+              "worlds_opened": 0,
+              "solver_steps": 0,
+              "original_eligible": 29,
+              "original_negative": 19,
+              "source_runtime_unchanged": true,
+              "source_binding_count": 273,
+              "runtime_binding_count": 1357,
+              "source_commit": "b9d556f7b139f34cebf19d5b2eef15c0c547975f",
+              "owned_uncommitted_sources_at_execution": true,
+              "original_shortlist_empty": true,
+              "failed_official_quality_remains_null": true,
+              "causal_authority": false,
+              "training_data_authority": false,
+              "selection_authority": false,
+              "recoverability_authority": false,
+              "physical_acceptance_authority": false,
+              "release_authority": false
             }
           },
-          "next_development_question": "The tested thirty-command commitment rule is not promoted: it reduces eligible weakened starts and leaves the hardest start uncovered. Diagnose early control divergence and state and action history coverage on the complete matched episodes, then freeze a distinct successor that improves control coverage. Consider a bounded learned residual using actual rollout data through the existing proposal seam. Retain all failures and original quality rules, preserve every healthy baseline, and keep reserved calibration/evaluation unopened; no Tier 3 or release claim."
+          "next_development_question": "The complete state/action diagnosis is verified and the bounded residual optimizer passes ten numerical controls. Next integrate canonical joint/body state, exact phase and actual prior issued commands through ongoing causal history, with morphology/task identity and support/confidence refusal. Freeze the training objective, failure handling, complete population and simulation budget before new worlds; independently verify complete updates. Preserve healthy baseline behavior, failed official quality and unopened reserved partitions. Native training, fresh comparison, empirical recovery, Tier 3 benefit and three-engine qualification remain open."
         },
         "first_response_repertoire": {
           "ledger_scope": {
