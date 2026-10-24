@@ -2571,3 +2571,28 @@ promoted to training transitions. The local optimizer is ARS, not that paper's
 TD3 procedure. All 104 zero-world controls pass, but the three-world execution
 fixture and 88-world pilot have not run at this preparation boundary. No new
 locomotion benefit, calibrated confidence or Tier 3 memory result is claimed.
+
+### Completed native residual training follow-through - 2026-10-24
+
+The [completed training closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-residual-training---2026-10-24)
+now supplies actual induced native trajectories and independently reconstructed
+updates: three execution-fixture worlds, 64 full-horizon training worlds and
+24 fresh comparison worlds, all after complete 104-control launch gates.
+The two-update checkpoint improves the healthy quality score at all four
+starts but fails every weakened start. It therefore fails its prospective
+finite screen. Eight zero-world closure controls recheck all retained files,
+raw rewards, observation moments and updates without opening physics.
+
+The first random search perturbation is eligible on all eight training groups.
+That exposed-data observation motivates a distinct candidate-selection and
+fresh-comparison successor; it is not a substitute final checkpoint, held-out
+result, or evidence that either optimizer update improved recovery. Weight
+and normalization changes are coupled here, so the result does not identify
+the cause of the loss. All valid negative training episodes remain in the
+updates, and comparison data never fits the model.
+
+This establishes a functioning local native residual training procedure,
+not reproduction of the ARS or residual-RL papers' benchmarks. The retained
+research motivations remain useful, while calibrated support, empirical
+withdrawal, unopened evaluation, useful Tier 3 memory and three-engine
+qualification still require their own prospective evidence.

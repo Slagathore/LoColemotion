@@ -1,0 +1,2997 @@
+{
+  "schema_version": "locolemotion_residual_training_closure_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "bounded_development_training",
+    "question_class": "development"
+  },
+  "synthetic": false,
+  "source_commit": "b29ea283f333be81e041a45648b156f74112e2a0",
+  "contract_path": "sdk/discovery/residual_training_v1.json",
+  "contract_sha256": "2f2d6df77bd5717e3d0421c955250bcac52274cc21ab1bbb0b483848697a428f",
+  "closure_reader_sha256": "e3518088c1828469530ff2bdcd2effd9cfd6f1258d5194764f1d9af5e4f51938",
+  "attempts": [
+    {
+      "lane": "route",
+      "attempt_id": "sdk2-residual-training-a2cd9bf988bb4c36b64e269b3e04de90",
+      "receipt_sha256": "1655d7076540d5aa9792bc26298af791f89a6e5e8b69ddb21ac6d8ef64163389",
+      "summary": {
+        "source_commit": "b29ea283f333be81e041a45648b156f74112e2a0",
+        "lane": "route",
+        "constructed_cpu_worlds": 3,
+        "constructed_gpu_worlds": 0,
+        "training_worlds": 2,
+        "comparison_worlds": 1,
+        "controller_rows": 360,
+        "internal_rows": 1800,
+        "eligible_trials": 2,
+        "negative_trials": 1,
+        "training_supported_features": 232,
+        "training_unsupported_features": 8,
+        "completed_stages": [
+          "iteration_00",
+          "comparison"
+        ],
+        "stage_records": [
+          {
+            "stage": "iteration_00",
+            "stage_claim_sha256": "bf21273b4d4dd8455a28700356166e36d52a3e3cb35c33ecf377af3ea7bad13d",
+            "audit_sha256": "c0d20edb02a588ef56182658793a257c4bb19db86f3c1fcce9e96deb5ea3c959",
+            "constructed_cpu_worlds": 2,
+            "controller_rows": 240,
+            "internal_rows": 1200,
+            "update_sha256": "dbacf71061907c4281f60119772de4e551395353f10887c96eac080792e6d60d",
+            "model_sha256": "sha256:bd1adeb86b051660c3c461d42caefeec34be7d0c1663f2b9c54e41c020ea40b2",
+            "verified_update_sha256": "240ae8225226a8cdd2466ff1883ef50298575cba115ea66cc92caec8bde9ee3d",
+            "normalizer_sample_count": 232
+          },
+          {
+            "stage": "comparison",
+            "stage_claim_sha256": "40290fe7b5296cd6f94b078226c878411f8d5b275d23b3d1dd9a5d9812dce7cd",
+            "audit_sha256": "70db3de59bc7251a5edeee75af68058a7359b684fd354f4cad91b1aedcecfef8",
+            "constructed_cpu_worlds": 1,
+            "controller_rows": 120,
+            "internal_rows": 600
+          }
+        ],
+        "final_comparison": {
+          "fixed_final_checkpoint": true,
+          "groups": [
+            {
+              "group_id": "left_075_train_001",
+              "trained_eligible": true,
+              "trained_quality_m_s": null
+            }
+          ],
+          "finite_development_screen_passed": false,
+          "tier2_qualified": false,
+          "tier3_benefit_established": false,
+          "release_authority": false
+        },
+        "owner_wall_s": 161.32799999999952,
+        "artifact_count": 1268,
+        "trials": [
+          {
+            "trial_id": "iteration_00_d00_plus_left_075_train_001",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:dbf732e8811519915ae7ba1e5cac76c86f3f15a8dad371ee6f5a9d31ad59578e",
+            "policy_sha256": "sha256:1626ce3398ceee25565069d0d1e8e24795c5c9bf23a495d809ce0083b56e9be8",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.6555080097257957,
+            "reward_denominator": 600,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 120,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 119,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_left_075_train_001",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:00e343d8cf001f751d0e5a674027df4cd46008b8c49ef6ee9c5cb9bdb826a3c6",
+            "policy_sha256": "sha256:c7c8f853863f9038cb65eb890e2d145e8aa1c49e324df3f9d62cce636cfbb4bf",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt"
+            ],
+            "training_reward": -0.7704136709332585,
+            "reward_denominator": 600,
+            "first_reward_failure": {
+              "internal_step": 560,
+              "time_s": 0.9333333333333413,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 41,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 112,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 8
+            },
+            "nonzero_correction_commands": 111,
+            "refused_commands": 8
+          },
+          {
+            "trial_id": "comparison_trained_left_075_train_001",
+            "stage": "comparison",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:bd1adeb86b051660c3c461d42caefeec34be7d0c1663f2b9c54e41c020ea40b2",
+            "policy_sha256": "sha256:fde4c3150225718582ea98754e98423e01c135f245420e14a64f77a94c3be7f2",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.3695229942516211,
+            "reward_denominator": 600,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 119,
+            "refused_commands": 0
+          }
+        ]
+      }
+    },
+    {
+      "lane": "pilot",
+      "attempt_id": "sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1",
+      "receipt_sha256": "5289b79e1895ffc9450b9565eba06fa4f7575774b472194eb61bcd59ce1f4a90",
+      "summary": {
+        "source_commit": "b29ea283f333be81e041a45648b156f74112e2a0",
+        "lane": "pilot",
+        "constructed_cpu_worlds": 88,
+        "constructed_gpu_worlds": 0,
+        "training_worlds": 64,
+        "comparison_worlds": 24,
+        "controller_rows": 126720,
+        "internal_rows": 633600,
+        "eligible_trials": 27,
+        "negative_trials": 61,
+        "training_supported_features": 33377,
+        "training_unsupported_features": 58783,
+        "completed_stages": [
+          "iteration_00",
+          "iteration_01",
+          "comparison"
+        ],
+        "stage_records": [
+          {
+            "stage": "iteration_00",
+            "stage_claim_sha256": "3f2ca112ed03cf532fa4bbb26e2267516d4f6e9a3f84c14ed9bcae8634c49512",
+            "audit_sha256": "bd5470b83fdeaae5a8b4d11677aa9e109875d2714300f8b6b296a1a22ffe89c6",
+            "constructed_cpu_worlds": 32,
+            "controller_rows": 46080,
+            "internal_rows": 230400,
+            "update_sha256": "796a404e269cccdfb54e551440a1eaa37c492cd5f1a9b51a4b5b218f8bcf1af4",
+            "model_sha256": "sha256:199b73369aeee55d8a4dfbd73def332019f64f6a8fa46ee581ac319a02d4ff13",
+            "verified_update_sha256": "f191f3473bbeacec03cd3e4e9b91db2c7a9f9317396e51364a91d776ac536697",
+            "normalizer_sample_count": 20719
+          },
+          {
+            "stage": "iteration_01",
+            "stage_claim_sha256": "4236745cbe9d2007ca37a20ad19b3ee064c6d2c168da2facd950860a4ca18ccd",
+            "audit_sha256": "347515f725dc056abe8f7bc65a4a033e1fe7972352a779f544f3c5529171bb77",
+            "constructed_cpu_worlds": 32,
+            "controller_rows": 46080,
+            "internal_rows": 230400,
+            "update_sha256": "6caab396d35a653a3ea946f62b6b5e4debaf645bce9c051dd40a6823ac24294f",
+            "model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "verified_update_sha256": "582780f43306df524009e2c4716c5f46f2d655a9355c268892efdfa064ace32a",
+            "normalizer_sample_count": 33377
+          },
+          {
+            "stage": "comparison",
+            "stage_claim_sha256": "1ef4a4e00aa24752746e14a4113e2049ba55c6b0e68ebbfbef5aff03f04e5a6c",
+            "audit_sha256": "aa866ed5b03c0208134b1241589b5a339c204b64b8dc85d1b62f31fa0ec2e03b",
+            "constructed_cpu_worlds": 24,
+            "controller_rows": 34560,
+            "internal_rows": 172800
+          }
+        ],
+        "final_comparison": {
+          "fixed_final_checkpoint": true,
+          "groups": [
+            {
+              "group_id": "left_075_train_001",
+              "trained_eligible": false,
+              "trained_quality_m_s": null,
+              "baseline_eligible": false,
+              "baseline_quality_m_s": null,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": null,
+              "nominal_preserved": null
+            },
+            {
+              "group_id": "left_075_train_003",
+              "trained_eligible": false,
+              "trained_quality_m_s": null,
+              "baseline_eligible": false,
+              "baseline_quality_m_s": null,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": null,
+              "nominal_preserved": null
+            },
+            {
+              "group_id": "left_075_train_004",
+              "trained_eligible": false,
+              "trained_quality_m_s": null,
+              "baseline_eligible": false,
+              "baseline_quality_m_s": null,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": null,
+              "nominal_preserved": null
+            },
+            {
+              "group_id": "left_075_train_006",
+              "trained_eligible": false,
+              "trained_quality_m_s": null,
+              "baseline_eligible": false,
+              "baseline_quality_m_s": null,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": null,
+              "nominal_preserved": null
+            },
+            {
+              "group_id": "nominal_train_001",
+              "trained_eligible": true,
+              "trained_quality_m_s": -0.09276537317541207,
+              "baseline_eligible": true,
+              "baseline_quality_m_s": -0.09978960607936949,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": 0.007024232903957414,
+              "nominal_preserved": true
+            },
+            {
+              "group_id": "nominal_train_003",
+              "trained_eligible": true,
+              "trained_quality_m_s": -0.09360447049399458,
+              "baseline_eligible": true,
+              "baseline_quality_m_s": -0.09994396721276905,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": 0.0063394967187744705,
+              "nominal_preserved": true
+            },
+            {
+              "group_id": "nominal_train_004",
+              "trained_eligible": true,
+              "trained_quality_m_s": -0.0922196766410489,
+              "baseline_eligible": true,
+              "baseline_quality_m_s": -0.09869677777797993,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": 0.006477101136931035,
+              "nominal_preserved": true
+            },
+            {
+              "group_id": "nominal_train_006",
+              "trained_eligible": true,
+              "trained_quality_m_s": -0.09181950585548615,
+              "baseline_eligible": true,
+              "baseline_quality_m_s": -0.09938988167121922,
+              "disabled_trace_identical": true,
+              "quality_change_m_s": 0.007570375815733069,
+              "nominal_preserved": true
+            }
+          ],
+          "finite_development_screen_passed": false,
+          "tier2_qualified": false,
+          "tier3_benefit_established": false,
+          "release_authority": false
+        },
+        "owner_wall_s": 5441.016000000001,
+        "artifact_count": 2229,
+        "trials": [
+          {
+            "trial_id": "iteration_00_d00_plus_left_075_train_001",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2811004654922126,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09665286969263888,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_plus_left_075_train_003",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2795572855314364,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09643403614167283,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_plus_left_075_train_004",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.27958405604857967,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09837920376373167,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_plus_left_075_train_006",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.28066609397578407,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.097953632284009,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_plus_nominal_train_001",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.27300116410694186,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09387660594733661,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_plus_nominal_train_003",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.27694577646260105,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09745613276669164,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_plus_nominal_train_004",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2758762888029209,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09733241971566053,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_plus_nominal_train_006",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f",
+            "policy_sha256": "sha256:761b99d4e1571f97e9e5da5d124c19b6b7601bb40d3eebdd1da4914abec6d133",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.27685657217596543,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09869946882947635,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_left_075_train_001",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9923930718908226,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 505,
+              "time_s": 0.8416666666666726,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6696,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 101,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1339
+            },
+            "nonzero_correction_commands": 100,
+            "refused_commands": 1339
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_left_075_train_003",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9900247770332153,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 545,
+              "time_s": 0.9083333333333408,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6656,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 109,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1331
+            },
+            "nonzero_correction_commands": 108,
+            "refused_commands": 1331
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_left_075_train_004",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9909401507722211,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 527,
+              "time_s": 0.8783333333333401,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6674,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 106,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1334
+            },
+            "nonzero_correction_commands": 105,
+            "refused_commands": 1334
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_left_075_train_006",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9904911686269381,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 528,
+              "time_s": 0.8800000000000068,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6673,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 106,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1334
+            },
+            "nonzero_correction_commands": 105,
+            "refused_commands": 1334
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_nominal_train_001",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9795855003874965,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 760,
+              "time_s": 1.2666666666666824,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6441,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 152,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1288
+            },
+            "nonzero_correction_commands": 151,
+            "refused_commands": 1288
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_nominal_train_003",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9865420743905603,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 594,
+              "time_s": 0.9900000000000093,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6607,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 119,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1321
+            },
+            "nonzero_correction_commands": 118,
+            "refused_commands": 1321
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_nominal_train_004",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8638639879966651,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2144,
+              "time_s": 3.5733333333331925,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 5057,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 429,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1011
+            },
+            "nonzero_correction_commands": 428,
+            "refused_commands": 1011
+          },
+          {
+            "trial_id": "iteration_00_d00_minus_nominal_train_006",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:868fcd240a78dcee1aa98cc2653cd22b0463f92815e1216989800625cdec9d33",
+            "policy_sha256": "sha256:cd5bf544010b78e4f44dcffbe6f0324b5860119bd42f8ea63c7964dc7b40bc9c",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8681623951822061,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2231,
+              "time_s": 3.7183333333331765,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 4970,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 447,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 993
+            },
+            "nonzero_correction_commands": 446,
+            "refused_commands": 993
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_left_075_train_001",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9491391958856733,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 1207,
+              "time_s": 2.011666666666698,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 5994,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 242,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1198
+            },
+            "nonzero_correction_commands": 241,
+            "refused_commands": 1198
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_left_075_train_003",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9318523638035074,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 1212,
+              "time_s": 2.02000000000003,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 5989,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 243,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1197
+            },
+            "nonzero_correction_commands": 242,
+            "refused_commands": 1197
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_left_075_train_004",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9520619639814019,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 1198,
+              "time_s": 1.9966666666666992,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6003,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 240,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1200
+            },
+            "nonzero_correction_commands": 239,
+            "refused_commands": 1200
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_left_075_train_006",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9116052284365924,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 1315,
+              "time_s": 2.191666666666678,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 5886,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 263,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1177
+            },
+            "nonzero_correction_commands": 262,
+            "refused_commands": 1177
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_nominal_train_001",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.32290978088819217,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.12158048590355415,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_nominal_train_003",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.3489609084046297,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.13371725526164546,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_nominal_train_004",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.3208232418562349,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.12141557048834321,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d01_plus_nominal_train_006",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:306cb552d322ffde33890ff150686727ea97e4cea4a8f426fda29e2273ef61d8",
+            "policy_sha256": "sha256:fa9b931cfa59eb493b5d131eca06d0f3b660eb18b362d11d9c19d8c997b2dda4",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.32109123748361135,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.12036299851429089,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_left_075_train_001",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.987662589088423,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 505,
+              "time_s": 0.8416666666666726,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6696,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 101,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1339
+            },
+            "nonzero_correction_commands": 100,
+            "refused_commands": 1339
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_left_075_train_003",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9870180185655463,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 517,
+              "time_s": 0.861666666666673,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6684,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 104,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1336
+            },
+            "nonzero_correction_commands": 103,
+            "refused_commands": 1336
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_left_075_train_004",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.987810241682714,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 502,
+              "time_s": 0.8366666666666724,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6699,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 101,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1339
+            },
+            "nonzero_correction_commands": 100,
+            "refused_commands": 1339
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_left_075_train_006",
+            "stage": "iteration_00",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9878861587689693,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 500,
+              "time_s": 0.833333333333339,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6701,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 100,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1340
+            },
+            "nonzero_correction_commands": 99,
+            "refused_commands": 1340
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_nominal_train_001",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9829502389927938,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 591,
+              "time_s": 0.9850000000000092,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6610,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 119,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1321
+            },
+            "nonzero_correction_commands": 118,
+            "refused_commands": 1321
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_nominal_train_003",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.983189077172531,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 586,
+              "time_s": 0.9766666666666757,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6615,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 118,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1322
+            },
+            "nonzero_correction_commands": 117,
+            "refused_commands": 1322
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_nominal_train_004",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9829975153907429,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 591,
+              "time_s": 0.9850000000000092,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6610,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 119,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1321
+            },
+            "nonzero_correction_commands": 118,
+            "refused_commands": 1321
+          },
+          {
+            "trial_id": "iteration_00_d01_minus_nominal_train_006",
+            "stage": "iteration_00",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:16a00b42a2e39089bda547bb8ad1314754f39782801835526c1598b689a63653",
+            "policy_sha256": "sha256:8f2eae85a5e88e62728c0c1614ad9e65d54096a7679b03d85200ff006001430e",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9825899982336804,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 599,
+              "time_s": 0.9983333333333428,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6602,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 120,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1320
+            },
+            "nonzero_correction_commands": 119,
+            "refused_commands": 1320
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_left_075_train_001",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8388235595492899,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2258,
+              "time_s": 3.7633333333331715,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 4943,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 452,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 988
+            },
+            "nonzero_correction_commands": 451,
+            "refused_commands": 988
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_left_075_train_003",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8300278005048821,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2372,
+              "time_s": 3.9533333333331506,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 4829,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 475,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 965
+            },
+            "nonzero_correction_commands": 474,
+            "refused_commands": 965
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_left_075_train_004",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9707311709175647,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 625,
+              "time_s": 1.0416666666666772,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6576,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 125,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1315
+            },
+            "nonzero_correction_commands": 124,
+            "refused_commands": 1315
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_left_075_train_006",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.967346331879324,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 708,
+              "time_s": 1.1800000000000137,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6493,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 142,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1298
+            },
+            "nonzero_correction_commands": 141,
+            "refused_commands": 1298
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_nominal_train_001",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8318748021797788,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2229,
+              "time_s": 3.7149999999998435,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 4972,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 446,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 994
+            },
+            "nonzero_correction_commands": 445,
+            "refused_commands": 994
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_nominal_train_003",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8249520361550703,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2466,
+              "time_s": 4.109999999999829,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 4735,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 494,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 946
+            },
+            "nonzero_correction_commands": 493,
+            "refused_commands": 946
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_nominal_train_004",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.7181754740007021,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 4172,
+              "time_s": 6.953333333333607,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 3029,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 835,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 605
+            },
+            "nonzero_correction_commands": 834,
+            "refused_commands": 605
+          },
+          {
+            "trial_id": "iteration_01_d00_plus_nominal_train_006",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:4fba781ece6e134d454ac4d06c1c0a66b7bd80d0e9bbfbe208db156bc29413ad",
+            "policy_sha256": "sha256:9cb188057e1212f6030a8b1f9e303fdc446271a3179a357f9b177d2841b48136",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8330704384974883,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2261,
+              "time_s": 3.768333333333171,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 4940,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 453,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 987
+            },
+            "nonzero_correction_commands": 452,
+            "refused_commands": 987
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_left_075_train_001",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9849256285743846,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 527,
+              "time_s": 0.8783333333333401,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6674,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 106,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1334
+            },
+            "nonzero_correction_commands": 105,
+            "refused_commands": 1334
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_left_075_train_003",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9860517934632534,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 513,
+              "time_s": 0.8550000000000062,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6688,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 103,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1337
+            },
+            "nonzero_correction_commands": 102,
+            "refused_commands": 1337
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_left_075_train_004",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9849177560905032,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 526,
+              "time_s": 0.8766666666666734,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6675,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 106,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1334
+            },
+            "nonzero_correction_commands": 105,
+            "refused_commands": 1334
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_left_075_train_006",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9856323518005642,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 519,
+              "time_s": 0.8650000000000064,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6682,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 104,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1336
+            },
+            "nonzero_correction_commands": 103,
+            "refused_commands": 1336
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_nominal_train_001",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9814574691986019,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 570,
+              "time_s": 0.9500000000000084,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6631,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 114,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1326
+            },
+            "nonzero_correction_commands": 113,
+            "refused_commands": 1326
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_nominal_train_003",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9817743835147341,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 566,
+              "time_s": 0.9433333333333416,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6635,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 114,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1326
+            },
+            "nonzero_correction_commands": 113,
+            "refused_commands": 1326
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_nominal_train_004",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9812338647249499,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 572,
+              "time_s": 0.9533333333333418,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6629,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 115,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1325
+            },
+            "nonzero_correction_commands": 114,
+            "refused_commands": 1325
+          },
+          {
+            "trial_id": "iteration_01_d00_minus_nominal_train_006",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 0,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:435512e51e087b172753c3c35f31f4d3cf95dbfc53f2f82db3cd476566a4a18e",
+            "policy_sha256": "sha256:aa29301a382b9bd015a024ef899097bacd06cfe9f75bcd6bf45db047bbe0122b",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9812160048244489,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 570,
+              "time_s": 0.9500000000000084,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6631,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 114,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1326
+            },
+            "nonzero_correction_commands": 113,
+            "refused_commands": 1326
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_left_075_train_001",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9775772333557896,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 661,
+              "time_s": 1.1016666666666786,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6540,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 133,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1307
+            },
+            "nonzero_correction_commands": 132,
+            "refused_commands": 1307
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_left_075_train_003",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.977786607245798,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 644,
+              "time_s": 1.0733333333333446,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6557,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 129,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1311
+            },
+            "nonzero_correction_commands": 128,
+            "refused_commands": 1311
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_left_075_train_004",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9769251033759759,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 663,
+              "time_s": 1.105000000000012,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6538,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 133,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1307
+            },
+            "nonzero_correction_commands": 132,
+            "refused_commands": 1307
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_left_075_train_006",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9715820954762162,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 837,
+              "time_s": 1.3950000000000187,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6364,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 168,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1272
+            },
+            "nonzero_correction_commands": 167,
+            "refused_commands": 1272
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_nominal_train_001",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.3239842339081403,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.11552827520722068,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_nominal_train_003",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.27912962133900626,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09899150680362669,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_nominal_train_004",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.6842491992063375,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 4073,
+              "time_s": 6.788333333333581,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 3128,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 815,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 625
+            },
+            "nonzero_correction_commands": 814,
+            "refused_commands": 625
+          },
+          {
+            "trial_id": "iteration_01_d01_plus_nominal_train_006",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": 1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:564084bcadb1b0bc38d943dec8f4b9c634b506f3fe431e09b579eacec7eea191",
+            "policy_sha256": "sha256:ba0a0776674b847982ead0044cab5760702e8690d69a4c0ea885db0b9f3c3ce3",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.29278520051041007,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.10577772092408715,
+            "supported_feature_rows": 1440,
+            "unsupported_feature_rows": {},
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_left_075_train_001",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9855313336517681,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 495,
+              "time_s": 0.8250000000000055,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6706,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 99,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1341
+            },
+            "nonzero_correction_commands": 98,
+            "refused_commands": 1341
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_left_075_train_003",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9851717377406506,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 500,
+              "time_s": 0.833333333333339,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6701,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 100,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1340
+            },
+            "nonzero_correction_commands": 99,
+            "refused_commands": 1340
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_left_075_train_004",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9851676095993696,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 500,
+              "time_s": 0.833333333333339,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6701,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 100,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1340
+            },
+            "nonzero_correction_commands": 99,
+            "refused_commands": 1340
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_left_075_train_006",
+            "stage": "iteration_01",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9854129543514696,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 496,
+              "time_s": 0.8266666666666722,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6705,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 100,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1340
+            },
+            "nonzero_correction_commands": 99,
+            "refused_commands": 1340
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_nominal_train_001",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.70008222960433,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 4176,
+              "time_s": 6.960000000000274,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 3025,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 836,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 604
+            },
+            "nonzero_correction_commands": 835,
+            "refused_commands": 604
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_nominal_train_003",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.8395225437915403,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 2563,
+              "time_s": 4.271666666666521,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 4638,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 513,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 927
+            },
+            "nonzero_correction_commands": 512,
+            "refused_commands": 927
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_nominal_train_004",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.7398216783655691,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 3876,
+              "time_s": 6.460000000000196,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 3325,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 776,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 664
+            },
+            "nonzero_correction_commands": 775,
+            "refused_commands": 664
+          },
+          {
+            "trial_id": "iteration_01_d01_minus_nominal_train_006",
+            "stage": "iteration_01",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "search",
+            "direction": 1,
+            "sign": -1,
+            "partition": "training",
+            "provider_model_sha256": "sha256:28427248c823ae6d11a1dae893bfeba9b4c6009790ceac02cfaf15ab03e12fa7",
+            "policy_sha256": "sha256:220f5542cb39732f1c30f6ba5bdf6808c8d3af1595d22311349ee832661ff7ab",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9779559472805118,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 690,
+              "time_s": 1.150000000000013,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6511,
+            "official_quality_m_s": null,
+            "supported_feature_rows": 138,
+            "unsupported_feature_rows": {
+              "unsupported_observation: Residual outside declared mechanical domain": 1302
+            },
+            "nonzero_correction_commands": 137,
+            "refused_commands": 1302
+          },
+          {
+            "trial_id": "comparison_baseline_left_075_train_001",
+            "stage": "comparison",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9803332439340117,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 638,
+              "time_s": 1.0633333333333443,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6563,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_left_075_train_001",
+            "stage": "comparison",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9803332439340117,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 638,
+              "time_s": 1.0633333333333443,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6563,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 1312
+          },
+          {
+            "trial_id": "comparison_trained_left_075_train_001",
+            "stage": "comparison",
+            "group_id": "left_075_train_001",
+            "condition_id": "left_075",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9784380506411462,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 621,
+              "time_s": 1.0350000000000104,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6580,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 124,
+            "refused_commands": 1315
+          },
+          {
+            "trial_id": "comparison_baseline_left_075_train_003",
+            "stage": "comparison",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9787443120329585,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 691,
+              "time_s": 1.1516666666666797,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6510,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_left_075_train_003",
+            "stage": "comparison",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9787443120329585,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 691,
+              "time_s": 1.1516666666666797,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6510,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 1301
+          },
+          {
+            "trial_id": "comparison_trained_left_075_train_003",
+            "stage": "comparison",
+            "group_id": "left_075_train_003",
+            "condition_id": "left_075",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9789407003946042,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 604,
+              "time_s": 1.0066666666666764,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6597,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 120,
+            "refused_commands": 1319
+          },
+          {
+            "trial_id": "comparison_baseline_left_075_train_004",
+            "stage": "comparison",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9785858373788875,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 698,
+              "time_s": 1.1633333333333467,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6503,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_left_075_train_004",
+            "stage": "comparison",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9785858373788875,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 698,
+              "time_s": 1.1633333333333467,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6503,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 1300
+          },
+          {
+            "trial_id": "comparison_trained_left_075_train_004",
+            "stage": "comparison",
+            "group_id": "left_075_train_004",
+            "condition_id": "left_075",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9793006146188895,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 598,
+              "time_s": 0.9966666666666761,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6603,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 119,
+            "refused_commands": 1320
+          },
+          {
+            "trial_id": "comparison_baseline_left_075_train_006",
+            "stage": "comparison",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9833868297282561,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 567,
+              "time_s": 0.9450000000000083,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6634,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_left_075_train_006",
+            "stage": "comparison",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "height",
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9833868297282561,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 567,
+              "time_s": 0.9450000000000083,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6634,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 1326
+          },
+          {
+            "trial_id": "comparison_trained_left_075_train_006",
+            "stage": "comparison",
+            "group_id": "left_075_train_006",
+            "condition_id": "left_075",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": false,
+            "diagnostic_failure_codes": [
+              "tilt",
+              "torso_contact"
+            ],
+            "training_reward": -0.9784421015283269,
+            "reward_denominator": 7200,
+            "first_reward_failure": {
+              "internal_step": 615,
+              "time_s": 1.0250000000000101,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "failure_padded_samples": 6586,
+            "official_quality_m_s": null,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 122,
+            "refused_commands": 1317
+          },
+          {
+            "trial_id": "comparison_baseline_nominal_train_001",
+            "stage": "comparison",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2686300561135256,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09978960607936949,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_nominal_train_001",
+            "stage": "comparison",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2686300561135256,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09978960607936949,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_trained_nominal_train_001",
+            "stage": "comparison",
+            "group_id": "nominal_train_001",
+            "condition_id": "nominal",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2660262681087686,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09276537317541207,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_baseline_nominal_train_003",
+            "stage": "comparison",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.268751534062233,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09994396721276905,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_nominal_train_003",
+            "stage": "comparison",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.268751534062233,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09994396721276905,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_trained_nominal_train_003",
+            "stage": "comparison",
+            "group_id": "nominal_train_003",
+            "condition_id": "nominal",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.26635916543477606,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09360447049399458,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_baseline_nominal_train_004",
+            "stage": "comparison",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2693747884061223,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09869677777797993,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_nominal_train_004",
+            "stage": "comparison",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2693747884061223,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09869677777797993,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_trained_nominal_train_004",
+            "stage": "comparison",
+            "group_id": "nominal_train_004",
+            "condition_id": "nominal",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.2660262763126609,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.0922196766410489,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_baseline_nominal_train_006",
+            "stage": "comparison",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "baseline",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:792bb73c166ad65d46730732bbba9f1d0543a6841caadf82640b58a1eae55422",
+            "policy_sha256": "sha256:0d39389dba36a99f537db5dc6c04f21cae81fa1c9fe01b839398a4ae34735099",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.27393687925569526,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09938988167121922,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_disabled_nominal_train_006",
+            "stage": "comparison",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "disabled",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.27393687925569526,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09938988167121922,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 0,
+            "refused_commands": 0
+          },
+          {
+            "trial_id": "comparison_trained_nominal_train_006",
+            "stage": "comparison",
+            "group_id": "nominal_train_006",
+            "condition_id": "nominal",
+            "role": "trained",
+            "direction": null,
+            "sign": null,
+            "partition": "development_comparison",
+            "provider_model_sha256": "sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4",
+            "policy_sha256": "sha256:280e03d1c3165c6d1a28873d021e03005ed2ac1bb31b6fa752720633d6ac546f",
+            "diagnostic_eligible": true,
+            "diagnostic_failure_codes": [],
+            "training_reward": -0.26543416956537513,
+            "reward_denominator": 7200,
+            "first_reward_failure": null,
+            "failure_padded_samples": 0,
+            "official_quality_m_s": -0.09181950585548615,
+            "supported_feature_rows": null,
+            "unsupported_feature_rows": null,
+            "nonzero_correction_commands": 1439,
+            "refused_commands": 0
+          }
+        ]
+      }
+    }
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "tier2_complete": false,
+  "tier3_complete": false,
+  "tier3_benefit_established": false
+}

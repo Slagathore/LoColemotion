@@ -21,11 +21,18 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
-Latest preparation: the [native residual training implementation](#prepared-native-residual-training---2026-10-24)
-passes all **104 zero-world controls**. The production profile reproduced 720
-decisions exactly. Next run the three-world paired-update execution fixture
-from a clean published freeze, then the fixed 88-world, full-horizon training
-and comparison pilot. No training worlds have opened at this preparation boundary.
+Latest training closure: the [completed native residual pilot](#completed-native-residual-training---2026-10-24)
+verifies the three-world execution fixture and **88-world pilot** from published
+**b29ea283**, each after all **104 safety controls**. The final trained checkpoint
+passes all four healthy comparison groups and improves their quality scores,
+but fails all four weakened groups. Disabled traces exactly match baseline.
+Its declared finite screen fails. An initial random search perturbation passes
+all eight training groups and remains a discovery lead for a distinct fresh
+comparison; it does not replace the failed fixed final checkpoint. Eight
+closure controls reconstruct rewards, moments and updates with zero new worlds.
+Next freeze a separate training-only candidate selection and fresh comparison,
+then pursue calibrated support, withdrawal and useful reversible Tier 3 memory.
+Reserved starts remain unopened; Tier 2/Tier 3 qualification remains unproved.
 
 Latest native route: the [residual smoke closure](#completed-residual-native-execution-route---2026-10-24)
 completes three fresh CPU worlds from 2f8fb95e after all 86 controls, with full
@@ -52,8 +59,9 @@ both core DLLs, with 88 canonical values and continuous resolved-action history.
 No native dynamics or training transitions were generated. The [native launch
 manifest correction](#corrected-residual-native-launch-manifest---2026-10-24)
 retains a zero-world prelaunch failure and passes fourteen focused controls.
-The native route is now closed above. Its profile and the complete training
-reward, update audit and budget are implemented in the preparation above. Learned-association
+The native route and training pilot are now closed above. Complete training
+rewards and updates are verified, but weakened-condition recovery failed in
+the fixed final checkpoint. Learned-association
 benefit, empirical recovery monitoring, reserved evaluation, useful Tier 3
 behavior and release remain unproved.
 
@@ -1546,6 +1554,81 @@ The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
 
+### Completed native residual training - 2026-10-24
+
+The [complete training closure](../sdk/discovery/residual_training_closure_v1.json)
+binds two consumed attempts from clean published **b29ea283**: the three-world
+execution fixture and the **88-world full-horizon pilot**. Both pass all
+**104 applicable zero-world controls** before native launch. All **501 source
+and 1,359 runtime bindings** remain unchanged. These are CPU worlds; no GPU
+throughput result follows.
+
+| Stage | CPU worlds | Eligible | Negative | Interpretation |
+| --- | ---: | ---: | ---: | --- |
+| One-second execution fixture | 3 | 2 | 1 | Two search worlds produce a verified update used by a fresh third world |
+| Pilot iteration 0 | 32 | 12 | 20 | Complete two-direction, eight-group search and first update |
+| Pilot iteration 1 | 32 | 3 | 29 | Complete second search and final update |
+| Pilot comparison | 24 | 12 | 12 | Fresh baseline, disabled and fixed-final-model roles at all eight groups |
+
+The pilot starts independently from zero weights and identity normalization.
+Its **64 training worlds** contribute **33,377 available feature vectors** and
+**58,783 explicitly unsupported rows**. All **15 eligible and 49 negative**
+training trajectories remain in the fixed-denominator reward population.
+Every available vector contributes to normalization, including vectors from
+failed episodes; unsupported rows are never invented. The two optimizer
+updates are independently reconstructed before the resulting model is used.
+The execution fixture and final comparison supply no pilot fitting data.
+
+The final model is
+`sha256:3c0f0c1ac35f4fd4ae167fc6f03542222e4aa2df0f3de4ff3930d774e4cfabd4`.
+It passes **4/4 healthy** and **0/4 weakened** comparison groups. Baseline and
+disabled controls have the same eligibility counts. At every healthy start
+the trained model improves the official quality score by **0.00634 to 0.00757
+m/s** relative to the fresh baseline. This is a change in the existing quality
+metric, not a speed or robustness claim. All eight disabled raw traces exactly
+equal their baseline traces. Failed episodes retain null official quality.
+The prospective **8/8 eligibility plus healthy-quality-preservation screen
+fails**; Tier 2, Tier 3, physical acceptance and release remain false.
+
+Preserve the useful counterpoint: initial search perturbation
+`iteration_00/d00_plus` is eligible in **8/8 exposed training groups**,
+including all four weakened starts. Its provider artifact is
+`sha256:f340fd7eb79abdb7ed52a93ad8f1bb038ba46d1406c81f3ea422cded17ee3c1f`.
+It is an initial random perturbation, not either independently updated
+checkpoint. It has no fresh baseline comparison, reserved evaluation or
+promotion authority. The pilot prospectively selected the final update, so
+this lead cannot replace that checkpoint or turn this negative closure into a
+pass. The retained outcomes do not isolate why the updates lost recovery:
+weights and observation normalization both changed.
+
+The [closure reader](../sdk/discovery/audit_residual_training_closure.py) and
+[eight contained controls](../sdk/discovery/run_residual_training_closure.py)
+reopen every artifact and raw stream, reconstruct rewards and feature moments,
+verify both attempts' update lineages, and preserve the original complete
+independent control replay. They do not rerun production control or physics.
+Across both attempts the original readers replayed **127,080 commands and
+635,400 internal samples** in **91 CPU worlds**. The closure retains **3,497
+artifacts / 13,581,259,758 bytes** from those attempts, including every negative
+outcome.
+
+- Execution fixture: `<evidence-root>/sdk2-residual-training-a2cd9bf988bb4c36b64e269b3e04de90`,
+  receipt `1655d7076540d5aa9792bc26298af791f89a6e5e8b69ddb21ac6d8ef64163389`.
+- Pilot: `<evidence-root>/sdk2-residual-training-6810e4b6dce34e9ea9ad471f9f297bf1`,
+  receipt `5289b79e1895ffc9450b9565eba06fa4f7575774b472194eb61bcd59ce1f4a90`.
+- Closure controls: `<evidence-root>/sdk2-residual-training-closure-controls-5c6f8f317a66416cb03e4ec4a8d706e4`,
+  receipt `dd5646ebc55a0beaf329b0a384ce097d94485c9d2e4a56e011da3f95ee9fc9c9`.
+- Repository closure SHA-256: `13ea3010c6759dc2bc18e1d126f323af2766f2b6b971a25b2ecc251873534c91`.
+
+Next use a distinct successor to freeze a selection rule over the complete
+exposed training population, retain exact candidate weights and normalization,
+and challenge the selected artifact against fresh baseline and disabled roles.
+Do not fit on the completed comparison or open reserved groups while making
+that choice. Diagnose update behavior separately before changing its mechanism.
+Then calibrate support and empirical withdrawal, evaluate frozen proposals on
+unopened groups, and test reversible episode memory with memory-off and
+shuffled-feedback controls. Three-engine qualification remains a separate
+prospective target.
+
 ### Prepared native residual training - 2026-10-24
 
 The [training program](../sdk/discovery/residual_training_v1.json),
@@ -1556,7 +1639,8 @@ zero-world controls** pass, including 26 native/training controls, six retained
 native-closure controls, provider conformance and process containment.
 The retained attempt is `<evidence-root>/sdk2-residual-training-dc84eaa727c54325809955c15d979747`;
 its receipt SHA-256 is `5038633999a08666b9dc69fb97a0c7eb975c1fcf6fcabb960874d14bc4b4904c`. Sources and all runtime bindings are unchanged.
-This is preparation, with **zero new worlds and no trained locomotion policy**.
+At this historical preparation boundary there were **zero new worlds and no
+trained locomotion policy**; the completed execution is recorded above.
 
 The execution fixture declares two antithetic search worlds and one world
 using their independently verified update. It uses one weakened-body start,

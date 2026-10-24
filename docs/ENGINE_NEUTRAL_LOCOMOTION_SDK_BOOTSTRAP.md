@@ -9,13 +9,20 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest training preparation (2026-10-24): the [native residual training program](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-native-residual-training---2026-10-24)
-passes all 104 zero-world controls after a 720-decision exact production profile.
-The next execution is a three-world paired-update fixture, followed only after
-its verification by the fixed 88-world pilot across eight exposed groups.
-Complete 12-second training trajectories, failure-padded rewards and each
-optimizer update receive independent replay. No training worlds have opened
-at this preparation boundary; Tier 2/Tier 3 and release remain unqualified.
+Latest training closure (2026-10-24): the [completed native residual pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-residual-training---2026-10-24)
+verifies **91 CPU worlds** from clean published **b29ea283**: three execution
+fixture worlds and an 88-world pilot, each after all 104 safety controls.
+Independent replay covers **127,080 commands / 635,400 internal samples**.
+Both pilot updates are reconstructed. The fixed final checkpoint preserves
+and improves healthy quality at all four starts, but recovers **0/4 weakened
+starts** and fails the declared finite screen. Disabled traces exactly match
+baseline. An initial random perturbation passes **8/8 training groups** and
+remains an exposed-data lead for a distinct fresh comparison; it cannot replace
+the failed final checkpoint. Eight zero-world closure controls reopen all
+artifacts and reconstruct raw rewards, moments and updates. Source/runtime
+bindings remain unchanged. Next freeze a separate training-only candidate
+selection, then challenge it with fresh baseline and disabled controls before
+reserved calibration/evaluation. Tier 2/Tier 3 and release remain unqualified.
 
 Latest native route (2026-10-24): the [residual smoke closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-native-execution-route---2026-10-24)
 completes three fresh CPU worlds from published 2f8fb95e after all 86 controls.
