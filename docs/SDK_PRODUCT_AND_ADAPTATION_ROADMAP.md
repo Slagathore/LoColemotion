@@ -1468,6 +1468,76 @@ Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
 
+### Prepared committed selection comparison - 2026-10-24
+
+The [prospective declaration](../sdk/discovery/cpu_committed_feedback_v1.json)
+compares six fresh roles at all four exposed starts in both weakened and healthy
+motor conditions: **48 CPU worlds**, each twelve seconds, 1,440 controller
+commands and 7,200 internal samples. It keeps development seed 104232601 to
+isolate the timing change under the existing exposed starts; every world still
+has fresh setup and private memory. Calibration and evaluation stay unopened.
+
+| Role | Selection implementation | Actual correction |
+| --- | --- | --- |
+| Baseline | Deterministic baseline | None |
+| Disabled | Committed selection | Suppressed |
+| Current frozen | Original dense selector | Original association |
+| Current shuffled | Original dense selector | Shuffled association |
+| Committed frozen | Supported thirty-command commitment | Original association |
+| Committed shuffled | Supported thirty-command commitment | Shuffled association |
+
+Seven contrasts per group give **56 paired comparisons**: committed versus
+current, the same timing comparison under shuffled associations, each selector
+versus its shuffled control, committed versus baseline/disabled, and disabled
+versus baseline. Failed quality remains null. Selection still requires all
+eight episodes eligible and zero observed healthy-quality loss at every start.
+No statistical superiority or non-inferiority claim follows from that screen.
+Opportunity, actual influence and commitment events are reported separately.
+Dynamic sequences remain dynamic; they are not relabeled as fixed experts.
+
+The [host](../sdk/discovery/committed_feedback_control.py) gives each role its
+own provider/model binding and uses the same production baseline and resolver.
+Nine [host controls](../sdk/discovery/test_committed_feedback_control.py) pass
+under `sdk2-committed-host-controls-2a6a488d51aa413c859614c7b2c5df5e`, retaining
+**3,360 input-driven decisions** across both real core DLLs. Current roles
+reproduce the original host, every healthy role preserves baseline bits, and
+explicit stimuli verify expiry, closure, absence fallback and crossed models.
+The [independent reader](../sdk/discovery/audit_committed_feedback.py) checks
+neighbors, expert arithmetic, interval events, resolver limits and the exact
+provider-to-resolver memory join. These are retained-input checks, not new
+physical trajectories. Receipt SHA-256 is
+`a0bfed5cbe94fbaa23ad5c6afbca55f5d3c249c7364c73e5abdfa83013ec415b`.
+
+The initial attempt `sdk2-committed-host-controls-64f1de9b8c2c44e2907b0467d3ea06de`
+retains eight passes and one missed corruption. Its reader did not join the
+resolver's returned memory to the provider's response. The separate diagnosis
+`sdk2-committed-host-reader-diagnostic-21cac68028484924bee464c63d0a06bd`
+identifies that exact missed stimulus while all 3,360 valid joins match. The
+successor enforces the join and corrupts it independently in all six roles.
+The failed receipt and diagnostic remain bound in the support matrix; no
+original evidence was rewritten.
+
+Fourteen [route controls](../sdk/discovery/test_cpu_committed_feedback.py) pass
+in **223.563 s** under `sdk2-committed-route-controls-93f482f8f3344ff5b6322057b217d0cd`.
+They cover all 48 synthetic transport cells, actual ABI preflight, disjoint
+partitions, original quality/censoring rules, current-model crossing, force,
+state, target, history, commitment and returned-memory corruption. A sixty-
+command fixture checks complete quality windows and causal feature joins.
+They open zero worlds and grant no synthetic training authority. Receipt
+SHA-256 is `d288c9624735c7c72b44ab6e591ea6d02b5cc53ab4474fec952e9cd34d2f9421`.
+All 522 source and 1,359 runtime bindings remain unchanged during that run.
+
+The [launcher](../sdk/discovery/run_cpu_committed_feedback.py) requires the full
+**388-control zero-world gate**, Windows job containment, the operation mutex,
+unchanged source/runtime bindings and a clean pushed prospective source before
+physical execution. The [worker](../sdk/discovery/cpu_committed_feedback.py)
+and [full reader](../sdk/discovery/audit_cpu_committed_feedback.py) retain and
+independently replay all 69,120 commands and 345,600 internal samples. The
+complete gate has not yet run for this campaign, and no native successor world
+has started at this preparation checkpoint. The hardest-start coverage issue,
+empirical recoverability, useful Tier 3 outcome memory and three-engine
+promotion remain open. Qualification and release authority stay false.
+
 ### Implemented committed selection component - 2026-10-24
 
 The distinct [provider](../sdk/adaptation_provider/retrieval/committed_feedback_v1.py)
@@ -1510,12 +1580,11 @@ retained command-31 observation and command together. Neither the resolver nor
 the observed refusal was changed; the failed receipt remains
 `2662d55066823a1f22ff2261256cfee6ca603e1f630934fe7924e455d1ebee40`.
 
-Next integrate this provider into a distinct host and independent reader,
-then declare a forty-eight-world comparison with six fresh roles: baseline,
-disabled, current frozen, current shuffled, committed frozen and committed
-shuffled. Retain all four healthy and all four weakened starts, including the
-uncovered 0.006 m/s start. The complete safety gate and clean published
-prospective freeze remain prerequisites. No native successor world has run.
+The preparation above now integrates this provider into a distinct host and
+independent reader and declares all six roles across every healthy and weakened
+start, including the uncovered 0.006 m/s start. The complete safety gate and
+clean published prospective freeze remain prerequisites. No native successor
+world has run at this preparation checkpoint.
 The hardest-start prediction/coverage problem, empirical recoverability,
 useful Tier 3 outcome memory, reserved evaluation and three-engine promotion
 remain open. No qualification or release claim changes.

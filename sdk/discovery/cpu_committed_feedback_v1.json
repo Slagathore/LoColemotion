@@ -1,0 +1,342 @@
+{
+  "schema_version": "locolemotion_cpu_committed_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "source_fit": {
+    "path": "sdk/discovery/command_resolution_repertoire_closure_v1.json",
+    "sha256": "19fa595e36719c287f2985298d062e7ce89e25a12f41654c4c46655f7231c7bb"
+  },
+  "source_diagnostic": {
+    "path": "sdk/discovery/conditioned_selection_diagnostic_v1.json",
+    "sha256": "030bcb41c5c248645a57d969f3867304f97adcd1ed226627b361393a683c5030"
+  },
+  "model_sha256": "sha256:2b41a1b8c48b8157a077ba98398c1ca8332aa079bbfa394516f385d82c23fd11",
+  "provider_definition": {
+    "schema_version": "locolemotion_committed_feedback_provider_v1",
+    "ledger_scope": {
+      "subsystem": "adaptation",
+      "engine_scope": "core",
+      "authority_mode": "development_component",
+      "question_class": "development"
+    },
+    "source_fit": {
+      "path": "sdk/discovery/command_resolution_repertoire_closure_v1.json",
+      "sha256": "19fa595e36719c287f2985298d062e7ce89e25a12f41654c4c46655f7231c7bb"
+    },
+    "fitted_casebook_sha256": "sha256:bcf801782709a33d9e5b398770ad606029c33b1067b2bf7a3bac9a9ecba233cb",
+    "rule": {
+      "context_step": 1,
+      "context_history": "one actual baseline command and two observed joint positions",
+      "context_support": "closed per-condition coordinate minima/maxima of the four training features; no padding",
+      "condition_default": "complete four-start controller ranked by whole-episode quality, then action index",
+      "retrieval": "current command phase/contact and scaled state distance; immutable condition-filtered cases",
+      "selection": "Retain a supported logical expert for thirty commands; at expiry use the unchanged gain rule. Loss of its current case support terminates commitment before any new proposal.",
+      "unsupported": "withdraw to current deterministic baseline",
+      "candidate_indices": [
+        0,
+        3,
+        4
+      ],
+      "shuffled_action_indices": [
+        0,
+        2,
+        1
+      ],
+      "history_retained_after_context_step": false,
+      "online_outcome_updates": false,
+      "base_weights_mutated": false,
+      "commitment_commands": 30,
+      "commitment_clock": "start inclusive, end exclusive; commands one through thirty expire at command thirty-one",
+      "support_scope": "Current logical expert before shuffled mapping; shuffled associations intentionally corrupt which expert is applied.",
+      "commitment_does_not_override_posture_or_safe_no_actuation": true,
+      "commitment_is_outcome_memory": false
+    },
+    "modes": [
+      "frozen",
+      "disabled",
+      "shuffled"
+    ],
+    "physical_launch_authority": false,
+    "physical_acceptance_authority": false,
+    "adaptation_benefit_established": false,
+    "tier3_benefit_established": false,
+    "release_authority": false
+  },
+  "comparison_provider": {
+    "kind": "committed_feedback_comparison_v1",
+    "model_sha256": "sha256:2b41a1b8c48b8157a077ba98398c1ca8332aa079bbfa394516f385d82c23fd11",
+    "definition": {
+      "schema_version": "locolemotion_committed_feedback_provider_v1",
+      "ledger_scope": {
+        "subsystem": "adaptation",
+        "engine_scope": "core",
+        "authority_mode": "development_component",
+        "question_class": "development"
+      },
+      "source_fit": {
+        "path": "sdk/discovery/command_resolution_repertoire_closure_v1.json",
+        "sha256": "19fa595e36719c287f2985298d062e7ce89e25a12f41654c4c46655f7231c7bb"
+      },
+      "fitted_casebook_sha256": "sha256:bcf801782709a33d9e5b398770ad606029c33b1067b2bf7a3bac9a9ecba233cb",
+      "rule": {
+        "context_step": 1,
+        "context_history": "one actual baseline command and two observed joint positions",
+        "context_support": "closed per-condition coordinate minima/maxima of the four training features; no padding",
+        "condition_default": "complete four-start controller ranked by whole-episode quality, then action index",
+        "retrieval": "current command phase/contact and scaled state distance; immutable condition-filtered cases",
+        "selection": "Retain a supported logical expert for thirty commands; at expiry use the unchanged gain rule. Loss of its current case support terminates commitment before any new proposal.",
+        "unsupported": "withdraw to current deterministic baseline",
+        "candidate_indices": [
+          0,
+          3,
+          4
+        ],
+        "shuffled_action_indices": [
+          0,
+          2,
+          1
+        ],
+        "history_retained_after_context_step": false,
+        "online_outcome_updates": false,
+        "base_weights_mutated": false,
+        "commitment_commands": 30,
+        "commitment_clock": "start inclusive, end exclusive; commands one through thirty expire at command thirty-one",
+        "support_scope": "Current logical expert before shuffled mapping; shuffled associations intentionally corrupt which expert is applied.",
+        "commitment_does_not_override_posture_or_safe_no_actuation": true,
+        "commitment_is_outcome_memory": false
+      },
+      "modes": [
+        "frozen",
+        "disabled",
+        "shuffled"
+      ],
+      "physical_launch_authority": false,
+      "physical_acceptance_authority": false,
+      "adaptation_benefit_established": false,
+      "tier3_benefit_established": false,
+      "release_authority": false
+    },
+    "current_model_sha256": "sha256:8cc55e0017e01a1f7d188a74bcd7729acdcc0ef9e65fa2916d6a3bc96f0c1a96",
+    "current_definition": {
+      "schema_version": "locolemotion_conditioned_feedback_provider_v2",
+      "ledger_scope": {
+        "subsystem": "adaptation",
+        "engine_scope": "core",
+        "authority_mode": "development_component",
+        "question_class": "development"
+      },
+      "source_fit": {
+        "path": "sdk/discovery/command_resolution_repertoire_closure_v1.json",
+        "sha256": "19fa595e36719c287f2985298d062e7ce89e25a12f41654c4c46655f7231c7bb"
+      },
+      "fitted_casebook_sha256": "sha256:bcf801782709a33d9e5b398770ad606029c33b1067b2bf7a3bac9a9ecba233cb",
+      "rule": {
+        "context_step": 1,
+        "context_history": "one actual baseline command and two observed joint positions",
+        "context_support": "closed per-condition coordinate minima/maxima of the four training features; no padding",
+        "condition_default": "complete four-start controller ranked by whole-episode quality, then action index",
+        "retrieval": "current command phase/contact and scaled state distance; immutable condition-filtered cases",
+        "selection": "highest predicted quality, then action index; retain a supported previous action unless gain reaches 0.001 m/s",
+        "unsupported": "withdraw to current deterministic baseline",
+        "candidate_indices": [
+          0,
+          3,
+          4
+        ],
+        "shuffled_action_indices": [
+          0,
+          2,
+          1
+        ],
+        "history_retained_after_context_step": false,
+        "online_outcome_updates": false,
+        "base_weights_mutated": false
+      },
+      "modes": [
+        "frozen",
+        "disabled",
+        "shuffled"
+      ],
+      "physical_launch_authority": false,
+      "physical_acceptance_authority": false,
+      "adaptation_benefit_established": false,
+      "tier3_benefit_established": false,
+      "release_authority": false
+    }
+  },
+  "seed": 104232601,
+  "outer_steps": 1440,
+  "horizon_s": 12.0,
+  "internal_steps_per_outer": 5,
+  "conditions": [
+    "left_075",
+    "nominal"
+  ],
+  "roles": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "implementation": "committed",
+      "delegate_role_index": 0,
+      "fixed_candidate_index": 0
+    },
+    {
+      "id": "disabled",
+      "mode": "disabled",
+      "implementation": "committed",
+      "delegate_role_index": 1,
+      "fixed_candidate_index": null
+    },
+    {
+      "id": "current_frozen",
+      "mode": "frozen",
+      "implementation": "current",
+      "delegate_role_index": 2,
+      "fixed_candidate_index": null
+    },
+    {
+      "id": "current_shuffled",
+      "mode": "shuffled",
+      "implementation": "current",
+      "delegate_role_index": 3,
+      "fixed_candidate_index": null
+    },
+    {
+      "id": "committed_frozen",
+      "mode": "frozen",
+      "implementation": "committed",
+      "delegate_role_index": 2,
+      "fixed_candidate_index": null
+    },
+    {
+      "id": "committed_shuffled",
+      "mode": "shuffled",
+      "implementation": "committed",
+      "delegate_role_index": 3,
+      "fixed_candidate_index": null
+    }
+  ],
+  "planned_cpu_worlds": 48,
+  "partitions": {
+    "training": [
+      {
+        "id": "train_001",
+        "lateral_velocity_m_s": 0.001
+      },
+      {
+        "id": "train_003",
+        "lateral_velocity_m_s": 0.003
+      },
+      {
+        "id": "train_004",
+        "lateral_velocity_m_s": 0.004
+      },
+      {
+        "id": "train_006",
+        "lateral_velocity_m_s": 0.006
+      }
+    ],
+    "calibration": [
+      {
+        "id": "cal_0015",
+        "lateral_velocity_m_s": 0.0015
+      },
+      {
+        "id": "cal_0045",
+        "lateral_velocity_m_s": 0.0045
+      }
+    ],
+    "evaluation": [
+      {
+        "id": "eval_0025",
+        "lateral_velocity_m_s": 0.0025
+      },
+      {
+        "id": "eval_0055",
+        "lateral_velocity_m_s": 0.0055
+      }
+    ]
+  },
+  "excluded_confirmation_starts": [
+    0.002,
+    0.005
+  ],
+  "ranking": "Require all eight condition/start episodes eligible and zero observed nominal quality loss against fresh baseline at every start; rank mean whole-episode quality, then role index. No statistical non-inferiority claim.",
+  "nominal_quality_loss_margin_m_s": 0.0,
+  "contrasts": [
+    {
+      "id": "committed_minus_current",
+      "left": "committed_frozen",
+      "right": "current_frozen"
+    },
+    {
+      "id": "committed_shuffled_minus_current_shuffled",
+      "left": "committed_shuffled",
+      "right": "current_shuffled"
+    },
+    {
+      "id": "committed_minus_shuffled",
+      "left": "committed_frozen",
+      "right": "committed_shuffled"
+    },
+    {
+      "id": "current_minus_shuffled",
+      "left": "current_frozen",
+      "right": "current_shuffled"
+    },
+    {
+      "id": "committed_minus_baseline",
+      "left": "committed_frozen",
+      "right": "baseline"
+    },
+    {
+      "id": "committed_minus_disabled",
+      "left": "committed_frozen",
+      "right": "disabled"
+    },
+    {
+      "id": "disabled_minus_baseline",
+      "left": "disabled",
+      "right": "baseline"
+    }
+  ],
+  "comparison": "Six fresh roles at every exposed training start in both motor conditions. Current and committed policies retain actual action sequences; no sequence is labeled as one fixed expert.",
+  "influence": "Report supported opportunities, actual corrections, first influence, refusals, logical/proposed actions and commitment events separately. Do not assume matched influence.",
+  "first_context_observation_commands": 1,
+  "commitment_commands": 30,
+  "online_outcome_updates": false,
+  "base_weights_mutated": false,
+  "confirmation_fitting_permitted": false,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "purpose": "Test whether aligning supported expert commitment with the thirty-command label horizon improves weakened-body episodes while preserving every healthy baseline.",
+  "coverage": [
+    "48 fresh sequential CPU worlds with private controller/provider memories",
+    "baseline, disabled, current frozen/shuffled and committed frozen/shuffled at all eight condition/start groups",
+    "one actual baseline command followed by immutable context and current-state case support",
+    "exact thirty-command commitment, immediate support termination and unchanged expert/resolver limits",
+    "separate opportunity, influence, commitment and full-episode outcome measurements",
+    "unchanged native timing, eligibility, force observations and healthy quality screen",
+    "full independent baseline-core replay and every native trace join"
+  ],
+  "not_covered": [
+    "Tier 3 outcome-memory benefit",
+    "empirical recoverability guarantee",
+    "reserved calibration or evaluation",
+    "new morphology, terrain or engine",
+    "population inference",
+    "statistical non-inferiority",
+    "qualification or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": true
+}

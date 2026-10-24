@@ -2423,3 +2423,12 @@ invalid command-lease fixture and its successful successor remain distinct.
 Host integration and a fresh matched native comparison are still required;
 this component result does not demonstrate an options-learning algorithm,
 coverage improvement, physical benefit or Tier 3 learning.
+
+The [prospective commitment comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-committed-selection-comparison---2026-10-24)
+now has nine passing host controls and fourteen passing route controls, alongside
+the sixteen provider controls. It preserves the actual missed memory corruption
+and the successful independent-reader successor. Forty-eight fresh CPU worlds
+will compare current and committed frozen/shuffled selectors with baseline and
+disabled controls across the full exposed population. All 388 safety controls
+remain required before physics. This tests the local temporal-abstraction
+hypothesis; no native result or paper-method replication is claimed here.
