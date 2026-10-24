@@ -1,5 +1,15 @@
 # LoColemotion Locomotion SDK
 
+The [conditioned selection successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-conditioned-selection-comparison---2026-10-23)
+now runs frozen context and expert retrieval through the production host.
+Forty-eight fitting, closure, provider, host and synthetic route controls pass
+with zero new worlds. Both core binaries agree on 1,440 retained-input host
+decisions; disabled and healthy selection preserve baseline command bits.
+The distinct 21,165-case model retains the original trial denominator and
+failures. Forty fresh CPU worlds are prospective, behind the complete
+349-control gate. Physical selection benefit, recoverability monitoring,
+reserved evaluation and useful Tier 3 behavior remain unproved.
+
 The [first-response repertoire fit](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
 with both conditions of each start held out together. Constant nominal scores

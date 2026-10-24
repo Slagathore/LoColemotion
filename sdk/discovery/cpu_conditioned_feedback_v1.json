@@ -1,0 +1,203 @@
+{
+  "schema_version": "locolemotion_cpu_conditioned_feedback_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "source_fit": {
+    "path": "sdk/discovery/command_resolution_repertoire_closure_v1.json",
+    "sha256": "19fa595e36719c287f2985298d062e7ce89e25a12f41654c4c46655f7231c7bb"
+  },
+  "model_sha256": "sha256:8cc55e0017e01a1f7d188a74bcd7729acdcc0ef9e65fa2916d6a3bc96f0c1a96",
+  "provider_definition": {
+    "schema_version": "locolemotion_conditioned_feedback_provider_v2",
+    "ledger_scope": {
+      "subsystem": "adaptation",
+      "engine_scope": "core",
+      "authority_mode": "development_component",
+      "question_class": "development"
+    },
+    "source_fit": {
+      "path": "sdk/discovery/command_resolution_repertoire_closure_v1.json",
+      "sha256": "19fa595e36719c287f2985298d062e7ce89e25a12f41654c4c46655f7231c7bb"
+    },
+    "fitted_casebook_sha256": "sha256:bcf801782709a33d9e5b398770ad606029c33b1067b2bf7a3bac9a9ecba233cb",
+    "rule": {
+      "context_step": 1,
+      "context_history": "one actual baseline command and two observed joint positions",
+      "context_support": "closed per-condition coordinate minima/maxima of the four training features; no padding",
+      "condition_default": "complete four-start controller ranked by whole-episode quality, then action index",
+      "retrieval": "current command phase/contact and scaled state distance; immutable condition-filtered cases",
+      "selection": "highest predicted quality, then action index; retain a supported previous action unless gain reaches 0.001 m/s",
+      "unsupported": "withdraw to current deterministic baseline",
+      "candidate_indices": [
+        0,
+        3,
+        4
+      ],
+      "shuffled_action_indices": [
+        0,
+        2,
+        1
+      ],
+      "history_retained_after_context_step": false,
+      "online_outcome_updates": false,
+      "base_weights_mutated": false
+    },
+    "modes": [
+      "frozen",
+      "disabled",
+      "shuffled"
+    ],
+    "physical_launch_authority": false,
+    "physical_acceptance_authority": false,
+    "adaptation_benefit_established": false,
+    "tier3_benefit_established": false,
+    "release_authority": false
+  },
+  "seed": 104232601,
+  "outer_steps": 1440,
+  "horizon_s": 12.0,
+  "internal_steps_per_outer": 5,
+  "conditions": [
+    "left_075",
+    "nominal"
+  ],
+  "roles": [
+    {
+      "id": "baseline",
+      "mode": "baseline",
+      "fixed_candidate_index": 0
+    },
+    {
+      "id": "disabled",
+      "mode": "disabled",
+      "fixed_candidate_index": null
+    },
+    {
+      "id": "frozen",
+      "mode": "frozen",
+      "fixed_candidate_index": null
+    },
+    {
+      "id": "shuffled",
+      "mode": "shuffled",
+      "fixed_candidate_index": null
+    },
+    {
+      "id": "phase_reference",
+      "mode": "phase_reference",
+      "fixed_candidate_index": 4
+    }
+  ],
+  "planned_cpu_worlds": 40,
+  "partitions": {
+    "training": [
+      {
+        "id": "train_001",
+        "lateral_velocity_m_s": 0.001
+      },
+      {
+        "id": "train_003",
+        "lateral_velocity_m_s": 0.003
+      },
+      {
+        "id": "train_004",
+        "lateral_velocity_m_s": 0.004
+      },
+      {
+        "id": "train_006",
+        "lateral_velocity_m_s": 0.006
+      }
+    ],
+    "calibration": [
+      {
+        "id": "cal_0015",
+        "lateral_velocity_m_s": 0.0015
+      },
+      {
+        "id": "cal_0045",
+        "lateral_velocity_m_s": 0.0045
+      }
+    ],
+    "evaluation": [
+      {
+        "id": "eval_0025",
+        "lateral_velocity_m_s": 0.0025
+      },
+      {
+        "id": "eval_0055",
+        "lateral_velocity_m_s": 0.0055
+      }
+    ]
+  },
+  "excluded_confirmation_starts": [
+    0.002,
+    0.005
+  ],
+  "ranking": "Require all eight condition/start episodes eligible and zero observed nominal quality loss against fresh baseline at every start; rank mean whole-episode quality, then role index. No statistical non-inferiority claim.",
+  "nominal_quality_loss_margin_m_s": 0.0,
+  "contrasts": [
+    {
+      "id": "frozen_minus_baseline",
+      "left": "frozen",
+      "right": "baseline"
+    },
+    {
+      "id": "frozen_minus_disabled",
+      "left": "frozen",
+      "right": "disabled"
+    },
+    {
+      "id": "frozen_minus_shuffled",
+      "left": "frozen",
+      "right": "shuffled"
+    },
+    {
+      "id": "frozen_minus_reference",
+      "left": "frozen",
+      "right": "phase_reference"
+    },
+    {
+      "id": "disabled_minus_baseline",
+      "left": "disabled",
+      "right": "baseline"
+    }
+  ],
+  "comparison": "Five fresh roles at every exposed training start in both motor conditions. Dynamic policies retain their actual action sequence and are never labeled as one fixed expert.",
+  "influence": "Report supported correction opportunities, actual nonzero corrections, first influence, refusals and logical/proposed action counts separately for every role; do not assume matched influence.",
+  "first_context_observation_commands": 1,
+  "online_outcome_updates": false,
+  "base_weights_mutated": false,
+  "confirmation_fitting_permitted": false,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "maximum_worker_wall_seconds": 2400,
+  "maximum_reader_wall_seconds": 2400,
+  "purpose": "Test whether causal frozen expert selection improves full-horizon weakened-body control while preserving the healthy baseline.",
+  "coverage": [
+    "40 fresh sequential CPU worlds with private controller/provider memories",
+    "five roles at four exposed training starts in weakened and nominal motor conditions",
+    "one actual baseline command followed by frozen context and current-state retrieval",
+    "complete fixed-case provenance, actual action sequences, exact fallback and bounded resolver",
+    "separate supported opportunities and actual influence for disabled/frozen/shuffled roles",
+    "unchanged native timing, eligibility, force observations and healthy quality screen",
+    "full independent baseline-core replay and every native trace join"
+  ],
+  "not_covered": [
+    "Tier 3 outcome-memory benefit",
+    "empirical recoverability guarantee",
+    "reserved calibration or evaluation",
+    "new morphology, terrain or engine",
+    "population inference",
+    "statistical non-inferiority",
+    "qualification or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": true
+}

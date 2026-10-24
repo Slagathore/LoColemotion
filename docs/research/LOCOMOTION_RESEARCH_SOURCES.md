@@ -2350,3 +2350,22 @@ experts and selection rules are local hypotheses; they are not reproductions
 of either method or imported paper constants. No third-party code, weights or
 dependencies were copied. Internal context accuracy and repertoire coverage
 remain separate from physical control benefit and reserved evaluation.
+
+## 2026-10-23 conditioned runtime selection preparation
+
+The [conditioned successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-conditioned-selection-comparison---2026-10-23)
+connects the local context estimator and feedback repertoire to the production
+host. The first sparse-case refusal remains retained. A distinct dense fit
+uses overlapping thirty-command windows from the same fifteen eligible
+episodes, retaining nine failed fitted episodes and the full source ledger.
+It adds examples, not independent trials, and changes neither the context
+estimator nor support limits. Forty-eight focused controls pass without new
+worlds, including actual-history, frozen-model and independent action checks.
+
+The prospective forty-world comparison retains baseline, disabled, frozen,
+shuffled and unchanged reference roles in healthy and weakened conditions.
+It tests the local behavior-selection hypothesis motivated by Cully et al.
+and RMA; it does not reproduce either method. Supported correction opportunity
+and actual influence remain separate measurements. No third-party source,
+weights, numerical gains or dependency was imported. Useful physical selection
+and outcome-memory adaptation remain unproved until their own comparisons.

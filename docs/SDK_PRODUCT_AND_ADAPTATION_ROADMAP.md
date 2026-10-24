@@ -21,6 +21,19 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-23
 
+Latest implementation: the [conditioned selection successor](#prepared-conditioned-selection-comparison---2026-10-23)
+connects frozen first-response inference to bounded current-state retrieval.
+The distinct dense fit has **21,165 overlapping cases**, with the original
+24-episode denominator and nine failures intact. Forty-eight focused controls
+pass with zero new worlds, including 1,440 retained-input host decisions on
+both core binaries. Disabled and healthy selection preserve baseline commands.
+Next execute the prospective five-role, eight-group comparison: **40 fresh CPU
+worlds**, twelve seconds each, after the complete **349-control gate** from a
+clean published freeze. Keep the failed weakened 0.006 m/s start, report
+opportunities and actual influence separately, and retain every result.
+Physical usefulness, recovery monitoring, reserved evaluation and useful
+Tier 3 behavior remain unproved.
+
 Latest fitting closure: the [first-response repertoire fit](#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
 with both conditions of each start held out together. Constant nominal scores
@@ -1454,6 +1467,88 @@ a qualified provider, statistical superiority, cross-engine equivalence or
 Tier 2/Tier 3 benefit. The earlier CPU and GPU diagnostic populations retain
 their original no-fitting scope. SDK1 stays at 20/20 and full-program readiness
 at 19/25; qualification and release authority remain false.
+
+### Prepared conditioned selection comparison - 2026-10-23
+
+The first runtime check exposed a sampling limit: the original 720-case model
+has no exact phase/contact match at the first weakened-body decision. Its
+refusal was correct. Attempt `sdk2-conditioned-provider-controls-5bcd04ae2724479f8e244242e97de37b`
+retains eight passing controls and the failed expectation of an applied
+correction. The distinct diagnosis
+`sdk2-conditioned-provider-diagnostic-03b2ea566ebc4338a378ee0664cb2481`
+retains all 24 exposed queries. The original fit, failed test and support
+limits remain unchanged.
+
+The [command-resolution declaration](../sdk/discovery/command_resolution_repertoire_v1.json)
+and [closure](../sdk/discovery/command_resolution_repertoire_closure_v1.json)
+use every retained command with a complete thirty-command future window.
+This produces 1,411 overlapping cases per eligible episode: **21,165 cases
+from fifteen eligible episodes**, with all nine failed immediate episodes
+retained without positive cases. The full source ledger still has 32 trials;
+eight delayed composite episodes remain excluded from single-expert fitting.
+These overlapping examples are not independent trials. The thirty-command
+outcome horizon, phase bins, exact contacts, 1.5 support-distance bound and
+original whole-episode scores remain unchanged. The context estimator is not
+refitted. The [reader](../sdk/discovery/audit_command_resolution_repertoire.py)
+independently rejoins every cue, action and outcome and reproduces the fit.
+
+Seven fitting controls pass in 98.227 s under
+`sdk2-command-resolution-controls-5164dfcc606841cfb9e2039f3c5af630`.
+Three closure controls and eighteen sparse/dense provider controls pass under
+`sdk2-conditioned-dense-controls-7a36105c5bf1476eb869b535be112f7f`.
+Closure SHA-256 is
+`19fa595e36719c287f2985298d062e7ce89e25a12f41654c4c46655f7231c7bb`.
+The distinct dense casebook is
+`sha256:bcf801782709a33d9e5b398770ad606029c33b1067b2bf7a3bac9a9ecba233cb`;
+the composite runtime model is
+`sha256:8cc55e0017e01a1f7d188a74bcd7729acdcc0ef9e65fa2916d6a3bc96f0c1a96`.
+
+The [frozen provider](../sdk/adaptation_provider/retrieval/conditioned_feedback_v2.py)
+infers context after one actual baseline command. Its feature support is the
+closed coordinate range of the four training examples per condition, with no
+padding or calibrated-confidence claim. Healthy context chooses the complete
+baseline default. Weakened context retrieves the nearest supported cases at
+the current phase, contacts and body state and selects a vertical or phase
+expert; a supported previous action remains unless predicted gain reaches
+0.001 m/s. The public resolver retains the 3.5 rad/s correction and 0.08 rad/s
+per-command slew bounds. Unsupported context or observations withdraw to the
+current baseline. Private context and previous-action state do not update
+outcome scores or base weights; this is a Tier 2 development candidate.
+
+The [host](../sdk/discovery/conditioned_feedback_dense_control.py) consumes only
+the first baseline history entry, while retaining every subsequent raw state
+and actual command. Eight host controls pass in 34.984 s under
+`sdk2-conditioned-host-controls-31b21a1ff6234dfca7ea5d0be67bcb28`.
+Both core binaries agree on all 1,440 retained-input decisions. Disabled and
+healthy selection preserve baseline command bits. Weakened selection first
+applies at command one. Independent checks reconstruct nearest cases, expert
+proposals, shuffle association and resolver outputs. This replay opens no
+world and supplies no new physical outcome.
+
+The [prospective declaration](../sdk/discovery/cpu_conditioned_feedback_v1.json),
+[worker](../sdk/discovery/cpu_conditioned_feedback.py),
+[reader](../sdk/discovery/audit_cpu_conditioned_feedback.py) and
+[contained launcher](../sdk/discovery/run_cpu_conditioned_feedback.py) declare
+fresh baseline, disabled, frozen, shuffled and unchanged immediate phase
+reference roles. Each runs at all four exposed training starts in both motor
+conditions: **40 worlds, 57,600 decisions and 288,000 internal samples**.
+Seed 104232601, the full twelve-second horizon, native force capture,
+eligibility thresholds and zero-observed-loss healthy-body screen are fixed.
+Dynamic-policy episodes bind their actual action sequence and cannot be
+misrepresented as fixed-expert episodes. The five declared contrasts retain
+censored failed quality, supported correction opportunities and actual
+influence separately. No matched-influence claim is assumed.
+
+Twelve synthetic route controls pass in 46.898 s under
+`sdk2-conditioned-route-controls-79a1c230740a4dab8f5b29ffe9393d53`.
+They use retained states as explicitly synthetic transport fixtures and reject
+crossed history, forces, targets, dynamic identities and expanded authority.
+The 48 focused controls above open zero worlds. The full launcher still must
+pass all 349 controls from a clean published freeze before physical execution.
+Calibration and evaluation remain unopened. The empirical recoverability
+monitor and useful Tier 3 outcome-memory comparison remain separate work.
+SDK1 stays 20/20, the full program stays 19/25, and qualification and release
+claims remain false.
 
 ### Completed first-response repertoire fit - 2026-10-23
 

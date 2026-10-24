@@ -2,7 +2,20 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-10-23
 
-Latest fitting closure (2026-10-23): the [first-response repertoire fit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
+Latest implementation (2026-10-23): the [conditioned selection successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-conditioned-selection-comparison---2026-10-23)
+connects the frozen first-response estimator to current-state expert retrieval.
+A distinct dense fit contains **21,165 overlapping cases from 15 eligible
+episodes**, retaining all nine failed fitted episodes and the full 32-trial
+source ledger. Forty-eight fitting, closure, provider, host and route controls
+pass with zero new worlds. Both core binaries agree on 1,440 retained-input
+host decisions; disabled and healthy selection preserve baseline commands.
+The prospective comparison declares **40 fresh CPU worlds**, five roles at
+four starts in both motor conditions, over twelve seconds each. Its launcher
+requires all **349 safety controls** before construction. Full-horizon physical
+benefit, the uncovered weakened start, recovery monitoring and reserved
+evaluation remain open; Tier 2/Tier 3 qualification and release remain false.
+
+Earlier fitting closure (2026-10-23): the [first-response repertoire fit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
 with both conditions of each start held out together. Constant nominal scores
 4/8 and synthetic reversed associations score 0/8. The complete 32-trial source

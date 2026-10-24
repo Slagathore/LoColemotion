@@ -1,0 +1,40 @@
+{
+  "schema_version": "locolemotion_command_resolution_repertoire_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "development_training",
+    "question_class": "development"
+  },
+  "parent_closure": {
+    "path": "sdk/discovery/first_response_repertoire_closure_v1.json",
+    "sha256": "dcd829f123b0ec15aa383049ebed5ba2b8d1bc0fc3854109b880d2435f6aefec"
+  },
+  "reason": "The sparse casebook has no exact phase/contact support after the first baseline command in all four weakened training starts.",
+  "failed_provider_controls": "sdk2-conditioned-provider-controls-5bcd04ae2724479f8e244242e97de37b",
+  "retained_diagnosis": "sdk2-conditioned-provider-diagnostic-03b2ea566ebc4338a378ee0664cb2481",
+  "training_window_stride_steps": 1,
+  "outcome_horizon_commands": 30,
+  "phase_bin_commands": 30,
+  "episode_commands": 1440,
+  "windows_per_eligible_episode": 1411,
+  "choice_basis": "Use every command with a complete unchanged 30-command outcome horizon; no stride/window search.",
+  "exact_contact_matching_preserved": true,
+  "state_support_distance_preserved": 1.5,
+  "source_trials": 32,
+  "fitted_immediate_episodes": 24,
+  "eligible_episodes": 15,
+  "negative_episodes": 9,
+  "excluded_composite_episodes": 8,
+  "expected_case_count": 21165,
+  "whole_episode_quality": "retain original 48 nonoverlapping-window mean for complete-controller defaults",
+  "overlapping_examples_are_independent_trials": false,
+  "context_estimator_refitted": false,
+  "previous_confirmation_fitting": false,
+  "reserved_calibration_exposed": false,
+  "reserved_evaluation_exposed": false,
+  "worlds_opened": 0,
+  "runtime_selection_implemented": false,
+  "adaptation_benefit": false,
+  "qualification_or_release_authority": false
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "locolemotion_conditioned_feedback_provider_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "source_fit": {
+    "path": "sdk/discovery/first_response_repertoire_closure_v1.json",
+    "sha256": "dcd829f123b0ec15aa383049ebed5ba2b8d1bc0fc3854109b880d2435f6aefec"
+  },
+  "fitted_casebook_sha256": "sha256:4f80591a7964c50a13f11fb4e92115f0d223c4f169071900efce18d69fe55c7f",
+  "rule": {
+    "context_step": 1,
+    "context_history": "one actual baseline command and two observed joint positions",
+    "context_support": "closed per-condition coordinate minima/maxima of the four training features; no padding",
+    "condition_default": "complete four-start controller ranked by whole-episode quality, then action index",
+    "retrieval": "current command phase/contact and scaled state distance; immutable condition-filtered cases",
+    "selection": "highest predicted quality, then action index; retain a supported previous action unless gain reaches 0.001 m/s",
+    "unsupported": "withdraw to current deterministic baseline",
+    "candidate_indices": [
+      0,
+      3,
+      4
+    ],
+    "shuffled_action_indices": [
+      0,
+      2,
+      1
+    ],
+    "history_retained_after_context_step": false,
+    "online_outcome_updates": false,
+    "base_weights_mutated": false
+  },
+  "modes": [
+    "frozen",
+    "disabled",
+    "shuffled"
+  ],
+  "physical_launch_authority": false,
+  "physical_acceptance_authority": false,
+  "adaptation_benefit_established": false,
+  "tier3_benefit_established": false,
+  "release_authority": false
+}
