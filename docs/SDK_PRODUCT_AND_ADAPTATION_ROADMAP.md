@@ -21,6 +21,12 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
+Latest preparation: the [native residual training implementation](#prepared-native-residual-training---2026-10-24)
+passes all **104 zero-world controls**. The production profile reproduced 720
+decisions exactly. Next run the three-world paired-update execution fixture
+from a clean published freeze, then the fixed 88-world, full-horizon training
+and comparison pilot. No training worlds have opened at this preparation boundary.
+
 Latest native route: the [residual smoke closure](#completed-residual-native-execution-route---2026-10-24)
 completes three fresh CPU worlds from 2f8fb95e after all 86 controls, with full
 independent replay of 360 commands and 1,800 internal steps. Zero residual
@@ -28,7 +34,7 @@ preserves the absent-provider trajectory exactly; the untrained probe changes
 both held input and native position at internal step 6. Six closure controls
 reopen all 1,202 artifacts without new worlds. This verifies execution, not
 training or locomotion benefit. Measured portable-control cost dominates this
-short run; profile it before scaling the separately declared training successor.
+short run; the completed profile and declared training successor are recorded above.
 
 Latest controller-comparison closure: the [committed selection comparison](#completed-committed-selection-comparison---2026-10-24)
 completed **48 fresh CPU worlds** from published `d228a4d4` after all **388
@@ -46,8 +52,8 @@ both core DLLs, with 88 canonical values and continuous resolved-action history.
 No native dynamics or training transitions were generated. The [native launch
 manifest correction](#corrected-residual-native-launch-manifest---2026-10-24)
 retains a zero-world prelaunch failure and passes fourteen focused controls.
-The native route is now closed above. Next profile the production control
-path and freeze the training reward, update audit and budget. Learned-association
+The native route is now closed above. Its profile and the complete training
+reward, update audit and budget are implemented in the preparation above. Learned-association
 benefit, empirical recovery monitoring, reserved evaluation, useful Tier 3
 behavior and release remain unproved.
 
@@ -1539,6 +1545,58 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Prepared native residual training - 2026-10-24
+
+The [training program](../sdk/discovery/residual_training_v1.json),
+[contained coordinator](../sdk/discovery/run_residual_training.py), and
+[independent reader](../sdk/discovery/audit_residual_training.py) now connect
+the immutable residual provider to native ARS training. All **104 applicable
+zero-world controls** pass, including 26 native/training controls, six retained
+native-closure controls, provider conformance and process containment.
+The retained attempt is `<evidence-root>/sdk2-residual-training-dc84eaa727c54325809955c15d979747`;
+its receipt SHA-256 is `5038633999a08666b9dc69fb97a0c7eb975c1fcf6fcabb960874d14bc4b4904c`. Sources and all runtime bindings are unchanged.
+This is preparation, with **zero new worlds and no trained locomotion policy**.
+
+The execution fixture declares two antithetic search worlds and one world
+using their independently verified update. It uses one weakened-body start,
+one development seed, 120 commands and 600 internal samples per world. Its
+checkpoint is honestly labeled as trained on that small development fixture;
+it has no official quality, selection or promotion authority. The pilot cannot
+use that model or those observations for initialization.
+
+The pilot starts from zero weights and identity normalization. Two iterations
+use two Gaussian directions, both signs and all eight exposed healthy/weakened
+start groups: **64 training worlds**. The fixed final checkpoint then receives
+fresh baseline, disabled and trained roles at each group: **24 comparison
+worlds**, for **88 total**, **126,720 commands** and **633,600 internal samples**.
+Each world retains the existing 12-second horizon. Step size is 0.01, noise
+scale 0.02; every perturbation, rollout, reward, available feature row, unsupported
+reason and optimizer update remains bound and replayable. Comparison data
+never fits weights or normalization. Reserved and exposed-confirmation starts
+remain excluded. Serial CPU execution retains full telemetry and unchanged
+actuator/slew limits; no GPU throughput or scaling claim follows.
+
+The training objective averages bounded forward/lateral tracking error over
+the entire fixed internal horizon. The first physical violation or safe-no-
+actuation command receives -1, as does every remaining sample. There is no
+positive survival bonus, shortened denominator or post-fall motion reward.
+Ordinary valid negatives remain in the complete update; invalid capture rejects
+the whole stage. Official quality remains the existing 30-command-window
+metric and is null for failed episodes. All eight trained comparison episodes
+must be eligible, every healthy start must preserve fresh baseline quality,
+and disabled raw traces must exactly equal baseline. This finite development
+screen supplies no reserved evaluation, statistical guarantee, Tier 2/Tier 3
+qualification or release authority.
+
+The [production profiler](../sdk/discovery/profile_residual_control.py) retained
+`<evidence-root>/sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799`,
+receipt `cc910d527c67273bbf46f341d4c05db4823f24ab61a48b7d781f15de5cbb65dd`.
+All **720 decisions** match their native receipts bit for bit, with no physics.
+History deep-copies and JSON core calls dominate these short instrumented
+traces. Cumulative timings overlap and must not be added. This pilot keeps
+the verified controller intact; a semantic performance change would need its
+own successor and native verification.
 
 ### Completed residual native execution route - 2026-10-24
 

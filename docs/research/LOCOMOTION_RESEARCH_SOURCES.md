@@ -2549,3 +2549,25 @@ motivates production-path profiling before a larger training budget; it is
 not a GPU scaling result. Group-balanced failure rewards, prospective
 conditions/seeds/budget and complete reward/update replay still precede
 learning. The original research motivations and all promotion gates remain.
+
+### Native residual training contract follow-through - 2026-10-24
+
+The [native training preparation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-native-residual-training---2026-10-24)
+uses the antithetic directions, reward-standard-deviation scaling and running
+observation moments described in [ARS Algorithm 2](https://arxiv.org/pdf/1803.07055).
+Its 0.01 step size and 0.02 perturbation scale lie within that paper's reported
+search grids; they are local pilot choices, not a transferred locomotion result.
+The paper also discusses deterministic policies exploiting survival bonuses by
+standing still. Our separately declared tracking reward therefore has no
+positive survival bonus and pads every sample from first failure to the fixed
+horizon with -1. The existing official quality and failure eligibility remain
+separate. This is a local bounded residual variant, not benchmark replication.
+
+[Residual Reinforcement Learning](https://arxiv.org/pdf/1812.03201v2) motivates
+optimizing the combined fixed-controller and residual dynamics. Here every
+training observation comes from the actual combined controller's native
+trajectory; retained states with changed counterfactual commands are never
+promoted to training transitions. The local optimizer is ARS, not that paper's
+TD3 procedure. All 104 zero-world controls pass, but the three-world execution
+fixture and 88-world pilot have not run at this preparation boundary. No new
+locomotion benefit, calibrated confidence or Tier 3 memory result is claimed.

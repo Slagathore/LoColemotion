@@ -9,6 +9,14 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest training preparation (2026-10-24): the [native residual training program](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-native-residual-training---2026-10-24)
+passes all 104 zero-world controls after a 720-decision exact production profile.
+The next execution is a three-world paired-update fixture, followed only after
+its verification by the fixed 88-world pilot across eight exposed groups.
+Complete 12-second training trajectories, failure-padded rewards and each
+optimizer update receive independent replay. No training worlds have opened
+at this preparation boundary; Tier 2/Tier 3 and release remain unqualified.
+
 Latest native route (2026-10-24): the [residual smoke closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-native-execution-route---2026-10-24)
 completes three fresh CPU worlds from published 2f8fb95e after all 86 controls.
 Independent replay covers all 360 commands and 1,800 internal samples. Zero
@@ -16,8 +24,8 @@ residual preserves the absent-provider trajectory exactly; the untrained
 probe changes solver input and native position at internal step 6. Six closure
 controls reopen 1,202 artifacts with zero new worlds. This is native route
 evidence, not training, locomotion benefit or Tier 2/Tier 3 completion.
-Portable control dominates the measured short-run cost; profile it before
-scaling the prospectively declared reward/update/training successor.
+Portable control dominates the measured short-run cost; its completed profile
+and the prospectively declared training successor are recorded above.
 
 Preparation of the completed native route (2026-10-24): the [residual smoke route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-residual-native-execution-route---2026-10-24)
 now passes fourteen focused zero-world controls after a [retained zero-world
@@ -50,8 +58,8 @@ now passes 22 combined controls and replays 2,560 decisions through both core
 DLLs with 88 canonical inputs, ongoing resolved-action history and unchanged
 core safety ownership. Retained states were reused; no new native transitions
 or training worlds ran in that component check. The native route is now closed
-above; training reward and complete update replay remain open. No residual has been trained
-on locomotion. Reserved evaluation, calibrated support, empirical recovery,
+above; training reward and complete update replay are implemented and tested
+in the preparation above. No residual has yet been trained on locomotion. Reserved evaluation, calibrated support, empirical recovery,
 useful Tier 3 behavior and release remain open.
 
 Earlier native closure (2026-10-23): the [conditioned selection comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)

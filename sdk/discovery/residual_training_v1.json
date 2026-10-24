@@ -1,0 +1,444 @@
+{
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "numpy": "2.4.6"
+  },
+  "provider_definition": {
+    "schema_version": "locolemotion_bounded_residual_provider_definition_v1",
+    "ledger_scope": {
+      "subsystem": "adaptation",
+      "engine_scope": "core",
+      "authority_mode": "development_component",
+      "question_class": "development"
+    },
+    "provider_id": "s169_bounded_residual_v1",
+    "provider_version": "bounded_residual_runtime_v1",
+    "observation": {
+      "schema_version": "locolemotion_residual_observation_v1",
+      "feature_names": [
+        "morphology_torso_length_scale",
+        "morphology_torso_width_scale",
+        "morphology_upper_length_fraction",
+        "morphology_hip_span_scale",
+        "morphology_foot_radius_scale",
+        "morphology_front_limb_mass_scale",
+        "height_m",
+        "up_body_x",
+        "up_body_y",
+        "up_body_z",
+        "linear_velocity_body_m_s_x",
+        "linear_velocity_body_m_s_y",
+        "linear_velocity_body_m_s_z",
+        "angular_velocity_body_rad_s_x",
+        "angular_velocity_body_rad_s_y",
+        "angular_velocity_body_rad_s_z",
+        "desired_velocity_body_m_s_x",
+        "desired_velocity_body_m_s_y",
+        "desired_velocity_body_m_s_z",
+        "front_left_hip_position_rad",
+        "front_left_knee_position_rad",
+        "front_right_hip_position_rad",
+        "front_right_knee_position_rad",
+        "rear_left_hip_position_rad",
+        "rear_left_knee_position_rad",
+        "rear_right_hip_position_rad",
+        "rear_right_knee_position_rad",
+        "front_left_hip_velocity_rad_s",
+        "front_left_knee_velocity_rad_s",
+        "front_right_hip_velocity_rad_s",
+        "front_right_knee_velocity_rad_s",
+        "rear_left_hip_velocity_rad_s",
+        "rear_left_knee_velocity_rad_s",
+        "rear_right_hip_velocity_rad_s",
+        "rear_right_knee_velocity_rad_s",
+        "front_left_hip_baseline_command_rad_s",
+        "front_left_knee_baseline_command_rad_s",
+        "front_right_hip_baseline_command_rad_s",
+        "front_right_knee_baseline_command_rad_s",
+        "rear_left_hip_baseline_command_rad_s",
+        "rear_left_knee_baseline_command_rad_s",
+        "rear_right_hip_baseline_command_rad_s",
+        "rear_right_knee_baseline_command_rad_s",
+        "front_left_hip_maximum_command_speed_rad_s",
+        "front_left_knee_maximum_command_speed_rad_s",
+        "front_right_hip_maximum_command_speed_rad_s",
+        "front_right_knee_maximum_command_speed_rad_s",
+        "rear_left_hip_maximum_command_speed_rad_s",
+        "rear_left_knee_maximum_command_speed_rad_s",
+        "rear_right_hip_maximum_command_speed_rad_s",
+        "rear_right_knee_maximum_command_speed_rad_s",
+        "front_left_hip_previous_final_command_rad_s",
+        "front_left_knee_previous_final_command_rad_s",
+        "front_right_hip_previous_final_command_rad_s",
+        "front_right_knee_previous_final_command_rad_s",
+        "rear_left_hip_previous_final_command_rad_s",
+        "rear_left_knee_previous_final_command_rad_s",
+        "rear_right_hip_previous_final_command_rad_s",
+        "rear_right_knee_previous_final_command_rad_s",
+        "front_left_hip_previous_correction_rad_s",
+        "front_left_knee_previous_correction_rad_s",
+        "front_right_hip_previous_correction_rad_s",
+        "front_right_knee_previous_correction_rad_s",
+        "rear_left_hip_previous_correction_rad_s",
+        "rear_left_knee_previous_correction_rad_s",
+        "rear_right_hip_previous_correction_rad_s",
+        "rear_right_knee_previous_correction_rad_s",
+        "front_left_hip_previous_response_error_rad_s",
+        "front_left_knee_previous_response_error_rad_s",
+        "front_right_hip_previous_response_error_rad_s",
+        "front_right_knee_previous_response_error_rad_s",
+        "rear_left_hip_previous_response_error_rad_s",
+        "rear_left_knee_previous_response_error_rad_s",
+        "rear_right_hip_previous_response_error_rad_s",
+        "rear_right_knee_previous_response_error_rad_s",
+        "front_left_phase_sin",
+        "front_left_phase_cos",
+        "front_right_phase_sin",
+        "front_right_phase_cos",
+        "rear_left_phase_sin",
+        "rear_left_phase_cos",
+        "rear_right_phase_sin",
+        "rear_right_phase_cos",
+        "front_left_observed_support",
+        "front_right_observed_support",
+        "rear_left_observed_support",
+        "rear_right_observed_support",
+        "previous_action_available"
+      ],
+      "feature_count": 88,
+      "controller_dt_s": 0.008333333333333333,
+      "history_entries": 1,
+      "history_source": "actual_prior_resolved_command",
+      "response_error": "(current_position - prior_position) / dt - prior_issued_command",
+      "phase_source": "current_output_memory_with_declared_limb_offsets",
+      "cycle_commands": 360,
+      "domain": {
+        "descriptor": {
+          "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+          "morphology_id": "qsdk_r05_generated_s169",
+          "torso_length_scale": 1.0041015625,
+          "torso_width_scale": 1.0031893004115227,
+          "upper_length_fraction": 0.5219571428571428,
+          "hip_span_scale": 0.9856413994169096,
+          "foot_radius_scale": 0.9987180691209617,
+          "front_limb_mass_scale": 0.975022758306782
+        },
+        "ground_height_m": 0.0,
+        "canonical_up_axis": "y",
+        "gravity_m_s2": 9.8,
+        "gravity_absolute_tolerance_m_s2": 1e-05,
+        "desired_forward_velocity_m_s": 0.2,
+        "minimum_height_m": 0.2,
+        "maximum_height_m": 1.0,
+        "maximum_tilt_rad": 0.6,
+        "maximum_linear_speed_m_s": 10.0,
+        "maximum_angular_speed_rad_s": 20.0,
+        "maximum_joint_position_rad": 3.141592653589793,
+        "maximum_joint_velocity_rad_s": 20.0,
+        "maximum_command_response_error_rad_s": 40.0,
+        "maximum_correction_rad_s": 3.5,
+        "maximum_slew_per_command_rad_s": 0.08,
+        "maximum_final_speed_rad_s": 3.5,
+        "empirical_recoverability_bound": false
+      },
+      "support_distance": "maximum_normalized_mechanical_envelope_occupancy_not_case_density",
+      "confidence_semantics": "declared_domain_indicator_not_calibrated_probability",
+      "engine_specific_inputs": false,
+      "privileged_motor_parameters": false,
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    },
+    "ordered_actuator_ids": [
+      "front_left_hip_motor",
+      "front_left_knee_motor",
+      "front_right_hip_motor",
+      "front_right_knee_motor",
+      "rear_left_hip_motor",
+      "rear_left_knee_motor",
+      "rear_right_hip_motor",
+      "rear_right_knee_motor"
+    ],
+    "modes": [
+      "frozen",
+      "disabled",
+      "absent"
+    ],
+    "controller_dt_s": 0.008333333333333333,
+    "maximum_correction_rad_s": 3.5,
+    "maximum_slew_per_command_rad_s": 0.08,
+    "maximum_final_speed_rad_s": 3.5,
+    "minimum_confidence": 1.0,
+    "maximum_support_distance": 1.0,
+    "maximum_memory_bytes": 4096,
+    "first_command": "baseline_only",
+    "history_entries": 1,
+    "model_digest_basis": "sha256_utf8_sorted_compact_json_without_numeric_rounding",
+    "final_speed_limit": "actual_per_actuator_baseline_limit_at_each_command",
+    "confidence_is_calibrated": false,
+    "weights_updated_online": false,
+    "source_implementations": {
+      "bounded_residual_ars_v1.py": "772864e6791aeb41de33e5ff4f425529289db6a0f67d5663621665ebce0ea2e7",
+      "bounded_residual_features_v1.py": "94529018cded25f45a0ae526859f8610222b8e0ebc2a580608c72130574bd8c7",
+      "bounded_residual_provider_v1.py": "f0df93218eb0a0f2832b984c28f5b89d6dac9f1cd7a5265062cf429dfb302f12",
+      "stance_feedback_v1.py": "b40273b47f047f71263dd014bbec2bb24d623f64d39c039204c75c157ac2829a",
+      "phase_release_feedback_v1.py": "06adf4ae7b7cc4fe7d959a0e10d0e4212c7d96864e6a98b4b662ebca833b0f44",
+      "retrieval/causal_history_v1.py": "f8d81c1a4891a747ce84b83aad107a4243d2c7e0aa979798e1add5ff72fe1c29"
+    },
+    "physical_launch_authority": false,
+    "physical_acceptance_authority": false,
+    "training_data_authority": false,
+    "tier3_benefit_established": false,
+    "release_authority": false
+  },
+  "model_xml_sha256": "b197ac0bcea46aa3bbf448be879df8770d623e66e4cda1e84ff5e35eff48cc06",
+  "descriptor_sha256": "sha256:ae7a0872b8b15dfb294c388931899cf82822293417d125dd72ee2a5a847e09e0",
+  "policy_id": "sporespore_balanced_wave_bw15f_b_v1",
+  "stability_policy_id": "sporespore_scheduled_load_transfer_bw13p_a_v3",
+  "phase_mode": "clocked",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "controller_dt_s": 0.008333333333333333,
+  "warmup_outer_steps": 0,
+  "initial_values": "float32_equalized_inputs_then_native_float64_cpu_dynamics",
+  "cpu_warning_count": 7,
+  "naconmax": 256,
+  "naconmax_per_world": 256,
+  "njmax": 128,
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0
+  },
+  "source_host": {
+    "path": "sdk/discovery/residual_control.py",
+    "sha256": "0cebe211a4335c1adda971663e18ae05d14068414e3cabc59e9db9a4c6bc5ab7"
+  },
+  "schema_version": "locolemotion_residual_native_training_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "bounded_development_training",
+    "question_class": "development"
+  },
+  "conditions": [
+    {
+      "condition_id": "left_075",
+      "side": "left",
+      "effectiveness": 0.75
+    },
+    {
+      "condition_id": "nominal",
+      "side": "none",
+      "effectiveness": 1.0
+    }
+  ],
+  "condition_model_sha256": {
+    "left_075": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069",
+    "nominal": "27ba35d5925099e22a757b232808ad3bbaae7fa7b55b912396ece2fd7bb1b6ec"
+  },
+  "training_starts": [
+    {
+      "id": "train_001",
+      "lateral_velocity_m_s": 0.001
+    },
+    {
+      "id": "train_003",
+      "lateral_velocity_m_s": 0.003
+    },
+    {
+      "id": "train_004",
+      "lateral_velocity_m_s": 0.004
+    },
+    {
+      "id": "train_006",
+      "lateral_velocity_m_s": 0.006
+    }
+  ],
+  "reserved_starts": [
+    0.0015,
+    0.0045,
+    0.0025,
+    0.0055
+  ],
+  "excluded_confirmation_starts": [
+    0.002,
+    0.005
+  ],
+  "lanes": {
+    "route": {
+      "seed": 104240401,
+      "outer_steps": 120,
+      "horizon_s": 1.0,
+      "iterations": 1,
+      "directions": 1,
+      "groups": [
+        "left_075_train_001"
+      ],
+      "comparison_roles": [
+        "trained"
+      ],
+      "planned_cpu_worlds": 3,
+      "training_data_scope": "development_execution_fixture_only",
+      "official_quality_enabled": false
+    },
+    "pilot": {
+      "seed": 104240501,
+      "outer_steps": 1440,
+      "horizon_s": 12.0,
+      "iterations": 2,
+      "directions": 2,
+      "groups": [
+        "left_075_train_001",
+        "left_075_train_003",
+        "left_075_train_004",
+        "left_075_train_006",
+        "nominal_train_001",
+        "nominal_train_003",
+        "nominal_train_004",
+        "nominal_train_006"
+      ],
+      "comparison_roles": [
+        "baseline",
+        "disabled",
+        "trained"
+      ],
+      "planned_cpu_worlds": 88,
+      "training_data_scope": "bounded_eight_group_development_training",
+      "official_quality_enabled": true
+    }
+  },
+  "optimizer": {
+    "noise_scale": 0.02,
+    "step_size": 0.01,
+    "variance_floor": 1e-08,
+    "output_limit_rad_s": 3.5,
+    "selected_directions": "all",
+    "initial_weights": "zeros",
+    "initial_normalizer": "identity_count_zero",
+    "perturbations": "stored_lossless_antithetic_gaussian",
+    "seed_rule": "lane_seed_plus_iteration",
+    "normalizer_population": "every available mechanically supported feature row from every complete training rollout",
+    "missing_features": "retain unsupported reasons and counts; never invent observations",
+    "comparison_data_may_fit": false,
+    "route_data_may_initialize_pilot": false,
+    "final_checkpoint": "fixed final iteration; no comparison-based checkpoint selection"
+  },
+  "reward": {
+    "desired_forward_velocity_m_s": 0.2,
+    "lateral_error_weight": 0.25,
+    "error_scale_m_s": 0.4,
+    "per_step": "-min(1,(abs(native_vx-.2)+.25*abs(native_vy))/.4)",
+    "failure_value": -1.0,
+    "failure_rule": "first physical violation or safe-no-actuation command and every remaining internal sample",
+    "denominator": "complete fixed internal horizon",
+    "survival_bonus": 0.0,
+    "range": [
+      -1.0,
+      0.0
+    ],
+    "invalid_rollout": "reject complete update; retain attempt and remaining unopened population"
+  },
+  "official_quality": {
+    "contract_path": "sdk/adaptation_provider/retrieval/contract_v1.json",
+    "contract_sha256": "ec26ecd48b0af84489aba0cc97b63dbf0a74836f06911990e8754cb174ff89f2",
+    "window_commands": 30,
+    "desired_forward_velocity_m_s": 0.2,
+    "lateral_error_weight": 0.25,
+    "failed_episode_quality": null,
+    "route_quality": null
+  },
+  "finite_screen": "All eight trained episodes eligible; no nominal quality loss against fresh baseline at any start; disabled raw traces exactly equal baseline. Development screen only.",
+  "nominal_quality_loss_margin_m_s": 0.0,
+  "planned_gpu_worlds": 0,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "maximum_trace_bytes_per_trial": 268435456,
+  "minimum_free_storage_bytes": 85899345920,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "cpu-motor",
+      "module": "test_cpu_motor_challenge",
+      "count": 7
+    },
+    {
+      "name": "causal-history",
+      "module": "test_history_influence_control",
+      "count": 5
+    },
+    {
+      "name": "residual-optimizer",
+      "module": "test_bounded_residual_ars",
+      "count": 10
+    },
+    {
+      "name": "residual-provider",
+      "module": "test_bounded_residual_provider",
+      "count": 12
+    },
+    {
+      "name": "residual-training",
+      "module": "test_residual_training",
+      "count": 26
+    },
+    {
+      "name": "native-closure",
+      "module": "test_residual_native_closure",
+      "count": 6
+    }
+  ],
+  "provider_controls": 2,
+  "containment_controls": 1,
+  "complete_safety_control_count": 104,
+  "implementation_bindings": {
+    "residual_training_task.py": "dba702f601360bbb41168c7e4da30e8763ff512a40cbb27b2ff8401e4af05762",
+    "residual_training.py": "8259b644a9b6b99ed725866c9da6ecfca430e66084ee42caa4576f67a2705450",
+    "audit_residual_training.py": "cb4b2f340c159f62c9dae852530d5a9f5a7cd571e134ab9c10a9d2fb769bbfcc",
+    "run_residual_training.py": "aaa9af90e9f79a2d58a2b591b56ba612f15cdccd5c8791c51268d129b25b9c41",
+    "test_residual_training.py": "df6ea4bcc83d73c36af2d6093752bd0906f13bf69188dc2be28459862ac576ef"
+  },
+  "coverage": [
+    "fresh contained CPU worlds, full native state and force capture, independent baseline-core replay",
+    "complete paired search populations and fixed horizons, including ordinary negative outcomes",
+    "raw-derived reward and feature moments, verified immutable update before next-stage use",
+    "fresh final baseline/disabled/trained comparison at every declared pilot group"
+  ],
+  "not_covered": [
+    "reserved calibration or evaluation",
+    "calibrated recovery confidence",
+    "Tier 3 memory benefit",
+    "other morphologies, terrain or engines",
+    "multi-seed robustness",
+    "qualification or release"
+  ],
+  "controller_selection_authority": false,
+  "adaptation_benefit_established": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": true
+}

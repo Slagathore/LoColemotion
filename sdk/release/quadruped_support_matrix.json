@@ -167,6 +167,234 @@
       "episode_feedback_can_create_candidate_chapters": true,
       "automatic_live_encyclopedia_rewrite_permitted": false,
       "promotion_requires_frozen_data_model_and_cross_engine_validation": true,
+      "bounded_residual_native_training_preparation": {
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "bounded_development_training",
+          "question_class": "development"
+        },
+        "status": "prepared_complete_zero_world_gate",
+        "contract_path": "sdk/discovery/residual_training_v1.json",
+        "contract_sha256": "2f2d6df77bd5717e3d0421c955250bcac52274cc21ab1bbb0b483848697a428f",
+        "source_bindings": {
+          "residual_training_task.py": "dba702f601360bbb41168c7e4da30e8763ff512a40cbb27b2ff8401e4af05762",
+          "residual_training.py": "8259b644a9b6b99ed725866c9da6ecfca430e66084ee42caa4576f67a2705450",
+          "audit_residual_training.py": "cb4b2f340c159f62c9dae852530d5a9f5a7cd571e134ab9c10a9d2fb769bbfcc",
+          "run_residual_training.py": "aaa9af90e9f79a2d58a2b591b56ba612f15cdccd5c8791c51268d129b25b9c41",
+          "test_residual_training.py": "df6ea4bcc83d73c36af2d6093752bd0906f13bf69188dc2be28459862ac576ef"
+        },
+        "verification": {
+          "attempt_id": "sdk2-residual-training-dc84eaa727c54325809955c15d979747",
+          "source_commit": "fb9e14bc4b3534598ebe90e31246ac9bc0114f64",
+          "receipt_sha256": "5038633999a08666b9dc69fb97a0c7eb975c1fcf6fcabb960874d14bc4b4904c",
+          "controls_passed": 104,
+          "controls": {
+            "measurement": 7,
+            "quadruped": 10,
+            "portable": 11,
+            "motor-task": 7,
+            "cpu-motor": 7,
+            "causal-history": 5,
+            "residual-optimizer": 10,
+            "residual-provider": 12,
+            "residual-training": 26,
+            "native-closure": 6,
+            "provider": 2,
+            "containment": 1
+          },
+          "worlds_opened": 0,
+          "solver_steps": 0,
+          "source_runtime_unchanged": true,
+          "source_binding_count": 501,
+          "runtime_binding_count": 1359,
+          "artifact_count": 1201,
+          "artifact_bytes": 724977651
+        },
+        "lanes": {
+          "route": {
+            "seed": 104240401,
+            "outer_steps": 120,
+            "horizon_s": 1.0,
+            "iterations": 1,
+            "directions": 1,
+            "groups": [
+              "left_075_train_001"
+            ],
+            "comparison_roles": [
+              "trained"
+            ],
+            "planned_cpu_worlds": 3,
+            "training_data_scope": "development_execution_fixture_only",
+            "official_quality_enabled": false
+          },
+          "pilot": {
+            "seed": 104240501,
+            "outer_steps": 1440,
+            "horizon_s": 12.0,
+            "iterations": 2,
+            "directions": 2,
+            "groups": [
+              "left_075_train_001",
+              "left_075_train_003",
+              "left_075_train_004",
+              "left_075_train_006",
+              "nominal_train_001",
+              "nominal_train_003",
+              "nominal_train_004",
+              "nominal_train_006"
+            ],
+            "comparison_roles": [
+              "baseline",
+              "disabled",
+              "trained"
+            ],
+            "planned_cpu_worlds": 88,
+            "training_data_scope": "bounded_eight_group_development_training",
+            "official_quality_enabled": true
+          }
+        },
+        "training_worlds_opened": 0,
+        "trained_residual_available": false,
+        "tier2_complete": false,
+        "tier3_complete": false,
+        "physical_acceptance_authority": false,
+        "release_authority": false,
+        "profile": {
+          "attempt_id": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799",
+          "receipt_sha256": "cc910d527c67273bbf46f341d4c05db4823f24ab61a48b7d781f15de5cbb65dd",
+          "profiler_sha256": "489b57a06538e5f792ef00f8d01963f105ad57c8f9b46e4717303638a7e7a722",
+          "source_commit": "fb9e14bc4b3534598ebe90e31246ac9bc0114f64",
+          "controller_decisions": 720,
+          "all_returned_fields_bit_identical": true,
+          "worlds_opened": 0,
+          "solver_steps": 0,
+          "results": [
+            {
+              "role": "absent",
+              "profiled": false,
+              "controller_rows": 120,
+              "all_returned_fields_bit_identical": true,
+              "step_wall_s": 0.8733219000005192
+            },
+            {
+              "role": "absent",
+              "profiled": true,
+              "controller_rows": 120,
+              "all_returned_fields_bit_identical": true,
+              "step_wall_s": 1.371220600000015
+            },
+            {
+              "role": "zero",
+              "profiled": false,
+              "controller_rows": 120,
+              "all_returned_fields_bit_identical": true,
+              "step_wall_s": 2.6858002000008128
+            },
+            {
+              "role": "zero",
+              "profiled": true,
+              "controller_rows": 120,
+              "all_returned_fields_bit_identical": true,
+              "step_wall_s": 3.2887633999998798
+            },
+            {
+              "role": "probe",
+              "profiled": false,
+              "controller_rows": 120,
+              "all_returned_fields_bit_identical": true,
+              "step_wall_s": 2.179848199999469
+            },
+            {
+              "role": "probe",
+              "profiled": true,
+              "controller_rows": 120,
+              "all_returned_fields_bit_identical": true,
+              "step_wall_s": 3.2722034999987955
+            }
+          ],
+          "interpretation": "Repeated history deepcopy and core JSON calls dominate these retained-input profiles. Cumulative costs overlap; no scaling speedup is established.",
+          "source_binding_count": 495,
+          "runtime_binding_count": 1359,
+          "artifacts": [
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/absent-hotspots.json",
+              "byte_length": 18100,
+              "sha256": "4002b0caf7edf4584cd398a9e442f6843f5f5be272aba23a181b9936480359bb"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/absent-plain.json",
+              "byte_length": 3373,
+              "sha256": "d7d56536a8225548ed77097f30cd28ca32396cbe4b9321bf89358e5d86d03e38"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/absent-profiled.json",
+              "byte_length": 11108,
+              "sha256": "30af556bddfb53aa5d0888e49e7ff6b30ecb1c21a838596d86fc074aa08c59bb"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/absent.pstats",
+              "byte_length": 10154,
+              "sha256": "14ede11bf66feef1ddb2c028809f968b387a20cce25d1c74df77513dd281edb7"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/declaration.json",
+              "byte_length": 357744,
+              "sha256": "85f1c21c3de5f5d8712dc6cc56c4dd71d88a603dc96ed16129d22ba0ba93b47c"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/probe-hotspots.json",
+              "byte_length": 35079,
+              "sha256": "08a62ab17645b0f4bbcb93103238ccc3a53c8ae4d9861469c7787a698818d119"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/probe-plain.json",
+              "byte_length": 3348,
+              "sha256": "64e9fae707f73a7217d8de67740b905cf7c5adfb878ba0323be147d7a2f5dfda"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/probe-profiled.json",
+              "byte_length": 11109,
+              "sha256": "bcd7893128b4075932d492f4e55f82780736dde27e2183650169da161d5e1a3e"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/probe.pstats",
+              "byte_length": 19870,
+              "sha256": "5e5d52fac6f1ffa13b3c4ec8e557b0fb05fa04619b02608a4a90a649ccc1424c"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/profiler.py",
+              "byte_length": 6758,
+              "sha256": "489b57a06538e5f792ef00f8d01963f105ad57c8f9b46e4717303638a7e7a722"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/receipt.json",
+              "byte_length": 50902,
+              "sha256": "cc910d527c67273bbf46f341d4c05db4823f24ab61a48b7d781f15de5cbb65dd"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/zero-hotspots.json",
+              "byte_length": 35283,
+              "sha256": "b0d7144b997d970a0863677b24f432105829fa238ce0384cbd73fdc31fc06675"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/zero-plain.json",
+              "byte_length": 3328,
+              "sha256": "aa70a97c48821cc3ba28e3edb4efd014951ca493bf3add731b0aa8fa2e8f0398"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/zero-profiled.json",
+              "byte_length": 11108,
+              "sha256": "f7078bb330d053ab6fa7054e39994b37e878d304f98f1112ebaacb0e40af53b2"
+            },
+            {
+              "evidence_relative_path": "sdk2-residual-control-profile-1283ec720f534a238e527baf9ef9a799/zero.pstats",
+              "byte_length": 19870,
+              "sha256": "fbc8a18301fd443598a452832c94414c9e472aebc5c7f720b56d7567bd8e4c5e"
+            }
+          ]
+        }
+      },
       "bounded_residual_native_route": {
         "ledger_scope": {
           "subsystem": "adaptation",
@@ -6364,7 +6592,7 @@
               "release_authority": false
             }
           },
-          "next_development_question": "The contained residual route is now physically verified: three fresh CPU smoke worlds, exact absent/zero trajectory identity, nonzero input and native position divergence at internal step 6, and full independent replay after all 86 controls. Six closure controls reopen all 1202 artifacts with zero new worlds; this is not training or locomotion-benefit evidence. In these three one-second loops portable control consumed 4.738 s and native integration 0.062 s, so profile the production composition/provider/resolver before scaling training; retain full solver inputs and timing. Then freeze group-balanced training/failure rewards, all condition/start groups, seeds, iterations and world budget, and implement complete independent reward/ARS-update replay before training on actual combined-controller transitions. Full-horizon healthy/degraded comparisons, calibrated support, empirical recovery withdrawal, useful Tier 3 memory and three-engine qualification remain open; reserved partitions stay unopened."
+          "next_development_question": "The production residual profile reproduced 720 decisions exactly without worlds; retained-input costs are dominated by history copies and core JSON calls. The separately declared native ARS implementation passes all 104 zero-world controls. Publish its freeze, run the three-world paired-update execution fixture, then the fixed 88-world pilot: two iterations over all eight exposed condition/start groups with complete 12-second horizons, followed by fresh baseline/disabled/trained comparisons. Every reward and normalizer population comes from independently audited induced trajectories; each update must be reconstructed before subsequent native use. The pilot starts from zero and cannot use fixture or comparison data for fitting. Training and useful adaptation are not yet observed. Reserved partitions, calibrated support, recovery withdrawal, useful Tier 3 memory and three-engine qualification remain open."
         },
         "first_response_repertoire": {
           "ledger_scope": {
