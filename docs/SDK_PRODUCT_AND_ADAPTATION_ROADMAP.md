@@ -8206,3 +8206,42 @@ history and five held motor steps. A new causal native trajectory still
 requires a fresh identity, complete applicable safety gate and clean pushed
 freeze. This component work opens zero new worlds and establishes no Tier 2,
 Tier 3, native recovery benefit, safe backup or release qualification.
+
+## Proximal primary public integration - 2026-10-25
+
+The [public v7 integration](../sdk/discovery/hierarchical_public_result_v7.json)
+connects the unchanged strict-seed component to the public provider and hold
+controller. All 191 declared controls pass. Two complete readers produce
+byte-identical reports; each checks four hosts and 308 public commands across
+two core builds. Both builds produce identical commands and audit checks.
+
+Each weak-condition host preserves its 60-command prefix and all 31 previously
+applied hierarchy commands, including the refined command-89 recovery and
+original-route command 90. Command 91 now applies through the public resolver
+using the proximal primary route. Its primary and secondary take 37 and 17
+iterations, with six QP calls including the two preceding refused routes.
+The nominal host preserves its 60-command prefix and two original-route
+handoff commands on both cores. Across one reader the 68 hierarchy commands
+comprise 64 original-route commands, two refined-primary commands and two
+proximal-primary commands.
+
+The independent reader reconstructs strict seed selection, both predecessor
+refusals and their equations, reduced/full certificates, original-coordinate
+primal and dual maps, actual resolver history, motor torque and all five held
+motor steps. Corruption controls reject altered seed selection or guard,
+invented refinement, false backend and route claims, changed refusal equations,
+miscounted work and corrupted held predictions. A positive control patches all
+QP solve entrypoints to fail while the reader verifies the new route.
+
+Attempt sdk2-hierarchical-public-v7-8ea54772bab7424da785175f3ab808ee
+retains 962 source and 3,582 runtime bindings,
+82 artifacts including its receipt, and 136.469 seconds
+of owner time. Exact digests are in the result record. The physical limits,
+objective, strict primary guard and prior accepted solver outputs are unchanged.
+
+Next declare a distinct native successor with the v7 provider and three-route
+reader. Verify its route and complete applicable safety gate from a clean
+pushed prospective freeze, then test a fresh causal trajectory past command 91
+and the nominal condition. This checkpoint uses retained observations, opens
+zero worlds, and grants no native recovery benefit, safe-backup, Tier 2,
+Tier 3 or release qualification.

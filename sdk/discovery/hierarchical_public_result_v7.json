@@ -1,0 +1,2207 @@
+{
+  "schema_version": "locolemotion_hierarchical_public_result_v7",
+  "status": "complete_two_core_public_recovery_and_nominal_handoff",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "public_controller_retained_reconstruction",
+    "question_class": "development"
+  },
+  "source_commit": "a1c44ee6730202f135ee7d7ecc7c2dafce0942fa",
+  "attempt_id": "sdk2-hierarchical-public-v7-8ea54772bab7424da785175f3ab808ee",
+  "contract_path": "sdk/discovery/hierarchical_public_v7.json",
+  "contract_sha256": "14d9d521556988a9f72a2f08a2fcb847da893ae2bce0cc89d70a2faf00720018",
+  "receipt_sha256": "681a4dd52015c79dee4d27d58652941a8bb761cd93a7bef9bacb5125695cc4bb",
+  "declaration_sha256": "9efd3653cb0971677bc183c7b082bbc9c858d806fb8e0b83d49feb06e1c5f64f",
+  "audit_sha256": "29f849cf388b856ae49e908c81d289a479870c93187d1e3c97e5430c567f3c71",
+  "reconstruction_sha256": "29f849cf388b856ae49e908c81d289a479870c93187d1e3c97e5430c567f3c71",
+  "controls_passed": 191,
+  "complete_reader_invocations": 2,
+  "readers_byte_identical": true,
+  "source_binding_count": 962,
+  "runtime_binding_count": 3582,
+  "artifacts_including_receipt": 82,
+  "owner_wall_s": 136.46900000001187,
+  "parent_result_path": "sdk/discovery/proximal_primary_component_result_v2.json",
+  "parent_result_sha256": "9c9dbe4ba4bdce60fb574e0ecacd922aec090ae81bda50e87046af3b90ccbd84",
+  "public_controller_integration_verified": true,
+  "public_hosts_per_reader": 4,
+  "public_commands_per_reader": 308,
+  "hierarchical_commands_per_reader": 68,
+  "recovered_public_commands_per_reader": 4,
+  "new_primary_public_commands_per_reader": 2,
+  "reports": [
+    {
+      "case": {
+        "attempt_id": "sdk2-hierarchical-native-v3-b76c45df012144d9abad9b5bbbbfbbda",
+        "trial_id": "hierarchy_hold_left_075_train_001",
+        "commands": 92,
+        "kind": "weak_recovery"
+      },
+      "profile": {
+        "schema_version": "locolemotion_hierarchical_force_profile_v7",
+        "parameters": {
+          "reference_joint_positions_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_inertia_kg_m2": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "maximum_absolute_correction_rad_s": 3.5,
+          "maximum_slew_per_command_rad_s": 0.08,
+          "dynamic": {
+            "com_kp_per_s2": [
+              12.0,
+              25.0,
+              12.0
+            ],
+            "com_kd_per_s": [
+              7.0,
+              10.0,
+              7.0
+            ],
+            "com_acceleration_limit_m_s2": [
+              8.0,
+              10.0,
+              8.0
+            ],
+            "orientation_kp_per_s2": [
+              30.0,
+              12.0,
+              30.0
+            ],
+            "orientation_kd_per_s": [
+              10.0,
+              6.0,
+              10.0
+            ],
+            "angular_acceleration_limit_rad_s2": [
+              30.0,
+              15.0,
+              30.0
+            ],
+            "joint_kp_per_s2": 20.0,
+            "joint_kd_per_s": 8.0,
+            "joint_acceleration_limit_rad_s2": 80.0,
+            "contact_velocity_gain_per_s": 30.0,
+            "contact_acceleration_limit_m_s2": 20.0,
+            "airborne_height_kp_per_s2": 40.0,
+            "airborne_velocity_kd_per_s": 12.0,
+            "airborne_acceleration_limit_m_s2": 15.0,
+            "com_weight": 4.0,
+            "orientation_weight": 8.0,
+            "joint_weight": 0.3,
+            "contact_weight": 10.0,
+            "airborne_weight": 2.0,
+            "acceleration_regularization": 0.001,
+            "force_regularization": 0.0001,
+            "torque_regularization": 0.001,
+            "friction_coefficient": 0.95,
+            "maximum_normal_force_n": 70.0,
+            "contact_acceleration_is_soft_task": true,
+            "friction_pyramid": "inscribed square in flat xz tangent plane"
+          },
+          "hierarchy": {
+            "previous": {
+              "original": {
+                "timestep_s": 0.0016666666666666668,
+                "hold_steps": 5,
+                "joint_speed_planning_cap_rad_s": 3.5,
+                "joint_position_margin_rad": 0.005833333333333334,
+                "regime_force_margin_nm": 1e-05,
+                "support_constraint": "first minimize unweighted supporting-point acceleration error; then freeze attained vector",
+                "regime_selection": "bounded deterministic five-step pattern search",
+                "frozen_coefficients": true,
+                "constant_contact_force": true,
+                "future_contact_force_measured": false,
+                "recursive_feasibility_established": false,
+                "physical_acceptance_authority": false,
+                "maximum_patterns": 8,
+                "initial_patterns": [
+                  "vertical_bias_share_midpoint",
+                  "zero_contact_midpoint",
+                  "fixed_interval"
+                ],
+                "proposal_can_issue_command": false,
+                "selection": "first certified two-level hierarchy",
+                "complete_pattern_search": false,
+                "global_optimality_established": false,
+                "eliminate_initial_acceleration": true,
+                "full_coordinate_certificate_required": true,
+                "contact_target_is_hard": false,
+                "hard_motor_joint_force_bounds": true,
+                "hierarchy_scope": "within selected five-step motor pattern",
+                "objective_regularization_at_first_level": 0.0,
+                "secondary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+                "secondary_coordinates": "initial dynamics eliminated; attained support equalities retained",
+                "closest_feasible_relaxation": false,
+                "original_full_coordinate_acceptance_unchanged": true
+              },
+              "refined": {
+                "timestep_s": 0.0016666666666666668,
+                "hold_steps": 5,
+                "joint_speed_planning_cap_rad_s": 3.5,
+                "joint_position_margin_rad": 0.005833333333333334,
+                "regime_force_margin_nm": 1e-05,
+                "support_constraint": "first minimize unweighted supporting-point acceleration error; then freeze attained vector",
+                "regime_selection": "bounded deterministic five-step pattern search",
+                "frozen_coefficients": true,
+                "constant_contact_force": true,
+                "future_contact_force_measured": false,
+                "recursive_feasibility_established": false,
+                "physical_acceptance_authority": false,
+                "maximum_patterns": 8,
+                "initial_patterns": [
+                  "vertical_bias_share_midpoint",
+                  "zero_contact_midpoint",
+                  "fixed_interval"
+                ],
+                "proposal_can_issue_command": false,
+                "selection": "first certified two-level hierarchy",
+                "complete_pattern_search": false,
+                "global_optimality_established": false,
+                "eliminate_initial_acceleration": true,
+                "full_coordinate_certificate_required": true,
+                "contact_target_is_hard": false,
+                "hard_motor_joint_force_bounds": true,
+                "hierarchy_scope": "within selected five-step motor pattern",
+                "objective_regularization_at_first_level": 0.0,
+                "secondary_coordinates": "nullspace of dynamics and attained support equalities",
+                "nullspace_rank_rule": "machine epsilon times maximum matrix dimension times largest singular value",
+                "secondary_full_duals_reconstructed": true,
+                "secondary_conditioning": "inverse transpose of the reduced Hessian Cholesky factor",
+                "secondary_regularization": 0.0,
+                "original_objective_and_bounds_preserved": true,
+                "secondary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+                "closest_feasible_relaxation": false,
+                "original_full_coordinate_acceptance_unchanged": true,
+                "primary_refinement": {
+                  "active_dual_threshold": 1e-08,
+                  "primary_feasibility_absolute_guard": 1e-12,
+                  "active_equality_absolute_guard": 1e-12,
+                  "dual_sign_absolute_guard": 1e-12,
+                  "refinement_passes": 1,
+                  "objective_regularization": 0.0,
+                  "active_selection": "equalities, nonzero duals, and violated bounds",
+                  "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+                }
+              },
+              "route": "original certified generic hierarchy, then refined-primary hierarchy after bounded refusal",
+              "maximum_routes": 2,
+              "maximum_total_patterns": 16,
+              "maximum_total_qp_solves": 32,
+              "command_specific_selection": false,
+              "acceptance_tolerances_changed": false
+            },
+            "alternate": {
+              "timestep_s": 0.0016666666666666668,
+              "hold_steps": 5,
+              "joint_speed_planning_cap_rad_s": 3.5,
+              "joint_position_margin_rad": 0.005833333333333334,
+              "regime_force_margin_nm": 1e-05,
+              "support_constraint": "first minimize unweighted supporting-point acceleration error; then freeze attained vector",
+              "regime_selection": "bounded deterministic five-step pattern search",
+              "frozen_coefficients": true,
+              "constant_contact_force": true,
+              "future_contact_force_measured": false,
+              "recursive_feasibility_established": false,
+              "physical_acceptance_authority": false,
+              "maximum_patterns": 8,
+              "initial_patterns": [
+                "vertical_bias_share_midpoint",
+                "zero_contact_midpoint",
+                "fixed_interval"
+              ],
+              "proposal_can_issue_command": false,
+              "selection": "first certified two-level hierarchy",
+              "complete_pattern_search": false,
+              "global_optimality_established": false,
+              "eliminate_initial_acceleration": true,
+              "full_coordinate_certificate_required": true,
+              "contact_target_is_hard": false,
+              "hard_motor_joint_force_bounds": true,
+              "hierarchy_scope": "within selected five-step motor pattern",
+              "objective_regularization_at_first_level": 0.0,
+              "secondary_coordinates": "nullspace of dynamics and attained support equalities",
+              "nullspace_rank_rule": "machine epsilon times maximum matrix dimension times largest singular value",
+              "secondary_full_duals_reconstructed": true,
+              "secondary_conditioning": "inverse transpose of the reduced Hessian Cholesky factor",
+              "secondary_regularization": 0.0,
+              "original_objective_and_bounds_preserved": true,
+              "primary_selection": "retain accepted seed satisfying reduced/full strict guard; otherwise refine",
+              "primary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+              "primary_objective_regularization": 0.0,
+              "secondary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+              "closest_feasible_relaxation": false,
+              "original_full_coordinate_acceptance_unchanged": true,
+              "primary_refinement": {
+                "active_dual_threshold": 1e-08,
+                "primary_feasibility_absolute_guard": 1e-12,
+                "active_equality_absolute_guard": 1e-12,
+                "dual_sign_absolute_guard": 1e-12,
+                "refinement_passes": 1,
+                "objective_regularization": 0.0,
+                "active_selection": "equalities, nonzero duals, and violated bounds",
+                "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+              }
+            },
+            "route": "unchanged bounded predecessor, then proximal primary only after explicit numerical refusal",
+            "maximum_routes": 3,
+            "maximum_total_patterns": 24,
+            "maximum_total_qp_solves": 48,
+            "command_specific_selection": false,
+            "acceptance_tolerances_changed": false
+          }
+        },
+        "reference_parameters": {
+          "maximum_com_lowering_m": 0.1,
+          "maximum_com_reference_lowering_speed_m_s": 0.2,
+          "touchdown_clearance_margin_m": 0.003,
+          "controller_dt_s": 0.008333333333333333,
+          "automatic_height_raise": false
+        },
+        "solver_runtime": {
+          "numpy": "2.4.6",
+          "scipy": "1.17.1",
+          "osqp": "1.1.3",
+          "proxsuite": "0.7.2",
+          "cmeel": "0.61.0"
+        },
+        "solver_settings": {
+          "previous": {
+            "original": {
+              "priority": {
+                "verbose": false,
+                "warm_starting": false,
+                "polishing": true,
+                "scaling": 10,
+                "adaptive_rho": true,
+                "adaptive_rho_interval": 50,
+                "adaptive_rho_tolerance": 5.0,
+                "max_iter": 20000,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "eps_prim_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "check_termination": 25,
+                "scaled_termination": false,
+                "polish_refine_iter": 3
+              },
+              "secondary": {
+                "verbose": false,
+                "compute_timings": false,
+                "max_iter": 20000,
+                "max_iter_in": 1500,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "check_duality_gap": true,
+                "eps_duality_gap_abs": 1e-11,
+                "eps_duality_gap_rel": 1e-11,
+                "eps_primal_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "primal_infeasibility_solving": false
+              },
+              "secondary_backend": "generic.dense.PrimalDualLDLT",
+              "secondary_initial_guess": "NO_INITIAL_GUESS"
+            },
+            "refined": {
+              "priority": {
+                "verbose": false,
+                "warm_starting": false,
+                "polishing": true,
+                "scaling": 10,
+                "adaptive_rho": true,
+                "adaptive_rho_interval": 50,
+                "adaptive_rho_tolerance": 5.0,
+                "max_iter": 20000,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "eps_prim_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "check_termination": 25,
+                "scaled_termination": false,
+                "polish_refine_iter": 3
+              },
+              "primary_refinement": {
+                "active_dual_threshold": 1e-08,
+                "primary_feasibility_absolute_guard": 1e-12,
+                "active_equality_absolute_guard": 1e-12,
+                "dual_sign_absolute_guard": 1e-12,
+                "refinement_passes": 1,
+                "objective_regularization": 0.0,
+                "active_selection": "equalities, nonzero duals, and violated bounds",
+                "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+              },
+              "secondary": {
+                "verbose": false,
+                "compute_timings": false,
+                "max_iter": 20000,
+                "max_iter_in": 1500,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "check_duality_gap": true,
+                "eps_duality_gap_abs": 1e-11,
+                "eps_duality_gap_rel": 1e-11,
+                "eps_primal_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "primal_infeasibility_solving": false
+              },
+              "secondary_backend": "generic.dense.PrimalDualLDLT",
+              "secondary_initial_guess": "NO_INITIAL_GUESS",
+              "secondary_coordinates": "conditioned nullspace of dynamics and attained support equalities"
+            }
+          },
+          "alternate": {
+            "priority": {
+              "verbose": false,
+              "compute_timings": false,
+              "max_iter": 20000,
+              "max_iter_in": 1500,
+              "eps_abs": 1e-11,
+              "eps_rel": 1e-11,
+              "check_duality_gap": true,
+              "eps_duality_gap_abs": 1e-11,
+              "eps_duality_gap_rel": 1e-11,
+              "eps_primal_inf": 1e-08,
+              "eps_dual_inf": 1e-08,
+              "primal_infeasibility_solving": false
+            },
+            "primary_refinement": {
+              "active_dual_threshold": 1e-08,
+              "primary_feasibility_absolute_guard": 1e-12,
+              "active_equality_absolute_guard": 1e-12,
+              "dual_sign_absolute_guard": 1e-12,
+              "refinement_passes": 1,
+              "objective_regularization": 0.0,
+              "active_selection": "equalities, nonzero duals, and violated bounds",
+              "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+            },
+            "secondary": {
+              "verbose": false,
+              "compute_timings": false,
+              "max_iter": 20000,
+              "max_iter_in": 1500,
+              "eps_abs": 1e-11,
+              "eps_rel": 1e-11,
+              "check_duality_gap": true,
+              "eps_duality_gap_abs": 1e-11,
+              "eps_duality_gap_rel": 1e-11,
+              "eps_primal_inf": 1e-08,
+              "eps_dual_inf": 1e-08,
+              "primal_infeasibility_solving": false
+            },
+            "secondary_backend": "generic.dense.PrimalDualLDLT",
+            "secondary_initial_guess": "NO_INITIAL_GUESS",
+            "secondary_coordinates": "conditioned nullspace of dynamics and attained support equalities"
+          }
+        },
+        "native_readback_sha256": "e042080786791f93611e353f719cd3c8cff701b1a15be4ceddb3dc35fbf8b247",
+        "morphology_spec": {
+          "schema_version": "sporespore_morphology_spec_v1",
+          "coordinate_frame_id": "right_handed_x_forward_y_up_z_right_si_v1",
+          "topology_family": "bounded_quadruped_gq15",
+          "bodies": [
+            {
+              "body_id": "torso",
+              "parent_body_id": null,
+              "mass_kg": 3.0,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.029363552574980106,
+                "y": 0.08877729931341394,
+                "z": 0.06661374673843384
+              },
+              "collision": {
+                "kind": "box",
+                "size_m": {
+                  "x": 0.50205078125,
+                  "y": 0.12,
+                  "z": 0.3210205761316873
+                }
+              }
+            },
+            {
+              "body_id": "front_left_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.2437556895766955,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007087716529154633,
+                "y": 6.170065892410104e-05,
+                "z": 0.0007087716529154633
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "front_left_distal",
+              "parent_body_id": "front_left_upper",
+              "mass_kg": 0.17550409649522075,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.00047944809562895646,
+                "y": 0.000140043533334338,
+                "z": 0.00047944809562895646
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            },
+            {
+              "body_id": "front_right_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.2437556895766955,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007087716529154633,
+                "y": 6.170065892410104e-05,
+                "z": 0.0007087716529154633
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "front_right_distal",
+              "parent_body_id": "front_right_upper",
+              "mass_kg": 0.17550409649522075,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.00047944809562895646,
+                "y": 0.000140043533334338,
+                "z": 0.00047944809562895646
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            },
+            {
+              "body_id": "rear_left_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.25624431042330453,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007450849814595362,
+                "y": 6.486184107589895e-05,
+                "z": 0.0007450849814595362
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "rear_left_distal",
+              "parent_body_id": "rear_left_upper",
+              "mass_kg": 0.18449590350477926,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0005040122216698168,
+                "y": 0.00014721854776320823,
+                "z": 0.0005040122216698168
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            },
+            {
+              "body_id": "rear_right_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.25624431042330453,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007450849814595362,
+                "y": 6.486184107589895e-05,
+                "z": 0.0007450849814595362
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "rear_right_distal",
+              "parent_body_id": "rear_right_upper",
+              "mass_kg": 0.18449590350477926,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0005040122216698168,
+                "y": 0.00014721854776320823,
+                "z": 0.0005040122216698168
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            }
+          ],
+          "joints": [
+            {
+              "joint_id": "front_left_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "front_left_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.19712827988338194,
+                "y": -0.05,
+                "z": -0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "front_left_knee",
+              "parent_body_id": "front_left_upper",
+              "child_body_id": "front_left_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "front_right_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "front_right_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.19712827988338194,
+                "y": -0.05,
+                "z": 0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "front_right_knee",
+              "parent_body_id": "front_right_upper",
+              "child_body_id": "front_right_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_left_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "rear_left_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": -0.19712827988338194,
+                "y": -0.05,
+                "z": -0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_left_knee",
+              "parent_body_id": "rear_left_upper",
+              "child_body_id": "rear_left_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_right_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "rear_right_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": -0.19712827988338194,
+                "y": -0.05,
+                "z": 0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_right_knee",
+              "parent_body_id": "rear_right_upper",
+              "child_body_id": "rear_right_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            }
+          ],
+          "limbs": [
+            {
+              "limb_id": "front_left",
+              "semantic_role": "front_left",
+              "root_body_id": "front_left_upper",
+              "terminal_body_id": "front_left_distal",
+              "ordered_joint_ids": [
+                "front_left_hip",
+                "front_left_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "front_left_foot"
+              ],
+              "nominal_phase_fraction": 0.25
+            },
+            {
+              "limb_id": "front_right",
+              "semantic_role": "front_right",
+              "root_body_id": "front_right_upper",
+              "terminal_body_id": "front_right_distal",
+              "ordered_joint_ids": [
+                "front_right_hip",
+                "front_right_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "front_right_foot"
+              ],
+              "nominal_phase_fraction": 0.75
+            },
+            {
+              "limb_id": "rear_left",
+              "semantic_role": "rear_left",
+              "root_body_id": "rear_left_upper",
+              "terminal_body_id": "rear_left_distal",
+              "ordered_joint_ids": [
+                "rear_left_hip",
+                "rear_left_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "rear_left_foot"
+              ],
+              "nominal_phase_fraction": 0.0
+            },
+            {
+              "limb_id": "rear_right",
+              "semantic_role": "rear_right",
+              "root_body_id": "rear_right_upper",
+              "terminal_body_id": "rear_right_distal",
+              "ordered_joint_ids": [
+                "rear_right_hip",
+                "rear_right_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "rear_right_foot"
+              ],
+              "nominal_phase_fraction": 0.5
+            }
+          ],
+          "actuators": [
+            {
+              "actuator_id": "front_left_hip_motor",
+              "joint_id": "front_left_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.05362625170687301
+            },
+            {
+              "actuator_id": "front_left_knee_motor",
+              "joint_id": "front_left_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.04387602412380519
+            },
+            {
+              "actuator_id": "front_right_hip_motor",
+              "joint_id": "front_right_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.05362625170687301
+            },
+            {
+              "actuator_id": "front_right_knee_motor",
+              "joint_id": "front_right_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.04387602412380519
+            },
+            {
+              "actuator_id": "rear_left_hip_motor",
+              "joint_id": "rear_left_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.056373748293126996
+            },
+            {
+              "actuator_id": "rear_left_knee_motor",
+              "joint_id": "rear_left_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.046123975876194816
+            },
+            {
+              "actuator_id": "rear_right_hip_motor",
+              "joint_id": "rear_right_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.056373748293126996
+            },
+            {
+              "actuator_id": "rear_right_knee_motor",
+              "joint_id": "rear_right_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.046123975876194816
+            }
+          ],
+          "contact_sites": [
+            {
+              "contact_site_id": "front_left_foot",
+              "body_id": "front_left_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            },
+            {
+              "contact_site_id": "front_right_foot",
+              "body_id": "front_right_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            },
+            {
+              "contact_site_id": "rear_left_foot",
+              "body_id": "rear_left_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            },
+            {
+              "contact_site_id": "rear_right_foot",
+              "body_id": "rear_right_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            }
+          ]
+        },
+        "descriptor": {
+          "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+          "morphology_id": "qsdk_r05_generated_s169",
+          "torso_length_scale": 1.0041015625,
+          "torso_width_scale": 1.0031893004115227,
+          "upper_length_fraction": 0.5219571428571428,
+          "hip_span_scale": 0.9856413994169096,
+          "foot_radius_scale": 0.9987180691209617,
+          "front_limb_mass_scale": 0.975022758306782
+        },
+        "ordered_actuators": [
+          "front_left_hip_motor",
+          "front_left_knee_motor",
+          "front_right_hip_motor",
+          "front_right_knee_motor",
+          "rear_left_hip_motor",
+          "rear_left_knee_motor",
+          "rear_right_hip_motor",
+          "rear_right_knee_motor"
+        ],
+        "velocity_gains": [
+          7.5,
+          7.5,
+          10.0,
+          10.0,
+          7.5,
+          7.5,
+          10.0,
+          10.0
+        ],
+        "force_ranges": [
+          [
+            -4.826362653618571,
+            4.826362653618571
+          ],
+          [
+            -3.948842171142467,
+            3.948842171142467
+          ],
+          [
+            -6.435150204824762,
+            6.435150204824762
+          ],
+          [
+            -5.265122894856622,
+            5.265122894856622
+          ],
+          [
+            -5.07363734638143,
+            5.07363734638143
+          ],
+          [
+            -4.151157828857533,
+            4.151157828857533
+          ],
+          [
+            -6.764849795175239,
+            6.764849795175239
+          ],
+          [
+            -5.534877105143378,
+            5.534877105143378
+          ]
+        ],
+        "reference_root_height_m": 0.4399487227648385,
+        "handoff_command": 60,
+        "source_bindings": {
+          "hierarchical_force_policy_v7.py": "86a377fef42752269dd0e1de291a84dde894d0ee3ac5fbd7f30fb438eb6246cb",
+          "proximal_primary_fallback_component_v2.py": "80f3bc8ef60e079f4e19726ca892d8a000cd17552e59d6f7432ff93af4b4e027",
+          "proximal_primary_contact_component_v2.py": "0dd7cca9be3820041dc406fd0f8c512b86c4cbdb4128957458cf6ae6dc70dd20",
+          "generic_proximal_least_squares.py": "9223fbef977fab09b7043f545fbdd4a77690c6eab83cfbd55d860dcf42d9eea9",
+          "refined_fallback_contact_component.py": "17a75386fd23182d0a4794d33e9aabcf5080855715290fad8f297c762e6daae7",
+          "refined_primary_contact_component.py": "58a7a209ac33df2799f64a0014616176d132d009b9beaf1f1fa865e009c76247",
+          "primary_active_refinement.py": "f6004aa591bb41904515b5985335c810fb1d26d5bd9b5ba476576753ac0552d8",
+          "conditioned_contact_component.py": "16b48d1b8baab40a3395e3abe6d4afa7aa0ce58894db29df2eb1f480c340216b",
+          "hierarchical_nullspace_component.py": "ffdb640311dcc4daffec2515f5f7230c90fdb8e177a1cbfb8070db3b00a60987",
+          "generic_proximal_contact_component.py": "1ce1ce70884df59e838da62ab6df774839ab4d499580a6d7c241a5c4fa70f56f",
+          "generic_proximal_qp_solver.py": "b85655f2234c6ec2690f0c03c8912758abdc3a0112c609f9af699211864f3537",
+          "proxqp_dependencies_v1.json": "657f06e16eac5e1951a84c92a746f026a41a28cbe91a5e436250becd59ac1177",
+          "generic_proxqp_backend.py": "22b502f4cb5574b3f3faa57d53fc0457dc438d6d3bef80f553c72e7c969a8c22",
+          "hierarchical_contact_component.py": "cf31c557e653fde844f8c322425b54e4ec31e315502d1db303d312b8f521c348",
+          "hierarchical_least_squares_qp.py": "72647a02cd76d6a98ace87643870c8388b841adaa18ea363ed1808a3ac7e16af",
+          "switching_contact_component.py": "e36890d71e419fdce180a784ca8f401f90d700c10af71f017d6888f67974f543",
+          "contact_priority_component.py": "c30362702482c0d720d7b9873512e5002dce6181dcc16a7e071873dd8e326b4f",
+          "dynamic_inverse_dynamics_v2.py": "fc1af69ced41dae9ca1e4d2225effa62f741b97613c932a13a0b9349008457db",
+          "dynamic_qp_solver_v2.py": "ab6c4ce053128bb7451aeb9737555da29482d2ac3ca69430e9af945ce49e4399",
+          "floating_base_dynamics.py": "ff00eb017a05f8a4f4b04dcef6d5c428fc355a1bafe16e864b9e650f57e5cdb3",
+          "actuation_recovery_mechanics.py": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+          "support_reach_geometry.py": "f15a1bb0db8783dc08cbae34ef8b64e5551112fab339bc61b03e8c937077df92"
+        },
+        "capability_source": "configured_reference_not_estimated",
+        "trained": false,
+        "held_interval_force_guaranteed": false,
+        "dynamic_feasibility_established": false,
+        "physical_acceptance_authority": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false
+      },
+      "core_sha256s": [
+        "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+        "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977"
+      ],
+      "commands_per_core": 92,
+      "unchanged_prefix_commands": 60,
+      "hierarchical_commands_per_core": 32,
+      "solver_routes_per_core": {
+        "original_generic": 30,
+        "refined_primary": 1,
+        "proximal_primary": 1
+      },
+      "cores_bitwise_identical": true
+    },
+    {
+      "case": {
+        "attempt_id": "sdk2-support-reach-native-1b8cdaeebbb246079d7cf5737cfa4dd8",
+        "trial_id": "reach_hold_nominal_train_001",
+        "commands": 62,
+        "kind": "nominal_handoff"
+      },
+      "profile": {
+        "schema_version": "locolemotion_hierarchical_force_profile_v7",
+        "parameters": {
+          "reference_joint_positions_rad": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_inertia_kg_m2": [
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01,
+            0.01
+          ],
+          "maximum_absolute_correction_rad_s": 3.5,
+          "maximum_slew_per_command_rad_s": 0.08,
+          "dynamic": {
+            "com_kp_per_s2": [
+              12.0,
+              25.0,
+              12.0
+            ],
+            "com_kd_per_s": [
+              7.0,
+              10.0,
+              7.0
+            ],
+            "com_acceleration_limit_m_s2": [
+              8.0,
+              10.0,
+              8.0
+            ],
+            "orientation_kp_per_s2": [
+              30.0,
+              12.0,
+              30.0
+            ],
+            "orientation_kd_per_s": [
+              10.0,
+              6.0,
+              10.0
+            ],
+            "angular_acceleration_limit_rad_s2": [
+              30.0,
+              15.0,
+              30.0
+            ],
+            "joint_kp_per_s2": 20.0,
+            "joint_kd_per_s": 8.0,
+            "joint_acceleration_limit_rad_s2": 80.0,
+            "contact_velocity_gain_per_s": 30.0,
+            "contact_acceleration_limit_m_s2": 20.0,
+            "airborne_height_kp_per_s2": 40.0,
+            "airborne_velocity_kd_per_s": 12.0,
+            "airborne_acceleration_limit_m_s2": 15.0,
+            "com_weight": 4.0,
+            "orientation_weight": 8.0,
+            "joint_weight": 0.3,
+            "contact_weight": 10.0,
+            "airborne_weight": 2.0,
+            "acceleration_regularization": 0.001,
+            "force_regularization": 0.0001,
+            "torque_regularization": 0.001,
+            "friction_coefficient": 0.95,
+            "maximum_normal_force_n": 70.0,
+            "contact_acceleration_is_soft_task": true,
+            "friction_pyramid": "inscribed square in flat xz tangent plane"
+          },
+          "hierarchy": {
+            "previous": {
+              "original": {
+                "timestep_s": 0.0016666666666666668,
+                "hold_steps": 5,
+                "joint_speed_planning_cap_rad_s": 3.5,
+                "joint_position_margin_rad": 0.005833333333333334,
+                "regime_force_margin_nm": 1e-05,
+                "support_constraint": "first minimize unweighted supporting-point acceleration error; then freeze attained vector",
+                "regime_selection": "bounded deterministic five-step pattern search",
+                "frozen_coefficients": true,
+                "constant_contact_force": true,
+                "future_contact_force_measured": false,
+                "recursive_feasibility_established": false,
+                "physical_acceptance_authority": false,
+                "maximum_patterns": 8,
+                "initial_patterns": [
+                  "vertical_bias_share_midpoint",
+                  "zero_contact_midpoint",
+                  "fixed_interval"
+                ],
+                "proposal_can_issue_command": false,
+                "selection": "first certified two-level hierarchy",
+                "complete_pattern_search": false,
+                "global_optimality_established": false,
+                "eliminate_initial_acceleration": true,
+                "full_coordinate_certificate_required": true,
+                "contact_target_is_hard": false,
+                "hard_motor_joint_force_bounds": true,
+                "hierarchy_scope": "within selected five-step motor pattern",
+                "objective_regularization_at_first_level": 0.0,
+                "secondary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+                "secondary_coordinates": "initial dynamics eliminated; attained support equalities retained",
+                "closest_feasible_relaxation": false,
+                "original_full_coordinate_acceptance_unchanged": true
+              },
+              "refined": {
+                "timestep_s": 0.0016666666666666668,
+                "hold_steps": 5,
+                "joint_speed_planning_cap_rad_s": 3.5,
+                "joint_position_margin_rad": 0.005833333333333334,
+                "regime_force_margin_nm": 1e-05,
+                "support_constraint": "first minimize unweighted supporting-point acceleration error; then freeze attained vector",
+                "regime_selection": "bounded deterministic five-step pattern search",
+                "frozen_coefficients": true,
+                "constant_contact_force": true,
+                "future_contact_force_measured": false,
+                "recursive_feasibility_established": false,
+                "physical_acceptance_authority": false,
+                "maximum_patterns": 8,
+                "initial_patterns": [
+                  "vertical_bias_share_midpoint",
+                  "zero_contact_midpoint",
+                  "fixed_interval"
+                ],
+                "proposal_can_issue_command": false,
+                "selection": "first certified two-level hierarchy",
+                "complete_pattern_search": false,
+                "global_optimality_established": false,
+                "eliminate_initial_acceleration": true,
+                "full_coordinate_certificate_required": true,
+                "contact_target_is_hard": false,
+                "hard_motor_joint_force_bounds": true,
+                "hierarchy_scope": "within selected five-step motor pattern",
+                "objective_regularization_at_first_level": 0.0,
+                "secondary_coordinates": "nullspace of dynamics and attained support equalities",
+                "nullspace_rank_rule": "machine epsilon times maximum matrix dimension times largest singular value",
+                "secondary_full_duals_reconstructed": true,
+                "secondary_conditioning": "inverse transpose of the reduced Hessian Cholesky factor",
+                "secondary_regularization": 0.0,
+                "original_objective_and_bounds_preserved": true,
+                "secondary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+                "closest_feasible_relaxation": false,
+                "original_full_coordinate_acceptance_unchanged": true,
+                "primary_refinement": {
+                  "active_dual_threshold": 1e-08,
+                  "primary_feasibility_absolute_guard": 1e-12,
+                  "active_equality_absolute_guard": 1e-12,
+                  "dual_sign_absolute_guard": 1e-12,
+                  "refinement_passes": 1,
+                  "objective_regularization": 0.0,
+                  "active_selection": "equalities, nonzero duals, and violated bounds",
+                  "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+                }
+              },
+              "route": "original certified generic hierarchy, then refined-primary hierarchy after bounded refusal",
+              "maximum_routes": 2,
+              "maximum_total_patterns": 16,
+              "maximum_total_qp_solves": 32,
+              "command_specific_selection": false,
+              "acceptance_tolerances_changed": false
+            },
+            "alternate": {
+              "timestep_s": 0.0016666666666666668,
+              "hold_steps": 5,
+              "joint_speed_planning_cap_rad_s": 3.5,
+              "joint_position_margin_rad": 0.005833333333333334,
+              "regime_force_margin_nm": 1e-05,
+              "support_constraint": "first minimize unweighted supporting-point acceleration error; then freeze attained vector",
+              "regime_selection": "bounded deterministic five-step pattern search",
+              "frozen_coefficients": true,
+              "constant_contact_force": true,
+              "future_contact_force_measured": false,
+              "recursive_feasibility_established": false,
+              "physical_acceptance_authority": false,
+              "maximum_patterns": 8,
+              "initial_patterns": [
+                "vertical_bias_share_midpoint",
+                "zero_contact_midpoint",
+                "fixed_interval"
+              ],
+              "proposal_can_issue_command": false,
+              "selection": "first certified two-level hierarchy",
+              "complete_pattern_search": false,
+              "global_optimality_established": false,
+              "eliminate_initial_acceleration": true,
+              "full_coordinate_certificate_required": true,
+              "contact_target_is_hard": false,
+              "hard_motor_joint_force_bounds": true,
+              "hierarchy_scope": "within selected five-step motor pattern",
+              "objective_regularization_at_first_level": 0.0,
+              "secondary_coordinates": "nullspace of dynamics and attained support equalities",
+              "nullspace_rank_rule": "machine epsilon times maximum matrix dimension times largest singular value",
+              "secondary_full_duals_reconstructed": true,
+              "secondary_conditioning": "inverse transpose of the reduced Hessian Cholesky factor",
+              "secondary_regularization": 0.0,
+              "original_objective_and_bounds_preserved": true,
+              "primary_selection": "retain accepted seed satisfying reduced/full strict guard; otherwise refine",
+              "primary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+              "primary_objective_regularization": 0.0,
+              "secondary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+              "closest_feasible_relaxation": false,
+              "original_full_coordinate_acceptance_unchanged": true,
+              "primary_refinement": {
+                "active_dual_threshold": 1e-08,
+                "primary_feasibility_absolute_guard": 1e-12,
+                "active_equality_absolute_guard": 1e-12,
+                "dual_sign_absolute_guard": 1e-12,
+                "refinement_passes": 1,
+                "objective_regularization": 0.0,
+                "active_selection": "equalities, nonzero duals, and violated bounds",
+                "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+              }
+            },
+            "route": "unchanged bounded predecessor, then proximal primary only after explicit numerical refusal",
+            "maximum_routes": 3,
+            "maximum_total_patterns": 24,
+            "maximum_total_qp_solves": 48,
+            "command_specific_selection": false,
+            "acceptance_tolerances_changed": false
+          }
+        },
+        "reference_parameters": {
+          "maximum_com_lowering_m": 0.1,
+          "maximum_com_reference_lowering_speed_m_s": 0.2,
+          "touchdown_clearance_margin_m": 0.003,
+          "controller_dt_s": 0.008333333333333333,
+          "automatic_height_raise": false
+        },
+        "solver_runtime": {
+          "numpy": "2.4.6",
+          "scipy": "1.17.1",
+          "osqp": "1.1.3",
+          "proxsuite": "0.7.2",
+          "cmeel": "0.61.0"
+        },
+        "solver_settings": {
+          "previous": {
+            "original": {
+              "priority": {
+                "verbose": false,
+                "warm_starting": false,
+                "polishing": true,
+                "scaling": 10,
+                "adaptive_rho": true,
+                "adaptive_rho_interval": 50,
+                "adaptive_rho_tolerance": 5.0,
+                "max_iter": 20000,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "eps_prim_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "check_termination": 25,
+                "scaled_termination": false,
+                "polish_refine_iter": 3
+              },
+              "secondary": {
+                "verbose": false,
+                "compute_timings": false,
+                "max_iter": 20000,
+                "max_iter_in": 1500,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "check_duality_gap": true,
+                "eps_duality_gap_abs": 1e-11,
+                "eps_duality_gap_rel": 1e-11,
+                "eps_primal_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "primal_infeasibility_solving": false
+              },
+              "secondary_backend": "generic.dense.PrimalDualLDLT",
+              "secondary_initial_guess": "NO_INITIAL_GUESS"
+            },
+            "refined": {
+              "priority": {
+                "verbose": false,
+                "warm_starting": false,
+                "polishing": true,
+                "scaling": 10,
+                "adaptive_rho": true,
+                "adaptive_rho_interval": 50,
+                "adaptive_rho_tolerance": 5.0,
+                "max_iter": 20000,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "eps_prim_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "check_termination": 25,
+                "scaled_termination": false,
+                "polish_refine_iter": 3
+              },
+              "primary_refinement": {
+                "active_dual_threshold": 1e-08,
+                "primary_feasibility_absolute_guard": 1e-12,
+                "active_equality_absolute_guard": 1e-12,
+                "dual_sign_absolute_guard": 1e-12,
+                "refinement_passes": 1,
+                "objective_regularization": 0.0,
+                "active_selection": "equalities, nonzero duals, and violated bounds",
+                "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+              },
+              "secondary": {
+                "verbose": false,
+                "compute_timings": false,
+                "max_iter": 20000,
+                "max_iter_in": 1500,
+                "eps_abs": 1e-11,
+                "eps_rel": 1e-11,
+                "check_duality_gap": true,
+                "eps_duality_gap_abs": 1e-11,
+                "eps_duality_gap_rel": 1e-11,
+                "eps_primal_inf": 1e-08,
+                "eps_dual_inf": 1e-08,
+                "primal_infeasibility_solving": false
+              },
+              "secondary_backend": "generic.dense.PrimalDualLDLT",
+              "secondary_initial_guess": "NO_INITIAL_GUESS",
+              "secondary_coordinates": "conditioned nullspace of dynamics and attained support equalities"
+            }
+          },
+          "alternate": {
+            "priority": {
+              "verbose": false,
+              "compute_timings": false,
+              "max_iter": 20000,
+              "max_iter_in": 1500,
+              "eps_abs": 1e-11,
+              "eps_rel": 1e-11,
+              "check_duality_gap": true,
+              "eps_duality_gap_abs": 1e-11,
+              "eps_duality_gap_rel": 1e-11,
+              "eps_primal_inf": 1e-08,
+              "eps_dual_inf": 1e-08,
+              "primal_infeasibility_solving": false
+            },
+            "primary_refinement": {
+              "active_dual_threshold": 1e-08,
+              "primary_feasibility_absolute_guard": 1e-12,
+              "active_equality_absolute_guard": 1e-12,
+              "dual_sign_absolute_guard": 1e-12,
+              "refinement_passes": 1,
+              "objective_regularization": 0.0,
+              "active_selection": "equalities, nonzero duals, and violated bounds",
+              "rank_rule": "machine epsilon times maximum matrix dimension times largest singular value"
+            },
+            "secondary": {
+              "verbose": false,
+              "compute_timings": false,
+              "max_iter": 20000,
+              "max_iter_in": 1500,
+              "eps_abs": 1e-11,
+              "eps_rel": 1e-11,
+              "check_duality_gap": true,
+              "eps_duality_gap_abs": 1e-11,
+              "eps_duality_gap_rel": 1e-11,
+              "eps_primal_inf": 1e-08,
+              "eps_dual_inf": 1e-08,
+              "primal_infeasibility_solving": false
+            },
+            "secondary_backend": "generic.dense.PrimalDualLDLT",
+            "secondary_initial_guess": "NO_INITIAL_GUESS",
+            "secondary_coordinates": "conditioned nullspace of dynamics and attained support equalities"
+          }
+        },
+        "native_readback_sha256": "e042080786791f93611e353f719cd3c8cff701b1a15be4ceddb3dc35fbf8b247",
+        "morphology_spec": {
+          "schema_version": "sporespore_morphology_spec_v1",
+          "coordinate_frame_id": "right_handed_x_forward_y_up_z_right_si_v1",
+          "topology_family": "bounded_quadruped_gq15",
+          "bodies": [
+            {
+              "body_id": "torso",
+              "parent_body_id": null,
+              "mass_kg": 3.0,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.029363552574980106,
+                "y": 0.08877729931341394,
+                "z": 0.06661374673843384
+              },
+              "collision": {
+                "kind": "box",
+                "size_m": {
+                  "x": 0.50205078125,
+                  "y": 0.12,
+                  "z": 0.3210205761316873
+                }
+              }
+            },
+            {
+              "body_id": "front_left_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.2437556895766955,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007087716529154633,
+                "y": 6.170065892410104e-05,
+                "z": 0.0007087716529154633
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "front_left_distal",
+              "parent_body_id": "front_left_upper",
+              "mass_kg": 0.17550409649522075,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.00047944809562895646,
+                "y": 0.000140043533334338,
+                "z": 0.00047944809562895646
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            },
+            {
+              "body_id": "front_right_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.2437556895766955,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007087716529154633,
+                "y": 6.170065892410104e-05,
+                "z": 0.0007087716529154633
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "front_right_distal",
+              "parent_body_id": "front_right_upper",
+              "mass_kg": 0.17550409649522075,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.00047944809562895646,
+                "y": 0.000140043533334338,
+                "z": 0.00047944809562895646
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            },
+            {
+              "body_id": "rear_left_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.25624431042330453,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007450849814595362,
+                "y": 6.486184107589895e-05,
+                "z": 0.0007450849814595362
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "rear_left_distal",
+              "parent_body_id": "rear_left_upper",
+              "mass_kg": 0.18449590350477926,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0005040122216698168,
+                "y": 0.00014721854776320823,
+                "z": 0.0005040122216698168
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            },
+            {
+              "body_id": "rear_right_upper",
+              "parent_body_id": "torso",
+              "mass_kg": 0.25624431042330453,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0007450849814595362,
+                "y": 6.486184107589895e-05,
+                "z": 0.0007450849814595362
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.0225,
+                "length_m": 0.18268499999999996
+              }
+            },
+            {
+              "body_id": "rear_right_distal",
+              "parent_body_id": "rear_right_upper",
+              "mass_kg": 0.18449590350477926,
+              "center_of_mass_local_m": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "inertia_diagonal_kg_m2": {
+                "x": 0.0005040122216698168,
+                "y": 0.00014721854776320823,
+                "z": 0.0005040122216698168
+              },
+              "collision": {
+                "kind": "capsule",
+                "radius_m": 0.03994872276483847,
+                "length_m": 0.16731500000000002
+              }
+            }
+          ],
+          "joints": [
+            {
+              "joint_id": "front_left_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "front_left_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.19712827988338194,
+                "y": -0.05,
+                "z": -0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "front_left_knee",
+              "parent_body_id": "front_left_upper",
+              "child_body_id": "front_left_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "front_right_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "front_right_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.19712827988338194,
+                "y": -0.05,
+                "z": 0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "front_right_knee",
+              "parent_body_id": "front_right_upper",
+              "child_body_id": "front_right_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_left_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "rear_left_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": -0.19712827988338194,
+                "y": -0.05,
+                "z": -0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_left_knee",
+              "parent_body_id": "rear_left_upper",
+              "child_body_id": "rear_left_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_right_hip",
+              "parent_body_id": "torso",
+              "child_body_id": "rear_right_upper",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": -0.19712827988338194,
+                "y": -0.05,
+                "z": 0.17741545189504374
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.09134249999999998,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.72,
+              "upper_limit_rad": 0.72,
+              "passive_damping_nms_per_rad": 0.0
+            },
+            {
+              "joint_id": "rear_right_knee",
+              "parent_body_id": "rear_right_upper",
+              "child_body_id": "rear_right_distal",
+              "joint_type": "revolute",
+              "anchor_parent_m": {
+                "x": 0.0,
+                "y": -0.09134249999999998,
+                "z": 0.0
+              },
+              "anchor_child_m": {
+                "x": 0.0,
+                "y": 0.08365750000000001,
+                "z": 0.0
+              },
+              "axis_parent_unit": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0
+              },
+              "lower_limit_rad": -0.15,
+              "upper_limit_rad": 1.1,
+              "passive_damping_nms_per_rad": 0.0
+            }
+          ],
+          "limbs": [
+            {
+              "limb_id": "front_left",
+              "semantic_role": "front_left",
+              "root_body_id": "front_left_upper",
+              "terminal_body_id": "front_left_distal",
+              "ordered_joint_ids": [
+                "front_left_hip",
+                "front_left_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "front_left_foot"
+              ],
+              "nominal_phase_fraction": 0.25
+            },
+            {
+              "limb_id": "front_right",
+              "semantic_role": "front_right",
+              "root_body_id": "front_right_upper",
+              "terminal_body_id": "front_right_distal",
+              "ordered_joint_ids": [
+                "front_right_hip",
+                "front_right_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "front_right_foot"
+              ],
+              "nominal_phase_fraction": 0.75
+            },
+            {
+              "limb_id": "rear_left",
+              "semantic_role": "rear_left",
+              "root_body_id": "rear_left_upper",
+              "terminal_body_id": "rear_left_distal",
+              "ordered_joint_ids": [
+                "rear_left_hip",
+                "rear_left_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "rear_left_foot"
+              ],
+              "nominal_phase_fraction": 0.0
+            },
+            {
+              "limb_id": "rear_right",
+              "semantic_role": "rear_right",
+              "root_body_id": "rear_right_upper",
+              "terminal_body_id": "rear_right_distal",
+              "ordered_joint_ids": [
+                "rear_right_hip",
+                "rear_right_knee"
+              ],
+              "ordered_contact_site_ids": [
+                "rear_right_foot"
+              ],
+              "nominal_phase_fraction": 0.5
+            }
+          ],
+          "actuators": [
+            {
+              "actuator_id": "front_left_hip_motor",
+              "joint_id": "front_left_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.05362625170687301
+            },
+            {
+              "actuator_id": "front_left_knee_motor",
+              "joint_id": "front_left_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.04387602412380519
+            },
+            {
+              "actuator_id": "front_right_hip_motor",
+              "joint_id": "front_right_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.05362625170687301
+            },
+            {
+              "actuator_id": "front_right_knee_motor",
+              "joint_id": "front_right_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.04387602412380519
+            },
+            {
+              "actuator_id": "rear_left_hip_motor",
+              "joint_id": "rear_left_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.056373748293126996
+            },
+            {
+              "actuator_id": "rear_left_knee_motor",
+              "joint_id": "rear_left_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.046123975876194816
+            },
+            {
+              "actuator_id": "rear_right_hip_motor",
+              "joint_id": "rear_right_hip",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.72,
+              "maximum_target_position_rad": 0.72,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.056373748293126996
+            },
+            {
+              "actuator_id": "rear_right_knee_motor",
+              "joint_id": "rear_right_knee",
+              "mode": "position_velocity",
+              "minimum_target_position_rad": -0.15,
+              "maximum_target_position_rad": 1.1,
+              "maximum_target_speed_rad_s": 3.5,
+              "maximum_impulse_nms": 0.046123975876194816
+            }
+          ],
+          "contact_sites": [
+            {
+              "contact_site_id": "front_left_foot",
+              "body_id": "front_left_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            },
+            {
+              "contact_site_id": "front_right_foot",
+              "body_id": "front_right_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            },
+            {
+              "contact_site_id": "rear_left_foot",
+              "body_id": "rear_left_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            },
+            {
+              "contact_site_id": "rear_right_foot",
+              "body_id": "rear_right_distal",
+              "local_center_m": {
+                "x": 0.0,
+                "y": -0.08365750000000001,
+                "z": 0.0
+              },
+              "radius_m": 0.03994872276483847,
+              "material": {
+                "material_id": "reference_rough_absorbent",
+                "friction_coefficient": 1.8,
+                "restitution": 0.0
+              },
+              "can_support": true
+            }
+          ]
+        },
+        "descriptor": {
+          "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+          "morphology_id": "qsdk_r05_generated_s169",
+          "torso_length_scale": 1.0041015625,
+          "torso_width_scale": 1.0031893004115227,
+          "upper_length_fraction": 0.5219571428571428,
+          "hip_span_scale": 0.9856413994169096,
+          "foot_radius_scale": 0.9987180691209617,
+          "front_limb_mass_scale": 0.975022758306782
+        },
+        "ordered_actuators": [
+          "front_left_hip_motor",
+          "front_left_knee_motor",
+          "front_right_hip_motor",
+          "front_right_knee_motor",
+          "rear_left_hip_motor",
+          "rear_left_knee_motor",
+          "rear_right_hip_motor",
+          "rear_right_knee_motor"
+        ],
+        "velocity_gains": [
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0,
+          10.0
+        ],
+        "force_ranges": [
+          [
+            -6.435150204824762,
+            6.435150204824762
+          ],
+          [
+            -5.265122894856622,
+            5.265122894856622
+          ],
+          [
+            -6.435150204824762,
+            6.435150204824762
+          ],
+          [
+            -5.265122894856622,
+            5.265122894856622
+          ],
+          [
+            -6.764849795175239,
+            6.764849795175239
+          ],
+          [
+            -5.534877105143378,
+            5.534877105143378
+          ],
+          [
+            -6.764849795175239,
+            6.764849795175239
+          ],
+          [
+            -5.534877105143378,
+            5.534877105143378
+          ]
+        ],
+        "reference_root_height_m": 0.4399487227648385,
+        "handoff_command": 60,
+        "source_bindings": {
+          "hierarchical_force_policy_v7.py": "86a377fef42752269dd0e1de291a84dde894d0ee3ac5fbd7f30fb438eb6246cb",
+          "proximal_primary_fallback_component_v2.py": "80f3bc8ef60e079f4e19726ca892d8a000cd17552e59d6f7432ff93af4b4e027",
+          "proximal_primary_contact_component_v2.py": "0dd7cca9be3820041dc406fd0f8c512b86c4cbdb4128957458cf6ae6dc70dd20",
+          "generic_proximal_least_squares.py": "9223fbef977fab09b7043f545fbdd4a77690c6eab83cfbd55d860dcf42d9eea9",
+          "refined_fallback_contact_component.py": "17a75386fd23182d0a4794d33e9aabcf5080855715290fad8f297c762e6daae7",
+          "refined_primary_contact_component.py": "58a7a209ac33df2799f64a0014616176d132d009b9beaf1f1fa865e009c76247",
+          "primary_active_refinement.py": "f6004aa591bb41904515b5985335c810fb1d26d5bd9b5ba476576753ac0552d8",
+          "conditioned_contact_component.py": "16b48d1b8baab40a3395e3abe6d4afa7aa0ce58894db29df2eb1f480c340216b",
+          "hierarchical_nullspace_component.py": "ffdb640311dcc4daffec2515f5f7230c90fdb8e177a1cbfb8070db3b00a60987",
+          "generic_proximal_contact_component.py": "1ce1ce70884df59e838da62ab6df774839ab4d499580a6d7c241a5c4fa70f56f",
+          "generic_proximal_qp_solver.py": "b85655f2234c6ec2690f0c03c8912758abdc3a0112c609f9af699211864f3537",
+          "proxqp_dependencies_v1.json": "657f06e16eac5e1951a84c92a746f026a41a28cbe91a5e436250becd59ac1177",
+          "generic_proxqp_backend.py": "22b502f4cb5574b3f3faa57d53fc0457dc438d6d3bef80f553c72e7c969a8c22",
+          "hierarchical_contact_component.py": "cf31c557e653fde844f8c322425b54e4ec31e315502d1db303d312b8f521c348",
+          "hierarchical_least_squares_qp.py": "72647a02cd76d6a98ace87643870c8388b841adaa18ea363ed1808a3ac7e16af",
+          "switching_contact_component.py": "e36890d71e419fdce180a784ca8f401f90d700c10af71f017d6888f67974f543",
+          "contact_priority_component.py": "c30362702482c0d720d7b9873512e5002dce6181dcc16a7e071873dd8e326b4f",
+          "dynamic_inverse_dynamics_v2.py": "fc1af69ced41dae9ca1e4d2225effa62f741b97613c932a13a0b9349008457db",
+          "dynamic_qp_solver_v2.py": "ab6c4ce053128bb7451aeb9737555da29482d2ac3ca69430e9af945ce49e4399",
+          "floating_base_dynamics.py": "ff00eb017a05f8a4f4b04dcef6d5c428fc355a1bafe16e864b9e650f57e5cdb3",
+          "actuation_recovery_mechanics.py": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+          "support_reach_geometry.py": "f15a1bb0db8783dc08cbae34ef8b64e5551112fab339bc61b03e8c937077df92"
+        },
+        "capability_source": "configured_reference_not_estimated",
+        "trained": false,
+        "held_interval_force_guaranteed": false,
+        "dynamic_feasibility_established": false,
+        "physical_acceptance_authority": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false
+      },
+      "core_sha256s": [
+        "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+        "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977"
+      ],
+      "commands_per_core": 62,
+      "unchanged_prefix_commands": 60,
+      "hierarchical_commands_per_core": 2,
+      "solver_routes_per_core": {
+        "original_generic": 2
+      },
+      "cores_bitwise_identical": true
+    }
+  ],
+  "weak_previously_applied_hierarchical_commands_preserved_per_host": 31,
+  "weak_command89_refined_recovery_preserved": true,
+  "weak_command91_original_refusals_and_recovery_verified": true,
+  "certified_seed_independently_verified": true,
+  "both_predecessor_refusals_independently_reconstructed": true,
+  "nominal_public_handoff_verified": true,
+  "independent_row_certificates_verified": true,
+  "source_solver_component_unchanged": true,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "next_step": "Declare a distinct native successor using public v7 and its three-route independent reader. Verify the route and complete applicable safety gate from a clean pushed prospective freeze, then use fresh native worlds to test causal continuation past command91 and the nominal condition. Retained public replay does not establish native recovery benefit or Tier2/Tier3 qualification.",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "recovery_benefit_established": false,
+  "safe_backup_established": false,
+  "dynamic_feasibility_established": false,
+  "complete_comparison_established": false,
+  "nominal_condition_evaluated": false,
+  "alternative_actions_generated_observations": false,
+  "capability_estimated": false,
+  "physical_launch_authority": false,
+  "recursive_feasibility_established": false,
+  "held_contact_guaranteed": false,
+  "complete_saturation_regime_search": false
+}

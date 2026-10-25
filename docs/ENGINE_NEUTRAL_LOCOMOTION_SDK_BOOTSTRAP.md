@@ -9,7 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest primary-solver result: the [semidefinite primary and strict-seed checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
+Latest public integration: the [proximal primary public checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#proximal-primary-public-integration---2026-10-25)
+passes 191 controls and two identical readers over 308 commands per reader
+on two core builds. Both preserve all 31 prior applied hierarchy commands
+and apply command 91 through the new route; the nominal handoff also passes.
+Independent readers verify all three routes without invoking a QP solver.
+No new worlds ran. Next declare and gate a distinct causal native successor
+from a clean pushed freeze. Tier 2, Tier 3 and release remain unqualified.
+
+Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
 174 accept, all 171 previously accepted results are preserved, and three
 refusals recover, including latest native command 91. The initial mandatory
