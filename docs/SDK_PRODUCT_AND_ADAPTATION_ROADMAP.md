@@ -6219,3 +6219,53 @@ three-engine claim follows. It supplies an M20 design/input artifact; it does
 not prove the polished Explorer, alter the stable milestone mapping, or change
 a score. No physics process, model, world, native read, historical evaluator,
 or solver step ran.
+
+### Causal force recovery implementation and prospective native route - 2026-10-24
+
+The [new force provider](../sdk/discovery/causal_force_policy.py) computes bounded
+centroidal force/moment targets from prepared canonical state. A separate
+[rank-aware allocator](../sdk/discovery/causal_force_allocator.py) minimizes
+wrench error, force regularization and instantaneous actuator-interval violation
+under capped friction cones. It preserves residuals and makes no optimality or
+dynamic-feasibility certificate. Gravity compensation and joint posture/damping
+map through the verified mechanics and the unchanged public velocity resolver.
+Configured gains and force caps are explicit reference inputs, not learned
+capabilities. No current-solve measured contact force enters the policy.
+
+The [host](../sdk/discovery/causal_force_control.py) preserves the original
+challenge through command 59, then irreversibly switches provider at command 60.
+The baseline session, composition memory, global clock, actual applied residuals
+and issued-command history continue. The new provider has its own model and
+memory identity; no prior actor output is relabeled. Canonical contact geometry
+is bound in a versioned, hashed controller-context packet. Terminal provider
+errors preserve the fallback receipt and stop the host before solver transfer.
+
+The [component result](../sdk/discovery/causal_force_component_result_v1.json)
+records **58 passing controls**, **240 synthetic command steps**, **120 identical
+challenge-prefix commands**, and **120 force-policy commands**, reconstructed
+with both core DLLs and by two complete readers. Its attempt is
+`sdk2-causal-force-component-bf29cbc891ab41f2a3abf75aba48807a`; receipt SHA-256
+`b2dc31a2ba93ae5f552ef6ace9d236c26d6a3e69a066df37ce885d2c4ad08146`, audit and
+reconstruction SHA-256
+`f22a0cdf2812d3af2c185852b6cc76fed0c79941bcc3617e427f81605d56d219`.
+All original observation streams remain unchanged. Alternative commands did not
+generate those observations, so these are software integration checks, never
+recovery scores or causal trajectory evidence. Tracking and torque-interval
+residuals remain substantial and are retained without claiming feasibility.
+
+The [prospective native route](../sdk/discovery/causal_force_native_v1.json)
+declares four fresh CPU worlds: selected recovery and force reference for each
+of the exposed healthy and left-75% `train_001` groups, seed 104242001. Each runs
+one second, 120 commands and 600 internal steps with full contact capture. The
+paired first 60 commands and 300 internal samples must agree exactly; the
+prepared handoff observation must also agree. After handoff, each controller
+receives observations caused by its own resolved commands. Every row must replay
+through the other core and every contact force must reconstruct from raw solver
+data. This covers the production route, not long-horizon recovery or qualification.
+
+Ten new route controls and guarded zero-world runtime preflight pass in
+`sdk2-causal-force-native-75bd290525e94e05a0168052695e3266`, receipt SHA-256
+`168631999dec8a5687e89902f32b5325c99bc9bc99042e0add4f447c58f26b08`.
+Physical launch remains pending the clean published freeze and **431 complete
+prelaunch controls**. Reserved starts, learned-capability recovery, useful Tier 3
+memory, Tier 2/Tier 3 qualification and release authority remain open.

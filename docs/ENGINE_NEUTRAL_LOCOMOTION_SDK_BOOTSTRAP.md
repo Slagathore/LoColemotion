@@ -9,6 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest recovery implementation (2026-10-24): the [causal force provider and
+prospective route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-force-recovery-implementation-and-prospective-native-route---2026-10-24)
+now preserve the real command history through a fixed command-60 handoff, use
+configured actuator limits and canonical geometry, and resolve bounded velocity
+commands through the public core. **58 component controls**, two-core synthetic
+integration and **ten native-route controls** pass. Synthetic alternative actions
+did not generate the retained observations and establish no recovery benefit.
+The next action is the declared four-world route from a clean published freeze,
+after all **431 prelaunch controls**. Tier 2/Tier 3 and release remain unqualified.
+
 Latest recovery mechanics (2026-10-24): the [completed component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-mechanics-component---2026-10-24)
 passes **25 controls** and two full retained-data reconstructions across **240
 prepared states / 1,920 joint entries**, with zero new worlds. Portable geometry,

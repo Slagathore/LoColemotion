@@ -1,0 +1,64 @@
+{
+  "schema_version": "locolemotion_causal_force_component_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "synthetic_controller_integration",
+    "question_class": "development"
+  },
+  "parent_closure_sha256": "895eb93c0b4064dc2c3ff23b59cda7c04fd124bb72d7009bff00bef26b71b7ca",
+  "trials": [
+    "observer_on_left_075_train_001",
+    "observer_on_nominal_train_001"
+  ],
+  "commands_per_trial": 120,
+  "handoff_command": 60,
+  "prefix_commands": 120,
+  "force_commands": 120,
+  "core_reconstructions": 2,
+  "implementation_bindings": {
+    "causal_force_allocator.py": "bd4b7529b7dc44560db5862367f0619520b24a6b42b831c44414529d81dbe9c1",
+    "causal_force_policy.py": "6363bf1d268e2ed1fd2aa3cbc791eb5c0964454dc348bd3a2609b4b0e18d0a4e",
+    "causal_force_control.py": "b1bbcbc7132f8dc31b24f5a39fdf411396ec679836dd8218e31746ad3bf3a4ac",
+    "test_causal_force_allocator.py": "2a3c63efe5af5651875a0a931f950def0426cbe3702647bb4beb854271fd2fb0",
+    "test_causal_force_policy.py": "5461165fd9568e5e1fe7c78acbc74f66801208d96ae706273105f448f4d999a7",
+    "causal_force_component_audit.py": "25f57c0261bdd78fc8e421f866d17f652ca504f582bdd301c811f5a0d685ff4f",
+    "run_causal_force_component.py": "98a74da9ff7bb2092a334066443a0ce05c55bc332d1bd5121e7bf316151e653d"
+  },
+  "inherited_mechanics_sha256": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+  "safety_controls": [
+    {
+      "name": "mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "allocator",
+      "module": "test_causal_force_allocator",
+      "count": 17
+    },
+    {
+      "name": "policy",
+      "module": "test_causal_force_policy",
+      "count": 16
+    }
+  ],
+  "controls_required": 58,
+  "observation_source": "retained_original_trajectory",
+  "alternative_actions_generated_observations": false,
+  "synthetic": true,
+  "purpose": "host chronology, bounded commands and two-core reconstruction only",
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "physical_launch_authority": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "held_interval_force_guaranteed": false,
+  "recovery_benefit_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}
