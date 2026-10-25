@@ -21,6 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest support-reach diagnosis: the [completed retained-data reconstruction](#completed-support-reach-tracking-diagnosis---2026-10-25)
+shows that, by the weak candidate's last complete safe command, body lowering
+reduces the front-right reach bound by 5.95 cm while orientation-dependent geometry
+raises it by 12.78 cm. Only 1.84 mm of further joint-extension
+clearance remains at that pose. The next component couples body posture and
+supporting-contact kinematics, retaining rank/task residuals and the existing
+actuator limits. Twenty-two controls and two complete readers pass; zero worlds
+open. This diagnosis does not qualify a recovery controller or Tier 2/Tier 3.
+
 Latest support-reach result: the [completed paired native comparison](#completed-paired-support-reach-native-comparison---2026-10-25)
 passes all 511 safety controls and both full native replays. The weakened case
 still crosses the tilt limit: unchanged hold at 1.111667 s and reach hold at
@@ -6766,3 +6775,61 @@ realized lowering, allocated support wrench and actuator projection. Use that
 retained-data diagnosis to declare a distinct successor. Do not retune this
 consumed attempt or promote its short delay to safe-backup, capability,
 Tier 2, Tier 3, release or equivalence authority.
+
+### Completed support-reach tracking diagnosis - 2026-10-25
+
+The [diagnostic result](../sdk/discovery/reach_tracking_diagnostic_result_v1.json)
+binds attempt sdk2-reach-tracking-diagnostic-f893a856c5954bb4a5b4e753a561bbe9. Each reader first reopens the complete original
+four-world closure, then analyzes the first 140 commands and 700 internal steps
+per trial: 560 commands, 2,800 solver samples, 2,240 foot-geometry observations,
+4,480 prepared joint entries and 22,400 internal motor entries. All original
+traces remain retained. This posthoc prefix is diagnostic, not a changed
+physical horizon or acceptance interval.
+
+The shared safe comparison uses commands 60 through 132 inclusive (73 commands,
+365 solver steps per trial). Individual safe windows exclude the entire command
+containing the first violation: 73 commands for weak hold, 78 for weak reach hold,
+and 80 for each healthy run, censored at this diagnostic prefix. The broader
+140-command prefix explicitly includes both observed weak-case failures.
+
+At weak reach-hold command 137 (1.141667 s, before the failure at 1.158333 s):
+
+| Reconstructed quantity | Value |
+|---|---:|
+| Root-translation contribution to front-right minimum clearance since handoff | -5.948374 cm |
+| Orientation-dependent bounded-reach contribution | +12.778399 cm |
+| Net change in minimum clearance | +6.830025 cm |
+| Remaining minimum clearance to ground | 10.427747 cm |
+| Current clearance above the bounded joint minimum | 1.840951 mm |
+| Actual COM height minus requested height | 4.976958 cm |
+
+This is an exact fixed-morphology geometry identity, not dynamic causal
+attribution. The weak candidate's reference reaches its lowering floor for
+19 of 78 individually safe commands and retains a positive fixed-pose gap in
+all 78. Further extension has little clearance left at the last safe pose;
+a lower requested height alone does not establish realized posture correction.
+
+Over that same 78-command window, mean incremental absolute requested-torque
+error across all eight joints is 0.274479 Nm from force caps,
+0.022330 Nm from target-speed bounds, 0.002986 Nm
+from absolute residual bounds and 0.318279 Nm from residual slew.
+These are ordered, nested instantaneous projections, not independently causal
+effects or a justification for relaxing any bound. Signed force/moment errors,
+full contact transitions, geometry witnesses and per-window denominators remain
+in the result and retained audit.
+
+All 22 controls and two full reconstructions agree, opening zero worlds.
+The owner binds 676 source and 1,359 runtime artifacts. Native/canonical capsule
+joins differ by at most 9.03e-16 m; torque/wrench reconstruction errors remain
+below 8e-15 in their respective units.
+
+Result SHA-256: 4d7e736a90de6234ae7d248f2c7ba2c3d3c5e8df17b06f14e9a3989847f846f1.
+Receipt SHA-256: f9ac1fa69585a04e01381350d7b17869e6311998f7743deb8f7d63ae534fb361.
+Audit/reconstruction SHA-256: 21ee8686da813357e2fdfe24f08510c0a67231261ea630da193a650ddc2e841a.
+
+Next implement and test contact-constrained posture references using the
+[whole-body-control research lead](research/LOCOMOTION_RESEARCH_SOURCES.md#contact-constrained-posture-design-lead---2026-10-25).
+Keep the eight-actuator morphology, contact rank, joint bounds and current
+velocity/residual/force limits explicit. Start with analytical and retained-state
+checks. This diagnostic does not supply controller-adoption or native-launch
+evidence; a distinct prospective route supplies those checks and outcomes.

@@ -3046,3 +3046,27 @@ or a benefit of either cited research method. The implementation remains a
 bounded reference heuristic, not either paper's optimizer or certificate.
 Next diagnose actual pre-failure reference tracking, geometry and actuator
 projection; the failed outcome alone does not identify a causal remedy.
+
+### Contact-constrained posture design lead - 2026-10-25
+
+Primary source: Kim, Di Carlo, Katz, Bledt and Kim,
+[Highly Dynamic Quadruped Locomotion via Whole-Body Impulse Control and Model Predictive Control](https://arxiv.org/abs/1909.06586v1)
+(2019), Sections II and IV and the actuator configuration, consulted 2026-10-25;
+[paper](https://arxiv.org/pdf/1909.06586).
+
+The paper coordinates reaction-force planning with whole-body joint position,
+velocity and torque commands, using prioritized inverse kinematics and
+floating-base dynamics. This supplies a design lead for coherent posture and
+contact tasks. The present controller instead retains zero joint-position
+references on supporting legs while lowering its body reference. The
+[retained tracking diagnosis](../../sdk/discovery/reach_tracking_diagnostic_result_v1.json)
+shows orientation-dependent reach loss and unrealized height tracking, but does
+not prove that the supporting-leg reference causes either failure.
+
+Next investigate a bounded contact-constrained posture-reference component,
+retaining rank, task errors and joint/actuator constraints. This is an inference
+for a new component, not an implementation or reproduction of WBIC or MPC.
+Mini-Cheetah has twelve actuators and torque-command hardware; this fixture has
+eight sagittal actuators with bounded velocity/residual control. The paper's
+small-angle MPC assumptions, hardware results and dynamic-feasibility machinery
+cannot be imported as claims for this fixture.

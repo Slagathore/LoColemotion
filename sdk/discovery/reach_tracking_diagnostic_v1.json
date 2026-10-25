@@ -1,0 +1,89 @@
+{
+  "schema_version": "locolemotion_reach_tracking_diagnostic_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_reach_tracking_diagnostic",
+    "question_class": "development"
+  },
+  "parent_closure_path": "sdk/discovery/support_reach_native_closure_v1.json",
+  "parent_closure_sha256": "cbff1da78242c2e4fd757cbc2fac1e79072474756fdbfd8b874d32e001778029",
+  "implementation_bindings": {
+    "reach_tracking_diagnostic_metrics.py": "c5f0e89df9eb3a95ce95e6946ee00d2c3b443a8b53475416eecb59ef5306f01b",
+    "reach_tracking_diagnostic.py": "514f52d7c92b34ddaa10b00c2ba4d5e8d362e01f622790127072415d9a6bf0c8",
+    "test_reach_tracking_diagnostic.py": "aca10865c85bf20a5e1d54961c4a797fc9f99fb7bad71d2218533b96fb235091",
+    "run_reach_tracking_diagnostic.py": "b46b018e2942bb4cb9e3cb78f0036837ad9fe7223065fe9106db4e0a47f005ed"
+  },
+  "controls_required": 22,
+  "expected_trials": 4,
+  "expected_commands": 560,
+  "expected_internal_samples": 2800,
+  "expected_prepared_joint_entries": 4480,
+  "expected_internal_motor_entries": 22400,
+  "expected_force_policy_commands": 320,
+  "expected_authority_loss_joint_entries": 2560,
+  "windows": {
+    "declared_diagnostic_prefix": {
+      "commands_start_inclusive": 0,
+      "commands_end_exclusive": 140,
+      "internal_steps_start_inclusive": 1,
+      "internal_steps_end_inclusive": 700
+    },
+    "post_handoff_diagnostic_prefix": {
+      "commands_start_inclusive": 60,
+      "commands_end_exclusive": 140,
+      "internal_steps_start_inclusive": 301,
+      "internal_steps_end_inclusive": 700
+    },
+    "shared_pre_failure_complete_commands": {
+      "commands_start_inclusive": 60,
+      "commands_end_exclusive": 133,
+      "internal_steps_start_inclusive": 301,
+      "internal_steps_end_inclusive": 665
+    }
+  },
+  "common_window_selected_after_original_outcomes": true,
+  "earliest_original_violation_step": 667,
+  "common_window_ends_before_first_failure": true,
+  "complete_original_evidence_reopened": true,
+  "original_commands_per_trial": 1440,
+  "original_internal_rows_per_trial": 7200,
+  "diagnostic_prefix_commands_per_trial": 140,
+  "diagnostic_window_selected_after_outcomes": true,
+  "geometry_tolerance_m": 2e-10,
+  "post_failure_data_labeled_included_in_diagnostic_prefix_only": true,
+  "geometry_change_scope": "exact fixed-morphology minimum-height identity: root translation plus orientation-dependent bounded reach",
+  "geometry_identity_is_not_dynamic_causal_attribution": true,
+  "individual_safe_windows_exclude_entire_first_failing_command": true,
+  "contact_wrench_scope": "all signed robot contact forces and free torques about prepared whole-body COM",
+  "held_interval_wrench_scope": "same forces additionally shifted to the original command-prepared COM",
+  "solver_geometry_scope": "original contact geometry and qpos before integration; measured force from that solve",
+  "motor_scope": "unit-gear affine force at each original before_qvel; no held-interval force guarantee",
+  "authority_loss_scope": "telescoping absolute requested-torque error on nested instantaneous intervals",
+  "authority_loss_order": [
+    "force_cap",
+    "target_speed",
+    "absolute_residual",
+    "residual_slew"
+  ],
+  "relaxed_bounds_scope": "posthoc algebra on original states, not controller proposals or physical trials",
+  "static_joint_balance_scope": "motor plus gravity plus contact torque; omits inertia, Coriolis, passive and limit terms",
+  "force_and_moment_statistics_have_separate_units": true,
+  "absolute_tolerance": 1e-09,
+  "reader_world_build_count": 0,
+  "reader_solver_steps": 0,
+  "controller_selection_authority": false,
+  "comparison_data_used_for_fitting": false,
+  "comparison_data_used_for_selection": false,
+  "alternative_trajectory_simulated": false,
+  "causal_generalization": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

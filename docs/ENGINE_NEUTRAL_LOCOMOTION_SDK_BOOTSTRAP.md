@@ -9,6 +9,14 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest support-reach tracking diagnosis (2026-10-25): the [completed reconstruction](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-reach-tracking-diagnosis---2026-10-25)
+passes 22 controls and two complete readers without new worlds. At the weak
+candidate's last complete safe command, 5.95 cm of body lowering is outweighed
+by 12.78 cm of orientation-dependent reach change; only 1.84 mm of extra joint
+extension clearance remains. Next verify contact-constrained posture references
+with explicit rank, joint bounds and unchanged actuation limits. Recovery,
+Tier 2, Tier 3 and release remain unqualified.
+
 Latest support-reach result (2026-10-25): the [completed paired comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-paired-support-reach-native-comparison---2026-10-25)
 records 511 passed controls, four completed worlds and two agreeing native replays. The weak
 candidate still tips at 1.158333 s, versus 1.111667 s for unchanged hold; neither
