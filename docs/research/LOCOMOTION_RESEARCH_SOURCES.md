@@ -2849,6 +2849,26 @@ and compares fresh off/on worlds before any controller consumes the new loads.
 No external source implementation, model weights or performance claims are
 imported.
 
+The [completed local fixture](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contact-force-observer-fixture---2026-10-24)
+now verifies 1,200 captured steps and 2,349 active distal-ground contacts in
+four fresh CPU worlds. Off/on native motion is bitwise identical in both
+exposed groups; the original weakened failure remains unchanged. Inactive
+and other-body branches retain synthetic coverage only. No controller yet
+consumes these loads.
+
+The next local inference is to join measured loads and reachable actuation
+through an explicit mechanical model. MuJoCo's
+[point Jacobian](https://mujoco.readthedocs.io/en/3.11.0/APIreference/APIfunctions.html#mj-jac)
+maps generalized velocity to velocity at an actual body-attached contact
+point; force mapping uses its transpose. Its geometry must correspond to
+the same prepared state. The
+[actuation model](https://mujoco.readthedocs.io/en/3.11.0/computation/index.html#actuation-model)
+separates actuator output, transmission and generalized force. A successor
+must preserve these distinctions, actual velocity-command bounds and the
+age of the previous-solve contact measurement. Declared model knowledge must
+also remain distinguishable from learned motor-capability estimates. These
+are requirements for the next component, not a dynamic feasibility proof.
+
 ### Recovery action delivery and force-measurement boundaries - 2026-10-24
 
 The [complete recovery diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-action-and-support-diagnosis---2026-10-24)

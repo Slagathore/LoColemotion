@@ -1620,6 +1620,60 @@ The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
 
+### Completed contact-force observer fixture - 2026-10-24
+
+The [retained closure](../sdk/discovery/contact_force_observer_closure_v1.json)
+verifies the prospective four-world fixture from published `e7a4e3d2`.
+All **363 prelaunch controls** pass. Four fresh CPU worlds produce **480
+controller commands**, **2,400 internal samples** and **1,200 contact captures**.
+Both exposed motor conditions have fresh capture-off/on pairs with bitwise
+identical native traces and equal controller observations and commands.
+The two original independent readers agree exactly; a new retained reader
+reconstructs the complete result again with **14 closure controls**, zero new
+worlds and zero solver steps. It replays every controller row against the
+other core, checks every force against the original constraint vector, and
+reopens the complete **2,624-artifact** population, **597 source bindings**
+and **1,359 runtime bindings**.
+
+| One-second fixture | Weakened left motors | Nominal motors |
+| --- | ---: | ---: |
+| Captured internal samples | 600 | 600 |
+| Retained contacts | 1,152 | 1,197 |
+| Mean total distal-geometry normal load, full horizon | 43.949 N | 46.544 N |
+| Capture-off / capture-on loop wall time | 1.779 / 2.205 s | 2.008 / 2.418 s |
+| Preparation capture, guard, force capture and serialization | 0.167 s | 0.182 s |
+| First original physical violation, both roles | Tilt at 0.888333 s | None within 1 s |
+
+All **2,349 contacts** in these worlds are active mapped distal-ground
+contacts. The reader preserves all four mapped loads at every captured step,
+including zeros: **4,800 load entries**. Inactive and other-body contact
+branches have synthetic coverage only in this fixture. The mean loads above
+include the full horizon, including the weakened case after its original
+failure. Timing values are observed costs from one sequential pair per
+condition, not a repeated performance benchmark. The direct capture timings
+exclude native prepare/complete time; the full loop includes controller and
+other work, so its difference is not attributed solely to force capture.
+
+The native attempt is `sdk2-contact-observer-a007aecb7e4c403da02f1b00a11c6b1d`,
+receipt `04bd3c8673dd691ea672bd6d96ab707699e2553ce9d659fff00c5070ce1aa825`.
+The closure-control attempt is
+`sdk2-contact-observer-closure-controls-5dc73971e2124f64ae16c8c51b3ea014`,
+receipt `ddadf6e6dff731aa68408f4d8b99335db417541cf25316c6a9fb250452b0d30e`.
+Both remain in the durable evidence root. The closure and support matrix bind
+all original records, source identities and the fresh reconstruction.
+
+This completes the measurement and noninterference step. Original controller
+normal-load fields remain null, and the weakened failure is unchanged.
+There is no new force-aware controller, 12-second recovery result, safe
+backup, actuation-feasibility certificate, held-out qualification or Tier 3
+memory benefit. Next develop a distinct actuation-aware recovery component:
+explicit mechanical model and capability bounds, actual contact-point force
+to joint-torque mapping, reachable velocity commands after rate limits, and
+measurement age. Keep previous-solve loads distinct from current prepared
+state. Then freeze and test that component before bounded Tier 2 qualification
+or useful, reversible Tier 3 adaptation. The prospective record below remains
+as the prelaunch declaration.
+
 ### Prospective contact-force observer fixture - 2026-10-24
 
 The [observer contract](../sdk/discovery/contact_force_observer_v1.json)
