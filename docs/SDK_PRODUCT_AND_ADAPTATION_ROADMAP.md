@@ -6314,3 +6314,74 @@ the weakened pair. This should identify the constraint to address in a distinct
 successor before another physical campaign. The configured-capability reference
 has not learned actuator effectiveness. Reserved starts, long-horizon recovery,
 useful reversible Tier 3 memory, Tier 2/Tier 3 qualification and release remain open.
+
+### Completed force recovery constraint diagnosis - 2026-10-25
+
+The [complete retained diagnosis](../sdk/discovery/force_recovery_diagnostic_result_v1.json)
+reopens the four-world native closure and every original command/contact/trace
+stream. **Fourteen analytical and corruption controls** and two identical readers
+pass over **480 commands**, **2,400 internal samples**, **19,200 motor-force
+entries** and **960 force-policy joint requests**, with no new world or solver
+step. All original outcomes remain unchanged. Motor-force reconstruction differs
+by at most **7.11e-15 N m**, and prepared COM reconstruction by **2.23e-16 m**.
+The recorded commands reached the native actuators consistently with the declared
+unit-gear model; this finite check establishes no general dynamics accuracy.
+
+The shared diagnostic window is commands **60-105** and internal steps
+**301-530**: 46 prepared commands and 230 internal samples per world. It was
+chosen after observing the parent outcomes, and ends before the earliest original
+violation at step 533. Every full-horizon row is also retained and summarized;
+full-horizon statistics may contain post-failure data and are labeled separately.
+The healthy trajectories remain horizon-censored, with no invented failure time.
+
+Four nested instantaneous torque intervals separate the error added by force
+caps, final target-speed limits, absolute residual limits, and residual slew.
+The decomposition telescopes exactly on the original prepared states. Its
+reported aggregate is the sum of per-joint absolute torque errors averaged over
+46 commands, **not a physical net body torque**.
+
+| Additional constraint | Weakened force reference | Healthy force reference |
+| --- | ---: | ---: |
+| Motor force caps | 2.963 N m | 0.028 N m |
+| Final target-speed limits | 0.656 N m | 0.570 N m |
+| Absolute residual limits | 0.000 N m | 0.000 N m |
+| Residual slew | 4.223 N m | 2.327 N m |
+
+Removing a limit in this calculation only enlarges a mathematical interval on
+an already observed state. It does not simulate an alternative trajectory,
+authorize wider limits, prove causation of the fall, or establish a rescue.
+In particular, the zero added loss from absolute residual limits applies only
+to these requests and states; it is not a universal conclusion about that limit.
+
+Support and force tracking also distinguish the exposed weak trajectory. The
+weak force reference has **11/46 one-support commands**, while its healthy
+counterpart has **0/46**. The front-right foot provides no observed support in
+any of the four runs' shared windows. Rear-left hip force-cap occupancy is
+**140/230 internal samples** for the weak force reference and **108/230** for the
+healthy force reference. The force allocator's RMS vector error is **30.69 N**
+weak versus **7.90 N** healthy; the corresponding moment errors are **5.245 N m**
+and **1.405 N m**. Measured-minus-allocated errors at the first solve of each
+command are **14.87 N / 3.293 N m** weak and **8.06 N / 1.843 N m** healthy.
+Force and moment statistics retain their separate units and denominators.
+
+The reader uses the original pre-integration contact geometry and the measured
+force from that solve. It distinguishes moments about the current prepared COM
+from moments shifted to the original command-prepared COM across a held interval.
+Static joint-balance residuals omit inertia, Coriolis, passive and limit terms;
+they are not unexplained-force or full-dynamics certificates.
+
+Attempt `sdk2-force-recovery-diagnostic-e9addf34a8694542950f3c292575d9d8` retains
+628 source bindings and 1,359 runtime bindings. Receipt SHA-256:
+`f40c6fdd476e4182e70a642682f1b07b83158f2b43238cc71b4a4e91b605d054`.
+Both audit SHA-256 values:
+`f38d2d39a07fdc13630757a59d8eaa7fcf317575898a9aaf4d0f1ca6bbc5f762`.
+
+**Next controller question:** does a coherent recovery hold baseline reduce the
+conflict with continued walking and preserve front support? The existing motion
+protocol supplies a zero-amplitude `hold` command. A successor should align the
+motion command and support composition at the fixed handoff, preserve real
+history and the existing force policy/caps/residual bounds, and explicitly test
+the changed baseline transition. It requires fresh host integration checks and
+a prospective force-walk versus force-hold native fixture. No successor code or
+physical result is established by this diagnosis. Reserved starts, long-horizon
+recovery, learned capability, Tier 2/Tier 3 and release remain unqualified.

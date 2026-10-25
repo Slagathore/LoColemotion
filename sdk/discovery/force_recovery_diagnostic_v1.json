@@ -1,0 +1,81 @@
+{
+  "schema_version": "locolemotion_force_recovery_diagnostic_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_force_recovery_diagnostic",
+    "question_class": "development"
+  },
+  "parent_closure_path": "sdk/discovery/causal_force_native_closure_v1.json",
+  "parent_closure_sha256": "36ebe9f7fabe2307d7f95f8d6713d55261e429d0d67a757bcb16659369c4efea",
+  "implementation_bindings": {
+    "force_recovery_diagnostic_metrics.py": "092bc206edc02b181de9a6a7fc4f973dfc27180243b75e792341796f4d85197f",
+    "force_recovery_diagnostic.py": "17b4464a7e86d4c369cd6e1801f31a8dbd59c6013ae327f895fb5a1ceb823ccb",
+    "test_force_recovery_diagnostic.py": "223459ec39402c05af223563ccda2c6d0fff197632b72744e5b51be4e23b5d6e",
+    "run_force_recovery_diagnostic.py": "fcee1efdeb5a08d1f6e12689a645b69844765c8ef9c160b6c0ddf91ba3ec92f4"
+  },
+  "controls_required": 14,
+  "expected_trials": 4,
+  "expected_commands": 480,
+  "expected_internal_samples": 2400,
+  "expected_prepared_joint_entries": 3840,
+  "expected_internal_motor_entries": 19200,
+  "expected_force_policy_commands": 120,
+  "expected_authority_loss_joint_entries": 960,
+  "windows": {
+    "entire_declared_horizon": {
+      "commands_start_inclusive": 0,
+      "commands_end_exclusive": 120,
+      "internal_steps_start_inclusive": 1,
+      "internal_steps_end_inclusive": 600
+    },
+    "post_handoff_all": {
+      "commands_start_inclusive": 60,
+      "commands_end_exclusive": 120,
+      "internal_steps_start_inclusive": 301,
+      "internal_steps_end_inclusive": 600
+    },
+    "shared_pre_failure_complete_commands": {
+      "commands_start_inclusive": 60,
+      "commands_end_exclusive": 106,
+      "internal_steps_start_inclusive": 301,
+      "internal_steps_end_inclusive": 530
+    }
+  },
+  "common_window_selected_after_original_outcomes": true,
+  "earliest_original_violation_step": 533,
+  "common_window_ends_before_first_failure": true,
+  "all_original_horizon_rows_retained": true,
+  "post_failure_data_labeled_included_in_full_horizon_only": true,
+  "contact_wrench_scope": "all signed robot contact forces and free torques about prepared whole-body COM",
+  "held_interval_wrench_scope": "same forces additionally shifted to the original command-prepared COM",
+  "solver_geometry_scope": "original contact geometry and qpos before integration; measured force from that solve",
+  "motor_scope": "unit-gear affine force at each original before_qvel; no held-interval force guarantee",
+  "authority_loss_scope": "telescoping absolute requested-torque error on nested instantaneous intervals",
+  "authority_loss_order": [
+    "force_cap",
+    "target_speed",
+    "absolute_residual",
+    "residual_slew"
+  ],
+  "relaxed_bounds_scope": "posthoc algebra on original states, not controller proposals or physical trials",
+  "static_joint_balance_scope": "motor plus gravity plus contact torque; omits inertia, Coriolis, passive and limit terms",
+  "force_and_moment_statistics_have_separate_units": true,
+  "absolute_tolerance": 1e-09,
+  "reader_world_build_count": 0,
+  "reader_solver_steps": 0,
+  "controller_selection_authority": false,
+  "comparison_data_used_for_fitting": false,
+  "comparison_data_used_for_selection": false,
+  "alternative_trajectory_simulated": false,
+  "causal_generalization": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

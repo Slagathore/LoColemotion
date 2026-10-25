@@ -2948,3 +2948,23 @@ forces. The four native trajectories validate the production path and preserve
 the weakened-case failures. The prior static-feasibility and actuation references
 support the mechanics interpretation only; they do not establish recovery,
 cross-engine equivalence, long-horizon behavior or Tier 2/Tier 3 qualification.
+
+### Recovery command-authority diagnosis - 2026-10-25
+
+The [retained constraint diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-force-recovery-constraint-diagnosis---2026-10-25)
+uses nested instantaneous torque intervals to distinguish force-cap, target-speed,
+absolute-residual and residual-slew contributions to requested-torque error.
+The absolute errors telescope because each interval is contained in its predecessor.
+Analytical controls cover both torque signs, singleton intervals, infeasible
+nesting, contact-side signs and moment-origin changes. Relaxed intervals are
+post-hoc algebra only; they do not produce alternative physics or establish
+causal rescue. Measured contact-force discrepancies remain separate from command
+projection error, and static joint-balance residuals omit dynamic terms.
+
+The next implementation can reuse the existing zero-amplitude `hold` motion
+protocol and gait-target handling in `sdk/core/src/protocol.rs` and
+`sdk/core/src/runtime.rs`, with a distinct host and prospective evidence contract.
+Motion-command and support-composition consistency must be tested together;
+merely changing a displayed mode or resetting residual history is insufficient.
+This is an implementation question prompted by finite evidence, not a published
+algorithm's recovery guarantee or an already observed outcome.

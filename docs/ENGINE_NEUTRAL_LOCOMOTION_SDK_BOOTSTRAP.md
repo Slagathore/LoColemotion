@@ -9,6 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest recovery constraint diagnosis (2026-10-25): the [complete retained analysis](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-force-recovery-constraint-diagnosis---2026-10-25)
+passes **14 controls** and reconstructs **480 commands / 2,400 internal samples**
+with no new worlds. Native motor-force delivery agrees with the declared model
+within 7.11e-15 N m. In the shared pre-failure window, residual slew and motor
+force caps add the largest instantaneous torque errors to the weak candidate;
+absolute residual limits add none on those recorded states. The weak candidate
+also has 11/46 one-support commands, while the healthy candidate has none.
+These are finite diagnostics, not simulated rescues. Next implement and test a
+coherent recovery hold baseline with unchanged force-policy limits, then declare
+a distinct paired native fixture. Tier 2/Tier 3 and release remain unqualified.
+
 Latest causal recovery result (2026-10-25): the [completed native force route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-force-recovery-route---2026-10-25)
 passes **431 prelaunch controls**, four fresh CPU worlds, full raw reconstruction
 and **eight closure controls**. The new force policy preserves the original
