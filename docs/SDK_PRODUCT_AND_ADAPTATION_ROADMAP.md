@@ -21,6 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest contact-posture component: the [completed bounded reference and integration](#completed-bounded-contact-posture-component---2026-10-25)
+passes 46 controls and two complete two-core reconstructions without
+new worlds. It couples orientation, COM and joint references while preserving
+supporting-contact constraints, joint bounds and existing actuation limits.
+Two retained attempts exposed numerical rank failures; their source and
+failures remain archived. The controls now cover every retained posture input.
+Next declare a fresh reach-hold versus contact-posture native comparison.
+Synthetic commands do not establish recovery, Tier 2 or Tier 3 benefit.
+
 Latest support-reach diagnosis: the [completed retained-data reconstruction](#completed-support-reach-tracking-diagnosis---2026-10-25)
 shows that, by the weak candidate's last complete safe command, body lowering
 reduces the front-right reach bound by 5.95 cm while orientation-dependent geometry
@@ -6833,3 +6842,81 @@ Keep the eight-actuator morphology, contact rank, joint bounds and current
 velocity/residual/force limits explicit. Start with analytical and retained-state
 checks. This diagnostic does not supply controller-adoption or native-launch
 evidence; a distinct prospective route supplies those checks and outcomes.
+
+### Completed bounded contact-posture component - 2026-10-25
+
+The [component result](../sdk/discovery/contact_posture_component_result_v1.json)
+binds attempt sdk2-contact-posture-component-49ac92568fdb419cac4dccce057f2ea7. Both readers first reopen the complete original
+four-world support-reach closure, then reconstruct 2,880 retained observations
+with two core DLLs: 5,760 synthetic commands per reader, 11,520 across both.
+Each reader also checks 11,520 limb-geometry observations. The original paired
+60-command prefixes remain identical; the successor's actions never generated
+these observations. All 46 controls pass, including independent
+exhaustive-face comparisons for 40 bounded solver cases, numerical point/COM
+Jacobians, rank-loss regressions and input/refusal boundaries. A dedicated
+control sweeps all 2,760 post-handoff posture inputs before the full readers. Zero worlds open.
+
+The new reference solves bounded tasks in priority order: supporting material
+points, upright orientation, COM, airborne feet and supported-leg posture.
+Each lower task preserves earlier achieved linear task images. Limits per
+reference are 0.025 m per virtual-base translation component, 0.08 rad per
+virtual rotation component and 0.25 rad per joint. Joint position bounds apply.
+Backtracking verifies no more than 0.5 mm nonlinear displacement at each
+supporting material point in the virtual reference. Existing force allocation,
+velocity, residual and residual-slew limits remain unchanged.
+
+| Retained trajectory | Solved reference commands | Joint-limit observation fallback | Unsupported fallback | Maximum solved contact drift |
+|---|---:|---:|---:|---:|
+| Weak reach hold | 878 | 477 | 25 | 0.454426 mm |
+| Healthy reach hold | 1380 | 0 | 0 | 0.442428 mm |
+
+The lowest-priority supported-posture task has zero remaining linear rank at
+all solved retained states (878 weak and 1,380 healthy). Orientation rank is
+also limited: the healthy trace has rank one in 1,297 of 1,380 solved states.
+These are reported kinematic restrictions, not full posture controllability;
+rank is computed before the active box constraints further restrict a task.
+
+Counts cover all 1,380 post-handoff observations per trajectory, including
+observations after the weak run's failure; they are not safe-duration or
+success counts. A joint-limit observation takes precedence over unsupported
+classification. Fallback preserves the previous policy's bounded reference
+and claims no contact solution or safe-backup capability. Task ranks and
+residuals remain explicit in each retained command and summarized in the result.
+
+Attempt sdk2-contact-posture-component-99fe9575f49144fab5675060304dd207 passed its
+44 controls but refused at command 60. The projected task's floating-point
+residue was misclassified as usable rank after contact and active-bound
+constraints removed its motion. The feasibility check rejected the step.
+The successor measures projected singular values against the original task
+scale; feasibility tolerances and physical limits are unchanged. Original
+source snapshots, partial output, refusal diagnosis and receipt hashes remain
+bound by the result.
+
+Attempt sdk2-contact-posture-component-48e2140ad7924e269d564351c93c31d8 passed
+46 controls but refused at command 73: a coordinate fixed by the equality space
+was treated as an independent blocking bound because of numerical residue.
+The corrected solver recognizes fixed coordinates using the declared nullspace
+rank threshold. The expanded retained-input control covers all 2,760 post-handoff
+states, including both failures; all limits and feasibility tolerances remain
+unchanged. The second failed attempt also remains bound by the result.
+
+The first fully successful verification remains retained as
+sdk2-contact-posture-component-ba1451d3d00543acaadbe0a87385805d. Publication hygiene
+then required whitespace around one matrix-multiplication operator in a test
+to avoid an email-detector false positive. An AST comparison verifies unchanged
+test behavior. The final attempt repeats all controls and both complete readers
+against the exact publishable source; every geometry and synthetic stream hash
+matches the earlier success, and the audit differs only in its contract hash.
+
+Result SHA-256: 336c600d93602a9194f482c5b8bf668cb1e1873cb6562307fc22a8f857b8b2d8.
+Receipt SHA-256: 1f2b8c6e3187b054af32153d338ab9cc8e5239cf062212e7b5c7668643935e29.
+Audit/reconstruction SHA-256: 84692ff26d0386843211826856075d2f66795f5760d0fa8809f6b14ae55e12e5.
+
+This is a bounded kinematic adaptation of the documented whole-body-control
+design lead, not full WBIC, MPC or floating-base inverse dynamics. The virtual
+base is not actuated. Linear task priority does not prove nonlinear priority,
+collision-free motion, held-interval contact or dynamic feasibility.
+No native benefit, learned capability, Tier 2, Tier 3, release or equivalence
+authority is added. Next declare a distinct four-world comparison against
+unchanged reach hold on the exposed weak and healthy starts; freeze and publish
+the route and complete its safety controls before opening any world.

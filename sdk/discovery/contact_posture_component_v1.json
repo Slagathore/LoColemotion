@@ -1,0 +1,113 @@
+{
+  "schema_version": "locolemotion_contact_posture_component_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "retained_contact_posture_and_synthetic_integration",
+    "question_class": "development"
+  },
+  "parent_closure_sha256": "cbff1da78242c2e4fd757cbc2fac1e79072474756fdbfd8b874d32e001778029",
+  "implementation_bindings": {
+    "bounded_posture_solver.py": "8437a5e162d04d10ee8f53fe17adce107bad6e9fe84f5595f6ae151ea2c55dd9",
+    "contact_posture_reference.py": "7e61c6c2e9ad6b06a8483b193764d53760841e235c507f2bbf9b3fbb6ed84b84",
+    "contact_posture_force_policy.py": "b56c4475c9e8070d79661ae3a97d2a0e9929ba1aea9e0cdd90fce4bdc5ba3653",
+    "contact_posture_control.py": "8edbe2e49f5f5e0fe2809779c223847efbe7e8e4c9d912fd1e914e4b4d85a86b",
+    "audit_contact_posture_component.py": "88c54ea95595bff732e3cfca7c1db969a93c8ee37b47bc443e5e305f43ce9291",
+    "test_bounded_posture_solver.py": "dfddc932e2ba675701f59890f4930e2af2e30e2f457ef933f840573cbebd4823",
+    "test_contact_posture.py": "517e55a40622c51d512265a12aa08f2fbb5483a49fae3e10306aea22f0d4e0b6",
+    "run_contact_posture_component.py": "063942f5c9deb27a3b590cbea72e1bff9c8f2d5bdfae693498bc06d86d73df2f"
+  },
+  "inherited_source_bindings": {
+    "recovery_hold_control.py": "daf0e1e42b20764fade069c92b2787c0f9d8aeed5adff18326910d9c9ce8f451",
+    "recovery_hold_composition.py": "93eb9d5293f1876818b2ed17bd7f33de1a591c7c1213228549b03cec4cdbe44e",
+    "causal_force_policy.py": "6363bf1d268e2ed1fd2aa3cbc791eb5c0964454dc348bd3a2609b4b0e18d0a4e",
+    "causal_force_allocator.py": "bd4b7529b7dc44560db5862367f0619520b24a6b42b831c44414529d81dbe9c1",
+    "actuation_recovery_mechanics.py": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e"
+  },
+  "reference_parameters": {
+    "maximum_com_lowering_m": 0.1,
+    "maximum_com_reference_lowering_speed_m_s": 0.2,
+    "touchdown_clearance_margin_m": 0.003,
+    "controller_dt_s": 0.008333333333333333,
+    "automatic_height_raise": false
+  },
+  "posture_parameters": {
+    "root_reference_increment_m": 0.025,
+    "orientation_reference_increment_rad": 0.08,
+    "joint_reference_increment_rad": 0.25,
+    "nonlinear_contact_tolerance_m": 0.0005,
+    "maximum_backtracks": 16,
+    "svd_relative_cutoff": 1e-10,
+    "contact_model": "one current prepared point per supporting site",
+    "priority": [
+      "contact",
+      "orientation",
+      "com",
+      "airborne_foot",
+      "supported_posture"
+    ],
+    "supported_knee_fraction": 0.5,
+    "unsupported_mode": "previous_bounded_reference",
+    "out_of_bounds_mode": "previous_bounded_reference"
+  },
+  "diagnostic_result_sha256": "4d7e736a90de6234ae7d248f2c7ba2c3d3c5e8df17b06f14e9a3989847f846f1",
+  "trials": [
+    "reach_hold_left_075_train_001",
+    "reach_hold_nominal_train_001"
+  ],
+  "commands_per_trial": 1440,
+  "core_reconstructions": 2,
+  "commands": 2880,
+  "geometry_samples_per_trial": 1440,
+  "limbs_per_sample": 4,
+  "geometry_tolerance_m": 2e-10,
+  "positive_clearance_reporting_tolerance_m": 1e-09,
+  "posthoc_selected_commands": [
+    60,
+    90,
+    119,
+    132,
+    137,
+    138
+  ],
+  "observation_source": "complete retained reach-hold trajectories; synthetic alternative actions do not produce observations",
+  "unchanged_prefix_commands_per_trial": 60,
+  "hold_motion_and_composition_unchanged": true,
+  "configured_force_and_actuator_limits_unchanged": true,
+  "synthetic": true,
+  "maximum_stream_bytes": 1073741824,
+  "minimum_free_storage_bytes": 8589934592,
+  "controls_required": 46,
+  "safety_controls": [
+    {
+      "name": "reach-regression",
+      "module": "test_support_reach",
+      "count": 18
+    },
+    {
+      "name": "posture-solver",
+      "module": "test_bounded_posture_solver",
+      "count": 15
+    },
+    {
+      "name": "posture-reference",
+      "module": "test_contact_posture",
+      "count": 13
+    }
+  ],
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "physical_launch_authority": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "dynamic_feasibility_established": false,
+  "collision_free_path_established": false,
+  "alternative_actions_generated_observations": false,
+  "recovery_benefit_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "capability_estimated": false,
+  "total_target_slew_guaranteed": false
+}

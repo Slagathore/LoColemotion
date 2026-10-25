@@ -1,0 +1,424 @@
+{
+  "schema_version": "locolemotion_contact_posture_component_result_v1",
+  "status": "bounded_contact_posture_and_synthetic_integration_verified",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "retained_contact_posture_and_synthetic_integration",
+    "question_class": "development"
+  },
+  "source_commit": "2ecb59d921ad659053156551dc76c367b8c6fbcd",
+  "attempt_id": "sdk2-contact-posture-component-49ac92568fdb419cac4dccce057f2ea7",
+  "receipt_sha256": "1f2b8c6e3187b054af32153d338ab9cc8e5239cf062212e7b5c7668643935e29",
+  "declaration_sha256": "cb43822c2428766c9afc1cd9482aa9723c75ebde4119f11a373daebe30719c13",
+  "contract_path": "sdk/discovery/contact_posture_component_v1.json",
+  "contract_sha256": "28ac3e6306a1d09ffd2a1366db13ba4deb5bdada2c071dd0b234f1c4bdd28811",
+  "parent_closure_path": "sdk/discovery/support_reach_native_closure_v1.json",
+  "parent_closure_sha256": "cbff1da78242c2e4fd757cbc2fac1e79072474756fdbfd8b874d32e001778029",
+  "diagnostic_result_path": "sdk/discovery/reach_tracking_diagnostic_result_v1.json",
+  "diagnostic_result_sha256": "4d7e736a90de6234ae7d248f2c7ba2c3d3c5e8df17b06f14e9a3989847f846f1",
+  "audit_sha256": "84692ff26d0386843211826856075d2f66795f5760d0fa8809f6b14ae55e12e5",
+  "reconstruction_sha256": "84692ff26d0386843211826856075d2f66795f5760d0fa8809f6b14ae55e12e5",
+  "source_binding_count": 684,
+  "runtime_binding_count": 1359,
+  "artifacts_including_receipt": 46,
+  "owner_wall_s": 1011.0,
+  "controls_passed": 46,
+  "complete_reader_invocations": 2,
+  "commands": 2880,
+  "core_reconstructions": 2,
+  "geometry_limb_observations": 11520,
+  "unchanged_prefix_commands": 120,
+  "synthetic": true,
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "reference_parameters": {
+    "maximum_com_lowering_m": 0.1,
+    "maximum_com_reference_lowering_speed_m_s": 0.2,
+    "touchdown_clearance_margin_m": 0.003,
+    "controller_dt_s": 0.008333333333333333,
+    "automatic_height_raise": false
+  },
+  "posture_parameters": {
+    "root_reference_increment_m": 0.025,
+    "orientation_reference_increment_rad": 0.08,
+    "joint_reference_increment_rad": 0.25,
+    "nonlinear_contact_tolerance_m": 0.0005,
+    "maximum_backtracks": 16,
+    "svd_relative_cutoff": 1e-10,
+    "contact_model": "one current prepared point per supporting site",
+    "priority": [
+      "contact",
+      "orientation",
+      "com",
+      "airborne_foot",
+      "supported_posture"
+    ],
+    "supported_knee_fraction": 0.5,
+    "unsupported_mode": "previous_bounded_reference",
+    "out_of_bounds_mode": "previous_bounded_reference"
+  },
+  "projected_svd_rank_basis": "Original unprojected task spectral scale; projected roundoff cannot recreate constrained-away task freedom.",
+  "trials": [
+    {
+      "trial_id": "reach_hold_left_075_train_001",
+      "observation_sha256": "d6c8a8970e9529cf5f5d0a59711e43ce7f1e00d32fd0f90fd1d5bbdaaf79a365",
+      "original_failure": {
+        "internal_step": 695,
+        "time_s": 1.1583333333333465,
+        "failure_codes": [
+          "tilt"
+        ]
+      },
+      "maximum_native_geometry_error_m": 9.228728892196614e-16,
+      "geometry_statistics": {
+        "front_left_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 79,
+          "pre_failure_positive_minimum_clearance": 0,
+          "post_handoff_positive_minimum_clearance": 1271,
+          "first_geometrically_reachable_command": 60
+        },
+        "front_right_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 79,
+          "pre_failure_positive_minimum_clearance": 79,
+          "post_handoff_positive_minimum_clearance": 1380,
+          "first_geometrically_reachable_command": null
+        },
+        "rear_left_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 79,
+          "pre_failure_positive_minimum_clearance": 0,
+          "post_handoff_positive_minimum_clearance": 0,
+          "first_geometrically_reachable_command": 60
+        },
+        "rear_right_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 79,
+          "pre_failure_positive_minimum_clearance": 0,
+          "post_handoff_positive_minimum_clearance": 0,
+          "first_geometrically_reachable_command": 60
+        }
+      },
+      "synthetic_runs": [
+        {
+          "stream": {
+            "path": "reach_hold_left_075_train_001-core-0.jsonl",
+            "sha256": "aaf9b1622727946a7cf063ca1dec4e739c5f286f96140e050c184975a7f9a0b2",
+            "byte_length": 122820196,
+            "rows": 1440
+          },
+          "nominal_com_reference_m": 0.3617476422563639,
+          "minimum_com_reference_m": 0.26174764225636393,
+          "final_com_reference_m": 0.26174764225636393,
+          "maximum_reference_step_m": 0.0016666666666666496,
+          "maximum_absolute_final_target_rad_s": 3.404086627964676,
+          "unresolved_fixed_pose_gap_commands": 1380,
+          "posture_status_counts": {
+            "observed_joint_limit_violation": 477,
+            "solved": 878,
+            "unsupported": 25
+          },
+          "task_attainable_rank_counts": {
+            "orientation": {
+              "1": 11,
+              "2": 839,
+              "3": 28
+            },
+            "com": {
+              "2": 878
+            },
+            "airborne_foot": {
+              "2": 11,
+              "4": 839,
+              "6": 28
+            },
+            "supported_posture": {
+              "0": 878
+            }
+          },
+          "maximum_nonlinear_contact_drift_m": 0.00045442635626372226,
+          "maximum_joint_reference_increment_rad": 0.125
+        },
+        {
+          "stream": {
+            "path": "reach_hold_left_075_train_001-core-1.jsonl",
+            "sha256": "aaf9b1622727946a7cf063ca1dec4e739c5f286f96140e050c184975a7f9a0b2",
+            "byte_length": 122820196,
+            "rows": 1440
+          },
+          "nominal_com_reference_m": 0.3617476422563639,
+          "minimum_com_reference_m": 0.26174764225636393,
+          "final_com_reference_m": 0.26174764225636393,
+          "maximum_reference_step_m": 0.0016666666666666496,
+          "maximum_absolute_final_target_rad_s": 3.404086627964676,
+          "unresolved_fixed_pose_gap_commands": 1380,
+          "posture_status_counts": {
+            "observed_joint_limit_violation": 477,
+            "solved": 878,
+            "unsupported": 25
+          },
+          "task_attainable_rank_counts": {
+            "orientation": {
+              "1": 11,
+              "2": 839,
+              "3": 28
+            },
+            "com": {
+              "2": 878
+            },
+            "airborne_foot": {
+              "2": 11,
+              "4": 839,
+              "6": 28
+            },
+            "supported_posture": {
+              "0": 878
+            }
+          },
+          "maximum_nonlinear_contact_drift_m": 0.00045442635626372226,
+          "maximum_joint_reference_increment_rad": 0.125
+        }
+      ],
+      "controller_profile_sha256": "sha256:9d43dbb00c9fe0bc746861a0513b8f1da7f80e0bd247afde671ccfc865f35f92"
+    },
+    {
+      "trial_id": "reach_hold_nominal_train_001",
+      "observation_sha256": "0af66d45fac675f104c57be927a220d464c358bcebf9451bbcdc20a7406f2f67",
+      "original_failure": null,
+      "maximum_native_geometry_error_m": 9.020562075079397e-16,
+      "geometry_statistics": {
+        "front_left_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 1380,
+          "pre_failure_positive_minimum_clearance": 34,
+          "post_handoff_positive_minimum_clearance": 34,
+          "first_geometrically_reachable_command": 60
+        },
+        "front_right_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 1380,
+          "pre_failure_positive_minimum_clearance": 64,
+          "post_handoff_positive_minimum_clearance": 64,
+          "first_geometrically_reachable_command": 124
+        },
+        "rear_left_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 1380,
+          "pre_failure_positive_minimum_clearance": 47,
+          "post_handoff_positive_minimum_clearance": 47,
+          "first_geometrically_reachable_command": 60
+        },
+        "rear_right_foot": {
+          "post_handoff_commands": 1380,
+          "pre_failure_commands": 1380,
+          "pre_failure_positive_minimum_clearance": 11,
+          "post_handoff_positive_minimum_clearance": 11,
+          "first_geometrically_reachable_command": 60
+        }
+      },
+      "synthetic_runs": [
+        {
+          "stream": {
+            "path": "reach_hold_nominal_train_001-core-0.jsonl",
+            "sha256": "3df271112cbe4f8e7a264b3c558fb39679b95b12e4c8850efdc10fbf8d275700",
+            "byte_length": 144053980,
+            "rows": 1440
+          },
+          "nominal_com_reference_m": 0.3617476422563639,
+          "minimum_com_reference_m": 0.31823208042067114,
+          "final_com_reference_m": 0.31823208042067114,
+          "maximum_reference_step_m": 0.0016666666666666496,
+          "maximum_absolute_final_target_rad_s": 3.4100719135801865,
+          "unresolved_fixed_pose_gap_commands": 24,
+          "posture_status_counts": {
+            "solved": 1380
+          },
+          "task_attainable_rank_counts": {
+            "orientation": {
+              "1": 1297,
+              "2": 73,
+              "3": 10
+            },
+            "com": {
+              "2": 1380
+            },
+            "airborne_foot": {
+              "0": 1262,
+              "2": 35,
+              "4": 73,
+              "6": 10
+            },
+            "supported_posture": {
+              "0": 1380
+            }
+          },
+          "maximum_nonlinear_contact_drift_m": 0.0004424275406495123,
+          "maximum_joint_reference_increment_rad": 0.12500000000000025
+        },
+        {
+          "stream": {
+            "path": "reach_hold_nominal_train_001-core-1.jsonl",
+            "sha256": "3df271112cbe4f8e7a264b3c558fb39679b95b12e4c8850efdc10fbf8d275700",
+            "byte_length": 144053980,
+            "rows": 1440
+          },
+          "nominal_com_reference_m": 0.3617476422563639,
+          "minimum_com_reference_m": 0.31823208042067114,
+          "final_com_reference_m": 0.31823208042067114,
+          "maximum_reference_step_m": 0.0016666666666666496,
+          "maximum_absolute_final_target_rad_s": 3.4100719135801865,
+          "unresolved_fixed_pose_gap_commands": 24,
+          "posture_status_counts": {
+            "solved": 1380
+          },
+          "task_attainable_rank_counts": {
+            "orientation": {
+              "1": 1297,
+              "2": 73,
+              "3": 10
+            },
+            "com": {
+              "2": 1380
+            },
+            "airborne_foot": {
+              "0": 1262,
+              "2": 35,
+              "4": 73,
+              "6": 10
+            },
+            "supported_posture": {
+              "0": 1380
+            }
+          },
+          "maximum_nonlinear_contact_drift_m": 0.0004424275406495123,
+          "maximum_joint_reference_increment_rad": 0.12500000000000025
+        }
+      ],
+      "controller_profile_sha256": "sha256:be9382e690596ca34e40ef75cfd6c69c30d71239122a2d19afacfac76a6e06ae"
+    }
+  ],
+  "streams": [
+    {
+      "path": "reach_hold_left_075_train_001-geometry.jsonl",
+      "sha256": "0094e3cadf5d53efb20de9974950c8394b6e1ce8bab95488dd4a4144ed591281",
+      "byte_length": 2859677,
+      "rows": 1440
+    },
+    {
+      "path": "reach_hold_left_075_train_001-core-0.jsonl",
+      "sha256": "aaf9b1622727946a7cf063ca1dec4e739c5f286f96140e050c184975a7f9a0b2",
+      "byte_length": 122820196,
+      "rows": 1440
+    },
+    {
+      "path": "reach_hold_left_075_train_001-core-1.jsonl",
+      "sha256": "aaf9b1622727946a7cf063ca1dec4e739c5f286f96140e050c184975a7f9a0b2",
+      "byte_length": 122820196,
+      "rows": 1440
+    },
+    {
+      "path": "reach_hold_nominal_train_001-geometry.jsonl",
+      "sha256": "0ce8b9f7ef68ff5fb5260cf00775f1e26fc2bfcb115fd24b87e414182a94b47a",
+      "byte_length": 2927995,
+      "rows": 1440
+    },
+    {
+      "path": "reach_hold_nominal_train_001-core-0.jsonl",
+      "sha256": "3df271112cbe4f8e7a264b3c558fb39679b95b12e4c8850efdc10fbf8d275700",
+      "byte_length": 144053980,
+      "rows": 1440
+    },
+    {
+      "path": "reach_hold_nominal_train_001-core-1.jsonl",
+      "sha256": "3df271112cbe4f8e7a264b3c558fb39679b95b12e4c8850efdc10fbf8d275700",
+      "byte_length": 144053980,
+      "rows": 1440
+    }
+  ],
+  "retained_failed_attempts": [
+    {
+      "attempt_id": "sdk2-contact-posture-component-99fe9575f49144fab5675060304dd207",
+      "receipt_sha256": "0f0325bc809d8251661b5c4bb94b39246079e3de9a7ae787233a5b436e4d8d5b",
+      "contract_sha256": "e496e03dcbe0625a657f48ecf1bca96051690e22d453237614f5bba1dc70e215",
+      "controls_passed": 44,
+      "error": "RuntimeError: Contained stage failed (1): C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-contact-posture-component-99fe9575f49144fab5675060304dd207\\audit-reader",
+      "first_refused_command": 60,
+      "terminal_error": {
+        "type": "ValueError",
+        "message": "Posture feasible step"
+      },
+      "diagnosis_attempt_id": "sdk2-contact-posture-refusal-diagnostic-29b9e12e351a4ed0bdedcc83e18f3199",
+      "diagnosis_receipt_sha256": "63b6fbaf603101ffcc350836fff559398ecb2f20f54979b268dc67ec9fc8e263",
+      "terminal_row_sha256": "848a4a06cf4a1f57b2e1df07bf42b3c844e55575ee3fbd27abd7b5225c2af248",
+      "diagnosis_stdout_sha256": "d6ef6c78e6c8179545b6f1ee5230e33fd9262c64f7d95bcb5a00d6c78fe9f5ee",
+      "diagnosis_stderr_sha256": "318b91f5a614933f6627e47b7bcce3755a4a77dadf2edab3bc4e1416f5c41b68",
+      "cause": "Projected task rank was measured relative only to projected numerical residue after contact and active-bound constraints.",
+      "fix": "Use original task spectral scale for projected SVD rank; retain feasibility tolerances and all actuator limits.",
+      "regression_controls": [
+        "test_projected_away_task_does_not_amplify_roundoff",
+        "test_all_retained_posture_inputs_preserve_numerical_constraints"
+      ]
+    },
+    {
+      "attempt_id": "sdk2-contact-posture-component-48e2140ad7924e269d564351c93c31d8",
+      "receipt_sha256": "cbfcf5ccdc30c1a4bea62cdf35820afa7b439ca62b179a2baa9c8bc95d98763b",
+      "contract_sha256": "34ee65505910541ebd84aa740a4266875a4c31f52637cf8a95d65b68b5c3721d",
+      "controls_passed": 46,
+      "error": "RuntimeError: Contained stage failed (1): C:\\Users\\Cole\\CodeStuff\\games\\SporeSpore_Evidence\\sdk2-contact-posture-component-48e2140ad7924e269d564351c93c31d8\\audit-reader",
+      "first_refused_command": 73,
+      "terminal_error": {
+        "message": "Posture independent blocking bound",
+        "type": "ValueError"
+      },
+      "partial_stream_sha256": "ed9ccd7d31386271c49501e31458065b5269e9a7b6409fc60f5ec6e646d75b19",
+      "audit_stderr_sha256": "5b2993ca9d56c8e1891a77fe404b2890258826fa12c435c8306902e36a0e9bed",
+      "cause": "A coordinate fixed by the equality space retained a numerical direction and was misclassified as an independent blocking bound.",
+      "fix": "Use the declared SVD threshold to recognize coordinates fixed by the current equality nullspace; keep all feasibility tolerances and actuator limits.",
+      "regression_controls": [
+        "test_all_retained_posture_inputs_preserve_numerical_constraints"
+      ]
+    }
+  ],
+  "synthetic_scope": "Original retained observations with successor resolved command history. New actions did not produce the observations.",
+  "reference_scope": "Bounded linear task hierarchy with nonlinear supporting-material-point displacement witness. Virtual base is not actuated; no held-interval contact or nonlinear priority guarantee.",
+  "research_basis": [
+    {
+      "url": "https://arxiv.org/abs/1909.06586v1",
+      "section": "IV-A, equations 16-24",
+      "use": "Contact-nullspace and prioritized joint-reference design lead; implemented bounded kinematic adaptation, not full WBIC, MPC or floating-base inverse dynamics."
+    }
+  ],
+  "next_step": "Declare a distinct fresh native comparison of unchanged reach hold and contact-posture hold on the same exposed weak and healthy starts; complete the prospective route and safety gate before any world.",
+  "physical_launch_authority": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "dynamic_feasibility_established": false,
+  "collision_free_path_established": false,
+  "alternative_actions_generated_observations": false,
+  "recovery_benefit_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "capability_estimated": false,
+  "total_target_slew_guaranteed": false,
+  "publication_format_revision": {
+    "ledger_scope": {
+      "subsystem": "adaptation",
+      "engine_scope": "core",
+      "authority_mode": "retained_contact_posture_and_synthetic_integration",
+      "question_class": "development"
+    },
+    "prior_successful_attempt": "sdk2-contact-posture-component-ba1451d3d00543acaadbe0a87385805d",
+    "prior_receipt_sha256": "9b3fd087e39e379e822a92f6f80a084aca858d377dc7e0a696ca77f24e5c45d3",
+    "prior_result_sha256": "607d0b26e919e7b5fccbd3d53929873b898f87c221f609d17d21536bba8e675d",
+    "format_attempt_id": "sdk2-contact-posture-publication-format-3d8a1d48213f4d8e98e0ef9a6a2d5a97",
+    "format_receipt_sha256": "ced7175d210c948cf01bd5406c81abed0f485230c0686ee5da3b029591a8598e",
+    "python_ast_unchanged": true,
+    "complete_audit_identical_except_contract_hash": true,
+    "all_synthetic_and_geometry_stream_hashes_unchanged": true,
+    "reason": "Operator whitespace in a test avoids a publication email-detector false positive. Exact publishable source is freshly verified."
+  }
+}

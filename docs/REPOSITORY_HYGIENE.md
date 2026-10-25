@@ -127,6 +127,13 @@ every introduced commit, including intermediate content later deleted, and
 refuses history rewrites and ref deletion. CI repeats tree and history checks
 on pushes and pull requests, with refusal tests in disposable repositories.
 
+For a new component with hash-bound source, stage only the intended files and
+run both `check.py staged` and `check.py eol` before starting its retained
+verification owner. The tree check does not cover new untracked files.
+Resolve publication-policy or formatting failures before freezing the source;
+even a behavior-preserving edit changes its byte identity. This avoids repeating
+a complete retained reconstruction solely to make already-verified code publishable.
+
 ## Server protections and their limits
 
 The default-branch ruleset prevents deletion and non-fast-forward updates,

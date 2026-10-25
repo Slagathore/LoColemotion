@@ -3070,3 +3070,22 @@ Mini-Cheetah has twelve actuators and torque-command hardware; this fixture has
 eight sagittal actuators with bounded velocity/residual control. The paper's
 small-angle MPC assumptions, hardware results and dynamic-feasibility machinery
 cannot be imported as claims for this fixture.
+
+### Bounded contact-posture implementation boundary - 2026-10-25
+
+The [component result](../../sdk/discovery/contact_posture_component_result_v1.json)
+implements the contact-nullspace and prioritized joint-reference design lead
+from Kim et al., Section IV-A, equations 16-24
+([paper](https://arxiv.org/pdf/1909.06586), consulted 2026-10-25).
+This adaptation uses bounded linear least squares, freezes achieved task images,
+and checks supporting-point displacement after nonlinear retraction. It exposes
+rank loss and unreachable task residuals for the eight-actuator fixture.
+It does not implement the paper's complete WBIC, MPC or dynamics-constrained
+force/acceleration optimization, and imports no hardware performance claim.
+
+Forty-six controls and two complete retained-data reconstructions pass.
+Both numerical rank refusals and their corrections remain recorded; a complete
+retained-input sweep now precedes the full synthetic integration.
+A virtual reference satisfying contact geometry is not an actuated floating
+base or a dynamic-feasibility certificate. A fresh prospective native comparison
+must establish the controller's actual behavior before any recovery claim.
