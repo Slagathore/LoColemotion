@@ -21,6 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest native-route preparation: the [prospective generic-hierarchy comparison](#prospective-generic-hierarchy-native-route---2026-10-25)
+passes 26 new route controls and zero-world runtime preflight, including nominal
+two-core handoffs and independent hierarchy-certificate corruption checks.
+Its four fresh worlds retain the existing two conditions, development seed and
+12-second limit. Next run the full 799-control zero-world gate from a clean
+pushed freeze, then the declared native comparison. The component-only result
+grants no physical launch or recovery authority. Tier 2, Tier 3 and release
+remain unqualified.
+
 Latest generic proximal hierarchy: the [completed solver and replay checkpoint](#generic-proximal-hierarchy-and-exact-replay---2026-10-25)
 passes 287 controls and two byte-identical readers, accepts 102 of 118 retained
 states, and verifies four public prefix/two-command handoffs across two core
@@ -7756,3 +7765,44 @@ Configured-model feasibility and a two-command public handoff do not establish
 native recovery, contact persistence or recursive feasibility. Trained
 morphology-conditioned Tier 2, useful bounded Tier 3 learning and release
 remain unqualified. Native recovery is the next gate before training work.
+
+## Prospective generic-hierarchy native route - 2026-10-25
+
+The [route declaration](../sdk/discovery/hierarchical_native_v1.json) freezes
+a distinct native comparison of reach-hold baseline and generic proximal
+hierarchy under the existing nominal and left-075 actuator conditions.
+It uses one exposed development seed, four fresh CPU worlds, no GPU worlds,
+and the unchanged 12-second, 1,440-command, 7,200-internal-step limit per world.
+The first physical violation under the existing height, tilt and torso-contact
+rules is the primary diagnostic endpoint. This is finite development evidence,
+not a superiority, robustness or release qualification.
+
+The [component-only route result](../sdk/discovery/hierarchical_native_route_result_v1.json)
+passes 26 new controls and zero-world runtime preflight. It verifies nominal
+prefix and two-command handoffs through two core builds, in addition to the
+previous component's weakened-condition evidence, and reopens a complete
+1,440-command/7,200-step retained baseline. Corruption controls reject crossed
+profiles, incomplete gates, altered source claims, unselected problems,
+modified primary/secondary certificates, changed optimization settings,
+changed held-step predictions and attempts to transfer a refused command.
+
+The new independent row reader rebuilds both hierarchy problems, checks reduced
+and full-coordinate certificates and dual reconstruction, preserves the attained
+support vector, reconstructs all five clipped-motor steps, and checks the
+transferred implicit equation through recursive inverse dynamics. These checks
+use original acceptance thresholds. Full native readers additionally reconstruct
+the public controller through the other core build, inspect every internal
+motor/contact sample, compare fresh baseline traces to their retained originals,
+and join each pair's first 60 commands and 300 internal steps.
+
+Before physical launch, a fresh owner must run all 799 applicable zero-world
+controls from this clean pushed prospective freeze. The component-only result
+cannot authorize launch. The owner holds the operation mutex and contains its
+children. Any terminal provider refusal is retained, closes the host and stops
+the campaign before that command reaches native control; a failed or partial
+attempt remains evidence and cannot be relabeled as a complete comparison.
+
+The next action is the full gate and declared comparison, followed by complete
+independent readers or a separately retained failure diagnosis. No physical
+outcome is established by this preparation. Tier 2, Tier 3 and release remain
+unqualified.
