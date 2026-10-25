@@ -3002,3 +3002,23 @@ support first appears at command 128; weak front-right support remains absent.
 Posthoc geometry/support diagnostics do not establish a causal rescue. Next
 investigate reachable touchdown and delivered actuation before a distinct
 controller successor. No held-out, safe-backup, Tier 2/Tier 3 or release claim.
+
+### Reach constraints before coordinated support recovery - 2026-10-25
+
+- Clemente, Villarreal, Bratta, Focchi, Barasuol, Muscolo and Semini,
+  [Foothold Evaluation Criterion for Dynamic Transition Feasibility for Quadruped Robots](https://arxiv.org/abs/2203.04434v1),
+  ICRA 2022, version 1, consulted 2026-10-25. Their work distinguishes kinematic
+  reach from linear/angular dynamic transition feasibility and connects body
+  motion with contact selection. Adopted: coordinate body and leg references
+  and preserve the distinction between geometric bounds and dynamic proof.
+  Their C-CROC-based optimizer and dynamic certificates are not implemented.
+- Belter, Bednarek, Lin, Xin and Mistry,
+  [Single-shot Foothold Selection and Constraint Evaluation for Quadruped Locomotion](https://www.research.ed.ac.uk/en/publications/single-shot-foothold-selection-and-constraint-evaluation-for-quad/),
+  ICRA 2019, DOI 10.1109/ICRA.2019.8793801, consulted 2026-10-25. Adopted:
+  evaluate kinematic constraints before treating a foothold as a candidate.
+  Their learned terrain evaluator and collision checking are not implemented.
+
+The [retained diagnosis and successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
+finds positive fixed-base front-right clearance at every weak pre-failure
+post-handoff observation. Eighteen controls and two complete two-core synthetic
+readers pass without new physics. Native benefit remains untested.

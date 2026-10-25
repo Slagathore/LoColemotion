@@ -19,7 +19,15 @@ It does not replace the executable evidence or release contracts:
 Frozen positive, negative, invalid, and rejected campaigns remain immutable.
 This roadmap can order a new successor, but it cannot change an old result.
 
-## Current execution order - 2026-10-24
+## Current execution order - 2026-10-25
+
+Latest support-reach component: the [completed diagnosis and integration](#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
+shows that the weak front-right foot cannot reach the ground at any of its 74
+post-handoff pre-failure body poses. A separate bounded body-lowering and
+airborne-extension successor passes 18 controls and two complete two-core
+synthetic reconstructions, opening zero worlds. Next declare its fresh four-world
+native comparison against unchanged hold. Physical recovery benefit and
+Tier 2/Tier 3 qualification remain unproved.
 
 Latest recovery diagnosis (2026-10-24): the [complete retained-data analysis](#completed-recovery-action-and-support-diagnosis---2026-10-24)
 reopens all **119 CPU trajectories**, **162,120 commands** and **810,600 internal
@@ -6604,3 +6612,67 @@ controller, then run its full zero-world gate and a fresh prospective native
 comparison. Allocation currently uses only existing support contacts; the
 observed difference does not by itself prove that a touchdown change will rescue
 the weak case. Tier 2, Tier 3 and release remain unqualified.
+
+### Support reach diagnosis and coordinated lowering component - 2026-10-25
+
+The [component result](../sdk/discovery/support_reach_component_result_v1.json)
+reconstructs **11,520 limb observations** from both complete twelve-second hold
+traces. The new model computes the exact minimum ground clearance of each distal
+capsule with the base pose fixed, over the declared hip/knee joint ranges.
+It evaluates both capsule endpoints, rectangle edges and interior stationary
+points, and checks each minimizing configuration by full forward kinematics.
+Current capsule geometry agrees with the native recorded poses within
+**9.37e-16 m**. These are bounded sagittal two-joint results, not arbitrary
+morphology, collision-free path or dynamic feasibility certificates.
+
+| Fixed-base front-right minimum clearance | Weakened | Healthy |
+| --- | ---: | ---: |
+| Handoff, command 60 | 0.035977 m | 0.026002 m |
+| Near one second, command 119 | 0.103016 m | 0.019523 m |
+| Command 128 | 0.114587 m | -0.001271 m |
+
+The weak front-right foot is geometrically unreachable at **74/74 post-handoff
+prepared observations before its first failure**, and at all 1,380 post-handoff
+observations over the complete trace. The healthy foot first becomes reachable
+at command **128**, matching its first observed support command. Thus a foot-only
+extension cannot reach the ground at these fixed weak body poses. The body must
+also move; that necessity does not prove a successful dynamic transition.
+
+The separate [reach-aware policy](../sdk/discovery/support_reach_force_policy.py)
+coordinates a lowering-only center-of-mass reference with airborne-leg extension
+toward the bounded minimum-clearance configuration. The reference lowers by at
+most **0.10 m**, at at most **0.20 m/s** (0.001667 m per command). Supported legs
+keep the original zero joint reference. It retains unresolved geometric gaps and
+does not claim a bound on real body height. The original force allocator,
+configured motor capabilities, final-speed cap, residual caps/slew, command-60
+handoff, hold composition and public resolver remain unchanged. The frozen
+predecessor source is preserved.
+
+All **18 analytical, randomized and refusal controls** pass. Two complete readers
+each reconstruct 2,880 synthetic commands on both DLLs, with identical per-trial
+output streams and an unchanged 60-command prefix per trial. Each retains all
+synthetic commands and geometry. The weak synthetic reference reaches its
+0.10 m lowering bound; the healthy reference lowers about 0.044263 m. Remaining
+fixed-pose gaps are retained for 1,380 weak and 25 healthy post-handoff commands.
+These are commands on original observations with the successor's own resolved
+history; they did not generate the observed physical trajectories.
+
+Attempt sdk2-support-reach-component-d99894d4797c4718b30b171d7367829b retains 658 source and
+1359 runtime bindings. Receipt SHA-256:
+1afa3f152c99cddf6ac3208d32045743faae1e045fe43ded5a074a781d4bccad.
+Both complete audit SHA-256 values: eac0de682c0b18ac50256c72e98d862916bac4d0eb485af2595a5f98f8c3829a.
+Zero worlds and zero solver steps opened. The source snapshots, original logs,
+full streams and receipt remain in the durable evidence archive.
+
+This design applies the distinction between kinematic reach and dynamic
+transition feasibility in [Clemente et al., ICRA 2022](https://arxiv.org/abs/2203.04434v1),
+and the kinematic filtering principle in
+[Belter et al., ICRA 2019](https://www.research.ed.ac.uk/en/publications/single-shot-foothold-selection-and-constraint-evaluation-for-quad/).
+It does not implement their full optimizers, learned foothold evaluator or
+collision checking.
+
+**Next:** prospectively declare four fresh twelve-second CPU worlds comparing
+unchanged hold against reach-aware hold on the same exposed weak and healthy
+starts. Require the complete applicable zero-world gate, clean pushed freeze,
+matched first 60 commands and full causal native traces. Recovery benefit,
+held-out generalization, safe backup, Tier 2, Tier 3 and release remain unproved.

@@ -9,6 +9,14 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest support-reach component (2026-10-25): the [diagnosis and bounded successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
+finds weak front-right fixed-base reach impossible at all 74 post-handoff
+pre-failure observations. The new body-lowering and airborne-extension reference
+passes 18 controls and two complete two-core synthetic readers, retaining all
+geometry and commands. No new worlds opened. Next declare a fresh four-world
+hold-versus-reach-hold native comparison; recovery benefit and Tier 2/Tier 3
+remain unqualified.
+
 Latest completed hold continuation (2026-10-25): the [twelve-second closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-twelve-second-recovery-hold-continuation---2026-10-25)
 passes all 479 launch controls, two full native readers, 12 closure controls and
 two retained-data readers. **Weak hold fails tilt at 1.111667 s; healthy hold
