@@ -3310,3 +3310,34 @@ states out of 118, and four public handoff ghosts per reader. These conditional
 results justify preparing a native comparison, not claiming native recovery
 or learned adaptation. Generic selection must precede automatic imports;
 loading both extensions in one process is refused.
+
+## Exact feasibility and primary active-constraint refinement - 2026-10-25
+
+The [MOSEK linear-optimization certificate formulation](https://docs.mosek.com/latest/pythonapi/prob-def-linear.html#primal-infeasible-problems)
+and [OSQP infeasibility equations](https://osqp.org/docs/solver/index.html#primal-infeasibility)
+motivate an independently checkable contradiction for saved constraints. The
+local checker requires exact zero coefficient sum and strictly negative bound
+sum using rational arithmetic on the decoded binary64 values. A floating
+solver status or small residual is not substituted for this certificate.
+
+[SciPy's HiGHS dual-simplex interface](https://docs.scipy.org/doc/scipy/reference/optimize.linprog-highs-ds.html)
+is used only to propose a certificate's constraint support. The installed
+SciPy 1.17.1 documentation was checked for the actual interface and feasibility
+options; the rolling web manual is not a claim that the installed version was
+upgraded. The exact verifier then reconstructs and checks every multiplier
+against the original saved coefficients. A failed support search cannot
+establish primal feasibility.
+
+[OSQP polishing](https://osqp.org/docs/solver/index.html#polishing)
+motivates estimating active constraints and solving an additional system.
+The local successor uses unregularized constrained least squares, then original
+reduced/full certificates and a stricter primary feasibility guard. Its first
+mandatory-refinement attempt repairs the terminal state but regresses other
+states. The bounded successor therefore preserves already-certified original
+solutions and refines only explicit numerical refusals.
+
+The [completed local evidence](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
+retains exact secondary contradictions, the refinement regression, an auditor
+failure and the successful 140/148-state component. No upstream implementation
+was copied. These finite calculations do not establish causal native recovery,
+public-controller integration, arbitrary model feasibility or learned adaptation.

@@ -9,7 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest conditioned generic result: the [terminal-state component check](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#conditioned-generic-terminal-refusal---2026-10-25)
+Latest bounded-refinement result: the [exact diagnosis and retained component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
+proves both command-89 secondary inputs inconsistent as encoded, repairs that
+state by refining the primary, and preserves certified original solutions.
+The completed successor passes 72 controls and two byte-identical readers: all
+30 latest native states and 110/118 earlier states accept. Mandatory-refinement
+regressions and an auditor failure remain retained. No new worlds ran. Next
+verify public-controller integration through the actual recovery branch and
+nominal handoff before a fresh prospective native comparison. Tier 2, Tier 3
+and release remain unqualified.
+
+Prior conditioned generic result: the [terminal-state component check](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#conditioned-generic-terminal-refusal---2026-10-25)
 passes 28 controls and two byte-identical readers, but still refuses native
 command 89. Hessian conditioning improves from about 108 million to 1; the
 secondary reaches its iteration limit. The declared gate stops before the

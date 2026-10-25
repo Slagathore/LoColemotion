@@ -21,7 +21,17 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest conditioned generic result: the [terminal-state component check](#conditioned-generic-terminal-refusal---2026-10-25)
+Latest bounded-refinement result: the [exact diagnosis and retained component](#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
+proves both command-89 secondary inputs inconsistent as encoded, repairs that
+state by refining the primary, and preserves certified original solutions.
+The completed successor passes 72 controls and two byte-identical readers: all
+30 latest native states and 110/118 earlier states accept. Mandatory-refinement
+regressions and an auditor failure remain retained. No new worlds ran. Next
+verify public-controller integration through the actual recovery branch and
+nominal handoff before a fresh prospective native comparison. Tier 2, Tier 3
+and release remain unqualified.
+
+Prior conditioned generic result: the [terminal-state component check](#conditioned-generic-terminal-refusal---2026-10-25)
 passes 28 controls and two byte-identical readers, but still refuses native
 command 89. Hessian conditioning improves from about 108 million to 1; the
 secondary reaches its iteration limit. The declared gate stops before the
@@ -7919,3 +7929,83 @@ infeasibility certificate before choosing a distinct numerical successor.
 Do not increase iteration limits, relax acceptance, or rerun the consumed
 native comparison merely because conditioning failed. Tier 2, Tier 3, recovery
 benefit, safe backup and release remain unqualified.
+
+## Exact secondary contradiction and bounded primary refinement - 2026-10-25
+
+The [exact constraint diagnosis](../sdk/discovery/terminal_constraint_feasibility_result_v1.json)
+verifies infeasibility certificates for both saved secondary systems at native
+command 89. Nonnegative inequality weights and free equality weights cancel
+every coefficient exactly and yield a strictly negative bound. The original
+17-variable system has 17 certificate terms and normalized contradiction
+-1.7622396233e-10; the conditioned 8-variable system has eight terms and
+contradiction -1.7622433513e-10. Arithmetic uses exact rationals of the saved
+binary64 coefficients. This proves these finite encoded systems inconsistent;
+it does not prove physical impossibility or rule out other motor patterns.
+No certificate was found for the primary constraints; that search does not
+prove their feasibility.
+
+The diagnosis passes 20 controls and two byte-identical readers in
+`sdk2-terminal-constraint-feasibility-03f11c4c12954fdd868d31ae2952dc52`.
+It binds 889 source and 3,582 runtime files, retains 28 artifacts, and takes
+41.829 seconds. It changes the next action from secondary conditioning to
+refining the primary before freezing its attained support vector.
+
+A [mandatory primary refinement](../sdk/discovery/refined_primary_component_result_v1.json)
+uses one unregularized active-constraint least-squares solve and a stricter
+1e-12 primary feasibility guard. It repairs command 89: the full primary bound
+residual is 3.9968e-15, and the conditioned secondary solves in 29 iterations.
+However, applying refinement to every state accepts only 14 of the 30 native
+states. Sixteen previously handled states refuse, so the older 118-state
+window stays unopened. This regression remains retained in
+`sdk2-refined-primary-component-d4fe3368a7e34c8fa91f621270bcc638`,
+with 40 controls, two byte-identical readers, 897 source and 3,582 runtime
+bindings, 92 artifacts and 53.750 seconds.
+
+The [bounded recovery successor](../sdk/discovery/refined_fallback_component_result_v2.json)
+preserves an already-certified original generic solution. It invokes refinement
+only after an explicit bounded numerical refusal; domain refusals and unexpected
+errors are not silently retried. Both calculations remain retained. There is no
+command-specific branch, objective regularization, output rounding or weakened
+acceptance. At most two bounded searches and 32 QP solves are allowed; the
+observed maximum in this retained population is six.
+
+The first recovery-path auditor fails after 68 controls and one retained
+terminal calculation because it compares component output with provider-added
+torque fields. Attempt
+`sdk2-refined-fallback-component-bcf8536a346c40d3bd0075dcb7241534`
+and all 33 artifacts remain intact. A distinct successor reconstructs the five
+provider-derived fields, adds four controls and saves precomparison outputs.
+The controller/component source bytes are unchanged.
+
+The completed successor,
+`sdk2-refined-fallback-component-v2-8634d6c842894dc9b447ca46c4783fbf`,
+passes 72 controls and two byte-identical complete readers:
+
+| Retained population | Accepted | Refused |
+| --- | ---: | ---: |
+| Latest native candidate, commands 60 through 89 | 30/30 | 0 |
+| Earlier reach reference, commands 60 through 118 | 59/59 | 0 |
+| Earlier dynamic candidate, commands 60 through 118 | 51/59 | 8 |
+| Total | 140/148 | 8 |
+
+All 29 previously applied native allocations reproduce bitwise, including
+provider-derived fields; the original terminal refusal also reproduces before
+refinement. Across all 148 states, 131 original certified solutions are preserved
+and nine refusals are recovered. The earlier window improves from 102/118 to
+110/118 conditional solutions. Four remaining numerical refusals and four
+already-active native joint limits remain explicit. These alternative actions
+did not generate the retained observations.
+
+The completed owner binds 907 source and 3,582 runtime files, retains 399
+artifacts including its receipt, and takes 153.360 seconds. Both complete
+reader digests are
+`6cfc38c1b28a09c7be3c516170d4c436c1a927c68bdf0426a721d23e9d52b2d0`.
+No public controller host or new physics world ran in these component checks.
+
+Next integrate the unchanged bounded component into a distinct public
+provider/controller successor. Verify two-core replay through the weak
+command-89 recovery path and the nominal two-command handoff, then independently
+reconstruct both solver routes and enforce all no-transfer failure controls.
+A new native comparison requires its complete safety gate and a clean pushed
+prospective freeze. Tier 2, Tier 3, native recovery benefit and release remain
+unqualified.
