@@ -9,14 +9,25 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest public integration and native route: the [scaled-primary checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-public-integration---2026-10-25)
+passes 295 controls and two identical readers over 322 public commands per
+reader on both core builds. It preserves all 38 prior applied hierarchy
+commands and resolves command 98. The independent reader verifies all four
+routes and actual correction work without QP solves. The
+[prospective native successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-prospective-native-successor---2026-10-25)
+passes 33 route controls and runtime preflight. Zero new worlds opened.
+Next pass the complete 1,091-control gate from the clean pushed freeze and
+run the four fresh weak/nominal comparison worlds. Tier 2, Tier 3 and release
+remain unqualified.
+
 Latest retained component: the [scaled-primary correction checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-correction-retained-checkpoint---2026-10-25)
 passes 212 controls and two identical readers over 219 retained states.
 It preserves all 212 accepted predecessors and recovers command 98 plus one
 older refusal, reaching 214 accepted cases. The original objective,
 constraints and strict 1e-12 guard remain unchanged. Zero worlds opened.
-Next verify the four-route public controller and independent reader on both
-core builds before declaring a fresh causal native comparison. Tier 2,
-Tier 3 and release remain unqualified.
+The public integration and prospective native route above now pass their
+checks; the complete launch gate and fresh causal evidence remain next.
+Tier 2, Tier 3 and release remain unqualified.
 
 Latest causal result: the [native proximal extension and strict-refinement closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-proximal-extension-and-strict-refinement-refusal---2026-10-25)
 records a complete 984-control gate and two fresh native worlds. The candidate

@@ -1,0 +1,171 @@
+"""Two-core public handoff and numerical recovery, with independent row certificates."""
+import argparse
+import copy
+from contextlib import ExitStack
+from pathlib import Path
+from unittest.mock import patch
+from collections import Counter
+import mujoco
+import audit_scaled_primary_component as parent
+from hierarchical_force_policy_v8 import make_profile,parameters,solver_settings
+from hierarchical_hold_control_v8 import HierarchicalHoldController,terminal_error
+from hierarchical_native_row_audit_v8 import verify_row
+from dynamic_response_diagnostic_metrics import configured_model
+from support_reach_geometry import ReachModel
+from hold_horizon_task import controller_contract,frozen_model,declaration as hold_declaration
+from audit_gpu_batch_execution import read_jsonl,same_bits
+from audit_contact_force_observer_closure import validate_bindings
+from audit_residual_training_closure import verify_population
+from run_scaled_primary_component import inventory
+from run_residual_native import verify_tests
+from gpu_measurement_probe import write_new
+from contact_force_observer_task import ROOT,HERE,read,sha,require,bridge
+
+CONTRACT=HERE/"hierarchical_public_v8.json"
+PARENT_RESULT=HERE/"scaled_primary_component_result_v1.json"
+PARENT_SHA="bda156d22dcb39eb7757389d11b80ed04a50a2a33076ce7a1925e534cf5b960b"
+SOURCES=("hierarchical_force_policy_v8.py","hierarchical_hold_control_v8.py",
+    "test_hierarchical_force_policy_v8.py","hierarchical_native_row_audit_v8.py",
+    "test_hierarchical_row_audit_v8.py","scaled_primary_solution_audit.py",
+    "test_scaled_primary_solution_audit.py","test_hierarchical_public_audit_v8.py",
+    "audit_hierarchical_public_v8.py","run_hierarchical_public_v8.py")
+GATES=(*parent.GATES,("public-policy-v8","test_hierarchical_force_policy_v8",17),
+    ("public-row-v8","test_hierarchical_row_audit_v8",50),
+    ("scaled-reader","test_scaled_primary_solution_audit",8),
+    ("public-audit-v8","test_hierarchical_public_audit_v8",8))
+CONTROLS=sum(k for _,_,k in GATES)
+DENIALS=tuple(k for k in parent.DENIALS if k!="public_controller_integration_verified")
+EVIDENCE=ROOT.parent/"SporeSpore_Evidence"
+
+def cases():
+    nominal="sdk2-support-reach-native-1b8cdaeebbb246079d7cf5737cfa4dd8"
+    return [dict(attempt_id=parent.native_parent.ATTEMPT,trial_id=parent.TRIAL,commands=99,kind="weak_recovery"),
+        dict(attempt_id=nominal,trial_id="reach_hold_nominal_train_001",commands=62,kind="nominal_handoff")]
+
+def expected_contract():
+    return dict(schema_version="locolemotion_hierarchical_public_contract_v8",
+        ledger_scope=dict(subsystem="adaptation",engine_scope="core",
+            authority_mode="public_controller_retained_reconstruction",question_class="development"),
+        source_bindings={n:sha(HERE/n) for n in SOURCES},parent_result_sha256=PARENT_SHA,
+        input_cases=[dict(case,input_bindings={n:sha(EVIDENCE/case["attempt_id"]/"physical"/case["trial_id"]/n)
+            for n in parent.previous.INPUTS}) for case in cases()],
+        parameters=parameters(),solver_settings=solver_settings(),controls_required=CONTROLS,
+        core_builds=2,public_hosts_per_reader=4,public_commands_per_reader=322,
+        unchanged_prefix_commands_per_host=60,post_handoff_commands_per_reader=82,
+        recovered_public_commands_per_reader=10,scaled_primary_public_commands_per_reader=2,complete_reader_invocations=2,
+        original_applied_hierarchical_commands_preserved_per_weak_host=38,
+        weak_allocations_match_verified_component=True,independent_selected_equations_and_certificates=True,
+        primary_refinement_independently_reconstructed=True,certified_seed_independently_verified=True,
+        all_three_predecessor_refusals_independently_reconstructed=True,
+        affine_correction_and_original_duals_independently_reconstructed=True,
+        actual_inner_qp_calls_independently_counted=True,reader_calls_qp_solver=False,refused_original_equations_reconstructed=True,
+        conditioned_secondary_duals_independently_reconstructed=True,
+        production_entrypoints=dict(provider="hierarchical_force_policy_v8.py:Policy",
+            host="hierarchical_hold_control_v8.py:HierarchicalHoldController",
+            solver="scaled_primary_fallback_component.py:compute",resolver="resolve_adaptation_v1",
+            reader="hierarchical_native_row_audit_v8.py:verify_row"),
+        public_observations_are_retained=True,
+        native_successor_launch_authorized=False,output_rounding=False,replay_tolerances_changed=False,
+        synthetic=True,worlds_opened=0,solver_steps=0,**{k:False for k in DENIALS})
+
+def declaration():
+    c=read(CONTRACT);require(c==expected_contract(),"Public8 exact contract");return c
+
+def validate_parent_scope(result,a,receipt,declared,c):
+    require(receipt["ok"] is True and receipt["component_accepted"] is True and receipt["controls_passed"]==212
+        and receipt["contract"]==declared["contract"]==c and receipt["source_runtime_unchanged"] is True
+        and a["ok"] is True and a["states"]==219 and a["accepted_states"]==214 and a["component_accepted"] is True
+
+        and result["schema_version"]=="locolemotion_scaled_primary_component_result_v1"
+        and result["status"]=="complete_scaled_primary_retained_component"
+        and result["ledger_scope"]==a["ledger_scope"]==c["ledger_scope"]
+        and result["controls_passed"]==212 and result["states"]==219 and result["accepted_states"]==214
+        and result["component_accepted"] is True and result["complete_reader_invocations"]==2
+        and result["readers_byte_identical"] is True
+        and receipt["source_commit"]==declared["source_commit"]==result["source_commit"]
+        and result["worlds_opened"]==receipt["worlds_opened"]==a["worlds_opened"]==0
+        and result["solver_steps"]==receipt["solver_steps"]==a["solver_steps"]==0
+        and result["previous_accepted_outputs_preserved"]==a["previous_accepted_preserved"]==212
+        and result["newly_accepted_states"]==a["newly_accepted_states"]==2
+        and all(a[k] is False and result[k] is False for k in parent.DENIALS),"Public8 complete component scope")
+
+def verify_parent(evidence,core,baseline):
+    require(sha(PARENT_RESULT)==PARENT_SHA,"Public8 completed component identity")
+    result=read(PARENT_RESULT);folder=evidence/result["attempt_id"]
+    receipt=read(folder/"receipt.json");declared=read(folder/"declaration.json");c=parent.declaration()
+    for key,name in (("receipt_sha256","receipt.json"),("declaration_sha256","declaration.json"),
+            ("audit_sha256","audit.json"),("reconstruction_sha256","reconstruction.json")):
+        require(result[key]==sha(folder/name),"Public8 component artifact")
+    a=read(folder/"audit.json")
+    validate_parent_scope(result,a,receipt,declared,c)
+    require(same_bits(a,read(folder/"reconstruction.json")) and sha(folder/"audit.json")==sha(folder/"reconstruction.json"),
+        "Public8 identical component readers")
+    verify_population(receipt["artifacts"],inventory(folder));validate_bindings(declared["binding"])
+    for name,_,count in parent.GATES:verify_tests(folder/(name+"-controls"),count)
+    parent.verify_parent(evidence,core,baseline)
+    return {(x["attempt_id"],x["trial_id"],x["command"]):x["result"] for x in a["rows"]}
+
+def audit(evidence,core_path,baseline_path,capture):
+    c=declaration();component=verify_parent(evidence,core_path,baseline_path);reports=[]
+    with ExitStack() as guards:
+        for name in ("MjModel","MjData","mj_step","mj_step1","mj_step2","mj_forward"):
+            guards.enter_context(patch.object(mujoco,name,side_effect=AssertionError("Public8 opens no worlds")))
+        for case in cases():
+            folder=evidence/case["attempt_id"]/"physical"/case["trial_id"]
+            originals=list(read_jsonl(folder/"controller.jsonl"))[:case["commands"]]
+            require(len(originals)==case["commands"],"Public8 full retained population")
+            compiled=read(folder/"compiled.json");profile=make_profile(compiled,read(folder/"inputs.json"))
+            dynamics,_=configured_model((folder/"model.xml").read_text(),profile);reach=ReachModel(profile["morphology_spec"])
+            outputs=[];certificates=[]
+            for core_index,core_file in enumerate((core_path,baseline_path)):
+                core=bridge.LocomotionCore(core_file);model=frozen_model(core)
+                host=HierarchicalHoldController(core,compiled,controller_contract(hold_declaration(),model),model,case["trial_id"],profile)
+                rows=[];checks=[]
+                try:
+                    for step,old in enumerate(originals):
+                        row=host.step(copy.deepcopy(old["request"]["state"]),copy.deepcopy(old["stability"]),copy.deepcopy(old["kinematics"]))
+                        rows.append(row);require(terminal_error(row) is None,"Public8 terminal controller refusal")
+                        checked=verify_row(row,old,rows[-2] if step else None,profile,dynamics,reach,host.force_policy.height)
+                        if checked is not None:
+                            checks.append(checked);allocation=row["force_reference"]["decision"]["allocation"]
+                            if case["kind"]=="weak_recovery":
+                                expected=component[(case["attempt_id"],case["trial_id"],step)]
+                                require(same_bits({k:allocation[k] for k in expected},expected),"Public8 exact verified component join")
+                                if step<98:
+                                    require(same_bits(row["resolution"]["ordered_commands"],old["resolution"]["ordered_commands"])
+                                        and same_bits(row["native_targets"],old["native_targets"]),"Public8 unchanged native commands")
+                                else:require(allocation["fallback_attempted"] is True and allocation["solver_route"]=="scaled_primary",
+                                    "Public8 actual terminal recovery branch")
+                finally:
+                    host.close()
+                    write_new(capture/(case["trial_id"]+"-core"+str(core_index)+".json"),
+                        dict(case=case,profile=profile,core_sha256=sha(core_file),rows=rows,
+                            checks=checks,controller_closed=host.closed,worlds_opened=0))
+                require(len(rows)==case["commands"] and host.closed,"Public8 complete lifecycle")
+                outputs.append(rows);certificates.append(checks)
+            require(same_bits(outputs[0],outputs[1]) and same_bits(certificates[0],certificates[1]),"Public8 bitwise two-core replay")
+            routes=Counter(x["solver_route"] for x in certificates[0])
+            reports.append(dict(case=case,profile=profile,core_sha256s=[sha(core_path),sha(baseline_path)],
+                commands_per_core=case["commands"],unchanged_prefix_commands=60,
+                hierarchical_commands_per_core=case["commands"]-60,solver_routes_per_core=dict(routes),
+                cores_bitwise_identical=True,checks=certificates[0],rows=outputs[0]))
+    require(sum(r["commands_per_core"]*2 for r in reports)==322
+        and sum(r["solver_routes_per_core"].get("refined_primary",0)*2 for r in reports)==4
+        and sum(r["solver_routes_per_core"].get("proximal_primary",0)*2 for r in reports)==4
+        and sum(r["solver_routes_per_core"].get("scaled_primary",0)*2 for r in reports)==2,
+        "Public8 complete public recovery population")
+    return dict(schema_version="locolemotion_hierarchical_public_audit_v8",ok=True,
+        ledger_scope=c["ledger_scope"],contract_sha256=sha(CONTRACT),parent_result_sha256=PARENT_SHA,
+        component_accepted=True,public_controller_integration_verified=True,
+        public_hosts=4,public_commands=322,hierarchical_commands=82,recovered_public_commands=10,scaled_primary_public_commands=2,
+        reports=reports,nominal_public_handoff_verified=True,independent_row_certificates_verified=True,
+        synthetic=True,worlds_opened=0,solver_steps=0,**{k:False for k in DENIALS})
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument("--core",type=Path,required=True)
+    p.add_argument("--baseline-core",type=Path,required=True);p.add_argument("--output",type=Path,required=True)
+    args=p.parse_args();capture=args.output.parent/(args.output.stem+"-capture");capture.mkdir()
+    value=audit(EVIDENCE,args.core,args.baseline_core,capture);write_new(args.output,value)
+    print({k:value[k] for k in ("ok","public_hosts","public_commands","recovered_public_commands")})
+    return 0
+if __name__=="__main__":raise SystemExit(main())

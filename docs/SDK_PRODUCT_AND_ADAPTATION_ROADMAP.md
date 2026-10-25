@@ -8362,3 +8362,54 @@ nominal handoff check. Only after those checks and a clean pushed prospective
 freeze may a separately declared native successor pass its complete safety
 gate and test actual continuation. Tier 2, Tier 3, safe backup, native recovery
 benefit and release remain unqualified.
+
+## Scaled-primary public integration - 2026-10-25
+
+The [public v8 closure](../sdk/discovery/hierarchical_public_result_v8.json)
+passes 295 controls and two byte-identical complete readers. Each reader
+executes four public hosts on two core builds: 99 weak-condition commands and
+62 nominal commands per build, totaling 322 commands and 82 hierarchy commands.
+The weak replay preserves all 38 previously applied hierarchy commands and
+successfully resolves command 98 through the fourth, scaled-primary route.
+The nominal handoff remains valid. Both core builds produce identical outputs.
+
+The independent reader reconstructs each affine correction problem, scaled
+certificate, original primal/dual mapping, original strict guards and actual
+inner QP count without calling a QP solver or the producer's correction helpers.
+It retains verification of the earlier three routes, all three predecessor
+refusals, the public resolver/history chain, and all five predicted held steps.
+Controls include complete correction exhaustion, a later-scale success,
+accepted-but-not-strict origin updates, and corruption/refusal boundaries.
+
+Attempt sdk2-hierarchical-public-v8-b7e7a0ddbfb14b3c9a211f1416157229
+retains 999 source and 3,582 runtime bindings, 121 artifacts including
+its receipt, and 214.937 seconds of owner time. No physics world opens.
+These are public-controller executions on retained observations; actual
+continuation beyond command 98 and recovery benefit remain unproved.
+
+## Scaled-primary prospective native successor - 2026-10-25
+
+The [native v5 route closure](../sdk/discovery/hierarchical_native_route_result_v5.json)
+passes 33 route controls and two-core runtime preflight with zero worlds.
+It connects public v8 and its independent four-route reader to the unchanged
+fresh reference/candidate comparison under weak and nominal conditions.
+Retained native states at commands 60, 89, 91 and 98 exercise all four routes;
+accounting includes inner correction solves and preserves each earlier route's
+work bound. The complete retained baseline and two-core nominal handoff pass.
+
+Attempt sdk2-hierarchical-native-v5-03d0981cf12f4f79a4e59320d926e2bb
+retains 1,008 source and 3,582 runtime bindings,
+27 artifacts including its receipt, and 131.156 seconds of owner time.
+The failed native v4 attempt and its 24-control closure remain unchanged.
+
+After publication, a fresh owner must pass all 1,091 declared safety controls
+from the clean pushed prospective freeze before it opens any world.
+The experiment retains four fresh worlds, one exposed development seed,
+twelve-second horizons, original height/tilt/torso-contact thresholds, full
+native/contact capture, fresh baseline reproduction and paired prefixes.
+A controller refusal is retained before transfer and aborts remaining worlds.
+
+Next run that complete gate and fresh causal comparison, then close the actual
+outcome with its independent readers. Route verification grants no physical
+launch authority by itself. Tier 2, Tier 3, safe backup, real-time performance,
+native recovery benefit and release remain unqualified.

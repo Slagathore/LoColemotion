@@ -3408,3 +3408,14 @@ all previously accepted routes, and adds no objective regularization.
 Two retained refusals recover and 212 accepted outputs remain exact. No
 upstream implementation was copied or runtime upgraded. Public integration,
 causal continuation, robustness and learned adaptation remain unproved.
+
+## Scaled correction public and native-route verification - 2026-10-25
+
+The [public integration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-public-integration---2026-10-25)
+now verifies the bounded affine correction through both core builds and the
+public resolver. Its reader rebuilds correction problems and original duals
+without a QP solve or producer correction helper. The earlier objective,
+constraints and strict guard remain unchanged. The prospective native route
+also verifies the correction against the retained native prepared state.
+No upstream code or package change was added. These checks advance integration;
+causal native continuation and adaptation benefit still require fresh evidence.
