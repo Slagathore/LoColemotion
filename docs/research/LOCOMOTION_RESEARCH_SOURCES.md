@@ -2814,6 +2814,41 @@ state/action and support/loading diagnosis, followed by a distinct prospective
 successor. No comparison-based reselection, external code or weights, reserved
 evaluation, or Tier 3 memory promotion is introduced.
 
+### Contact-force observer conventions - 2026-10-24
+
+The [prospective local fixture](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-contact-force-observer-fixture---2026-10-24)
+uses MuJoCo 3.11.0's implementation to resolve conventions that the short API
+description leaves implicit. In
+[`mj_rnePostConstraint`](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_core_smooth.c),
+the contact basis is transposed for local-to-world conversion; the resulting
+wrench is subtracted from the first geometry's body and added to the second.
+Torque is located at the contact point before any origin shift. The proper
+native-to-canonical rotation is applied to force and torque alike.
+
+[`mj_contactForce`](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_core_util.c)
+clears all six output components, reads active contact constraints using the
+declared cone, and subtracts adhesive pull from the normal component.
+The observer therefore keeps signed force and inactive zero values. Its
+independent reconstruction retains constraint addresses, identities, dimension,
+friction, adhesion and the complete constraint-force vector. The exact local
+body XML uses an elliptic cone; synthetic pyramidal cases establish algebraic
+coverage only.
+
+The [split-step implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_forward.c)
+prepares geometry before control, solves constraints in the second phase,
+then integrates. Immediate capture after that phase joins solved contact force
+to the prepared geometry, while position and velocity have advanced. Another
+preparation or forward call can change derived data without advancing time.
+The bound host therefore owns both phases and captures synchronously; a
+timestamp by itself is not a generic stage certificate.
+
+These are measurement conventions, not evidence of an actuation-feasible
+recovery controller. Capsule-contact attribution remains distinct from an
+anatomical foot endpoint. The fixture preserves original controller observations
+and compares fresh off/on worlds before any controller consumes the new loads.
+No external source implementation, model weights or performance claims are
+imported.
+
 ### Recovery action delivery and force-measurement boundaries - 2026-10-24
 
 The [complete recovery diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-action-and-support-diagnosis---2026-10-24)

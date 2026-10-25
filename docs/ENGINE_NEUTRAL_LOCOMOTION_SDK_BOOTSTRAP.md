@@ -9,6 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest contact observer (2026-10-24): the [prospective measurement fixture](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-contact-force-observer-fixture---2026-10-24)
+implements completed-step contact-force capture and independent constraint-force
+reconstruction. The corrected component passes **36 checks** and a zero-world
+runtime preflight. An earlier full **363-control** gate passed before the cone
+correction; its original snapshot is retained. **No new worlds have opened.**
+Next run the full gate from the pushed freeze and four fresh one-second CPU
+worlds: capture off/on in each of two exposed motor conditions. Native trace
+equality, real contact-force reconstruction and telemetry cost remain pending.
+The controller still receives null contact loads; Tier 2/Tier 3 and release
+remain unqualified.
+
 Latest recovery diagnosis (2026-10-24): the [complete retained-data analysis](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-action-and-support-diagnosis---2026-10-24)
 reopens all **119 CPU trajectories**, **162,120 commands** and **810,600 internal
 samples** with **zero new worlds**. All **16 controls** and complete raw

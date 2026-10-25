@@ -1620,6 +1620,73 @@ The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
 
+### Prospective contact-force observer fixture - 2026-10-24
+
+The [observer contract](../sdk/discovery/contact_force_observer_v1.json)
+declares four fresh CPU worlds: capture off/on in each of the exposed
+`left_075_train_001` and `nominal_train_001` groups, using development seed
+104242001. Each world runs 120 commands / 600 internal steps / one second.
+The existing training-selected recovery artifact, challenge prefix, warning,
+handoff at command 60, action bounds and controller load fields stay fixed.
+The off role uses the original native worker; the on role uses a separate
+successor that adds full contact capture.
+
+The [measurement component](../sdk/discovery/contact_force_measurement.py)
+owns preparation and completion, captures immediately after `mj_step2`, and
+retains the prepared and integrated clocks separately. Contact geometry and
+force belong to the solve before integration; the returned position and velocity
+are the integrated state. Time alone does not certify this stage. Delayed capture,
+duplicate completion, changed prepared state and capture that mutates checked
+native state are refused within this trusted host. Out-of-band native API calls
+remain outside the supported protocol.
+
+Each record retains all rigid contact identities, geometry, friction, dimension,
+constraint addresses, raw constraint forces, force/torque, contact-frame basis
+and signed body attribution. The reader reconstructs the local wrench from
+constraint rows and checks world/canonical conversion independently. Force is
+in newtons; torque is in newton-metres about each contact position. No torque
+about a common body origin or impulse is invented. The native model uses an
+elliptic friction cone. Contact API output preserves any signed net load;
+zero force is distinct from absent capture.
+
+Mapped distal capsules include lower-leg geometry. Their ground loads are
+explicitly labeled as distal-geometry measurements, not endpoint-only foot
+forces. All other contacts remain retained. Every internal step records four
+mapped loads, including zero-contact entries. The original controller still
+receives null normal-load fields.
+
+The [independent reader](../sdk/discovery/audit_contact_force_observer.py)
+requires bitwise equality of every off/on native trace field, equal canonical
+observations and native commands, and complete other-core replay of all
+controller rows. Each role constructs a fresh model, world and controller.
+Full capture includes separate overhead timings. The complete launch gate
+requires **363 controls**: the inherited 327 plus **22 analytical/stage** and
+**14 observer integration/corruption** checks. The owner holds the operation
+mutex and contains all children in Windows jobs. A clean, pushed prospective
+freeze is required before native launch.
+
+The corrected component passes **36 checks** and the zero-world runtime
+preflight in `sdk2-contact-observer-22abd2ae858a47d8b5e95e6d39382777`;
+its receipt SHA-256 is
+`f4d1ad874a40860b3f277cacd7e582536313fc88e0a11a2e1c84e0bcef22ecb2`.
+An earlier complete **363-control** check also passed with zero worlds in
+`sdk2-contact-observer-e3f755f75f5f41a183f19b684a36751b`
+(receipt `5b5a1aa5b997412a46af17c04bf28847c80edffc79bf24ceab5a1cb6bd4c9690`).
+Review then corrected the reader's assumed cone and added the XML join;
+the earlier source snapshot remains retained and is superseded before native
+launch. Component-only checks cannot produce a launch gate or consumed claim.
+The first corrected component receipt also remains retained; final publication
+changes only whitespace, confirms identical parsed code, and rechecks exact
+source bytes.
+The full 363-control gate must run again from the final pushed freeze before
+any physical world. These records and exact bindings appear in the support
+matrix. Native noninterference and force reconstruction remain pending until
+the declared fixture completes. Its one-second horizon cannot establish
+12-second recovery, safe backup, force-feasible control, held-out adaptation,
+Tier 3 memory benefit or release readiness. The next step is the frozen
+four-world fixture, followed by an actuation-aware recovery component with an
+explicit mechanical model and capability boundary.
+
 ### Completed recovery action and support diagnosis - 2026-10-24
 
 The [retained diagnostic](../sdk/discovery/residual_recovery_diagnostic_v1.json)
