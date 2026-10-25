@@ -3151,3 +3151,19 @@ before coordinate conversion, and all 1,188 body observations pass. The source
 reference explains the convention; the retained runtime bindings and numeric
 joins provide local evidence. Native mass-matrix and bias-force agreement
 remain a distinct pending oracle.
+
+### Native inertia and bias readback route - 2026-10-25
+
+The [official free-joint description](https://mujoco.readthedocs.io/en/stable/overview.html#floating-objects)
+places linear velocity in the world frame and rotational velocity in the body
+frame, with acceleration in the corresponding velocity space. The new oracle
+uses that distinction explicitly when transforming the native inertia matrix
+and bias forces to the portable world-coordinate convention.
+
+The [official function reference](https://mujoco.readthedocs.io/en/stable/APIreference/APIfunctions.html)
+and [forward pipeline source](https://github.com/google-deepmind/mujoco/blob/main/src/engine/engine_forward.c)
+identify position/velocity evaluations and dense inertia extraction. Installed
+3.11.0 binding signatures confirm the model/data/destination form of mj_fullM.
+The installed model header also distinguishes linear and higher-order joint
+damping; this fixture requires both to be zero. These references define the
+comparison route, not a successful native result.

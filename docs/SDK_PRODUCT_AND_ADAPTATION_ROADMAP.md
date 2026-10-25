@@ -21,6 +21,14 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest native dynamics route (2026-10-25): a [prospective readback oracle](#prospective-native-dynamics-readback-oracle---2026-10-25)
+is declared for two fresh model/data worlds and 132 retained states, with zero
+integration steps. The complete launch gate has 83 controls, including the
+existing dynamics controls, 26 new route controls and Windows job containment.
+No native readback result exists yet. The next action is the gated run from a
+clean pushed freeze, followed by two complete retained-data comparisons.
+Tier 2, Tier 3 and release remain unqualified.
+
 Latest dynamics component: the [completed analytic and retained-state verification](#completed-floating-base-dynamics-component---2026-10-25)
 passes 56 controls and two complete readers across 132 retained pre-fall
 states and 1,188 body observations, opening zero worlds. It supplies the full
@@ -7169,3 +7177,41 @@ distinct dynamic controller and verify its unactuated-base equations and
 actuator feasibility before any prospective recovery comparison. Preserve the
 consumed posture controller, its pre-fall failure and separate late rank refusal.
 Tier 2, Tier 3, physical recovery benefit and release remain unqualified.
+
+### Prospective native dynamics readback oracle - 2026-10-25
+
+The [immutable route declaration](../sdk/discovery/floating_dynamics_oracle_v1.json)
+selects the same two original trial prefixes and commands 60 through 125.
+The new owner holds the project operation mutex throughout its complete
+83-control gate, native worker and two retained-data readers. Its contained
+worker requires a fresh consumed identity and a clean pushed source freeze.
+
+The run plans **two native models and two data worlds**, one per original
+trial, and **zero integration steps**. It assigns each of 132 original qpos,
+qvel and timestamp records independently. Each state receives a zero-velocity
+gravity evaluation and its original-velocity bias/passive-force evaluation:
+264 explicit position stages, 264 velocity stages and 132 dense inertia
+readbacks. Assigned timestamps do not represent newly integrated time.
+No new trajectory or recovery comparison is generated.
+
+The [native pipeline](https://mujoco.readthedocs.io/en/stable/APIreference/APIfunctions.html)
+provides position/velocity stages and dense inertia extraction. The installed
+3.11.0 Python signatures were inspected directly. Integration, complete
+forward/inverse dynamics and position-integration entrypoints are guarded
+against use. The route verifies the original XML and state-stream hashes,
+compiled joint inertia, linear and higher-order damping, state/time immutability,
+actual construction counts and complete output population.
+
+A declared coordinate map converts world-linear/world-angular portable
+velocities to native world-linear/body-angular velocities. The acceleration
+frame derivative is retained explicitly, even though its product with the
+free-root angular velocity vanishes. Comparisons use 1e-9 absolute plus 1e-9
+relative tolerance for inertia, gravity, velocity/combined bias, passive forces,
+inverse dynamics and kinetic energy. Native body geometry and velocity joins
+are checked again. No tolerance is selected from a native outcome.
+
+The 26 new route controls passed locally without native construction.
+Native evidence remains pending until the complete gate, worker, both readers
+and source/runtime checks finish. This route provides finite readback evidence;
+controller feasibility, contact accuracy, recovery, Tier 2, Tier 3 and release
+remain outside its authority.

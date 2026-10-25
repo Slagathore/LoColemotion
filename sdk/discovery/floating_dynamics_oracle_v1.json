@@ -1,0 +1,142 @@
+{
+  "schema_version": "locolemotion_floating_dynamics_oracle_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "finite_native_dynamics_readback",
+    "question_class": "development"
+  },
+  "source_bindings": {
+    "floating_dynamics_oracle_math.py": "923e07ff34ffdceea66c22b8994ba3d7b3fa438ebd02e972a4463e9f3faa85c5",
+    "floating_dynamics_oracle_task.py": "bbb4d35cfb2cac1eeb3d383883137e985ad7dbba2db1ac6008a2121c2821d2cc",
+    "floating_dynamics_oracle.py": "57fb8c0afea63ccc87d0d85d99eb287e61089d98d097c8bb5be1533b58b93520",
+    "audit_floating_dynamics_oracle.py": "c03a6877e5708a1ba8fe853cf47085184faa23bdd592a3f260e24370d7ed0bf4",
+    "test_floating_dynamics_oracle.py": "6f16d8b28a30a4873821178e5cbafe521f1fadd2d7ce5138e6f34c723631c0c4",
+    "run_floating_dynamics_oracle.py": "4e4844f271ad3be11dce64c14d549df31ba1f2e6cfd242b5f82d2c4a9ca444a8"
+  },
+  "component_result_sha256": "a51438260dabc1c422c3fe26c334c60aaaa8b94c3a311e785c7c1e29a49a5ec7",
+  "input_sha256": {
+    "reach_hold_left_075_train_001/model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069",
+    "reach_hold_left_075_train_001/force-profile.json": "a10f7f19475da22dba0f0e8674c6cc9e32c5e684c532bdf91f9cb4450e30044b",
+    "reach_hold_left_075_train_001/controller.jsonl": "d6c8a8970e9529cf5f5d0a59711e43ce7f1e00d32fd0f90fd1d5bbdaaf79a365",
+    "posture_hold_left_075_train_001/model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069",
+    "posture_hold_left_075_train_001/force-profile.json": "275702d9cfd70a1b5d6bbacdbef3cf90776b53d3ab700b83ef8b2264ef7a0205",
+    "posture_hold_left_075_train_001/controller.jsonl": "d32e9fb8019460aaecec31d276a14c95ca72af20b22c06e5bdb67d0d9607d12b"
+  },
+  "runtime": {
+    "mujoco": "3.11.0",
+    "numpy": "2.4.6"
+  },
+  "trials": [
+    "reach_hold_left_075_train_001",
+    "posture_hold_left_075_train_001"
+  ],
+  "commands_start": 60,
+  "commands_end_exclusive": 126,
+  "states_per_trial": 66,
+  "states": 132,
+  "planned_models": 2,
+  "planned_cpu_worlds": 2,
+  "planned_gpu_worlds": 0,
+  "solver_steps": 0,
+  "position_evaluations": 264,
+  "velocity_evaluations": 264,
+  "dense_mass_readbacks": 132,
+  "assigned_state_times_are_retained_not_integrated": true,
+  "new_trajectory_generated": false,
+  "seed": 104242001,
+  "source_start_id": "train_001",
+  "state_selection": "retained post-handoff commands 60 through 125",
+  "controls_required": 83,
+  "safety_controls": [
+    {
+      "name": "mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "dynamics",
+      "module": "test_floating_base_dynamics",
+      "count": 22
+    },
+    {
+      "name": "inputs",
+      "module": "test_floating_base_dynamics_inputs",
+      "count": 9
+    },
+    {
+      "name": "oracle",
+      "module": "test_floating_dynamics_oracle",
+      "count": 26
+    }
+  ],
+  "containment_controls": 1,
+  "absolute_tolerance": 1e-09,
+  "relative_tolerance": 1e-09,
+  "generalized_order": "root world linear; root world angular; ordered revolute joints",
+  "synthetic_acceleration": [
+    -0.2,
+    -0.16153846153846155,
+    -0.12307692307692308,
+    -0.08461538461538462,
+    -0.046153846153846156,
+    -0.007692307692307693,
+    0.03076923076923077,
+    0.06923076923076926,
+    0.1076923076923077,
+    0.14615384615384613,
+    0.18461538461538463,
+    0.22307692307692312,
+    0.26153846153846155,
+    0.3
+  ],
+  "maximum_worker_wall_seconds": 120,
+  "maximum_reader_wall_seconds": 120,
+  "minimum_free_storage_bytes": 100000000,
+  "allowed_native_calls": [
+    "MjModel.from_xml_string",
+    "MjData",
+    "mj_resetData",
+    "mj_fwdPosition",
+    "mj_fwdVelocity",
+    "mj_fullM"
+  ],
+  "forbidden_native_calls": [
+    "mj_step",
+    "mj_step1",
+    "mj_step2",
+    "mj_forward",
+    "mj_inverse",
+    "mj_integratePos"
+  ],
+  "risks_covered": [
+    "source/runtime/input binding",
+    "job containment",
+    "fresh single-use identity",
+    "partial construction accounting",
+    "native/world coordinates",
+    "native armature and damping",
+    "state/time immutability",
+    "complete finite population",
+    "readback corruption"
+  ],
+  "exclusions": [
+    "native trajectory",
+    "contact force accuracy",
+    "controller integration",
+    "recovery",
+    "arbitrary morphology",
+    "cross-engine equivalence",
+    "release qualification"
+  ],
+  "controller_changed": false,
+  "dynamic_feasibility_established": false,
+  "held_contact_guaranteed": false,
+  "recovery_benefit_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

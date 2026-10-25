@@ -9,6 +9,14 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest native dynamics route (2026-10-25): a [prospective readback oracle](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-dynamics-readback-oracle---2026-10-25)
+is declared for two fresh model/data worlds and 132 retained states, with zero
+integration steps. The complete launch gate has 83 controls, including the
+existing dynamics controls, 26 new route controls and Windows job containment.
+No native readback result exists yet. The next action is the gated run from a
+clean pushed freeze, followed by two complete retained-data comparisons.
+Tier 2, Tier 3 and release remain unqualified.
+
 Latest dynamics component (2026-10-25): the [completed verification](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-floating-base-dynamics-component---2026-10-25)
 passes 56 controls and two complete readers across 132 retained pre-fall
 states and 1,188 body observations, opening zero worlds. It supplies the full
