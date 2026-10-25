@@ -9,14 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest dynamic native route (2026-10-25): the [prospective comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-configured-dynamic-native-comparison---2026-10-25)
-declares four fresh CPU worlds: reach-hold and dynamic-control roles in the
-same exposed left-75-percent and nominal conditions, using development seed
-104242001 and train_001. Each world has a twelve-second horizon. All 23 route
-controls and the zero-world runtime preflight pass, including a complete
-retained baseline replay. The full 619-control launch gate has not run yet.
-Next clean-push this freeze and execute the complete gate and comparison.
-No native outcome, Tier 2, Tier 3 or release qualification is added here.
+Latest dynamic native result (2026-10-25): the [closed incomplete comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#closed-incomplete-dynamic-native-comparison---2026-10-25)
+passes all 619 launch controls, then opens two of four planned CPU worlds.
+The dynamic candidate first violates tilt at 0.993333 seconds, earlier than the
+fresh reach-hold baseline at 1.158333 seconds. At command 316 (2.633333 seconds),
+the optimizer reaches its 20,000-iteration cap; that refused command is never
+transferred. Both healthy-condition worlds remain unopened. Sixteen closure
+controls and two complete readers verify all 1,757 retained commands and
+8,780 internal samples, including 256 accepted dynamic commands and the
+isolated numerical refusal, with zero new worlds.
+Next diagnose shared complete safe commands 60 through 118 before selecting
+another controller. Tier 2, Tier 3 and release remain unqualified.
 
 Latest dynamic controller result (2026-10-25): the [completed retained integration](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-constrained-dynamic-controller-component---2026-10-25)
 passes 110 controls and two complete independent readers. Each reader

@@ -21,14 +21,17 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest dynamic native route: the [prospective comparison](#prospective-configured-dynamic-native-comparison---2026-10-25)
-declares four fresh CPU worlds: reach-hold and dynamic-control roles in the
-same exposed left-75-percent and nominal conditions, using development seed
-104242001 and train_001. Each world has a twelve-second horizon. All 23 route
-controls and the zero-world runtime preflight pass, including a complete
-retained baseline replay. The full 619-control launch gate has not run yet.
-Next clean-push this freeze and execute the complete gate and comparison.
-No native outcome, Tier 2, Tier 3 or release qualification is added here.
+Latest dynamic native result: the [closed incomplete comparison](#closed-incomplete-dynamic-native-comparison---2026-10-25)
+passes all 619 launch controls, then opens two of four planned CPU worlds.
+The dynamic candidate first violates tilt at 0.993333 seconds, earlier than the
+fresh reach-hold baseline at 1.158333 seconds. At command 316 (2.633333 seconds),
+the optimizer reaches its 20,000-iteration cap; that refused command is never
+transferred. Both healthy-condition worlds remain unopened. Sixteen closure
+controls and two complete readers verify all 1,757 retained commands and
+8,780 internal samples, including 256 accepted dynamic commands and the
+isolated numerical refusal, with zero new worlds.
+Next diagnose shared complete safe commands 60 through 118 before selecting
+another controller. Tier 2, Tier 3 and release remain unqualified.
 
 Latest dynamic controller result: the [completed retained integration](#completed-constrained-dynamic-controller-component---2026-10-25)
 passes 110 controls and two complete independent readers. Each reader
@@ -7415,3 +7418,56 @@ and measured control cost are also retained. These two exposed condition pairs
 cannot qualify robustness, estimated capability, learned adaptation, cross-engine
 equivalence or real-time interaction. Contact acceleration remains a soft
 controller task; native recovery is still unproved.
+
+### Closed incomplete dynamic native comparison - 2026-10-25
+
+The [retained closure](../sdk/discovery/dynamic_control_native_failure_result_v1.json)
+records the consumed native attempt from prospective freeze
+fd62626871f133e8b23e5c95d13554e457e82db3.
+All **619 launch controls** and runtime preflight passed. Two of the four planned
+fresh CPU worlds opened; both nominal-condition worlds remain unopened.
+
+| Exposed weakened-condition role | Retained commands | Completed internal steps | First physical violation |
+| --- | ---: | ---: | --- |
+| Fresh reach-hold baseline | 1,440 | 7,200 | Tilt at 1.158333 s |
+| Dynamic v2 candidate | 317, including untransferred terminal row | 1,580 | Tilt at 0.993333 s |
+
+Both roles reproduce the first **60 commands and 300 internal samples**
+exactly, with an identical prepared handoff. The fresh baseline reproduces
+all **1,440 commands and 7,200 native samples** of its retained predecessor.
+The candidate crosses the tilt limit **0.165 seconds earlier** in this one
+exposed comparison; neither restores front-right support before failure.
+This is a finite negative observation, not a population-level estimate.
+
+The candidate completes **256 post-handoff dynamic commands**. Each retained
+optimization passes independent equations and KKT checks. Every applied native
+motor sample matches the capped velocity-motor law within **3.6e-15 N m**.
+At prepared command boundaries, requested and measured candidate torque differ
+by at most **1.34e-10 N m**. Across held internal samples, the largest difference
+is **6.1107784628439905 N m**. This maximum includes post-failure states and
+cannot by itself explain the earlier physical failure. Contact acceleration
+remains a soft objective, not an enforced native contact law.
+
+At **command 316**, after **2.633333 seconds**, OSQP reports
+maximum iterations reached at the unchanged **20,000-iteration** cap.
+The reader independently reproduces that exact problem and refusal. Its digest
+is 6245658b0285cfdb65d87c1224b67a16764ec100c80480b3f68f27c79bbddd8f.
+The original controller retains the terminal row, produces no accepted
+proposal and stops before transferring it. No iteration limit, solver setting,
+acceptance tolerance or observed result is changed.
+
+The distinct closure passes **16 controls** and **two complete independent
+readers**, reconstructing all **1,757 commands**, **8,780 internal samples**
+and every retained contact-force sample without constructing a world.
+The native owner binds **775 source / 3,430 runtime files**; the closure binds
+**780 / 3,430**. Its two reports agree exactly, the full artifact population
+is verified, and the original failed owner remains failed.
+
+Next diagnose the shared complete pre-failure window: **commands 60 through
+118, internal steps 301 through 595**. Compare predicted contact/body
+acceleration with native response, prepared versus held-interval torque, contact
+support and actuator constraints. Keep the command-316 numerical refusal
+separate from the earlier physical failure. Use that diagnosis to select a
+distinct successor rather than tuning against post-fall aggregate maxima.
+Configured recovery, capability estimation, useful learning, Tier 2, Tier 3
+and release remain unqualified.
