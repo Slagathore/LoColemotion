@@ -8496,6 +8496,151 @@
         "training_data_authority": false,
         "release_authority": false,
         "next_step": "Review front-foot reach/support geometry and declare a fresh longer-horizon check of the unchanged hold controller on the same exposed groups to distinguish settling from delayed failure before changing the controller again."
+      },
+      "hold_horizon_native_route": {
+        "status": "prospective_native_hold_horizon_pending",
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "hold_horizon_development_route",
+          "question_class": "development"
+        },
+        "contract": "sdk/discovery/hold_horizon_v1.json",
+        "contract_sha256": "7770c8e6c5f9feb83cf9a3178ab9b3e15f09bd167075817386ace4fe48eb0dac",
+        "parent_closure": "sdk/discovery/recovery_hold_native_closure_v1.json",
+        "component_attempt": "sdk2-hold-horizon-ec945169dad942628afca71b84ffc160",
+        "component_receipt_sha256": "cd8f96e7f2f25ec65e3c9769fa546e4875aaea57f74e7aa372a6c5f8729f33a4",
+        "retained_failed_component_attempt": "sdk2-hold-horizon-29758b83f48f41e795a50cd3aeb3d452",
+        "failed_receipt_sha256": "2ac39b4f6358932efc82824a52ef183ac3dea2c992ee5ed197ac285b8473c4d5",
+        "failed_control": "Synthetic clock divided by 120 instead of multiplying the exact controller timestep; prefix mismatch at command 23. Fixture corrected; controller unchanged.",
+        "component_controls": 14,
+        "complete_launch_controls": 479,
+        "component_worlds": 0,
+        "planned_cpu_worlds": 2,
+        "planned_gpu_worlds": 0,
+        "commands_per_world": 1440,
+        "internal_steps_per_world": 7200,
+        "horizon_s": 12.0,
+        "conditions": [
+          "left_075_train_001",
+          "nominal_train_001"
+        ],
+        "seed": 104242001,
+        "controller_change": false,
+        "first_second_complete_prefix_equality_required": true,
+        "retained_geometry": [
+          {
+            "condition_id": "left_075",
+            "controller_sha256": "95dc17e752a6947890ddef2c432b8e6f824fa581f46de54f56e0a8f2f460a90d",
+            "model_xml_sha256": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069",
+            "prepared_geometry": [
+              {
+                "command": 59,
+                "time_s": 0.4916666666666648,
+                "feet": {
+                  "front_left": {
+                    "lowest_surface_height_m": -0.0007098823446138255,
+                    "bears_support": true
+                  },
+                  "front_right": {
+                    "lowest_surface_height_m": 0.04399766437387249,
+                    "bears_support": false
+                  },
+                  "rear_left": {
+                    "lowest_surface_height_m": 0.07658277759117449,
+                    "bears_support": false
+                  },
+                  "rear_right": {
+                    "lowest_surface_height_m": -0.0007301990636635405,
+                    "bears_support": true
+                  }
+                }
+              },
+              {
+                "command": 119,
+                "time_s": 0.991666666666676,
+                "feet": {
+                  "front_left": {
+                    "lowest_surface_height_m": 0.022879592979507,
+                    "bears_support": false
+                  },
+                  "front_right": {
+                    "lowest_surface_height_m": 0.12335361355977692,
+                    "bears_support": false
+                  },
+                  "rear_left": {
+                    "lowest_surface_height_m": -0.0008186558506136157,
+                    "bears_support": true
+                  },
+                  "rear_right": {
+                    "lowest_surface_height_m": -8.222104477172143e-06,
+                    "bears_support": true
+                  }
+                }
+              }
+            ],
+            "dynamic_reachability_established": false
+          },
+          {
+            "condition_id": "nominal",
+            "controller_sha256": "941c8c50ec26b76f8fcf4e47a7610db14507900abaf0d79cbb3ee2344917299a",
+            "model_xml_sha256": "27ba35d5925099e22a757b232808ad3bbaae7fa7b55b912396ece2fd7bb1b6ec",
+            "prepared_geometry": [
+              {
+                "command": 59,
+                "time_s": 0.4916666666666648,
+                "feet": {
+                  "front_left": {
+                    "lowest_surface_height_m": -0.0008198146155642197,
+                    "bears_support": true
+                  },
+                  "front_right": {
+                    "lowest_surface_height_m": 0.033208268519617244,
+                    "bears_support": false
+                  },
+                  "rear_left": {
+                    "lowest_surface_height_m": 0.0834927446892508,
+                    "bears_support": false
+                  },
+                  "rear_right": {
+                    "lowest_surface_height_m": -0.0006888337106179324,
+                    "bears_support": true
+                  }
+                }
+              },
+              {
+                "command": 119,
+                "time_s": 0.991666666666676,
+                "feet": {
+                  "front_left": {
+                    "lowest_surface_height_m": 0.009167288420615406,
+                    "bears_support": false
+                  },
+                  "front_right": {
+                    "lowest_surface_height_m": 0.019690788071818142,
+                    "bears_support": false
+                  },
+                  "rear_left": {
+                    "lowest_surface_height_m": -0.0006611256194571161,
+                    "bears_support": true
+                  },
+                  "rear_right": {
+                    "lowest_surface_height_m": -0.0005340943795857853,
+                    "bears_support": true
+                  }
+                }
+              }
+            ],
+            "dynamic_reachability_established": false
+          }
+        ],
+        "full_gate_passed": false,
+        "physical_started": false,
+        "twelve_second_recovery_established": false,
+        "safe_backup_qualified": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false,
+        "release_authority": false
       }
     },
     "tier3": {

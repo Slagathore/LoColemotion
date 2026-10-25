@@ -6505,3 +6505,45 @@ same exposed groups. Resolve settling versus delayed failure before changing
 the controller again. The one-second result is finite development evidence;
 reserved starts, stable or twelve-second recovery, learned capability,
 Tier 2/Tier 3 and release remain unqualified.
+
+### Prospective twelve-second recovery hold continuation - 2026-10-25
+
+The [successor contract](../sdk/discovery/hold_horizon_v1.json) extends the
+unchanged force-hold controller to **12 seconds** on two fresh exposed worlds:
+left_075/train_001 and nominal/train_001, seed 104242001. Each starts from fresh
+setup and runs 1,440 commands / 7,200 internal steps. The complete original
+120-command / 600-step prefix must match the retained one-second hold trial
+bitwise. No cached physical state is resumed. Controller, handoff, motor limits,
+residual caps, model XML and original failure thresholds are unchanged.
+
+Retained capsule geometry at prepared command 119 places the front-right lowest
+surface **0.123354 m above ground** in the weak trial and **0.019691 m** in the
+healthy trial; neither bears support there. At command 59 these clearances were
+0.043998 m and 0.033208 m. The calculation uses exact model capsule endpoints,
+radius and native body pose. It establishes geometry at those observations,
+not inverse-kinematics reachability or a dynamically feasible rescue.
+
+Component attempt sdk2-hold-horizon-ec945169dad942628afca71b84ffc160 passes
+**14 controls** and zero-world runtime preflight, including full reopening of the
+parent closure. Both DLLs reconstruct the complete supported synthetic clock
+through command 1439 and reject command 1440 before control transfer. Later
+synthetic observations hold the retained final prepared state while advancing
+the exact declared clock; alternative actions did not generate observations.
+Receipt SHA-256: cd8f96e7f2f25ec65e3c9769fa546e4875aaea57f74e7aa372a6c5f8729f33a4.
+Synthetic controller SHA-256 on both cores:
+181be2ae4bd615d87c71a2b2d86d98bc2ce1366f9f4ec923f9357b070381c91c.
+
+The failed predecessor sdk2-hold-horizon-29758b83f48f41e795a50cd3aeb3d452
+is retained (receipt 2ac39b4f6358932efc82824a52ef183ac3dea2c992ee5ed197ac285b8473c4d5).
+Its synthetic fixture divided the command index by 120, producing a different
+floating-point clock at command 23. The fixture now multiplies the exact
+controller timestep as production does; the controller was not changed. Both
+component attempts opened zero worlds.
+
+**Launch gate:** a clean, pushed prospective freeze and all **479 controls**
+precede two contained CPU worlds, with complete contact capture and two full
+other-core readers. The per-stream bound is 1 GiB, worker/readers each have a
+600-second limit, and at least 12 GiB of storage is required. Original positive,
+negative and horizon-censored outcomes remain distinct. This test asks whether
+the unchanged hold settles or fails later; it does not qualify a safe backup,
+held-out generalization, Tier 2, Tier 3 or release.

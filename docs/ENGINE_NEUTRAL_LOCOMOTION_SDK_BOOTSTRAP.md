@@ -9,6 +9,13 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest prospective hold continuation (2026-10-25): the [twelve-second route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-twelve-second-recovery-hold-continuation---2026-10-25)
+passes 14 new controls, the complete synthetic clock on both DLLs and retained
+parent reconstruction without opening worlds. Two fresh weak/healthy hold
+worlds will preserve the unchanged controller and exact original first-second
+prefix. All 479 safety controls and a clean pushed freeze precede launch.
+The question is settling versus delayed failure; Tier 2/Tier 3 remain unqualified.
+
 Latest native recovery hold result (2026-10-25): the [completed comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-recovery-hold-comparison---2026-10-25)
 passed all 453 launch controls and complete independent replay of four fresh
 worlds. Weak force-walk crossed the tilt limit at 0.915 s; weak force-hold stayed

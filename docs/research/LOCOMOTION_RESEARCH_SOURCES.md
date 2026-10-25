@@ -2981,3 +2981,13 @@ The posthoc pose trend is retained without changing thresholds or extrapolating
 future motion. The next evidence question is settling versus delayed failure
 on a longer fresh trajectory, informed by retained support/reach geometry.
 No learned adaptation, safe backup, long-horizon or release claim follows.
+
+### Twelve-second hold continuation scope - 2026-10-25
+
+The [prospective continuation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-twelve-second-recovery-hold-continuation---2026-10-25)
+uses unchanged controller dynamics on two fresh exposed worlds. Retained exact
+capsule geometry explains the observed front-right clearance but does not prove
+reachability or recovery. Fourteen zero-world controls include a full two-core
+synthetic clock; the failed clock-fixture attempt is retained. Physical launch
+requires the clean pushed freeze and all 479 controls. Twelve-second stability,
+safe backup, learning and qualification remain unproven.
