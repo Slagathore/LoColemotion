@@ -2968,3 +2968,16 @@ Motion-command and support-composition consistency must be tested together;
 merely changing a displayed mode or resetting residual history is insufficient.
 This is an implementation question prompted by finite evidence, not a published
 algorithm's recovery guarantee or an already observed outcome.
+
+### Native hold comparison and endpoint limit - 2026-10-25
+
+The [completed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-recovery-hold-comparison---2026-10-25)
+keeps the configured force reference and safety bounds fixed while aligning
+motion and support composition with hold. The weakened hold trial stays within
+the original one-second limits, while force-walk crosses the tilt limit at
+0.915 s. This improves the observed short-horizon outcome, but weak hold tilt
+continues rising at the endpoint and front-right support remains absent.
+The posthoc pose trend is retained without changing thresholds or extrapolating
+future motion. The next evidence question is settling versus delayed failure
+on a longer fresh trajectory, informed by retained support/reach geometry.
+No learned adaptation, safe backup, long-horizon or release claim follows.

@@ -6450,3 +6450,58 @@ complete **453-control gate**, including provider and containment checks. The
 owner holds the operation mutex and contains all descendants; each launch has
 a fresh single-use identity. The native result remains pending. No recovery,
 safe-backup, long-horizon, Tier 2/Tier 3 or release claim follows from preflight.
+
+### Completed native recovery hold comparison - 2026-10-25
+
+The [retained closure](../sdk/discovery/recovery_hold_native_closure_v1.json)
+verifies four fresh CPU worlds from prospective freeze
+18d08b40b40e0bbb40b4eee02ec55907e5a1bf80. All **453 safety controls** passed
+before launch. Both complete readers reconstructed all **480 commands, 2,400
+internal steps and 2,400 full contact captures**. For each condition, the paired
+first 60 commands, first 300 internal steps and prepared handoff state match
+exactly. Each subsequent controller acted on its own causal native trajectory.
+
+| Exposed condition and controller | One-second diagnostic | Maximum tilt | Minimum root height |
+| --- | --- | ---: | ---: |
+| Weakened force-walk | Tilt violation at step 549 / 0.915 s | 0.791165 rad | 0.327584 m |
+| Weakened force-hold | No violation through 1.0 s | 0.477454 rad | 0.401054 m |
+| Healthy force-walk | No violation through 1.0 s | 0.201454 rad | 0.430217 m |
+| Healthy force-hold | No violation through 1.0 s | 0.156253 rad | 0.432187 m |
+
+All four trials have zero torso contacts and zero safe-no-actuation steps.
+The unchanged full-horizon thresholds remain height >= 0.25 m, tilt <= 0.6 rad
+and zero torso contacts. Horizon-censored trials keep a null failure time.
+
+**The weak hold case has not demonstrated stable recovery.** A separately
+labeled posthoc endpoint check finds its tilt rising from **0.436309 rad at
+0.95 s** to **0.477454 rad at 1.0 s**. Its last-50-ms secant is **+0.822903 rad/s**,
+and its maximum tilt occurs at the last sample. The healthy hold case decreases
+from **0.097720 to 0.058433 rad** over that interval. These are pose-derived
+secants, not instantaneous angular-velocity measurements or future predictions.
+The sample locations were chosen after observing the outcomes; no threshold,
+original outcome or selection authority changed. The weak walk endpoint is
+post-failure data and remains retained as such.
+
+Front-right support is still **0/60 prepared post-handoff commands in all four
+trials**. The full post-handoff support summaries may include post-failure
+states. The hold transition's largest total target changes are **2.345784 rad/s**
+weak and **2.113370 rad/s** healthy, with residual changes remaining within
+0.08 rad/s. No total target slew guarantee or safe-backup claim is introduced.
+
+Attempt sdk2-recovery-hold-native-70438299e2294287ae138602eca1a551 retains
+637 source and 1,359 runtime bindings and 2,660 artifacts including its receipt.
+Receipt SHA-256: c85f1f5bf596074a1f10e090ab664f0a7194dbd942146a547bae6e7b2af72552.
+Both native audit SHA-256 values: f80381dc2b02e08d864f95d633ab6ff7d09075d05951b6badcf010cdf467d8c3.
+
+Closure attempt sdk2-recovery-hold-closure-controls-5d8ef7772d4e43dfabbb8620917549c9
+passed **12 analytical/corruption controls** and two complete retained-data
+reconstructions, opening zero worlds. Receipt SHA-256:
+4d3eda82fedfccb18765bfa1923061092fef341cdf0daec69234433cd93b3ff5.
+Both closure audit SHA-256 values: 893053533e824e42f49c1f60658e43c3841f0626ad13cd181ce678e98f660ddc.
+
+**Next:** inspect retained front-foot reach/support geometry and prospectively
+declare a fresh longer-horizon check of the unchanged hold controller on these
+same exposed groups. Resolve settling versus delayed failure before changing
+the controller again. The one-second result is finite development evidence;
+reserved starts, stable or twelve-second recovery, learned capability,
+Tier 2/Tier 3 and release remain unqualified.

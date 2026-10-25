@@ -8383,6 +8383,119 @@
         "tier3_benefit_established": false,
         "training_data_authority": false,
         "release_authority": false
+      },
+      "recovery_hold_native_closure": {
+        "status": "native_hold_route_verified_finite_outcomes",
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "recovery_hold_development_route",
+          "question_class": "development"
+        },
+        "closure_path": "sdk/discovery/recovery_hold_native_closure_v1.json",
+        "closure_sha256": "6f64171207b55b0a77081407d930bcc2227eb980f652ee8e8383a1774c3914b1",
+        "source_commit": "18d08b40b40e0bbb40b4eee02ec55907e5a1bf80",
+        "attempt_id": "sdk2-recovery-hold-native-70438299e2294287ae138602eca1a551",
+        "receipt_sha256": "c85f1f5bf596074a1f10e090ab664f0a7194dbd942146a547bae6e7b2af72552",
+        "audit_sha256": "f80381dc2b02e08d864f95d633ab6ff7d09075d05951b6badcf010cdf467d8c3",
+        "reconstruction_sha256": "f80381dc2b02e08d864f95d633ab6ff7d09075d05951b6badcf010cdf467d8c3",
+        "complete_safety_controls": 453,
+        "constructed_cpu_worlds": 4,
+        "constructed_gpu_worlds": 0,
+        "controller_rows": 480,
+        "internal_rows": 2400,
+        "contact_rows": 2400,
+        "source_binding_count": 637,
+        "runtime_binding_count": 1359,
+        "closure_control_attempt_id": "sdk2-recovery-hold-closure-controls-5d8ef7772d4e43dfabbb8620917549c9",
+        "closure_control_receipt_sha256": "4d3eda82fedfccb18765bfa1923061092fef341cdf0daec69234433cd93b3ff5",
+        "closure_controls_passed": 12,
+        "closure_audit_sha256": "893053533e824e42f49c1f60658e43c3841f0626ad13cd181ce678e98f660ddc",
+        "pairs": [
+          {
+            "group_id": "left_075_train_001",
+            "prefix_controller_rows_identical": 60,
+            "prefix_internal_rows_identical": 300,
+            "handoff_prepared_state_identical": true,
+            "fresh_worlds": 2,
+            "post_handoff_equality_required": false
+          },
+          {
+            "group_id": "nominal_train_001",
+            "prefix_controller_rows_identical": 60,
+            "prefix_internal_rows_identical": 300,
+            "handoff_prepared_state_identical": true,
+            "fresh_worlds": 2,
+            "post_handoff_equality_required": false
+          }
+        ],
+        "finite_outcomes": [
+          {
+            "trial_id": "force_walk_left_075_train_001",
+            "diagnostic_eligible": false,
+            "maximum_tilt_rad": 0.7911647553060878,
+            "minimum_height_m": 0.32758356361743574,
+            "first_physical_violation": {
+              "internal_step": 549,
+              "time_s": 0.9150000000000076,
+              "failure_codes": [
+                "tilt"
+              ]
+            },
+            "front_right_support_commands": 0,
+            "support_commands": 60,
+            "support_window_may_include_post_failure": true,
+            "endpoint_tilt_rad": 0.7911647553060878,
+            "last_50ms_tilt_secant_rad_s": 2.3939114078178307
+          },
+          {
+            "trial_id": "force_hold_left_075_train_001",
+            "diagnostic_eligible": true,
+            "maximum_tilt_rad": 0.477453878366351,
+            "minimum_height_m": 0.40105399036001776,
+            "first_physical_violation": null,
+            "front_right_support_commands": 0,
+            "support_commands": 60,
+            "support_window_may_include_post_failure": true,
+            "endpoint_tilt_rad": 0.477453878366351,
+            "last_50ms_tilt_secant_rad_s": 0.8229034797020084
+          },
+          {
+            "trial_id": "force_walk_nominal_train_001",
+            "diagnostic_eligible": true,
+            "maximum_tilt_rad": 0.20145350433637801,
+            "minimum_height_m": 0.43021744454802224,
+            "first_physical_violation": null,
+            "front_right_support_commands": 0,
+            "support_commands": 60,
+            "support_window_may_include_post_failure": true,
+            "endpoint_tilt_rad": 0.18702535693623196,
+            "last_50ms_tilt_secant_rad_s": -0.22688390131189148
+          },
+          {
+            "trial_id": "force_hold_nominal_train_001",
+            "diagnostic_eligible": true,
+            "maximum_tilt_rad": 0.15625250645452707,
+            "minimum_height_m": 0.43218728880334883,
+            "first_physical_violation": null,
+            "front_right_support_commands": 0,
+            "support_commands": 60,
+            "support_window_may_include_post_failure": true,
+            "endpoint_tilt_rad": 0.058432658995102166,
+            "last_50ms_tilt_secant_rad_s": -0.7857475813785629
+          }
+        ],
+        "endpoint_trends_are_posthoc": true,
+        "endpoint_trends_extrapolate_future": false,
+        "total_target_slew_guaranteed": false,
+        "weak_stable_recovery_established": false,
+        "twelve_second_recovery_established": false,
+        "recovery_benefit_established": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false,
+        "training_data_authority": false,
+        "release_authority": false,
+        "next_step": "Review front-foot reach/support geometry and declare a fresh longer-horizon check of the unchanged hold controller on the same exposed groups to distinguish settling from delayed failure before changing the controller again."
       }
     },
     "tier3": {

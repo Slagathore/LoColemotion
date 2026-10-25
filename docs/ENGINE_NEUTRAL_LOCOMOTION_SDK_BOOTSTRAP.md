@@ -9,6 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest native recovery hold result (2026-10-25): the [completed comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-recovery-hold-comparison---2026-10-25)
+passed all 453 launch controls and complete independent replay of four fresh
+worlds. Weak force-walk crossed the tilt limit at 0.915 s; weak force-hold stayed
+inside the original limits through 1.0 s, reducing peak tilt from 0.791 to
+0.477 rad. **Weak hold tilt was still rising at the endpoint**, and front-right
+support remained absent. Twelve closure controls and two full readers retained
+that distinction. Next is support/reach review and a prospective longer-horizon
+check of the unchanged controller. Stable recovery, Tier 2/Tier 3 and release
+remain unqualified.
+
 Latest prospective native recovery hold route (2026-10-25): the [four-world comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-recovery-hold-comparison---2026-10-25)
 has passed its 12 new route controls and zero-world runtime preflight. A clean
 pushed freeze and all 453 safety controls are required before fresh force-walk
