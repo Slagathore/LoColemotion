@@ -3430,3 +3430,23 @@ comparisons preserve 51 historical controls in the 53-control active generic
 suite, whose fresh run passes. No package upgrade, upstream algorithm change,
 controller change or acceptance relaxation was made. Causal recovery and
 learned adaptation remain separate prospective evidence requirements.
+
+## Native held-model mismatch and contact consistency - 2026-10-25
+
+The [latest native closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
+now supplies a physical counterexample despite independently certified model
+solutions: earlier tilt, followed by joint-limit violation and pre-solver
+refusal. Future work must diagnose the actual prediction mismatch.
+
+[Righetti and Schaal's contact-force control summary](https://www.ihmc.us/dwc2012files/Righetti.pdf)
+relates force optimization to contact-consistent desired motion and actuation
+redundancy. It motivates checking the realizability of the selected force and
+motion together; it does not validate our frozen-contact, held-input model.
+
+[Zanolli and Del Prete's robust joint-bound work](https://andreadelprete.github.io/publication/zanolli-2023/)
+assumes fully actuated dynamics, bounded additive input disturbances and fixed
+state/input bounds. Those assumptions are not established for this floating
+base with changing contacts. The local inference is to measure and separate
+prediction-error mechanisms before adopting a new bound or braking constraint.
+A finite observed maximum does not establish a robust disturbance set. No
+upstream code, controller change or widened acceptance was introduced here.

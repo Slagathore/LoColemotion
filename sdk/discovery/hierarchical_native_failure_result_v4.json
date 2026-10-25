@@ -1,0 +1,378 @@
+{
+  "schema_version": "locolemotion_hierarchical_native_failure_result_v4",
+  "status": "complete_retained_native_tilt_negative_and_joint_domain_refusal_closure",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_incomplete_native_closure",
+    "question_class": "development"
+  },
+  "source_commit": "6a57ecfe5996b7c7d7132252e4944ce612a390cb",
+  "attempt_id": "sdk2-hierarchical-native-failure-v4-controls-1663602da54642d792033af93cba5f65",
+  "contract_path": "sdk/discovery/hierarchical_native_failure_v4.json",
+  "contract_sha256": "28c1371df4a05fb89f5dc48a52def9888cd9a0b542e505d715c21197e40824e9",
+  "receipt_sha256": "ab146eb6843144db31d0049a40077bc057aba711d4537460b94d7a6a6828bf48",
+  "declaration_sha256": "9f887c4dafd740d7073b8096edd4086aaa32bbedfa7707ce5452cfce8b5ad726",
+  "audit_sha256": "238e8889b17b6c7c58aac147f0d1ffe792d0c875621cbce647ec1d7fd613572b",
+  "reconstruction_sha256": "238e8889b17b6c7c58aac147f0d1ffe792d0c875621cbce647ec1d7fd613572b",
+  "controls_passed": 24,
+  "complete_reader_invocations": 2,
+  "readers_byte_identical": true,
+  "source_binding_count": 1025,
+  "runtime_binding_count": 3582,
+  "artifacts_including_receipt": 22,
+  "owner_wall_s": 231.76600000000326,
+  "original_attempt": "sdk2-hierarchical-native-v6-f5072c1d2e46499498911eed68d74146",
+  "original_source_commit": "6a57ecfe5996b7c7d7132252e4944ce612a390cb",
+  "original_contract_sha256": "079087a4e460326435bb189599eed8e9107ed4bbb1c54f419cca0401273aa3c9",
+  "original_receipt_sha256": "2a9f28a81b097ad03679804c3f69da7fb8965350a9b1f461bd4ef5b0d9427301",
+  "original_owner_wall_s": 1660.422000000006,
+  "original_artifacts_including_receipt": 2788,
+  "original_safety_controls_verified": 1050,
+  "original_source_binding_count": 1020,
+  "original_runtime_binding_count": 3582,
+  "original_worlds_opened": 2,
+  "original_worlds_planned": 4,
+  "original_native_ok": false,
+  "complete_retained_population_verified": true,
+  "retained_controller_rows": 1560,
+  "retained_internal_rows": 7795,
+  "baseline_regressions": [
+    {
+      "group_id": "left_075_train_001",
+      "controller_rows_identical": 1440,
+      "internal_rows_identical": 7200,
+      "fresh_world": true,
+      "cached_physical_state_used": false
+    }
+  ],
+  "pairs": [
+    {
+      "group_id": "left_075_train_001",
+      "prefix_controller_rows_identical": 60,
+      "prefix_internal_rows_identical": 300,
+      "handoff_prepared_state_identical": true,
+      "fresh_worlds": 2,
+      "post_handoff_equality_required": false
+    }
+  ],
+  "unopened_trials": [
+    "reach_hold_nominal_train_001",
+    "hierarchy_hold_nominal_train_001"
+  ],
+  "prior_native_extension": {
+    "prior_attempt": "sdk2-hierarchical-native-v4-e021aaff51a8459a9f1c2309c72c6a77",
+    "prior_applied_controller_commands_bitwise_identical": 98,
+    "prior_native_steps_bitwise_identical": 490,
+    "recovered_command": 98,
+    "following_applied_commands": [
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118
+    ],
+    "terminal_command": 119,
+    "additional_applied_commands": 21,
+    "additional_native_steps": 105,
+    "recovery_benefit_established": false
+  },
+  "candidate_applied_hierarchical_commands": 59,
+  "candidate_optimization_statistics": {
+    "checked": 59,
+    "solver_routes": {
+      "original_generic": 53,
+      "refined_primary": 2,
+      "proximal_primary": 3,
+      "scaled_primary": 1
+    },
+    "recovered_commands": 6,
+    "new_primary_commands": 4,
+    "scaled_primary_commands": 1,
+    "total_qp_solves": 153,
+    "maximum_errors": {
+      "total_qp_solves": 9,
+      "maximum_equation_residual": 1.4210854715202004e-14,
+      "maximum_bound_violation": 3.8764458309969996e-10,
+      "maximum_stationarity_error": 1.3193855271411955e-07,
+      "maximum_complementarity_error": 1.4912624613275264e-06,
+      "priority_preservation_error": 1.725790621520673e-10,
+      "transferred_priority_error": 1.4591014174669681e-08,
+      "held_acceleration_error": 4.547473508864641e-13,
+      "iterations": 17355
+    }
+  },
+  "terminal_command": 119,
+  "terminal_transferred": false,
+  "terminal_error": {
+    "type": "HierarchyRefusal",
+    "message": "Hierarchical support control refused"
+  },
+  "terminal_domain_witness": {
+    "command": 119,
+    "outside_joint_limits": [
+      {
+        "joint_id": "rear_left_hip",
+        "position_rad": 0.7202513120289704,
+        "velocity_rad_s": 1.1874517058280674,
+        "lower_limit_rad": -0.72,
+        "upper_limit_rad": 0.72,
+        "lower_excess_rad": 0.0,
+        "upper_excess_rad": 0.0002513120289704407
+      }
+    ],
+    "strict_domain_boundary": true,
+    "boundary_tolerance_changed": false,
+    "solver_infeasibility_established": false,
+    "base": {
+      "domain_refusal": "native joint limit already active",
+      "mode": "combined"
+    },
+    "qp_constructors_forbidden": true,
+    "qp_solves": 0
+  },
+  "terminal_qp_solves": 0,
+  "joint_prediction_gap": {
+    "applied_commands": 59,
+    "internal_samples": 295,
+    "joint_comparisons": 2360,
+    "maximum_absolute_error_rad": {
+      "front_left_hip": 0.0006966019224135221,
+      "front_left_knee": 0.0003518961569285977,
+      "front_right_hip": 0.00036692357051199,
+      "front_right_knee": 9.458787322505491e-05,
+      "rear_left_hip": 0.006823183934127952,
+      "rear_left_knee": 0.007623565872919791,
+      "rear_right_hip": 0.0009142853028131781,
+      "rear_right_knee": 0.000608858733256501
+    },
+    "worst": {
+      "command": 78,
+      "internal_step": 395,
+      "joint_id": "rear_left_knee",
+      "predicted_position_rad": 0.7054079698221256,
+      "observed_position_rad": 0.7130315356950454,
+      "absolute_error_rad": 0.007623565872919791
+    },
+    "last_applied_command": 118,
+    "last_five_steps": [
+      {
+        "internal_step": 591,
+        "predicted_position_rad": [
+          0.1000300494878036,
+          0.27149189571837246,
+          0.1333056138051753,
+          0.3620918652179898,
+          0.7117713970394329,
+          0.3133223151109915,
+          0.3212215169630003,
+          0.35353709567949626
+        ],
+        "observed_position_rad": [
+          0.1000631732902046,
+          0.2714996769345781,
+          0.13332675802559482,
+          0.3620947790470094,
+          0.7122167180820494,
+          0.31349312010347935,
+          0.3212217831058488,
+          0.35354898021820763
+        ],
+        "observed_minus_predicted_rad": [
+          3.3123802401002767e-05,
+          7.781216205648978e-06,
+          2.114422041951669e-05,
+          2.9138290195684924e-06,
+          0.00044532104261651995,
+          0.00017080499248783854,
+          2.6614284853732073e-07,
+          1.1884538711370851e-05
+        ]
+      },
+      {
+        "internal_step": 592,
+        "predicted_position_rad": [
+          0.09952895079218148,
+          0.27139300711748776,
+          0.13397854689442631,
+          0.362556135522909,
+          0.7128944499853329,
+          0.31243923505910093,
+          0.32242914594809186,
+          0.35406431260148574
+        ],
+        "observed_position_rad": [
+          0.09961236700166196,
+          0.2714128438662905,
+          0.13402817357156446,
+          0.3625630481358646,
+          0.7142608237846997,
+          0.31286609049408626,
+          0.32241931778531435,
+          0.3540840687819089
+        ],
+        "observed_minus_predicted_rad": [
+          8.341620948047745e-05,
+          1.9836748802737336e-05,
+          4.962667713814817e-05,
+          6.91261295560075e-06,
+          0.0013663737993667713,
+          0.0004268554349853293,
+          -9.828162777503202e-06,
+          1.9756180423158298e-05
+        ]
+      },
+      {
+        "internal_step": 593,
+        "predicted_position_rad": [
+          0.0990042016317032,
+          0.2712803971091742,
+          0.13460962406391408,
+          0.3629909352249743,
+          0.7134972107965944,
+          0.3115293262208284,
+          0.32363968458005304,
+          0.35458454410376844
+        ],
+        "observed_position_rad": [
+          0.09914674905650045,
+          0.27131461036794935,
+          0.13468947307541562,
+          0.36300204901736444,
+          0.7162767784353957,
+          0.31225490993675675,
+          0.3236046663282225,
+          0.35460298628964043
+        ],
+        "observed_minus_predicted_rad": [
+          0.0001425474247972458,
+          3.4213258775173117e-05,
+          7.984901150154267e-05,
+          1.1113792390160526e-05,
+          0.0027795676388012724,
+          0.0007255837159283463,
+          -3.501825183055418e-05,
+          1.8442185871991867e-05
+        ]
+      },
+      {
+        "internal_step": 594,
+        "predicted_position_rad": [
+          0.09848242639424261,
+          0.2711646048273653,
+          0.13522037618212418,
+          0.3634130706392941,
+          0.713898973267153,
+          0.31055464519846515,
+          0.32485564479697054,
+          0.3551027854261206
+        ],
+        "observed_position_rad": [
+          0.0986710935816511,
+          0.2712102614547782,
+          0.1353259985343856,
+          0.3634270891951855,
+          0.7182722258525903,
+          0.3116525194792291,
+          0.3247760467517913,
+          0.35510905003144266
+        ],
+        "observed_minus_predicted_rad": [
+          0.00018866718740849497,
+          4.565662741290444e-05,
+          0.00010562235226141414,
+          1.4018555891393003e-05,
+          0.004373252585437304,
+          0.0010978742807639663,
+          -7.959804517926328e-05,
+          6.264605322048311e-06
+        ]
+      },
+      {
+        "internal_step": 595,
+        "predicted_position_rad": [
+          0.09796686524208306,
+          0.2710485805017331,
+          0.13581990963550356,
+          0.3638293259316269,
+          0.7141666666666837,
+          0.30953780640889605,
+          0.32607585853677473,
+          0.35562073557871793
+        ],
+        "observed_position_rad": [
+          0.09818881389185195,
+          0.27110255232270836,
+          0.1359476951578288,
+          0.3638452170782976,
+          0.7202513120289704,
+          0.31105470605396196,
+          0.325932600031763,
+          0.355604002070168
+        ],
+        "observed_minus_predicted_rad": [
+          0.00022194864976889106,
+          5.3971820975273754e-05,
+          0.00012778552232525775,
+          1.5891146670665712e-05,
+          0.0060846453622867,
+          0.0015168996450659056,
+          -0.0001432585050117341,
+          -1.67335085499154e-05
+        ]
+      }
+    ],
+    "planning_margin_rad": 0.005833333333333334,
+    "model_only": true,
+    "robust_error_bound_established": false,
+    "physical_joint_limit_guarantee": false
+  },
+  "baseline_first_physical_violation": {
+    "internal_step": 695,
+    "time_s": 1.1583333333333465,
+    "failure_codes": [
+      "tilt"
+    ]
+  },
+  "candidate_first_physical_violation": {
+    "internal_step": 590,
+    "time_s": 0.9833333333333425,
+    "failure_codes": [
+      "tilt"
+    ]
+  },
+  "candidate_last_completed_time_s": 0.9916666666666667,
+  "candidate_horizon_censored_by_joint_domain_refusal": true,
+  "observed_candidate_minus_reference_violation_time_s": -0.17500000000000404,
+  "reader_world_build_count": 0,
+  "reader_solver_steps": 0,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "next_step": "Diagnose the complete held-interval dynamics and contact-force prediction mismatch on retained data, including all 59 applied hierarchical commands and pre-tilt onset. Separate contact-force mismatch, changing coefficients and integration effects. Derive a distinct contact-consistent or bounded-error control successor only after that diagnosis. Preserve native joint/tilt guards and refusals; a finite observed error maximum is not a robust bound. No further precision-only change addresses the observed physical failure.",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "recovery_benefit_established": false,
+  "safe_backup_established": false,
+  "dynamic_feasibility_established": false,
+  "complete_comparison_established": false,
+  "nominal_condition_evaluated": false
+}

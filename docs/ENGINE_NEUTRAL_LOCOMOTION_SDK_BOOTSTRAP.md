@@ -9,14 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest gate and native-route checkpoint: the [active-backend successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#active-backend-gate-closure-and-native-successor---2026-10-25)
-closes the v5 gate failure with 61 controls and two identical readers. The
-original gate passed 700 controls, then failed one historical automatic-backend
-equality assertion; zero worlds opened. Whole-module checks preserve its
-51 controls in 53 active generic-backend controls. Native v6 passes 35 route
-controls and two-core runtime preflight. Next pass its complete 1,050-control
-gate from the clean pushed freeze, then run the four fresh weak/nominal worlds.
-Production policy, numerical guards and physical scope remain unchanged.
+Latest native outcome: the [scaled-primary tilt negative and joint-domain closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
+records the full 1,050-control gate and two fresh CPU worlds. The candidate
+preserves its earlier trajectory and applies 21 more commands, but first
+violates tilt at 0.983 s versus the baseline's 1.158 s. It then refuses command
+119 before any QP solve because the rear-left hip exceeds its native limit.
+Twenty-four controls and two identical readers verify the complete evidence
+and the held joint-prediction mismatch. Next diagnose contact-force and
+held-interval dynamics errors before defining a distinct controller successor.
+No numerical or physical guard was relaxed. Nominal worlds remain unopened.
 Tier 2, Tier 3 and release remain unqualified.
 
 Prior public integration: the [scaled-primary checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-public-integration---2026-10-25)
@@ -34,7 +35,7 @@ The public integration and prospective native route above now pass their
 checks; the complete launch gate and fresh causal evidence remain next.
 Tier 2, Tier 3 and release remain unqualified.
 
-Latest causal result: the [native proximal extension and strict-refinement closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-proximal-extension-and-strict-refinement-refusal---2026-10-25)
+Prior causal result: the [native proximal extension and strict-refinement closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-proximal-extension-and-strict-refinement-refusal---2026-10-25)
 records a complete 984-control gate and two fresh native worlds. The candidate
 preserves its earlier trajectory and applies seven more commands, then refuses
 command 98 before transfer. Proximal primary seeds pass general certificates

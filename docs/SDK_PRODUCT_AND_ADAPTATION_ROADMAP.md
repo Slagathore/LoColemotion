@@ -21,15 +21,14 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [active-backend gate successor](#active-backend-gate-closure-and-native-successor---2026-10-25)
-has passed 61 closure controls, two identical readers and 35 native-route
-controls. The v5 full gate stopped after 700 passes at a retired automatic
-backend's exact-equality check; no world opened. All 51 historical controls
-are represented by unchanged assertions in 53 active controls. Run native v6's
-complete 1,050-control gate from a clean pushed freeze before the four fresh
-comparison worlds. Controller and acceptance remain unchanged. Tier 2, Tier 3
-and release remain unqualified. Earlier next-step statements below describe
-their historical checkpoints; this paragraph is the active execution order.
+Current next action: the [scaled-primary native closure](#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
+records a complete 1,050-control gate and two fresh worlds. The candidate
+continues 21 commands past the old stop, but tilts earlier than its baseline
+and then refuses command 119 at the rear-left hip limit. Twenty-four controls
+and two identical readers close the full evidence. Diagnose the held-interval
+dynamics/contact prediction mismatch before a distinct controller successor.
+The native guards remain unchanged; Tier 2, Tier 3 and release remain
+unqualified. Earlier next-step statements below describe historical checkpoints.
 
 Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
@@ -8468,3 +8467,51 @@ freeze, then the four declared fresh comparison worlds. Route-only success
 does not authorize physics. The latest actual native candidate remains
 censored at command 98; public replay recovery still needs causal continuation.
 Tier 2, Tier 3, training, robustness, equivalence and release remain unqualified.
+
+## Scaled-primary native tilt negative and joint-domain closure - 2026-10-25
+
+The clean pushed freeze 6a57ecfe5996b7c7d7132252e4944ce612a390cb passed the
+complete 1,050-control gate and runtime preflight. Fresh attempt
+sdk2-hierarchical-native-v6-f5072c1d2e46499498911eed68d74146 opened two of the
+four declared CPU worlds, with zero GPU worlds. The baseline completed all
+1,440 commands and 7,200 internal steps. The candidate retained 120 controller
+rows, including untransferred refusal 119, and completed 595 internal steps.
+Both nominal worlds remained unopened.
+
+The [completed closure](../sdk/discovery/hierarchical_native_failure_result_v4.json)
+passes 24 controls and two byte-identical full readers. All 2,788 original
+artifacts, 1,020 source bindings, 3,582 runtime bindings, 1,560 controller rows
+and 7,795 native/contact samples are verified. The previous 98 applied
+commands and 490 native steps reproduce exactly. Command 98 is recovered
+causally through scaled primary, followed by 20 more applied commands:
+21 additional commands and 105 additional native steps in total.
+
+This continuation is a physical negative. The candidate first crosses the
+unchanged tilt limit at step 590 (0.9833333333333425 s); the fresh baseline
+crosses it at step 695 (1.1583333333333465 s). Thus the candidate violates
+earlier in this exposed pair. At command 119 the rear-left hip is at
+0.7202513120289704 rad with outward velocity 1.1874517058280674 rad/s,
+beyond its 0.72 rad upper limit. The terminal domain refusal occurs before
+any QP solve. The reader reconstructs that refusal with both OSQP and ProxQP
+constructors forbidden. The original guard and numerical acceptance remain
+unchanged; this is not a solver infeasibility result.
+
+The independent reader certifies every applied model solution and compares
+all 295 held prediction steps, or 2,360 joint comparisons, with native motion.
+For command 118, the predicted rear-left hip endpoint is
+0.7141666666666837 rad while the actual endpoint is 0.7202513120289704 rad.
+Their approximately 0.006085 rad difference exceeds the existing approximately
+0.005833 rad planning margin. The largest observed joint-position error is
+0.007623565872919791 rad at command 78, internal step 395, on the rear-left
+knee, preceding the later tilt and terminal stop. This is a concrete model-to-physics counterexample:
+conditional QP certificates did not establish native joint-limit protection.
+
+Next diagnose held-interval generalized dynamics and contact-force prediction
+error across the full 59-command hierarchical population, including pre-tilt
+onset. Separate contact-force mismatch, changing coefficients and integration
+effects before choosing a distinct contact-consistent or bounded-error
+controller. Preserve the native guards, exposed-pair identity and all failures.
+Do not treat the largest observed error as a universal disturbance bound or
+this diagnostic population as authorized training data. Solver precision alone
+does not address the observed tilt negative and pre-solver domain refusal.
+Tier 2, Tier 3, robustness, training, equivalence and release remain unqualified.
