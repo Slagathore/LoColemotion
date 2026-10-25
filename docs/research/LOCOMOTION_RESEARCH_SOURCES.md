@@ -3278,3 +3278,35 @@ continues to motivate explicit saturated/unsaturated motor transitions inside
 the hold interval. Frozen inertia, contact Jacobians and predicted force still
 limit the local model. Neither these equations nor the cited hierarchy paper
 establish contact persistence, native recovery or learned adaptation here.
+
+## Proximal QP backend and finite exact replay - 2026-10-25
+
+[Bambade et al., ProxQP (RSS 2022)](https://www.roboticsproceedings.org/rss18/p040.pdf)
+motivates testing a proximal quadratic-programming solver for this constrained
+secondary task. Its robotics benchmarks do not establish performance on our
+bounded velocity motors. The local successor keeps the support optimum,
+secondary objective and original acceptance checks; proximal iteration is not
+a new objective regularization term.
+
+The [version 0.7.2 API](https://simple-robotics.github.io/proxsuite/md_doc_22-ProxQP__api.html)
+and [pinned settings header](https://raw.githubusercontent.com/Simple-Robotics/proxsuite/v0.7.2/include/proxsuite/proxqp/settings.hpp)
+motivate explicitly enabling the duality-gap check and refusing the optional
+closest-feasible path. The [pinned Windows wheel](https://pypi.org/project/proxsuite/0.7.2/)
+is hash-locked with cmeel; the original runtime bytes remain verified.
+No upstream implementation was copied into project source and no upstream
+benchmark is claimed as local evidence.
+
+The [active-set initialization fix](https://github.com/Simple-Robotics/proxsuite/pull/476)
+is a relevant upstream lead, not an established cause of our replay differences.
+The [Windows AVX512 binding fix](https://github.com/Simple-Robotics/proxsuite/pull/485)
+concerns a different selected backend from this host's automatic AVX2 extension.
+Neither patch has been applied to the consumed local wheel.
+
+The [completed local checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#generic-proximal-hierarchy-and-exact-replay---2026-10-25)
+retains the unsuccessful conditioning attempt and automatic-backend replay.
+Selecting the wheel's generic extension then passes the unchanged finite
+replay requirements: 287 controls, two identical complete readers, 102 accepted
+states out of 118, and four public handoff ghosts per reader. These conditional
+results justify preparing a native comparison, not claiming native recovery
+or learned adaptation. Generic selection must precede automatic imports;
+loading both extensions in one process is refused.

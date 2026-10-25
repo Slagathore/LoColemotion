@@ -21,17 +21,14 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest contact-first hierarchy: the [completed handoff and retained refusal](#contact-first-hierarchy-and-retained-nullspace-refusal---2026-10-25)
-records 122 switching-motor controls and 159 hierarchy controls, each with two
-complete readers. The hierarchy accepts 72 of 118 retained states and verifies
-four public prefix/two-command handoffs across two core builds. The nullspace
-successor then fails its policy gate; a separate 12-control, two-reader closure
-reproduces the refusal and verifies that no refused command reaches a motor.
-Zero new physics worlds ran. The next step is an invertible conditioning change
-for the secondary optimizer, preserving the objective, bounds, iteration cap
-and full-coordinate acceptance. Verify the retained window and public route
-before another prospective native comparison. Tier 2, Tier 3 and release
-remain unqualified.
+Latest generic proximal hierarchy: the [completed solver and replay checkpoint](#generic-proximal-hierarchy-and-exact-replay---2026-10-25)
+passes 287 controls and two byte-identical readers, accepts 102 of 118 retained
+states, and verifies four public prefix/two-command handoffs across two core
+builds. The conditioned-nullspace refusal and automatic-backend replay failure
+remain retained. Zero new worlds ran. Next declare and verify a distinct native
+comparison, including nominal and weak handoffs and independent hierarchy
+reconstruction, then use a clean pushed prospective freeze. Tier 2, Tier 3 and
+release remain unqualified.
 
 Prior contact-priority component: the [completed conditional feasibility check](#completed-contact-priority-feasibility---2026-10-25)
 passes 102 controls and two complete readers over 118 retained states and four
@@ -7686,3 +7683,76 @@ forces over five implicit steps. No alternative command generated the retained
 observations. Contact persistence, recursive feasibility, physical recovery,
 trained morphology-conditioned Tier 2, bounded useful Tier 3 learning and
 release remain unqualified.
+
+## Generic proximal hierarchy and exact replay - 2026-10-25
+
+The [generic-backend result](../sdk/discovery/hierarchical_contact_component_result_v5.json)
+passes 287 controls and two byte-identical complete readers. Each reader
+reopens the original 1,757 commands and 8,780 internal samples, evaluates all
+118 selected pre-failure states, and verifies four fresh public hosts across
+two core builds. Each host reproduces 60 prefix commands and two hierarchical
+commands, for 248 public commands per reader. The owner binds 862 source and
+3,582 runtime files and retains 104 artifacts. Zero physics worlds ran.
+
+The secondary optimizer now uses the explicitly selected generic extension
+from pinned ProxSuite 0.7.2. The original support-priority optimization,
+secondary objective, motor/joint/force constraints and full-coordinate
+certificates remain unchanged. The original secondary representation eliminates
+initial dynamics and retains attained-support equalities. The wrapper requires
+the solved status, the duality-gap check and independent certificates; it
+refuses iteration limits, inaccurate or infeasible results and closest-feasible
+relaxation. It performs no output rounding and keeps exact replay.
+
+| Retained input role | Accepted / 59 | Remaining refusals |
+| --- | ---: | --- |
+| Reach hold | 58 | 1 bounded-search refusal |
+| Dynamic hold | 44 | 11 bounded-search refusals, 4 states outside the native joint model domain |
+
+This gives 102 accepted states versus the earlier hierarchy's 72, on the same
+finite retained input population. The secondary attempts include nine reported
+primal infeasibilities, three iteration limits and one solved result rejected
+by the independent certificate. These do not establish global impossibility.
+Independent clipped-motor acceleration reconstruction differs by at most
+5.69e-13. Alternative commands did not generate these observations.
+
+The preceding failures remain separate, immutable evidence:
+
+- The [conditioned nullspace closure](../sdk/discovery/conditioned_contact_refusal_result_v1.json)
+  passes 12 controls and two readers after the v3 policy gate refuses. Its
+  invertible Hessian transformation reduces condition number from 3.11e6 to
+  approximately one, yet the secondary solver still reaches 20,000 iterations.
+  A repeated, unaccepted reduced iterate passes its reduced certificate; the
+  unsuccessful solver status still prevents a command. Conditioning alone did
+  not resolve this handoff.
+- The [automatic-backend repeatability diagnosis](../sdk/discovery/proximal_repeatability_result_v1.json)
+  follows a v4 attempt whose 234 controls pass but whose first reader fails
+  exact public replay. The 36-control diagnostic retains two complete readers,
+  each with 118 state calculations and eight fresh 62-command hosts. Native
+  targets differ by up to 8.89e-16 rad/s, including repeats of the same core.
+  This is a failed exact-replay gate despite the small magnitude.
+- The generic successor selects its extension before any automatic backend
+  import and refuses a conflicting loaded backend. Its complete readers and
+  public commands agree exactly in this attempt. This finite observation does
+  not establish universal determinism or prove the cause of the automatic
+  backend's differences. A mixed-backend import probe was stopped after a
+  library type-registration error; it opened no worlds.
+
+The [dependency manifest](../sdk/discovery/proxqp_dependencies_v1.json) and
+[locked wheel hashes](../sdk/adapters/mujoco/requirements-proxqp-lock.txt) bind
+the additive ProxSuite 0.7.2 and cmeel 0.61.0 installation. Provisioning preserves
+all 832 predecessor source hashes and 3,430 runtime hashes and passes the
+dependency check. This Windows wheel is an explicit version choice, not a
+claim to use the latest release or permission to redistribute dependencies.
+
+Next declare a distinct native comparison using the generic hierarchy. Its
+complete route gate must cover nominal and weakened-actuator handoffs,
+independent reconstruction of both optimization levels and all held motor
+commands, refusal before native transfer, and fresh paired baselines. Keep the
+existing command, safety, time and step limits. Launch only from a clean pushed
+prospective freeze after all applicable zero-world checks. Retain failed or
+negative trajectories before selecting a further successor.
+
+Configured-model feasibility and a two-command public handoff do not establish
+native recovery, contact persistence or recursive feasibility. Trained
+morphology-conditioned Tier 2, useful bounded Tier 3 learning and release
+remain unqualified. Native recovery is the next gate before training work.

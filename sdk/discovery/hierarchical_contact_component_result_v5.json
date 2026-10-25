@@ -1,0 +1,151 @@
+{
+  "schema_version": "locolemotion_hierarchical_contact_component_result_v5",
+  "status": "complete_generic_hierarchical_handoff_with_retained_numerical_refusals",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "conditional_retained_feasibility",
+    "question_class": "development"
+  },
+  "source_commit": "b608df7c86e03c9b6ca1652e29febecc94449673",
+  "attempt_id": "sdk2-hierarchical-contact-component-v5-98e830c9f6c248118a3e809d39afc226",
+  "contract_path": "sdk/discovery/hierarchical_contact_component_v5.json",
+  "contract_sha256": "8a21d5a2f0554807cd3c475aabdfdb6bebfdcdeb47c3142b6f347a18d5934605",
+  "parent_result_path": "sdk/discovery/proximal_repeatability_result_v1.json",
+  "parent_result_sha256": "ac2da533147d5878954d0612cce47e21109de2372959f54fdb83711f8f2e9668",
+  "receipt_sha256": "8811c93be5a6f99a8914593222927ac0be0ba10d778d74335a60c612f15834f3",
+  "declaration_sha256": "05ee43efec82715cf99619114aafce57a235cc7e36561c4c5e69e3f3cd72afc7",
+  "audit_sha256": "228ecb7b170c895c6ee545d1c2f563f0ed30ce9a99bba1e54f0af40fb2c7156c",
+  "reconstruction_sha256": "228ecb7b170c895c6ee545d1c2f563f0ed30ce9a99bba1e54f0af40fb2c7156c",
+  "controls_passed": 287,
+  "complete_reader_invocations": 2,
+  "readers_byte_identical": true,
+  "source_binding_count": 862,
+  "runtime_binding_count": 3582,
+  "artifacts_including_receipt": 104,
+  "owner_wall_s": 313.2179999999935,
+  "states": 118,
+  "accepted_states": 102,
+  "refused_states": 16,
+  "qp_solves_per_reader": 240,
+  "solver_status_by_stage": {
+    "priority_strict": {
+      "solved; accepted=True": 115,
+      "maximum iterations reached; accepted=False": 1,
+      "solved inaccurate; accepted=False": 2,
+      "primal infeasible; accepted=False": 2
+    },
+    "secondary_proximal": {
+      "solved; accepted=True": 102,
+      "primal infeasible; accepted=False": 9,
+      "solved; accepted=False": 1,
+      "max iter reached; accepted=False": 3
+    },
+    "priority_proposal_only": {
+      "solved; accepted=True": 3,
+      "solved inaccurate; accepted=False": 1,
+      "primal infeasible; accepted=False": 1
+    }
+  },
+  "trials": [
+    {
+      "trial_id": "reach_hold_left_075_train_001",
+      "states": 59,
+      "status_counts": {
+        "certified contact-first hierarchy": 58,
+        "bounded hierarchical search refused": 1
+      },
+      "handoff": {
+        "accepted": true,
+        "status": "certified contact-first hierarchy",
+        "patterns_tried": 1,
+        "transitions": 4
+      },
+      "qp_solves": 124,
+      "accepted_model_solutions": 58,
+      "maximum_recurrence_error": 3.410605131648481e-13,
+      "maximum_bound_violation": 5.457151397436633e-10
+    },
+    {
+      "trial_id": "dynamic_hold_left_075_train_001",
+      "states": 59,
+      "status_counts": {
+        "certified contact-first hierarchy": 44,
+        "bounded hierarchical search refused": 11,
+        "native joint limit already active": 4
+      },
+      "handoff": {
+        "accepted": true,
+        "status": "certified contact-first hierarchy",
+        "patterns_tried": 1,
+        "transitions": 4
+      },
+      "qp_solves": 116,
+      "accepted_model_solutions": 44,
+      "maximum_recurrence_error": 5.684341886080801e-13,
+      "maximum_bound_violation": 3.9581593558324357e-10
+    }
+  ],
+  "maximum_priority_preservation_error": 3.446460894451775e-10,
+  "maximum_transferred_priority_error": 1.522003256759774e-08,
+  "maximum_independent_frozen_acceleration_error": 5.684341886080801e-13,
+  "maximum_original_coordinate_bound_violation": 5.457151397436633e-10,
+  "public_ghosts": [
+    {
+      "trial_id": "reach_hold_left_075_train_001",
+      "core_sha256s": [
+        "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+        "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977"
+      ],
+      "unchanged_prefix_commands": 60,
+      "hierarchical_commands": 2,
+      "commands_per_core": 62,
+      "cores_identical": true
+    },
+    {
+      "trial_id": "dynamic_hold_left_075_train_001",
+      "core_sha256s": [
+        "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+        "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977"
+      ],
+      "unchanged_prefix_commands": 60,
+      "hierarchical_commands": 2,
+      "commands_per_core": 62,
+      "cores_identical": true
+    }
+  ],
+  "public_hosts": 4,
+  "public_commands_reconstructed_per_reader": 248,
+  "public_hierarchical_commands_per_reader": 8,
+  "public_resolver_integration_verified": true,
+  "public_verification_scope": "four fresh prefix and two-command handoff ghosts across two core builds; no future native trajectory",
+  "first_handoff_accepted": true,
+  "motor_and_resolver_limits_unchanged": true,
+  "numerical_acceptance_unchanged": true,
+  "output_rounding": false,
+  "exact_replay_required": true,
+  "secondary_backend": "ProxQP 0.7.2 generic dense PrimalDualLDLT",
+  "secondary_extension": "proxsuite_pywrap.cp311-win_amd64.pyd",
+  "automatic_backend_failure_preserved": true,
+  "upstream_active_set_issue_established_as_cause": false,
+  "original_complete_population_reconstructed": true,
+  "original_controller_rows": 1757,
+  "original_internal_rows": 8780,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "next_step": "Declare a distinct generic-hierarchy native comparison with complete production-route and nominal/weak handoff controls, independent reconstruction of both hierarchy levels and held motor commands, unchanged safety limits and fresh paired baselines. Launch only after its complete applicable zero-world gate and clean pushed prospective freeze. Retain every refusal and compare native recovery before training or Tier 3 work.",
+  "alternative_actions_generated_observations": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "physical_launch_authority": false,
+  "recursive_feasibility_established": false,
+  "held_contact_guaranteed": false,
+  "complete_saturation_regime_search": false
+}
