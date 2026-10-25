@@ -8321,3 +8321,44 @@ guard and all previously accepted outputs. Reverify public integration before
 another causal run. This numerical refusal is not an exact infeasibility proof.
 Tier 2, Tier 3, safe backup, native recovery benefit and release remain
 unqualified.
+
+## Scaled-primary correction retained checkpoint - 2026-10-25
+
+The [scaled-primary component closure](../sdk/discovery/scaled_primary_component_result_v1.json)
+passes 212 controls and two byte-identical readers over 219 retained states.
+It accepts 214 states, preserves all 212 previously accepted outputs bitwise,
+and recovers latest native command 98 plus older dynamic command 88. One
+numerical refusal at older dynamic command 114 and four already-active native
+joint-limit refusals remain. These are five finite input windows, with overlaps
+across attempts; they do not constitute independent physical trials.
+
+The command-98 diagnosis found that the earlier active-set refinement crossed
+constraints outside its selected working set. The successor instead shifts
+and scales the complete original reduced problem. It preserves the first
+three routes and adds a fourth only after explicit numerical refusal.
+The exact least-squares objective, every constraint, original certificates,
+secondary hierarchy and strict 1e-12 primary guard remain unchanged. No output
+rounding, objective regularization or closest-feasible relaxation was added.
+
+Both recovered cases need one correction at scale 2^20, plus the initial
+primary and secondary solves: nine total QP calls across all routes. Command
+98's original reduced/full bound violations become 1.77636e-15 and
+7.10543e-15. Older command 88 reaches zero and 1.42109e-14. The declared
+correction sequence is 2^20, 2^30, 2^40, with at most three corrections per
+primary; the maximum observed total is 14 versus the declared 112-call bound.
+The declaration counts inner correction solves, not just outer attempts.
+
+Attempt sdk2-scaled-primary-component-c82699f4ee6c448d8f386327e3a8b537
+retains 987 source bindings, 3,582 runtime bindings, 963 artifacts including
+its receipt, and 328.812 seconds of owner time. It opens zero worlds and
+invokes no public controller host. Its float64 affine correction is inspired
+by the cited scaled-QP research; it does not establish arbitrary precision
+or inherit that work's rational-arithmetic guarantees.
+
+Next connect a distinct public provider/controller and independent reader.
+Replay both core builds through command 98, preserve all 38 prior applied
+hierarchy commands, verify all four routes without QP solves, and retain the
+nominal handoff check. Only after those checks and a clean pushed prospective
+freeze may a separately declared native successor pass its complete safety
+gate and test actual continuation. Tier 2, Tier 3, safe backup, native recovery
+benefit and release remain unqualified.

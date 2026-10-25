@@ -3390,3 +3390,21 @@ refinement can cross another bound. Preserve an accepted seed satisfying both
 unchanged strict feasibility checks; refine only when needed. This recovers
 three retained cases and preserves 171 accepted results. Public integration,
 causal native recovery and learned adaptation remain separate evidence gates.
+
+## Scaled QP correction for strict primary feasibility - 2026-10-25
+
+Weber, Sager and Gleixner's
+[Solving Quadratic Programs to High Precision using Scaled Iterative Refinement](https://arxiv.org/abs/1803.07178)
+uses scaled auxiliary QPs to improve a numerical solution. Its high-precision
+analysis relies on rational computations around a floating-point QP solver.
+This motivates a bounded local correction experiment; it does not prove that
+a float64 implementation reaches arbitrary precision.
+
+The [local retained checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-correction-retained-checkpoint---2026-10-25)
+uses the affine variable change z = scale * (x - origin), recomputes the
+original reduced/full primal-dual certificates, and retains the unchanged
+strict bound guard. It tries at most three declared powers of two, preserves
+all previously accepted routes, and adds no objective regularization.
+Two retained refusals recover and 212 accepted outputs remain exact. No
+upstream implementation was copied or runtime upgraded. Public integration,
+causal continuation, robustness and learned adaptation remain unproved.
