@@ -1,6 +1,6 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-10-24
+## Active - SDK2 discovery and Studio completion, 2026-10-25
 
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.
@@ -8,6 +8,17 @@ Every ordinary file passed the full checksum comparison; nine reopened evidence
 controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
+
+Latest causal recovery result (2026-10-25): the [completed native force route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-force-recovery-route---2026-10-25)
+passes **431 prelaunch controls**, four fresh CPU worlds, full raw reconstruction
+and **eight closure controls**. The new force policy preserves the original
+challenge prefix and drives its own post-handoff trajectory through the public
+resolver. The weakened case still fails on tilt: **0.915000 s**, versus
+**0.888333 s** for selected recovery. Both healthy runs remain within limits for
+this one-second fixture. This verifies native execution, not a rescue or learned
+adaptation. Next diagnose requested versus delivered force, contact transitions
+and command limiting before declaring a distinct successor. Tier 2/Tier 3,
+long-horizon recovery and release remain unqualified.
 
 Latest recovery implementation (2026-10-24): the [causal force provider and
 prospective route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-force-recovery-implementation-and-prospective-native-route---2026-10-24)

@@ -2930,3 +2930,21 @@ mechanical model and capability boundary. Keep the existing actor, warning,
 handoff, limits and reserved starts unchanged in the measurement comparison.
 No external code or weights are imported, no contact loads are invented for
 old trials, and no safe region or Tier 2/Tier 3 qualification is established.
+
+### Causal configured-force recovery reference - 2026-10-25
+
+The [implemented route and negative weak-case result](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-force-recovery-route---2026-10-25)
+combine the existing centroidal-wrench target pattern with verified rigid-tree
+virtual work and the declared velocity-actuator model. The new allocation is a
+bounded projected-gradient least-squares reference, not an implementation of a
+published MPC algorithm. Capped friction-cone projection has analytical and
+variational-inequality controls. Torque infeasibility is a penalized residual,
+not a hard realizability or dynamic-stability guarantee. A fixed iteration
+budget retains its projected-gradient residual without claiming optimality.
+
+This implementation uses configured actuator capabilities and current canonical
+geometry; it neither estimates capability nor consumes current-solve measured
+forces. The four native trajectories validate the production path and preserve
+the weakened-case failures. The prior static-feasibility and actuation references
+support the mechanics interpretation only; they do not establish recovery,
+cross-engine equivalence, long-horizon behavior or Tier 2/Tier 3 qualification.

@@ -6269,3 +6269,48 @@ Ten new route controls and guarded zero-world runtime preflight pass in
 Physical launch remains pending the clean published freeze and **431 complete
 prelaunch controls**. Reserved starts, learned-capability recovery, useful Tier 3
 memory, Tier 2/Tier 3 qualification and release authority remain open.
+
+### Completed causal force recovery route - 2026-10-25
+
+The [native closure](../sdk/discovery/causal_force_native_closure_v1.json) verifies
+four fresh CPU worlds from the published `68ea2948` freeze after all **431
+prelaunch controls**. Both independent readers agree over **480 commands**,
+**2,400 internal steps** and **2,400 full contact-force captures**. Each pair's
+first 60 commands and 300 internal samples are identical, and the prepared
+handoff observation matches exactly. Thereafter, each controller receives the
+state caused by its own resolved commands. All decisions replay through the
+other core; solver force reconstruction and original capture clocks remain intact.
+
+| Exposed condition / controller | First diagnostic violation | Maximum tilt within 1 s |
+| --- | --- | ---: |
+| Left 75% / selected recovery | Tilt, step 533, 0.888333 s | 0.840414 rad |
+| Left 75% / force reference | Tilt, step 549, 0.915000 s | 0.791165 rad |
+| Healthy / selected recovery | None within the fixture | 0.253041 rad |
+| Healthy / force reference | None within the fixture | 0.201454 rad |
+
+The force policy executes through the intended native path, but **the weakened
+case still fails**. A 0.026667-second later threshold crossing is not a rescue,
+a long-horizon result or evidence of general superiority. Both healthy outcomes
+are limited to the declared one-second fixture. No torso contact or safe-no-
+actuation step occurs in these four runs. Controller normal-load fields remain
+null; captured current-solve forces stay retrospective validation data.
+
+Attempt `sdk2-causal-force-native-f1a9cba979f4457091dc5f82acc17024` retains 2,652
+artifacts including its receipt, 619 source bindings and 1,359 runtime bindings.
+Receipt SHA-256 is
+`206403dbea024f72b79c93a6a83c255d1e9d2493dbb25d4c2647791350afa4a3`;
+both audit SHA-256 values are
+`9a15cf3434faad7e77e86511b3711ff76aa9f22130a90692ae7c7c5a2fea4570`.
+The [retained reader](../sdk/discovery/audit_causal_force_closure.py) reopens the
+original freeze, complete gate, raw population and every trajectory without
+substituting for live-source launch checks. **Eight closure refusal controls**
+and two complete reconstructions pass in
+`sdk2-causal-force-closure-controls-0a3e5e5d9259439eaeb5d93e80d44249`, receipt
+SHA-256 `286facaeab22ad283cfacd10439cb91fa5ac691a73ced2b33966c6e07c1cd003`.
+
+Next compare the causal desired and delivered wrenches, contact transitions,
+instantaneous torque intervals, posture requests and actual command limiting in
+the weakened pair. This should identify the constraint to address in a distinct
+successor before another physical campaign. The configured-capability reference
+has not learned actuator effectiveness. Reserved starts, long-horizon recovery,
+useful reversible Tier 3 memory, Tier 2/Tier 3 qualification and release remain open.
