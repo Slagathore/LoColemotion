@@ -3032,3 +3032,17 @@ controls and runtime preflight pass without physics. The clean pushed freeze
 and 511-control gate precede launch. This tests the coordinated-reference
 hypothesis suggested by the retained reach bounds; it grants no recovery,
 held-out, learning or release authority before actual outcomes.
+
+### Support-reach native evidence boundary - 2026-10-25
+
+The [paired native closure](../../sdk/discovery/support_reach_native_closure_v1.json)
+tests the previously documented coupled body/contact-reference idea with four
+fresh twelve-second worlds. The weakened case still crosses the tilt limit:
+unchanged hold at 1.111667 s and reach hold at 1.158333 s. Neither restores
+front-right support after handoff. Both healthy runs remain within the fixed
+limits for twelve seconds.
+The retained 0.046667 s delay does not establish recovery, dynamic feasibility,
+or a benefit of either cited research method. The implementation remains a
+bounded reference heuristic, not either paper's optimizer or certificate.
+Next diagnose actual pre-failure reference tracking, geometry and actuator
+projection; the failed outcome alone does not identify a causal remedy.

@@ -21,18 +21,21 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest prospective support-reach route: the [four-world native comparison](#prospective-paired-support-reach-native-comparison---2026-10-25)
-passes 14 new controls and zero-world runtime preflight. Its clean pushed freeze
-and all 511 controls precede native launch. The route preserves the original
-limits, pairs the first 60 commands exactly and reproduces each unchanged hold
-baseline over the complete twelve-second horizon.
+Latest support-reach result: the [completed paired native comparison](#completed-paired-support-reach-native-comparison---2026-10-25)
+passes all 511 safety controls and both full native replays. The weakened case
+still crosses the tilt limit: unchanged hold at 1.111667 s and reach hold at
+1.158333 s. Neither restores front-right support after handoff. Both healthy
+runs remain within the fixed limits for twelve seconds.
+The fresh baselines reproduce their complete earlier traces. Next diagnose
+actual pre-failure reference tracking, reach and actuator constraints before
+declaring a successor. Tier 2 recovery and Tier 3 benefit remain unproved.
 
 Latest support-reach component: the [completed diagnosis and integration](#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
 shows that the weak front-right foot cannot reach the ground at any of its 74
 post-handoff pre-failure body poses. A separate bounded body-lowering and
 airborne-extension successor passes 18 controls and two complete two-core
-synthetic reconstructions, opening zero worlds. Next declare its fresh four-world
-native comparison against unchanged hold. Physical recovery benefit and
+synthetic reconstructions, opening zero worlds. Its subsequent fresh four-world
+native comparison is closed above. Physical recovery benefit and
 Tier 2/Tier 3 qualification remain unproved.
 
 Latest recovery diagnosis (2026-10-24): the [complete retained-data analysis](#completed-recovery-action-and-support-diagnosis---2026-10-24)
@@ -6726,3 +6729,40 @@ gate, then close positive, negative or invalid results without changing the
 contract. This is finite exposed-start development evidence. Reserved starts,
 safe-backup qualification, learned capability, Tier 2/Tier 3 and release remain
 unproved.
+
+### Completed paired support-reach native comparison - 2026-10-25
+
+The [retained closure](../sdk/discovery/support_reach_native_closure_v1.json)
+binds attempt sdk2-support-reach-native-1b8cdaeebbb246079d7cf5737cfa4dd8 at clean pushed freeze
+537ca7b9e70118a48ce35c9f260b14c3db9febac. All 511 controls passed before four fresh CPU worlds
+opened. Two full readers agree on 5,760 commands, 28,800 solver rows and 28,800
+complete contact captures. Each pair shares its first 60 commands, 300 internal
+steps and prepared handoff state. Each fresh unchanged-hold baseline reproduces
+all 1,440 commands and 7,200 internal rows of the preceding twelve-second attempt.
+
+| Exposed start | Unchanged hold | Coordinated reach hold |
+|---|---|---|
+| Left-side 0.75 condition | First tilt violation at 1.111667 s | First tilt violation at 1.158333 s |
+| Nominal condition | No declared violation through 12 s | No declared violation through 12 s |
+
+The 28-step (0.046667 s) difference in the weak case is not recovery or a
+qualified benefit. Both weak trajectories later contact the torso and never
+report front-right support in commands 60 through 1439. That full support
+window includes post-failure states. Both healthy trajectories have zero torso
+contacts. These are two exposed starts, not held-out or robustness evidence.
+
+Closure verification sdk2-support-reach-native-closure-controls-085742b2f73e43ee9b099ae640366051 passes 14 refusal controls and two additional
+complete retained-data reconstructions with zero new worlds. The readers
+preserve failure times, handoff changes, support denominators, complete fresh
+baseline comparisons and the original source/runtime bindings.
+
+Closure SHA-256: cbff1da78242c2e4fd757cbc2fac1e79072474756fdbfd8b874d32e001778029.
+Native receipt SHA-256: 63ad315272e924f154d16ebc91ba5eba32c2d47f74f5580079c5bc30ec2e542a.
+Native audit/reconstruction SHA-256: 3fb6e1a354ae035d78ab35fbac7582ff82bad6beb2147337ffdeb9ab32cc854b.
+Closure-control receipt SHA-256: 804cdf1dc5075571ee715addfad214ca31f2769de47433afb1527e2c33da5b64.
+
+Next inspect actual pre-failure body and foot geometry, requested versus
+realized lowering, allocated support wrench and actuator projection. Use that
+retained-data diagnosis to declare a distinct successor. Do not retune this
+consumed attempt or promote its short delay to safe-backup, capability,
+Tier 2, Tier 3, release or equivalence authority.

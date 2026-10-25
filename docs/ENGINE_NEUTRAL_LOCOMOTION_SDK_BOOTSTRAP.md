@@ -9,20 +9,20 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest prospective support-reach route (2026-10-25): the [paired native contract](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-support-reach-native-comparison---2026-10-25)
-passes 14 route controls and zero-world preflight. Four fresh twelve-second
-worlds compare unchanged hold and coordinated body-lowering/leg-extension
-references on exposed weak/healthy starts, with matched prefixes and complete
-baseline reproduction. A clean pushed freeze and all 511 controls precede
-launch. Physical recovery benefit and Tier 2/Tier 3 remain unproved.
+Latest support-reach result (2026-10-25): the [completed paired comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-paired-support-reach-native-comparison---2026-10-25)
+records 511 passed controls, four completed worlds and two agreeing native replays. The weak
+candidate still tips at 1.158333 s, versus 1.111667 s for unchanged hold; neither
+restores front-right support. Both healthy runs satisfy the twelve-second
+diagnostic limits. Complete baseline reproduction and 14 closure controls pass.
+Next diagnose actual reference tracking and actuator/reach constraints.
+Tier 2 recovery, Tier 3 benefit and release remain unqualified.
 
 Latest support-reach component (2026-10-25): the [diagnosis and bounded successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
 finds weak front-right fixed-base reach impossible at all 74 post-handoff
 pre-failure observations. The new body-lowering and airborne-extension reference
 passes 18 controls and two complete two-core synthetic readers, retaining all
-geometry and commands. No new worlds opened. Next declare a fresh four-world
-hold-versus-reach-hold native comparison; recovery benefit and Tier 2/Tier 3
-remain unqualified.
+geometry and commands. No new worlds opened in that component. Its subsequent paired native
+comparison is closed above; recovery benefit and Tier 2/Tier 3 remain unqualified.
 
 Latest completed hold continuation (2026-10-25): the [twelve-second closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-twelve-second-recovery-hold-continuation---2026-10-25)
 passes all 479 launch controls, two full native readers, 12 closure controls and
