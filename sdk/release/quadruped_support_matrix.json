@@ -9580,6 +9580,61 @@
         "dynamic_feasibility_established": false,
         "complete_comparison_established": false,
         "nominal_condition_evaluated": false
+      },
+      "posture_tracking_diagnostic": {
+        "status": "pre_failure_posture_force_accounting_verified",
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "retained_posture_tracking_diagnostic",
+          "question_class": "development"
+        },
+        "result_path": "sdk/discovery/posture_tracking_diagnostic_result_v1.json",
+        "result_sha256": "2b3062878937d00f068d557e4e49062b4f2c3c5a7e4390e5904795c8e0191663",
+        "attempt_id": "sdk2-posture-tracking-diagnostic-5b7ae23c5b354b0380857e7e50810087",
+        "receipt_sha256": "cfca1df992e2e127b31759555faed9da07507d704ea592c64897a0b92f87bcb1",
+        "controls_passed": 34,
+        "complete_readers": 2,
+        "common_complete_safe_commands_per_trial": 66,
+        "diagnostic_prefix_controller_rows": 252,
+        "diagnostic_prefix_internal_samples": 1260,
+        "observations": [
+          {
+            "trial_id": "reach_hold_left_075_train_001",
+            "commands": 66,
+            "mean_sum_absolute_joint_torque_projection_error_nm": 5.398713116696408,
+            "mean_sum_absolute_first_measured_moment_error_nm": 8.250251999710109,
+            "mean_sum_absolute_allocated_moment_error_nm": 5.13198526241294,
+            "motor_reconstruction_max_error_nm": 3.3306690738754696e-15,
+            "front_right_support_commands": 0
+          },
+          {
+            "trial_id": "posture_hold_left_075_train_001",
+            "commands": 66,
+            "mean_sum_absolute_joint_torque_projection_error_nm": 3.228914776225136,
+            "mean_sum_absolute_first_measured_moment_error_nm": 10.257657461111794,
+            "mean_sum_absolute_allocated_moment_error_nm": 6.819638220570083,
+            "motor_reconstruction_max_error_nm": 3.3306690738754696e-15,
+            "front_right_support_commands": 0
+          }
+        ],
+        "next_step": "Implement an engine-neutral floating-base inertia and velocity/gravity-bias component, verify it against analytic mechanics and retained-state identities, then declare a distinct dynamic inverse-dynamics controller constrained by the existing actuator/resolver limits. Preserve the consumed posture controller and its separate late numerical refusal. No gain relaxation or new native world before the corresponding component and prospective gates.",
+        "reader_world_build_count": 0,
+        "reader_solver_steps": 0,
+        "controller_selection_authority": false,
+        "comparison_data_used_for_fitting": false,
+        "comparison_data_used_for_selection": false,
+        "alternative_trajectory_simulated": false,
+        "causal_generalization": false,
+        "recovery_benefit_established": false,
+        "capability_estimated": false,
+        "dynamic_feasibility_established": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false,
+        "physical_acceptance_authority": false,
+        "training_data_authority": false,
+        "release_authority": false,
+        "equivalence_authority": false
       }
     },
     "tier3": {

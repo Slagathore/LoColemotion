@@ -21,6 +21,18 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest posture/force diagnosis: the [completed safe-window accounting](#completed-pre-failure-posture-and-force-diagnosis---2026-10-25)
+passes 34 controls and two complete readers without new physics worlds.
+Over the shared complete safe commands 60 through 125, the native motor model
+reconstructs measured torque within 3.4e-15 N m. The candidate has lower
+joint-torque projection error but larger measured body-moment error relative
+to its own changing target; all 66 posture solves succeeded and neither
+controller restored front-right support. These are descriptive observations
+on different post-handoff trajectories, not a causal benefit comparison.
+Next implement and verify floating-base inertia and velocity/gravity bias
+before a dynamics-constrained controller successor. Tier 2 and Tier 3 remain
+unqualified; the late rank refusal remains a separate consumed failure.
+
 Latest contact-posture native result: the [closed incomplete comparison](#closed-incomplete-contact-posture-native-comparison---2026-10-25)
 passed all 556 launch controls, then opened two of four planned CPU worlds.
 The candidate first violated tilt at 1.055 seconds, compared with 1.158 seconds
@@ -7035,3 +7047,63 @@ inconsistency only through a separate numerical successor with this exact
 matrix regression. A new physical candidate requires its own prospective
 freeze, complete gate and fresh identities. Tier 2, Tier 3, safe-backup
 qualification and release remain unproved.
+
+### Completed pre-failure posture and force diagnosis - 2026-10-25
+
+The [retained diagnostic](../sdk/discovery/posture_tracking_diagnostic_result_v1.json)
+passes **34** controls and two agreeing complete readers in
+sdk2-posture-tracking-diagnostic-5b7ae23c5b354b0380857e7e50810087. Each reader first reconstructs the entire original incomplete
+comparison, including its 556-control gate, full baseline, partial candidate,
+unopened nominal population and isolated late solver refusal. It then accounts
+for both original 126-command prefixes and 630 internal samples per trial:
+**252 commands / 1,260 internal samples** in total. No new world or alternative
+trajectory is constructed.
+
+The shared post-handoff window contains **66 complete safe commands per trial**,
+60 through 125, ending at internal step 630 before the first violation at 633.
+The window was selected after the original outcomes. Its target, contact,
+reference and torque observations are retained as diagnostic evidence only.
+
+| Mean sum of absolute component errors in the shared window | Reach hold | Posture hold |
+| --- | ---: | ---: |
+| Requested versus delivered instantaneous joint torque, eight joints, N m | 5.398713 | 3.228915 |
+| Allocated versus desired body moment, three axes, N m | 5.131985 | 6.819638 |
+| First measured versus desired body moment, three axes, N m | 8.250252 | 10.257657 |
+
+Native motor forces reconstruct within **3.3306690738754696e-15 N m** across all
+1,260 internal samples. Prepared COM, allocation moment arms, projected torque
+and capsule geometry also satisfy their declared joins. This rules out an
+affine motor-map or coordinate-join discrepancy on these recorded samples;
+it does not establish the dynamic accuracy of the force planner.
+
+All 66 candidate posture references solve successfully in this window. Both
+controllers move closer to their respective fixed joint reference in 56/66
+commands, yet neither restores front-right support. Candidate maximum virtual
+contact displacement is 0.0003250691518332734 m; actual motion of the same
+prepared supporting material points over an original command reaches
+0.0031390147024326085 m. These have different semantics: the virtual reference
+does not actuate the root, establish a one-command tracking deadline, or prove
+that contact is held. No failure threshold is inferred from their difference.
+
+The candidate's lower joint-torque projection error does not show recovery.
+Desired moments and post-handoff states differ between controllers; aggregate
+error differences do not identify a causal effect. The observed gap between
+allocated and realized body moments motivates a dynamic model, but does not
+prove that adding one will rescue this start. The numerical refusal at command
+1230 lies outside this window and cannot explain its pre-failure behavior.
+
+Research direction: [Kim et al. (2019), Sections IV-A/B](https://arxiv.org/html/1909.06586v1)
+couple task acceleration and reaction forces through floating-base dynamics
+before computing joint torque. Our existing configured policy instead uses a
+quasi-static gravity/contact relation plus joint feedback. It has not implemented
+the paper's full dynamics optimization or MPC.
+
+Next implement a separate engine-neutral component for the full inertia
+matrix and velocity/gravity bias in declared canonical coordinates, including
+unactuated base rows. Verify analytic simple-body cases, kinetic-energy/virtual-
+work identities, gravity consistency and retained-state kinematics before using
+it in a controller. Passive damping, joint limits, contact compliance and the
+actual velocity-command envelope must retain explicit treatment or exclusions.
+Then declare a distinct dynamics-constrained inverse-dynamics successor; do not
+silently substitute an unconstrained torque interface. Its native benefit still
+requires fresh prospective evidence. Tier 2, Tier 3 and release remain unqualified.

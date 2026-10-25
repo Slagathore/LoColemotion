@@ -9,6 +9,18 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest posture/force diagnosis (2026-10-25): the [completed accounting](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-posture-and-force-diagnosis---2026-10-25)
+passes 34 controls and two complete readers without new physics worlds.
+Over the shared complete safe commands 60 through 125, the native motor model
+reconstructs measured torque within 3.4e-15 N m. The candidate has lower
+joint-torque projection error but larger measured body-moment error relative
+to its own changing target; all 66 posture solves succeeded and neither
+controller restored front-right support. These are descriptive observations
+on different post-handoff trajectories, not a causal benefit comparison.
+Next implement and verify floating-base inertia and velocity/gravity bias
+before a dynamics-constrained controller successor. Tier 2 and Tier 3 remain
+unqualified; the late rank refusal remains a separate consumed failure.
+
 Latest contact-posture native result (2026-10-25): the [closed incomplete comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#closed-incomplete-contact-posture-native-comparison---2026-10-25)
 passed all 556 launch controls, then opened two of four planned CPU worlds.
 The candidate first violated tilt at 1.055 seconds, compared with 1.158 seconds

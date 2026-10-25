@@ -1,0 +1,102 @@
+{
+  "schema_version": "locolemotion_posture_tracking_diagnostic_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_posture_tracking_diagnostic",
+    "question_class": "development"
+  },
+  "parent_result_path": "sdk/discovery/contact_posture_failure_result_v1.json",
+  "parent_result_sha256": "ca6348ed7abfb102af29e4717c46b26177bb5dc9fe8ae8b6601ca88f8757e900",
+  "implementation_bindings": {
+    "posture_tracking_diagnostic_metrics.py": "4669a3473139e9aee56ecc821e1418c2d7d86b7f9af6b04b67c042ed5b086bd4",
+    "posture_tracking_diagnostic.py": "97730bbd55695770b71fb82555b61af82555a6287af105775fa5881dec978844",
+    "test_posture_tracking_diagnostic.py": "81a392386e6623df17efd655b85893fb1a1d4748a43213c17bb2de1ec9c05767",
+    "run_posture_tracking_diagnostic.py": "374300828cae017439bf48aed624e853cae6341dd17eba135049ebaf4797a97f"
+  },
+  "inherited_bindings": {
+    "force_recovery_diagnostic_metrics.py": "092bc206edc02b181de9a6a7fc4f973dfc27180243b75e792341796f4d85197f",
+    "reach_tracking_diagnostic_metrics.py": "c5f0e89df9eb3a95ce95e6946ee00d2c3b443a8b53475416eecb59ef5306f01b",
+    "reach_tracking_diagnostic.py": "514f52d7c92b34ddaa10b00c2ba4d5e8d362e01f622790127072415d9a6bf0c8",
+    "actuation_recovery_mechanics.py": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+    "support_reach_geometry.py": "f15a1bb0db8783dc08cbae34ef8b64e5551112fab339bc61b03e8c937077df92",
+    "audit_support_reach_component.py": "2869a5da82539de64827de25edd677d3a743ffbdb551eb87fbe3500979c50fce"
+  },
+  "controls_required": 34,
+  "expected_trials": 2,
+  "expected_commands": 252,
+  "expected_internal_samples": 1260,
+  "expected_prepared_joint_entries": 2016,
+  "expected_internal_motor_entries": 10080,
+  "expected_force_policy_commands": 132,
+  "expected_authority_loss_joint_entries": 1056,
+  "windows": {
+    "declared_safe_prefix": {
+      "commands_start_inclusive": 0,
+      "commands_end_exclusive": 126,
+      "internal_steps_start_inclusive": 1,
+      "internal_steps_end_inclusive": 630
+    },
+    "shared_post_handoff_safe_commands": {
+      "commands_start_inclusive": 60,
+      "commands_end_exclusive": 126,
+      "internal_steps_start_inclusive": 301,
+      "internal_steps_end_inclusive": 630
+    }
+  },
+  "window_selected_after_original_outcomes": true,
+  "earliest_original_violation_step": 633,
+  "full_retained_population_reopened": true,
+  "original_controller_rows": [
+    1440,
+    1231
+  ],
+  "original_internal_rows": [
+    7200,
+    6150
+  ],
+  "post_failure_states_in_diagnostic": false,
+  "prefix_commands_per_trial": 126,
+  "common_post_handoff_commands_per_trial": 66,
+  "terminal_failure_is_separate": true,
+  "geometry_tolerance_m": 2e-10,
+  "absolute_tolerance": 1e-09,
+  "contact_wrench_scope": "signed robot contact forces/free torques about prepared whole-body COM",
+  "motor_scope": "affine unit-gear torque at each original before_qvel",
+  "authority_loss_scope": "telescoping absolute torque error on nested instantaneous intervals",
+  "authority_loss_order": [
+    "force_cap",
+    "target_speed",
+    "absolute_residual",
+    "residual_slew"
+  ],
+  "static_balance_omissions": [
+    "inertia",
+    "Coriolis",
+    "passive",
+    "joint limits"
+  ],
+  "virtual_root_reference_is_actuated": false,
+  "joint_reference_has_one_step_deadline": false,
+  "material_point_scope": "same material point from prepared supporting contact to end of original five-step command",
+  "posture_virtual_and_actual_displacements_have_different_semantics": true,
+  "post_handoff_states_differ": true,
+  "descriptive_pair_statistics_are_not_causal_attribution": true,
+  "force_and_moment_statistics_have_separate_units": true,
+  "reader_world_build_count": 0,
+  "reader_solver_steps": 0,
+  "controller_selection_authority": false,
+  "comparison_data_used_for_fitting": false,
+  "comparison_data_used_for_selection": false,
+  "alternative_trajectory_simulated": false,
+  "causal_generalization": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

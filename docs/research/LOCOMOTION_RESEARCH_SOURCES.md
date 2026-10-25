@@ -3115,3 +3115,18 @@ This finite negative result does not disprove the paper's method. It shows
 that this bounded reference integration has not transferred to recovery.
 The next diagnostic must inspect the common safe interval and actual actuation,
 while distinguishing kinematic witnesses from physical feasibility.
+
+### Dynamics coupling after posture-only transfer - 2026-10-25
+
+Rechecked [Kim et al. (2019), Section IV-B, equations 25-26](https://arxiv.org/html/1909.06586v1).
+Their optimization relates task acceleration and contact forces through the
+floating-base dynamics, then derives joint torque from inertia, velocity bias,
+gravity and contact terms. Their kinematic reference stage alone is not the
+complete controller. Our eight-actuator fixture and bounded velocity resolver
+also differ from the paper's twelve-actuator platform and joint torque/PD interface.
+
+The [safe-window diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-posture-and-force-diagnosis---2026-10-25)
+verifies the native motor map but finds a large allocated-to-measured body-moment
+gap. This supports investigating a full dynamics component; it does not prove a
+causal remedy or justify copying gains. The next implementation should preserve
+the actual resolver envelope and test unactuated-base equations explicitly.
