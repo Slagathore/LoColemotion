@@ -9,7 +9,14 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest public integration: the [proximal primary public checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#proximal-primary-public-integration---2026-10-25)
+Latest native route: the [proximal primary prospective successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#proximal-primary-prospective-native-successor---2026-10-25)
+passes 30 route controls and two-core runtime preflight, with zero new worlds.
+It connects public v7 and its three-route independent reader to the unchanged
+four-world development comparison. Next require the complete 984-control
+gate from the clean pushed prospective freeze, then test fresh causal
+continuation beyond command 91. Tier 2, Tier 3 and release remain unqualified.
+
+Prior public integration: the [proximal primary public checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#proximal-primary-public-integration---2026-10-25)
 passes 191 controls and two identical readers over 308 commands per reader
 on two core builds. Both preserve all 31 prior applied hierarchy commands
 and apply command 91 through the new route; the nominal handoff also passes.

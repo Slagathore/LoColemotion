@@ -8245,3 +8245,32 @@ pushed prospective freeze, then test a fresh causal trajectory past command 91
 and the nominal condition. This checkpoint uses retained observations, opens
 zero worlds, and grants no native recovery benefit, safe-backup, Tier 2,
 Tier 3 or release qualification.
+
+## Proximal primary prospective native successor - 2026-10-25
+
+The [native v4 route](../sdk/discovery/hierarchical_native_route_result_v4.json)
+uses the verified public v7 provider and three-route row reader. Thirty route
+controls and the two-core runtime preflight pass. Native reference checks
+join retained geometry and state at commands 60, 89 and 91, reject corrupted
+seed/refusal evidence, and account for all three routes within the declared
+48-QP-call command bound. The complete retained baseline reader and nominal
+public handoff still pass. The earlier native command-91 failure and its
+20-control closure remain verified inputs.
+
+Attempt sdk2-hierarchical-native-v4-4c23b36316d44479a75bea16845045e3
+retains 971 source and 3,582 runtime
+bindings and 27 artifacts including its receipt. It takes
+95.140 seconds, opens zero worlds and does not pass the full launch gate.
+
+The prospective experiment keeps four fresh worlds: paired reference and
+candidate roles under the existing weak and nominal conditions, one exposed
+development seed, and the twelve-second horizon. It keeps the physical
+thresholds, public limits, full trace/contact capture, fresh baseline
+reproduction and refusal-before-transfer policy. A numerical refusal stops
+the remaining worlds and remains retained.
+
+After publication, a fresh owner must pass all 984 declared safety controls
+from the clean pushed freeze before it launches any world. Then assess the
+actual causal continuation beyond command 91 and the condition-specific
+endpoints. Route checks do not establish recovery benefit, real-time
+performance, safe backup, Tier 2, Tier 3 or release qualification.
