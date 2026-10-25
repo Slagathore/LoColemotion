@@ -21,6 +21,14 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest contact-posture route: the [prospective native comparison](#prospective-paired-contact-posture-native-comparison---2026-10-25)
+passes 17 route controls and two-core runtime preflight with zero worlds.
+It declares four fresh twelve-second CPU worlds comparing existing reach hold
+with contact-posture hold on the exposed weak and healthy starts. A clean
+pushed freeze and all 556 safety controls precede launch. Paired prefixes,
+complete fresh baseline reproduction, native geometry and posture/contact
+witnesses are checked explicitly. Recovery, Tier 2 and Tier 3 remain unproved.
+
 Latest contact-posture component: the [completed bounded reference and integration](#completed-bounded-contact-posture-component---2026-10-25)
 passes 46 controls and two complete two-core reconstructions without
 new worlds. It couples orientation, COM and joint references while preserving
@@ -6920,3 +6928,53 @@ No native benefit, learned capability, Tier 2, Tier 3, release or equivalence
 authority is added. Next declare a distinct four-world comparison against
 unchanged reach hold on the exposed weak and healthy starts; freeze and publish
 the route and complete its safety controls before opening any world.
+
+### Prospective paired contact-posture native comparison - 2026-10-25
+
+The [native contract](../sdk/discovery/contact_posture_native_v1.json) declares
+four fresh twelve-second CPU worlds: existing reach hold and the
+[verified contact-posture component](../sdk/discovery/contact_posture_component_result_v1.json)
+on left_075/train_001 and nominal/train_001, development seed 104242001.
+Each world runs 1,440 commands and 7,200 internal steps. Each role constructs
+fresh model, data and controller instances under one contained owner; no
+physical state or baseline is recycled.
+
+Require exact paired native equality through the first 60 commands and
+300 internal steps, plus an identical prepared handoff state. Thereafter each
+controller receives its own causal trajectory. Both fresh reach-hold worlds
+must reproduce the retained complete 1,440 controller rows and 7,200 trace rows
+from the prior support-reach closure. The new candidate changes only the
+bounded posture reference; the original lowering rule, force allocator,
+actuator limits, handoff, hold composition and public resolver remain fixed.
+
+The complete readers rejoin capsule geometry to current native observations,
+check the COM reference rate/floor and resolver caps, and independently verify
+each posture retraction and supporting-point displacement. They retain
+joint-limit/unsupported fallback counts and task ranks over the explicitly
+labeled complete post-handoff interval, which may include failed states.
+Virtual reference feasibility does not imply actual contact or dynamic
+feasibility. All native controls, internal inputs, contact forces, timing,
+failures and original stdout/stderr remain retained.
+
+Route attempt sdk2-contact-posture-native-926de649e18b40b09e1b850450582fd0 passes 17 route controls and runtime preflight,
+opening zero worlds. Corruption controls reject changed launch scope,
+dirty source, incomplete gates, crossed/consumed identities, altered component
+authority/receipt, crossed profiles, incomplete or changed prefixes/baselines,
+terminal provider transfer, and altered reference/contact/actuation witnesses.
+Both DLLs compile the same native XML and construct/close all four profile
+combinations. The preflight reopens the component's full artifact population,
+source/runtime bindings, both agreeing audits and all 46 component controls.
+
+The retained route owner binds 694 source and
+1359 runtime artifacts. Contract SHA-256:
+efb96e7fa349e5c6c69a1f27fe128d64117f7b33babd192f7f9bd50c1622714f.
+Route receipt SHA-256: 9c78802a6bd3bf40bbb52fc3a724ec125d4758a66660f174b13b877e074fc456.
+Component-only receipt SHA-256: 22c3bb2f7962db832cc0bf1504d3f7757d2a10cb18d0ab4dcfd7a4503ddc3e59.
+
+The full launch requires 556 controls, zero-world runtime preflight, a clean
+pushed prospective freeze, the operation mutex and Windows job containment.
+Use a fresh single-use attempt. The original fixed height, tilt and torso-contact
+criteria remain unchanged across all twelve seconds. These exposed starts
+grant no held-out, training, safe-backup, learned-capability, cross-engine,
+Tier 2, Tier 3 or release authority. Next execute the declared route, retain
+every outcome, and close its complete evidence before selecting another successor.

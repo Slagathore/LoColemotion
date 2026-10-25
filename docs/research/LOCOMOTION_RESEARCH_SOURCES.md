@@ -3089,3 +3089,15 @@ retained-input sweep now precedes the full synthetic integration.
 A virtual reference satisfying contact geometry is not an actuated floating
 base or a dynamic-feasibility certificate. A fresh prospective native comparison
 must establish the controller's actual behavior before any recovery claim.
+
+### Prospective contact-posture native test - 2026-10-25
+
+The [paired native route](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-contact-posture-native-comparison---2026-10-25)
+tests the bounded contact-nullspace reference derived from the documented
+whole-body-control design lead. Existing reach hold remains the unchanged
+reference, with complete fresh baseline reproduction and identical paired
+handoff states. Seventeen route controls and two-core runtime preflight pass
+without physics; the clean pushed freeze and 556-control gate precede launch.
+The new readers check geometry, posture/contact witnesses and actuation
+limits on actual causal observations. This is an exposed-start development
+comparison, not a reproduction of WBIC/MPC or a general recovery certificate.
