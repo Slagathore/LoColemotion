@@ -6385,3 +6385,42 @@ the changed baseline transition. It requires fresh host integration checks and
 a prospective force-walk versus force-hold native fixture. No successor code or
 physical result is established by this diagnosis. Reserved starts, long-horizon
 recovery, learned capability, Tier 2/Tier 3 and release remain unqualified.
+
+### Recovery hold controller integration - 2026-10-25
+
+The [hold component](../sdk/discovery/recovery_hold_component_result_v1.json)
+implements the preceding diagnosis's next controller question. At command 60,
+it changes both the public motion command and scheduled-support composition to
+zero-amplitude hold with zero requested planar velocity. The original force
+policy, configured motor capabilities, correction limits, core session, phase
+clock and actual resolved history continue. Commands 0-59 reproduce the original
+challenge exactly. The consumed force-walk implementation is unchanged.
+
+All **10 real-core transition/refusal controls** passed. Two complete readers
+reconstructed **480 command rows** across both core DLLs: force-walk and force-hold
+on each of the two retained exposed trajectories. This includes 120 unchanged
+hold-prefix commands and 120 hold-policy commands. Both readers reopened the
+parent native closure first. **Zero worlds and zero solver steps** were opened;
+the changed hold commands did not generate the recorded observations.
+
+The complete per-actuator transition is retained. At the handoff, maximum
+absolute total target changes are **2.345784 rad/s** on the weakened trajectory
+and **2.113370 rad/s** on the healthy trajectory. Actual residual changes remain
+within **0.08 rad/s**, and final targets remain within their unchanged limits.
+Residual slew is therefore not a total target slew guarantee. Zero-amplitude
+hold also does not mean zero actuator target velocity or a proven safe stop.
+
+Attempt `sdk2-recovery-hold-component-c93512ad9c9d442fbddf76e6692d3ac7` retains
+634 source and 1,359 runtime bindings. Receipt SHA-256:
+`0d4fa6a0b4ca5b2de3614a4da0043a2a26efe2960c292b9172e8b63b5d118acb`.
+Both complete audit SHA-256 values:
+`7bc924a3dbdd42081aefc810189d32dd133171199f098db20e37aaa0effbe47c`.
+
+**Next:** declare a distinct contained force-walk versus force-hold native route,
+cover the baseline transition explicitly in its complete zero-world safety gate,
+and publish a clean prospective freeze. Then open four fresh development worlds
+on the same exposed weak/healthy groups, each with 120 commands and 600 internal
+steps. Preserve the paired prefix, prepared handoff observation, full contact
+capture and independent replay. No hold trajectory, recovery benefit, safe
+backup, long-horizon result, learned capability, Tier 2/Tier 3 or release
+qualification is established by this component check.

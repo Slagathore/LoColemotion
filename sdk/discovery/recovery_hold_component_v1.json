@@ -1,0 +1,68 @@
+{
+  "schema_version": "locolemotion_recovery_hold_component_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "synthetic_controller_integration",
+    "question_class": "development"
+  },
+  "parent_closure_sha256": "36ebe9f7fabe2307d7f95f8d6713d55261e429d0d67a757bcb16659369c4efea",
+  "diagnosis_sha256": "d03c9f7c2e676fc4764caa3d11805fe2dd748e331d2b7f69d7a12e2e40efde68",
+  "implementation_bindings": {
+    "recovery_hold_composition.py": "93eb9d5293f1876818b2ed17bd7f33de1a591c7c1213228549b03cec4cdbe44e",
+    "recovery_hold_control.py": "daf0e1e42b20764fade069c92b2787c0f9d8aeed5adff18326910d9c9ce8f451",
+    "test_recovery_hold.py": "6c0f621055fb284681f49c731da8a4d997b2a24f18723dd23fbfe954ca6ff2b1",
+    "recovery_hold_component_audit.py": "89b298544dfb44090383577471c209d7664fc13df617110ed6fc7fd0f7847ee9",
+    "run_recovery_hold_component.py": "16fc3bab15e3fb5cc84ef5a4cbbcca90cdcc4dda6d43ca3f6ba9360fa4a298d6"
+  },
+  "inherited_source_bindings": {
+    "sdk/discovery/causal_force_control.py": "b1bbcbc7132f8dc31b24f5a39fdf411396ec679836dd8218e31746ad3bf3a4ac",
+    "sdk/discovery/causal_force_policy.py": "6363bf1d268e2ed1fd2aa3cbc791eb5c0964454dc348bd3a2609b4b0e18d0a4e",
+    "sdk/discovery/causal_force_allocator.py": "bd4b7529b7dc44560db5862367f0619520b24a6b42b831c44414529d81dbe9c1",
+    "sdk/discovery/actuation_recovery_mechanics.py": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+    "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_development.py": "306669481601cc91c8146e84a202a57228672e23c3f9daa0c531d2eb9d077e46"
+  },
+  "trials": [
+    "force_reference_left_075_train_001",
+    "force_reference_nominal_train_001"
+  ],
+  "roles": [
+    "force_walk",
+    "force_hold"
+  ],
+  "commands_per_role_per_trial": 120,
+  "handoff_command": 60,
+  "hold_motion_command": "hold, zero planar velocity, zero gait amplitude; clocked phase continues",
+  "support_composition": "same actual command amplitude; other ABI operations and bounds unchanged",
+  "unchanged": "force profile, configured capabilities, limits, prefix and actual resolved command history",
+  "baseline_transition": "retain baseline, correction and total target changes separately; no total target slew promise",
+  "observation_source": "retained force-walk native trajectories",
+  "synthetic": true,
+  "controls_required": 10,
+  "safety_controls": [
+    {
+      "name": "hold",
+      "module": "test_recovery_hold",
+      "count": 10
+    }
+  ],
+  "core_reconstructions": 2,
+  "commands": 480,
+  "hold_commands": 120,
+  "unchanged_hold_prefix_commands": 120,
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "alternative_actions_generated_observations": false,
+  "physical_launch_authority": false,
+  "total_target_slew_guaranteed": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "held_interval_force_guaranteed": false,
+  "recovery_benefit_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

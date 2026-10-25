@@ -9,6 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest recovery hold integration (2026-10-25): the [successor component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#recovery-hold-controller-integration---2026-10-25)
+passed 10 controls and two full 480-command reconstructions across both core
+DLLs, with zero worlds. Motion and support composition now use the same hold
+amplitude at command 60, preserving actual history and existing force limits.
+The retained total target jumps are 2.346 rad/s weak and 2.113 rad/s healthy;
+residual slew does not bound that baseline transition. Next is a distinct gated,
+prospectively frozen four-world force-walk versus force-hold native comparison.
+Recovery benefit, Tier 2/Tier 3 and release remain unqualified.
+
 Latest recovery constraint diagnosis (2026-10-25): the [complete retained analysis](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-force-recovery-constraint-diagnosis---2026-10-25)
 passes **14 controls** and reconstructs **480 commands / 2,400 internal samples**
 with no new worlds. Native motor-force delivery agrees with the declared model
