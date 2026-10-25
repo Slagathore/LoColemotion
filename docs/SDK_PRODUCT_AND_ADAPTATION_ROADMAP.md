@@ -21,15 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [causal contact predictor](#causal-single-step-contact-prediction---2026-10-25)
-passes 22 controls and two identical readers over 295 prepared states. At the
-59 shared command boundaries, maximum next-step joint error drops from
-0.0005532023 rad to 2.587344e-9 rad without measured-force or post-step inputs.
-Extend this configured component to contact geometry and the full five-step
-rollout from one starting state, then integrate a distinct controller and
-prospectively compare recovery. The original earlier tilt and terminal
-joint-limit refusal stand. Tier 2, Tier 3 and release remain unqualified.
-Earlier next-step statements below describe historical checkpoints.
+Current next action: the [causal full held-command predictor](#causal-full-held-command-prediction---2026-10-25)
+passes 44 controls and two identical readers over 59 independent five-step
+forecasts. Maximum joint-position error is 4.548575e-8 rad across 295 steps;
+both the recorded tilt crossing and terminal hip-limit crossing are predicted
+from their command-boundary starting states, without intermediate observations.
+Use this component to evaluate distinct candidate commands, verify production
+integration and runtime cost, then prospectively compare fresh native recovery.
+The original earlier tilt and terminal refusal stand. Tier 2, Tier 3 and release
+remain unqualified. Earlier next-step statements below are historical checkpoints.
 
 Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
@@ -8624,3 +8624,56 @@ Then connect the causal geometry packet through the production path and run a
 distinct prospectively frozen native comparison. Keep the joint guards,
 acceptance rules and exposed development population unchanged. Tier 2, Tier 3,
 training, robustness, equivalence and release remain unqualified.
+
+## Causal full held-command prediction - 2026-10-25
+
+The [five-step rollout measurement](../sdk/discovery/held_contact_rollout_result_v1.json)
+passes 44 controls and two byte-identical full readers. Each of 59 forecasts
+starts from one retained command-boundary position and velocity and one held
+motor command. It regenerates contact geometry, solves the soft-contact model,
+updates velocity and integrates position and root orientation five times.
+It reads no intermediate native state, contact geometry or measured force.
+These are 59 separate five-step forecasts, not one uninterrupted 295-step
+prediction and not a newly executed controller trajectory.
+
+Independent plane/capsule and plane/box geometry matches all 1,264 contacts
+across 595 native prepared states, with maximum component error 7.771562e-16.
+Independent pose integration matches all 595 native updates to 9.992007e-16.
+Those primitive checks use retained native values solely as validation inputs;
+the full forecasts propagate their own states. Native collision, quaternion
+integration, dynamics and world constructors are forbidden in the readers.
+The unchanged single-step predictor supplies the contact/implicitfast update.
+
+| Measurement over 295 predicted steps / 2,360 joint comparisons | Maximum absolute error | RMS error |
+| --- | ---: | ---: |
+| New joint position | 4.548575e-8 rad | 2.466446e-9 rad |
+| Previous held joint position | 0.007623566 rad | 0.0004686063 rad |
+| New joint velocity | 0.00001763048 rad/s | 0.0000008029504 rad/s |
+| New root position | 9.653855e-10 m | 1.031551e-10 m |
+| New root orientation | 1.745746e-8 rad | 2.737100e-9 rad |
+
+All 59 forecasts converge. Contact identities, the unchanged physical-violation
+predicate and joint-limit classifications match at every compared step.
+Starting from command 117, the forecast predicts the recorded tilt crossing at
+internal step 590. Starting from command 118, it predicts the rear-left hip
+crossing at step 595: 0.7202513111 rad predicted versus 0.7202513120 rad observed,
+above the unchanged 0.72-rad limit. The previous predictor gave 0.7141666667 rad
+and missed that crossing. Each forecast sees only the start of its own hold;
+this is not a long-horizon warning claim.
+
+The retained owner binds 1,042 source files and 3,582 runtime files and retains
+26 artifacts including its receipt. Numerical failures retain their completed
+prefix and provide no accepted final state. The component uses the configured
+zero-height plane, one box and eight symmetric capsules with isotropic friction.
+No surface parameters were fitted and no physical or numerical guard changed.
+Prediction errors are descriptive measurements, without a newly selected native
+accuracy threshold or general contact-equivalence authority.
+
+Next use this causal rollout to evaluate distinct candidate commands, preserving
+the command caps, joint guards and fail-closed behavior. Verify alternative
+commands and production integration before a clean prospective freeze and fresh
+native recovery comparison. Measure runtime cost before choosing a candidate
+budget; this retained owner timing is not a real-time controller benchmark.
+The earlier native tilt negative and terminal refusal stand. No controller was
+changed or trained, no new world ran, and Tier 2, Tier 3, recovery, robustness,
+training-data and release authority remain unqualified.

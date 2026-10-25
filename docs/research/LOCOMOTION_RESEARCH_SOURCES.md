@@ -3495,3 +3495,29 @@ held-command prediction. Reinitializing every prediction from an observed
 state does not establish a multi-step rollout, controller benefit, universal
 contact equivalence or learned adaptation. The original physical tilt and
 joint-domain failures remain the current causal controller evidence.
+
+## Configured contact geometry and full causal holds - 2026-10-25
+
+The [full held-command measurement](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-full-held-command-prediction---2026-10-25)
+extends the configured contact solver with independently written geometry and
+pose integration. The pinned MuJoCo 3.11
+[primitive collision implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_collision_primitive.c)
+defines plane/capsule endpoint contacts and the plane/box corner population and
+midpoint positions. The
+[collision driver](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_collision_driver.c)
+distinguishes generated zero-distance geometry from active force constraints.
+
+The [spatial utilities](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_util_spatial.c)
+and [position integration](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_support.c)
+specify input-quaternion normalization, right multiplication by a body-local
+angular increment, and translation/hinge integration using updated velocity.
+A fixed orthonormal tangent basis is checked for covariance under the configured
+isotropic circular friction cone. No upstream code was copied and no dependency
+was upgraded.
+
+All 59 independent five-step forecasts converge from their command-boundary
+states without intermediate observations. Finite contact identity and physical
+violation classifications match the retained trajectory, including its tilt
+and joint-limit failures. This supports candidate-command evaluation next;
+it establishes neither a beneficial controller nor long-horizon stability,
+cross-engine equivalence, learned adaptation or real-time performance.

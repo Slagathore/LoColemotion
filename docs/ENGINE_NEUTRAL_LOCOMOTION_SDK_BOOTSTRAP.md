@@ -23,8 +23,13 @@ native and planned force equations close to roundoff. The
 [causal single-step contact predictor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-single-step-contact-prediction---2026-10-25)
 now passes 22 controls and two identical readers. Maximum first-step joint
 error at the 59 original command boundaries is 2.587344e-9 rad, using only
-prepared state/geometry and candidate commands. Next verify predicted contact
-geometry and a complete held-command rollout before controller integration.
+prepared state/geometry and candidate commands. The subsequent
+[full held-command predictor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-full-held-command-prediction---2026-10-25)
+passes 44 controls and two identical readers over 59 independent five-step
+forecasts. It generates intermediate geometry and states itself, reaches maximum
+joint-position error 4.548575e-8 rad and predicts the recorded tilt and hip-limit
+crossings. Next evaluate distinct candidate commands, verify production
+integration and runtime cost, then prospectively compare fresh native recovery.
 No numerical or physical guard was relaxed. Nominal worlds remain unopened.
 Tier 2, Tier 3 and release remain unqualified.
 

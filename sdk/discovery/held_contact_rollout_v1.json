@@ -1,0 +1,72 @@
+{
+  "schema_version": "locolemotion_held_contact_rollout_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "configured_causal_held_prediction_component",
+    "question_class": "development"
+  },
+  "original_attempt": "sdk2-hierarchical-native-v6-f5072c1d2e46499498911eed68d74146",
+  "original_receipt_sha256": "2a9f28a81b097ad03679804c3f69da7fb8965350a9b1f461bd4ef5b0d9427301",
+  "closure_attempt": "sdk2-causal-contact-predictor-v1-4fa0f636af0a4aac88bcc657b76d5c3d",
+  "closure_receipt_sha256": "bad687e4e526f781356a3f0fae0cc2afefe6c0652d0ccfd07d9b781b5062dfb1",
+  "closure_result_sha256": "7e446edcc7fbe42ebcb3cf314839bd5bf4f8753d2281b48aeb48e45d39be2582",
+  "native_contract_sha256": "079087a4e460326435bb189599eed8e9107ed4bbb1c54f419cca0401273aa3c9",
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0
+  },
+  "controls_required": 44,
+  "command_interval_inclusive": [
+    60,
+    118
+  ],
+  "commands": 59,
+  "internal_step_interval_inclusive": [
+    301,
+    595
+  ],
+  "predicted_internal_steps": 295,
+  "joint_comparisons": 2360,
+  "geometry_validation_rows": 595,
+  "integration_validation_rows": 595,
+  "geometry_componentwise_tolerance": 1e-10,
+  "pose_integration_componentwise_tolerance": 1e-12,
+  "steps_per_forecast": 5,
+  "timestep_s": 0.0016666666666666668,
+  "causal_fields": [
+    "starting qpos",
+    "starting qvel",
+    "one held velocity command"
+  ],
+  "collision_scope": "Fixed zero-height plane, one box and eight symmetric local-z capsules from exact XML",
+  "tangent_frame": "Fixed native x/y tangents; circular isotropic friction covariance checked",
+  "orientation_update": "Normalize initial quaternion, right-multiply body-local angular increment using post velocity",
+  "intermediate_observations_used": false,
+  "measured_contact_geometry_used": false,
+  "measured_forces_used": false,
+  "parameters_fitted": false,
+  "native_accuracy_acceptance_threshold": null,
+  "accuracy_is_descriptive_not_qualification": true,
+  "worlds_opened": 0,
+  "native_physics_steps": 0,
+  "controller_changed": false,
+  "trained": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "source_bindings": {
+    "held_contact_rollout.py": "11e8c19add967c6f89b9958135a5e9b9790df7907ea667975bc1aebecbd511dc",
+    "audit_held_contact_rollout.py": "e2b70308ab9999f8a47a8e332fd31a88233cdf38ff96f34d908e334fd7362540",
+    "test_held_contact_rollout.py": "b64c6e7a2539966c963d0e594a32b859a5aaed8dcbb624c34fd890fd2df6bfed",
+    "run_held_contact_rollout.py": "d22014e9ae0b0932fa718cece0b1b50586058d9d5e5435bea92572e31b09f28f"
+  },
+  "research_sources": [
+    "https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_collision_primitive.c",
+    "https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_collision_driver.c",
+    "https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_util_spatial.c",
+    "https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_support.c"
+  ]
+}
