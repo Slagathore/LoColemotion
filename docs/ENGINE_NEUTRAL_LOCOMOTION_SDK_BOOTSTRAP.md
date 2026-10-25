@@ -9,21 +9,24 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest contact-posture route (2026-10-25): the [prospective comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-contact-posture-native-comparison---2026-10-25)
-passes 17 route controls and two-core runtime preflight with zero worlds.
-Four fresh twelve-second CPU worlds compare existing reach hold and the
-bounded posture candidate on the same exposed weak and healthy starts.
-The clean pushed freeze and 556-control safety gate precede launch.
-Complete fresh baseline reproduction and native posture/contact joins are
-required; no recovery, Tier 2, Tier 3 or release result is established yet.
+Latest contact-posture native result (2026-10-25): the [closed incomplete comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#closed-incomplete-contact-posture-native-comparison---2026-10-25)
+passed all 556 launch controls, then opened two of four planned CPU worlds.
+The candidate first violated tilt at 1.055 seconds, compared with 1.158 seconds
+for the fresh reach-hold baseline. At command 1230 (10.25 seconds), a bounded
+solver rank refusal stopped the candidate; the refused command was never
+transferred. Both healthy-condition worlds remained unopened. Twelve closure
+controls and two complete retained-data readers verify the negative result,
+the partial population and the isolated numerical refusal without new worlds.
+Next diagnose the common complete safe window (commands 60 through 125) before
+choosing another physical controller. Tier 2, Tier 3 and release remain unqualified.
 
 Latest contact-posture component (2026-10-25): the [completed bounded reference](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-bounded-contact-posture-component---2026-10-25)
 passes 46 controls and two complete two-core reconstructions with zero
 new worlds. Contact-constrained joint references preserve the declared bounds;
 two retained numerical refusals are fixed and the controls cover all 2,760
 post-handoff posture inputs.
-Synthetic commands do not establish physical recovery. Next declare the
-prospective native comparison; Tier 2, Tier 3 and release remain unqualified.
+Synthetic commands do not establish physical recovery. Its native successor
+is now closed above; Tier 2, Tier 3 and release remain unqualified.
 
 Latest support-reach tracking diagnosis (2026-10-25): the [completed reconstruction](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-reach-tracking-diagnosis---2026-10-25)
 passes 22 controls and two complete readers without new worlds. At the weak

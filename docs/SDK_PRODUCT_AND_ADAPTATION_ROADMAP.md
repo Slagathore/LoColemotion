@@ -21,13 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest contact-posture route: the [prospective native comparison](#prospective-paired-contact-posture-native-comparison---2026-10-25)
-passes 17 route controls and two-core runtime preflight with zero worlds.
-It declares four fresh twelve-second CPU worlds comparing existing reach hold
-with contact-posture hold on the exposed weak and healthy starts. A clean
-pushed freeze and all 556 safety controls precede launch. Paired prefixes,
-complete fresh baseline reproduction, native geometry and posture/contact
-witnesses are checked explicitly. Recovery, Tier 2 and Tier 3 remain unproved.
+Latest contact-posture native result: the [closed incomplete comparison](#closed-incomplete-contact-posture-native-comparison---2026-10-25)
+passed all 556 launch controls, then opened two of four planned CPU worlds.
+The candidate first violated tilt at 1.055 seconds, compared with 1.158 seconds
+for the fresh reach-hold baseline. At command 1230 (10.25 seconds), a bounded
+solver rank refusal stopped the candidate; the refused command was never
+transferred. Both healthy-condition worlds remained unopened. Twelve closure
+controls and two complete retained-data readers verify the negative result,
+the partial population and the isolated numerical refusal without new worlds.
+Next diagnose the common complete safe window (commands 60 through 125) before
+choosing another physical controller. Tier 2, Tier 3 and release remain unqualified.
 
 Latest contact-posture component: the [completed bounded reference and integration](#completed-bounded-contact-posture-component---2026-10-25)
 passes 46 controls and two complete two-core reconstructions without
@@ -6978,3 +6981,57 @@ criteria remain unchanged across all twelve seconds. These exposed starts
 grant no held-out, training, safe-backup, learned-capability, cross-engine,
 Tier 2, Tier 3 or release authority. Next execute the declared route, retain
 every outcome, and close its complete evidence before selecting another successor.
+
+### Closed incomplete contact-posture native comparison - 2026-10-25
+
+The [closure result](../sdk/discovery/contact_posture_failure_result_v1.json)
+records consumed attempt sdk2-contact-posture-native-51b63e3d72c24fbd83c604934d836110 from clean pushed freeze
+1cbcf85ef7dbeb22c9b3dcaa11c705bc1a68a11c. All **556** launch controls passed. The baseline completed
+1,440 commands and 7,200 internal steps. The candidate retained 1,231 commands
+and 6,150 internal steps, including one refused command never transferred to
+physics. Both nominal worlds remained unopened. Successful closure verification
+does not change the failed native owner's status.
+
+| Exposed weak-condition trial | First physical violation | Retained span | Result |
+| --- | --- | --- | --- |
+| Existing reach hold | tilt, step 695, 1.1583333333333465 s | 12 s | completed trace, failed recovery |
+| Contact-posture hold | tilt, step 633, 1.0550000000000108 s | 10.25 s | failed recovery, then numerical refusal |
+
+The unchanged 0.6-radian tilt, 0.25-metre height and zero torso-contact criteria
+remain authoritative. The candidate's approximately 0.1033-second earlier
+violation describes this exposed pair only. It is not a population comparison,
+a held-out result or a threshold for selecting the next candidate.
+
+Verification attempt sdk2-contact-posture-failure-controls-9812ccdef7de40859055f5d5d1b89436 passes **12** corruption/authority controls
+and two agreeing complete readers. Each reopens the original artifact population
+and all 556 gate logs, validates original source/runtime bindings, replays all
+**2,671** retained commands through the other core, and joins all **13,350**
+internal/contact samples. The baseline fully reproduces the previous reach-hold
+controller and trace streams. The pair's first 60 commands, 300 internal steps
+and prepared handoff state match. Verification opens no physics worlds.
+
+The candidate's 1,170 successful post-handoff references include 1,121 solved,
+14 observed-joint-limit fallbacks and 35 unsupported fallbacks. These include
+post-failure observations. Maximum virtual contact displacement is
+0.0004727703984012723 m; maximum joint-reference increment is
+0.1250000000000014 rad. Neither trial restores front-right support in its
+retained post-handoff population. Bounded references do not certify held
+contacts, dynamic feasibility or recovery.
+
+At command **1230**, the original solver raises "Posture independent blocking
+bound". Both readers reproduce the terminal row and independently replay its
+isolated matrix problem. At iteration 6, appending upper bound 9 leaves the
+declared rank at 13: the smallest singular value is approximately 1.2801e-9
+against a 1.5009e-9 cutoff, despite a nonzero projected coordinate direction.
+Full matrices and witnesses remain in the closure audit. This late numerical
+refusal follows the physical fall; fixing it cannot establish recovery. The
+consumed solver, contract, thresholds and traces remain unchanged.
+
+Next declare a posthoc retained-data diagnostic over common complete safe
+commands **60 through 125**. Rejoin orientation/COM references, resolved targets,
+actual torques and measured contact loads to distinguish a reference/actuation
+mismatch from a useful physically achievable posture change. Repair the rank
+inconsistency only through a separate numerical successor with this exact
+matrix regression. A new physical candidate requires its own prospective
+freeze, complete gate and fresh identities. Tier 2, Tier 3, safe-backup
+qualification and release remain unproved.

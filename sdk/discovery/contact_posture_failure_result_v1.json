@@ -1,0 +1,875 @@
+{
+  "schema_version": "locolemotion_contact_posture_failure_result_v1",
+  "status": "incomplete_native_comparison_negative_outcomes_verified",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_incomplete_native_closure",
+    "question_class": "development"
+  },
+  "original_attempt": "sdk2-contact-posture-native-51b63e3d72c24fbd83c604934d836110",
+  "original_source_commit": "1cbcf85ef7dbeb22c9b3dcaa11c705bc1a68a11c",
+  "original_receipt_sha256": "f9de90017d78ace6aff8498b0b2da23df89484405f44152e623528219ae00ac3",
+  "contract_path": "sdk/discovery/contact_posture_failure_v1.json",
+  "contract_sha256": "46f055f539918f67b5b6f98970434c38f08ab9589e852f4d411358a6ef326a0b",
+  "verification_attempt": "sdk2-contact-posture-failure-controls-9812ccdef7de40859055f5d5d1b89436",
+  "verification_source_commit": "1cbcf85ef7dbeb22c9b3dcaa11c705bc1a68a11c",
+  "receipt_sha256": "df1a7602d68ee0f218b8902846bdf5e08c548a38686768639ac914a799e911a2",
+  "declaration_sha256": "7e29f8e1c030397766174e85ff81bb43d536661965eded7ea525bb61b32a9bac",
+  "audit_sha256": "9dc0fdb7f9bd4719455512f393a61a24e8a729f7ad7682ec613e226641d2fb05",
+  "reconstruction_sha256": "9dc0fdb7f9bd4719455512f393a61a24e8a729f7ad7682ec613e226641d2fb05",
+  "source_binding_count": 699,
+  "runtime_binding_count": 1359,
+  "verification_artifacts_including_receipt": 22,
+  "owner_wall_s": 469.82799999999406,
+  "controls_passed": 12,
+  "complete_reader_invocations": 2,
+  "reader_world_build_count": 0,
+  "reader_solver_steps": 0,
+  "native_evidence": {
+    "schema_version": "locolemotion_contact_posture_failure_audit_v1",
+    "ok": true,
+    "ledger_scope": {
+      "subsystem": "adaptation",
+      "engine_scope": "mujoco_cpu",
+      "authority_mode": "retained_incomplete_native_closure",
+      "question_class": "development"
+    },
+    "original_source_commit": "1cbcf85ef7dbeb22c9b3dcaa11c705bc1a68a11c",
+    "original_receipt_sha256": "f9de90017d78ace6aff8498b0b2da23df89484405f44152e623528219ae00ac3",
+    "native_result_complete": false,
+    "original_native_ok": false,
+    "constructed_cpu_worlds": 2,
+    "constructed_gpu_worlds": 0,
+    "controller_rows": 2671,
+    "internal_rows": 13350,
+    "contact_rows": 13350,
+    "original_safety_controls_verified": 556,
+    "source_binding_count": 694,
+    "runtime_binding_count": 1359,
+    "artifact_count_including_receipt": 2649,
+    "trials": [
+      {
+        "trial_id": "reach_hold_left_075_train_001",
+        "stage": "contact_posture_native",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "start_id": "train_001",
+        "role": "reach_hold",
+        "model_key": "training_selected",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "mode": "early_selected",
+        "seed": 104242001,
+        "nworld": 1,
+        "arm": "scalar_direct",
+        "training_data_authority": false,
+        "initial_native_lateral_velocity_m_s": 0.001,
+        "controller_rows": 1440,
+        "internal_rows": 7200,
+        "provider_model_sha256": "sha256:08050eec6175acf5cc9b63fc03d1c318e4757adca28dcc13921e28b68f3595b6",
+        "control_applied_commands": 1439,
+        "nonzero_correction_commands": 1439,
+        "refused_commands": 0,
+        "diagnostic_metrics": {
+          "minimum_height_m": 0.2508122746681223,
+          "maximum_tilt_rad": 1.6626157176831968,
+          "torso_contact_steps": 6413,
+          "ground_contact_steps": 7199,
+          "nonzero_force_steps": 7200,
+          "safe_no_actuation_steps": 0,
+          "first_physical_violation": {
+            "internal_step": 695,
+            "time_s": 1.1583333333333465,
+            "failure_codes": [
+              "tilt"
+            ]
+          },
+          "forward_displacement_m": -0.598570932678901
+        },
+        "diagnostic_failure_codes": [
+          "tilt",
+          "torso_contact"
+        ],
+        "diagnostic_eligible": false,
+        "official_quality_m_s": null,
+        "selection_authority": false,
+        "raw_hashes": {
+          "controller": "d6c8a8970e9529cf5f5d0a59711e43ce7f1e00d32fd0f90fd1d5bbdaaf79a365",
+          "trace": "8ef26d4f7ba42d32fb18e2c62134e3d3bb7022170cf05079eadeaa484e679ef6",
+          "timing": "dcde9d0b31e08d485de53e751ba04d87f75e0043e2657fb68f04c81e15fa94c5"
+        },
+        "positions_sha256": "58e87c93d5691d1c7914753dd20eda061ee9ab15a6508a30635e2d3c1c1b7b41",
+        "timing": {
+          "warmup": {
+            "prepare_s": 0.0,
+            "observation_readback_s": 0.0,
+            "portable_control_s": 0.0,
+            "controller_capture_and_control_transfer_s": 0.0,
+            "integration_and_device_history_s": 0.0,
+            "internal_readback_and_capture_s": 0.0,
+            "outer_total_s": 0.0
+          },
+          "measured": {
+            "prepare_s": 0.2169850999780465,
+            "observation_readback_s": 2.756974400312174,
+            "portable_control_s": 63.843637800149736,
+            "controller_capture_and_control_transfer_s": 5.821523100399645,
+            "integration_and_device_history_s": 5.782250299031148,
+            "internal_readback_and_capture_s": 6.622039099762333,
+            "outer_total_s": 85.06799100020726
+          }
+        },
+        "reference_validation": {
+          "commands": 1380,
+          "window": "commands_60_through_1439",
+          "may_include_post_failure_states": true,
+          "maximum_native_geometry_error_m": 9.228728892196614e-16,
+          "maximum_nonlinear_contact_drift_m": 0.0,
+          "maximum_joint_reference_increment_rad": 0.0,
+          "posture_status_counts": {},
+          "task_attainable_rank_counts": {},
+          "actual_contact_guaranteed": false,
+          "dynamic_feasibility_established": false
+        },
+        "native_horizon_completed": true,
+        "contact_capture": {
+          "rows": 7200,
+          "contacts": 37376,
+          "inactive_contacts": 0,
+          "other_contacts": 23455,
+          "mean_total_distal_normal_load_n": 9.237263781998873,
+          "timing_s": {
+            "native_prepare_s": 0.3821674006903777,
+            "prepare_capture_s": 0.7909800001507392,
+            "native_complete_s": 0.2930477001646068,
+            "complete_guard_s": 0.7869105001882417,
+            "force_capture_s": 3.4724399996193824,
+            "serialization_s": 2.6224993996875128
+          },
+          "force_reconstruction_verified": true
+        },
+        "handoff_transition": {
+          "command": 60,
+          "ordered_actuator_ids": [
+            "front_left_hip_motor",
+            "front_left_knee_motor",
+            "front_right_hip_motor",
+            "front_right_knee_motor",
+            "rear_left_hip_motor",
+            "rear_left_knee_motor",
+            "rear_right_hip_motor",
+            "rear_right_knee_motor"
+          ],
+          "at_handoff": {
+            "baseline_delta_rad_s": [
+              2.4257841553976545,
+              -0.055554351482167946,
+              -1.6473542376139663,
+              0.0050490387033643724,
+              -2.340282837191385,
+              -1.5363805974540203,
+              0.475412802323659,
+              -0.001938794602501126
+            ],
+            "correction_delta_rad_s": [
+              -0.07999999999999996,
+              0.07999999999999996,
+              0.08000000000000007,
+              -0.07999999999999996,
+              0.08000000000000002,
+              0.07999999999999996,
+              -0.08000000000000002,
+              -0.0592725088001258
+            ],
+            "target_delta_rad_s": [
+              2.345784155397655,
+              0.024445648517832014,
+              -1.5673542376139664,
+              -0.07495096129663559,
+              -2.260282837191385,
+              -1.4563805974540203,
+              0.39541280232365894,
+              -0.061211303402626926
+            ]
+          },
+          "maximum_post_handoff_absolute_delta_rad_s": {
+            "baseline_delta_rad_s": 2.4257841553976545,
+            "correction_delta_rad_s": 0.08000000000000007,
+            "target_delta_rad_s": 2.345784155397655
+          },
+          "total_target_slew_guaranteed": false
+        },
+        "post_handoff_support": {
+          "prepared_commands": 1380,
+          "window": "all_retained_prepared_commands_from_60",
+          "may_include_post_failure_states": true,
+          "by_site": {
+            "front_left_foot": 28,
+            "front_right_foot": 0,
+            "rear_left_foot": 1297,
+            "rear_right_foot": 1329
+          }
+        }
+      },
+      {
+        "trial_id": "posture_hold_left_075_train_001",
+        "stage": "contact_posture_native",
+        "group_id": "left_075_train_001",
+        "condition_id": "left_075",
+        "start_id": "train_001",
+        "role": "posture_hold",
+        "model_key": "training_selected",
+        "direction": null,
+        "sign": null,
+        "partition": "development_comparison",
+        "mode": "early_selected",
+        "seed": 104242001,
+        "nworld": 1,
+        "arm": "scalar_direct",
+        "training_data_authority": false,
+        "initial_native_lateral_velocity_m_s": 0.001,
+        "controller_rows": 1231,
+        "internal_rows": 6150,
+        "provider_model_sha256": "sha256:08050eec6175acf5cc9b63fc03d1c318e4757adca28dcc13921e28b68f3595b6",
+        "control_applied_commands": 1229,
+        "nonzero_correction_commands": 1229,
+        "refused_commands": 0,
+        "diagnostic_metrics": {
+          "minimum_height_m": 0.24683115914151516,
+          "maximum_tilt_rad": 1.6147129815926469,
+          "torso_contact_steps": 5329,
+          "ground_contact_steps": 6149,
+          "nonzero_force_steps": 6150,
+          "safe_no_actuation_steps": 0,
+          "first_physical_violation": {
+            "internal_step": 633,
+            "time_s": 1.0550000000000108,
+            "failure_codes": [
+              "tilt"
+            ]
+          },
+          "forward_displacement_m": -0.6016971969554926
+        },
+        "diagnostic_failure_codes": [
+          "height",
+          "tilt",
+          "torso_contact"
+        ],
+        "diagnostic_eligible": false,
+        "native_horizon_completed": false,
+        "terminal_command": 1230,
+        "terminal_transferred": false,
+        "solver_failure": {
+          "inputs": {
+            "a": [
+              [
+                0.025,
+                0.0,
+                0.0,
+                -0.0,
+                -0.0035010193548829747,
+                -0.0179648071454687,
+                -0.0065104979320840225,
+                -0.003122580254089145,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.025,
+                0.0,
+                0.0035010193548829747,
+                -0.0,
+                0.03475098867956427,
+                0.08723190311066256,
+                0.041699738691041564,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.025,
+                0.0179648071454687,
+                -0.03475098867956427,
+                -0.0,
+                -0.0021114032748153913,
+                -0.0010127251444112736,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.025,
+                0.0,
+                0.0,
+                -0.0,
+                0.023464971036155993,
+                -0.017884266590220063,
+                0.0,
+                0.0,
+                -0.006299691085813102,
+                -0.0030039250871488773,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.025,
+                0.0,
+                -0.023464971036155993,
+                -0.0,
+                0.02588387197274,
+                0.0,
+                0.0,
+                0.08724903285510079,
+                0.04170938394366447,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.025,
+                0.017884266590220063,
+                -0.02588387197274,
+                -0.0,
+                0.0,
+                0.0,
+                -0.0020420333566153258,
+                -0.0009736794509905621,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.025,
+                0.0,
+                0.0,
+                -0.0,
+                0.02345214991997823,
+                0.013579031127191046,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.006528927095880405,
+                -0.0031486695194634417
+              ],
+              [
+                0.0,
+                0.025,
+                0.0,
+                -0.02345214991997823,
+                -0.0,
+                0.025878680416693927,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.08723036195072481,
+                0.041697567459597906
+              ],
+              [
+                0.0,
+                0.0,
+                0.025,
+                -0.013579031127191046,
+                -0.025878680416693927,
+                -0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -0.0021174677497467847,
+                -0.0010213103210994794
+              ]
+            ],
+            "b": [
+              0.0,
+              -0.43555476480935695,
+              0.0,
+              0.0,
+              -0.434548007868749,
+              0.0,
+              0.0,
+              -0.04125678640111014,
+              0.0
+            ],
+            "e": [
+              [
+                0.025,
+                0.0,
+                0.0,
+                -0.0,
+                -0.007684287846255642,
+                0.020098918874249003,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.012857590000169606,
+                0.009417218348964014,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.025,
+                0.0,
+                0.007684287846255642,
+                -0.0,
+                0.022074882903791806,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.04552701161123092,
+                -3.0872375625445904e-17,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.025,
+                -0.020098918874249003,
+                -0.022074882903791806,
+                -0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.004246740605225562,
+                0.003098640777282617,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.08,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.08,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.08,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.025,
+                0.0,
+                0.0,
+                0.0,
+                0.0019244633672339615,
+                -0.00024878663044262185,
+                -0.00027150812481036067,
+                -5.805356210039536e-05,
+                -0.00026349615887263586,
+                -5.584758033468124e-05,
+                -0.00034611485698541364,
+                -0.0005739797525072221,
+                -0.0002854211600459034,
+                -6.153777837196682e-05
+              ],
+              [
+                0.0,
+                0.025,
+                0.0,
+                -0.0019244633672339615,
+                0.0,
+                0.0058484559934886896,
+                0.0036440001964996916,
+                0.0007752621782900475,
+                0.0036446510743342432,
+                0.0007754414983479977,
+                0.003566067980717508,
+                0.0005506938304922001,
+                0.003830696824778669,
+                0.0008149396591536016
+              ],
+              [
+                0.0,
+                0.0,
+                0.025,
+                0.00024878663044262185,
+                -0.0058484559934886896,
+                0.0,
+                -8.804994512697553e-05,
+                -1.8828115621598785e-05,
+                -8.541345860034005e-05,
+                -1.8102196220557323e-05,
+                -0.00011262606413689765,
+                -0.00018866774621829438,
+                -9.2561947588203e-05,
+                -1.9960547717161507e-05
+              ]
+            ],
+            "d": [
+              0.0,
+              0.0,
+              0.0,
+              0.06465066577204855,
+              0.054032617576138656,
+              -0.08,
+              0.007496218319297704,
+              -0.029399149071005354,
+              0.02102567674265453
+            ],
+            "lower": [
+              -1.0,
+              -1.0,
+              -1.0,
+              -1.0,
+              -1.0,
+              -1.0,
+              -1.0,
+              -0.6019894750564815,
+              -1.0,
+              -0.5985304679708681,
+              -1.0,
+              -1.0,
+              -1.0,
+              -0.60533257625174
+            ],
+            "upper": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              0.7552623129779747,
+              1.0,
+              1.0
+            ],
+            "initial": [
+              0.2654211692459981,
+              -0.9999999999999997,
+              1.0,
+              0.8081333221506068,
+              0.6754077197017332,
+              -1.0,
+              -0.06632007939109233,
+              -0.6019894750564816,
+              1.0,
+              1.0000000000000002,
+              0.8975979839659601,
+              0.7552623129779747,
+              -1.0,
+              -0.60533257625174
+            ]
+          },
+          "iteration": 6,
+          "old_rank": 13,
+          "new_rank": {
+            "rank": 13,
+            "singular_values": [
+              1.0006297152195454,
+              1.0000494642774718,
+              1.0000038042138495,
+              1.000000000005524,
+              0.9999999999999998,
+              0.9999999999999997,
+              0.08804798628244842,
+              0.08653439789009261,
+              0.08016547299599595,
+              0.044698023969769296,
+              0.034384505119227214,
+              0.03311170664676565,
+              0.005261673232266629,
+              1.2801144924168247e-09
+            ],
+            "cutoff": 1.500944572829318e-09
+          },
+          "previous_rank": {
+            "rank": 13,
+            "singular_values": [
+              1.000629563467814,
+              1.000049463976655,
+              1.0000036541519657,
+              1.0000000000054363,
+              1.0,
+              0.08804800195046467,
+              0.08653439809153067,
+              0.08016547767414801,
+              0.04469803204147302,
+              0.03438453087949419,
+              0.0331117522990298,
+              0.005317947375859844,
+              1.367024903169759e-06,
+              5.891349088076652e-17
+            ],
+            "cutoff": 1.4008813888549397e-09
+          },
+          "blocking": [
+            9,
+            1
+          ],
+          "alpha": 3.2479228629220627e-10,
+          "projected_coordinate_norm": 0.0009265125025723722,
+          "direction": 0.0036759919834048814,
+          "bounds_added": 5,
+          "bounds_released": 0
+        },
+        "official_quality_m_s": null,
+        "selection_authority": false,
+        "raw_hashes": {
+          "controller": "d32e9fb8019460aaecec31d276a14c95ca72af20b22c06e5bdb67d0d9607d12b",
+          "trace": "a7b14475f125a87869cbc759a3e44c55cfb8155eb790c00bf6acdcef7c0c2d6f",
+          "timing": "5d55fc1a91a889ab8954c1de4da770688fd6af31ac3613185bacafac03b2b56a"
+        },
+        "positions_sha256": "d85f1286c0e6a4548114d4112fff58a0c00e73a4c68e7794c5e67447f54bcf45",
+        "timing": {
+          "warmup": {
+            "prepare_s": 0.0,
+            "observation_readback_s": 0.0,
+            "portable_control_s": 0.0,
+            "controller_capture_and_control_transfer_s": 0.0,
+            "integration_and_device_history_s": 0.0,
+            "internal_readback_and_capture_s": 0.0,
+            "outer_total_s": 0.0
+          },
+          "measured": {
+            "prepare_s": 0.15470760014432017,
+            "observation_readback_s": 2.253667500001029,
+            "portable_control_s": 67.97432440052216,
+            "controller_capture_and_control_transfer_s": 5.257598799769767,
+            "integration_and_device_history_s": 4.132022000136203,
+            "internal_readback_and_capture_s": 4.8589670997607755,
+            "outer_total_s": 84.65241369952855
+          }
+        },
+        "reference_validation": {
+          "commands": 1170,
+          "window": "commands_60_through_1229",
+          "may_include_post_failure_states": true,
+          "maximum_native_geometry_error_m": 8.118505867571457e-16,
+          "maximum_nonlinear_contact_drift_m": 0.0004727703984012723,
+          "maximum_joint_reference_increment_rad": 0.1250000000000014,
+          "posture_status_counts": {
+            "observed_joint_limit_violation": 14,
+            "solved": 1121,
+            "unsupported": 35
+          },
+          "task_attainable_rank_counts": {
+            "orientation": {
+              "1": 4,
+              "2": 185,
+              "3": 932
+            },
+            "com": {
+              "2": 1121
+            },
+            "airborne_foot": {
+              "2": 4,
+              "4": 185,
+              "6": 932
+            },
+            "supported_posture": {
+              "0": 1121
+            }
+          },
+          "actual_contact_guaranteed": false,
+          "dynamic_feasibility_established": false
+        },
+        "contact_capture": {
+          "rows": 6150,
+          "contacts": 23796,
+          "inactive_contacts": 0,
+          "other_contacts": 16394,
+          "mean_total_distal_normal_load_n": 20.529041031290685,
+          "timing_s": {
+            "native_prepare_s": 0.2965751996525796,
+            "prepare_capture_s": 0.5702293999493122,
+            "native_complete_s": 0.23890330007998273,
+            "complete_guard_s": 0.5945630000060191,
+            "force_capture_s": 2.3885770000779303,
+            "serialization_s": 1.786234700222849
+          },
+          "force_reconstruction_verified": true
+        },
+        "handoff_transition": {
+          "command": 60,
+          "ordered_actuator_ids": [
+            "front_left_hip_motor",
+            "front_left_knee_motor",
+            "front_right_hip_motor",
+            "front_right_knee_motor",
+            "rear_left_hip_motor",
+            "rear_left_knee_motor",
+            "rear_right_hip_motor",
+            "rear_right_knee_motor"
+          ],
+          "at_handoff": {
+            "baseline_delta_rad_s": [
+              2.4257841553976545,
+              -0.055554351482167946,
+              -1.6473542376139663,
+              0.0050490387033643724,
+              -2.340282837191385,
+              -1.5363805974540203,
+              0.475412802323659,
+              -0.001938794602501126
+            ],
+            "correction_delta_rad_s": [
+              -0.07999999999999996,
+              0.07999999999999996,
+              0.08000000000000007,
+              -0.043430583938573575,
+              0.08000000000000002,
+              0.07999999999999996,
+              -0.08000000000000002,
+              -0.04432856044225009
+            ],
+            "target_delta_rad_s": [
+              2.345784155397655,
+              0.024445648517832014,
+              -1.5673542376139664,
+              -0.0383815452352092,
+              -2.260282837191385,
+              -1.4563805974540203,
+              0.39541280232365894,
+              -0.04626735504475121
+            ]
+          },
+          "maximum_post_handoff_absolute_delta_rad_s": {
+            "baseline_delta_rad_s": 2.4257841553976545,
+            "correction_delta_rad_s": 0.08000000000000007,
+            "target_delta_rad_s": 2.345784155397655
+          },
+          "total_target_slew_guaranteed": false
+        },
+        "post_handoff_support": {
+          "prepared_commands": 1171,
+          "window": "all_retained_prepared_commands_from_60",
+          "may_include_post_failure_states": true,
+          "by_site": {
+            "front_left_foot": 26,
+            "front_right_foot": 0,
+            "rear_left_foot": 1041,
+            "rear_right_foot": 273
+          }
+        }
+      }
+    ],
+    "pairs": [
+      {
+        "group_id": "left_075_train_001",
+        "prefix_controller_rows_identical": 60,
+        "prefix_internal_rows_identical": 300,
+        "handoff_prepared_state_identical": true,
+        "fresh_worlds": 2,
+        "post_handoff_equality_required": false
+      }
+    ],
+    "baseline_regressions": [
+      {
+        "group_id": "left_075_train_001",
+        "controller_rows_identical": 1440,
+        "internal_rows_identical": 7200,
+        "fresh_world": true,
+        "cached_physical_state_used": false
+      }
+    ],
+    "unopened_trials": [
+      "reach_hold_nominal_train_001",
+      "posture_hold_nominal_train_001"
+    ],
+    "observed_candidate_minus_reference_violation_time_s": -0.10333333333333572,
+    "violation_timing_is_not_recovery_or_population_benefit": true,
+    "complete_retained_population_verified": true,
+    "reader_world_build_count": 0,
+    "reader_solver_steps": 0,
+    "controller_load_fields_changed": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "equivalence_authority": false,
+    "training_data_authority": false,
+    "tier2_qualified": false,
+    "tier3_benefit_established": false,
+    "recovery_benefit_established": false,
+    "safe_backup_established": false,
+    "dynamic_feasibility_established": false,
+    "complete_comparison_established": false,
+    "nominal_condition_evaluated": false
+  },
+  "next_step": "Declare a retained-data diagnostic over common complete safe commands 60 through 125 to join orientation/COM references, resolved targets, native torques and contact loads. Treat the late solver refusal separately through a distinct numerical successor; do not rerun the consumed comparison or promote bounded IK to dynamic feasibility.",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "recovery_benefit_established": false,
+  "safe_backup_established": false,
+  "dynamic_feasibility_established": false,
+  "complete_comparison_established": false,
+  "nominal_condition_evaluated": false
+}

@@ -3101,3 +3101,17 @@ without physics; the clean pushed freeze and 556-control gate precede launch.
 The new readers check geometry, posture/contact witnesses and actuation
 limits on actual causal observations. This is an exposed-start development
 comparison, not a reproduction of WBIC/MPC or a general recovery certificate.
+
+### Contact-posture native transfer result - 2026-10-25
+
+The [incomplete native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#closed-incomplete-contact-posture-native-comparison---2026-10-25)
+tested the bounded kinematic hierarchy inspired by Kim et al. (2019), Section IV-A,
+on the exposed eight-actuator fixture. It did not implement the paper's full
+floating-base dynamics/force optimization or MPC. The candidate first violated
+tilt at 1.055 s versus 1.158 s for fresh reach hold, then encountered a separate
+rank refusal at 10.25 s; both nominal worlds remained unopened. The closure
+reconstructs all retained commands/contact samples and the isolated refusal.
+This finite negative result does not disprove the paper's method. It shows
+that this bounded reference integration has not transferred to recovery.
+The next diagnostic must inspect the common safe interval and actual actuation,
+while distinguishing kinematic witnesses from physical feasibility.
