@@ -21,7 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest public integration: the [public recovery and native-route checkpoint](#public-recovery-integration-and-prospective-native-successor---2026-10-25)
+Latest native refinement result: the [causal extension and primary-refusal closure](#native-refinement-extension-and-primary-refusal---2026-10-25)
+records a full 895-control gate and two fresh native worlds. The candidate
+passes the old command-89 stop and applies two more commands, then refuses
+command 91 before transfer because its primary QPs report solved-inaccurate.
+Twenty controls and two identical complete readers verify the retained
+population and all four terminal solves. Nominal worlds remain unopened.
+Next test a distinct primary solver on retained states with unchanged objective,
+constraints and acceptance. Tier 2, Tier 3 and release remain unqualified.
+
+Prior public integration: the [public recovery and native-route checkpoint](#public-recovery-integration-and-prospective-native-successor---2026-10-25)
 passes 105 controls and two identical public readers over four hosts and 304
 commands per reader, including the weak command-89 recovery and nominal
 handoff. A failed authority negative control remains retained; its distinct
@@ -8076,3 +8085,53 @@ Next publish this exact source, then run the complete 895-control safety gate
 and comparison in a fresh contained owner from a clean pushed freeze.
 This checkpoint opens no physics worlds. Native recovery, recursive
 feasibility, Tier 2, Tier 3 and release remain unqualified.
+
+## Native refinement extension and primary refusal - 2026-10-25
+
+The [complete partial closure](../sdk/discovery/hierarchical_native_failure_result_v2.json)
+records the fresh comparison launched from prospective freeze
+ae7805d1040b853c15a21d4a44d3d0dac7343146. All 895 safety controls pass.
+Attempt sdk2-hierarchical-native-v3-b76c45df012144d9abad9b5bbbbfbbda opens
+two of its four declared CPU worlds and zero GPU worlds. Its source/runtime
+population is 930/3,582 files; it retains 2,739 artifacts including the receipt
+and takes 1,408.531 seconds including its full gate.
+
+The reference completes 1,440 commands and 7,200 native steps, reproducing its
+retained trajectory exactly. Its first tilt violation remains step 695, about
+1.15833 seconds. The candidate preserves all 89 previously applied controller
+commands and all 445 previous native steps exactly. Command 89 takes the
+refined-primary route and is now applied; command 90 succeeds through the
+original generic route. These two commands generate ten additional native
+steps on the candidate's own trajectory.
+
+Command 91 then refuses before transfer. Both strict and proposal-only primary
+QP calls report OSQP "solved inaccurate" after 20,000 iterations; the bounded
+fallback repeats those primary calls and also refuses. No accepted primary
+solution is available, so primary refinement and the secondary solve cannot
+proceed. The controller closes and both nominal worlds remain unopened.
+A solver status does not establish exact infeasibility or physical impossibility.
+
+The candidate retains 92 controller rows, including the terminal refusal,
+and 455 completed native steps (about 0.75833 seconds). Its 31 applied
+hierarchical commands comprise 30 original-generic solutions and one refined
+solution. No physical violation occurs before the numerical stop. The horizon
+is censored before the reference's violation time, so the extension establishes
+neither recovery benefit nor a favorable complete comparison.
+
+The closure passes 20 controls and two byte-identical complete readers.
+They reconstruct all 1,532 retained controller rows and 7,655 native/contact
+rows, verify the fresh baseline and paired prefix, certify all 31 applied
+hierarchical commands including actual motor history, and independently
+repeat all four terminal primary solves. Corruption controls reject erased
+failure, promoted authority, missing population, altered solver status/work,
+refinement bypass and terminal transfer. The closure opens zero new worlds;
+its exact receipt and reader digests are in the result record.
+
+Next test a distinct primary-solver successor against these retained states.
+The existing proximal backend documents support for semidefinite convex
+objectives, making it a candidate for the rank-deficient primary least-squares
+task. Preserve the unregularized objective, original constraints and certificates,
+strict refinement guard, bounded work and exact replay. Begin with command 91
+and all applied native commands, then the prior retained populations and public
+handoffs. Do not relax acceptance or rerun the consumed comparison. Tier 2,
+Tier 3, native recovery benefit, safe backup and release remain unqualified.

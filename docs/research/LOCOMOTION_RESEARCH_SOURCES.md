@@ -3355,3 +3355,21 @@ or learned adaptation. No new upstream algorithm or implementation was added.
 The next prospective comparison keeps physical limits and measured endpoints
 unchanged. A failed authority negative control is retained and addressed in a
 distinct route successor; numerical success cannot grant release authority.
+
+## Primary proximal-solver lead after native extension - 2026-10-25
+
+The [ProxQP 0.7.2 API](https://simple-robotics.github.io/proxsuite/md_doc_22-ProxQP__api.html)
+explicitly permits symmetric positive-semidefinite Hessians. That supports
+testing the existing generic backend on the primary task's unregularized
+least-squares Gram matrix, whose rank deficiency rules out assuming positive
+definiteness. The same API describes the separate duality-gap stopping check;
+the [pinned settings header](https://raw.githubusercontent.com/Simple-Robotics/proxsuite/v0.7.2/include/proxsuite/proxqp/settings.hpp)
+also exposes the infeasibility-relaxation option. Preserve the current enabled
+duality-gap check and disabled closest-feasible path.
+
+This is a prospective local solver lead. The
+[native extension closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-refinement-extension-and-primary-refusal---2026-10-25)
+verifies two additional applied commands and a later primary refusal, not a
+successful primary-backend replacement. No upstream implementation was copied
+or package upgraded. Local original-coordinate certificates, finite retained
+regressions and exact replay must decide whether any successor is usable.

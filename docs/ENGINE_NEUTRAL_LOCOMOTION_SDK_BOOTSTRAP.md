@@ -9,7 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest public integration: the [public recovery and native-route checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-recovery-integration-and-prospective-native-successor---2026-10-25)
+Latest native refinement result: the [causal extension and primary-refusal closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-refinement-extension-and-primary-refusal---2026-10-25)
+records a full 895-control gate and two fresh native worlds. The candidate
+passes the old command-89 stop and applies two more commands, then refuses
+command 91 before transfer because its primary QPs report solved-inaccurate.
+Twenty controls and two identical complete readers verify the retained
+population and all four terminal solves. Nominal worlds remain unopened.
+Next test a distinct primary solver on retained states with unchanged objective,
+constraints and acceptance. Tier 2, Tier 3 and release remain unqualified.
+
+Prior public integration: the [public recovery and native-route checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-recovery-integration-and-prospective-native-successor---2026-10-25)
 passes 105 controls and two identical public readers over four hosts and 304
 commands per reader, including the weak command-89 recovery and nominal
 handoff. A failed authority negative control remains retained; its distinct
