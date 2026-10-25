@@ -6424,3 +6424,29 @@ steps. Preserve the paired prefix, prepared handoff observation, full contact
 capture and independent replay. No hold trajectory, recovery benefit, safe
 backup, long-horizon result, learned capability, Tier 2/Tier 3 or release
 qualification is established by this component check.
+
+### Prospective native recovery hold comparison - 2026-10-25
+
+The [distinct native route](../sdk/discovery/recovery_hold_native_v1.json) compares
+force-walk with force-hold on the exposed weakened and nominal train_001
+starts. Each role gets a fresh CPU model, data and controller: four worlds,
+120 commands and 600 internal steps per world, with development seed 104242001.
+Both roles use the same original challenge through command 59. The reader
+requires all 300 prefix internal steps and the command-60 prepared observation
+to match exactly, then independently reconstructs each causal trajectory.
+
+The route retains the existing force policy, motor caps and residual limits.
+It records the baseline, residual and total target changes separately, all
+contact forces and timing, and prepared support counts over the declared full
+post-handoff window. Those support summaries may contain post-failure states.
+The full one-second tilt/height/contact outcome remains the same finite
+development diagnostic; no new success threshold or selection authority is added.
+
+The 12 new route controls and runtime preflight passed in attempt
+sdk2-recovery-hold-native-e026d9f0578e4db89c16bc7b1a149ddc, opening zero worlds.
+Receipt SHA-256: b7f973c638f4de138fb3909be95e8bbcd7073fd82be9d0a77dba01a0b366fb53.
+Before any physical world, the clean pushed prospective freeze must pass the
+complete **453-control gate**, including provider and containment checks. The
+owner holds the operation mutex and contains all descendants; each launch has
+a fresh single-use identity. The native result remains pending. No recovery,
+safe-backup, long-horizon, Tier 2/Tier 3 or release claim follows from preflight.

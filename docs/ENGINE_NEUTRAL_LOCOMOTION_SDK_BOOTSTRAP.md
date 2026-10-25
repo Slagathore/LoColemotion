@@ -9,6 +9,12 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest prospective native recovery hold route (2026-10-25): the [four-world comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-recovery-hold-comparison---2026-10-25)
+has passed its 12 new route controls and zero-world runtime preflight. A clean
+pushed freeze and all 453 safety controls are required before fresh force-walk
+and force-hold worlds open. The baseline transition and post-failure scope stay
+explicit; the physical recovery outcome remains pending.
+
 Latest recovery hold integration (2026-10-25): the [successor component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#recovery-hold-controller-integration---2026-10-25)
 passed 10 controls and two full 480-command reconstructions across both core
 DLLs, with zero worlds. Motion and support composition now use the same hold
