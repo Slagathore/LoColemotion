@@ -21,6 +21,12 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest prospective support-reach route: the [four-world native comparison](#prospective-paired-support-reach-native-comparison---2026-10-25)
+passes 14 new controls and zero-world runtime preflight. Its clean pushed freeze
+and all 511 controls precede native launch. The route preserves the original
+limits, pairs the first 60 commands exactly and reproduces each unchanged hold
+baseline over the complete twelve-second horizon.
+
 Latest support-reach component: the [completed diagnosis and integration](#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
 shows that the weak front-right foot cannot reach the ground at any of its 74
 post-handoff pre-failure body poses. A separate bounded body-lowering and
@@ -6676,3 +6682,47 @@ unchanged hold against reach-aware hold on the same exposed weak and healthy
 starts. Require the complete applicable zero-world gate, clean pushed freeze,
 matched first 60 commands and full causal native traces. Recovery benefit,
 held-out generalization, safe backup, Tier 2, Tier 3 and release remain unproved.
+
+### Prospective paired support-reach native comparison - 2026-10-25
+
+The [native contract](../sdk/discovery/support_reach_native_v1.json) declares
+four fresh twelve-second CPU worlds: unchanged force-hold and reach-aware hold
+on left_075/train_001 and nominal/train_001, development seed 104242001.
+Each world runs 1,440 commands and 7,200 internal steps. The candidate uses the
+[verified component](../sdk/discovery/support_reach_component_result_v1.json);
+the reference keeps the original hold policy and profile. Each role has fresh
+model, data, controller, output directory and single-use owner claim.
+
+Within each condition, require exact native equality through the first
+**60 commands / 300 internal steps**, plus an identical prepared handoff state.
+Thereafter each controller acts on its own causal native trajectory. Both fresh
+unchanged-hold worlds must also reproduce their retained **complete 1,440-row
+controller and 7,200-row native traces** exactly. This regression binds setup
+and runtime continuity without recycling any physical state or baseline.
+
+Route attempt sdk2-support-reach-native-70446a66984e45caa259ea444c0b270f passed **14 controls** and zero-world runtime
+preflight, opening zero worlds. It checks the component's full retained artifact
+population, source/runtime bindings, both complete audit hashes and 18 original
+control results. Both DLLs compile the same declared native XML and construct
+and close all four role/condition profile combinations without physics.
+Route receipt SHA-256: 89292dec597c5dae216b1adddf658eebc5fd3a291bd617abfee67a7e9565316a.
+Contract SHA-256: 91ba5cb8bfd5f1f8ba5eadd0541ca172b1384715842d64f7a02c66a80d54cbf8.
+
+A clean pushed prospective freeze and the **complete 511-control gate** precede
+physical launch. The owner holds the global operation mutex, contains all
+children in Windows jobs and retains original stdout/stderr, all contact
+samples, partial failures and two full independent readers. Worker and reader
+limits are 900 seconds each; each stream is bounded at 1 GiB and the storage
+preflight requires 24 GiB free. Controller input contact loads remain unchanged.
+
+The existing height, tilt and torso-contact thresholds, motor caps, final speed
+and residual limits remain fixed. The candidate changes only the declared
+body-height and airborne-leg posture references inside the existing force
+allocator/resolver path. Baseline transition and residual slew remain separate;
+no total target slew guarantee is introduced.
+
+**Next:** run this exact four-world comparison after publication and the full
+gate, then close positive, negative or invalid results without changing the
+contract. This is finite exposed-start development evidence. Reserved starts,
+safe-backup qualification, learned capability, Tier 2/Tier 3 and release remain
+unproved.

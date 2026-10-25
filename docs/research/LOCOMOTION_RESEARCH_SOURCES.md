@@ -3022,3 +3022,13 @@ The [retained diagnosis and successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#
 finds positive fixed-base front-right clearance at every weak pre-failure
 post-handoff observation. Eighteen controls and two complete two-core synthetic
 readers pass without new physics. Native benefit remains untested.
+
+### Prospective causal support-reach comparison - 2026-10-25
+
+The [native comparison contract](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-support-reach-native-comparison---2026-10-25)
+binds four fresh twelve-second worlds, identical paired prefixes, full unchanged
+baseline reproduction and original failure/actuation limits. Fourteen route
+controls and runtime preflight pass without physics. The clean pushed freeze
+and 511-control gate precede launch. This tests the coordinated-reference
+hypothesis suggested by the retained reach bounds; it grants no recovery,
+held-out, learning or release authority before actual outcomes.

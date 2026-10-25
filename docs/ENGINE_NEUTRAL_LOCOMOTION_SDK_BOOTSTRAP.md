@@ -9,6 +9,13 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest prospective support-reach route (2026-10-25): the [paired native contract](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-support-reach-native-comparison---2026-10-25)
+passes 14 route controls and zero-world preflight. Four fresh twelve-second
+worlds compare unchanged hold and coordinated body-lowering/leg-extension
+references on exposed weak/healthy starts, with matched prefixes and complete
+baseline reproduction. A clean pushed freeze and all 511 controls precede
+launch. Physical recovery benefit and Tier 2/Tier 3 remain unproved.
+
 Latest support-reach component (2026-10-25): the [diagnosis and bounded successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
 finds weak front-right fixed-base reach impossible at all 74 post-handoff
 pre-failure observations. The new body-lowering and airborne-extension reference
