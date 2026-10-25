@@ -9,7 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest native hierarchy result: the [retained refusal and complete partial audit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-hierarchy-refusal-and-complete-partial-audit---2026-10-25)
+Latest conditioned generic result: the [terminal-state component check](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#conditioned-generic-terminal-refusal---2026-10-25)
+passes 28 controls and two byte-identical readers, but still refuses native
+command 89. Hessian conditioning improves from about 108 million to 1; the
+secondary reaches its iteration limit. The declared gate stops before the
+other 147 states, public integration or new worlds. Next diagnose the exact
+fixed-support constraint feasibility, including the primary numerical residual,
+before choosing a distinct successor. Tier 2, Tier 3 and release remain
+unqualified.
+
+Prior native hierarchy result: the [retained refusal and complete partial audit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-hierarchy-refusal-and-complete-partial-audit---2026-10-25)
 records a full 799-control launch gate followed by two native worlds. The
 baseline completes; the candidate applies 29 hierarchical commands and refuses
 command 89 before transfer, at about 0.742 simulated seconds. No candidate

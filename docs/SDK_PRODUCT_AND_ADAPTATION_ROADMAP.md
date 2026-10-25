@@ -21,7 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest native hierarchy result: the [retained refusal and complete partial audit](#native-hierarchy-refusal-and-complete-partial-audit---2026-10-25)
+Latest conditioned generic result: the [terminal-state component check](#conditioned-generic-terminal-refusal---2026-10-25)
+passes 28 controls and two byte-identical readers, but still refuses native
+command 89. Hessian conditioning improves from about 108 million to 1; the
+secondary reaches its iteration limit. The declared gate stops before the
+other 147 states, public integration or new worlds. Next diagnose the exact
+fixed-support constraint feasibility, including the primary numerical residual,
+before choosing a distinct successor. Tier 2, Tier 3 and release remain
+unqualified.
+
+Prior native hierarchy result: the [retained refusal and complete partial audit](#native-hierarchy-refusal-and-complete-partial-audit---2026-10-25)
 records a full 799-control launch gate followed by two native worlds. The
 baseline completes; the candidate applies 29 hierarchical commands and refuses
 command 89 before transfer, at about 0.742 simulated seconds. No candidate
@@ -7870,3 +7879,43 @@ All closure readers open zero new worlds. This incomplete comparison grants
 no training-data, recovery-benefit, Tier 2, Tier 3, safe-backup or release
 authority. The next work is a numerical solver successor, not another run of
 the unchanged controller.
+
+## Conditioned generic terminal refusal - 2026-10-25
+
+The [retained component result](../sdk/discovery/conditioned_generic_component_result_v1.json)
+closes a distinct equality-eliminated, Hessian-conditioned generic ProxQP
+formulation. Its 28 synthetic controls pass. Two independent readers produce
+byte-identical results on the exact native command-89 state; both refuse.
+The prior full native closure and its artifact population are reopened and
+verified before the component calculation.
+
+The original primary solve is bitwise identical and accepted. Eliminating the
+nine attained-support equalities and applying an invertible coordinate change
+reduces the secondary Hessian condition number from 107,759,998.04 to
+1.0000000033. The secondary still reaches its 20,000 outer-iteration limit
+(20,016 total iterations), with primal residual 1.4228e-8 and duality gap
+-2.8331e-5. It returns no accepted candidate. The prior unconditioned secondary
+reported primal infeasibility; neither status is an exact infeasibility proof.
+The original objective, constraints, full-coordinate certificates and
+acceptance tolerances remain unchanged.
+
+The declared sequential gate stops at this first refusal. The other 29
+candidate states and the earlier 118-state window are therefore unevaluated
+by this formulation. No public controller integration or new physical world
+ran. The completed owner means the negative diagnostic was retained and
+reconstructed; it does not mean the component passed.
+
+Retained attempt:
+`sdk2-conditioned-generic-component-0a134ffc36b549fbbf82b149869e447c`.
+It binds 883 source and 3,582 runtime files, retains 28 artifacts including its
+receipt, and takes 46.953 seconds. Both complete reader digests are
+`a19b953eade4cb3de671d0356a63ed5ea972f7e606598ec5899488093ea5fc0c`.
+
+Next inspect feasibility of the exact fixed-support secondary constraints.
+The accepted primary has small nonzero bound residuals, so its attained support
+vector may require a finite-precision treatment; that explanation remains a
+hypothesis. Use an independent feasibility calculation and verify any proposed
+infeasibility certificate before choosing a distinct numerical successor.
+Do not increase iteration limits, relax acceptance, or rerun the consumed
+native comparison merely because conditioning failed. Tier 2, Tier 3, recovery
+benefit, safe backup and release remain unqualified.
