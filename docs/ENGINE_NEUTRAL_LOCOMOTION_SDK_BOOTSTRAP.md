@@ -19,8 +19,12 @@ and the held joint-prediction mismatch. The subsequent
 [held-dynamics diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#held-dynamics-contact-wrench-accounting---2026-10-25)
 passes 18 controls and two identical readers over all 295 hierarchical steps.
 Measured contact-wrench mismatch dominates the finite joint-error accounting;
-native and planned force equations close to roundoff. Next verify a
-contact-law-consistent prediction component before a distinct controller.
+native and planned force equations close to roundoff. The
+[causal single-step contact predictor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-single-step-contact-prediction---2026-10-25)
+now passes 22 controls and two identical readers. Maximum first-step joint
+error at the 59 original command boundaries is 2.587344e-9 rad, using only
+prepared state/geometry and candidate commands. Next verify predicted contact
+geometry and a complete held-command rollout before controller integration.
 No numerical or physical guard was relaxed. Nominal worlds remain unopened.
 Tier 2, Tier 3 and release remain unqualified.
 

@@ -21,14 +21,14 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [held-dynamics diagnostic](#held-dynamics-contact-wrench-accounting---2026-10-25)
-accounts for all 295 hierarchical steps from the consumed native negative.
-Eighteen controls and two identical readers verify that contact-wrench mismatch
-is the largest joint-error contribution; changing inertia, bias and integration
-terms are much smaller. Define and verify a contact-law-consistent prediction
-component before a distinct controller and fresh native comparison. Future
-measured forces remain diagnostic-only. The original earlier tilt and terminal
-joint-limit refusal stand; Tier 2, Tier 3 and release remain unqualified.
+Current next action: the [causal contact predictor](#causal-single-step-contact-prediction---2026-10-25)
+passes 22 controls and two identical readers over 295 prepared states. At the
+59 shared command boundaries, maximum next-step joint error drops from
+0.0005532023 rad to 2.587344e-9 rad without measured-force or post-step inputs.
+Extend this configured component to contact geometry and the full five-step
+rollout from one starting state, then integrate a distinct controller and
+prospectively compare recovery. The original earlier tilt and terminal
+joint-limit refusal stand. Tier 2, Tier 3 and release remain unqualified.
 Earlier next-step statements below describe historical checkpoints.
 
 Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
@@ -8572,3 +8572,55 @@ Do not substitute measured future forces, enlarge the joint margin from this
 finite maximum, or assume that shorter holds alone fix the initial force error.
 A fresh prospectively frozen native comparison must still establish recovery.
 Tier 2, Tier 3, robustness, training, equivalence and release remain unqualified.
+
+## Causal single-step contact prediction - 2026-10-25
+
+The [configured contact predictor](../sdk/discovery/causal_contact_predictor_result_v1.json)
+passes 22 controls and two byte-identical full readers. It reconstructs contact
+forces from prepared position, velocity, contact geometry, candidate motor
+commands and configured surface mechanics. It independently solves the strictly
+convex circular-friction-cone problem and then applies the implicitfast velocity
+update with the observed state's motor saturation. No native model is constructed
+and no native dynamics function or physical step is invoked. All parameters
+come from the retained XML/profile and pinned MuJoCo 3.11 defaults; none are fitted.
+
+The predictor receives no measured force, post-step state or future contact
+geometry. Its packet rejects additional fields. At every one of the 59 original
+control boundaries, the reader verifies that its input geometry is already in
+the retained prepared observation. All 295 predictions pass independent
+primal/dual cone and complementarity checks; maximum optimizer length is 192
+iterations. The owner retains 22 artifacts, 1,038 source bindings and 3,582
+runtime bindings. The previous physical negative and all source identities stand.
+
+| Measurement population | New maximum joint-position error | New RMS joint-position error |
+| --- | ---: | ---: |
+| 295 observed starting states / 2,360 joints | 1.616963e-8 rad | 1.014282e-9 rad |
+| 59 original command boundaries / 472 joints | 2.587344e-9 rad | 3.217142e-10 rad |
+
+At those same 59 command boundaries, the previous frozen-force predictor has
+maximum error 0.0005532023 rad and RMS error 0.0000569449 rad for the first
+internal step. This comparison shares the initial state and applied command.
+Across all 295 samples, maximum local contact-force error is 0.000926602 N
+and maximum joint-velocity error is 0.00000970178 rad/s.
+
+These are finite retained prediction measurements, with no newly selected
+physical acceptance threshold. Native force samples satisfy the component's
+strict cone KKT tolerances on 191 of 295 states; that descriptive check does
+not change the native solver's acceptance rules or establish solver equivalence.
+The full report retains every force difference and certificate residual.
+
+Each of the 295 predictions restarts from its own observed prepared state.
+Therefore this is not yet a five-step forecast, contact detector, public-policy
+integration, learned adaptation or demonstrated recovery. Only the 59 first
+steps share the original command-boundary starting state without intermediate
+observations. The component is scoped to the configured rigid MuJoCo model,
+not arbitrary surfaces, bodies or cross-engine equivalence.
+
+Next compute contact geometry from predicted rigid poses and integrate a
+complete five-step held-command rollout without reading intermediate native
+states. Verify geometry, contact appearance/loss, root rotation, clipping and
+joint-limit behavior against the retained population before controller adoption.
+Then connect the causal geometry packet through the production path and run a
+distinct prospectively frozen native comparison. Keep the joint guards,
+acceptance rules and exposed development population unchanged. Tier 2, Tier 3,
+training, robustness, equivalence and release remain unqualified.

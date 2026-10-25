@@ -3471,3 +3471,27 @@ This motivates coupling planned force to contact realization, consistent with
 the contact-consistent control research above. It does not establish a causal
 fix, robust disturbance set, portable contact law or learned adaptation.
 No upstream source was copied and no runtime or controller was changed.
+
+## Configured causal soft-contact prediction - 2026-10-25
+
+The [new component measurement](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-single-step-contact-prediction---2026-10-25)
+implements the [MuJoCo dual contact model](https://mujoco.readthedocs.io/en/3.11.0/computation/index.html#dual-problem):
+a strictly convex quadratic objective in contact force, constrained by circular
+Coulomb cones. An independent cold-start projected optimizer supplies a
+primal/dual cone and complementary-slackness certificate. It uses no measured
+force or post-step state as an input.
+
+The pinned [constraint implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_core_constraint.c)
+specifies impedance regularization, contact reference acceleration and scalar
+limit signs. The [constant setup](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_setconst.c)
+defines reference-pose inverse weights, while the
+[forward integration implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_forward.c)
+separates contact optimization from the implicitfast motor update. The local
+implementation is independently written; no upstream code or package upgrade
+was introduced.
+
+Finite one-step agreement supports continuing to contact geometry and
+held-command prediction. Reinitializing every prediction from an observed
+state does not establish a multi-step rollout, controller benefit, universal
+contact equivalence or learned adaptation. The original physical tilt and
+joint-domain failures remain the current causal controller evidence.
