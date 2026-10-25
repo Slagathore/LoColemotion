@@ -3450,3 +3450,24 @@ base with changing contacts. The local inference is to measure and separate
 prediction-error mechanisms before adopting a new bound or braking constraint.
 A finite observed maximum does not establish a robust disturbance set. No
 upstream code, controller change or widened acceptance was introduced here.
+
+## Implicit-step force accounting and contact realization - 2026-10-25
+
+The [retained held-dynamics diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#held-dynamics-contact-wrench-accounting---2026-10-25)
+uses the pinned [MuJoCo 3.11 computation reference](https://mujoco.readthedocs.io/en/3.11.0/computation/index.html#numerical-integration)
+and versioned source to interpret prepared force snapshots and velocity updates.
+The [integration implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_forward.c)
+uses the modified inertia for implicitfast. The
+[actuator derivative implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_derivative.c)
+omits the velocity derivative when a direct servo is force-clamped, while the
+[constraint implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_core_constraint.c)
+fixes scalar hinge-limit signs. The retained rigid model has zero passive
+damping and no standalone free body; no unsupported derivative term is assumed.
+
+The local reader reconstructs these balances without constructing native
+models or stepping a solver. Contact-wrench mismatch is the largest RMS
+contribution to joint prediction error across the declared finite population.
+This motivates coupling planned force to contact realization, consistent with
+the contact-consistent control research above. It does not establish a causal
+fix, robust disturbance set, portable contact law or learned adaptation.
+No upstream source was copied and no runtime or controller was changed.

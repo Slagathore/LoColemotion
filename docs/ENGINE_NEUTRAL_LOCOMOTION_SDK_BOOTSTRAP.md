@@ -15,8 +15,12 @@ preserves its earlier trajectory and applies 21 more commands, but first
 violates tilt at 0.983 s versus the baseline's 1.158 s. It then refuses command
 119 before any QP solve because the rear-left hip exceeds its native limit.
 Twenty-four controls and two identical readers verify the complete evidence
-and the held joint-prediction mismatch. Next diagnose contact-force and
-held-interval dynamics errors before defining a distinct controller successor.
+and the held joint-prediction mismatch. The subsequent
+[held-dynamics diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#held-dynamics-contact-wrench-accounting---2026-10-25)
+passes 18 controls and two identical readers over all 295 hierarchical steps.
+Measured contact-wrench mismatch dominates the finite joint-error accounting;
+native and planned force equations close to roundoff. Next verify a
+contact-law-consistent prediction component before a distinct controller.
 No numerical or physical guard was relaxed. Nominal worlds remain unopened.
 Tier 2, Tier 3 and release remain unqualified.
 

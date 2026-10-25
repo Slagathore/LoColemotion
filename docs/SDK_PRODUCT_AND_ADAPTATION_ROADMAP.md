@@ -21,14 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [scaled-primary native closure](#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
-records a complete 1,050-control gate and two fresh worlds. The candidate
-continues 21 commands past the old stop, but tilts earlier than its baseline
-and then refuses command 119 at the rear-left hip limit. Twenty-four controls
-and two identical readers close the full evidence. Diagnose the held-interval
-dynamics/contact prediction mismatch before a distinct controller successor.
-The native guards remain unchanged; Tier 2, Tier 3 and release remain
-unqualified. Earlier next-step statements below describe historical checkpoints.
+Current next action: the [held-dynamics diagnostic](#held-dynamics-contact-wrench-accounting---2026-10-25)
+accounts for all 295 hierarchical steps from the consumed native negative.
+Eighteen controls and two identical readers verify that contact-wrench mismatch
+is the largest joint-error contribution; changing inertia, bias and integration
+terms are much smaller. Define and verify a contact-law-consistent prediction
+component before a distinct controller and fresh native comparison. Future
+measured forces remain diagnostic-only. The original earlier tilt and terminal
+joint-limit refusal stand; Tier 2, Tier 3 and release remain unqualified.
+Earlier next-step statements below describe historical checkpoints.
 
 Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
@@ -8514,4 +8515,60 @@ controller. Preserve the native guards, exposed-pair identity and all failures.
 Do not treat the largest observed error as a universal disturbance bound or
 this diagnostic population as authorized training data. Solver precision alone
 does not address the observed tilt negative and pre-solver domain refusal.
+Tier 2, Tier 3, robustness, training, equivalence and release remain unqualified.
+
+## Held dynamics contact-wrench accounting - 2026-10-25
+
+The [retained diagnostic](../sdk/discovery/held_dynamics_diagnostic_result_v2.json)
+passes 18 controls and two byte-identical full readers over all 59 applied
+hierarchical commands, 295 internal steps and 2,360 joint comparisons from the
+consumed native v6 run. The original complete native closure remains the
+physical authority. This diagnostic opens zero worlds, performs zero solver
+steps and changes no controller, guard, margin, objective or runtime.
+
+At every prepared state the reader reconstructs rigid-body inertia and bias,
+projects measured contact forces and moments at their actual application
+points, and accounts for all native constraint rows. It uses native generalized
+coordinates and the declared implicitfast actuator derivative, including
+per-step motor saturation changes. The native force balance closes to
+1.608e-13 component-wise; the predicted balance closes to 1.422e-14. Integrated
+position contributions reproduce the observed prediction error to 2.431e-16 rad.
+These residuals support the bookkeeping on this finite population, not
+universal simulator equivalence.
+
+| Retained witness | Actual minus predicted position | Contact-wrench contribution | Motor-response contribution |
+| --- | ---: | ---: | ---: |
+| Rear-left knee, command 78 / step 395 | +0.007623566 rad | +0.007567657 rad | +0.000000773 rad |
+| Rear-left hip, command 118 / step 595 | +0.006084645 rad | +0.006423366 rad | -0.000313034 rad |
+
+Across the full population the contact contribution has RMS 0.000495751 rad,
+motor response 0.000084295 rad, implicit-derivative change 0.000001260 rad,
+bias change 0.000000952 rad and mass change 0.000000305 rad. Eight internal
+steps differ from the predicted motor saturation derivative. Joint-limit
+constraints were present in the earlier trace, but none exert nonzero force
+during these 295 hierarchical steps. The hip first exceeds its limit at the
+last integrated state, before the next prepared control refuses it.
+
+These are signed additive contributions evaluated along the actual trajectory.
+They interact and can cancel; they are not independent causal effects or
+percentages of a counterfactual improvement. Contact-wrench mismatch includes
+force selection, application geometry and contact-set differences. It is the
+largest RMS accounting contribution and dominates both named witnesses.
+The measured future forces are diagnostic inputs only and are not supplied
+to the controller or promoted to training data or a robust disturbance bound.
+
+The first diagnostic attempt remains retained with its 16 passing controls and
+a reader KeyError for an absent internal controller_context field. The
+successor joins geometry from the public stability packet to the typed state;
+its added controls exercise the complete retained equations and reject clock
+and contact-population mismatches. The full native negative is unchanged.
+
+Next define a contact-law-consistent prediction component: couple force
+realization to candidate actuation, current contact geometry and configured
+surface mechanics, using only information available at the control boundary.
+First verify a single-step mapping with saturation, friction and contact loss;
+then assess held-interval prediction before adopting a distinct controller.
+Do not substitute measured future forces, enlarge the joint margin from this
+finite maximum, or assume that shorter holds alone fix the initial force error.
+A fresh prospectively frozen native comparison must still establish recovery.
 Tier 2, Tier 3, robustness, training, equivalence and release remain unqualified.

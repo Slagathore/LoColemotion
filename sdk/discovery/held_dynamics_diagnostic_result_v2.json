@@ -1,0 +1,166 @@
+{
+  "schema_version": "locolemotion_held_dynamics_diagnostic_result_v2",
+  "status": "complete_retained_contact_wrench_prediction_error_accounting",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_trajectory_force_accounting",
+    "question_class": "development"
+  },
+  "source_commit": "6f5993502a92b5decedd1c6c6c14c09e070a9a78",
+  "source_mode": "owned staged development snapshot with exact source and runtime bindings",
+  "attempt_id": "sdk2-held-dynamics-diagnostic-v2-eaba37fce54247f5967e1d27901c1920",
+  "contract_path": "sdk/discovery/held_dynamics_diagnostic_v2.json",
+  "contract_sha256": "8707c95ef6aa41295f7686a75e307a9f0d151e5d0086f3143b345af2a6fdea21",
+  "receipt_sha256": "5f8adc8d0f7b5978ab2abd4c922b928215a71d51d42011bdba15dba83166fffb",
+  "declaration_sha256": "5917ce6acc9aa35c890f5379eee79c66b6bad8988dba38f8df73a35ef3cd1dd8",
+  "audit_sha256": "ebe94eb39ff080efaab1f9965bf5bcf389474abbea273eab91c11615287fffe4",
+  "reconstruction_sha256": "ebe94eb39ff080efaab1f9965bf5bcf389474abbea273eab91c11615287fffe4",
+  "readers_byte_identical": true,
+  "controls_passed": 18,
+  "complete_reader_invocations": 2,
+  "source_binding_count": 1034,
+  "runtime_binding_count": 3582,
+  "artifacts_including_receipt": 22,
+  "owner_wall_s": 34.26499999999942,
+  "original_attempt": "sdk2-hierarchical-native-v6-f5072c1d2e46499498911eed68d74146",
+  "original_receipt_sha256": "2a9f28a81b097ad03679804c3f69da7fb8965350a9b1f461bd4ef5b0d9427301",
+  "closure_attempt": "sdk2-hierarchical-native-failure-v4-controls-1663602da54642d792033af93cba5f65",
+  "closure_receipt_sha256": "ab146eb6843144db31d0049a40077bc057aba711d4537460b94d7a6a6828bf48",
+  "failed_predecessor": {
+    "attempt_id": "sdk2-held-dynamics-diagnostic-v1-c4bf2e282a704a37b49c1b220fc16400",
+    "receipt_sha256": "65b6ecebb19a801c8b8b48159cb608c0c6c6e48cd1e302a9357d7fcc1707f868",
+    "controls_passed": 16,
+    "error": "KeyError: 'controller_context'",
+    "worlds_opened": 0,
+    "solver_steps": 0,
+    "retained": true,
+    "correction": "Join public stability contact geometry to typed state instead of absent internal request context"
+  },
+  "inputs": {
+    "controller.jsonl": "22c20290bfd999eb0bcbdbd9a0e5984f987df0dc87f6c74389a116a0c7ca5271",
+    "trace.jsonl": "e465207740595a82ec4a7b65f980362dedd33321af4c44850cb59ce3c2360370",
+    "contact-force.jsonl": "cb15d37449aca962123a7120c44b705126f820ad1b4a0cc73d3e9f9472ca74f5",
+    "force-profile.json": "bd5323ec23fa147ff8b41b9f25dcf98c512b9e31f0f951d9e580e97c47fd01bc",
+    "model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069"
+  },
+  "commands": 59,
+  "internal_steps": 295,
+  "joint_comparisons": 2360,
+  "ordered_joints": [
+    "front_left_hip",
+    "front_left_knee",
+    "front_right_hip",
+    "front_right_knee",
+    "rear_left_hip",
+    "rear_left_knee",
+    "rear_right_hip",
+    "rear_right_knee"
+  ],
+  "maximum_absolute_residuals": {
+    "native_force_balance": 1.6076029396572267e-13,
+    "prediction_force_balance": 1.4210854715202004e-14,
+    "position_identity": 1.0668549377257364e-16,
+    "velocity_sum": 2.0886070650760757e-15,
+    "position_sum": 2.4303199024540434e-16,
+    "prepared_frame_join": 1.7763568394002505e-15
+  },
+  "summary": {
+    "maximum_absolute_position_error_rad": 0.007623565872919791,
+    "position_error_rms_rad": 0.0004686062983596798,
+    "maximum_error_witness": {
+      "command": 78,
+      "internal_step": 395,
+      "joint_id": "rear_left_knee",
+      "actual_position_rad": 0.7130315356950454,
+      "predicted_position_rad": 0.7054079698221256,
+      "error_rad": 0.007623565872919791,
+      "contributions_rad": {
+        "contact_wrench": 0.007567657112127815,
+        "joint_limit": 0.0,
+        "motor_response": 7.734791764784823e-07,
+        "passive_force": 0.0,
+        "bias_change": -3.262663573807856e-07,
+        "mass_change": 1.3735276039443103e-07,
+        "implicit_derivative_change": 5.5324195212341816e-05,
+        "native_balance_residual": 1.7698477622123088e-17,
+        "prediction_balance_residual": 1.1833301729113433e-18
+      }
+    },
+    "terminal_hip_witness": {
+      "command": 118,
+      "internal_step": 595,
+      "joint_id": "rear_left_hip",
+      "actual_position_rad": 0.7202513120289704,
+      "predicted_position_rad": 0.7141666666666837,
+      "error_rad": 0.0060846453622867,
+      "contributions_rad": {
+        "contact_wrench": 0.00642336577493877,
+        "joint_limit": 0.0,
+        "motor_response": -0.00031303442643743415,
+        "passive_force": 0.0,
+        "bias_change": -6.069683345341924e-06,
+        "mass_change": 5.231160320403436e-07,
+        "implicit_derivative_change": -2.0139418901395713e-05,
+        "native_balance_residual": -2.9614581259216798e-18,
+        "prediction_balance_residual": -2.236312789810477e-18
+      }
+    },
+    "full_population_position_contribution_statistics": {
+      "contact_wrench": {
+        "maximum_absolute_rad": 0.007567657112127815,
+        "rms_rad": 0.0004957511681916544
+      },
+      "joint_limit": {
+        "maximum_absolute_rad": 0.0,
+        "rms_rad": 0.0
+      },
+      "motor_response": {
+        "maximum_absolute_rad": 0.0013410739826741768,
+        "rms_rad": 8.429540441516232e-05
+      },
+      "passive_force": {
+        "maximum_absolute_rad": 0.0,
+        "rms_rad": 0.0
+      },
+      "bias_change": {
+        "maximum_absolute_rad": 7.804731743392071e-06,
+        "rms_rad": 9.519428790827227e-07
+      },
+      "mass_change": {
+        "maximum_absolute_rad": 9.801856734776506e-06,
+        "rms_rad": 3.051715429447103e-07
+      },
+      "implicit_derivative_change": {
+        "maximum_absolute_rad": 5.5324195212341816e-05,
+        "rms_rad": 1.259602908448625e-06
+      },
+      "native_balance_residual": {
+        "maximum_absolute_rad": 3.676855902983045e-17,
+        "rms_rad": 1.962971663730063e-18
+      },
+      "prediction_balance_residual": {
+        "maximum_absolute_rad": 6.2825161267744435e-18,
+        "rms_rad": 4.460656574656721e-19
+      }
+    },
+    "steps_with_changed_motor_derivative": 8,
+    "steps_with_nonzero_joint_limit_force": 0
+  },
+  "interpretation": "additive accounting on observed path; not counterfactual or independent causal effects",
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "controller_changed": false,
+  "future_measured_forces_used_by_controller": false,
+  "disturbance_bound_established": false,
+  "training_data_authority": false,
+  "dynamic_feasibility_established": false,
+  "recovery_benefit_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "margin_or_limit_changed": false,
+  "next_step": "Define a distinct contact-law-consistent prediction component using only causal observations and configured parameters; verify it before controller adoption or new native comparison"
+}
