@@ -9,6 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest dynamics component (2026-10-25): the [completed verification](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-floating-base-dynamics-component---2026-10-25)
+passes 56 controls and two complete readers across 132 retained pre-fall
+states and 1,188 body observations, opening zero worlds. It supplies the full
+14-coordinate inertia matrix, velocity/gravity bias, external-wrench mapping
+and explicit joint inertia. Native body geometry and velocity joins pass;
+native inertia/bias equivalence remains unverified. Next declare a separate
+zero-integration native readback oracle, counting its model/data construction,
+before integrating a dynamics-constrained controller. Tier 2, Tier 3 and
+release remain unqualified.
+
 Latest posture/force diagnosis (2026-10-25): the [completed accounting](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-posture-and-force-diagnosis---2026-10-25)
 passes 34 controls and two complete readers without new physics worlds.
 Over the shared complete safe commands 60 through 125, the native motor model

@@ -21,6 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest dynamics component: the [completed analytic and retained-state verification](#completed-floating-base-dynamics-component---2026-10-25)
+passes 56 controls and two complete readers across 132 retained pre-fall
+states and 1,188 body observations, opening zero worlds. It supplies the full
+14-coordinate inertia matrix, velocity/gravity bias, external-wrench mapping
+and explicit joint inertia. Native body geometry and velocity joins pass;
+native inertia/bias equivalence remains unverified. Next declare a separate
+zero-integration native readback oracle, counting its model/data construction,
+before integrating a dynamics-constrained controller. Tier 2, Tier 3 and
+release remain unqualified.
+
 Latest posture/force diagnosis: the [completed safe-window accounting](#completed-pre-failure-posture-and-force-diagnosis---2026-10-25)
 passes 34 controls and two complete readers without new physics worlds.
 Over the shared complete safe commands 60 through 125, the native motor model
@@ -7107,3 +7117,55 @@ actual velocity-command envelope must retain explicit treatment or exclusions.
 Then declare a distinct dynamics-constrained inverse-dynamics successor; do not
 silently substitute an unconstrained torque interface. Its native benefit still
 requires fresh prospective evidence. Tier 2, Tier 3 and release remain unqualified.
+
+### Completed floating-base dynamics component - 2026-10-25
+
+The [component result](../sdk/discovery/floating_base_dynamics_result_v1.json)
+records **56 controls**, two agreeing complete readers, **132 pre-fall states**
+and **1,188 body observations** in sdk2-floating-base-dynamics-2b03ffbbbe9741d4b16f741a277f1fa8.
+Each reader first reconstructs the complete parent posture/force diagnosis
+and its original incomplete native comparison. This component opens no model
+or simulation world and performs no simulator integration step.
+
+The new portable component supplies a full **14 by 14 inertia matrix**,
+velocity/gravity bias, inverse dynamics, external-wrench projection, kinetic
+and potential energy, and declared passive damping. Its order is root world
+linear motion, root world angular motion, then eight revolute joints.
+The first six generalized forces represent required unactuated-base force
+and moment; they are never motor commands. Matrix entries have mixed units.
+
+Native XML explicitly configures **0.01 kg m^2 joint inertia on all eight
+hinges**, which is absent from the morphology specification. This additional
+coefficient is now a required component input and is bound to retained XML;
+it is configured rather than estimated. Declared native damping is zero.
+COM, diagonal body inertia, joint axes and child anchors are also joined.
+
+Analytic controls cover free-body and two-link inertia, gravity, gyroscopic
+and Coriolis terms, off-center mass, nonzero child anchors, branched trees,
+world rotation/translation, explicit joint inertia and invalid inputs.
+Retained-state checks compare Jacobian-assembled inertia with recursive
+inverse-dynamics acceleration columns, kinetic energy and power, potential
+gradients, finite-difference body velocities and bias accelerations, original
+gravity/contact projections and external virtual work.
+
+Native geometry and velocity checks reopen original body poses, COM positions,
+rotations, generalized velocity and body spatial velocity for both 66-state
+windows. Native body spatial velocity is world-aligned and centered at the
+root subtree COM; conversion to each body COM is explicit. This verifies those
+retained kinematic joins. It does **not** compare native inertia matrices or
+native bias-force readbacks, predict contact, or establish dynamic feasibility.
+
+The implementation follows the floating-base dynamics foundation needed by
+[Kim et al. (2019), Section IV-B](https://arxiv.org/html/1909.06586v1).
+It does not implement that paper's full optimization, MPC or a recovery
+controller. Contact constraints, compliance, joint-limit forces and the real
+velocity-command actuator envelope still require separate treatment.
+
+Next declare and gate a native readback oracle for inertia and bias with
+explicit coordinate transformations, separate passive-force accounting and
+actual model/data construction counts. Zero integration steps must not be
+reported as zero constructed worlds. After that oracle passes, implement a
+distinct dynamic controller and verify its unactuated-base equations and
+actuator feasibility before any prospective recovery comparison. Preserve the
+consumed posture controller, its pre-fall failure and separate late rank refusal.
+Tier 2, Tier 3, physical recovery benefit and release remain unqualified.

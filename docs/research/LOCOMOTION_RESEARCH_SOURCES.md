@@ -3130,3 +3130,24 @@ verifies the native motor map but finds a large allocated-to-measured body-momen
 gap. This supports investigating a full dynamics component; it does not prove a
 causal remedy or justify copying gains. The next implementation should preserve
 the actual resolver envelope and test unactuated-base equations explicitly.
+
+### Floating-base inertia inputs and velocity coordinates - 2026-10-25
+
+The [portable dynamics component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-floating-base-dynamics-component---2026-10-25)
+implements an inertia/bias foundation motivated by
+[Kim et al. (2019), Section IV-B](https://arxiv.org/html/1909.06586v1).
+It remains separate from the paper's optimization and from native recovery claims.
+
+The [official MuJoCo joint reference](https://mujoco.readthedocs.io/en/latest/XMLreference.html#body-joint)
+defines additional joint armature inertia. The retained fixture declares
+0.01 kg m^2 on each hinge; the portable morphology alone does not encode it.
+The component therefore requires the coefficient explicitly and verifies its
+native XML binding instead of silently dropping or estimating it.
+
+The [official native velocity implementation](https://github.com/google-deepmind/mujoco/blob/main/src/engine/engine_core_util.c)
+shifts body spatial velocity from its root subtree COM to the requested object
+position. Our retained body-COM velocity reconstruction applies that shift
+before coordinate conversion, and all 1,188 body observations pass. The source
+reference explains the convention; the retained runtime bindings and numeric
+joins provide local evidence. Native mass-matrix and bias-force agreement
+remain a distinct pending oracle.
