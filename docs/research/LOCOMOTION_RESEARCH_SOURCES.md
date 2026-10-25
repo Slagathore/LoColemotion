@@ -2813,3 +2813,39 @@ authority or the handoff state. The next local step is a complete retained
 state/action and support/loading diagnosis, followed by a distinct prospective
 successor. No comparison-based reselection, external code or weights, reserved
 evaluation, or Tier 3 memory promotion is introduced.
+
+### Recovery action delivery and force-measurement boundaries - 2026-10-24
+
+The [complete recovery diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-action-and-support-diagnosis---2026-10-24)
+separates the actor proposal, the rate-limited correction, the final native
+velocity target and retained motor torque. The original outcomes and training
+selection remain unchanged. Its contact geometry does not supply normal foot
+loads or a force-feasibility certificate.
+
+[MuJoCo 3.11's actuation model](https://mujoco.readthedocs.io/en/3.11.0/computation/index.html#actuation-model)
+distinguishes actuator output and transmission from constraint forces. The
+local affine force check uses the retained velocity before integration, with
+the recorded gain, bias and force range. It does not multiply a post-state
+velocity error into a replacement measurement. The
+[contact-force API](https://mujoco.readthedocs.io/en/3.11.0/APIreference/APIfunctions.html#mj-contactforce)
+provides a six-dimensional force/torque in the contact frame. A future capture
+must retain the associated contact identity, frame, solver stage and units;
+calling the API at a different pipeline stage cannot retroactively recover
+the missing historical load record.
+
+[Orsolino et al., Feasible Region: an Actuation-Aware Extension of the Support Region](https://arxiv.org/abs/1903.07999)
+show why a geometrically supported configuration can still violate joint
+torque limits. Their region includes friction and actuation constraints and
+is local to the modeled configuration under a static assumption. That supports
+separating geometric support from feasible force allocation. Their static
+result does not establish dynamic recovery for this eight-joint velocity-
+actuated body, and neither their numerical limits nor performance transfers.
+
+The local next-step inference is an observer-only solver-contact-force
+measurement successor, with explicit completed-step timing and fresh
+noninterference comparisons before feeding any new measurement to control.
+Only then develop an actuation-aware recovery component with a declared
+mechanical model and capability boundary. Keep the existing actor, warning,
+handoff, limits and reserved starts unchanged in the measurement comparison.
+No external code or weights are imported, no contact loads are invented for
+old trials, and no safe region or Tier 2/Tier 3 qualification is established.

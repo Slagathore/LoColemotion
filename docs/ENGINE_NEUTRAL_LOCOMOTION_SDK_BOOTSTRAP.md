@@ -9,6 +9,18 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest recovery diagnosis (2026-10-24): the [complete retained-data analysis](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-action-and-support-diagnosis---2026-10-24)
+reopens all **119 CPU trajectories**, **162,120 commands** and **810,600 internal
+samples** with **zero new worlds**. All **16 controls** and complete raw
+reconstruction pass. In the selected comparison's fixed post-handoff window,
+front-left hip force-cap occupancy is **45-70% when weakened**, versus **5-10%
+when healthy**. Slew limiting affects about 72% of actuator commands in both
+conditions, so it alone does not distinguish the failures. Every one of
+**648,480 normal-load fields is unavailable**. Original outcomes, selection and
+the failed 8/8 screen remain unchanged. Next verify observer-only solver-contact
+force capture, then develop recovery that accounts for available actuation.
+Reserved starts and Tier 2/Tier 3 qualification remain open.
+
 Latest recovery-training result (2026-10-24): the [completed bounded pilot](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-bounded-recovery-training---2026-10-24)
 verifies **119 fresh CPU worlds**, **162,120 commands** and **810,600 internal
 samples** from published `c24c9c8f`. Both native lanes pass all **327 prelaunch
@@ -16,8 +28,8 @@ controls**. The selected and final checkpoints each pass **3/4 healthy** and
 **0/4 weakened** comparison groups; initial recovery passes 2/4 healthy and
 0/4 weakened, while challenge-only passes 0/8. The declared **8/8 screen fails**.
 All **12 closure controls** pass and preserve 26 eligible and 93 negative
-trials. Next diagnose the exposed weakened failures from retained support,
-loading and applied-action history before declaring a distinct successor.
+trials. The completed diagnosis above now records support geometry, motor
+saturation and delivered-action history; normal contact loads were not retained.
 Reserved starts, useful Tier 3 memory and Tier 2/Tier 3 qualification remain open.
 
 Latest recovery result (2026-10-24): the [completed paired handoff diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-paired-recovery-handoff-diagnostic---2026-10-24)

@@ -21,6 +21,18 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
+Latest recovery diagnosis (2026-10-24): the [complete retained-data analysis](#completed-recovery-action-and-support-diagnosis---2026-10-24)
+reopens all **119 CPU trajectories**, **162,120 commands** and **810,600 internal
+samples** with **zero new worlds**. All **16 controls** and complete raw
+reconstruction pass. In the selected comparison's fixed post-handoff window,
+front-left hip force-cap occupancy is **45-70% when weakened**, versus **5-10%
+when healthy**. Slew limiting affects about 72% of actuator commands in both
+conditions, so it alone does not distinguish the failures. Every one of
+**648,480 normal-load fields is unavailable**. Original outcomes, selection and
+the failed 8/8 screen remain unchanged. Next verify observer-only solver-contact
+force capture, then develop recovery that accounts for available actuation.
+Reserved starts and Tier 2/Tier 3 qualification remain open.
+
 Latest recovery-training result (2026-10-24): the [completed bounded pilot](#completed-bounded-recovery-training---2026-10-24)
 verifies **119 fresh CPU worlds**, **162,120 commands** and **810,600 internal
 samples** from published `c24c9c8f`. Both native lanes pass all **327 prelaunch
@@ -28,8 +40,8 @@ controls**. The selected and final checkpoints each pass **3/4 healthy** and
 **0/4 weakened** comparison groups; initial recovery passes 2/4 healthy and
 0/4 weakened, while challenge-only passes 0/8. The declared **8/8 screen fails**.
 All **12 closure controls** pass and preserve 26 eligible and 93 negative
-trials. Next diagnose the exposed weakened failures from retained support,
-loading and applied-action history before declaring a distinct successor.
+trials. The completed diagnosis above now records support geometry, motor
+saturation and delivered-action history; normal contact loads were not retained.
 Reserved starts, useful Tier 3 memory and Tier 2/Tier 3 qualification remain open.
 
 Latest recovery result (2026-10-24): the [completed paired handoff diagnostic](#completed-paired-recovery-handoff-diagnostic---2026-10-24)
@@ -1608,6 +1620,108 @@ The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
 
+### Completed recovery action and support diagnosis - 2026-10-24
+
+The [retained diagnostic](../sdk/discovery/residual_recovery_diagnostic_v1.json)
+reopens the complete seven-world route and 112-world recovery pilot:
+**119 original CPU worlds**, **162,120 controller rows**, **810,600 internal
+samples** and **93 exact fresh-reference prefixes**. The original closure is
+recomputed first; its reconstruction hash is unchanged. The new reader then
+checks every raw controller/trace stream against its original artifact digest,
+reconstructs the diagnostic in a second contained process, and compares the
+complete result. It opens **zero new worlds** and performs **zero solver steps**.
+All 26 eligible and 93 negative outcomes, original quality values, trained
+checkpoints and training-only selection remain unchanged.
+
+Each trial retains full horizons but reports three explicit views: prepared
+commands before its original first failure, the post-handoff part of that
+prefix, and the fixed **commands 60-79 / internal samples 301-400** window.
+That common window was chosen after the parent outcomes were known, is wholly
+before every original failure, and grants no new inferential authority.
+Internal force statistics exclude the first failed sample. A command prepared
+before failure can include the held interval in which failure occurs; the
+record keeps these two clocks separate. Successful endpoints are horizon
+censored, not fabricated failure times.
+
+The selected checkpoint shows:
+
+| Condition | Original eligible groups | Mean slew-limited actuator commands | Front-left hip force-cap samples | Mean delivered corrections opposing proposal |
+| --- | --- | --- | --- | --- |
+| Left motors at 0.75 effectiveness | 0/4 | 71.71875% | 45-70% per trial | 42.03125% |
+| Nominal motors | 3/4 | 71.875% | 5-10% per trial | 40.46875% |
+
+Every fraction above uses the same 20 commands, eight actuators and 100
+internal samples per trial, as applicable. These are descriptive four-start
+cohorts, not independent sample counts or statistical superiority tests.
+The front-left hip cap counts are **70, 60, 60, 45 / 100** in the weakened
+starts and **10, 5, 10, 10 / 100** in the healthy starts, ordered
+`train_001`, `train_003`, `train_004`, `train_006`.
+
+At the selected weakened `train_001` handoff, the front-left hip requests a
+**+2.071632 rad/s correction**, while continuous prior-action slew resolves
+**-0.577901 rad/s**. With its **-1.638364 rad/s baseline**, the native velocity
+target is **-2.216265 rad/s**. The record distinguishes that rate-limited
+correction from the delivered final-target-minus-baseline difference, because
+the baseline's own speed projection can change the latter. This is a command
+measurement; its sign is not a measured torque direction.
+
+The same broad handoff conflict appears in healthy recoveries. Conversely,
+initial recovery reduces weakened front-left hip cap occupancy to a cohort
+mean of **29.75%**, but still fails all four weakened groups. Neither slew
+clamping nor lower cap occupancy alone explains success. At handoff the selected
+weakened trials report the front-left/rear-right support pair; the projected
+whole-body COM is **4.14-5.00 cm** from that two-point support segment. In the
+last prepared pre-failure observations, three of four weakened runs report
+only rear-left support; the remaining run reports both rear feet. These are
+observed geometric transitions, not proof of a static margin, force
+infeasibility, or a counterfactual recovery action.
+
+All **648,480 canonical normal-load fields are null**. Raw contact records
+contain geometry but no force. The retained unit-gear actuator and joint-force
+samples do match the bound affine force model using **pre-integration joint
+velocity**, with **zero maximum reconstruction error** across all 6,484,800
+motor samples. Motor torque, solver contact force, integrated impulse and
+available recovery authority remain different quantities. The contact hull
+does not supply missing ground-reaction forces.
+
+The [reader](../sdk/discovery/residual_recovery_diagnostic.py), pure
+[measurements](../sdk/discovery/residual_recovery_diagnostic_metrics.py), and
+[16 analytical/corruption controls](../sdk/discovery/test_residual_recovery_diagnostic.py)
+run under the operation mutex and Windows job containment. They reject changed
+raw streams, omitted trials, wrong force timing, altered transmission or caps,
+broken actual-action history, crossed fresh prefixes, truncated windows and
+promoted claims. The owner verifies unchanged 587 source and 1359
+runtime bindings. Its successful attempt is
+`sdk2-recovery-diagnosis-1edc43b3582a46939ec782d01b7b6084`.
+
+An earlier reader-only attempt,
+`sdk2-recovery-diagnosis-912d1374380240d39bcc29832afb578e`, failed before tests
+because the reader assumed every baseline speed limit was 3.5 rad/s. Its source
+snapshot and failure receipt remain retained. The corrected reader joins each
+command to its own recorded limit; the original controllers and data were not
+changed.
+
+| Retained record | SHA-256 |
+| --- | --- |
+| Diagnostic record | `9ebecf02fb438ff6c0c88ff6dcafe9d0d660f46ac7a52f86149e7609ecfbf920` |
+| Successful owner receipt | `db6bb72ced5a2db65580aaee47a64820d88b1e2e8189e7c4b950972a87a27571` |
+| Complete parent reconstruction | `f87a1c52319bead74d01f3a60a8749e23950f800cd4869d9306c6ef294e69d47` |
+| Complete diagnostic reconstruction | `634f846221baea261fec76672d32f96836b7b79563753bbf07c98dc5454748dc` |
+| Earlier failed reader receipt | `795d27afaf41bb62a520e50061f84b1c42b0f3bbb59f64c201237e33aa34476d` |
+
+Next implement a distinct **observer-only contact-force measurement** successor.
+Retain contact identity, force/torque units, contact frame, native body mapping,
+and the completed-step sampling stage. Before any load-aware control change,
+prove the new capture leaves the fresh original-controller inputs, native
+commands and trajectories unchanged in the declared healthy and weakened
+routes. Its analytical controls must cover sign/frame conversion, inactive
+contacts, multiple contacts per foot and stale-stage refusal. Then develop an
+actuation-aware recovery component from an explicit mechanical and capability
+model, followed by fresh paired physical comparisons. Keep the existing actor,
+warning, handoff, bounds and reserved starts fixed in the measurement comparison.
+The [research ledger](research/LOCOMOTION_RESEARCH_SOURCES.md#recovery-action-delivery-and-force-measurement-boundaries---2026-10-24)
+records the external design basis and its static-model limits.
+
 ### Completed bounded recovery training - 2026-10-24
 
 The [recovery-training closure](../sdk/discovery/residual_recovery_training_closure_v1.json)
@@ -1678,10 +1792,11 @@ modified checkpoints and comparison-based fitting or selection.
 | Closure controls receipt | `ecec90b97e22fa745ab169afd6b6b9d5b46e5a7e4f1dab972227adec7a7800da` |
 | Complete reconstruction | `f87a1c52319bead74d01f3a60a8749e23950f800cd4869d9306c6ef294e69d47` |
 
-Next diagnose the complete exposed failure population using retained support,
-loading, joint state, action saturation and actual resolved residual history.
-The diagnosis must distinguish observations from causal explanations and
-preserve healthy comparisons. A changed objective, search budget, policy
+The [completed diagnosis](#completed-recovery-action-and-support-diagnosis---2026-10-24)
+now records the complete exposed support, joint, motor-force and resolved-action
+population, including the unavailable contact loads. It preserves healthy
+comparisons and distinguishes observations from causal explanations.
+A changed objective, search budget, policy
 capacity, handoff timing or actuator envelope needs a distinct prospective
 successor; none may reinterpret or rerun this consumed pilot. The broader
 [SDK2 targets](#sdk2-claim-targets) remain unchanged.
