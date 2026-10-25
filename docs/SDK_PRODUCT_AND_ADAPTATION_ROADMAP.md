@@ -21,12 +21,21 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest native dynamics result: the [completed finite readback closure](#completed-native-dynamics-readback-closure---2026-10-25)
+verifies portable inertia, gravity, velocity bias and passive forces against
+all 132 native readbacks. The original worker passed 83 launch controls and
+constructed two model/data worlds with zero integration steps; its reader
+then refused an incorrect hardcoded gravity expectation. A separate closure
+reproduces that failure, derives gravity from the bound XML/states, and passes
+37 controls and two complete readers without new worlds or changed numerical
+tolerances. Next implement the actuator-constrained dynamic controller.
+Tier 2, Tier 3 and release remain unqualified.
+
 Latest native dynamics route (2026-10-25): a [prospective readback oracle](#prospective-native-dynamics-readback-oracle---2026-10-25)
 is declared for two fresh model/data worlds and 132 retained states, with zero
 integration steps. The complete launch gate has 83 controls, including the
 existing dynamics controls, 26 new route controls and Windows job containment.
-No native readback result exists yet. The next action is the gated run from a
-clean pushed freeze, followed by two complete retained-data comparisons.
+The original run and its distinct retained-readback closure are recorded above.
 Tier 2, Tier 3 and release remain unqualified.
 
 Latest dynamics component: the [completed analytic and retained-state verification](#completed-floating-base-dynamics-component---2026-10-25)
@@ -7211,7 +7220,55 @@ inverse dynamics and kinetic energy. Native body geometry and velocity joins
 are checked again. No tolerance is selected from a native outcome.
 
 The 26 new route controls passed locally without native construction.
-Native evidence remains pending until the complete gate, worker, both readers
-and source/runtime checks finish. This route provides finite readback evidence;
+At this prospective freeze, native evidence remained pending until the complete
+gate, worker, readers and source/runtime checks finished; the outcome is closed below. This route provides finite readback evidence;
 controller feasibility, contact accuracy, recovery, Tier 2, Tier 3 and release
 remain outside its authority.
+
+### Completed native dynamics readback closure - 2026-10-25
+
+The [finite readback result](../sdk/discovery/floating_dynamics_readback_result_v1.json)
+closes both the consumed native attempt and its separate retained-data successor.
+The original sdk2-floating-dynamics-oracle-7ef8178d2b1f425bb334494b71d7ed92 ran from clean pushed freeze
+2c479b71cae6f8e246a9bceb3f5ade619daab622. All **83 launch controls** passed. Its worker constructed
+**two models and two CPU data worlds**, assigned **132 retained states**, and
+performed **zero integration steps**, with 264 explicit position stages,
+264 velocity stages and 132 dense inertia readbacks.
+
+The original owner remains **failed**: its first reader expected gravity of
+9.81 m/s^2, while the immutable XML, assigned canonical states and actual model
+all specify 9.8 m/s^2. This metadata refusal occurred before the numerical
+dynamics comparisons; no original audit or reconstruction completed. The worker
+had correctly checked native gravity against every assigned state. Its complete
+outputs, original source, gate, exception and receipt remain unchanged.
+
+The separate sdk2-floating-dynamics-readback-64d50dbd98ed49c4af548a66f22875a1 passes **37 controls** and two agreeing complete
+readers, opening **zero additional worlds**. Each reader verifies the full
+original artifact inventory and bindings, all 83 original control logs and
+launch records, reproduces the original refusal, then derives the metadata
+gravity expectation from the exact XML joined to every original state.
+Eleven new controls cover the metadata defect and changed/partial inputs.
+The original numerical comparison implementation and its prospective
+1e-9 absolute plus 1e-9 relative tolerances are unchanged.
+
+Across all 132 states, maximum absolute inertia-entry discrepancy is
+**2.581268532253489e-15** in the declared mixed SI coordinates.
+Maximum combined-bias discrepancy is **1.4210854715202004e-14**
+in generalized force coordinates; inverse-dynamics discrepancy is
+**2.1316282072803006e-14**. Gravity, velocity bias, passive forces,
+kinetic energy and all **1,188 body observations** also pass. Per-field errors
+remain in the result; the matrix does not have a single common physical unit.
+Assigned timestamps are retained state labels, not newly integrated time.
+
+This establishes native dynamics readback agreement for this finite population.
+It does not validate contact-force prediction, generate a trajectory, establish
+actuator feasibility or demonstrate recovery. The earlier component's pending
+native-check statement remains correct for its original evidence boundary.
+
+Next implement a distinct dynamics-constrained controller coupling task
+acceleration and contact forces through these verified equations. Keep the six
+base coordinates unactuated and preserve the bounded velocity-command interface.
+Verify contact/task derivatives, force bounds, rank handling and actual command
+transfer before a new prospective recovery comparison. Preserve both the
+consumed posture controller and this metadata-refused native owner. Tier 2,
+Tier 3 and release remain unqualified.

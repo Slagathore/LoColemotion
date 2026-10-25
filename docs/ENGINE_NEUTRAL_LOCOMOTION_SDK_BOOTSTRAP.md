@@ -9,12 +9,21 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest native dynamics result (2026-10-25): the [completed finite readback closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-dynamics-readback-closure---2026-10-25)
+verifies portable inertia, gravity, velocity bias and passive forces against
+all 132 native readbacks. The original worker passed 83 launch controls and
+constructed two model/data worlds with zero integration steps; its reader
+then refused an incorrect hardcoded gravity expectation. A separate closure
+reproduces that failure, derives gravity from the bound XML/states, and passes
+37 controls and two complete readers without new worlds or changed numerical
+tolerances. Next implement the actuator-constrained dynamic controller.
+Tier 2, Tier 3 and release remain unqualified.
+
 Latest native dynamics route (2026-10-25): a [prospective readback oracle](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-dynamics-readback-oracle---2026-10-25)
 is declared for two fresh model/data worlds and 132 retained states, with zero
 integration steps. The complete launch gate has 83 controls, including the
 existing dynamics controls, 26 new route controls and Windows job containment.
-No native readback result exists yet. The next action is the gated run from a
-clean pushed freeze, followed by two complete retained-data comparisons.
+The original run and its distinct retained-readback closure are recorded above.
 Tier 2, Tier 3 and release remain unqualified.
 
 Latest dynamics component (2026-10-25): the [completed verification](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-floating-base-dynamics-component---2026-10-25)

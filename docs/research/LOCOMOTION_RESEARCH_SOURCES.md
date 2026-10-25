@@ -3167,3 +3167,13 @@ identify position/velocity evaluations and dense inertia extraction. Installed
 The installed model header also distinguishes linear and higher-order joint
 damping; this fixture requires both to be zero. These references define the
 comparison route, not a successful native result.
+
+### Native dynamics agreement and metadata authority - 2026-10-25
+
+The [completed readback closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-dynamics-readback-closure---2026-10-25)
+verifies the portable inertia and bias against all 132 installed MuJoCo 3.11.0
+readbacks. The original reader's hardcoded 9.81 m/s^2 gravity was inconsistent
+with the exact 9.8 m/s^2 fixture. A separate successor derives that expectation
+from the bound XML and every state, while preserving the failed owner and
+all original numerical tolerances. This clears the finite dynamics-readback
+gate for a controller successor; contact accuracy and recovery remain unproved.
