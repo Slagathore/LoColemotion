@@ -1,0 +1,116 @@
+{
+  "schema_version": "locolemotion_contact_priority_component_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "conditional_retained_feasibility",
+    "question_class": "development"
+  },
+  "source_bindings": {
+    "contact_priority_component.py": "c30362702482c0d720d7b9873512e5002dce6181dcc16a7e071873dd8e326b4f",
+    "test_contact_priority_component.py": "36749ffe97e48174d3a8f4d7b1eeaceaa421af866b809754304c70d347e7fc89",
+    "contact_priority_component_audit.py": "3c9efb8e559898b3b10a128e4f0099a7b28d8a457a773f0e809abba40a7dc186",
+    "run_contact_priority_component.py": "06845f4c408fe24a5d07cee4795c5cae7d5aafd9405d72fa6cb1cf795a74f166"
+  },
+  "parent_result_sha256": "49a1c2d01f23c8b9a64e00f3e4b072dba2ee78bc769a462cec23aa00ccd73fe7",
+  "inherited_bindings": {
+    "dynamic_inverse_dynamics_v2.py": "fc1af69ced41dae9ca1e4d2225effa62f741b97613c932a13a0b9349008457db",
+    "dynamic_qp_solver_v2.py": "ab6c4ce053128bb7451aeb9737555da29482d2ac3ca69430e9af945ce49e4399",
+    "floating_base_dynamics.py": "ff00eb017a05f8a4f4b04dcef6d5c428fc355a1bafe16e864b9e650f57e5cdb3",
+    "actuation_recovery_mechanics.py": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+    "dynamic_response_diagnostic_metrics.py": "b3d58e5a84ac5eeaaf8010dc645f73e3254fdd5ede486d43a186301438fc2c34"
+  },
+  "input_bindings": {
+    "reach_hold_left_075_train_001": {
+      "controller.jsonl": "d6c8a8970e9529cf5f5d0a59711e43ce7f1e00d32fd0f90fd1d5bbdaaf79a365",
+      "force-profile.json": "a10f7f19475da22dba0f0e8674c6cc9e32c5e684c532bdf91f9cb4450e30044b",
+      "model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069"
+    },
+    "dynamic_hold_left_075_train_001": {
+      "controller.jsonl": "08dc688a6ed9b2f1a4feb5061f135c564f17607b06533066ce5b8abb30230e2b",
+      "force-profile.json": "96312882bb9e50b997541e44f2304447acdf02c7220dd90165cd377ea8a3853c",
+      "model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069"
+    }
+  },
+  "original_attempt": "sdk2-dynamic-control-native-9beec4b5fe564f4bb985cce8fb8c5e1b",
+  "trials": [
+    "reach_hold_left_075_train_001",
+    "dynamic_hold_left_075_train_001"
+  ],
+  "start_command": 60,
+  "end_command_exclusive": 119,
+  "states": 118,
+  "modes": [
+    "motor",
+    "joint",
+    "contact",
+    "combined"
+  ],
+  "state_mode_evaluations": 472,
+  "parameters": {
+    "timestep_s": 0.0016666666666666668,
+    "hold_steps": 5,
+    "joint_speed_planning_cap_rad_s": 3.5,
+    "joint_position_margin_rad": 0.005833333333333334,
+    "regime_force_margin_nm": 1e-05,
+    "support_constraint": "initial integrated material-point acceleration equals existing damped target",
+    "regime_selection": "fixed saturated if entire reachable interval is saturated, otherwise unsaturated",
+    "frozen_coefficients": true,
+    "constant_contact_force": true,
+    "future_contact_force_measured": false,
+    "recursive_feasibility_established": false,
+    "physical_acceptance_authority": false
+  },
+  "solver_settings": {
+    "verbose": false,
+    "warm_starting": false,
+    "polishing": true,
+    "scaling": 10,
+    "adaptive_rho": true,
+    "adaptive_rho_interval": 50,
+    "adaptive_rho_tolerance": 5.0,
+    "max_iter": 20000,
+    "eps_abs": 1e-11,
+    "eps_rel": 1e-11,
+    "eps_prim_inf": 1e-08,
+    "eps_dual_inf": 1e-08,
+    "check_termination": 25,
+    "scaled_termination": false,
+    "polish_refine_iter": 3
+  },
+  "controls_required": 102,
+  "complete_reader_invocations": 2,
+  "contact_target_source": "existing fixed damped support task; no retuning",
+  "task_reference_source": "original command reference; each state conditions on its original applied correction",
+  "joint_speed_cap_is_new_planning_constraint_not_motor_speed_guarantee": true,
+  "joint_margin_basis": "one native step at planning speed cap",
+  "infeasibility_handling": "return no command; solver status is not a complete impossibility proof",
+  "model_scope": "frozen M, bias, contact J and forces over five implicit motor steps; no native prediction",
+  "outside_native_joint_range": "refuse because the model has no joint-limit reaction",
+  "regime_scope": "one conservatively constrained regime per motor; other regimes not searched",
+  "observation_source": "shared complete pre-failure retained states selected after the original outcomes",
+  "initial_contact_acceleration_is_hard_in_contact_modes": true,
+  "endpoint_joint_constraints_apply_to_all_five_predicted_steps": true,
+  "sources": {
+    "contact_priority": "https://arxiv.org/html/1909.06586v1",
+    "task_constraints": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2018.00024/full",
+    "joint_viability_limits": "https://iris.unitn.it/retrieve/handle/11572/402854/744191/2023_IROS___Robust_joint_bounds.pdf"
+  },
+  "synthetic": true,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "alternative_actions_generated_observations": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "physical_launch_authority": false,
+  "recursive_feasibility_established": false,
+  "held_contact_guaranteed": false,
+  "complete_saturation_regime_search": false
+}

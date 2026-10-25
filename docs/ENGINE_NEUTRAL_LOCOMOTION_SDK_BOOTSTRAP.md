@@ -9,6 +9,19 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest contact-priority component: the [completed conditional feasibility check](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contact-priority-feasibility---2026-10-25)
+passes 102 controls and two complete readers over 118 retained states and four
+constraint combinations, with zero new worlds. The combined contact-and-joint
+model accepts 51 states, but refuses the initial handoff even without hard
+contact constraints. The component models five implicit motor steps with
+constant contact forces and one saturation regime per motor; it is not a
+deployed controller or a native trajectory prediction. Numerical refusals
+also remain unresolved.
+Next implement and verify within-hold saturation transitions without changing
+command bounds or numerical acceptance, then verify the complete controller
+route before another prospective native comparison. Tier 2, Tier 3 and release
+remain unqualified.
+
 Latest dynamic response diagnosis: the [completed finite accounting](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-dynamic-response-diagnosis---2026-10-25)
 passes 43 controls and two complete readers over shared safe commands 60-118,
 with zero new worlds. Retained native velocity increments reconstruct within

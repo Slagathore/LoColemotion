@@ -3229,3 +3229,28 @@ before another soft-task controller comparison. Their twelve-actuator,
 torque-plus-feedback platform and MPC force references differ from this
 eight-actuator bounded-velocity fixture. The measured local failure does not
 invalidate their method, and their results do not establish success here.
+
+## Contact priority and finite joint bounds - 2026-10-25
+
+[Kim et al. (2019), Whole-Body Impulse Control](https://arxiv.org/html/1909.06586v1)
+uses prioritized kinematic tasks alongside a force-constrained whole-body
+optimization. [OCRA (2018)](https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2018.00024/full)
+distinguishes weighted tasks, hard contact/dynamics constraints and hierarchical
+task resolution. These motivate explicit support priority instead of merely
+increasing a support-task weight. No upstream implementation was copied, and
+the Mini-Cheetah torque/PD stack is not this project's eight velocity motors.
+
+[Zanolli and Del Prete (2023), robust joint bounds](https://iris.unitn.it/retrieve/handle/11572/402854/744191/2023_IROS___Robust_joint_bounds.pdf)
+distinguishes finite next-state restrictions from a robust viability kernel
+under bounded disturbances. The
+[contact-priority component](../../sdk/discovery/contact_priority_component_result_v1.json)
+implements only declared finite predictions and bounds. Its frozen dynamics,
+constant contact force and fixed saturation regimes do not meet that paper's
+robust viability assumptions. The initial handoff is refused, so this component
+has no physical launch, recovery, Tier 2 or Tier 3 authority.
+
+The result directs the next implementation toward within-hold motor saturation
+transitions and explicit handling of unresolved strict support tasks, followed
+by a full controller-route verification. It does not justify loosening motor
+limits, accepting inaccurate optimizations, or substituting retained measured
+contact forces for a prospective controller input.

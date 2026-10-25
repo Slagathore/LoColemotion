@@ -21,6 +21,19 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest contact-priority component: the [completed conditional feasibility check](#completed-contact-priority-feasibility---2026-10-25)
+passes 102 controls and two complete readers over 118 retained states and four
+constraint combinations, with zero new worlds. The combined contact-and-joint
+model accepts 51 states, but refuses the initial handoff even without hard
+contact constraints. The component models five implicit motor steps with
+constant contact forces and one saturation regime per motor; it is not a
+deployed controller or a native trajectory prediction. Numerical refusals
+also remain unresolved.
+Next implement and verify within-hold saturation transitions without changing
+command bounds or numerical acceptance, then verify the complete controller
+route before another prospective native comparison. Tier 2, Tier 3 and release
+remain unqualified.
+
 Latest dynamic response diagnosis: the [completed finite accounting](#completed-pre-failure-dynamic-response-diagnosis---2026-10-25)
 passes 43 controls and two complete readers over shared safe commands 60-118,
 with zero new worlds. Retained native velocity increments reconstruct within
@@ -7541,3 +7554,56 @@ Retrospective solver forces must not become privileged controller inputs.
 Only after component verification should a fresh native comparison be declared.
 The command-316 numerical refusal remains separate and unchanged. Tier 2,
 Tier 3, recovery benefit and release remain unqualified.
+
+## Completed contact-priority feasibility - 2026-10-25
+
+The [component result](../sdk/discovery/contact_priority_component_result_v1.json)
+closes a zero-world check under the
+[prospective component declaration](../sdk/discovery/contact_priority_component_v1.json).
+The owner passes 102 controls, retains two byte-identical complete readers,
+binds 792 source and 3,430 runtime files, and preserves 42 artifacts.
+Each reader reopens all 1,757 original commands and 8,780 internal samples before
+evaluating the shared pre-failure states at commands 60-118.
+
+The new component keeps the old task targets, contact-force caps, friction
+pyramid, public command envelope and numerical acceptance. It predicts five
+implicit motor steps with frozen inertia, bias, contact Jacobians and contact
+forces. It enforces the selected motor saturation regime at every step.
+Joint modes additionally bound every predicted joint position and velocity:
+the planning speed cap is 3.5 rad/s and the position buffer is one native step
+at that speed, 3.5/600 rad. These are explicit planning restrictions, not a
+claim that a velocity-target motor bounds measured joint speed.
+
+Contact modes require the initial integrated material-point acceleration to
+equal the existing damped support target. They never trade that equality for
+posture tracking. This is a selected control objective, not the compliant
+native contact law or a guarantee that contact persists.
+
+| Constraint combination | Accepted states / 118 |
+| --- | ---: |
+| Motor hold model | 109 |
+| Motor hold plus joint bounds | 103 |
+| Motor hold plus initial support acceleration | 52 |
+| Both contact and joint constraints | 51 |
+
+There are 472 state-mode evaluations per reader: 456 QP solves and 16 domain
+refusals because the candidate's joint limit is already active at commands
+115-118. Of the QP solves, 315 are accepted, 79 report primal infeasibility,
+61 reach the unchanged iteration cap and one is solved inaccurate. All refused
+solutions produce no command. An infeasibility report for one conservative
+regime is not a complete proof that the physical task is impossible.
+In particular, some stricter subsets solve where a looser mode has a numerical
+refusal; these counts are not a monotone feasibility certificate.
+
+Independent clipped-motor reconstruction agrees with the affine frozen
+prediction within 3.55e-8 acceleration units; the maximum accepted
+original-coordinate bound violation is 9.87e-11. Both roles refuse command 60
+in every mode. Later accepted retained states are conditional calculations:
+their alternative commands did not generate the original observations, and
+they do not establish a successful handoff or recovery.
+
+The next successor must represent motor saturation transitions within the
+five-step hold, preserve the command and numerical limits, and resolve or
+explicitly handle numerical and contact-task refusals before full host
+integration. Only a verified complete route can proceed to a fresh
+prospective native comparison. Tier 2, Tier 3 and release remain unqualified.
