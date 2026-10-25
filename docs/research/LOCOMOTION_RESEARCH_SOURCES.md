@@ -3254,3 +3254,27 @@ transitions and explicit handling of unresolved strict support tasks, followed
 by a full controller-route verification. It does not justify loosening motor
 limits, accepting inaccurate optimizations, or substituting retained measured
 contact forces for a prospective controller input.
+
+## Contact-first hierarchy and numerical refusal - 2026-10-25
+
+[Escande, Mansard and Wieber (2014), Sections 1.4-1.5](https://gepettoweb.laas.fr/uploads/Publications/2014_escande_ijrr.pdf)
+describe strict task priorities by preserving higher-level optimal slack when
+optimizing subsequent levels. The local two-stage hierarchy applies that
+principle to supporting-point acceleration, followed by body/posture tracking.
+It uses independent QP solves, not their full hierarchical active-set algorithm;
+no upstream implementation or performance claim is copied.
+
+The [completed component and refusal](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-first-hierarchy-and-retained-nullspace-refusal---2026-10-25)
+preserves hard motor, joint and force bounds while explicitly permitting
+nonzero optimal support error. It verifies a public handoff but retains many
+later secondary numerical refusals. A distinct nullspace formulation preserves
+the higher-level vector to floating-point precision yet regresses the initial
+handoff at the fixed iteration cap. Its measured reduced Hessian condition
+number motivates a prospective invertible conditioning change, not weaker
+acceptance or a claim that the physical support task is solved.
+
+The [MuJoCo 3.11.0 actuator derivative](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_derivative.c)
+continues to motivate explicit saturated/unsaturated motor transitions inside
+the hold interval. Frozen inertia, contact Jacobians and predicted force still
+limit the local model. Neither these equations nor the cited hierarchy paper
+establish contact persistence, native recovery or learned adaptation here.

@@ -21,7 +21,19 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest contact-priority component: the [completed conditional feasibility check](#completed-contact-priority-feasibility---2026-10-25)
+Latest contact-first hierarchy: the [completed handoff and retained refusal](#contact-first-hierarchy-and-retained-nullspace-refusal---2026-10-25)
+records 122 switching-motor controls and 159 hierarchy controls, each with two
+complete readers. The hierarchy accepts 72 of 118 retained states and verifies
+four public prefix/two-command handoffs across two core builds. The nullspace
+successor then fails its policy gate; a separate 12-control, two-reader closure
+reproduces the refusal and verifies that no refused command reaches a motor.
+Zero new physics worlds ran. The next step is an invertible conditioning change
+for the secondary optimizer, preserving the objective, bounds, iteration cap
+and full-coordinate acceptance. Verify the retained window and public route
+before another prospective native comparison. Tier 2, Tier 3 and release
+remain unqualified.
+
+Prior contact-priority component: the [completed conditional feasibility check](#completed-contact-priority-feasibility---2026-10-25)
 passes 102 controls and two complete readers over 118 retained states and four
 constraint combinations, with zero new worlds. The combined contact-and-joint
 model accepts 51 states, but refuses the initial handoff even without hard
@@ -7607,3 +7619,70 @@ five-step hold, preserve the command and numerical limits, and resolve or
 explicitly handle numerical and contact-task refusals before full host
 integration. Only a verified complete route can proceed to a fresh
 prospective native comparison. Tier 2, Tier 3 and release remain unqualified.
+
+## Contact-first hierarchy and retained nullspace refusal - 2026-10-25
+
+Three distinct successor identities preserve the original limits and failures.
+The [switching motor component](../sdk/discovery/switching_contact_component_result_v1.json)
+passes 122 controls and two complete readers. It predicts saturation changes
+within each five-step hold. The motor-only, joint-bound, hard-contact and
+combined modes accept 114, 112, 53 and 53 of the 118 retained states respectively.
+Both original handoffs now pass the motor and joint modes, including four
+within-hold saturation transitions; the strict support target still refuses.
+This is a bounded search over motor patterns, not a global feasibility proof.
+
+The [contact-first hierarchy](../sdk/discovery/hierarchical_contact_component_result_v1.json)
+passes 159 controls and two complete readers. Its first optimization minimizes
+supporting-point acceleration error under the motor, joint and contact-force
+limits. The second preserves the attained support vector while optimizing body
+and posture tasks. It accepts 72 of 118 states (42 reach-hold, 30 dynamic-hold),
+including both initial handoffs. Nonzero support error is explicit: this
+relaxes the previous requested support equality into a highest-priority
+objective, rather than claiming that the original equality became feasible.
+The secondary solve has 40 iteration-limit and 27 inaccurate refusals across
+the retained pattern attempts.
+
+The same owner verifies four fresh public hosts, two original input roles
+through two core builds. Each host reproduces 60 prefix commands and two new
+hierarchical commands. All 248 commands per reader match between core builds.
+The selected held velocity targets survive the real resolver exactly; refusal
+closes the host before native transfer. Maximum transferred support-priority
+error is 6.50e-9, and independent frozen acceleration reconstruction differs
+by at most 4.55e-13. These are prefix/handoff ghosts on retained observations,
+not a closed-loop physical trajectory or a recovery result.
+
+The [nullspace successor's refusal closure](../sdk/discovery/hierarchical_nullspace_refusal_result_v1.json)
+preserves a failed attempt to improve secondary conditioning. Its 171 prior
+controls pass, including 12 new synthetic equality-elimination tests, but the
+17-test public policy gate ends with six errors, one failure and ten passes.
+Both 118-state readers remain unopened. No physics world runs. The original
+failed source, contract, logs and receipt remain immutable.
+
+The separate closure passes 12 controls and two complete readers, verifies the
+failed artifact population, and reopens the original 1,757 commands and 8,780
+internal samples. Each reader reproduces two direct policy refusals and two
+public-host refusals across both core builds, retaining 122 host commands.
+The refused host closes, and a native-transfer negative check leaves every
+motor target untouched. The closure binds 820 source files, 3,430 runtime
+files and 20 artifacts; it does not turn the failed launch gate green.
+
+The reduced handoff solve has eight variables and support rank six. Its
+equality-origin error is 1.43e-14 and nullspace equality error is 2.23e-14;
+there are no near-zero constraint rows under the declared 1e-10 diagnostic
+threshold. Its Hessian condition number is 3.11e6, and the optimizer reaches
+the unchanged 20,000-iteration cap in both direct and host requests. These
+observations identify a conditioning question; they do not prove its cause
+or justify accepting the refused solution.
+
+Next implement a distinct Hessian-conditioned nullspace solve through an
+invertible coordinate change. Preserve the original objective, support optimum,
+physical bounds, iteration cap and full-coordinate certificates. Verify the
+transformed equations and consumed handoff first, then the full retained window
+and public route. Only a verified route may proceed to a fresh native comparison
+from a clean pushed prospective freeze.
+
+All three components use frozen coefficients and constant predicted contact
+forces over five implicit steps. No alternative command generated the retained
+observations. Contact persistence, recursive feasibility, physical recovery,
+trained morphology-conditioned Tier 2, bounded useful Tier 3 learning and
+release remain unqualified.

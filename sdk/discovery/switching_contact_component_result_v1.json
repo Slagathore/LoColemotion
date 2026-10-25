@@ -1,0 +1,202 @@
+{
+  "schema_version": "locolemotion_switching_contact_component_result_v1",
+  "status": "complete_switching_motor_model_with_strict_contact_handoff_refusal",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "conditional_retained_feasibility",
+    "question_class": "development"
+  },
+  "source_commit": "372c2c006a9074426dea53ed4e99a524dcac3445",
+  "attempt_id": "sdk2-switching-contact-component-4d23fd37e5fb40e5a977cebb7b3ca612",
+  "contract_path": "sdk/discovery/switching_contact_component_v1.json",
+  "contract_sha256": "a0758d1dbc5663ee01029044c02799fed4a5dbe04710be51d47e9a5c1681a292",
+  "parent_result_path": "sdk/discovery/contact_priority_component_result_v1.json",
+  "parent_result_sha256": "2dd404a2ec701d91004f02f53b4d01a54cc2dfcb7c5fe59ee0b782661c2288f3",
+  "receipt_sha256": "c8e60f6a62dcf1e33aa7924f1e4c09d75c6661f579c780344dca2967b4b582ac",
+  "declaration_sha256": "fe53c01495760c92799f84eeb009fee83a9c550268b330e42bd32c53a7c84dee",
+  "audit_sha256": "515dcc0edb8475ee6323565f3e467fc0fece0fa7b46682854c414ed59e282573",
+  "reconstruction_sha256": "515dcc0edb8475ee6323565f3e467fc0fece0fa7b46682854c414ed59e282573",
+  "controls_passed": 122,
+  "complete_reader_invocations": 2,
+  "source_binding_count": 798,
+  "runtime_binding_count": 3430,
+  "artifacts_including_receipt": 46,
+  "owner_wall_s": 206.03100000000268,
+  "states": 118,
+  "state_mode_evaluations": 472,
+  "qp_solves_per_reader": 776,
+  "accepted_model_solutions_per_reader": 332,
+  "qp_status_counts": {
+    "maximum iterations reached": 11,
+    "solved": 346,
+    "primal infeasible": 419
+  },
+  "mode_totals": {
+    "motor": {
+      "accepted": 114,
+      "refused": 4,
+      "accepted_with_transitions": 8,
+      "patterns_tried": 119,
+      "qp_solves": 124
+    },
+    "joint": {
+      "accepted": 112,
+      "refused": 6,
+      "accepted_with_transitions": 7,
+      "patterns_tried": 121,
+      "qp_solves": 130
+    },
+    "contact": {
+      "accepted": 53,
+      "refused": 65,
+      "accepted_with_transitions": 0,
+      "patterns_tried": 157,
+      "qp_solves": 261
+    },
+    "combined": {
+      "accepted": 53,
+      "refused": 65,
+      "accepted_with_transitions": 0,
+      "patterns_tried": 157,
+      "qp_solves": 261
+    }
+  },
+  "trials": [
+    {
+      "trial_id": "reach_hold_left_075_train_001",
+      "states": 59,
+      "status_counts": {
+        "motor": {
+          "certified strict pattern": 59
+        },
+        "joint": {
+          "certified strict pattern": 59
+        },
+        "contact": {
+          "bounded pattern search refused": 33,
+          "certified strict pattern": 26
+        },
+        "combined": {
+          "bounded pattern search refused": 33,
+          "certified strict pattern": 26
+        }
+      },
+      "handoff": {
+        "motor": {
+          "accepted": true,
+          "status": "certified strict pattern",
+          "patterns_tried": 2,
+          "transitions": 4
+        },
+        "joint": {
+          "accepted": true,
+          "status": "certified strict pattern",
+          "patterns_tried": 2,
+          "transitions": 4
+        },
+        "contact": {
+          "accepted": false,
+          "status": "bounded pattern search refused",
+          "patterns_tried": 2,
+          "transitions": null
+        },
+        "combined": {
+          "accepted": false,
+          "status": "bounded pattern search refused",
+          "patterns_tried": 2,
+          "transitions": null
+        }
+      },
+      "qp_solves": 434,
+      "accepted_model_solutions": 170,
+      "maximum_recurrence_error": 4.547473508864641e-13,
+      "maximum_bound_violation": 3.47553097412856e-10
+    },
+    {
+      "trial_id": "dynamic_hold_left_075_train_001",
+      "states": 59,
+      "status_counts": {
+        "motor": {
+          "certified strict pattern": 55,
+          "native joint limit already active": 4
+        },
+        "joint": {
+          "certified strict pattern": 53,
+          "bounded pattern search refused": 2,
+          "native joint limit already active": 4
+        },
+        "contact": {
+          "bounded pattern search refused": 28,
+          "certified strict pattern": 27,
+          "native joint limit already active": 4
+        },
+        "combined": {
+          "bounded pattern search refused": 28,
+          "certified strict pattern": 27,
+          "native joint limit already active": 4
+        }
+      },
+      "handoff": {
+        "motor": {
+          "accepted": true,
+          "status": "certified strict pattern",
+          "patterns_tried": 2,
+          "transitions": 4
+        },
+        "joint": {
+          "accepted": true,
+          "status": "certified strict pattern",
+          "patterns_tried": 2,
+          "transitions": 4
+        },
+        "contact": {
+          "accepted": false,
+          "status": "bounded pattern search refused",
+          "patterns_tried": 2,
+          "transitions": null
+        },
+        "combined": {
+          "accepted": false,
+          "status": "bounded pattern search refused",
+          "patterns_tried": 2,
+          "transitions": null
+        }
+      },
+      "qp_solves": 342,
+      "accepted_model_solutions": 162,
+      "maximum_recurrence_error": 4.547473508864641e-13,
+      "maximum_bound_violation": 3.52228357591855e-10
+    }
+  ],
+  "maximum_independent_frozen_acceleration_error": 4.547473508864641e-13,
+  "maximum_original_coordinate_bound_violation": 3.52228357591855e-10,
+  "original_complete_population_reconstructed": true,
+  "original_controller_rows": 1757,
+  "original_internal_rows": 8780,
+  "motor_joint_handoff_accepted": true,
+  "strict_contact_handoff_accepted": false,
+  "public_resolver_integration_verified": false,
+  "motor_and_resolver_limits_unchanged": true,
+  "numerical_acceptance_unchanged": true,
+  "first_handoff_motor_transitions": 4,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "model_scope": "frozen M, bias, contact J and forces over five implicit motor steps; no native prediction",
+  "regime_scope": "up to eight five-step patterns; strict certificates only; proposals cannot issue commands",
+  "next_step": "Implement a distinct hierarchical support controller: minimize support acceleration error under hard motor, joint and force constraints; freeze the attained support vector before optimizing body and posture tasks. Keep original numerical acceptance, explicit nonzero support error and bounded saturation search. Verify the hierarchy and full public controller handoff before a fresh prospective native comparison.",
+  "alternative_actions_generated_observations": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "physical_launch_authority": false,
+  "recursive_feasibility_established": false,
+  "held_contact_guaranteed": false,
+  "complete_saturation_regime_search": false
+}

@@ -9,7 +9,19 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest contact-priority component: the [completed conditional feasibility check](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contact-priority-feasibility---2026-10-25)
+Latest contact-first hierarchy: the [completed handoff and retained refusal](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-first-hierarchy-and-retained-nullspace-refusal---2026-10-25)
+records 122 switching-motor controls and 159 hierarchy controls, each with two
+complete readers. The hierarchy accepts 72 of 118 retained states and verifies
+four public prefix/two-command handoffs across two core builds. The nullspace
+successor then fails its policy gate; a separate 12-control, two-reader closure
+reproduces the refusal and verifies that no refused command reaches a motor.
+Zero new physics worlds ran. The next step is an invertible conditioning change
+for the secondary optimizer, preserving the objective, bounds, iteration cap
+and full-coordinate acceptance. Verify the retained window and public route
+before another prospective native comparison. Tier 2, Tier 3 and release
+remain unqualified.
+
+Prior contact-priority component: the [completed conditional feasibility check](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contact-priority-feasibility---2026-10-25)
 passes 102 controls and two complete readers over 118 retained states and four
 constraint combinations, with zero new worlds. The combined contact-and-joint
 model accepts 51 states, but refuses the initial handoff even without hard

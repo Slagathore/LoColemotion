@@ -1,0 +1,161 @@
+{
+  "schema_version": "locolemotion_hierarchical_contact_component_result_v1",
+  "status": "complete_hierarchical_handoff_with_retained_numerical_refusals",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "conditional_retained_feasibility",
+    "question_class": "development"
+  },
+  "source_commit": "372c2c006a9074426dea53ed4e99a524dcac3445",
+  "attempt_id": "sdk2-hierarchical-contact-component-0b72a7b38a62415e8b033bfc9bf1b952",
+  "contract_path": "sdk/discovery/hierarchical_contact_component_v1.json",
+  "contract_sha256": "dfabbab622b6efb0f60ad1724b12dfac0cd5f0fbaa3addcee101de89ff65cc65",
+  "parent_result_path": "sdk/discovery/switching_contact_component_result_v1.json",
+  "parent_result_sha256": "25dfcb3aa345c0c61287e8271c36171b978914cb5a3c8e818e9ad51613a7764e",
+  "receipt_sha256": "7d5912cd3b6440889e16fb8bf46d793f69117d700f767a055fb0d67e7723e78f",
+  "declaration_sha256": "25450087d9c77df38468ee4c40be71905f79b47fc1e7b3743fea92b215b4dff3",
+  "audit_sha256": "a20a48fdeb907765b3d2e60f4a9646132c0448c831ea34fe18a24d3a5fa3827f",
+  "reconstruction_sha256": "a20a48fdeb907765b3d2e60f4a9646132c0448c831ea34fe18a24d3a5fa3827f",
+  "controls_passed": 159,
+  "complete_reader_invocations": 2,
+  "source_binding_count": 808,
+  "runtime_binding_count": 3430,
+  "artifacts_including_receipt": 58,
+  "owner_wall_s": 231.82799999999406,
+  "states": 118,
+  "accepted_states": 72,
+  "refused_states": 46,
+  "qp_solves_per_reader": 292,
+  "solver_status_by_stage": {
+    "priority_strict": {
+      "solved": 139,
+      "maximum iterations reached": 3,
+      "solved inaccurate": 2,
+      "primal infeasible": 2
+    },
+    "secondary_strict": {
+      "solved": 72,
+      "maximum iterations reached": 40,
+      "solved inaccurate": 27
+    },
+    "priority_proposal_only": {
+      "solved": 5,
+      "solved inaccurate": 1,
+      "primal infeasible": 1
+    }
+  },
+  "trials": [
+    {
+      "trial_id": "reach_hold_left_075_train_001",
+      "states": 59,
+      "status_counts": {
+        "certified contact-first hierarchy": 42,
+        "bounded hierarchical search refused": 17
+      },
+      "handoff": {
+        "accepted": true,
+        "status": "certified contact-first hierarchy",
+        "patterns_tried": 1,
+        "transitions": 4
+      },
+      "qp_solves": 164,
+      "accepted_model_solutions": 42,
+      "maximum_recurrence_error": 3.410605131648481e-13,
+      "maximum_bound_violation": 7.867813067718998e-10
+    },
+    {
+      "trial_id": "dynamic_hold_left_075_train_001",
+      "states": 59,
+      "status_counts": {
+        "certified contact-first hierarchy": 30,
+        "bounded hierarchical search refused": 25,
+        "native joint limit already active": 4
+      },
+      "handoff": {
+        "accepted": true,
+        "status": "certified contact-first hierarchy",
+        "patterns_tried": 1,
+        "transitions": 4
+      },
+      "qp_solves": 128,
+      "accepted_model_solutions": 30,
+      "maximum_recurrence_error": 4.547473508864641e-13,
+      "maximum_bound_violation": 5.974669647912378e-10
+    }
+  ],
+  "maximum_priority_preservation_error": 1.7685408693068894e-11,
+  "maximum_transferred_priority_error": 6.49482245762556e-09,
+  "maximum_independent_frozen_acceleration_error": 4.547473508864641e-13,
+  "maximum_original_coordinate_bound_violation": 7.867813067718998e-10,
+  "handoff_support_error_m_s2": [
+    [
+      0.2649421549351825,
+      -0.8470118921954708,
+      -1.5162765418860231,
+      1.4897318645106568,
+      9.262246748213112,
+      -3.0785055638683043
+    ],
+    [
+      0.2649421549351825,
+      -0.8470118921954708,
+      -1.5162765418860231,
+      1.4897318645106568,
+      9.262246748213112,
+      -3.0785055638683043
+    ]
+  ],
+  "public_ghosts": [
+    {
+      "trial_id": "reach_hold_left_075_train_001",
+      "core_sha256s": [
+        "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+        "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977"
+      ],
+      "unchanged_prefix_commands": 60,
+      "hierarchical_commands": 2,
+      "commands_per_core": 62,
+      "cores_identical": true
+    },
+    {
+      "trial_id": "dynamic_hold_left_075_train_001",
+      "core_sha256s": [
+        "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+        "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977"
+      ],
+      "unchanged_prefix_commands": 60,
+      "hierarchical_commands": 2,
+      "commands_per_core": 62,
+      "cores_identical": true
+    }
+  ],
+  "public_hosts": 4,
+  "public_commands_reconstructed_per_reader": 248,
+  "public_hierarchical_commands_per_reader": 8,
+  "public_resolver_integration_verified": true,
+  "public_verification_scope": "four fresh prefix and two-command handoff ghosts across two core builds; no future native trajectory",
+  "first_handoff_accepted": true,
+  "motor_and_resolver_limits_unchanged": true,
+  "numerical_acceptance_unchanged": true,
+  "original_complete_population_reconstructed": true,
+  "original_controller_rows": 1757,
+  "original_internal_rows": 8780,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "next_step": "Implement a distinct secondary solve in the nullspace of the attained support vector, eliminating dynamics and contact equalities while reconstructing full dual certificates with unchanged acceptance. Verify the retained refusals and real public handoff before a prospective native comparison.",
+  "alternative_actions_generated_observations": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "physical_launch_authority": false,
+  "recursive_feasibility_established": false,
+  "held_contact_guaranteed": false,
+  "complete_saturation_regime_search": false
+}
