@@ -9,14 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest native-route preparation: the [prospective generic-hierarchy comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-generic-hierarchy-native-route---2026-10-25)
-passes 26 new route controls and zero-world runtime preflight, including nominal
-two-core handoffs and independent hierarchy-certificate corruption checks.
-Its four fresh worlds retain the existing two conditions, development seed and
-12-second limit. Next run the full 799-control zero-world gate from a clean
-pushed freeze, then the declared native comparison. The component-only result
-grants no physical launch or recovery authority. Tier 2, Tier 3 and release
-remain unqualified.
+Latest native hierarchy result: the [retained refusal and complete partial audit](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-hierarchy-refusal-and-complete-partial-audit---2026-10-25)
+records a full 799-control launch gate followed by two native worlds. The
+baseline completes; the candidate applies 29 hierarchical commands and refuses
+command 89 before transfer, at about 0.742 simulated seconds. No candidate
+physical violation occurs before this censored stop; the nominal worlds remain
+unopened. An 18-control, two-reader closure verifies all retained data and
+reproduces the secondary QP refusal. Next test an equality-eliminated,
+Hessian-conditioned generic secondary formulation on the exact refusal and
+complete retained populations, preserving acceptance and replay requirements.
+Tier 2, Tier 3 and release remain unqualified.
 
 Latest generic proximal hierarchy: the [completed solver and replay checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#generic-proximal-hierarchy-and-exact-replay---2026-10-25)
 passes 287 controls and two byte-identical readers, accepts 102 of 118 retained

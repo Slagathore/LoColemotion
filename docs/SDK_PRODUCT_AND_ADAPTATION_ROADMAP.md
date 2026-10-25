@@ -21,14 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest native-route preparation: the [prospective generic-hierarchy comparison](#prospective-generic-hierarchy-native-route---2026-10-25)
-passes 26 new route controls and zero-world runtime preflight, including nominal
-two-core handoffs and independent hierarchy-certificate corruption checks.
-Its four fresh worlds retain the existing two conditions, development seed and
-12-second limit. Next run the full 799-control zero-world gate from a clean
-pushed freeze, then the declared native comparison. The component-only result
-grants no physical launch or recovery authority. Tier 2, Tier 3 and release
-remain unqualified.
+Latest native hierarchy result: the [retained refusal and complete partial audit](#native-hierarchy-refusal-and-complete-partial-audit---2026-10-25)
+records a full 799-control launch gate followed by two native worlds. The
+baseline completes; the candidate applies 29 hierarchical commands and refuses
+command 89 before transfer, at about 0.742 simulated seconds. No candidate
+physical violation occurs before this censored stop; the nominal worlds remain
+unopened. An 18-control, two-reader closure verifies all retained data and
+reproduces the secondary QP refusal. Next test an equality-eliminated,
+Hessian-conditioned generic secondary formulation on the exact refusal and
+complete retained populations, preserving acceptance and replay requirements.
+Tier 2, Tier 3 and release remain unqualified.
 
 Latest generic proximal hierarchy: the [completed solver and replay checkpoint](#generic-proximal-hierarchy-and-exact-replay---2026-10-25)
 passes 287 controls and two byte-identical readers, accepts 102 of 118 retained
@@ -7806,3 +7808,65 @@ The next action is the full gate and declared comparison, followed by complete
 independent readers or a separately retained failure diagnosis. No physical
 outcome is established by this preparation. Tier 2, Tier 3 and release remain
 unqualified.
+
+## Native hierarchy refusal and complete partial audit - 2026-10-25
+
+The [published prospective route](../sdk/discovery/hierarchical_native_v1.json)
+ran from clean pushed source
+aaac483bc4c61102f3b55c6652037015dfa963a0. All 799 applicable zero-world
+controls passed before the native owner opened two of the four declared worlds.
+The weakened-actuator reach-hold baseline completed 1,440 commands and 7,200
+internal steps. The hierarchy candidate issued 29 new commands after its
+unchanged 60-command prefix, then refused command 89 before native transfer.
+It retained 90 controller rows, including the terminal row, and 445 completed
+internal steps. The host closed and the two nominal-condition worlds remained
+unopened, as declared. The consumed identity must not be rerun.
+
+The [complete partial-run closure](../sdk/discovery/hierarchical_native_failure_result_v1.json)
+passes 18 controls and two byte-identical readers. It reopens every original
+artifact, verifies the full 799-control gate and original source/runtime
+bindings, reconstructs all 1,530 controller rows and 7,645 native samples,
+and checks the contact-force streams. The fresh baseline matches the retained
+baseline's complete controller and trace bytes. The pair shares the first
+60 commands, 300 internal steps and prepared handoff state. Every applied
+hierarchical command passes independent two-stage certificates, five-step
+motor reconstruction, recursive inverse-dynamics checks and public replay.
+
+| Observation | Retained result |
+| --- | --- |
+| Baseline first physical violation | Tilt at internal step 695, about 1.1583 s |
+| Candidate first physical violation | None before the solver-refusal stop |
+| Candidate last completed simulated time | About 0.7417 s |
+| Terminal primary stage | Solved and accepted; 6,975 iterations |
+| Terminal secondary stage | Primal infeasible reported after 30 iterations; refused |
+| Candidate commands transferred after refusal | Zero |
+| Nominal native comparison | Not opened |
+
+The stopped candidate is censored by numerical refusal before the baseline's
+violation time. It is not a recovery success and cannot support a favorable
+violation-time comparison. The closure reproduces the exact terminal response
+through the other core build and repeats its unchanged secondary QP in
+isolation. The three supporting sites at refusal are the front-left,
+rear-left and rear-right feet.
+
+The accepted primary reduced solution is also evaluated against the exact
+retained secondary constraints: 17 variables, 152 rows and nine equality rows.
+Its maximum bound/inequality discrepancy is 2.4975e-10; the maximum equality
+discrepancy is 2.70895e-14. These floating-point diagnostics do not prove exact
+feasibility and do not authorize accepting the refused solve. They motivate
+examining the secondary equality formulation rather than treating the solver's
+status as proof that the physical task is impossible.
+
+Next test a distinct generic-ProxQP secondary formulation that eliminates the
+attained-support equalities by a nullspace parameterization and conditions the
+remaining Hessian through an invertible transformation. Preserve the original
+objective, constraints, full-coordinate certificates and exact-replay rule.
+Start with this exact command-89 refusal and every applied candidate command,
+then verify the complete earlier retained window and nominal/weak public
+handoffs. A new native attempt still requires a fresh identity, complete route
+gate and clean pushed prospective freeze.
+
+All closure readers open zero new worlds. This incomplete comparison grants
+no training-data, recovery-benefit, Tier 2, Tier 3, safe-backup or release
+authority. The next work is a numerical solver successor, not another run of
+the unchanged controller.
