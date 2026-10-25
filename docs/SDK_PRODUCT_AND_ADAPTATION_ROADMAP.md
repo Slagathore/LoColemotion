@@ -21,7 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest native refinement result: the [causal extension and primary-refusal closure](#native-refinement-extension-and-primary-refusal---2026-10-25)
+Latest primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
+passes 142 controls and two identical readers over 180 retained cases:
+174 accept, all 171 previously accepted results are preserved, and three
+refusals recover, including latest native command 91. The initial mandatory
+refinement regression remains retained. No new worlds ran. Next verify public
+integration through the new route and nominal handoff before a distinct
+native successor. Tier 2, Tier 3 and release remain unqualified.
+
+Prior native refinement result: the [causal extension and primary-refusal closure](#native-refinement-extension-and-primary-refusal---2026-10-25)
 records a full 895-control gate and two fresh native worlds. The candidate
 passes the old command-89 stop and applies two more commands, then refuses
 command 91 before transfer because its primary QPs report solved-inaccurate.
@@ -8135,3 +8143,66 @@ strict refinement guard, bounded work and exact replay. Begin with command 91
 and all applied native commands, then the prior retained populations and public
 handoffs. Do not relax acceptance or rerun the consumed comparison. Tier 2,
 Tier 3, native recovery benefit, safe backup and release remain unqualified.
+
+## Semidefinite primary solver and strict-seed preservation - 2026-10-25
+
+The [first proximal-primary component](../sdk/discovery/proximal_primary_component_result_v1.json)
+uses the installed generic ProxQP backend on the exact primary least-squares
+Gram matrix. It permits rank deficiency without adding diagonal regularization,
+keeps the existing objective and constraints, maps all equality/inequality duals
+back to the original row order, and requires the original reduced/full
+certificates. Existing accepted controller routes remain unchanged; an
+additional bounded route is tried only after their explicit numerical refusal.
+
+This first attempt passes 136 controls and two byte-identical readers, but
+the terminal-first gate retains a negative result. At command 91 the primary
+solver now reports solved in 37 iterations, with zero reduced bound violation
+and full bound violation 7.38298e-15. Unconditional active-constraint refinement
+then lowers task error but introduces a 1.74547e-7 bound violation, exceeding
+the unchanged 1e-12 guard. The component refuses; the other 179 states remain
+unevaluated. The proposal-only solve succeeds but produces no new motor pattern
+and does not authorize transfer.
+
+Attempt sdk2-proximal-primary-component-08f18ed328e04cc8bf816b99a4b5fe88
+retains that regression with 946 source and 3,582 runtime bindings, 71 artifacts
+including its receipt, and 125.157 seconds of owner time. No command-specific
+special case or weakened guard was introduced.
+
+The [strict-seed successor](../sdk/discovery/proximal_primary_component_result_v2.json)
+preserves an already accepted primary only when both reduced and full bound
+violations satisfy the same 1e-12 guard. Otherwise it uses the existing
+refinement. A refused initial solve cannot bypass the gate. The successor's
+142 controls and two byte-identical complete readers pass all declared
+population and preservation checks:
+
+| Retained population | Accepted | Refused |
+| --- | ---: | ---: |
+| Latest native commands 60 through 91 | 32/32 | 0 |
+| Earlier native commands 60 through 89 | 30/30 | 0 |
+| Earlier reach-reference commands 60 through 118 | 59/59 | 0 |
+| Earlier dynamic commands 60 through 118 | 53/59 | 6 |
+| Total retained cases across four windows | 174/180 | 6 |
+
+All 171 previously accepted results are preserved exactly. Three refusals are
+recovered: latest native command 91 and earlier dynamic commands 103 and 104.
+The earlier 118-case window therefore improves from 110 to 112 accepted cases.
+Two bounded numerical refusals and four already-active native joint limits
+remain explicit. These windows include repeated states from distinct retained
+attempts; they are not a claim of 180 unique physical conditions.
+
+At command 91 the certified primary seed is preserved, the secondary solves
+in 17 iterations, and the complete component uses six QP calls across its
+three bounded routes. The declared worst-case budget is 48 calls, up from 32
+for the two-route predecessor; this is a development work bound, not a
+real-time performance claim. The result records the observed maximum and
+all retained source/runtime, artifact and reader digests.
+
+Next integrate this unchanged component into a distinct public provider and
+host. Verify two-core replay through command 91, preserve all 31 previously
+applied hierarchy commands, and verify the nominal handoff. The independent
+row reader must reconstruct all three routes, including strict seed selection,
+primary and secondary original-coordinate certificates, mapped duals, resolver
+history and five held motor steps. A new causal native trajectory still
+requires a fresh identity, complete applicable safety gate and clean pushed
+freeze. This component work opens zero new worlds and establishes no Tier 2,
+Tier 3, native recovery benefit, safe backup or release qualification.

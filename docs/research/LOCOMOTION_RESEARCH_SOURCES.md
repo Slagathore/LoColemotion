@@ -3373,3 +3373,20 @@ verifies two additional applied commands and a later primary refusal, not a
 successful primary-backend replacement. No upstream implementation was copied
 or package upgraded. Local original-coordinate certificates, finite retained
 regressions and exact replay must decide whether any successor is usable.
+
+## Local semidefinite primary result and refinement selection - 2026-10-25
+
+The [ProxQP 0.7.2 API](https://simple-robotics.github.io/proxsuite/md_doc_22-ProxQP__api.html)
+supports the semidefinite least-squares primary tested in the
+[retained component checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25).
+The implementation constructs the exact Gram matrix, adds no objective
+regularization, retains the existing duality-gap and refusal settings, and
+checks the original reduced and full certificates. No package was upgraded
+and no upstream implementation was copied.
+
+Local evidence, rather than an upstream performance claim, determines the next
+selection rule: the primary seed is already strictly feasible, while mandatory
+refinement can cross another bound. Preserve an accepted seed satisfying both
+unchanged strict feasibility checks; refine only when needed. This recovers
+three retained cases and preserves 171 accepted results. Public integration,
+causal native recovery and learned adaptation remain separate evidence gates.

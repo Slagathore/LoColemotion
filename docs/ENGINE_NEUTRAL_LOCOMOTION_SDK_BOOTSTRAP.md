@@ -9,7 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest native refinement result: the [causal extension and primary-refusal closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-refinement-extension-and-primary-refusal---2026-10-25)
+Latest primary-solver result: the [semidefinite primary and strict-seed checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
+passes 142 controls and two identical readers over 180 retained cases:
+174 accept, all 171 previously accepted results are preserved, and three
+refusals recover, including latest native command 91. The initial mandatory
+refinement regression remains retained. No new worlds ran. Next verify public
+integration through the new route and nominal handoff before a distinct
+native successor. Tier 2, Tier 3 and release remain unqualified.
+
+Prior native refinement result: the [causal extension and primary-refusal closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-refinement-extension-and-primary-refusal---2026-10-25)
 records a full 895-control gate and two fresh native worlds. The candidate
 passes the old command-89 stop and applies two more commands, then refuses
 command 91 before transfer because its primary QPs report solved-inaccurate.
