@@ -8274,3 +8274,50 @@ from the clean pushed freeze before it launches any world. Then assess the
 actual causal continuation beyond command 91 and the condition-specific
 endpoints. Route checks do not establish recovery benefit, real-time
 performance, safe backup, Tier 2, Tier 3 or release qualification.
+
+## Native proximal extension and strict-refinement refusal - 2026-10-25
+
+The [native v4 result closure](../sdk/discovery/hierarchical_native_failure_result_v3.json)
+records the consumed experiment from prospective freeze
+4f128dbb50242b427d3f0b586eb6639cd8c8d332. All 984 safety controls,
+containment and zero-world preflight passed before two fresh CPU worlds opened.
+
+The weak-condition baseline completed 1,440 commands and 7,200 native steps.
+The candidate preserved all 91 previously applied commands and 455 native
+steps bitwise, then applied commands 91 through 97: seven additional commands
+and 35 additional native steps. The proximal primary route now ran causally
+at commands 91 and 97. The candidate has 38 applied hierarchy commands in
+total; its final retained command, 98, was refused before transfer.
+
+At command 98 the original strict primary reports solved-inaccurate and its
+proposal-only counterpart reaches the iteration limit, each after 20,000
+iterations. The earlier fallback repeats those two refused primary solves.
+The proximal strict and proposal-only primaries solve in 35 and 38 iterations
+and pass their general certificates, but their full bound violations,
+1.75536e-10 and 3.06170e-11, exceed the unchanged 1e-12 strict-seed guard.
+Refinement leaves bound violations of 1.03734e-7 and 6.04870e-10, respectively.
+Both are refused; no secondary QP or native transfer occurs for command 98.
+
+The candidate completes 490 native steps, or 0.816667 simulated seconds,
+without an observed height, tilt or torso-contact violation. Its horizon is
+censored by solver refusal. The baseline first violates at 1.158333 seconds.
+These unequal observation horizons establish no recovery benefit. The nominal
+worlds remain unopened, and the four-world comparison is incomplete.
+
+Native attempt sdk2-hierarchical-native-v4-e021aaff51a8459a9f1c2309c72c6a77
+retains 971 source and 3,582 runtime
+bindings, 2,759 artifacts including its receipt, and
+1424.062 seconds of owner time. The independent closure passes 24 controls
+and two byte-identical complete readers. They verify all 1,539 controller rows,
+7,690 native/contact rows, the fresh baseline and prior applied prefix, all
+38 applied hierarchy certificates and motor histories, all six terminal
+primary calls, and an independent reconstruction of the failed refinement.
+The closure opens zero worlds and retains exact receipt and reader digests.
+
+Next diagnose the command-98 active-constraint refinement, then test a distinct
+bounded refinement or feasible-primary successor on the retained states.
+Preserve the objective, constraints, original-coordinate certificates, strict
+guard and all previously accepted outputs. Reverify public integration before
+another causal run. This numerical refusal is not an exact infeasibility proof.
+Tier 2, Tier 3, safe backup, native recovery benefit and release remain
+unqualified.

@@ -9,7 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest native route: the [proximal primary prospective successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#proximal-primary-prospective-native-successor---2026-10-25)
+Latest causal result: the [native proximal extension and strict-refinement closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-proximal-extension-and-strict-refinement-refusal---2026-10-25)
+records a complete 984-control gate and two fresh native worlds. The candidate
+preserves its earlier trajectory and applies seven more commands, then refuses
+command 98 before transfer. Proximal primary seeds pass general certificates
+but fail the unchanged strict guard; refinement also fails. Twenty-four
+controls and two identical readers close the complete retained population.
+The nominal worlds remain unopened. Next diagnose and repair strict-feasibility
+refinement in a distinct retained-state successor. Tier 2, Tier 3 and release
+remain unqualified.
+
+Prior native route: the [proximal primary prospective successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#proximal-primary-prospective-native-successor---2026-10-25)
 passes 30 route controls and two-core runtime preflight, with zero new worlds.
 It connects public v7 and its three-route independent reader to the unchanged
 four-world development comparison. Next require the complete 984-control
