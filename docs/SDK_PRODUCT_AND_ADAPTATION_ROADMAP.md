@@ -21,14 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-24
 
-Latest recovery-training preparation (2026-10-24): the [prospective successor](#prospective-bounded-recovery-training---2026-10-24)
-implements a separate post-handoff stability objective, fixed input scaling,
-training-only candidate selection and independent update verification.
-**18 analytical controls** and the **327-control complete zero-world gate**
-pass. No new training world has opened at this checkpoint. Next publish this
-freeze, complete the **seven-world execution fixture**, then run the declared
-**112-world CPU pilot**. All four reserved starts remain unopened; recovery
-benefit, useful Tier 3 memory and Tier 2/Tier 3 qualification remain unproved.
+Latest recovery-training result (2026-10-24): the [completed bounded pilot](#completed-bounded-recovery-training---2026-10-24)
+verifies **119 fresh CPU worlds**, **162,120 commands** and **810,600 internal
+samples** from published `c24c9c8f`. Both native lanes pass all **327 prelaunch
+controls**. The selected and final checkpoints each pass **3/4 healthy** and
+**0/4 weakened** comparison groups; initial recovery passes 2/4 healthy and
+0/4 weakened, while challenge-only passes 0/8. The declared **8/8 screen fails**.
+All **12 closure controls** pass and preserve 26 eligible and 93 negative
+trials. Next diagnose the exposed weakened failures from retained support,
+loading and applied-action history before declaring a distinct successor.
+Reserved starts, useful Tier 3 memory and Tier 2/Tier 3 qualification remain open.
 
 Latest recovery result (2026-10-24): the [completed paired handoff diagnostic](#completed-paired-recovery-handoff-diagnostic---2026-10-24)
 verifies **14 fresh CPU worlds**, **20,160 commands** and **100,800 internal
@@ -1605,6 +1607,84 @@ Verification receipt SHA-256:
 The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
+
+### Completed bounded recovery training - 2026-10-24
+
+The [recovery-training closure](../sdk/discovery/residual_recovery_training_closure_v1.json)
+reconstructs the seven-world execution fixture and **112-world pilot** from
+published `c24c9c8fc7f19c084d16bcf13d16b686941747d1`. Each lane passed the complete
+**327-control zero-world gate** before native launch. The pilot completed all
+64 search trials, 16 fresh challenge references and 32 fresh comparisons:
+**161,280 commands / 806,400 internal samples**. Together the lanes retain
+**119 CPU worlds / zero GPU worlds**, **162,120 commands**, **810,600 internal
+samples**, **26 eligible trials** and **93 negatives**. Every negative retains
+the full horizon and null official quality. The fixture's seven trials were
+negative; its data did not initialize the pilot.
+
+The first iteration has **7/32 eligible search trials**, the second **11/32**.
+All 18 are healthy-motor trials; weakened search remains **0/32**. Both
+complete-population updates were independently reconstructed. The deployed
+input normalizer stayed byte-identical while all observed moments remained
+diagnostic. No candidate, group or negative was removed.
+
+The prospective selector ranked all eight candidate families using the
+declared eligible-count, worst-reward, mean-reward and lexical order. It chose
+**`iteration_00/d00_minus`** before any comparison world opened. The selected
+model is
+`sha256:08050eec6175acf5cc9b63fc03d1c318e4757adca28dcc13921e28b68f3595b6`;
+the separately retained final checkpoint is
+`sha256:452583f6edc8d2915dff93a7f99416d54ab489ad24270df470a8c733f076cfef`.
+Comparison data cannot fit or reselect either artifact.
+
+| Fresh comparison role | Weakened eligible | Healthy eligible | Total eligible |
+| --- | --- | --- | --- |
+| Challenge only | 0/4 | 0/4 | 0/8 |
+| Initial recovery | 0/4 | 2/4 | 2/8 |
+| Final trained checkpoint | 0/4 | 3/4 | 3/8 |
+| Training-selected recovery | 0/4 | 3/4 | 3/8 |
+
+Both evaluated artifacts retain the two healthy cases that initial recovery
+survives and add `nominal_train_001`. All four roles fail
+`nominal_train_003`; all weakened comparisons fail. The selected weakened
+failures occur at **0.888333, 0.955000, 0.926667 and 0.926667 seconds**, ordered
+by the four declared starts. These times remain diagnostics, not selection
+criteria or substitutes for the 12-second horizon. Every first failure is
+a tilt violation. Eligible walking-quality values remain negative; recovery
+eligibility does not establish walking-quality improvement.
+
+The declared selected-model **8/8 finite screen fails**. The result establishes
+these exposed finite recovery cases and the verified training pipeline. It
+does not establish weakened-motor recovery, a safe backup region, robust
+recovery, calibrated warning lead, useful Tier 3 memory, cross-engine
+qualification or release readiness. All four reserved starts remain unopened.
+
+The [closure reader](../sdk/discovery/audit_residual_recovery_training_closure.py)
+checks both complete artifact populations, original source/runtime bytes,
+every raw reward and moment, handoff and actor identity, both update chains,
+training-only selection, separate comparison roles and all **93 exact paired
+prefixes**. It preserves the original other-core decision-replay receipts;
+it does not rerun physics or claim a second decision replay. All **12 closure
+controls** pass in
+`sdk2-recovery-training-closure-controls-590a392bc3a84092bbcbd7d7b193d74f`;
+they reject altered provenance, missing
+trials, reward or failure censorship, changed scaling, crossed handoffs,
+modified checkpoints and comparison-based fitting or selection.
+
+| Retained record | SHA-256 |
+| --- | --- |
+| Route receipt | `f10802e3ff13758f7c47b3c50f0030d294b7c171bd650cef2b40588ddec81b17` |
+| Pilot receipt | `d1153733160282a67abcfc85284179c2f58f8d80b3a6c83c6a9d7b63904b2f04` |
+| Closure record | `cbbeda7388375c369eca4162867c32893f2d8fa1d00cea0bb8a3448c109f5328` |
+| Closure controls receipt | `ecec90b97e22fa745ab169afd6b6b9d5b46e5a7e4f1dab972227adec7a7800da` |
+| Complete reconstruction | `f87a1c52319bead74d01f3a60a8749e23950f800cd4869d9306c6ef294e69d47` |
+
+Next diagnose the complete exposed failure population using retained support,
+loading, joint state, action saturation and actual resolved residual history.
+The diagnosis must distinguish observations from causal explanations and
+preserve healthy comparisons. A changed objective, search budget, policy
+capacity, handoff timing or actuator envelope needs a distinct prospective
+successor; none may reinterpret or rerun this consumed pilot. The broader
+[SDK2 targets](#sdk2-claim-targets) remain unchanged.
 
 ### Prospective bounded recovery training - 2026-10-24
 

@@ -2792,3 +2792,24 @@ fixed comparison roles and a training-only selector preserve the evidence
 boundary. The small exposed pilot cannot establish broad robustness; the
 ARS paper's reported seed and parameter variability is a further reason to
 keep this result finite. No external code or weights are imported.
+
+### Bounded recovery-training outcome - 2026-10-24
+
+The [completed recovery pilot](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-bounded-recovery-training---2026-10-24)
+implements the preceding local experiment motivated by Recovery RL,
+Safe Reinforcement Learning for Legged Locomotion and ARS. It does not
+reproduce those algorithms. All 64 exposed search trials, two fixed-scaling
+updates and eight candidate families were retained. Search yielded 18 eligible
+healthy trials and zero eligible weakened trials. In fresh comparisons the
+selected and final checkpoints each survive three of four healthy starts and
+zero of four weakened starts; initial recovery survives two healthy starts.
+The declared eight-group screen fails, and no walking-quality improvement or
+safety guarantee is established.
+
+This finite result supports continuing to separate task and recovery
+capability. It does not identify whether the remaining failures arise from
+the objective, limited search, policy representation, available actuator
+authority or the handoff state. The next local step is a complete retained
+state/action and support/loading diagnosis, followed by a distinct prospective
+successor. No comparison-based reselection, external code or weights, reserved
+evaluation, or Tier 3 memory promotion is introduced.
