@@ -1,5 +1,16 @@
 # Portable Balanced-Wave Successor Bootstrap
 
+## SDK2 configured dynamic controller - 2026-10-25
+
+The [completed dynamic component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-constrained-dynamic-controller-component---2026-10-25)
+passes 110 controls and two complete two-core readers across all 2,671 retained
+states. It preserves the velocity interface and bounds while solving the full
+floating-body equations, contact forces and motor torque together. The original
+numerical refusal remains consumed; its tighter-convergence successor passes
+unchanged independent checks. Contact acceleration remains a soft objective.
+No new world or native recovery result exists. Next declare a fresh prospective
+native comparison; Tier 2, Tier 3 and release remain unqualified.
+
 ## Controlling showcase requirement - live kicks, 2026-10-03
 
 Cole reaffirmed that live native physics at or near real time, with kicks at

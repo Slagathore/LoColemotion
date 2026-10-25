@@ -3177,3 +3177,27 @@ with the exact 9.8 m/s^2 fixture. A separate successor derives that expectation
 from the bound XML and every state, while preserving the failed owner and
 all original numerical tolerances. This clears the finite dynamics-readback
 gate for a controller successor; contact accuracy and recovery remain unproved.
+
+### Constrained configured dynamics and OSQP - 2026-10-25
+
+[Kim et al. (2019), Section IV-B](https://arxiv.org/html/1909.06586v1)
+motivates solving floating-body acceleration and reaction forces together with
+unactuated-base equations. The implemented eight-actuator development controller
+does not import the paper's MPC, twelve-actuator platform or torque/PD interface.
+It uses the existing bounded velocity resolver and explicitly keeps contact
+acceleration as a soft objective; contact maintenance is unproved.
+
+The [OSQP solver description](https://osqp.org/docs/solver/index.html),
+[Python interface](https://osqp.org/docs/interfaces/python.html),
+[settings](https://osqp.org/docs/interfaces/solver_settings.html) and
+[status values](https://osqp.org/docs/interfaces/status_values.html) support
+the CPU quadratic-program route, sparse matrices and explicit solver settings.
+Installed OSQP 1.1.3 is pinned by wheel digest. Only solved status plus independently
+recomputed original-coordinate primal, dual and complementarity checks can
+produce a command. No inaccurate-status result is accepted. Warm starts are
+disabled and the adaptive-rho interval is fixed, avoiding timing-derived updates.
+
+The [completed retained component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-constrained-dynamic-controller-component---2026-10-25)
+preserves an initial complementarity refusal and verifies a separate tighter
+convergence successor across the entire retained population. Numerical solver
+success is not evidence of maintained native contact, recovery or learning.

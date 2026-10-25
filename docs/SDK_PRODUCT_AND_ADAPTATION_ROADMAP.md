@@ -21,6 +21,17 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest dynamic controller result: the [completed retained integration](#completed-constrained-dynamic-controller-component---2026-10-25)
+passes 110 controls and two complete independent readers. Each reader
+reconstructs all 2,671 retained states through both core builds and verifies
+5,102 constrained optimizations, including the previous terminal state.
+The controller couples floating-body acceleration, contact forces and motor
+torque through the verified dynamics while preserving existing command limits.
+The first numerical refusal is retained and reproduced; the successor tightens
+solver convergence without loosening acceptance. Zero physics worlds ran.
+Next is a distinct prospective native recovery comparison. Contact tracking is
+a soft task; recovery, Tier 2, Tier 3 and release remain unqualified.
+
 Latest native dynamics result: the [completed finite readback closure](#completed-native-dynamics-readback-closure---2026-10-25)
 verifies portable inertia, gravity, velocity bias and passive forces against
 all 132 native readbacks. The original worker passed 83 launch controls and
@@ -7272,3 +7283,80 @@ Verify contact/task derivatives, force bounds, rank handling and actual command
 transfer before a new prospective recovery comparison. Preserve both the
 consumed posture controller and this metadata-refused native owner. Tier 2,
 Tier 3 and release remain unqualified.
+
+### Completed constrained dynamic controller component - 2026-10-25
+
+The [retained integration result](../sdk/discovery/dynamic_control_component_result_v4.json)
+implements a configured recovery controller using the verified floating-body
+inertia and bias. OSQP solves generalized acceleration, supporting contact forces
+and eight joint torques jointly. All 14 equations are hard constraints, including
+the six unactuated base rows. Torque intervals come from the actual velocity
+motor and unchanged public resolver; normal loads are capped and nonnegative,
+with a conservative inscribed friction pyramid.
+
+COM, orientation, posture, supporting material-point acceleration and absent-foot
+vertical acceleration are soft tracking objectives. The bounded support-reach
+reference and original 60-command walking prefix remain. This is a configured,
+untrained controller: it neither estimates damaged capability nor learns online.
+
+The first attempt, sdk2-dynamic-control-component-e404d6cb8b4c44fd9853fd78f4170e72, passed **103 controls** but stopped at command
+128 of the reach trajectory. OSQP reported solved after 300 iterations, but
+polishing failed and the independent complementarity check refused the result:
+1.2148799654893694e-4 versus an allowed approximately 1.2524e-5.
+Its original source, 129/128 partial core streams, failure and receipt remain
+immutable. No command was promoted from the refused optimization and no world ran.
+
+The distinct v2 successor changes solver absolute/relative convergence from
+1e-8 to 1e-11 and the iteration ceiling from 10,000 to 20,000. It preserves the
+objective, physical constraints and independent acceptance checks. Controls
+reproduce the original refusal and verify that the tighter solve accepts the
+exact same problem. This is a numerical successor, not a revised interpretation
+of the original failed attempt.
+
+The second attempt, sdk2-dynamic-control-component-v2-93d02d572ac54a12900e18c4ce6e3e2a,
+passed **105 controls** but its reader raised a TypeError in the provisioning
+digest check before processing any trajectory. Its original wrapper, gate and
+failure remain immutable. A separate v3 verification wrapper corrects the
+argument error, reproduces both predecessor failures and adds a complete input
+provenance control. The v2 controller bytes remain unchanged.
+
+A third retained attempt,
+sdk2-dynamic-control-component-v3-f93d99033bb64f04a7570d65d3a972a9,
+passed **107 controls** and reached command 160, where the controller solved a
+state with no supporting contacts. The reader refused its empty serialized
+force array because JSON cannot retain the (0, 3) array shape. The separate
+v4 reader restores that empty shape explicitly and rejects nonempty forces
+for an empty supporting set. The failed 161/160-row streams are preserved,
+and a control reproduces the original refusal. Controller v2 remains unchanged.
+
+The complete owner sdk2-dynamic-control-component-v4-49bb9dd622b8445fba4a84b441f96203 passes **110 controls**, dependency compatibility,
+source/runtime checks and **two agreeing independent readers**. Each reader uses
+both core builds on all **2,671 original states**: 1,440 reach-controller states
+and 1,231 posture-controller states, including its untransferred terminal prepared
+state. Each retains **5,342 synthetic command rows** and independently checks
+**5,102 post-handoff optimizations**. Original prefixes, observations, baseline
+memory, resolved history, motor/residual limits and every two-core row agree.
+
+Readers rebuild the quadratic problem and verify its digest and primal/dual
+certificate. They separately reconstruct actual torque from the public resolver
+and check recursive inverse dynamics against planned point wrenches. Maximum
+transferred-equation discrepancy is **3.6641245593216354e-10**
+in the declared generalized force coordinates, below the unchanged 4e-6 bound.
+Maximum constraint discrepancy is **3.6604536068907123e-10**.
+These are instantaneous model checks, not integrated trajectories or contact
+prediction evidence. The retained observations were generated by the old
+controllers; synthetic alternative commands never caused them.
+
+Dependency provisioning adds exact pinned OSQP/SciPy support packages without
+replacing any existing package or changing any of the prior 728 source and
+1,359 runtime bindings. The installation receipt, checked wheel bytes and logs
+remain retained. The new owner binds **766 source** and
+**3430 runtime** files; its wall time is **436.375 s**.
+This includes controls, complete readers and evidence work, not isolated solver cost.
+
+Next declare a separate native recovery comparison from a clean pushed freeze.
+Use fresh baseline/candidate worlds, the complete applicable safety gate, full
+command/contact evidence and two readers. Native held-interval torque, contact
+response and recovery still need direct evidence. Capability estimation and
+learning follow only after a useful configured response is established.
+Tier 2, Tier 3 and release remain unqualified.

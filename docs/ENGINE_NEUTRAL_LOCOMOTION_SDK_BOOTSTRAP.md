@@ -9,6 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest dynamic controller result (2026-10-25): the [completed retained integration](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-constrained-dynamic-controller-component---2026-10-25)
+passes 110 controls and two complete independent readers. Each reader
+reconstructs all 2,671 retained states through both core builds and verifies
+5,102 constrained optimizations, including the previous terminal state.
+The controller couples floating-body acceleration, contact forces and motor
+torque through the verified dynamics while preserving existing command limits.
+The first numerical refusal is retained and reproduced; the successor tightens
+solver convergence without loosening acceptance. Zero physics worlds ran.
+Next is a distinct prospective native recovery comparison. Contact tracking is
+a soft task; recovery, Tier 2, Tier 3 and release remain unqualified.
+
 Latest native dynamics result (2026-10-25): the [completed finite readback closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-dynamics-readback-closure---2026-10-25)
 verifies portable inertia, gravity, velocity bias and passive forces against
 all 132 native readbacks. The original worker passed 83 launch controls and
