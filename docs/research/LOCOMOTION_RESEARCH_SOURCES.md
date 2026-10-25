@@ -3419,3 +3419,14 @@ constraints and strict guard remain unchanged. The prospective native route
 also verifies the correction against the retained native prepared state.
 No upstream code or package change was added. These checks advance integration;
 causal native continuation and adaptation benefit still require fresh evidence.
+
+## Active solver applicability and preserved negative evidence - 2026-10-25
+
+The [active-backend gate closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#active-backend-gate-closure-and-native-successor---2026-10-25)
+retains a new automatic-backend exact-equality failure and joins the earlier
+repeatability diagnosis. It does not attribute the new failure to a particular
+instruction set or infer its magnitude from a truncated log. Whole-module
+comparisons preserve 51 historical controls in the 53-control active generic
+suite, whose fresh run passes. No package upgrade, upstream algorithm change,
+controller change or acceptance relaxation was made. Causal recovery and
+learned adaptation remain separate prospective evidence requirements.

@@ -21,7 +21,17 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
+Current next action: the [active-backend gate successor](#active-backend-gate-closure-and-native-successor---2026-10-25)
+has passed 61 closure controls, two identical readers and 35 native-route
+controls. The v5 full gate stopped after 700 passes at a retired automatic
+backend's exact-equality check; no world opened. All 51 historical controls
+are represented by unchanged assertions in 53 active controls. Run native v6's
+complete 1,050-control gate from a clean pushed freeze before the four fresh
+comparison worlds. Controller and acceptance remain unchanged. Tier 2, Tier 3
+and release remain unqualified. Earlier next-step statements below describe
+their historical checkpoints; this paragraph is the active execution order.
+
+Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
 174 accept, all 171 previously accepted results are preserved, and three
 refusals recover, including latest native command 91. The initial mandatory
@@ -8413,3 +8423,48 @@ Next run that complete gate and fresh causal comparison, then close the actual
 outcome with its independent readers. Route verification grants no physical
 launch authority by itself. Tier 2, Tier 3, safe backup, real-time performance,
 native recovery benefit and release remain unqualified.
+
+## Active-backend gate closure and native successor - 2026-10-25
+
+The native v5 full-gate attempt
+sdk2-hierarchical-native-v5-f1388d93796b4828b60c558ffba9b89f stopped before
+opening any world. Its first 700 controls passed. The next 17-control module,
+test_hierarchical_force_policy_v4, had 16 passes and one exact-equality
+failure in test_05_current_measured_load_is_unused. The retained log shows
+different numerical outputs but truncates the full diff; neither its maximum
+difference nor its cause is established. This is a failed launch gate, with
+no new causal result.
+
+The [completed closure](../sdk/discovery/hierarchical_gate_coverage_result_v1.json)
+passes 61 controls and two byte-identical readers. It verifies all 2,637
+original artifacts, 1,008 source bindings and 3,582 runtime bindings, the
+700 completed controls, the failed module and absence of world/launch records.
+It also joins the retained automatic-backend repeatability diagnosis and
+the current two-core public v8 evidence without importing the old backend.
+
+Whole-module AST comparisons establish that all 51 controls and their
+assertions, fixtures and helpers in three retired automatic-backend families
+remain in 53 active generic-backend controls. Only named module/provider
+references change; the active solver adds two backend identity/conflict tests.
+Eight negative controls reject assertion weakening, lost tests, changed
+fixtures, crossed failure identity, population loss and invented authority.
+Fresh active controls include the unchanged measured-load equality assertion.
+The historical tests and failed attempt remain immutable. This applicability
+correction creates no new claim about automatic-backend repeatability.
+
+The distinct [native v6 route](../sdk/discovery/hierarchical_native_route_result_v6.json)
+passes 35 route controls and two-core zero-world runtime preflight. Its
+[prospective contract](../sdk/discovery/hierarchical_native_v6.json) requires
+1,050 controls: the v5 1,091-control gate minus the 51 retired controls,
+plus eight coverage controls and two additional route controls. Active
+counterparts already in v5 remain exactly once. Preflight and launch refuse
+an absent or unverified closure. The native trial and physical reader change
+only their campaign identity; production v8 policy, solver settings,
+strict 1e-12 guard, two conditions, four fresh worlds, twelve-second horizons,
+capture and refusal-before-transfer rules remain unchanged.
+
+Next run the complete 1,050-control gate from the clean pushed prospective
+freeze, then the four declared fresh comparison worlds. Route-only success
+does not authorize physics. The latest actual native candidate remains
+censored at command 98; public replay recovery still needs causal continuation.
+Tier 2, Tier 3, training, robustness, equivalence and release remain unqualified.

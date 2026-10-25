@@ -9,16 +9,21 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest public integration and native route: the [scaled-primary checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-public-integration---2026-10-25)
+Latest gate and native-route checkpoint: the [active-backend successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#active-backend-gate-closure-and-native-successor---2026-10-25)
+closes the v5 gate failure with 61 controls and two identical readers. The
+original gate passed 700 controls, then failed one historical automatic-backend
+equality assertion; zero worlds opened. Whole-module checks preserve its
+51 controls in 53 active generic-backend controls. Native v6 passes 35 route
+controls and two-core runtime preflight. Next pass its complete 1,050-control
+gate from the clean pushed freeze, then run the four fresh weak/nominal worlds.
+Production policy, numerical guards and physical scope remain unchanged.
+Tier 2, Tier 3 and release remain unqualified.
+
+Prior public integration: the [scaled-primary checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-public-integration---2026-10-25)
 passes 295 controls and two identical readers over 322 public commands per
 reader on both core builds. It preserves all 38 prior applied hierarchy
-commands and resolves command 98. The independent reader verifies all four
-routes and actual correction work without QP solves. The
-[prospective native successor](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-prospective-native-successor---2026-10-25)
-passes 33 route controls and runtime preflight. Zero new worlds opened.
-Next pass the complete 1,091-control gate from the clean pushed freeze and
-run the four fresh weak/nominal comparison worlds. Tier 2, Tier 3 and release
-remain unqualified.
+commands and resolves command 98 in retained-state replay. Fresh causal
+continuation remains required.
 
 Latest retained component: the [scaled-primary correction checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-correction-retained-checkpoint---2026-10-25)
 passes 212 controls and two identical readers over 219 retained states.

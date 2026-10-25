@@ -1,0 +1,150 @@
+{
+  "schema_version": "locolemotion_hierarchical_gate_coverage_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "retained_gate_failure_and_active_coverage",
+    "question_class": "development"
+  },
+  "original_attempt": "sdk2-hierarchical-native-v5-f1388d93796b4828b60c558ffba9b89f",
+  "original_source_commit": "01785eca265d3348c1559e9616d93abb0e78c762",
+  "original_receipt_sha256": "13befccead87b043b36dc8a8679f3cbbf838638db6b1ebf6298d5a77354c89a7",
+  "original_declaration_sha256": "832f2c25d6acb8e2143196e814b5051854a6f48951b3f6c02f283bf64e980768",
+  "original_contract_sha256": "2d30cdded73c579a3e089839e4aeb92bcd77031f14921cd0442fcbb97262ba62",
+  "original_completed_controls": 700,
+  "failed_module_controls": 17,
+  "failed_assertions": 1,
+  "original_artifacts_including_receipt": 2637,
+  "original_source_binding_count": 1008,
+  "original_runtime_binding_count": 3582,
+  "failed_gate": "hierarchy-hierarchical-policy-v4",
+  "failed_test": "test_05_current_measured_load_is_unused",
+  "historical_repeatability_result_sha256": "ac2da533147d5878954d0612cce47e21109de2372959f54fdb83711f8f2e9668",
+  "public_result_sha256": "6d1c8d617fefdbfb685ebecf161dde626f667e25c77fa7b0fbed9963b062c0fc",
+  "active_coverage": [
+    {
+      "legacy_module": "test_proximal_qp_solver",
+      "active_module": "test_generic_proximal_qp_solver",
+      "legacy_controls": 14,
+      "active_controls": 16,
+      "module_substitutions": {
+        "proximal_qp_solver": "generic_proximal_qp_solver"
+      },
+      "extra_controls": [
+        "test_15_conflicting_backend_refuses_before_loading",
+        "test_16_generic_backend_identity_and_repeat_import"
+      ],
+      "preserved_controls": [
+        "test_01_unconstrained_optimum",
+        "test_02_active_upper_bound",
+        "test_03_active_lower_bound",
+        "test_04_equality_analytic_optimum",
+        "test_05_rank_deficient_equalities",
+        "test_06_infeasible_has_no_command_solution",
+        "test_07_iteration_exhaustion_is_refused",
+        "test_08_corrupted_primal_refused",
+        "test_09_corrupted_dual_refused",
+        "test_10_invalid_problem_refused",
+        "test_11_repeat_solve_is_identical",
+        "test_12_certificate_rejects_nonfinite_solution",
+        "test_13_unbounded_rows_preserve_zero_duals",
+        "test_14_closest_feasible_status_never_returns_a_command"
+      ],
+      "full_normalized_module_ast_equal": true,
+      "legacy_sha256": "9b5493191be8af50d7fcbfd674db93a3538c70a9055a7f97858d159d8b5e2ab6",
+      "active_sha256": "972b6d1368abd6bca05cfee1e89fba0c0174bf01c29409284082f731ab7cd6ea"
+    },
+    {
+      "legacy_module": "test_proximal_contact_component",
+      "active_module": "test_generic_proximal_contact_component",
+      "legacy_controls": 20,
+      "active_controls": 20,
+      "module_substitutions": {
+        "proximal_contact_component": "generic_proximal_contact_component"
+      },
+      "extra_controls": [],
+      "preserved_controls": [
+        "test_01_rank_deficient_objective",
+        "test_02_zero_objective_is_feasibility_only",
+        "test_03_inconsistent_constraints_refuse",
+        "test_04_full_rank_certificate_matches_existing_acceptance",
+        "test_05_nonfinite_task_refused",
+        "test_06_solver_settings_unchanged",
+        "test_07_corrupt_rank_deficient_dual_refused",
+        "test_08_unattainable_target_has_certified_nonzero_error",
+        "test_09_empty_support_still_preserves_motor_joint_constraints",
+        "test_10_unreachable_support_goal_does_not_drop_hard_limits",
+        "test_11_secondary_objective_cannot_worsen_attained_support",
+        "test_12_every_predicted_joint_state_is_bounded",
+        "test_13_corrupt_primary_solution_refused",
+        "test_14_corrupt_secondary_solution_refused",
+        "test_15_relaxed_pattern_cannot_issue_command",
+        "test_16_active_joint_limit_refuses_before_optimization",
+        "test_17_first_level_has_no_diagonal_regularization",
+        "test_18_freezing_support_preserves_original_input_and_command_rows",
+        "test_19_search_has_a_finite_pattern_bound",
+        "test_20_contact_error_is_explicit_and_not_physical_authority"
+      ],
+      "full_normalized_module_ast_equal": true,
+      "legacy_sha256": "0ad2ee501422b23e6540fff818cb09d0a8b87b3ee36dd1166694bcdac5ee55e8",
+      "active_sha256": "596c1d3a9d2883be683d96b9ab790b762d6ee7a0060e119050a0fa6c500249e0"
+    },
+    {
+      "legacy_module": "test_hierarchical_force_policy_v4",
+      "active_module": "test_hierarchical_force_policy_v8",
+      "legacy_controls": 17,
+      "active_controls": 17,
+      "module_substitutions": {
+        "hierarchical_force_policy_v4": "hierarchical_force_policy_v8",
+        "hierarchical_hold_control_v4": "hierarchical_hold_control_v8"
+      },
+      "extra_controls": [],
+      "preserved_controls": [
+        "test_01_real_core_accepts_exact_projection",
+        "test_02_transferred_motor_torque_and_unactuated_rows",
+        "test_03_force_pyramid_and_caps",
+        "test_04_inputs_and_profile_are_not_mutated",
+        "test_05_current_measured_load_is_unused",
+        "test_06_source_tampering_refused",
+        "test_07_limits_and_runtime_mutation_refused",
+        "test_08_authority_escalation_refused",
+        "test_09_invalid_clock_refused",
+        "test_10_crossed_episode_refused",
+        "test_11_missing_actual_history_refused",
+        "test_12_crossed_contact_context_refused",
+        "test_13_solver_refusal_cannot_create_response",
+        "test_14_resolved_history_continues",
+        "test_15_host_prefix_and_continuous_handoff",
+        "test_16_refusal_retains_computation_and_request_binding",
+        "test_17_host_retains_refusal_before_native_transfer"
+      ],
+      "full_normalized_module_ast_equal": true,
+      "legacy_sha256": "c5e979c4418d997b49c0701b6ebb3e8f077337d0a6a5394c068eca36cd1e0c25",
+      "active_sha256": "84ab4fb9c9e4f901cfeba3c736aaa58bf21968ed06aa295e0b207ad4c34082fb"
+    }
+  ],
+  "closure_controls_required": 61,
+  "legacy_controls_represented": 51,
+  "active_controls": 53,
+  "coverage_controls": 8,
+  "source_bindings": {
+    "audit_hierarchical_gate_coverage.py": "66dbfc7b3ce7e4d022b362b4ef2798971d742ff753fcb8033693c453de91e7a8",
+    "test_hierarchical_gate_coverage.py": "e29c2a9e98abc507042d08d7b9ebee90fab44b4095bc5dfd29218aeb39625fa8",
+    "run_hierarchical_gate_coverage.py": "b68a23accec317ffa15997d70187bf768b0f3238451b7f6c27298598312e5ee8"
+  },
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "legacy_assertions_changed": false,
+  "production_controller_changed": false,
+  "numerical_guards_changed": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "recovery_benefit_established": false,
+  "dynamic_feasibility_established": false,
+  "automatic_backend_failure_cause_proved": false,
+  "universal_repeatability_established": false
+}
