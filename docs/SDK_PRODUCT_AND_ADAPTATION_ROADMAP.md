@@ -21,6 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest dynamic native route: the [prospective comparison](#prospective-configured-dynamic-native-comparison---2026-10-25)
+declares four fresh CPU worlds: reach-hold and dynamic-control roles in the
+same exposed left-75-percent and nominal conditions, using development seed
+104242001 and train_001. Each world has a twelve-second horizon. All 23 route
+controls and the zero-world runtime preflight pass, including a complete
+retained baseline replay. The full 619-control launch gate has not run yet.
+Next clean-push this freeze and execute the complete gate and comparison.
+No native outcome, Tier 2, Tier 3 or release qualification is added here.
+
 Latest dynamic controller result: the [completed retained integration](#completed-constrained-dynamic-controller-component---2026-10-25)
 passes 110 controls and two complete independent readers. Each reader
 reconstructs all 2,671 retained states through both core builds and verifies
@@ -7360,3 +7369,49 @@ command/contact evidence and two readers. Native held-interval torque, contact
 response and recovery still need direct evidence. Capability estimation and
 learning follow only after a useful configured response is established.
 Tier 2, Tier 3 and release remain unqualified.
+
+### Prospective configured dynamic native comparison - 2026-10-25
+
+The [declared route](../sdk/discovery/dynamic_control_native_v1.json) connects the
+verified dynamic v2 controller to the existing native preparation, motor transfer,
+five internal steps per command and full contact-force capture. The
+[retained preflight](../sdk/discovery/dynamic_control_native_preflight_v1.json)
+passes **23 route controls** and the zero-world runtime check. It binds
+**775 source** and **3430 runtime** files.
+No model/data world was constructed and no native step occurred.
+
+The prospective population is **four fresh CPU worlds**: baseline reach-hold
+and candidate dynamic-hold in each of the existing left-75-percent and nominal
+conditions. All use train_001 and development seed **104242001**. Each has
+**1,440 commands, 7,200 internal steps and a twelve-second horizon**. Starts,
+native XML, torque limits, public resolver limits and height/tilt/contact
+criteria remain unchanged. No held-out starts or new morphologies are exposed.
+
+Both roles must reproduce the same first 60 commands and 300 internal samples
+and reach the identical prepared handoff. Each fresh baseline must reproduce
+all 1,440 controller rows and 7,200 native samples of its retained predecessor.
+Candidate trajectories may diverge after handoff. Two complete readers replay
+the commands through the other core and independently verify contact streams,
+dynamic equations/KKT certificates, motor inputs and native force sensors.
+
+The route controls include a complete retained-baseline replay through the new
+reader, healthy-condition handoff, empty-support and late-state checks, profile
+crossing, missing/crossed gates, dirty-source and identity refusal, failed-provider
+transfer prevention, and motor-force corruption. The motor reader checks the
+affine capped motor law at every native internal step. Prepared candidate torque
+must match the requested projection within the declared bound; held-interval
+torque variation is recorded separately and is not assumed zero.
+
+The full applicable launch gate has **619 controls**, including provider and
+Windows job-containment checks. Component-only preflight cannot launch. Physical
+work requires a clean pushed freeze, the complete gate, a single-use claim and
+the operation mutex held through the contained worker and both readers.
+A provider failure is retained before transfer and terminates that attempt.
+
+The primary descriptive endpoint is time to first violation under the unchanged
+height, tilt and torso-contact rules. Full-horizon diagnostic eligibility,
+support counts before failure and across the full trace, held motor variation,
+and measured control cost are also retained. These two exposed condition pairs
+cannot qualify robustness, estimated capability, learned adaptation, cross-engine
+equivalence or real-time interaction. Contact acceleration remains a soft
+controller task; native recovery is still unproved.

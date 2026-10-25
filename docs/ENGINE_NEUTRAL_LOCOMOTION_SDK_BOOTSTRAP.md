@@ -9,6 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest dynamic native route (2026-10-25): the [prospective comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-configured-dynamic-native-comparison---2026-10-25)
+declares four fresh CPU worlds: reach-hold and dynamic-control roles in the
+same exposed left-75-percent and nominal conditions, using development seed
+104242001 and train_001. Each world has a twelve-second horizon. All 23 route
+controls and the zero-world runtime preflight pass, including a complete
+retained baseline replay. The full 619-control launch gate has not run yet.
+Next clean-push this freeze and execute the complete gate and comparison.
+No native outcome, Tier 2, Tier 3 or release qualification is added here.
+
 Latest dynamic controller result (2026-10-25): the [completed retained integration](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-constrained-dynamic-controller-component---2026-10-25)
 passes 110 controls and two complete independent readers. Each reader
 reconstructs all 2,671 retained states through both core builds and verifies
