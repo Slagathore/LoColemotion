@@ -1,0 +1,89 @@
+{
+  "schema_version": "locolemotion_dynamic_response_diagnostic_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "retained_dynamic_response_diagnostic",
+    "question_class": "development"
+  },
+  "parent_result_path": "sdk/discovery/dynamic_control_native_failure_result_v1.json",
+  "parent_result_sha256": "18902d8d04778f31957d438baee60396c4dae84df807a0214b0a91e9e6ebf1b5",
+  "implementation_bindings": {
+    "dynamic_response_diagnostic_metrics.py": "b3d58e5a84ac5eeaaf8010dc645f73e3254fdd5ede486d43a186301438fc2c34",
+    "dynamic_response_diagnostic.py": "fe5d50459d3f48732fbdc3a6497b9c74cbfe1094b09c87c99c89985d023e9322",
+    "test_dynamic_response_diagnostic.py": "9b747ec3de906905dceead0de5acf1cd4e5d74a783e2aa27cfb84d427fbbb37f",
+    "run_dynamic_response_diagnostic.py": "b462f469c2250cb5e698eb61789c4aa590c22e75279acf1b1accf91cf0e50e5a"
+  },
+  "inherited_bindings": {
+    "floating_base_dynamics.py": "ff00eb017a05f8a4f4b04dcef6d5c428fc355a1bafe16e864b9e650f57e5cdb3",
+    "floating_base_dynamics_inputs.py": "50eeddc9f99dfb76ee6f97c430f6a0b91e960b0dfc6890cba109ade9a916e041",
+    "force_recovery_diagnostic_metrics.py": "092bc206edc02b181de9a6a7fc4f973dfc27180243b75e792341796f4d85197f",
+    "posture_tracking_diagnostic_metrics.py": "4669a3473139e9aee56ecc821e1418c2d7d86b7f9af6b04b67c042ed5b086bd4",
+    "dynamic_inverse_dynamics_v2.py": "fc1af69ced41dae9ca1e4d2225effa62f741b97613c932a13a0b9349008457db",
+    "dynamic_control_native_failure_trial.py": "039f19e3589e29676e282cb1f622ee2099a3e09631789368743f0a71ac45ff20",
+    "audit_dynamic_control_native_failure.py": "5794314182eb301f56363cf6f99cba0c9135ae2b79623fb855a8b4b1b98f236e"
+  },
+  "controls_required": 43,
+  "expected_trials": 2,
+  "expected_commands": 118,
+  "expected_internal_samples": 590,
+  "commands_start_inclusive": 60,
+  "commands_end_exclusive": 119,
+  "internal_start_inclusive": 301,
+  "internal_end_inclusive": 595,
+  "window_selected_after_original_outcomes": true,
+  "earliest_original_violation_step": 596,
+  "original_controller_rows": [
+    1440,
+    317
+  ],
+  "original_internal_rows": [
+    7200,
+    1580
+  ],
+  "full_retained_population_reopened": true,
+  "post_failure_states_in_diagnostic": false,
+  "prepared_candidate_optimizations": 59,
+  "terminal_failure_is_separate": true,
+  "motor_absolute_tolerance_nm": 1e-10,
+  "velocity_increment_absolute_tolerance": 1e-10,
+  "generalized_equation_absolute_tolerance": 1e-08,
+  "acceleration_basis": "canonical world linear/angular and joint axes at the prepared state",
+  "actual_acceleration_scope": "continuous reconstruction from measured forces and finite native increment in prepared basis",
+  "measured_force_source": "retained solver readback, not controller input or a future contact predictor",
+  "integrator": "implicitfast",
+  "native_runtime": "3.11.0",
+  "timestep_s": 0.0016666666666666668,
+  "effective_inertia": "M plus timestep times diagonal unsaturated velocity-motor gains; joint damping zero",
+  "generalized_constraint_scope": "all elliptic point contacts plus zero-margin scalar hinge limits",
+  "acceleration_accounting": [
+    "measured_minus_planned_contact",
+    "joint_limit",
+    "measured_minus_requested_motor",
+    "implicit_integration"
+  ],
+  "accounting_is_not_causal_attribution": true,
+  "post_handoff_states_differ": true,
+  "references": {
+    "integration": "https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_forward.c",
+    "derivatives": "https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_derivative.c",
+    "limits": "https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_core_constraint.c",
+    "equations": "https://mujoco.readthedocs.io/en/stable/computation/index.html"
+  },
+  "reader_world_build_count": 0,
+  "reader_solver_steps": 0,
+  "controller_selection_authority": false,
+  "comparison_data_used_for_fitting": false,
+  "comparison_data_used_for_selection": false,
+  "alternative_trajectory_simulated": false,
+  "causal_generalization": false,
+  "recovery_benefit_established": false,
+  "capability_estimated": false,
+  "dynamic_feasibility_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

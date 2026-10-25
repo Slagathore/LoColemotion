@@ -9,6 +9,18 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest dynamic response diagnosis: the [completed finite accounting](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-dynamic-response-diagnosis---2026-10-25)
+passes 43 controls and two complete readers over shared safe commands 60-118,
+with zero new worlds. Retained native velocity increments reconstruct within
+1.7e-15 after including measured contact forces, hinge-limit forces and the
+implicit integrator. Initial torque delivery contributes negligible prediction
+error; contact-force mismatch and omitted joint-limit forces contribute more.
+The candidate reaches its rear-left hip limit in 21 pre-failure internal samples;
+the baseline has no limit-force samples in this window.
+Next verify a distinct contact-priority, joint-limit-aware component while
+preserving command limits and explicit infeasibility. This descriptive diagnosis
+does not establish rescue, Tier 2, Tier 3 or release qualification.
+
 Latest dynamic native result (2026-10-25): the [closed incomplete comparison](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#closed-incomplete-dynamic-native-comparison---2026-10-25)
 passes all 619 launch controls, then opens two of four planned CPU worlds.
 The dynamic candidate first violates tilt at 0.993333 seconds, earlier than the

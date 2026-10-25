@@ -3201,3 +3201,31 @@ The [completed retained component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#comp
 preserves an initial complementarity refusal and verifies a separate tighter
 convergence successor across the entire retained population. Numerical solver
 success is not evidence of maintained native contact, recovery or learning.
+
+### Retained contact-force and integration accounting - 2026-10-25
+
+The [MuJoCo equations of motion](https://mujoco.readthedocs.io/en/stable/computation/index.html#general-framework)
+separate bias, applied forces and constraint forces. The version-pinned
+[3.11.0 forward pipeline](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_forward.c)
+dispatches the split-step route to implicitfast and forms its effective inertia
+using the smooth-force velocity derivative. The
+[3.11.0 derivative implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_derivative.c)
+omits motors at their force caps. The
+[3.11.0 constraint implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_core_constraint.c)
+defines lower/upper scalar hinge-limit Jacobian signs. These details motivate
+independent algebraic accounting for this exact fixture; no upstream source is
+vendored. The diagnostic refuses unsupported model features or constraint kinds.
+
+The [completed retained diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-dynamic-response-diagnosis---2026-10-25)
+verifies those equations against every selected native increment. It does not
+infer future contact forces, simulate alternative actions, or grant a controller
+access to retained solver measurements. Positive contact force with outward
+acceleration is compatible with compliant contact and is not itself an error.
+
+[Kim et al. (2019), Sections IV-A and IV-B](https://arxiv.org/html/1909.06586v1)
+couple prioritized kinematic tasks with reaction-force optimization and explicit
+floating-base relaxation. This motivates checking contact/limit feasibility
+before another soft-task controller comparison. Their twelve-actuator,
+torque-plus-feedback platform and MPC force references differ from this
+eight-actuator bounded-velocity fixture. The measured local failure does not
+invalidate their method, and their results do not establish success here.

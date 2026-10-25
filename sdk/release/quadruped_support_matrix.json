@@ -9905,6 +9905,83 @@
         "dynamic_feasibility_established": false,
         "complete_comparison_established": false,
         "nominal_condition_evaluated": false
+      },
+      "configured_dynamic_response_diagnosis": {
+        "status": "complete_pre_failure_dynamic_response_accounting",
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "retained_dynamic_response_diagnostic",
+          "question_class": "development"
+        },
+        "result_path": "sdk/discovery/dynamic_response_diagnostic_result_v1.json",
+        "result_sha256": "49a1c2d01f23c8b9a64e00f3e4b072dba2ee78bc769a462cec23aa00ccd73fe7",
+        "attempt_id": "sdk2-dynamic-response-diagnostic-b9d61346f5344ed28a53cb5346e465ac",
+        "receipt_sha256": "e2a9834f807a5a5c8f7361520fdc0a8397d93d94f3928f65520f569db9823e6c",
+        "audit_sha256": "502a884f175449251cd70d994ac642605f14f4112169a87f89be4120bded9957",
+        "controls_passed": 43,
+        "complete_readers": 2,
+        "window": {
+          "start": 60,
+          "end_exclusive": 119,
+          "commands_per_trial": 59,
+          "posthoc": true,
+          "includes_first_failing_command": false
+        },
+        "controller_rows": 118,
+        "internal_samples": 590,
+        "maximum_velocity_increment_error": 1.6254358969902682e-15,
+        "maximum_generalized_equation_error": 1.8429702208777599e-13,
+        "candidate_joint_limit_population": {
+          "joint_id": "rear_left_hip",
+          "internal_samples": 21,
+          "first_internal_step": 575,
+          "last_internal_step": 595,
+          "maximum_absolute_generalized_torque_nm": 11.365247153260219,
+          "basis": "nonzero coordinate 10 in the independently reconstructed 14-coordinate generalized-force stream"
+        },
+        "candidate_maximum_held_torque_difference_nm": 5.839487152815526,
+        "root_angular_acceleration_contribution_rms": {
+          "contact": [
+            13.033717282184556,
+            3.8666569468104,
+            14.214389784212917
+          ],
+          "joint_limit": [
+            7.827046496875016,
+            0.7759910966055436,
+            4.72117030287079
+          ],
+          "motor": [
+            2.561652342037757e-11,
+            3.4332854529735426e-11,
+            3.164715219813783e-11
+          ],
+          "integrator": [
+            0.43645007680485953,
+            0.845498424741425,
+            1.7888980729221797
+          ]
+        },
+        "retrospective_force_is_not_controller_input": true,
+        "accounting_is_not_causal_attribution": true,
+        "reader_world_build_count": 0,
+        "reader_solver_steps": 0,
+        "next_step": "Implement a distinct contact-priority, joint-limit-aware dynamics component. First verify supporting-point acceleration constraints and conservative joint position/velocity bounds over the existing command hold against retained states, including the original handoff and approaching rear-left hip limit. Declare contact assumptions and infeasibility handling explicitly; preserve all motor/resolver limits and numerical acceptance tolerances. Account for verified implicit integration and held-torque variation. Never feed retrospective measured forces to the controller. Verify the component before a fresh prospective native comparison.",
+        "controller_selection_authority": false,
+        "comparison_data_used_for_fitting": false,
+        "comparison_data_used_for_selection": false,
+        "alternative_trajectory_simulated": false,
+        "causal_generalization": false,
+        "recovery_benefit_established": false,
+        "capability_estimated": false,
+        "dynamic_feasibility_established": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false,
+        "physical_acceptance_authority": false,
+        "training_data_authority": false,
+        "release_authority": false,
+        "equivalence_authority": false
       }
     },
     "tier3": {

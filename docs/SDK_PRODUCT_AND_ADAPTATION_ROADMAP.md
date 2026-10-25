@@ -21,6 +21,18 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
+Latest dynamic response diagnosis: the [completed finite accounting](#completed-pre-failure-dynamic-response-diagnosis---2026-10-25)
+passes 43 controls and two complete readers over shared safe commands 60-118,
+with zero new worlds. Retained native velocity increments reconstruct within
+1.7e-15 after including measured contact forces, hinge-limit forces and the
+implicit integrator. Initial torque delivery contributes negligible prediction
+error; contact-force mismatch and omitted joint-limit forces contribute more.
+The candidate reaches its rear-left hip limit in 21 pre-failure internal samples;
+the baseline has no limit-force samples in this window.
+Next verify a distinct contact-priority, joint-limit-aware component while
+preserving command limits and explicit infeasibility. This descriptive diagnosis
+does not establish rescue, Tier 2, Tier 3 or release qualification.
+
 Latest dynamic native result: the [closed incomplete comparison](#closed-incomplete-dynamic-native-comparison---2026-10-25)
 passes all 619 launch controls, then opens two of four planned CPU worlds.
 The dynamic candidate first violates tilt at 0.993333 seconds, earlier than the
@@ -7471,3 +7483,61 @@ separate from the earlier physical failure. Use that diagnosis to select a
 distinct successor rather than tuning against post-fall aggregate maxima.
 Configured recovery, capability estimation, useful learning, Tier 2, Tier 3
 and release remain unqualified.
+
+### Completed pre-failure dynamic-response diagnosis - 2026-10-25
+
+The [retained diagnosis](../sdk/discovery/dynamic_response_diagnostic_result_v1.json)
+passes **43 controls** and **two complete readers**. Each reader first reconstructs
+the entire original failed comparison, then examines **59 complete commands per
+role**, commands **60-118** and internal steps **301-595**. All **118 commands**
+and **590 internal samples** in the diagnostic window precede the first tilt
+violation. No model/data world or native step is created.
+
+The reconstruction derives inertia, bias, measured contact wrenches, zero-margin
+hinge-limit forces and the configured implicitfast motor derivative. Saturated
+motors contribute no velocity derivative at the force cap. The effective inertia
+is M plus timestep times the diagonal unsaturated motor gains. Native velocity
+increments are converted in the prepared coordinate basis, not by subtracting
+world twists expressed at different orientations. All retained increments close
+within **1.7e-15**, and generalized force balance within **1.9e-13**. This is a
+finite retained-input identity; measured contact forces remain retrospective
+observer data and are never supplied to the controller.
+
+At the 59 prepared candidate states, acceleration prediction discrepancy is
+decomposed additively into measured-minus-planned contact force, joint-limit
+force, measured-minus-requested motor torque, and implicit integration. The
+identity closes within **1.2e-11**. These signed terms describe the same observed
+state; their RMS values are not additive causal shares.
+
+| Prepared candidate term | Root angular acceleration RMS, canonical x/y/z (rad/s^2) |
+| --- | --- |
+| Contact-force mismatch | 13.034 / 3.867 / 14.214 |
+| Omitted joint-limit forces | 7.827 / 0.776 / 4.721 |
+| Initial motor-torque delivery mismatch | below 3.5e-11 on every axis |
+| Implicit integration | 0.436 / 0.845 / 1.789 |
+
+The candidate has **21 joint-limit samples**, internal steps **575-595**, all
+at the rear-left hip; the maximum magnitude is **11.365247153260219 N m**.
+The baseline has none in this common window. Candidate held-interval requested
+versus measured torque differs by up to **5.839487152815526 N m**, so accurate
+initial transfer still does not guarantee torque throughout the command hold.
+Both roles continue to have zero front-right support in this window.
+
+The candidate reports positive planned normal force and upward planned contact
+acceleration in **94 of 131 supporting-point observations** (positive means
+above 1e-9 in the respective units). This is descriptive, not a hard-contact
+violation test: compliant contacts can support load while accelerating outward.
+It demonstrates why a soft task and a free force variable alone do not certify
+the native contact response. The [research ledger](research/LOCOMOTION_RESEARCH_SOURCES.md#retained-contact-force-and-integration-accounting---2026-10-25)
+records the exact native version references and the limits of the WBC analogy.
+
+Next implement a distinct **contact-priority, joint-limit-aware dynamics
+component**. First check supporting-point acceleration constraints and
+conservative joint position/velocity bounds over the existing hold interval on
+retained states, including the handoff and approaching hip limit. Declare the
+contact model and infeasibility behavior, preserve motor/resolver limits and
+independent numerical acceptance, and account for integration and torque drift.
+Retrospective solver forces must not become privileged controller inputs.
+Only after component verification should a fresh native comparison be declared.
+The command-316 numerical refusal remains separate and unchanged. Tier 2,
+Tier 3, recovery benefit and release remain unqualified.
