@@ -21,7 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Latest bounded-refinement result: the [exact diagnosis and retained component](#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
+Latest public integration: the [public recovery and native-route checkpoint](#public-recovery-integration-and-prospective-native-successor---2026-10-25)
+passes 105 controls and two identical public readers over four hosts and 304
+commands per reader, including the weak command-89 recovery and nominal
+handoff. A failed authority negative control remains retained; its distinct
+successor passes all 27 route controls and two-core runtime preflight.
+No new worlds ran. Next use a clean pushed freeze and the complete 895-control
+gate for the declared four-world native comparison. Tier 2, Tier 3 and release
+remain unqualified.
+
+Prior bounded-refinement result: the [exact diagnosis and retained component](#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
 proves both command-89 secondary inputs inconsistent as encoded, repairs that
 state by refining the primary, and preserves certified original solutions.
 The completed successor passes 72 controls and two byte-identical readers: all
@@ -8009,3 +8018,61 @@ reconstruct both solver routes and enforce all no-transfer failure controls.
 A new native comparison requires its complete safety gate and a clean pushed
 prospective freeze. Tier 2, Tier 3, native recovery benefit and release remain
 unqualified.
+
+## Public recovery integration and prospective native successor - 2026-10-25
+
+The [public version-six result](../sdk/discovery/hierarchical_public_result_v6.json)
+integrates the unchanged bounded recovery component into the public provider,
+host and command resolver. It passes 105 controls and two byte-identical
+complete readers. Each reader constructs four public hosts across two core
+builds and verifies 304 commands: 90 weak-condition commands and 62 nominal
+commands per core. Of 64 hierarchical commands, two take the refined-primary
+recovery route.
+
+Both weak hosts preserve the first 60 commands and all 29 previously applied
+hierarchical allocations, resolved commands and native targets exactly. At
+command 89, the original refusal reproduces and refinement supplies an accepted
+replacement. Both nominal hosts verify the two-command handoff. These hosts
+read retained observations; the replacement actions have not generated a new
+trajectory.
+
+An independent row reader reconstructs the original QPs, active-constraint
+refinement, transformed secondary system, mapped duals, full-coordinate
+certificates, actual resolver history and all five predicted held motor steps.
+It checks both successful and refused original routes without invoking the
+controller's QP solver. Corruption controls cover route identity, refusal
+equations, strict refinement guard, work count, original constraints,
+certificates and authority. Existing lifecycle/no-transfer controls remain.
+
+Public attempt: sdk2-hierarchical-public-v6-70a3af9887374e5f94e2b4080e9becad.
+It binds 916 source and 3,582 runtime files, retains 62 artifacts and takes
+112.360 seconds. Both complete reader digests are
+f549394eaadd7af2533a5e16731a1d1c12ca7b9755fe4808da7eb939f372b81c.
+
+The first new native-route gate,
+sdk2-hierarchical-native-v2-06b7a5ed6c43462ea7a047adcf3648b4,
+runs 27 controls: 26 pass and one fails. Its component-result reader did not
+explicitly reject a mutated authority field. No runtime preflight, physical
+launch or single-use physical claim followed. The failure and source bytes
+remain retained; the test is not weakened.
+
+The [version-three route result](../sdk/discovery/hierarchical_native_route_result_v3.json)
+closes that gap with exact result-schema, ledger-scope, authority and report
+joins. It also verifies the failed predecessor's complete retained population.
+All 27 route controls and two-core runtime preflight pass, with zero worlds.
+Its receipt identifies the fresh route-only attempt, bindings and artifacts.
+This component-only gate does not authorize physical launch.
+
+The prospective comparison retains four fresh worlds: reach-reference and
+hierarchical-candidate roles under the exposed weak-left and nominal
+conditions. Each has 1,440 controller commands, 7,200 native steps and a
+12-second horizon, with the existing seed, limits and physical endpoints.
+Baseline trajectories must reproduce their retained counterparts, the paired
+60-command/300-step prefix must match exactly, and complete independent
+readers must verify causal post-handoff histories. A controller refusal stops
+before transfer and aborts the remaining worlds.
+
+Next publish this exact source, then run the complete 895-control safety gate
+and comparison in a fresh contained owner from a clean pushed freeze.
+This checkpoint opens no physics worlds. Native recovery, recursive
+feasibility, Tier 2, Tier 3 and release remain unqualified.

@@ -9,7 +9,16 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest bounded-refinement result: the [exact diagnosis and retained component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
+Latest public integration: the [public recovery and native-route checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-recovery-integration-and-prospective-native-successor---2026-10-25)
+passes 105 controls and two identical public readers over four hosts and 304
+commands per reader, including the weak command-89 recovery and nominal
+handoff. A failed authority negative control remains retained; its distinct
+successor passes all 27 route controls and two-core runtime preflight.
+No new worlds ran. Next use a clean pushed freeze and the complete 895-control
+gate for the declared four-world native comparison. Tier 2, Tier 3 and release
+remain unqualified.
+
+Prior bounded-refinement result: the [exact diagnosis and retained component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
 proves both command-89 secondary inputs inconsistent as encoded, repairs that
 state by refining the primary, and preserves certified original solutions.
 The completed successor passes 72 controls and two byte-identical readers: all

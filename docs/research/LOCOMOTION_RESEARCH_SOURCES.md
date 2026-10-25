@@ -3341,3 +3341,17 @@ retains exact secondary contradictions, the refinement regression, an auditor
 failure and the successful 140/148-state component. No upstream implementation
 was copied. These finite calculations do not establish causal native recovery,
 public-controller integration, arbitrary model feasibility or learned adaptation.
+
+## Public integration of bounded refinement - 2026-10-25
+
+The [public recovery checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-recovery-integration-and-prospective-native-successor---2026-10-25)
+extends the previously cited active-constraint refinement and proximal hierarchy
+through the actual public host and resolver. It preserves accepted original
+commands and independently reconstructs both numerical routes, including the
+recovered command and five held motor steps. Two core builds and two complete
+readers agree. This advances integration evidence, not causal native recovery
+or learned adaptation. No new upstream algorithm or implementation was added.
+
+The next prospective comparison keeps physical limits and measured endpoints
+unchanged. A failed authority negative control is retained and addressed in a
+distinct route successor; numerical success cannot grant release authority.
