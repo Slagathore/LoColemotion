@@ -779,6 +779,64 @@
           }
         ]
       },
+      "actuation_recovery_mechanics": {
+        "status": "component_reconstructed_native_control_pending",
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "retained_mechanical_component_validation",
+          "question_class": "development"
+        },
+        "record_path": "sdk/discovery/actuation_recovery_mechanics_result_v1.json",
+        "record_sha256": "31e6f0f94b33e0975c28eeef087e5e1b39f761fb12d3a276083bcddfb702c059",
+        "contract_path": "sdk/discovery/actuation_recovery_mechanics_v1.json",
+        "contract_sha256": "9db7f08af73c338869a86e28084729dbd746ce4b4cf67b998b0b460cea989a88",
+        "source_bindings": {
+          "actuation_recovery_mechanics.py": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+          "actuation_recovery_mechanics_audit.py": "aced6b79e8c47e483d1801a811b9caf50544cb36b8339a903b4e128a788001d1",
+          "test_actuation_recovery_mechanics.py": "03080471ae7f82a43f944cb9711dcc5c22c93f7b425692607a8b7e21b647909b",
+          "run_actuation_recovery_mechanics.py": "41c2507c24f501773a74fe45ee94e46769e66098763ff659ac172e97892fb70c"
+        },
+        "attempt_id": "sdk2-actuation-mechanics-d0caeffd3c144719a495f16d67414840",
+        "receipt_sha256": "2fdb37ebcd6b3406597fcf90068b1e8a00e495643d9e95e0f62de1e77399a019",
+        "audit_sha256": "5a3d528bf7b23afcb94ad0b3cc8328cd859ce2e23bcd73abdc09c1b5b2e17d3d",
+        "reconstruction_sha256": "5a3d528bf7b23afcb94ad0b3cc8328cd859ce2e23bcd73abdc09c1b5b2e17d3d",
+        "controls_passed": 25,
+        "frames": 240,
+        "joint_entries": 1920,
+        "selected_contact_count": 466,
+        "original_fallbacks_preserved": 15,
+        "source_binding_count": 606,
+        "runtime_binding_count": 1359,
+        "source_runtime_unchanged": true,
+        "worlds_opened": 0,
+        "solver_steps": 0,
+        "native_controller_test_pending": true,
+        "controller_changed": false,
+        "capability_estimated": false,
+        "current_solve_force_available_before_control": false,
+        "dynamic_feasibility_established": false,
+        "tier2_complete": false,
+        "tier3_complete": false,
+        "physical_acceptance_authority": false,
+        "training_data_authority": false,
+        "release_authority": false,
+        "equivalence_authority": false,
+        "failed_attempts": [
+          {
+            "attempt_id": "sdk2-actuation-mechanics-3bcbd86e91d04331bc16577573998994",
+            "receipt_sha256": "f6f4eed7dc2bf0e49f5db3934cba9052396578f9db66677360d418b4351aded6",
+            "declaration_sha256": "9248061b3ade82cf440323df4a4654d2714038ba7fe221610291d69aa1e30009",
+            "controls_passed": 24,
+            "worlds_opened": 0,
+            "solver_steps": 0,
+            "source_snapshot_preserved": true,
+            "status": "reader_refused_original_non_applied_response",
+            "reason": "The first reader incorrectly required every original provider response to be applied. The successor preserves original no-proposal and unsupported fallbacks and binds resolver-only projections to a distinct synthetic provider."
+          }
+        ],
+        "next_step": "Integrate a causal recovery controller that allocates desired contact forces from prepared-state geometry and declared capabilities; preserve the actual resolver history and test from a clean pushed prospective freeze. Measured current-solve forces remain retrospective validation data."
+      },
       "bounded_residual_recovery": {
         "status": "complete_native_recovery_diagnostic_no_rescues",
         "ledger_scope": {

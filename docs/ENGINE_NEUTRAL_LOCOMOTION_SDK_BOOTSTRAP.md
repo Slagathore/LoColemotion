@@ -9,6 +9,17 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest recovery mechanics (2026-10-24): the [completed component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-mechanics-component---2026-10-24)
+passes **25 controls** and two full retained-data reconstructions across **240
+prepared states / 1,920 joint entries**, with zero new worlds. Portable geometry,
+contact/gravity joint-torque mapping and reachable velocity commands are
+verified; every projected target agrees exactly with the real core resolver.
+All **15 original provider fallbacks** remain intact. These are post-hoc algebra
+checks using declared plant capabilities, not a causal recovery controller or
+learned adaptation. Next allocate desired forces from prepared state, integrate
+this component with continuous resolved history, and run a prospective native
+recovery fixture. Tier 2/Tier 3 and release remain unqualified.
+
 Latest contact observer (2026-10-24): the [completed native fixture](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contact-force-observer-fixture---2026-10-24)
 passes **363 prelaunch controls**, four fresh CPU worlds and **14 closure
 controls**. Both exposed conditions have bitwise-identical capture-off/on

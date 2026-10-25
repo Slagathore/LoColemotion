@@ -1620,6 +1620,70 @@ The owner checked 273 shared source files, both exact diagnostic sources,
 1,357 runtime files and the bound core DLLs without drift. This descriptive
 record grants no fitting, selection, causal, recovery or release authority.
 
+### Completed recovery mechanics component - 2026-10-24
+
+The [portable mechanics component](../sdk/discovery/actuation_recovery_mechanics.py)
+now computes revolute-tree body poses, centers of mass, joint anchors and axes,
+contact-wrench joint torques, gravity joint torques, and the instantaneous
+velocity-actuator command envelope. It uses explicit SI geometry and declared
+capabilities without constructing or stepping a simulator. Torque requests
+pass through correction, slew, final-speed and motor-force limits; unresolved
+torque is retained rather than turned into a feasibility claim.
+
+The [retained result](../sdk/discovery/actuation_recovery_mechanics_result_v1.json)
+passes **25 analytical and corruption controls** and two identical full
+reconstructions. The parent four-world closure is reopened first. The new
+component then uses every controller-prepared state in the two observer-on
+worlds: **240 states**, **1,920 joint entries** and **466 contacts** at the first
+internal solve of each command. Prepared position, velocity, clock and actual
+command join exactly to that solve; remaining internal steps are outside this
+new geometry check, while the parent still verifies all contact captures.
+
+| Verification | Maximum observed absolute difference |
+| --- | ---: |
+| Body positions / centers | 7.36e-16 m |
+| Joint anchors | 7.78e-16 m |
+| Rotation matrix entries | 2.23e-15 |
+| Contact joint torque vs independent virtual-work finite differences | 2.13e-9 N m |
+| Gravity joint torque vs potential-energy finite differences | 2.02e-10 N m |
+| Prepared velocity-actuator force reconstruction | 6.22e-15 N m |
+| Original and projected targets vs the core resolver | 0 rad/s |
+
+These checks validate the local mapping and bounded command calculation, not
+cross-engine behavior or dynamic force feasibility. The reference gains and
+force limits are the declared configured plant; no motor capability has been
+learned. Static compensation omits inertial, Coriolis, passive and joint-limit
+forces. Its force data comes from the original solve after the original
+command was applied, so the reported projections are **noncausal, post-hoc
+algebra checks**, never controller rollouts or candidate-performance results.
+The component reports **589/1,920 clipped static joint requests** across the
+full recorded horizons; that is not a new failure cause or recovery score.
+
+The original provider has **225 applied**, **two no-proposal** and **13
+unsupported** decisions in these streams. All **15 fallbacks** stay intact.
+Projected targets use a distinct untrained synthetic provider identity only
+to exercise the real resolver. They do not replace or promote an original
+learned-policy decision. The first attempt passed 24 controls but its reader
+refused a non-applied original response; its source snapshot, logs and receipt
+remain retained. The successor adds the explicit fallback boundary control;
+no numeric tolerance was relaxed.
+
+Successful attempt `sdk2-actuation-mechanics-d0caeffd3c144719a495f16d67414840`
+has receipt `2fdb37ebcd6b3406597fcf90068b1e8a00e495643d9e95e0f62de1e77399a019`.
+Both complete audit files hash to
+`5a3d528bf7b23afcb94ad0b3cc8328cd859ce2e23bcd73abdc09c1b5b2e17d3d`.
+It verifies **606 source** and **1,359 runtime bindings**, opens zero new
+worlds and performs zero solver steps. The result binds the failed predecessor,
+all current source bytes and the original evidence lineage.
+
+Next integrate a causal recovery controller: allocate desired contact forces
+from prepared geometry and declared capability bounds, then use this component
+to produce reachable commands while preserving actual resolved-command history.
+Current-solve measured force stays retrospective validation data. Freeze and
+test that controller prospectively before bounded Tier 2 qualification, useful
+Tier 3 adaptation or a safe-backup claim. The original weakened failure,
+reserved starts and release dispositions remain unchanged.
+
 ### Completed contact-force observer fixture - 2026-10-24
 
 The [retained closure](../sdk/discovery/contact_force_observer_closure_v1.json)

@@ -2814,6 +2814,32 @@ state/action and support/loading diagnosis, followed by a distinct prospective
 successor. No comparison-based reselection, external code or weights, reserved
 evaluation, or Tier 3 memory promotion is introduced.
 
+### Portable recovery mechanics and causal inputs - 2026-10-24
+
+The [local component validation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-mechanics-component---2026-10-24)
+implements point-Jacobian transpose force mapping from the canonical revolute
+body tree. The [MuJoCo Jacobian documentation](https://mujoco.readthedocs.io/en/3.11.0/APIreference/APIfunctions.html#mj-jac)
+provides the reference meaning of point translation and rotation Jacobians.
+The local calculation uses no native Jacobian API: canonical body poses,
+anchors and axes match retained native prepared-state data, while independent
+finite differences of attached-point motion and gravitational potential check
+the generalized force mapping. Contact torque stays about its contact point.
+
+The [actuation model](https://mujoco.readthedocs.io/en/3.11.0/computation/index.html#actuation-model)
+separates actuator force from contact and other generalized forces. The local
+unit-gear velocity profile additionally requires real correction, slew and
+final-speed limits before its motor-force clip. The resulting torque interval
+is instantaneous at the prepared velocity; it does not guarantee force over
+the held command interval. Gravity compensation is not full inverse dynamics.
+
+The finite static-feasibility motivation from Orsolino et al. remains useful,
+but this component does not establish their equilibrium conditions or dynamic
+recovery. Replaying current-solve measured forces into a projected command is
+explicitly retrospective. A causal controller must choose its desired forces
+from information available before control, and distinguish declared motor
+capabilities from learned estimates. Original unsupported learned-policy
+responses remain unsupported; a separate synthetic identity tests the resolver.
+
 ### Contact-force observer conventions - 2026-10-24
 
 The [prospective local fixture](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-contact-force-observer-fixture---2026-10-24)
