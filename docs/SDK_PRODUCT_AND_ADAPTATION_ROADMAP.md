@@ -6547,3 +6547,60 @@ other-core readers. The per-stream bound is 1 GiB, worker/readers each have a
 negative and horizon-censored outcomes remain distinct. This test asks whether
 the unchanged hold settles or fails later; it does not qualify a safe backup,
 held-out generalization, Tier 2, Tier 3 or release.
+
+### Completed twelve-second recovery hold continuation - 2026-10-25
+
+The [retained closure](../sdk/discovery/hold_horizon_native_closure_v1.json)
+verifies two fresh CPU worlds from freeze
+a63cb4369f26d7d17aaa82579788a76b72dac764 after all **479 safety controls**.
+Both original one-second prefixes match completely: 120 controller rows and
+600 internal rows per trial. Each new trajectory continues with the unchanged
+hold controller through 1,440 commands / 7,200 internal steps.
+
+| Exposed condition | Original-threshold outcome | Peak tilt | Minimum root height | Torso-contact steps |
+| --- | --- | ---: | ---: | ---: |
+| Weakened left_075/train_001 | Tilt failure at step 667 / 1.111667 s | 1.727363 rad | 0.250782 m | 6,422 / 7,200 |
+| Healthy nominal/train_001 | No violation through 12 s | 0.156253 rad | 0.432187 m | 0 / 7,200 |
+
+**Weak hold delayed failure; it did not establish sustained recovery.** Its
+front-right foot never bears support in the 1,380 post-handoff prepared commands.
+The healthy front-right foot first bears support at command **128** (about
+1.067 s), and bears support in 1,306 / 1,380 post-handoff commands. The healthy
+final tilt is 0.000952 rad at height 0.438802 m. The weak final tilt is 1.571609 rad
+at height 0.250935 m after torso contact. Endpoint samples and support-onset
+accounting are explicitly posthoc diagnostics, not causal explanations or
+extrapolated recovery guarantees. Full-window support counts may include
+post-failure states; the first failure remains fixed.
+
+Both complete native readers reconstruct **2,880 commands, 14,400 internal
+steps and 14,400 contact captures** with identical results. Both trials have zero
+safe-no-actuation steps. The original height, tilt and torso-contact thresholds,
+handoff, model, actuator caps, residual limits and controller remain unchanged.
+This establishes a finite healthy hold and a negative weak recovery result on
+two exposed starts; held-out morphology/start coverage and safe backup remain
+unqualified.
+
+Native attempt sdk2-hold-horizon-5d52ca3d9a7d45a7a5c218b810ce1f20 retains 647 source and 1,359 runtime
+bindings and 2,637 artifacts including receipt. Receipt SHA-256:
+03f2ab495c4c7ce6429eb9e900e193e19a5960f4c1ca1871f91aaed5082e2b8a.
+Both native audit SHA-256 values: a14f5d41994c66cf18e23f0e803bcd937198aaf2ff91562d6fa08134992134bd.
+
+Closure attempt sdk2-hold-horizon-closure-controls-ce4abb59e9384a0fbbeee8b74d96cd5e passes **12 controls** and two full retained-data
+readers without opening worlds. Receipt SHA-256:
+e851a5addaab387d05d9d30bcc8de62b8a05f4cd2635ae9f34e226f72d01e9f3.
+Both closure audit SHA-256 values: dbc51f5369937453889cfc4b3f1ac9be54df13ad10f0c116bf9a3fd0357df61e.
+
+The pre-owner launch environment failure
+sdk2-hold-horizon-launch-failure-6779ddb604364d6684a605d6481b8556 is retained.
+A fresh shell omitted the documented Python module search paths; import failed
+before owner creation or any world. Setting those paths left the published
+freeze unchanged. The earlier failed synthetic-clock fixture also remains
+retained in the prospective record.
+
+**Next:** inspect front-foot support restoration against actual joint reach,
+body roll, actuator limits and command slew on retained states. Use measured
+geometry and contact ordering to define a distinct successor touchdown/hold
+controller, then run its full zero-world gate and a fresh prospective native
+comparison. Allocation currently uses only existing support contacts; the
+observed difference does not by itself prove that a touchdown change will rescue
+the weak case. Tier 2, Tier 3 and release remain unqualified.

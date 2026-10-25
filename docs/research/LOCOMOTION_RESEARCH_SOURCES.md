@@ -2991,3 +2991,14 @@ reachability or recovery. Fourteen zero-world controls include a full two-core
 synthetic clock; the failed clock-fixture attempt is retained. Physical launch
 requires the clean pushed freeze and all 479 controls. Twelve-second stability,
 safe backup, learning and qualification remain unproven.
+
+### Completed twelve-second hold and next support-restoration question - 2026-10-25
+
+The [full continuation closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-twelve-second-recovery-hold-continuation---2026-10-25)
+retains two fresh native trajectories, exact original one-second prefixes,
+479 launch controls and two complete readers. Weak hold fails tilt at 1.111667 s;
+healthy hold stays within the original limits through 12 s. Healthy front-right
+support first appears at command 128; weak front-right support remains absent.
+Posthoc geometry/support diagnostics do not establish a causal rescue. Next
+investigate reachable touchdown and delivered actuation before a distinct
+controller successor. No held-out, safe-backup, Tier 2/Tier 3 or release claim.

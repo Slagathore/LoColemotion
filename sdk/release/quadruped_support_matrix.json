@@ -8641,6 +8641,415 @@
         "tier2_qualified": false,
         "tier3_benefit_established": false,
         "release_authority": false
+      },
+      "hold_horizon_native_closure": {
+        "status": "native_hold_horizon_verified_finite_outcomes",
+        "ledger_scope": {
+          "subsystem": "adaptation",
+          "engine_scope": "mujoco_cpu",
+          "authority_mode": "hold_horizon_development_route",
+          "question_class": "development"
+        },
+        "closure": "sdk/discovery/hold_horizon_native_closure_v1.json",
+        "closure_sha256": "9dc0c2c99acc64ecf6282d71644714e2507b58e0601cf3aebe539c93607cecd3",
+        "native_source_commit": "a63cb4369f26d7d17aaa82579788a76b72dac764",
+        "native_attempt": "sdk2-hold-horizon-5d52ca3d9a7d45a7a5c218b810ce1f20",
+        "native_receipt_sha256": "03f2ab495c4c7ce6429eb9e900e193e19a5960f4c1ca1871f91aaed5082e2b8a",
+        "native_audit_sha256": "a14f5d41994c66cf18e23f0e803bcd937198aaf2ff91562d6fa08134992134bd",
+        "complete_launch_controls": 479,
+        "constructed_cpu_worlds": 2,
+        "constructed_gpu_worlds": 0,
+        "controller_rows": 2880,
+        "internal_rows": 14400,
+        "contact_rows": 14400,
+        "summary": {
+          "constructed_cpu_worlds": 2,
+          "constructed_gpu_worlds": 0,
+          "controller_rows": 2880,
+          "internal_rows": 14400,
+          "contact_rows": 14400,
+          "pairs": [
+            {
+              "group_id": "left_075_train_001",
+              "original_controller_rows_identical": 120,
+              "original_internal_rows_identical": 600,
+              "new_trajectory_is_fresh": true,
+              "cached_physical_state_used": false,
+              "later_outcomes_not_inferred_from_prefix": true
+            },
+            {
+              "group_id": "nominal_train_001",
+              "original_controller_rows_identical": 120,
+              "original_internal_rows_identical": 600,
+              "new_trajectory_is_fresh": true,
+              "cached_physical_state_used": false,
+              "later_outcomes_not_inferred_from_prefix": true
+            }
+          ],
+          "trials": [
+            {
+              "trial_id": "force_hold_left_075_train_001",
+              "group_id": "left_075_train_001",
+              "role": "force_hold",
+              "controller_rows": 1440,
+              "internal_rows": 7200,
+              "diagnostic_metrics": {
+                "minimum_height_m": 0.2507819900212501,
+                "maximum_tilt_rad": 1.7273626230795682,
+                "torso_contact_steps": 6422,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "first_physical_violation": {
+                  "internal_step": 667,
+                  "time_s": 1.1116666666666788,
+                  "failure_codes": [
+                    "tilt"
+                  ]
+                },
+                "forward_displacement_m": -0.5868285464476385
+              },
+              "diagnostic_failure_codes": [
+                "tilt",
+                "torso_contact"
+              ],
+              "diagnostic_eligible": false,
+              "official_quality_m_s": null,
+              "timing": {
+                "warmup": {
+                  "prepare_s": 0.0,
+                  "observation_readback_s": 0.0,
+                  "portable_control_s": 0.0,
+                  "controller_capture_and_control_transfer_s": 0.0,
+                  "integration_and_device_history_s": 0.0,
+                  "internal_readback_and_capture_s": 0.0,
+                  "outer_total_s": 0.0
+                },
+                "measured": {
+                  "prepare_s": 0.09608580009808065,
+                  "observation_readback_s": 1.3607736001431476,
+                  "portable_control_s": 27.298037899890915,
+                  "controller_capture_and_control_transfer_s": 2.716194999855361,
+                  "integration_and_device_history_s": 2.638013500116358,
+                  "internal_readback_and_capture_s": 3.512283600291994,
+                  "outer_total_s": 37.63261510012671
+                }
+              },
+              "contact_capture": {
+                "rows": 7200,
+                "contacts": 30733,
+                "inactive_contacts": 0,
+                "other_contacts": 22791,
+                "mean_total_distal_normal_load_n": 15.054481736289816,
+                "timing_s": {
+                  "native_prepare_s": 0.16149639994546305,
+                  "prepare_capture_s": 0.36061520000657765,
+                  "native_complete_s": 0.1372875004526577,
+                  "complete_guard_s": 0.37064359987562057,
+                  "force_capture_s": 1.603632599741104,
+                  "serialization_s": 1.2705026998446556
+                },
+                "force_reconstruction_verified": true
+              },
+              "handoff_transition": {
+                "command": 60,
+                "ordered_actuator_ids": [
+                  "front_left_hip_motor",
+                  "front_left_knee_motor",
+                  "front_right_hip_motor",
+                  "front_right_knee_motor",
+                  "rear_left_hip_motor",
+                  "rear_left_knee_motor",
+                  "rear_right_hip_motor",
+                  "rear_right_knee_motor"
+                ],
+                "at_handoff": {
+                  "baseline_delta_rad_s": [
+                    2.4257841553976545,
+                    -0.055554351482167946,
+                    -1.6473542376139663,
+                    0.0050490387033643724,
+                    -2.340282837191385,
+                    -1.5363805974540203,
+                    0.475412802323659,
+                    -0.001938794602501126
+                  ],
+                  "correction_delta_rad_s": [
+                    -0.07999999999999996,
+                    0.07999999999999996,
+                    0.08000000000000007,
+                    -0.07999999999999996,
+                    0.08000000000000002,
+                    0.07999999999999996,
+                    -0.08000000000000002,
+                    -0.05946415737324173
+                  ],
+                  "target_delta_rad_s": [
+                    2.345784155397655,
+                    0.024445648517832014,
+                    -1.5673542376139664,
+                    -0.07495096129663559,
+                    -2.260282837191385,
+                    -1.4563805974540203,
+                    0.39541280232365894,
+                    -0.06140295197574286
+                  ]
+                },
+                "maximum_post_handoff_absolute_delta_rad_s": {
+                  "baseline_delta_rad_s": 2.4257841553976545,
+                  "correction_delta_rad_s": 0.08000000000000007,
+                  "target_delta_rad_s": 2.345784155397655
+                },
+                "total_target_slew_guaranteed": false
+              },
+              "post_handoff_support": {
+                "prepared_commands": 1380,
+                "window": "commands_60_through_1439",
+                "may_include_post_failure_states": true,
+                "by_site": {
+                  "front_left_foot": 20,
+                  "front_right_foot": 0,
+                  "rear_left_foot": 139,
+                  "rear_right_foot": 1300
+                }
+              }
+            },
+            {
+              "trial_id": "force_hold_nominal_train_001",
+              "group_id": "nominal_train_001",
+              "role": "force_hold",
+              "controller_rows": 1440,
+              "internal_rows": 7200,
+              "diagnostic_metrics": {
+                "minimum_height_m": 0.43218728880334883,
+                "maximum_tilt_rad": 0.15625250645452707,
+                "torso_contact_steps": 0,
+                "ground_contact_steps": 7199,
+                "nonzero_force_steps": 7200,
+                "safe_no_actuation_steps": 0,
+                "first_physical_violation": null,
+                "forward_displacement_m": 0.03039854641553961
+              },
+              "diagnostic_failure_codes": [],
+              "diagnostic_eligible": true,
+              "official_quality_m_s": null,
+              "timing": {
+                "warmup": {
+                  "prepare_s": 0.0,
+                  "observation_readback_s": 0.0,
+                  "portable_control_s": 0.0,
+                  "controller_capture_and_control_transfer_s": 0.0,
+                  "integration_and_device_history_s": 0.0,
+                  "internal_readback_and_capture_s": 0.0,
+                  "outer_total_s": 0.0
+                },
+                "measured": {
+                  "prepare_s": 0.08688180000171997,
+                  "observation_readback_s": 1.499709700110543,
+                  "portable_control_s": 37.616573400082416,
+                  "controller_capture_and_control_transfer_s": 2.9426098000403726,
+                  "integration_and_device_history_s": 2.400462000456173,
+                  "internal_readback_and_capture_s": 3.136664499921608,
+                  "outer_total_s": 47.6940376998391
+                }
+              },
+              "contact_capture": {
+                "rows": 7200,
+                "contacts": 27271,
+                "inactive_contacts": 0,
+                "other_contacts": 0,
+                "mean_total_distal_normal_load_n": 46.25599261890468,
+                "timing_s": {
+                  "native_prepare_s": 0.1482546000261209,
+                  "prepare_capture_s": 0.32453379993967246,
+                  "native_complete_s": 0.13247919998684665,
+                  "complete_guard_s": 0.3432829003140796,
+                  "force_capture_s": 1.4473732995975297,
+                  "serialization_s": 1.0831797998034745
+                },
+                "force_reconstruction_verified": true
+              },
+              "handoff_transition": {
+                "command": 60,
+                "ordered_actuator_ids": [
+                  "front_left_hip_motor",
+                  "front_left_knee_motor",
+                  "front_right_hip_motor",
+                  "front_right_knee_motor",
+                  "rear_left_hip_motor",
+                  "rear_left_knee_motor",
+                  "rear_right_hip_motor",
+                  "rear_right_knee_motor"
+                ],
+                "at_handoff": {
+                  "baseline_delta_rad_s": [
+                    2.1933699964710063,
+                    -0.04706647480876197,
+                    -1.8015069284166554,
+                    0.004072925168303376,
+                    -2.1710885244632943,
+                    -1.4214153948779282,
+                    0.5190568721751813,
+                    -0.011433289407198344
+                  ],
+                  "correction_delta_rad_s": [
+                    -0.07999999999999996,
+                    0.07999999999999996,
+                    0.08000000000000007,
+                    -0.0677801032160319,
+                    0.08,
+                    0.08000000000000007,
+                    -0.08000000000000002,
+                    0.037929382812689205
+                  ],
+                  "target_delta_rad_s": [
+                    2.1133699964710067,
+                    0.03293352519123793,
+                    -1.7215069284166555,
+                    -0.06370717804772852,
+                    -2.091088524463294,
+                    -1.341415394877928,
+                    0.43905687217518125,
+                    0.02649609340549086
+                  ]
+                },
+                "maximum_post_handoff_absolute_delta_rad_s": {
+                  "baseline_delta_rad_s": 2.1933699964710063,
+                  "correction_delta_rad_s": 0.08000000000000007,
+                  "target_delta_rad_s": 2.1133699964710067
+                },
+                "total_target_slew_guaranteed": false
+              },
+              "post_handoff_support": {
+                "prepared_commands": 1380,
+                "window": "commands_60_through_1439",
+                "may_include_post_failure_states": true,
+                "by_site": {
+                  "front_left_foot": 1320,
+                  "front_right_foot": 1306,
+                  "rear_left_foot": 1341,
+                  "rear_right_foot": 1361
+                }
+              }
+            }
+          ]
+        },
+        "endpoint_trends": {
+          "force_hold_left_075_train_001": {
+            "schema_version": "locolemotion_hold_horizon_endpoint_trend_v1",
+            "posthoc": true,
+            "sample_steps_selected_after_outcomes": true,
+            "complete_trace_rows": 7200,
+            "samples": [
+              {
+                "internal_step": 600,
+                "time_s": 1.0000000000000095,
+                "tilt_rad": 0.477453878366351,
+                "height_m": 0.40105399036001776
+              },
+              {
+                "internal_step": 6000,
+                "time_s": 10.00000000000075,
+                "tilt_rad": 1.5716086561491764,
+                "height_m": 0.25093456383082025
+              },
+              {
+                "internal_step": 6900,
+                "time_s": 11.500000000000984,
+                "tilt_rad": 1.5716086561933542,
+                "height_m": 0.2509345638345479
+              },
+              {
+                "internal_step": 7200,
+                "time_s": 12.000000000001062,
+                "tilt_rad": 1.5716086561844416,
+                "height_m": 0.25093456383510654
+              }
+            ],
+            "maximum_tilt_step": 1299,
+            "last_500ms_tilt_secant_rad_s": -1.7825296794168878e-11,
+            "secant_is_not_instantaneous_angular_velocity": true,
+            "future_trajectory_extrapolated": false,
+            "threshold_or_outcome_changed": false,
+            "recovery_stability_established": false
+          },
+          "force_hold_nominal_train_001": {
+            "schema_version": "locolemotion_hold_horizon_endpoint_trend_v1",
+            "posthoc": true,
+            "sample_steps_selected_after_outcomes": true,
+            "complete_trace_rows": 7200,
+            "samples": [
+              {
+                "internal_step": 600,
+                "time_s": 1.0000000000000095,
+                "tilt_rad": 0.058432658995102166,
+                "height_m": 0.44132246417180615
+              },
+              {
+                "internal_step": 6000,
+                "time_s": 10.00000000000075,
+                "tilt_rad": 0.0003060066596628723,
+                "height_m": 0.4388204069141053
+              },
+              {
+                "internal_step": 6900,
+                "time_s": 11.500000000000984,
+                "tilt_rad": 0.0007961008452745101,
+                "height_m": 0.4388070964599357
+              },
+              {
+                "internal_step": 7200,
+                "time_s": 12.000000000001062,
+                "tilt_rad": 0.0009520898331775935,
+                "height_m": 0.43880209777516144
+              }
+            ],
+            "maximum_tilt_step": 411,
+            "last_500ms_tilt_secant_rad_s": 0.00031197797580611794,
+            "secant_is_not_instantaneous_angular_velocity": true,
+            "future_trajectory_extrapolated": false,
+            "threshold_or_outcome_changed": false,
+            "recovery_stability_established": false
+          }
+        },
+        "support_onsets": {
+          "force_hold_left_075_train_001": {
+            "posthoc": true,
+            "first_post_handoff_support_command": {
+              "front_left_foot": 60,
+              "front_right_foot": null,
+              "rear_left_foot": 73,
+              "rear_right_foot": 60
+            },
+            "window": "commands_60_through_1439",
+            "may_include_post_failure_states": true,
+            "causal_recovery_explanation_established": false
+          },
+          "force_hold_nominal_train_001": {
+            "posthoc": true,
+            "first_post_handoff_support_command": {
+              "front_left_foot": 60,
+              "front_right_foot": 128,
+              "rear_left_foot": 79,
+              "rear_right_foot": 60
+            },
+            "window": "commands_60_through_1439",
+            "may_include_post_failure_states": true,
+            "causal_recovery_explanation_established": false
+          }
+        },
+        "closure_attempt": "sdk2-hold-horizon-closure-controls-ce4abb59e9384a0fbbeee8b74d96cd5e",
+        "closure_receipt_sha256": "e851a5addaab387d05d9d30bcc8de62b8a05f4cd2635ae9f34e226f72d01e9f3",
+        "closure_audit_sha256": "dbc51f5369937453889cfc4b3f1ac9be54df13ad10f0c116bf9a3fd0357df61e",
+        "closure_controls": 12,
+        "closure_worlds_opened": 0,
+        "weak_recovery_failed": true,
+        "healthy_finite_horizon_pass": true,
+        "twelve_second_recovery_established": false,
+        "safe_backup_qualified": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false,
+        "release_authority": false
       }
     },
     "tier3": {

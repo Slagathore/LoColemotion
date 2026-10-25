@@ -9,6 +9,15 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
+Latest completed hold continuation (2026-10-25): the [twelve-second closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-twelve-second-recovery-hold-continuation---2026-10-25)
+passes all 479 launch controls, two full native readers, 12 closure controls and
+two retained-data readers. **Weak hold fails tilt at 1.111667 s; healthy hold
+passes the complete 12-second finite horizon.** Both original one-second
+prefixes match exactly. Healthy front-right support returns at command 128;
+weak front-right support never returns. Next investigate feasible support
+restoration before a distinct touchdown/hold controller successor. Safe backup,
+Tier 2/Tier 3 and release remain unqualified.
+
 Latest prospective hold continuation (2026-10-25): the [twelve-second route](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-twelve-second-recovery-hold-continuation---2026-10-25)
 passes 14 new controls, the complete synthetic clock on both DLLs and retained
 parent reconstruction without opening worlds. Two fresh weak/healthy hold
