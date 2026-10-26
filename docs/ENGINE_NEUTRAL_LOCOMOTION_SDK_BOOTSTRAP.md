@@ -51783,3 +51783,22 @@ unqualified. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#predictive-publ
 records the finite scope, provenance and one retained optimizer-iteration
 difference. No new worlds ran, and physical recovery, learning, Tier 2, Tier 3
 and release authority remain unqualified.
+
+## Predictive native comparison declaration - 2026-10-25
+
+The [prospective native contract](../sdk/discovery/predictive_native_v1.json)
+declares fresh reach-hold and predictive-hold worlds for the exposed weak and
+nominal start, preserving 1,440 commands, 7,200 internal steps and the original
+12-second physical criteria per completed world. A valid controller refusal
+retains its unchanged native state, stops before transfer, and leaves the
+remaining worlds explicitly unopened. Full comparison completion and recovery
+success remain separate requirements.
+
+The new 24 route controls and runtime preflight passed without worlds in
+`sdk2-predictive-native-v1-72e5427a6f8e45029729dd6defed1140`.
+A separate schema-adapted reader check,
+`sdk2-predictive-native-reader-check-b20730f22e934e3795789b6d8d3788fc`,
+reconstructed the retained baseline's 1,440 commands and 7,200 steps with no
+world construction. These checks do not substitute for the complete 1,227-control
+gate required after a clean pushed freeze. Physical execution and both complete
+readers are still pending at this declaration.
