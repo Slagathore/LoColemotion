@@ -3671,3 +3671,22 @@ with newly generated native observations; later planned intervals remain
 forecasts. The original Python predictor provides independent full-sequence
 reconstruction using the established numerical tolerances. No new physical
 or learned-adaptation result exists at this component checkpoint.
+
+## Native sequence search boundary - 2026-10-26
+
+The [native v3 closure](../../sdk/discovery/predictive_sequence_native_result_v3.json)
+records a terminal finite search failure despite an available nominal proposal.
+The best of 103 sequences passes 65 of 66 required intervals before a predicted
+rear-left hip position-margin violation. Original Python reconstructs the
+best sequence, and independent readers verify all candidate guards and costs.
+This does not show that every admissible control sequence is infeasible.
+
+[Predictive Sampling, version 2](https://arxiv.org/html/2212.00541v2),
+sections 2 and 5.1, motivates reuse of prior plans and incremental improvement
+under changing observations; its discussion also identifies local minima.
+The local next-step inference is to test search coverage and warm-plan
+representation at the exact retained refusal state while preserving the
+horizon and guards. The paper does not establish that this successor will
+recover this morphology or justify changing an observed result. Native
+evidence remains necessary before the planner can supply qualified training
+data, as distinct from the paper's general expert-policy use case.

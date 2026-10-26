@@ -21,16 +21,17 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: the [prospective native sequence route](#prospective-native-sequence-route---2026-10-26)
-passes 36 route controls and two-core runtime preflight without opening
-worlds. The public fallback remains verified. Run the distinct native owner
-from a clean pushed freeze; its full 1,351-control gate must pass before any
-world opens. The declaration retains four fresh worlds, one exposed
-development start, the original 12-second horizon and physical thresholds,
-complete forecasts and aggregate storage limits. Audit newly generated
-observations and any refusal with both independent readers. Useful native
-recovery, training-data authority, learned Tier 2, beneficial Tier 3 adaptation,
-real-time operation and release remain unqualified.
+Current next action: the [fresh native sequence comparison](#native-sequence-refusal-and-retained-search-limit---2026-10-26)
+passes all 1,351 controls and both independent readers, but stops at command
+81 after 0.675 simulated seconds. All 103 terminal sequences are refused;
+the best passes 65 of 66 required intervals before the rear-left hip exceeds
+its planning position margin. The nominal proposal is available. Diagnose
+this exact retained state with a distinct bounded search successor, retaining
+the same horizon, public envelope and guards. No new physical run is needed
+to answer that first question. Then require fresh native evidence before
+using any improved planner as a training source. Useful recovery, training-data
+authority, learned Tier 2, beneficial Tier 3 adaptation, real-time operation
+and release remain unqualified.
 
 Prior compiled-backend result: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
 passes 91 controls and two identical readers over all 2,006 candidate forecasts.
@@ -9237,3 +9238,54 @@ verification roles. All numerical tolerances remain unchanged.
 Next run the full gate and fresh native comparison from the clean published
 freeze. Preserve positive, negative, refused and incomplete outcomes. Useful
 native observations must precede training-data and learned-adaptation claims.
+
+## Native sequence refusal and retained search limit - 2026-10-26
+
+The [native v3 closure](../sdk/discovery/predictive_sequence_native_result_v3.json)
+retains a valid refusal from the clean published prospective freeze. All
+1,351 controls pass. Two independent readers produce byte-identical results,
+replaying the complete host on the other core, reconstructing all sequence
+guards and ranking, and comparing each best sequence with the original
+Python predictor. Both readers open zero worlds.
+
+Two fresh weak-condition worlds run. The baseline completes 1,440 commands
+and 7,200 internal steps, exactly matching the earlier retained baseline.
+Both new worlds share 60 controller rows, 300 internal rows and the handoff
+state before their controllers diverge. The candidate transfers 81 commands
+and runs 405 internal steps, ending at 0.675 simulated seconds. Its command-81
+refusal precedes transfer and leaves native state unchanged. The two planned
+nominal-condition worlds remain unopened under the declared stop policy.
+
+The candidate applies 21 sequence commands, from 60 through 80. Including
+the refused command, the readers check 1,041 evaluated sequences and 22 best
+sequences. The nominal allocator succeeds throughout this finite population;
+the public fallback is not exercised by this new native trajectory.
+Original-Python maximum position and velocity component differences are
+3.220e-15 and 2.931e-14, with zero changed optimizer-iteration counts.
+For the 21 first applied five-step intervals, maximum forecast/native position
+and velocity component differences are 1.955e-8 and 1.173e-5. These arrays mix
+components and units, so these are diagnostics, not a new accuracy threshold
+or whole-horizon native validation.
+
+At command 81, all 103 evaluated sequences fail the original guards.
+The best has 65 valid intervals out of 66. Its rear-left hip first crosses the
+upper planning position margin 0.546667 seconds into the forecast; by 0.55
+seconds its excess is 0.009373 rad. This is predicted future motion. The
+observed hip is still inside its limits when the controller refuses. Seven
+evaluations share that longest admissible prefix and the same objective.
+Finite search failure does not establish global infeasibility.
+
+No physical failure is recorded before the candidate stops. Its short prefix
+does not establish recovery or improvement over the baseline, whose first
+physical violation occurs later at 1.158333 seconds. The complete 12-second
+comparison remains censored. Total retained streams are 1,252,330,116 bytes.
+The candidate's measured outer loop totals 359.646 wall seconds, including
+330.759 seconds of portable control and 28.456 seconds of capture/transfer;
+real-time operation is unqualified.
+
+Next use the retained command-81 observation and actual prior plan to compare
+a bounded successor search with the consumed search. Preserve all rejected
+candidates, unchanged horizon and guards, and independent reconstruction.
+An admissible predicted sequence would justify a public-controller successor
+and another fresh native test; it would not itself establish recovery,
+training-data authority, learned Tier 2, beneficial Tier 3 or release.

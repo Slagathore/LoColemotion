@@ -51892,3 +51892,21 @@ first-applied-interval native measurement scope. The next owner must start
 from a clean pushed freeze and pass all 1,351 applicable controls before
 opening a world. Component success does not substitute for that gate.
 Native recovery, training evidence, Tier 2, Tier 3 and release remain unqualified.
+
+## Native sequence comparison retains a finite refusal - 2026-10-26
+
+The [native sequence v3 result](../sdk/discovery/predictive_sequence_native_result_v3.json)
+passes all 1,351 controls and two byte-identical independent readers.
+Two fresh weak-condition worlds run; the candidate stops before transfer at
+command 81 after 0.675 simulated seconds. The two nominal worlds remain
+unopened. All 103 terminal sequences fail the original guards, with the best
+passing 65 of 66 forecast intervals before a rear-left hip position-margin
+violation. The nominal proposal is available, so this is a different limit
+from the earlier public-route dependency.
+
+The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-sequence-refusal-and-retained-search-limit---2026-10-26)
+records the complete retained population, actual-history and native forecast
+checks, censored comparison and next bounded search question. This verifies
+the native route and a finite negative; recovery, training-data authority,
+learned Tier 2, beneficial Tier 3 and release remain unqualified. Preserve the
+consumed result and original guards in any successor.
