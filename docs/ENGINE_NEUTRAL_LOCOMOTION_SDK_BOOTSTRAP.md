@@ -15,14 +15,21 @@ candidate commands (430 solver steps, 0.716667 s), then refuses command 86 befor
 transfer. The candidate has no observed safety violation before that refusal;
 the nominal pair remains unopened and recovery benefit is unproved.
 
-The [adaptive-scale result](../sdk/discovery/sequence_adaptive_scale_result_v1.json)
-passes 362 controls and two identical readers, preserving the four earlier
-successful refinements. The new command-86 search still passes only 65/66
-intervals. Its smaller violation remains inadmissible. The next action is the
-[roadmap's retained structural diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-26)
-of command projection, motor torque, contact support and the held future
-baseline, before choosing another search successor. No new native command,
-training-data, Tier 2, Tier 3, real-time or release authority is established.
+The [retained torque/contact diagnostic](../sdk/discovery/sequence_authority_result_v1.json)
+passes 20 controls and two identical readers across eight overlapping forecasts
+at five exposed states. All 2,630 retained steps have saturated rear-left hip
+braking with positive joint velocity. Seven forecasts have no front-foot contact;
+the remaining command-81 forecast has contact for 10/330 steps. Every retained
+motor torque reconstructs exactly. This is local arithmetic evidence, not a
+global infeasibility certificate or a new native observation.
+
+The next [roadmap component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-26)
+tests earlier front-foot engagement with an explicitly declared contact-aware
+policy. It may change earlier accepted decisions under a fresh contract.
+Keep actuator caps and safety guards, disclose the held future-baseline
+approximation, then verify public integration and fresh native continuation.
+The adaptive-scale search remains refused at 65/66 intervals. No training-data,
+Tier 2, Tier 3, real-time or release authority is added.
 
 Earlier campaign outcomes and next-step descriptions below are historical.
 
@@ -52016,3 +52023,19 @@ adaptation authority. The next diagnostic should examine the retained command
 and torque bounds, contact support and future-baseline assumption before another
 search change. Keep the original finite refusal, all candidates and exact
 source/runtime identities; no horizon or acceptance limit changed.
+
+## Retained authority diagnostic and earlier contact planning - 2026-10-26
+
+The [eight-trajectory diagnostic](../sdk/discovery/sequence_authority_result_v1.json)
+passes 20 controls and two identical readers. All 2,630 retained forecast steps
+have saturated rear-left hip braking while that joint moves in the positive
+direction; its local interval target range produces the same motor torque.
+Only the command-81 forecast has any front-foot contact (10/330 steps).
+Motor reconstruction error is zero. The failed exact-bound fixture and its
+prospective control correction remain fully retained.
+
+These findings support testing earlier front-foot engagement under a distinct
+policy contract. They do not establish global infeasibility, physical recovery,
+predictor accuracy over the full horizon or permission to increase force limits.
+No new forecasts or worlds ran. Native-v4, both command-86 search refusals and
+all prior positive forecasts retain their identities and claim limits.

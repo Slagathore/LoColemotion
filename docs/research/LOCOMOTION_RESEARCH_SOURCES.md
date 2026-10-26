@@ -3780,3 +3780,26 @@ projection and torque saturation, support contacts and the held future baseline
 before choosing further search changes. That examination must separate observed
 arithmetic and local limits from hypotheses about recovery and model accuracy;
 it supplies no alternative-action native observations.
+
+## Retained saturation and contact participation hypothesis - 2026-10-26
+
+The [retained authority diagnostic](../../sdk/discovery/sequence_authority_result_v1.json)
+reconstructs motor torque exactly across eight overlapping forecasts. Every
+retained step has saturated rear-left hip braking with positive joint velocity.
+Seven forecasts have no front-foot contact; the eighth has contact for 10/330
+steps. These finite predictor observations motivate earlier contact engagement,
+without establishing a unique cause of native failure.
+
+[Kim et al., Contact-Implicit Model Predictive Control](https://arxiv.org/html/2312.08961v2),
+sections 5.1.3, 5.1.4 and 7.2.3, reports that general regulating costs can leave a
+leg unused in walking. An air-time term encourages participation, while foot
+slip/clearance terms shape contact-related motion. Read on 2026-10-26. The local
+inference is to test a stance-contact objective or contact-directed proposals;
+their walking thresholds and weights are not adopted as recovery criteria.
+
+[Zhang et al., Whole-Body Model-Predictive Control of Legged Robots with MuJoCo](https://arxiv.org/html/2503.04613v2),
+section IV-B, includes the low-level joint-space PD controller inside the
+dynamics and optimizes joint-angle references. Read on 2026-10-26. Our
+velocity-motor correction interface differs: keep the causal actuator mapping
+and held future-baseline approximation explicit when evaluating this direction.
+Neither paper establishes transfer or qualification for this SDK.

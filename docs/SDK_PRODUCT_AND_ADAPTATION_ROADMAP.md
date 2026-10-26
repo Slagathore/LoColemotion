@@ -21,14 +21,23 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: audit the retained command envelopes, actuator saturation,
-contact support and held future-baseline assumption before another search
-successor. The [adaptive-scale closure](#adaptive-search-steps-reduce-violation-but-retain-refusal---2026-10-26)
-passes 362 controls and two byte-identical readers, preserving all four prior
-successful refinements. Its new 316-candidate search still refuses command 86
-at 65/66 intervals, with hip-margin and tilt violations. The preceding
-[constraint-ranked search](#constraint-ranking-preserves-prior-successes-but-still-refuses---2026-10-26)
-also remains a finite refusal. Neither result authorizes public integration.
+Current next action: build a distinct contact-aware planning component that
+tests earlier front-foot engagement under the existing actuator and safety
+limits. The [retained authority diagnostic](#retained-forecast-torque-and-contact-diagnostic---2026-10-26)
+passes 20 controls and two identical readers over eight overlapping forecasts
+at five exposed states. All 2,630 retained steps place the rear-left hip at its
+lower torque cap while its joint velocity is positive; the entire local
+interval-command envelope yields that same torque at each retained state.
+Seven trajectories have no front-foot contact, and the remaining command-81
+trajectory has contact for only 10 of 330 steps. Motor torque reconstructs
+exactly. These observations motivate the next hypothesis; they do not establish
+global infeasibility, actual future native failure or long-horizon model accuracy.
+
+Declare any changes to earlier accepted decisions as part of the new policy.
+Preserve the existing guards and actuator caps, retain the held-baseline
+approximation as an explicit model limitation, and verify actual first-command
+projection and public history before fresh native work. The adaptive-scale and
+constraint-ranking results remain finite refusals with no new action authority.
 
 Latest native result: the [native-v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
 passes all 1,407 safety controls and two independent readers. The candidate
@@ -38,9 +47,8 @@ observed candidate safety violation before that refusal. Only the weak pair
 opened; the nominal pair remains unopened. This is a finite continuation,
 not a completed twelve-second recovery comparison.
 
-After the structural diagnostic, declare a distinct successor and verify an
-admissible retained-state plan, public integration and fresh native continuation
-in that order. Native recovery, training-data authority, learned Tier 2,
+For the contact-aware successor, verify admissible retained-state plans,
+public integration and fresh native continuation in that order. Native recovery, training-data authority, learned Tier 2,
 beneficial Tier 3, real-time operation and release remain unqualified. Earlier
 next-step statements below are historical.
 
@@ -9481,3 +9489,40 @@ actuator limits and predictor uncertainty. Such a diagnostic cannot establish
 global infeasibility or authorize guard relaxation. Public integration remains
 pending an admissible result; Tier 2, Tier 3, training-data, real-time and release
 authority remain unchanged.
+
+## Retained forecast torque and contact diagnostic - 2026-10-26
+
+The [authority diagnostic closure](../sdk/discovery/sequence_authority_result_v1.json)
+checks the best native refinements at commands 81, 83, 84, 85 and 86, the
+original command-86 best, and the constraint-ranked and adaptive-scale
+command-86 bests. Twenty controls and two byte-identical readers verify all
+2,630 retained forecast steps. These are eight overlapping trajectories at
+five exposed starting states, not new independent physical samples. No new
+forecast, candidate search, dynamics solve or world ran.
+
+Scalar and vector command projection, velocity-motor force and safety guards
+agree. Retained motor force reconstructs with zero error. The rear-left hip
+has maximum negative motor torque and positive joint velocity in every step;
+at each retained state all target choices in that interval's correction/slew
+envelope produce the same motor torque. This local plateau does not prove that
+other joint actions, earlier decisions or alternative trajectories are ineffective.
+
+The command-81 forecast has front-foot geometric contact and positive normal
+force for 10/330 steps. The other seven forecasts have neither in any step.
+This includes three forecasts that still satisfy the finite horizon guards.
+The best adaptive forecast reaches a terminal tilt of 0.6000449104882044 rad
+and still refuses the final interval. Contact counts and normal forces here
+come from the retained predictor, not from new native measurements.
+
+The first control attempt is retained: its constant-knot fixture incorrectly
+expected 66 exact correction-cap hits. Interpolation is one ULP below 3.5 at
+interval 1, producing 65 exact hits. The prospective successor corrects only
+that test expectation, binds the failed receipt and preserves the old contract;
+the diagnostic arithmetic and physical limits are unchanged.
+
+Next test contact-aware planning from earlier exposed states, with any change
+to previously accepted decisions explicitly declared. General pose cost and
+late refusal repair have not established sustained recovery. Foot participation
+is a research-informed hypothesis, not a diagnosed unique cause. Preserve force
+caps and guards, report the future-baseline approximation, then require public
+integration and fresh causal native evidence before training or qualification.

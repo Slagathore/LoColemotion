@@ -1,0 +1,81 @@
+{
+  "schema_version": "locolemotion_sequence_authority_contract_v2",
+  "failed_control_predecessor": {
+    "attempt_id": "sdk2-sequence-authority-v1-60fadddeee654cd48593d83408e6fcdc",
+    "receipt_sha256": "474c8a9c72cc945509bf62377d7df495b698ca254bf5fd6b8cddcc99c02eb415",
+    "contract_path": "sdk/discovery/sequence_authority_v1.json",
+    "contract_sha256": "b60e61accdfc3b178f6bf51625e04c5bf6981828c2e5f52132f93ea2616813f3",
+    "controls_run": 20,
+    "failures": 1,
+    "readers_started": false,
+    "correction": "Test expectation only: exact bound hits are 65; interval 1 is one ULP below 3.5. Diagnostic arithmetic and thresholds unchanged."
+  },
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "retained_forecast_arithmetic_diagnosis",
+    "question_class": "development"
+  },
+  "source_bindings": {
+    "sequence_authority_diagnostic_v1.py": "8ec94ba2efa0cc8831fdbb24ebfcfbda68f909150375d7e2a3e530ed97bbf38a",
+    "sequence_authority_task_v1.py": "8971c981ca629a705460567d7739247e89d6b536fc41e9334334cce65275df56",
+    "audit_sequence_authority_v1.py": "45f82b36d3cf82890f46060d3a46a4e2071481cb1cae146787f76d90a3451b9b",
+    "test_sequence_authority_v1.py": "d6341677dd35774d64127a20fb0d4e7e982fb8f0cc7e36700bc52ffa9e60323e",
+    "run_sequence_authority_v1.py": "34eba85b8b468fe7a7ecff4b1966bcb22784d6c3dcf6ec6d7abe4af2935ced66",
+    "sequence_authority_v1.json": "b60e61accdfc3b178f6bf51625e04c5bf6981828c2e5f52132f93ea2616813f3"
+  },
+  "parent_attempt": "sdk2-sequence-adaptive-scale-v1-d9ba05d4f4e747ea8fc1a29d8617ab5a",
+  "parent_receipt_sha256": "8bd120f05bb3e0373d374ca761bc0bb7212c448e65e817b682538f1d94dde263",
+  "parent_result_sha256": "95fe64108d9e3a75430bf2619cfd0d931377a1b78e2aa729e2e680ddf6735fe0",
+  "inherited_verified_controls": 362,
+  "controls_required": 20,
+  "input_bindings": {
+    "sdk2-predictive-sequence-native-v4-a2e10bd6cfb14867991d0943d3ebc5b9/physical/predictive_hold_left_075_train_001/controller.jsonl": "5177efeb1944b4ae45cd37111ed98f81a369e9f60246e0c6316790254cbcaf52",
+    "sdk2-predictive-sequence-native-v4-a2e10bd6cfb14867991d0943d3ebc5b9/physical/predictive_hold_left_075_train_001/force-profile.json": "87c37926a135c0ddf6c1e929ca0dab216830bea7496be5598a4d75e9b23ad1d9",
+    "sdk2-sequence-constraint-repair-v1-5df5955031694ad6a69ce9a0695a8379/audit-capture/final-86.json": "ba25a49e6bf8b4c2a6d8990c1e13ce9e4e26fda0e456da709c1be194040ebd54",
+    "sdk2-sequence-adaptive-scale-v1-d9ba05d4f4e747ea8fc1a29d8617ab5a/audit-capture/final-86.json": "8195d308ede18bd24aed80103b50b5e2e66facbc3ca491fa1e91a6a97b7c2dba"
+  },
+  "cases": [
+    "native_refined_81",
+    "native_refined_83",
+    "native_refined_84",
+    "native_refined_85",
+    "native_original_86",
+    "native_refined_86",
+    "constraint_repair_86",
+    "adaptive_scale_86"
+  ],
+  "horizon_intervals": 66,
+  "steps_per_interval": 5,
+  "diagnostic": "All retained best-trajectory steps; scalar/vector command projection, motor torque and guards; conic force-vector identity accounting",
+  "arithmetic_tolerance": {
+    "relative": 1e-12,
+    "absolute": 1e-12
+  },
+  "force_cap_comparison": "exact equality to declared clipped bound",
+  "loaded_contact_comparison": "retained normal force strictly positive; no support or feasibility threshold inferred",
+  "predictor_refusal_handling": "reject incomplete or numerically refused input; never invent unavailable torque or geometry",
+  "state_scope": "instantaneous torque ranges hold each retained state fixed; they are not alternative-action trajectories",
+  "prior_qualification": "verify completed parent controls and complete artifact populations; do not rerun inherited search controls",
+  "maximum_control_wall_seconds": 600,
+  "maximum_reader_wall_seconds": 1800,
+  "minimum_free_storage_bytes": 4294967296,
+  "maximum_capture_bytes": 67108864,
+  "maximum_capture_row_bytes": 8388608,
+  "runtime_native_api_forbidden": true,
+  "runtime_xml_parsing_forbidden": true,
+  "new_forecasts": 0,
+  "candidate_searches": 0,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "trained": false,
+  "actual_native_transfer_verified": false,
+  "recovery_benefit_established": false,
+  "training_data_authority": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "global_infeasibility_established": false,
+  "baseline_approximation_error_measured": false
+}
