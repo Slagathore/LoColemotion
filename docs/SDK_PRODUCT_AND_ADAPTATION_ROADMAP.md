@@ -8951,3 +8951,53 @@ with at most 8 GiB per stream and 16 MiB per controller row.
 No fresh physical result exists at this declaration. Recovery, training-data
 authority, learned Tier 2 capability, online Tier 3 benefit and release remain
 unqualified.
+
+## Fresh predictive native comparison - retained refusal 2026-10-25
+
+The [native result](../sdk/discovery/predictive_native_result_v1.json) closes
+the declared comparison as an audited, incomplete execution. The clean pushed
+freeze is `5523e698be85d38296bdd2fcb032a49165ed9d76`; fresh attempt
+`sdk2-predictive-native-v1-13374a22f25c4d089c34045c96ec64f7` passed all 1,227
+controls before opening two CPU worlds. Both complete readers are byte-identical.
+The owner retains 2,829 artifacts bound to 1,078 source and 3,583 runtime files.
+
+| Exposed weak-start role | Transferred commands | Native steps | Observed ending |
+| --- | ---: | ---: | --- |
+| Fresh reach-hold baseline | 1,440 | 7,200 | Full capture; tilt first fails at step 695, 1.158333 s |
+| Fresh predictive hold | 114 | 570 | Command 114 refused before transfer at 0.95 s |
+
+The predictive capture includes one final untransferred controller row, giving
+115 candidate controller rows and 1,555 total rows. All 7,770 internal steps have
+complete force/contact capture. The first 60 commands, 300 steps and prepared
+handoff match between fresh worlds. The fresh baseline reproduces every retained
+baseline controller and native-trace field bitwise.
+
+Every applied predictive command from 60 through 113 selects a non-nominal
+candidate: 54 selected forecasts independently reconstructed in Python. Maximum
+reference/compiled position and velocity component differences are 1.110223e-16
+and 4.329870e-15; no optimizer iteration count differs. Selected forecasts versus
+the actual five native steps differ by at most 5.062956e-8 in position components
+and 1.588248e-5 in velocity components. These arrays mix position, quaternion,
+joint-angle and velocity components; the maxima are not a single physical unit
+or a recovery threshold.
+
+At command 114, all 34 candidate forecasts fail the joint-speed guard. Their
+rear-left hip peak speeds range from 3.577237 to 3.608709 rad/s, above the unchanged
+3.5 rad/s planning cap. The observed starting speed is 3.024471 rad/s. The refusal
+retains unchanged native state and control and opens neither nominal-condition
+world. This establishes failure of this finite candidate set at that state;
+it does not prove that every possible control is infeasible.
+
+Before censoring, the predictive world has no physical threshold violation:
+minimum height 0.302712 m, maximum tilt 0.566973 rad and zero torso-contact steps.
+Its shorter observed interval cannot establish recovery or superiority over the
+baseline. Twelve-second completion, learned Tier 2, online Tier 3, real-time
+performance, training-data authority and release remain unqualified.
+
+Next diagnose the earliest state at which bounded action sequences can prevent
+the rear-left hip speed boundary, then prospectively compare a longer planning
+horizon or earlier support/braking action. The close selected forecast/native
+agreement motivates that question but does not prove a longer-horizon solution.
+Preserve the finite candidate/refusal result, original guards, simulated timing
+and fresh-world requirement. Any new physical comparison needs a distinct
+successor identity and freeze.

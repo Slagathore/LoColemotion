@@ -51802,3 +51802,20 @@ reconstructed the retained baseline's 1,440 commands and 7,200 steps with no
 world construction. These checks do not substitute for the complete 1,227-control
 gate required after a clean pushed freeze. Physical execution and both complete
 readers are still pending at this declaration.
+
+## Predictive native refusal checkpoint - 2026-10-25
+
+The [native closure](../sdk/discovery/predictive_native_result_v1.json) passes
+1,227 controls and two byte-identical complete readers of two fresh CPU worlds.
+The reach-hold baseline reproduces its retained 12-second trace exactly.
+The predictive world applies 54 post-handoff commands, then refuses command 114
+at 0.95 s because all 34 forecasts exceed the rear-left hip speed guard.
+The remaining nominal-condition pair stays unopened.
+
+This is a fully audited incomplete comparison, with 1,555 controller rows and
+7,770 native/contact samples. No predictive physical threshold violation occurs
+before censoring, which does not establish recovery or superiority. The
+[roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#fresh-predictive-native-comparison---retained-refusal-2026-10-25)
+records numerical agreement, exact scope and the next question: earlier bounded
+action sequences with enough planning lead time to avoid the speed boundary.
+No guard is relaxed. Training authority, Tier 2, Tier 3 and release remain false.

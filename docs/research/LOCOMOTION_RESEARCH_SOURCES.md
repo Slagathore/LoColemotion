@@ -3595,3 +3595,18 @@ result or evidence of physical recovery under selected commands. Full host cost
 also exceeds forecast-only cost substantially. The next physical comparison must
 budget and retain that whole path before these choices can support learned
 adaptation or any recovery claim.
+
+## Predictive native planning limit - 2026-10-25
+
+The [fresh native comparison](../../sdk/discovery/predictive_native_result_v1.json)
+adds local physical evidence to the predictive implementation lineage. Two
+readers reconstruct 54 applied selected forecasts and the complete observed
+native trajectory. Selected five-step forecasts closely match the new native
+steps, but all 34 candidates at command 114 violate the rear-left hip speed
+guard. The candidate world is censored at 0.95 s with the original guard intact.
+
+The next research question is earlier action-sequence planning and sufficient
+lead time for support/braking. This is an inference from the finite local
+failure, not evidence that a longer horizon will work, a new published research
+result, or permission to convert predicted states into training observations.
+The original full-horizon physical criteria and frozen-reader discipline remain.
