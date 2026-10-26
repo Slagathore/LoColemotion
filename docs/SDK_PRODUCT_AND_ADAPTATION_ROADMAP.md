@@ -21,22 +21,21 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: freeze and run a distinct bounded native continuation of
-the contact-priority policy. The [public integration](#contact-priority-public-handoff-and-history---2026-10-26)
-passes 145 controls and two identical readers across four hosts, two core
-builds and 248 commands per reader. All 240 pre-handoff commands are unchanged;
-eight sequence commands resolve and transfer exactly. The weak command-60
-handoff reproduces the published contact-priority result, and command 61
-carries the new actual resolved correction and plan.
+Current next action: run the complete 1,546-control safety gate and fresh native
+contact-priority comparison from this clean, pushed prospective freeze.
+The [native route component](#contact-priority-prospective-native-route---2026-10-26)
+passes all 40 route controls and a two-core zero-world runtime preflight.
+This component-only result does not authorize physical launch.
 
-Use fresh weak and nominal baseline/candidate roles with the complete
-applicable safety gate and a clean, pushed prospective freeze. Generate later
-observations by applying the newly selected actions. The public test reused
-retained observations, so its following step verifies protocol and memory,
-not physical continuity or recovery. Earlier accepted decisions may change;
-the old command-86 state is an exposed stress result, not a required future
-state. Keep all guards, actuator caps, the 66-interval horizon, and the
-explicit held future-baseline approximation.
+The four planned roles are fresh weak and nominal baseline/candidate pairs,
+each bounded at twelve simulated seconds. Compare the unchanged first 60
+commands and 300 internal steps, then generate subsequent observations using
+the newly selected actions. Post-handoff equality with older candidates is
+not required. Retain all candidate forecasts, contact and force streams;
+a controller refusal stops before transfer and aborts the remaining roles.
+The complete gate retains all 1,407 prior controls and adds 99 contact-planning
+controls plus 40 route controls. Guards, force caps, the 66-interval prediction
+horizon and explicit held future-baseline approximation remain unchanged.
 
 Latest native result: the [native-v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
 passes all 1,407 safety controls and two independent readers. The candidate
@@ -9590,3 +9589,39 @@ recovery or learning claim follows. Next freeze a fresh bounded native
 continuation, with complete safety gates and fresh weak/nominal paired roles.
 Preserve guards and force caps, and evaluate the trajectory actually generated
 by the earlier changed decisions.
+
+## Contact-priority prospective native route - 2026-10-26
+
+The [route component](../sdk/discovery/contact_sequence_native_component_result_v1.json)
+retains attempt sdk2-contact-sequence-native-v1-807e97cb1f0a4f8e9ec74502aaefacdb,
+receipt 383ba04466440a87da522d0b24b169f253e169fd31a2afe56840adbecefacc4a, and result 6479b1cd2e5e37a6aac82b715ec9ae9cad5181138a270aebb66aa372519a17d3.
+All 40 route controls pass, including exact selected transfer, nested
+seed/refinement/contact winner reconstruction, actual-history handling,
+prefix corruption, refusal state preservation and aggregate capture limits.
+A separate zero-world preflight verifies the four profiles on both core builds.
+
+The prospective [contract](../sdk/discovery/contact_sequence_native_v1.json)
+declares 1,546 unique applicable controls: 1,407 inherited, 99 newly applicable
+contact-planning controls, and 40 route controls. No control is waived.
+Only the 40 route controls ran in this component attempt; physical launch
+requires the complete gate from a clean, pushed source freeze.
+
+Fresh weak and nominal baseline/candidate roles each have 1,440 commands and
+7,200 internal steps over twelve simulated seconds. Baselines are re-run and
+checked against retained original bytes. The paired first 60 commands and
+300 steps are unchanged; later candidate trajectories may differ. A final
+controller refusal must preserve native state and control, stop before
+transfer, and leave remaining worlds unopened. Two independent readers must
+reconstruct the complete available population and agree byte for byte.
+
+The worker budget remains twelve wall hours, each reader sixteen hours, with
+a 480 GiB aggregate stream cap and 512 GiB free-space reserve. All forecasts
+remain retained. Public contact replans reached 70.9984 seconds, and the older
+refinement route reached 203.6326 seconds. The combined worst 521-candidate
+branch has not been measured; completing the full horizon within these limits
+is not promised. Resource exhaustion remains an incomplete retained outcome.
+These budgets are not control periods or recovery thresholds.
+
+This component attempt opens zero worlds. Physical recovery, training-data
+authority, Tier 2, beneficial Tier 3, real-time operation and release remain
+unqualified. Next run the full gate and fresh physical comparison.

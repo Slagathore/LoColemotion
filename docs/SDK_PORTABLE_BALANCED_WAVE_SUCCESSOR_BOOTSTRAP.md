@@ -38988,3 +38988,12 @@ tests, four runtime/retained-input checks and eight replay tests pass. Next is
 the complete 73-test safety gate and a fresh single-kick diagnostic if it
 passes. No V9 world has run; this is not force-aware recovery, a matched effect,
 or a supported kick-recovery result. The original V8 negative remains consumed.
+
+## Contact-priority native route component - 2026-10-26
+
+The [prospective route checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-priority-prospective-native-route---2026-10-26)
+passes 40 route controls and two-core zero-world preflight. All prior 1,407
+controls remain in the 1,546-control launch gate. The fresh four-world comparison
+keeps the unchanged 60-command prefix, complete forecasts and native streams,
+and refusal-before-transfer semantics. No worlds opened in this component
+attempt. Native recovery, Tier 2, Tier 3 and release remain unqualified.
