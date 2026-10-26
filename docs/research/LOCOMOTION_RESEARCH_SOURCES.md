@@ -3660,3 +3660,14 @@ scheduled replanning and return to successful nominal allocation. This
 demonstrates public composition and memory continuation; it does not prove
 force-allocation/forecast equivalence or physical recovery. Fresh native
 observations under selected actions remain the next empirical test.
+
+## Native test of receding sequence selection - 2026-10-26
+
+The [prospective native route](../../sdk/discovery/predictive_sequence_native_component_result_v3.json)
+carries the previously cited predictive-control approach into a fresh-world
+comparison. It retains complete forecasts, exact public-command transfer and
+the original physical criteria. Each selected first interval will be compared
+with newly generated native observations; later planned intervals remain
+forecasts. The original Python predictor provides independent full-sequence
+reconstruction using the established numerical tolerances. No new physical
+or learned-adaptation result exists at this component checkpoint.

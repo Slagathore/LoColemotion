@@ -51878,3 +51878,17 @@ The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-sequence-fallback-and
 now calls for a distinct bounded native comparison from a clean pushed
 prospective freeze, with the complete applicable gate and unchanged physical
 criteria. Tier 2, Tier 3 and release authority remain unchanged.
+
+## Prospective native sequence comparison - 2026-10-26
+
+The [v3 route component](../sdk/discovery/predictive_sequence_native_component_result_v3.json)
+passes 36 route controls and two-core runtime preflight with zero worlds.
+Two earlier preflight failures remain retained and bound. The successor keeps
+the verified public sequence controller, physical horizon and thresholds.
+
+The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-sequence-route---2026-10-26)
+records the four fresh-world comparison, aggregate capture bound and
+first-applied-interval native measurement scope. The next owner must start
+from a clean pushed freeze and pass all 1,351 applicable controls before
+opening a world. Component success does not substitute for that gate.
+Native recovery, training evidence, Tier 2, Tier 3 and release remain unqualified.

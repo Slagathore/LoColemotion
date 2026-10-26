@@ -21,18 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: the [public sequence fallback route](#public-sequence-fallback-and-memory-continuation---2026-10-26)
-passes 258 controls and two identical readers. Each reader verifies four
-hosts, 272 commands, 32 applied sequence commands and ten fallback applications
-after nominal allocation refusal. Both weak routes complete commands 0-73,
-including scheduled replanning at 72 and restored nominal proposals at 73.
-The old targets through 67 and the complete nominal handoff remain unchanged.
-Next declare and verify a distinct bounded native comparison from a clean,
-pushed prospective freeze. Use newly generated observations, fresh baseline
-worlds, the full applicable gate, unchanged physical criteria and explicit
-runtime/capture budgets. Retain refusals and incomplete runs. This public
-replay does not establish native recovery, useful training data, learned
-Tier 2, beneficial Tier 3 adaptation, real-time operation or release.
+Current next action: the [prospective native sequence route](#prospective-native-sequence-route---2026-10-26)
+passes 36 route controls and two-core runtime preflight without opening
+worlds. The public fallback remains verified. Run the distinct native owner
+from a clean pushed freeze; its full 1,351-control gate must pass before any
+world opens. The declaration retains four fresh worlds, one exposed
+development start, the original 12-second horizon and physical thresholds,
+complete forecasts and aggregate storage limits. Audit newly generated
+observations and any refusal with both independent readers. Useful native
+recovery, training-data authority, learned Tier 2, beneficial Tier 3 adaptation,
+real-time operation and release remain unqualified.
 
 Prior compiled-backend result: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
 passes 91 controls and two identical readers over all 2,006 candidate forecasts.
@@ -9197,3 +9195,45 @@ from the clean pushed prospective freeze. Use its actual selected-action
 observations to decide whether this controller can supply useful training
 evidence; preserve any new refusal
 or finite negative without weakening the old criteria.
+
+## Prospective native sequence route - 2026-10-26
+
+The [v3 route component](../sdk/discovery/predictive_sequence_native_component_result_v3.json)
+passes 36 controls and the two-core runtime preflight with zero worlds and
+zero solver steps. This is the native integration preparation, not the full
+launch gate or a recovery result. Its
+[prospective contract](../sdk/discovery/predictive_sequence_native_v3.json)
+requires all 1,351 applicable controls before physical launch.
+
+The comparison retains four fresh worlds: reach baseline and sequence
+candidate for the weak and nominal conditions, using one exposed development
+seed. The horizon remains 1,440 commands and 7,200 internal steps per complete
+world, or 12 seconds. Height, tilt, torso-contact, actuation and solver-input
+criteria are unchanged. A terminal candidate refusal stops before native
+transfer, retains the original cause and state, and aborts unopened worlds.
+
+Each independent reader replays the complete host on the other core, checks
+all retained sequence guards and ranking, and reconstructs the best full
+sequence with the original Python predictor. Native forecast error compares
+only the first five internal steps actually applied. Later sequence intervals
+remain predictions because subsequent commands can replan.
+
+Complete records have a 512-MiB row limit, 192-GiB per-stream limit and
+480-GiB aggregate stream limit, checked before writes. Launch requires
+512 GiB free. The worker has a 12-hour wall limit and each streaming reader
+a 16-hour limit. These are resource ceilings, not control periods, recovery
+thresholds or promises of completing the physical horizon. Exhaustion retains
+an incomplete attempt and cannot establish recovery. No capture is reduced.
+
+Two zero-world failures remain retained:
+[v1](../sdk/discovery/predictive_sequence_native_component_result_v1.json)
+treated the scalar runtime identity as a map before controls started;
+[v2](../sdk/discovery/predictive_sequence_native_component_result_v2.json)
+used the original predictor for a bit-exact prepared-objective check, failing
+one of 35 controls. V3 separates matching scalar identities from source/runtime
+maps and assigns the prepared and independent predictors their original
+verification roles. All numerical tolerances remain unchanged.
+
+Next run the full gate and fresh native comparison from the clean published
+freeze. Preserve positive, negative, refused and incomplete outcomes. Useful
+native observations must precede training-data and learned-adaptation claims.
