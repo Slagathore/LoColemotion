@@ -1,0 +1,85 @@
+{
+  "schema_version": "locolemotion_predictive_sequence_public_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "bounded_retained_state_sequence_public_route",
+    "question_class": "development"
+  },
+  "source_bindings": {
+    "predictive_sequence_online_v1.py": "a4bc12a7c36715e6a0bb4c86361f4fb99f2246b3038654d30c0cbfdc10e7bf88",
+    "predictive_sequence_policy_v1.py": "4d896398a19fa2bf8ca26013196589e8d6ab6422d569e6832f678e28c79a7f58",
+    "predictive_sequence_control_v1.py": "50ab4fb11a49e348ab87e214277ec5f3578f784bdef4b8fe2cd2546b2b522514",
+    "predictive_sequence_selection_audit_v1.py": "f33830a94fe6f7cd002cc7e6882e24b8440e97cf6cfb670891496b4135710435",
+    "predictive_sequence_row_audit_v1.py": "ce95a08fbc62810d5a339f34c569587ac743a35d6b319f2957616964a8a252c2",
+    "audit_predictive_sequence_public_v1.py": "78b7bbb129e93fbfd1b81965b84fcc8218ba76f49934acc2b814be03642b255b",
+    "run_predictive_sequence_public_v1.py": "5b3e62bf4d84ce81604ee57dfb25f9e002bb0bd4c5496981eb3779914833d35d",
+    "test_predictive_sequence_public_v1.py": "3dfd05a5c1c194adf0313313aff942b5ea01bc295b7215ddfd2a4c405179c182"
+  },
+  "parent_attempt": "sdk2-predictive-sequence-v1-3831cd6029ef4987b2393683c66444b4",
+  "parent_receipt_sha256": "d7ad2b0705b3a3f074020d99845c74f0bc58b0af972cdb4528c31d0560ad6c1f",
+  "parent_result_sha256": "4d12be0159bb097ea60c944ede9c85ea4e3af4e821895ffc73669dbc692f90b2",
+  "input_cases": [
+    {
+      "attempt_id": "sdk2-predictive-native-v1-13374a22f25c4d089c34045c96ec64f7",
+      "trial_id": "predictive_hold_left_075_train_001",
+      "maximum_commands": 74,
+      "kind": "weak_exposed_sequence_route",
+      "input_bindings": {
+        "controller.jsonl": "626a8989735a8eb4ac6b09aa76937a83d59dca7017707dc5d1c40ac6a7cca512",
+        "compiled.json": "5999092da6f1ec2772d8fb869c123fd7881afacf538ef32ef1982638911be708",
+        "inputs.json": "92db8e8df82abf7f50411a678ddc39d269ce4ad77f1d5ad2a0902257649ea319",
+        "model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069"
+      }
+    },
+    {
+      "attempt_id": "sdk2-support-reach-native-1b8cdaeebbb246079d7cf5737cfa4dd8",
+      "trial_id": "reach_hold_nominal_train_001",
+      "maximum_commands": 62,
+      "kind": "nominal_exposed_sequence_handoff",
+      "input_bindings": {
+        "controller.jsonl": "0af66d45fac675f104c57be927a220d464c358bcebf9451bbcdc20a7406f2f67",
+        "compiled.json": "5999092da6f1ec2772d8fb869c123fd7881afacf538ef32ef1982638911be708",
+        "inputs.json": "f40dc1aac7702ad43bd474292db3b41f0dd19f09b4257a602b102423669dcac5",
+        "model.xml": "27ba35d5925099e22a757b232808ad3bbaae7fa7b55b912396ece2fd7bb1b6ec"
+      }
+    }
+  ],
+  "controls_required": 226,
+  "core_builds": 2,
+  "public_hosts_per_reader": 4,
+  "maximum_public_commands_per_reader": 272,
+  "horizon_intervals": 66,
+  "replanning_interval": 12,
+  "maximum_evaluations_per_command": 103,
+  "warm_start": "shift prior projected targets by one interval, sample four knots, subtract actual current baseline, project and re-predict",
+  "replan": "handoff, every 12 commands, or failed warm forecast; three rounds of 34 candidates",
+  "minimum_applied_sequence_commands_per_host": 1,
+  "unchanged_prefix_commands_per_host": 60,
+  "stop": "first terminal refusal closes host; refuse transfer; retain incomplete route",
+  "reference": "original Python re-predicts every final best sequence on first core; all candidates checked structurally; second core rows byte identical",
+  "retention": "complete candidate forecasts and public rows; no reduced capture; full host and capture timings separate",
+  "maximum_reader_wall_seconds": 7200,
+  "maximum_control_wall_seconds": 600,
+  "minimum_free_storage_bytes": 68719476736,
+  "maximum_capture_bytes": 17179869184,
+  "maximum_capture_row_bytes": 536870912,
+  "future_baseline": "current baseline and speed limits constant in each refreshed forecast; no future public-envelope equivalence",
+  "runtime_xml_parsing_forbidden": true,
+  "runtime_native_api_forbidden": true,
+  "public_resolver_unchanged": true,
+  "exact_selected_first_command_required": true,
+  "actual_resolved_history_required": true,
+  "planning_memory_is_learning": false,
+  "observations_generated_by_selected_actions": false,
+  "synthetic": true,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "recovery_benefit_established": false,
+  "training_data_authority": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "real_time_qualified": false
+}

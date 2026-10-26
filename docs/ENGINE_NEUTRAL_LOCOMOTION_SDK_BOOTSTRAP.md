@@ -51836,3 +51836,25 @@ starts, actual resolved history and first-command verification, followed by a
 distinct native comparison. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#conditional-sequence-planning-and-recorded-action-calibration---2026-10-25)
 records the complete finite population, timing and non-claims. Recovery,
 training-data authority, Tier 2, Tier 3 and release remain unqualified.
+
+## Public sequence command path and seed boundary - 2026-10-25
+
+The [public route](../sdk/discovery/predictive_sequence_public_result_v2.json)
+passes 226 controls and two identical readers across two core builds.
+Each reader verifies 262 commands, including 20 applied sequence commands,
+with exact first-command resolution and actual-history continuation.
+The weak replay stops at command 68 in the nominal force solver.
+
+The [seed diagnosis](../sdk/discovery/sequence_seed_diagnostic_result_v3.json)
+passes 234 controls and two identical readers. After reconstructing that
+same nominal refusal, the unchanged planner accepts its shifted prior plan
+for all 66 intervals with one evaluation using an actual-history seed.
+This identifies a provider dependency to revise; it does not establish
+native recovery, force/forecast equivalence, or learning.
+
+The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-sequence-route-and-nominal-seed-diagnosis---2026-10-25)
+records failed attempts, populations, timing and the required successor.
+Next make the nominal proposal optional under a distinct public contract,
+preserving refusal evidence, truthful memory, original guards and exact
+transfer checks. Fresh native evidence and useful training data still remain.
+Tier 2, Tier 3 and release authority are unchanged.

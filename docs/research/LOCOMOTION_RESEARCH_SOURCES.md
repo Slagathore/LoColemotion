@@ -3630,3 +3630,18 @@ difference. Recorded-action calibration, candidate forecasts and actual native
 recovery retain separate evidentiary meanings. Warm starts and limited
 replanning work are next implementation questions; the current combined audit
 timings do not qualify production latency.
+
+## Sequence planning and the nominal-proposal dependency - 2026-10-25
+
+The [public sequence route](../../sdk/discovery/predictive_sequence_public_result_v2.json)
+implements receding-horizon warm starts and bounded predictive sampling using
+the previously recorded primary research. Its weak-state replay stops in the
+nominal force solver before sequence search can run.
+
+The [seed diagnosis](../../sdk/discovery/sequence_seed_diagnostic_result_v3.json)
+reconstructs the same refusal, then accepts a shifted prior sequence for all
+66 intervals using a projected actual-history seed. This finite model result
+motivates separating proposal availability from sequence admission in a new
+public provider. It does not establish equivalence between the different
+force-allocation and forecast checks, or native recovery. Original physical
+criteria and the native-evidence requirement remain unchanged.

@@ -21,18 +21,19 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [conditional sequence diagnosis](#conditional-sequence-planning-and-recorded-action-calibration---2026-10-25)
-passes 139 controls and two byte-identical readers. Its 612 candidate sequences
-per reader find admissible forecasts from exposed commands 60 and 72 through
-the common endpoint at 1.05 s; sampled starts 84, 96, 108 and 114 remain
-inadmissible. Five overlapping recorded-action calibrations reconstruct 270
-unique native steps without intermediate state resets. No worlds ran.
-Next integrate causal sequence planning with the actual public baseline and
-resolved history, including bounded warm starts and exact first-command
-verification, before a distinct fresh native comparison. Future baseline
-commands were held constant only as a forecast assumption; future public
-envelope equivalence and actual sequence transfer remain unverified.
-Tier 2, Tier 3, training-data authority and release remain unqualified.
+Current next action: the [public sequence route and seed diagnosis](#public-sequence-route-and-nominal-seed-diagnosis---2026-10-25)
+verify public first-command resolution and actual history with 226 controls,
+two identical readers, four hosts and 262 commands per reader. The weak replay
+applies eight sequence commands, then the inherited nominal force solver
+refuses at command 68 before sequence search. A separate 234-control diagnosis
+reconstructs that refusal and finds the shifted prior plan admissible for all
+66 forecast intervals using an actual-history seed, with one evaluation.
+Next implement a public successor in which a refused nominal force proposal
+does not itself prohibit a guarded sequence. Retain the refusal, truthful
+memory/provenance, unchanged full-horizon guards and exact first-command
+resolution; then verify the public route before a fresh native comparison.
+Native recovery, training-data authority, Tier 2, Tier 3 and release remain
+unqualified.
 
 Prior compiled-backend result: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
 passes 91 controls and two identical readers over all 2,006 candidate forecasts.
@@ -9075,3 +9076,69 @@ declaring its native budgets. Then run a distinct fresh comparison with the
 original physical criteria. The planner is an untrained configured component;
 usable training evidence, learned Tier 2 and online Tier 3 benefit remain
 separate required milestones.
+
+## Public sequence route and nominal seed diagnosis - 2026-10-25
+
+The [public sequence closure](../sdk/discovery/predictive_sequence_public_result_v2.json)
+passes 226 controls and two byte-identical readers. Each reader exercises
+four hosts across two core builds, 262 public commands, 20 applied sequence
+commands and 1,240 candidate evaluations. Selected first corrections and
+targets equal the final public resolution exactly. Corresponding core rows
+are byte-identical; actual resolved history and bounded plan memory continue.
+
+| Prerecorded route | Commands per core | Applied sequence commands per core | Endpoint |
+| --- | ---: | ---: | --- |
+| Weak exposed state sequence | 69 | 8, commands 60-67 | Nominal force refusal at command 68 |
+| Nominal exposed handoff | 62 | 2, commands 60-61 | Declared route completed |
+
+The planner shifts the preceding projected target schedule, samples four
+linear control points, reconciles the current baseline, and predicts again.
+Full search occurs at handoff, on a schedule, or after warm-plan refusal.
+The scheduled branch passed its synthetic control but was not reached in
+these retained routes. Planning memory is not online learning. Future baseline
+values remain constant within each forecast as an explicit approximation.
+
+All candidate forecasts are retained: 1,213,156,274 capture bytes per reader.
+Original Python reconstructs all ten final selected sequences on the first
+core, with zero optimizer-iteration differences. Across readers and cores,
+valid warm-plan host calls take 0.359-0.864 s, median 0.504 s; searches after
+warm-plan refusal take 24.939-32.145 s, median 28.755 s. Capture cost is separate.
+Real-time operation remains unqualified.
+
+The [initial public attempt](../sdk/discovery/predictive_sequence_public_result_v1.json)
+is retained. Its new memory validator expected bare hexadecimal digests;
+the public core uses a typed SHA-256 form. V2 corrects that protocol mismatch
+without changing search or safety limits.
+
+The [single-state seed diagnosis](../sdk/discovery/sequence_seed_diagnostic_result_v3.json)
+passes 234 controls and two identical readers. It reconstructs the exact
+command-68 nominal refusal, including the internal request and allocation.
+Its alternative seed projects the preceding actually resolved correction
+through the current envelope. The unchanged planner then accepts its shifted
+prior plan after one evaluation: all 66 intervals pass through exclusive
+command 134, or 1.116667 simulated seconds. Original Python agrees within the
+existing tolerances, with zero optimizer-iteration differences.
+
+Reconstructing the nominal refusal takes 25.041-26.095 s; the subsequent
+sequence search takes 0.334-0.540 s. These are different checks, so this finite
+result does not establish physical safety equivalence or prove the nominal
+solver incorrect. The verified public provider still requires the nominal
+proposal and does not apply this diagnostic seed. No new native observation
+exists.
+
+Diagnostic control failures remain in
+[v1](../sdk/discovery/sequence_seed_diagnostic_result_v1.json) and
+[v2](../sdk/discovery/sequence_seed_diagnostic_result_v2.json). The contradictory
+safe-no-actuation fixture was rejected earlier by the core, and the next
+control referenced its exception through an adapter that does not export it.
+V3 requires the exact core error from its defining SDK module and runs the
+eight new controls first. All 234 controls remain required; the diagnostic
+algorithm and limits are unchanged.
+
+Next implement a distinct public successor that retains the nominal refusal,
+permits an actual-history seed only after valid request/reference preparation,
+and requires unchanged full-horizon guards and exact public resolution before
+applying any action. Preserve truthful memory when no nominal allocation
+exists. Verify the route and refusal controls before a fresh native comparison.
+Native recovery, useful training evidence, learned Tier 2 and bounded useful
+Tier 3 adaptation remain required milestones.
