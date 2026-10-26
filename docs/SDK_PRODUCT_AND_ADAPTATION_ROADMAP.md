@@ -21,17 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: the [fresh native sequence comparison](#native-sequence-refusal-and-retained-search-limit---2026-10-26)
-passes all 1,351 controls and both independent readers, but stops at command
-81 after 0.675 simulated seconds. All 103 terminal sequences are refused;
-the best passes 65 of 66 required intervals before the rear-left hip exceeds
-its planning position margin. The nominal proposal is available. Diagnose
-this exact retained state with a distinct bounded search successor, retaining
-the same horizon, public envelope and guards. No new physical run is needed
-to answer that first question. Then require fresh native evidence before
-using any improved planner as a training source. Useful recovery, training-data
-authority, learned Tier 2, beneficial Tier 3 adaptation, real-time operation
-and release remain unqualified.
+Current next action: the [retained-state refinement](#admissible-refinement-at-the-native-refusal---2026-10-26)
+passes 274 controls and two identical independent readers. It reproduces the
+native command-81 refusal, then finds fully admissible 66-interval sequences
+with the original horizon, objective and guards. Integrate the bounded
+refinement only after the original public sequence search refuses. Verify
+unchanged earlier commands, exact first-command resolution, actual-history
+continuation and both healthy and weak retained cases before declaring another
+fresh native comparison. The finite forecast result is not a native recovery
+or training qualification. Learned Tier 2, beneficial Tier 3 adaptation,
+real-time operation and release remain unqualified.
 
 Prior compiled-backend result: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
 passes 91 controls and two identical readers over all 2,006 candidate forecasts.
@@ -9289,3 +9288,40 @@ candidates, unchanged horizon and guards, and independent reconstruction.
 An admissible predicted sequence would justify a public-controller successor
 and another fresh native test; it would not itself establish recovery,
 training-data authority, learned Tier 2, beneficial Tier 3 or release.
+
+## Admissible refinement at the native refusal - 2026-10-26
+
+The [local-search closure](../sdk/discovery/sequence_local_search_result_v1.json)
+passes 274 controls and two byte-identical independent readers with zero
+worlds and zero native solver steps. Each reader reconstructs the consumed
+103-candidate search exactly from native command 81 and its actual preceding
+plan, reproducing the 65/66-interval refusal.
+
+A distinct bounded refinement starts from that rejected best plan. Four
+rounds use correction-control-point adjustments of 0.4, 0.2, 0.1 and 0.05:
+each round evaluates the incumbent, 64 individual-coordinate perturbations
+and 14 random perturbations. All 316 candidates retain complete forecasts.
+The horizon, sequential public projection, guard predicates and ranking
+objective are unchanged. Each round's incumbent is preserved.
+
+The four rounds admit 11, 55, 55 and 64 candidates respectively. The final
+winner passes all 66 intervals, comprising 330 predicted internal steps.
+Its mean objective is 55.67946291559461. Original Python reconstructs both
+the rejected parent best and the new winner; the latter differs by at most
+1.222e-15 in position components and 1.377e-14 in velocity components, with
+zero changed optimizer-iteration counts. Each reader retains 414,029,738
+capture bytes, including rejected candidates. Timings remain separate;
+this diagnostic does not qualify real-time performance.
+
+This result establishes that the consumed finite search missed admissible
+predicted plans at this exposed state. It does not isolate coordinate
+representation from extra search effort, establish global optimality, or
+prove that applying a plan produces recovery. Observations were generated
+by the earlier native controller, not by the newly selected actions.
+
+Next add the refinement as a public-provider successor invoked only after
+the original sequence search refuses. Preserve previously accepted numerical
+commands, retain both searches, verify exact final public resolution and
+actual-history continuation, and then declare a fresh bounded native test.
+Training-data authority, learned Tier 2, beneficial Tier 3 and release remain
+unqualified.

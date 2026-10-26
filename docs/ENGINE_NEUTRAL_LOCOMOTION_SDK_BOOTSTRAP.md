@@ -51910,3 +51910,18 @@ checks, censored comparison and next bounded search question. This verifies
 the native route and a finite negative; recovery, training-data authority,
 learned Tier 2, beneficial Tier 3 and release remain unqualified. Preserve the
 consumed result and original guards in any successor.
+
+## Retained native refusal admits a bounded refinement - 2026-10-26
+
+The [local-search result](../sdk/discovery/sequence_local_search_result_v1.json)
+passes 274 controls and two identical independent readers with zero worlds.
+It reproduces the original command-81 search refusal, then admits 185 of
+316 refinement candidates under the unchanged 66-interval horizon and guards.
+The final winner passes original-Python reconstruction.
+
+The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#admissible-refinement-at-the-native-refusal---2026-10-26)
+now calls for a public-provider successor that refines only original-search
+refusals, followed by exact resolution/history checks and fresh native
+validation. The consumed physical result remains incomplete; predicted
+admissibility does not establish recovery, training-data authority, Tier 2,
+Tier 3 or release.

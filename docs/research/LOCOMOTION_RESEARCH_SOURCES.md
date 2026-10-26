@@ -3690,3 +3690,19 @@ horizon and guards. The paper does not establish that this successor will
 recover this morphology or justify changing an observed result. Native
 evidence remains necessary before the planner can supply qualified training
 data, as distinct from the paper's general expert-policy use case.
+
+## Finite refinement of the native sequence refusal - 2026-10-26
+
+The [retained-state refinement](../../sdk/discovery/sequence_local_search_result_v1.json)
+tests the previous search-coverage inference. A bounded four-scale search
+finds complete admissible forecasts at the exact native state where the
+consumed search found none. Individual control-point perturbations refine
+the existing spline representation; the horizon, projection and guards stay
+unchanged. All candidates and both independent reconstructions are retained.
+
+This applies the existing predictive-control practice of improving a nominal
+plan, recorded in [Predictive Sampling](https://arxiv.org/html/2212.00541v2),
+without copying upstream implementation. The local experiment changes both
+candidate structure and search effort, so it does not attribute the result
+to either factor alone. Public integration and new native observations must
+precede any recovery or expert-policy training claim.
