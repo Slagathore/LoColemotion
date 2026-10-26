@@ -51951,3 +51951,21 @@ The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-refinement-route-read
 requires a clean pushed freeze and the complete 1,407-control gate before
 launch. Physical continuation, recovery, training-data authority and learned
 Tier 2 or beneficial Tier 3 remain unqualified.
+
+## Native refinement retained through command 86 - 2026-10-26
+
+The [native v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
+passes the full 1,407-control gate and two identical readers. Two of four
+planned fresh worlds open. Four successful refinements extend the candidate
+from 81 to 86 transferred commands, with the first 405 native samples unchanged
+byte-for-byte. The candidate stops before transferring command 86 after both
+original and refined searches refuse; the nominal worlds remain unopened.
+
+Readers reconstruct all 3,136 candidate evaluations and 32 best forecasts.
+The terminal refinement reaches 65/66 required intervals and predicts hip-margin
+and tilt violations. The physical prefix ends at 0.716667 seconds without an
+observed criterion violation; that censored prefix cannot establish twelve-second
+recovery or improvement over the baseline. Retain this negative finite-search
+boundary and test a prospectively declared constraint-violation ranking on
+exposed states before any new native successor. Tier 2, Tier 3, training-data,
+real-time and release authority remain unchanged.

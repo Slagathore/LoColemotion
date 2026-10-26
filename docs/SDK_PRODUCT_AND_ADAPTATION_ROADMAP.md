@@ -9377,3 +9377,38 @@ pushed prospective freeze and all 1,407 controls must precede native launch.
 Capture remains bounded by the declared row, stream, aggregate and wall
 limits; budget exhaustion yields an incomplete result. This component adds
 no physical recovery, learned adaptation, real-time or release qualification.
+
+## Native refinement extends the retained prefix - 2026-10-26
+
+The [native v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
+passes all 1,407 controls and two byte-identical independent readers. Two fresh
+CPU worlds open; the nominal pair remains unopened after the candidate refuses
+command 86. The baseline completes twelve seconds. The candidate transfers 86
+commands and advances 430 internal steps, ending at 0.716667 seconds. Its first
+405 raw samples are byte-identical to the previous native v3 candidate, so the
+five additional transfers represent a verified continuation from the same
+physical prefix.
+
+Four refined plans reach native actuation. Across 27 sequence decisions, all
+3,136 candidates retain their forecasts, guards and costs. Independent readers
+reconstruct 32 original or refined best sequences with the original Python
+predictor. The first five predicted steps of each transferred plan are also
+compared with the resulting native observations; later intervals remain
+forecasts. Numerical comparisons remain diagnostic, without an equivalence
+or real-time claim.
+
+At command 86, the original search rejects all 103 candidates and reaches at
+most 63 of 66 required intervals. The 316-candidate refinement reaches 65/66,
+but every round remains inadmissible. Its final interval predicts rear-left
+hip margin and tilt violations. The refused command is never transferred.
+The observed candidate prefix has no physical criterion violation; stopping
+at 0.716667 seconds censors the comparison before the baseline's first tilt
+violation at 1.158333 seconds. This does not establish recovery or superiority.
+
+The next retained-state question is whether constraint-violation ordering can
+repair the forecast while keeping the 66-interval horizon, all guard predicates,
+the same initial seed, and the same 316-candidate budget. Declare the ranking
+and handling of incomplete forecasts before evaluation, preserve every result,
+and include all exposed successful refinements as regression cases. Native
+recovery, expert training-data authority, learned Tier 2, beneficial Tier 3 and
+release remain unqualified.

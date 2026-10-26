@@ -3719,3 +3719,25 @@ The retained native observations precede this integration. The command-82
 protocol fixture also uses a separately recorded observation, so neither
 establishes the physical effect of applying the refined command. Fresh native
 continuation remains the next test; no learning or recovery benefit is claimed.
+
+## Constraint handling after the native refinement boundary - 2026-10-26
+
+The [native v4 closure](../../sdk/discovery/predictive_sequence_native_result_v4.json)
+extends the exact preceding physical prefix by five transferred commands, then
+retains a 65/66-interval refusal. Four refinement rounds reduce the task cost
+while leaving a predicted hip-margin and tilt violation. This diagnoses a
+finite search boundary; it does not establish global infeasibility or recovery.
+
+The [pymoo feasibility-first documentation](https://pymoo.org/constraints/feas_first.html)
+describes preferring feasible solutions and comparing infeasible solutions by
+constraint violation. Read on 2026-10-26. This is a method reference, without
+adding that package or copying its implementation.
+
+The local proposal is to preserve eligible-first and admissible-prefix priority,
+then compare explicitly normalized violations before task cost for equally long
+rejected prefixes. This prefix-preserving ordering is an adaptation proposed
+here, not a result established by the cited documentation. Declare normalization
+and numerical-refusal handling prospectively, keep the original horizon and
+acceptance predicates, and test the exposed refusal plus prior successful
+refinements with the same candidate budget. No physical or learning benefit is
+inferred from the method reference.
