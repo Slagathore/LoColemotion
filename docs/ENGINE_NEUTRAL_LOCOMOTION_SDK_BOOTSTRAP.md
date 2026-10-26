@@ -1,6 +1,6 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-10-25
+## Active - SDK2 discovery and Studio completion, 2026-10-26
 
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.
@@ -9,7 +9,24 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Latest native outcome: the [scaled-primary tilt negative and joint-domain closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
+Current SDK2 state: the [native-v4 result](../sdk/discovery/predictive_sequence_native_result_v4.json)
+passes the full 1,407-control gate and two independent readers. It applies 86
+candidate commands (430 solver steps, 0.716667 s), then refuses command 86 before
+transfer. The candidate has no observed safety violation before that refusal;
+the nominal pair remains unopened and recovery benefit is unproved.
+
+The [adaptive-scale result](../sdk/discovery/sequence_adaptive_scale_result_v1.json)
+passes 362 controls and two identical readers, preserving the four earlier
+successful refinements. The new command-86 search still passes only 65/66
+intervals. Its smaller violation remains inadmissible. The next action is the
+[roadmap's retained structural diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-26)
+of command projection, motor torque, contact support and the held future
+baseline, before choosing another search successor. No new native command,
+training-data, Tier 2, Tier 3, real-time or release authority is established.
+
+Earlier campaign outcomes and next-step descriptions below are historical.
+
+Prior native outcome: the [scaled-primary tilt negative and joint-domain closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
 records the full 1,050-control gate and two fresh CPU worlds. The candidate
 preserves its earlier trajectory and applies 21 more commands, but first
 violates tilt at 0.983 s versus the baseline's 1.158 s. It then refuses command
@@ -51,7 +68,7 @@ reader on both core builds. It preserves all 38 prior applied hierarchy
 commands and resolves command 98 in retained-state replay. Fresh causal
 continuation remains required.
 
-Latest retained component: the [scaled-primary correction checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-correction-retained-checkpoint---2026-10-25)
+Prior retained component: the [scaled-primary correction checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-correction-retained-checkpoint---2026-10-25)
 passes 212 controls and two identical readers over 219 retained states.
 It preserves all 212 accepted predecessors and recovers command 98 plus one
 older refusal, reaching 214 accepted cases. The original objective,
