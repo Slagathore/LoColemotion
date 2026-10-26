@@ -3816,3 +3816,27 @@ This is a geometric proxy, not a load-bearing support criterion. The closure
 reports positive predicted normal forces separately and retains the original
 decisions, all new candidates and the command-86 stress result. New public
 history and native continuation remain necessary before a recovery claim.
+
+## 2026-10-26 retained process handles for stage cleanup
+
+The [prelaunch failure and diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
+motivate a versioned execution-infrastructure correction, with no physics or
+learning claim. Microsoft documents that process handles remain valid until
+closed, including after the represented process exits; PID validity has a
+shorter lifetime. [Process Handles and Identifiers](https://learn.microsoft.com/en-us/windows/win32/procthread/process-handles-and-identifiers).
+
+Membership must be checked against the owned job, rather than any job.
+The API accepts a process handle and a specific job handle for this purpose.
+[IsProcessInJob](https://learn.microsoft.com/en-us/windows/win32/api/jobapi/nf-jobapi-isprocessinjob).
+
+Termination initiation is not completion evidence. The documented process
+completion witness is a wait on its process handle.
+[TerminateProcess](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-terminateprocess).
+
+Inference and verified scope: a stale job-list PID can be reopened as an
+unrelated running process before the old algorithm captures its identity.
+The synthetic fixture reproduces the resulting false refusal. This does not
+establish that mechanism as the original incident's cause. The new helper
+holds verified member handles through cleanup, preserves the timeout failure,
+and retains membership and wait observations. Its 42-control diagnostic is
+finite infrastructure evidence; native integration remains a separate gate.

@@ -38997,3 +38997,11 @@ controls remain in the 1,546-control launch gate. The fresh four-world compariso
 keeps the unchanged 60-command prefix, complete forecasts and native streams,
 and refusal-before-transfer semantics. No worlds opened in this component
 attempt. Native recovery, Tier 2, Tier 3 and release remain unqualified.
+
+## Contact-native prelaunch containment failure - 2026-10-26
+
+The [retained failure and lifecycle diagnostic](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
+record a failed full-gate attempt with zero worlds. A versioned helper passes
+42 controls while retaining process handles and checking exact job membership.
+The scientific policy, caps and thresholds remain unchanged. A distinct native
+successor must bind the helper and pass its complete gate before physics.

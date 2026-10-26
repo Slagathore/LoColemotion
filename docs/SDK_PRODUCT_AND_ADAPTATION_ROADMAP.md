@@ -21,21 +21,26 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: run the complete 1,546-control safety gate and fresh native
-contact-priority comparison from this clean, pushed prospective freeze.
-The [native route component](#contact-priority-prospective-native-route---2026-10-26)
-passes all 40 route controls and a two-core zero-world runtime preflight.
-This component-only result does not authorize physical launch.
+Current next action: bind the verified retained-handle stage owner into a
+distinct contact-priority native successor, qualify its route, and run the
+complete applicable safety gate from a clean, pushed prospective freeze.
+The [prelaunch failure and lifecycle diagnostic](#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
+preserve the original attempt without a physical result.
 
-The four planned roles are fresh weak and nominal baseline/candidate pairs,
-each bounded at twelve simulated seconds. Compare the unchanged first 60
-commands and 300 internal steps, then generate subsequent observations using
-the newly selected actions. Post-handoff equality with older candidates is
-not required. Retain all candidate forecasts, contact and force streams;
-a controller refusal stops before transfer and aborts the remaining roles.
-The complete gate retains all 1,407 prior controls and adds 99 contact-planning
-controls plus 40 route controls. Guards, force caps, the 66-interval prediction
-horizon and explicit held future-baseline approximation remain unchanged.
+The first full-gate attempt accepted 1,091 controls. The next selector module
+passed all 25 tests, but the owner then reported that a contained descendant
+did not exit. The gate remained failed and opened zero worlds. The new
+versioned helper passes 17 lifecycle controls plus a rehearsal of those same
+25 selector controls. It verifies membership in the exact owned job, retains
+process handles through cleanup, and records the resulting observations.
+A synthetic stale-PID fixture reproduces a false refusal in the old algorithm;
+the original incident's cause remains unproved because its member identities
+were not retained.
+
+Keep the four fresh weak and nominal baseline/candidate roles, twelve-second
+horizons, unchanged 60-command prefix, complete forecasts and native streams,
+and refusal-before-transfer rules. No controller, physical threshold, actuator
+cap or claimed learning capability changed in this infrastructure checkpoint.
 
 Latest native result: the [native-v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
 passes all 1,407 safety controls and two independent readers. The candidate
@@ -9625,3 +9630,43 @@ These budgets are not control periods or recovery thresholds.
 This component attempt opens zero worlds. Physical recovery, training-data
 authority, Tier 2, beneficial Tier 3, real-time operation and release remain
 unqualified. Next run the full gate and fresh physical comparison.
+
+## Contact-native prelaunch failure and retained-handle cleanup - 2026-10-26
+
+The [failed native attempt](../sdk/discovery/contact_sequence_native_prelaunch_failure_v1.json)
+is sdk2-contact-sequence-native-v1-111482303b2140a2a51f85ca79e708f8, receipt 7676172756c0b0587ca9ba09cb507952f664330d831d605c20760a187c5ffef0.
+It accepted 1,091 controls across 71 modules. The next
+selector module passed all 25 tests in 2.333 seconds, but cleanup raised
+'Contained descendant did not exit'. The owner failed closed after
+2101.625 seconds. It wrote neither a consumed identity nor a
+complete gate receipt and opened zero worlds. This is a prelaunch
+infrastructure failure, not a controller or locomotion result.
+
+The old cleanup enumerates PIDs, opens their current identities, closes the
+job, and then polls those identities. It does not verify that each captured
+identity still belongs to the owned job. A stale list entry that names a
+different running process can therefore cause a false refusal. The bounded
+synthetic fixture demonstrates that failure mode; the original attempt did
+not retain the member identities needed to establish its particular cause.
+
+The [retained-handle diagnostic](../sdk/discovery/contained_stage_cleanup_result_v2.json)
+is sdk2-contained-stage-diagnostic-v2-b55cad837104470081c6d19b8c51bedf, receipt d5013be13ce2dad9daa8f36eeb91c45bc503eb4599c60537388ebb96d7086bfd.
+All 17 lifecycle controls and a fresh rehearsal of the same 25 selector
+controls pass. Sixteen cleanup records retain fourteen successes and two
+deliberately failed controls. A real leaf/worker/grandchild fixture acknowledges
+the spawned grandchild before shutdown and verifies its process handle is
+signaled afterward. Eight additional short-lived stages also complete.
+
+The new versioned helper checks membership against the exact job handle and
+keeps verified process handles until shutdown observation completes. It does
+not reopen PIDs after closing the job. Missing membership evidence, failed
+queries/waits and unresolved termination still fail the stage. The existing
+ten-second wait threshold is preserved; a final bounded cleanup retry cannot
+reclassify a timed-out stage as successful. Original shared owner code and all
+observed records remain unchanged.
+
+This finite infrastructure diagnostic opens no physics worlds and does not
+complete the contact-native gate. Next bind the helper into a distinct native
+successor and rerun the complete applicable safety gate from a clean, pushed
+prospective freeze. Physical recovery, training-data authority, Tier 2,
+beneficial Tier 3, real-time operation and release remain unqualified.

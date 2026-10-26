@@ -22,18 +22,18 @@ sequence commands resolve and transfer exactly, including the changed weak
 handoff at command 60 and actual-history continuation at command 61.
 The two core builds produce byte-identical public rows.
 
-The [prospective native route](../sdk/discovery/contact_sequence_native_component_result_v1.json)
-now passes 40 route controls and two-core zero-world preflight. Next run its
-complete 1,546-control safety gate from this clean, pushed prospective freeze,
-then the four fresh weak and nominal baseline/candidate roles. New actions
-must generate subsequent native observations. The paired prefix remains fixed
-through command 59; later candidate trajectories may diverge.
+The [first full contact-native gate](../sdk/discovery/contact_sequence_native_prelaunch_failure_v1.json)
+stopped before physics after accepting 1,091 controls. The following selector
+module passed 25 tests, but process cleanup failed; the attempt remains failed.
+The [versioned cleanup diagnostic](../sdk/discovery/contained_stage_cleanup_result_v2.json)
+passes 42 controls with retained process handles and exact owned-job membership.
+Its synthetic stale-PID fixture reproduces a false refusal in the old algorithm,
+without establishing that as the cause of the original incident.
 
-This route checkpoint opens no worlds. The prior public integration used
-retained following observations and establishes protocol/history consistency,
-not physical continuity or recovery. Guards, force caps and the held future
-baseline remain unchanged. Tier 2, Tier 3, training-data, real-time and release
-qualification remain absent.
+Next integrate that owner into a distinct native successor, qualify its route,
+and run the complete applicable gate from a clean pushed freeze. The scientific
+controller and criteria remain unchanged. No new worlds opened; recovery,
+training-data, Tier 2, Tier 3, real-time and release qualification remain absent.
 
 Earlier campaign outcomes and next-step descriptions below are historical.
 
@@ -52078,3 +52078,12 @@ passes 40 route controls and two-core zero-world preflight. Its distinct native
 attempt requires the complete 1,546-control gate from a clean, pushed freeze.
 Fresh paired worlds must generate their own post-handoff observations.
 This checkpoint opens no worlds and grants no recovery or release authority.
+
+## Contact-native prelaunch failure and lifecycle successor - 2026-10-26
+
+The [failure and diagnostic closure](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
+retains the zero-world cleanup failure after 1,091 accepted controls and
+25 passing selector tests. The versioned retained-handle helper passes
+42 controls, including real descendant reaping and a synthetic false-refusal
+regression. The original incident's cause remains unproved. Native integration
+and the complete fresh launch gate are next; no scientific claim advances.
