@@ -3568,3 +3568,15 @@ measured ratios of 7.67 and 8.09 in the two readers. The remaining 188-219 ms
 means are still above the 8.33-ms period. Further acceleration must be guided
 by profiling of the remaining path, not by treating this gain as real-time,
 native-recovery or learned-adaptation qualification.
+
+## Predictive implementation boundary follow-up - 2026-10-25
+
+The [prepared-model comparison](../../sdk/discovery/prepared_predictive_model_result_v1.json)
+adds implementation evidence for the current bounded predictive controller:
+canonical observations and explicit model parameters preserve all finite candidate
+decisions across two independent readers. Adapter XML parsing is separated from
+runtime prediction. This is local implementation evidence, not a new published
+research result or a claim that absence of simulator calls establishes portability.
+The public resolver's engine-specific provenance refusal is verified on both core
+builds. A truthful new provider identity, resolved-command history and native
+recovery evidence remain necessary before this can support learned adaptation.

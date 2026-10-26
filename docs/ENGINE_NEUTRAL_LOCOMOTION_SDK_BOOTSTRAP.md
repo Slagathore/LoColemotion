@@ -51749,3 +51749,19 @@ guarantee of synchronized native motion. Preserve pose targets, caps and accepta
 rules unless a distinct prospective design explicitly justifies a change. Keep
 the work bounded to SDK1 get-up; force-aware continuous recovery remains SDK2.
 Recomputed readiness is **14/20**, **14/25**, M07 contradicted, zero invalid proofs.
+
+## Prepared predictor boundary checkpoint - 2026-10-25
+
+The [prepared-model result](../sdk/discovery/prepared_predictive_model_result_v1.json)
+passes 115 controls and two byte-identical readers across 2,006 candidates each.
+Explicit canonical model data and canonical observations preserve the compiled
+predictor's decisions without runtime XML parsing or native simulator access.
+Both core builds reject engine-specific provider provenance with zero corrections.
+
+Adapter model preparation remains engine-specific. This boundary is not yet
+a verified public provider, an engine-neutral provenance qualification or physical
+recovery evidence. Next implement the distinct provider/host with truthful model
+identity, separate nominal/selected diagnostics, actual resolved history and
+refusal-before-transfer, then audit it on retained states before a prospective
+native freeze. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-predictor-model-and-canonical-observations---2026-10-25)
+records the exact scope. Tier 2, Tier 3 and release remain unqualified.

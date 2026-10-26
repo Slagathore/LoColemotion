@@ -8822,3 +8822,44 @@ further; real-time adoption still requires its own adequate runtime evidence.
 The selector remains untrained, its synthetic alternatives are not an authorized
 learning corpus, and physical recovery, Tier 2, Tier 3 and release remain
 unqualified.
+
+## Prepared predictor model and canonical observations - 2026-10-25
+
+The [prepared-model closure](../sdk/discovery/prepared_predictive_model_result_v1.json)
+removes runtime XML preparation and direct native-state dependence from the
+predictor entrypoint. This is a necessary boundary for the next public provider,
+not a completed provider integration.
+
+The existing public resolver rejects a response declaring
+`engine_specific_logic_used=true`. Both retained core builds reproduced that
+refusal with zero applied corrections; their original responses remain applied.
+The configured predictor previously accepted MuJoCo XML and native state arrays.
+It must not inherit the old provider's false provenance flag without review.
+
+A separate [adapter preparation function](../sdk/discovery/prepare_predictive_model_mujoco.py)
+now validates the original supported XML subset and produces serialized canonical
+morphology, colliders, motor parameters, reference pose and an explicit contact
+and integration law. The [prediction entrypoint](../sdk/discovery/prepared_predictive_model.py)
+accepts that data and canonical observations. It checks clocks, gravity, ordered
+joint validity, orientation and model domains before constructing its numerical
+packet. The fixed computational basis does not branch on an engine identifier.
+The original contact solver, candidate population, objective and guards remain
+inherited. Model parameters are configured, not learned or estimated.
+
+The retained owner passed 115 controls and two byte-identical readers. Each
+reader compared all 59 states, 2,006 candidates and 10,030 predicted steps against
+the published compiled backend. Selected commands, guards, refusals and optimizer
+iteration counts are unchanged. Maximum position and velocity output differences
+were 9.992007e-16 and 6.217249e-15; the largest other floating-field difference was
+3.410605e-11, within the inherited comparison tolerances. Both construction and
+selection completed with XML parsing and native simulator APIs disabled.
+The owner binds 1,061 source and 3,583 runtime files and retains 43 artifacts.
+
+This finite separation does not itself qualify engine-neutral provenance,
+cross-engine behavior or public command transfer. The next successor must bind
+the prepared model to a new provider identity, distinguish the nominal hierarchy
+certificate from the command actually selected, and carry only the final public
+resolution into applied-correction history and memory. Refusal must prevent
+native transfer. Complete that retained-state host audit before freezing a fresh
+bounded native comparison. No new worlds ran; physical recovery, learning,
+real-time, Tier 2, Tier 3 and release authority remain unqualified.
