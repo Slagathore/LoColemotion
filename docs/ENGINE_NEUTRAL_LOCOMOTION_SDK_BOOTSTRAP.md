@@ -51858,3 +51858,23 @@ Next make the nominal proposal optional under a distinct public contract,
 preserving refusal evidence, truthful memory, original guards and exact
 transfer checks. Fresh native evidence and useful training data still remain.
 Tier 2, Tier 3 and release authority are unchanged.
+
+## Public sequence continuation after nominal refusal - 2026-10-26
+
+The [v3 public route](../sdk/discovery/predictive_sequence_public_result_v3.json)
+passes 258 controls and two identical readers across two core builds.
+Each reader verifies 272 public commands and 32 applied sequence commands.
+Both weak routes complete all 74 declared commands, passing the old stop at
+68, scheduled replanning at 72 and restored nominal proposals at 73.
+
+The successor retains nominal refusals while allowing a projected
+actual-history proposal into the unchanged sequence guards. Ten fallback
+applications and their ten following requests verify exact public resolution
+and truthful memory without fabricated nominal forces. Earlier numerical
+targets remain unchanged. These supplied observations were prerecorded;
+native recovery and useful training evidence remain unproven.
+
+The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-sequence-fallback-and-memory-continuation---2026-10-26)
+now calls for a distinct bounded native comparison from a clean pushed
+prospective freeze, with the complete applicable gate and unchanged physical
+criteria. Tier 2, Tier 3 and release authority remain unchanged.

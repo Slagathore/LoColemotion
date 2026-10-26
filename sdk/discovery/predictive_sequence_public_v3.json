@@ -1,0 +1,95 @@
+{
+  "schema_version": "locolemotion_predictive_sequence_public_contract_v3",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "bounded_retained_state_sequence_public_route",
+    "question_class": "development"
+  },
+  "source_bindings": {
+    "predictive_history_seed_v1.py": "47eb7c294498da166fb0cd345d1fd39bfb1bf444b415d725d86460b9ba3e6348",
+    "predictive_sequence_policy_v3.py": "65eefe012f026c6d167200acdd1b8f43fcf6af2d931451aae8a8ff736816b649",
+    "predictive_sequence_control_v3.py": "21a19cc8ee2c76f5e7967ce056e5b8b3d976cc4be583f67cb864f3a213959b57",
+    "predictive_sequence_row_audit_v3.py": "a7702004325407b287b7c8459360fb68b7d95067699dc19ade4fecc0e2f3d752",
+    "audit_predictive_sequence_public_v3.py": "c6556221c9e9891927733b8ecf807dea8028c158a84d2b0511f76ba77d7440be",
+    "run_predictive_sequence_public_v3.py": "7ddf846f3476e51be8067081142a9b11bd2fa685f339e8b6d613016e6ee64699",
+    "test_predictive_sequence_public_v3.py": "50fc289d073ea761ba07aeb26609436339c2b94e45005bb6a193061c02995945",
+    "predictive_sequence_public_result_v2.json": "09443630898eae6fbf9ad3f4aac61b96d3e72ddd34676a8ae63bae0e2de92475"
+  },
+  "parent_attempt": "sdk2-sequence-seed-diagnostic-v3-a78f0fa2d5df4b90961dbbc68ed35dd6",
+  "parent_receipt_sha256": "95b948992115b44b61c0ac8dc24430f7e1b2422060a6b0fa2ded41f47de86833",
+  "parent_result_sha256": "17778898e50f79a0d6c0b6de1ea4fbc83e58bef44ea68331541ce637eb8f026e",
+  "public_parent": {
+    "attempt_id": "sdk2-predictive-sequence-public-v2-50dad9cf4f87435c8e5347a351945e8d",
+    "receipt_sha256": "ccfd32fae54a80e5c9ad609eec7d5d0c8292a78ac315d8ef66b17b6e502394bd",
+    "result_sha256": "09443630898eae6fbf9ad3f4aac61b96d3e72ddd34676a8ae63bae0e2de92475"
+  },
+  "nominal_refusal_strategy": "project_actual_history_after_bound_nominal_refusal",
+  "refusal_scope": "only explicit nominal allocation refusal; retain original decision, validate reference, clear unavailable force memory",
+  "fallback_coverage": "weak route must apply command68 and inspect its following request69; stop on later terminal refusal",
+  "prefix_comparison": "exact numerical targets against published v2 through67, all nominal case commands",
+  "first_fallback_comparison": "exact starting packet and selected command against published single-state seed diagnosis",
+  "input_cases": [
+    {
+      "attempt_id": "sdk2-predictive-native-v1-13374a22f25c4d089c34045c96ec64f7",
+      "trial_id": "predictive_hold_left_075_train_001",
+      "maximum_commands": 74,
+      "kind": "weak_exposed_sequence_route",
+      "input_bindings": {
+        "controller.jsonl": "626a8989735a8eb4ac6b09aa76937a83d59dca7017707dc5d1c40ac6a7cca512",
+        "compiled.json": "5999092da6f1ec2772d8fb869c123fd7881afacf538ef32ef1982638911be708",
+        "inputs.json": "92db8e8df82abf7f50411a678ddc39d269ce4ad77f1d5ad2a0902257649ea319",
+        "model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069"
+      }
+    },
+    {
+      "attempt_id": "sdk2-support-reach-native-1b8cdaeebbb246079d7cf5737cfa4dd8",
+      "trial_id": "reach_hold_nominal_train_001",
+      "maximum_commands": 62,
+      "kind": "nominal_exposed_sequence_handoff",
+      "input_bindings": {
+        "controller.jsonl": "0af66d45fac675f104c57be927a220d464c358bcebf9451bbcdc20a7406f2f67",
+        "compiled.json": "5999092da6f1ec2772d8fb869c123fd7881afacf538ef32ef1982638911be708",
+        "inputs.json": "f40dc1aac7702ad43bd474292db3b41f0dd19f09b4257a602b102423669dcac5",
+        "model.xml": "27ba35d5925099e22a757b232808ad3bbaae7fa7b55b912396ece2fd7bb1b6ec"
+      }
+    }
+  ],
+  "controls_required": 258,
+  "core_builds": 2,
+  "public_hosts_per_reader": 4,
+  "maximum_public_commands_per_reader": 272,
+  "horizon_intervals": 66,
+  "replanning_interval": 12,
+  "maximum_evaluations_per_command": 103,
+  "warm_start": "shift prior projected targets by one interval, sample four knots, subtract actual current baseline, project and re-predict",
+  "replan": "handoff, every 12 commands, or failed warm forecast; three rounds of 34 candidates",
+  "minimum_applied_sequence_commands_per_host": 1,
+  "unchanged_prefix_commands_per_host": 60,
+  "stop": "first terminal refusal closes host; refuse transfer; retain incomplete route",
+  "reference": "original Python re-predicts every final best sequence on first core; all candidates checked structurally; second core rows byte identical",
+  "retention": "complete candidate forecasts and public rows; no reduced capture; full host and capture timings separate",
+  "maximum_reader_wall_seconds": 7200,
+  "maximum_control_wall_seconds": 600,
+  "minimum_free_storage_bytes": 68719476736,
+  "maximum_capture_bytes": 17179869184,
+  "maximum_capture_row_bytes": 536870912,
+  "future_baseline": "current baseline and speed limits constant in each refreshed forecast; no future public-envelope equivalence",
+  "runtime_xml_parsing_forbidden": true,
+  "runtime_native_api_forbidden": true,
+  "public_resolver_unchanged": true,
+  "exact_selected_first_command_required": true,
+  "actual_resolved_history_required": true,
+  "planning_memory_is_learning": false,
+  "observations_generated_by_selected_actions": false,
+  "synthetic": true,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "recovery_benefit_established": false,
+  "training_data_authority": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "real_time_qualified": false
+}

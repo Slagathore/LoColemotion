@@ -19,21 +19,20 @@ It does not replace the executable evidence or release contracts:
 Frozen positive, negative, invalid, and rejected campaigns remain immutable.
 This roadmap can order a new successor, but it cannot change an old result.
 
-## Current execution order - 2026-10-25
+## Current execution order - 2026-10-26
 
-Current next action: the [public sequence route and seed diagnosis](#public-sequence-route-and-nominal-seed-diagnosis---2026-10-25)
-verify public first-command resolution and actual history with 226 controls,
-two identical readers, four hosts and 262 commands per reader. The weak replay
-applies eight sequence commands, then the inherited nominal force solver
-refuses at command 68 before sequence search. A separate 234-control diagnosis
-reconstructs that refusal and finds the shifted prior plan admissible for all
-66 forecast intervals using an actual-history seed, with one evaluation.
-Next implement a public successor in which a refused nominal force proposal
-does not itself prohibit a guarded sequence. Retain the refusal, truthful
-memory/provenance, unchanged full-horizon guards and exact first-command
-resolution; then verify the public route before a fresh native comparison.
-Native recovery, training-data authority, Tier 2, Tier 3 and release remain
-unqualified.
+Current next action: the [public sequence fallback route](#public-sequence-fallback-and-memory-continuation---2026-10-26)
+passes 258 controls and two identical readers. Each reader verifies four
+hosts, 272 commands, 32 applied sequence commands and ten fallback applications
+after nominal allocation refusal. Both weak routes complete commands 0-73,
+including scheduled replanning at 72 and restored nominal proposals at 73.
+The old targets through 67 and the complete nominal handoff remain unchanged.
+Next declare and verify a distinct bounded native comparison from a clean,
+pushed prospective freeze. Use newly generated observations, fresh baseline
+worlds, the full applicable gate, unchanged physical criteria and explicit
+runtime/capture budgets. Retain refusals and incomplete runs. This public
+replay does not establish native recovery, useful training data, learned
+Tier 2, beneficial Tier 3 adaptation, real-time operation or release.
 
 Prior compiled-backend result: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
 passes 91 controls and two identical readers over all 2,006 candidate forecasts.
@@ -9142,3 +9141,59 @@ applying any action. Preserve truthful memory when no nominal allocation
 exists. Verify the route and refusal controls before a fresh native comparison.
 Native recovery, useful training evidence, learned Tier 2 and bounded useful
 Tier 3 adaptation remain required milestones.
+
+## Public sequence fallback and memory continuation - 2026-10-26
+
+The [v3 public closure](../sdk/discovery/predictive_sequence_public_result_v3.json)
+passes 258 controls and two byte-identical readers. Each reader exercises
+four hosts across two core builds, 272 public commands and 32 applied
+sequence commands. Corresponding core captures are byte-identical. The
+original Python predictor independently reconstructs every final selected
+sequence on the first core within the existing tolerances.
+
+| Prerecorded route | Commands per core | Applied sequence commands per core | Endpoint |
+| --- | ---: | ---: | --- |
+| Weak exposed state sequence | 74 | 14, commands 60-73 | Declared route completed |
+| Nominal exposed handoff | 62 | 2, commands 60-61 | Declared route completed |
+
+The provider catches only an explicit nominal allocation refusal bound to
+the current request and profile. It retains that original refusal, recomputes
+the geometric reference, and projects the actual preceding applied correction
+through the current unchanged envelope. This supplies a proposal to the
+unchanged 66-interval sequence planner. The alternative proposal carries no
+nominal force certificate. Other provider errors still stop the route.
+
+Commands 68-72 use this fallback on each weak route. Command 68 reproduces
+the published single-state diagnosis exactly. All ten fallback applications
+and all ten following requests pass actual-history and memory checks.
+Allocation-free compatibility memory advances the reference and clock but
+contains no previous nominal forces. At command 73, the nominal solver
+succeeds again and its real force memory returns. Scheduled replanning at
+72 is now exercised by the retained public route as well as synthetic controls.
+
+The weak commands through 67 and the complete nominal handoff retain their
+prior numerical targets exactly. The public resolver remains unchanged;
+every selected first correction and target must equal its final resolution
+before adapter transfer. The reader retains all 1,456 candidate forecasts and
+1,463,206,998 capture bytes per invocation. Original Python reconstructs all 16 final selected
+sequences on the first core, with zero optimizer-iteration differences.
+
+Host and capture timings are separate. Scheduled searches take 65.141-66.561 s
+across the four weak hosts. Valid warm-plan calls range from 0.335 to 40.836 s
+because nominal allocation is still attempted, including expensive refusals.
+Real-time operation remains unqualified.
+
+This is a retained-observation replay. Its selected actions did not generate
+the supplied observations, and native sequence transfer has not been tested.
+The complete public result therefore grants no recovery, training-data,
+Tier 2, Tier 3 or release authority.
+
+Next declare a fresh bounded native comparison with the full applicable
+zero-world gate, contained serialized owner, fresh baseline worlds, one
+declared development start, unchanged physical thresholds and explicit
+time/storage budgets. Size those limits from complete sequence forecasts;
+do not inherit the earlier one-step controller's capture allowance. Run only
+from the clean pushed prospective freeze. Use its actual selected-action
+observations to decide whether this controller can supply useful training
+evidence; preserve any new refusal
+or finite negative without weakening the old criteria.

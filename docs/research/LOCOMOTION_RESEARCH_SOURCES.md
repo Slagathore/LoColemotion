@@ -3645,3 +3645,18 @@ motivates separating proposal availability from sequence admission in a new
 public provider. It does not establish equivalence between the different
 force-allocation and forecast checks, or native recovery. Original physical
 criteria and the native-evidence requirement remain unchanged.
+
+## Actual-history proposal in the public sequence route - 2026-10-26
+
+The [v3 public closure](../../sdk/discovery/predictive_sequence_public_result_v3.json)
+implements the finite proposal-availability change motivated by the prior
+seed diagnosis and the previously cited predictive-control research.
+It retains each bound nominal allocation refusal and uses a projected actual
+correction history as the alternative proposal. Admission still requires the
+original full-horizon guards and exact first-command public resolution.
+
+Both retained weak routes complete their declared horizon, including
+scheduled replanning and return to successful nominal allocation. This
+demonstrates public composition and memory continuation; it does not prove
+force-allocation/forecast equivalence or physical recovery. Fresh native
+observations under selected actions remain the next empirical test.
