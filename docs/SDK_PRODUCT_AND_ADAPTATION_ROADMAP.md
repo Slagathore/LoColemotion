@@ -21,15 +21,16 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [causal full held-command predictor](#causal-full-held-command-prediction---2026-10-25)
-passes 44 controls and two identical readers over 59 independent five-step
-forecasts. Maximum joint-position error is 4.548575e-8 rad across 295 steps;
-both the recorded tilt crossing and terminal hip-limit crossing are predicted
-from their command-boundary starting states, without intermediate observations.
-Use this component to evaluate distinct candidate commands, verify production
-integration and runtime cost, then prospectively compare fresh native recovery.
-The original earlier tilt and terminal refusal stand. Tier 2, Tier 3 and release
-remain unqualified. Earlier next-step statements below are historical checkpoints.
+Current next action: the [bounded predictive selector](#bounded-predictive-command-selection-and-runtime-limit---2026-10-25)
+passes 69 controls and two identical readers over 2,006 candidate forecasts.
+It selects lower-cost guard-eligible alternatives at 57 of 59 starting states
+and refuses the final two; no native recovery benefit is established.
+Measured selection costs about 1.43 s per command versus the 0.008333-s control
+period. Profile and accelerate the dominant prediction/evaluation work while
+preserving guards and finite selection outcomes, then verify production
+integration and fresh native recovery. The prior failed uniform-cap assumption
+is retained; its successor honors each actuator's existing cap. Tier 2, Tier 3
+and release remain unqualified. Earlier next-step statements are historical.
 
 Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
@@ -8677,3 +8678,69 @@ budget; this retained owner timing is not a real-time controller benchmark.
 The earlier native tilt negative and terminal refusal stand. No controller was
 changed or trained, no new world ran, and Tier 2, Tier 3, recovery, robustness,
 training-data and release authority remain unqualified.
+
+## Bounded predictive command selection and runtime limit - 2026-10-25
+
+The [candidate selector measurement](../sdk/discovery/predictive_command_selection_result_v2.json)
+passes 69 controls and two byte-identical full readers. At each of 59 original
+command boundaries it evaluates 34 five-step candidates from the same starting
+state: the original nominal, envelope midpoint, 16 coordinate endpoints and
+16 reproducibly seeded Gaussian proposals. All proposals pass through the
+unchanged correction and slew envelope and each actuator's current target cap.
+Predicted joint-position margin, joint-speed, height, tilt and torso-contact
+checks determine eligibility before the new quadratic objective ranks candidates.
+A numerical refusal cannot supply an eligible command; no eligible candidate
+means an explicit refusal with no selected target.
+
+The ranking uses the existing COM, orientation, joint-posture and motor-effort
+gains/weights in a new pose/velocity objective. It is not the predecessor's
+contact-first hierarchy certificate, and neither the weights nor samples were
+fitted to these outcomes. The component exposes only initial state, causal
+references, nominal correction, actual previous correction and command bounds.
+Each candidate has its own propagated state; none becomes a native observation.
+
+The first retained attempt passed 66 controls but its full reader stopped at
+command 92. It incorrectly required every target-speed cap to equal 3.5 rad/s.
+The actual public envelope caps the front-left knee at 3.0 rad/s for commands
+92, 96, 99, 101, 104 and 107. The distinct v2 successor consumes those per-actuator
+limits without changing them and adds complete packet-population and cap checks.
+The original source, failure receipt and stderr remain retained and hash-bound.
+
+| Complete population, per reader | Result |
+| --- | ---: |
+| Candidate forecasts / predicted steps | 2,006 / 10,030 |
+| Converged candidate forecasts | 2,006 |
+| Guard-eligible candidates | 1,938 |
+| Commands selecting a different eligible candidate | 57 / 59 |
+| Commands with no eligible candidate | 117, 118 |
+| Previously ineligible nominal states rescued by the finite candidate set | 0 |
+
+All 57 eligible original nominals have a strictly lower-cost candidate under
+this model objective. Mean objective reduction is 0.1213484 and maximum is
+0.3663276; these objective units are not physical recovery scores. At command
+117 all 34 forecasts violate tilt; at 118 all 34 violate tilt and the inherited
+joint-position margin. This finite search does not prove that no other feasible
+command exists. It also does not show that applying the chosen commands earlier
+would rescue the later states: every starting state still comes from the
+original observed trajectory.
+
+Runtime is a material adoption limit. Unfiltered per-candidate wall measurements
+are retained separately from the deterministic reports:
+
+| Reader | Mean complete 34-candidate evaluation | Minimum / maximum command evaluation | Median one-candidate evaluation |
+| --- | ---: | ---: | ---: |
+| Audit | 1.428631 s | 1.077234 / 2.096958 s | 0.039476 s |
+| Reconstruction | 1.427850 s | 1.045997 / 1.993535 s | 0.038888 s |
+
+The control period is 0.008333 s. These measurements already exclude packet
+construction and final report serialization, so the measured path is unsuitable
+for real-time adoption on this host. The owner binds 1,050 source and 3,582
+runtime files and retains 32 artifacts including its receipt. No new world ran.
+
+Next profile the actual prediction and evaluation hotspots and accelerate the
+dominant work before production adoption. Preserve the guard rules, refusals,
+candidate population and finite selected outcomes when verifying acceleration.
+Then verify the production path and prospectively compare fresh native recovery.
+The configured selector is untrained; its synthetic alternatives are not an
+authorized learning corpus. Physical recovery, Tier 2, Tier 3, robustness,
+equivalence, real-time and release authority remain unqualified.

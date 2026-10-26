@@ -28,8 +28,14 @@ prepared state/geometry and candidate commands. The subsequent
 passes 44 controls and two identical readers over 59 independent five-step
 forecasts. It generates intermediate geometry and states itself, reaches maximum
 joint-position error 4.548575e-8 rad and predicts the recorded tilt and hip-limit
-crossings. Next evaluate distinct candidate commands, verify production
-integration and runtime cost, then prospectively compare fresh native recovery.
+crossings. The [bounded predictive selector](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#bounded-predictive-command-selection-and-runtime-limit---2026-10-25)
+now passes 69 controls and two identical readers over 2,006 candidate forecasts.
+It selects lower-cost eligible alternatives at 57 of 59 starts and refuses the
+final two. Mean selection cost is about 1.43 s versus the 0.008333-s control
+period. Next profile and accelerate the prediction/evaluation path, preserve
+guard and selection behavior, then verify production integration and fresh
+native recovery. The failed uniform-cap attempt remains retained; its distinct
+successor honors the existing per-actuator caps.
 No numerical or physical guard was relaxed. Nominal worlds remain unopened.
 Tier 2, Tier 3 and release remain unqualified.
 

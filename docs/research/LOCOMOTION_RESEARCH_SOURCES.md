@@ -3521,3 +3521,27 @@ violation classifications match the retained trajectory, including its tilt
 and joint-limit failures. This supports candidate-command evaluation next;
 it establishes neither a beneficial controller nor long-horizon stability,
 cross-engine equivalence, learned adaptation or real-time performance.
+
+## Predictive sampling and bounded command selection - 2026-10-25
+
+Howell et al., [Predictive Sampling: Real-time Behaviour Synthesis with MuJoCo,
+v2](https://arxiv.org/html/2212.00541v2), describes evaluating the nominal and
+bounded perturbed action plans from a common starting state, then retaining the
+best objective. Its implementation uses C++ and parallel rollouts; its reported
+timings are not performance evidence for this SDK. The paper also discusses
+short-horizon limitations and combining planning with learned approximations.
+
+The [configured local selector](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#bounded-predictive-command-selection-and-runtime-limit---2026-10-25)
+uses this nominal-preserving candidate-evaluation pattern, with coordinate
+endpoints and Gaussian proposals over one held command. It adds the existing
+public correction/slew limits, per-actuator target caps and hard forecast
+eligibility checks. Its quadratic pose, velocity and effort ranking reuses
+existing local task gains/weights; it is not a replication of the paper's
+quadruped objective, spline horizon or performance result. No upstream code,
+package installation, native world or training was introduced.
+
+Both full readers retain all 2,006 candidate outcomes and separate wall timings.
+The approximately 1.43-s mean command-selection cost exceeds this SDK's
+0.008333-s period. This makes profiling and acceleration necessary before
+real-time adoption. Predicted objective improvements are not observed recovery,
+learning labels, global optimality or Tier 2/Tier 3 qualification.

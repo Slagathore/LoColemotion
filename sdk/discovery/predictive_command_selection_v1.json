@@ -1,0 +1,137 @@
+{
+  "schema_version": "locolemotion_predictive_command_selection_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "mujoco_cpu",
+    "authority_mode": "configured_causal_command_selection_component",
+    "question_class": "development"
+  },
+  "original_attempt": "sdk2-hierarchical-native-v6-f5072c1d2e46499498911eed68d74146",
+  "original_receipt_sha256": "2a9f28a81b097ad03679804c3f69da7fb8965350a9b1f461bd4ef5b0d9427301",
+  "closure_attempt": "sdk2-held-contact-rollout-v1-2e3ce47c639745cbbbb747f27b9b3d57",
+  "closure_receipt_sha256": "88f235d28a7c1066e7b74bd242e12a77dfed2af806144a67f378505fa644696a",
+  "closure_result_sha256": "b35d62cd047c2bf1cbeb1546f43c8902a05790fa1803df9921a0bb1407346742",
+  "controls_required": 66,
+  "command_interval_inclusive": [
+    60,
+    118
+  ],
+  "commands": 59,
+  "candidates_per_command": 34,
+  "candidate_evaluations": 2006,
+  "maximum_predicted_steps": 10030,
+  "candidate_recipe": "nominal, midpoint, 16 coordinate endpoints, 16 clipped Gaussian proposals",
+  "random_seed": 20261025,
+  "per_command_seed": "seed + command",
+  "gaussian_sigma_rad_s": 0.08,
+  "maximum_absolute_correction_rad_s": 3.5,
+  "maximum_slew_per_command_rad_s": 0.08,
+  "maximum_target_speed_rad_s": 3.5,
+  "guard_parameters": {
+    "timestep_s": 0.0016666666666666668,
+    "hold_steps": 5,
+    "joint_speed_planning_cap_rad_s": 3.5,
+    "joint_position_margin_rad": 0.005833333333333334,
+    "regime_force_margin_nm": 1e-05,
+    "support_constraint": "initial integrated material-point acceleration equals existing damped target",
+    "regime_selection": "fixed saturated if entire reachable interval is saturated, otherwise unsaturated",
+    "frozen_coefficients": true,
+    "constant_contact_force": true,
+    "future_contact_force_measured": false,
+    "recursive_feasibility_established": false,
+    "physical_acceptance_authority": false
+  },
+  "guard_check_tolerance": 2e-06,
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0
+  },
+  "objective_parameters": {
+    "com_kp_per_s2": [
+      12.0,
+      25.0,
+      12.0
+    ],
+    "com_kd_per_s": [
+      7.0,
+      10.0,
+      7.0
+    ],
+    "com_acceleration_limit_m_s2": [
+      8.0,
+      10.0,
+      8.0
+    ],
+    "orientation_kp_per_s2": [
+      30.0,
+      12.0,
+      30.0
+    ],
+    "orientation_kd_per_s": [
+      10.0,
+      6.0,
+      10.0
+    ],
+    "angular_acceleration_limit_rad_s2": [
+      30.0,
+      15.0,
+      30.0
+    ],
+    "joint_kp_per_s2": 20.0,
+    "joint_kd_per_s": 8.0,
+    "joint_acceleration_limit_rad_s2": 80.0,
+    "contact_velocity_gain_per_s": 30.0,
+    "contact_acceleration_limit_m_s2": 20.0,
+    "airborne_height_kp_per_s2": 40.0,
+    "airborne_velocity_kd_per_s": 12.0,
+    "airborne_acceleration_limit_m_s2": 15.0,
+    "com_weight": 4.0,
+    "orientation_weight": 8.0,
+    "joint_weight": 0.3,
+    "contact_weight": 10.0,
+    "airborne_weight": 2.0,
+    "acceleration_regularization": 0.001,
+    "force_regularization": 0.0001,
+    "torque_regularization": 0.001,
+    "friction_coefficient": 0.95,
+    "maximum_normal_force_n": 70.0,
+    "contact_acceleration_is_soft_task": true,
+    "friction_pyramid": "inscribed square in flat xz tangent plane"
+  },
+  "objective": "mean over five post states of gain-weighted quadratic COM/orientation/joint position plus velocity and motor effort",
+  "ranking": "minimum objective among all guard-eligible candidates; original index breaks ties",
+  "no_eligible_candidate": "refuse with no selected target; retain every rejection",
+  "timing": "each reader records separate unfiltered per-candidate wall times; timing never affects selection",
+  "causal_fields": [
+    "baseline",
+    "command",
+    "nominal_correction",
+    "previous_correction",
+    "qpos",
+    "qvel",
+    "reference_joints",
+    "target_com"
+  ],
+  "intermediate_native_observations_used": false,
+  "measured_forces_used": false,
+  "parameters_fitted": false,
+  "worlds_opened": 0,
+  "native_physics_steps": 0,
+  "production_controller_changed": false,
+  "trained": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "source_bindings": {
+    "predictive_command_selection.py": "ec87f44ee3b152b3475041eaaa60be3691c0e9a0688504a76ea6096c5308a07b",
+    "audit_predictive_command_selection.py": "31d44da893eaac76991919a98b53f5a310abceeedd393fd675902172ed4c981a",
+    "test_predictive_command_selection.py": "1a6ce3d9a5bf830fbc7c7bea4c7c491ee01197575eee3227d1cd140d0da4757c",
+    "run_predictive_command_selection.py": "c09d3121d43b6050f6cb7edbd706bd0ba52f4d8a535d9e3b82fe1bf0f67f37eb"
+  },
+  "research_sources": [
+    "https://arxiv.org/html/2212.00541v2#S3.SS4",
+    "https://arxiv.org/html/2212.00541v2#A2"
+  ]
+}
