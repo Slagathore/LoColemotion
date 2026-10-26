@@ -51969,3 +51969,19 @@ recovery or improvement over the baseline. Retain this negative finite-search
 boundary and test a prospectively declared constraint-violation ranking on
 exposed states before any new native successor. Tier 2, Tier 3, training-data,
 real-time and release authority remain unchanged.
+
+## Constraint-ranked search retains a finite refusal - 2026-10-26
+
+The [constraint-repair closure](../sdk/discovery/sequence_constraint_repair_result_v1.json)
+passes all 344 controls and two identical readers with no worlds or native steps.
+Re-ranking 1,264 retained candidates preserves all four previously successful
+refinements. A new 316-candidate search at command 86 improves the normalized
+violation measurement but still reaches only 65/66 required intervals. Hip-margin
+and tilt guards continue to refuse the final forecast.
+
+Keep this result negative and do not integrate it as a successful recovery
+controller. The next research question is a prospectively declared adaptive
+search scale under the same seed, budget, horizon and guards. Source, complete
+candidate captures, independent reconstruction and exact prior-case identities
+remain bound by the closure. Tier 2, Tier 3, training-data, real-time and release
+authority remain unchanged.

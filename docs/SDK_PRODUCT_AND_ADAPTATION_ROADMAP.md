@@ -9412,3 +9412,34 @@ and handling of incomplete forecasts before evaluation, preserve every result,
 and include all exposed successful refinements as regression cases. Native
 recovery, expert training-data authority, learned Tier 2, beneficial Tier 3 and
 release remain unqualified.
+
+## Constraint ranking preserves prior successes but still refuses - 2026-10-26
+
+The [constraint-repair closure](../sdk/discovery/sequence_constraint_repair_result_v1.json)
+passes 344 controls and two byte-identical independent readers. Both readers
+recheck all 1,264 retained candidates at native commands 81, 83, 84 and 85,
+preserving every round winner. Those forecasts are reused from the bound native
+evidence, not regenerated or presented as new observations.
+
+At command 86, a fresh search starts from the same original rejected seed and
+uses the same 316-candidate budget, four scales, random seeds, horizon, projection
+and acceptance predicates. Only the ordering of equally long rejected plans
+changes: complete finite forecasts precede numerical refusals, then explicitly
+normalized guard violation precedes task cost. Independent scalar accounting
+checks the violation measurement. Original Python reconstructs both the original
+rejected best and the new best forecast.
+
+All four rounds remain inadmissible at 65 of 66 intervals. Their normalized
+violations fall from 0.005128811611202556 to 0.0020222914991763637,
+0.001103137538658335 and 0.0008255501495372519. The final forecast still violates
+hip position margin and tilt. Its last three improving moves use the same
+negative first-knot front-left coordinate while the fixed search scale halves.
+This shows progress within a failed finite search, not a transferable plan or
+global infeasibility.
+
+The next distinct experiment should test retaining the exploratory scale after
+an improving rejected round and shrinking it after a stalled round. Preserve
+the original schedule once a feasible plan is available, the original seed,
+four-round budget and all acceptance guards. Recheck the exposed positives and
+retain any regressions. This search supplies no admissible command-86 plan for public integration. Native recovery, learned adaptation, training-data
+authority and real-time qualification remain unproven.

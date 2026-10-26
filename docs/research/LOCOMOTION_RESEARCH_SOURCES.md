@@ -3741,3 +3741,25 @@ and numerical-refusal handling prospectively, keep the original horizon and
 acceptance predicates, and test the exposed refusal plus prior successful
 refinements with the same candidate budget. No physical or learning benefit is
 inferred from the method reference.
+
+## Constraint ordering result and adaptive search scale - 2026-10-26
+
+The [constraint-ranking experiment](../../sdk/discovery/sequence_constraint_repair_result_v1.json)
+preserves four prior positive refinements and reduces violation across its new
+search rounds, but the terminal forecast still passes only 65/66 intervals.
+Thus feasibility-first ordering alone does not resolve this exposed refusal
+under the declared budget. The last three winners continue one coordinate
+direction while the exploration scale is reduced unconditionally.
+
+The official [pymoo Pattern Search documentation](https://pymoo.org/algorithms/soo/pattern.html)
+describes contraction after unsuccessful moves and directional pattern moves.
+The [Ansys Hooke-Jeeves description](https://ansyshelp.ansys.com/public/Views/Secured/ModelCenter/v251/en/ModelCenter_User_Guide/ModelCenter_UG/Features/OptimizationTool/Algorithms/Hooke-Jeeves.html)
+likewise describes coordinate exploration with step reduction when no better
+design is found. Both were read on 2026-10-26; they supply method context,
+without importing a package or copying implementation.
+
+The local next-step inference is to hold the scale after an improving rejected
+round, shrink it after a stalled round, and retain the prior schedule once a
+feasible plan is available. Declare this bounded adaptation separately, keep
+the four-round budget and guard predicates, and recheck the exposed successes.
+It is not a canonical Hooke-Jeeves implementation or a convergence guarantee.
