@@ -26,10 +26,11 @@ passes 91 controls and two identical readers over all 2,006 candidate forecasts.
 Every candidate decision, guard, refusal and optimizer iteration count is
 preserved. Unprofiled mean selection time falls from 1.44-1.77 s to 0.188-0.219 s
 in the two readers, a measured 7.67-8.09 ratio, but remains above the 0.008333-s
-period. Profile and remove the remaining dominant work or boundary crossings,
-then verify production integration and fresh native recovery. The original
-physical negative and per-actuator caps stand. Tier 2, Tier 3 and release remain
-unqualified. Earlier next-step statements are historical.
+period. Verify the production integration path and budgets for a distinct,
+bounded simulated-time native comparison while profiling the remaining runtime
+cost. The native discovery lane does not require a real-time performance claim.
+The original physical negative and per-actuator caps stand. Tier 2, Tier 3 and
+release remain unqualified. Earlier next-step statements are historical.
 
 Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
@@ -8805,10 +8806,19 @@ Compiled minima are 0.132413 s and 0.141476 s; maxima are 0.380308 s and
 performance guarantees. Both mean times still exceed the 0.008333-s control
 period substantially, so real-time adoption remains unqualified.
 
-Next profile the remaining compiled-path cost, then remove the dominant repeated
-work or Python/native boundary crossings while preserving the same candidate
-population, objective, guards and finite outcomes. Verify the production path
-and a distinct prospective native recovery comparison after the runtime gap is
-addressed. The selector remains untrained, its synthetic alternatives are not
-an authorized learning corpus, and physical recovery, Tier 2, Tier 3 and release
-remain unqualified.
+Next verify the production integration path and resource budgets for a distinct
+bounded native recovery comparison, while profiling the remaining compiled-path
+cost. The [consumed native v6 contract](../sdk/discovery/hierarchical_native_v6.json)
+already separates simulated timing from real-time interactive performance: it
+declares a 1,200-s worker wall limit and explicitly excludes a real-time claim.
+That is precedent for a new prospective development contract, not permission
+to reuse its identity or launch without the applicable complete safety gate
+and a clean pushed freeze. Retained-state public integration must come first.
+
+This permits testing whether the chosen commands actually improve recovery
+without treating real-time optimization as a prerequisite for every development
+world. Preserve the command population, objective and guards when accelerating
+further; real-time adoption still requires its own adequate runtime evidence.
+The selector remains untrained, its synthetic alternatives are not an authorized
+learning corpus, and physical recovery, Tier 2, Tier 3 and release remain
+unqualified.

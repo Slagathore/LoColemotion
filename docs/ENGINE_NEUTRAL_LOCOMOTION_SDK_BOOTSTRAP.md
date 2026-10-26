@@ -36,10 +36,12 @@ period. The [compiled numerical backend](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#c
 now passes 91 controls and two identical full readers, preserving all candidate
 decisions, guards, refusals and optimizer iteration counts. Mean selection takes
 0.188-0.219 s in the paired readers, a measured 7.67-8.09 ratio of reference to
-compiled mean time, still above the control period. Next profile the remaining
-cost and remove dominant repeated work before production integration and fresh
-native recovery. The failed uniform-cap attempt and existing per-actuator caps
-remain retained.
+compiled mean time, still above the control period. Next verify production
+integration and budgets for a distinct bounded simulated-time native comparison,
+while profiling remaining runtime costs. Native discovery excludes real-time
+performance qualification, so its development validation need not wait for
+real-time adoption. The failed uniform-cap attempt and existing per-actuator
+caps remain retained.
 No numerical or physical guard was relaxed. Nominal worlds remain unopened.
 Tier 2, Tier 3 and release remain unqualified.
 
