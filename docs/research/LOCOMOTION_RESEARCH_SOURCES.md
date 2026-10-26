@@ -3580,3 +3580,18 @@ research result or a claim that absence of simulator calls establishes portabili
 The public resolver's engine-specific provenance refusal is verified on both core
 builds. A truthful new provider identity, resolved-command history and native
 recovery evidence remain necessary before this can support learned adaptation.
+
+## Predictive controller public-route evidence - 2026-10-25
+
+The [bounded public-route result](../../sdk/discovery/predictive_public_result_v1.json)
+extends the prepared-model implementation into actual public resolution and
+applied-command history. Nominal hierarchical predictions and selected causal
+forecasts retain distinct meanings. Two core builds agree bitwise; complete
+reference comparisons preserve decisions within existing numerical tolerances.
+One optimizer iteration-count difference is retained explicitly.
+
+This is local integration evidence using old observations, not a new research
+result or evidence of physical recovery under selected commands. Full host cost
+also exceeds forecast-only cost substantially. The next physical comparison must
+budget and retain that whole path before these choices can support learned
+adaptation or any recovery claim.

@@ -51765,3 +51765,21 @@ identity, separate nominal/selected diagnostics, actual resolved history and
 refusal-before-transfer, then audit it on retained states before a prospective
 native freeze. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-predictor-model-and-canonical-observations---2026-10-25)
 records the exact scope. Tier 2, Tier 3 and release remain unqualified.
+
+## Predictive public integration checkpoint - 2026-10-25
+
+The [predictive public closure](../sdk/discovery/predictive_public_result_v1.json)
+passes 170 controls and two byte-identical readers. Each reader verifies four
+hosts on two core builds, 360 public commands and 118 applied predictive commands.
+Actual resolved corrections and request hashes carry through both memory layers;
+nominal diagnostic predictions are not promoted to selected-command authority.
+The weak retained route refuses command 117 before transfer; nominal handoff
+completes. Every reached selection is reference-checked, including 2,040 candidates.
+
+The next active step is a distinct prospectively frozen native recovery
+comparison, with the complete applicable safety gate and wall/storage budgets
+based on full host cost. The observed worst call is 18.260 s; real-time use is
+unqualified. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#predictive-public-provider-and-resolved-history---2026-10-25)
+records the finite scope, provenance and one retained optimizer-iteration
+difference. No new worlds ran, and physical recovery, learning, Tier 2, Tier 3
+and release authority remain unqualified.
