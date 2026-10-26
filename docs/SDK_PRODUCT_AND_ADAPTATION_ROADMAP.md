@@ -21,7 +21,20 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
+Current next action: the [conditional sequence diagnosis](#conditional-sequence-planning-and-recorded-action-calibration---2026-10-25)
+passes 139 controls and two byte-identical readers. Its 612 candidate sequences
+per reader find admissible forecasts from exposed commands 60 and 72 through
+the common endpoint at 1.05 s; sampled starts 84, 96, 108 and 114 remain
+inadmissible. Five overlapping recorded-action calibrations reconstruct 270
+unique native steps without intermediate state resets. No worlds ran.
+Next integrate causal sequence planning with the actual public baseline and
+resolved history, including bounded warm starts and exact first-command
+verification, before a distinct fresh native comparison. Future baseline
+commands were held constant only as a forecast assumption; future public
+envelope equivalence and actual sequence transfer remain unverified.
+Tier 2, Tier 3, training-data authority and release remain unqualified.
+
+Prior compiled-backend result: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
 passes 91 controls and two identical readers over all 2,006 candidate forecasts.
 Every candidate decision, guard, refusal and optimizer iteration count is
 preserved. Unprofiled mean selection time falls from 1.44-1.77 s to 0.188-0.219 s
@@ -9001,3 +9014,64 @@ agreement motivates that question but does not prove a longer-horizon solution.
 Preserve the finite candidate/refusal result, original guards, simulated timing
 and fresh-world requirement. Any new physical comparison needs a distinct
 successor identity and freeze.
+
+## Conditional sequence planning and recorded-action calibration - 2026-10-25
+
+The [sequence result](../sdk/discovery/predictive_sequence_result_v1.json)
+passes 139 applicable controls and two byte-identical readers. Fresh attempt
+`sdk2-predictive-sequence-v1-3831cd6029ef4987b2393683c66444b4` uses the verified
+native-refusal observations but opens no physics worlds. It retains 79 artifacts
+bound to 1,085 source and 3,583 runtime files.
+
+The planner represents correction sequences with four linear control points,
+projects every future command through the unchanged absolute/slew/target-speed
+bounds, and evaluates 34 candidates for each of three iterations. Current
+deterministic baseline velocities and individual speed limits are held fixed
+as an explicit forecast approximation. No future recorded observations or
+actions enter candidate search. Inadmissible plans may guide optimization but
+cannot become eligible; full eligibility requires every declared interval.
+
+All starts share the exclusive endpoint command 126, or 1.05 simulated seconds:
+
+| Exposed start | Start time | Required intervals | Best admissible prefix | Full forecast eligible |
+| --- | ---: | ---: | ---: | --- |
+| 60 | 0.50 s | 66 | 66 | Yes |
+| 72 | 0.60 s | 54 | 54 | Yes |
+| 84 | 0.70 s | 42 | 36 | No: tilt |
+| 96 | 0.80 s | 30 | 20 | No: joint margin, joint speed and tilt |
+| 108 | 0.90 s | 18 | 8 | No: tilt |
+| 114 | 0.95 s | 12 | 0 | No: joint speed |
+
+Each reader retains 612 candidate evaluations and 75,355 predicted search steps.
+The candidate captures reproduce byte-for-byte; the original Python predictor
+independently reconstructs all six final plans and five calibration windows.
+No optimizer iteration count differs in those reference comparisons. Every
+original guard and its tolerance remains unchanged.
+
+Calibration is deliberately separate: the predictor receives the initial state
+and recorded applied command sequence, then predicts forward without measured
+intermediate state resets. Five overlapping windows compare 750 forecast
+samples with 270 unique native steps. Maximum errors are 1.436624e-7 m in base
+position, 4.275916e-7 rad in joint position and 1.588248e-5 rad/s in joint velocity.
+Those are finite diagnostic measurements, not general prediction-accuracy or
+counterfactual recovery qualifications.
+
+Each reader retains 313,146,481 capture bytes. The earliest full search,
+capture/checking and final reference reconstruction take 32.428-33.987 wall
+seconds across readers. These combined analysis timings are not isolated
+production-policy latency or real-time qualification.
+
+The result supports testing earlier sequence planning in this configured model.
+The search also changes action parameterization, candidate families and iteration
+count, so it does not isolate horizon length as the cause or prove a point of no
+return for later states. No selected sequence generated new native observations.
+Actual future baseline evolution, public correction reconciliation and sequence
+transfer remain unverified.
+
+Next implement the causal public sequence provider with bounded warm starts,
+actual resolved-command history, explicit reconciliation of the current
+baseline, and exact first-command transfer checks. Profile that full route before
+declaring its native budgets. Then run a distinct fresh comparison with the
+original physical criteria. The planner is an untrained configured component;
+usable training evidence, learned Tier 2 and online Tier 3 benefit remain
+separate required milestones.

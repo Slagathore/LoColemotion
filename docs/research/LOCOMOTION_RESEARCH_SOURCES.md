@@ -3610,3 +3610,23 @@ lead time for support/braking. This is an inference from the finite local
 failure, not evidence that a longer horizon will work, a new published research
 result, or permission to convert predicted states into training observations.
 The original full-horizon physical criteria and frozen-reader discipline remain.
+
+## Earlier sequence planning and bounded predictive sampling - 2026-10-25
+
+[Predictive Sampling, version 2](https://arxiv.org/html/2212.00541v2),
+sections 2 and 3.3-3.4, describes repeated sampling around a nominal control
+sequence, low-dimensional spline parameters and reuse of previous plans.
+It also identifies limited planning foresight and local minima as concerns.
+The [MJPC overview](https://github.com/google-deepmind/mujoco_mpc/blob/main/docs/OVERVIEW.md)
+formulates the objective over a state/action trajectory.
+
+The local [sequence experiment](../../sdk/discovery/predictive_sequence_result_v1.json)
+uses an independent implementation of four linear control points, projected
+correction bounds and deterministic repeated sampling. It copies no upstream
+code. Two early exposed states admit predicted sequences to the common endpoint;
+four later states do not within the declared search. This motivates earlier
+public sequence planning, not a claim that horizon length alone caused the
+difference. Recorded-action calibration, candidate forecasts and actual native
+recovery retain separate evidentiary meanings. Warm starts and limited
+replanning work are next implementation questions; the current combined audit
+timings do not qualify production latency.

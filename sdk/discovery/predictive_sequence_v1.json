@@ -1,0 +1,107 @@
+{
+  "schema_version": "locolemotion_predictive_sequence_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "finite_conditional_sequence_diagnosis",
+    "question_class": "development"
+  },
+  "parent_attempt": "sdk2-predictive-native-v1-13374a22f25c4d089c34045c96ec64f7",
+  "parent_receipt_sha256": "49809ddcbc8a9a0987325ae6b12a5344413359b7d11c30523bfc2bccb854fffc",
+  "parent_result_sha256": "e76c58e91ec0c77eaf862ab17024f8bf0713c1e94deabde0d2fbfdbfa4eb0651",
+  "parent_trial_id": "predictive_hold_left_075_train_001",
+  "starting_commands": [
+    60,
+    72,
+    84,
+    96,
+    108,
+    114
+  ],
+  "ending_command_exclusive": 126,
+  "horizons": [
+    66,
+    54,
+    42,
+    30,
+    18,
+    12
+  ],
+  "maximum_intervals": 66,
+  "control_points": 4,
+  "interpolation": "piecewise linear projected at every 120 Hz command",
+  "candidate_count": 34,
+  "iterations": 3,
+  "random_seed": 20261026,
+  "gaussian_sigma": 0.8,
+  "planned_search_evaluations": 612,
+  "maximum_search_predicted_steps": 113220,
+  "candidate_families": "incumbent, zero correction, zero target, velocity brake, 16 coordinate bounds, 14 Gaussian spline perturbations",
+  "initial_incumbent": "current nominal correction repeated at all four control points",
+  "selection": "lexicographic full eligibility, descending admissible interval count, ascending mean original objective; first tie wins",
+  "incomplete_plans": "optimization intermediates only; never eligible to apply",
+  "future_baseline": "current deterministic baseline and speed limits held constant; future actual public envelopes not claimed equivalent",
+  "future_correction_limits": {
+    "absolute_rad_s": 3.5,
+    "slew_rad_s": 0.08
+  },
+  "final_application": "none; this is a zero-world diagnosis, not public controller integration",
+  "calibration": {
+    "starting_commands": [
+      60,
+      72,
+      84,
+      96,
+      108
+    ],
+    "ending_command_exclusive": 114,
+    "supplied_actions": "retained actually applied sequence; retrospective diagnostic only",
+    "initial_state_only": true,
+    "subsequent_observations_used_as_inputs": false,
+    "errors_are_measurements_not_acceptance_thresholds": true
+  },
+  "independent_reference": "original Python predictor reruns each final best sequence and each recorded-action calibration",
+  "numerical_comparison": "existing compiled-backend tolerances and exact guard/decision fields; iteration differences retained",
+  "safety_guard_source": "predictive_command_selection_v2.py:guard unchanged for each five-step interval",
+  "source_bindings": {
+    "predictive_sequence_v1.py": "75a56b4dd42dd49a579222ae18ec7eeb95f29b0ebdf328ff6db6b8476495eaf6",
+    "predictive_sequence_task_v1.py": "0a3099ed2a63699b8f1e3b415a1996d5027f367fa4d26af9dcebdde981e31b12",
+    "audit_predictive_sequence_v1.py": "665967284822293bc3918f159bf7cf187133ffa6bf6299c4d4ec3a6afdfeee3b",
+    "run_predictive_sequence_v1.py": "e22441421aaba628750ac274977286eb878bf527d922da9f0228006b96963a4e",
+    "test_predictive_sequence_v1.py": "bf0f7e4b9a595cbd9c730a8be61d41f7ea1337c7bcd2d32e62003d54b405b234"
+  },
+  "inherited_source_bindings": {
+    "prepared_predictive_model.py": "4f0bc7617b0863b0ba702f707d3c0f4e06316d119fe5fe9fa50a4a04ab800112",
+    "predictive_command_selection_v2.py": "e95ce95eaea455d688d55b9a514f3f2f42b8a6cb7afebb7f804cefb5a7f0c226",
+    "held_contact_rollout.py": "11e8c19add967c6f89b9958135a5e9b9790df7907ea667975bc1aebecbd511dc",
+    "predictive_numeric_backend.py": "9b8f683afb5414b3d39703a52cda9cc44f0d993b2c1fa0f0532d06f23030469c",
+    "predictive_numeric_kernels.rs": "96ec1bc9c275a79c64c9b6b798493f8b6cbcb595f919d20628ea604bc431932d"
+  },
+  "input_bindings": {
+    "controller.jsonl": "626a8989735a8eb4ac6b09aa76937a83d59dca7017707dc5d1c40ac6a7cca512",
+    "trace.jsonl": "946cb7b3c65c6050d5048ec6b8672b9156268abd9fbf51abc99f46700eb377e3",
+    "force-profile.json": "a39ec53ec80c32b3767990189847d788a0f58e1787f633f862bb1c33249d4812",
+    "model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069",
+    "inputs.json": "92db8e8df82abf7f50411a678ddc39d269ce4ad77f1d5ad2a0902257649ea319"
+  },
+  "dll_sha256": "f850d5a8cc4123e0225f8421a6e009125676c4a63b47b6f91fe3a4a75c038d93",
+  "controls_required": 139,
+  "maximum_reader_wall_seconds": 7200,
+  "minimum_free_storage_bytes": 68719476736,
+  "maximum_capture_bytes": 8589934592,
+  "maximum_capture_row_bytes": 16777216,
+  "primary_research": {
+    "url": "https://arxiv.org/html/2212.00541v2",
+    "application": "bounded low-dimensional linear control points and repeated predictive sampling; no upstream source copied"
+  },
+  "native_worlds": 0,
+  "native_physics_steps": 0,
+  "trained": false,
+  "native_recovery_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

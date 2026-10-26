@@ -51819,3 +51819,20 @@ before censoring, which does not establish recovery or superiority. The
 records numerical agreement, exact scope and the next question: earlier bounded
 action sequences with enough planning lead time to avoid the speed boundary.
 No guard is relaxed. Training authority, Tier 2, Tier 3 and release remain false.
+
+## Earlier predictive sequences checkpoint - 2026-10-25
+
+The [conditional sequence closure](../sdk/discovery/predictive_sequence_result_v1.json)
+passes 139 controls and two byte-identical readers with zero new worlds.
+Among 612 candidate evaluations per reader, exposed starts 60 and 72 yield
+fully admissible predicted sequences through 1.05 simulated seconds; later
+sampled starts do not. All original guards remain unchanged. Five separate
+recorded-action calibration windows retain long-horizon model/native errors.
+
+Future baseline velocities are held constant only as a forecast assumption.
+Neither actual future public envelopes nor transfer of these sequences is
+verified. The next action is causal public sequence integration, bounded warm
+starts, actual resolved history and first-command verification, followed by a
+distinct native comparison. The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#conditional-sequence-planning-and-recorded-action-calibration---2026-10-25)
+records the complete finite population, timing and non-claims. Recovery,
+training-data authority, Tier 2, Tier 3 and release remain unqualified.
