@@ -51939,3 +51939,15 @@ The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-refinement-integratio
 now requires a fresh native comparison from a clean pushed freeze and complete
 safety gate. This zero-world component grants no recovery, training-data,
 Tier 2, Tier 3, real-time or release authority.
+
+## Native refinement successor prepared - 2026-10-26
+
+The [native v4 route component](../sdk/discovery/predictive_sequence_native_component_result_v4.json)
+passes 40 controls and both-core preflight with zero worlds. It carries the
+verified public refinement into the existing fresh native comparison while
+preserving the physical criteria and refusal semantics.
+
+The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-refinement-route-ready-for-the-full-gate---2026-10-26)
+requires a clean pushed freeze and the complete 1,407-control gate before
+launch. Physical continuation, recovery, training-data authority and learned
+Tier 2 or beneficial Tier 3 remain unqualified.
