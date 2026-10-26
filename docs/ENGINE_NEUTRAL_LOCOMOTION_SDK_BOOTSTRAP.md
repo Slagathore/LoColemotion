@@ -51925,3 +51925,17 @@ refusals, followed by exact resolution/history checks and fresh native
 validation. The consumed physical result remains incomplete; predicted
 admissibility does not establish recovery, training-data authority, Tier 2,
 Tier 3 or release.
+
+## Public refinement verified on retained inputs - 2026-10-26
+
+The [public v4 integration](../sdk/discovery/predictive_sequence_public_result_v4.json)
+passes 310 controls and two identical independent readers. Both core builds
+preserve earlier accepted commands and resolve the published refinement at
+native command 81. A following-request fixture verifies actual-history
+binding using a separately recorded observation; it grants no native
+continuation or next-action prediction claim.
+
+The [roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-refinement-integration---2026-10-26)
+now requires a fresh native comparison from a clean pushed freeze and complete
+safety gate. This zero-world component grants no recovery, training-data,
+Tier 2, Tier 3, real-time or release authority.

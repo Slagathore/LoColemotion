@@ -3706,3 +3706,16 @@ without copying upstream implementation. The local experiment changes both
 candidate structure and search effort, so it does not attribute the result
 to either factor alone. Public integration and new native observations must
 precede any recovery or expert-policy training claim.
+
+## Bounded refinement reaches the public action path - 2026-10-26
+
+The [public refinement closure](../../sdk/discovery/predictive_sequence_public_result_v4.json)
+integrates the published finite local search after explicit original-search
+refusal. Independent readers verify both core builds, unchanged accepted
+commands, exact selected first-action resolution and actual-history binding.
+All original and refinement candidates remain available.
+
+The retained native observations precede this integration. The command-82
+protocol fixture also uses a separately recorded observation, so neither
+establishes the physical effect of applying the refined command. Fresh native
+continuation remains the next test; no learning or recovery benefit is claimed.
