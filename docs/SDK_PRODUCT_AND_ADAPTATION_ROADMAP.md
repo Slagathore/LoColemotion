@@ -21,16 +21,15 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-25
 
-Current next action: the [bounded predictive selector](#bounded-predictive-command-selection-and-runtime-limit---2026-10-25)
-passes 69 controls and two identical readers over 2,006 candidate forecasts.
-It selects lower-cost guard-eligible alternatives at 57 of 59 starting states
-and refuses the final two; no native recovery benefit is established.
-Measured selection costs about 1.43 s per command versus the 0.008333-s control
-period. Profile and accelerate the dominant prediction/evaluation work while
-preserving guards and finite selection outcomes, then verify production
-integration and fresh native recovery. The prior failed uniform-cap assumption
-is retained; its successor honors each actuator's existing cap. Tier 2, Tier 3
-and release remain unqualified. Earlier next-step statements are historical.
+Current next action: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
+passes 91 controls and two identical readers over all 2,006 candidate forecasts.
+Every candidate decision, guard, refusal and optimizer iteration count is
+preserved. Unprofiled mean selection time falls from 1.44-1.77 s to 0.188-0.219 s
+in the two readers, a measured 7.67-8.09 ratio, but remains above the 0.008333-s
+period. Profile and remove the remaining dominant work or boundary crossings,
+then verify production integration and fresh native recovery. The original
+physical negative and per-actuator caps stand. Tier 2, Tier 3 and release remain
+unqualified. Earlier next-step statements are historical.
 
 Prior primary-solver result: the [semidefinite primary and strict-seed checkpoint](#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25)
 passes 142 controls and two identical readers over 180 retained cases:
@@ -8744,3 +8743,72 @@ Then verify the production path and prospectively compare fresh native recovery.
 The configured selector is untrained; its synthetic alternatives are not an
 authorized learning corpus. Physical recovery, Tier 2, Tier 3, robustness,
 equivalence, real-time and release authority remain unqualified.
+
+## Compiled predictive numerical kernels - 2026-10-25
+
+The [compiled backend closure](../sdk/discovery/predictive_numeric_backend_result_v1.json)
+retains a profiling diagnosis and a distinct numerical acceleration. Profiling
+first ran the unchanged selector at commands 60, 92 and 118, covering handoff,
+the lower per-actuator speed cap and terminal refusal. Its 69 controls and two
+independent readers reproduced all 102 candidate results per reader bitwise.
+Each selection made approximately 32,300 small-vector cross-product calls;
+rigid-body calculations and the contact optimizer were substantial costs.
+The raw profiles are retained. Profile timings include instrumentation overhead
+and are not used as speed benchmarks.
+
+An independently written Rust library now supplies fixed-size rigid-tree
+kinematics, full Jacobians, mass matrices, Newton-Euler motion/inverse dynamics
+and the cold-start projected cone loop. The existing Python code retains
+contact construction, implicit integration, candidate generation, objective,
+public bounds and guards. The original Python cone certificate remains the
+acceptance authority with its unchanged primal, dual and complementarity
+tolerances. The library validates buffer dimensions and numerical domains;
+the wrapper verifies the exact DLL digest before loading it.
+
+The source was compiled with the installed Rust 1.97.0 toolchain for the generic
+x86-64 target. Source bytes, compiler identity/options, build output and the
+loaded DLL digest are retained. No Python dependency was changed. This is a
+configured Windows component, not a new cross-platform release claim.
+
+The complete backend owner passes 91 controls and two byte-identical readers.
+Each reader reruns all 59 original starting states through both implementations,
+including all 34 candidates per state. Every reference rerun matches the prior
+retained report bitwise. All candidate inputs, selected indices, guards,
+refusals and optimizer iteration counts agree between backends. The unchanged
+final two commands remain refused.
+
+| Full finite comparison, per reader | Result |
+| --- | ---: |
+| Candidate forecasts / predicted steps per backend | 2,006 / 10,030 |
+| Maximum position-component difference | 2.220446e-16 |
+| Maximum velocity-component difference | 4.884981e-15 |
+| Maximum other floating-field difference | 2.023626e-11 |
+| Changed optimizer iteration counts | 0 |
+
+These differences satisfy the prospective backend-comparison tolerances.
+They do not change physical acceptance thresholds or establish general
+cross-engine equivalence. The owner binds 1,057 source and 3,583 runtime files
+and retains 37 artifacts including its receipt. The profiling predecessor
+retains 36 artifacts. Both attempts open zero native worlds.
+
+Unprofiled timings cover each complete selection call. Execution order alternates
+between reference-first and compiled-first by command; constructors and final
+serialization are excluded. All 59 measurements per backend are retained:
+
+| Reader | Mean reference selection | Mean compiled selection | Ratio of mean times |
+| --- | ---: | ---: | ---: |
+| Audit | 1.444000 s | 0.188177 s | 7.67 |
+| Reconstruction | 1.773646 s | 0.219112 s | 8.09 |
+
+Compiled minima are 0.132413 s and 0.141476 s; maxima are 0.380308 s and
+0.410753 s. These are finite measurements on this host, not hardware-independent
+performance guarantees. Both mean times still exceed the 0.008333-s control
+period substantially, so real-time adoption remains unqualified.
+
+Next profile the remaining compiled-path cost, then remove the dominant repeated
+work or Python/native boundary crossings while preserving the same candidate
+population, objective, guards and finite outcomes. Verify the production path
+and a distinct prospective native recovery comparison after the runtime gap is
+addressed. The selector remains untrained, its synthetic alternatives are not
+an authorized learning corpus, and physical recovery, Tier 2, Tier 3 and release
+remain unqualified.

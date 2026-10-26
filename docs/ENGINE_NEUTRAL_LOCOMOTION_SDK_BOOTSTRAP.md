@@ -32,10 +32,14 @@ crossings. The [bounded predictive selector](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.
 now passes 69 controls and two identical readers over 2,006 candidate forecasts.
 It selects lower-cost eligible alternatives at 57 of 59 starts and refuses the
 final two. Mean selection cost is about 1.43 s versus the 0.008333-s control
-period. Next profile and accelerate the prediction/evaluation path, preserve
-guard and selection behavior, then verify production integration and fresh
-native recovery. The failed uniform-cap attempt remains retained; its distinct
-successor honors the existing per-actuator caps.
+period. The [compiled numerical backend](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#compiled-predictive-numerical-kernels---2026-10-25)
+now passes 91 controls and two identical full readers, preserving all candidate
+decisions, guards, refusals and optimizer iteration counts. Mean selection takes
+0.188-0.219 s in the paired readers, a measured 7.67-8.09 ratio of reference to
+compiled mean time, still above the control period. Next profile the remaining
+cost and remove dominant repeated work before production integration and fresh
+native recovery. The failed uniform-cap attempt and existing per-actuator caps
+remain retained.
 No numerical or physical guard was relaxed. Nominal worlds remain unopened.
 Tier 2, Tier 3 and release remain unqualified.
 

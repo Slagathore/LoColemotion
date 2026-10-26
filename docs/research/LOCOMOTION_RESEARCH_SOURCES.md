@@ -3545,3 +3545,26 @@ The approximately 1.43-s mean command-selection cost exceeds this SDK's
 0.008333-s period. This makes profiling and acceleration necessary before
 real-time adoption. Predicted objective improvements are not observed recovery,
 learning labels, global optimality or Tier 2/Tier 3 qualification.
+
+## Profile-guided compiled numerical backend - 2026-10-25
+
+The [Python 3.11 profiler documentation](https://docs.python.org/3.11/library/profile.html)
+distinguishes execution attribution from benchmarking because instrumentation
+adds overhead. The retained diagnosis therefore keeps raw cProfile data separate
+from unprofiled, alternating-order reference/compiled timing measurements.
+Complete profiled results are checked against the existing retained selector.
+
+The [Rust compiler options](https://doc.rust-lang.org/rustc/codegen-options/index.html)
+and [FFI guidance](https://doc.rust-lang.org/nomicon/ffi.html) informed a fixed-size
+C-compatible boundary with owned buffers, explicit lengths, return codes and
+exact executable binding. The local library independently implements the
+existing rigid-body and contact-optimization formulas; it adds no native world,
+upstream source copy, Python dependency upgrade or change to acceptance rules.
+
+The [full finite comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#compiled-predictive-numerical-kernels---2026-10-25)
+preserves every candidate decision and iteration count across 2,006 forecasts,
+with differences near floating-point roundoff. Mean selection costs fall by
+measured ratios of 7.67 and 8.09 in the two readers. The remaining 188-219 ms
+means are still above the 8.33-ms period. Further acceleration must be guided
+by profiling of the remaining path, not by treating this gain as real-time,
+native-recovery or learned-adaptation qualification.
