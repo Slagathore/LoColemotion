@@ -21,22 +21,22 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: integrate the distinct contact-priority sequence component
-through the public resolver, starting at command 60 and carrying actual applied
-correction history. The [four-state component](#contact-priority-sequence-component---2026-10-26)
-passes 105 controls and two identical readers, with 102 fresh candidates at each
-of commands 60, 70, 80 and 86. The three initially admissible plans remain
-admissible; the command-86 stress probe is refused at 65/66 intervals.
-First target velocities change at exposed commands 60, 70.
+Current next action: freeze and run a distinct bounded native continuation of
+the contact-priority policy. The [public integration](#contact-priority-public-handoff-and-history---2026-10-26)
+passes 145 controls and two identical readers across four hosts, two core
+builds and 248 commands per reader. All 240 pre-handoff commands are unchanged;
+eight sequence commands resolve and transfer exactly. The weak command-60
+handoff reproduces the published contact-priority result, and command 61
+carries the new actual resolved correction and plan.
 
-The new ordering places predicted distal-capsule clearance ahead of the
-inherited task cost after unchanged feasibility checks. It may alter earlier
-accepted decisions. Lower clearance is not loaded support; report the separate
-predicted normal-force counts. These four starting states belong to the old
-native trajectory and do not form a causal trajectory under the new policy.
-Verify public first-command projection, new warm-plan memory and actual
-resolved history, then freeze a fresh bounded native continuation. Preserve
-the held future-baseline approximation and all actuator caps and guards.
+Use fresh weak and nominal baseline/candidate roles with the complete
+applicable safety gate and a clean, pushed prospective freeze. Generate later
+observations by applying the newly selected actions. The public test reused
+retained observations, so its following step verifies protocol and memory,
+not physical continuity or recovery. Earlier accepted decisions may change;
+the old command-86 state is an exposed stress result, not a required future
+state. Keep all guards, actuator caps, the 66-interval horizon, and the
+explicit held future-baseline approximation.
 
 Latest native result: the [native-v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
 passes all 1,407 safety controls and two independent readers. The candidate
@@ -9558,3 +9558,35 @@ command 59. No world ran, no model was trained and no qualification changed.
 Next integrate this ordering through the public provider, verify first-command
 projection and new causal warm-plan/history accounting, then use a fresh native
 freeze. Do not demand the old later targets or starting states remain unchanged.
+
+## Contact-priority public handoff and history - 2026-10-26
+
+The [public closure](../sdk/discovery/contact_sequence_public_result_v1.json)
+passes 145 controls and two byte-identical readers across weak and nominal
+inputs on two core builds. Each of four hosts processes commands 0 through 61:
+240 prefix commands remain numerically unchanged, and all eight sequence
+commands resolve through the public interface and transfer exactly into the
+adapter command array. The complete candidate denominator is
+1228 per reader, including
+6 contact-priority searches.
+
+The first reader's maximum measured full-replan host time is
+70.998 seconds. These are retained-input
+wall measurements, not a real-time benchmark; use them to declare native wall
+and capture budgets without changing recovery thresholds.
+
+The weak handoff reproduces the published command-60 component exactly.
+Each following request carries the corrections, request binding and warm plan
+actually resolved by the new provider. Valid warm plans are shifted and
+rechecked; every full replan, including an already admissible original
+selection, receives the distinct contact-priority search. Scheduled replans,
+refusals, corrupted populations, authority changes and transfer mismatches
+are covered by the controls. Original Python reconstructs the seed and
+selected forecasts on the first core; both core builds retain identical rows.
+
+Command-61 observations are retained protocol inputs from the old controllers,
+not consequences of the new command-60 actions. No native world ran and no
+recovery or learning claim follows. Next freeze a fresh bounded native
+continuation, with complete safety gates and fresh weak/nominal paired roles.
+Preserve guards and force caps, and evaluate the trajectory actually generated
+by the earlier changed decisions.
