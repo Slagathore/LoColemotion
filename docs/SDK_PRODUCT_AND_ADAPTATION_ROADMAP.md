@@ -21,23 +21,22 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-10-26
 
-Current next action: build a distinct contact-aware planning component that
-tests earlier front-foot engagement under the existing actuator and safety
-limits. The [retained authority diagnostic](#retained-forecast-torque-and-contact-diagnostic---2026-10-26)
-passes 20 controls and two identical readers over eight overlapping forecasts
-at five exposed states. All 2,630 retained steps place the rear-left hip at its
-lower torque cap while its joint velocity is positive; the entire local
-interval-command envelope yields that same torque at each retained state.
-Seven trajectories have no front-foot contact, and the remaining command-81
-trajectory has contact for only 10 of 330 steps. Motor torque reconstructs
-exactly. These observations motivate the next hypothesis; they do not establish
-global infeasibility, actual future native failure or long-horizon model accuracy.
+Current next action: integrate the distinct contact-priority sequence component
+through the public resolver, starting at command 60 and carrying actual applied
+correction history. The [four-state component](#contact-priority-sequence-component---2026-10-26)
+passes 105 controls and two identical readers, with 102 fresh candidates at each
+of commands 60, 70, 80 and 86. The three initially admissible plans remain
+admissible; the command-86 stress probe is refused at 65/66 intervals.
+First target velocities change at exposed commands 60, 70.
 
-Declare any changes to earlier accepted decisions as part of the new policy.
-Preserve the existing guards and actuator caps, retain the held-baseline
-approximation as an explicit model limitation, and verify actual first-command
-projection and public history before fresh native work. The adaptive-scale and
-constraint-ranking results remain finite refusals with no new action authority.
+The new ordering places predicted distal-capsule clearance ahead of the
+inherited task cost after unchanged feasibility checks. It may alter earlier
+accepted decisions. Lower clearance is not loaded support; report the separate
+predicted normal-force counts. These four starting states belong to the old
+native trajectory and do not form a causal trajectory under the new policy.
+Verify public first-command projection, new warm-plan memory and actual
+resolved history, then freeze a fresh bounded native continuation. Preserve
+the held future-baseline approximation and all actuator caps and guards.
 
 Latest native result: the [native-v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
 passes all 1,407 safety controls and two independent readers. The candidate
@@ -9526,3 +9525,36 @@ late refusal repair have not established sustained recovery. Foot participation
 is a research-informed hypothesis, not a diagnosed unique cause. Preserve force
 caps and guards, report the future-baseline approximation, then require public
 integration and fresh causal native evidence before training or qualification.
+
+## Contact-priority sequence component - 2026-10-26
+
+The [component closure](../sdk/discovery/contact_sequence_result_v1.json)
+binds 105 controls, two byte-identical readers and all 408 new candidate
+forecasts per reader. Each exposed state starts from its exact retained
+native-v4 winner and receives three rounds of the existing 34-proposal
+search. Eligibility, valid prefix, numerical validity and guard severity rank
+first; mean squared positive distal-capsule clearance precedes inherited task
+cost. No guard, actuator cap or candidate distribution changes.
+
+| Exposed command | Initial clearance (m²) | Selected clearance (m²) | Valid intervals | Initial front L/R loaded steps | Selected front L/R loaded steps |
+| --- | --- | --- | --- | --- | --- |
+| 60 | 0.000668678983214 | 0.000644308977602 | 66/66 | [146, 0] / 330 | [203, 15] / 330 |
+| 70 | 0.00202801899604 | 0.000929281808952 | 66/66 | [50, 0] / 330 | [72, 34] / 330 |
+| 80 | 0.00142991167272 | 0.00142991167272 | 66/66 | [15, 0] / 330 | [15, 0] / 330 |
+| 86 | 0.0035962002554 | 0.0035962002554 | 65/66 | [0, 0] / 330 | [0, 0] / 330 |
+
+Loading counts refer to positive predicted pre-step normal forces on the two
+front distal capsules, with each forecast's completed-step denominator.
+Clearance averages all four distal capsules at completed predicted post-states.
+Neither is a new native observation. The first projected forecast target changes at
+commands 60, 70; command 86 remains an explicitly declared stress probe.
+
+Independent scalar geometry, complete proposal/guard/cost accounting and
+original-Python seed/winner reconstruction pass. The first fresh candidate
+reproduces its retained seed exactly. The handoff control confirms that fresh
+planner memory still carries the nonzero correction actually applied at
+command 59. No world ran, no model was trained and no qualification changed.
+
+Next integrate this ordering through the public provider, verify first-command
+projection and new causal warm-plan/history accounting, then use a fresh native
+freeze. Do not demand the old later targets or starting states remain unchanged.

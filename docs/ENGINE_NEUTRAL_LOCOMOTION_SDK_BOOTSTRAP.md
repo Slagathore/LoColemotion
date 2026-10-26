@@ -15,21 +15,21 @@ candidate commands (430 solver steps, 0.716667 s), then refuses command 86 befor
 transfer. The candidate has no observed safety violation before that refusal;
 the nominal pair remains unopened and recovery benefit is unproved.
 
-The [retained torque/contact diagnostic](../sdk/discovery/sequence_authority_result_v1.json)
-passes 20 controls and two identical readers across eight overlapping forecasts
-at five exposed states. All 2,630 retained steps have saturated rear-left hip
-braking with positive joint velocity. Seven forecasts have no front-foot contact;
-the remaining command-81 forecast has contact for 10/330 steps. Every retained
-motor torque reconstructs exactly. This is local arithmetic evidence, not a
-global infeasibility certificate or a new native observation.
+The [contact-priority component](../sdk/discovery/contact_sequence_result_v1.json)
+passes 105 controls and two identical readers over 408 fresh candidate forecasts
+at four exposed native states. The three initially admissible plans remain
+admissible; command 86 is refused at 65/66 intervals. First target velocities change
+at exposed commands 60, 70. All original seed forecasts reproduce exactly,
+and original Python reconstructs both each seed and each selected winner.
 
-The next [roadmap component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-26)
-tests earlier front-foot engagement with an explicitly declared contact-aware
-policy. It may change earlier accepted decisions under a fresh contract.
-Keep actuator caps and safety guards, disclose the held future-baseline
-approximation, then verify public integration and fresh native continuation.
-The adaptive-scale search remains refused at 65/66 intervals. No training-data,
-Tier 2, Tier 3, real-time or release authority is added.
+The [next roadmap step](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-26)
+is public integration with actual applied history from command 60, followed by
+fresh native continuation. Earlier decisions may change under this distinct
+policy; the old state sequence is not its future trajectory. Foot clearance
+is a geometric objective, with predicted loading reported separately. Guards,
+force caps and the explicit held future-baseline approximation remain.
+No new native world, training-data, Tier 2, Tier 3, real-time or release
+qualification is added.
 
 Earlier campaign outcomes and next-step descriptions below are historical.
 
@@ -52039,3 +52039,17 @@ policy contract. They do not establish global infeasibility, physical recovery,
 predictor accuracy over the full horizon or permission to increase force limits.
 No new forecasts or worlds ran. Native-v4, both command-86 search refusals and
 all prior positive forecasts retain their identities and claim limits.
+
+## Contact-priority component and public integration - 2026-10-26
+
+The [four-state search](../sdk/discovery/contact_sequence_result_v1.json)
+passes 105 controls and two identical readers. All three initially admissible
+plans remain admissible; the command-86 stress probe is refused at 65/66 intervals.
+The distinct objective permits earlier accepted decisions to change while
+preserving guards and force caps. Lower distal clearance does not establish
+loaded support or recovery; the closure reports predicted loading separately.
+
+Public first-command projection and actual resolved history are the next gate,
+followed by fresh native continuation. Four forecasts from the old trajectory
+cannot establish a causal new-policy run. The held future-baseline approximation
+remains explicit, and all training, Tier 2, Tier 3 and release claims remain false.

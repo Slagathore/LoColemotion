@@ -3803,3 +3803,16 @@ dynamics and optimizes joint-angle references. Read on 2026-10-26. Our
 velocity-motor correction interface differs: keep the causal actuator mapping
 and held future-baseline approximation explicit when evaluating this direction.
 Neither paper establishes transfer or qualification for this SDK.
+
+## Configured stance-clearance implementation - 2026-10-26
+
+The [contact-priority component](../../sdk/discovery/contact_sequence_result_v1.json)
+tests the earlier contact-participation hypothesis using mean squared positive
+distal-capsule clearance after unchanged feasibility checks. It introduces no
+borrowed walking weight or threshold. Independent scalar geometry and original
+Python forecast reconstruction pass over four exposed native states.
+
+This is a geometric proxy, not a load-bearing support criterion. The closure
+reports positive predicted normal forces separately and retains the original
+decisions, all new candidates and the command-86 stress result. New public
+history and native continuation remain necessary before a recovery claim.
