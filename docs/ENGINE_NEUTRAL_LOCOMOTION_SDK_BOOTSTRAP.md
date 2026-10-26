@@ -51985,3 +51985,17 @@ search scale under the same seed, budget, horizon and guards. Source, complete
 candidate captures, independent reconstruction and exact prior-case identities
 remain bound by the closure. Tier 2, Tier 3, training-data, real-time and release
 authority remain unchanged.
+
+## Adaptive scale remains a negative finite result - 2026-10-26
+
+The [adaptive-scale closure](../sdk/discovery/sequence_adaptive_scale_result_v1.json)
+passes all 362 controls and two independent identical readers. It preserves all
+four previously positive refinements while reducing command 86's terminal
+normalized violation to 0.00017567643640388643. The new 316-candidate search still
+passes only 65 of 66 intervals; its best forecast violates hip margin and tilt.
+
+This result grants no new public command, native recovery, training-data or
+adaptation authority. The next diagnostic should examine the retained command
+and torque bounds, contact support and future-baseline assumption before another
+search change. Keep the original finite refusal, all candidates and exact
+source/runtime identities; no horizon or acceptance limit changed.

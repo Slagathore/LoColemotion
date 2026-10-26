@@ -3763,3 +3763,20 @@ round, shrink it after a stalled round, and retain the prior schedule once a
 feasible plan is available. Declare this bounded adaptation separately, keep
 the four-round budget and guard predicates, and recheck the exposed successes.
 It is not a canonical Hooke-Jeeves implementation or a convergence guarantee.
+
+## Adaptive scale result and structural diagnosis - 2026-10-26
+
+The [adaptive-scale experiment](../../sdk/discovery/sequence_adaptive_scale_result_v1.json)
+tests the bounded local inference from the preceding pattern-search references:
+hold the exploration scale after feasibility improvement, contract after a stall,
+and preserve the inherited schedule once feasible. All four command-86 rounds
+improve and keep scale 0.4. The final normalized violation falls below the
+fixed-scale result, while every candidate remains inadmissible at 65/66 intervals.
+Both independent readers preserve all prior successful round winners.
+
+This is a negative finite result under the declared budget, not a convergence
+test or an infeasibility certificate. Inspect the existing forecast evidence for
+projection and torque saturation, support contacts and the held future baseline
+before choosing further search changes. That examination must separate observed
+arithmetic and local limits from hypotheses about recovery and model accuracy;
+it supplies no alternative-action native observations.

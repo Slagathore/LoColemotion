@@ -9443,3 +9443,28 @@ the original schedule once a feasible plan is available, the original seed,
 four-round budget and all acceptance guards. Recheck the exposed positives and
 retain any regressions. This search supplies no admissible command-86 plan for public integration. Native recovery, learned adaptation, training-data
 authority and real-time qualification remain unproven.
+
+## Adaptive search steps reduce violation but retain refusal - 2026-10-26
+
+The [adaptive-scale closure](../sdk/discovery/sequence_adaptive_scale_result_v1.json)
+passes 362 controls and two byte-identical readers with no native worlds. Both
+readers check all 1,264 retained candidates at commands 81, 83, 84 and 85 and
+preserve every previous round winner. A fresh 316-candidate search at command 86
+uses the original rejected seed and unchanged proposal count, ranking, horizon,
+projection and guard predicates.
+
+All four rejected rounds improve feasibility and therefore retain the initial
+0.4 step. Their normalized violations are 0.005128811611202556,
+0.0008461068266966378, 0.00032588697524340204 and 0.00017567643640388643.
+The final value is below the prior fixed-scale result, but the final forecast
+still passes only 65/66 intervals. Hip-margin and tilt violations remain at its
+last predicted step. Original Python reconstructs the original and new best
+forecasts; no accepted candidate or physical recovery is established.
+
+Before another search successor, inspect the retained forecasts for command
+projection, actuator saturation, contact support and the held-baseline
+approximation. Distinguish a restricted search parameterization from local
+actuator limits and predictor uncertainty. Such a diagnostic cannot establish
+global infeasibility or authorize guard relaxation. Public integration remains
+pending an admissible result; Tier 2, Tier 3, training-data, real-time and release
+authority remain unchanged.

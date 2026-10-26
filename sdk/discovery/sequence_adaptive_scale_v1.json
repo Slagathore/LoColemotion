@@ -1,0 +1,103 @@
+{
+  "schema_version": "locolemotion_sequence_adaptive_scale_contract_v1",
+  "ledger_scope": {
+    "subsystem": "adaptation",
+    "engine_scope": "core",
+    "authority_mode": "finite_retained_native_adaptive_scale",
+    "question_class": "development"
+  },
+  "source_bindings": {
+    "predictive_sequence_adaptive_scale_v1.py": "d413dc9db6907422d971a169fb87816636eaa6bee532ace5d39598b7a03d9f9b",
+    "sequence_adaptive_scale_checks_v1.py": "8ebf69a1758fc7e3d10c4d2780335d0b13247f8dd6de170a487d24a72865dc43",
+    "sequence_adaptive_scale_task_v1.py": "d6f93181b2f3b832d3b08859238b51beb0ba0360dbf09227c31d3d2bc062a311",
+    "audit_sequence_adaptive_scale_v1.py": "7430b8026a2f6dcd19adf08a2720645d1953a6b8ddc3fa0a4bcc27c8b9666456",
+    "test_sequence_adaptive_scale_v1.py": "0d644d615290bcbb6e2d83e61728dab911ce10d3629f481aaa379b715011ea25",
+    "run_sequence_adaptive_scale_v1.py": "200ed2c5245e51671580f6a940939f5f44857e369e5626f891f9114900dda850"
+  },
+  "parent_attempt": "sdk2-sequence-constraint-repair-v1-5df5955031694ad6a69ce9a0695a8379",
+  "parent_receipt_sha256": "b39f256000af90d43a1b74ba378927d06e8bacce0acaffc8f75c5f9712091210",
+  "parent_result_sha256": "2e2136b334c4bd39664c8a30b04e38f96221b2cddffda41d8deb0d69202a610f",
+  "input_bindings": {
+    "controller.jsonl": "5177efeb1944b4ae45cd37111ed98f81a369e9f60246e0c6316790254cbcaf52",
+    "force-profile.json": "87c37926a135c0ddf6c1e929ca0dab216830bea7496be5598a4d75e9b23ad1d9",
+    "model.xml": "f9de96b1954cdc76864cdddc90a43a18a828aee326d3916d00891b8c7c034069"
+  },
+  "commands": [
+    81,
+    83,
+    84,
+    85,
+    86
+  ],
+  "new_search_command": 86,
+  "horizon": 66,
+  "initial_seed": "same original native86 rejected best; do not seed from the constraint-repair final winner",
+  "regression": "rerank all retained candidates at commands 81,83,84,85; verify all guard/cost/projection fields and unchanged round winners; do not regenerate forecasts",
+  "parent_replay": "exact hash-bound native closure and independent readers; no claim of rerunning the original searches",
+  "successor_search": "four full adaptive-scale rounds; identical incumbent, 64 coordinate and 14 random proposals, seeds, bounds and ranking",
+  "candidates_per_round": 79,
+  "maximum_new_evaluations": 316,
+  "retained_regression_evaluations": 1264,
+  "random_seed": 2026102601,
+  "ranking": [
+    "eligible first",
+    "longest admissible prefix",
+    "complete finite predictor before numerical refusal",
+    "mean summed normalized violation in first rejected interval",
+    "original task objective",
+    "first candidate in ties"
+  ],
+  "normalization": {
+    "joint_position": "full joint range",
+    "joint_speed_rad_s": 3.5,
+    "height_m": 0.25,
+    "tilt_rad": 0.6,
+    "torso_contact": "binary per internal step; any torso contact is one",
+    "comparison_tolerance": 2e-06,
+    "interval_internal_steps": 5,
+    "numerical_refusal": "severity unavailable; never zero-feasible",
+    "unevaluated_future": "not scored; longest admissible prefix remains a prior ordering key"
+  },
+  "first_command_permission": "none; retained-state diagnostic only",
+  "controls_required": 362,
+  "maximum_control_wall_seconds": 600,
+  "maximum_reader_wall_seconds": 7200,
+  "minimum_free_storage_bytes": 68719476736,
+  "maximum_capture_bytes": 4294967296,
+  "maximum_capture_row_bytes": 1073741824,
+  "maximum_input_row_bytes": 1073741824,
+  "reference": "original Python reconstructs old rejected best and new best at 86; scalar independent violation accounting; all new candidate guards/costs/projection verified",
+  "runtime_native_api_forbidden": true,
+  "runtime_xml_parsing_forbidden": true,
+  "future_observations_used": false,
+  "future_recorded_actions_used": false,
+  "changed_horizon": false,
+  "changed_guard": false,
+  "worlds_opened": 0,
+  "solver_steps": 0,
+  "actual_native_transfer_verified": false,
+  "trained": false,
+  "training_data_authority": false,
+  "recovery_benefit_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "real_time_qualified": false,
+  "native_parent": {
+    "attempt_id": "sdk2-predictive-sequence-native-v4-a2e10bd6cfb14867991d0943d3ebc5b9",
+    "receipt_sha256": "0c074685d2f4852c5fa44844e9b4c1807cce159ac66bcb0f18d84122bcea6525",
+    "result_sha256": "abfab2180d3d92957023202caa3afdfb0068d2341fae1a5f7828a62a3d0e6f2d"
+  },
+  "initial_scale": 0.4,
+  "rounds": 4,
+  "scale_update": {
+    "improving_rejected_round": "retain scale only if prefix, numerical category or normalized violation strictly improves",
+    "stalled_rejected_round": "halve scale, including when only task cost improves",
+    "feasible_round": "use inherited absolute scale schedule [.4,.2,.1,.05] for remaining rounds",
+    "final_round": "no continuation or additional candidates"
+  },
+  "changed_candidate_budget": false,
+  "changed_ranking": false,
+  "changed_scale_schedule": true
+}
