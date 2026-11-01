@@ -2,6 +2,16 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-11-01
 
+The [population discovery successor](../sdk/discovery/population_discovery_component_result_v1.json)
+passes its final 100-control zero-world component gate. The prospective route
+contains 64 joint-control policies across two actuator conditions and two
+exposed starts: 256 two-second discovery worlds in batches of 16, preceded by
+16 full/compact canary worlds. It retains all native safety reads while reducing
+serialized records. The canaries require complete raw replay, direct projection
+checks and identical compact records. No new world has opened at this boundary;
+the next step is clean-freeze execution, then fresh full-capture shortlist
+challenges. Reduced discovery records grant no training or qualification.
+
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.
 Every ordinary file passed the full checksum comparison; nine reopened evidence
@@ -25507,7 +25517,6 @@ longer invokes either arm of the historical physical launcher. The frozen
 runner and retained evidence were not rewritten. This is an infrastructure
 lifecycle correction only and grants no new walking, robustness, cross-engine,
 or release authority.
-
 
 ## 2026-08-03: MuJoCo VH2 consumed implementation-invalid; distinct successor required
 

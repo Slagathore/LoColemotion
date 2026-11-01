@@ -21,6 +21,26 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-11-01
 
+The [population discovery component](../sdk/discovery/population_discovery_component_result_v1.json)
+now passes its final 100-control zero-world gate. Its [prospective contract](../sdk/discovery/population_discovery_v1.json)
+freezes 64 policies with eight independently varied joint coefficients, two
+actuator conditions and two exposed training starts: 256 two-second discovery
+worlds, run in batches of 16. Sixteen additional canary worlds compare full and
+compact recording before the search may open. All native reads and five-step
+history remain; only retained serialization is reduced. The canary reader
+replays the full controller records and checks every compact field against the
+raw trace. The paired runs measure recording costs without claiming reduced
+GPU readback or general throughput.
+
+No physical world has opened for this successor at this component boundary.
+The next gate is the clean pushed freeze, its complete safety gate, then canaries
+and population execution. Every trial survives in the ledger; expected
+performance failures stay negative. Selection uses both exposed starts,
+baseline improvement where baseline is eligible, deterministic ties and
+coefficient diversity. Reserved calibration/evaluation starts remain unopened.
+A shortlist requires fresh full-capture native reruns under a new contract;
+these reduced records grant no fitting, recovery, adaptation or release authority.
+
 Current native result: the [contact-native v2 closure](../sdk/discovery/contact_sequence_native_result_v2.json)
 passes the complete 1,615-control gate and two byte-identical independent readers.
 Two fresh CPU worlds open. The candidate transfers 90 commands over 450 internal
@@ -49,8 +69,8 @@ The command-90 refusal predicts a future rear-left hip margin crossing.
 Local torque saturation and this finite search do not prove global infeasibility.
 
 Current execution priority, reaffirmed 2026-11-01: broad candidate discovery,
-then detailed checking of the shortlist. Implement a distinct exploration-capture
-successor to the existing batch execution path. Jointly vary declared parameters
+then detailed checking of the shortlist. Run the declared exploration-capture
+successor above through the existing batch execution path. Jointly vary declared parameters
 through the implemented provider/controller interface; test populations rather
 than repeatedly refining and fully auditing one controller. Measure telemetry
 cost before reducing capture. Keep every candidate's identity, parameters,
