@@ -9,7 +9,7 @@
 
 ## SDK2 experimental learning boundary - 2026-10-22
 
-The current [product sequence](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-22)
+The current [product sequence](https://github.com/Slagathore/LoColemotion/blob/cf158067d5d4082b1faadea2e698afde4623a4c3/docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-10-22)
 authorizes preparing a distinct bounded GPU discovery/training lane. The
 completed SDK1 baseline and every consumed campaign remain immutable.
 Exploratory GPU data may produce provisional candidates without first proving
@@ -17233,7 +17233,7 @@ step, native build, official/physical identity or physical declaration is create
 
 This prospective workflow follows the consumed L15 attempt and its distinct
 [integrity-failure closure](../sdk/qsdk_r10f_l15_retained_integrity_failure_closure_v1.json).
-The current [implementation and measured receipt](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#fast-development-layer-one-exact-publication-and-real-interface-checks)
+The current [implementation and measured receipt](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#fast-development-layer-one-exact-publication-and-real-interface-checks)
 provide a zero-world real-interface gate, not a physical-smoke result.
 
 Cole approved real-interface checks followed by bounded native diagnostic smoke
@@ -17264,7 +17264,7 @@ The bounded smoke runner and its safety gate must still be implemented and
 tested; this prose is not execution evidence or a score change.
 
 Subsequent execution is recorded separately in the
-[first bounded physical-smoke checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#first-bounded-physical-smoke-retained-diagnostic-path-passes):
+[first bounded physical-smoke checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#first-bounded-physical-smoke-retained-diagnostic-path-passes):
 the implemented runner passed its 28-test safety gate and two fresh diagnostic
 children, with exact retained publication. Its measured 878.651-second invocation
 and partial post-kick coverage are development facts only. No complete-route,

@@ -1742,7 +1742,7 @@ result when designing training labels and fresh native transfer challenges.
 Reviewed the complete [research proposal at f2a6d088](https://github.com/Slagathore/LoColemotion/blob/f2a6d088b68ba16577f31ad834b3ddfe5f09576a/docs/SDK2_ADAPTATION_RESEARCH_BOOTSTRAP.md)
 against the current provider implementation and the valid portable search v2.
 This is a research/sequencing decision, not a behavioral adoption or campaign
-result. The [existing roadmap](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
+result. The [existing roadmap](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#research-informed-acceleration---2026-10-23)
 carries the next work. No external code or model was imported.
 
 Adopt the ordering of host batching, diverse candidate search and deterministic
@@ -1929,7 +1929,7 @@ no population-inference or non-inferiority authority. Only complete independentl
 verified discovery episodes may be reused for later development fitting;
 confirmation is excluded and unopened evaluation groups remain sealed.
 
-The [completed pilot](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)
+The [completed pilot](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-motor-pilot---2026-10-23)
 is a valid negative: 75/90 discovery episodes were eligible, but all three roles
 failed both left-75 confirmation starts, leaving 24/30 eligible. The fixed
 conditioning-value criterion is false. Profile 6 survived both discovery starts
@@ -1962,7 +1962,7 @@ The new finite diagnostic retains numerical differences and every failed
 episode without changing tolerances or the original pilot result. No upstream
 source or pretrained model was copied and no runtime was upgraded.
 
-The [completed matched diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
+The [completed matched diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-matched-motor-diagnostic---2026-10-23)
 retains 12/48 eligible episodes. Profile 6 passes every tested 0.002 m/s instance
 and fails every 0.0035 m/s instance, across batch widths, neighbor compositions
 and fresh repeats. Eligibility does not flip in any same-start comparison,
@@ -1982,7 +1982,7 @@ the state-dependent quantities. The native model, sensor identities and full
 stream joins remain executable checks; current documentation does not upgrade
 the pinned runtime or establish CPU/GPU equivalence. No external code was copied.
 
-The [completed CPU challenge](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
+The [completed CPU challenge](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-native-cpu-motor-challenge---2026-10-23)
 retains four valid negative episodes: baseline and profile 6 fail at both exposed
 starts. The earlier GPU positive did not transfer under this finite native CPU
 challenge, despite equalized initial values. That observation does not identify
@@ -2014,7 +2014,7 @@ limits. The existing resolver separately enforces correction, slew and speed
 bounds. No external source code or runtime dependency was copied. The family is
 untrained, and fresh declared physics must establish whether the feedback helps.
 
-The subsequent [closed native discovery](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
+The subsequent [closed native discovery](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-cpu-stance-discovery---2026-10-23)
 retained **0/24 eligible episodes** and an empty shortlist. Complete independent
 replay validates execution, not this control design's usefulness. A separately
 labeled post-hoc diagnostic finds correction clipping in 1,597/2,551 pre-failure
@@ -2037,14 +2037,14 @@ by the survey. Independent tests check that equation and the objective minimum.
 Damping means `(I - J# J)` is not an exact nullspace map, and physical execution
 must determine attained posture and usefulness.
 
-The [declared factorial](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#posture-and-envelope-factorial-prepared---2026-10-23)
+The [declared factorial](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#posture-and-envelope-factorial-prepared---2026-10-23)
 separates correction magnitude, slew and posture preference while preserving
 native force limits and final speed limits. This follows the retained clipping
 and posture observations; it does not turn them into causal proof. The model is
 untrained, all 123 zero-world controls pass, and native benefit remains open at
 this preparation checkpoint. No external source code or dependency was imported.
 
-The subsequent [complete native factorial](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
+The subsequent [complete native factorial](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-posture-and-envelope-factorial---2026-10-23)
 retains **1/18 eligible and 17/18 negative** episodes. The all-high corner walked
 0.3804 m forward through four seconds at one start and failed the other, leaving
 no complete eligible pair. All 24 predeclared contrasts and the original
@@ -2054,7 +2054,7 @@ establish useful adaptation. Start sensitivity remains the next control question
 
 ## 2026-10-23 body-attitude and rate factorial
 
-The [body-gain successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-gain-factorial-prepared---2026-10-23)
+The [body-gain successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#body-gain-factorial-prepared---2026-10-23)
 reuses the already reviewed damped inverse and the project's existing
 body-attitude/rate feedback. It adds no external algorithm, code or dependency.
 The two gain levels are local prospective design choices within the original
@@ -2063,7 +2063,7 @@ failure at the other start. Eight analytic/ABI controls and ten route controls
 join the inherited gate for 141 passing zero-world controls. The native test
 must establish usefulness; source compatibility and literature do not supply it.
 
-The [completed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
+The [completed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-body-gain-factorial---2026-10-23)
 retains four eligible and six negative episodes. Every feedback corner passes
 only the 0.005 m/s start, so the tested attitude/rate gains do not resolve the
 start split. All eight planned contrasts remain intact. A separately labeled
@@ -2073,7 +2073,7 @@ support transfer; a further gain sweep is not promoted from single-start scores.
 
 ## 2026-10-23 fixed-torso ground-reach diagnosis
 
-The [retained native diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#fixed-pose-ground-reach-diagnosis---2026-10-23)
+The [retained native diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#fixed-pose-ground-reach-diagnosis---2026-10-23)
 adds an elementary geometric bound derived from the exact local two-link
 morphology. Each rotated planar segment has vertical contribution at least
 `-L*hypot(R_yx,R_yy)`; the straight-leg witness attains the sum within the
@@ -2090,7 +2090,7 @@ necessary, with original negative outcomes and the empty shortlist preserved.
 
 ## 2026-10-23 bounded stance-height successor
 
-The [height successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-successor-prepared---2026-10-23)
+The [height successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#body-height-successor-prepared---2026-10-23)
 reuses the previously reviewed damped inverse from
 [Buss's survey](https://mathweb.ucsd.edu/~sbuss/ResearchWeb/ikmethods/iksurvey.pdf).
 It adds a local bounded height/vertical-rate request and a geometric height cap
@@ -2101,7 +2101,7 @@ requested torso translation under contact and force limits. No external code
 or dependency was imported. Independent normal-equation and real-ABI controls
 pass; fresh native physics must establish usefulness.
 
-The subsequent [closed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
+The subsequent [closed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-body-height-discovery---2026-10-23)
 retains three eligible and three negative episodes. The height role passes
 both starts, while the unchanged reference passes one and baseline neither.
 At the already successful start, the height role has worse tracking quality
@@ -2110,14 +2110,14 @@ it establishes no general robustness, learned adaptation or literature-derived
 performance guarantee. Fresh longer-horizon and healthy-body comparisons are
 required before using the candidate in another adaptation comparison.
 
-The [fixed-candidate follow-up](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
+The [fixed-candidate follow-up](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#body-height-duration-and-nominal-confirmation-prepared---2026-10-23)
 extends duration to twelve seconds and adds the nominal actuator profile, with
 fresh baseline and reference worlds. It changes no control equation or bound.
 Full-horizon eligibility and censored quality differences remain distinct; an
 exact finite comparison is not a statistical non-inferiority result. The new
 controls pass, but physical confirmation remains unopened.
 
-The [completed duration/nominal comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
+The [completed duration/nominal comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
 retains nine eligible and three negative trials. The fixed height role passes
 all four twelve-second trials, but its nominal tracking score is below baseline
 at both starts; the declared nominal quality guard is false. This motivates a
@@ -2128,7 +2128,7 @@ all three failures and the healthy-body costs remain part of the record.
 
 ## 2026-10-23 causal-prefix repertoire preparation
 
-The [declared training successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-prefix-repertoire-discovery-prepared---2026-10-23)
+The [declared training successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#causal-prefix-repertoire-discovery-prepared---2026-10-23)
 uses the earlier reviewed idea of inferring dynamics from recent states and
 issued actions. It introduces a local 16-value joint-response feature vector,
 not an implementation or reproduction of a published adaptation model. The
@@ -2146,7 +2146,7 @@ no native result, learned benefit or broad generalization follows yet.
 
 ## 2026-10-23 completed causal-prefix repertoire and history coverage
 
-The [closed training repertoire](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)
+The [closed training repertoire](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-causal-prefix-repertoire---2026-10-23)
 retains twelve eligible nominal trials and twelve failed degraded-body trials.
 All eight shared prefixes are verified training groups, but no degraded
 candidate survives the unchanged four-start selection rule. Nominal baseline
@@ -2173,7 +2173,7 @@ code or dependency was imported; no published performance claim transfers here.
 
 ## 2026-10-23 early causal context feasibility
 
-The [16-command diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
+The [16-command diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-early-context-feasibility---2026-10-23)
 implements a small local label estimator over the already authorized training
 prefixes. In four blocked folds it classifies 8/8 condition/start groups; the
 constant-nominal and synthetic association-reversal controls score 4/8 and 0/8.
@@ -2193,7 +2193,7 @@ coverage of the histories its own choices produce, as discussed above.
 
 ## 2026-10-23 matched activation preparation
 
-The [matched activation declaration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#matched-height-activation-prepared---2026-10-23)
+The [matched activation declaration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#matched-height-activation-prepared---2026-10-23)
 turns early context observability into a separate control question. Fresh
 baseline, immediate-height and sixteen-command-delayed-height worlds use the
 same four exposed degraded-body starts. It preserves the earlier local height
@@ -2209,7 +2209,7 @@ prior confirmation remain excluded from development fitting.
 
 ## 2026-10-23 matched activation outcome
 
-The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-height-activation---2026-10-23)
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-matched-height-activation---2026-10-23)
 retains one eligible and eleven negative native CPU episodes after all 217
 controls. Immediate height passes only the 0.001 m/s start; baseline and delayed
 height pass none. All seven closure controls pass. The four-start shortlist is
@@ -2228,7 +2228,7 @@ published result or earlier confirmation is used as fresh training evidence.
 
 ## 2026-10-23 retained command composition
 
-The [height-composition diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
+The [height-composition diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-height-composition-diagnosis---2026-10-23)
 verifies a post-hoc common prefix from all four immediate-height training
 trials. It finds opposing baseline vertical motion in 744/994 supported-leg
 observations, including the positive trial. Seven controls pass, with a separate
@@ -2254,7 +2254,7 @@ projection alone cannot establish a useful controller or a learned selector.
 
 ## 2026-10-23 support-vertical composition preparation
 
-The [local successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-support-vertical-comparison---2026-10-23)
+The [local successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prepared-support-vertical-comparison---2026-10-23)
 implements the previously declared opposing-vertical hypothesis through the
 existing damped inverse and bounded velocity-residual ABI. Eight component
 controls include an independent damped normal equation and two-core agreement;
@@ -2265,7 +2265,7 @@ or establish physical benefit. No third-party code or dependency was imported.
 
 ## 2026-10-23 support-vertical outcome and coordination question
 
-The [complete comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
+The [complete comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-support-vertical-comparison---2026-10-23)
 retains 2/16 eligible trials and an empty four-start shortlist. One positive
 paired tracking score improves; eligibility coverage does not. All seven
 closure controls pass. The current hypothesis has not produced a usable
@@ -2282,7 +2282,7 @@ imported. The next controller still requires its own prospective comparison.
 
 ## 2026-10-23 phase/contact and command-response diagnosis
 
-The [retained-data reader](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
+The [retained-data reader](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 now covers all sixteen trials over the same 96-command prefix. Eight controls
 pass with zero new worlds. Actual phase memory is already exposed through the
 v1 provider context. Scheduled stance lacks observed support in 1,868/4,896
@@ -2301,7 +2301,7 @@ No third-party code, weights or gains were imported, and no claim gate changed.
 
 ## 2026-10-23 phase-aware residual-release preparation
 
-The [local successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-phase-release-comparison---2026-10-23)
+The [local successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prepared-phase-release-comparison---2026-10-23)
 now implements bounded release using actual v1 phase context. It derives the
 44-command interval from this project's existing correction and slew limits;
 it does not copy paper gains, policies or code. All 287 zero-world controls
@@ -2313,7 +2313,7 @@ remain unproved until fresh execution and closure.
 
 ## 2026-10-23 phase-release physical comparison
 
-The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-phase-release-comparison---2026-10-23)
 retains all 32 CPU trials after the full 287-control gate and independent
 replay: 19 eligible and 13 negative. Immediate phase release succeeds at two
 weakened starts where the vertical reference fails, but fails at the reference's
@@ -2331,7 +2331,7 @@ No third-party code, weights or gains were imported; no claim gate changed.
 
 ## 2026-10-23 first-response context and feedback repertoire
 
-The [completed fit](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
+The [completed fit](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-first-response-repertoire-fit---2026-10-23)
 reuses all 32 closed training outcomes and constructs zero worlds. The earliest
 causal response classifies 8/8 groups in paired-start internal validation; 24
 immediate episodes retain nine failures and yield 720 eligible cases. Ten
@@ -2353,7 +2353,7 @@ remain separate from physical control benefit and reserved evaluation.
 
 ## 2026-10-23 conditioned runtime selection preparation
 
-The [conditioned successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-conditioned-selection-comparison---2026-10-23)
+The [conditioned successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prepared-conditioned-selection-comparison---2026-10-23)
 connects the local context estimator and feedback repertoire to the production
 host. The first sparse-case refusal remains retained. A distinct dense fit
 uses overlapping thirty-command windows from the same fifteen eligible
@@ -2372,7 +2372,7 @@ and outcome-memory adaptation remain unproved until their own comparisons.
 
 ## 2026-10-23 conditioned selection native comparison
 
-The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-conditioned-selection-comparison---2026-10-23)
 retains all forty fresh CPU trials: 26 eligible and fourteen negative after
 complete independent replay. Frozen selection passes two weakened starts,
 while baseline and disabled control pass none. Shuffled selection also passes
@@ -2391,7 +2391,7 @@ dependency was imported. Reserved evaluation and promotion remain unopened.
 
 ## 2026-10-24 selection windows and policy-induced state coverage
 
-The [complete selection diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-selection-window-and-case-support-diagnosis---2026-10-24)
+The [complete selection diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-selection-window-and-case-support-diagnosis---2026-10-24)
 retains all forty trials and independently regenerates them with eight passing
 controls and zero worlds. Most scored thirty-command windows change or withdraw
 their proposed expert. The hardest start also has optimistic constant-expert
@@ -2415,7 +2415,7 @@ labels or guarantees. No external source code, weights, gains or dependency
 was imported. Temporal commitment, additional state and coverage are local
 hypotheses; useful physical selection and Tier 3 adaptation remain unproved.
 
-The separately implemented [commitment component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-committed-selection-component---2026-10-24)
+The separately implemented [commitment component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#implemented-committed-selection-component---2026-10-24)
 now passes sixteen controls with zero worlds, including expiry and support
 withdrawal through both actual core DLLs. It adds temporal selection state
 without refitting the repertoire or updating outcome memory. The original
@@ -2424,7 +2424,7 @@ Host integration and a fresh matched native comparison are still required;
 this component result does not demonstrate an options-learning algorithm,
 coverage improvement, physical benefit or Tier 3 learning.
 
-The [prospective commitment comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-committed-selection-comparison---2026-10-24)
+The [prospective commitment comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prepared-committed-selection-comparison---2026-10-24)
 now has nine passing host controls and fourteen passing route controls, alongside
 the sixteen provider controls. It preserves the actual missed memory corruption
 and the successful independent-reader successor. Forty-eight fresh CPU worlds
@@ -2435,7 +2435,7 @@ hypothesis; no native result or paper-method replication is claimed here.
 
 ## 2026-10-24 committed selection result and control coverage
 
-The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-committed-selection-comparison---2026-10-24)
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-committed-selection-comparison---2026-10-24)
 retains 29/48 eligible and 19/48 negative native CPU episodes after all 388
 controls and full independent replay. Committed frozen passes 1/4 weakened
 starts against current frozen at 2/4; committed shuffled passes 0/4 against
@@ -2466,7 +2466,7 @@ empirical recovery or Tier 3 benefit.
 
 ## 2026-10-24 state/action coverage and bounded residual optimizer
 
-The [complete diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-full-state-and-action-coverage-diagnosis---2026-10-24)
+The [complete diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-full-state-and-action-coverage-diagnosis---2026-10-24)
 passes ten controls over 48 retained trials and 21,165 fitted cases. Accepted
 cues can pair very different joints and previous commands, including startup
 command 6 with command 389. Similar differences occur in positives; this is
@@ -2498,7 +2498,7 @@ Fresh physical comparison and all Tier 2/Tier 3 promotion gates stay open.
 
 ### Residual runtime integration follow-through - 2026-10-24
 
-The [runtime component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#implemented-residual-provider-and-continuous-history---2026-10-24)
+The [runtime component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#implemented-residual-provider-and-continuous-history---2026-10-24)
 applies the already recorded RMA previous-action input and residual-control
 design motivations through our public ABI. Its 88 inputs include full joint
 state, exact phase, actual per-actuator limits and continuously supplied latest
@@ -2515,7 +2515,7 @@ bounded native training route and independent complete reward/update replay.
 
 ### Prepared native residual route follow-through - 2026-10-24
 
-The [three-world route declaration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-residual-native-execution-route---2026-10-24)
+The [three-world route declaration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prepared-residual-native-execution-route---2026-10-24)
 turns the existing residual-control motivation into a bounded native interface
 check. Thirteen controls pass without constructing physics; the full launch
 requires 85 controls and clean published source. Absent, zero and untrained
@@ -2529,14 +2529,14 @@ group-balanced failure rewards and complete optimizer update replay still
 precede a training campaign. No new research claim or external code is imported.
 
 The first launch then stopped before tests or worlds on a source-path key
-mismatch. The [prospective manifest correction](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#corrected-residual-native-launch-manifest---2026-10-24)
+mismatch. The [prospective manifest correction](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#corrected-residual-native-launch-manifest---2026-10-24)
 adds a real snapshot-manifest control: fourteen focused controls pass and the
 required launch gate is 86. The physical plan is unchanged. This retained
 infrastructure failure adds no physical observations or research authority.
 
 ### Completed native residual route follow-through - 2026-10-24
 
-The [native route closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-native-execution-route---2026-10-24)
+The [native route closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-residual-native-execution-route---2026-10-24)
 now verifies actual combined-controller transitions in three one-second CPU
 worlds, with all 86 launch controls and six closure controls. Zero residual
 preserves the complete baseline trace; the untrained probe changes actual
@@ -2552,7 +2552,7 @@ learning. The original research motivations and all promotion gates remain.
 
 ### Native residual training contract follow-through - 2026-10-24
 
-The [native training preparation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-native-residual-training---2026-10-24)
+The [native training preparation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prepared-native-residual-training---2026-10-24)
 uses the antithetic directions, reward-standard-deviation scaling and running
 observation moments described in [ARS Algorithm 2](https://arxiv.org/pdf/1803.07055).
 Its 0.01 step size and 0.02 perturbation scale lie within that paper's reported
@@ -2574,7 +2574,7 @@ locomotion benefit, calibrated confidence or Tier 3 memory result is claimed.
 
 ### Completed native residual training follow-through - 2026-10-24
 
-The [completed training closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-residual-training---2026-10-24)
+The [completed training closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-native-residual-training---2026-10-24)
 now supplies actual induced native trajectories and independently reconstructed
 updates: three execution-fixture worlds, 64 full-horizon training worlds and
 24 fresh comparison worlds, all after complete 104-control launch gates.
@@ -2599,7 +2599,7 @@ qualification still require their own prospective evidence.
 
 ### Frozen search-candidate comparison follow-through - 2026-10-24
 
-The [training-selected successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prepared-frozen-residual-selection-comparison---2026-10-24)
+The [training-selected successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prepared-frozen-residual-selection-comparison---2026-10-24)
 preserves the exact initial random candidate that was eligible across all eight
 exposed training groups. This is a separately declared retrospective selection
 over the complete 64-episode training population, followed by a prospective
@@ -2623,7 +2623,7 @@ qualified adaptation capability is claimed.
 
 ### Frozen search-candidate native result - 2026-10-24
 
-The [completed selected-artifact comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-frozen-residual-selection-comparison---2026-10-24)
+The [completed selected-artifact comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-frozen-residual-selection-comparison---2026-10-24)
 now verifies 24 fresh CPU worlds and complete independent replay after all
 138 launch controls. The fixed initial perturbation is eligible in 4/4
 weakened and 4/4 healthy groups, preserving healthy quality at
@@ -2657,7 +2657,7 @@ weakened condition while the selected residual succeeds on the exposed groups.
 It therefore cannot be described as a proved-safe backup. A failure warning
 and a physically effective intervention are separate engineering questions.
 
-The [completed shadow-warning component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-failure-warning-component---2026-10-24)
+The [completed shadow-warning component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-residual-failure-warning-component---2026-10-24)
 uses a local regularized linear fit, complete retained training episodes and
 four start-grouped folds. Both the threshold-tuning diagnostics and full-data
 model warn on all 49 failures with no warnings on 15 successful episodes.
@@ -2671,7 +2671,7 @@ No external code or weights are imported. All reserved groups remain unopened.
 
 ### Native withdrawal as an intervention question - 2026-10-24
 
-The [prospective diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-residual-withdrawal-diagnostic---2026-10-24)
+The [prospective diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-residual-withdrawal-diagnostic---2026-10-24)
 turns the preceding rejection-rule and runtime-assurance distinction into three
 separate checks: preserving control when the monitor is silent, delivering an
 actual baseline handoff and hysteresis reentry, and observing whether a natural
@@ -2688,7 +2688,7 @@ No external code or weights are imported, and all reserved starts stay unopened.
 
 ### Observed native withdrawal result - 2026-10-24
 
-The [completed diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-residual-withdrawal-diagnostic---2026-10-24)
+The [completed diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-residual-withdrawal-diagnostic---2026-10-24)
 preserves the silent selected-controller trajectory in both exposed conditions
 and executes immediate-zero withdrawal plus natural hysteresis reentry in both
 explicit route controls. Automatic withdrawal rescues **0/2 challenge groups**:
@@ -2729,7 +2729,7 @@ imported and no published performance number is adopted as a local claim.
 
 ### Separating recovery timing from controller choice - 2026-10-24
 
-The [prospective paired handoff diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-recovery-handoff-diagnostic---2026-10-24)
+The [prospective paired handoff diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-paired-recovery-handoff-diagnostic---2026-10-24)
 implements the preceding research inference as a fixed development comparison.
 It crosses a scheduled command-60 handoff and the unchanged warning trigger
 with baseline and selected-actor destinations. Three fresh pure-controller
@@ -2746,7 +2746,7 @@ starts remain unopened, and all fourteen outcomes must be retained.
 
 ### Observed paired recovery handoffs - 2026-10-24
 
-The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-paired-recovery-handoff-diagnostic---2026-10-24)
+The [completed comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-paired-recovery-handoff-diagnostic---2026-10-24)
 finds **0/8 successful interventions** on two exposed groups with exact fresh
 pre-handoff prefixes. The selected actor succeeds from both initial states but
 fails after all four challenge-to-selected transfers. Earlier handoff delays
@@ -2785,7 +2785,7 @@ to the input coordinate system. All observed moments remain in the update
 diagnostic. This is a prospective design choice, not evidence that
 normalization caused the earlier failed checkpoint.
 
-The [declared recovery experiment](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-bounded-recovery-training---2026-10-24)
+The [declared recovery experiment](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-bounded-recovery-training---2026-10-24)
 scores post-handoff tilt and full-horizon failure padding, keeping walking
 quality separate. Fresh challenge prefixes, actual resolved-action history,
 fixed comparison roles and a training-only selector preserve the evidence
@@ -2795,7 +2795,7 @@ keep this result finite. No external code or weights are imported.
 
 ### Bounded recovery-training outcome - 2026-10-24
 
-The [completed recovery pilot](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-bounded-recovery-training---2026-10-24)
+The [completed recovery pilot](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-bounded-recovery-training---2026-10-24)
 implements the preceding local experiment motivated by Recovery RL,
 Safe Reinforcement Learning for Legged Locomotion and ARS. It does not
 reproduce those algorithms. All 64 exposed search trials, two fixed-scaling
@@ -2816,7 +2816,7 @@ evaluation, or Tier 3 memory promotion is introduced.
 
 ### Portable recovery mechanics and causal inputs - 2026-10-24
 
-The [local component validation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-mechanics-component---2026-10-24)
+The [local component validation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-recovery-mechanics-component---2026-10-24)
 implements point-Jacobian transpose force mapping from the canonical revolute
 body tree. The [MuJoCo Jacobian documentation](https://mujoco.readthedocs.io/en/3.11.0/APIreference/APIfunctions.html#mj-jac)
 provides the reference meaning of point translation and rotation Jacobians.
@@ -2842,7 +2842,7 @@ responses remain unsupported; a separate synthetic identity tests the resolver.
 
 ### Contact-force observer conventions - 2026-10-24
 
-The [prospective local fixture](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-contact-force-observer-fixture---2026-10-24)
+The [prospective local fixture](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-contact-force-observer-fixture---2026-10-24)
 uses MuJoCo 3.11.0's implementation to resolve conventions that the short API
 description leaves implicit. In
 [`mj_rnePostConstraint`](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_core_smooth.c),
@@ -2875,7 +2875,7 @@ and compares fresh off/on worlds before any controller consumes the new loads.
 No external source implementation, model weights or performance claims are
 imported.
 
-The [completed local fixture](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contact-force-observer-fixture---2026-10-24)
+The [completed local fixture](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-contact-force-observer-fixture---2026-10-24)
 now verifies 1,200 captured steps and 2,349 active distal-ground contacts in
 four fresh CPU worlds. Off/on native motion is bitwise identical in both
 exposed groups; the original weakened failure remains unchanged. Inactive
@@ -2897,7 +2897,7 @@ are requirements for the next component, not a dynamic feasibility proof.
 
 ### Recovery action delivery and force-measurement boundaries - 2026-10-24
 
-The [complete recovery diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-recovery-action-and-support-diagnosis---2026-10-24)
+The [complete recovery diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-recovery-action-and-support-diagnosis---2026-10-24)
 separates the actor proposal, the rate-limited correction, the final native
 velocity target and retained motor torque. The original outcomes and training
 selection remain unchanged. Its contact geometry does not supply normal foot
@@ -2933,7 +2933,7 @@ old trials, and no safe region or Tier 2/Tier 3 qualification is established.
 
 ### Causal configured-force recovery reference - 2026-10-25
 
-The [implemented route and negative weak-case result](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-force-recovery-route---2026-10-25)
+The [implemented route and negative weak-case result](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-causal-force-recovery-route---2026-10-25)
 combine the existing centroidal-wrench target pattern with verified rigid-tree
 virtual work and the declared velocity-actuator model. The new allocation is a
 bounded projected-gradient least-squares reference, not an implementation of a
@@ -2951,7 +2951,7 @@ cross-engine equivalence, long-horizon behavior or Tier 2/Tier 3 qualification.
 
 ### Recovery command-authority diagnosis - 2026-10-25
 
-The [retained constraint diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-force-recovery-constraint-diagnosis---2026-10-25)
+The [retained constraint diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-force-recovery-constraint-diagnosis---2026-10-25)
 uses nested instantaneous torque intervals to distinguish force-cap, target-speed,
 absolute-residual and residual-slew contributions to requested-torque error.
 The absolute errors telescope because each interval is contained in its predecessor.
@@ -2971,7 +2971,7 @@ algorithm's recovery guarantee or an already observed outcome.
 
 ### Native hold comparison and endpoint limit - 2026-10-25
 
-The [completed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-recovery-hold-comparison---2026-10-25)
+The [completed native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-native-recovery-hold-comparison---2026-10-25)
 keeps the configured force reference and safety bounds fixed while aligning
 motion and support composition with hold. The weakened hold trial stays within
 the original one-second limits, while force-walk crosses the tilt limit at
@@ -2984,7 +2984,7 @@ No learned adaptation, safe backup, long-horizon or release claim follows.
 
 ### Twelve-second hold continuation scope - 2026-10-25
 
-The [prospective continuation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-twelve-second-recovery-hold-continuation---2026-10-25)
+The [prospective continuation](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-twelve-second-recovery-hold-continuation---2026-10-25)
 uses unchanged controller dynamics on two fresh exposed worlds. Retained exact
 capsule geometry explains the observed front-right clearance but does not prove
 reachability or recovery. Fourteen zero-world controls include a full two-core
@@ -2994,7 +2994,7 @@ safe backup, learning and qualification remain unproven.
 
 ### Completed twelve-second hold and next support-restoration question - 2026-10-25
 
-The [full continuation closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-twelve-second-recovery-hold-continuation---2026-10-25)
+The [full continuation closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-twelve-second-recovery-hold-continuation---2026-10-25)
 retains two fresh native trajectories, exact original one-second prefixes,
 479 launch controls and two complete readers. Weak hold fails tilt at 1.111667 s;
 healthy hold stays within the original limits through 12 s. Healthy front-right
@@ -3018,14 +3018,14 @@ controller successor. No held-out, safe-backup, Tier 2/Tier 3 or release claim.
   evaluate kinematic constraints before treating a foothold as a candidate.
   Their learned terrain evaluator and collision checking are not implemented.
 
-The [retained diagnosis and successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
+The [retained diagnosis and successor](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#support-reach-diagnosis-and-coordinated-lowering-component---2026-10-25)
 finds positive fixed-base front-right clearance at every weak pre-failure
 post-handoff observation. Eighteen controls and two complete two-core synthetic
 readers pass without new physics. Native benefit remains untested.
 
 ### Prospective causal support-reach comparison - 2026-10-25
 
-The [native comparison contract](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-support-reach-native-comparison---2026-10-25)
+The [native comparison contract](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-paired-support-reach-native-comparison---2026-10-25)
 binds four fresh twelve-second worlds, identical paired prefixes, full unchanged
 baseline reproduction and original failure/actuation limits. Fourteen route
 controls and runtime preflight pass without physics. The clean pushed freeze
@@ -3092,7 +3092,7 @@ must establish the controller's actual behavior before any recovery claim.
 
 ### Prospective contact-posture native test - 2026-10-25
 
-The [paired native route](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-paired-contact-posture-native-comparison---2026-10-25)
+The [paired native route](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-paired-contact-posture-native-comparison---2026-10-25)
 tests the bounded contact-nullspace reference derived from the documented
 whole-body-control design lead. Existing reach hold remains the unchanged
 reference, with complete fresh baseline reproduction and identical paired
@@ -3104,7 +3104,7 @@ comparison, not a reproduction of WBIC/MPC or a general recovery certificate.
 
 ### Contact-posture native transfer result - 2026-10-25
 
-The [incomplete native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#closed-incomplete-contact-posture-native-comparison---2026-10-25)
+The [incomplete native comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#closed-incomplete-contact-posture-native-comparison---2026-10-25)
 tested the bounded kinematic hierarchy inspired by Kim et al. (2019), Section IV-A,
 on the exposed eight-actuator fixture. It did not implement the paper's full
 floating-base dynamics/force optimization or MPC. The candidate first violated
@@ -3125,7 +3125,7 @@ gravity and contact terms. Their kinematic reference stage alone is not the
 complete controller. Our eight-actuator fixture and bounded velocity resolver
 also differ from the paper's twelve-actuator platform and joint torque/PD interface.
 
-The [safe-window diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-posture-and-force-diagnosis---2026-10-25)
+The [safe-window diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-pre-failure-posture-and-force-diagnosis---2026-10-25)
 verifies the native motor map but finds a large allocated-to-measured body-moment
 gap. This supports investigating a full dynamics component; it does not prove a
 causal remedy or justify copying gains. The next implementation should preserve
@@ -3133,7 +3133,7 @@ the actual resolver envelope and test unactuated-base equations explicitly.
 
 ### Floating-base inertia inputs and velocity coordinates - 2026-10-25
 
-The [portable dynamics component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-floating-base-dynamics-component---2026-10-25)
+The [portable dynamics component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-floating-base-dynamics-component---2026-10-25)
 implements an inertia/bias foundation motivated by
 [Kim et al. (2019), Section IV-B](https://arxiv.org/html/1909.06586v1).
 It remains separate from the paper's optimization and from native recovery claims.
@@ -3170,7 +3170,7 @@ comparison route, not a successful native result.
 
 ### Native dynamics agreement and metadata authority - 2026-10-25
 
-The [completed readback closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-dynamics-readback-closure---2026-10-25)
+The [completed readback closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-native-dynamics-readback-closure---2026-10-25)
 verifies the portable inertia and bias against all 132 installed MuJoCo 3.11.0
 readbacks. The original reader's hardcoded 9.81 m/s^2 gravity was inconsistent
 with the exact 9.8 m/s^2 fixture. A separate successor derives that expectation
@@ -3197,7 +3197,7 @@ recomputed original-coordinate primal, dual and complementarity checks can
 produce a command. No inaccurate-status result is accepted. Warm starts are
 disabled and the adaptive-rho interval is fixed, avoiding timing-derived updates.
 
-The [completed retained component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-constrained-dynamic-controller-component---2026-10-25)
+The [completed retained component](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-constrained-dynamic-controller-component---2026-10-25)
 preserves an initial complementarity refusal and verifies a separate tighter
 convergence successor across the entire retained population. Numerical solver
 success is not evidence of maintained native contact, recovery or learning.
@@ -3216,7 +3216,7 @@ defines lower/upper scalar hinge-limit Jacobian signs. These details motivate
 independent algebraic accounting for this exact fixture; no upstream source is
 vendored. The diagnostic refuses unsupported model features or constraint kinds.
 
-The [completed retained diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-pre-failure-dynamic-response-diagnosis---2026-10-25)
+The [completed retained diagnosis](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-pre-failure-dynamic-response-diagnosis---2026-10-25)
 verifies those equations against every selected native increment. It does not
 infer future contact forces, simulate alternative actions, or grant a controller
 access to retained solver measurements. Positive contact force with outward
@@ -3264,7 +3264,7 @@ principle to supporting-point acceleration, followed by body/posture tracking.
 It uses independent QP solves, not their full hierarchical active-set algorithm;
 no upstream implementation or performance claim is copied.
 
-The [completed component and refusal](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-first-hierarchy-and-retained-nullspace-refusal---2026-10-25)
+The [completed component and refusal](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#contact-first-hierarchy-and-retained-nullspace-refusal---2026-10-25)
 preserves hard motor, joint and force bounds while explicitly permitting
 nonzero optimal support error. It verifies a public handoff but retains many
 later secondary numerical refusals. A distinct nullspace formulation preserves
@@ -3302,7 +3302,7 @@ The [Windows AVX512 binding fix](https://github.com/Simple-Robotics/proxsuite/pu
 concerns a different selected backend from this host's automatic AVX2 extension.
 Neither patch has been applied to the consumed local wheel.
 
-The [completed local checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#generic-proximal-hierarchy-and-exact-replay---2026-10-25)
+The [completed local checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#generic-proximal-hierarchy-and-exact-replay---2026-10-25)
 retains the unsuccessful conditioning attempt and automatic-backend replay.
 Selecting the wheel's generic extension then passes the unchanged finite
 replay requirements: 287 controls, two identical complete readers, 102 accepted
@@ -3336,7 +3336,7 @@ mandatory-refinement attempt repairs the terminal state but regresses other
 states. The bounded successor therefore preserves already-certified original
 solutions and refines only explicit numerical refusals.
 
-The [completed local evidence](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
+The [completed local evidence](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#exact-secondary-contradiction-and-bounded-primary-refinement---2026-10-25)
 retains exact secondary contradictions, the refinement regression, an auditor
 failure and the successful 140/148-state component. No upstream implementation
 was copied. These finite calculations do not establish causal native recovery,
@@ -3344,7 +3344,7 @@ public-controller integration, arbitrary model feasibility or learned adaptation
 
 ## Public integration of bounded refinement - 2026-10-25
 
-The [public recovery checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#public-recovery-integration-and-prospective-native-successor---2026-10-25)
+The [public recovery checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#public-recovery-integration-and-prospective-native-successor---2026-10-25)
 extends the previously cited active-constraint refinement and proximal hierarchy
 through the actual public host and resolver. It preserves accepted original
 commands and independently reconstructs both numerical routes, including the
@@ -3368,7 +3368,7 @@ also exposes the infeasibility-relaxation option. Preserve the current enabled
 duality-gap check and disabled closest-feasible path.
 
 This is a prospective local solver lead. The
-[native extension closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#native-refinement-extension-and-primary-refusal---2026-10-25)
+[native extension closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#native-refinement-extension-and-primary-refusal---2026-10-25)
 verifies two additional applied commands and a later primary refusal, not a
 successful primary-backend replacement. No upstream implementation was copied
 or package upgraded. Local original-coordinate certificates, finite retained
@@ -3378,7 +3378,7 @@ regressions and exact replay must decide whether any successor is usable.
 
 The [ProxQP 0.7.2 API](https://simple-robotics.github.io/proxsuite/md_doc_22-ProxQP__api.html)
 supports the semidefinite least-squares primary tested in the
-[retained component checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25).
+[retained component checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#semidefinite-primary-solver-and-strict-seed-preservation---2026-10-25).
 The implementation constructs the exact Gram matrix, adds no objective
 regularization, retains the existing duality-gap and refusal settings, and
 checks the original reduced and full certificates. No package was upgraded
@@ -3400,7 +3400,7 @@ analysis relies on rational computations around a floating-point QP solver.
 This motivates a bounded local correction experiment; it does not prove that
 a float64 implementation reaches arbitrary precision.
 
-The [local retained checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-correction-retained-checkpoint---2026-10-25)
+The [local retained checkpoint](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#scaled-primary-correction-retained-checkpoint---2026-10-25)
 uses the affine variable change z = scale * (x - origin), recomputes the
 original reduced/full primal-dual certificates, and retains the unchanged
 strict bound guard. It tries at most three declared powers of two, preserves
@@ -3411,7 +3411,7 @@ causal continuation, robustness and learned adaptation remain unproved.
 
 ## Scaled correction public and native-route verification - 2026-10-25
 
-The [public integration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-public-integration---2026-10-25)
+The [public integration](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#scaled-primary-public-integration---2026-10-25)
 now verifies the bounded affine correction through both core builds and the
 public resolver. Its reader rebuilds correction problems and original duals
 without a QP solve or producer correction helper. The earlier objective,
@@ -3422,7 +3422,7 @@ causal native continuation and adaptation benefit still require fresh evidence.
 
 ## Active solver applicability and preserved negative evidence - 2026-10-25
 
-The [active-backend gate closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#active-backend-gate-closure-and-native-successor---2026-10-25)
+The [active-backend gate closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#active-backend-gate-closure-and-native-successor---2026-10-25)
 retains a new automatic-backend exact-equality failure and joins the earlier
 repeatability diagnosis. It does not attribute the new failure to a particular
 instruction set or infer its magnitude from a truncated log. Whole-module
@@ -3433,7 +3433,7 @@ learned adaptation remain separate prospective evidence requirements.
 
 ## Native held-model mismatch and contact consistency - 2026-10-25
 
-The [latest native closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
+The [latest native closure](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#scaled-primary-native-tilt-negative-and-joint-domain-closure---2026-10-25)
 now supplies a physical counterexample despite independently certified model
 solutions: earlier tilt, followed by joint-limit violation and pre-solver
 refusal. Future work must diagnose the actual prediction mismatch.
@@ -3453,7 +3453,7 @@ upstream code, controller change or widened acceptance was introduced here.
 
 ## Implicit-step force accounting and contact realization - 2026-10-25
 
-The [retained held-dynamics diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#held-dynamics-contact-wrench-accounting---2026-10-25)
+The [retained held-dynamics diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#held-dynamics-contact-wrench-accounting---2026-10-25)
 uses the pinned [MuJoCo 3.11 computation reference](https://mujoco.readthedocs.io/en/3.11.0/computation/index.html#numerical-integration)
 and versioned source to interpret prepared force snapshots and velocity updates.
 The [integration implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_forward.c)
@@ -3474,7 +3474,7 @@ No upstream source was copied and no runtime or controller was changed.
 
 ## Configured causal soft-contact prediction - 2026-10-25
 
-The [new component measurement](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-single-step-contact-prediction---2026-10-25)
+The [new component measurement](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#causal-single-step-contact-prediction---2026-10-25)
 implements the [MuJoCo dual contact model](https://mujoco.readthedocs.io/en/3.11.0/computation/index.html#dual-problem):
 a strictly convex quadratic objective in contact force, constrained by circular
 Coulomb cones. An independent cold-start projected optimizer supplies a
@@ -3498,7 +3498,7 @@ joint-domain failures remain the current causal controller evidence.
 
 ## Configured contact geometry and full causal holds - 2026-10-25
 
-The [full held-command measurement](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#causal-full-held-command-prediction---2026-10-25)
+The [full held-command measurement](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#causal-full-held-command-prediction---2026-10-25)
 extends the configured contact solver with independently written geometry and
 pose integration. The pinned MuJoCo 3.11
 [primitive collision implementation](https://github.com/google-deepmind/mujoco/blob/3.11.0/src/engine/engine_collision_primitive.c)
@@ -3531,7 +3531,7 @@ best objective. Its implementation uses C++ and parallel rollouts; its reported
 timings are not performance evidence for this SDK. The paper also discusses
 short-horizon limitations and combining planning with learned approximations.
 
-The [configured local selector](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#bounded-predictive-command-selection-and-runtime-limit---2026-10-25)
+The [configured local selector](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#bounded-predictive-command-selection-and-runtime-limit---2026-10-25)
 uses this nominal-preserving candidate-evaluation pattern, with coordinate
 endpoints and Gaussian proposals over one held command. It adds the existing
 public correction/slew limits, per-actuator target caps and hard forecast
@@ -3561,7 +3561,7 @@ exact executable binding. The local library independently implements the
 existing rigid-body and contact-optimization formulas; it adds no native world,
 upstream source copy, Python dependency upgrade or change to acceptance rules.
 
-The [full finite comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#compiled-predictive-numerical-kernels---2026-10-25)
+The [full finite comparison](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#compiled-predictive-numerical-kernels---2026-10-25)
 preserves every candidate decision and iteration count across 2,006 forecasts,
 with differences near floating-point roundoff. Mean selection costs fall by
 measured ratios of 7.67 and 8.09 in the two readers. The remaining 188-219 ms
@@ -3819,7 +3819,7 @@ history and native continuation remain necessary before a recovery claim.
 
 ## 2026-10-26 retained process handles for stage cleanup
 
-The [prelaunch failure and diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
+The [prelaunch failure and diagnostic](../SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
 motivate a versioned execution-infrastructure correction, with no physics or
 learning claim. Microsoft documents that process handles remain valid until
 closed, including after the represented process exits; PID validity has a

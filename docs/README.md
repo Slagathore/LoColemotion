@@ -5,6 +5,7 @@ have separate guides, and they meet at the same retained evidence.
 
 | I want to… | Read |
 | --- | --- |
+| See current progress and the next work order | [Current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) |
 | See native motion without installing engines | [Browser replay](../replay/README.md) |
 | Build the portable core and run its first example | [Getting started](GETTING_STARTED.md) |
 | Understand what each engine has actually shown | [Locomotion and support](LOCOMOTION.md) |
@@ -34,8 +35,11 @@ have separate guides, and they meet at the same retained evidence.
 
 Before publishing a change, read [repository hygiene](REPOSITORY_HYGIENE.md).
 
-The [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) contains the
-SDK1 completion boundary and earlier checkpoints. The
+The short [master ledger](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md) states the
+SDK1 completion and current claim boundaries. The short
+[portable guide](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md) identifies
+active native evidence. Each links to its dated detailed history; read the current
+pages first and search the histories for a named checkpoint. The
 [SDK2 adaptation research bootstrap](SDK2_ADAPTATION_RESEARCH_BOOTSTRAP.md)
 maps external research onto the Tier 2/Tier 3 provider seam and the SDK2 gates;
 it is a proposal, not evidence. The

@@ -1,6 +1,6 @@
 # LoColemotion Locomotion SDK
 
-The [conditioned selection comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-conditioned-selection-comparison---2026-10-23)
+The [conditioned selection comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-conditioned-selection-comparison---2026-10-23)
 is closed after all 349 safety controls and forty fresh CPU worlds from
 `59aacf3c`. Independent replay verifies **26/40 eligible and 14/40 negative**.
 Frozen selection passes two weakened starts while baseline and disabled
@@ -12,7 +12,7 @@ Next diagnose selection and support failures before another frozen successor.
 Learned-association benefit, recoverability monitoring, reserved evaluation
 and useful Tier 3 behavior remain unproved.
 
-The [first-response repertoire fit](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-first-response-repertoire-fit---2026-10-23)
+The [first-response repertoire fit](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-first-response-repertoire-fit---2026-10-23)
 classifies **8/8 training groups** from one actual command response (1/120 s),
 with both conditions of each start held out together. Constant nominal scores
 4/8 and synthetic reversed associations score 0/8. The complete 32-trial source
@@ -26,7 +26,7 @@ to fresh full-horizon baseline, disabled and shuffled controls, retaining the
 uncovered start. This checkpoint establishes neither useful selection nor
 Tier 3 benefit, qualification or release.
 
-The [phase-release comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phase-release-comparison---2026-10-23)
+The [phase-release comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-phase-release-comparison---2026-10-23)
 is closed after all 287 controls and 32 fresh CPU worlds from `e5589f8b`.
 Independent replay verifies 46,080 decisions and 230,400 internal samples:
 **19/32 eligible, 13/32 negative**. Immediate release passes two weakened starts;
@@ -37,7 +37,7 @@ Eight closure controls pass. Next develop a distinct repertoire/early-selection
 successor, preserving the uncovered 0.006 m/s start and healthy baseline;
 learned choice, adaptation benefit and release remain unproved.
 
-The [phase/contact diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
+The [phase/contact diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-phasecontact-and-command-response-diagnosis---2026-10-23)
 verifies 1,536 decisions and 7,680 internal samples from all sixteen retained
 trials, with zero new worlds. Scheduled stance lacks support in 1,868/4,896
 leg observations; 1,442 of those poses cannot geometrically reach the floor.
@@ -47,7 +47,7 @@ existing v1 context exposes the required phase. The completed comparison above
 now tests residual release and healthy-body preservation; no cause, new winner,
 useful adaptation or release authority follows from this diagnosis.
 
-The [support-vertical comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-support-vertical-comparison---2026-10-23)
+The [support-vertical comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-support-vertical-comparison---2026-10-23)
 is closed after all 250 controls and sixteen fresh CPU worlds from `cdc77feb`.
 Independent replay verifies 23,040 decisions and 115,200 internal samples:
 **2/16 eligible, 14/16 negative**. Current height and immediate compensation each
@@ -57,7 +57,7 @@ with slightly less forward travel; this does not establish a useful family.
 Seven closure controls pass. The phase/contact diagnosis above now informs
 the next controller; adaptation and release remain unproved.
 
-The [height-composition diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-height-composition-diagnosis---2026-10-23)
+The [height-composition diagnosis](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-height-composition-diagnosis---2026-10-23)
 verifies 480 retained decisions and 2,400 internal samples from all four
 immediate-height starts, with zero new worlds. The baseline's torso-frame
 vertical motion opposes the body-feedback request in 744/994 supported-leg
@@ -66,7 +66,7 @@ it supports a prospective composition test, not a causal or quality claim.
 The next controller hypothesis compensates only the opposing vertical component
 during observed support and keeps the existing bounded resolver.
 
-The [matched activation comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-height-activation---2026-10-23)
+The [matched activation comparison](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-matched-height-activation---2026-10-23)
 is closed after all 217 controls and twelve fresh CPU worlds from `e6969e3c`.
 Independent replay verifies 17,280 decisions and 86,400 internal samples:
 **1/12 eligible, 11/12 negative**. Baseline passes 0/4, immediate height 1/4 and
@@ -75,7 +75,7 @@ shortlist is empty. Seven closure controls pass. The retained diagnosis above
 precedes stronger feedback or a learned action mapping; the sixteen-command
 condition classifier alone cannot supply useful control.
 
-The [early-context diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-early-context-feasibility---2026-10-23)
+The [early-context diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-early-context-feasibility---2026-10-23)
 classifies 8/8 training groups from sixteen past commands in blocked internal
 validation. Constant nominal scores 4/8 and synthetically reversed associations
 score 0/8. Seven component and three closure controls pass with zero new
@@ -83,7 +83,7 @@ worlds. The fitted label model has no action mapping or control authority.
 The matched native result above exposes insufficient controller coverage;
 reserved evaluation and useful adaptation remain unproved.
 
-The [causal-prefix repertoire](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-causal-prefix-repertoire---2026-10-23)
+The [causal-prefix repertoire](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-causal-prefix-repertoire---2026-10-23)
 is closed after all 192 controls and 24 fresh CPU worlds. Independent replay
 verified 34,560 decisions and 172,800 internal samples: **12/24 eligible**.
 All nominal trials pass; every degraded-body trial fails. Nominal baseline
@@ -94,7 +94,7 @@ Earlier observation and initial control need a distinct successor before a
 useful selector can be claimed. Calibration/evaluation and prior confirmation
 remain excluded from fitting; no adaptation or release authority is earned.
 
-The [twelve-second height confirmation](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
+The [twelve-second height confirmation](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-body-height-duration-and-nominal-confirmation---2026-10-23)
 is closed after all 169 controls and twelve fresh CPU worlds. Independent replay
 verified 17,280 decisions and 86,400 internal samples: **9/12 eligible**. The
 fixed height candidate passes both starts on degraded and nominal bodies, but
@@ -103,7 +103,7 @@ guard is false; duration eligibility does not establish performance preservation
 All six closure controls pass. New discovery for context-dependent selection
 is next; these confirmation trials grant no fitting or reselection authority.
 
-The [body-height successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-height-discovery---2026-10-23)
+The [body-height successor](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-body-height-discovery---2026-10-23)
 is closed after all 159 safety controls and six fresh CPU worlds. Independent
 replay verified 2,880 decisions and 14,400 internal samples: **3/6 eligible**.
 The height role passes both starts and is selected for fresh confirmation;
@@ -113,7 +113,7 @@ the latter start. The [closure verifier](discovery/audit_cpu_body_height_closure
 binds 5,841 artifacts; all five closure controls pass. Longer-horizon
 confirmation and healthy-body preservation precede new adaptation comparisons.
 
-The [body-gain factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-body-gain-factorial---2026-10-23)
+The [body-gain factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-body-gain-factorial---2026-10-23)
 is closed after all 141 controls and ten fresh CPU worlds at published
 `82dc9bfe`. Independent replay verified 4,800 decisions and 24,000 internal
 samples: **4/10 eligible, 6/10 negative**. All four feedback roles passed only
@@ -127,7 +127,7 @@ pass, including native geometry joins and an independent joint grid. Body-height
 and vertical-rate feedback are the next controller question; useful adaptation
 and release remain unproved.
 
-The [posture/envelope factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-posture-and-envelope-factorial---2026-10-23)
+The [posture/envelope factorial](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-posture-and-envelope-factorial---2026-10-23)
 is closed after all 123 controls and 18 fresh CPU worlds at published
 `f9a0509d`. Complete independent replay verified 8,640 decisions and 43,200
 internal samples: **1/18 eligible, 17/18 negative**. The all-high corner walked
@@ -138,7 +138,7 @@ closure controls pass. Start
 sensitivity is the next controller problem; fresh confirmation, healthy-body
 preservation, useful adaptation and release remain unproved.
 
-The [CPU stance-feedback discovery](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-cpu-stance-discovery---2026-10-23)
+The [CPU stance-feedback discovery](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-cpu-stance-discovery---2026-10-23)
 is closed after all 105 safety controls and 24 fresh worlds at published
 `53cc81c9`. Complete independent replay verified 11,520 decisions and 57,600
 internal samples: **0/24 eligible**, with no candidate selected. The
@@ -149,7 +149,7 @@ The factorial successor above separates correction authority from stance posture
 This result supplies verified development discovery data, but no adaptation
 benefit, fresh confirmation, qualification or release authority.
 
-The [native CPU motor challenge](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-native-cpu-motor-challenge---2026-10-23)
+The [native CPU motor challenge](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-native-cpu-motor-challenge---2026-10-23)
 completed all four fresh worlds after all 88 controls passed at published
 `47511ec0`. Independent replay verified 1,920 decisions and 9,600 internal rows:
 baseline and profile 6 both failed at both starts, leaving **0/4 eligible**.
@@ -159,7 +159,7 @@ artifacts and exact frozen source/runtime joins; all four closure controls pass.
 Stronger phase/state-dependent control is next, before history inference.
 This diagnostic grants no fitting, adaptation, equivalence or release authority.
 
-The [matched motor diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-matched-motor-diagnostic---2026-10-23)
+The [matched motor diagnostic](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-matched-motor-diagnostic---2026-10-23)
 completed all 48 fresh GPU worlds after all 81 controls passed at published
 `68c3ede7`. Independent replay checked 23,040 decisions and 115,200 internal
 rows: 12 episodes stayed eligible and 36 failed. Profile 6 survived at the
@@ -178,7 +178,7 @@ including the profile selected from discovery. The frozen conditioning-value
 criterion is false; no estimator, memory benefit or qualification is claimed.
 The [closure reader](discovery/audit_motor_effectiveness_closure.py) verifies
 1,810 retained artifacts and exact source/runtime/selection bindings; its four
-corruption controls pass. See the [completed checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-motor-pilot---2026-10-23)
+corruption controls pass. See the [completed checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-motor-pilot---2026-10-23)
 for outcomes, failure scope, timings and the next diagnostic.
 
 SDK2 mechanism checkpoint (2026-10-23): the
@@ -191,7 +191,7 @@ ABI, which previously received an empty history. Five diagnostic and five
 history controls pass. Rollover and command-preserving host replay use retained
 inputs and construct no new worlds. The provider still does not infer physical
 context from history; useful Tier 3 benefit remains unproved. The
-[roadmap checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#action-credit-and-causal-history---2026-10-23)
+[roadmap checkpoint](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#action-credit-and-causal-history---2026-10-23)
 records digests, the retained fixture failure and the next bounded task.
 
 SDK2 contextual-memory result (2026-10-23): the
@@ -205,7 +205,7 @@ feedback updates, 84 matching-context feedback selections and 27 changed choices
 Correct memory mechanics have native evidence; useful Tier 3 benefit remains
 unproved. The [closure reader](discovery/audit_gpu_contextual_influence_closure.py)
 checks 988 artifacts and exact source/runtime/model bindings. Evaluation remains
-unopened. See the [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-contextual-comparison---2026-10-23)
+unopened. See the [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#completed-contextual-comparison---2026-10-23)
 for scores, retained failures, measured runtime and next steps.
 
 Earlier four-second SDK2 native influence checkpoint (2026-10-23): the
@@ -250,7 +250,7 @@ candidate. The independent reader reports every arm, quality window, trigger
 and correction magnitude; failed controls and unmatched native exposure cannot
 be relabeled as memory benefit. The complete 77-test zero-world gate passes;
 the clean pushed run and repeated gate are closed above. See the
-[roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#prospective-native-influence-comparison---2026-10-23)
+[roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#prospective-native-influence-comparison---2026-10-23)
 for metrics and claim boundaries.
 
 SDK2 shadow integration checkpoint (2026-10-23): the
@@ -305,7 +305,7 @@ fitted case. Its thresholds, retained failures and fitting refusal are unchanged
 Bounded native influence and controlled Tier 2/Tier 3 evaluation are next;
 the fitted candidate has no physical acceptance, promotion or release authority.
 The empirical withdrawal monitor and three-engine qualification remain open.
-See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23).
+See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#research-informed-acceleration---2026-10-23).
 
 SDK2 retrieval implementation checkpoint (2026-10-23): the
 [bounded casebook and episode-memory component](adaptation_provider/retrieval/component_v1.json)
@@ -327,7 +327,7 @@ From PowerShell at this repository root, provide the exact bound batch core:
 ```
 
 Success prints `ok: true`, `synthetic: true`, `replayed_decisions: 183` and
-`world_build_count: 0`. See the [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
+`world_build_count: 0`. See the [roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#research-informed-acceleration---2026-10-23)
 for the native training and evaluation sequence.
 
 SDK2 native batching checkpoint (2026-10-23): the
@@ -405,7 +405,7 @@ recompute all host timing summaries without opening worlds:
 
 The separate GPU successor above now supplies fresh integration and measured
 execution evidence. The host benchmark alone supplies no physics or training
-authority. See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#research-informed-acceleration---2026-10-23)
+authority. See the [current roadmap](../docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md#research-informed-acceleration---2026-10-23)
 for the next frozen-retrieval and reversible-memory targets.
 
 Current SDK1 checkpoint (2026-10-03): **20/20**, full program **19/25**.

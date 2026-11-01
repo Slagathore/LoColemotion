@@ -6241,7 +6241,7 @@ for the consumed attempt, not permission to repeat it:
 ./sdk/run_development_recovery_smoke.ps1 -RunSmoke -ProfileSteps -ReuseContextChecks -SingleKick -CandidateProfile sdk/development/recovery_candidates/v14-knee-fold-replant-v1.json
 ```
 
-The [closed physical result](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v14-single-kick-closure-body-lift-and-brief-stable-stance)
+The [closed physical result](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v14-single-kick-closure-body-lift-and-brief-stable-stance)
 passes all 73 safety checks, the original 752-transition reader and supervisor.
 Knee folding executes while the torso remains nearly level; replanting reaches
 body lift at 627 and the existing stance controller takes over at 628, before
@@ -6310,7 +6310,7 @@ historical command for the consumed attempt, not permission to repeat it:
 ./sdk/run_development_recovery_smoke.ps1 -RunSmoke -ProfileSteps -ReuseContextChecks -SingleKick -CandidateProfile sdk/development/recovery_candidates/v13-support-waypoint-rise-v1.json
 ```
 
-The [closed physical result](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v13-single-kick-closure-waypoint-tracking-still-loses-body-support)
+The [closed physical result](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v13-single-kick-closure-waypoint-tracking-still-loses-body-support)
 passes all 73 safety checks, the original 752-transition reader and supervisor
 audit. Four-foot support lasts only at 410-411. At the first segment endpoint
 590, maximum measured waypoint error is 0.005806 rad while torso tilt is already
@@ -6367,7 +6367,7 @@ for the consumed attempt, not permission to repeat it:
 ./sdk/run_development_recovery_smoke.ps1 -RunSmoke -ProfileSteps -ReuseContextChecks -SingleKick -CandidateProfile sdk/development/recovery_candidates/v12-measured-pose-rise-v1.json
 ```
 
-The [closed result](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v12-single-kick-closure-smooth-joint-motion-is-not-stable-body-support)
+The [closed result](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v12-single-kick-closure-smooth-joint-motion-is-not-stable-body-support)
 passes all 73 safety checks, the original independent 752-transition reader and
 supervisor audit. The actual first raising requests are below 0.005 rad/s, but
 four-foot support lasts only at 410-411 and the rear feet lose qualifying load
@@ -6433,7 +6433,7 @@ plus fresh single-kick diagnostic (no cached baseline; not an instruction to rer
 ```
 
 It retained the current bounded horizon and full telemetry. The [752-step
-result is closed](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v11-single-kick-closure-brief-support-before-rise-instability):
+result is closed](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v11-single-kick-closure-brief-support-before-rise-instability):
 four-foot support occurs at 410-413, but is lost at 414 after raising begins.
 There is no stable standing or walking resume. All 73 safety tests, original
 independent reader and supervisor audit pass. The next investigation is the
@@ -6491,7 +6491,7 @@ Its complete applicable safety gate passed before the child started. One seed,
 one fresh kicked child and the complete observed tail are retained. The declared
 maximum horizon was not reached because support timed out. Comparisons,
 held-out evidence, full paired commissioning and acceptance remain outside this
-scope. The [626-step result is closed negative](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v10-single-kick-closure-knee-preparation-does-not-place-the-rear-foot).
+scope. The [626-step result is closed negative](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v10-single-kick-closure-knee-preparation-does-not-place-the-rear-foot).
 Knee preparation executes for 57 steps, but rear-left foot-site height increases
 before intentional hip progress, and no four-foot support occurs. Do not repeat
 the consumed attempt or infer physical placement from knee-angle readiness.
@@ -6548,7 +6548,7 @@ valid development negative. The original complete 626-step reader and supervisor
 audit pass. Coordinated requests execute, but the rear-left foot never meets the
 existing support requirement; the torso overturns and support times out after
 240 active steps. No standing or resumed walking occurs. The original 45 files
-and 524,053,871 bytes are immutable. [Full closure, geometry and timing](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v9-single-kick-closure-coordination-does-not-establish-support).
+and 524,053,871 bytes are immutable. [Full closure, geometry and timing](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v9-single-kick-closure-coordination-does-not-establish-support).
 
 `sdk/conformance/development_recovery_candidate_checkpoint.py` provides one cold
 closure implementation for profile-selected attempts. It counts all original
@@ -6565,12 +6565,12 @@ relationship constants. Rust generates the wire enum in its build; Python reads
 the source directly; GDScript and PowerShell use generated projections checked
 by the development gate. This removes duplicated definitions, not independent
 validation. Process isolation, command semantics and official acceptance remain
-unchanged. The [implementation checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#shared-recovery-interfaces-one-definition-checked-at-real-boundaries)
+unchanged. The [implementation checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#shared-recovery-interfaces-one-definition-checked-at-real-boundaries)
 records tests, exact retained development receipts and adoption limits.
 
 ## Development ghost and held-out validation lanes (2026-08-25)
 
-The [V8 rate-limited development selection](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v8-rate-limited-candidate-connected-through-worker-reader-and-launcher)
+The [V8 rate-limited development selection](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v8-rate-limited-candidate-connected-through-worker-reader-and-launcher)
 reuses V7's fixed targets but caps both support/rise target velocities at 4 rad/s.
 It is not a new acceleration/force-feedback controller. Separate controller,
 runtime and record identities connect the existing worker/reader/launcher path;
@@ -6579,7 +6579,7 @@ still reject V8 records, while explicit V6/V7 compatibility on the new compiled
 superset is tested. Native motor and synthetic full-timeline checks pass; the
 complete smoke safety gate and fresh physics remain required.
 
-The subsequent [V8 physical pair](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v8-physical-smoke-closes-valid-negative-no-four-foot-support)
+The subsequent [V8 physical pair](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v8-physical-smoke-closes-valid-negative-no-four-foot-support)
 passes the full safety gate and both original independent replays but remains a
 development behavior negative: no four-foot support, overturn, support timeout,
 no stable standing or walking resume. Native contacts show no qualifying rear-left
@@ -6588,14 +6588,14 @@ travel under equal speed ceilings motivates investigating a coordinated referenc
 trajectory; it does not establish causality or adopt a new controller. V7, V8,
 R173, native measurement ancestry and official acceptance remain immutable.
 
-The [rearward-fold V7 candidate](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#rearward-fold-v7-candidate-real-compiled-and-native-motor-boundaries-pass)
+The [rearward-fold V7 candidate](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#rearward-fold-v7-candidate-real-compiled-and-native-motor-boundaries-pass)
 is an explicit portable profile, not an edit to V6 or an automatic pose selector.
 Its native command entrypoint reuses the production motor/energy machinery with
 an explicit expected controller ID; existing calls still default to V6. Its
 separate consumption context binds the unchanged native measurement ancestry
 while forbidding new-world and behavior authority. Compiled entry/advance and
 native motor-application checks pass with synthetic observations and uninserted
-hinges. The subsequent [worker connection](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#rearward-fold-v7-worker-connected-through-the-first-native-support-command)
+hinges. The subsequent [worker connection](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#rearward-fold-v7-worker-connected-through-the-first-native-support-command)
 now selects V6 for setup and explicit V7 ownership/scheduling/advance/application
 only after measured prone. Its consumption context binds the actual unchanged
 native measurement context; the energy epoch is not reset. Supplied-observation
@@ -6606,7 +6606,7 @@ timeline through the first active support step, preserving V6 measurement ancest
 and explicit V7 command ownership. The complete affected 76-test smoke gate must
 still pass before the fresh physical diagnostic; no get-up or route claim follows.
 
-The [subsequent V7 physical pair](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#v7-physical-smoke-closes-valid-negative-transient-support-then-overturn)
+The [subsequent V7 physical pair](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#v7-physical-smoke-closes-valid-negative-transient-support-then-overturn)
 passes that 76-test gate and both independent original report replays. It remains
 a development behavior negative: transient four-foot support and body lift lead
 to loss of support, overturn and a stance-dwell timeout. The read-only closure
@@ -6628,9 +6628,9 @@ trace APIs do not accept the owner-none prefix by relabeling it as canonical
 recovery. Worker integration, retained entry-prefix replay and a newly bound
 native adapter are still required before physical commissioning. Component
 tests grant no route, recovery, acceptance or release authority. See the
-[implementation checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#passive-entry-component-measured-initialization-without-restarting-the-clock).
+[implementation checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#passive-entry-component-measured-initialization-without-restarting-the-clock).
 
-The subsequent [native bridge](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#passive-entry-native-bridge-exact-source-validation-and-energy-continuity)
+The subsequent [native bridge](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#passive-entry-native-bridge-exact-source-validation-and-energy-continuity)
 now supplies the separate owner-none collector and retains its actual JSON call
 alongside the entry step. Native Godot energy continuity explicitly checks global
 increment accumulation followed by the fixed kick-boundary offset; local staging
@@ -6662,9 +6662,9 @@ energy continuity. Real active/disabled producer checks validate the existing
 integral counter projection and distinct command hashes. Full-report and explicit
 segment requests are separate. This reader is tested with synthetic observations;
 the new launcher/walking-close/outer-audit profile and a fresh physical smoke are
-still required. See the [checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#passive-entry-cold-replay-complete-timeline-and-real-command-source-checks).
+still required. See the [checkpoint](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#passive-entry-cold-replay-complete-timeline-and-real-command-source-checks).
 
-The [subsequent opt-in profile](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#measured-entry-smoke-profile-launcher-close-and-independent-audit-connected)
+The [subsequent opt-in profile](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#measured-entry-smoke-profile-launcher-close-and-independent-audit-connected)
 connects that reader through a separately retained subprocess and the outer audit.
 The supervisor selects the distinct adapter/report and finite 240-descent/480-tail
 limits; walking close receives the same declared 480-step diagnostic maximum.
@@ -6676,10 +6676,10 @@ The new worker now explicitly passes its preloaded-runtime choice through the
 facade to the walking adapter, which creates a fresh SDK/controller session
 without loading the default DLL. Default callers retain the old path. A real
 portable walking-session start/shutdown runs before any new worker model and
-its receipt is retained. The [failed attempt and targeted repair](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#measured-entry-first-physical-attempt-runtime-collision-retained-and-startup-repaired)
+its receipt is retained. The [failed attempt and targeted repair](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#measured-entry-first-physical-attempt-runtime-collision-retained-and-startup-repaired)
 remain distinct: no engine-health refusal or old physical result is reclassified.
 
-The [measured-entry physical replay diagnosis](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md#measured-entry-full-replay-passes-support-pose-motion-overturns-the-body)
+The [measured-entry physical replay diagnosis](ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP_HISTORY_2026-11-01.md#measured-entry-full-replay-passes-support-pose-motion-overturns-the-body)
 clarifies a separate consumer boundary: `applied_actuation.adapter_receipt_sha256`
 binds the post-step native execution receipt, not the pre-step command intent.
 The reader validates both records' command/step links and measured impulses.
