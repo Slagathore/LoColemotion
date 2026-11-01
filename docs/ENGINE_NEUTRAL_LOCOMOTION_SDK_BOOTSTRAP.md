@@ -1,6 +1,6 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-10-26
+## Active - SDK2 discovery and Studio completion, 2026-11-01
 
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.
@@ -30,10 +30,12 @@ passes 42 controls with retained process handles and exact owned-job membership.
 Its synthetic stale-PID fixture reproduces a false refusal in the old algorithm,
 without establishing that as the cause of the original incident.
 
-Next integrate that owner into a distinct native successor, qualify its route,
-and run the complete applicable gate from a clean pushed freeze. The scientific
-controller and criteria remain unchanged. No new worlds opened; recovery,
-training-data, Tier 2, Tier 3, real-time and release qualification remain absent.
+The [v2 route qualification](../sdk/discovery/contact_sequence_native_component_result_v2.json)
+now passes 52 controls and two-core zero-world preflight with the retained-handle
+owner integrated. Next run its complete 1,615-control gate and fresh native
+comparison from a clean pushed freeze. The scientific controller and criteria
+remain unchanged. No new worlds opened; recovery, training-data, Tier 2, Tier 3,
+real-time and release qualification remain absent.
 
 Earlier campaign outcomes and next-step descriptions below are historical.
 

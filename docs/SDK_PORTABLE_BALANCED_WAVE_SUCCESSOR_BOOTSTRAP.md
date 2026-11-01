@@ -39005,3 +39005,12 @@ record a failed full-gate attempt with zero worlds. A versioned helper passes
 42 controls while retaining process handles and checking exact job membership.
 The scientific policy, caps and thresholds remain unchanged. A distinct native
 successor must bind the helper and pass its complete gate before physics.
+
+## Contact-native v2 route qualification - 2026-11-01
+
+The [v2 route checkpoint](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-native-v2-route-qualification---2026-11-01)
+passes 52 route controls and two-core zero-world preflight. The versioned owner
+is integrated across all invocation paths, with explicit failed-v1 and cleanup
+predecessor checks. The full 1,615-control gate remains prospective. Four fresh
+native worlds retain unchanged controller and physical criteria; neither
+component qualification nor cleanup evidence establishes recovery or Tier 2/3.

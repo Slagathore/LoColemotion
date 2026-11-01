@@ -19,13 +19,13 @@ It does not replace the executable evidence or release contracts:
 Frozen positive, negative, invalid, and rejected campaigns remain immutable.
 This roadmap can order a new successor, but it cannot change an old result.
 
-## Current execution order - 2026-10-26
+## Current execution order - 2026-11-01
 
-Current next action: bind the verified retained-handle stage owner into a
-distinct contact-priority native successor, qualify its route, and run the
-complete applicable safety gate from a clean, pushed prospective freeze.
-The [prelaunch failure and lifecycle diagnostic](#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
-preserve the original attempt without a physical result.
+Current next action: run the complete 1,615-control gate and fresh contact-priority
+native comparison from the clean, pushed v2 freeze. The [v2 route qualification](#contact-native-v2-route-qualification---2026-11-01)
+passes 52 route controls and two-core zero-world preflight with the retained-handle
+owner integrated. The [prelaunch failure and lifecycle diagnostic](#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
+preserve the original failed attempt and its separate 42-control cleanup evidence.
 
 The first full-gate attempt accepted 1,091 controls. The next selector module
 passed all 25 tests, but the owner then reported that a contained descendant
@@ -9670,3 +9670,33 @@ complete the contact-native gate. Next bind the helper into a distinct native
 successor and rerun the complete applicable safety gate from a clean, pushed
 prospective freeze. Physical recovery, training-data authority, Tier 2,
 beneficial Tier 3, real-time operation and release remain unqualified.
+
+## Contact-native v2 route qualification - 2026-11-01
+
+The [v2 component result](../sdk/discovery/contact_sequence_native_component_result_v2.json)
+retains sdk2-contact-sequence-native-v2-78ec0cef61da4b59a47ae74b1f8b535e,
+receipt 1399bee08b03119e95435f68b5a4d06107b83800153b688a443c91248e573fcf. All 52 route controls and the separate two-core
+runtime preflight pass. The source and runtime bindings remain unchanged.
+Three successful cleanup reports cover the route-control stage, its real
+nested invocation, and the runtime stage. This attempt opens zero worlds.
+
+The distinct v2 owner uses retained process handles for every gate stage,
+the containment check, runtime preflight, physical worker and both readers.
+The launch documents require the verified failed-v1 and cleanup-diagnostic
+predecessors. Negative controls reject missing or crossed lifecycle evidence,
+unsignaled cleanup, altered scientific fields, and component-mode physical
+requests. Trial and trial-reader algorithms remain unchanged apart from route
+imports; the public controller, caps, guards and refusal semantics are preserved.
+
+The prospective full gate contains 1,615 controls: the previous 1,546 declared
+controls, 17 lifecycle controls and 52 new route controls. The earlier
+1,546-control attempt never completed; the latest completed physical gate
+remains the native-v4 1,407-control result. Component qualification does not
+substitute for the full v2 gate.
+
+Next run that full gate from the clean pushed freeze, then the four fresh weak
+and nominal baseline/candidate roles, each capped at twelve simulated seconds.
+Retain the 60-command paired prefix, full forecasts, native streams and both
+independent readers. Refusal stops before transfer and leaves remaining worlds
+unopened. Recovery benefit, expert-policy training data, Tier 2, Tier 3,
+real-time capability and release authority remain unqualified.
