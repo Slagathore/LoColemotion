@@ -5,8 +5,9 @@
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
 The next route must vary actual bounded quadruped descriptors as well as
 controller candidates. Existing population discovery constructed only S169.
-The exact descriptor, compiled body, controller session and native observation
-binding are therefore the next implementation boundary.
+The shared controller component now binds each descriptor, compiled body and
+controller session. Native model transport and independent per-creature
+observation readback are the next implementation boundary.
 
 | Record | Status and scope |
 | --- | --- |
@@ -14,6 +15,7 @@ binding are therefore the next implementation boundary.
 | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) | 16 canaries and 256 two-second discovery worlds; 64 controller profiles on S169; shortlist 08/18 nominal and 55/27 weak-left |
 | [Shortlist component](../sdk/discovery/population_shortlist_component_result_v1.json) | Complete 128-control zero-world gate for the declared route |
 | [Shortlist native result](../sdk/discovery/population_shortlist_native_result_v1.json) | 20 fresh twelve-second worlds, full capture and independent replay; 14 eligible, six performance failures, zero invalid |
+| [Mixed-creature component](../sdk/discovery/creature_batch_component_v1.json) | 21 controls pass; 64 cells across 32 compiled shapes match scalar execution; zero worlds and no native launch authorization |
 
 The native shortlist came from prospective source freeze ca57f6bb.
 Both 55 and 27 remained eligible under 75% left-side actuation at the two

@@ -19,6 +19,7 @@ include that question in the broader program when it helps select a usable polic
 | [Full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json): 20 fresh worlds, 12 seconds each | Profiles 55 and 27 stay eligible under weakened actuation at both exposed initial lateral velocities; baseline, 08 and 18 fail |
 | Nominal-body tradeoff | All five profiles pass both starts; mean velocity errors are baseline 0.08838, 08 0.08573, 18 0.08778, 55 0.09194 and 27 0.09115 m/s |
 | [Preserved population v1 failure](../sdk/discovery/population_discovery_native_failure_v1.json) | Canary failure; zero population worlds opened |
+| [Mixed-creature controller component](../sdk/discovery/creature_batch_component_v1.json) | 21 controls pass; 64 controller/body cells across 32 compiled shapes match scalar execution exactly; synthetic observations, zero native worlds |
 | Scope of these runs | No learned selection, online correction memory, new morphology result, recovery qualification, real-time qualification or release authority |
 
 The shortlist's 28,800 controller decisions and 144,000 native samples were
@@ -27,13 +28,13 @@ development evidence. Failed episodes have no quality score. Earlier
 [learned influence and memory experiments](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
 remain retained; memory mechanics worked, but useful memory benefit was unproved.
 
-1. **Make creature variation executable through a shared route.** Use the existing
-   bounded quadruped descriptor/compiler and bind each creature's descriptor,
-   compiled geometry, public controller session, native model and observations.
-   Preserve the old exact-S169 routes. Prove isolation and the smallest native
+1. **Finish the native route for creature variation.** The shared controller
+   component now binds each descriptor, compiled geometry and public session,
+   isolates memory and rejects crossed observation identities. Native model
+   transport and independent per-creature readback remain. Prove the smallest
    construction/step ghost before a large run. GPU model batching and the
-   approved contained pool are implementation options, not yet demonstrated
-   morphology coverage.
+   approved contained pool are implementation options; the component tests
+   establish no native morphology coverage. Preserve the old exact-S169 routes.
 2. **Run a bounded breadth search.** Declare the creature population, controller
    references (including 08, 18, 55 and 27), baseline, conditions, budget,
    selection rule and reduced-capture limits before launch. Retain all failures
