@@ -40,13 +40,38 @@ bindings. The [failed v1 attempt](../sdk/discovery/contact_sequence_native_prela
 and [separate cleanup diagnostic](../sdk/discovery/contained_stage_cleanup_result_v2.json)
 remain preserved; the original cleanup incident's cause is still unproved.
 
-Next proposed action: a distinct retained-evidence diagnostic of the
-[contact-priority refusal](#contact-priority-native-refusal-and-retained-handle-closeout---2026-11-01).
-Inspect native and forecast contact support, command projection, motor saturation,
-joint-limit forces and the held future-baseline approximation before declaring
-another policy successor. The terminal 521-option search remains inadmissible at
-65 of 66 intervals; finite refusal does not establish global infeasibility.
-Keep the observed campaign and all guards, caps, horizons and selectors unchanged.
+The [retained contact and motor diagnosis](../sdk/discovery/contact_sequence_authority_result_v1.json)
+now passes 71 controls and two byte-identical complete readers over all 1,531
+controller rows, 7,650 native samples and 55 best forecasts. The candidate has
+zero front-right geometric contact and positive normal force in all 150
+post-prefix native steps, with no joint-limit constraint in those steps.
+The command-90 refusal predicts a future rear-left hip margin crossing.
+Local torque saturation and this finite search do not prove global infeasibility.
+
+Current execution priority, reaffirmed 2026-11-01: broad candidate discovery,
+then detailed checking of the shortlist. Implement a distinct exploration-capture
+successor to the existing batch execution path. Jointly vary declared parameters
+through the implemented provider/controller interface; test populations rather
+than repeatedly refining and fully auditing one controller. Measure telemetry
+cost before reducing capture. Keep every candidate's identity, parameters,
+source/runtime bindings, seed, outcome and failure reason, always-on safety and
+validity checks, and predetermined full-trace canaries.
+
+Freeze each bounded batch before launch, retain rejected and invalid candidates,
+and adapt the search only between recorded batches. Candidate performance
+failure is an expected search outcome; broken containment, corrupted telemetry
+or a failed safety gate stops the affected operation. Keep calibration and
+evaluation groups sealed. Preserve a diverse shortlist, rerun it fresh with
+full native capture, and apply complete independent reconstruction and the
+existing qualification contracts to finalists. A reduced-capture discovery
+result is never retroactively promoted to stronger evidence.
+
+Use the existing batched GPU path for candidate generation where its declared
+model and capacity apply. Any native child pool remains bounded to four under
+one mutex-owning coordinator. The held-future-baseline question can inform a
+candidate design or a targeted diagnostic; it is not a mandatory detour before
+wide discovery. Its observed retrospective differences do not establish the
+cause of the refusal. Preserve all consumed campaigns and their claim limits.
 
 Recovery benefit, safe withdrawal, expert-policy training-data authority, learned
 Tier 2, beneficial Tier 3, real-time operation and release remain unqualified.
@@ -9748,3 +9773,72 @@ readers open zero worlds and produce the same audit digest. The earlier v1
 failure and its separate lifecycle diagnostic retain their original identities
 and claims; this successful v2 lifecycle does not establish the original
 incident's cause.
+
+## Contact-priority contact and motor authority diagnosis - 2026-11-01
+
+The [retained diagnosis](../sdk/discovery/contact_sequence_authority_result_v1.json)
+records sdk2-contact-sequence-authority-v1-5a7d364f997c4e38ac328f82d3d7223d, receipt
+8954f1139879046a01d18a05607a565cb3ef16129204f3684e62a71d76815dee. All 71 declared controls pass:
+20 inherited arithmetic controls, 34 contact/native-population controls and
+17 retained-handle lifecycle controls. Two separate complete readers produce
+the same audit bytes. Closeout checks all 325 retained files,
+1,260 source bindings, 3,583 runtime bindings and five outer
+cleanup reports before any source edit. The new diagnostic source was staged,
+hash-bound and snapshotted at 8d6ea90300fa; this was a zero-world
+diagnostic, not a clean pushed native launch.
+
+The readers inspect every available controller and native row from both opened
+worlds: 1,440/7,200 baseline rows and 91/450 candidate rows. They diagnose all
+55 nested best forecasts, totaling 18,135 overlapping predicted steps, and
+summarize all 5,262 retained candidate outcomes. Complete candidate guard/cost
+reconstruction remains inherited from the native parent. No new forecast,
+candidate search, dynamics solve or physics world runs.
+
+In the candidate's 150 post-prefix native samples, positive foot-load counts
+are 90 front-left, zero front-right, 88 rear-left and 104 rear-right.
+The front-right capsule's pre-step clearance ranges from 0.046298 to 0.079750 m.
+Its 24 whole-run loaded samples all belong to the unchanged prefix. Prepared
+support remains a separate zero-of-31 measurement; contact presence, positive
+normal force and geometric clearance do not by themselves qualify recovery.
+
+No joint-limit constraint occurs in those 150 candidate samples. The rear-left
+hip reaches its lower force cap in 90, including 85 with positive velocity,
+and its instantaneous public envelope cannot vary the torque in 90. Across
+the 55 overlapping best forecasts, the same hip has no instantaneous torque
+variation in 17,136 of 18,135 steps. These measurements hold each retained
+state fixed and do not compute alternative trajectories or prove infeasibility.
+
+Only the command-60 contact forecast predicts positive front-right force:
+15 samples in its final three intervals. All other 54 best forecasts have zero.
+Those late samples are beyond the candidate's retained native duration.
+The selected command-90 forecast has no front-foot load. Its first margin
+violation is the rear-left hip at 0.718446 rad against a 0.714169-rad upper
+guard, 0.543333 forecast seconds ahead. That sample has no joint-limit
+constraint yet; three later forecast samples do. The hip applies
+-5.073637 Nm throughout that forecast. The refused plan is never transferred.
+
+All 150 applied first-interval samples preserve the predicted distal-contact
+presence. Maximum position-component difference is 9.463018e-8 and maximum
+velocity-component difference is 1.590869e-5; the largest distal-normal-force
+difference is 7.808395e-4 N. Native motor-force arithmetic closes within
+3.330669e-15 Nm, and retained forecast torque reconstruction is exact.
+These are diagnostic measurements, not new acceptance tolerances or validation
+of later forecast intervals.
+
+Retrospective future-input comparisons cover 741 prepared and 689 transferred
+pairs across 52 forecasts; the three terminal forecasts have no later native
+observations. Baseline differences reach 1.852338 rad/s. These overlapping
+pairs follow the actual closed loop, so they neither supply a counterfactual
+future baseline nor attribute the refusal to the held-baseline approximation.
+
+The next workstream is broad bounded population discovery with compact
+per-candidate evidence, predetermined full-trace canaries and unchanged safety
+checks, followed by fresh full-capture shortlist challenges and rigorous finalist
+qualification. The complete retrospective diagnosis above does not substitute
+for that search. Future-baseline modeling remains an unresolved design question,
+not an automatic prerequisite to testing candidate populations.
+
+A verified first command and a long admissible forecast remain separate from a
+successful causal recovery. Actual recovery evidence must precede expert-policy
+training authority; learned Tier 2, beneficial Tier 3, safe withdrawal,
+real-time performance, cross-engine equivalence and release remain unqualified.

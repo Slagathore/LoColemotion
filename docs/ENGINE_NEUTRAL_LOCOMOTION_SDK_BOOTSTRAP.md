@@ -28,14 +28,24 @@ bindings. The [first contact-native gate failure](../sdk/discovery/contact_seque
 and [42-control cleanup diagnostic](../sdk/discovery/contained_stage_cleanup_result_v2.json)
 remain preserved. The original cleanup incident's cause remains unproved.
 
-The terminal 521-option search remains inadmissible at 65 of 66 intervals, with
-a predicted joint-position-margin refusal. Next follow the
-[current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-11-01):
-inspect the retained native and forecast evidence for contact support, projection,
-motor authority, joint-limit forces and the held future-baseline approximation
-before declaring a policy successor. Preserve the observed campaign and its
-caps, guards, horizon and selector. Recovery, safe withdrawal, expert-policy
-training data, Tier 2, Tier 3, real-time and release qualification remain absent.
+The terminal 521-option search remains inadmissible at 65 of 66 intervals.
+The [retained contact and motor diagnosis](../sdk/discovery/contact_sequence_authority_result_v1.json)
+passes 71 controls and two byte-identical readers over all 7,650 native samples
+and 55 best forecasts. The candidate has no front-right contact in its 150
+post-prefix native steps and no joint-limit constraint in those steps.
+Its refusal predicts a future rear-left hip margin crossing. Frequent local
+torque saturation does not establish global infeasibility.
+
+The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-11-01)
+prioritizes broad bounded candidate discovery, then detailed checking of a
+frozen shortlist. A distinct exploration-capture successor must retain every
+candidate identity and outcome, always-on safety/validity checks and predetermined
+full-trace canaries. Measure capture cost before reducing telemetry; rerun
+shortlisted candidates fresh with full native traces and independent checking.
+The future-baseline question can inform candidate design without becoming a
+mandatory retrospective-analysis detour. Preserve all consumed campaigns.
+Recovery, safe withdrawal, expert-policy training data, Tier 2, Tier 3,
+real-time and release qualification remain absent.
 
 Earlier campaign outcomes and next-step descriptions below are historical.
 

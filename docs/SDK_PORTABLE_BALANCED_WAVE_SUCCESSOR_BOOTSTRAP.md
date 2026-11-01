@@ -10,8 +10,19 @@ The baseline completes twelve seconds but fails tilt and torso-contact criteria.
 The candidate has no observed height, tilt or torso-contact failure before its
 censored stop. Recovery, learning and release qualification remain absent.
 
+The [retained contact and motor diagnosis](../sdk/discovery/contact_sequence_authority_result_v1.json)
+passes 71 controls and two byte-identical readers over the complete available
+population. All 150 candidate post-prefix native samples have zero front-right
+contact and no joint-limit constraint. The terminal refusal predicts a future
+rear-left hip margin crossing; local torque saturation does not prove global
+infeasibility. No new forecasts, solves or worlds run.
+
 The [current execution order](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-11-01)
-proposes a distinct retained-evidence diagnostic before another policy successor.
+prioritizes broad bounded population discovery through a distinct exploration
+capture route, then fresh full-capture native shortlist challenges and rigorous
+finalist qualification. Every trial identity and outcome, always-on checks and
+predetermined full-trace canaries remain required. The future-baseline question
+is a possible candidate design input, not a prerequisite to wide discovery.
 Earlier dated sections retain their historical outcomes and next-step statements.
 
 ## SDK2 configured dynamic controller - 2026-10-25
