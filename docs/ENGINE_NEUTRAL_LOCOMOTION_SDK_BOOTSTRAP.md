@@ -9,33 +9,33 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Current SDK2 state: the [native-v4 result](../sdk/discovery/predictive_sequence_native_result_v4.json)
-passes the full 1,407-control gate and two independent readers. It applies 86
-candidate commands (430 solver steps, 0.716667 s), then refuses command 86 before
-transfer. The candidate has no observed safety violation before that refusal;
-the nominal pair remains unopened and recovery benefit is unproved.
+Current SDK2 state: the [contact-native v2 result](../sdk/discovery/contact_sequence_native_result_v2.json)
+passes the full 1,615-control gate and two byte-identical independent readers.
+The candidate transfers 90 commands over 450 internal steps (0.75 s), then
+refuses command 90 before transfer. The weak baseline completes its twelve-second
+capture but fails tilt and torso-contact criteria. The candidate's observed
+prefix has no height, tilt or torso-contact failure before its censored stop.
+The nominal pair remains unopened, and recovery benefit is unproved.
 
-The [contact-priority public integration](../sdk/discovery/contact_sequence_public_result_v1.json)
-passes 145 controls and two identical readers over four hosts, two core builds
-and 248 commands per reader. All 240 prefix commands are unchanged. Eight
-sequence commands resolve and transfer exactly, including the changed weak
-handoff at command 60 and actual-history continuation at command 61.
-The two core builds produce byte-identical public rows.
+The paired 60-command and 300-step prefix and prepared handoff state are
+identical. The contact-priority action changes at command 60, so the later
+refusal than native v4 does not establish continuation of its identical
+post-handoff trajectory or superiority.
 
-The [first full contact-native gate](../sdk/discovery/contact_sequence_native_prelaunch_failure_v1.json)
-stopped before physics after accepting 1,091 controls. The following selector
-module passed 25 tests, but process cleanup failed; the attempt remains failed.
-The [versioned cleanup diagnostic](../sdk/discovery/contained_stage_cleanup_result_v2.json)
-passes 42 controls with retained process handles and exact owned-job membership.
-Its synthetic stale-PID fixture reproduces a false refusal in the old algorithm,
-without establishing that as the cause of the original incident.
+The retained-handle owner completes all 96 outer stages. Independent closeout
+checks verify 3,051 retained files, 1,253 source bindings and 3,583 runtime
+bindings. The [first contact-native gate failure](../sdk/discovery/contact_sequence_native_prelaunch_failure_v1.json)
+and [42-control cleanup diagnostic](../sdk/discovery/contained_stage_cleanup_result_v2.json)
+remain preserved. The original cleanup incident's cause remains unproved.
 
-The [v2 route qualification](../sdk/discovery/contact_sequence_native_component_result_v2.json)
-now passes 52 controls and two-core zero-world preflight with the retained-handle
-owner integrated. Next run its complete 1,615-control gate and fresh native
-comparison from a clean pushed freeze. The scientific controller and criteria
-remain unchanged. No new worlds opened; recovery, training-data, Tier 2, Tier 3,
-real-time and release qualification remain absent.
+The terminal 521-option search remains inadmissible at 65 of 66 intervals, with
+a predicted joint-position-margin refusal. Next follow the
+[current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-11-01):
+inspect the retained native and forecast evidence for contact support, projection,
+motor authority, joint-limit forces and the held future-baseline approximation
+before declaring a policy successor. Preserve the observed campaign and its
+caps, guards, horizon and selector. Recovery, safe withdrawal, expert-policy
+training data, Tier 2, Tier 3, real-time and release qualification remain absent.
 
 Earlier campaign outcomes and next-step descriptions below are historical.
 

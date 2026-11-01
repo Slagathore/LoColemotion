@@ -21,39 +21,36 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-11-01
 
-Current next action: run the complete 1,615-control gate and fresh contact-priority
-native comparison from the clean, pushed v2 freeze. The [v2 route qualification](#contact-native-v2-route-qualification---2026-11-01)
-passes 52 route controls and two-core zero-world preflight with the retained-handle
-owner integrated. The [prelaunch failure and lifecycle diagnostic](#contact-native-prelaunch-failure-and-retained-handle-cleanup---2026-10-26)
-preserve the original failed attempt and its separate 42-control cleanup evidence.
+Current native result: the [contact-native v2 closure](../sdk/discovery/contact_sequence_native_result_v2.json)
+passes the complete 1,615-control gate and two byte-identical independent readers.
+Two fresh CPU worlds open. The candidate transfers 90 commands over 450 internal
+steps (0.75 s), then refuses command 90 before transfer. The unchanged paired
+prefix covers 60 commands and 300 steps; 30 transfers follow that prefix.
+The nominal pair remains unopened.
 
-The first full-gate attempt accepted 1,091 controls. The next selector module
-passed all 25 tests, but the owner then reported that a contained descendant
-did not exit. The gate remained failed and opened zero worlds. The new
-versioned helper passes 17 lifecycle controls plus a rehearsal of those same
-25 selector controls. It verifies membership in the exact owned job, retains
-process handles through cleanup, and records the resulting observations.
-A synthetic stale-PID fixture reproduces a false refusal in the old algorithm;
-the original incident's cause remains unproved because its member identities
-were not retained.
+The weak baseline completes its twelve-second capture but fails the tilt and
+torso-contact criteria. The candidate has no observed height, tilt or torso-contact
+failure before its censored stop. This is an incomplete recovery comparison.
+Its changed action at command 60 means the later refusal than native v4 is not
+an extension of that earlier candidate's identical post-handoff trajectory.
 
-Keep the four fresh weak and nominal baseline/candidate roles, twelve-second
-horizons, unchanged 60-command prefix, complete forecasts and native streams,
-and refusal-before-transfer rules. No controller, physical threshold, actuator
-cap or claimed learning capability changed in this infrastructure checkpoint.
+The retained-handle owner completes all 96 outer stages. Independent closeout
+checks verify all 3,051 retained files, 1,253 source bindings and 3,583 runtime
+bindings. The [failed v1 attempt](../sdk/discovery/contact_sequence_native_prelaunch_failure_v1.json)
+and [separate cleanup diagnostic](../sdk/discovery/contained_stage_cleanup_result_v2.json)
+remain preserved; the original cleanup incident's cause is still unproved.
 
-Latest native result: the [native-v4 closure](../sdk/discovery/predictive_sequence_native_result_v4.json)
-passes all 1,407 safety controls and two independent readers. The candidate
-applies 86 commands over 430 solver steps (0.716667 s), then refuses command 86
-before transfer. It extends the prior trajectory by five commands, with no
-observed candidate safety violation before that refusal. Only the weak pair
-opened; the nominal pair remains unopened. This is a finite continuation,
-not a completed twelve-second recovery comparison.
+Next proposed action: a distinct retained-evidence diagnostic of the
+[contact-priority refusal](#contact-priority-native-refusal-and-retained-handle-closeout---2026-11-01).
+Inspect native and forecast contact support, command projection, motor saturation,
+joint-limit forces and the held future-baseline approximation before declaring
+another policy successor. The terminal 521-option search remains inadmissible at
+65 of 66 intervals; finite refusal does not establish global infeasibility.
+Keep the observed campaign and all guards, caps, horizons and selectors unchanged.
 
-For the contact-aware successor, verify admissible retained-state plans,
-public integration and fresh native continuation in that order. Native recovery, training-data authority, learned Tier 2,
-beneficial Tier 3, real-time operation and release remain unqualified. Earlier
-next-step statements below are historical.
+Recovery benefit, safe withdrawal, expert-policy training-data authority, learned
+Tier 2, beneficial Tier 3, real-time operation and release remain unqualified.
+Earlier next-step statements below are historical.
 
 Prior compiled-backend result: the [compiled predictive backend](#compiled-predictive-numerical-kernels---2026-10-25)
 passes 91 controls and two identical readers over all 2,006 candidate forecasts.
@@ -9700,3 +9697,54 @@ Retain the 60-command paired prefix, full forecasts, native streams and both
 independent readers. Refusal stops before transfer and leaves remaining worlds
 unopened. Recovery benefit, expert-policy training data, Tier 2, Tier 3,
 real-time capability and release authority remain unqualified.
+
+## Contact-priority native refusal and retained-handle closeout - 2026-11-01
+
+The [contact-native v2
+closure](../sdk/discovery/contact_sequence_native_result_v2.json) records the
+full 1,615-control launch gate and two independent complete readers. Two fresh
+CPU worlds open. The weak baseline completes its twelve-second capture; the
+candidate transfers 90 commands over 450 internal steps, then refuses command 90
+before transfer at 0.75 seconds. The nominal pair remains unopened. The paired
+60-command and 300-step prefix and prepared handoff state are identical.
+
+The baseline first violates tilt at 1.158333 seconds and later records torso
+contact. The candidate has no observed height, tilt or torso-contact failure
+before its censored stop. This does not establish recovery, safe withdrawal or
+superiority. The contact-priority action changes at command 60, so the later
+refusal than native v4 is not an extension of that prior candidate's identical
+post-handoff trajectory.
+
+Across 31 sequence decisions, the readers check all 5,262 evaluated sequences
+and reconstruct 55 original, refined or contact-aware best forecasts with the
+original Python predictor. Twenty contact-search selections reach native
+actuation. The comparison against fresh native observations covers only the
+first five applied internal steps of each transferred plan; later intervals
+remain forecasts under the held future-baseline approximation.
+
+At command 90, the 103-option original search, 316-option local refinement and
+102-option contact search all remain inadmissible. The final best forecast
+passes 65 of 66 intervals and refuses on joint-position margin. The finite
+521-option search does not establish global infeasibility. Its final row
+contains 613,874,866 bytes. Retained timing records 191.330 seconds of portable
+control and 14.589 seconds of controller capture/control transfer for that
+refused decision; no transfer or integration follows. These measured development
+costs do not qualify real-time execution.
+
+The native audit reports front-right support in zero of the 31 prepared
+post-handoff states. That denominator does not establish absence in every
+internal native sample, and predicted geometric clearance is not loaded contact.
+Next inspect the complete retained native and forecast population for command
+projection, motor saturation, joint-limit forces, contact support and the held
+future-baseline approximation before declaring a policy successor. Preserve the
+observed refusal and all previous positive and negative results. Training-data
+authority, learned Tier 2, beneficial Tier 3 and release qualification remain
+absent.
+
+The owner closes all 96 outer stages with verified retained-handle cleanup.
+Closeout independently checks the exact 3,051-file artifact population and all
+1,253 source and 3,583 runtime bindings before any source edit. Both complete
+readers open zero worlds and produce the same audit digest. The earlier v1
+failure and its separate lifecycle diagnostic retain their original identities
+and claims; this successful v2 lifecycle does not establish the original
+incident's cause.

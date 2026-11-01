@@ -1,5 +1,19 @@
 # Portable Balanced-Wave Successor Bootstrap
 
+## Current SDK2 native evidence - 2026-11-01
+
+The [contact-native v2 closure](../sdk/discovery/contact_sequence_native_result_v2.json)
+passes all 1,615 controls and two byte-identical readers. Two fresh CPU worlds
+open. The candidate transfers 90 commands over 450 internal steps, then refuses
+command 90 before transfer at 0.75 seconds; the nominal pair remains unopened.
+The baseline completes twelve seconds but fails tilt and torso-contact criteria.
+The candidate has no observed height, tilt or torso-contact failure before its
+censored stop. Recovery, learning and release qualification remain absent.
+
+The [current execution order](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#current-execution-order---2026-11-01)
+proposes a distinct retained-evidence diagnostic before another policy successor.
+Earlier dated sections retain their historical outcomes and next-step statements.
+
 ## SDK2 configured dynamic controller - 2026-10-25
 
 The [completed dynamic component](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#completed-constrained-dynamic-controller-component---2026-10-25)
@@ -39014,3 +39028,32 @@ is integrated across all invocation paths, with explicit failed-v1 and cleanup
 predecessor checks. The full 1,615-control gate remains prospective. Four fresh
 native worlds retain unchanged controller and physical criteria; neither
 component qualification nor cleanup evidence establishes recovery or Tier 2/3.
+
+## Contact-priority native v2 closeout - 2026-11-01
+
+The [native result](../sdk/discovery/contact_sequence_native_result_v2.json)
+binds the complete 1,615-control gate, two identical independent readers and the
+successful retained-handle owner receipt. All 96 outer cleanup reports pass.
+Independent closeout checks verify 3,051 retained files and every one of the
+1,253 source and 3,583 runtime bindings before source edits.
+
+The weak pair preserves its 60-command and 300-step prefix. The candidate
+transfers 30 commands after the handoff, ending at 0.75 seconds, and refuses
+command 90 before transfer. Its 31 sequence decisions retain 5,262 evaluated
+sequences; the readers reconstruct 55 original, refined or contact-aware best
+forecasts. Only the first five applied steps are compared with fresh native
+observations; later intervals remain forecasts under the held-baseline
+approximation. The nominal pair remains unopened.
+
+The terminal 521-option search remains inadmissible at 65 of 66 intervals and
+refuses on predicted joint-position margin. The candidate's observed prefix
+contains no height, tilt or torso-contact failure, but the twelve-second
+comparison is incomplete. A changed action at command 60 prevents an identical
+post-handoff trajectory-extension claim against native v4. Refusal is not
+evidence of safe withdrawal, recovery or global infeasibility.
+
+Follow the [current roadmap diagnosis](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md#contact-priority-native-refusal-and-retained-handle-closeout---2026-11-01)
+before declaring another policy successor. Preserve this refusal, every
+predecessor identity, and all observed caps, guards, horizons and selectors.
+Training-data authority, learned Tier 2, beneficial Tier 3, real-time capability
+and release remain unqualified.
