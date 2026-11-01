@@ -2,17 +2,24 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-11-01
 
-The [v1 population attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
-completed 16 canary worlds but failed fresh-run byte identity; its 256-world
-population stayed unopened. That failure remains preserved. The
-[v2 successor component](../sdk/discovery/population_discovery_component_result_v2.json)
-passes 108 zero-world controls and validates compact fields against their own
-raw native samples, with independent full-trace controller replay. Separate-run
-differences are descriptive and grant no equivalence authority. The unchanged
-search plan contains 64 policies, two actuator conditions and two exposed starts:
-256 two-second discovery worlds in batches of 16, preceded by 16 fresh canary
-worlds. No v2 world has opened at this component boundary. Clean-freeze execution
-and then fresh full-capture shortlist challenges remain the next gates.
+The [completed v2 population](../sdk/discovery/population_discovery_native_result_v2.json)
+passes all 108 launch controls, full-canary replay and complete population
+reconstruction. It opens 272 fresh GPU worlds: 16 canaries followed by 256
+two-second discovery episodes for 64 policies, two actuator conditions and two
+exposed starts, in batches of 16. All 128 nominal episodes pass screening;
+10 profiles beat the eligible baseline's mean error across the two starts.
+The diverse shortlist is 08 and 18. In the weakened-actuator condition, 31/128
+episodes pass and six profiles pass both starts; the shortlist is 55 and 27.
+The weak baseline fails both starts. All 97 failed episodes remain retained.
+
+All 1,786 retained files, 1,138 source bindings, 1,359 runtime bindings and 18
+outer cleanup reports verify. Compact fields match their own raw canary samples;
+separate fresh runs remain numerically different and carry no equivalence claim.
+The [failed v1 attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
+remains unchanged. No calibration or evaluation starts open, no provider is
+trained, and no recovery, adaptation or release qualification is granted.
+Next freeze a fresh full-capture challenge for exact profiles 08, 18, 55 and 27
+with new baselines, longer-duration checking and complete independent replay.
 
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.
@@ -21,7 +28,7 @@ controls and all readiness dispositions are preserved. The original C: backup
 has been removed. This maintenance opens no worlds and adds no scientific or
 release authority; the completed conditioned-selection diagnosis is recorded below.
 
-Current SDK2 state: the [contact-native v2 result](../sdk/discovery/contact_sequence_native_result_v2.json)
+Earlier contact-controller result: the [contact-native v2 result](../sdk/discovery/contact_sequence_native_result_v2.json)
 passes the full 1,615-control gate and two byte-identical independent readers.
 The candidate transfers 90 commands over 450 internal steps (0.75 s), then
 refuses command 90 before transfer. The weak baseline completes its twelve-second

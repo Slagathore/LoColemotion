@@ -21,37 +21,49 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-11-01
 
-The [v1 discovery attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
-completed all 16 canary worlds but failed its prospective requirement for
-byte-identical records across fresh full/compact GPU runs. Both nominal modes
-screened 4/4 eligible; both weakened-actuator modes screened 0/4 eligible at
-matching first-failure steps. The independent reader reached the paired-identity
-check after full native replay and exact same-run projection checks. Its final
-audit failed, and the 256-world population remained unopened. This failed
-identity and its original source, thresholds and evidence remain preserved.
+The [completed v2 population](../sdk/discovery/population_discovery_native_result_v2.json)
+passes the complete 108-control gate, both full-canary replays and independent
+reconstruction of every population episode and the frozen selection. The clean
+pushed freeze opens 272 fresh GPU worlds: 16 canaries followed by 256 discovery
+episodes. The search jointly varies eight joint coefficients across 63 profiles
+plus the unchanged baseline, on two actuator conditions and two exposed starts.
+Each world runs two simulated seconds; population batches contain 16 worlds.
 
+All 128 nominal episodes pass screening. Ten profiles improve mean planar
+velocity-tracking error over the eligible baseline on the two exposed starts;
+the diverse shortlist is **08 and 18**, with mean errors 0.0870673 and
+0.0873409 m/s against baseline 0.0913529 m/s. The weakened-actuator condition
+has 31/128 eligible episodes, but only six profiles pass both starts.
+Its shortlist is **55 and 27**, with mean errors 0.0918278 and 0.0925691 m/s.
+The weak baseline fails both starts. All 97 failed episodes, including their
+first-failure steps and overlapping height, tilt and torso-contact reasons,
+remain in the retained population. No failed episode receives a quality score.
+
+Closeout verifies all 1,786 retained files, 1,138 source bindings, 1,359 runtime
+bindings and 18 outer cleanup reports. All native reads, force/capacity/contact
+checks and five-step history remain; only retained serialization is reduced.
+The compact canaries retain about 32-33 times fewer bytes. Their measured runtime
+differences are mixed and descriptive, with no general speedup claim. Exact
+projection means equality to each record's own raw native samples; separate
+fresh runs are not bitwise equal and grant no equivalence authority.
+
+The [failed v1 attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
+remains consumed and unchanged: it opened 16 canary worlds, failed its prospective
+fresh-run byte-identity requirement, and never opened its 256-world population.
 The [v2 component](../sdk/discovery/population_discovery_component_result_v2.json)
-passes all 108 zero-world controls. Its [new prospective contract](../sdk/discovery/population_discovery_v2.json)
-keeps the same 64 policies, eight joint coefficients, two actuator conditions,
-two exposed training starts, two-second horizon and 16-world batch limit.
-Sixteen fresh canary worlds precede 256 discovery worlds. Exactness now applies
-to compact fields and their own raw samples, with independent full controller
-replay. Differences between separately executed runs are retained descriptively,
-without an equivalence claim or a fitted acceptance tolerance. The failed v1
-attempt is not promoted by this successor.
+and [prospective contract](../sdk/discovery/population_discovery_v2.json) preserve
+the distinct successor question and all original controller bounds.
 
-All native reads, force/capacity/contact checks and five-step history remain.
-Only retained serialization is reduced, and recording costs are measured in
-the predetermined canaries. Every candidate and performance failure remains in
-the ledger. Selection uses both exposed starts, baseline improvement where
-baseline is eligible, deterministic ties and coefficient diversity. Calibration
-and evaluation starts remain unopened. No v2 physical world has opened at this
-component boundary; clean-freeze execution is next. Any selected policy needs
-fresh full-capture native challenges under a new contract before fitting or
-qualification. Reduced discovery grants no recovery, adaptation or release
-authority.
+Next freeze a full-capture challenge for the exact four shortlisted profiles
+08, 18, 55 and 27, with fresh baselines, longer-duration checking and complete
+independent native reconstruction. This is the detailed shortlist stage after
+wide discovery. The two-second reduced records remain discovery evidence;
+they are not retroactively promoted into training or acceptance evidence.
+Calibration and evaluation starts remain unopened. No provider is trained,
+and recovery, safe withdrawal, Tier 2, Tier 3, real-time and release remain
+unqualified.
 
-Current native result: the [contact-native v2 closure](../sdk/discovery/contact_sequence_native_result_v2.json)
+Earlier contact-controller result: the [contact-native v2 closure](../sdk/discovery/contact_sequence_native_result_v2.json)
 passes the complete 1,615-control gate and two byte-identical independent readers.
 Two fresh CPU worlds open. The candidate transfers 90 commands over 450 internal
 steps (0.75 s), then refuses command 90 before transfer. The unchanged paired
@@ -79,8 +91,9 @@ The command-90 refusal predicts a future rear-left hip margin crossing.
 Local torque saturation and this finite search do not prove global infeasibility.
 
 Current execution priority, reaffirmed 2026-11-01: broad candidate discovery,
-then detailed checking of the shortlist. Run the declared exploration-capture
-successor above through the existing batch execution path. Jointly vary declared parameters
+then detailed checking of the shortlist. The completed exploration-capture
+population above now supplies four fixed leads for fresh full-capture challenges.
+For later discovery successors, jointly vary declared parameters
 through the implemented provider/controller interface; test populations rather
 than repeatedly refining and fully auditing one controller. Measure telemetry
 cost before reducing capture. Keep every candidate's identity, parameters,

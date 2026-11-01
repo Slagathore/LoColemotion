@@ -13303,6 +13303,525 @@
         "training_data_authority": false,
         "result_path": "sdk/discovery/population_discovery_component_result_v2.json",
         "result_sha256": "4d9e67525bc0d13d344e21786098ad576ff711407568b53a49ddfc5989d1a9cf"
+      },
+      "population_discovery_native_v2": {
+        "schema_version": "locolemotion_population_discovery_native_result_v2",
+        "ledger_scope": {
+          "subsystem": "discovery",
+          "engine_scope": "mujoco_warp",
+          "authority_mode": "development_discovery",
+          "question_class": "development"
+        },
+        "status": "complete_bounded_native_population_with_frozen_diverse_shortlist",
+        "attempt_id": "sdk2-population-discovery-v2-55922e55061f48dda84e366baa70cb26",
+        "archive_relative_path": "sdk2-population-discovery-v2-55922e55061f48dda84e366baa70cb26",
+        "source_commit": "ce3cd4caf55cdd1abea5046f61de449bb6ac1cab",
+        "source_status": [],
+        "source_freeze": "Clean pushed prospective main commit; all source and runtime bindings unchanged through both native phases",
+        "receipt_sha256": "939f83fccaaf7189b2fbc68264dcf2c93091f5a65d4d88370d319e0ddb8ad52f",
+        "declaration_sha256": "eff409b1cd659fdb11dff35ef36d49c9a5662d1c7ca53100dd4acb208ec447a5",
+        "gate_receipt_sha256": "aa4372c2f4295277720a332fb0ce8e4a7e8deeaca4bec3a7990b4df867780cc4",
+        "consumed_sha256": "e1c6851c97758de2ca59988064aaaeaf5bac06719cc2ee452f111342e80855a7",
+        "contract_path": "sdk/discovery/population_discovery_v2.json",
+        "contract_sha256": "295ad6a537297288895cc78819676b21e6fda40cb1527efc4348a04c55729b09",
+        "component_result_path": "sdk/discovery/population_discovery_component_result_v2.json",
+        "component_result_sha256": "4d9e67525bc0d13d344e21786098ad576ff711407568b53a49ddfc5989d1a9cf",
+        "preserved_v1_failure": {
+          "path": "sdk/discovery/population_discovery_native_failure_v1.json",
+          "sha256": "500a8921c905a6fc592e0f451dacbcd55915df74c7ff2f0e2fa28a53c4f8b3ec",
+          "reinterpreted": false
+        },
+        "source_pins": [
+          {
+            "path": "sdk/discovery/population_discovery_task_v2.py",
+            "sha256": "d32b05025d34c1e16db91df4021abd3135d5c30ca4dcafc493e400ce92e4e851"
+          },
+          {
+            "path": "sdk/discovery/population_discovery_v2.py",
+            "sha256": "7eb1eafed0ce70ce531f598c3ee768a34e107067fae3406ad3dc17d366dc9088"
+          },
+          {
+            "path": "sdk/discovery/audit_population_discovery_v2.py",
+            "sha256": "b2a2ee8b9bfcebc97ed1c01b17fac414d33cc2d036f2d3540223dd5db782a239"
+          },
+          {
+            "path": "sdk/discovery/run_population_discovery_v2.py",
+            "sha256": "68af0cbf4779d8acb1aa299785fda85adf4285f04df793323f1d37d2c9cd812c"
+          },
+          {
+            "path": "sdk/discovery/test_population_discovery_v2.py",
+            "sha256": "c4313cfe2cb3926007fc8fecbfe355c266fbdb252ea3619a36246d90ac9814b8"
+          }
+        ],
+        "safety_controls": {
+          "measurement": 7,
+          "quadruped": 10,
+          "portable": 11,
+          "host-batch": 7,
+          "graph-execution": 7,
+          "repertoire": 6,
+          "motor-task": 7,
+          "motor-route": 5,
+          "stage-lifecycle": 17,
+          "containment": 1,
+          "provider": 2,
+          "population": 20,
+          "projection-successor": 8
+        },
+        "controls_passed": 108,
+        "controls_required": 108,
+        "physical_started": true,
+        "constructed_gpu_worlds": 272,
+        "canary_worlds": 16,
+        "population_worlds": 256,
+        "policy_count": 64,
+        "baseline_profiles": 1,
+        "jointly_varied_profiles": 63,
+        "coefficient_dimensions": 8,
+        "coefficient_order": [
+          "front_left_hip",
+          "front_left_knee",
+          "front_right_hip",
+          "front_right_knee",
+          "rear_left_hip",
+          "rear_left_knee",
+          "rear_right_hip",
+          "rear_right_knee"
+        ],
+        "actuator_conditions": [
+          "nominal",
+          "left_075"
+        ],
+        "exposed_start_lateral_velocities_m_s": [
+          0.001,
+          0.003
+        ],
+        "horizon_s": 2.0,
+        "population_batches": 16,
+        "maximum_simultaneous_gpu_worlds": 16,
+        "population_controller_rows": 61440,
+        "population_internal_rows": 307200,
+        "canary_controller_rows": 3840,
+        "canary_internal_rows": 19200,
+        "full_canary_controller_rows_replayed": 1920,
+        "full_canary_internal_rows_audited": 9600,
+        "canary_audit": {
+          "path": "canary-audit.json",
+          "sha256": "f15c70e12d04db942a271adca27142f35cfa27d2ba0249b5f3e1ec0ff175efa2",
+          "ok": true,
+          "full_canary_trials_replayed": 2,
+          "full_canary_worlds_replayed": 8,
+          "within_run_projection_verified": true,
+          "compact_pairs_match": false,
+          "cross_run_equivalence_claim": false
+        },
+        "population_audit": {
+          "path": "population-audit.json",
+          "sha256": "667aaacdeabac38579580a480bed1e01f446a8ddf81b12a7c0216d983f1bd49a",
+          "ok": true,
+          "all_256_episodes_reconstructed": true,
+          "compact_records_are_full_evidence": false,
+          "all_128_candidate_condition_pairs_evaluated": true
+        },
+        "finite_outcomes": {
+          "eligible_episodes": 159,
+          "performance_failure_episodes": 97,
+          "invalid_episodes": 0,
+          "conditions": [
+            {
+              "condition_id": "nominal",
+              "episodes": 128,
+              "eligible_episodes": 128,
+              "profiles_eligible_on_both": 64,
+              "ranked_profiles": 10,
+              "baseline": {
+                "candidate_index": 0,
+                "candidate_id": "baseline",
+                "eligible": true,
+                "failure_codes": [
+                  [],
+                  []
+                ],
+                "mean_velocity_error_m_s": 0.09135292198086117
+              },
+              "shortlist": [
+                {
+                  "candidate_index": 8,
+                  "candidate_id": "joint_population_08",
+                  "eligible": true,
+                  "failure_codes": [
+                    [],
+                    []
+                  ],
+                  "mean_velocity_error_m_s": 0.08706734376601472,
+                  "coefficients": [
+                    -0.05555555555555555,
+                    -0.24603174603174605,
+                    0.1507936507936508,
+                    0.23809523809523808,
+                    0.06349206349206349,
+                    0.07142857142857145,
+                    0.20634920634920634,
+                    -0.15873015873015872
+                  ]
+                },
+                {
+                  "candidate_index": 18,
+                  "candidate_id": "joint_population_18",
+                  "eligible": true,
+                  "failure_codes": [
+                    [],
+                    []
+                  ],
+                  "mean_velocity_error_m_s": 0.08734092079801752,
+                  "coefficients": [
+                    0.05555555555555558,
+                    -0.16666666666666669,
+                    0.07936507936507936,
+                    -0.19841269841269843,
+                    -0.007936507936507936,
+                    0.047619047619047616,
+                    0.09523809523809523,
+                    -0.09523809523809523
+                  ]
+                }
+              ],
+              "failure_code_counts": {}
+            },
+            {
+              "condition_id": "left_075",
+              "episodes": 128,
+              "eligible_episodes": 31,
+              "profiles_eligible_on_both": 6,
+              "ranked_profiles": 6,
+              "baseline": {
+                "candidate_index": 0,
+                "candidate_id": "baseline",
+                "eligible": false,
+                "failure_codes": [
+                  [
+                    "tilt",
+                    "torso_contact"
+                  ],
+                  [
+                    "height",
+                    "tilt",
+                    "torso_contact"
+                  ]
+                ],
+                "mean_velocity_error_m_s": null
+              },
+              "shortlist": [
+                {
+                  "candidate_index": 55,
+                  "candidate_id": "joint_population_55",
+                  "eligible": true,
+                  "failure_codes": [
+                    [],
+                    []
+                  ],
+                  "mean_velocity_error_m_s": 0.09182778773240671,
+                  "coefficients": [
+                    0.23015873015873017,
+                    0.18253968253968256,
+                    0.2222222222222222,
+                    -0.06349206349206349,
+                    0.23015873015873017,
+                    0.20634920634920634,
+                    -0.16666666666666669,
+                    -0.031746031746031744
+                  ]
+                },
+                {
+                  "candidate_index": 27,
+                  "candidate_id": "joint_population_27",
+                  "eligible": true,
+                  "failure_codes": [
+                    [],
+                    []
+                  ],
+                  "mean_velocity_error_m_s": 0.09256910558138018,
+                  "coefficients": [
+                    0.23809523809523808,
+                    -0.23015873015873017,
+                    0.2142857142857143,
+                    -0.23015873015873017,
+                    0.11904761904761907,
+                    -0.03968253968253968,
+                    -0.12698412698412698,
+                    0.1111111111111111
+                  ]
+                }
+              ],
+              "failure_code_counts": {
+                "tilt": 97,
+                "torso_contact": 90,
+                "height": 20
+              }
+            }
+          ],
+          "selection_scope": "exposed_two_second_development_only",
+          "frozen_shortlist_by_condition": {
+            "nominal": [
+              8,
+              18
+            ],
+            "left_075": [
+              55,
+              27
+            ]
+          },
+          "minimum_mean_absolute_coefficient_distance": 0.1,
+          "failure_timing_used_for_selection": false,
+          "population_inference": false
+        },
+        "capture": {
+          "profile": "compact_serialization_v1",
+          "native_reads_reduced": false,
+          "device_history_reduced": false,
+          "all_live_native_validity_checks_preserved": true,
+          "population_stream_bytes": 152437329,
+          "telemetry_comparisons": [
+            {
+              "condition_id": "nominal",
+              "compact_records_bitwise_equal": false,
+              "recorded_outcomes": {
+                "full": [
+                  {
+                    "candidate_index": 0,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  },
+                  {
+                    "candidate_index": 1,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  },
+                  {
+                    "candidate_index": 21,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  },
+                  {
+                    "candidate_index": 42,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  }
+                ],
+                "compact": [
+                  {
+                    "candidate_index": 0,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  },
+                  {
+                    "candidate_index": 1,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  },
+                  {
+                    "candidate_index": 21,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  },
+                  {
+                    "candidate_index": 42,
+                    "eligible": true,
+                    "failure_codes": [],
+                    "first_failure_native_step": null
+                  }
+                ]
+              },
+              "recorded_outcomes_equal": true,
+              "retained_bytes": {
+                "full": 81515191,
+                "compact": 2452835
+              },
+              "measured_sections_s": {
+                "full": {
+                  "prepare_s": 0.33779900007357355,
+                  "observation_readback_s": 7.21177200000966,
+                  "portable_control_s": 4.640837199942325,
+                  "controller_capture_and_control_transfer_s": 1.9678463999298401,
+                  "integration_and_device_history_s": 1.994338999982574,
+                  "internal_readback_and_capture_s": 1.5231898999772966,
+                  "outer_total_s": 17.677079600049183
+                },
+                "compact": {
+                  "prepare_s": 0.4421782999415882,
+                  "observation_readback_s": 7.812500000014552,
+                  "portable_control_s": 5.106671899789944,
+                  "controller_capture_and_control_transfer_s": 0.8805812998616602,
+                  "integration_and_device_history_s": 2.6806703999318415,
+                  "internal_readback_and_capture_s": 1.1375057999102864,
+                  "outer_total_s": 18.061510300118243
+                }
+              },
+              "cold_setup_s": {
+                "full": 36.2673877000052,
+                "compact": 0.07655270000395831
+              },
+              "between_run_comparison_is_descriptive": true,
+              "equivalence_authority": false,
+              "limited_to_one_pair_per_condition": true,
+              "native_readback_reduction_claim": false
+            },
+            {
+              "condition_id": "left_075",
+              "compact_records_bitwise_equal": false,
+              "recorded_outcomes": {
+                "compact": [
+                  {
+                    "candidate_index": 0,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 608
+                  },
+                  {
+                    "candidate_index": 1,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 578
+                  },
+                  {
+                    "candidate_index": 21,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 701
+                  },
+                  {
+                    "candidate_index": 42,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 825
+                  }
+                ],
+                "full": [
+                  {
+                    "candidate_index": 0,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 608
+                  },
+                  {
+                    "candidate_index": 1,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 578
+                  },
+                  {
+                    "candidate_index": 21,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 701
+                  },
+                  {
+                    "candidate_index": 42,
+                    "eligible": false,
+                    "failure_codes": [
+                      "tilt",
+                      "torso_contact"
+                    ],
+                    "first_failure_native_step": 825
+                  }
+                ]
+              },
+              "recorded_outcomes_equal": true,
+              "retained_bytes": {
+                "compact": 2435915,
+                "full": 77452108
+              },
+              "measured_sections_s": {
+                "compact": {
+                  "prepare_s": 0.41949050009134226,
+                  "observation_readback_s": 7.697231800178997,
+                  "portable_control_s": 4.867188300035195,
+                  "controller_capture_and_control_transfer_s": 0.8808436999242986,
+                  "integration_and_device_history_s": 2.8725303001119755,
+                  "internal_readback_and_capture_s": 1.1211081999645103,
+                  "outer_total_s": 17.859825000123237
+                },
+                "full": {
+                  "prepare_s": 0.44136979995528236,
+                  "observation_readback_s": 7.886426200173446,
+                  "portable_control_s": 5.019268799893325,
+                  "controller_capture_and_control_transfer_s": 2.177852300053928,
+                  "integration_and_device_history_s": 2.8880362999771023,
+                  "internal_readback_and_capture_s": 1.6376251999899978,
+                  "outer_total_s": 20.052251799890655
+                }
+              },
+              "cold_setup_s": {
+                "compact": 0.07365359998948406,
+                "full": 0.09513859999424312
+              },
+              "between_run_comparison_is_descriptive": true,
+              "equivalence_authority": false,
+              "limited_to_one_pair_per_condition": true,
+              "native_readback_reduction_claim": false
+            }
+          ],
+          "recording_cost_claim": "Descriptive full/compact canary pairs only; fewer retained bytes, no general runtime speedup claim"
+        },
+        "verification": {
+          "artifacts_including_receipt": 1786,
+          "retained_bytes_excluding_warp_cache": 541554669,
+          "source_binding_count": 1138,
+          "runtime_binding_count": 1359,
+          "outer_cleanup_reports": 18,
+          "all_artifact_sizes_and_sha256_verified": true,
+          "exact_artifact_population_verified": true,
+          "all_source_runtime_bindings_verified": true,
+          "all_outer_cleanup_verified": true,
+          "source_runtime_unchanged": true
+        },
+        "wall_s": 1389.2649999999994,
+        "population_worker_wall_s": 1105.150990299997,
+        "calibration_worlds": 0,
+        "evaluation_worlds": 0,
+        "trained": false,
+        "recovery_benefit_established": false,
+        "safe_withdrawal_established": false,
+        "tier2_qualified": false,
+        "tier3_benefit_established": false,
+        "real_time_qualified": false,
+        "next_gate": "Freeze a distinct full-capture challenge for exact profiles 08, 18, 55 and 27 with fresh baselines, independent full reconstruction and longer-duration checking before fitting or qualification",
+        "physical_acceptance_authority": false,
+        "release_authority": false,
+        "equivalence_authority": false,
+        "training_data_authority": false,
+        "cpu_physics_worlds": 0,
+        "cpu_readback_views": 272,
+        "result_path": "sdk/discovery/population_discovery_native_result_v2.json",
+        "result_sha256": "f222a36c7eb69f3a8ed2be629eb083f92feef83e1f58d754512a063fde31290f"
       }
     },
     "tier3": {
