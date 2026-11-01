@@ -1,0 +1,237 @@
+{
+  "schema_version": "locolemotion_population_shortlist_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_shortlist_validation",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/population_discovery_native_result_v2.json",
+    "sha256": "f222a36c7eb69f3a8ed2be629eb083f92feef83e1f58d754512a063fde31290f"
+  },
+  "parent": {
+    "path": "sdk/discovery/population_discovery_v2.json",
+    "sha256": "295ad6a537297288895cc78819676b21e6fda40cb1527efc4348a04c55729b09"
+  },
+  "seed": 1061102,
+  "candidate_indices": [
+    0,
+    8,
+    18,
+    55,
+    27
+  ],
+  "selected_by_condition": {
+    "nominal": [
+      8,
+      18
+    ],
+    "left_075": [
+      55,
+      27
+    ]
+  },
+  "fixed_profiles": [
+    {
+      "id": "baseline",
+      "factor": null,
+      "ordered_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "joint_population_08",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        -0.05555555555555555,
+        -0.24603174603174605,
+        0.1507936507936508,
+        0.23809523809523808,
+        0.06349206349206349,
+        0.07142857142857145,
+        0.20634920634920634,
+        -0.15873015873015872
+      ]
+    },
+    {
+      "id": "joint_population_18",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.05555555555555558,
+        -0.16666666666666669,
+        0.07936507936507936,
+        -0.19841269841269843,
+        -0.007936507936507936,
+        0.047619047619047616,
+        0.09523809523809523,
+        -0.09523809523809523
+      ]
+    },
+    {
+      "id": "joint_population_55",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.23015873015873017,
+        0.18253968253968256,
+        0.2222222222222222,
+        -0.06349206349206349,
+        0.23015873015873017,
+        0.20634920634920634,
+        -0.16666666666666669,
+        -0.031746031746031744
+      ]
+    },
+    {
+      "id": "joint_population_27",
+      "factor": 0.0,
+      "ordered_coefficients": [
+        0.23809523809523808,
+        -0.23015873015873017,
+        0.2142857142857143,
+        -0.23015873015873017,
+        0.11904761904761907,
+        -0.03968253968253968,
+        -0.12698412698412698,
+        0.1111111111111111
+      ]
+    }
+  ],
+  "conditions": [
+    "nominal",
+    "left_075"
+  ],
+  "starts": [
+    {
+      "id": "train_001",
+      "lateral_velocity_m_s": 0.001
+    },
+    {
+      "id": "train_003",
+      "lateral_velocity_m_s": 0.003
+    }
+  ],
+  "outer_steps": 1440,
+  "prefix_outer_steps": 240,
+  "horizon_s": 12.0,
+  "prefix_horizon_s": 2.0,
+  "internal_steps_per_outer": 5,
+  "planned_worlds": 20,
+  "planned_trials": 4,
+  "maximum_simultaneous_gpu_worlds": 5,
+  "capture_mode": "full",
+  "native_reads_reduced": false,
+  "device_history_reduced": false,
+  "full_controller_replay_required_for_every_world": true,
+  "purpose": "Check the exact four selected profiles and fresh baseline in both actuator conditions over twelve seconds; report the fresh two-second prefix separately.",
+  "assessment": "All fixed profiles and outcomes; positive baseline-minus-profile velocity error only for eligible pairs; no fitting, ranking, reselection or statistical claim.",
+  "failure_policy": "Retain expected performance failures through the complete fixed horizon; invalid execution stops the operation.",
+  "maximum_trace_bytes_per_stream": 1073741824,
+  "minimum_free_storage_bytes": 34359738368,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 1800,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "repertoire",
+      "module": "test_gpu_repertoire_v2",
+      "count": 6
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "population",
+      "module": "test_population_discovery_v1",
+      "count": 20
+    },
+    {
+      "name": "projection-successor",
+      "module": "test_population_discovery_v2",
+      "count": 8
+    },
+    {
+      "name": "shortlist",
+      "module": "test_population_shortlist_v1",
+      "count": 20
+    }
+  ],
+  "safety_control_count": 128,
+  "coverage": [
+    "fresh controller memories and native state in every world",
+    "unchanged model and correction envelopes",
+    "both actuator conditions and both exposed starts for every fixed profile",
+    "complete native substep history and all solver inputs",
+    "full independent scalar decision replay and native force, contact, clock and state joins for every world",
+    "separate prefix and whole-episode outcomes",
+    "retained-handle containment and source/runtime drift checks"
+  ],
+  "not_covered": [
+    "unopened calibration or evaluation starts",
+    "other morphology, terrain or engines",
+    "policy switching or withdrawal",
+    "learned selection",
+    "online memory updates",
+    "population inference",
+    "real-time qualification",
+    "release"
+  ],
+  "selection_changed": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "equivalence_authority": false,
+  "release_authority": false
+}

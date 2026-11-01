@@ -21,6 +21,18 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-11-01
 
+The [full-capture shortlist component](../sdk/discovery/population_shortlist_component_result_v1.json)
+passes all 128 zero-world controls. Its [prospective challenge](../sdk/discovery/population_shortlist_v1.json)
+fixes profiles 08, 18, 55 and 27 plus a fresh baseline in both actuator conditions
+and both exposed starts: 20 new GPU worlds, four batches of five, twelve seconds
+per world. Every world retains full controller and native traces for independent
+replay. The fresh two-second prefix is assessed separately; early failures cannot
+be erased by later state. The component verifies 2,235 retained files, 1,143 source
+bindings, 1,359 runtime bindings and 15 cleanup reports. No physical world opens
+at this component boundary. Next run the complete gate and native challenge from
+a clean pushed freeze. No fitting, reselection, policy switching or qualification
+is authorized by this development comparison.
+
 The [completed v2 population](../sdk/discovery/population_discovery_native_result_v2.json)
 passes the complete 108-control gate, both full-canary replays and independent
 reconstruction of every population episode and the frozen selection. The clean
@@ -54,10 +66,10 @@ The [v2 component](../sdk/discovery/population_discovery_component_result_v2.jso
 and [prospective contract](../sdk/discovery/population_discovery_v2.json) preserve
 the distinct successor question and all original controller bounds.
 
-Next freeze a full-capture challenge for the exact four shortlisted profiles
-08, 18, 55 and 27, with fresh baselines, longer-duration checking and complete
-independent native reconstruction. This is the detailed shortlist stage after
-wide discovery. The two-second reduced records remain discovery evidence;
+The full-capture challenge above is the detailed shortlist stage after wide
+discovery. It fixes the exact selected profiles, fresh baselines, a twelve-second
+horizon and complete independent native reconstruction before launch.
+The two-second reduced records remain discovery evidence;
 they are not retroactively promoted into training or acceptance evidence.
 Calibration and evaluation starts remain unopened. No provider is trained,
 and recovery, safe withdrawal, Tier 2, Tier 3, real-time and release remain

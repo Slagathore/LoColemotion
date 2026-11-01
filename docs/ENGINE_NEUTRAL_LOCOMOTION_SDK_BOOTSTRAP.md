@@ -2,6 +2,18 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-11-01
 
+The [full-capture shortlist component](../sdk/discovery/population_shortlist_component_result_v1.json)
+passes all 128 zero-world controls. Its [prospective challenge](../sdk/discovery/population_shortlist_v1.json)
+fixes profiles 08, 18, 55 and 27 plus a fresh baseline in both actuator conditions
+and both exposed starts: 20 new GPU worlds, four batches of five, twelve seconds
+per world. Every world retains full controller and native traces for independent
+replay. The fresh two-second prefix is assessed separately; early failures cannot
+be erased by later state. The component verifies 2,235 retained files, 1,143 source
+bindings, 1,359 runtime bindings and 15 cleanup reports. No physical world opens
+at this component boundary. Next run the complete gate and native challenge from
+a clean pushed freeze. No fitting, reselection, policy switching or qualification
+is authorized by this development comparison.
+
 The [completed v2 population](../sdk/discovery/population_discovery_native_result_v2.json)
 passes all 108 launch controls, full-canary replay and complete population
 reconstruction. It opens 272 fresh GPU worlds: 16 canaries followed by 256
@@ -18,8 +30,8 @@ separate fresh runs remain numerically different and carry no equivalence claim.
 The [failed v1 attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
 remains unchanged. No calibration or evaluation starts open, no provider is
 trained, and no recovery, adaptation or release qualification is granted.
-Next freeze a fresh full-capture challenge for exact profiles 08, 18, 55 and 27
-with new baselines, longer-duration checking and complete independent replay.
+The full-capture challenge above is ready for a clean pushed native freeze;
+the completed discovery run grants no longer-duration claim.
 
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.
