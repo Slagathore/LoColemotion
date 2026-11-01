@@ -91,8 +91,8 @@ and runner with exact dependencies and expected versus observed behavior.
 Any fresh execution has to use a separately declared and identified route;
 it cannot reuse or revise the consumed experiments linked above.
 
-The [license FAQ](../../LICENSE-FAQ.md) explains the custom community/commercial
-terms and covered paths. Sharing a finding does not grant permission to
+The [license FAQ](../../LICENSE-FAQ.md) explains the AGPL and commercial terms
+and covered paths. Sharing a finding does not grant permission to
 relicense project code into an upstream engine.
 
 ## Discussion follow-through

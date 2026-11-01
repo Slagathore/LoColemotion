@@ -88,18 +88,18 @@ the original archive. This clone does not claim to reproduce the whole lab.
 
 ## License and contributions
 
-The SDK and the covered lab, harness, proof and replay use the custom
-**LoColemotion SDK Community License 1.0**, or a separately executed commercial
-agreement. Eligible business use is free at or below **US$100,000 gross revenue
-over the preceding twelve months**, assessed across the controlled group.
-A **90-day non-production business evaluation** is also available under the terms.
+The SDK and the covered lab, harness, proof and replay are open source under the
+**GNU Affero General Public License, version 3 only** (AGPL-3.0-only), or a
+separately executed commercial agreement. Anyone can use them for free under the
+AGPL, including commercially. Shipping a closed application that includes the
+SDK, or keeping SDK changes private, needs a commercial agreement.
 
-This is **source available**. The grant covers `sdk/`, `scripts/lab/`,
-`data/lab/`, `tests/`, the top-level lab runners listed in the root notice,
-`scenes/tools/`, `harness/`, `proof/` and `replay/` under the same terms.
-`scripts/sim/`, `scenes/sim/`, `scripts/tools/`, `docs/`, the editor, the game
-and other unlisted material remain reserved unless separately licensed.
-Third-party terms still apply. Read the [license FAQ](LICENSE-FAQ.md),
+The grant covers `sdk/`, `scripts/lab/`, `data/lab/`, `tests/`, the top-level
+lab runners listed in the root notice, `scenes/tools/`, `harness/`, `proof/` and
+`replay/` under the same terms. `scripts/sim/`, `scenes/sim/`, `scripts/tools/`,
+`docs/`, the editor, the game and other unlisted material remain reserved unless
+separately licensed. Copies obtained under the earlier Community License 1.0 keep
+those terms. Third-party terms still apply. Read the [license FAQ](LICENSE-FAQ.md),
 [complete terms](LICENSE), and [commercial options](COMMERCIAL.md).
 Before publishing a change, read [repository hygiene](docs/REPOSITORY_HYGIENE.md).
 

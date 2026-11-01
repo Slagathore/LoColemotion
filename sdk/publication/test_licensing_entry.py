@@ -2,8 +2,11 @@
 import copy
 import json
 import unittest
+from unittest import mock
 
-from check_licensing import CONTRACT, LEGACY, pinned_checker, validate_public_contract
+import check_licensing
+from check_licensing import (AGPL_TEXT, CONTRACT, LEGACY, current_negative_controls, pinned_checker,
+                             validate_public_contract)
 
 
 class LicensingEntryControls(unittest.TestCase):
@@ -50,6 +53,29 @@ class LicensingEntryControls(unittest.TestCase):
         changed["source_pins"][0]["exact_byte_variants"] = [{"byte_length": 1, "sha256": "sha256:" + "0" * 64}]
         with self.assertRaisesRegex(ValueError, "CURRENT_PIN_IDENTITY"):
             validate_public_contract(changed)
+
+    def test_revenue_cap_cannot_return(self):
+        value = json.loads(CONTRACT.read_bytes())
+        value["policy"]["revenue_cap_usd"] = 100000
+        with self.assertRaisesRegex(ValueError, "CURRENT_POLICY"):
+            validate_public_contract(value)
+
+    def test_public_license_must_stay_the_gnu_text(self):
+        value = json.loads(CONTRACT.read_bytes())
+        self.assertIn(AGPL_TEXT, {row["path"] for row in value["source_pins"]})
+        with mock.patch.object(check_licensing, "AGPL_LF_SHA256", "sha256:" + "0" * 64):
+            with self.assertRaisesRegex(ValueError, "CURRENT_PUBLIC_LICENSE_TEXT"):
+                validate_public_contract(value)
+
+    def test_superseded_declaration_cannot_be_revived(self):
+        value = json.loads(CONTRACT.read_bytes())
+        value["predecessor"]["status"] = "current"
+        with self.assertRaisesRegex(ValueError, "CURRENT_PREDECESSOR"):
+            validate_public_contract(value)
+
+    def test_every_current_corruption_refuses(self):
+        passed = current_negative_controls(json.loads(CONTRACT.read_bytes()))
+        self.assertEqual(len(passed), 8)
 
 
 if __name__ == "__main__":

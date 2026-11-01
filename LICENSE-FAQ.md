@@ -1,24 +1,21 @@
 # License FAQ
 
-The SDK and the covered lab are source available under the same custom
-community/commercial model. The
-[root notice](LICENSE) and [complete terms](licenses/COMMUNITY-LICENSE.md) control;
-this page explains where to look and adds no permissions.
+The SDK and the covered lab are open source under the GNU Affero General Public
+License, version 3 only (AGPL-3.0-only), with a commercial agreement as the
+alternative. The [root notice](LICENSE) and [complete terms](licenses/AGPL-3.0.txt)
+control; this page explains where to look and adds no permissions.
 
 | Question | Answer under the current terms |
 | --- | --- |
 | What is covered? | Original materials in `sdk/`, `scripts/lab/`, `data/lab/`, `tests/`, the top-level lab runners and their tests listed in the [root notice](LICENSE), `scenes/tools/`, `harness/`, `proof/` and `replay/`. The covered lab material is treated as part of the SDK under the same terms. Third-party material keeps its own terms. |
 | Is the whole repository under that license? | No. `scripts/sim/`, `scenes/sim/`, `scripts/tools/` and `docs/` are outside the grant. The creature editor, game, assets and other paths not listed in the root notice remain reserved unless separately licensed. |
-| Does the lab have different business rules? | No. The same revenue eligibility, evaluation period, distribution obligations and commercial options apply to the covered lab and harness. Licensing does not grant qualification, experiment reuse or release authority. |
-| Can I use it for a personal project? | The Community License includes personal learning, study and hobbies that are not Business Use. |
-| Can a business use it for free? | When every assessed business group is at or below US$100,000 gross revenue over the preceding twelve months. Controlled affiliates and benefiting clients count as described in section 2. The threshold is not just revenue from the SDK project. |
-| Can a larger business try it? | Section 3 permits up to 90 consecutive days of non-production evaluation per business group for this SDK major version. |
-| What happens if an eligible business grows past the cap? | There is a 90-day transition period to obtain commercial rights or stop ineligible use. A business already above the cap at the start does not get that transition grace. |
-| Does research or nonprofit status create a separate exemption? | No automatic exemption. Read the Business Use and beneficiary definitions; additional permissions require a written agreement. |
-| Can I keep my application private? | An Independent Application may use separate terms, including closed source. Copying SDK implementation into it does not make that code independent. |
-| Must I publish every private SDK change? | Private changes alone do not trigger sharing. Distribution of covered SDK code or an executable containing it triggers the corresponding-source requirements in section 5. Hosted business use still has to meet eligibility. |
-| Can I make a monetized demo or tutorial? | Section 3 has a specific demonstration, review and instruction exception. It does not permit an otherwise ineligible client project or paid simulation service. |
-| What if I need private SDK modifications or exceed the cap? | See [commercial options](COMMERCIAL.md). Rights require an executed agreement and accepted order. |
+| Is it open source? | Yes. The AGPL is an OSI approved open source license. It applies to the covered paths only. |
+| Can I use it for free? | Yes, for any purpose, including research and commercial use, as long as you follow the AGPL. There is no revenue limit and no evaluation period. |
+| Can I keep my application closed source? | Not under the AGPL. If you distribute a program that includes the SDK, the whole program has to be offered under the AGPL with its complete source. Closed distribution needs a [commercial agreement](COMMERCIAL.md). |
+| Can I change the SDK privately? | Yes. Changes you never distribute, and never let other people use over a network, do not have to be published. |
+| What about hosted services? | If you modify the SDK and let users interact with it over a network, the AGPL requires offering those users the complete source of your modified version. |
+| What does the commercial agreement add? | Shared Improvements lets you ship a closed application that includes the SDK while sharing your SDK changes under the AGPL. Private Modifications also lets you keep those SDK changes private. Pricing is quoted by business size. |
+| What about copies under the earlier license? | Until 2026-11-01 this material was offered under the [Community License 1.0](licenses/COMMUNITY-LICENSE.md). Copies obtained under it keep those terms. Versions that include the current notice are offered only under the AGPL or a commercial agreement. |
 | Does a pull request accept the contributor agreement? | No. It requires separate affirmative acceptance identifying the contributor and covered submissions. |
 
 The existing source-only distribution decision does not authorize redistributing
@@ -27,11 +24,13 @@ releases. See [third-party notices](THIRD_PARTY_NOTICES.md) and the
 [release boundary](sdk/release/README.md).
 
 The unchanged `sdk/LICENSE` and legal texts in `sdk/release/licensing/` retain
-the former SporeSpore name because evidence records bind their bytes. The root notice and
-`licenses/` explain how those terms apply to LoColemotion.
+the former SporeSpore name and the earlier Community terms because evidence
+records bind their bytes. They are historical. The root notice and `licenses/`
+govern this repository.
 
 The [current source check](docs/GETTING_STARTED.md#check-the-current-licensing-inputs)
 verifies a separate declaration for this public checkout, including the root
-notice. It preserves the earlier audit and does not requalify SDK1 or authorize
-a release. Its refusal controls also reject adding reserved paths to the
-declared license scope.
+notice, the exact AGPL text and the unchanged earlier terms. It preserves the
+earlier declarations and audit and does not requalify SDK1 or authorize a
+release. Its refusal controls also reject adding reserved paths to the declared
+license scope or restoring a revenue limit.

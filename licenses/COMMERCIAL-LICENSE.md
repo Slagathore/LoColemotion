@@ -1,9 +1,10 @@
-# LoColemotion SDK Commercial Agreement, version 1.0
+# LoColemotion SDK Commercial Agreement, version 2.0
 
 **ORDER REQUIRED.** These are the published standard commercial terms.
 No customer license, payment obligation or private-modification right takes
 effect until an Order identifying both parties is accepted by both parties.
-Publishing these terms does not issue a customer Order.
+Publishing these terms does not issue a customer Order. Use under the Public
+License needs no Order; this Agreement is for uses that need other terms.
 
 Licensor: **Charles Chambers**.
 Customer, effective date and licensed scope: the executed Order.
@@ -16,18 +17,34 @@ size band, fee, payment schedule and rights option. An Order may override a
 specific section only by identifying that section and the agreed replacement.
 Neither party's generic purchasing or website terms are incorporated by silence.
 
-Business Group, control, Business Use, Group Revenue, SDK Modification,
-Independent Application and Corresponding SDK Source have the meanings in the
-Community License version explicitly attached to the Order. These definitions
-apply even when Community free-use eligibility does not. Revenue includes all
-industries and controlled affiliates, regardless of the SDK's revenue contribution
-or the customer's history in simulation, software or any other field.
+Public License means the GNU Affero General Public License, version 3 only
+(AGPL-3.0-only), under which the covered SDK is otherwise offered. SDK
+Modification means a change to covered SDK code, or new code incorporating
+covered SDK code; moving or copying SDK implementation code into a new file does
+not make it independent. Independent Application means separately authored code
+that uses SDK interfaces without incorporating covered SDK source beyond
+interface declarations and expressly licensed integration examples.
+Corresponding SDK Source means the preferred editable form of the covered SDK
+and SDK Modifications actually distributed or provided to users over a network,
+with the build instructions and scripts needed to rebuild those portions. It
+excludes Independent Application source, secrets, signing keys and generally
+available unmodified build tools.
+
+Business Group means the Customer and every entity that directly or indirectly
+controls it, is controlled by it, or is under common control with it. Control
+means majority voting ownership or the practical power to direct management or
+policy. Group Revenue means gross revenue across all activities and industries
+of the Business Group over the assessment period stated in the Order, before
+expenses and taxes and without duplicate intercompany revenue. These terms set
+size bands for pricing only. They do not limit rights anyone holds under the
+Public License.
 
 ## 2. Commercial grant and customer products
 
 Subject to the Order and payment, the Licensor grants the Customer nonexclusive
 rights in covered code it has authority to license to use, build, copy, modify
-and integrate the SDK in the Order's products and business operations. Distribution
+and integrate the SDK in the Order's products and business operations on the
+terms of this Agreement instead of the Public License's conditions. Distribution
 is permitted only in the forms and scope specified by the Order. A normal runtime
 embedding permission allows distribution as part of an Independent Application;
 it does not automatically permit SDK resale, sublicensing a standalone development
@@ -38,7 +55,7 @@ option. End users may operate lawfully supplied applications containing licensed
 runtime code without buying their own developer license; their application terms
 must prohibit SDK extraction/reuse outside that scope while preserving upstream
 rights that cannot be restricted. Each business developing or redeploying the SDK
-needs its own eligibility or coverage under an Order.
+outside the Public License needs its own coverage under an Order.
 
 Authorized contractors may work for the Customer within its licensed scope if
 bound to protect the licensed material and stop use outside that engagement.
@@ -55,21 +72,25 @@ remain subject to their own terms.
 
 The Order must select exactly one option; an omitted option grants neither:
 
-**Shared Improvements.** Commercial use is permitted within the Order without
-the Community revenue cap. When distributing the SDK or an executable containing
-it, the Customer satisfies the Community License's attribution and source-sharing
-conditions for covered SDK code and SDK Modifications. Such SDK source remains
-available without charge under the attached Community terms. The Customer's
+**Shared Improvements.** The Customer may distribute, and provide network access
+to, its Independent Applications under terms of its choice, including closed
+source terms, within the Order's scope. When it distributes the SDK or an
+executable containing it, or provides users network access to a modified SDK,
+the Customer makes the Corresponding SDK Source for covered SDK code and SDK
+Modifications available to those recipients and users without charge under the
+Public License, with attribution and notices preserved. The Customer's
 Independent Application source does not have to be shared. Private changes that
-are not distributed do not trigger publication solely by existing.
+are neither distributed nor provided over a network do not trigger publication
+solely by existing.
 
-**Private Modifications.** The Customer may keep its modifications to covered
-SDK code private, including when distributing permitted executables, to the
-extent the Licensor can waive those source-sharing conditions. Attribution and
-third-party notices still apply. This option does not waive MPL or other upstream
-conditions and does not relicense community fork contributions the Licensor lacks
-permission to license commercially. The Order's covered-code inventory determines
-the grant; no blanket exception for all repository or community code is implied.
+**Private Modifications.** Everything in Shared Improvements, and the Customer
+may also keep its SDK Modifications private, including when distributing
+permitted executables or providing network access, to the extent the Licensor
+can waive the Public License's source conditions. Attribution and third-party
+notices still apply. This option does not waive MPL or other upstream conditions
+and does not relicense contributions the Licensor lacks permission to license
+commercially. The Order's covered-code inventory determines the grant; no
+blanket exception for all repository or community code is implied.
 
 An upgrade from Shared Improvements to Private Modifications is prospective from
 the agreed upgrade date. It does not retract rights in source already distributed
@@ -88,7 +109,7 @@ prices do not rewrite an existing Order. An Order may provide a prospective
 upgrade mechanism and grace period; no unspecified retroactive revenue charge
 or royalty is created by these standard terms.
 
-The Customer keeps reasonable records sufficient to substantiate its eligibility
+The Customer keeps reasonable records sufficient to substantiate its size band
 and scope, and supplies a good-faith annual certification if requested. No intrusive
 audit, unrestricted books access or automatic telemetry collection is authorized
 by this clause. Any verification beyond certification must be separately agreed,
@@ -136,6 +157,7 @@ continued distribution survive. End-user operation of copies lawfully distribute
 before termination survives, subject to their valid runtime terms. Attribution,
 required source availability, accrued payments and confidentiality survive as
 applicable. No remote disabling of shipped products is authorized by these standard terms.
+Termination does not affect uses that comply with the Public License.
 
 ## 8. Support, warranty and liability
 
@@ -148,7 +170,7 @@ excluded, the Software is supplied without warranties of fitness, merchantabilit
 noninfringement or other implied warranties. To the extent permitted by law,
 neither party is liable for indirect or consequential loss under this Agreement.
 Any aggregate liability cap, exclusions from that cap, indemnities or insurance
-commitments must be expressly stated in the Order; these standard terms does not invent them.
+commitments must be expressly stated in the Order; these standard terms do not invent them.
 
 ## 9. Administration
 

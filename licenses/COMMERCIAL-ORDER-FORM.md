@@ -1,7 +1,7 @@
 # LoColemotion SDK commercial order form, unexecuted template
 
 **UNEXECUTED TEMPLATE: NO CUSTOMER LICENSE GRANTED.** No customer order has been issued.
-Complete and accept this form with the Commercial Agreement before use.
+Complete and accept this form with the Commercial Agreement 2.0 before use.
 
 | Required field | Agreed value |
 | --- | --- |
@@ -10,7 +10,7 @@ Complete and accept this form with the Commercial Agreement before use.
 | Customer legal name and notice address | To be completed |
 | Authorized representatives | To be completed |
 | Commercial Agreement version and attached copy/digest | To be completed |
-| Attached Community License version and copy/digest | To be completed |
+| Public License (AGPL-3.0-only) copy/digest | To be completed |
 | Exact SDK release and covered-code inventory | To be completed |
 | Third-party license/notice inventory | To be completed |
 | Covered Business Group and affiliates | To be completed |
@@ -18,6 +18,7 @@ Complete and accept this form with the Commercial Agreement before use.
 | Group revenue assessment period and currency conversion | To be completed |
 | Size band and its exact revenue boundaries | To be completed |
 | Rights option: Shared Improvements OR Private Modifications | Select exactly one |
+| Uses licensed outside the Public License | To be completed |
 | Covered applications, internal uses and contractor permissions | To be completed |
 | Runtime embedding/distribution scope | To be completed |
 | Standalone SDK redistribution/resale | Excluded unless expressly granted here |

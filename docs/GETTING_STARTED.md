@@ -66,12 +66,15 @@ available locally, run:
 python sdk/publication/check_licensing.py
 ```
 
-Look for `checks_passed: true`, fourteen verified source pins and nineteen
-passed refusal controls. The report also identifies the current commit and
-whether the checkout is clean. It opens no physics world.
+Look for `checks_passed: true`, sixteen verified source pins, nineteen passed
+historical refusal controls and eight passed current refusal controls. The
+report also identifies the current commit and whether the checkout is clean.
+It opens no physics world.
 
-This is a separate check for the current public source and the covered lab
-notice. The earlier licensing audit and its source bindings remain preserved.
+This is a separate check for the current AGPL notice, the commercial texts and
+the covered lab scope. It also confirms that the earlier Community License text
+is unchanged. The earlier licensing declarations, audit and source bindings
+remain preserved.
 The result grants no SDK1 qualification, release permission, binary distribution
 permission or legal opinion. See the [license FAQ](../LICENSE-FAQ.md) for the
 scope and the [repository rules](REPOSITORY_HYGIENE.md) before publishing changes.
