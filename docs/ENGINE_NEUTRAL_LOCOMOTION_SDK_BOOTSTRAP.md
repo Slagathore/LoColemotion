@@ -2,17 +2,36 @@
 
 ## Active - SDK2 discovery and Studio completion, 2026-11-01
 
-The [full-capture shortlist component](../sdk/discovery/population_shortlist_component_result_v1.json)
-passes all 128 zero-world controls. Its [prospective challenge](../sdk/discovery/population_shortlist_v1.json)
-fixes profiles 08, 18, 55 and 27 plus a fresh baseline in both actuator conditions
-and both exposed starts: 20 new GPU worlds, four batches of five, twelve seconds
-per world. Every world retains full controller and native traces for independent
-replay. The fresh two-second prefix is assessed separately; early failures cannot
-be erased by later state. The component verifies 2,235 retained files, 1,143 source
-bindings, 1,359 runtime bindings and 15 cleanup reports. No physical world opens
-at this component boundary. Next run the complete gate and native challenge from
-a clean pushed freeze. No fitting, reselection, policy switching or qualification
-is authorized by this development comparison.
+The [completed full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json)
+passes all 128 launch controls and independent replay of all 28,800 controller
+decisions and 144,000 native samples. Clean pushed freeze `ca57f6bb` opens
+20 fresh GPU worlds: the four fixed profiles and a fresh baseline in both
+actuator conditions and both exposed starts, with twelve seconds per world.
+
+All ten nominal episodes remain eligible. Profiles 08 and 18 have lower mean
+velocity error than the fresh baseline on the two starts; 55 and 27 have higher
+nominal error. Under weakened left-side actuation, 55 and 27 remain eligible
+for all twelve seconds at both starts. Baseline, 08 and 18 fail at both starts.
+The complete result retains 14 eligible episodes, six performance failures and
+zero invalid episodes. The separately assessed two-second prefix has the same
+eligibility counts; later state never erases its earlier failure.
+
+Closeout verifies all 2,284 retained files, 1,143 source bindings, 1,359 runtime
+bindings and 17 outer cleanup reports. Every world has full controller and native
+capture, scalar decision replay and exact projection of its own raw samples.
+Failed episodes have no quality score; the failed weak baseline grants no
+numeric velocity-error gain. The [zero-world component](../sdk/discovery/population_shortlist_component_result_v1.json)
+and [prospective declaration](../sdk/discovery/population_shortlist_v1.json)
+remain unchanged. No profile is reselected, no provider is trained, and no
+calibration or evaluation starts open.
+
+Next declare a distinct twelve-second comparison of condition-informed choice
+against one shared profile on fresh already-exposed confirmation starts.
+Freeze profile choices, baseline controls, eligibility and paired quality
+criteria before launch, retain full replay and preserve the correction bounds.
+Establish useful condition-aware choice before fitting history inference or
+reversible episode memory. Recovery, withdrawal, Tier 2, Tier 3, real-time and
+release qualification remain absent.
 
 The [completed v2 population](../sdk/discovery/population_discovery_native_result_v2.json)
 passes all 108 launch controls, full-canary replay and complete population
@@ -30,8 +49,8 @@ separate fresh runs remain numerically different and carry no equivalence claim.
 The [failed v1 attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
 remains unchanged. No calibration or evaluation starts open, no provider is
 trained, and no recovery, adaptation or release qualification is granted.
-The full-capture challenge above is ready for a clean pushed native freeze;
-the completed discovery run grants no longer-duration claim.
+The separate full-capture challenge above supplies its own finite
+twelve-second result; the discovery records retain their two-second scope.
 
 Storage maintenance (2026-10-24): the [completed evidence relocation](../proof/receipts/evidence-storage-relocation-20261024.json)
 moves the retained archive to L: while preserving the original sibling path.

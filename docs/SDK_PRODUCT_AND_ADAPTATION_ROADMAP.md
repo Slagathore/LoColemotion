@@ -21,17 +21,47 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-11-01
 
-The [full-capture shortlist component](../sdk/discovery/population_shortlist_component_result_v1.json)
-passes all 128 zero-world controls. Its [prospective challenge](../sdk/discovery/population_shortlist_v1.json)
-fixes profiles 08, 18, 55 and 27 plus a fresh baseline in both actuator conditions
-and both exposed starts: 20 new GPU worlds, four batches of five, twelve seconds
-per world. Every world retains full controller and native traces for independent
-replay. The fresh two-second prefix is assessed separately; early failures cannot
-be erased by later state. The component verifies 2,235 retained files, 1,143 source
-bindings, 1,359 runtime bindings and 15 cleanup reports. No physical world opens
-at this component boundary. Next run the complete gate and native challenge from
-a clean pushed freeze. No fitting, reselection, policy switching or qualification
-is authorized by this development comparison.
+The [completed full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json)
+passes all 128 launch controls and independent replay of all 28,800 controller
+decisions and 144,000 native samples. Clean pushed freeze `ca57f6bb` opens
+20 fresh GPU worlds: the four fixed profiles and a fresh baseline in both
+actuator conditions and both exposed starts, with twelve seconds per world.
+
+All ten nominal episodes remain eligible. Profiles 08 and 18 have lower mean
+velocity error than the fresh baseline on the two starts; 55 and 27 have higher
+nominal error. Under weakened left-side actuation, 55 and 27 remain eligible
+for all twelve seconds at both starts. Baseline, 08 and 18 fail at both starts.
+The complete result retains 14 eligible episodes, six performance failures and
+zero invalid episodes. The separately assessed two-second prefix has the same
+eligibility counts; later state never erases its earlier failure.
+
+Closeout verifies all 2,284 retained files, 1,143 source bindings, 1,359 runtime
+bindings and 17 outer cleanup reports. Every world has full controller and native
+capture, scalar decision replay and exact projection of its own raw samples.
+Failed episodes have no quality score; the failed weak baseline grants no
+numeric velocity-error gain. The [zero-world component](../sdk/discovery/population_shortlist_component_result_v1.json)
+and [prospective declaration](../sdk/discovery/population_shortlist_v1.json)
+remain unchanged. No profile is reselected, no provider is trained, and no
+calibration or evaluation starts open.
+
+Next declare a distinct twelve-second comparison of condition-informed choice
+against one shared profile on fresh already-exposed confirmation starts.
+Freeze profile choices, baseline controls, eligibility and paired quality
+criteria before launch, retain full replay and preserve the correction bounds.
+Establish useful condition-aware choice before fitting history inference or
+reversible episode memory. Recovery, withdrawal, Tier 2, Tier 3, real-time and
+release qualification remain absent.
+
+The following means use the two exposed starts in the completed twelve-second
+challenge. A failed episode receives no numeric quality score.
+
+| Fixed profile | Nominal eligible starts | Nominal mean error (m/s) | Left-75 eligible starts | Left-75 mean error (m/s) |
+| --- | --- | --- | --- | --- |
+| Baseline | 2/2 | 0.0883754 | 0/2 | None: failed |
+| 08 | 2/2 | 0.0857290 | 0/2 | None: failed |
+| 18 | 2/2 | 0.0877764 | 0/2 | None: failed |
+| 55 | 2/2 | 0.0919371 | 2/2 | 0.0901327 |
+| 27 | 2/2 | 0.0911503 | 2/2 | 0.0896766 |
 
 The [completed v2 population](../sdk/discovery/population_discovery_native_result_v2.json)
 passes the complete 108-control gate, both full-canary replays and independent
@@ -66,9 +96,9 @@ The [v2 component](../sdk/discovery/population_discovery_component_result_v2.jso
 and [prospective contract](../sdk/discovery/population_discovery_v2.json) preserve
 the distinct successor question and all original controller bounds.
 
-The full-capture challenge above is the detailed shortlist stage after wide
-discovery. It fixes the exact selected profiles, fresh baselines, a twelve-second
-horizon and complete independent native reconstruction before launch.
+The completed full-capture challenge above is the detailed shortlist stage
+after wide discovery. Its exact selected profiles, fresh baselines and
+twelve-second horizon were frozen before launch and fully reconstructed.
 The two-second reduced records remain discovery evidence;
 they are not retroactively promoted into training or acceptance evidence.
 Calibration and evaluation starts remain unopened. No provider is trained,
@@ -104,7 +134,8 @@ Local torque saturation and this finite search do not prove global infeasibility
 
 Current execution priority, reaffirmed 2026-11-01: broad candidate discovery,
 then detailed checking of the shortlist. The completed exploration-capture
-population above now supplies four fixed leads for fresh full-capture challenges.
+population now has a fully reconstructed twelve-second shortlist result.
+Its finite tradeoff motivates the condition-informed selection comparison above.
 For later discovery successors, jointly vary declared parameters
 through the implemented provider/controller interface; test populations rather
 than repeatedly refining and fully auditing one controller. Measure telemetry

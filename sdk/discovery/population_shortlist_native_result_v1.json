@@ -1,0 +1,1966 @@
+{
+  "schema_version": "locolemotion_population_shortlist_native_result_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_shortlist_validation",
+    "question_class": "development"
+  },
+  "status": "complete_full_capture_shortlist_with_finite_condition_tradeoff",
+  "attempt_id": "sdk2-population-shortlist-v1-9f4ff314786a43e080b46e8ae96f9b02",
+  "archive_relative_path": "sdk2-population-shortlist-v1-9f4ff314786a43e080b46e8ae96f9b02",
+  "source_commit": "ca57f6bb2a9a507442229ab5c4103392ca904cee",
+  "source_status": [],
+  "source_freeze": "Clean pushed prospective main commit; all source and runtime bindings unchanged through the full native challenge and independent reader",
+  "receipt_sha256": "3b080c4f94a8ee52594be16d2f34d885a26a7ae746ae740cd7c17509d19aee22",
+  "declaration_sha256": "a46dd52eda0edb12ac2d3c7aebcf4c10203c5e78087b1f8e1650655a8ae64398",
+  "gate_receipt_sha256": "bf745f10360341fdc3badf0ba638cfc91c4e5c984b27294c67308e19eb184a4c",
+  "consumed_sha256": "dafe20f79ad50605a38693bf2f72c02d40a0528142dbd56e07b5ebc5b2924aa3",
+  "contract_path": "sdk/discovery/population_shortlist_v1.json",
+  "contract_sha256": "fe7b8dfbf539332ac9956f759e0b1c19a910a097e8c0400381b20406fa24ca7e",
+  "component_result_path": "sdk/discovery/population_shortlist_component_result_v1.json",
+  "component_result_sha256": "35759d83d0bbd47d8f371979c29f09ed2653e6d8305d7917d4741109d1c8daa9",
+  "predecessor_path": "sdk/discovery/population_discovery_native_result_v2.json",
+  "predecessor_sha256": "f222a36c7eb69f3a8ed2be629eb083f92feef83e1f58d754512a063fde31290f",
+  "source_pins": [
+    {
+      "path": "sdk/discovery/population_shortlist_task_v1.py",
+      "sha256": "b6f49ce31dd0e9fb7c0af4303dd1c45b9b85fc993237e8b8e90c31a048f3d34d"
+    },
+    {
+      "path": "sdk/discovery/population_shortlist_v1.py",
+      "sha256": "c1d5d291826ed3d89efa7cac0b35e00f2250c0a44df0eaa713ee96824f97770e"
+    },
+    {
+      "path": "sdk/discovery/audit_population_shortlist_v1.py",
+      "sha256": "0b57b27066c39995ffe39a3142f644e5a7e4cef6f903b5580be5f7bd06b9a053"
+    },
+    {
+      "path": "sdk/discovery/run_population_shortlist_v1.py",
+      "sha256": "ca2fb87e8a13e09eeb8afe927e017f93a3e606753e21dd868158f7dcab1248dc"
+    },
+    {
+      "path": "sdk/discovery/test_population_shortlist_v1.py",
+      "sha256": "1b851d7bd499c1dc00eb5ccc72ba536adb55c760ab4a9dbf0e20e571f7a5574e"
+    }
+  ],
+  "controls_passed": 128,
+  "controls_required": 128,
+  "safety_controls": {
+    "measurement": 7,
+    "quadruped": 10,
+    "portable": 11,
+    "host-batch": 7,
+    "graph-execution": 7,
+    "repertoire": 6,
+    "motor-task": 7,
+    "motor-route": 5,
+    "stage-lifecycle": 17,
+    "containment": 1,
+    "provider": 2,
+    "population": 20,
+    "projection-successor": 8,
+    "shortlist": 20
+  },
+  "physical_started": true,
+  "constructed_gpu_worlds": 20,
+  "cpu_physics_worlds": 0,
+  "cpu_readback_views": 20,
+  "completed_trials": 4,
+  "maximum_simultaneous_gpu_worlds": 5,
+  "candidate_indices": [
+    0,
+    8,
+    18,
+    55,
+    27
+  ],
+  "frozen_shortlist_by_condition": {
+    "nominal": [
+      8,
+      18
+    ],
+    "left_075": [
+      55,
+      27
+    ]
+  },
+  "actuator_conditions": [
+    "nominal",
+    "left_075"
+  ],
+  "exposed_start_lateral_velocities_m_s": [
+    0.001,
+    0.003
+  ],
+  "seed": 1061102,
+  "horizon_s": 12.0,
+  "prefix_horizon_s": 2.0,
+  "capture_mode": "full",
+  "controller_rows": 28800,
+  "internal_rows": 144000,
+  "challenge_audit": {
+    "path": "challenge-audit.json",
+    "sha256": "cd46efe25f12196f05327cf1981d8cda91f621e029c7707b08b4b7db2dd56e7e",
+    "ok": true,
+    "full_trials_replayed": 4,
+    "full_worlds_replayed": 20,
+    "reader_world_build_count": 0,
+    "full_capture_native_evidence_verified": true,
+    "within_run_projection_verified": true,
+    "separate_prefix_assessment_verified": true
+  },
+  "finite_outcomes": {
+    "prefix": {
+      "eligible_episodes": 14,
+      "performance_failure_episodes": 6,
+      "invalid_episodes": 0,
+      "failure_code_counts": {
+        "tilt": 6,
+        "torso_contact": 5,
+        "height": 2
+      },
+      "conditions": [
+        {
+          "condition_id": "nominal",
+          "episodes": 10,
+          "eligible_episodes": 10,
+          "failure_code_counts": {}
+        },
+        {
+          "condition_id": "left_075",
+          "episodes": 10,
+          "eligible_episodes": 4,
+          "failure_code_counts": {
+            "tilt": 6,
+            "torso_contact": 5,
+            "height": 2
+          }
+        }
+      ]
+    },
+    "whole": {
+      "eligible_episodes": 14,
+      "performance_failure_episodes": 6,
+      "invalid_episodes": 0,
+      "failure_code_counts": {
+        "height": 3,
+        "tilt": 6,
+        "torso_contact": 6
+      },
+      "conditions": [
+        {
+          "condition_id": "nominal",
+          "episodes": 10,
+          "eligible_episodes": 10,
+          "failure_code_counts": {}
+        },
+        {
+          "condition_id": "left_075",
+          "episodes": 10,
+          "eligible_episodes": 4,
+          "failure_code_counts": {
+            "height": 3,
+            "tilt": 6,
+            "torso_contact": 6
+          }
+        }
+      ]
+    }
+  },
+  "assessment": {
+    "conditions": [
+      {
+        "condition_id": "nominal",
+        "profiles": [
+          {
+            "candidate_index": 0,
+            "candidate_id": "baseline",
+            "selected_for_condition": false,
+            "prefix": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.09134925486239859,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            },
+            "whole": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.08837542038111501,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            }
+          },
+          {
+            "candidate_index": 8,
+            "candidate_id": "joint_population_08",
+            "selected_for_condition": true,
+            "prefix": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.08704803639796585,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            },
+            "whole": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.0857289823917958,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            }
+          },
+          {
+            "candidate_index": 18,
+            "candidate_id": "joint_population_18",
+            "selected_for_condition": true,
+            "prefix": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.08740126689972672,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            },
+            "whole": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.0877764411623563,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            }
+          },
+          {
+            "candidate_index": 55,
+            "candidate_id": "joint_population_55",
+            "selected_for_condition": false,
+            "prefix": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.10131574252461926,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            },
+            "whole": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.09193710596672774,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            }
+          },
+          {
+            "candidate_index": 27,
+            "candidate_id": "joint_population_27",
+            "selected_for_condition": false,
+            "prefix": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.09596524745519312,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            },
+            "whole": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.0911503217684535,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            }
+          }
+        ],
+        "pairs": [
+          {
+            "start_id": "train_001",
+            "candidate_index": 8,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.004506070289357997
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.002530748008166203
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 8,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.004096366639507451
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.0027621279704722473
+            }
+          },
+          {
+            "start_id": "train_001",
+            "candidate_index": 18,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.0033079544927757804
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.0008007234081083003
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 18,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.004588021432567951
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": 0.0003972350294091098
+            }
+          },
+          {
+            "start_id": "train_001",
+            "candidate_index": 55,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.011635607483233806
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.0034641660640627875
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 55,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.008297367841207562
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.0036592051071626525
+            }
+          },
+          {
+            "start_id": "train_001",
+            "candidate_index": 27,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.003666870906999936
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.00238253090659879
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 27,
+            "prefix": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.005565114278589148
+            },
+            "whole": {
+              "baseline_eligible": true,
+              "candidate_eligible": true,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": -0.003167271868078164
+            }
+          }
+        ]
+      },
+      {
+        "condition_id": "left_075",
+        "profiles": [
+          {
+            "candidate_index": 0,
+            "candidate_id": "baseline",
+            "selected_for_condition": false,
+            "prefix": {
+              "eligible_starts": 0,
+              "start_count": 2,
+              "both_starts_eligible": false,
+              "mean_velocity_error_m_s": null,
+              "failure_codes": [
+                [
+                  "tilt",
+                  "torso_contact"
+                ],
+                [
+                  "height",
+                  "tilt",
+                  "torso_contact"
+                ]
+              ],
+              "first_failure_native_steps": [
+                608,
+                569
+              ]
+            },
+            "whole": {
+              "eligible_starts": 0,
+              "start_count": 2,
+              "both_starts_eligible": false,
+              "mean_velocity_error_m_s": null,
+              "failure_codes": [
+                [
+                  "height",
+                  "tilt",
+                  "torso_contact"
+                ],
+                [
+                  "height",
+                  "tilt",
+                  "torso_contact"
+                ]
+              ],
+              "first_failure_native_steps": [
+                608,
+                569
+              ]
+            }
+          },
+          {
+            "candidate_index": 8,
+            "candidate_id": "joint_population_08",
+            "selected_for_condition": false,
+            "prefix": {
+              "eligible_starts": 0,
+              "start_count": 2,
+              "both_starts_eligible": false,
+              "mean_velocity_error_m_s": null,
+              "failure_codes": [
+                [
+                  "tilt"
+                ],
+                [
+                  "height",
+                  "tilt",
+                  "torso_contact"
+                ]
+              ],
+              "first_failure_native_steps": [
+                1115,
+                565
+              ]
+            },
+            "whole": {
+              "eligible_starts": 0,
+              "start_count": 2,
+              "both_starts_eligible": false,
+              "mean_velocity_error_m_s": null,
+              "failure_codes": [
+                [
+                  "tilt",
+                  "torso_contact"
+                ],
+                [
+                  "height",
+                  "tilt",
+                  "torso_contact"
+                ]
+              ],
+              "first_failure_native_steps": [
+                1115,
+                565
+              ]
+            }
+          },
+          {
+            "candidate_index": 18,
+            "candidate_id": "joint_population_18",
+            "selected_for_condition": false,
+            "prefix": {
+              "eligible_starts": 0,
+              "start_count": 2,
+              "both_starts_eligible": false,
+              "mean_velocity_error_m_s": null,
+              "failure_codes": [
+                [
+                  "tilt",
+                  "torso_contact"
+                ],
+                [
+                  "tilt",
+                  "torso_contact"
+                ]
+              ],
+              "first_failure_native_steps": [
+                678,
+                860
+              ]
+            },
+            "whole": {
+              "eligible_starts": 0,
+              "start_count": 2,
+              "both_starts_eligible": false,
+              "mean_velocity_error_m_s": null,
+              "failure_codes": [
+                [
+                  "tilt",
+                  "torso_contact"
+                ],
+                [
+                  "tilt",
+                  "torso_contact"
+                ]
+              ],
+              "first_failure_native_steps": [
+                678,
+                860
+              ]
+            }
+          },
+          {
+            "candidate_index": 55,
+            "candidate_id": "joint_population_55",
+            "selected_for_condition": true,
+            "prefix": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.0916215008289683,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            },
+            "whole": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.09013269309311381,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            }
+          },
+          {
+            "candidate_index": 27,
+            "candidate_id": "joint_population_27",
+            "selected_for_condition": true,
+            "prefix": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.09256907462938938,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            },
+            "whole": {
+              "eligible_starts": 2,
+              "start_count": 2,
+              "both_starts_eligible": true,
+              "mean_velocity_error_m_s": 0.0896765746357391,
+              "failure_codes": [
+                [],
+                []
+              ],
+              "first_failure_native_steps": [
+                null,
+                null
+              ]
+            }
+          }
+        ],
+        "pairs": [
+          {
+            "start_id": "train_001",
+            "candidate_index": 8,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 8,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          },
+          {
+            "start_id": "train_001",
+            "candidate_index": 18,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 18,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": false,
+              "eligibility_change": 0,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          },
+          {
+            "start_id": "train_001",
+            "candidate_index": 55,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 55,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          },
+          {
+            "start_id": "train_001",
+            "candidate_index": 27,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          },
+          {
+            "start_id": "train_003",
+            "candidate_index": 27,
+            "prefix": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            },
+            "whole": {
+              "baseline_eligible": false,
+              "candidate_eligible": true,
+              "eligibility_change": 1,
+              "baseline_minus_candidate_error_m_s": null
+            }
+          }
+        ]
+      }
+    ],
+    "prefix_horizon_s": 2.0,
+    "whole_horizon_s": 12.0,
+    "fixed_candidate_indices": [
+      0,
+      8,
+      18,
+      55,
+      27
+    ],
+    "selection_changed": false,
+    "population_inference": false,
+    "failure_timing_used_for_selection": false,
+    "trained_provider": false,
+    "calibration_worlds": 0,
+    "evaluation_worlds": 0,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "equivalence_authority": false,
+    "training_data_authority": false
+  },
+  "whole_episodes": [
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4241860806941986,
+        "maximum_tilt_rad": 0.07302913160930681,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3369011878967285
+      },
+      "velocity_error_m_s": 0.08860439678425999,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42213067412376404,
+        "maximum_tilt_rad": 0.17436013259619806,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3671879768371582
+      },
+      "velocity_error_m_s": 0.08607364877609379,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4228963255882263,
+        "maximum_tilt_rad": 0.17798968495046125,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3467028141021729
+      },
+      "velocity_error_m_s": 0.08780367337615169,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4246579706668854,
+        "maximum_tilt_rad": 0.09891112111339115,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.2956256866455078
+      },
+      "velocity_error_m_s": 0.09206856284832278,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4248160719871521,
+        "maximum_tilt_rad": 0.06767296137645006,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.309072494506836
+      },
+      "velocity_error_m_s": 0.09098692769085878,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4235897362232208,
+        "maximum_tilt_rad": 0.1816174308108991,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3426845073699951
+      },
+      "velocity_error_m_s": 0.08814644397797004,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4219037592411041,
+        "maximum_tilt_rad": 0.1933088095707837,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3755701780319214
+      },
+      "velocity_error_m_s": 0.0853843160074978,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4227021336555481,
+        "maximum_tilt_rad": 0.17480447210991434,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3472936153411865
+      },
+      "velocity_error_m_s": 0.08774920894856093,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4246092140674591,
+        "maximum_tilt_rad": 0.07344061561049157,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.2988890409469604
+      },
+      "velocity_error_m_s": 0.0918056490851327,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42485082149505615,
+        "maximum_tilt_rad": 0.06811476973726209,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7199,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3050373792648315
+      },
+      "velocity_error_m_s": 0.09131371584604821,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "height",
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 608,
+      "metrics": {
+        "minimum_height_m": 0.1705072522163391,
+        "maximum_tilt_rad": 1.9768562475487832,
+        "torso_contact_steps": 5586,
+        "ground_contact_steps": 7198,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.4029916822910309
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 1115,
+      "metrics": {
+        "minimum_height_m": 0.2505438029766083,
+        "maximum_tilt_rad": 1.7864891891740984,
+        "torso_contact_steps": 5858,
+        "ground_contact_steps": 7200,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.6103214621543884
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 678,
+      "metrics": {
+        "minimum_height_m": 0.25072747468948364,
+        "maximum_tilt_rad": 1.7814915179580066,
+        "torso_contact_steps": 6303,
+        "ground_contact_steps": 7200,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.6098096966743469
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4234050214290619,
+        "maximum_tilt_rad": 0.1482897171078696,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7200,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.318278193473816
+      },
+      "velocity_error_m_s": 0.0902886421028976,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4245522916316986,
+        "maximum_tilt_rad": 0.13377336983461538,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7200,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3251210451126099
+      },
+      "velocity_error_m_s": 0.08969809903989745,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "height",
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 569,
+      "metrics": {
+        "minimum_height_m": 0.17058515548706055,
+        "maximum_tilt_rad": 1.973570009242665,
+        "torso_contact_steps": 5646,
+        "ground_contact_steps": 7198,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.3670509159564972
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "height",
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 565,
+      "metrics": {
+        "minimum_height_m": 0.17051677405834198,
+        "maximum_tilt_rad": 1.9757283062277151,
+        "torso_contact_steps": 5638,
+        "ground_contact_steps": 7197,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.36818134784698486
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 860,
+      "metrics": {
+        "minimum_height_m": 0.25004759430885315,
+        "maximum_tilt_rad": 1.779529976402772,
+        "torso_contact_steps": 6083,
+        "ground_contact_steps": 7197,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.6073471307754517
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42390549182891846,
+        "maximum_tilt_rad": 0.14156136807754682,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7200,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.321860671043396
+      },
+      "velocity_error_m_s": 0.08997674408333001,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.424446165561676,
+        "maximum_tilt_rad": 0.13598172748295895,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 7200,
+        "nonzero_force_steps": 7200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 1.3256165981292725
+      },
+      "velocity_error_m_s": 0.08965505023158074,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    }
+  ],
+  "prefix_episodes": [
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42637473344802856,
+        "maximum_tilt_rad": 0.05574424796693241,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.2181815356016159
+      },
+      "velocity_error_m_s": 0.09117468236963651,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4263581335544586,
+        "maximum_tilt_rad": 0.17436013259619806,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.22732582688331604
+      },
+      "velocity_error_m_s": 0.08666861208027851,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42595064640045166,
+        "maximum_tilt_rad": 0.17798968495046125,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.224977046251297
+      },
+      "velocity_error_m_s": 0.08786672787686073,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4285825788974762,
+        "maximum_tilt_rad": 0.09891112111339115,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.19515368342399597
+      },
+      "velocity_error_m_s": 0.10281028985287032,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "nominal",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.427394837141037,
+        "maximum_tilt_rad": 0.06259412547010383,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.21094012260437012
+      },
+      "velocity_error_m_s": 0.09484155327663644,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42592567205429077,
+        "maximum_tilt_rad": 0.1816174308108991,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.2180030643939972
+      },
+      "velocity_error_m_s": 0.09152382735516065,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4264189302921295,
+        "maximum_tilt_rad": 0.1933088095707837,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.22638526558876038
+      },
+      "velocity_error_m_s": 0.0874274607156532,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4259485900402069,
+        "maximum_tilt_rad": 0.17480447210991434,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.22689716517925262
+      },
+      "velocity_error_m_s": 0.0869358059225927,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4281441271305084,
+        "maximum_tilt_rad": 0.07344061561049157,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.20098845660686493
+      },
+      "velocity_error_m_s": 0.09982119519636821,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "nominal",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42761459946632385,
+        "maximum_tilt_rad": 0.06811476973726209,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.20635508000850677
+      },
+      "velocity_error_m_s": 0.0970889416337498,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 608,
+      "metrics": {
+        "minimum_height_m": 0.2806430459022522,
+        "maximum_tilt_rad": 1.6069561909271706,
+        "torso_contact_steps": 443,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.3986133635044098
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "tilt"
+      ],
+      "first_failure_native_step": 1115,
+      "metrics": {
+        "minimum_height_m": 0.27690020203590393,
+        "maximum_tilt_rad": 0.8015384453275953,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.31165146827697754
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 678,
+      "metrics": {
+        "minimum_height_m": 0.2845214903354645,
+        "maximum_tilt_rad": 1.504389952608056,
+        "torso_contact_steps": 365,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.4346896708011627
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.4234050214290619,
+        "maximum_tilt_rad": 0.1482897171078696,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.21783235669136047
+      },
+      "velocity_error_m_s": 0.09132318464059597,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "left_075",
+      "start_id": "train_001",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42457136511802673,
+        "maximum_tilt_rad": 0.13377336983461538,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.21487970650196075
+      },
+      "velocity_error_m_s": 0.0927350382128174,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 0,
+      "candidate_id": "baseline",
+      "cell": 0,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "height",
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 569,
+      "metrics": {
+        "minimum_height_m": 0.24105693399906158,
+        "maximum_tilt_rad": 1.660439934289931,
+        "torso_contact_steps": 325,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.3456994295120239
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 8,
+      "candidate_id": "joint_population_08",
+      "cell": 1,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "height",
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 565,
+      "metrics": {
+        "minimum_height_m": 0.23404636979103088,
+        "maximum_tilt_rad": 1.6636479524205985,
+        "torso_contact_steps": 320,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.3442750573158264
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 18,
+      "candidate_id": "joint_population_18",
+      "cell": 2,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": false,
+      "failure_codes": [
+        "tilt",
+        "torso_contact"
+      ],
+      "first_failure_native_step": 860,
+      "metrics": {
+        "minimum_height_m": 0.2826825678348541,
+        "maximum_tilt_rad": 1.3304164290028215,
+        "torso_contact_steps": 146,
+        "ground_contact_steps": 1199,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": -0.4298251271247864
+      },
+      "velocity_error_m_s": null,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 55,
+      "candidate_id": "joint_population_55",
+      "cell": 3,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.42390549182891846,
+        "maximum_tilt_rad": 0.14156136807754682,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.21663694083690643
+      },
+      "velocity_error_m_s": 0.09191981701734063,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    },
+    {
+      "candidate_index": 27,
+      "candidate_id": "joint_population_27",
+      "cell": 4,
+      "condition_id": "left_075",
+      "start_id": "train_003",
+      "seed": 1061102,
+      "eligible": true,
+      "failure_codes": [],
+      "first_failure_native_step": null,
+      "metrics": {
+        "minimum_height_m": 0.424446165561676,
+        "maximum_tilt_rad": 0.13598172748295895,
+        "torso_contact_steps": 0,
+        "ground_contact_steps": 1200,
+        "nonzero_force_steps": 1200,
+        "safe_no_actuation_steps": 0,
+        "forward_displacement_m": 0.21552295982837677
+      },
+      "velocity_error_m_s": 0.09240311104596134,
+      "capture_scope": "full_capture_development",
+      "qualification_requires_new_contract": true
+    }
+  ],
+  "timing": {
+    "owner_wall_s": 2832.0939999999973,
+    "worker_wall_s": 1466.2592639000068,
+    "retained_trial_stream_bytes": 2463347966,
+    "trials": [
+      {
+        "trial_id": "nominal_train_001_full",
+        "timings": {
+          "warmup": {
+            "prepare_s": 0.0,
+            "observation_readback_s": 0.0,
+            "portable_control_s": 0.0,
+            "controller_capture_and_control_transfer_s": 0.0,
+            "integration_and_device_history_s": 0.0,
+            "internal_readback_and_capture_s": 0.0,
+            "outer_total_s": 0.0
+          },
+          "measured": {
+            "prepare_s": 1.331586000014795,
+            "observation_readback_s": 149.60431360002258,
+            "portable_control_s": 121.06435739986773,
+            "controller_capture_and_control_transfer_s": 49.611835799820255,
+            "integration_and_device_history_s": 4.01289879984688,
+            "internal_readback_and_capture_s": 32.669302100126515,
+            "outer_total_s": 358.31395419985347
+          }
+        },
+        "setup_s": 0.051745099990512244,
+        "graph_capture_s": 105.92116579999856,
+        "full_replay": {
+          "controller_rows": 7200,
+          "internal_rows": 36000,
+          "maximum_force_error_nm": 0.0,
+          "projection_verified": true
+        }
+      },
+      {
+        "trial_id": "nominal_train_003_full",
+        "timings": {
+          "warmup": {
+            "prepare_s": 0.0,
+            "observation_readback_s": 0.0,
+            "portable_control_s": 0.0,
+            "controller_capture_and_control_transfer_s": 0.0,
+            "integration_and_device_history_s": 0.0,
+            "internal_readback_and_capture_s": 0.0,
+            "outer_total_s": 0.0
+          },
+          "measured": {
+            "prepare_s": 1.3637228002189659,
+            "observation_readback_s": 138.37872669973876,
+            "portable_control_s": 115.58304950015736,
+            "controller_capture_and_control_transfer_s": 46.11798109994561,
+            "integration_and_device_history_s": 4.047495399674517,
+            "internal_readback_and_capture_s": 30.04597619982087,
+            "outer_total_s": 335.55800080001063
+          }
+        },
+        "setup_s": 0.04223880000063218,
+        "graph_capture_s": 0.13012450000678655,
+        "full_replay": {
+          "controller_rows": 7200,
+          "internal_rows": 36000,
+          "maximum_force_error_nm": 0.0,
+          "projection_verified": true
+        }
+      },
+      {
+        "trial_id": "left_075_train_001_full",
+        "timings": {
+          "warmup": {
+            "prepare_s": 0.0,
+            "observation_readback_s": 0.0,
+            "portable_control_s": 0.0,
+            "controller_capture_and_control_transfer_s": 0.0,
+            "integration_and_device_history_s": 0.0,
+            "internal_readback_and_capture_s": 0.0,
+            "outer_total_s": 0.0
+          },
+          "measured": {
+            "prepare_s": 1.6059247997472994,
+            "observation_readback_s": 159.8797409998515,
+            "portable_control_s": 128.34760729972913,
+            "controller_capture_and_control_transfer_s": 51.098466600466054,
+            "integration_and_device_history_s": 4.317351200254052,
+            "internal_readback_and_capture_s": 36.39253690028272,
+            "outer_total_s": 381.6639662000089
+          }
+        },
+        "setup_s": 0.04867840000952128,
+        "graph_capture_s": 0.09707740000158083,
+        "full_replay": {
+          "controller_rows": 7200,
+          "internal_rows": 36000,
+          "maximum_force_error_nm": 0.0,
+          "projection_verified": true
+        }
+      },
+      {
+        "trial_id": "left_075_train_003_full",
+        "timings": {
+          "warmup": {
+            "prepare_s": 0.0,
+            "observation_readback_s": 0.0,
+            "portable_control_s": 0.0,
+            "controller_capture_and_control_transfer_s": 0.0,
+            "integration_and_device_history_s": 0.0,
+            "internal_readback_and_capture_s": 0.0,
+            "outer_total_s": 0.0
+          },
+          "measured": {
+            "prepare_s": 1.2885422999825096,
+            "observation_readback_s": 110.91675849974854,
+            "portable_control_s": 91.25411240009998,
+            "controller_capture_and_control_transfer_s": 36.848016099917004,
+            "integration_and_device_history_s": 4.237610200289055,
+            "internal_readback_and_capture_s": 25.665220599985332,
+            "outer_total_s": 270.2249699001404
+          }
+        },
+        "setup_s": 0.04374739999184385,
+        "graph_capture_s": 0.0839304999972228,
+        "full_replay": {
+          "controller_rows": 7200,
+          "internal_rows": 36000,
+          "maximum_force_error_nm": 0.0,
+          "projection_verified": true
+        }
+      }
+    ]
+  },
+  "verification": {
+    "artifacts_including_receipt": 2284,
+    "retained_bytes_excluding_warp_cache": 2738261573,
+    "source_binding_count": 1143,
+    "runtime_binding_count": 1359,
+    "outer_cleanup_reports": 17,
+    "all_artifact_sizes_and_sha256_verified": true,
+    "exact_artifact_population_verified": true,
+    "all_source_runtime_bindings_verified": true,
+    "all_outer_cleanup_verified": true,
+    "source_runtime_unchanged": true
+  },
+  "interpretation": {
+    "nominal": "All ten nominal episodes remain eligible for twelve seconds; profiles 08 and 18 have lower mean velocity error than the fresh baseline, while 55 and 27 have higher error",
+    "left_075": "Profiles 55 and 27 remain eligible for twelve seconds on both exposed starts; baseline, 08 and 18 fail on both starts, retaining all six failures and their first-failure times",
+    "quality_censoring": "No failed episode receives a velocity-error score and no numeric baseline gain is computed for the failed weak baseline",
+    "inference": "The finite tradeoff motivates a distinct condition-informed versus shared-profile comparison; it does not establish selection, inference, recovery, adaptation or release qualification"
+  },
+  "selection_changed": false,
+  "fitting_performed": false,
+  "condition_informed_selection_tested": false,
+  "policy_switching_tested": false,
+  "controller_bounds_changed": false,
+  "native_reads_reduced": false,
+  "calibration_worlds": 0,
+  "evaluation_worlds": 0,
+  "trained": false,
+  "recovery_benefit_established": false,
+  "safe_withdrawal_established": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "real_time_qualified": false,
+  "next_gate": "Declare a distinct twelve-second condition-informed versus shared-profile comparison on fresh already-exposed confirmation starts, with fixed profile choices, baseline controls, explicit eligibility and paired quality criteria, full replay and unchanged bounds; establish useful condition-aware choice before fitting history inference or episode memory",
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false
+}
