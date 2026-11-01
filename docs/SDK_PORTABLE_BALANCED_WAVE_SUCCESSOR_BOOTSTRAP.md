@@ -2,15 +2,17 @@
 
 ## Current SDK2 native evidence - 2026-11-01
 
-The [population discovery successor](../sdk/discovery/population_discovery_component_result_v1.json)
-passes its final 100-control zero-world component gate. The prospective route
-contains 64 joint-control policies across two actuator conditions and two
-exposed starts: 256 two-second discovery worlds in batches of 16, preceded by
-16 full/compact canary worlds. It retains all native safety reads while reducing
-serialized records. The canaries require complete raw replay, direct projection
-checks and identical compact records. No new world has opened at this boundary;
-the next step is clean-freeze execution, then fresh full-capture shortlist
-challenges. Reduced discovery records grant no training or qualification.
+The [v1 population attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
+completed 16 canary worlds but failed fresh-run byte identity; its 256-world
+population stayed unopened. That failure remains preserved. The
+[v2 successor component](../sdk/discovery/population_discovery_component_result_v2.json)
+passes 108 zero-world controls and validates compact fields against their own
+raw native samples, with independent full-trace controller replay. Separate-run
+differences are descriptive and grant no equivalence authority. The unchanged
+search plan contains 64 policies, two actuator conditions and two exposed starts:
+256 two-second discovery worlds in batches of 16, preceded by 16 fresh canary
+worlds. No v2 world has opened at this component boundary. Clean-freeze execution
+and then fresh full-capture shortlist challenges remain the next gates.
 
 The [contact-native v2 closure](../sdk/discovery/contact_sequence_native_result_v2.json)
 passes all 1,615 controls and two byte-identical readers. Two fresh CPU worlds

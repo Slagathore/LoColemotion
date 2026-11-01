@@ -21,25 +21,35 @@ This roadmap can order a new successor, but it cannot change an old result.
 
 ## Current execution order - 2026-11-01
 
-The [population discovery component](../sdk/discovery/population_discovery_component_result_v1.json)
-now passes its final 100-control zero-world gate. Its [prospective contract](../sdk/discovery/population_discovery_v1.json)
-freezes 64 policies with eight independently varied joint coefficients, two
-actuator conditions and two exposed training starts: 256 two-second discovery
-worlds, run in batches of 16. Sixteen additional canary worlds compare full and
-compact recording before the search may open. All native reads and five-step
-history remain; only retained serialization is reduced. The canary reader
-replays the full controller records and checks every compact field against the
-raw trace. The paired runs measure recording costs without claiming reduced
-GPU readback or general throughput.
+The [v1 discovery attempt](../sdk/discovery/population_discovery_native_failure_v1.json)
+completed all 16 canary worlds but failed its prospective requirement for
+byte-identical records across fresh full/compact GPU runs. Both nominal modes
+screened 4/4 eligible; both weakened-actuator modes screened 0/4 eligible at
+matching first-failure steps. The independent reader reached the paired-identity
+check after full native replay and exact same-run projection checks. Its final
+audit failed, and the 256-world population remained unopened. This failed
+identity and its original source, thresholds and evidence remain preserved.
 
-No physical world has opened for this successor at this component boundary.
-The next gate is the clean pushed freeze, its complete safety gate, then canaries
-and population execution. Every trial survives in the ledger; expected
-performance failures stay negative. Selection uses both exposed starts,
-baseline improvement where baseline is eligible, deterministic ties and
-coefficient diversity. Reserved calibration/evaluation starts remain unopened.
-A shortlist requires fresh full-capture native reruns under a new contract;
-these reduced records grant no fitting, recovery, adaptation or release authority.
+The [v2 component](../sdk/discovery/population_discovery_component_result_v2.json)
+passes all 108 zero-world controls. Its [new prospective contract](../sdk/discovery/population_discovery_v2.json)
+keeps the same 64 policies, eight joint coefficients, two actuator conditions,
+two exposed training starts, two-second horizon and 16-world batch limit.
+Sixteen fresh canary worlds precede 256 discovery worlds. Exactness now applies
+to compact fields and their own raw samples, with independent full controller
+replay. Differences between separately executed runs are retained descriptively,
+without an equivalence claim or a fitted acceptance tolerance. The failed v1
+attempt is not promoted by this successor.
+
+All native reads, force/capacity/contact checks and five-step history remain.
+Only retained serialization is reduced, and recording costs are measured in
+the predetermined canaries. Every candidate and performance failure remains in
+the ledger. Selection uses both exposed starts, baseline improvement where
+baseline is eligible, deterministic ties and coefficient diversity. Calibration
+and evaluation starts remain unopened. No v2 physical world has opened at this
+component boundary; clean-freeze execution is next. Any selected policy needs
+fresh full-capture native challenges under a new contract before fitting or
+qualification. Reduced discovery grants no recovery, adaptation or release
+authority.
 
 Current native result: the [contact-native v2 closure](../sdk/discovery/contact_sequence_native_result_v2.json)
 passes the complete 1,615-control gate and two byte-identical independent readers.
