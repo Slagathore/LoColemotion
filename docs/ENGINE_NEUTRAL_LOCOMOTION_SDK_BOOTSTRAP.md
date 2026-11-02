@@ -16,7 +16,7 @@ historical instructions.
 | Studio | Live native routes and installed-package evidence exist; fast Godot recovery handoff and current startup/stepping performance remain product work |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
-| SDK2 creature component | [21 passing controls](../sdk/discovery/creature_batch_component_v1.json): 64 mixed cells, 32 compiled shapes, exact scalar/batch controller records and isolated memory; zero native worlds |
+| SDK2 creature route | [106 passing controls](../sdk/discovery/creature_native_component_v1.json): mixed controllers, full model transport, capture and independent replay; zero native worlds; four-world native route check declared |
 | Unqualified | Learned Tier 2, Tier 3 memory, new morphology coverage, recovery/withdrawal, real time, broad robustness, cross-engine equivalence and full release |
 
 SDK1 package qualification does not grant permission to redistribute the

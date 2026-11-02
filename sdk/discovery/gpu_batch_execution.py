@@ -151,10 +151,13 @@ def preflight(core_path, baseline_path):
                 planned_gpu_worlds=sum(r["nworld"] for r in trial_plan(c)))
 
 
-def trace_rows(snapshot, c, spec, outer, sub, nworld):
+def trace_rows(snapshot, c, spec, outer, sub, nworld, *, cell_indices=None):
     """Produce the same full internal evidence for both execution routes."""
     caps = np.asarray(spec["force_ranges"], np.float32).tolist()
-    for cell in range(nworld):
+    cells = list(range(nworld)) if cell_indices is None else list(cell_indices)
+    if len(set(cells)) != len(cells) or any(type(i) is not int or not 0 <= i < nworld for i in cells):
+        raise ValueError("Capture cell indices")
+    for cell in cells:
         sensors = snapshot["sensordata"][cell]
         forces = list(map(float, sensors[::2]))
         row = dict(backend="gpu", cell=cell, step=5 * outer + sub + 1,
