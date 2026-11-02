@@ -40,7 +40,7 @@ GATES = [
     ("containment", "test_contact_sequence_containment_v2", 1),
     ("provider", "adaptation_provider.test_conformance", 2),
     ("creature-controller", "test_creature_batch", 14),
-    ("creature-native", "test_creature_native", 18),
+    ("creature-native", "test_creature_native", 22),
 ]
 
 
@@ -50,6 +50,7 @@ def declaration(path):
     require(c["schema_version"] == "locolemotion_creature_native_v1"
             and identifier(c["campaign_id"])
             and c["mode"] in ("route_ghost", "development_discovery")
+            and c.get("batch_partition") in ("single", "body_shape")
             and c["capture_mode"] == "full" and c["native_reads_reduced"] is False
             and all(c[key] is False for key in FLAGS), "Creature declaration scope")
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= 256
@@ -74,6 +75,8 @@ def declaration(path):
             and c["minimum_free_storage_bytes"] >= 2**30, "Creature resource bounds")
     parent = ROOT / c["controller_component"]["path"]
     require(sha(parent) == c["controller_component"]["sha256"], "Creature controller predecessor")
+    if "predecessor" in c:
+        require(sha(ROOT / c["predecessor"]["path"]) == c["predecessor"]["sha256"], "Creature consumed predecessor")
     c["naconmax"] = len(c["cells"]) * c["naconmax_per_world"]
     return c
 
@@ -104,7 +107,7 @@ def preflight(c, core_path):
                     "Creature initial population")
             return dict(ok=True, world_build_count=0, solver_steps=0, planned_gpu_worlds=len(creatures),
                         distinct_body_shapes=len({v["binding"]["body_shape_sha256"] for v in creatures}),
-                        bindings=batch.bindings)
+                        bindings=batch.bindings, batches=partition(c, batch.bindings))
         finally:
             batch.close()
 
@@ -127,11 +130,73 @@ def validate_launch(folder, c, contract_path):
             "Creature single-use native claim")
 
 
+def partition(c, bindings):
+    """Stable groups preserve every cell; geometry aliases share a group."""
+    require(len(bindings) == len(c["cells"])
+            and [b["cell_id"] for b in bindings] == [v["cell_id"] for v in c["cells"]],
+            "Creature partition binding population")
+    groups = {}
+    for index, binding in enumerate(bindings):
+        key = binding["body_shape_sha256"] if c["batch_partition"] == "body_shape" else "single"
+        groups.setdefault(key, []).append(index)
+    return [dict(batch_id=f"batch_{i:03d}", cell_indices=indices)
+            for i, indices in enumerate(groups.values())]
+
+
+def batch_contract(c, indices):
+    require(type(indices) is list and indices and len(set(indices)) == len(indices)
+            and all(type(i) is int and 0 <= i < len(c["cells"]) for i in indices),
+            "Creature batch cell indices")
+    result = copy.deepcopy(c)
+    result.update(batch_partition="single", cells=[copy.deepcopy(c["cells"][i]) for i in indices],
+                  initial_lateral_velocities_m_s=[c["initial_lateral_velocities_m_s"][i] for i in indices],
+                  naconmax=len(indices)*c["naconmax_per_world"])
+    return result
+
+
+def group_summary(c, groups, *, synthetic):
+    result = dict(schema_version="locolemotion_creature_grouped_worker_v1", ledger_scope=c["ledger_scope"],
+                  ok=all(g["result"]["ok"] for g in groups), synthetic=synthetic, groups=groups,
+                  **{key: False for key in FLAGS})
+    for key in ("constructed_gpu_worlds", "native_model_constructions", "stepped_cpu_worlds",
+                "controller_rows", "native_rows"):
+        result[key] = sum(g["result"][key] for g in groups)
+    return result
+
+
 def run(folder, permit, c, contract_path, core_path):
     from contained_stage_owner_v2 import jobs
     require(permit.is_file() and jobs.current_in_job(), "Creature execution requires job containment")
     validate_launch(folder, c, contract_path)
-    preflight(c, core_path)
+    plan = preflight(c, core_path)["batches"]
+    if c["batch_partition"] == "single":
+        return run_batch(folder, c, core_path)
+    groups, started, error = [], time.perf_counter(), None
+    try:
+        for group in plan:
+            target = folder / group["batch_id"]
+            target.mkdir()
+            print(json.dumps(dict(batch=group["batch_id"], cell_indices=group["cell_indices"])), flush=True)
+            try:
+                run_batch(target, batch_contract(c, group["cell_indices"]), core_path, cache=folder / "warp-cache")
+            finally:
+                path = target / "worker-result.json"
+                if path.is_file():
+                    groups.append(dict(group, result=json.loads(path.read_text())))
+    except BaseException as exc:
+        error = type(exc).__name__ + ": " + str(exc)
+    result = group_summary(c, groups, synthetic=False)
+    result.update(ok=error is None and len(groups) == len(plan), wall_s=time.perf_counter()-started)
+    if error is not None:
+        result["error"] = error
+    write_new(folder / "worker-result.json", result)
+    require(result["ok"], "Creature grouped worker failed: " + str(error))
+    return result
+
+
+def run_batch(folder, c, core_path, *, cache=None):
+    from contained_stage_owner_v2 import jobs
+    require(jobs.current_in_job(), "Creature batch requires job containment")
     import warp as wp
     import mujoco_warp as mjw
     result = dict(schema_version="locolemotion_creature_worker_v1", ok=False, synthetic=False,
@@ -139,7 +204,7 @@ def run(folder, permit, c, contract_path, core_path):
         stepped_cpu_worlds=0, controller_rows=0, native_rows=0, **{k: False for k in FLAGS})
     batch, started, stage = None, time.perf_counter(), "setup"
     try:
-        wp.config.kernel_cache_dir = str(folder / "warp-cache")
+        wp.config.kernel_cache_dir = str(folder / "warp-cache" if cache is None else cache)
         wp.init()
         device = wp.get_device(c["device"])
         require(device.is_cuda, "Creature native GPU device")
@@ -169,6 +234,8 @@ def run(folder, permit, c, contract_path, core_path):
             metadatas.append(native_metadata(model, creature))
             write_new(directory / "native-model.json", metadatas[-1])
         stage = "model_transport"
+        # Preserve all compiled fields even if complete-field packing refuses.
+        write_new(folder / "source-models.json", [model_snapshot(m) for m in originals])
         packed, transport = pack_models(originals)
         for creature, metadata, snapshot in zip(creatures, metadatas, transport["source_models"], strict=True):
             validate_model_evidence(creature, metadata, snapshot)
@@ -349,6 +416,38 @@ class StreamValidator:
 
 
 def audit(folder, c, core_path, *, synthetic=False):
+    if c["batch_partition"] == "single":
+        return audit_batch(folder, c, core_path, synthetic=synthetic)
+    pre = preflight(c, core_path)
+    result = json.loads((folder / "worker-result.json").read_text())
+    require(result["ok"] is True and result["synthetic"] is synthetic
+            and [dict(batch_id=g["batch_id"], cell_indices=g["cell_indices"]) for g in result["groups"]] == pre["batches"],
+            "Creature grouped result population")
+    summary = group_summary(c, result["groups"], synthetic=synthetic)
+    require(all(result[key] == value for key, value in summary.items()), "Creature grouped summary differs")
+    reports, metrics, timing, differing = [], [None]*len(c["cells"]), {}, set()
+    for group in result["groups"]:
+        target = folder / group["batch_id"]
+        require(json.loads((target / "worker-result.json").read_text()) == group["result"],
+                "Creature grouped worker binding")
+        report = audit_batch(target, batch_contract(c, group["cell_indices"]), core_path, synthetic=synthetic)
+        reports.append(dict(batch_id=group["batch_id"], cell_indices=group["cell_indices"], audit=report))
+        for index, metric in zip(group["cell_indices"], report["metrics"], strict=True):
+            metrics[index] = metric
+        for key, value in report["timing_seconds"].items():
+            timing[key] = timing.get(key, 0.) + value
+        differing.update(report["differing_model_fields"])
+    require(all(m is not None for m in metrics), "Creature grouped metric denominator")
+    return dict(schema_version="locolemotion_creature_native_audit_v1", ledger_scope=c["ledger_scope"],
+        ok=True, synthetic=synthetic, reader_world_build_count=0, gpu_worlds=len(c["cells"]),
+        distinct_body_shapes=pre["distinct_body_shapes"], gpu_batches=len(reports), batches=reports,
+        controller_rows_replayed=sum(g["audit"]["controller_rows_replayed"] for g in reports),
+        native_rows_verified=sum(g["audit"]["native_rows_verified"] for g in reports),
+        differing_model_fields=sorted(differing), metrics=metrics, timing_seconds=timing,
+        **{key: False for key in FLAGS})
+
+
+def audit_batch(folder, c, core_path, *, synthetic=False):
     require(sha(core_path) == c["core_sha256"], "Creature reader runtime binding")
     result = json.loads((folder / "worker-result.json").read_text())
     nworld = len(c["cells"])
@@ -367,6 +466,8 @@ def audit(folder, c, core_path, *, synthetic=False):
             creatures = [controller.creature for controller in controllers]
             metadata = [json.loads((folder / ("cell_" + str(i)) / "native-model.json").read_text()) for i in range(nworld)]
             transport = json.loads((folder / "model-transport.json").read_text())
+            require(json.loads((folder / "source-models.json").read_text()) == transport["source_models"],
+                    "Original compiled model snapshots differ")
             differing = verify_transport(transport, nworld)
             require(json.loads((folder / "model-after.json").read_text()) == transport["packed_model"], "Final native model changed")
             for index, (creature, m, snapshot) in enumerate(zip(creatures, metadata, transport["source_models"], strict=True)):

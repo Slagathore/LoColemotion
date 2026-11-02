@@ -7,8 +7,10 @@ The next route must vary actual bounded quadruped descriptors as well as
 controller candidates. Existing population discovery constructed only S169.
 The shared controller component binds each descriptor, compiled body and
 controller session. Native model transport, execution and independent readback
-now pass the 106-control zero-world gate. The declared four-world, three-shape
-native route check is next; it has not launched.
+now pass the 110-control zero-world gate. The first native attempt constructed
+four CPU models, then refused different shared `dof_length` values before GPU
+construction or stepping. The successor groups the same four cells into three
+body-shape batches; its native check is next.
 
 | Record | Status and scope |
 | --- | --- |
@@ -17,7 +19,8 @@ native route check is next; it has not launched.
 | [Shortlist component](../sdk/discovery/population_shortlist_component_result_v1.json) | Complete 128-control zero-world gate for the declared route |
 | [Shortlist native result](../sdk/discovery/population_shortlist_native_result_v1.json) | 20 fresh twelve-second worlds, full capture and independent replay; 14 eligible, six performance failures, zero invalid |
 | [Mixed-creature component](../sdk/discovery/creature_batch_component_v1.json) | 21 controls pass; 64 cells across 32 compiled shapes match scalar execution; zero worlds and no native launch authorization |
-| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v2.json) | 106 controls pass; four fresh worlds and three shapes declared for a 0.2-second route check; zero native worlds opened |
+| [Native route v1 refusal](../sdk/discovery/creature_route_native_failure_v1.json) | Four CPU models constructed; shared model fields differed; zero GPU worlds and zero steps |
+| [Grouped native route gate](../sdk/discovery/creature_native_component_v3.json) | 110 controls pass; four fresh worlds in three body-shape batches declared for a 0.2-second route check |
 
 The native shortlist came from prospective source freeze ca57f6bb.
 Both 55 and 27 remained eligible under 75% left-side actuation at the two

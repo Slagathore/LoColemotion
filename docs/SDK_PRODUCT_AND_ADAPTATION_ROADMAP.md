@@ -19,7 +19,8 @@ include that question in the broader program when it helps select a usable polic
 | [Full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json): 20 fresh worlds, 12 seconds each | Profiles 55 and 27 stay eligible under weakened actuation at both exposed initial lateral velocities; baseline, 08 and 18 fail |
 | Nominal-body tradeoff | All five profiles pass both starts; mean velocity errors are baseline 0.08838, 08 0.08573, 18 0.08778, 55 0.09194 and 27 0.09115 m/s |
 | [Preserved population v1 failure](../sdk/discovery/population_discovery_native_failure_v1.json) | Canary failure; zero population worlds opened |
-| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v2.json) | 106 controls pass, including the 32-shape controller check and new model transport/reader controls; zero native worlds; four-world, three-shape native check declared |
+| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v3.json) | 110 controls pass; the four-world successor uses three separate body-shape batches and complete model transport/reader checks |
+| [Native route v1 refusal](../sdk/discovery/creature_route_native_failure_v1.json) | Four CPU models constructed; differing shared `dof_length` prevented GPU construction; zero GPU worlds and zero steps |
 | Scope of these runs | No learned selection, online correction memory, new morphology result, recovery qualification, real-time qualification or release authority |
 
 The shortlist's 28,800 controller decisions and 144,000 native samples were
@@ -30,8 +31,9 @@ remain retained; memory mechanics worked, but useful memory benefit was unproved
 
 1. **Verify the native route for creature variation.** Shared model transport,
    execution and independent replay are implemented and pass the zero-world
-   gate. Run the declared four-world, three-shape construction/step check from
-   a clean pushed freeze. It checks per-creature geometry, compiled constants,
+   gate. Run the successor four-world check in three body-shape batches from
+   a clean pushed freeze. The first attempt refused differing shared model
+   constants before GPU construction. The successor checks geometry, constants,
    actuator conditions and observation/solver joins. Native execution remains
    unproved until that attempt completes; the gate grants no locomotion result.
 2. **Run a bounded breadth search.** Declare the creature population, controller

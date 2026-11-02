@@ -1,0 +1,285 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "campaign_id": "creature_route_v2",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "mode": "route_ghost",
+  "purpose": "Prove the grouped mixed-creature native path without sharing geometry-dependent static engine fields across different shapes.",
+  "controller_component": {
+    "path": "sdk/discovery/creature_batch_component_v1.json",
+    "sha256": "48641c186f4e33e3386f71d24af522309d567ae2cbdd49fa30c26deb7835bdbc"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "seed": 1061105,
+  "outer_steps": 24,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "capture_mode": "full",
+  "native_reads_reduced": false,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 4294967296,
+  "maximum_worker_wall_seconds": 900,
+  "maximum_reader_wall_seconds": 900,
+  "cells": [
+    {
+      "cell_id": "s169_baseline",
+      "descriptor": {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      "profile": {
+        "id": "baseline",
+        "factor": null,
+        "ordered_coefficients": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "cell_id": "shape_a_nominal",
+      "descriptor": {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      "profile": {
+        "id": "joint_population_08",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          -0.05555555555555555,
+          -0.24603174603174605,
+          0.1507936507936508,
+          0.23809523809523808,
+          0.06349206349206349,
+          0.07142857142857145,
+          0.20634920634920634,
+          -0.15873015873015872
+        ]
+      }
+    },
+    {
+      "cell_id": "shape_b_weak_left",
+      "descriptor": {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_b",
+        "torso_length_scale": 1.1,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 0.9
+      },
+      "profile": {
+        "id": "joint_population_55",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.23015873015873017,
+          0.18253968253968256,
+          0.2222222222222222,
+          -0.06349206349206349,
+          0.23015873015873017,
+          0.20634920634920634,
+          -0.16666666666666669,
+          -0.031746031746031744
+        ]
+      },
+      "motor_effectiveness": [
+        0.75,
+        0.75,
+        1.0,
+        1.0,
+        0.75,
+        0.75,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "cell_id": "shape_a_weak_left",
+      "descriptor": {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      "profile": {
+        "id": "joint_population_27",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.23809523809523808,
+          -0.23015873015873017,
+          0.2142857142857143,
+          -0.23015873015873017,
+          0.11904761904761907,
+          -0.03968253968253968,
+          -0.12698412698412698,
+          0.1111111111111111
+        ]
+      },
+      "motor_effectiveness": [
+        0.75,
+        0.75,
+        1.0,
+        1.0,
+        0.75,
+        0.75,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "initial_lateral_velocities_m_s": [
+    0.001,
+    0.002,
+    0.003,
+    -0.001
+  ],
+  "coverage": [
+    "Three distinct shapes and four isolated controller sessions in one native GPU batch",
+    "Transport every compiled model field and refuse unsupported non-batched differences",
+    "Per-world geometry, inertia, compiled constants and actuator gains/caps including a same-shape condition pair",
+    "Native construction, graph capture without stepping, repeated prepare and five-substep integration",
+    "Own-model observation readback, contact world identities, named force sensors and solver-input continuity",
+    "Full retained capture, independently reconstructed scalar decisions and native stream validation",
+    "Retained-handle containment, single-use claim, source/runtime drift checks and capture timing",
+    "Separate complete native model batches by compiled body-shape identity; preserve all original cells and conditions.",
+    "Retain complete per-model source snapshots before transport; reject changed static fields within every shape group.",
+    "Independent per-batch replay reconstructs all cells, global mapping and aggregate denominators."
+  ],
+  "not_covered": [
+    "Locomotion success or recovery",
+    "Population or throughput advantage",
+    "Other topologies or continuous morphology coverage",
+    "Learned selection or online memory benefit",
+    "Held-out evaluation or release qualification",
+    "Different body shapes sharing one native Model; throughput or batching efficiency claims."
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    }
+  ],
+  "batch_partition": "body_shape",
+  "predecessor": {
+    "path": "sdk/discovery/creature_route_native_failure_v1.json",
+    "sha256": "0bca5145df69738d0034b513e0efb74d9e18c1b2d1e0743f2b8c7b15951b4808"
+  },
+  "production_entrypoints": [
+    "run_creature_native.main",
+    "CreatureBatch",
+    "compile_creature",
+    "partition",
+    "batch_contract",
+    "run_batch",
+    "mujoco.MjModel.from_xml_string",
+    "mujoco_warp.put_model",
+    "pack_models",
+    "mujoco_warp.put_data",
+    "mujoco_warp.step1",
+    "integration_sequence",
+    "SubstepHistory",
+    "StreamValidator",
+    "audit",
+    "audit_batch"
+  ]
+}

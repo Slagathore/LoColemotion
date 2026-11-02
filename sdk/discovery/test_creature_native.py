@@ -73,7 +73,8 @@ class CreatureNativeControls(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.core_path = Path(os.environ["QUADRUPED_TEST_CORE"])
-        cls.c = route.declaration(route.HERE / "creature_route_v1.json")
+        cls.c = route.declaration(route.HERE / "creature_route_v2.json")
+        cls.c["batch_partition"] = "single"
         if sha(cls.core_path) != cls.c["core_sha256"]:
             raise ValueError("Mixed-native control core binding")
         cls.root = Path(os.environ["EXPLORER_TEST_OUTPUT"]) / "creature-native"
@@ -143,29 +144,59 @@ class CreatureNativeControls(unittest.TestCase):
                 validator.native([next(trace) for _ in self.creatures])
         return validator.finish()
 
-    def retained_fixture(self, *, controls=None, native=None, timing=None, transport=None):
-        folder = self.root / uuid.uuid4().hex
+    def retained_fixture(self, *, controls=None, native=None, timing=None, transport=None, indices=None, folder=None):
+        indices = list(range(len(self.creatures))) if indices is None else indices
+        local = {global_index: i for i, global_index in enumerate(indices)}
+        c = route.batch_contract(self.c, indices)
+        creatures = [self.creatures[i] for i in indices]
+        metas = [self.metadata[i] for i in indices]
+        controls = copy.deepcopy([r for r in (self.controls if controls is None else controls) if r["cell"] in local])
+        native = copy.deepcopy([r for r in (self.native if native is None else native) if r["cell"] in local])
+        for row in controls + native:
+            row["cell"] = local[row["cell"]]
+            contacts = row["native_observation"]["contacts"] if "native_observation" in row else row["contacts"]
+            for slot, hit in enumerate(contacts):
+                hit.update(world=row["cell"], native_index=row["cell"]*4+slot)
+            if "batch_contacts" in row:
+                row["batch_contacts"] = len(indices)*4
+        transport = copy.deepcopy(transport) if transport is not None else dict(
+            source_models=[self.transport["source_models"][i] for i in indices])
+        if "packed_model" not in transport:
+            packed, differing = model.merge_snapshots(transport["source_models"])
+            transport.update(packed_model=packed, differing_fields=differing)
+        folder = self.root / uuid.uuid4().hex if folder is None else folder
         folder.mkdir()
-        for index, (creature, meta) in enumerate(zip(self.creatures, self.metadata, strict=True)):
+        for index, (creature, meta) in enumerate(zip(creatures, metas, strict=True)):
             directory = folder / ("cell_" + str(index)); directory.mkdir()
             route.write_new(directory / "creature.json", creature)
             route.write_new(directory / "native-model.json", meta)
             (directory / "model.xml").write_bytes(creature["model_xml"].encode())
-        route.write_new(folder / "model-transport.json", self.transport if transport is None else transport)
-        route.write_new(folder / "model-after.json", self.transport["packed_model"])
+        route.write_new(folder / "source-models.json", transport["source_models"])
+        route.write_new(folder / "model-transport.json", transport)
+        route.write_new(folder / "model-after.json", transport["packed_model"])
         timings = [dict(outer_step=i, prepare_s=.001, observation_readback_s=.002, controller_s=.003,
             controller_capture_transfer_s=.001, integration_s=.003, capture_validation_write_s=.002, outer_total_s=.013)
             for i in range(self.c["outer_steps"])]
-        for name, rows in [("controller", self.controls if controls is None else controls),
-                           ("trace", self.native if native is None else native), ("timing", timings if timing is None else timing)]:
+        for name, rows in [("controller", controls), ("trace", native), ("timing", timings if timing is None else timing)]:
             (folder / (name + ".jsonl")).write_bytes(("".join(json.dumps(row)+"\n" for row in rows)).encode())
         route.write_new(folder / "worker-result.json", dict(schema_version="locolemotion_creature_worker_v1",
             ledger_scope=self.c["ledger_scope"], ok=True, synthetic=True, model_unchanged=True,
-            constructed_gpu_worlds=4, native_model_constructions=4, stepped_cpu_worlds=0,
-            controller_rows=len(self.controls), native_rows=len(self.native), metrics=self.validate(),
+            constructed_gpu_worlds=len(indices), native_model_constructions=len(indices), stepped_cpu_worlds=0,
+            controller_rows=len(controls), native_rows=len(native), metrics=[self.validate()[i] for i in indices],
             stream_sha256={name: sha(folder / (name + ".jsonl")) for name in ("controller", "trace", "timing")},
             **{key: False for key in route.FLAGS}))
         return folder
+
+    def grouped_fixture(self):
+        c = dict(self.c, batch_partition="body_shape")
+        plan = route.preflight(c, self.core_path)["batches"]
+        folder = self.root / uuid.uuid4().hex; folder.mkdir()
+        groups = []
+        for group in plan:
+            target = self.retained_fixture(indices=group["cell_indices"], folder=folder / group["batch_id"])
+            groups.append(dict(group, result=json.loads((target / "worker-result.json").read_text())))
+        route.write_new(folder / "worker-result.json", route.group_summary(c, groups, synthetic=True))
+        return c, folder
 
     def test_32_model_transport_preserves_nested_constants_and_all_fields(self):
         inputs = [example(float(i)) for i in range(32)]
@@ -296,23 +327,69 @@ class CreatureNativeControls(unittest.TestCase):
     def test_missing_gate_and_containment_refuse_before_native_construction(self):
         folder = self.root / uuid.uuid4().hex; folder.mkdir()
         with self.assertRaises(ValueError):
-            route.run(folder, folder / "absent.permit", self.c, route.HERE / "creature_route_v1.json", self.core_path)
+            route.run(folder, folder / "absent.permit", self.c, route.HERE / "creature_route_v2.json", self.core_path)
         with self.assertRaises(FileNotFoundError):
-            route.validate_launch(folder, self.c, route.HERE / "creature_route_v1.json")
+            route.validate_launch(folder, self.c, route.HERE / "creature_route_v2.json")
 
     def test_declaration_scope_capacity_clock_and_control_population_refuse(self):
-        original = json.loads((route.HERE / "creature_route_v1.json").read_text())
+        original = json.loads((route.HERE / "creature_route_v2.json").read_text())
         for key, value in [("release_authority", True), ("training_data_authority", True), ("mode", "qualification"),
                            ("outer_steps", 0), ("outer_steps", 1441), ("njmax", 1), ("capture_mode", "compact"),
-                           ("initial_lateral_velocities_m_s", []), ("safety_controls", [])]:
+                           ("initial_lateral_velocities_m_s", []), ("safety_controls", []), ("batch_partition", "omit_constants")]:
             c = copy.deepcopy(original); c[key] = value
             with patch.object(Path, "read_text", return_value=json.dumps(c)):
-                with self.assertRaises(ValueError): route.declaration(route.HERE / "creature_route_v1.json")
+                with self.assertRaises(ValueError): route.declaration(route.HERE / "creature_route_v2.json")
 
     def test_preflight_closes_real_sessions_without_native_construction(self):
         result = route.preflight(self.c, self.core_path)
         self.assertEqual((result["world_build_count"], result["solver_steps"], result["planned_gpu_worlds"]), (0, 0, 4))
         self.assertEqual(result["distinct_body_shapes"], 3)
+
+    def test_shape_partition_preserves_aliases_and_32_real_compiled_bodies(self):
+        c = dict(self.c, batch_partition="body_shape")
+        self.assertEqual([g["cell_indices"] for g in route.preflight(c, self.core_path)["batches"]], [[0], [1, 3], [2]])
+        from showcase_model import generated
+        c = copy.deepcopy(c); c["cells"], c["initial_lateral_velocities_m_s"] = [], []
+        for i in range(32):
+            for j in range(2):
+                descriptor = generated(1000+i)
+                descriptor["morphology_id"] = f"shape_{i}_alias_{j}"
+                c["cells"].append(dict(cell_id=f"cell_{i}_{j}", descriptor=descriptor, profile=self.c["cells"][j]["profile"]))
+                c["initial_lateral_velocities_m_s"].append(.001)
+        plan = route.preflight(c, self.core_path)
+        self.assertEqual(plan["distinct_body_shapes"], 32)
+        self.assertEqual([g["cell_indices"] for g in plan["batches"]], [[2*i, 2*i+1] for i in range(32)])
+
+    def test_group_contract_preserves_conditions_clocks_and_refuses_bad_indices(self):
+        c = route.batch_contract(self.c, [1, 3])
+        self.assertEqual(c["cells"], [self.c["cells"][1], self.c["cells"][3]])
+        self.assertEqual(c["initial_lateral_velocities_m_s"], [self.c["initial_lateral_velocities_m_s"][i] for i in [1, 3]])
+        self.assertEqual(c["naconmax"], 128)
+        self.assertEqual(c["outer_steps"], self.c["outer_steps"])
+        for indices in ([], [0, 0], [4], [-1], [True]):
+            with self.assertRaises(ValueError): route.batch_contract(self.c, indices)
+        bindings = [dict(v["binding"], cell_id=self.c["cells"][i]["cell_id"]) for i, v in enumerate(self.creatures)]
+        with self.assertRaises(ValueError): route.partition(self.c, bindings[::-1])
+
+    def test_grouped_reader_replays_every_cell_and_original_mapping(self):
+        c, folder = self.grouped_fixture()
+        result = route.audit(folder, c, self.core_path, synthetic=True)
+        self.assertEqual((result["gpu_batches"], result["gpu_worlds"], result["distinct_body_shapes"]), (3, 4, 3))
+        self.assertEqual((result["controller_rows_replayed"], result["native_rows_verified"], result["reader_world_build_count"]), (12, 60, 0))
+        self.assertEqual(result["metrics"], self.validate())
+        with self.assertRaises(ValueError): route.audit(folder, c, self.core_path)
+
+    def test_grouped_reader_refuses_omitted_crossed_counts_and_source_snapshots(self):
+        for mutation in ("omit", "cross", "count", "source"):
+            c, folder = self.grouped_fixture()
+            path = folder / "worker-result.json"; r = json.loads(path.read_text())
+            if mutation == "omit": r["groups"].pop()
+            if mutation == "cross": r["groups"][1]["cell_indices"].reverse()
+            if mutation == "count": r["constructed_gpu_worlds"] += 1
+            if mutation == "source":
+                (folder / "batch_000/source-models.json").write_text("[]")
+            path.write_text(json.dumps(r))
+            with self.assertRaises(ValueError): route.audit(folder, c, self.core_path, synthetic=True)
 
 
 if __name__ == "__main__":
