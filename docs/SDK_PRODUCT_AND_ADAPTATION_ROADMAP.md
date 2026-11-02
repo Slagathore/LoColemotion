@@ -19,9 +19,10 @@ include that question in the broader program when it helps select a usable polic
 | [Full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json): 20 fresh worlds, 12 seconds each | Profiles 55 and 27 stay eligible under weakened actuation at both exposed initial lateral velocities; baseline, 08 and 18 fail |
 | Nominal-body tradeoff | All five profiles pass both starts; mean velocity errors are baseline 0.08838, 08 0.08573, 18 0.08778, 55 0.09194 and 27 0.09115 m/s |
 | [Preserved population v1 failure](../sdk/discovery/population_discovery_native_failure_v1.json) | Canary failure; zero population worlds opened |
-| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v3.json) | 110 controls pass; the four-world successor uses three separate body-shape batches and complete model transport/reader checks |
+| [Mixed-creature native route](../sdk/discovery/creature_route_native_result_v2.json) | Four fresh GPU worlds across three real body shapes complete the 0.2-second route check; 96 decisions and 480 native samples independently replayed |
 | [Native route v1 refusal](../sdk/discovery/creature_route_native_failure_v1.json) | Four CPU models constructed; differing shared `dof_length` prevented GPU construction; zero GPU worlds and zero steps |
-| Scope of these runs | No learned selection, online correction memory, new morphology result, recovery qualification, real-time qualification or release authority |
+| [Actual-creature breadth gate](../sdk/discovery/creature_breadth_component_v1.json) | 117 controls pass; 240 two-second worlds declared across 24 bodies, five profiles and two actuator conditions; zero breadth worlds yet |
+| Scope of these runs | Native construction/step/readback covers three bounded shapes; no learned selection, online correction memory, new locomotion qualification, recovery, real-time or release authority |
 
 The shortlist's 28,800 controller decisions and 144,000 native samples were
 independently replayed. Its 14 eligible and six failed episodes remain finite
@@ -29,25 +30,20 @@ development evidence. Failed episodes have no quality score. Earlier
 [learned influence and memory experiments](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
 remain retained; memory mechanics worked, but useful memory benefit was unproved.
 
-1. **Verify the native route for creature variation.** Shared model transport,
-   execution and independent replay are implemented and pass the zero-world
-   gate. Run the successor four-world check in three body-shape batches from
-   a clean pushed freeze. The first attempt refused differing shared model
-   constants before GPU construction. The successor checks geometry, constants,
-   actuator conditions and observation/solver joins. Native execution remains
-   unproved until that attempt completes; the gate grants no locomotion result.
-2. **Run a bounded breadth search.** Declare the creature population, controller
-   references (including 08, 18, 55 and 27), baseline, conditions, budget,
-   selection rule and reduced-capture limits before launch. Retain all failures
-   and rank within each creature/condition; do not advance only easy bodies.
-   Use full-capture canaries and live validation. Keep evaluation groups closed.
-3. **Challenge a frozen, diverse shortlist.** Use fresh worlds, full capture,
+1. **Run the declared breadth search.** The native route is verified. Publish the
+   [breadth freeze](../sdk/discovery/creature_breadth_v1.json), rerun its complete
+   gate, then execute 24 body-shape groups of ten worlds: baseline and 08/18/55/27,
+   nominal and left-side 75% actuation, one exposed start, two seconds each.
+   Keep full capture and live validation; recording was about 16% of the short
+   route's stepping-loop cost. Retain every failed body and condition, rank
+   within each group, and permit empty shortlists. Keep evaluation groups closed.
+2. **Challenge a frozen, diverse shortlist.** Use fresh worlds, full capture,
    independent replay and the prospective acceptance criteria. Test whether
    useful condition-based choices exist before fitting inference. A choice
    supplied with the true condition is an oracle comparison, not trained Tier 2.
    Training needs a separate declared corpus and held-out test; reduced discovery
    records do not become training or qualification data retroactively.
-4. **Turn useful results into SDK and Studio behavior.** After the first breadth
+3. **Turn useful results into SDK and Studio behavior.** After the first breadth
    batch, take a product checkpoint before another narrow tuning sequence.
    The next Studio increment is fall detection, live recovery handoff and resumed
    walking on the same bodies. Profile startup and stepping on that actual route.

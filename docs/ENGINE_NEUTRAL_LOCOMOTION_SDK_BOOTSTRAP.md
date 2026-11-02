@@ -16,8 +16,9 @@ historical instructions.
 | Studio | Live native routes and installed-package evidence exist; fast Godot recovery handoff and current startup/stepping performance remain product work |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
-| SDK2 creature route | [110 passing controls](../sdk/discovery/creature_native_component_v3.json): four-world successor in three body-shape batches; [v1 refused shared model differences](../sdk/discovery/creature_route_native_failure_v1.json) before GPU construction or stepping |
-| Unqualified | Learned Tier 2, Tier 3 memory, new morphology coverage, recovery/withdrawal, real time, broad robustness, cross-engine equivalence and full release |
+| SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
+| SDK2 actual-creature breadth | [117 passing controls](../sdk/discovery/creature_breadth_component_v1.json); 240 fresh two-second worlds on 24 bodies declared, not yet run |
+| Unqualified | Learned Tier 2, Tier 3 memory, broad morphology locomotion coverage, recovery/withdrawal, real time, robustness, cross-engine equivalence and full release |
 
 SDK1 package qualification does not grant permission to redistribute the
 watermarked native candidates or claim unrestricted morphology support.

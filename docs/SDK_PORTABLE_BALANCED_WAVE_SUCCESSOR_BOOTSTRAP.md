@@ -3,14 +3,12 @@
 ## Current SDK2 native evidence - 2026-11-01
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The next route must vary actual bounded quadruped descriptors as well as
-controller candidates. Existing population discovery constructed only S169.
-The shared controller component binds each descriptor, compiled body and
-controller session. Native model transport, execution and independent readback
-now pass the 110-control zero-world gate. The first native attempt constructed
-four CPU models, then refused different shared `dof_length` values before GPU
-construction or stepping. The successor groups the same four cells into three
-body-shape batches; its native check is next.
+The native route now constructs and steps actual bounded quadruped variants.
+Four fresh GPU worlds across three shapes passed the 0.2-second route check,
+including full model transport and independent replay. Different body shapes
+use separate batches because the engine has shared geometry-dependent constants.
+The first refused attempt remains retained. Next is the declared 24-body,
+240-world breadth cohort; its complete 117-control zero-world gate passes.
 
 | Record | Status and scope |
 | --- | --- |
@@ -21,6 +19,8 @@ body-shape batches; its native check is next.
 | [Mixed-creature component](../sdk/discovery/creature_batch_component_v1.json) | 21 controls pass; 64 cells across 32 compiled shapes match scalar execution; zero worlds and no native launch authorization |
 | [Native route v1 refusal](../sdk/discovery/creature_route_native_failure_v1.json) | Four CPU models constructed; shared model fields differed; zero GPU worlds and zero steps |
 | [Grouped native route gate](../sdk/discovery/creature_native_component_v3.json) | 110 controls pass; four fresh worlds in three body-shape batches declared for a 0.2-second route check |
+| [Grouped native route result](../sdk/discovery/creature_route_native_result_v2.json) | All four worlds complete; 96 controller decisions and 480 native samples independently replayed; route proof only |
+| [Actual-creature breadth gate](../sdk/discovery/creature_breadth_component_v1.json) | 117 controls pass; 24 bodies, five profiles, two actuator conditions and one exposed start declared for two seconds; zero breadth worlds yet |
 
 The native shortlist came from prospective source freeze ca57f6bb.
 Both 55 and 27 remained eligible under 75% left-side actuation at the two

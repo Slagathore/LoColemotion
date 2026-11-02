@@ -10,7 +10,7 @@ import sys
 import time
 import uuid
 
-from creature_native import ROOT, HERE, FLAGS, GATES, MODEL_SOURCES, declaration, require, sha
+from creature_native import ROOT, HERE, FLAGS, gates, MODEL_SOURCES, declaration, require, sha
 from gpu_measurement_probe import write_new
 from run_gpu_measurement_probe import source_identity
 from run_gpu_motor_effectiveness import bindings as inherited_bindings
@@ -72,7 +72,7 @@ def main():
             SPORESPORE_LOCOMOTION_LIBRARY=str(baseline), PYTHONIOENCODING="utf-8",
             OPENBLAS_NUM_THREADS="1", OMP_NUM_THREADS="1", MKL_NUM_THREADS="1")
         batch_env = dict(env, QUADRUPED_TEST_CORE=str(core), SPORESPORE_LOCOMOTION_LIBRARY=str(core))
-        for index, (name, module, count) in enumerate(GATES):
+        for index, (name, module, count) in enumerate(gates(c)):
             print(json.dumps(dict(stage=name, controls=count)), flush=True)
             artifacts = folder / (name + "-artifacts")
             artifacts.mkdir()
@@ -87,7 +87,7 @@ def main():
         preflight = json.loads((folder / "runtime-gate/stdout.log").read_text(encoding="utf-8"))
         require(preflight["ok"] is True and preflight["world_build_count"] == preflight["solver_steps"] == 0
                 and preflight["planned_gpu_worlds"] == len(c["cells"])
-                and receipt["safety_controls"] == {n:k for n, _, k in GATES}, "Creature incomplete safety gate")
+                and receipt["safety_controls"] == {n:k for n, _, k in gates(c)}, "Creature incomplete safety gate")
         def unchanged():
             require(bindings() == receipt["bindings"] and source_identity(args.run) == source
                     and status() == original_status, "Creature source/runtime drift")

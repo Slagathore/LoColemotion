@@ -23,11 +23,12 @@ from gpu_measurement_probe import write_new
 from audit_gpu_portable_search import validate_observation
 from audit_gpu_batch_execution import same_bits
 from actuation_measurement import named_force_samples
+import creature_population as population
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
                  "run_creature_native.py", "test_creature_batch.py", "test_creature_native.py",
-                 "gpu_batch_execution.py"]
+                 "gpu_batch_execution.py", "creature_population.py", "test_creature_population.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -44,9 +45,19 @@ GATES = [
 ]
 
 
+def gates(c):
+    return GATES + ([("creature-population", "test_creature_population", 7)] if "population_spec" in c else [])
+
+
 def declaration(path):
     require(path.resolve().is_relative_to(ROOT), "Creature declaration outside repository")
     c = json.loads(path.read_text(encoding="utf-8"))
+    if "population_spec" in c:
+        require(c["mode"] == "development_discovery" and c["batch_partition"] == "body_shape"
+                and not any(key in c for key in ("cells", "initial_lateral_velocities_m_s", "population_metadata")),
+                "Creature factored population scope")
+        c.update(population.expand(c["population_spec"]))
+        population.validate_selection(c["selection"])
     require(c["schema_version"] == "locolemotion_creature_native_v1"
             and identifier(c["campaign_id"])
             and c["mode"] in ("route_ghost", "development_discovery")
@@ -60,7 +71,7 @@ def declaration(path):
             "Creature dimensions or clocks")
     require(c["device"] == "cuda:0" and c["njmax"] == 128 and c["njmax_nnz"] == 1792
             and c["nvmax"] == 14 and c["naconmax_per_world"] == 64
-            and c["safety_controls"] == [dict(name=n, module=m, count=k) for n, m, k in GATES],
+            and c["safety_controls"] == [dict(name=n, module=m, count=k) for n, m, k in gates(c)],
             "Creature capacity or complete gate")
     require(c["runtime"] == {"mujoco": "3.11.0", "mujoco-warp": "3.11.0", "warp-lang": "1.16.0", "numpy": "2.4.6"}
             and c["ledger_scope"] == dict(subsystem="discovery", engine_scope="mujoco_warp",
@@ -91,6 +102,8 @@ def initial_arrays(creatures, c):
 def preflight(c, core_path):
     import mujoco_warp as mjw
     require(sha(core_path) == c["core_sha256"], "Creature core binding")
+    if "population_spec" in c:
+        population.verify_expansion(c)
     require({name: importlib.metadata.version(name) for name in c["runtime"]} == c["runtime"],
             "Creature runtime versions")
     require(all(callable(getattr(mjw, name, None)) for name in ("put_model", "put_data", "step1", "step2", "get_data_into")),
@@ -121,7 +134,7 @@ def validate_launch(folder, c, contract_path):
             "Creature clean native owner")
     require(gate["ok"] is True and gate["source_commit"] == owner["source_commit"] == claim["source_commit"]
             and gate["declaration_sha256"] == sha(folder.parent / "declaration.json")
-            and gate["safety_controls"] == {n:k for n, _, k in GATES}
+            and gate["safety_controls"] == {n:k for n, _, k in gates(c)}
             and gate["preflight"]["world_build_count"] == gate["preflight"]["solver_steps"] == 0
             and gate["preflight"]["planned_gpu_worlds"] == len(c["cells"]),
             "Creature complete native gate")
@@ -346,7 +359,8 @@ class StreamValidator:
         self.control_counts, self.native_counts = [0] * self.nworld, [0] * self.nworld
         self.positions, self.velocities = initial_arrays(creatures, c)
         self.metrics = [dict(minimum_height_m=math.inf, maximum_tilt_rad=0., torso_contact_steps=0,
-                             safe_no_actuation_steps=0, forward_displacement_m=0.) for _ in creatures]
+                             safe_no_actuation_steps=0, ground_contact_steps=0, nonzero_force_steps=0,
+                             forward_displacement_m=0., lateral_displacement_m=0.) for _ in creatures]
 
     def control(self, row):
         cell, outer = row["cell"], row["outer_step"]
@@ -405,7 +419,10 @@ class StreamValidator:
             m["minimum_height_m"] = min(m["minimum_height_m"], row["qpos"][2])
             m["maximum_tilt_rad"] = max(m["maximum_tilt_rad"], math.acos(max(-1., min(1., 1-2*(row["qpos"][4]**2+row["qpos"][5]**2)))))
             m["torso_contact_steps"] += int(any(1 in hit["geom"] for hit in row["contacts"]))
+            m["ground_contact_steps"] += int(bool(row["contacts"]))
+            m["nonzero_force_steps"] += int(any(v != 0. for v in row["actuator_force_nm"]))
             m["forward_displacement_m"] = row["qpos"][0] - self.creatures[cell]["spec"]["initial_qpos"][0]
+            m["lateral_displacement_m"] = row["qpos"][1] - self.creatures[cell]["spec"]["initial_qpos"][1]
             self.previous[cell] = row
             self.native_counts[cell] += 1
 
@@ -438,13 +455,16 @@ def audit(folder, c, core_path, *, synthetic=False):
             timing[key] = timing.get(key, 0.) + value
         differing.update(report["differing_model_fields"])
     require(all(m is not None for m in metrics), "Creature grouped metric denominator")
-    return dict(schema_version="locolemotion_creature_native_audit_v1", ledger_scope=c["ledger_scope"],
+    result = dict(schema_version="locolemotion_creature_native_audit_v1", ledger_scope=c["ledger_scope"],
         ok=True, synthetic=synthetic, reader_world_build_count=0, gpu_worlds=len(c["cells"]),
         distinct_body_shapes=pre["distinct_body_shapes"], gpu_batches=len(reports), batches=reports,
         controller_rows_replayed=sum(g["audit"]["controller_rows_replayed"] for g in reports),
         native_rows_verified=sum(g["audit"]["native_rows_verified"] for g in reports),
         differing_model_fields=sorted(differing), metrics=metrics, timing_seconds=timing,
         **{key: False for key in FLAGS})
+    if "population_spec" in c:
+        result["assessment"] = population.assess(c, metrics, pre["bindings"])
+    return result
 
 
 def audit_batch(folder, c, core_path, *, synthetic=False):

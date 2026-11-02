@@ -1,0 +1,532 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "campaign_id": "creature_breadth_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "mode": "development_discovery",
+  "purpose": "Finite full-capture discovery across 24 actual body shapes, five profiles and two actuator conditions; retain all outcomes and rank within each body and condition.",
+  "controller_component": {
+    "path": "sdk/discovery/creature_batch_component_v1.json",
+    "sha256": "48641c186f4e33e3386f71d24af522309d567ae2cbdd49fa30c26deb7835bdbc"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "seed": 1061106,
+  "outer_steps": 240,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "capture_mode": "full",
+  "native_reads_reduced": false,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 17179869184,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 1800,
+  "coverage": [
+    "Every declared body/profile/condition cell constructs fresh state and its own controller session.",
+    "Separate GPU batches preserve complete compiled constants for each body shape.",
+    "Full controller and native capture, every solver input and five internal samples; no telemetry reduction.",
+    "Live native checks and independent scalar replay retain every performance failure through the fixed horizon.",
+    "Population expansion and complete per-body/condition ranking; failed quality is null and failed baselines yield no numeric gain.",
+    "One exposed start only; every body and condition remains visible, including empty shortlists.",
+    "Timing sections and original outputs retained under one contained native owner."
+  ],
+  "not_covered": [
+    "More than two seconds per world",
+    "Unseen starts or held-out evaluation",
+    "Other topology or unrestricted morphology",
+    "Training or learned selection",
+    "Online memory benefit or recovery",
+    "Real-time or superiority claims",
+    "Release qualification"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-population",
+      "module": "test_creature_population",
+      "count": 7
+    }
+  ],
+  "batch_partition": "body_shape",
+  "predecessor": {
+    "path": "sdk/discovery/creature_route_native_result_v2.json",
+    "sha256": "e5f772cdace266b7ac3578b7a0b9f24bfa0a9d0bca62a5fa6746c741a56502eb"
+  },
+  "production_entrypoints": [
+    "run_creature_native.main",
+    "CreatureBatch",
+    "compile_creature",
+    "partition",
+    "batch_contract",
+    "run_batch",
+    "mujoco.MjModel.from_xml_string",
+    "mujoco_warp.put_model",
+    "pack_models",
+    "mujoco_warp.put_data",
+    "mujoco_warp.step1",
+    "integration_sequence",
+    "SubstepHistory",
+    "StreamValidator",
+    "audit",
+    "audit_batch",
+    "creature_population.expand",
+    "creature_population.verify_expansion",
+    "creature_population.assess"
+  ],
+  "population_spec": {
+    "schema_version": "locolemotion_creature_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_b",
+        "torso_length_scale": 1.1,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6100",
+        "torso_length_scale": 1.0054413618765403,
+        "torso_width_scale": 0.9866371570356742,
+        "upper_length_fraction": 0.5270597092777164,
+        "hip_span_scale": 1.0035794621108984,
+        "foot_radius_scale": 0.9930018861528956,
+        "front_limb_mass_scale": 0.9465777663156805
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6101",
+        "torso_length_scale": 1.032854112873984,
+        "torso_width_scale": 0.9352174529887777,
+        "upper_length_fraction": 0.5271975998643781,
+        "hip_span_scale": 1.0141165560842764,
+        "foot_radius_scale": 1.0655881652994055,
+        "front_limb_mass_scale": 0.9042270536078669
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6102",
+        "torso_length_scale": 1.0235123813439888,
+        "torso_width_scale": 1.0516746711804705,
+        "upper_length_fraction": 0.5026226970000711,
+        "hip_span_scale": 1.0942745820605837,
+        "foot_radius_scale": 1.0402918825718324,
+        "front_limb_mass_scale": 1.079486293108083
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6103",
+        "torso_length_scale": 1.0535744198024215,
+        "torso_width_scale": 1.0332991562162757,
+        "upper_length_fraction": 0.5098777738981596,
+        "hip_span_scale": 1.099488118989274,
+        "foot_radius_scale": 1.0289813767021945,
+        "front_limb_mass_scale": 1.0982205605130226
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6104",
+        "torso_length_scale": 0.903945531417603,
+        "torso_width_scale": 1.0833634105006613,
+        "upper_length_fraction": 0.4819594522477033,
+        "hip_span_scale": 1.0131011707971576,
+        "foot_radius_scale": 0.9508855771391852,
+        "front_limb_mass_scale": 1.0770223273376522
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6105",
+        "torso_length_scale": 1.0052902267093982,
+        "torso_width_scale": 1.0935019718002301,
+        "upper_length_fraction": 0.48646168914541177,
+        "hip_span_scale": 0.9793139184078468,
+        "foot_radius_scale": 0.9242928356454458,
+        "front_limb_mass_scale": 1.038380685527432
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6106",
+        "torso_length_scale": 0.9019590498418452,
+        "torso_width_scale": 0.9601655727392449,
+        "upper_length_fraction": 0.5184519508477421,
+        "hip_span_scale": 1.0165552675995406,
+        "foot_radius_scale": 0.915240760849612,
+        "front_limb_mass_scale": 1.003843702865728
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6107",
+        "torso_length_scale": 0.9341446610712784,
+        "torso_width_scale": 1.0038158447257746,
+        "upper_length_fraction": 0.5346639538543914,
+        "hip_span_scale": 0.9168882945126129,
+        "foot_radius_scale": 0.9742543633268808,
+        "front_limb_mass_scale": 0.9061752081863059
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6108",
+        "torso_length_scale": 1.0452883556823453,
+        "torso_width_scale": 1.0699687431030835,
+        "upper_length_fraction": 0.5129426742864174,
+        "hip_span_scale": 1.00217542944061,
+        "foot_radius_scale": 0.9565339357258134,
+        "front_limb_mass_scale": 0.9243493220359901
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6109",
+        "torso_length_scale": 1.0936444497652456,
+        "torso_width_scale": 0.9217203858824727,
+        "upper_length_fraction": 0.5417046274155622,
+        "hip_span_scale": 1.0620312707410267,
+        "foot_radius_scale": 0.9437327049308766,
+        "front_limb_mass_scale": 0.933942142090281
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6110",
+        "torso_length_scale": 1.0253141368565415,
+        "torso_width_scale": 1.089447144416498,
+        "upper_length_fraction": 0.5175032612489311,
+        "hip_span_scale": 0.9498189928591761,
+        "foot_radius_scale": 1.0035879951677258,
+        "front_limb_mass_scale": 1.080298800715315
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6111",
+        "torso_length_scale": 1.0424520022567483,
+        "torso_width_scale": 1.084993004003771,
+        "upper_length_fraction": 0.4947883795771721,
+        "hip_span_scale": 1.0108968994372751,
+        "foot_radius_scale": 1.0176941298222388,
+        "front_limb_mass_scale": 0.9577338301245435
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6112",
+        "torso_length_scale": 0.9080588190835106,
+        "torso_width_scale": 1.0936438149292125,
+        "upper_length_fraction": 0.4976951603329962,
+        "hip_span_scale": 0.9397373455203458,
+        "foot_radius_scale": 0.98104870568054,
+        "front_limb_mass_scale": 1.0033493541421716
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6113",
+        "torso_length_scale": 0.9794287821462911,
+        "torso_width_scale": 0.9819624629528174,
+        "upper_length_fraction": 0.49890287933379945,
+        "hip_span_scale": 0.9235057165900957,
+        "foot_radius_scale": 0.9086695590076664,
+        "front_limb_mass_scale": 1.061568803843476
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6114",
+        "torso_length_scale": 0.9404690663890143,
+        "torso_width_scale": 1.0652589055628654,
+        "upper_length_fraction": 0.49274039572401446,
+        "hip_span_scale": 0.9729267384561074,
+        "foot_radius_scale": 1.0879637798266402,
+        "front_limb_mass_scale": 0.9438544581280682
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6115",
+        "torso_length_scale": 0.9291132598251834,
+        "torso_width_scale": 1.0764865745735557,
+        "upper_length_fraction": 0.5132865489631162,
+        "hip_span_scale": 1.0044550615606027,
+        "foot_radius_scale": 0.9776621062489371,
+        "front_limb_mass_scale": 1.0161221225085022
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6116",
+        "torso_length_scale": 0.9243773739841714,
+        "torso_width_scale": 1.092919998660898,
+        "upper_length_fraction": 0.5240690790312525,
+        "hip_span_scale": 0.9635037609989531,
+        "foot_radius_scale": 1.0822817410766805,
+        "front_limb_mass_scale": 1.0781984820911192
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6117",
+        "torso_length_scale": 0.9650571482407528,
+        "torso_width_scale": 1.0390060138280983,
+        "upper_length_fraction": 0.5278884186474346,
+        "hip_span_scale": 0.9397237037866665,
+        "foot_radius_scale": 0.9004445834552042,
+        "front_limb_mass_scale": 0.9710762090215171
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6118",
+        "torso_length_scale": 1.0937267390530852,
+        "torso_width_scale": 0.9497071418561291,
+        "upper_length_fraction": 0.524545024210714,
+        "hip_span_scale": 0.918469026595929,
+        "foot_radius_scale": 1.035439005153123,
+        "front_limb_mass_scale": 1.0326992915320907
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6119",
+        "torso_length_scale": 0.96862467989992,
+        "torso_width_scale": 0.9000615925062592,
+        "upper_length_fraction": 0.5442827379201266,
+        "hip_span_scale": 1.0212948075778072,
+        "foot_radius_scale": 0.9138043803660675,
+        "front_limb_mass_scale": 0.9144451240111248
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6120",
+        "torso_length_scale": 1.065861946289861,
+        "torso_width_scale": 0.9186885708986522,
+        "upper_length_fraction": 0.5499595331726502,
+        "hip_span_scale": 0.9753038432158772,
+        "foot_radius_scale": 1.0806298010006152,
+        "front_limb_mass_scale": 0.9656925824623771
+      }
+    ],
+    "profiles": [
+      {
+        "id": "baseline",
+        "factor": null,
+        "ordered_coefficients": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "id": "joint_population_08",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          -0.05555555555555555,
+          -0.24603174603174605,
+          0.1507936507936508,
+          0.23809523809523808,
+          0.06349206349206349,
+          0.07142857142857145,
+          0.20634920634920634,
+          -0.15873015873015872
+        ]
+      },
+      {
+        "id": "joint_population_18",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.05555555555555558,
+          -0.16666666666666669,
+          0.07936507936507936,
+          -0.19841269841269843,
+          -0.007936507936507936,
+          0.047619047619047616,
+          0.09523809523809523,
+          -0.09523809523809523
+        ]
+      },
+      {
+        "id": "joint_population_55",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.23015873015873017,
+          0.18253968253968256,
+          0.2222222222222222,
+          -0.06349206349206349,
+          0.23015873015873017,
+          0.20634920634920634,
+          -0.16666666666666669,
+          -0.031746031746031744
+        ]
+      },
+      {
+        "id": "joint_population_27",
+        "factor": 0.0,
+        "ordered_coefficients": [
+          0.23809523809523808,
+          -0.23015873015873017,
+          0.2142857142857143,
+          -0.23015873015873017,
+          0.11904761904761907,
+          -0.03968253968253968,
+          -0.12698412698412698,
+          0.1111111111111111
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "id": "left_075",
+        "motor_effectiveness": [
+          0.75,
+          0.75,
+          1.0,
+          1.0,
+          0.75,
+          0.75,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "exposed_001",
+        "lateral_velocity_m_s": 0.001
+      }
+    ]
+  },
+  "selection": {
+    "minimum_height_m": 0.25,
+    "maximum_tilt_rad": 0.6,
+    "maximum_torso_contact_steps": 0,
+    "maximum_safe_no_actuation_steps": 0,
+    "minimum_ground_contact_steps": 1,
+    "minimum_nonzero_force_steps": 1,
+    "target_planar_velocity_m_s": [
+      0.2,
+      0.0
+    ],
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_absolute_coefficient_distance": 0.1
+  },
+  "capture_decision": {
+    "profile": "full",
+    "native_reads_reduced": false,
+    "device_history_reduced": false,
+    "substeps_discarded": false,
+    "basis": "The route v2 full-capture stepping loop spent 0.38181080009962898 of 2.38316809994285 seconds in controller capture/transfer and capture validation/write. Retain full capture for this first breadth cohort; no reduced-capture canary is needed.",
+    "route_result_sha256": "e5f772cdace266b7ac3578b7a0b9f24bfa0a9d0bca62a5fa6746c741a56502eb"
+  },
+  "partition": "exposed_development",
+  "failure_policy": "Retain expected performance failures through the fixed horizon; invalid execution stops the entire cohort and grants no partial selection.",
+  "selection_scope": "Within each body and condition across all declared starts. Baseline is comparator only; retain every group, including empty shortlists. Rank eligible improving candidates by velocity error then declared candidate order; choose up to two with coefficient diversity.",
+  "confirmation_requirement": "Fresh longer full-capture worlds for a frozen diverse shortlist, with separate starts and prospective criteria. No discovery data becomes training or qualification evidence retroactively."
+}
