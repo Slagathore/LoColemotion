@@ -17,7 +17,7 @@ native route check is next; it has not launched.
 | [Shortlist component](../sdk/discovery/population_shortlist_component_result_v1.json) | Complete 128-control zero-world gate for the declared route |
 | [Shortlist native result](../sdk/discovery/population_shortlist_native_result_v1.json) | 20 fresh twelve-second worlds, full capture and independent replay; 14 eligible, six performance failures, zero invalid |
 | [Mixed-creature component](../sdk/discovery/creature_batch_component_v1.json) | 21 controls pass; 64 cells across 32 compiled shapes match scalar execution; zero worlds and no native launch authorization |
-| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v1.json) | 106 controls pass; four fresh worlds and three shapes declared for a 0.2-second route check; zero native worlds opened |
+| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v2.json) | 106 controls pass; four fresh worlds and three shapes declared for a 0.2-second route check; zero native worlds opened |
 
 The native shortlist came from prospective source freeze ca57f6bb.
 Both 55 and 27 remained eligible under 75% left-side actuation at the two

@@ -263,6 +263,8 @@ class CreatureNativeControls(unittest.TestCase):
             with self.assertRaises(ValueError): self.validate(controls=rows)
         rows = copy.deepcopy(self.controls); rows[0]["cell"] = 1
         with self.assertRaises(ValueError): self.validate(controls=rows)
+        rows = copy.deepcopy(self.controls); rows[0]["native_observation"]["time_s"] = .1
+        with self.assertRaises(ValueError): self.validate(controls=rows)
 
     def test_solver_force_contact_clock_and_missing_denominators_refuse(self):
         for key, value in [("ctrl", [9.]*8), ("actuator_force_nm", [99999.]*8),

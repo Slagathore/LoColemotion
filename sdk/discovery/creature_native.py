@@ -299,6 +299,8 @@ class StreamValidator:
         require(row["native_observation"]["qpos"] == (previous["qpos"] if previous else self.positions[cell].tolist())
                 and row["native_observation"]["qvel"] == (previous["qvel"] if previous else self.velocities[cell].tolist()),
                 "Creature prepared state continuity")
+        require(row["native_observation"]["time_s"] == (previous["time_s"] if previous else 0.),
+                "Creature prepared native clock continuity")
         self.controls[cell] = row
         self.control_counts[cell] += 1
         self.metrics[cell]["safe_no_actuation_steps"] += int(row["resolution"]["safe_no_actuation"])

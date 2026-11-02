@@ -19,7 +19,7 @@ include that question in the broader program when it helps select a usable polic
 | [Full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json): 20 fresh worlds, 12 seconds each | Profiles 55 and 27 stay eligible under weakened actuation at both exposed initial lateral velocities; baseline, 08 and 18 fail |
 | Nominal-body tradeoff | All five profiles pass both starts; mean velocity errors are baseline 0.08838, 08 0.08573, 18 0.08778, 55 0.09194 and 27 0.09115 m/s |
 | [Preserved population v1 failure](../sdk/discovery/population_discovery_native_failure_v1.json) | Canary failure; zero population worlds opened |
-| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v1.json) | 106 controls pass, including the 32-shape controller check and new model transport/reader controls; zero native worlds; four-world, three-shape native check declared |
+| [Mixed-creature native route gate](../sdk/discovery/creature_native_component_v2.json) | 106 controls pass, including the 32-shape controller check and new model transport/reader controls; zero native worlds; four-world, three-shape native check declared |
 | Scope of these runs | No learned selection, online correction memory, new morphology result, recovery qualification, real-time qualification or release authority |
 
 The shortlist's 28,800 controller decisions and 144,000 native samples were
