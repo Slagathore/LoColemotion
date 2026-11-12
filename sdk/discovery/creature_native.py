@@ -24,11 +24,13 @@ from audit_gpu_portable_search import validate_observation
 from audit_gpu_batch_execution import same_bits
 from actuation_measurement import named_force_samples
 import creature_population as population
+import creature_readback as readback
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
                  "run_creature_native.py", "test_creature_batch.py", "test_creature_native.py",
-                 "gpu_batch_execution.py", "creature_population.py", "test_creature_population.py"]
+                 "gpu_batch_execution.py", "creature_population.py", "test_creature_population.py",
+                 "creature_readback.py", "test_creature_readback.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -46,7 +48,9 @@ GATES = [
 
 
 def gates(c):
-    return GATES + ([("creature-population", "test_creature_population", 7)] if "population_spec" in c else [])
+    return (GATES + ([("creature-population", "test_creature_population", 7)] if "population_spec" in c else [])
+            + ([("creature-readback", "test_creature_readback", 12)]
+               if "readback" in c or "maximum_worlds_per_batch" in c else []))
 
 
 def declaration(path):
@@ -62,8 +66,10 @@ def declaration(path):
             and identifier(c["campaign_id"])
             and c["mode"] in ("route_ghost", "development_discovery")
             and c.get("batch_partition") in ("single", "body_shape")
-            and c["capture_mode"] == "full" and c["native_reads_reduced"] is False
+            and c["capture_mode"] == "full"
             and all(c[key] is False for key in FLAGS), "Creature declaration scope")
+    readback.options(c)
+    batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= 256
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
             and type(c["seed"]) is int and 0 <= c["seed"] <= 2147483647
@@ -143,17 +149,25 @@ def validate_launch(folder, c, contract_path):
             "Creature single-use native claim")
 
 
+def batch_limit(c):
+    limit = c.get("maximum_worlds_per_batch", 256)
+    require(type(limit) is int and 1 <= limit <= 256, "Creature batch limit")
+    require(c["batch_partition"] != "single" or len(c["cells"]) <= limit,
+            "Creature single batch exceeds limit")
+    return limit
+
+
 def partition(c, bindings):
     """Stable groups preserve every cell; geometry aliases share a group."""
     require(len(bindings) == len(c["cells"])
             and [b["cell_id"] for b in bindings] == [v["cell_id"] for v in c["cells"]],
             "Creature partition binding population")
-    groups = {}
+    limit, groups = batch_limit(c), {}
     for index, binding in enumerate(bindings):
         key = binding["body_shape_sha256"] if c["batch_partition"] == "body_shape" else "single"
         groups.setdefault(key, []).append(index)
-    return [dict(batch_id=f"batch_{i:03d}", cell_indices=indices)
-            for i, indices in enumerate(groups.values())]
+    chunks = [indices[start:start+limit] for indices in groups.values() for start in range(0, len(indices), limit)]
+    return [dict(batch_id=f"batch_{i:03d}", cell_indices=indices) for i, indices in enumerate(chunks)]
 
 
 def batch_contract(c, indices):
@@ -164,6 +178,7 @@ def batch_contract(c, indices):
     result.update(batch_partition="single", cells=[copy.deepcopy(c["cells"][i]) for i in indices],
                   initial_lateral_velocities_m_s=[c["initial_lateral_velocities_m_s"][i] for i in indices],
                   naconmax=len(indices)*c["naconmax_per_world"])
+    batch_limit(result)
     return result
 
 
@@ -212,6 +227,8 @@ def run_batch(folder, c, core_path, *, cache=None):
     require(jobs.current_in_job(), "Creature batch requires job containment")
     import warp as wp
     import mujoco_warp as mjw
+    read_options = readback.options(c)
+    stream_names = ["controller", "trace", "timing"] + (["readback"] if read_options["mode"] == "shared_snapshot" else [])
     result = dict(schema_version="locolemotion_creature_worker_v1", ok=False, synthetic=False,
         ledger_scope=c["ledger_scope"], constructed_gpu_worlds=0, native_model_constructions=0,
         stepped_cpu_worlds=0, controller_rows=0, native_rows=0, **{k: False for k in FLAGS})
@@ -254,6 +271,10 @@ def run_batch(folder, c, core_path, *, cache=None):
             validate_model_evidence(creature, metadata, snapshot)
         write_new(folder / "model-transport.json", transport)
         robots = [robot_view(core, v, m, d) for v, m, d in zip(creatures, models, views, strict=True)]
+        # These are observation-only host buffers; no additional world is stepped.
+        reference_views = [mujoco.MjData(m) for m in models] if read_options["reference_check"] else []
+        reference_robots = [robot_view(core, v, m, d)
+                            for v, m, d in zip(creatures, models, reference_views)]
         nworld = len(creatures)
         write_new(folder / "world-construction-started.json", dict(planned_gpu_worlds=nworld))
         wd = mjw.put_data(models[0], views[0], nworld=nworld, naconmax=c["naconmax"],
@@ -278,7 +299,7 @@ def run_batch(folder, c, core_path, *, cache=None):
             validator = StreamValidator(c, creatures, metadatas)
             with ExitStack() as output:
                 streams = {name: output.enter_context((folder / (name + ".jsonl")).open("x", encoding="utf-8", newline="\n"))
-                           for name in ("controller", "trace", "timing")}
+                           for name in stream_names}
                 def append(name, row):
                     streams[name].write(json.dumps(row, allow_nan=False, separators=(",", ":")) + "\n")
                     require(streams[name].tell() <= c["maximum_trace_bytes_per_stream"], "Creature capture budget")
@@ -289,30 +310,56 @@ def run_batch(folder, c, core_path, *, cache=None):
                     wp.capture_launch(prepare.graph)
                     wp.synchronize_device(device)
                     timing["prepare_s"] = time.perf_counter() - tick
-                    tick = time.perf_counter()
-                    snapshot = read_snapshot(wd, c, nworld, observations=True)
-                    observations, copies = [], []
-                    for index, (model, view, robot, cell) in enumerate(zip(models, views, robots, batch.controllers, strict=True)):
-                        mjw.get_data_into(view, model, wd, index)
-                        copies.append(bind_contact_compatibility_view(view, snapshot["contacts"][index]))
-                        verify_view(view, snapshot, index, snapshot["contacts"][index])
-                        state = robot.state_frame(outer, bridge._mujoco_to_canonical(cell.creature["spec"]["initial_qpos"][:3]))
-                        stability = robot.stability_state(outer)
-                        observations.append(dict(cell_id=cell.cell_id,
-                            descriptor_sha256=cell.binding["descriptor_sha256"], model_xml_sha256=cell.binding["model_xml_sha256"],
-                            state=state, stability=stability, kinematics=robot.endpoint_kinematics(stability)))
-                    timing["observation_readback_s"] = time.perf_counter() - tick
+                    def observe(data, host_views, host_robots):
+                        snapshot = read_snapshot(data, c, nworld, observations=True)
+                        observations, copies, native = [], [], []
+                        for index, (model, view, robot, cell) in enumerate(zip(models, host_views, host_robots, batch.controllers, strict=True)):
+                            # Keep the pinned engine's complete conversion, including constraint layout.
+                            mjw.get_data_into(view, model, data, index)
+                            copies.append(bind_contact_compatibility_view(view, snapshot["contacts"][index]))
+                            verify_view(view, snapshot, index, snapshot["contacts"][index])
+                            state = robot.state_frame(outer, bridge._mujoco_to_canonical(cell.creature["spec"]["initial_qpos"][:3]))
+                            stability = robot.stability_state(outer)
+                            observations.append(dict(cell_id=cell.cell_id,
+                                descriptor_sha256=cell.binding["descriptor_sha256"], model_xml_sha256=cell.binding["model_xml_sha256"],
+                                state=state, stability=stability, kinematics=robot.endpoint_kinematics(stability)))
+                            native.append(observation_native(view, snapshot["contacts"][index]))
+                        return observations, copies, native
+                    journal = None
+                    if read_options["mode"] == "shared_snapshot":
+                        order = readback.reference_order(outer) if read_options["reference_check"] else ["shared"]
+                        reference = []
+                        for method in order:
+                            tick = time.perf_counter()
+                            if method == "shared":
+                                with readback.PreparedReadback(wd) as lease:
+                                    observations, copies, native = observe(lease.data, views, robots)
+                                timing["observation_readback_s"] = time.perf_counter() - tick
+                            else:
+                                ref_obs, ref_copies, ref_native = observe(wd, reference_views, reference_robots)
+                                timing["reference_readback_s"] = time.perf_counter() - tick
+                                reference = [dict(cell=i, observation=o, native_observation=n, contact_compatibility_copy=k)
+                                             for i, (o, n, k) in enumerate(zip(ref_obs, ref_native, ref_copies, strict=True))]
+                        journal = dict(outer_step=outer, order=order, reference=reference, **lease.report())
+                    else:
+                        tick = time.perf_counter()
+                        observations, copies, native = observe(wd, views, robots)
+                        timing["observation_readback_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
                     rows = batch.step(observations)
                     timing["controller_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
                     for index, row in enumerate(rows):
                         row.update(cell=index, outer_step=outer,
-                            native_observation=observation_native(views[index], snapshot["contacts"][index]),
+                            native_observation=native[index],
                             contact_compatibility_copy=copies[index])
                         validator.control(row)
                         append("controller", row)
                         result["controller_rows"] += 1
+                    if journal is not None:
+                        # Refuse any mismatch before applying the controller or integrating.
+                        readback.validate_record(journal, c, outer, rows)
+                        append("readback", journal)
                     targets = np.asarray([r["native_targets"] for r in rows], np.float32)
                     wp.copy(wd.ctrl, wp.array(targets, dtype=wp.float32, device=device))
                     timing["controller_capture_transfer_s"] = time.perf_counter() - tick
@@ -338,7 +385,7 @@ def run_batch(folder, c, core_path, *, cache=None):
         require(model_snapshot(packed) == transport["packed_model"], "Native model changed during execution")
         write_new(folder / "model-after.json", model_snapshot(packed))
         result.update(ok=True, model_unchanged=True, stream_sha256={name: sha(folder / (name + ".jsonl"))
-            for name in ("controller", "trace", "timing")})
+            for name in stream_names})
     except BaseException as exc:
         result.update(error=type(exc).__name__ + ": " + str(exc), stage=stage)
     finally:
@@ -464,6 +511,9 @@ def audit(folder, c, core_path, *, synthetic=False):
         **{key: False for key in FLAGS})
     if "population_spec" in c:
         result["assessment"] = population.assess(c, metrics, pre["bindings"])
+    if readback.options(c)["mode"] == "shared_snapshot":
+        result["readback"] = {key: sum(g["audit"]["readback"][key] for g in reports)
+                              for key in reports[0]["audit"]["readback"]}
     return result
 
 
@@ -471,6 +521,8 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
     require(sha(core_path) == c["core_sha256"], "Creature reader runtime binding")
     result = json.loads((folder / "worker-result.json").read_text())
     nworld = len(c["cells"])
+    shared = readback.options(c)["mode"] == "shared_snapshot"
+    read_totals = dict(device_arrays_read=0, numpy_requests=0, reference_observations_checked=0)
     require(result["schema_version"] == "locolemotion_creature_worker_v1" and result["ledger_scope"] == c["ledger_scope"]
             and result["ok"] is True and result["synthetic"] is synthetic and result["model_unchanged"] is True
             and all(result[k] is False for k in FLAGS) and result["constructed_gpu_worlds"] == nworld
@@ -496,13 +548,19 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                         and (directory / "model.xml").read_bytes() == creature["model_xml"].encode(), "Creature compile reconstruction")
                 validate_model_evidence(creature, m, snapshot)
             validator = StreamValidator(c, creatures, metadata)
-            require(set(result["stream_sha256"]) == {"controller", "trace", "timing"}, "Creature stream binding population")
+            require(set(result["stream_sha256"]) == {"controller", "trace", "timing"} | ({"readback"} if shared else set()),
+                    "Creature stream binding population")
             for name, digest in result["stream_sha256"].items():
                 require(sha(folder / (name + ".jsonl")) == digest, "Creature original stream changed")
-            with (folder / "controller.jsonl").open() as control, (folder / "trace.jsonl").open() as trace:
+            with ExitStack() as inputs:
+                control = inputs.enter_context((folder / "controller.jsonl").open())
+                trace = inputs.enter_context((folder / "trace.jsonl").open())
+                journal = inputs.enter_context((folder / "readback.jsonl").open()) if shared else None
                 for outer in range(c["outer_steps"]):
+                    controls = []
                     for cell, controller in enumerate(controllers):
                         row = json.loads(next(control))
+                        controls.append(row)
                         require(row["cell"] == cell and row["outer_step"] == outer, "Crossed creature controller stream")
                         validator.control(row)
                         observation = dict(cell_id=controller.cell_id,
@@ -510,18 +568,26 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                             state=row["request"]["state"], stability=row["stability"], kinematics=row["kinematics"])
                         replay = controller.step(observation)
                         require(same_bits(replay, {key: row[key] for key in replay}), "Creature scalar replay differs")
+                    if journal is not None:
+                        counts = readback.validate_record(json.loads(next(journal)), c, outer, controls)
+                        for key, value in counts.items():
+                            read_totals[key] += value
                     for _ in range(5):
                         validator.native([json.loads(next(trace)) for _ in range(nworld)])
                 require(not control.read() and not trace.read(), "Extra creature stream rows")
+                require(journal is None or not journal.read(), "Extra creature readback rows")
             metrics = validator.finish()
             timing = validate_timing([json.loads(line) for line in (folder / "timing.jsonl").read_text().splitlines()], c)
             require(metrics == result["metrics"] and result["controller_rows"] == nworld*c["outer_steps"]
                     and result["native_rows"] == nworld*c["outer_steps"]*5, "Creature result summary")
-            return dict(schema_version="locolemotion_creature_native_audit_v1", ledger_scope=c["ledger_scope"],
+            report = dict(schema_version="locolemotion_creature_native_audit_v1", ledger_scope=c["ledger_scope"],
                 ok=True, synthetic=synthetic, reader_world_build_count=0, gpu_worlds=nworld,
                 distinct_body_shapes=len({v["binding"]["body_shape_sha256"] for v in creatures}),
                 controller_rows_replayed=result["controller_rows"], native_rows_verified=result["native_rows"],
                 differing_model_fields=differing, metrics=metrics, timing_seconds=timing, **{key: False for key in FLAGS})
+            if shared:
+                report["readback"] = read_totals
+            return report
         finally:
             for controller in controllers:
                 controller.close()
@@ -530,6 +596,8 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
 def validate_timing(rows, c):
     sections = ["prepare_s", "observation_readback_s", "controller_s", "controller_capture_transfer_s",
                 "integration_s", "capture_validation_write_s"]
+    if readback.options(c)["reference_check"]:
+        sections.append("reference_readback_s")
     require(len(rows) == c["outer_steps"], "Creature timing denominator")
     totals = {key: 0. for key in [*sections, "outer_total_s"]}
     for index, row in enumerate(rows):

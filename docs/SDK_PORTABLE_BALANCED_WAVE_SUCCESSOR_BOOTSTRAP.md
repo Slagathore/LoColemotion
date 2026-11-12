@@ -11,7 +11,11 @@ The first refused attempt remains retained. The 24-body, 240-world breadth
 cohort is now complete after its 117-control gate: 171 eligible episodes,
 69 performance failures and zero invalid. All 57,600 controller decisions and
 288,000 native samples passed independent replay. Next is a frozen diverse
-confirmation set with fresh longer checks.
+confirmation set with fresh longer checks. The
+[shared-readback component](../sdk/discovery/creature_readback_component_v1.json)
+passes its 122-control zero-world gate; its six-world route check is pending.
+It adds one prepared-state host copy per field and bounded shape-group chunks,
+with full capture and original-path observation comparison.
 
 | Record | Status and scope |
 | --- | --- |

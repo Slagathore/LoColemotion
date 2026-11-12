@@ -44,6 +44,10 @@ remain retained; memory mechanics worked, but useful memory benefit was unproved
    Investigate repeated per-world readbacks and bound batch size before a longer
    capture can exceed its declared stream limit. An optimization must preserve
    exact observations and decisions. These timings establish no speedup.
+   The [shared-readback component](../sdk/discovery/creature_readback_component_v1.json)
+   passes all 122 zero-world controls. Its six-world, 0.2-second
+   [native route check](../sdk/discovery/creature_readback_v1.json) is declared
+   but not yet run; it compares both paths on identical native states.
    Test whether
    useful condition-based choices exist before fitting inference. A choice
    supplied with the true condition is an oracle comparison, not trained Tier 2.
