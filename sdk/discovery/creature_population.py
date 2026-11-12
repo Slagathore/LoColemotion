@@ -100,17 +100,17 @@ def failure_codes(metric, selection):
     ) if failed]
 
 
-def assess(c, metrics, bindings):
-    verify_expansion(c)
+def episode_results(c, metrics, bindings, metadata, selection):
+    """Common full-horizon eligibility and quality; failed episodes have no score."""
     n = len(c["cells"])
-    require(len(metrics) == len(bindings) == n
+    require(len(metrics) == len(bindings) == len(metadata) == n
             and [b["cell_id"] for b in bindings] == [v["cell_id"] for v in c["cells"]],
             "Creature assessment denominator or binding")
-    spec, selection = c["population_spec"], c["selection"]
+    validate_selection(selection)
     duration = c["outer_steps"]*5*c["timestep_s"]
     target = selection["target_planar_velocity_m_s"]
     episodes = []
-    for meta, metric, binding in zip(c["population_metadata"], metrics, bindings, strict=True):
+    for meta, metric, binding in zip(metadata, metrics, bindings, strict=True):
         require(set(metric) == {"minimum_height_m", "maximum_tilt_rad", "torso_contact_steps",
             "safe_no_actuation_steps", "ground_contact_steps", "nonzero_force_steps",
             "forward_displacement_m", "lateral_displacement_m"}, "Creature assessment metrics")
@@ -127,20 +127,31 @@ def assess(c, metrics, bindings):
         episodes.append(dict(meta, body_shape_sha256=binding["body_shape_sha256"],
             descriptor_sha256=binding["descriptor_sha256"], eligible=not failures, failure_codes=failures,
             velocity_error_m_s=error if not failures else None, metrics=copy.deepcopy(metric)))
+    return episodes
+
+
+def candidate_summary(rows, index, candidate_id, start_count):
+    require(len(rows) == start_count and [r["start_index"] for r in rows] == list(range(start_count))
+            and all(r["candidate_index"] == index and r["candidate_id"] == candidate_id for r in rows),
+            "Creature selection start denominator")
+    eligible = all(r["eligible"] for r in rows)
+    return dict(candidate_index=index, candidate_id=candidate_id, eligible=eligible,
+        eligible_starts=sum(r["eligible"] for r in rows), start_count=len(rows),
+        failure_codes_by_start=[r["failure_codes"] for r in rows],
+        mean_velocity_error_m_s=sum(r["velocity_error_m_s"] for r in rows)/len(rows) if eligible else None)
+
+
+def assess(c, metrics, bindings):
+    verify_expansion(c)
+    spec, selection = c["population_spec"], c["selection"]
+    episodes = episode_results(c, metrics, bindings, c["population_metadata"], selection)
     groups = []
     for bi, body in enumerate(spec["descriptors"]):
         for ci, condition in enumerate(spec["conditions"]):
             candidates = []
             for pi, candidate in enumerate(spec["profiles"]):
                 rows = [e for e in episodes if (e["body_index"], e["condition_index"], e["candidate_index"]) == (bi, ci, pi)]
-                require(len(rows) == len(spec["starts"])
-                        and [r["start_index"] for r in rows] == list(range(len(spec["starts"]))),
-                        "Creature selection start denominator")
-                eligible = all(r["eligible"] for r in rows)
-                candidates.append(dict(candidate_index=pi, candidate_id=candidate["id"],
-                    eligible=eligible, eligible_starts=sum(r["eligible"] for r in rows), start_count=len(rows),
-                    failure_codes_by_start=[r["failure_codes"] for r in rows],
-                    mean_velocity_error_m_s=sum(r["velocity_error_m_s"] for r in rows)/len(rows) if eligible else None))
+                candidates.append(candidate_summary(rows, pi, candidate["id"], len(spec["starts"])))
             baseline = candidates[0]
             ranking = sorted((r for r in candidates[1:] if r["eligible"] and
                 (not baseline["eligible"] or r["mean_velocity_error_m_s"] < baseline["mean_velocity_error_m_s"])),
@@ -159,7 +170,7 @@ def assess(c, metrics, bindings):
             groups.append(dict(body_index=bi, body_id=body["morphology_id"], condition_id=condition["id"],
                 candidates=candidates, ranked_candidate_indices=[r["candidate_index"] for r in ranking],
                 shortlist_candidate_indices=shortlist))
-    return dict(scope="finite_exposed_development_discovery", world_count=n,
+    return dict(scope="finite_exposed_development_discovery", world_count=len(episodes),
         eligible_worlds=sum(e["eligible"] for e in episodes), performance_failed_worlds=sum(not e["eligible"] for e in episodes),
         episodes=episodes, body_conditions=groups, trained=False, tier2_qualified=False,
         training_data_authority=False, physical_acceptance_authority=False, release_authority=False,

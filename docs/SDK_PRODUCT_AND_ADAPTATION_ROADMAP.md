@@ -8,10 +8,10 @@ and self-correcting locomotion that can be used in the SDK and live Studio.
 ## Current execution order - 2026-11-12
 
 **Priority: search many actual creature variants and controller candidates,
-then apply full scrutiny to the useful and diverse results.** The completed
-population varied controllers on one S169 body. It did not search different
-creatures. A separate small condition-choice comparison has not been launched;
-include that question in the broader program when it helps select a usable policy.
+then apply full scrutiny to the useful and diverse results.** Controller search
+on S169 led to the completed 24-body breadth cohort. The next stage confirms
+that diverse shortlist over longer runs and tests a condition-known choice
+frozen from discovery against baseline and one fixed profile.
 
 | Current evidence | What it establishes |
 | --- | --- |
@@ -31,26 +31,27 @@ development evidence. Failed episodes have no quality score. Earlier
 [learned influence and memory experiments](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
 remain retained; memory mechanics worked, but useful memory benefit was unproved.
 
-1. **Freeze a diverse confirmation set.** The completed breadth cohort has
-   69 shortlist entries across 37 of 48 body/condition groups. Keep all eleven
-   empty groups visible: nine have no eligible profile, one nominal group has
-   no improving candidate, and one weakened body passes only with baseline.
-   Preserve baseline comparisons, body diversity and these exceptions when
-   selecting fresh longer checks. Two-second eligibility is a discovery lead.
+1. **Run the frozen diverse confirmation set.** The
+   [confirmation contract](../sdk/discovery/creature_confirmation_v1.json) declares
+   284 fresh twelve-second worlds: all 24 bodies, both conditions, all 69
+   shortlist entries, baseline and fixed profile 27, at lateral starts -0.003
+   and 0.005 m/s. All eleven empty discovery groups remain. The choice uses
+   the first discovery shortlist entry, or baseline when empty, and cannot
+   be refitted using confirmation outcomes. The
+   [139-control component gate](../sdk/discovery/creature_confirmation_component_v1.json)
+   passes with zero worlds; no native confirmation result exists yet.
 2. **Challenge that shortlist efficiently.** Use fresh worlds, full capture,
    independent replay and prospective acceptance criteria. The breadth run's
    stepping loop spent 844 seconds on observation readback, 627 on controller
    processing, 387 on capture/validation/transfer and 80 on physics integration.
-   Investigate repeated per-world readbacks and bound batch size before a longer
-   capture can exceed its declared stream limit. An optimization must preserve
-   exact observations and decisions. These timings establish no speedup.
+   Shared reads and two-world chunks address those measured costs and the longer
+   capture budget while preserving exact observations and decisions.
    The [shared-readback route](../sdk/discovery/creature_readback_native_result_v1.json)
    now passes: six fresh worlds, four bounded batches, 144 identical original-path
    observations and 720 independently verified native samples. Shared readback
    took 0.666 seconds versus 0.956 seconds on the same prepared states; this
    short diagnostic establishes no whole-run or longer-horizon speedup.
-   Test whether
-   useful condition-based choices exist before fitting inference. A choice
+   Test whether useful condition-based choices exist before fitting inference. A choice
    supplied with the true condition is an oracle comparison, not trained Tier 2.
    Training needs a separate declared corpus and held-out test; reduced discovery
    records do not become training or qualification data retroactively.

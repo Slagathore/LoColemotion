@@ -25,12 +25,14 @@ from audit_gpu_batch_execution import same_bits
 from actuation_measurement import named_force_samples
 import creature_population as population
 import creature_readback as readback
+import creature_confirmation as confirmation
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
                  "run_creature_native.py", "test_creature_batch.py", "test_creature_native.py",
                  "gpu_batch_execution.py", "creature_population.py", "test_creature_population.py",
-                 "creature_readback.py", "test_creature_readback.py"]
+                 "creature_readback.py", "test_creature_readback.py",
+                 "creature_confirmation.py", "test_creature_confirmation.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -48,14 +50,22 @@ GATES = [
 
 
 def gates(c):
-    return (GATES + ([("creature-population", "test_creature_population", 7)] if "population_spec" in c else [])
+    return (GATES + ([("creature-population", "test_creature_population", 7)]
+                     if "population_spec" in c or "confirmation_spec" in c else [])
             + ([("creature-readback", "test_creature_readback", 12)]
-               if "readback" in c or "maximum_worlds_per_batch" in c else []))
+               if "readback" in c or "maximum_worlds_per_batch" in c else [])
+            + ([("creature-confirmation", "test_creature_confirmation", 10)] if "confirmation_spec" in c else []))
 
 
 def declaration(path):
     require(path.resolve().is_relative_to(ROOT), "Creature declaration outside repository")
     c = json.loads(path.read_text(encoding="utf-8"))
+    confirming = "confirmation_spec" in c
+    require((c["mode"] == "development_confirmation") is confirming, "Creature confirmation mode")
+    if confirming:
+        require(c["batch_partition"] == "body_shape" and "population_spec" not in c
+                and not any(key in c for key in confirmation.EXPANDED), "Creature confirmation expansion scope")
+        c.update(confirmation.expand(c["confirmation_spec"]))
     if "population_spec" in c:
         require(c["mode"] == "development_discovery" and c["batch_partition"] == "body_shape"
                 and not any(key in c for key in ("cells", "initial_lateral_velocities_m_s", "population_metadata")),
@@ -64,13 +74,13 @@ def declaration(path):
         population.validate_selection(c["selection"])
     require(c["schema_version"] == "locolemotion_creature_native_v1"
             and identifier(c["campaign_id"])
-            and c["mode"] in ("route_ghost", "development_discovery")
+            and c["mode"] in ("route_ghost", "development_discovery", "development_confirmation")
             and c.get("batch_partition") in ("single", "body_shape")
             and c["capture_mode"] == "full"
             and all(c[key] is False for key in FLAGS), "Creature declaration scope")
     readback.options(c)
     batch_limit(c)
-    require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= 256
+    require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
             and type(c["seed"]) is int and 0 <= c["seed"] <= 2147483647
             and c["internal_steps_per_outer"] == 5 and c["timestep_s"] == bridge.INTERNAL_DT_S,
@@ -81,15 +91,20 @@ def declaration(path):
             "Creature capacity or complete gate")
     require(c["runtime"] == {"mujoco": "3.11.0", "mujoco-warp": "3.11.0", "warp-lang": "1.16.0", "numpy": "2.4.6"}
             and c["ledger_scope"] == dict(subsystem="discovery", engine_scope="mujoco_warp",
-                authority_mode="development_route_ghost" if c["mode"] == "route_ghost" else "development_discovery",
-                question_class="development"), "Creature runtime or ledger scope")
+                authority_mode="development_route_ghost" if c["mode"] == "route_ghost" else c["mode"],
+                question_class="finite decision" if confirming else "development"), "Creature runtime or ledger scope")
     require(len(c["initial_lateral_velocities_m_s"]) == len(c["cells"])
             and all(type(v) in (int, float) and math.isfinite(v) and abs(v) <= .005
                     for v in c["initial_lateral_velocities_m_s"]), "Creature initial velocities")
-    require(c["maximum_trace_bytes_per_stream"] == 268435456
-            and 60 <= c["maximum_worker_wall_seconds"] <= 3600
-            and 60 <= c["maximum_reader_wall_seconds"] <= 3600
+    require(type(c["maximum_trace_bytes_per_stream"]) is int
+            and c["maximum_trace_bytes_per_stream"] in ((268435456, 536870912) if confirming else (268435456,))
+            and all(type(c[k]) is int and 60 <= c[k] <= (14400 if confirming else 3600)
+                    for k in ("maximum_worker_wall_seconds", "maximum_reader_wall_seconds"))
             and c["minimum_free_storage_bytes"] >= 2**30, "Creature resource bounds")
+    if confirming:
+        require(c["readback"] == dict(mode="shared_snapshot", reference_check=False)
+                and c["maximum_worlds_per_batch"] == 2 and c["outer_steps"] == 1440
+                and c["minimum_free_storage_bytes"] >= 384*2**30, "Creature confirmation full-horizon resource scope")
     parent = ROOT / c["controller_component"]["path"]
     require(sha(parent) == c["controller_component"]["sha256"], "Creature controller predecessor")
     if "predecessor" in c:
@@ -110,6 +125,8 @@ def preflight(c, core_path):
     require(sha(core_path) == c["core_sha256"], "Creature core binding")
     if "population_spec" in c:
         population.verify_expansion(c)
+    if "confirmation_spec" in c:
+        confirmation.verify_expansion(c)
     require({name: importlib.metadata.version(name) for name in c["runtime"]} == c["runtime"],
             "Creature runtime versions")
     require(all(callable(getattr(mjw, name, None)) for name in ("put_model", "put_data", "step1", "step2", "get_data_into")),
@@ -118,17 +135,21 @@ def preflight(c, core_path):
         for name in ("MjModel", "MjData", "mj_step", "mj_step1", "mj_step2", "mj_forward"):
             trap.enter_context(patch.object(mujoco, name, side_effect=AssertionError("Physics in creature preflight")))
         core = bridge.LocomotionCore(core_path)
-        batch = CreatureBatch(core, c["cells"], seed=c["seed"])
-        try:
-            creatures = [cell.creature for cell in batch.controllers]
-            positions, velocities = initial_arrays(creatures, c)
-            require(positions.shape == (len(creatures), 15) and velocities.shape == (len(creatures), 14),
-                    "Creature initial population")
-            return dict(ok=True, world_build_count=0, solver_steps=0, planned_gpu_worlds=len(creatures),
-                        distinct_body_shapes=len({v["binding"]["body_shape_sha256"] for v in creatures}),
-                        bindings=batch.bindings, batches=partition(c, batch.bindings))
-        finally:
-            batch.close()
+        creatures, bindings = [], []
+        # Keep the public host-batch limit; large cohorts are only sequential plans.
+        for start in range(0, len(c["cells"]), 256):
+            batch = CreatureBatch(core, c["cells"][start:start+256], seed=c["seed"])
+            try:
+                creatures.extend(cell.creature for cell in batch.controllers)
+                bindings.extend(batch.bindings)
+            finally:
+                batch.close()
+        positions, velocities = initial_arrays(creatures, c)
+        require(positions.shape == (len(creatures), 15) and velocities.shape == (len(creatures), 14),
+                "Creature initial population")
+        return dict(ok=True, world_build_count=0, solver_steps=0, planned_gpu_worlds=len(creatures),
+                    distinct_body_shapes=len({v["binding"]["body_shape_sha256"] for v in creatures}),
+                    bindings=bindings, batches=partition(c, bindings))
 
 
 def validate_launch(folder, c, contract_path):
@@ -511,6 +532,8 @@ def audit(folder, c, core_path, *, synthetic=False):
         **{key: False for key in FLAGS})
     if "population_spec" in c:
         result["assessment"] = population.assess(c, metrics, pre["bindings"])
+    if "confirmation_spec" in c:
+        result["assessment"] = confirmation.assess(c, metrics, pre["bindings"])
     if readback.options(c)["mode"] == "shared_snapshot":
         result["readback"] = {key: sum(g["audit"]["readback"][key] for g in reports)
                               for key in reports[0]["audit"]["readback"]}

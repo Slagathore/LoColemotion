@@ -10,8 +10,11 @@ use separate batches because the engine has shared geometry-dependent constants.
 The first refused attempt remains retained. The 24-body, 240-world breadth
 cohort is now complete after its 117-control gate: 171 eligible episodes,
 69 performance failures and zero invalid. All 57,600 controller decisions and
-288,000 native samples passed independent replay. Next is a frozen diverse
-confirmation set with fresh longer checks. The
+288,000 native samples passed independent replay. The
+[confirmation cohort](../sdk/discovery/creature_confirmation_component_v1.json)
+now has a complete 139-control zero-world gate: 284 twelve-second worlds,
+all 24 bodies and both conditions, all discovery shortlists, baseline and
+fixed profile 27, with two fresh starts. No native confirmation result exists yet. The
 [shared-readback route](../sdk/discovery/creature_readback_native_result_v1.json)
 now passes after 122 fresh controls: six worlds in four bounded chunks,
 144 exact original-path observation matches and 720 independently verified

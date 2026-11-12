@@ -19,6 +19,7 @@ historical instructions.
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
 | SDK2 actual-creature breadth | [240 fresh two-second worlds](../sdk/discovery/creature_breadth_native_result_v1.json) on 24 bodies after 117 passing controls; 171 eligible, 69 performance failures, zero invalid; 57,600 decisions and 288,000 native samples independently replayed |
 | SDK2 shared readback | [Native route verified](../sdk/discovery/creature_readback_native_result_v1.json): six worlds, four bounded batches, 144 identical original-path observations and 720 native samples independently replayed; full capture |
+| SDK2 diverse confirmation | [139 zero-world controls pass](../sdk/discovery/creature_confirmation_component_v1.json); 284 twelve-second worlds declared across all 24 bodies and both conditions, with frozen choices, baseline and fixed profile 27; native result pending |
 | Unqualified | Learned Tier 2, Tier 3 memory, broad morphology locomotion coverage, recovery/withdrawal, real time, robustness, cross-engine equivalence and full release |
 
 SDK1 package qualification does not grant permission to redistribute the

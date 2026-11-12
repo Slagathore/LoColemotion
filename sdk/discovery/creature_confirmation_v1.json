@@ -1,0 +1,197 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "campaign_id": "creature_confirmation_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_confirmation",
+    "question_class": "finite decision"
+  },
+  "mode": "development_confirmation",
+  "purpose": "Confirm every retained two-second body/condition shortlist over twelve seconds and two fresh starts; compare the prospectively frozen condition-known choice with baseline and fixed profile 27.",
+  "controller_component": {
+    "path": "sdk/discovery/creature_batch_component_v1.json",
+    "sha256": "48641c186f4e33e3386f71d24af522309d567ae2cbdd49fa30c26deb7835bdbc"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "seed": 1061113,
+  "outer_steps": 1440,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "capture_mode": "full",
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 536870912,
+  "minimum_free_storage_bytes": 412316860416,
+  "maximum_worker_wall_seconds": 14400,
+  "maximum_reader_wall_seconds": 14400,
+  "coverage": [
+    "All 24 source bodies and both conditions remain: 48 groups, all 69 shortlisted body/condition/profile entries, baseline and fixed profile 27.",
+    "A sparse expansion deduplicates comparator and shortlist overlap into 142 profile pairs, each with two fresh lateral starts: 284 worlds and 142 native batches.",
+    "The condition-known choice is the first frozen discovery shortlist entry, falling back to baseline when empty; it cannot be refitted using confirmation outcomes.",
+    "Full twelve-second capture, 408960 controller decisions and 2044800 internal samples, independent replay, original cell mapping and complete failure retention.",
+    "Every policy must pass both starts; failed quality is null, and velocity-error contrasts only use paired eligible body/condition groups.",
+    "Eligibility gains and losses, paired velocity-error gains and losses, and both actuator conditions are reported separately; a finite signal never grants learned or release authority.",
+    "The verified shared prepared-state readback and two-world chunks retain full observations and traces; the original-path diagnostic comparison is disabled after its separate native verification.",
+    "One retained owner holds the mutex through gates, all native batches and the independent reader, with four-hour native and reader limits and at least 384 GiB free before launch."
+  ],
+  "not_covered": [
+    "Training data authority, a trained provider or learned Tier 2.",
+    "Online condition inference or online corrective memory benefit.",
+    "Held-out morphology, continuous coverage, statistical superiority or robustness.",
+    "Recovery, real-time behavior, live Studio handoff or release qualification.",
+    "Prospective superiority of a candidate selected after observing this confirmation set."
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-population",
+      "module": "test_creature_population",
+      "count": 7
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-confirmation",
+      "module": "test_creature_confirmation",
+      "count": 10
+    }
+  ],
+  "batch_partition": "body_shape",
+  "predecessor": {
+    "path": "sdk/discovery/creature_readback_native_result_v1.json",
+    "sha256": "9e01b4689f2b54fe5188ba7c357c3dce03d96f02179c9f1172eb4399bac19326"
+  },
+  "production_entrypoints": [
+    "run_creature_native.main",
+    "CreatureBatch",
+    "compile_creature",
+    "partition",
+    "batch_contract",
+    "run_batch",
+    "mujoco.MjModel.from_xml_string",
+    "mujoco_warp.put_model",
+    "pack_models",
+    "mujoco_warp.put_data",
+    "mujoco_warp.step1",
+    "integration_sequence",
+    "SubstepHistory",
+    "StreamValidator",
+    "audit",
+    "audit_batch",
+    "batch_limit",
+    "creature_readback.PreparedReadback",
+    "mujoco_warp.get_data_into",
+    "creature_readback.validate_record",
+    "creature_confirmation.expand",
+    "creature_confirmation.assess",
+    "creature_population.episode_results",
+    "creature_population.candidate_summary"
+  ],
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "maximum_worlds_per_batch": 2,
+  "confirmation_spec": {
+    "schema_version": "locolemotion_creature_confirmation_v1",
+    "discovery_contract": {
+      "path": "sdk/discovery/creature_breadth_v1.json",
+      "sha256": "a96c2e851b8d39de2a17b0b405e7d73536b821fc98c5a4d894bbf48e8f192544"
+    },
+    "discovery_result": {
+      "path": "sdk/discovery/creature_breadth_native_result_v1.json",
+      "sha256": "0bc6464e40ef337f84f21f0b5a4b905a750079502da07e0e4000aa63f7c39970"
+    },
+    "starts": [
+      {
+        "id": "confirmation_neg003",
+        "lateral_velocity_m_s": -0.003
+      },
+      {
+        "id": "confirmation_pos005",
+        "lateral_velocity_m_s": 0.005
+      }
+    ],
+    "fixed_candidate_id": "joint_population_27",
+    "choice_rule": "first_discovery_shortlist_else_baseline"
+  }
+}
