@@ -1,6 +1,6 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-11-01
+## Active - SDK2 discovery and Studio completion, 2026-11-12
 
 Start with the [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md).
 It owns the next work order: actual creature/controller populations, rigorous
@@ -17,7 +17,7 @@ historical instructions.
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
-| SDK2 actual-creature breadth | [117 passing controls](../sdk/discovery/creature_breadth_component_v1.json); 240 fresh two-second worlds on 24 bodies declared, not yet run |
+| SDK2 actual-creature breadth | [240 fresh two-second worlds](../sdk/discovery/creature_breadth_native_result_v1.json) on 24 bodies after 117 passing controls; 171 eligible, 69 performance failures, zero invalid; 57,600 decisions and 288,000 native samples independently replayed |
 | Unqualified | Learned Tier 2, Tier 3 memory, broad morphology locomotion coverage, recovery/withdrawal, real time, robustness, cross-engine equivalence and full release |
 
 SDK1 package qualification does not grant permission to redistribute the
@@ -33,6 +33,12 @@ pushed prospective freeze, fresh worlds, complete scalar decision replay and
 native-stream checks. It neither trained a provider nor opened evaluation groups.
 A future condition-known comparison would measure the value of choice; it
 would not by itself satisfy Tier 2.
+
+The creature breadth cohort retains useful shortlists in 37 of 48 body/condition
+groups. Profile 27 preserves weak-left eligibility in 14 of 24 bodies versus
+nine for baseline; nine weakened bodies fail with every profile, and one passes
+only with baseline. These exposed two-second outcomes require fresh longer
+confirmation and do not establish general transfer.
 
 Earlier [native contextual-memory work](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
 verified learned influence and feedback mechanics in a finite development setting,

@@ -1,14 +1,17 @@
 # Portable Balanced-Wave Successor Bootstrap
 
-## Current SDK2 native evidence - 2026-11-01
+## Current SDK2 native evidence - 2026-11-12
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes
 use separate batches because the engine has shared geometry-dependent constants.
-The first refused attempt remains retained. Next is the declared 24-body,
-240-world breadth cohort; its complete 117-control zero-world gate passes.
+The first refused attempt remains retained. The 24-body, 240-world breadth
+cohort is now complete after its 117-control gate: 171 eligible episodes,
+69 performance failures and zero invalid. All 57,600 controller decisions and
+288,000 native samples passed independent replay. Next is a frozen diverse
+confirmation set with fresh longer checks.
 
 | Record | Status and scope |
 | --- | --- |
@@ -20,7 +23,8 @@ The first refused attempt remains retained. Next is the declared 24-body,
 | [Native route v1 refusal](../sdk/discovery/creature_route_native_failure_v1.json) | Four CPU models constructed; shared model fields differed; zero GPU worlds and zero steps |
 | [Grouped native route gate](../sdk/discovery/creature_native_component_v3.json) | 110 controls pass; four fresh worlds in three body-shape batches declared for a 0.2-second route check |
 | [Grouped native route result](../sdk/discovery/creature_route_native_result_v2.json) | All four worlds complete; 96 controller decisions and 480 native samples independently replayed; route proof only |
-| [Actual-creature breadth gate](../sdk/discovery/creature_breadth_component_v1.json) | 117 controls pass; 24 bodies, five profiles, two actuator conditions and one exposed start declared for two seconds; zero breadth worlds yet |
+| [Actual-creature breadth gate](../sdk/discovery/creature_breadth_component_v1.json) | 117 controls pass; zero-world prerequisite for the native cohort |
+| [Actual-creature breadth result](../sdk/discovery/creature_breadth_native_result_v1.json) | 24 bodies, five profiles, two actuator conditions, one exposed start and two seconds: 171 eligible, 69 failed; useful shortlists in 37 of 48 groups |
 
 The native shortlist came from prospective source freeze ca57f6bb.
 Both 55 and 27 remained eligible under 75% left-side actuation at the two
@@ -28,6 +32,14 @@ exposed initial lateral velocities, 0.001 and 0.003 m/s. Baseline, 08 and 18
 failed there. All nominal episodes passed, with lower nominal tracking error
 for 08/18 and higher error for 55/27 than baseline. Its separately assessed
 two-second prefix retains the same eligibility split.
+
+Across the later creature breadth cohort, weak-left eligibility was baseline
+9/24, 08 8/24, 18 10/24, 55 12/24 and 27 14/24. All nominal bodies passed with
+18/55/27; baseline and 08 each failed on `route_shape_b`. Nine weakened bodies
+failed with every profile. `explorer_seed_6119` under weak-left actuation passed
+only with baseline. Every body/condition remains in the result, including empty
+shortlists. The whole-episode average velocity error ranks only eligible
+candidates within their own body and condition.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature
