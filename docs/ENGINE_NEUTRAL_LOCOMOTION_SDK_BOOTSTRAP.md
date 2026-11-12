@@ -18,7 +18,7 @@ historical instructions.
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
 | SDK2 actual-creature breadth | [240 fresh two-second worlds](../sdk/discovery/creature_breadth_native_result_v1.json) on 24 bodies after 117 passing controls; 171 eligible, 69 performance failures, zero invalid; 57,600 decisions and 288,000 native samples independently replayed |
-| SDK2 readback component | [122 zero-world controls pass](../sdk/discovery/creature_readback_component_v1.json); shared prepared-state reads and bounded batches await a six-world native route check |
+| SDK2 shared readback | [Native route verified](../sdk/discovery/creature_readback_native_result_v1.json): six worlds, four bounded batches, 144 identical original-path observations and 720 native samples independently replayed; full capture |
 | Unqualified | Learned Tier 2, Tier 3 memory, broad morphology locomotion coverage, recovery/withdrawal, real time, robustness, cross-engine equivalence and full release |
 
 SDK1 package qualification does not grant permission to redistribute the
