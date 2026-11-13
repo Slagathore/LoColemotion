@@ -316,12 +316,16 @@ class RightingControls(unittest.TestCase):
             with self.subTest(motion_feedback=motion):
                 self._reader_case(motion)
 
-    def _reader_case(self, motion):
+    def _reader_case(self, motion, sequence_profile=None):
         c = route.declaration(route.HERE / "creature_righting_route_v1.json")
         if motion:
             c["righting_spec"]["profiles"][1] = motion_profile(True)
             c.update(subject.expand(c["righting_spec"]))
             c["outer_steps"] = 26
+        if sequence_profile is not None:
+            c["righting_spec"]["profiles"][1] = copy.deepcopy(sequence_profile)
+            c.update(subject.expand(c["righting_spec"]))
+            c["outer_steps"] = 66
         c = route.batch_contract(c, [0, 1])
         folder = self.root / uuid.uuid4().hex; folder.mkdir()
         batch = subject.RightingBatch(self.core, c["cells"], seed=c["seed"])
@@ -390,16 +394,29 @@ class RightingControls(unittest.TestCase):
         self.assertEqual(report["native_rows_verified"], len(trace))
         self.assertEqual(report["reader_world_build_count"], 0)
         changes = [("native_targets", [99.]*8), ("binding", {}), ("resolution", {})]
-        index = 1 if motion else 0
+        index = 1 if motion or sequence_profile is not None else 0
         if motion:
             self.assertEqual(controls[49]["resolution"]["motion_feedback"]["selection_reason"], "bounded_fallback")
             forged = copy.deepcopy(controls[index]["resolution"]); forged["motion_feedback"]["phase_after"] = 1
             changes.append(("resolution", forged))
+        if sequence_profile is not None:
+            self.assertEqual(controls[129]["resolution"]["sequence"]["state_after"]["cycle"], 1)
+            for key, value in (("state_after", dict(phase=999)), ("mechanics", dict(kinetic_energy_j=1.))):
+                forged = copy.deepcopy(controls[index]["resolution"])
+                forged["sequence"][key].update(value)
+                changes.append(("resolution", forged))
         for key, value in changes:
             changed = copy.deepcopy(controls); changed[index][key] = value
             (folder/"controller.jsonl").write_text("".join(json.dumps(r)+"\n" for r in changed), encoding="utf-8")
             result["stream_sha256"]["controller"] = sha(folder/"controller.jsonl"); write("worker-result.json", result)
             with self.assertRaises((ValueError, KeyError)): route.audit_batch(folder, c, self.core_path, synthetic=True)
+        if sequence_profile is not None:
+            (folder/"controller.jsonl").write_text("".join(json.dumps(r)+"\n" for r in controls), encoding="utf-8")
+            result["stream_sha256"]["controller"] = sha(folder/"controller.jsonl"); write("worker-result.json", result)
+            self.assertTrue(route.audit_batch(folder, c, self.core_path, synthetic=True)["ok"])
+            result["metrics"][1]["sampled_joint_actuator_work_j"] += 1.
+            write("worker-result.json", result)
+            with self.assertRaises(ValueError): route.audit_batch(folder, c, self.core_path, synthetic=True)
 
 
 if __name__ == "__main__":

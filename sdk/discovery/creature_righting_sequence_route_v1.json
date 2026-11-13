@@ -1,0 +1,1067 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "campaign_id": "creature_righting_sequence_route_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "mode": "route_ghost",
+  "purpose": "Four-world, two-interval native route for brake, timed, synchronous and staggered sequence dispatch, mechanics record construction and full replay; no locomotion performance claim.",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v2.json",
+    "sha256": "a610b259be80ea5acc2acd7c5e9ea99b6fbb11bf5ed26da57ea4ce27a7f697a4"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "seed": 1061119,
+  "outer_steps": 2,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "capture_mode": "full",
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "not_covered": [
+    "Other fallen orientations or varied initial velocities in this cohort",
+    "Walking-to-fall entry or recovery-to-walking integration",
+    "Weakened motors, impacts, terrain or held-out robustness",
+    "Godot behavior or cross-engine equivalence",
+    "Learning, training-data authority, useful online memory, real-time behavior or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    }
+  ],
+  "batch_partition": "body_shape",
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py",
+    "sdk/discovery/creature_righting_sequence.py"
+  ],
+  "maximum_worlds_per_batch": 4,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "geometry_000_synchronous",
+        "mode": "pose_sequence",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.01,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "phases": [
+          {
+            "id": "windup",
+            "pose": [
+              0.8079994832902238,
+              -0.7917522561428219,
+              0.898229687584758,
+              0.10561970228930939,
+              -0.8983737274292258,
+              -0.8218864905647669,
+              0.8999987104390248,
+              -0.8979313595989932
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 96,
+            "advance_when": "pose",
+            "threshold": 0.1
+          },
+          {
+            "id": "drive",
+            "pose": [
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.45,
+              -0.9,
+              0.9,
+              -0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 25.0
+          },
+          {
+            "id": "follow_through",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 100.0
+          },
+          {
+            "id": "catch",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 60,
+            "advance_when": "contact",
+            "threshold": 2
+          }
+        ]
+      },
+      {
+        "id": "geometry_000_staggered",
+        "mode": "pose_sequence",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.01,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "phases": [
+          {
+            "id": "windup",
+            "pose": [
+              0.8079994832902238,
+              -0.7917522561428219,
+              0.898229687584758,
+              0.10561970228930939,
+              -0.8983737274292258,
+              -0.8218864905647669,
+              0.8999987104390248,
+              -0.8979313595989932
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              12,
+              12
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 96,
+            "advance_when": "pose",
+            "threshold": 0.1
+          },
+          {
+            "id": "drive",
+            "pose": [
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.45,
+              -0.9,
+              0.9,
+              -0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              12,
+              12,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 25.0
+          },
+          {
+            "id": "follow_through",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              12,
+              0,
+              0,
+              12
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 100.0
+          },
+          {
+            "id": "catch",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 60,
+            "advance_when": "contact",
+            "threshold": 2
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ]
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_righting_geometry_result_v1.json",
+    "sha256": "bcc0321eee6a14915ff5743354bc36e3e92864bf24e5509fb865f842b7ad0b58"
+  },
+  "body_selection": {
+    "source": "sdk/discovery/creature_breadth_v1.json",
+    "source_sha256": "a96c2e851b8d39de2a17b0b405e7d73536b821fc98c5a4d894bbf48e8f192544",
+    "method": "Retain all 16 bodies from the first righting breadth declaration in its fixed farthest-point descriptor order; no outcome selects or removes a body.",
+    "source_indices": [
+      0,
+      1,
+      2,
+      6,
+      19,
+      12,
+      8,
+      17,
+      9,
+      21,
+      22,
+      16,
+      13,
+      15,
+      10,
+      4
+    ],
+    "selection_predecessor": {
+      "path": "sdk/discovery/creature_righting_breadth_v1.json",
+      "sha256": "82f7c2a82744faa9c9399b66bc41e840d5dd98648a27b1ba7798b761d99cbe39"
+    }
+  },
+  "coverage": [
+    "One seed, one public compiled body, four fresh profiles at one inverted start, two outer intervals per cell.",
+    "Native model/capture joins and sequence/mechanics record publication through the production worker and independent reader.",
+    "Delayed transitions and complete cycles are covered by 67-step mixed synthetic planning and a 66-step full-reader fixture; the two-interval native route does not claim physical phase transitions or useful recovery."
+  ],
+  "profile_factorization": {
+    "families": [
+      {
+        "id": "uniform",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9
+        ],
+        "pose_b": [
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "id": "side",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "id": "corner",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "axis_body": [
+          0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    ],
+    "timed_profiles": 3,
+    "feedback_profiles": 12,
+    "brake_profiles": 1,
+    "feedback_polarities": [
+      1,
+      -1
+    ],
+    "feedback_requires_distal_contact": [
+      false,
+      true
+    ],
+    "feedback_minimum_hold_steps": 24,
+    "feedback_rate_deadband_rad_s": 0.05,
+    "maximum_hold_steps": 240,
+    "interpretation": "Within each family, the timed and feedback variants share poses, gain, speed and slew bounds. Feedback uses measured body-frame angular rate, a 0.2-second minimum hold and a two-second fallback. Opposite polarities and optional distal-contact gating are exposed development candidates, not learned policies."
+  },
+  "proposal_provenance": {
+    "geometry_closure": {
+      "path": "sdk/discovery/creature_righting_geometry_result_v1.json",
+      "sha256": "bcc0321eee6a14915ff5743354bc36e3e92864bf24e5509fb865f842b7ad0b58"
+    },
+    "retained_result_sha256": "2376303a76157dcfd9df28e5a18b973c6695e110229d028dae9195e9d83d08aa",
+    "geometry_source_commit": "319cf7bae3149766654b058d375bea4552f707c1",
+    "body_count": 16,
+    "pose_count": 22945,
+    "retained_arrays": [
+      {
+        "path": "poses.npy",
+        "sha256": "085de3b34b9d389e50c455aa1f187e1d0c2ed2b0a6da34d5f1a5caf43c351fab",
+        "bytes": 1468608
+      },
+      {
+        "path": "body_00_heights.npy",
+        "sha256": "0192b2b135c5a541eb7a55783a7f4239489b99652e889d7429ff7c24702c0604",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_01_heights.npy",
+        "sha256": "5c62e342ae394cd4a427b1078b41fd950bce248d03635952dcaadbf765418603",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_02_heights.npy",
+        "sha256": "faddcf7f9f42b4bd7aafe521737837aa5a4198a06b9fe3532d1092e2b0a326ce",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_03_heights.npy",
+        "sha256": "f58c65747ae5403ddfdad5d246d024fed4014800218bd02dfc2d9b09e29db881",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_04_heights.npy",
+        "sha256": "5de6c811e134fc992591dba4ff3bca6c0f6bc2f752faba0fc50ca87934d657c6",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_05_heights.npy",
+        "sha256": "54036803a410407648d05c759bae0f67b00e31a4b00084adba309edad483c90c",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_06_heights.npy",
+        "sha256": "e472d4e13a603b6c0f95dbef447e278b500899c395a35e411839044f1793b71c",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_07_heights.npy",
+        "sha256": "c05ffbb539cdbe4c766645f3e1b2020a704b4d589b7fae4e02c73c4998c3e80d",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_08_heights.npy",
+        "sha256": "9469bc8e95e36560e6a9a0abefc15c763092c53e232eec4c71816af72f5e5c15",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_09_heights.npy",
+        "sha256": "9e8ee259b9c23af741fbb33ef15f59118df3bb6701e36fd49cd72514e43b9af7",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_10_heights.npy",
+        "sha256": "dd615f5028a20f31d25e0dcc6d05de85d31783bf9f9bd1616375f6d67c52c8af",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_11_heights.npy",
+        "sha256": "eb28243d89a8628ca144741cee68f5c45f1fb11df7a3ff454d296b7953b23fbb",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_12_heights.npy",
+        "sha256": "510e51116d505dcf3c1fbbad49faf2bc6b4de72e94d649f1efe64b396936d378",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_13_heights.npy",
+        "sha256": "87849311460ec9d3b43dc3ed1b56f856d5cf13d4201f00b42a1c5a87eaa4f5dd",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_14_heights.npy",
+        "sha256": "b5fdb3884698eba8829ed1b28d9182c620606047832374d0fd79cb216a0cf919",
+        "bytes": 54333888
+      },
+      {
+        "path": "body_15_heights.npy",
+        "sha256": "72e83f56bed9c0bc0bcc0e4d92b0a31bb94e64b81d100f09f3258ba6beaabcef",
+        "bytes": 54333888
+      }
+    ],
+    "rule": "Equal-weight mean of all sixteen retained height tables. Opposite-direction 0..5-degree slope for wind-up, intended-direction 15..20 for drive, and 90..95 for follow-through. Require mean pose distance >= 0.15 between selected poses and >= 0.05 from neutral for wind-up/follow-through. Lowest index within 1e-12 of the eligible minimum wins. Neutral catch is appended.",
+    "helper_path": "sdk/discovery/creature_righting_sequence.py",
+    "helper_sha256": "34866a12e3333f230f48a21d945942544360fa67cdd2fa661053384db76f4bc0",
+    "selected_seeds": [
+      {
+        "azimuth_degrees": 0,
+        "pose_indices": [
+          17513,
+          2146,
+          2
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.04559058455686037,
+          0.00023821268701854081,
+          -0.014721458640403084
+        ],
+        "poses": [
+          [
+            0.8079994832902238,
+            -0.7917522561428219,
+            0.898229687584758,
+            0.10561970228930939,
+            -0.8983737274292258,
+            -0.8218864905647669,
+            0.8999987104390248,
+            -0.8979313595989932
+          ],
+          [
+            -0.9,
+            -0.9,
+            -0.9,
+            -0.45,
+            -0.9,
+            0.9,
+            -0.9,
+            0.9
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.9,
+            -0.9
+          ]
+        ]
+      },
+      {
+        "azimuth_degrees": 45,
+        "pose_indices": [
+          17513,
+          19708,
+          18
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.043030411816664366,
+          0.0026258878026109156,
+          -0.014671388757423853
+        ],
+        "poses": [
+          [
+            0.8079994832902238,
+            -0.7917522561428219,
+            0.898229687584758,
+            0.10561970228930939,
+            -0.8983737274292258,
+            -0.8218864905647669,
+            0.8999987104390248,
+            -0.8979313595989932
+          ],
+          [
+            -0.853305969839957,
+            0.7947082929055975,
+            -0.7712929870465712,
+            -0.41427096616001197,
+            0.8999665897303433,
+            0.8999984277765571,
+            -0.38399798944831587,
+            -0.888642513876398
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.9,
+            -0.9,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "azimuth_degrees": 90,
+        "pose_indices": [
+          729,
+          0,
+          5166
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.01602034755344106,
+          0.01027628782950174,
+          -0.001283703771672834
+        ],
+        "poses": [
+          [
+            0.9,
+            0.9,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.9,
+            0.45,
+            0.0,
+            0.0,
+            0.9,
+            0.45,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "azimuth_degrees": 135,
+        "pose_indices": [
+          19771,
+          1913,
+          729
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.04342336018007381,
+          0.002626038722399804,
+          -0.014677516861559936
+        ],
+        "poses": [
+          [
+            0.8998812988815488,
+            0.8599225896009404,
+            -0.6654702597127555,
+            -0.8788363882128345,
+            -0.8742064053943638,
+            -0.11364866180626881,
+            -0.7505955358998017,
+            -0.5687238195660228
+          ],
+          [
+            -0.9,
+            -0.9,
+            0.6,
+            0.9,
+            0.6,
+            0.9,
+            0.6,
+            0.9
+          ],
+          [
+            0.9,
+            0.9,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "azimuth_degrees": 180,
+        "pose_indices": [
+          19771,
+          21503,
+          81
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.045783121471821314,
+          0.0002335396017223157,
+          -0.01472776182200547
+        ],
+        "poses": [
+          [
+            0.8998812988815488,
+            0.8599225896009404,
+            -0.6654702597127555,
+            -0.8788363882128345,
+            -0.8742064053943638,
+            -0.11364866180626881,
+            -0.7505955358998017,
+            -0.5687238195660228
+          ],
+          [
+            0.89977448977583,
+            -0.29516605276433877,
+            0.8865192727020068,
+            -0.8535378196869392,
+            0.8996169544240353,
+            0.8930653071953022,
+            0.8724969090819761,
+            -0.6110348630849374
+          ],
+          [
+            0.0,
+            0.0,
+            0.9,
+            0.9,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "azimuth_degrees": 225,
+        "pose_indices": [
+          22438,
+          3857,
+          81
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.04326934959608157,
+          0.002626038722399776,
+          -0.01467751686155988
+        ],
+        "poses": [
+          [
+            -0.8879121326399939,
+            0.2726825758413339,
+            0.8996791798253352,
+            0.8651240567929943,
+            -0.6222914200371373,
+            -0.822309618383671,
+            -0.8264443437946709,
+            0.895322810915703
+          ],
+          [
+            0.6,
+            0.9,
+            -0.9,
+            -0.9,
+            0.6,
+            0.9,
+            0.6,
+            0.9
+          ],
+          [
+            0.0,
+            0.0,
+            0.9,
+            0.9,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "azimuth_degrees": 270,
+        "pose_indices": [
+          81,
+          0,
+          574
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.01602034755344106,
+          0.01027628782950174,
+          -0.0012837037716729172
+        ],
+        "poses": [
+          [
+            0.0,
+            0.0,
+            0.9,
+            0.9,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.9,
+            0.45,
+            0.0,
+            0.0,
+            0.9,
+            0.45
+          ]
+        ]
+      },
+      {
+        "azimuth_degrees": 315,
+        "pose_indices": [
+          15405,
+          4915,
+          2
+        ],
+        "sampled_mean_height_differences_m": [
+          -0.04313355927718586,
+          0.002630462443766357,
+          -0.014671388757423853
+        ],
+        "poses": [
+          [
+            0.7642502007351456,
+            -0.5493603669994771,
+            0.8443463579059779,
+            -0.17656264209269215,
+            0.7212554910201568,
+            0.3828715309902175,
+            -0.8965578324511545,
+            -0.8952971659879557
+          ],
+          [
+            -0.6,
+            -0.9,
+            -0.6,
+            -0.9,
+            -0.6,
+            -0.9,
+            0.9,
+            0.9
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.9,
+            -0.9
+          ]
+        ]
+      }
+    ],
+    "phase_population": "All eight azimuths receive synchronous phases; the six non-lateral azimuths also receive the declared front/hind and diagonal delays. All sixteen bodies are retained without outcome selection.",
+    "exposed_development_data": true,
+    "dynamic_feasibility_established": false,
+    "training_data_authority": false
+  },
+  "qualification_economy": "New controller state and observable: four non-complementary pose phases, delayed limb release, measured transition gates, whole-body angular momentum/kinetic energy, and a force-displacement work estimate. Shared controller, containment, worker and scalar reader are reused; nine focused controls cover the new semantics.",
+  "mechanics_scope": "Generalized measured state and compiled masses/inertias reconstruct body momentum and kinetic energy. Completed-step joint-actuator force multiplied by measured joint displacement is an explicitly sampled work estimate; it is not exact continuous work, a closed energy balance or an eligibility criterion.",
+  "diversity_scope": "The unchanged 0.15 mean normalized pose-distance threshold compares target sequences on a common equal-phase grid. Two-pose comparisons retain their original order and arithmetic. Timing differences alone do not create pose diversity."
+}

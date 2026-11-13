@@ -68,8 +68,15 @@ while profile 27 passes both.
    11.4-14.4 degrees per body. This motivates a wind-up, drive and catch sequence
    with independent limb timing and measured momentum/work accounting. Static
    heights neither establish failure causation nor prove a feasible transition
-   or righting impossibility. Before another broad native cohort, qualify that
-   materially different controller and the smallest necessary route check.
+   or righting impossibility. The [four-phase component](../sdk/discovery/creature_righting_component_v3.json)
+   now passes all 143 zero-world controls: 17,152 exact mixed decisions over
+   32 shapes, complete phase-cycle replay, and refusal of forged phase, energy
+   and work records. Momentum reconstruction also agrees with 64 retained
+   native boundaries over 16 bodies within the declared numerical tolerance.
+   Next run the declared four-world, two-interval native route. If it passes,
+   run the [256-world cohort](../sdk/discovery/creature_righting_sequence_v1.json):
+   16 bodies, fourteen geometry-derived sequences, fresh timed/brake comparators
+   and six seconds per world. Both native steps remain unexecuted at this freeze.
    Keep physical limits, full capture and upright eligibility. Useful diverse
    leads still require fresh varied-start confirmation and complete handoffs
    with recovery completion and 120 resumed walking steps.

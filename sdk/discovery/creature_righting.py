@@ -14,6 +14,7 @@ from creature_batch import bridge, compile_creature, identifier, require
 from actuation_recovery_mechanics import RigidTree, quaternion_rotation, xyz
 from showcase_model import FIELDS, validate_descriptor
 from sporespore_locomotion import r24d22_recovery_s169_morphology
+import creature_righting_sequence as sequence
 
 SCHEMA = "locolemotion_creature_righting_population_v1"
 EXPANDED = ("cells", "initial_lateral_velocities_m_s", "initial_roll_angles_rad", "righting_metadata")
@@ -31,6 +32,8 @@ def finite(value):
 
 def profile(value):
     require(type(value) is dict, "Righting profile object")
+    if value.get("mode") == sequence.MODE:
+        return sequence.profile(value)
     motion = value.get("mode") == "motion_rock"
     require(set(value) == {"id", "mode", "pose_a", "pose_b",
         "half_period_steps", "position_gain_s_inv", "maximum_speed_rad_s", "maximum_slew_rad_s_per_step"}
@@ -66,6 +69,8 @@ def profile(value):
 def behavior_key(candidate):
     # Preserve the earlier duplicate rule; feedback variants must also bind
     # every parameter that changes their response to the same observation.
+    if candidate["mode"] == sequence.MODE:
+        return sequence.behavior_key(candidate)
     key = tuple(candidate["pose_a"] + candidate["pose_b"] + [candidate["half_period_steps"],
         candidate["position_gain_s_inv"], candidate["maximum_speed_rad_s"], candidate["maximum_slew_rad_s_per_step"]])
     if candidate["mode"] == "motion_rock":
@@ -125,7 +130,7 @@ def expand(spec):
             and len({b["morphology_id"] for b in bodies}) == len(bodies), "Righting duplicate body")
     candidates = [profile(p) for p in candidates]
     require(candidates[0]["mode"] == "zero_velocity_brake"
-            and all(p["mode"] in ("rock", "motion_rock") for p in candidates[1:]), "Righting comparator population")
+            and all(p["mode"] in ("rock", "motion_rock", sequence.MODE) for p in candidates[1:]), "Righting comparator population")
     for rows in (candidates, conditions, starts):
         require(all(identifier(r["id"]) for r in rows) and len({r["id"] for r in rows}) == len(rows),
                 "Righting duplicate identity")
@@ -202,6 +207,8 @@ class RightingController:
                 "Righting motor order")
         self.previous, self.step_index, self.closed = [0.] * 8, 0, False
         self.motion_phase, self.motion_steps = 0, 0
+        self.sequence_state = None
+        self.sequence_tree = RigidTree(self.spec) if self.candidate["mode"] == sequence.MODE else None
 
     @property
     def binding(self):
@@ -229,19 +236,25 @@ class RightingController:
         height = state["base_pose_world"]["position_m"]["y"]
         require(finite(height), "Righting root height")
         up = float(rotation[1, 1])
-        phase = (self.step_index // self.candidate["half_period_steps"]) % 2
+        sequential = self.candidate["mode"] == sequence.MODE
+        phase = 0 if sequential else (self.step_index // self.candidate["half_period_steps"]) % 2
         upright = up >= .9 and height >= .6*self.creature["compiled"]["geometry"]["initial_torso_center_y_m"]
-        feedback = None
-        if self.candidate["mode"] == "motion_rock":
+        feedback, decision = None, None
+        if self.candidate["mode"] == "motion_rock" or sequential:
             contacts = state["ordered_contact_observations"]
             require(type(contacts) is list and len(contacts) == 4
                     and [v["contact_site_id"] for v in contacts] == [v["contact_site_id"] for v in self.spec["contact_sites"]]
                     and all(type(v[k]) is bool for v in contacts for k in ("presence", "bears_support"))
                     and all(not v["bears_support"] or v["presence"] for v in contacts), "Righting feedback contact population")
-            feedback = motion_phase(self.candidate, rotation, state["base_twist_world"]["angular_velocity_rad_s"],
-                sum(v["bears_support"] for v in contacts), self.motion_phase, self.motion_steps, upright)
-            phase = feedback["phase_after"]
-        normalized = [0.] * 8 if upright else self.candidate["pose_a" if phase == 0 else "pose_b"]
+            if sequential:
+                decision = sequence.plan(self.candidate, self.sequence_tree, state, rotation,
+                    sum(v["bears_support"] for v in contacts), self.sequence_state, upright)
+            else:
+                feedback = motion_phase(self.candidate, rotation, state["base_twist_world"]["angular_velocity_rad_s"],
+                    sum(v["bears_support"] for v in contacts), self.motion_phase, self.motion_steps, upright)
+                phase = feedback["phase_after"]
+        normalized = (decision["normalized_targets"] if sequential else
+            [0.] * 8 if upright else self.candidate["pose_a" if phase == 0 else "pose_b"])
         commands, targets, breaches = [], [], []
         for i, (joint, motor, observed, value) in enumerate(zip(self.spec["joints"], self.spec["actuators"], joints, normalized, strict=True)):
             lo, hi, actual = joint["lower_limit_rad"], joint["upper_limit_rad"], observed["position_rad"]
@@ -273,6 +286,8 @@ class RightingController:
             native_targets=targets)
         if feedback is not None:
             record["resolution"]["motion_feedback"] = feedback
+        if decision is not None:
+            record["resolution"].update(phase=decision["phase_id"], sequence=decision)
         return record
 
     def commit(self, record):
@@ -280,6 +295,8 @@ class RightingController:
         if self.candidate["mode"] == "motion_rock":
             feedback = record["resolution"]["motion_feedback"]
             self.motion_phase, self.motion_steps = feedback["phase_after"], feedback["hold_steps_after"]
+        if self.candidate["mode"] == sequence.MODE:
+            self.sequence_state = copy.deepcopy(record["resolution"]["sequence"]["state_after"])
         self.step_index += 1
 
     def step(self, observation):
@@ -375,7 +392,11 @@ def assess(c, metrics, bindings):
         diverse = []
         def distance(left, right):
             a, b = [c["righting_spec"]["profiles"][r["candidate_index"]] for r in (left, right)]
-            return sum(abs(x-y) for x, y in zip(a["pose_a"]+a["pose_b"], b["pose_a"]+b["pose_b"], strict=True))/16
+            poses = lambda p: [r["pose"] for r in p["phases"]] if p["mode"] == sequence.MODE else [p["pose_a"], p["pose_b"]]
+            aa, bb = poses(a), poses(b)
+            n = math.lcm(len(aa), len(bb))
+            return sum(abs(x-y) for i in range(n) for x, y in zip(
+                aa[i*len(aa)//n], bb[i*len(bb)//n], strict=True))/(8*n)
         for candidate in candidates:
             if all(distance(candidate, other) >= SELECTION["minimum_mean_pose_distance"] for other in diverse):
                 diverse.append(candidate)

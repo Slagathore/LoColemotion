@@ -20,11 +20,19 @@ with 9,216 scalar witness checks and zero worlds. All 128 body/direction groups
 contain uphill fixed-pose intervals, first beginning 10-35 degrees from inverted;
 original native boundary progress peaks at 11.4-14.4 degrees per body. Static
 support geometry does not establish causation, dynamic feasibility or righting
-impossibility. Next: derive distinct wind-up, drive and catch poses with
-independent limb timing and measured momentum/work accounting, then qualify
-the changed controller before broad native search. No next physical cohort is
-declared. Physical limits, full capture and upright eligibility stay fixed;
-useful leads require varied-start confirmation and full Godot handoffs.
+impossibility. The [four-phase component](../sdk/discovery/creature_righting_component_v3.json)
+now qualifies distinct wind-up, drive, follow-through and catch targets with
+independent limb timing and measured transition gates. All 143 controls pass;
+17,152 mixed decisions over 32 shapes match scalar planning, and the full reader
+reconstructs a complete cycle and rejects forged phase, energy and work records.
+Momentum and kinetic energy also agree with 64 retained native boundaries
+within the declared diagnostic tolerance. Sampled force-displacement work is
+an estimate, not an exact energy balance or eligibility criterion.
+The [four-world route](../sdk/discovery/creature_righting_sequence_route_v1.json)
+and [256-world cohort](../sdk/discovery/creature_righting_sequence_v1.json) are
+now declared but unexecuted. Run the two-interval route first, then the broad
+six-second cohort if valid. Physical limits, full capture and upright eligibility
+stay fixed; useful leads require varied-start confirmation and full Godot handoffs.
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes

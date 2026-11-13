@@ -34,7 +34,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "gpu_batch_execution.py", "creature_population.py", "test_creature_population.py",
                  "creature_readback.py", "test_creature_readback.py",
                  "creature_confirmation.py", "test_creature_confirmation.py",
-                 "creature_righting.py", "test_creature_righting.py"]
+                 "creature_righting.py", "test_creature_righting.py",
+                 "creature_righting_sequence.py", "test_creature_righting_sequence.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -57,7 +58,12 @@ def gates(c):
             + ([("creature-readback", "test_creature_readback", 12)]
                if "readback" in c or "maximum_worlds_per_batch" in c else [])
             + ([("creature-confirmation", "test_creature_confirmation", 10)] if "confirmation_spec" in c else [])
-            + ([("creature-righting", "test_creature_righting", 12)] if "righting_spec" in c else []))
+            + ([("creature-righting", "test_creature_righting", 12)] if "righting_spec" in c else [])
+            + ([("creature-righting-sequence", "test_creature_righting_sequence", 9)] if sequence_enabled(c) else []))
+
+
+def sequence_enabled(c):
+    return any(p["mode"] == righting.sequence.MODE for p in c.get("righting_spec", {}).get("profiles", []))
 
 
 def declaration(path):
@@ -455,6 +461,8 @@ class StreamValidator:
         if "righting_spec" in c:
             for metric in self.metrics:
                 metric.update(righting.initial_metrics())
+                if sequence_enabled(c):
+                    metric.update(righting.sequence.initial_work())
 
     def control(self, row):
         cell, outer = row["cell"], row["outer_step"]
@@ -519,6 +527,8 @@ class StreamValidator:
             m["lateral_displacement_m"] = row["qpos"][1] - self.creatures[cell]["spec"]["initial_qpos"][1]
             if "righting_spec" in self.c:
                 righting.measure(m, row, self.creatures[cell])
+                if sequence_enabled(self.c):
+                    righting.sequence.measure_work(m, row)
             self.previous[cell] = row
             self.native_counts[cell] += 1
 
