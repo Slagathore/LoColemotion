@@ -1,0 +1,154 @@
+{
+  "schema_version": "locolemotion_contact_moment_v1",
+  "campaign_id": "creature_contact_moment_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "core",
+    "authority_mode": "zero_world_geometry_diagnostic",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_contact_envelope_result_v1.json",
+    "sha256": "6a411272839e838283ff840430055d1e0b40d3c04e541f36bea808b550640a85"
+  },
+  "pose_bank_reference": {
+    "path": "sdk/discovery/creature_righting_geometry_v1.json",
+    "sha256": "dfea162ab3f4b8880f07185990e82b1f8213c48bc36c85741f275e25df2fff8d"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "runtime_numpy": "2.4.6",
+  "controls_required": 20,
+  "maximum_control_wall_seconds": 600,
+  "maximum_worker_wall_seconds": 1800,
+  "minimum_free_storage_bytes": 4294967296,
+  "body_count": 334,
+  "pose_count": 7585,
+  "pose_pool": {
+    "limb_states": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.9,
+        0.9
+      ],
+      [
+        -0.9,
+        -0.9
+      ],
+      [
+        0.9,
+        -0.9
+      ],
+      [
+        -0.9,
+        0.9
+      ],
+      [
+        0.6,
+        0.9
+      ],
+      [
+        -0.6,
+        -0.9
+      ],
+      [
+        0.9,
+        0.45
+      ],
+      [
+        -0.9,
+        -0.45
+      ]
+    ],
+    "uniform_count": 512,
+    "edge_count": 512,
+    "seed": 1061134
+  },
+  "progress_degrees": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100,
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150,
+    155,
+    160,
+    165,
+    170,
+    175,
+    180
+  ],
+  "axes_body": [
+    [
+      1.0,
+      0.0,
+      0.0
+    ],
+    [
+      -1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ],
+    [
+      0.0,
+      0.0,
+      -1.0
+    ]
+  ],
+  "normalized_joint_limit": 0.9,
+  "numerical_tolerance_m": 1e-09,
+  "friction_coefficient": 0.95,
+  "retention": "all_pose_contact_and_positive_moment_masks_with_all_nonadjacent_gaps",
+  "method": "Translate each fixed pose vertically until its lowest box/capsule support feature touches the floor. Retain all contact-body masks and positive normal/friction-cone moment masks about the mass-weighted whole-body center of mass. Check all 28 nonadjacent body pairs using exact segment/segment or segment/box distances; only the eight connected pairs are excluded. Compare selected witnesses with independent scalar world-frame kinematics and all relevant retained continuous-joint reach exclusions.",
+  "qualification_economy": "New observables: nonadjacent surface separation and signed floor-contact moment arms, including tied support features and optimistic friction-cone bounds. Existing reach and height screens cannot express these. Reuse PoseGeometry, RigidTree, pose_pool, retained compiled bodies, source/runtime bindings, contained stages, the operation mutex and inventories. A shared geometry owner now accepts a diagnostic module; historical owners remain unchanged. One reusable mathematics module and its focused controls add no native campaign gate or evaluator.",
+  "selection_provenance": "All 334 bodies and the nine-state factored limb bank are exposed predecessors. The 512 uniform and 512 edge samples use a new declared deterministic seed. Geometric witnesses are proposal material, not a frozen native shortlist or held-out evaluation.",
+  "limits": [
+    "Finite body, joint-pose and orientation samples only; no continuous coverage or recovery impossibility claim.",
+    "A floor-supported pose is a geometric construction. No native root is moved, no world is opened and no transition into that pose is proved.",
+    "Nonadjacent overlap is a separate plausibility filter. Retained native XML disables robot self-collision; its collision policy is not changed and no previous native eligibility is revised.",
+    "Negative segment-to-box surface gap signals overlap; its magnitude is not a certified minimum translation or penetration depth.",
+    "Moment arms are torque per unit normal force, in metres. Friction-cone upper bounds are optimistic single-contact possibilities using the retained sliding coefficient; joint effort, force balance, torsional/rolling friction and actual native forces are not solved.",
+    "Supporting face/line vertices retain moment extrema; contacts within the declared numerical band are included. Positive moment alone does not establish useful motion, feasible force allocation or a dynamic controller.",
+    "Changing which contact is used or combining different pose witnesses does not prove a realizable trajectory. Momentum and contact switching require fresh native evidence.",
+    "No training, Tier 2, Tier 3, recovery, real-time, physical acceptance or release authority."
+  ],
+  "physical_started": false,
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "recovery_benefit_established": false,
+  "dynamic_feasibility_established": false
+}

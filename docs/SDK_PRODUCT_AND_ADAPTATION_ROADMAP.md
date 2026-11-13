@@ -28,25 +28,26 @@ and self-righting still has no qualifying controller after nine cohorts.
 | [Paired joint braking](../sdk/discovery/creature_joint_braking_native_result_v1.json) | 224 twelve-second worlds after 175 controls: braked joint-crossing worlds 0/96 versus 16/96 unbraked; zero recovery or progress leads. Contact worlds fall 33 to 25, and maximum nonviolating rotation falls 14.03 to 13.98 degrees. All 2,580,480 commands match. A historical test-input inventory omission is disclosed and corrected by a later exact-byte supplement and complete zero-world successor |
 | [Body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json) | 128 twelve-second worlds after 172 controls: all 96 new-controller worlds acquire distal contact, with zero joint violations, but zero recovery or progress leads. Best new rotation is 14.235 degrees; best gain over its own fresh timed comparator is 1.467 degrees. The eight-world full route replays 2,880 decisions and 14,400 samples; broad compact reading reconstructs 184,320 records and 921,600 samples |
 | [Paired torso targets](../sdk/discovery/creature_torso_target_native_result_v1.json) | 224 twelve-second worlds after 182 controls: all 128 new-target worlds acquire contact with zero joint violations, but zero recovery or progress leads. Peak new rotation 14.272 degrees; mean change from each paired base is +2.711 degrees for root targets and +2.952 for torso-edge targets. Fourteen full route worlds replay 5,040 decisions and 25,200 samples; broad reading reconstructs 322,560 records and 1,612,800 samples |
-| [Contact reach bounds](../sdk/discovery/creature_contact_envelope_result_v1.json) | Ten controls; 334 distinct bounded descriptors and 302 kinematic shapes, 2.9 million continuous-joint reach minima, 16,032 scalar checks, zero new worlds. First excluded side-roll samples are 11–19 degrees; inward/full-range pitch 20–45, outward pitch 6–9. The retained route has 294 unreachable bend-domain targets out of 469 updates and zero finite-grid floor-reach misses. Reach alone does not certify useful torque or recovery |
+| [Reach bounds](../sdk/discovery/creature_contact_envelope_result_v1.json) and [contact moments](../sdk/discovery/creature_contact_moment_result_v1.json) | 334 bodies and 7,585 poses each; 374.9 million geometric pose/orientation cases, twenty controls, zero worlds. Only 483,751 of 2,533,390 body/pose combinations avoid nonadjacent overlap. Upward foot force offers no positive moment at sampled side-roll angles 20–45 degrees. Optimistic friction bounds remain; 31 bodies have a pitch proposal at every sampled orientation in both directions. No force or trajectory qualification |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Screen useful contact torque and whole-body support before the next native search.**
-   The [reach diagnostic](../sdk/discovery/creature_contact_envelope_result_v1.json)
-   checks 334 bounded descriptors, including every descriptor corner and 256
-   generated bodies. With a nonpenetrating torso and unchanged command bounds,
-   the initially selected side-push feet first lose possible distal floor reach
-   at sampled angles of 11–19 degrees. Inward pitch has longer geometric reach
-   than outward pitch, but no useful torque or dynamic benefit is established.
-   The retained route has no finite-grid floor-reach misses in 469 updated
-   projections; grid refinement is not the supported next fix for those cases.
-   Use broad whole-body pose proposals to check torso/limb clearance and signed
-   contact moment arms about the actual whole-body center of mass. Keep reach
-   bounds in virtual targets and examine pitch, contact switching and momentum
-   proposals. Select diverse feasible candidates, then declare a fresh full
-   route and broad native cohort with unchanged limits and fresh comparators.
-   All 2,032 valid native recovery failures remain. Useful native leads still
-   need full-capture varied-start confirmation before Studio adoption.
+1. **Search body-aware force and momentum controllers across diverse bodies.**
+   The [contact-moment screen](../sdk/discovery/creature_contact_moment_result_v1.json)
+   preserves every pose outcome, including nonadjacent overlap and wrong-sign
+   moments. All bodies retain some clear distal contact at every sampled angle,
+   but none has a positive normal-foot-force proposal at side-roll samples
+   from 20 through 45 degrees. Reach alone does not bridge that interval.
+   Inward pitch gives positive normal moments at 10 degrees for 42 bodies and
+   at 30 for ten. Thirty-one bodies have optimistic friction bounds at every
+   sampled pitch orientation in both directions; those poses need not connect.
+   Implement a broad cohort that targets body moment and uses contact switching
+   or rocking to build momentum. Reuse instantaneous wrench projection and
+   joint braking with unchanged limits. Include diverse bodies inside and
+   outside the 31-body proposal group, with fresh established comparators.
+   Keep nonadjacent overlap out of geometric targets and retain contact/work
+   diagnostics. Declare a small full route, then broad compact native screening.
+   The 2,032 valid native recovery failures remain. Useful leads still require
+   fresh full-capture varied-start confirmation before Studio adoption.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

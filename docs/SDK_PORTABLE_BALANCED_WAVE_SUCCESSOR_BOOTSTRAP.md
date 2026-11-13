@@ -32,35 +32,38 @@ all eight directly read declarations verify. The
 retains source pins and 4,800 exact legacy-plan comparisons. The native root
 is never directly actuated or positioned by the virtual torso goal.
 
-The [continuous-joint reach diagnostic](../sdk/discovery/creature_contact_envelope_result_v1.json)
-now checks 334 distinct descriptors and 302 kinematic shapes: sixteen retained
-bodies, 62 additional corners and 256 generated descriptors. Ten controls pass.
-The 2,901,792 minima optimize the continuous commanded joint rectangle at
-sampled orientations. All 16,032 scalar witnesses, 698 artifact hashes and two
-cleanups verify, and all 4,008 summaries are recomputed. The run takes 47.422
-seconds and opens zero worlds; it does not add native performance evidence.
+The [contact-moment diagnostic](../sdk/discovery/creature_contact_moment_result_v1.json)
+now screens the same 334 descriptors at 7,585 joint poses, 37 orientations
+and four turning axes: 374,941,720 pose/orientation cases. It reuses the
+[reach diagnostic](../sdk/discovery/creature_contact_envelope_result_v1.json)
+and all retained compiled bodies. Twenty controls pass, as do 125,716 scalar
+world-frame witnesses and 205,404 comparisons with continuous reach exclusions.
+All 371 artifacts, two cleanups and 49,432 groups' contact/sign counts verify.
+The 466.5-second owner opens no worlds and adds no native performance evidence.
 
-With a nonpenetrating torso, first excluded samples for the initially selected
-side-push feet range from 11 to 19 degrees (median 15). Inward/full-range pitch
-ranges from 20 to 45 (median 30), versus 6 to 9 (median 7) for outward pitch.
-These are joint-reach exclusions at sampled orientations, not a dynamic
-rotation ceiling or physical-impossibility result.
+The nonadjacent-overlap screen passes 483,751 of 2,533,390 body/pose combinations.
+Retained native XML disables robot self-collision; this plausibility filter
+does not alter that policy or reinterpret past eligibility. Every body has
+some clear distal contact at every sampled angle, but no sampled clear pose
+on any body supplies a positive normal-foot-force moment at side-roll samples
+from 20 through 45 degrees. Other contacts restore positive normal moments on
+all bodies by the 55-degree sample.
 
-The retained fourteen-world route contributes 469 updated supported virtual
-projections. Of these, 294 cannot reach the floor in their bend domain; 238
-remain unreachable in the full joint rectangle. Bend restriction accounts
-for 56 additional exclusions. No finite-grid floor-reach miss is found.
-Nine selected endpoints remain above the floor despite available vertical
-reach; the objective also weighs the retained anchor. This does not establish
-anchor feasibility or a causal native improvement.
+Inward pitch supplies positive normal moments on 42 bodies at 10 degrees and
+ten at 30; no body has one at pitch samples from 35 through 70 degrees.
+Using the retained sliding coefficient 0.95, optimistic friction bounds remain
+positive on all bodies at every side-roll sample and on 31 bodies at every
+pitch sample in both directions. These are disconnected single-contact
+possibilities; joint effort, force allocation and dynamic paths remain unproved.
+Exact body groups and all rejected pose outcomes are retained.
 
-Next screen broad whole-body contact proposals for torso/limb clearance and
-signed moment arms about the actual center of mass. Longer inward-pitch reach
-does not by itself establish useful torque. Carry reach bounds into virtual
-targets and examine pitch, contact-switching and momentum proposals before
-a fresh full route and broad native cohort. Keep limits, fresh comparators
-and qualification fixed. Useful native leads need full-capture varied-start
-confirmation before the Godot walk-fall-recover-resume handoff.
+Next implement and prospectively freeze broad body-moment and rocking
+controllers, using actual contact/work diagnostics, instantaneous wrench
+projection and unchanged braking/actuator bounds. Include diverse bodies
+inside and outside the 31-body pitch proposal group with fresh comparators.
+A small full route precedes broad compact native screening. Useful leads
+still require fresh full-capture varied-start confirmation before the
+same-body Godot walk-fall-recover-resume handoff.
 Nine performance cohorts still retain 2,032 valid recovery failures.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
