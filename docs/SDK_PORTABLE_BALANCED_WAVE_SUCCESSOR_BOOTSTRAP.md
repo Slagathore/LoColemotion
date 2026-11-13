@@ -22,12 +22,19 @@ wave reaches 12.5995 in a violating world and only 0.1312 without a violation.
 The best nonviolating impulse reaches 11.6124 degrees. The separate five-degree
 progress screen is unchanged; no result qualifies for recovery or adoption.
 
-Next diagnose the retained joint motion against declared ranges, target rates,
-phase timing and contact reach. Contact absence, tracking and limit excursions
-must be separated before attributing a force deficit or declaring another broad
-body/controller successor. Keep physical bounds and eligibility unchanged.
-Useful diverse leads require fresh full-capture varied-start confirmation and
-the complete Godot recovery handoff with 120 resumed walking steps.
+The [retained-motion diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json)
+now passes six analytical/refusal controls and matches all 1,290,240 velocity
+commands. Of 3,616 completed phases, 3,512 time out; mean exit pose errors are
+0.86-1.17 radians despite mean velocity errors of only 0.028-0.035 radians per
+second. Force saturation is rare and roughly half of commands are slew-limited.
+No outward command occurs at an observed joint bound, but physical overshoot
+still reaches 0.008794 radians. Original contact and violation counts match.
+This read-only diagnosis opens zero worlds and does not prove a cause or benefit.
+Next compare fresh original and slower schedules across diverse body/profile
+pairs with identical poses, gains, limits, horizons and starts. Preserve failed
+and joint-breach outcomes; do not increase force or relax eligibility. Useful
+leads still require full-capture varied-start checks and the complete Godot
+recovery handoff with 120 resumed walking steps.
 
 The earlier [four-phase result](../sdk/discovery/creature_righting_sequence_native_result_v1.json)
 retains 256 valid negatives at source `217d591b`, with 184,320 decisions and

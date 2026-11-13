@@ -23,25 +23,26 @@ and useful self-righting remains unestablished after five negative cohorts.
 | Righting diagnosis | All 224 sequence worlds reach wind-up, but none meets a later rotation/contact transition. Maximum recorded boundary rotation is 9.6 degrees for a sequence and 14.4 for the timed comparator. Static-pose proposals did not produce useful dynamic motion |
 | [Compact capture native result](../sdk/discovery/creature_capture_native_result_v1.json) | Both eight-world canaries pass 153 controls and independent reading. Same-run projection is exact; fresh compact streams are 75.7% smaller. Outer-loop time is 14.58 vs 13.86 seconds, descriptive only because full also writes projection. Retained 256-world reconstruction remains exact |
 | [Dynamic trajectory result](../sdk/discovery/creature_trajectory_native_result_v1.json) | 224 valid six-second failures across 16 bodies after 159 controls: zero eligible, zero progress leads, 16 joint-breach worlds. Compact reading reconstructs 161,280 records and 806,400 samples. Only 32 of 192 new-profile worlds make any distal contact; the timed comparator reaches 14.37 degrees without joint violations |
+| [Retained motion diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json) | Six controls pass; all 1,290,240 velocity commands match. 3,512/3,616 completed phases time out, with large pose errors despite close velocity tracking and rare force saturation. Zero new worlds; no causal or recovery claim |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Use the failed population to diagnose contact and motion before searching again.**
-   The balanced search and five-world full canary are complete at source
-   `aed3bc18`. Forty-eight wave, impulse and waypoint proposals each ran on four
-   bodies, with fresh brake and timed comparators on all 16 bodies. Neither
-   supported-upright eligibility nor the separate five-degree progress screen
-   found a lead. Four profiles violate joint limits on all their assigned bodies.
-   Wave reaches 12.60 degrees only in a violating world; its best nonviolating
-   world reaches 0.13 degrees. Impulse reaches 11.61 degrees without a violation.
-   Diagnose the retained joint trajectories against declared ranges, target
-   rates, phase timing and distal-contact reach. Separate contact absence,
-   tracking errors and limit excursions before attributing a cause or changing
-   proposals. This is a read-only diagnostic, not a new recovery score.
-   Then declare a distinct broad body/controller successor with fresh comparators
-   and unchanged safety bounds. All 1,232 valid negative performance worlds stay
-   retained. The shared compact route avoids a full duplicate search; its reader
-   reconstructs outcomes, not full controller replay. Useful diverse leads still
-   need fresh full-capture varied-start checks before SDK and Studio integration.
+1. **Test phase timing across diverse body/profile pairs.** The read-only
+   diagnosis of the `aed3bc18` population finds that 97.1% of completed phases
+   time out. Mean exit pose errors are 0.86-1.17 radians, while mean velocity
+   tracking errors are only 0.028-0.035 radians per second. About half of commands
+   are slew-limited. These observations support a timing intervention; they do
+   not prove that slowing the schedule will produce recovery.
+   Declare fresh original-timing and slower variants of the same diverse poses
+   on representative bodies, with identical gains, slew, speed/force limits,
+   horizons and starts. Keep fresh timed/brake comparators on every body.
+   Report contact acquisition, pose completion, rotation and joint excursions
+   separately from unchanged supported-upright eligibility. The 16 joint-breach
+   worlds remain failures despite zero outward commands at observed bounds.
+   No force increase or relaxed joint criterion is justified by the diagnosis.
+   All 1,232 valid negative performance worlds stay retained. Compact outcome
+   reconstruction and partial command reconstruction are not full controller
+   replay. Useful diverse leads need fresh full-capture varied-start checks
+   before SDK and Studio integration.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,
