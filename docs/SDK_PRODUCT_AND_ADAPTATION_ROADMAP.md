@@ -48,8 +48,10 @@ while profile 27 passes both.
    now passes in one native world after 31 adapter checks and ten reader controls.
    All 360 steps complete; boundaries 300-302 retain the same nine body instances
    and two contiguous staging pairs, reconstructed exactly by the independent
-   reader. Next map the complete measured energy partition, then integrate fall
-   detection, recovery command ownership and walking resume on those bodies.
+   reader. The [measured energy component](../sdk/explorer/studio/live_recovery_energy_component_v1.json)
+   now passes 35 adapter checks and 19 independent-reader controls without
+   physics. Its one-world probe of two fresh work increments is pending;
+   fall detection, recovery command ownership and walking resume remain open.
    Profile startup and stepping on that route. The short probe observed
    18.504827 seconds through stand-up and 0.952072 seconds for 119 walking steps.
    This is not a matched speed comparison or a new fifteen-second result; the

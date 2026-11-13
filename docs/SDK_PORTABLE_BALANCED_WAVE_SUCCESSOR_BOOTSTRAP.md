@@ -60,7 +60,9 @@ declares learning and held-out data prospectively, and completes the Studio
 recovery handoff. Its [fresh observation boundary](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json)
 now passes a 360-step native route: three measured boundaries, the same nine
 body instances and two independently reconstructed staging pairs. Complete
-energy mapping and recovery actuation remain open.
+energy mapping now has a [35-check component gate](../sdk/explorer/studio/live_recovery_energy_component_v1.json)
+and 19 independent-reader controls. Its native work-source probe and recovery
+actuation remain pending.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature
