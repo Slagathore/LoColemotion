@@ -5,7 +5,7 @@ This is the current work order. Read this page first; search the
 only for a specific decision or experiment. The goal is adaptable, self-learning
 and self-correcting locomotion that can be used in the SDK and live Studio.
 
-## Current execution order - 2026-11-12
+## Current execution order - 2026-11-13
 
 **Priority: search many actual creature variants and controller candidates,
 then apply full scrutiny to the useful and diverse results.** The 24-body
@@ -61,14 +61,20 @@ while profile 27 passes both.
    The closure explicitly retains stale descriptive coverage copied into that
    declaration; only the executed matrix is established. The short route does
    not test self-righting performance.
-   The distinct [breadth cohort](../sdk/discovery/creature_righting_breadth_v1.json)
-   now declares 240 six-second worlds: 16 actual recovery bodies, five profiles
-   and inverted/left-side/right-side starts. It uses unchanged safety bounds,
-   complete capture and the 134-control prelaunch gate. All worlds remain
-   unrun. Execute from the clean pushed freeze; retain every failed body/start
-   and shortlist only all-start eligible, diverse candidates. Check useful
-   candidates through fresh full
-   handoff runs requiring recovery completion and 120 resumed walking steps.
+   The [six-second breadth result](../sdk/discovery/creature_righting_breadth_native_result_v1.json)
+   now retains 240 valid negatives across 16 bodies, five profiles and three
+   fallen starts. All 172,800 decisions and 864,000 solver samples replay; no
+   world meets the upright criterion, no joint-limit breach is measured and
+   all 16 shortlists are empty. This does not establish righting impossibility.
+   The distinct [v2 cohort](../sdk/discovery/creature_righting_breadth_v2.json)
+   declares 256 six-second worlds: eight descriptor-diverse bodies and 32
+   profiles at the fully inverted entry. Five coordination families each vary
+   five cadences and a held pose, alongside fresh brake and earlier-controller
+   comparators. It reuses the component, full capture, 134-control gate and
+   unchanged eligibility criterion; all v2 worlds remain unrun. Execute from
+   the clean pushed freeze. Only useful diverse leads advance to fresh
+   varied-start confirmation and full handoff runs requiring recovery
+   completion and 120 resumed walking steps.
    Keep body identity, native clocks and measured work; no pose reset, invented
    history or relaxed entry/joint-limit gates. Installed interaction, useful
    recovery and real-time behavior remain separate gates.

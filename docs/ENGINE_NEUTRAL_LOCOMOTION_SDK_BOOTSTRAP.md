@@ -1,6 +1,6 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-11-12
+## Active - SDK2 discovery and Studio completion, 2026-11-13
 
 Start with the [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md).
 It owns the next work order: actual creature/controller populations, rigorous
@@ -18,7 +18,8 @@ historical instructions.
 | Studio measured energy | [Native energy route](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json): one 360-step world; two fresh increments, 16 motor observations, five reconstructed work channels and two compiled evaluations replayed. The complete native handoff remains open |
 | Studio combined handoff | [Native v2 timeout](../sdk/explorer/studio/live_handoff_native_failure_v2.json): fall at 552, 240 passive intervals through 792, 240 entry calls, 240 energy evaluations and 1,920 motor observations independently replayed. The body settles inverted with joint-limit and entry gates false; no active recovery command or walking resume. The v1 projection refusal remains preserved |
 | Shared righting candidate route | [Native v1](../sdk/discovery/creature_righting_route_native_v1.json): eight worlds after 134 applicable controls; 16 decisions and 80 solver samples replayed. Retained copied-coverage prose error is explicit; only the actual two-shape/two-profile matrix is established. Useful righting remains open |
-| Righting breadth prospective freeze | [240 six-second worlds](../sdk/discovery/creature_righting_breadth_v1.json): 16 actual recovery bodies, five profiles and three fallen starts; full capture and all-start eligibility before diverse selection. Declared and unrun; requires the complete 134-control gate from a clean pushed freeze |
+| Righting breadth negative | [240 valid negatives](../sdk/discovery/creature_righting_breadth_native_result_v1.json): 16 recovery bodies, five profiles, three fallen starts and six seconds. All 172,800 decisions and 864,000 solver samples replay; zero eligible worlds, zero joint-limit breaches, all 16 shortlists empty |
+| Righting coordination/cadence successor | [256 declared worlds](../sdk/discovery/creature_righting_breadth_v2.json): eight descriptor-diverse bodies and 32 profiles at the inverted entry. Five folding patterns across five cadences plus held poses and two fresh comparators. Existing component, full capture and unchanged criterion; unrun, requiring 134 controls from a clean pushed freeze |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |

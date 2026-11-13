@@ -1,6 +1,6 @@
 # Portable Balanced-Wave Successor Bootstrap
 
-## Current SDK2 native evidence - 2026-11-12
+## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
 The [righting candidate component](../sdk/discovery/creature_righting_component_v1.json)
@@ -11,11 +11,17 @@ All 134 applicable controls passed before its
 16 controller decisions and 80 solver samples independently replayed. Its
 copied descriptive-coverage error remains explicit; the actual two-shape,
 two-profile, nominal-motor matrix is the only established scope. The
-[240-world breadth successor](../sdk/discovery/creature_righting_breadth_v1.json)
-declares 16 recovery bodies, five profiles, three fallen starts and six seconds,
-with full capture and the same complete gate. It is unrun. No recovery,
-learning or handoff benefit is established. Existing walking and recovery-entry
-gates remain unchanged.
+[240-world breadth result](../sdk/discovery/creature_righting_breadth_native_result_v1.json)
+now verifies all 172,800 decisions and 864,000 native samples after 134 controls.
+All 240 worlds are valid negatives: zero eligible, no joint-limit breaches and
+16 empty shortlists across the 16 bodies and three fallen starts. The separate
+[v2 cohort](../sdk/discovery/creature_righting_breadth_v2.json) declares 256
+six-second inverted-entry worlds across eight descriptor-diverse bodies and
+32 profiles, varying five folding patterns, five cadences and held poses with
+two fresh comparators. It is unrun and reuses the existing component, complete
+gate, full capture and eligibility criterion. Useful diverse leads require
+fresh varied-start and full Godot handoff confirmation. No recovery, learning
+or handoff benefit is established; walking and recovery-entry gates are unchanged.
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes
