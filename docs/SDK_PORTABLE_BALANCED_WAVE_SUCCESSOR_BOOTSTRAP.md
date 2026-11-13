@@ -28,18 +28,24 @@ the first route's descriptive-coverage discrepancy remain preserved. The
 [component v3](../sdk/discovery/creature_righting_component_v3.json) and both
 native runs are complete at source `217d591b`. Native correctness does not
 establish useful righting, impossibility, training, adaptation or release.
-The [compact component](../sdk/discovery/creature_capture_component_v1.json) now
+The [compact component](../sdk/discovery/creature_capture_component_v1.json)
 passes 153 zero-world controls and exact outcome reconstruction across all 256
-retained sequence worlds. Projected streams are 76.1% smaller, including unchanged
-timing/readback logs. Every native substep and solver input remains retained;
-detailed body/contact geometry and independent controller replay remain full-only.
-Next run the declared full and compact canaries at the same pushed source: eight
-worlds each, two bodies, four profiles and two seconds. The full run also records
-compact projection; one pair per body gives descriptive timing only. No native
-throughput improvement is yet established. Then declare a broad dynamic trajectory
-and phase-timing search with unchanged physical limits and upright eligibility.
-Useful diverse leads need fresh
-full-capture varied-start confirmation and complete Godot handoffs.
+retained sequence worlds, with 76.1% smaller projected streams. Its
+[native canaries](../sdk/discovery/creature_capture_native_result_v1.json) now
+complete at source `670cffc2`: eight fresh worlds per format, two bodies, four
+profiles and two seconds after a fresh 153-control gate each. Full replay and
+same-run compact projection verify all 1,920 decisions and 9,600 samples. The
+compact reader reconstructs all 9,600 samples without claiming controller replay.
+Fresh compact streams are 75.7% smaller. Summed outer-loop time is 14.5752 seconds
+for full-plus-projection and 13.8561 for compact; owner time is 188.688 and 187.516
+seconds. One ordered pair per body, with full also writing projection, does not
+establish ordinary full-capture speedup, cross-run equivalence or real time.
+Readback counts, physical limits and every native substep are preserved. All
+4,742 retained artifacts and 38 stage cleanups verify; no recovery benefit results.
+Next bind this capture qualification into broad dynamic trajectory and phase-timing
+screening without requiring a full duplicate of the search. The current launch
+guard authorizes matched canaries only. Useful diverse leads need fresh full-capture
+varied-start confirmation and complete Godot handoffs.
 
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
