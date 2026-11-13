@@ -1,0 +1,6396 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "maximum_worlds_per_batch": 4,
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "seed": 1061121,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_capture_native_result_v1.json",
+    "sha256": "fe00c99ff5b59090c7169874c42ed928e33b8736978f8cee5a758a1899050531"
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_capture.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_righting_sequence.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py"
+  ],
+  "not_covered": [
+    "Recovery qualification or learned adaptation",
+    "New initial fallen orientations, weakened motors, terrain or impacts",
+    "Walking-to-fall entry and recovery-to-walking integration",
+    "Godot transfer, cross-engine equivalence, real time or release"
+  ],
+  "qualification_economy": "One shared runner, six focused controls for assignment, proposal, progress and broader-capture contracts, and a minimal full native canary before compact discovery. No full-capture duplicate of the broad search.",
+  "campaign_id": "creature_trajectory_search_v1",
+  "mode": "development_discovery",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "purpose": "Balanced exposed dynamic search: 48 deterministic wave, impulse and waypoint profiles each on four of sixteen bodies, plus fresh brake and timed comparators on every body. All 224 six-second worlds and partial-progress scores are retained; only unchanged supported-upright criteria can grant eligibility.",
+  "capture_mode": "compact_v1",
+  "outer_steps": 720,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_assigned_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_b",
+        "torso_length_scale": 1.1,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6103",
+        "torso_length_scale": 1.0535744198024215,
+        "torso_width_scale": 1.0332991562162757,
+        "upper_length_fraction": 0.5098777738981596,
+        "hip_span_scale": 1.099488118989274,
+        "foot_radius_scale": 1.0289813767021945,
+        "front_limb_mass_scale": 1.0982205605130226
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6116",
+        "torso_length_scale": 0.9243773739841714,
+        "torso_width_scale": 1.092919998660898,
+        "upper_length_fraction": 0.5240690790312525,
+        "hip_span_scale": 0.9635037609989531,
+        "foot_radius_scale": 1.0822817410766805,
+        "front_limb_mass_scale": 1.0781984820911192
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6109",
+        "torso_length_scale": 1.0936444497652456,
+        "torso_width_scale": 0.9217203858824727,
+        "upper_length_fraction": 0.5417046274155622,
+        "hip_span_scale": 1.0620312707410267,
+        "foot_radius_scale": 0.9437327049308766,
+        "front_limb_mass_scale": 0.933942142090281
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6105",
+        "torso_length_scale": 1.0052902267093982,
+        "torso_width_scale": 1.0935019718002301,
+        "upper_length_fraction": 0.48646168914541177,
+        "hip_span_scale": 0.9793139184078468,
+        "foot_radius_scale": 0.9242928356454458,
+        "front_limb_mass_scale": 1.038380685527432
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6114",
+        "torso_length_scale": 0.9404690663890143,
+        "torso_width_scale": 1.0652589055628654,
+        "upper_length_fraction": 0.49274039572401446,
+        "hip_span_scale": 0.9729267384561074,
+        "foot_radius_scale": 1.0879637798266402,
+        "front_limb_mass_scale": 0.9438544581280682
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6106",
+        "torso_length_scale": 0.9019590498418452,
+        "torso_width_scale": 0.9601655727392449,
+        "upper_length_fraction": 0.5184519508477421,
+        "hip_span_scale": 1.0165552675995406,
+        "foot_radius_scale": 0.915240760849612,
+        "front_limb_mass_scale": 1.003843702865728
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6118",
+        "torso_length_scale": 1.0937267390530852,
+        "torso_width_scale": 0.9497071418561291,
+        "upper_length_fraction": 0.524545024210714,
+        "hip_span_scale": 0.918469026595929,
+        "foot_radius_scale": 1.035439005153123,
+        "front_limb_mass_scale": 1.0326992915320907
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6119",
+        "torso_length_scale": 0.96862467989992,
+        "torso_width_scale": 0.9000615925062592,
+        "upper_length_fraction": 0.5442827379201266,
+        "hip_span_scale": 1.0212948075778072,
+        "foot_radius_scale": 0.9138043803660675,
+        "front_limb_mass_scale": 0.9144451240111248
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6113",
+        "torso_length_scale": 0.9794287821462911,
+        "torso_width_scale": 0.9819624629528174,
+        "upper_length_fraction": 0.49890287933379945,
+        "hip_span_scale": 0.9235057165900957,
+        "foot_radius_scale": 0.9086695590076664,
+        "front_limb_mass_scale": 1.061568803843476
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6110",
+        "torso_length_scale": 1.0253141368565415,
+        "torso_width_scale": 1.089447144416498,
+        "upper_length_fraction": 0.5175032612489311,
+        "hip_span_scale": 0.9498189928591761,
+        "foot_radius_scale": 1.0035879951677258,
+        "front_limb_mass_scale": 1.080298800715315
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6112",
+        "torso_length_scale": 0.9080588190835106,
+        "torso_width_scale": 1.0936438149292125,
+        "upper_length_fraction": 0.4976951603329962,
+        "hip_span_scale": 0.9397373455203458,
+        "foot_radius_scale": 0.98104870568054,
+        "front_limb_mass_scale": 1.0033493541421716
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6107",
+        "torso_length_scale": 0.9341446610712784,
+        "torso_width_scale": 1.0038158447257746,
+        "upper_length_fraction": 0.5346639538543914,
+        "hip_span_scale": 0.9168882945126129,
+        "foot_radius_scale": 0.9742543633268808,
+        "front_limb_mass_scale": 0.9061752081863059
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6101",
+        "torso_length_scale": 1.032854112873984,
+        "torso_width_scale": 0.9352174529887777,
+        "upper_length_fraction": 0.5271975998643781,
+        "hip_span_scale": 1.0141165560842764,
+        "foot_radius_scale": 1.0655881652994055,
+        "front_limb_mass_scale": 0.9042270536078669
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "wave_00",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.45,
+              0.0,
+              -0.45,
+              -0.0,
+              0.0,
+              0.45,
+              0.45,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.225,
+              -0.389711431703,
+              0.225,
+              0.389711431703,
+              0.389711431703,
+              -0.225,
+              -0.225,
+              -0.389711431703
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.225,
+              0.389711431703,
+              0.225,
+              -0.389711431703,
+              -0.389711431703,
+              -0.225,
+              -0.225,
+              0.389711431703
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_01",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.0,
+              -0.0,
+              0.65,
+              -0.65,
+              -0.65,
+              0.65,
+              0.0,
+              -0.0
+            ],
+            "limb_delay_steps": [
+              4,
+              2,
+              7,
+              3
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.65,
+              0.65,
+              0.0,
+              -0.0,
+              -0.0,
+              0.0,
+              -0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              4,
+              0,
+              6,
+              5
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.0,
+              0.0,
+              -0.65,
+              0.65,
+              0.65,
+              -0.65,
+              -0.0,
+              0.0
+            ],
+            "limb_delay_steps": [
+              5,
+              2,
+              2,
+              5
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.65,
+              -0.65,
+              -0.0,
+              0.0,
+              0.0,
+              -0.0,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              2,
+              3,
+              3,
+              1
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_02",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.9,
+              0.0,
+              0.9,
+              0.0,
+              0.0,
+              0.9,
+              0.0,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.278115294937,
+              0.855950864666,
+              0.278115294937,
+              0.855950864666,
+              -0.855950864666,
+              0.278115294937,
+              0.855950864666,
+              -0.278115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.728115294937,
+              0.529006727063,
+              -0.728115294937,
+              0.529006727063,
+              -0.529006727063,
+              -0.728115294937,
+              0.529006727063,
+              0.728115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.728115294937,
+              -0.529006727063,
+              -0.728115294937,
+              -0.529006727063,
+              0.529006727063,
+              -0.728115294937,
+              -0.529006727063,
+              0.728115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.278115294937,
+              -0.855950864666,
+              0.278115294937,
+              -0.855950864666,
+              0.855950864666,
+              0.278115294937,
+              -0.855950864666,
+              -0.278115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "wave_03",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.45,
+              -0.0,
+              -0.45,
+              -0.0,
+              -0.45,
+              -0.0,
+              0.45,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              4,
+              3,
+              4
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.225,
+              0.389711431703,
+              -0.225,
+              0.389711431703,
+              -0.225,
+              0.389711431703,
+              0.225,
+              -0.389711431703
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              3,
+              5
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.225,
+              0.389711431703,
+              0.225,
+              0.389711431703,
+              0.225,
+              0.389711431703,
+              -0.225,
+              -0.389711431703
+            ],
+            "limb_delay_steps": [
+              6,
+              1,
+              3,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.45,
+              0.0,
+              0.45,
+              0.0,
+              0.45,
+              0.0,
+              -0.45,
+              -0.0
+            ],
+            "limb_delay_steps": [
+              2,
+              6,
+              7,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.225,
+              -0.389711431703,
+              0.225,
+              -0.389711431703,
+              0.225,
+              -0.389711431703,
+              -0.225,
+              0.389711431703
+            ],
+            "limb_delay_steps": [
+              3,
+              2,
+              1,
+              7
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              -0.225,
+              -0.389711431703,
+              -0.225,
+              -0.389711431703,
+              -0.225,
+              -0.389711431703,
+              0.225,
+              0.389711431703
+            ],
+            "limb_delay_steps": [
+              0,
+              6,
+              4,
+              7
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "wave_04",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.65,
+              -0.65,
+              0.0,
+              0.0,
+              -0.65,
+              0.65,
+              0.0,
+              -0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.325,
+              0.325,
+              0.56291651246,
+              -0.56291651246,
+              0.325,
+              -0.325,
+              -0.56291651246,
+              0.56291651246
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.325,
+              0.325,
+              -0.56291651246,
+              0.56291651246,
+              0.325,
+              -0.325,
+              0.56291651246,
+              -0.56291651246
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_05",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.9,
+              0.0,
+              0.9,
+              0.0,
+              -0.9,
+              0.0,
+              0.0,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              1,
+              1,
+              0,
+              2
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.0,
+              0.9,
+              0.0,
+              0.9,
+              -0.0,
+              -0.9,
+              0.9,
+              0.0
+            ],
+            "limb_delay_steps": [
+              4,
+              5,
+              2,
+              7
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.9,
+              0.0,
+              -0.9,
+              0.0,
+              0.9,
+              -0.0,
+              0.0,
+              0.9
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              4,
+              7
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.0,
+              -0.9,
+              -0.0,
+              -0.9,
+              0.0,
+              0.9,
+              -0.9,
+              0.0
+            ],
+            "limb_delay_steps": [
+              5,
+              5,
+              0,
+              3
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_06",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.45,
+              -0.0,
+              0.0,
+              -0.45,
+              0.0,
+              -0.45,
+              0.0,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.139057647469,
+              0.427975432333,
+              -0.427975432333,
+              -0.139057647469,
+              -0.427975432333,
+              -0.139057647469,
+              -0.427975432333,
+              -0.139057647469
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.364057647469,
+              0.264503363532,
+              -0.264503363532,
+              0.364057647469,
+              -0.264503363532,
+              0.364057647469,
+              -0.264503363532,
+              0.364057647469
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.364057647469,
+              -0.264503363532,
+              0.264503363532,
+              0.364057647469,
+              0.264503363532,
+              0.364057647469,
+              0.264503363532,
+              0.364057647469
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.139057647469,
+              -0.427975432333,
+              0.427975432333,
+              -0.139057647469,
+              0.427975432333,
+              -0.139057647469,
+              0.427975432333,
+              -0.139057647469
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "wave_07",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.65,
+              0.65,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.0
+            ],
+            "limb_delay_steps": [
+              3,
+              6,
+              1,
+              2
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.325,
+              0.325,
+              0.56291651246,
+              -0.56291651246,
+              0.56291651246,
+              -0.56291651246,
+              -0.56291651246,
+              0.56291651246
+            ],
+            "limb_delay_steps": [
+              4,
+              2,
+              7,
+              6
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.325,
+              -0.325,
+              0.56291651246,
+              -0.56291651246,
+              0.56291651246,
+              -0.56291651246,
+              -0.56291651246,
+              0.56291651246
+            ],
+            "limb_delay_steps": [
+              0,
+              4,
+              5,
+              1
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.65,
+              -0.65,
+              0.0,
+              -0.0,
+              0.0,
+              -0.0,
+              -0.0,
+              0.0
+            ],
+            "limb_delay_steps": [
+              4,
+              0,
+              7,
+              7
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.325,
+              -0.325,
+              -0.56291651246,
+              0.56291651246,
+              -0.56291651246,
+              0.56291651246,
+              0.56291651246,
+              -0.56291651246
+            ],
+            "limb_delay_steps": [
+              0,
+              1,
+              7,
+              1
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              -0.325,
+              0.325,
+              -0.56291651246,
+              0.56291651246,
+              -0.56291651246,
+              0.56291651246,
+              0.56291651246,
+              -0.56291651246
+            ],
+            "limb_delay_steps": [
+              6,
+              5,
+              6,
+              2
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "wave_08",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.9,
+              0.0,
+              -0.9,
+              0.0,
+              -0.9,
+              0.0,
+              0.0,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.45,
+              0.779422863406,
+              0.45,
+              -0.779422863406,
+              0.45,
+              -0.779422863406,
+              0.779422863406,
+              0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.45,
+              -0.779422863406,
+              0.45,
+              0.779422863406,
+              0.45,
+              0.779422863406,
+              -0.779422863406,
+              0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_09",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.45,
+              0.0,
+              0.45,
+              0.0,
+              0.0,
+              0.45,
+              0.0,
+              0.45
+            ],
+            "limb_delay_steps": [
+              3,
+              1,
+              2,
+              5
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.0,
+              -0.45,
+              0.0,
+              -0.45,
+              0.45,
+              0.0,
+              0.45,
+              0.0
+            ],
+            "limb_delay_steps": [
+              4,
+              1,
+              5,
+              4
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.45,
+              -0.0,
+              -0.45,
+              -0.0,
+              0.0,
+              -0.45,
+              0.0,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              7,
+              7,
+              1,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.0,
+              0.45,
+              -0.0,
+              0.45,
+              -0.45,
+              -0.0,
+              -0.45,
+              -0.0
+            ],
+            "limb_delay_steps": [
+              3,
+              4,
+              0,
+              1
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_10",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.0,
+              -0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.0,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.618186735592,
+              0.618186735592,
+              0.618186735592,
+              -0.618186735592,
+              -0.618186735592,
+              0.618186735592,
+              0.200861046344,
+              -0.200861046344
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.38206041399,
+              0.38206041399,
+              0.38206041399,
+              -0.38206041399,
+              -0.38206041399,
+              0.38206041399,
+              -0.525861046344,
+              0.525861046344
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.38206041399,
+              -0.38206041399,
+              -0.38206041399,
+              0.38206041399,
+              0.38206041399,
+              -0.38206041399,
+              -0.525861046344,
+              0.525861046344
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.618186735592,
+              -0.618186735592,
+              -0.618186735592,
+              0.618186735592,
+              0.618186735592,
+              -0.618186735592,
+              0.200861046344,
+              -0.200861046344
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "wave_11",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.0,
+              -0.9,
+              0.0,
+              -0.9,
+              0.9,
+              0.0,
+              0.0,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              2,
+              1,
+              4,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.779422863406,
+              -0.45,
+              0.779422863406,
+              -0.45,
+              0.45,
+              0.779422863406,
+              0.779422863406,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              4,
+              0,
+              5,
+              7
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.779422863406,
+              0.45,
+              0.779422863406,
+              0.45,
+              -0.45,
+              0.779422863406,
+              0.779422863406,
+              0.45
+            ],
+            "limb_delay_steps": [
+              2,
+              7,
+              1,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.0,
+              0.9,
+              0.0,
+              0.9,
+              -0.9,
+              0.0,
+              0.0,
+              0.9
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              4,
+              7
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.779422863406,
+              0.45,
+              -0.779422863406,
+              0.45,
+              -0.45,
+              -0.779422863406,
+              -0.779422863406,
+              0.45
+            ],
+            "limb_delay_steps": [
+              6,
+              4,
+              6,
+              7
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              -0.779422863406,
+              -0.45,
+              -0.779422863406,
+              -0.45,
+              0.45,
+              -0.779422863406,
+              -0.779422863406,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              4,
+              5,
+              3,
+              2
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "wave_12",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.45,
+              0.0,
+              -0.45,
+              -0.0,
+              0.45,
+              0.0,
+              0.0,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.225,
+              -0.389711431703,
+              0.225,
+              0.389711431703,
+              -0.225,
+              -0.389711431703,
+              -0.389711431703,
+              0.225
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.225,
+              0.389711431703,
+              0.225,
+              -0.389711431703,
+              -0.225,
+              0.389711431703,
+              0.389711431703,
+              0.225
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_13",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.65,
+              0.65,
+              -0.65,
+              0.65,
+              0.0,
+              -0.0,
+              0.0,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              3,
+              1,
+              6
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.0,
+              0.0,
+              -0.0,
+              0.0,
+              -0.65,
+              0.65,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              5,
+              3,
+              6,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              -0.0,
+              0.0,
+              0.0,
+              -0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              6,
+              0,
+              6
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.0,
+              -0.0,
+              0.0,
+              -0.0,
+              0.65,
+              -0.65,
+              -0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              4,
+              3,
+              1,
+              5
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "wave_14",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.9,
+              0.0,
+              0.9,
+              0.0,
+              0.0,
+              0.9,
+              0.0,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.278115294937,
+              0.855950864666,
+              0.278115294937,
+              0.855950864666,
+              -0.855950864666,
+              0.278115294937,
+              -0.855950864666,
+              0.278115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.728115294937,
+              0.529006727063,
+              -0.728115294937,
+              0.529006727063,
+              -0.529006727063,
+              -0.728115294937,
+              -0.529006727063,
+              -0.728115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.728115294937,
+              -0.529006727063,
+              -0.728115294937,
+              -0.529006727063,
+              0.529006727063,
+              -0.728115294937,
+              0.529006727063,
+              -0.728115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.278115294937,
+              -0.855950864666,
+              0.278115294937,
+              -0.855950864666,
+              0.855950864666,
+              0.278115294937,
+              0.855950864666,
+              0.278115294937
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "wave_15",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.0,
+              0.45,
+              0.45,
+              0.0,
+              0.0,
+              0.45,
+              -0.45,
+              -0.0
+            ],
+            "limb_delay_steps": [
+              1,
+              0,
+              2,
+              1
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.389711431703,
+              0.225,
+              0.225,
+              -0.389711431703,
+              0.389711431703,
+              0.225,
+              -0.225,
+              0.389711431703
+            ],
+            "limb_delay_steps": [
+              4,
+              0,
+              4,
+              6
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.389711431703,
+              -0.225,
+              -0.225,
+              -0.389711431703,
+              0.389711431703,
+              -0.225,
+              0.225,
+              0.389711431703
+            ],
+            "limb_delay_steps": [
+              3,
+              0,
+              0,
+              4
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.0,
+              -0.45,
+              -0.45,
+              -0.0,
+              0.0,
+              -0.45,
+              0.45,
+              0.0
+            ],
+            "limb_delay_steps": [
+              3,
+              1,
+              7,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.389711431703,
+              -0.225,
+              -0.225,
+              0.389711431703,
+              -0.389711431703,
+              -0.225,
+              0.225,
+              -0.389711431703
+            ],
+            "limb_delay_steps": [
+              7,
+              0,
+              0,
+              2
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              -0.389711431703,
+              0.225,
+              0.225,
+              0.389711431703,
+              -0.389711431703,
+              0.225,
+              -0.225,
+              -0.389711431703
+            ],
+            "limb_delay_steps": [
+              5,
+              5,
+              2,
+              4
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_00",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.45,
+              -0.45,
+              0.45,
+              0.45,
+              0.45,
+              -0.45,
+              0.45,
+              0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              -0.45,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 13,
+            "maximum_hold_steps": 14,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.365976323415,
+              -0.273691939913,
+              -0.123492723305,
+              -0.056257398251,
+              -0.17520098743,
+              -0.136619346058,
+              -0.014451265271,
+              0.059810417723
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_01",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.65,
+              -0.65,
+              -0.65,
+              -0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              7,
+              2,
+              3,
+              6
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.65,
+              0.65,
+              0.65,
+              0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              1,
+              3,
+              7,
+              3
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.529779430545,
+              0.478465377173,
+              0.100263862598,
+              0.551918594574,
+              0.395403853834,
+              0.573810389762,
+              0.016076402946,
+              0.28143054023
+            ],
+            "limb_delay_steps": [
+              2,
+              2,
+              1,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.572520147543,
+              -0.253727499596,
+              -0.397837945405,
+              0.373220342746,
+              -0.131374763268,
+              0.551956555121,
+              0.448700159738,
+              0.182282974601
+            ],
+            "limb_delay_steps": [
+              5,
+              2,
+              6,
+              5
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_02",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.9,
+              0.9,
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.9,
+              -0.9,
+              0.9,
+              0.9,
+              0.9,
+              0.9,
+              0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 21,
+            "maximum_hold_steps": 22,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.440463242275,
+              -0.049669297956,
+              0.741068486103,
+              0.382622878116,
+              0.679418861799,
+              -0.790804722226,
+              -0.640766157202,
+              -0.388040036484
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.601455582039,
+              -0.302232372209,
+              0.361160896158,
+              0.435860222074,
+              0.829357820594,
+              -0.214532628376,
+              0.092528827062,
+              0.5277401738
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.038358678968,
+              0.707199816537,
+              -0.385893245453,
+              -0.596187356381,
+              -0.565576493852,
+              -0.341140508966,
+              0.33023051893,
+              0.100885575653
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_03",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.45,
+              0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              0.45,
+              0.45
+            ],
+            "limb_delay_steps": [
+              2,
+              5,
+              0,
+              1
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              6,
+              6,
+              4,
+              7
+            ],
+            "minimum_hold_steps": 13,
+            "maximum_hold_steps": 14,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.06324955907,
+              -0.29629081283,
+              0.429746885729,
+              0.188533730419,
+              -0.077848855778,
+              -0.339878487034,
+              -0.2101084993,
+              0.012138028392
+            ],
+            "limb_delay_steps": [
+              4,
+              7,
+              1,
+              3
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.019689851766,
+              0.0412154188,
+              0.181737003079,
+              -0.04990810463,
+              -0.148801047653,
+              -0.315955924891,
+              0.410373666304,
+              0.215887409158
+            ],
+            "limb_delay_steps": [
+              7,
+              4,
+              0,
+              2
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.285246765315,
+              0.309441523366,
+              -0.140024349088,
+              -0.418357383987,
+              -0.335385949638,
+              0.36846663696,
+              0.012710509496,
+              -0.388100128553
+            ],
+            "limb_delay_steps": [
+              7,
+              6,
+              1,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              0.11831070153,
+              -0.105243569364,
+              0.005927060217,
+              0.329865423247,
+              -0.212418334913,
+              -0.376407381671,
+              0.317999887466,
+              -0.347491532961
+            ],
+            "limb_delay_steps": [
+              0,
+              3,
+              4,
+              5
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_04",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              -0.65,
+              0.65,
+              0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.65,
+              0.65,
+              -0.65,
+              0.65,
+              0.65,
+              -0.65,
+              -0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.446882953302,
+              0.519314002706,
+              -0.421836297981,
+              -0.539350422488,
+              0.313220019785,
+              0.212310681442,
+              -0.3221324342,
+              -0.508446821033
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_05",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.9,
+              0.9,
+              -0.9,
+              -0.9,
+              0.9,
+              0.9,
+              0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              3,
+              7,
+              3,
+              6
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.9,
+              -0.9,
+              0.9,
+              0.9,
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              6,
+              3,
+              1,
+              3
+            ],
+            "minimum_hold_steps": 21,
+            "maximum_hold_steps": 22,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.897582207442,
+              0.745671906782,
+              -0.795061540542,
+              0.1379363202,
+              -0.540624430382,
+              0.213840880286,
+              -0.259436611229,
+              -0.826974555524
+            ],
+            "limb_delay_steps": [
+              0,
+              4,
+              6,
+              6
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.721910274639,
+              -0.513096212276,
+              -0.792280981406,
+              -0.209796646345,
+              -0.660834927986,
+              -0.030097870067,
+              0.34257867869,
+              -0.13180108776
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              3,
+              2
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_06",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.45,
+              0.45,
+              0.45,
+              -0.45,
+              0.45,
+              0.45,
+              -0.45,
+              0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 13,
+            "maximum_hold_steps": 14,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.20971859263,
+              0.153010694005,
+              0.316352631967,
+              0.287522518046,
+              -0.236753721122,
+              0.365675820135,
+              -0.289520922284,
+              -0.395019606494
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.18957499596,
+              -0.222344996787,
+              0.080017753935,
+              0.256389103193,
+              -0.296117949652,
+              -0.316465232589,
+              0.33956859903,
+              -0.319624261295
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.070194228397,
+              -0.129670267485,
+              0.254959624186,
+              -0.270563620102,
+              -0.089625438223,
+              -0.250872665018,
+              0.220885812972,
+              0.396526463389
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_07",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              -0.65,
+              -0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              2,
+              2,
+              3,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65,
+              0.65,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              1,
+              1,
+              1,
+              5
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.403589937303,
+              -0.399800658477,
+              -0.01017023638,
+              -0.063594263896,
+              -0.207605400569,
+              0.278263140535,
+              -0.396604495804,
+              -0.280392226486
+            ],
+            "limb_delay_steps": [
+              6,
+              7,
+              6,
+              6
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.485329457162,
+              0.52429643827,
+              -0.340861390132,
+              -0.617594548394,
+              -0.183581090642,
+              -0.114077795091,
+              0.369445576746,
+              -0.301630790748
+            ],
+            "limb_delay_steps": [
+              6,
+              5,
+              7,
+              3
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.013669459753,
+              0.468667508733,
+              0.319622736087,
+              -0.00755511682,
+              -0.441127461188,
+              0.432985329444,
+              -0.036669508663,
+              0.087937511993
+            ],
+            "limb_delay_steps": [
+              6,
+              2,
+              6,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              0.549338443423,
+              -0.316772170088,
+              0.125733639049,
+              0.016139228832,
+              -0.299317227306,
+              0.221643908073,
+              0.365732477118,
+              0.571180206326
+            ],
+            "limb_delay_steps": [
+              1,
+              2,
+              6,
+              6
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_08",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.9,
+              -0.9,
+              -0.9,
+              0.9,
+              0.9,
+              -0.9,
+              0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.9,
+              0.9,
+              0.9,
+              -0.9,
+              -0.9,
+              0.9,
+              -0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 21,
+            "maximum_hold_steps": 22,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.2561249054,
+              0.584720608902,
+              -0.170099485991,
+              0.891398727361,
+              -0.178092901318,
+              0.653128478328,
+              0.671646184481,
+              0.125189427069
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_09",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.45,
+              -0.45,
+              0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              6,
+              7,
+              5,
+              2
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              0.45,
+              -0.45,
+              0.45
+            ],
+            "limb_delay_steps": [
+              5,
+              1,
+              5,
+              6
+            ],
+            "minimum_hold_steps": 13,
+            "maximum_hold_steps": 14,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.219954586259,
+              0.172605109579,
+              0.006651936198,
+              -0.214453034836,
+              -0.382886676413,
+              -0.268629733395,
+              -0.282542320676,
+              0.05087159922
+            ],
+            "limb_delay_steps": [
+              3,
+              4,
+              2,
+              7
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.012599665989,
+              -0.247266690592,
+              0.392657826967,
+              -0.387467994498,
+              -0.06343521813,
+              0.213796839647,
+              0.411513949312,
+              -0.32641502937
+            ],
+            "limb_delay_steps": [
+              0,
+              2,
+              5,
+              5
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_10",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.070715127973,
+              0.112431784337,
+              0.452227388422,
+              -0.649951313731,
+              -0.259240632745,
+              0.063718942814,
+              0.574678063036,
+              0.392297646486
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.037472541032,
+              -0.145700872644,
+              -0.537103117977,
+              -0.154851458456,
+              0.607921332744,
+              -0.043220144165,
+              -0.401468119789,
+              0.420668993688
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.174341338986,
+              0.308817943323,
+              0.550554343678,
+              0.416457154355,
+              -0.533800198107,
+              0.469114485262,
+              -0.604724714267,
+              0.541265419547
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_11",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.9,
+              -0.9,
+              -0.9,
+              -0.9,
+              0.9,
+              0.9,
+              0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              4,
+              0,
+              7,
+              1
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.9,
+              0.9,
+              0.9,
+              0.9,
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              4,
+              5,
+              1,
+              0
+            ],
+            "minimum_hold_steps": 21,
+            "maximum_hold_steps": 22,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.865555487567,
+              -0.712386364227,
+              0.040539104396,
+              0.88206645612,
+              -0.810022705876,
+              0.61055225682,
+              0.437323635326,
+              -0.892678089295
+            ],
+            "limb_delay_steps": [
+              7,
+              0,
+              7,
+              3
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.547569831413,
+              -0.789572702421,
+              -0.820231710513,
+              0.168473530218,
+              -0.821995906335,
+              0.895029659346,
+              -0.874947800406,
+              0.615956288236
+            ],
+            "limb_delay_steps": [
+              2,
+              4,
+              6,
+              1
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.646598656429,
+              -0.510803989913,
+              0.003853961412,
+              0.479403737085,
+              -0.177520469352,
+              0.507375705024,
+              -0.878854841009,
+              0.817125632848
+            ],
+            "limb_delay_steps": [
+              3,
+              3,
+              2,
+              6
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              -0.390004195339,
+              -0.399661418007,
+              -0.778966998436,
+              -0.452164793752,
+              -0.551798200389,
+              -0.454530294123,
+              0.417680047995,
+              0.832526493227
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              2,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_12",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              0.45,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.45,
+              -0.45,
+              0.45,
+              0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              0.45
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 13,
+            "maximum_hold_steps": 14,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.01348943292,
+              -0.207842696242,
+              0.272423292871,
+              -0.103592505552,
+              0.420736128063,
+              -0.038699996813,
+              0.432836164893,
+              -0.138425630218
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_13",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.65,
+              -0.65,
+              0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              1,
+              1,
+              3,
+              3
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.65,
+              0.65,
+              -0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              1,
+              3,
+              0,
+              1
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.272237762589,
+              0.117906809622,
+              0.498646986808,
+              0.301224028218,
+              -0.42955344242,
+              -0.559964463905,
+              0.206797037335,
+              -0.226394105843
+            ],
+            "limb_delay_steps": [
+              1,
+              1,
+              6,
+              6
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.253382256246,
+              0.145232807443,
+              -0.356987163656,
+              -0.090013520315,
+              -0.348455114303,
+              -0.009932073162,
+              0.432166286136,
+              0.225189604723
+            ],
+            "limb_delay_steps": [
+              0,
+              7,
+              3,
+              6
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_14",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.9,
+              0.9,
+              0.9,
+              0.9,
+              -0.9,
+              0.9,
+              0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.9,
+              0.9,
+              -0.9,
+              -0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 21,
+            "maximum_hold_steps": 22,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.528148722019,
+              -0.885595538192,
+              0.828490971321,
+              -0.787803951442,
+              -0.601712632341,
+              -0.044459235809,
+              0.251408852894,
+              -0.34735206346
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.039028017751,
+              -0.709729237838,
+              -0.303481774517,
+              -0.690847639348,
+              0.306572644636,
+              -0.685207648403,
+              0.407343544323,
+              -0.008329094187
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.143786344438,
+              0.475970865148,
+              -0.619569943694,
+              0.642939245764,
+              -0.475921382923,
+              -0.866338301533,
+              0.288152392903,
+              0.737454835473
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "impulse_15",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.45,
+              -0.45,
+              0.45,
+              0.45,
+              -0.45,
+              0.45,
+              0.45,
+              -0.45
+            ],
+            "limb_delay_steps": [
+              5,
+              5,
+              4,
+              3
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              0.45,
+              -0.45,
+              -0.45,
+              0.45
+            ],
+            "limb_delay_steps": [
+              2,
+              6,
+              4,
+              2
+            ],
+            "minimum_hold_steps": 13,
+            "maximum_hold_steps": 14,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.253431833714,
+              0.139729783113,
+              -0.274691063473,
+              -0.341334238629,
+              0.434932724776,
+              0.289663230138,
+              -0.006481315809,
+              -0.43569733067
+            ],
+            "limb_delay_steps": [
+              6,
+              4,
+              3,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.311388611855,
+              -0.115270154185,
+              0.059713739969,
+              0.368442038876,
+              -0.124817530572,
+              0.014856450221,
+              0.054718579197,
+              -0.168857995832
+            ],
+            "limb_delay_steps": [
+              1,
+              1,
+              1,
+              6
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.379532275215,
+              0.318035867795,
+              0.12385435607,
+              0.1256061465,
+              -0.070195644259,
+              0.096661037599,
+              0.073983049888,
+              -0.048046863871
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              5,
+              4
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              0.304299688565,
+              -0.3679294115,
+              -0.322510265215,
+              -0.383691410329,
+              -0.327744969025,
+              0.188502290198,
+              0.077304573602,
+              0.322912935347
+            ],
+            "limb_delay_steps": [
+              6,
+              5,
+              0,
+              3
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_00",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.206485287701,
+              -0.573152229183,
+              0.620297318285,
+              -0.545976979904,
+              0.437711547485,
+              0.452147548136,
+              -0.329076197239,
+              -0.421323342851
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.513478312237,
+              0.339827988198,
+              0.708044905759,
+              -0.025091433786,
+              -0.030756121734,
+              -0.807663010748,
+              0.075718795931,
+              -0.759365168369
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.323321921032,
+              0.106979941115,
+              0.588776287953,
+              0.476864712373,
+              -0.841136809742,
+              -0.211030442345,
+              -0.831794957403,
+              0.794024541337
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_01",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.11436939136,
+              0.845470458021,
+              -0.881526806425,
+              -0.377714640139,
+              -0.247392501607,
+              0.493558073946,
+              0.065431015672,
+              -0.305916124999
+            ],
+            "limb_delay_steps": [
+              1,
+              7,
+              4,
+              3
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.243519093809,
+              0.874767483634,
+              0.211418903609,
+              -0.091796500348,
+              -0.273566156814,
+              0.562615638017,
+              -0.134067650045,
+              0.877732849923
+            ],
+            "limb_delay_steps": [
+              7,
+              0,
+              0,
+              3
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.758546373295,
+              0.568402306088,
+              -0.191532828821,
+              -0.337009914572,
+              -0.516547297896,
+              -0.448211073171,
+              0.60364185866,
+              -0.252189793685
+            ],
+            "limb_delay_steps": [
+              4,
+              7,
+              7,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.356118274245,
+              0.492842023042,
+              0.431791983568,
+              -0.452215100442,
+              -0.254701936369,
+              -0.131025624313,
+              0.508197723218,
+              0.213300591967
+            ],
+            "limb_delay_steps": [
+              6,
+              2,
+              2,
+              2
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_02",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.874072424096,
+              -0.623986139077,
+              -0.445988156573,
+              0.275601707998,
+              0.807667958907,
+              -0.835675160807,
+              -0.602689521015,
+              0.644054668517
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.456527657517,
+              -0.821422305169,
+              -0.814070875572,
+              -0.701836145607,
+              -0.353829816551,
+              -0.67018561794,
+              -0.009354626806,
+              0.561948592973
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.023494498847,
+              0.209738564419,
+              -0.315106606991,
+              -0.85835785544,
+              0.252964718548,
+              -0.139587321288,
+              0.852211679315,
+              0.69031547608
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.372049004323,
+              0.772199310256,
+              0.509309812594,
+              -0.711556928326,
+              -0.870450006245,
+              0.253630458545,
+              0.528695778267,
+              0.1481927845
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.717733515404,
+              0.885740385601,
+              0.622892848674,
+              -0.879965300113,
+              0.707306156777,
+              0.838365835684,
+              0.871563121394,
+              0.366998036211
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_03",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.039320521208,
+              -0.792782209468,
+              -0.346579066018,
+              -0.626209097684,
+              0.037718812403,
+              0.44523523643,
+              -0.245704523489,
+              -0.716465109091
+            ],
+            "limb_delay_steps": [
+              6,
+              2,
+              6,
+              4
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.355237382538,
+              0.049115425614,
+              -0.541225562153,
+              -0.170967085998,
+              0.095619922868,
+              0.510464407235,
+              0.260219639759,
+              0.617002181863
+            ],
+            "limb_delay_steps": [
+              0,
+              3,
+              6,
+              3
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.871097600737,
+              -0.843291704176,
+              -0.356085001953,
+              0.467719815749,
+              -0.587735367343,
+              0.888100404641,
+              0.887507006597,
+              -0.626061727027
+            ],
+            "limb_delay_steps": [
+              0,
+              2,
+              3,
+              2
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.031067808416,
+              0.712220754931,
+              -0.256951062941,
+              -0.280035797552,
+              -0.655470658516,
+              0.322075830398,
+              0.513775108446,
+              -0.34701316846
+            ],
+            "limb_delay_steps": [
+              5,
+              2,
+              0,
+              6
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.533955077634,
+              0.248267330012,
+              -0.205473578334,
+              0.024783098104,
+              0.701157001615,
+              -0.466964223183,
+              0.775995624981,
+              -0.166619631057
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              1,
+              4
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              0.011000042451,
+              -0.30470096896,
+              0.215149246387,
+              0.383957121949,
+              0.108942663363,
+              0.575306271607,
+              0.036034858101,
+              0.859425030298
+            ],
+            "limb_delay_steps": [
+              0,
+              7,
+              3,
+              1
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_04",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.290411534314,
+              -0.324117917307,
+              0.447246427833,
+              0.703492477682,
+              0.076198503253,
+              -0.605953528934,
+              -0.667279509162,
+              0.46108559539
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.252173864107,
+              0.318598363553,
+              0.79627913557,
+              -0.835095381609,
+              0.480826337088,
+              0.500799285676,
+              0.696822108356,
+              -0.276682388666
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.097582062864,
+              -0.203363462482,
+              -0.641236665969,
+              -0.578084587795,
+              0.497076456069,
+              -0.57492461395,
+              0.594979791024,
+              0.836898338948
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_05",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.155380145134,
+              -0.224091809974,
+              0.89630840599,
+              -0.368765015432,
+              0.610163248015,
+              0.490268260346,
+              -0.243720759756,
+              0.464555427626
+            ],
+            "limb_delay_steps": [
+              2,
+              0,
+              0,
+              5
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.789529718951,
+              0.227434228034,
+              0.594428690991,
+              -0.416389175172,
+              0.464826615227,
+              -0.234009214504,
+              -0.112572867079,
+              0.49222494248
+            ],
+            "limb_delay_steps": [
+              6,
+              1,
+              1,
+              4
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.481072984069,
+              -0.262727429681,
+              -0.576426778015,
+              -0.231694437515,
+              0.209131352197,
+              -0.106205665659,
+              -0.597700748982,
+              0.747355589568
+            ],
+            "limb_delay_steps": [
+              0,
+              2,
+              6,
+              6
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.448564004472,
+              -0.150693697347,
+              -0.740334692042,
+              -0.044923683929,
+              -0.874955162403,
+              0.719638350211,
+              0.085109723877,
+              -0.204753839984
+            ],
+            "limb_delay_steps": [
+              3,
+              6,
+              0,
+              2
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_06",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.258298145584,
+              0.794532726537,
+              -0.392814310315,
+              -0.201133610021,
+              0.730380015227,
+              -0.072040027917,
+              0.095350895237,
+              -0.780915339851
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.850590121961,
+              -0.892484205616,
+              0.759964507765,
+              -0.071620670035,
+              -0.023970177938,
+              0.684110902496,
+              0.258041604378,
+              -0.365231582603
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.32952469337,
+              -0.585326027964,
+              0.06992710287,
+              -0.766208017273,
+              0.578375938794,
+              -0.599837811536,
+              -0.30626005875,
+              0.760139104858
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.783907587609,
+              0.394084652456,
+              -0.731882554186,
+              -0.626542399431,
+              -0.272916120394,
+              -0.60161446481,
+              -0.717174271532,
+              0.088010280483
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.109198608274,
+              0.800753348192,
+              -0.849560741515,
+              0.679258193598,
+              -0.66420579179,
+              -0.200893845621,
+              0.351335625051,
+              0.497882577975
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_07",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.61479150913,
+              0.675867028487,
+              0.012608008427,
+              0.526606636224,
+              0.048511917275,
+              0.86605561267,
+              -0.049404773878,
+              -0.748431735838
+            ],
+            "limb_delay_steps": [
+              4,
+              2,
+              4,
+              7
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.605236099851,
+              -0.49223551963,
+              0.667708487795,
+              0.731225858689,
+              -0.163346767367,
+              -0.578520461366,
+              -0.379704589214,
+              0.760903159659
+            ],
+            "limb_delay_steps": [
+              6,
+              6,
+              4,
+              3
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.477617969381,
+              0.622550189491,
+              -0.748329532311,
+              0.216073487317,
+              0.579838068462,
+              0.116969246119,
+              -0.505688901121,
+              0.640021838353
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              1,
+              3
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.594780478043,
+              0.205356396142,
+              -0.222384489323,
+              -0.377715147408,
+              0.377595173585,
+              -0.172095184482,
+              -0.24560458103,
+              0.890790729805
+            ],
+            "limb_delay_steps": [
+              1,
+              5,
+              1,
+              3
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.625616561144,
+              0.747034716712,
+              -0.704878083055,
+              -0.598397466071,
+              -0.255045369169,
+              0.833623084229,
+              0.838108918783,
+              -0.029224367656
+            ],
+            "limb_delay_steps": [
+              4,
+              6,
+              2,
+              6
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              -0.168936115149,
+              -0.760165850579,
+              0.389171709059,
+              0.136600605378,
+              0.29762996972,
+              0.053696184381,
+              -0.343654212918,
+              0.046060453798
+            ],
+            "limb_delay_steps": [
+              5,
+              1,
+              3,
+              4
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_08",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.104406284467,
+              0.844895668917,
+              0.645013498481,
+              -0.629306870206,
+              -0.276975448371,
+              -0.148960810752,
+              0.605044536184,
+              0.177019847786
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.470563906031,
+              0.512744259613,
+              0.54373316346,
+              -0.683523372957,
+              0.191247539332,
+              0.644140263746,
+              0.708009215371,
+              -0.47125147413
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.699405969931,
+              -0.190911642493,
+              -0.542642369435,
+              -0.75227168548,
+              -0.259174962304,
+              -0.7309651313,
+              -0.116391824478,
+              -0.878114911387
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_09",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.135411206703,
+              0.80622394294,
+              0.692402894818,
+              -0.363974491979,
+              0.766016861964,
+              -0.264248494099,
+              0.848550917802,
+              -0.132434250191
+            ],
+            "limb_delay_steps": [
+              4,
+              6,
+              3,
+              2
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.509509406529,
+              0.190547039137,
+              -0.383186407575,
+              0.495248560132,
+              0.896097564892,
+              0.179232246208,
+              0.787733725809,
+              -0.793919685074
+            ],
+            "limb_delay_steps": [
+              4,
+              2,
+              6,
+              2
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.153042240825,
+              0.13291074143,
+              0.023725684203,
+              0.84939838418,
+              0.478985041125,
+              0.577901034668,
+              -0.404818116954,
+              -0.570377412514
+            ],
+            "limb_delay_steps": [
+              5,
+              7,
+              4,
+              2
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.32388704648,
+              0.29182204314,
+              -0.136325976757,
+              0.622900176897,
+              -0.034354296299,
+              -0.608744116731,
+              -0.044674481144,
+              0.189289116361
+            ],
+            "limb_delay_steps": [
+              4,
+              3,
+              4,
+              2
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_10",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.187286729577,
+              0.785039757561,
+              -0.552591441066,
+              -0.793809931532,
+              -0.378578310723,
+              0.359467125921,
+              -0.175227521247,
+              0.317113536417
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.850672104797,
+              0.468727265038,
+              0.245442697806,
+              0.714518370302,
+              -0.707623950449,
+              0.687047993992,
+              0.803882750923,
+              0.292974832452
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.477497244486,
+              -0.535184033967,
+              -0.192192627591,
+              0.095400271229,
+              -0.339297210678,
+              -0.841287177953,
+              -0.89982678667,
+              -0.210489847227
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.454675213368,
+              0.598148927567,
+              0.486918468764,
+              0.742846798935,
+              -0.238975368293,
+              0.718844714411,
+              0.477566446976,
+              -0.860661162399
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.446113352992,
+              -0.169025101743,
+              -0.27361923371,
+              -0.751089522182,
+              0.032351256029,
+              0.779050201837,
+              -0.833452004804,
+              -0.746277435028
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_11",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.810674272454,
+              0.886532663961,
+              0.097261753193,
+              0.632388448933,
+              -0.293987087247,
+              -0.544697283616,
+              0.292101567708,
+              -0.586809368695
+            ],
+            "limb_delay_steps": [
+              7,
+              5,
+              1,
+              6
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.197569772315,
+              -0.623230434689,
+              -0.020047973743,
+              -0.130574807802,
+              -0.387742182985,
+              0.816046083542,
+              0.560139665415,
+              0.710380069784
+            ],
+            "limb_delay_steps": [
+              1,
+              6,
+              2,
+              7
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.5517028714,
+              -0.759674019387,
+              0.766544956279,
+              0.025973401322,
+              -0.275282590367,
+              0.017848649204,
+              0.381587045581,
+              0.84673753071
+            ],
+            "limb_delay_steps": [
+              6,
+              0,
+              6,
+              5
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.754799609949,
+              -0.395462959047,
+              0.202090046603,
+              -0.639003867917,
+              0.251259675459,
+              0.090909221219,
+              0.664870906596,
+              0.853524409994
+            ],
+            "limb_delay_steps": [
+              3,
+              7,
+              5,
+              2
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              -0.4355974623,
+              -0.438508885442,
+              0.415089397098,
+              0.841660071538,
+              0.313804295959,
+              0.349792544863,
+              0.447064679286,
+              -0.522999901089
+            ],
+            "limb_delay_steps": [
+              4,
+              7,
+              0,
+              5
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              0.271433360014,
+              0.725384212728,
+              0.640696791131,
+              -0.624208162846,
+              0.423764570874,
+              -0.353098719957,
+              0.319517975375,
+              -0.116756026281
+            ],
+            "limb_delay_steps": [
+              4,
+              3,
+              3,
+              4
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_12",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              -0.410501855259,
+              -0.169012096381,
+              0.762968686585,
+              -0.862666890206,
+              -0.612275885162,
+              -0.744475487284,
+              -0.129076109691,
+              -0.011327960111
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.757872872143,
+              0.725894142772,
+              -0.130053057569,
+              -0.882590586308,
+              -0.13262388872,
+              0.325227082518,
+              -0.571167504762,
+              0.038459217696
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.510065441145,
+              -0.600013254347,
+              -0.272822741655,
+              0.786386959054,
+              0.092970527958,
+              0.066505577507,
+              -0.050500725947,
+              -0.726835790473
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_13",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.340653935903,
+              0.856890587048,
+              -0.207611653165,
+              -0.064482770092,
+              -0.250070802749,
+              -0.886044561389,
+              0.363243140184,
+              -0.532899065152
+            ],
+            "limb_delay_steps": [
+              5,
+              6,
+              3,
+              7
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              0.430619216624,
+              -0.706971882987,
+              0.095234016226,
+              -0.49784743041,
+              0.177374990814,
+              0.288432140072,
+              0.096384177009,
+              -0.337626234412
+            ],
+            "limb_delay_steps": [
+              1,
+              0,
+              4,
+              6
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.771363307782,
+              -0.449389539416,
+              -0.293462062775,
+              -0.79714078751,
+              -0.216569774473,
+              -0.691938357078,
+              0.227245486076,
+              0.864814632393
+            ],
+            "limb_delay_steps": [
+              3,
+              4,
+              5,
+              2
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.633157665151,
+              0.353190273608,
+              0.622315394274,
+              -0.245555889764,
+              -0.476078492805,
+              0.535336426855,
+              -0.738239281873,
+              -0.122200224423
+            ],
+            "limb_delay_steps": [
+              3,
+              5,
+              3,
+              3
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_14",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.67747863844,
+              -0.405951643984,
+              -0.031962839128,
+              0.025408618332,
+              0.684689100949,
+              0.237813785565,
+              0.888741828739,
+              -0.317729206909
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.461143921904,
+              0.421827701711,
+              0.271619672681,
+              0.543103365219,
+              0.255346708232,
+              -0.022588122294,
+              -0.812839860993,
+              -0.76177124674
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.215620074014,
+              -0.640143902956,
+              0.555487922726,
+              -0.654012277821,
+              -0.708936385547,
+              0.332944093348,
+              0.743291125061,
+              0.358374718959
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.641093270769,
+              0.596457664416,
+              0.886064439372,
+              -0.53964132949,
+              0.608104005297,
+              0.844199509809,
+              -0.574167839746,
+              -0.186905656532
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.201907280293,
+              0.636025756972,
+              0.532580385538,
+              -0.57959590608,
+              0.596227705134,
+              -0.354554965331,
+              -0.699002274223,
+              0.249067329065
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 12.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.2
+      },
+      {
+        "id": "waypoint_15",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.210999027686,
+              0.153938802775,
+              0.823457227567,
+              -0.271357170518,
+              -0.521198312196,
+              -0.61774447493,
+              -0.753496952532,
+              -0.384877651051
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              1,
+              7
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.650585633847,
+              -0.07872297465,
+              -0.384015757338,
+              0.342971208961,
+              0.705401250295,
+              0.046603701146,
+              -0.733733543852,
+              -0.111697360755
+            ],
+            "limb_delay_steps": [
+              7,
+              4,
+              7,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.235130637779,
+              0.090416085204,
+              -0.288019175943,
+              -0.393570258225,
+              -0.323459785175,
+              -0.721191340428,
+              0.433370290309,
+              -0.518903817285
+            ],
+            "limb_delay_steps": [
+              6,
+              7,
+              4,
+              7
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.878199244303,
+              0.323324850452,
+              -0.710268712193,
+              -0.508626454119,
+              0.699014589684,
+              -0.521733484091,
+              -0.624747072297,
+              -0.003256097656
+            ],
+            "limb_delay_steps": [
+              0,
+              6,
+              2,
+              4
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.894896555925,
+              -0.217695676633,
+              0.140448046433,
+              0.742369404444,
+              -0.476132994408,
+              -0.177197865954,
+              -0.312713991096,
+              0.818566487265
+            ],
+            "limb_delay_steps": [
+              6,
+              1,
+              7,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              0.155812256453,
+              0.400488443967,
+              0.36313603775,
+              0.857613657821,
+              -0.699788655827,
+              -0.773394103727,
+              -0.026966926054,
+              -0.298782147127
+            ],
+            "limb_delay_steps": [
+              1,
+              4,
+              0,
+              7
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ],
+    "profiles_by_body": [
+      [
+        0,
+        1,
+        2,
+        7,
+        11,
+        15,
+        18,
+        23,
+        27,
+        31,
+        34,
+        39,
+        43,
+        47
+      ],
+      [
+        0,
+        1,
+        3,
+        8,
+        12,
+        16,
+        19,
+        24,
+        28,
+        32,
+        35,
+        40,
+        44,
+        48
+      ],
+      [
+        0,
+        1,
+        4,
+        9,
+        13,
+        17,
+        20,
+        25,
+        29,
+        33,
+        36,
+        41,
+        45,
+        49
+      ],
+      [
+        0,
+        1,
+        2,
+        5,
+        10,
+        14,
+        18,
+        21,
+        26,
+        30,
+        34,
+        37,
+        42,
+        46
+      ],
+      [
+        0,
+        1,
+        3,
+        6,
+        11,
+        15,
+        19,
+        22,
+        27,
+        31,
+        35,
+        38,
+        43,
+        47
+      ],
+      [
+        0,
+        1,
+        4,
+        7,
+        12,
+        16,
+        20,
+        23,
+        28,
+        32,
+        36,
+        39,
+        44,
+        48
+      ],
+      [
+        0,
+        1,
+        5,
+        8,
+        13,
+        17,
+        21,
+        24,
+        29,
+        33,
+        37,
+        40,
+        45,
+        49
+      ],
+      [
+        0,
+        1,
+        2,
+        6,
+        9,
+        14,
+        18,
+        22,
+        25,
+        30,
+        34,
+        38,
+        41,
+        46
+      ],
+      [
+        0,
+        1,
+        3,
+        7,
+        10,
+        15,
+        19,
+        23,
+        26,
+        31,
+        35,
+        39,
+        42,
+        47
+      ],
+      [
+        0,
+        1,
+        4,
+        8,
+        11,
+        16,
+        20,
+        24,
+        27,
+        32,
+        36,
+        40,
+        43,
+        48
+      ],
+      [
+        0,
+        1,
+        5,
+        9,
+        12,
+        17,
+        21,
+        25,
+        28,
+        33,
+        37,
+        41,
+        44,
+        49
+      ],
+      [
+        0,
+        1,
+        2,
+        6,
+        10,
+        13,
+        18,
+        22,
+        26,
+        29,
+        34,
+        38,
+        42,
+        45
+      ],
+      [
+        0,
+        1,
+        3,
+        7,
+        11,
+        14,
+        19,
+        23,
+        27,
+        30,
+        35,
+        39,
+        43,
+        46
+      ],
+      [
+        0,
+        1,
+        4,
+        8,
+        12,
+        15,
+        20,
+        24,
+        28,
+        31,
+        36,
+        40,
+        44,
+        47
+      ],
+      [
+        0,
+        1,
+        5,
+        9,
+        13,
+        16,
+        21,
+        25,
+        29,
+        32,
+        37,
+        41,
+        45,
+        48
+      ],
+      [
+        0,
+        1,
+        6,
+        10,
+        14,
+        17,
+        22,
+        26,
+        30,
+        33,
+        38,
+        42,
+        46,
+        49
+      ]
+    ]
+  },
+  "trajectory_proposal": {
+    "schema_version": "locolemotion_trajectory_proposal_v1",
+    "seed": 1061121,
+    "candidates_per_family": 16,
+    "body_count": 16,
+    "assignment_offsets": [
+      0,
+      3,
+      7,
+      11
+    ]
+  },
+  "capture_reference": {
+    "path": "sdk/discovery/creature_trajectory_route_full_v1.json",
+    "sha256": "1e5057f6027b3a4c59811fe17a607a2b0b1b1b5c9caf6064782a8cae3a5ab610"
+  },
+  "coverage": [
+    "Sixteen distinct actual compiled body shapes with nominal actuators and a fresh inverted start",
+    "Three motion families, three to six phases, bounded gains/speeds/slew, phase holds and limb release delays",
+    "Every proposed profile on four bodies; every body gets twelve proposals plus both comparators",
+    "Every solver input and native substep retained with full live validation and compact outcome reconstruction",
+    "Diagnostic progress leads remain separate from supported-upright eligibility; all failures remain visible"
+  ],
+  "discovery_signal_scope": "Peak rotation gain of at least five degrees against the fresh timed comparator, with zero observed joint-limit violations, can propose at most two family-diverse follow-ups per body/start/condition. This is exposed search guidance, not a successful recovery or training/evaluation authority.",
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    }
+  ]
+}

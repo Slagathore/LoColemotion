@@ -15,8 +15,10 @@ from gpu_quadruped_model import f32
 from gpu_quadruped_probe import check_capture
 from audit_gpu_batch_execution import same_bits
 import creature_righting as righting
+import creature_trajectory_search as trajectory
 
 SCHEMA = "locolemotion_creature_compact_capture_v1"
+ROOT = Path(__file__).resolve().parents[2]
 POLICY = dict(schema_version=SCHEMA, native_reads_changed=False, file_buffering_changed=False,
               substeps_discarded=False, qualification_requires_fresh_full_capture=True)
 SAMPLE_FIELDS = ("time_s", "qpos", "qvel", "actuator_force_nm", "joint_force_nm",
@@ -35,6 +37,9 @@ def options(c):
         require(policy == POLICY and c.get("mode") in ("route_ghost", "development_discovery")
                 and "confirmation_spec" not in c and not c.get("readback", {}).get("reference_check", False),
                 "Compact discovery scope or policy")
+    if "capture_reference" in c:
+        require(mode == "compact_v1" and policy == POLICY and c.get("mode") == "development_discovery",
+                "Broader capture reference outside compact discovery")
     return dict(active=policy is not None, full=mode == "full")
 
 
@@ -109,6 +114,7 @@ class Reader:
             for m in self.metrics:
                 m.update(righting.initial_metrics())
                 if self.sequence: m.update(righting.sequence.initial_work())
+                if "trajectory_screen" in c: m.update(trajectory.initial_metrics())
 
     def consume(self, rows):
         require(type(rows) is list and len(rows) == self.n and self.outer < self.c["outer_steps"],
@@ -169,6 +175,7 @@ class Reader:
                 m["lateral_displacement_m"]=s["qpos"][1]-creature["spec"]["initial_qpos"][1]
                 if "righting_spec" in self.c:
                     righting.measure(m,s,creature)
+                    if "trajectory_screen" in self.c: trajectory.measure(m,s,creature)
                     if self.sequence:
                         before=self.previous[i]["qpos"] if self.previous[i] else self.positions[i]
                         righting.sequence.measure_work(m,dict(s,before_qpos=before))
@@ -189,7 +196,7 @@ def report(rows, full):
 
 
 def canary_receipt(path, c, source_commit, bindings, evidence_root):
-    """A compact native launch requires a completed matched full projection run."""
+    """Bind a same-freeze full canary, with explicit scope for broader screening."""
     path=Path(path).resolve(strict=True)
     require(path.is_relative_to(Path(evidence_root).resolve()) and path.name=="receipt.json",
             "Full canary evidence boundary")
@@ -198,15 +205,35 @@ def canary_receipt(path, c, source_commit, bindings, evidence_root):
     audit=json.loads(audit_path.read_bytes())
     def science(value):
         return {k:v for k,v in value.items() if k not in ("campaign_id","capture_mode","purpose","capture_comparison")}
-    n=len(c["cells"])*c["outer_steps"]
+    reference = c.get("capture_reference")
+    if reference is None:
+        require(science(full["contract"])==science(c), "Full canary matched contract")
+    else:
+        require(type(reference) is dict and set(reference)=={"path","sha256"}
+                and c["mode"]=="development_discovery" and full["contract"]["mode"]=="route_ghost",
+                "Full canary broader discovery scope")
+        declared=(ROOT/reference["path"]).resolve(strict=True)
+        require(declared.is_relative_to(ROOT) and declared.suffix==".json"
+                and hashlib.sha256(declared.read_bytes()).hexdigest()==reference["sha256"]
+                and full["bindings"]["source"].get(reference["path"])==reference["sha256"],
+                "Full canary reference declaration binding")
+        invariants=("core_sha256","baseline_core_sha256","runtime","device","timestep_s",
+            "internal_steps_per_outer","njmax","njmax_nnz","nvmax","naconmax_per_world",
+            "cpu_warning_count","native_reads_reduced","readback","maximum_worlds_per_batch",
+            "controller_component","righting_selection","trajectory_screen","compact_capture")
+        require(all(k in c and k in full["contract"] and c[k]==full["contract"][k] for k in invariants)
+                and {p["mode"] for p in c["righting_spec"]["profiles"]}
+                    <= {p["mode"] for p in full["contract"]["righting_spec"]["profiles"]},
+                "Full canary capture interface or controller modes differ")
+    n=len(full["contract"]["cells"])*full["contract"]["outer_steps"]
     require(c["capture_mode"]=="compact_v1" and full["contract"]["capture_mode"]=="full"
-        and options(full["contract"])["active"] and science(full["contract"])==science(c)
+        and options(full["contract"])["active"]
         and full["source_commit"]==source_commit and full["source_status"]==[]
         and full["synthetic"] is False and full["ok"] is True and full["source_runtime_unchanged"] is True
         and full["bindings"]["runtime"]==bindings["runtime"] and full["bindings"]["gpu"]==bindings["gpu"],
         "Full canary source, runtime, matched contract or completion")
     require(full["audit"]==audit and audit["ok"] is True and audit["synthetic"] is False
-        and audit["reader_world_build_count"]==0 and audit["gpu_worlds"]==len(c["cells"])
+        and audit["reader_world_build_count"]==0 and audit["gpu_worlds"]==len(full["contract"]["cells"])
         and audit["controller_rows_replayed"]==n and audit["native_rows_verified"]==5*n
         and audit["capture"]==report(n,True), "Full canary projection and replay required")
     digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()

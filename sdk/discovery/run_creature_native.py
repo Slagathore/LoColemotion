@@ -33,7 +33,7 @@ def main():
     parser.add_argument("--core", type=Path, required=True)
     parser.add_argument("--baseline-core", type=Path, required=True)
     parser.add_argument("--run", action="store_true")
-    parser.add_argument("--full-canary", type=Path, help="Verified matched full-capture owner receipt for compact native execution")
+    parser.add_argument("--full-canary", type=Path, help="Verified same-freeze full-capture owner receipt for compact native execution")
     args = parser.parse_args()
     contract_path, core, baseline = [p.resolve(strict=True) for p in (args.contract, args.core, args.baseline_core)]
     c = declaration(contract_path)
@@ -42,6 +42,11 @@ def main():
     evidence = ROOT.parent / "SporeSpore_Evidence"
     require(shutil.disk_usage(evidence).free >= c["minimum_free_storage_bytes"], "Creature evidence storage")
     sources = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES]]
+    if "capture_reference" in c:
+        reference = (ROOT / c["capture_reference"]["path"]).resolve(strict=True)
+        require(reference.is_relative_to(ROOT) and sha(reference) == c["capture_reference"]["sha256"],
+                "Creature capture reference source")
+        sources.append(reference)
     def bindings():
         bound = inherited_bindings(core, baseline)
         bound["source"].update({p.relative_to(ROOT).as_posix(): sha(p) for p in sources})

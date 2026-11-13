@@ -17,6 +17,7 @@ from sporespore_locomotion import r24d22_recovery_s169_morphology
 import creature_righting_sequence as sequence
 
 SCHEMA = "locolemotion_creature_righting_population_v1"
+ASSIGNED_SCHEMA = "locolemotion_creature_righting_assigned_population_v1"
 EXPANDED = ("cells", "initial_lateral_velocities_m_s", "initial_roll_angles_rad", "righting_metadata")
 SELECTION = dict(minimum_upright_dot=.95, minimum_height_ratio=.75,
     maximum_angular_speed_rad_s=.5, required_terminal_dwell_steps=300,
@@ -117,13 +118,23 @@ def recovery_descriptor(descriptor):
 
 
 def expand(spec):
+    assigned = type(spec) is dict and spec.get("schema_version") == ASSIGNED_SCHEMA
     require(type(spec) is dict and set(spec) == {"schema_version", "descriptors", "profiles", "conditions", "starts"}
-            and spec["schema_version"] == SCHEMA, "Righting population fields")
+            | ({"profiles_by_body"} if assigned else set())
+            and spec["schema_version"] in (SCHEMA, ASSIGNED_SCHEMA), "Righting population fields")
     bodies, candidates, conditions, starts = [spec[k] for k in ("descriptors", "profiles", "conditions", "starts")]
     require(all(type(v) is list and v for v in (bodies, candidates, conditions, starts))
             and len(bodies) <= 64 and 2 <= len(candidates) <= 64 and len(conditions) <= 4
-            and len(starts) <= 4 and len(bodies)*len(candidates)*len(conditions)*len(starts) <= 256,
+            and len(starts) <= 4,
             "Righting population budget")
+    assignments = spec["profiles_by_body"] if assigned else [list(range(len(candidates))) for _ in bodies]
+    require(type(assignments) is list and len(assignments) == len(bodies)
+            and all(type(row) is list and len(row) >= 2 and row[:2] == [0, 1]
+                    and all(type(i) is int and 0 <= i < len(candidates) for i in row)
+                    and row == sorted(set(row)) for row in assignments)
+            and set(i for row in assignments for i in row) == set(range(len(candidates)))
+            and sum(map(len, assignments))*len(conditions)*len(starts) <= 256,
+            "Righting assigned profiles or world budget")
     for body in bodies:
         validate_descriptor(body)
     require(len({tuple(b[k] for k in FIELDS) for b in bodies}) == len(bodies)
@@ -149,7 +160,8 @@ def expand(spec):
     for bi, body in enumerate(bodies):
         for ci, condition in enumerate(conditions):
             for si, start in enumerate(starts):
-                for pi, candidate in enumerate(candidates):
+                for pi in assignments[bi]:
+                    candidate = candidates[pi]
                     name = f"righting_body_{bi:02d}_condition_{ci}_start_{si}_candidate_{pi:02d}"
                     cells.append(dict(cell_id=name, descriptor=copy.deepcopy(body), profile=copy.deepcopy(candidate),
                                       motor_effectiveness=copy.deepcopy(condition["motor_effectiveness"])))
@@ -382,7 +394,10 @@ def assess(c, metrics, bindings):
     shortlists = []
     for (body, condition), rows in groups.items():
         candidates = []
-        for pi, profile_row in enumerate(c["righting_spec"]["profiles"]):
+        assigned = c["righting_spec"].get("profiles_by_body")
+        indices = assigned[body] if assigned is not None else range(len(c["righting_spec"]["profiles"]))
+        for pi in indices:
+            profile_row = c["righting_spec"]["profiles"][pi]
             selected = [r for r in rows if r["candidate_index"] == pi]
             require(len(selected) == len(c["righting_spec"]["starts"]), "Righting missing start")
             if pi and all(r["eligible"] for r in selected):

@@ -42,10 +42,19 @@ seconds. One ordered pair per body, with full also writing projection, does not
 establish ordinary full-capture speedup, cross-run equivalence or real time.
 Readback counts, physical limits and every native substep are preserved. All
 4,742 retained artifacts and 38 stage cleanups verify; no recovery benefit results.
-Next bind this capture qualification into broad dynamic trajectory and phase-timing
-screening without requiring a full duplicate of the search. The current launch
-guard authorizes matched canaries only. Useful diverse leads need fresh full-capture
-varied-start confirmation and complete Godot handoffs.
+The [balanced trajectory component](../sdk/discovery/creature_trajectory_component_v1.json)
+now passes all 159 applicable controls and zero-world preflight for 224 planned
+worlds across 16 body shapes. A separate assignment schema puts 48 bounded wave,
+impulse and waypoint proposals on four bodies each; every body also gets fresh
+brake and timed comparators. The existing controller, physical limits and
+supported-upright criterion remain unchanged. All-substep peak rotation and
+distal-supported rotation can suggest follow-ups, separately from eligibility.
+A same-freeze full canary binds the compact interface without duplicating the
+whole search. Next run the declared five-world two-interval full route, then
+six-second compact discovery with a fresh complete gate. The failed six-control
+fixture attempt remains retained; no new physical worlds have opened yet.
+Useful diverse leads need fresh full-capture varied-start confirmation and
+complete Godot handoffs.
 
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,

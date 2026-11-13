@@ -1,0 +1,627 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "maximum_worlds_per_batch": 4,
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "seed": 1061121,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_capture_native_result_v1.json",
+    "sha256": "fe00c99ff5b59090c7169874c42ed928e33b8736978f8cee5a758a1899050531"
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_capture.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_righting_sequence.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py"
+  ],
+  "not_covered": [
+    "Recovery qualification or learned adaptation",
+    "New initial fallen orientations, weakened motors, terrain or impacts",
+    "Walking-to-fall entry and recovery-to-walking integration",
+    "Godot transfer, cross-engine equivalence, real time or release"
+  ],
+  "qualification_economy": "One shared runner, six focused controls for assignment, proposal, progress and broader-capture contracts, and a minimal full native canary before compact discovery. No full-capture duplicate of the broad search.",
+  "campaign_id": "creature_trajectory_route_full_v1",
+  "mode": "route_ghost",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "purpose": "Five fresh two-interval worlds cover brake, timed and all three proposal families, full-plus-compact projection, progress measurement and independent reading. No performance claim.",
+  "capture_mode": "full",
+  "outer_steps": 2,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "wave_00",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.45,
+              0.0,
+              -0.45,
+              -0.0,
+              0.0,
+              0.45,
+              0.45,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.225,
+              -0.389711431703,
+              0.225,
+              0.389711431703,
+              0.389711431703,
+              -0.225,
+              -0.225,
+              -0.389711431703
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.225,
+              0.389711431703,
+              0.225,
+              -0.389711431703,
+              -0.389711431703,
+              -0.225,
+              -0.225,
+              0.389711431703
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 2.0,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "impulse_01",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.65,
+              -0.65,
+              -0.65,
+              -0.65,
+              -0.65,
+              0.65,
+              -0.65,
+              0.65
+            ],
+            "limb_delay_steps": [
+              7,
+              2,
+              3,
+              6
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.65,
+              0.65,
+              0.65,
+              0.65,
+              0.65,
+              -0.65,
+              0.65,
+              -0.65
+            ],
+            "limb_delay_steps": [
+              1,
+              3,
+              7,
+              3
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              0.529779430545,
+              0.478465377173,
+              0.100263862598,
+              0.551918594574,
+              0.395403853834,
+              0.573810389762,
+              0.016076402946,
+              0.28143054023
+            ],
+            "limb_delay_steps": [
+              2,
+              2,
+              1,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              0.572520147543,
+              -0.253727499596,
+              -0.397837945405,
+              0.373220342746,
+              -0.131374763268,
+              0.551956555121,
+              0.448700159738,
+              0.182282974601
+            ],
+            "limb_delay_steps": [
+              5,
+              2,
+              6,
+              5
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.08
+      },
+      {
+        "id": "waypoint_15",
+        "mode": "pose_sequence",
+        "phases": [
+          {
+            "id": "phase_0",
+            "pose": [
+              0.210999027686,
+              0.153938802775,
+              0.823457227567,
+              -0.271357170518,
+              -0.521198312196,
+              -0.61774447493,
+              -0.753496952532,
+              -0.384877651051
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              1,
+              7
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_1",
+            "pose": [
+              -0.650585633847,
+              -0.07872297465,
+              -0.384015757338,
+              0.342971208961,
+              0.705401250295,
+              0.046603701146,
+              -0.733733543852,
+              -0.111697360755
+            ],
+            "limb_delay_steps": [
+              7,
+              4,
+              7,
+              0
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_2",
+            "pose": [
+              -0.235130637779,
+              0.090416085204,
+              -0.288019175943,
+              -0.393570258225,
+              -0.323459785175,
+              -0.721191340428,
+              0.433370290309,
+              -0.518903817285
+            ],
+            "limb_delay_steps": [
+              6,
+              7,
+              4,
+              7
+            ],
+            "minimum_hold_steps": 29,
+            "maximum_hold_steps": 30,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_3",
+            "pose": [
+              -0.878199244303,
+              0.323324850452,
+              -0.710268712193,
+              -0.508626454119,
+              0.699014589684,
+              -0.521733484091,
+              -0.624747072297,
+              -0.003256097656
+            ],
+            "limb_delay_steps": [
+              0,
+              6,
+              2,
+              4
+            ],
+            "minimum_hold_steps": 47,
+            "maximum_hold_steps": 48,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_4",
+            "pose": [
+              0.894896555925,
+              -0.217695676633,
+              0.140448046433,
+              0.742369404444,
+              -0.476132994408,
+              -0.177197865954,
+              -0.312713991096,
+              0.818566487265
+            ],
+            "limb_delay_steps": [
+              6,
+              1,
+              7,
+              0
+            ],
+            "minimum_hold_steps": 71,
+            "maximum_hold_steps": 72,
+            "advance_when": "pose",
+            "threshold": 0.03
+          },
+          {
+            "id": "phase_5",
+            "pose": [
+              0.155812256453,
+              0.400488443967,
+              0.36313603775,
+              0.857613657821,
+              -0.699788655827,
+              -0.773394103727,
+              -0.026966926054,
+              -0.298782147127
+            ],
+            "limb_delay_steps": [
+              1,
+              4,
+              0,
+              7
+            ],
+            "minimum_hold_steps": 17,
+            "maximum_hold_steps": 18,
+            "advance_when": "pose",
+            "threshold": 0.03
+          }
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.0,
+        "position_gain_s_inv": 4.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ]
+  },
+  "coverage": [
+    "Fresh production dispatch for brake, timed and three-, four- and six-phase sequence data through existing controller code",
+    "Full controller replay and exact same-run compact projection for every retained sample",
+    "Progress diagnostics reconstructed by full and compact readers without changing upright eligibility",
+    "One four-world chunk and one one-world chunk, fresh setup and owned cleanup"
+  ],
+  "route_horizon_limit": "Two intervals cover construction, capture, projection and reader transport. Native phase-cycle performance is not covered; bounded phase transitions are covered by the complete synthetic gate and broad six-second discovery.",
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    }
+  ]
+}

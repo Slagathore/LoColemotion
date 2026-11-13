@@ -22,6 +22,7 @@ and useful self-righting remains unestablished after four negative cohorts.
 | [Four-phase righting](../sdk/discovery/creature_righting_sequence_native_result_v1.json) | 256 fresh six-second worlds across 16 bodies and 16 profiles: zero eligible, 256 valid failures, zero invalid or joint-breach worlds, and 16 empty shortlists. All 184,320 decisions and 921,600 samples replay after 143 controls |
 | Righting diagnosis | All 224 sequence worlds reach wind-up, but none meets a later rotation/contact transition. Maximum recorded boundary rotation is 9.6 degrees for a sequence and 14.4 for the timed comparator. Static-pose proposals did not produce useful dynamic motion |
 | [Compact capture native result](../sdk/discovery/creature_capture_native_result_v1.json) | Both eight-world canaries pass 153 controls and independent reading. Same-run projection is exact; fresh compact streams are 75.7% smaller. Outer-loop time is 14.58 vs 13.86 seconds, descriptive only because full also writes projection. Retained 256-world reconstruction remains exact |
+| [Dynamic trajectory component](../sdk/discovery/creature_trajectory_component_v1.json) | 159 zero-world controls pass. The declared 224-world search assigns 48 wave/impulse/waypoint proposals to four bodies each, with both comparators on all 16 bodies. Partial rotation is a separate proposal signal; native execution is pending |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 1. **Make broad dynamic trajectory search cheaper and more informative.**
@@ -33,14 +34,16 @@ and useful self-righting remains unestablished after four negative cohorts.
    exact retained-corpus reconstruction and matched native canaries at source
    `670cffc2`. Storage is substantially lower; the one-pair timings do not
    establish an ordinary full-capture speedup or real-time operation.
-   Next bind this capture qualification into a fresh broad screening declaration
-   without requiring a full-capture copy of the entire search; the current
-   launch guard authorizes matched canaries only. Search dynamic trajectories,
-   phase timing and poses across diverse bodies. Keep all failed bodies and
-   conditions. Any discovery
-   signal used to propose candidates must be declared separately from the
-   unchanged supported-upright acceptance criterion. Useful diverse leads need
-   fresh full-capture checks at varied starts before integration.
+   The [balanced trajectory component](../sdk/discovery/creature_trajectory_component_v1.json)
+   now passes 159 controls and preflight for all 224 planned worlds. From a clean
+   pushed freeze, run the five-world two-interval full canary, then the compact
+   cohort with a fresh complete gate: 48 new motion profiles on four bodies each,
+   plus fresh brake and timed comparators on every one of 16 bodies, six seconds.
+   The same-freeze canary binding covers the recording interface without a full
+   duplicate of the search. Preserve every failure. Peak rotation gains may
+   propose family-diverse follow-ups, but cannot change supported-upright
+   eligibility. Useful diverse leads need fresh full-capture checks at varied
+   starts before integration.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

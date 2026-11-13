@@ -25,6 +25,7 @@ historical instructions.
 | Four-phase righting component | [Component v3](../sdk/discovery/creature_righting_component_v3.json): all 143 controls pass; the [four-world native route](../sdk/discovery/creature_righting_sequence_route_native_v1.json) now verifies dispatch, mechanics/work capture and independent replay |
 | Sequence native result | [256 valid negatives](../sdk/discovery/creature_righting_sequence_native_result_v1.json): 16 bodies, 14 sequences and fresh timed/brake comparators, six seconds. All 184,320 decisions and 921,600 samples replay; zero eligible, invalid or joint-breach worlds, and 16 empty shortlists. All sequence worlds reach wind-up but no later rotation/contact gate; maximum boundary rotation 9.6 degrees versus 14.4 for timed |
 | Compact capture | [Native canaries complete](../sdk/discovery/creature_capture_native_result_v1.json): 153 controls before each eight-world run; exact same-run projection and 9,600 compact samples reconstructed. Fresh streams are 75.7% smaller. Outer-loop 14.58 vs 13.86 seconds is descriptive full-plus-projection/compact timing; ordinary full-capture speedup remains unestablished |
+| Dynamic trajectory component | [159 controls and 224-world preflight pass](../sdk/discovery/creature_trajectory_component_v1.json): 48 bounded motion proposals, each assigned to four of 16 bodies, plus both comparators on every body. Partial-progress leads stay separate from recovery eligibility. Full canary and compact discovery are declared, not yet executed |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
@@ -68,8 +69,10 @@ runtime ownership. New attempts preserve consumed identities and add declaration
 to shared machinery wherever the contract is unchanged. The four righting cohorts
 now retain 1,008 valid negative performance worlds. Compact recording is now
 verified by exact retained-corpus reconstruction and matched native canaries.
-Next declare broad dynamic trajectory and phase-timing screening across diverse
-bodies, binding the capture qualification without a full duplicate of the search.
+The balanced dynamic trajectory component and 224-world preflight now pass.
+Next execute its five-world full canary, then its declared compact search after
+a fresh complete gate. The same-freeze canary binding avoids a full duplicate
+of the search; partial-progress scores confer no recovery eligibility.
 Useful leads still need varied-start full-capture checks and the complete Godot
 handoff; no righting mechanism has been adopted.
 

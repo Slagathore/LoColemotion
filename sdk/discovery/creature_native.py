@@ -28,6 +28,7 @@ import creature_readback as readback
 import creature_confirmation as confirmation
 import creature_righting as righting
 import creature_capture as capture
+import creature_trajectory_search as trajectory
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -37,7 +38,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_confirmation.py", "test_creature_confirmation.py",
                  "creature_righting.py", "test_creature_righting.py",
                  "creature_righting_sequence.py", "test_creature_righting_sequence.py",
-                 "creature_capture.py", "test_creature_capture.py"]
+                 "creature_capture.py", "test_creature_capture.py",
+                 "creature_trajectory_search.py", "test_creature_trajectory_search.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -62,7 +64,10 @@ def gates(c):
             + ([("creature-confirmation", "test_creature_confirmation", 10)] if "confirmation_spec" in c else [])
             + ([("creature-righting", "test_creature_righting", 12)] if "righting_spec" in c else [])
             + ([("creature-righting-sequence", "test_creature_righting_sequence", 9)] if sequence_enabled(c) else [])
-            + ([("creature-capture", "test_creature_capture", 10)] if "compact_capture" in c else []))
+            + ([("creature-capture", "test_creature_capture", 10)] if "compact_capture" in c else [])
+            + ([("creature-trajectory", "test_creature_trajectory_search", 6)]
+               if any(k in c for k in ("trajectory_screen", "capture_reference"))
+               or c.get("righting_spec", {}).get("schema_version") == righting.ASSIGNED_SCHEMA else []))
 
 
 def sequence_enabled(c):
@@ -101,6 +106,7 @@ def declaration(path):
             and all(c[key] is False for key in FLAGS), "Creature declaration scope")
     readback.options(c)
     capture.options(c)
+    trajectory.validate(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
@@ -481,6 +487,8 @@ class StreamValidator:
                 metric.update(righting.initial_metrics())
                 if sequence_enabled(c):
                     metric.update(righting.sequence.initial_work())
+                if "trajectory_screen" in c:
+                    metric.update(trajectory.initial_metrics())
 
     def control(self, row):
         cell, outer = row["cell"], row["outer_step"]
@@ -545,6 +553,8 @@ class StreamValidator:
             m["lateral_displacement_m"] = row["qpos"][1] - self.creatures[cell]["spec"]["initial_qpos"][1]
             if "righting_spec" in self.c:
                 righting.measure(m, row, self.creatures[cell])
+                if "trajectory_screen" in self.c:
+                    trajectory.measure(m, row, self.creatures[cell])
                 if sequence_enabled(self.c):
                     righting.sequence.measure_work(m, row)
             self.previous[cell] = row
@@ -594,6 +604,8 @@ def audit(folder, c, core_path, *, synthetic=False):
         result["assessment"] = confirmation.assess(c, metrics, pre["bindings"])
     if "righting_spec" in c:
         result["assessment"] = righting.assess(c, metrics, pre["bindings"])
+    if "trajectory_screen" in c:
+        result["trajectory_screen"] = trajectory.assess(c, metrics)
     if readback.options(c)["mode"] == "shared_snapshot":
         result["readback"] = {key: sum(g["audit"]["readback"][key] for g in reports)
                               for key in reports[0]["audit"]["readback"]}
