@@ -57,25 +57,31 @@ pitch sample in both directions. These are disconnected single-contact
 possibilities; joint effort, force allocation and dynamic paths remain unproved.
 Exact body groups and all rejected pose outcomes are retained.
 
-The [body-moment component](../sdk/discovery/creature_body_moment_component_v1.json)
-passes all 230 controls and a zero-world preflight. Sixteen new controls cover
-force directions, clear targets, bounded commands, pure/atomic memory,
-prospective population and route refusals, including 240 exact legacy plans.
-All 2,418 artifacts and 23 stage cleanups verify; no physics has run.
+The [body-moment native result](../sdk/discovery/creature_body_moment_native_result_v1.json)
+at source 23f48892 follows all 230 passing controls. It completes ten six-second
+full-route worlds and 240 fresh twelve-second search worlds. Full replay verifies 7,200 decisions
+and 36,000 samples; compact reading reconstructs all 345,600 records and
+1,728,000 native samples. All 3,607 search artifacts and 25 stage cleanups verify.
 
-The frozen cohort has 24 bodies, half inside and half outside the 31-body pitch
-proposal group. Twenty-four profiles vary four signed axes, drive/rock strategy
-and three normal/friction/load settings. Each body receives eight proposals
-and two fresh comparators. Measured contacts gate force proposals, static
-wrench projection produces bounded velocity commands, and existing braking
-remains. Clear geometric target poses do not certify a continuous trajectory
-or actual force capability.
+Twenty-four profiles vary signed axis, drive/rock strategy and three configured
+normal/friction/load settings. Each runs on four inside-group and four
+outside-group bodies; every body has eight proposals and two fresh comparators.
+The frozen progress rule selects 29 partial-rotation leads in 22 groups, with
+eleven groups in each geometric stratum. Peak new rotation
+is 24.485 degrees, and the largest gain over a fresh timed comparator is 9.817.
+All 240 worlds fail recovery with zero joint violations; 183 of 192 new-profile
+worlds acquire contact. Ten performance cohorts retain 2,272 valid recovery
+failures. Partial-rotation selection does not make any recovery episode pass.
 
-Next run the ten-world six-second full route, requiring actual command branches,
-full replay and exact compact projection. Only then run the 240-world
-twelve-second compact screen. Useful leads require fresh full-capture
-varied-start confirmation before the same-body Godot walk-fall-recover-resume
-handoff. Nine performance cohorts still retain 2,032 valid recovery failures.
+The full route records some nonadjacent overlap despite clear targets; native
+robot self-collision remains disabled. Next inspect every native substep of
+the 29 leads and 22 fresh timed comparators, retaining the first overlap and
+rotation reached before it alongside the unchanged raw scores. Profile the
+controller cost before batching geometry calculations, and require preserved
+observations and commands before claiming a computation gain. Use useful clear
+motion to seed a distinct broad successor. Fresh full-capture varied-start
+confirmation, actual recovery and the same-body Godot walk-fall-recover-resume
+handoff remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

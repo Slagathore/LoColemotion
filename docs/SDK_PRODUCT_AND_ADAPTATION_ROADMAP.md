@@ -10,7 +10,7 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and self-righting still has no qualifying controller after nine cohorts.
+and self-righting still has no qualifying controller after ten cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -29,24 +29,24 @@ and self-righting still has no qualifying controller after nine cohorts.
 | [Body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json) | 128 twelve-second worlds after 172 controls: all 96 new-controller worlds acquire distal contact, with zero joint violations, but zero recovery or progress leads. Best new rotation is 14.235 degrees; best gain over its own fresh timed comparator is 1.467 degrees. The eight-world full route replays 2,880 decisions and 14,400 samples; broad compact reading reconstructs 184,320 records and 921,600 samples |
 | [Paired torso targets](../sdk/discovery/creature_torso_target_native_result_v1.json) | 224 twelve-second worlds after 182 controls: all 128 new-target worlds acquire contact with zero joint violations, but zero recovery or progress leads. Peak new rotation 14.272 degrees; mean change from each paired base is +2.711 degrees for root targets and +2.952 for torso-edge targets. Fourteen full route worlds replay 5,040 decisions and 25,200 samples; broad reading reconstructs 322,560 records and 1,612,800 samples |
 | [Reach bounds](../sdk/discovery/creature_contact_envelope_result_v1.json) and [contact moments](../sdk/discovery/creature_contact_moment_result_v1.json) | 334 bodies and 7,585 poses each; 374.9 million geometric pose/orientation cases, twenty controls, zero worlds. Only 483,751 of 2,533,390 body/pose combinations avoid nonadjacent overlap. Upward foot force offers no positive moment at sampled side-roll angles 20–45 degrees. Optimistic friction bounds remain; 31 bodies have a pitch proposal at every sampled orientation in both directions. No force or trajectory qualification |
-| [Body-moment component](../sdk/discovery/creature_body_moment_component_v1.json) | 230 controls, 240 exact legacy plans, 24-body zero-world preflight; no new physics. Ten full route worlds precede 240 compact search worlds |
+| [Body-moment native result](../sdk/discovery/creature_body_moment_native_result_v1.json) | 230 controls, ten full six-second route worlds and 240 compact twelve-second search worlds. Zero recoveries or joint-breach worlds; 29 partial-rotation leads in 22 of 24 body groups, with eleven groups in each geometric stratum. Peak new rotation 24.485 degrees. All 345,600 compact records and 1,728,000 native samples reconstruct; broad path clearance remains unchecked |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Run the frozen body-moment and rocking cohort.**
-   The [component](../sdk/discovery/creature_body_moment_component_v1.json)
-   passes all 230 controls and a zero-world preflight for 240 planned worlds.
-   Twenty-four profiles vary signed axis, drive/rock behavior and configured
-   normal/friction force. Each runs on four bodies inside and four outside the
-   31-body pitch proposal group; each body has two fresh established comparators.
-   Targets exclude nonadjacent overlap. Measured contact gates force proposals,
-   which use existing bounded velocity projection and joint braking.
-   First run the declared ten-world, six-second full route; require replay,
-   exact compact projection and actual contact-force/tangent/rocking branches.
-   Then screen 240 fresh twelve-second worlds with compact capture.
-   Native performance is untested. The nine earlier cohorts still retain 2,032
-   valid recovery failures. Useful leads require fresh full-capture varied-start
-   confirmation before Studio adoption. Clear target poses and static force
-   compensation do not certify the connecting path or achievable contact force.
+1. **Check the paths behind partial-rotation gains.**
+   The [native result](../sdk/discovery/creature_body_moment_native_result_v1.json)
+   preserves all 240 valid recovery failures and 29 partial-rotation leads.
+   Ten performance cohorts now retain 2,272 valid recovery failures.
+   Reconstruct clearance at every retained native substep for the 29 leads and
+   their 22 fresh same-body timed comparators. Keep the frozen scores separate
+   from this path diagnosis, including the first overlap and rotation reached
+   before it. Clear target poses did not keep every full-route trajectory clear;
+   native robot self-collision remains disabled.
+   Profile controller computation before batching its geometry calculations:
+   it used 1,766.2 of 3,431.7 measured outer-loop seconds. Preserve observations,
+   commands and capture, and measure any gain before claiming faster discovery.
+   Use useful clear motion to seed a distinct broad successor that advances
+   beyond partial rotation. Fresh full-capture varied-start confirmation and
+   actual recovery completion remain necessary before Studio adoption.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

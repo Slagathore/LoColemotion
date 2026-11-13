@@ -72,8 +72,8 @@ points to the active implementation and evidence. The
 [research program](LOCOMOTION_GROUND_UP_RESEARCH_PROGRAM.md) defines evidence
 and audit economy; the [architecture](LOCOMOTION_ARCHITECTURE.md) defines
 runtime ownership. New attempts preserve consumed identities and add declarations
-to shared machinery wherever the contract is unchanged. Nine righting cohorts
-now retain 2,032 valid negative performance worlds. The paired braking cohort
+to shared machinery wherever the contract is unchanged. Ten righting cohorts
+now retain 2,272 valid worlds that failed recovery. The paired braking cohort
 at source 8c81cf2e completes 224 fresh twelve-second worlds across sixteen bodies
 after 175 controls and a fourteen-world full canary. Its compact reader
 reconstructs 322,560 controller records and 1,612,800 native samples; the
@@ -132,21 +132,32 @@ bounds remain. Thirty-one bodies have a positive friction bound at every
 sampled pitch orientation in both directions; the poses need not connect and
 actuator force capability is unproved.
 
-The [body-moment component](../sdk/discovery/creature_body_moment_component_v1.json)
-now passes 230 controls and the 24-body zero-world preflight in 196.1 seconds.
-Its sixteen new controls include 240 exact legacy plan comparisons. All 2,418
-artifacts, 1,229 source bindings, 1,359 runtime bindings and 23 stage cleanups
-verify. Configured contact forces pass through the existing bounded velocity
-projection and joint braking; measured contacts gate their use. Targets avoid
-nonadjacent overlap, while actual contact and sampled work remain observable.
+The [body-moment native result](../sdk/discovery/creature_body_moment_native_result_v1.json)
+closes the 23f48892 freeze after all 230 controls. Ten six-second full-route worlds
+replay 7,200 decisions and 36,000 samples with exact compact projection and
+required command branches. The 240 fresh twelve-second search worlds reconstruct
+345,600 compact records and 1,728,000 native samples. All 3,607 search artifacts,
+1,229 source bindings, 1,359 runtime bindings and 25 stage cleanups verify.
 
-Next run the ten-world six-second full route, then 240 fresh twelve-second
-compact worlds if its command branches and replay pass. Twenty-four profiles
-cover four signed axes, drive/rock behavior and three force settings. Each runs
-on four bodies inside and four outside the geometric pitch proposal group.
-Each body has two fresh comparators. Native benefit remains untested; useful
-leads need fresh full-capture varied-start confirmation and the complete Godot
-handoff. No recovery controller has been adopted.
+The 24 body-moment profiles each run on four bodies inside and four outside the
+geometric pitch proposal group, with two fresh comparators per body. Twenty-nine
+partial-rotation leads occur in 22 of 24 groups, with eleven groups in each
+stratum. Peak new rotation is 24.485 degrees; the largest gain against a fresh
+same-body timed comparator is 9.817 degrees. All 240 worlds fail recovery with
+zero joint violations; 183 of 192 new-controller worlds acquire distal contact.
+The two empty progress groups and every negative result remain retained.
+
+Clear targets did not guarantee clear motion: the full route records
+nonadjacent overlap, including about 3.9 mm for its largest-rotation profile.
+Native robot self-collision remains disabled. Reconstruct all retained native
+substeps for the 29 broad leads and their 22 timed comparators before treating
+a motion as a useful path. Keep the frozen scores and the posthoc diagnosis
+separate. Profile controller computation before optimizing its geometry work;
+the measured controller share is about half of outer-loop time, with no
+throughput improvement yet established. Useful clear portions can seed a
+distinct broad successor. Full-capture varied-start confirmation, actual
+recovery completion and the complete Godot handoff remain ahead; no controller
+has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.
