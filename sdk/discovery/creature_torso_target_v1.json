@@ -1,0 +1,3228 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "maximum_worlds_per_batch": 14,
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "seed": 1061125,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_contact_reach_native_result_v1.json",
+    "sha256": "2f3307767991ad3511f54e53872db5939f1784bee5a023f8ace256d49db20124"
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_capture.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py",
+    "sdk/discovery/creature_joint_braking.py",
+    "sdk/discovery/creature_contact_reach.py",
+    "sdk/discovery/creature_torso_target.py",
+    "sdk/discovery/creature_torso_target_search.py"
+  ],
+  "not_covered": [
+    "Recovery qualification or learned adaptation",
+    "New initial fallen orientations, weakened motors, terrain or impacts",
+    "Walking-to-fall entry and recovery-to-walking integration",
+    "Godot transfer, cross-engine equivalence, real time or release"
+  ],
+  "qualification_economy": "Ten torso-target controls join the complete 172-control contact gate, including 4800 exact legacy plan comparisons against frozen published source. Reuse native containment, capture, readers and eligibility. One fourteen-world full route precedes 224 compact worlds.",
+  "campaign_id": "creature_torso_target_v1",
+  "mode": "development_discovery",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "purpose": "Compare 16 exposed anchor/sweep profiles with root-pivot and torso-edge virtual-rotation targets on their original four bodies each. Both fresh comparators run on every one of sixteen bodies. Retain all 224 twelve-second outcomes and unchanged progress/eligibility results.",
+  "capture_mode": "compact_v1",
+  "outer_steps": 1440,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_assigned_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_b",
+        "torso_length_scale": 1.1,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6103",
+        "torso_length_scale": 1.0535744198024215,
+        "torso_width_scale": 1.0332991562162757,
+        "upper_length_fraction": 0.5098777738981596,
+        "hip_span_scale": 1.099488118989274,
+        "foot_radius_scale": 1.0289813767021945,
+        "front_limb_mass_scale": 1.0982205605130226
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6116",
+        "torso_length_scale": 0.9243773739841714,
+        "torso_width_scale": 1.092919998660898,
+        "upper_length_fraction": 0.5240690790312525,
+        "hip_span_scale": 0.9635037609989531,
+        "foot_radius_scale": 1.0822817410766805,
+        "front_limb_mass_scale": 1.0781984820911192
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6109",
+        "torso_length_scale": 1.0936444497652456,
+        "torso_width_scale": 0.9217203858824727,
+        "upper_length_fraction": 0.5417046274155622,
+        "hip_span_scale": 1.0620312707410267,
+        "foot_radius_scale": 0.9437327049308766,
+        "front_limb_mass_scale": 0.933942142090281
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6105",
+        "torso_length_scale": 1.0052902267093982,
+        "torso_width_scale": 1.0935019718002301,
+        "upper_length_fraction": 0.48646168914541177,
+        "hip_span_scale": 0.9793139184078468,
+        "foot_radius_scale": 0.9242928356454458,
+        "front_limb_mass_scale": 1.038380685527432
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6114",
+        "torso_length_scale": 0.9404690663890143,
+        "torso_width_scale": 1.0652589055628654,
+        "upper_length_fraction": 0.49274039572401446,
+        "hip_span_scale": 0.9729267384561074,
+        "foot_radius_scale": 1.0879637798266402,
+        "front_limb_mass_scale": 0.9438544581280682
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6106",
+        "torso_length_scale": 0.9019590498418452,
+        "torso_width_scale": 0.9601655727392449,
+        "upper_length_fraction": 0.5184519508477421,
+        "hip_span_scale": 1.0165552675995406,
+        "foot_radius_scale": 0.915240760849612,
+        "front_limb_mass_scale": 1.003843702865728
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6118",
+        "torso_length_scale": 1.0937267390530852,
+        "torso_width_scale": 0.9497071418561291,
+        "upper_length_fraction": 0.524545024210714,
+        "hip_span_scale": 0.918469026595929,
+        "foot_radius_scale": 1.035439005153123,
+        "front_limb_mass_scale": 1.0326992915320907
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6119",
+        "torso_length_scale": 0.96862467989992,
+        "torso_width_scale": 0.9000615925062592,
+        "upper_length_fraction": 0.5442827379201266,
+        "hip_span_scale": 1.0212948075778072,
+        "foot_radius_scale": 0.9138043803660675,
+        "front_limb_mass_scale": 0.9144451240111248
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6113",
+        "torso_length_scale": 0.9794287821462911,
+        "torso_width_scale": 0.9819624629528174,
+        "upper_length_fraction": 0.49890287933379945,
+        "hip_span_scale": 0.9235057165900957,
+        "foot_radius_scale": 0.9086695590076664,
+        "front_limb_mass_scale": 1.061568803843476
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6110",
+        "torso_length_scale": 1.0253141368565415,
+        "torso_width_scale": 1.089447144416498,
+        "upper_length_fraction": 0.5175032612489311,
+        "hip_span_scale": 0.9498189928591761,
+        "foot_radius_scale": 1.0035879951677258,
+        "front_limb_mass_scale": 1.080298800715315
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6112",
+        "torso_length_scale": 0.9080588190835106,
+        "torso_width_scale": 1.0936438149292125,
+        "upper_length_fraction": 0.4976951603329962,
+        "hip_span_scale": 0.9397373455203458,
+        "foot_radius_scale": 0.98104870568054,
+        "front_limb_mass_scale": 1.0033493541421716
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6107",
+        "torso_length_scale": 0.9341446610712784,
+        "torso_width_scale": 1.0038158447257746,
+        "upper_length_fraction": 0.5346639538543914,
+        "hip_span_scale": 0.9168882945126129,
+        "foot_radius_scale": 0.9742543633268808,
+        "front_limb_mass_scale": 0.9061752081863059
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6101",
+        "torso_length_scale": 1.032854112873984,
+        "torso_width_scale": 0.9352174529887777,
+        "upper_length_fraction": 0.5271975998643781,
+        "hip_span_scale": 1.0141165560842764,
+        "foot_radius_scale": 1.0655881652994055,
+        "front_limb_mass_scale": 0.9042270536078669
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "anchor_00",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_00_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_00_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_01",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_01_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "anchor_01_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "anchor_02",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_02_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_02_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_03",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_03_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "anchor_03_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "anchor_04",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_04_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_04_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_05",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_05_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "anchor_05_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "anchor_06",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_06_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_06_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "anchor_07",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_07_root",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "anchor_07_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_00",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_00_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_00_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_01",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_01_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_01_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_02",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_02_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_02_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_03",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_03_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_03_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_04",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_04_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_04_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_05",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_05_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_05_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.2617993877991494,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_06",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_06_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_06_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.15,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 0.5235987755982988,
+          "ramp_steps": 60,
+          "rise_m": 0.0
+        }
+      },
+      {
+        "id": "sweep_07",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_07_root",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "root",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      },
+      {
+        "id": "sweep_07_torso_edge",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "torso_target": {
+          "schema_version": "locolemotion_supported_torso_target_v1",
+          "pivot": "torso_edge",
+          "maximum_rotation_rad": 1.0471975511965976,
+          "ramp_steps": 120,
+          "rise_m": 0.02
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ],
+    "profiles_by_body": [
+      [
+        0,
+        1,
+        11,
+        12,
+        13,
+        23,
+        24,
+        25,
+        32,
+        33,
+        34,
+        44,
+        45,
+        46
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        14,
+        15,
+        16,
+        35,
+        36,
+        37,
+        47,
+        48,
+        49
+      ],
+      [
+        0,
+        1,
+        5,
+        6,
+        7,
+        17,
+        18,
+        19,
+        26,
+        27,
+        28,
+        38,
+        39,
+        40
+      ],
+      [
+        0,
+        1,
+        8,
+        9,
+        10,
+        20,
+        21,
+        22,
+        29,
+        30,
+        31,
+        41,
+        42,
+        43
+      ],
+      [
+        0,
+        1,
+        11,
+        12,
+        13,
+        23,
+        24,
+        25,
+        32,
+        33,
+        34,
+        44,
+        45,
+        46
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        14,
+        15,
+        16,
+        35,
+        36,
+        37,
+        47,
+        48,
+        49
+      ],
+      [
+        0,
+        1,
+        5,
+        6,
+        7,
+        17,
+        18,
+        19,
+        26,
+        27,
+        28,
+        38,
+        39,
+        40
+      ],
+      [
+        0,
+        1,
+        8,
+        9,
+        10,
+        20,
+        21,
+        22,
+        29,
+        30,
+        31,
+        41,
+        42,
+        43
+      ],
+      [
+        0,
+        1,
+        11,
+        12,
+        13,
+        23,
+        24,
+        25,
+        32,
+        33,
+        34,
+        44,
+        45,
+        46
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        14,
+        15,
+        16,
+        35,
+        36,
+        37,
+        47,
+        48,
+        49
+      ],
+      [
+        0,
+        1,
+        5,
+        6,
+        7,
+        17,
+        18,
+        19,
+        26,
+        27,
+        28,
+        38,
+        39,
+        40
+      ],
+      [
+        0,
+        1,
+        8,
+        9,
+        10,
+        20,
+        21,
+        22,
+        29,
+        30,
+        31,
+        41,
+        42,
+        43
+      ],
+      [
+        0,
+        1,
+        11,
+        12,
+        13,
+        23,
+        24,
+        25,
+        32,
+        33,
+        34,
+        44,
+        45,
+        46
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        14,
+        15,
+        16,
+        35,
+        36,
+        37,
+        47,
+        48,
+        49
+      ],
+      [
+        0,
+        1,
+        5,
+        6,
+        7,
+        17,
+        18,
+        19,
+        26,
+        27,
+        28,
+        38,
+        39,
+        40
+      ],
+      [
+        0,
+        1,
+        8,
+        9,
+        10,
+        20,
+        21,
+        22,
+        29,
+        30,
+        31,
+        41,
+        42,
+        43
+      ]
+    ]
+  },
+  "coverage": [
+    "Sixteen actual compiled body shapes, nominal actuators and fresh inverted starts",
+    "Ninety-six body/profile pairs; each original and slower variant shares body, start, horizon, poses, gains, slew and physical limits",
+    "Every body receives six original/slow pairs and both fresh comparators in one fourteen-world batch",
+    "All 1440 controller intervals and 7200 native substeps per world retained with compact outcome reconstruction",
+    "All paired contact, rotation, eligibility and joint-violation outcomes retained; partial-progress leads remain separate from recovery"
+  ],
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    },
+    {
+      "name": "creature-joint-braking",
+      "module": "test_creature_joint_braking",
+      "count": 10
+    },
+    {
+      "name": "creature-contact-reach",
+      "module": "test_creature_contact_reach",
+      "count": 12
+    },
+    {
+      "name": "creature-torso-target",
+      "module": "test_creature_torso_target",
+      "count": 10
+    }
+  ],
+  "selection_rationale": "Preserve all sixteen exposed anchor/sweep profiles, their body assignments, poses, gains, clocks, braking and command limits. Compare two declared virtual torso pivots for each profile with 15, 30 or 60 degree lookahead, bounded ramps and zero or 2 cm rise. Torso box geometry keeps the virtual target above the floor; finite limb projection residuals remain visible.",
+  "discovery_signal_scope": "Keep the five-degree gain over each body's fresh timed comparator and zero-joint-violation screen. Root/edge contrasts with the matched old profile are descriptive development evidence. Useful leads require fresh full-capture varied-start confirmation; no training or release qualification.",
+  "braking_model_limit": "Constant-velocity lookahead and a stopping-speed envelope using a declared 6 rad/s^2 shaping estimate. This is not a validated physical deceleration bound or a guarantee that no joint crosses its limit.",
+  "contact_geometry_limit": "Finite 25 by 25 normalized joint grid for each compiled two-joint limb and distal capsule on world y=0. The lower geometric capsule endpoint is retained after measured distal contact; it is not a measured contact point or force. Unreachable world targets keep their projection residual. No dynamic feasibility guarantee.",
+  "route_coverage_required": [
+    "anchor_and_sweep_strategies",
+    "measured_contact",
+    "bounded_push",
+    "new_cycle",
+    "geometric_anchor_retention",
+    "anchor_sweep",
+    "root_and_torso_edge_nonzero_projection",
+    "full_controller_replay",
+    "full_compact_projection"
+  ],
+  "route_coverage_not_required": [
+    "successful_righting",
+    "all_profile_contact_acquisition",
+    "upright_capture_in_native_world"
+  ],
+  "torso_target_search": {
+    "schema_version": "locolemotion_torso_target_search_v1",
+    "seed": 1061125,
+    "source_contract": {
+      "path": "sdk/discovery/creature_contact_reach_v1.json",
+      "sha256": "c06d9dde5b47d3247ce1b6b8d2e7bb04e7cb87af5aec11b217cc4cc9a4462cf3"
+    },
+    "route_body_index": 1,
+    "route_outer_steps": 360,
+    "rotation_degrees": [
+      15.0,
+      30.0,
+      60.0
+    ],
+    "pivots": [
+      "root",
+      "torso_edge"
+    ]
+  },
+  "torso_target_limit": "A virtual pose is used solely to select bounded joint targets. Neither the native root nor a body is reset, positioned or actuated directly. Torso collision clearance is geometric; contact force, dynamic feasibility, stable support and recovery are not guaranteed.",
+  "capture_reference": {
+    "path": "sdk/discovery/creature_torso_target_route_v1.json",
+    "sha256": "5fe6c1ebea62a7bbe9ffefac38a836889ef789b0a5cc4237fe2efa9b01803d80"
+  }
+}

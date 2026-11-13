@@ -26,14 +26,23 @@ All 5,475 native artifacts, 42 cleanup reports and all six directly read
 declaration inputs verify. The [component](../sdk/discovery/creature_contact_reach_component_v1.json)
 retains the prospective zero-world evidence and source pins.
 
-Next test an explicit bounded torso-rotation target projected through
-contacted limbs. Keep geometry-based contact acquisition, braking, command
-bounds, fresh comparators and unchanged eligibility. Retain projection
-residuals and measured progress. This is a controller hypothesis requiring
-its own complete gate, small full route and broad native search.
-Useful leads need fresh full-capture varied-start confirmation before the
-Godot walk-fall-recover-resume handoff with 120 resumed steps.
-Eight performance cohorts retain 1,808 valid negative worlds.
+The [torso-target component](../sdk/discovery/creature_torso_target_component_v1.json)
+now passes 182 controls. Its optional virtual torso rotation uses the root
+or a low torso edge, bounded ramps and compiled box-floor clearance.
+Only joint targets reach physics; actual-root and virtual-root projections
+are separately recorded. Contact is required to activate the new objective.
+All 4,800 original contact plans match frozen published source, and all eight
+direct declaration inputs and 2,399 gate artifacts verify.
+
+After the clean pushed freeze, run fourteen full three-second worlds with
+required contact, anchor, sweep, cycle and both pivot-projection coverage.
+The broad search pairs all sixteen exposed anchor/sweep profiles with two
+torso-target variants on the same four bodies each, plus both fresh comparators
+on all sixteen bodies: 224 twelve-second worlds. Braking, command bounds,
+eligibility and the five-degree progress screen remain unchanged.
+Native benefit is pending. Useful leads need fresh full-capture varied-start
+confirmation before the Godot walk-fall-recover-resume handoff with 120 resumed
+steps. Eight performance cohorts retain 1,808 valid negative worlds.
 
 The preceding [paired braking result](../sdk/discovery/creature_joint_braking_native_result_v1.json)
 retains 224 twelve-second worlds at source 8c81cf2e after 175 controls.

@@ -11,6 +11,7 @@ import numpy as np
 from actuation_recovery_mechanics import RigidTree, array, require, xyz
 from creature_batch import identifier
 import creature_joint_braking as braking
+import creature_torso_target as torso
 
 MODE = "contact_reach"
 STRATEGIES = ("ground", "anchor", "sweep")
@@ -22,6 +23,11 @@ def finite(value):
 
 
 def profile(value):
+    if type(value) is dict and "torso_target" in value:
+        result = profile({k:v for k,v in value.items() if k != "torso_target"})
+        require(result["strategy"] in ("anchor", "sweep"), "Torso target requires an anchored strategy")
+        result["torso_target"] = torso.policy(value["torso_target"])
+        return result
     fields = {"id", "mode", "strategy", "axis_body", "bend_pattern", "active_limb_count",
         "push_depth_m", "sweep_fraction", "reach_timeout_steps", "push_steps", "reset_steps",
         "target_update_steps", "pose_a", "pose_b", "position_gain_s_inv",
@@ -54,6 +60,8 @@ def profile(value):
 
 
 def behavior_key(p):
+    if "torso_target" in p:
+        return behavior_key({k:v for k,v in p.items() if k != "torso_target"}) + tuple(p["torso_target"][k] for k in torso.FIELDS)
     return (MODE, p["strategy"], *p["axis_body"], p["bend_pattern"], p["active_limb_count"],
         p["push_depth_m"], p["sweep_fraction"], p["reach_timeout_steps"], p["push_steps"], p["reset_steps"],
         p["target_update_steps"], *p["pose_a"], *p["pose_b"], p["position_gain_s_inv"],
@@ -214,8 +222,12 @@ def plan(candidate, geometry, state, rotation, contacts, memory, upright):
                 if candidate["strategy"] == "sweep":
                     tangent = np.cross(axis_world, [0., 1., 0.])
                     anchor += tangent*candidate["sweep_fraction"]*geometry.lengths[i]*after["elapsed"]/candidate["push_steps"]
-            choice = geometry.select(i, position, rotation, normalized[2*i:2*i+2], candidate["bend_pattern"],
-                                     candidate["push_depth_m"], anchor)
+            if "torso_target" in candidate:
+                choice = torso.select(geometry, candidate, i, position, rotation, normalized[2*i:2*i+2],
+                                      anchor, contacts, after)
+            else:
+                choice = geometry.select(i, position, rotation, normalized[2*i:2*i+2], candidate["bend_pattern"],
+                                         candidate["push_depth_m"], anchor)
             after["targets"][2*i:2*i+2] = choice["normalized_pose"]
             after["choices"][i] = choice
     after["elapsed"] += 1

@@ -29,19 +29,22 @@ and useful self-righting remains unestablished after eight negative cohorts.
 | [Body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json) | 128 twelve-second worlds after 172 controls: all 96 new-controller worlds acquire distal contact, with zero joint violations, but zero recovery or progress leads. Best new rotation is 14.235 degrees; best gain over its own fresh timed comparator is 1.467 degrees. The eight-world full route replays 2,880 decisions and 14,400 samples; broad compact reading reconstructs 184,320 records and 921,600 samples |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Drive an explicit bounded torso-rotation target through contacted limbs.**
-   The [contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
-   establishes contact acquisition on all 96 new-controller worlds across
-   sixteen exposed shapes, with zero joint violations. It does not produce
-   upright dwell or a qualifying rotation gain. Keep that geometry-based
-   acquisition and anticipatory braking, and test a bounded torso-rotation
-   objective projected through measured contacts. Retain finite projection
-   residuals and measured progress; the target is a hypothesis, not guaranteed
-   dynamic support. Declare the complete zero-world gate, a small full route,
-   then a broad body/profile search with fresh comparators and unchanged
-   joint/force limits, eligibility and five-degree progress screen.
-   All 1,808 valid negative performance worlds remain. Useful leads still
-   need fresh full-capture varied-start confirmation before Studio adoption.
+1. **Run the paired torso-target search from its clean prospective freeze.**
+   The [torso-target component](../sdk/discovery/creature_torso_target_component_v1.json)
+   passes all 182 zero-world controls, including 4,800 exact legacy contact-plan
+   comparisons. New profiles project a bounded virtual torso rotation through
+   currently contacted limbs, using the root or a low torso edge as pivot.
+   Compiled box geometry keeps that virtual target above the floor; only
+   bounded joint commands reach physics. Actual and virtual projected endpoints
+   remain distinct. Geometry does not guarantee useful force or recovery.
+   First run fourteen three-second full worlds with measured-contact, anchor,
+   sweep, cycle and both pivot-projection coverage. Then compare all sixteen
+   exposed anchor/sweep profiles with their two torso-target variants on the
+   same four bodies each, alongside both fresh comparators on all sixteen
+   shapes: 224 twelve-second worlds. Braking, joint/force limits, eligibility
+   and the five-degree progress screen stay fixed. Native benefit is pending.
+   All 1,808 valid negative performance worlds remain. Useful leads still need
+   fresh full-capture varied-start confirmation before Studio adoption.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

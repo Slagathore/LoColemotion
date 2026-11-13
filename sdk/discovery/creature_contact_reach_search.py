@@ -68,16 +68,16 @@ def spec(recipe, *, route=False):
 def source_dependencies(c):
     return ([ROOT / SOURCE["path"], ROOT / "sdk/discovery/creature_contact_reach_v1.json",
              ROOT / "sdk/discovery/creature_contact_reach_route_v1.json"]
-            if "contact_reach_search" in c else [])
+            if any(k in c for k in ("contact_reach_search", "torso_target_search")) else [])
 
 
 def validate(c):
     opted_in = any(p["mode"] == contact.MODE for p in c.get("righting_spec", {}).get("profiles", []))
-    require(not opted_in or "contact_reach_search" in c, "Contact-reach requires its declared search gate")
+    require(not opted_in or any(k in c for k in ("contact_reach_search", "torso_target_search")), "Contact-reach requires its declared search gate")
     if "contact_reach_search" not in c:
         return
     require(c["contact_reach_search"] == RECIPE and c["mode"] in ("route_ghost", "development_discovery")
-            and not any(k in c for k in ("trajectory_proposal", "trajectory_retiming", "joint_braking_search"))
+            and not any(k in c for k in ("trajectory_proposal", "trajectory_retiming", "joint_braking_search", "torso_target_search"))
             and c["trajectory_screen"] == trajectory.POLICY, "Contact-reach declaration scope")
     route = c["mode"] == "route_ghost"
     require(c["righting_spec"] == spec(RECIPE, route=route)
@@ -86,11 +86,11 @@ def validate(c):
             "Contact-reach population, horizon or batch drift")
 
 
-def route_report(rows, profiles):
+def route_report(rows, profiles, strategies=contact.STRATEGIES):
     """Require observed production branches; successful locomotion is separate."""
     by_id = {p["id"]:p for p in profiles}
     counts = {s:dict(rows=0, measured_contact=0, bounded_push=0, new_cycle=0,
-                    retained_anchor=0, displaced_anchor=0) for s in contact.STRATEGIES}
+                    retained_anchor=0, displaced_anchor=0) for s in strategies}
     for row in rows:
         p = by_id[row["binding"]["candidate_id"]]
         if p["mode"] != contact.MODE:

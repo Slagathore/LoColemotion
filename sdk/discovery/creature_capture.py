@@ -244,5 +244,9 @@ def canary_receipt(path, c, source_commit, bindings, evidence_root):
         import creature_contact_reach_search as contact_search
         require(full.get("contact_route_coverage") == contact_search.verify_route(path.parent, full),
                 "Contact route required branch coverage")
+    if "torso_target_search" in c:
+        import creature_torso_target_search as torso_search
+        require(full.get("torso_route_coverage") == torso_search.verify_route(path.parent, full),
+                "Torso route required projection coverage")
     return dict(receipt_path=str(path),receipt_sha256=digest(path),audit_sha256=digest(audit_path),
         full_controller_rows_replayed=n,full_native_rows_verified=5*n,within_run_projection_verified=True)

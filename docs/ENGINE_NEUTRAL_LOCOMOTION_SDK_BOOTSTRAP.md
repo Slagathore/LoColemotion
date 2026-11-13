@@ -101,11 +101,16 @@ The eight-world full route replays 2,880 decisions and 14,400 samples with
 required measured-contact, anchor, sweep and cycle coverage. The broad compact
 reader reconstructs 184,320 records and 921,600 samples without claiming full
 controller replay. All 5,475 native artifacts, 42 cleanups and six direct
-declaration inputs verify. Next test a bounded torso-rotation objective
-projected through contacted limbs while preserving contact acquisition,
-braking and qualification limits. This remains an untested controller
-hypothesis. Useful leads need fresh full-capture varied-start confirmation
-and the complete Godot handoff; no recovery controller has been adopted.
+declaration inputs verify. The
+[torso-target component](../sdk/discovery/creature_torso_target_component_v1.json)
+now passes 182 controls, including 4,800 exact legacy plan comparisons.
+An opt-in virtual root or torso-edge rotation produces bounded joint targets
+under measured contact, with explicit torso-floor clearance and finite limb
+projection residuals. The native root is untouched. The next gate is fourteen
+full three-second worlds, then a paired 224-world search across sixteen bodies.
+No native benefit is established. Useful leads need fresh full-capture
+varied-start confirmation and the complete Godot handoff; no recovery
+controller has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

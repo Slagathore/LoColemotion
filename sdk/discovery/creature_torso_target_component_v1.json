@@ -1,0 +1,132 @@
+{
+  "schema_version": "locolemotion_torso_target_component_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "status": "complete_zero_world_supported_torso_target_component",
+  "source_base_commit": "b18ab9f681ead98e8b15b2f9c7b5e184861aeed8",
+  "source_pins": [
+    {
+      "path": "sdk/discovery/.gitattributes",
+      "sha256": "e0036ded97ad8fdd63cfc1c8d1988be6c05a74755813a8e0d485c2691b336d82"
+    },
+    {
+      "path": "sdk/discovery/creature_capture.py",
+      "sha256": "19ee153f96fb3bff4c901f5480ef361473ad0025ce29b97878b7ed213980303e"
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reach.py",
+      "sha256": "1e4b1bbcf0e19818277909cdc6123e6b698d17772499caa62173c25272f7ef53"
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reach_search.py",
+      "sha256": "a4c9299c0b5f37803691d771e84363f4477e43ff079992365b8c936ea9e89b3e"
+    },
+    {
+      "path": "sdk/discovery/creature_joint_braking_search.py",
+      "sha256": "67856d01877c71df15e788d976ea8904bbe03b4849a522844f2805ce4206a41f"
+    },
+    {
+      "path": "sdk/discovery/creature_native.py",
+      "sha256": "563a8b4a0d4189d8ab9000ce07f0e84eb3abe6973acf154455aa0347c2f762d6"
+    },
+    {
+      "path": "sdk/discovery/creature_torso_target.py",
+      "sha256": "8d0bd8a41851c19cbdec351aecd3d8958a7c9619027d802f06e40f1c74975a28"
+    },
+    {
+      "path": "sdk/discovery/creature_torso_target_route_v1.json",
+      "sha256": "5fe6c1ebea62a7bbe9ffefac38a836889ef789b0a5cc4237fe2efa9b01803d80"
+    },
+    {
+      "path": "sdk/discovery/creature_torso_target_search.py",
+      "sha256": "0d16b2b4a4e2daf9a84416afceb2e5a9e151a9ef8106703ef7d0b41487459f60"
+    },
+    {
+      "path": "sdk/discovery/creature_torso_target_v1.json",
+      "sha256": "edc5bcf58dc07ebb125e1a8fbaed44002f322e9493ca9242a376629952166097"
+    },
+    {
+      "path": "sdk/discovery/run_creature_native.py",
+      "sha256": "ddd23d480349c7abb7bcb5f0a39b47492a54e2dcecc6b6244d99db940412e8ac"
+    },
+    {
+      "path": "sdk/discovery/test_creature_torso_target.py",
+      "sha256": "ec5d9dc43e36f4f0c78b418ed6db8460aef79d99e0114ff272605c7633d26ce5"
+    }
+  ],
+  "zero_world_gate": {
+    "legacy_plan_comparisons": 4800,
+    "legacy_snapshot_sha256": "1f512e2e7dd917f5312cc2a6554e456a599dec605de364a44ef5df382dc7a5ea",
+    "archive_relative_path": "sdk2-creature-torso-target-route-v1-acb2262260ca408bafc90de064cbec9a",
+    "receipt_sha256": "10b601db696d34ced95486f95305bb78d085c676f10a9d388a49f488c43ca6f7",
+    "declaration_sha256": "c2b5f7d89338f057f8e1dc747d0067489bab66bdc437c41380dd1a1014352fba",
+    "gate_receipt_sha256": "ce1e8b975b7f12f21af81c51943785818debf3162305f95a551813d83f32e2d6",
+    "artifacts_verified": 2399,
+    "bytes_verified": 240977084,
+    "cleanup_reports_verified": 20,
+    "controls_passed": 182,
+    "controls_required": 182,
+    "source_binding_count": 1213,
+    "runtime_binding_count": 1359,
+    "explicit_json_dependencies_verified": [
+      "creature_trajectory_search_v1.json",
+      "creature_trajectory_retiming_v1.json",
+      "creature_joint_braking_v1.json",
+      "creature_joint_braking_route_v1.json",
+      "creature_contact_reach_v1.json",
+      "creature_contact_reach_route_v1.json",
+      "creature_torso_target_v1.json",
+      "creature_torso_target_route_v1.json"
+    ],
+    "wall_s": 117.68800000002375
+  },
+  "implementation": "An opt-in bounded virtual torso rotation, ramp and rise are projected through currently contacted limbs. Two prospective variants rotate about the measured root or a low torso edge. Compiled box corners keep the virtual torso above the declared flat floor. Only joint targets reach the existing native actuation path.",
+  "limits": "Geometric torso clearance and finite limb projection do not certify contact force, dynamic feasibility or recovery. The native root is never directly actuated or positioned. Actual-root and virtual-root projected endpoints are separately recorded. Existing braking, command limits and eligibility remain unchanged.",
+  "legacy_behavior": "All 4800 plans for the 24 original contact profiles match the exact published b18ab9f6 source, whose bytes are retained by the gate. Profiles opt in through an explicit torso_target policy.",
+  "controls": {
+    "new_torso_geometry_contact_replay_legacy_population": 10,
+    "reused_contact_gate": 172,
+    "total": 182
+  },
+  "prospective_native": {
+    "route": {
+      "path": "sdk/discovery/creature_torso_target_route_v1.json",
+      "sha256": "5fe6c1ebea62a7bbe9ffefac38a836889ef789b0a5cc4237fe2efa9b01803d80",
+      "worlds": 14,
+      "horizon_seconds": 3,
+      "full_capture": true
+    },
+    "search": {
+      "path": "sdk/discovery/creature_torso_target_v1.json",
+      "sha256": "edc5bcf58dc07ebb125e1a8fbaed44002f322e9493ca9242a376629952166097",
+      "worlds": 224,
+      "bodies": 16,
+      "base_profiles": 16,
+      "new_target_profiles": 32,
+      "worlds_per_profile": 4,
+      "paired_groups": 64,
+      "fresh_comparator_worlds": 32,
+      "horizon_seconds": 12,
+      "capture_mode": "compact_v1"
+    },
+    "contact_anchor_sweep_cycle_and_both_projection_coverage_required": true,
+    "eligibility_and_progress_screen_unchanged": true,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "next_gate": "Publish a clean prospective freeze, run fourteen full-capture worlds with required contact and both torso-pivot projection coverage, then the 224-world paired search. Preserve every result and apply fresh full-capture varied-start confirmation to useful diverse leads before Studio adoption.",
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "physical_started": false,
+  "native_route_verified": false,
+  "native_search_executed": false,
+  "trained": false,
+  "recovery_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}
