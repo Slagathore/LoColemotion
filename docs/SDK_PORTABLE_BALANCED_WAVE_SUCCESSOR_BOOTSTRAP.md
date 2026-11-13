@@ -3,23 +3,24 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [latest righting breadth result](../sdk/discovery/creature_righting_breadth_native_result_v2.json)
-retains 256 valid six-second negatives across eight bodies and 32 timed profiles
-at the inverted entry: zero eligible, zero invalid, no measured joint-limit
-breaches and eight empty shortlists. All 184,320 decisions and 921,600 native
-samples replay. The preceding 240-world negative and the eight-world route,
-including its descriptive-coverage discrepancy, remain bound and preserved.
-The [feedback component](../sdk/discovery/creature_righting_component_v2.json)
-now passes 134 zero-world controls. It projects measured angular velocity into
-the body frame and selects a phase with polarity, minimum holds, optional
-distal-contact gating and bounded fallback; batch state commits atomically.
-Tests cover 6,912 exact mixed decisions across 32 shapes and full scalar-reader
-reconstruction. Its [prospective cohort](../sdk/discovery/creature_righting_feedback_v1.json)
-declares 256 fresh worlds across 16 bodies and 16 profiles: brake, three timed
-pose families and twelve matching feedback variants. All are unrun. Physical
-limits, full capture and upright eligibility are unchanged; useful leads still
-need varied-start and full Godot handoff confirmation. No recovery, learning
-or handoff benefit is established.
+The [latest feedback result](../sdk/discovery/creature_righting_feedback_native_result_v1.json)
+retains 256 valid six-second negatives across 16 bodies and 16 profiles at the
+inverted entry: twelve feedback variants, three matched timed comparators and
+a fresh brake. All 134 applicable controls passed before physics. Independent
+replay verifies 184,320 decisions and 921,600 native samples; zero worlds meet
+the upright criterion, none are invalid, no joint-limit breaches are measured
+and all 16 shortlists are empty. All 3,864 retained artifacts and 17 stage
+cleanups were verified. The shared measured-rotation component has native
+route evidence; useful righting remains unestablished.
+The preceding timed cohorts retain 496 valid negatives. Their original records
+and the earlier eight-world route's descriptive-coverage discrepancy remain
+preserved. These results do not establish righting impossibility. Before a new
+native cohort, use retained morphology, joint motion and contact evidence for
+zero-world reach and pose-sequence analysis, then declare a materially different
+coordination proposal. No next physical cohort is declared. Physical limits,
+full capture and upright eligibility stay fixed; useful leads still require
+varied-start confirmation and full Godot handoffs. No recovery, learning or
+handoff benefit is established.
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes

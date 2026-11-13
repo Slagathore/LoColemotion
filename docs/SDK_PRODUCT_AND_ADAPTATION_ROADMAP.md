@@ -51,30 +51,27 @@ while profile 27 passes both.
    No active recovery command or walking restart occurs. Preserve this valid
    negative and the earlier integration refusal.
    The earlier [eight-world righting route](../sdk/discovery/creature_righting_route_native_v1.json)
-   established shared capture and replay with public recovery morphology; its
-   copied descriptive-coverage error remains explicit. Two full-horizon timed
-   searches now close valid negative: [v1](../sdk/discovery/creature_righting_breadth_native_result_v1.json)
-   tested 240 worlds across 16 bodies, five profiles and three fallen starts;
-   [v2](../sdk/discovery/creature_righting_breadth_native_result_v2.json) tested
-   256 worlds across eight bodies and 32 profiles at the inverted entry.
-   Every episode fails the upright criterion, with no invalid runs or measured
-   joint-limit breaches. The latest run independently replays 184,320 decisions
-   and 921,600 solver samples; all eight shortlists are empty. These results
-   do not establish righting impossibility.
-   The [measured-rotation component](../sdk/discovery/creature_righting_component_v2.json)
-   now passes the complete 134-control zero-world gate. It chooses a rocking
-   phase from measured body-frame angular velocity, with explicit polarity,
-   minimum holds, optional distal-contact gating and bounded fallback. Phase
-   state commits atomically across the batch. Tests include 6,912 exact mixed
-   scalar/batch decisions across 32 shapes and full reader reconstruction;
-   useful physical feedback remains untested.
-   The [feedback cohort](../sdk/discovery/creature_righting_feedback_v1.json)
-   declares 256 six-second inverted-entry worlds: 16 bodies, a fresh brake,
-   three timed pose families and twelve matching feedback variants. The
-   physical limits, full capture and upright criterion are unchanged. Execute
-   from a clean pushed freeze after the complete gate; all cohort worlds are
-   unrun. Useful diverse leads must pass fresh varied-start confirmation and
-   full handoff runs requiring recovery completion and 120 resumed walking steps.
+   established capture and replay with public recovery morphology; its copied
+   descriptive-coverage error remains explicit. Timed searches
+   [v1](../sdk/discovery/creature_righting_breadth_native_result_v1.json) and
+   [v2](../sdk/discovery/creature_righting_breadth_native_result_v2.json) retain
+   496 valid negative worlds across varied bodies, starts, poses and cadences.
+   The [measured-rotation feedback result](../sdk/discovery/creature_righting_feedback_native_result_v1.json)
+   now adds 256 valid negatives: 16 bodies, twelve feedback variants, three
+   matched timed profiles and a fresh brake at the inverted start, six seconds
+   each. All 134 controls passed before physics; 184,320 decisions and 921,600
+   native samples independently replay. Zero worlds meet the upright criterion,
+   zero are invalid, no joint-limit breach is measured and all 16 shortlists
+   are empty. Every retained artifact and all 17 stage cleanups were verified.
+   The [shared component](../sdk/discovery/creature_righting_component_v2.json)
+   now has native route evidence, but useful righting remains unestablished.
+   These finite negatives do not establish righting impossibility.
+   Before another native cohort, use the retained morphology, joint motion and
+   contact evidence for zero-world reach and pose-sequence analysis. Derive a
+   materially different coordination proposal; no follow-up physical cohort is
+   declared yet. Keep the physical limits, full capture and upright criterion.
+   Useful diverse leads require fresh varied-start confirmation and complete
+   handoffs with recovery completion and 120 resumed walking steps.
    Keep body identity, native clocks and measured work; no pose reset, invented
    history or relaxed entry/joint-limit gates. Installed interaction, useful
    recovery and real-time behavior remain separate gates.
