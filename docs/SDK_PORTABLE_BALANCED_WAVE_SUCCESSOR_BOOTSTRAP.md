@@ -56,8 +56,11 @@ groups have no tested candidate passing both starts. Do not refit or adopt that
 choice using its confirmation outcomes. S169 profile 55 fails one new weak-left
 start, while 27 passes both; the earlier finite positive remains valid at its
 original starts. Next work separates selection misses from controller gaps,
-declares learning and held-out data prospectively, and implements the fresh
-Studio recovery observation epoch.
+declares learning and held-out data prospectively, and completes the Studio
+recovery handoff. Its [fresh observation boundary](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json)
+now passes a 360-step native route: three measured boundaries, the same nine
+body instances and two independently reconstructed staging pairs. Complete
+energy mapping and recovery actuation remain open.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature

@@ -44,13 +44,16 @@ while profile 27 passes both.
    reset world state, invent missing cumulative history or reuse stale clocks.
    Validate the actual production route with the smallest adequate development
    ghost before testing useful recovery and the visible Studio interaction.
-   The [fresh observation component](../sdk/explorer/studio/live_recovery_epoch_component_v1.json)
-   now passes 31 adapter checks and ten independent-reader controls, including
-   full-precision retained sources. Its one-world probe at completed steps
-   300-302 is pending; complete energy mapping and recovery actuation remain open.
-   Profile startup and stepping on that route. Retained measurements remain
-   43.852625 seconds to stand up and 29.662299 seconds for 15 walking seconds;
-   the GPU confirmation did not rerun them.
+   The [fresh observation route](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json)
+   now passes in one native world after 31 adapter checks and ten reader controls.
+   All 360 steps complete; boundaries 300-302 retain the same nine body instances
+   and two contiguous staging pairs, reconstructed exactly by the independent
+   reader. Next map the complete measured energy partition, then integrate fall
+   detection, recovery command ownership and walking resume on those bodies.
+   Profile startup and stepping on that route. The short probe observed
+   18.504827 seconds through stand-up and 0.952072 seconds for 119 walking steps.
+   This is not a matched speed comparison or a new fifteen-second result; the
+   earlier fifteen-second run retains its 43.852625 and 29.662299 second timings.
 2. **Broaden candidates where confirmation exposed gaps.** Keep the four
    selection misses separate from the eleven groups with no passing tested
    candidate. Search factored creature/controller cohorts through the public
