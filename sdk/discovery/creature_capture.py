@@ -240,5 +240,9 @@ def canary_receipt(path, c, source_commit, bindings, evidence_root):
     bound=next((v for v in full["artifacts"] if v["path"]=="independent-audit.json"),None)
     require(bound is not None and bound["sha256"]==digest(audit_path)
         and bound["bytes"]==audit_path.stat().st_size, "Full canary audit binding")
+    if "contact_reach_search" in c:
+        import creature_contact_reach_search as contact_search
+        require(full.get("contact_route_coverage") == contact_search.verify_route(path.parent, full),
+                "Contact route required branch coverage")
     return dict(receipt_path=str(path),receipt_sha256=digest(path),audit_sha256=digest(audit_path),
         full_controller_rows_replayed=n,full_native_rows_verified=5*n,within_run_projection_verified=True)

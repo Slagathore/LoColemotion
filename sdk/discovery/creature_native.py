@@ -31,6 +31,7 @@ import creature_capture as capture
 import creature_trajectory_search as trajectory
 import creature_trajectory_retiming as retiming
 import creature_joint_braking_search as braking_search
+import creature_contact_reach_search as contact_search
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -44,7 +45,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_trajectory_search.py", "test_creature_trajectory_search.py",
                  "creature_trajectory_retiming.py", "test_creature_trajectory_retiming.py",
                  "creature_trajectory_diagnosis.py", "test_creature_trajectory_diagnosis.py",
-                 "creature_joint_braking.py", "creature_joint_braking_search.py", "test_creature_joint_braking.py"]
+                 "creature_joint_braking.py", "creature_joint_braking_search.py", "test_creature_joint_braking.py",
+                 "creature_contact_reach.py", "creature_contact_reach_search.py", "test_creature_contact_reach.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -78,7 +80,10 @@ def gates(c):
                if "trajectory_retiming" in c else [])
             + ([("creature-joint-braking", "test_creature_joint_braking", 10),
                 ("creature-motion-diagnosis", "test_creature_trajectory_diagnosis", 6)]
-               if "joint_braking_search" in c else []))
+               if "joint_braking_search" in c else [])
+            + ([("creature-joint-braking", "test_creature_joint_braking", 10),
+                ("creature-contact-reach", "test_creature_contact_reach", 12)]
+               if "contact_reach_search" in c else []))
 
 
 def sequence_enabled(c):
@@ -120,6 +125,7 @@ def declaration(path):
     trajectory.validate(c)
     retiming.validate(c)
     braking_search.validate(c)
+    contact_search.validate(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440

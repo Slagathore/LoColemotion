@@ -88,8 +88,14 @@ The original archives omit one historical declaration read by a compatibility
 test, while retaining its transitive hash pin. A later supplement matches its
 frozen Git bytes and earlier archive; original receipts remain unchanged.
 The inventory-only successor retains all four declaration inputs and passes
-all 175 controls without repeating physics. The next controller work targets
-body-aware foot placement and supported rotation with braking available.
+all 175 controls without repeating physics. The
+[body-aware contact component](../sdk/discovery/creature_contact_reach_component_v1.json)
+now passes 172 controls for geometry-based floor targets, measured-contact
+anchors, bounded anchor sweeps and atomic controller state. All six directly
+read declaration inputs and 2,375 gate artifacts verify. Native benefit is
+pending. The prospective freeze declares eight three-second full worlds with
+required contact/anchor/cycle coverage, then 128 twelve-second worlds across
+sixteen bodies and 24 profiles. Existing braking and eligibility remain.
 Useful leads still need fresh varied-start full-capture checks and the
 complete Godot handoff. No recovery controller has been adopted.
 

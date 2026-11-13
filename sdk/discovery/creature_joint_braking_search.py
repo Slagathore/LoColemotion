@@ -27,7 +27,7 @@ def source_dependencies(c):
     return ([retiming.ROOT / retiming.SOURCE["path"], retiming.ROOT / SOURCE["path"],
              retiming.ROOT / "sdk/discovery/creature_joint_braking_v1.json",
              retiming.ROOT / "sdk/discovery/creature_joint_braking_route_v1.json"]
-            if "joint_braking_search" in c else [])
+            if any(k in c for k in ("joint_braking_search", "contact_reach_search")) else [])
 
 
 def spec(recipe, *, route=False):
@@ -53,7 +53,7 @@ def spec(recipe, *, route=False):
 
 def validate(c):
     opted_in = any("joint_braking" in p for p in c.get("righting_spec", {}).get("profiles", []))
-    require(not opted_in or "joint_braking_search" in c, "Braking requires its declared search gate")
+    require(not opted_in or any(k in c for k in ("joint_braking_search", "contact_reach_search")), "Braking requires its declared search gate")
     if "joint_braking_search" not in c:
         return
     require(c["joint_braking_search"] == RECIPE and c["mode"] in ("route_ghost", "development_discovery")

@@ -40,12 +40,23 @@ checkout and earlier archive. Original receipts and the
 unchanged. The complete successor gate passes 175 controls and now retains all
 four declarations. Native physics was not repeated for this inventory-only fix.
 
-The next family should use compiled limb geometry and measured contact to
-choose reachable foot placements and supported push directions, with
-anticipatory braking available. Declare a small route check, then search
-broadly across varied bodies with fresh comparators and unchanged eligibility.
-Useful diverse leads still require fresh full-capture varied-start checks
-and the complete Godot walk-fall-recover-resume handoff with 120 resumed steps.
+The [body-aware contact component](../sdk/discovery/creature_contact_reach_component_v1.json)
+passes 172 zero-world controls. Three strategies select floor-facing targets
+from compiled limb geometry, retain a geometric world anchor after measured
+contact, or sweep that anchor during a bounded push. Every new profile keeps
+anticipatory braking; all original command and eligibility limits remain.
+Targets come from a finite legal joint grid. Projection residuals remain
+visible, and inferred anchors are not measured contact points or force.
+
+The next gate is a clean pushed freeze and eight three-second full-capture
+worlds. Measured contact, bounded push/reset cycles, anchor retention and sweep
+coverage are required before the broad search: 24 profiles on four bodies
+each, two per family on every one of sixteen shapes, plus both fresh
+comparators, totaling 128 twelve-second worlds. All 2,375 zero-world artifacts,
+nineteen cleanup reports and six directly read declaration inputs verify.
+No native contact-controller benefit is established. Useful diverse leads
+still need fresh full-capture varied-start checks and the complete Godot
+walk-fall-recover-resume handoff with 120 resumed steps.
 
 The preceding [paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json)
 retains 224 twelve-second negatives at source b8f369f2. Longer schedules improve

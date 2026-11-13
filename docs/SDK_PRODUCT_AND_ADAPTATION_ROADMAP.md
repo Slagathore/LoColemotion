@@ -28,19 +28,21 @@ and useful self-righting remains unestablished after seven negative cohorts.
 | [Paired joint braking](../sdk/discovery/creature_joint_braking_native_result_v1.json) | 224 twelve-second worlds after 175 controls: braked joint-crossing worlds 0/96 versus 16/96 unbraked; zero recovery or progress leads. Contact worlds fall 33 to 25, and maximum nonviolating rotation falls 14.03 to 13.98 degrees. All 2,580,480 commands match. A historical test-input inventory omission is disclosed and corrected by a later exact-byte supplement and complete zero-world successor |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Build body-aware contact-reaching and supported-rotation families.**
-   The braking intervention fixes the observed joint-excursion problem within
-   its finite cohort: 24,313 anticipatory command changes, zero braked violating
-   samples versus 4,488 unbraked. It does not produce useful righting.
-   Only 25/96 braked worlds make distal contact, and every braked proposal remains
-   below its own fresh timed comparator. Use the actual compiled limb geometry
-   and measured contact to choose reachable foot placements and push directions;
-   keep the braking option available and preserve the fixed joint/force limits.
-   Declare a small route check, then search diverse body/controller combinations
-   with fresh comparators and unchanged eligibility. Useful leads still require
-   fresh full-capture varied-start checks before the same-body Studio handoff.
-   All 1,680 valid negative performance worlds remain. More timing-only tuning
-   or a general force increase is not supported by these observations.
+1. **Run the body-aware contact search from its clean prospective freeze.**
+   The [contact component](../sdk/discovery/creature_contact_reach_component_v1.json)
+   passes all 172 zero-world controls. Three strategies use each compiled limb:
+   continuously choose a floor target, retain a geometric world anchor after
+   measured contact, or sweep that anchor to encourage rotation. The finite
+   joint grid retains unreachable-target residuals; contact anchors are inferred
+   geometry, not measured force or guaranteed dynamic support. Every new
+   profile keeps anticipatory braking and the existing joint/force limits.
+   First run eight full-capture worlds for three seconds, requiring observed
+   contact, bounded push/reset cycles, retained anchors and anchor sweeps.
+   Then search 24 profiles on four bodies each across 16 exposed shapes, with
+   both fresh comparators on every body: 128 twelve-second worlds.
+   Eligibility and the five-degree progress screen stay fixed. Native benefit
+   is pending; useful leads need fresh full-capture varied-start checks before
+   Studio adoption. All 1,680 valid negative performance worlds remain.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

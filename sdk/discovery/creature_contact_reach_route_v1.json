@@ -1,0 +1,608 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "maximum_worlds_per_batch": 8,
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "seed": 1061124,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_joint_braking_native_result_v1.json",
+    "sha256": "3422b1584c76fb1eaa481a2144801999c87a74c300ab1254b6621ed5603a594c"
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_capture.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py",
+    "sdk/discovery/creature_joint_braking.py",
+    "sdk/discovery/creature_contact_reach.py",
+    "sdk/discovery/creature_contact_reach_search.py"
+  ],
+  "not_covered": [
+    "Recovery qualification or learned adaptation",
+    "New initial fallen orientations, weakened motors, terrain or impacts",
+    "Walking-to-fall entry and recovery-to-walking integration",
+    "Godot transfer, cross-engine equivalence, real time or release"
+  ],
+  "qualification_economy": "Reuse the existing native owner, containment, reader and eligibility rules. Twelve geometry/contact/replay/inventory controls and ten braking controls join 150 applicable controls. One eight-world full route precedes the 128-world compact search.",
+  "campaign_id": "creature_contact_reach_route_v1",
+  "mode": "route_ghost",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "purpose": "Eight fresh three-second worlds on one exposed body cover fresh comparators and two profiles per contact strategy. Observe contact acquisition, geometric world-anchor retention, bounded push/reset and a new cycle, with full capture and exact replay. This is a production-route check, not recovery qualification.",
+  "capture_mode": "full",
+  "outer_steps": 360,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "ground_01",
+        "mode": "contact_reach",
+        "strategy": "ground",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "ground_05",
+        "mode": "contact_reach",
+        "strategy": "ground",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 1,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_00",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "anchor_04",
+        "mode": "contact_reach",
+        "strategy": "anchor",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.015,
+        "sweep_fraction": 0.0,
+        "reach_timeout_steps": 120,
+        "push_steps": 120,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4
+        ],
+        "position_gain_s_inv": 8.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_03",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "outward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "sweep_07",
+        "mode": "contact_reach",
+        "strategy": "sweep",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bend_pattern": "inward",
+        "active_limb_count": 2,
+        "push_depth_m": 0.04,
+        "sweep_fraction": 0.3,
+        "reach_timeout_steps": 120,
+        "push_steps": 180,
+        "reset_steps": 30,
+        "target_update_steps": 6,
+        "pose_a": [
+          -0.15,
+          -0.15,
+          0.15,
+          0.15,
+          -0.15,
+          -0.15,
+          0.15,
+          0.15
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.4,
+          0.4,
+          -0.4,
+          -0.4,
+          0.4,
+          0.4
+        ],
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ]
+  },
+  "coverage": [
+    "Production dispatch for brake, timed and original/three-times-slower sequences on one actual body",
+    "One complete fourteen-world batch with unchanged per-world solver/contact capacities",
+    "Full controller replay and exact same-run compact projection at every retained sample",
+    "Paired outcome joins retain all six original/slow pairs without changing eligibility"
+  ],
+  "route_horizon_limit": "Two intervals cover construction, fourteen-world transport, capture and independent reading. Native phase cycles and recovery performance are not covered; complete synthetic controls qualify transitions, and the broad twelve-second cohort observes motion.",
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    },
+    {
+      "name": "creature-joint-braking",
+      "module": "test_creature_joint_braking",
+      "count": 10
+    },
+    {
+      "name": "creature-contact-reach",
+      "module": "test_creature_contact_reach",
+      "count": 12
+    }
+  ],
+  "selection_rationale": "Factor three strategies (continuously retarget ground, retain a world anchor after contact, bounded anchor sweep) across eight direction/bend/support variants. Every profile is assigned to four exposed shapes; every shape receives two per family plus both fresh comparators. Results cannot establish arbitrary-body adaptation.",
+  "braking_model_limit": "Constant-velocity lookahead and a stopping-speed envelope using a declared 6 rad/s^2 shaping estimate. This is not a validated physical deceleration bound or a guarantee that no joint crosses its limit.",
+  "contact_reach_search": {
+    "schema_version": "locolemotion_contact_reach_search_v1",
+    "seed": 1061124,
+    "source_contract": {
+      "path": "sdk/discovery/creature_joint_braking_v1.json",
+      "sha256": "b4e62a80bc9c13f0895f7606a8f21f960f18cd7b11bf7ad9e6d4a52bf318797c"
+    },
+    "route_body_index": 1,
+    "route_outer_steps": 360,
+    "ground_height_m": 0.0,
+    "candidates_per_family": 8,
+    "assignment_offsets": [
+      0,
+      4,
+      8,
+      12
+    ]
+  },
+  "contact_geometry_limit": "Finite 25 by 25 normalized joint grid for each compiled two-joint limb and distal capsule on world y=0. The lower geometric capsule endpoint is retained after measured distal contact; it is not a measured contact point or force. Unreachable world targets keep their projection residual. No dynamic feasibility guarantee.",
+  "route_coverage_required": [
+    "all_three_contact_strategies",
+    "measured_contact",
+    "bounded_push",
+    "new_cycle",
+    "geometric_anchor_retention",
+    "anchor_sweep",
+    "full_controller_replay",
+    "full_compact_projection"
+  ],
+  "route_coverage_not_required": [
+    "successful_righting",
+    "all_profile_contact_acquisition",
+    "upright_capture_in_native_world"
+  ]
+}
