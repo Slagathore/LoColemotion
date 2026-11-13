@@ -15,6 +15,7 @@ import mujoco
 import numpy as np
 
 import creature_body_moment as subject
+import creature_body_moment_diagnosis as diagnosis
 import creature_body_moment_search as search
 import creature_native as native
 import creature_righting as righting
@@ -187,10 +188,18 @@ class BodyMomentControls(unittest.TestCase):
 
     def test_14_native_declarations_bind_complete_gate_and_source_inputs(self):
         for name in ("creature_body_moment_v1.json","creature_body_moment_route_v1.json"):
-            path=search.ROOT/"sdk/discovery"/name;c=native.declaration(path)
+            path=search.ROOT/"sdk/discovery"/name
+            # Consumed declarations retain their original 16-control gate.
+            # A future launch must explicitly declare the four new controls.
+            with self.assertRaises(ValueError):native.declaration(path)
+            fixture=json.loads(path.read_bytes())
+            fixture["safety_controls"]=[dict(name=n,module=m,count=k) for n,m,k in native.gates(fixture)]
+            view=types.SimpleNamespace(resolve=path.resolve,read_text=lambda **kwargs:json.dumps(fixture))
+            c=native.declaration(view)
             paths={str(p.relative_to(search.ROOT)).replace("\\","/") for p in owner.source_paths(path,c)}
             self.assertTrue({"sdk/discovery/"+n for n in search.SOURCES}<=paths)
             self.assertIn("sdk/discovery/test_creature_body_moment.py",paths)
+            self.assertIn("sdk/discovery/creature_body_moment_diagnosis.py",paths)
             for key in ("body_moment_search","trajectory_screen"):
                 broken=copy.deepcopy(c);broken.pop(key)
                 with self.assertRaises((ValueError,KeyError)):search.validate(broken)
@@ -232,6 +241,66 @@ class BodyMomentControls(unittest.TestCase):
         rows[-1]["state"]["ordered_joint_observations"][0]["position_rad"]=math.nan
         with self.assertRaises(ValueError):batch.step(rows)
         self.assertTrue(all(c.step_index==0 and c.moment_state is None and c.previous==[0.]*8 for c in batch.controllers))
+
+    def test_17_batched_geometry_preserves_frozen_outputs_across_bodies(self):
+        raw=subprocess.check_output(["git","show","23f48892216d0f57e34c02b9605a23b76e5be514:sdk/discovery/creature_body_moment.py"],cwd=search.ROOT)
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),"ecdf354897afe0f333e174b586da78c86c1fea9d08a2f384e4c954945e2cadd2")
+        frozen=types.ModuleType("frozen_moment");exec(compile(raw,"frozen_moment","exec"),frozen.__dict__)
+        spec=search.spec(search.RECIPE);rng=np.random.default_rng(1061136)
+        for index in (0,11,12,23):
+            c=dict(cell_id=f"geometry_{index}",descriptor=spec["descriptors"][index],
+                   profile=search.proposals()[0],motor_effectiveness=[1.]*8)
+            cell=righting.RightingController(self.core,c,seed=1);self.addCleanup(cell.close)
+            g=cell.moment_geometry
+            for _ in range(16):
+                # Include actual angles outside both the pose-bank and joint-limit envelopes.
+                q=rng.uniform(-1.1,1.1,8)*g.upper
+                orientation=rng.normal(size=4);orientation/=np.linalg.norm(orientation)
+                frame=g.tree.kinematics(rng.normal(size=3),orientation,q)
+                before,after=frozen.Geometry.measured(g,frame),g.measured(frame)
+                self.assertEqual(before[0].tobytes(),after[0].tobytes())
+                self.assertEqual(np.float64(before[1]).tobytes(),np.float64(after[1]).tobytes())
+                intrinsic=g.measured(g.tree.kinematics([0.,0.,0.],[0.,0.,0.,1.],q))[1]
+                self.assertAlmostEqual(intrinsic,after[1],places=12)
+
+    def path_fixture(self, gaps):
+        g=types.SimpleNamespace(tree=types.SimpleNamespace(kinematics=lambda p,r,q:q))
+        values=iter(gaps);g.measured=lambda frame:(None,next(values))
+        return diagnosis.PathClearance(g)
+
+    def path_sample(self, degrees):
+        angle=math.radians(180-degrees)/2
+        return [0.,0.,.1,math.cos(angle),math.sin(angle),0.,0.]+[0.]*8
+
+    def test_18_clear_prefix_does_not_restart_after_overlap(self):
+        motion=self.path_fixture([.01,.002,-.003,.02])
+        for i,angle in enumerate((0.,10.,20.,30.)):
+            motion.observe(self.path_sample(angle),i/600)
+        result=motion.finish(3,30.)
+        self.assertEqual(result["first_overlap"]["sample_number"],2)
+        self.assertAlmostEqual(result["peak_before_first_overlap"]["rotation_degrees"],10.)
+        self.assertEqual(result["minimum_nonadjacent_gap_m"],-.003)
+        self.assertFalse(result["sampled_path_clear"])
+
+    def test_19_initial_overlap_and_numeric_tolerance_are_explicit(self):
+        motion=self.path_fixture([-.01,.02]);motion.observe(self.path_sample(0.),0.)
+        motion.observe(self.path_sample(10.),1/600)
+        result=motion.finish(1,10.)
+        self.assertEqual(result["first_overlap"]["sample_number"],0)
+        self.assertIsNone(result["peak_before_first_overlap"])
+        clear=self.path_fixture([-diagnosis.TOLERANCE_M,0.])
+        clear.observe(self.path_sample(0.),0.);clear.observe(self.path_sample(10.),1/600)
+        self.assertTrue(clear.finish(1,10.)["sampled_path_clear"])
+
+    def test_20_path_diagnosis_refuses_missing_samples_or_changed_peak(self):
+        motion=self.path_fixture([.01,.01]);motion.observe(self.path_sample(0.),0.)
+        with self.assertRaises(ValueError):motion.observe(self.path_sample(0.),0.)
+        bad=self.path_sample(0.);bad[7]=math.nan
+        with self.assertRaises(ValueError):motion.observe(bad,1/600)
+        with self.assertRaises(ValueError):motion.finish(1,0.)
+        with self.assertRaises(ValueError):motion.finish(0,10.)
+        motion.observe(self.path_sample(10.),1/600)
+        self.assertTrue(motion.finish(1,10.)["sampled_path_clear"])
 
 
 if __name__=="__main__":unittest.main()

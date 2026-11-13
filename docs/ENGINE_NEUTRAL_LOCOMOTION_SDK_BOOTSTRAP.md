@@ -147,17 +147,24 @@ same-body timed comparator is 9.817 degrees. All 240 worlds fail recovery with
 zero joint violations; 183 of 192 new-controller worlds acquire distal contact.
 The two empty progress groups and every negative result remain retained.
 
-Clear targets did not guarantee clear motion: the full route records
-nonadjacent overlap, including about 3.9 mm for its largest-rotation profile.
-Native robot self-collision remains disabled. Reconstruct all retained native
-substeps for the 29 broad leads and their 22 timed comparators before treating
-a motion as a useful path. Keep the frozen scores and the posthoc diagnosis
-separate. Profile controller computation before optimizing its geometry work;
-the measured controller share is about half of outer-loop time, with no
-throughput improvement yet established. Useful clear portions can seed a
-distinct broad successor. Full-capture varied-start confirmation, actual
-recovery completion and the complete Godot handoff remain ahead; no controller
-has been adopted.
+The [retained path and geometry result](../sdk/discovery/creature_body_moment_geometry_result_v1.json)
+checks every native substep of the 29 leads and 22 timed comparators, including
+51 initial states. Twenty-six leads across 21 bodies and all comparators are
+sampled-clear. Three leads overlap; body 5 drive1_axis0 retains its improved
+peak before overlap begins. The best clear rotation remains 24.485 degrees,
+but one clear lead has only 10.5 micrometres of sampled margin. Robot
+self-collision remains disabled; continuous clearance is not established.
+
+Batching the same 28 geometric pairs makes that calculation 9.503 times faster
+on paired retained inputs. All 5,760 geometry outputs match exactly; the full
+7,200-decision, 36,000-sample replay produces the original audit bytes.
+Sixty-eight focused controls pass; no new worlds or capture changes occur.
+Native throughput and Studio startup gains remain unmeasured. Use these clear
+partial motions and the useful prefix in a distinct broad contact-handoff
+and momentum-timing successor, with fresh comparators and prospective path
+checks. Fresh full-capture varied-start confirmation, collision-response
+qualification, actual recovery completion and the complete Godot handoff
+remain ahead; no recovery controller has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

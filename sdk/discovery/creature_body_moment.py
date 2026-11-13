@@ -84,6 +84,14 @@ class Geometry:
         self.features = np.asarray([[10,11],[14,15],[18,19],[22,23]])
         self.lower = np.asarray([j["lower_limit_rad"] for j in self.tree.joints])
         self.upper = np.asarray([j["upper_limit_rad"] for j in self.tree.joints])
+        # The distance routines accept independent pairs as rows. Keep the
+        # original pair order and subtraction order for exact recorded replay.
+        self.pair_bodies = np.asarray(self.bank.pairs, dtype=np.intp)
+        self.box_pairs = np.flatnonzero(self.pair_bodies[:,0] == 0)
+        self.capsule_pairs = np.flatnonzero(self.pair_bodies[:,0] != 0)
+        self.body_radii = np.asarray([0.] + [shape[1][1] for shape in self.bank.geometry.shapes[1:]])
+        for value in (self.pair_bodies, self.box_pairs, self.capsule_pairs, self.body_radii):
+            value.setflags(write=False)
 
     def target(self, position, rotation, current, axis, p):
         up = rotation[1]
@@ -110,24 +118,21 @@ class Geometry:
     def measured(self, frame):
         """Actual capsule low points and nonadjacent gap, with no joint clipping."""
         root, rotation = frame["positions"][0], frame["rotations"][0]
-        ends, points = {}, []
+        ends, points = np.empty((9,2,3)), []
         for b in range(1,9):
             half, radius = self.bank.geometry.shapes[b][1]
             offset = frame["rotations"][b,:,1]*half
             world = np.stack((frame["positions"][b]-offset,frame["positions"][b]+offset))
-            ends[b] = ((world-root) @ rotation)[None,:,:]
+            ends[b] = (world-root) @ rotation
             if b in self.bank.distal:
                 point = world[int(np.argmin(world[:,1]))].copy();point[1]-=radius
                 points.append(point)
-        gaps = []
-        for left,right in self.bank.pairs:
-            radius = self.bank.geometry.shapes[right][1][1]
-            if left==0:
-                gap = segment_box_distance(ends[right],self.bank.geometry.shapes[0][1])[0]-radius
-            else:
-                gap = segment_segment_distance(ends[left],ends[right])[0]-radius-self.bank.geometry.shapes[left][1][1]
-            gaps.append(float(gap))
-        return np.asarray(points), min(gaps)
+        gaps = np.empty(len(self.pair_bodies))
+        right = self.pair_bodies[self.box_pairs,1]
+        gaps[self.box_pairs] = segment_box_distance(ends[right],self.bank.geometry.shapes[0][1])-self.body_radii[right]
+        left, right = self.pair_bodies[self.capsule_pairs].T
+        gaps[self.capsule_pairs] = segment_segment_distance(ends[left],ends[right])-self.body_radii[right]-self.body_radii[left]
+        return np.asarray(points), min(gaps.tolist())
 
 
 def plan(p, geometry, state, rotation, contacts, memory, previous, upright):

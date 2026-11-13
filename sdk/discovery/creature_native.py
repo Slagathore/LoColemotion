@@ -50,7 +50,7 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_joint_braking.py", "creature_joint_braking_search.py", "test_creature_joint_braking.py",
                  "creature_contact_reach.py", "creature_contact_reach_search.py", "test_creature_contact_reach.py",
                  "creature_torso_target.py", "creature_torso_target_search.py", "test_creature_torso_target.py",
-                 "creature_body_moment.py", "creature_body_moment_search.py", "test_creature_body_moment.py",
+                 "creature_body_moment.py", "creature_body_moment_search.py", "creature_body_moment_diagnosis.py", "test_creature_body_moment.py",
                  "creature_contact_moment.py", "test_creature_contact_moment.py",
                  "creature_righting_geometry.py", "test_creature_righting_geometry.py",
                  "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py"]
@@ -92,7 +92,7 @@ def gates(c):
                 ("creature-contact-reach", "test_creature_contact_reach", 12)]
                if any(k in c for k in ("contact_reach_search", "torso_target_search")) else [])
             + ([("creature-torso-target", "test_creature_torso_target", 10)] if "torso_target_search" in c else [])
-            + ([("creature-body-moment", "test_creature_body_moment", 16),
+            + ([("creature-body-moment", "test_creature_body_moment", 20),
                 ("actuation-mechanics", "test_actuation_recovery_mechanics", 25),
                 ("creature-joint-braking", "test_creature_joint_braking", 10),
                 ("creature-contact-moment", "test_creature_contact_moment", 13),

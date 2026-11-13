@@ -73,15 +73,22 @@ All 240 worlds fail recovery with zero joint violations; 183 of 192 new-profile
 worlds acquire contact. Ten performance cohorts retain 2,272 valid recovery
 failures. Partial-rotation selection does not make any recovery episode pass.
 
-The full route records some nonadjacent overlap despite clear targets; native
-robot self-collision remains disabled. Next inspect every native substep of
-the 29 leads and 22 fresh timed comparators, retaining the first overlap and
-rotation reached before it alongside the unchanged raw scores. Profile the
-controller cost before batching geometry calculations, and require preserved
-observations and commands before claiming a computation gain. Use useful clear
-motion to seed a distinct broad successor. Fresh full-capture varied-start
-confirmation, actual recovery and the same-body Godot walk-fall-recover-resume
-handoff remain unqualified.
+The [retained geometry diagnosis](../sdk/discovery/creature_body_moment_geometry_result_v1.json)
+reads 367,200 native samples plus 51 initial states. Twenty-six leads across
+21 bodies remain clear at every retained sample, as do all 22 timed
+comparators. Three leads overlap; one has a useful peak before the overlap.
+The 24.485-degree best rotation remains sampled-clear. A 10.5-micrometre
+minimum margin on another lead and disabled robot self-collision prevent
+continuous-path or collision-response claims.
+
+Batched geometry is 9.503 times faster on paired retained inputs, with 5,760
+exact geometry outputs, 68 passing controls and a byte-identical full replay
+of 7,200 decisions and 36,000 samples. No worlds or reduced capture accompany
+this change. Native throughput and Studio speed remain unmeasured.
+Use the clear leads and useful prefix for a distinct broad contact-handoff
+and momentum-timing successor with fresh comparators and path checks.
+Full-capture varied-start confirmation, collision-response qualification,
+actual recovery and the same-body Godot handoff remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

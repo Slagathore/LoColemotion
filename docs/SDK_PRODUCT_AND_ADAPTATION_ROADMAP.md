@@ -29,24 +29,28 @@ and self-righting still has no qualifying controller after ten cohorts.
 | [Body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json) | 128 twelve-second worlds after 172 controls: all 96 new-controller worlds acquire distal contact, with zero joint violations, but zero recovery or progress leads. Best new rotation is 14.235 degrees; best gain over its own fresh timed comparator is 1.467 degrees. The eight-world full route replays 2,880 decisions and 14,400 samples; broad compact reading reconstructs 184,320 records and 921,600 samples |
 | [Paired torso targets](../sdk/discovery/creature_torso_target_native_result_v1.json) | 224 twelve-second worlds after 182 controls: all 128 new-target worlds acquire contact with zero joint violations, but zero recovery or progress leads. Peak new rotation 14.272 degrees; mean change from each paired base is +2.711 degrees for root targets and +2.952 for torso-edge targets. Fourteen full route worlds replay 5,040 decisions and 25,200 samples; broad reading reconstructs 322,560 records and 1,612,800 samples |
 | [Reach bounds](../sdk/discovery/creature_contact_envelope_result_v1.json) and [contact moments](../sdk/discovery/creature_contact_moment_result_v1.json) | 334 bodies and 7,585 poses each; 374.9 million geometric pose/orientation cases, twenty controls, zero worlds. Only 483,751 of 2,533,390 body/pose combinations avoid nonadjacent overlap. Upward foot force offers no positive moment at sampled side-roll angles 20–45 degrees. Optimistic friction bounds remain; 31 bodies have a pitch proposal at every sampled orientation in both directions. No force or trajectory qualification |
-| [Body-moment native result](../sdk/discovery/creature_body_moment_native_result_v1.json) | 230 controls, ten full six-second route worlds and 240 compact twelve-second search worlds. Zero recoveries or joint-breach worlds; 29 partial-rotation leads in 22 of 24 body groups, with eleven groups in each geometric stratum. Peak new rotation 24.485 degrees. All 345,600 compact records and 1,728,000 native samples reconstruct; broad path clearance remains unchecked |
+| [Body-moment native result](../sdk/discovery/creature_body_moment_native_result_v1.json) | 230 controls, ten full six-second route worlds and 240 compact twelve-second search worlds. Zero recoveries or joint-breach worlds; 29 partial-rotation leads in 22 of 24 body groups, with eleven groups in each geometric stratum. Peak new rotation 24.485 degrees. All 345,600 compact records and 1,728,000 native samples reconstruct; selected-path diagnosis follows below |
+| [Retained path and geometry result](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 of 29 leads are clear at every retained sample, across 21 bodies; three overlap. All 22 timed comparators are clear. Geometry calculation is 9.503 times faster on retained inputs, with exact full-route replay and zero new worlds. Continuous clearance, native throughput and recovery remain unproved |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Check the paths behind partial-rotation gains.**
-   The [native result](../sdk/discovery/creature_body_moment_native_result_v1.json)
-   preserves all 240 valid recovery failures and 29 partial-rotation leads.
-   Ten performance cohorts now retain 2,272 valid recovery failures.
-   Reconstruct clearance at every retained native substep for the 29 leads and
-   their 22 fresh same-body timed comparators. Keep the frozen scores separate
-   from this path diagnosis, including the first overlap and rotation reached
-   before it. Clear target poses did not keep every full-route trajectory clear;
-   native robot self-collision remains disabled.
-   Profile controller computation before batching its geometry calculations:
-   it used 1,766.2 of 3,431.7 measured outer-loop seconds. Preserve observations,
-   commands and capture, and measure any gain before claiming faster discovery.
-   Use useful clear motion to seed a distinct broad successor that advances
-   beyond partial rotation. Fresh full-capture varied-start confirmation and
-   actual recovery completion remain necessary before Studio adoption.
+1. **Advance beyond the sampled-clear partial motions.**
+   The [geometry result](../sdk/discovery/creature_body_moment_geometry_result_v1.json)
+   checks 367,200 native samples and 51 initial states: 26 of 29 leads stay clear
+   at all samples across 21 bodies; all 22 timed comparators stay clear.
+   Three leads overlap. One retains a useful peak before overlap begins;
+   another sampled-clear lead passes within only 10.5 micrometres.
+   These are sampled paths, with robot self-collision still disabled.
+   The best clear rotation remains 24.485 degrees; all 240 recovery outcomes
+   and the raw 29-lead selection remain unchanged.
+   Batched geometry is 9.503 times faster in the paired retained-input
+   benchmark. All 5,760 geometry outputs and the complete 7,200-decision,
+   36,000-sample route replay remain exact; 68 focused controls pass.
+   Native throughput and Studio speed have not been measured after this change.
+   Build a distinct broad successor around the clear leads and useful prefix,
+   varying contact handoff and momentum timing across bodies. Include fresh
+   original-profile and timed/brake comparators, prospective path checks and
+   unchanged joint/recovery criteria. Full-capture varied-start confirmation,
+   collision-response qualification and actual recovery remain necessary.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,
