@@ -31,14 +31,27 @@ from 2,153 to 4,487 despite zero outward commands at observed bounds. All ten
 diagnostic artifacts and its stage cleanup verify. Partial motion reconstruction
 does not provide full controller replay or detailed contact-geometry proof.
 
-This narrows the next work to contact reach, supported rotation and joint
-boundary handling. Use the retained trajectories to propose mechanically
-distinct, contact-aware and joint-conservative families, with a small declared
-full-capture diagnostic if missing contact geometry or per-contact forces prevent a
-mechanical decision. Then search broadly with fresh comparators and unchanged
-eligibility. Useful diverse leads still require fresh full-capture varied-start
-checks and the complete Godot recovery handoff with 120 resumed walking steps.
-No timing-only retry, recovery adoption, learned provider or release claim follows.
+The [onset diagnosis](../sdk/discovery/creature_contact_onset_diagnosis_result_v1.json)
+now confirms outward commands at all 32 first crossings despite inward position
+targets; 24 precede any distal contact and only two have saturated actuators.
+Six diagnostic controls and all retained command comparisons pass without
+opening worlds. The original trajectories and failures remain unchanged.
+
+The [braking component](../sdk/discovery/creature_joint_braking_component_v1.json)
+adds an opt-in measured-motion envelope before the original observed-bound guard.
+All 175 zero-world controls pass, including legacy behavior, late-observation
+rollback, analytical braking, independent command reconstruction and full
+224-world preflight. Its first fixture refusal remains retained. The declared
+6 rad/s^2 shaping estimate is not a physical deceleration guarantee.
+
+The next gate is the clean pushed freeze, fourteen fresh 0.75-second full worlds
+covering near-limit shaping, then 224 fresh twelve-second compact worlds.
+All 24 exposed slow trajectories retain their four-body assignments, with
+braked/unbraked pairs and both fresh comparators on all sixteen bodies.
+Poses, phase timing, gains, speed, slew, force and eligibility remain fixed.
+No native braking benefit is established. Useful diverse leads still require
+fresh full-capture varied-start checks and the complete Godot recovery handoff
+with 120 resumed walking steps.
 
 The preceding [trajectory cohort](../sdk/discovery/creature_trajectory_native_result_v1.json)
 retains 224 six-second negatives and sixteen joint-breach worlds; its

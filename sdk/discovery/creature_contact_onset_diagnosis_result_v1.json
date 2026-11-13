@@ -1,0 +1,59 @@
+{
+  "schema_version": "locolemotion_contact_onset_diagnosis_result_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "retained_contact_and_joint_onset_diagnostic",
+    "question_class": "development"
+  },
+  "source_base_commit": "86eb5324e68b9da99215f5f5afcfa04013e455af",
+  "status": "complete_retained_onset_diagnostic",
+  "input_native_attempt": "sdk2-creature-trajectory-retiming-v1-cd771046feef43abbc9e20e7a6e74ab2",
+  "input_receipt_sha256": "a08e7a1ade4127412ffe9c2f9d4269404c4c17a0453a3af7759f890e44d03e08",
+  "retained_diagnostic": {
+    "attempt": "sdk2-contact-onset-diagnosis-v1-2e82c6f383554ca8a8c2d0aa08c474e4",
+    "receipt_sha256": "f7d1d2ebd7b8d3c60d9ba6c160e13478185383051aae4c7b5dbca1154a4966da",
+    "declaration_sha256": "0fa6aba231fa95d096a9de974153f5fc842c4a2706687cf1c45b0b69157d00db",
+    "diagnosis_sha256": "23c725207c2803758ec339010fb4e388e562c3e9cbf04cbbf857d0548941d0a5",
+    "artifacts": 15,
+    "retained_bytes": 3014605,
+    "cleanup_reports": 2,
+    "wall_s": 58.29700000002049,
+    "input_files_verified": 241,
+    "input_bytes_verified": 2606120134,
+    "worlds": 224,
+    "commands": 2580480
+  },
+  "reader_source_pins": {
+    "sdk/discovery/creature_trajectory_diagnosis.py": "0d6509dd3203ea7a9aba491afa2b17e7ba516685d5a7901ae8bbd948f2e5f79d",
+    "sdk/discovery/test_creature_trajectory_diagnosis.py": "6fa575aff3d26b1dfc4801984122dd89d64e0fd1376b3173a268be6e89fe1768"
+  },
+  "source_scope": "Exact staged reader bytes are retained in sources/. Later braking support is a successor; this completed read used no braking intervention.",
+  "controls_passed": 6,
+  "controls_required": 6,
+  "worlds_read": 224,
+  "controller_rows": 322560,
+  "velocity_commands_matched": 2580480,
+  "first_crossings": {
+    "worlds": 32,
+    "joints": 32,
+    "without_current_distal_contact": 28,
+    "before_any_distal_contact": 24,
+    "inward_position_targets": 32,
+    "outward_velocity_commands": 32,
+    "outward_measured_velocities": 32,
+    "force_opposes_motion": 30,
+    "force_at_cap": 2
+  },
+  "interpretation": "Every first crossing retained an outward velocity command while its position target pointed inward. Most preceded any distal contact. The next intervention adds measured-motion braking before the observed-bound guard; a general contact-force increase is not supported by these onset events.",
+  "next_gate": "Ten new zero-world controls and the complete native gate, then a clean pushed paired 224-world braking freeze with fresh comparators.",
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "physical_started": false,
+  "eligibility_changed": false,
+  "full_controller_replay": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

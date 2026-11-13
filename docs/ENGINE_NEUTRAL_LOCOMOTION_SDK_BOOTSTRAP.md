@@ -28,6 +28,7 @@ historical instructions.
 | Dynamic trajectory result | [224 valid negatives](../sdk/discovery/creature_trajectory_native_result_v1.json): 48 proposals on four bodies each, plus both comparators on all 16 bodies. The five-world full canary and compact search each pass 159 controls. Compact reading reconstructs 161,280 controller records and 806,400 native samples; zero eligible or progress leads, 16 joint-breach worlds. Only 32 of 192 new-profile worlds make distal contact |
 | Retained motion diagnosis | [Six controls and 224-world reading pass](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json): 1,290,240 velocity commands match; 97.1% of completed phases time out with large pose error despite close velocity tracking. Contact and violation counts match the original reader. Zero new worlds, no full controller replay or causal benefit claim |
 | Paired retiming native result | [224 valid negatives after 172 controls](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json): original/three-times-longer schedules on 16 bodies. Pose completions increase 160 to 382, but zero eligible worlds or progress leads and 32 joint-breach worlds remain. All 2,580,480 velocity commands match; fourteen-world full route and compact reconstruction pass |
+| Joint crossing onset and braking | [Onset diagnosis](../sdk/discovery/creature_contact_onset_diagnosis_result_v1.json): all 32 first crossings retain outward commands with inward pose targets; 24 precede any distal contact. [Braking component](../sdk/discovery/creature_joint_braking_component_v1.json): 175 zero-world controls pass; 224 paired native worlds are declared, not yet run |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
@@ -79,12 +80,14 @@ Longer holds and limb delays reduce phase timeouts from 95.6% to 67.5% and mean
 exit pose error from 1.04 to 0.43 radians, but no world meets recovery eligibility
 or the declared progress screen. Each timing half has sixteen joint-breach
 worlds; every nonviolating proposal remains below its own fresh timed comparator.
-The next controller work targets contact reach, supported rotation and boundary
-handling using these retained trajectories. Compact data omit detailed contact
-geometry and per-contact forces; a small full-capture diagnostic may be needed before
-declaring the next mechanically distinct broad search. Useful leads still need
-fresh varied-start full-capture checks and the complete Godot handoff. No
-righting mechanism has been adopted.
+The retained onset read narrows the immediate controller intervention to
+anticipatory joint braking: all 32 first crossings retain outward velocity
+commands with inward pose targets, and 24 occur before any distal contact.
+All 175 controls pass for the opt-in measured-motion envelope and preserved
+legacy command path. The next gate is a clean pushed freeze, one full
+fourteen-world 0.75-second canary, then 224 paired twelve-second worlds.
+No native braking benefit or recovery adoption is established. Useful leads
+still need fresh varied-start full-capture checks and the complete Godot handoff.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

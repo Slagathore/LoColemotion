@@ -45,6 +45,8 @@ class DiagnosisTests(unittest.TestCase):
         self.assertEqual(out["counts"]["force_saturated_joint_samples"], 40)
         self.assertEqual(out["counts"]["distal_contact_samples"], 5)
         self.assertEqual(out["velocity_commands_matched"], 8)
+        self.assertEqual(out["first_distal_contact"]["native_sample_number"], 1)
+        self.assertIsNone(out["first_joint_limit_violation"])
 
     def test_measured_exit_minimum_hold_delay_and_timeout(self):
         profile, creature, identity = fixture()
@@ -78,6 +80,29 @@ class DiagnosisTests(unittest.TestCase):
         self.assertEqual(out["counts"]["joint_guard_commands"], 8)
         self.assertEqual(out["counts"]["outward_commands_at_or_beyond_bound"], 0)
         self.assertAlmostEqual(out["maxima"]["joint_limit_excess_rad"], .05)
+        event = out["first_joint_limit_violation"]
+        self.assertEqual(event["native_sample_number"], 1)
+        self.assertEqual(event["prior_distal_contact_samples"], 0)
+        self.assertTrue(event["distal_contact_present"])
+        self.assertTrue(all(j["target_points_inward"] and not j["command_points_outward"] for j in event["joints"]))
+
+        # A joint can cross before any foot contact while the slew-limited
+        # command still points outward, despite an inward position target.
+        early = Motion(*fixture())
+        early.previous = [1.] * 8
+        sample = row(command=.8, prepared=.98, sampled=1.02)
+        for value in sample["samples"]:
+            value.update(contacts=[], qvel=[0.] * 6 + [1.3] * 8, actuator_force_nm=[-2.] * 8)
+        early.consume(sample)
+        first = copy.deepcopy(early.first_joint_limit_violation)
+        self.assertIsNone(early.first_distal_contact)
+        self.assertFalse(first["distal_contact_present"])
+        self.assertTrue(all(j["target_points_inward"] and j["command_points_outward"]
+                            and j["velocity_points_outward"] and j["actuator_opposes_motion"] for j in first["joints"]))
+        later = row(command=0., prepared=1.02, sampled=1.01, step=1)
+        early.consume(later)
+        self.assertEqual(early.first_joint_limit_violation, first)
+        self.assertEqual(early.first_distal_contact["native_sample_number"], 6)
 
     def test_changed_commands_identity_and_unsupported_scope_refused(self):
         for key, value in (("native_targets", [.3] * 8), ("outer_step", 1), ("safe_no_actuation", True)):

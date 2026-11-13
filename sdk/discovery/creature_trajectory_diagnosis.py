@@ -54,6 +54,8 @@ class Motion:
         self.maxima = collections.defaultdict(float)
         self.phase_reports = []
         self.active_phase = None
+        self.first_distal_contact = None
+        self.first_joint_limit_violation = None
 
     def enter(self, positions):
         phase = self.profile["phases"][self.phase]
@@ -113,7 +115,22 @@ class Motion:
             bounded = max(-speed, min(speed, desired))
             slew = self.profile["maximum_slew_rad_s_per_step"]
             slewed = max(self.previous[i] - slew, min(self.previous[i] + slew, bounded))
-            guarded = max(min(0., (lo - actual) / DT), min(max(0., (hi - actual) / DT), slewed))
+            shaped = slewed
+            if "joint_braking" in self.profile:
+                p = self.profile["joint_braking"]
+                require(p["schema_version"] == "locolemotion_anticipatory_joint_braking_v1",
+                        "Diagnostic unsupported joint braking")
+                predicted = actual + row["prepared_qvel"][6 + i] * DT * p["lookahead_steps"]
+                require(math.isfinite(predicted), "Diagnostic nonfinite joint projection")
+                acceleration = p["braking_acceleration_rad_s2"]
+                distance_cap = speed * speed / (2 * acceleration)
+                lower_speed = -min(speed, math.sqrt(2 * acceleration *
+                    max(0., min(distance_cap, predicted - lo - p["margin_rad"]))))
+                upper_speed = min(speed, math.sqrt(2 * acceleration *
+                    max(0., min(distance_cap, hi - predicted - p["margin_rad"]))))
+                shaped = max(lower_speed, min(upper_speed, slewed))
+                self.counts["anticipatory_braking_commands"] += shaped != slewed
+            guarded = max(min(0., (lo - actual) / DT), min(max(0., (hi - actual) / DT), shaped))
             command.append(guarded)
             self.counts["speed_limited_commands"] += bounded != desired
             self.counts["slew_limited_commands"] += slewed != bounded
@@ -123,10 +140,14 @@ class Motion:
         require([struct.pack("<f", v) for v in command] == [struct.pack("<f", v) for v in row["native_targets"]],
                 f"Diagnostic velocity-command mismatch at {self.identity['cell_id']} step {self.step}")
         self.previous = command
-        for sample in row["samples"]:
+        for substep, sample in enumerate(row["samples"]):
             self.counts["native_samples"] += 1
             contact = any(0 in h["geom"] and any(g in self.distal for g in h["geom"]) for h in sample["contacts"])
             self.counts["distal_contact_samples"] += contact
+            event = dict(outer_step=self.step, substep=substep,
+                         native_sample_number=self.step * 5 + substep + 1)
+            if contact and self.first_distal_contact is None:
+                self.first_distal_contact = dict(event, contact_geoms=[h["geom"][:] for h in sample["contacts"]])
             violations = []
             for i, (joint, actual, velocity, force, goal, speed) in enumerate(zip(self.joints,
                     sample["qpos"][7:], sample["qvel"][6:], sample["actuator_force_nm"], target, self.speeds, strict=True)):
@@ -140,6 +161,26 @@ class Motion:
                 self.counts["force_saturated_joint_samples"] += abs(force) >= FORCE_SATURATION_FRACTION * self.force_caps[i]
                 self.counts["joint_speed_above_target_cap_samples"] += abs(velocity) > speed
             self.counts["joint_limit_violation_samples"] += any(violations)
+            if any(violations) and self.first_joint_limit_violation is None:
+                joints = []
+                for i, violated in enumerate(violations):
+                    if not violated:
+                        continue
+                    actual, velocity = sample["qpos"][7 + i], sample["qvel"][6 + i]
+                    force, sent = sample["actuator_force_nm"][i], f32(command[i])
+                    direction = 1 if actual > self.joints[i]["upper_limit_rad"] else -1
+                    bound = self.joints[i]["upper_limit_rad" if direction > 0 else "lower_limit_rad"]
+                    joints.append(dict(joint_index=i, position_rad=actual, velocity_rad_s=velocity,
+                        target_position_rad=target[i], commanded_velocity_rad_s=sent,
+                        target_points_inward=(target[i] - actual) * direction < 0,
+                        command_points_outward=sent * direction > 0,
+                        velocity_points_outward=velocity * direction > 0,
+                        prepared_distance_to_bound_rad=(bound - positions[i]) * direction,
+                        actuator_force_nm=force, actuator_opposes_motion=force * velocity < 0,
+                        force_at_cap=abs(force) >= FORCE_SATURATION_FRACTION * self.force_caps[i]))
+                self.first_joint_limit_violation = dict(event, distal_contact_present=contact,
+                    prior_distal_contact_samples=self.counts["distal_contact_samples"] - int(contact),
+                    contact_geoms=[h["geom"][:] for h in sample["contacts"]], joints=joints)
         self.step += 1
 
     def finish(self, expected):
@@ -153,7 +194,8 @@ class Motion:
             counts=dict(self.counts), maxima=dict(self.maxima),
             mean_absolute_position_error_rad=self.sums["absolute_position_error_rad"] / count,
             mean_absolute_velocity_error_rad_s=self.sums["absolute_velocity_error_rad_s"] / count,
-            phase_visits=self.phase_reports)
+            phase_visits=self.phase_reports, first_distal_contact=self.first_distal_contact,
+            first_joint_limit_violation=self.first_joint_limit_violation)
 
 
 class Archive:

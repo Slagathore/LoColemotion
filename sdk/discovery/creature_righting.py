@@ -15,6 +15,7 @@ from actuation_recovery_mechanics import RigidTree, quaternion_rotation, xyz
 from showcase_model import FIELDS, validate_descriptor
 from sporespore_locomotion import r24d22_recovery_s169_morphology
 import creature_righting_sequence as sequence
+import creature_joint_braking as braking
 
 SCHEMA = "locolemotion_creature_righting_population_v1"
 ASSIGNED_SCHEMA = "locolemotion_creature_righting_assigned_population_v1"
@@ -33,6 +34,12 @@ def finite(value):
 
 def profile(value):
     require(type(value) is dict, "Righting profile object")
+    if "joint_braking" in value:
+        base = {k:v for k,v in value.items() if k != "joint_braking"}
+        result = profile(base)
+        require(result["mode"] != "zero_velocity_brake", "Joint braking requires an active pose controller")
+        result["joint_braking"] = braking.policy(value["joint_braking"])
+        return result
     if value.get("mode") == sequence.MODE:
         return sequence.profile(value)
     motion = value.get("mode") == "motion_rock"
@@ -70,6 +77,9 @@ def profile(value):
 def behavior_key(candidate):
     # Preserve the earlier duplicate rule; feedback variants must also bind
     # every parameter that changes their response to the same observation.
+    if "joint_braking" in candidate:
+        base = {k:v for k,v in candidate.items() if k != "joint_braking"}
+        return behavior_key(base) + tuple(candidate["joint_braking"][k] for k in braking.FIELDS)
     if candidate["mode"] == sequence.MODE:
         return sequence.behavior_key(candidate)
     key = tuple(candidate["pose_a"] + candidate["pose_b"] + [candidate["half_period_steps"],
@@ -277,10 +287,16 @@ class RightingController:
             bounded = max(-speed, min(speed, proposal))
             slew = self.candidate["maximum_slew_rad_s_per_step"]
             slewed = max(self.previous[i]-slew, min(self.previous[i]+slew, bounded))
-            # Joint protection overrides slew: never keep driving outward to
-            # preserve a smooth command after the observed bound is reached.
+            protection = None
+            shaped = slewed
+            if "joint_braking" in self.candidate:
+                protection = braking.shape(actual, observed["velocity_rad_s"], slewed,
+                    speed, lo, hi, bridge.CONTROLLER_DT_S, self.candidate["joint_braking"])
+                shaped = protection["shaped_velocity_rad_s"]
+            # Joint protection overrides slew. Keep the original observed-bound
+            # rule after the optional prediction; prediction is not a guarantee.
             final = max(min(0., (lo-actual)/bridge.CONTROLLER_DT_S),
-                        min(max(0., (hi-actual)/bridge.CONTROLLER_DT_S), slewed))
+                        min(max(0., (hi-actual)/bridge.CONTROLLER_DT_S), shaped))
             breaches.append(not lo <= actual <= hi)
             targets.append(final)
             commands.append(dict(actuator_id=motor["actuator_id"], joint_id=joint["joint_id"],
@@ -288,6 +304,8 @@ class RightingController:
                 canonical_velocity_rad_s=final, maximum_speed_rad_s=speed,
                 speed_limited=bounded != proposal, slew_limited=slewed != bounded,
                 joint_guard_applied=final != slewed, observed_joint_limit_breach=breaches[-1]))
+            if protection is not None:
+                commands[-1]["anticipatory_joint_braking"] = protection
         record = dict(binding=self.binding, request=dict(state=copy.deepcopy(state)),
             stability=copy.deepcopy(observation["stability"]), kinematics=copy.deepcopy(observation["kinematics"]),
             resolution=dict(schema_version="locolemotion_righting_commands_v1", safe_no_actuation=False,
