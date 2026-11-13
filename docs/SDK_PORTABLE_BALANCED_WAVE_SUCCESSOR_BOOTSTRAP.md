@@ -59,10 +59,12 @@ original starts. Next work separates selection misses from controller gaps,
 declares learning and held-out data prospectively, and completes the Studio
 recovery handoff. Its [fresh observation boundary](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json)
 now passes a 360-step native route: three measured boundaries, the same nine
-body instances and two independently reconstructed staging pairs. Complete
-energy mapping now has a [35-check component gate](../sdk/explorer/studio/live_recovery_energy_component_v1.json)
-and 19 independent-reader controls. Its native work-source probe and recovery
-actuation remain pending.
+body instances and two independently reconstructed staging pairs. The
+[measured energy route](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
+also passes one 360-step world after 35 adapter checks and 19 reader controls:
+two fresh increments, 16 motor observations, five reconstructed work channels
+and two replayed compiled evaluations. Full portable recovery observation,
+motor ownership transfer and same-body walking resume remain open.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature

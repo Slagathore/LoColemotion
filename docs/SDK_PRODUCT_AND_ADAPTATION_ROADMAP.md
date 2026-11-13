@@ -48,12 +48,16 @@ while profile 27 passes both.
    now passes in one native world after 31 adapter checks and ten reader controls.
    All 360 steps complete; boundaries 300-302 retain the same nine body instances
    and two contiguous staging pairs, reconstructed exactly by the independent
-   reader. The [measured energy component](../sdk/explorer/studio/live_recovery_energy_component_v1.json)
-   now passes 35 adapter checks and 19 independent-reader controls without
-   physics. Its one-world probe of two fresh work increments is pending;
-   fall detection, recovery command ownership and walking resume remain open.
+   reader. The [measured energy route](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
+   also passes one 360-step world after 35 adapter checks and 19 reader controls:
+   two fresh increments, 16 motor observations, all five work channels and both
+   compiled energy evaluations reconstruct independently. Next join current
+   contacts, body state and actual actuation ownership into the portable recovery
+   observation, then integrate fall detection, recovery and walking resume.
    Profile startup and stepping on that route. The short probe observed
-   18.504827 seconds through stand-up and 0.952072 seconds for 119 walking steps.
+   19.226671 seconds through stand-up and 0.987050 seconds for 119 walking steps.
+   Energy collection/projection took 43.769 ms across its origin and two increments,
+   excluding the separate boundary capture and staging processing.
    This is not a matched speed comparison or a new fifteen-second result; the
    earlier fifteen-second run retains its 43.852625 and 29.662299 second timings.
 2. **Broaden candidates where confirmation exposed gaps.** Keep the four
