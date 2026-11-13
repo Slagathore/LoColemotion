@@ -32,14 +32,36 @@ all eight directly read declarations verify. The
 retains source pins and 4,800 exact legacy-plan comparisons. The native root
 is never directly actuated or positioned by the virtual torso goal.
 
-Next quantify reachable contact paths from compiled geometry, measured poses
-and projection residuals. Distinguish unreachable virtual goals from actual
-contact loss; neither this result nor geometric feasibility establishes
-dynamic feasibility or physical impossibility. Search broad factored
-body/pose proposals inside unchanged limits before freezing the next native
-cohort. Useful leads still need fresh full-capture varied-start confirmation
-before the Godot walk-fall-recover-resume handoff with 120 resumed steps.
-Nine performance cohorts retain 2,032 valid negative worlds.
+The [continuous-joint reach diagnostic](../sdk/discovery/creature_contact_envelope_result_v1.json)
+now checks 334 distinct descriptors and 302 kinematic shapes: sixteen retained
+bodies, 62 additional corners and 256 generated descriptors. Ten controls pass.
+The 2,901,792 minima optimize the continuous commanded joint rectangle at
+sampled orientations. All 16,032 scalar witnesses, 698 artifact hashes and two
+cleanups verify, and all 4,008 summaries are recomputed. The run takes 47.422
+seconds and opens zero worlds; it does not add native performance evidence.
+
+With a nonpenetrating torso, first excluded samples for the initially selected
+side-push feet range from 11 to 19 degrees (median 15). Inward/full-range pitch
+ranges from 20 to 45 (median 30), versus 6 to 9 (median 7) for outward pitch.
+These are joint-reach exclusions at sampled orientations, not a dynamic
+rotation ceiling or physical-impossibility result.
+
+The retained fourteen-world route contributes 469 updated supported virtual
+projections. Of these, 294 cannot reach the floor in their bend domain; 238
+remain unreachable in the full joint rectangle. Bend restriction accounts
+for 56 additional exclusions. No finite-grid floor-reach miss is found.
+Nine selected endpoints remain above the floor despite available vertical
+reach; the objective also weighs the retained anchor. This does not establish
+anchor feasibility or a causal native improvement.
+
+Next screen broad whole-body contact proposals for torso/limb clearance and
+signed moment arms about the actual center of mass. Longer inward-pitch reach
+does not by itself establish useful torque. Carry reach bounds into virtual
+targets and examine pitch, contact-switching and momentum proposals before
+a fresh full route and broad native cohort. Keep limits, fresh comparators
+and qualification fixed. Useful native leads need full-capture varied-start
+confirmation before the Godot walk-fall-recover-resume handoff.
+Nine performance cohorts still retain 2,032 valid recovery failures.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

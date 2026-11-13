@@ -49244,13 +49244,13 @@
         "authority_mode": "development_discovery",
         "question_class": "development"
       },
-      "status": "paired_torso_target_complete_contact_acquired_recovery_failed",
+      "status": "contact_envelope_diagnostic_complete_native_recovery_unqualified",
       "controls_passed": 182,
       "trained": false,
       "recovery_benefit_established": false,
       "physical_acceptance_authority": false,
       "release_authority": false,
-      "next_gate": "Quantify the reachable contact envelope from compiled body and joint geometry before choosing another controller. Use the retained measured poses and projection residuals to separate unreachable virtual targets from loss of physical contact. Search broad factored body/pose proposals with unchanged joint and force bounds, then prospectively declare a complete gate, small full route and fresh native cohort for useful diverse candidates. Geometric feasibility alone is not dynamic feasibility; useful native leads still need fresh full-capture varied-start confirmation before the same-body Studio handoff.",
+      "next_gate": "Screen broad whole-body contact proposals for torso/limb clearance and signed contact moment arms about the actual whole-body center of mass. Use the reach bounds to constrain virtual targets and test pitch, contact switching or momentum proposals. Longer inward-pitch reach alone does not prove useful torque. Retain diverse feasible proposals, then declare a fresh full route and broad native cohort with unchanged limits and fresh comparators. Native leads still require full-capture varied-start confirmation before Studio adoption.",
       "component_path": "sdk/discovery/creature_torso_target_component_v1.json",
       "component_sha256": "de4d47d42e0bf23aa5c217eb2835144f5f9c0fb3647c9797e0a49d4496a6fde3",
       "native_route_verified": true,
@@ -49570,6 +49570,44 @@
         "all_eight_direct_declaration_inputs_archived": true,
         "recovery_benefit_established": false,
         "qualification_requires_fresh_full_capture": true
+      },
+      "contact_envelope_diagnostic": {
+        "path": "sdk/discovery/creature_contact_envelope_result_v1.json",
+        "sha256": "6a411272839e838283ff840430055d1e0b40d3c04e541f36bea808b550640a85",
+        "contract_path": "sdk/discovery/creature_contact_envelope_v1.json",
+        "contract_sha256": "34a686183b67fc7facbd2567c7cd82dcc36967e1165137b7c38f23127bbeffce",
+        "source_commit": "c433b5fab25bbdd92d61992f2946f7d55e2c7a92",
+        "controls_passed": 10,
+        "world_build_count": 0,
+        "solver_steps": 0,
+        "body_descriptors": 334,
+        "distinct_kinematic_shapes": 302,
+        "limb_domain_minima": 2901792,
+        "scalar_witness_checks": 16032,
+        "first_side_roll_excluded_sample_degrees": [
+          11,
+          19
+        ],
+        "first_inward_pitch_excluded_sample_degrees": [
+          20,
+          45
+        ],
+        "first_outward_pitch_excluded_sample_degrees": [
+          6,
+          9
+        ],
+        "updated_retained_projections": 469,
+        "bend_domain_floor_exclusions": 294,
+        "full_rectangle_floor_exclusions": 238,
+        "finite_grid_floor_reach_misses": 0,
+        "continuous_joint_domain": true,
+        "continuous_orientation_or_morphology_coverage": false,
+        "physical_started": false,
+        "dynamic_feasibility_established": false,
+        "recovery_benefit_established": false,
+        "trained": false,
+        "physical_acceptance_authority": false,
+        "release_authority": false
       }
     },
     "general_self_righting": false

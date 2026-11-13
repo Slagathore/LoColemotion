@@ -31,6 +31,7 @@ historical instructions.
 | Joint crossing onset and braking | [Native paired result](../sdk/discovery/creature_joint_braking_native_result_v1.json): 175 controls, 224 worlds; zero braked joint-crossing worlds versus 16 unbraked, but zero recovery or progress leads. All 2,580,480 commands match. The original legacy-input inventory omission and exact-byte supplement remain explicit; the complete inventory successor passes 175 controls |
 | Body-aware contact | [Native result](../sdk/discovery/creature_contact_reach_native_result_v1.json): 172 controls, 128 worlds; all 96 new-controller worlds acquire contact with zero joint violations, but zero recovery or progress leads. Best gain is 1.467 degrees; the full route and compact outcome reconstruction pass |
 | Paired torso targets | [Native result](../sdk/discovery/creature_torso_target_native_result_v1.json): 182 controls, 224 worlds and 64 matched groups. All 128 new-target worlds make contact without joint violations; zero recovery or progress leads. Mean changes from each base are +2.711 and +2.952 degrees; full route and compact reconstruction pass |
+| Continuous-joint reach | [Diagnostic](../sdk/discovery/creature_contact_envelope_result_v1.json): 334 descriptors, 302 kinematic shapes, ten controls, 2.9 million reach minima and zero new worlds. Side-roll exclusions start at sampled angles of 11–19 degrees. Longer inward-pitch reach is not a useful-torque or recovery claim |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
@@ -111,12 +112,27 @@ samples without full controller replay. All 5,931 native artifacts,
 The [component](../sdk/discovery/creature_torso_target_component_v1.json)
 retains the zero-world gate and 4,800 exact legacy-plan comparisons.
 
-Next quantify reachable contact paths from compiled geometry and retained
-measurements before another broad body/pose proposal cohort. An unreachable
-virtual target does not prove recovery impossible. Preserve the existing
-limits and fresh comparators; useful native leads still need fresh
-full-capture varied-start confirmation and the complete Godot handoff.
-No recovery controller has been adopted.
+The [continuous-joint reach diagnostic](../sdk/discovery/creature_contact_envelope_result_v1.json)
+adds 334 distinct descriptors: sixteen retained bodies, 62 additional corners
+and 256 generated bodies. These represent 302 distinct kinematic shapes.
+Ten controls pass and 2,901,792 minima are computed. All 16,032 scalar witnesses,
+698 artifact hashes and two cleanups verify; all 4,008 summaries are recomputed.
+No world is opened.
+
+With a nonpenetrating torso, the initially selected side-push feet first lose
+possible distal floor reach at sampled angles of 11–19 degrees. Inward/full-range
+pitch first excludes reach at 20–45 degrees, outward pitch at 6–9.
+In 469 updated retained route projections, 294 bend-domain targets cannot
+reach the floor; 238 remain unreachable in the full commanded joint rectangle.
+There are zero finite-grid floor-reach misses. This bounds geometry only,
+not dynamic rotation, contact torque or recovery possibility.
+
+Next screen broad whole-body proposals for clearance and signed contact
+moment arms about the whole-body center of mass. Longer inward-pitch reach
+alone does not prove useful torque. Reach-aware targets, contact switching
+and momentum proposals need fresh native screening with unchanged limits;
+useful leads still require full-capture varied-start confirmation and the
+complete Godot handoff. No recovery controller has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.
