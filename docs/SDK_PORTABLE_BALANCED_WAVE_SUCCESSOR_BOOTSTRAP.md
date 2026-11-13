@@ -11,10 +11,11 @@ The first refused attempt remains retained. The 24-body, 240-world breadth
 cohort is now complete after its 117-control gate: 171 eligible episodes,
 69 performance failures and zero invalid. All 57,600 controller decisions and
 288,000 native samples passed independent replay. The
-[confirmation cohort](../sdk/discovery/creature_confirmation_component_v1.json)
-now has a complete 139-control zero-world gate: 284 twelve-second worlds,
-all 24 bodies and both conditions, all discovery shortlists, baseline and
-fixed profile 27, with two fresh starts. No native confirmation result exists yet. The
+[confirmation cohort](../sdk/discovery/creature_confirmation_native_result_v1.json)
+now completes after 139 fresh zero-world controls: 284 twelve-second worlds,
+all 24 bodies, both conditions and two new starts. Its 221 eligible and 63
+failed worlds are valid; 408,960 decisions and 2,044,800 native samples pass
+independent replay. The
 [shared-readback route](../sdk/discovery/creature_readback_native_result_v1.json)
 now passes after 122 fresh controls: six worlds in four bounded chunks,
 144 exact original-path observation matches and 720 independently verified
@@ -32,6 +33,7 @@ native samples. All capture remains full; no snapshot survives its prepared step
 | [Grouped native route result](../sdk/discovery/creature_route_native_result_v2.json) | All four worlds complete; 96 controller decisions and 480 native samples independently replayed; route proof only |
 | [Actual-creature breadth gate](../sdk/discovery/creature_breadth_component_v1.json) | 117 controls pass; zero-world prerequisite for the native cohort |
 | [Actual-creature breadth result](../sdk/discovery/creature_breadth_native_result_v1.json) | 24 bodies, five profiles, two actuator conditions, one exposed start and two seconds: 171 eligible, 69 failed; useful shortlists in 37 of 48 groups |
+| [Diverse confirmation result](../sdk/discovery/creature_confirmation_native_result_v1.json) | Both-start eligible groups: baseline 30/48, frozen choice 33/48, fixed profile 27 36/48; the frozen choice fails its predeclared criterion against both comparators |
 
 The native shortlist came from prospective source freeze ca57f6bb.
 Both 55 and 27 remained eligible under 75% left-side actuation at the two
@@ -47,6 +49,15 @@ failed with every profile. `explorer_seed_6119` under weak-left actuation passed
 only with baseline. Every body/condition remains in the result, including empty
 shortlists. The whole-episode average velocity error ranks only eligible
 candidates within their own body and condition.
+
+Confirmation retains every discovery shortlist and empty group. Four groups
+have a passing tested alternative to the failed frozen choice; eleven weakened
+groups have no tested candidate passing both starts. Do not refit or adopt that
+choice using its confirmation outcomes. S169 profile 55 fails one new weak-left
+start, while 27 passes both; the earlier finite positive remains valid at its
+original starts. Next work separates selection misses from controller gaps,
+declares learning and held-out data prospectively, and implements the fresh
+Studio recovery observation epoch.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature

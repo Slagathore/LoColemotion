@@ -8,62 +8,63 @@ and self-correcting locomotion that can be used in the SDK and live Studio.
 ## Current execution order - 2026-11-12
 
 **Priority: search many actual creature variants and controller candidates,
-then apply full scrutiny to the useful and diverse results.** Controller search
-on S169 led to the completed 24-body breadth cohort. The next stage confirms
-that diverse shortlist over longer runs and tests a condition-known choice
-frozen from discovery against baseline and one fixed profile.
+then apply full scrutiny to the useful and diverse results.** The 24-body
+breadth search and fresh twelve-second confirmation are complete. The frozen
+condition-known choice fails its declared comparison criterion against both
+baseline and fixed profile 27. Keep that negative result; the next work must
+address the revealed controller gaps and turn existing components into useful
+SDK and Studio behavior.
 
 | Current evidence | What it establishes |
 | --- | --- |
-| [Population v2](../sdk/discovery/population_discovery_native_result_v2.json): 64 profiles, 256 discovery worlds, 16 canaries | Candidate discovery on one body, nominal and left-side 75% actuation |
-| [Full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json): 20 fresh worlds, 12 seconds each | Profiles 55 and 27 stay eligible under weakened actuation at both exposed initial lateral velocities; baseline, 08 and 18 fail |
-| Nominal-body tradeoff | All five profiles pass both starts; mean velocity errors are baseline 0.08838, 08 0.08573, 18 0.08778, 55 0.09194 and 27 0.09115 m/s |
-| [Preserved population v1 failure](../sdk/discovery/population_discovery_native_failure_v1.json) | Canary failure; zero population worlds opened |
-| [Mixed-creature native route](../sdk/discovery/creature_route_native_result_v2.json) | Four fresh GPU worlds across three real body shapes complete the 0.2-second route check; 96 decisions and 480 native samples independently replayed |
-| [Native route v1 refusal](../sdk/discovery/creature_route_native_failure_v1.json) | Four CPU models constructed; differing shared `dof_length` prevented GPU construction; zero GPU worlds and zero steps |
-| [Actual-creature breadth result](../sdk/discovery/creature_breadth_native_result_v1.json) | 240 two-second worlds across 24 bodies, five profiles and two actuator conditions: 171 eligible, 69 performance failures, zero invalid; full capture and independent replay |
-| Breadth leads and gaps | Weak-left eligibility: baseline 9/24, 08 8/24, 18 10/24, 55 12/24, 27 14/24. Nine weakened bodies defeat all profiles; one passes only with baseline |
-| Scope of these runs | Finite exposed discovery on bounded quadruped shapes; no learned selection, online correction memory, broad locomotion qualification, recovery, real-time or release authority |
+| [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) | 64 controller profiles, 256 discovery worlds and 16 canaries on S169 |
+| [Full-capture shortlist](../sdk/discovery/population_shortlist_native_result_v1.json) | 20 fresh twelve-second worlds; profiles 55/27 preserve weak-left eligibility at the two exposed starts, with a nominal tracking tradeoff |
+| [Actual-creature breadth](../sdk/discovery/creature_breadth_native_result_v1.json) | 240 two-second worlds across 24 bodies, five profiles and two conditions: 171 eligible, 69 performance failures, zero invalid; 69 shortlist entries in 37 of 48 groups |
+| [Diverse confirmation](../sdk/discovery/creature_confirmation_native_result_v1.json) | 284 fresh twelve-second worlds, both conditions and two new starts: 221 eligible, 63 performance failures, zero invalid; 408,960 decisions and 2,044,800 native samples independently replayed |
+| Confirmation choice comparison | Both-start eligibility in 48 body/condition groups: baseline 30, frozen choice 33, fixed profile 27 36. Choice loses groups that each comparator passes, so neither declared comparison passes |
+| Confirmation gaps | Four groups have a passing tested alternative to the failed choice; eleven weakened-body groups have no tested candidate passing both starts. These are descriptive findings, not a refitted selector |
+| [Shared-readback route](../sdk/discovery/creature_readback_native_result_v1.json) | Six fresh worlds, four bounded batches, 144 exact original-path observation matches and 720 independently verified native samples; full capture |
+| Preserved refusals | [Population v1](../sdk/discovery/population_discovery_native_failure_v1.json) opened zero population worlds; [creature route v1](../sdk/discovery/creature_route_native_failure_v1.json) constructed CPU models but opened zero GPU worlds |
+| Scope | Finite exposed development evidence; no learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-The shortlist's 28,800 controller decisions and 144,000 native samples were
-independently replayed. Its 14 eligible and six failed episodes remain finite
-development evidence. Failed episodes have no quality score. Earlier
-[learned influence and memory experiments](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
-remain retained; memory mechanics worked, but useful memory benefit was unproved.
+The confirmation retains all 69 discovery shortlist entries, baseline and
+fixed profile 27, including all eleven empty discovery groups. The choice was
+frozen before its new starts (-0.003 and 0.005 m/s); it was not refitted.
+All 139 applicable zero-world controls passed before physics. Failed episodes
+have null quality, and paired tracking comparisons include only groups where
+both policies pass both starts. These results do not overturn the earlier
+finite positive at different starts: S169 profile 55 now fails one new start,
+while profile 27 passes both.
 
-1. **Run the frozen diverse confirmation set.** The
-   [confirmation contract](../sdk/discovery/creature_confirmation_v1.json) declares
-   284 fresh twelve-second worlds: all 24 bodies, both conditions, all 69
-   shortlist entries, baseline and fixed profile 27, at lateral starts -0.003
-   and 0.005 m/s. All eleven empty discovery groups remain. The choice uses
-   the first discovery shortlist entry, or baseline when empty, and cannot
-   be refitted using confirmation outcomes. The
-   [139-control component gate](../sdk/discovery/creature_confirmation_component_v1.json)
-   passes with zero worlds; no native confirmation result exists yet.
-2. **Challenge that shortlist efficiently.** Use fresh worlds, full capture,
-   independent replay and prospective acceptance criteria. The breadth run's
-   stepping loop spent 844 seconds on observation readback, 627 on controller
-   processing, 387 on capture/validation/transfer and 80 on physics integration.
-   Shared reads and two-world chunks address those measured costs and the longer
-   capture budget while preserving exact observations and decisions.
-   The [shared-readback route](../sdk/discovery/creature_readback_native_result_v1.json)
-   now passes: six fresh worlds, four bounded batches, 144 identical original-path
-   observations and 720 independently verified native samples. Shared readback
-   took 0.666 seconds versus 0.956 seconds on the same prepared states; this
-   short diagnostic establishes no whole-run or longer-horizon speedup.
-   Test whether useful condition-based choices exist before fitting inference. A choice
-   supplied with the true condition is an oracle comparison, not trained Tier 2.
-   Training needs a separate declared corpus and held-out test; reduced discovery
-   records do not become training or qualification data retroactively.
-3. **Turn useful results into SDK and Studio behavior.** The first breadth
-   checkpoint is complete; it adds candidates and exposes transfer failures.
-   The next Studio increment is fall detection, live recovery handoff and resumed
-   walking on the same bodies. The current fast walking worker stops advancing
-   the recovery ledger, so handoff needs a fresh observation epoch. Profile
-   startup and stepping on that actual route.
-   The retained Godot measurements are 43.852625 seconds to stand up and 29.662299
-   seconds for 15 walking seconds; this breadth cohort did not rerun them.
-   Do not reset world state or reuse stale recovery clocks to fake a handoff.
+1. **Complete the Studio recovery handoff.** Fast walking must detect a fall,
+   enter recovery and resume walking on the same native bodies. The current
+   fast worker stops advancing the recovery ledger, so a fresh observation
+   epoch must start at a measured completed boundary. Preserve body identity,
+   global callback sequence and per-step energy/contact measurements; do not
+   reset world state, invent missing cumulative history or reuse stale clocks.
+   Validate the actual production route with the smallest adequate development
+   ghost before testing useful recovery and the visible Studio interaction.
+   Profile startup and stepping on that route. Retained measurements remain
+   43.852625 seconds to stand up and 29.662299 seconds for 15 walking seconds;
+   the GPU confirmation did not rerun them.
+2. **Broaden candidates where confirmation exposed gaps.** Keep the four
+   selection misses separate from the eleven groups with no passing tested
+   candidate. Search factored creature/controller cohorts through the public
+   descriptor/compiler and batched controller, retain every failed body and
+   condition, and keep fixed profile 27 as a finite comparator. Select on
+   full-horizon eligibility before tracking quality, then challenge diverse
+   leads at fresh starts. Do not adopt or retune the failed frozen lookup
+   inside its consumed confirmation.
+3. **Build a declared learning corpus and held-out evaluation.** Condition-known
+   choices are oracle comparisons, not trained Tier 2. A broader learned
+   provider needs explicit morphology features, a separate training contract
+   and untouched evaluation groups. Exposed discovery and confirmation records
+   do not become training or qualification data retroactively. Earlier
+   [contextual-memory work](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
+   verified influence and feedback mechanics, but memory missed its benefit
+   criterion in every group. Do not reward an unobserved alternative merely
+   because the selected action failed; preserve memory-off, reset and rollback
+   controls when testing useful correction.
 
 ## How work advances
 
@@ -73,6 +74,12 @@ for a new interface, invariant or evidence shape. Keep full historical audits
 in their specified lane; run the complete applicable safety gate before physics.
 Native work requires a clean pushed prospective freeze and owned containment.
 A failed attempt keeps its identity and original evidence.
+
+The readback route took 0.666 seconds for shared reads versus 0.956 seconds for
+original reads on the same prepared states. That short diagnostic grants no
+whole-run speedup claim. The confirmation retains full capture in two-world
+chunks; its 92.2-minute native worker time is descriptive, not a matched
+throughput or real-time result.
 
 Tier 2 means a frozen learned provider with independent evidence of useful
 influence. Tier 3 adds bounded, reversible memory with reset, rollback and

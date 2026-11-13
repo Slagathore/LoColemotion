@@ -19,7 +19,7 @@ historical instructions.
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
 | SDK2 actual-creature breadth | [240 fresh two-second worlds](../sdk/discovery/creature_breadth_native_result_v1.json) on 24 bodies after 117 passing controls; 171 eligible, 69 performance failures, zero invalid; 57,600 decisions and 288,000 native samples independently replayed |
 | SDK2 shared readback | [Native route verified](../sdk/discovery/creature_readback_native_result_v1.json): six worlds, four bounded batches, 144 identical original-path observations and 720 native samples independently replayed; full capture |
-| SDK2 diverse confirmation | [139 zero-world controls pass](../sdk/discovery/creature_confirmation_component_v1.json); 284 twelve-second worlds declared across all 24 bodies and both conditions, with frozen choices, baseline and fixed profile 27; native result pending |
+| SDK2 diverse confirmation | [284 fresh twelve-second worlds](../sdk/discovery/creature_confirmation_native_result_v1.json): 221 eligible, 63 performance failures, zero invalid; 408,960 decisions and 2,044,800 samples independently replayed. Both-start eligible groups: baseline 30/48, frozen choice 33/48, fixed 27 36/48; choice fails both declared comparisons |
 | Unqualified | Learned Tier 2, Tier 3 memory, broad morphology locomotion coverage, recovery/withdrawal, real time, robustness, cross-engine equivalence and full release |
 
 SDK1 package qualification does not grant permission to redistribute the
@@ -33,14 +33,16 @@ The population v1 canary failure remains a
 it opened zero population worlds. The latest full-capture run used a clean
 pushed prospective freeze, fresh worlds, complete scalar decision replay and
 native-stream checks. It neither trained a provider nor opened evaluation groups.
-A future condition-known comparison would measure the value of choice; it
-would not by itself satisfy Tier 2.
+The completed condition-known comparison measures the value of its frozen
+choice; it fails the declared criterion and does not satisfy Tier 2.
 
 The creature breadth cohort retains useful shortlists in 37 of 48 body/condition
 groups. Profile 27 preserves weak-left eligibility in 14 of 24 bodies versus
 nine for baseline; nine weakened bodies fail with every profile, and one passes
-only with baseline. These exposed two-second outcomes require fresh longer
-confirmation and do not establish general transfer.
+only with baseline. The later twelve-second confirmation now retains the complete diverse
+shortlist at two fresh starts. Its four selection misses and eleven groups
+without a passing tested candidate separate selection and controller gaps;
+these finite observations do not establish general transfer.
 
 Earlier [native contextual-memory work](../sdk/discovery/gpu_contextual_influence_closure_v1.json)
 verified learned influence and feedback mechanics in a finite development setting,
