@@ -1,0 +1,515 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "campaign_id": "creature_righting_breadth_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "mode": "development_discovery",
+  "purpose": "Finite exposed self-righting discovery across 16 actual recovery body shapes, five controller profiles and three fallen starts. Full-horizon eligibility precedes diverse shortlist selection; this does not train or qualify recovery.",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v1.json",
+    "sha256": "48e5553b8cfd8fc7641bb38a0314cd4fd40723c5e47a49ffc301e9a6b5914d9b"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "seed": 1061114,
+  "outer_steps": 720,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "capture_mode": "full",
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "not_covered": [
+    "Walking-to-fall entry or recovery-to-walking integration",
+    "Weakened motors, impacts, terrain or held-out robustness",
+    "Godot behavior or cross-engine equivalence",
+    "Learning, training-data authority, useful online memory, real-time behavior or release"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    }
+  ],
+  "batch_partition": "body_shape",
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py"
+  ],
+  "maximum_worlds_per_batch": 4,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_b",
+        "torso_length_scale": 1.1,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6103",
+        "torso_length_scale": 1.0535744198024215,
+        "torso_width_scale": 1.0332991562162757,
+        "upper_length_fraction": 0.5098777738981596,
+        "hip_span_scale": 1.099488118989274,
+        "foot_radius_scale": 1.0289813767021945,
+        "front_limb_mass_scale": 1.0982205605130226
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6116",
+        "torso_length_scale": 0.9243773739841714,
+        "torso_width_scale": 1.092919998660898,
+        "upper_length_fraction": 0.5240690790312525,
+        "hip_span_scale": 0.9635037609989531,
+        "foot_radius_scale": 1.0822817410766805,
+        "front_limb_mass_scale": 1.0781984820911192
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6109",
+        "torso_length_scale": 1.0936444497652456,
+        "torso_width_scale": 0.9217203858824727,
+        "upper_length_fraction": 0.5417046274155622,
+        "hip_span_scale": 1.0620312707410267,
+        "foot_radius_scale": 0.9437327049308766,
+        "front_limb_mass_scale": 0.933942142090281
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6105",
+        "torso_length_scale": 1.0052902267093982,
+        "torso_width_scale": 1.0935019718002301,
+        "upper_length_fraction": 0.48646168914541177,
+        "hip_span_scale": 0.9793139184078468,
+        "foot_radius_scale": 0.9242928356454458,
+        "front_limb_mass_scale": 1.038380685527432
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6114",
+        "torso_length_scale": 0.9404690663890143,
+        "torso_width_scale": 1.0652589055628654,
+        "upper_length_fraction": 0.49274039572401446,
+        "hip_span_scale": 0.9729267384561074,
+        "foot_radius_scale": 1.0879637798266402,
+        "front_limb_mass_scale": 0.9438544581280682
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6106",
+        "torso_length_scale": 0.9019590498418452,
+        "torso_width_scale": 0.9601655727392449,
+        "upper_length_fraction": 0.5184519508477421,
+        "hip_span_scale": 1.0165552675995406,
+        "foot_radius_scale": 0.915240760849612,
+        "front_limb_mass_scale": 1.003843702865728
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6118",
+        "torso_length_scale": 1.0937267390530852,
+        "torso_width_scale": 0.9497071418561291,
+        "upper_length_fraction": 0.524545024210714,
+        "hip_span_scale": 0.918469026595929,
+        "foot_radius_scale": 1.035439005153123,
+        "front_limb_mass_scale": 1.0326992915320907
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6119",
+        "torso_length_scale": 0.96862467989992,
+        "torso_width_scale": 0.9000615925062592,
+        "upper_length_fraction": 0.5442827379201266,
+        "hip_span_scale": 1.0212948075778072,
+        "foot_radius_scale": 0.9138043803660675,
+        "front_limb_mass_scale": 0.9144451240111248
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6113",
+        "torso_length_scale": 0.9794287821462911,
+        "torso_width_scale": 0.9819624629528174,
+        "upper_length_fraction": 0.49890287933379945,
+        "hip_span_scale": 0.9235057165900957,
+        "foot_radius_scale": 0.9086695590076664,
+        "front_limb_mass_scale": 1.061568803843476
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6110",
+        "torso_length_scale": 1.0253141368565415,
+        "torso_width_scale": 1.089447144416498,
+        "upper_length_fraction": 0.5175032612489311,
+        "hip_span_scale": 0.9498189928591761,
+        "foot_radius_scale": 1.0035879951677258,
+        "front_limb_mass_scale": 1.080298800715315
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6112",
+        "torso_length_scale": 0.9080588190835106,
+        "torso_width_scale": 1.0936438149292125,
+        "upper_length_fraction": 0.4976951603329962,
+        "hip_span_scale": 0.9397373455203458,
+        "foot_radius_scale": 0.98104870568054,
+        "front_limb_mass_scale": 1.0033493541421716
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6107",
+        "torso_length_scale": 0.9341446610712784,
+        "torso_width_scale": 1.0038158447257746,
+        "upper_length_fraction": 0.5346639538543914,
+        "hip_span_scale": 0.9168882945126129,
+        "foot_radius_scale": 0.9742543633268808,
+        "front_limb_mass_scale": 0.9061752081863059
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6101",
+        "torso_length_scale": 1.032854112873984,
+        "torso_width_scale": 0.9352174529887777,
+        "upper_length_fraction": 0.5271975998643781,
+        "hip_span_scale": 1.0141165560842764,
+        "foot_radius_scale": 1.0655881652994055,
+        "front_limb_mass_scale": 0.9042270536078669
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "side_rock_slow",
+        "mode": "rock",
+        "pose_a": [
+          0.85,
+          0.85,
+          -0.4,
+          -0.4,
+          -0.85,
+          -0.85,
+          0.4,
+          0.4
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.85,
+          0.85,
+          0.4,
+          0.4,
+          -0.85,
+          -0.85
+        ]
+      },
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "left_lever_hold",
+        "mode": "rock",
+        "pose_a": [
+          0.85,
+          0.85,
+          -0.4,
+          -0.4,
+          -0.85,
+          -0.85,
+          0.4,
+          0.4
+        ],
+        "pose_b": [
+          0.85,
+          0.85,
+          -0.4,
+          -0.4,
+          -0.85,
+          -0.85,
+          0.4,
+          0.4
+        ]
+      },
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "right_lever_hold",
+        "mode": "rock",
+        "pose_a": [
+          -0.4,
+          -0.4,
+          0.85,
+          0.85,
+          0.4,
+          0.4,
+          -0.85,
+          -0.85
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.85,
+          0.85,
+          0.4,
+          0.4,
+          -0.85,
+          -0.85
+        ]
+      },
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "fore_hind_rock",
+        "mode": "rock",
+        "pose_a": [
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          -0.4,
+          -0.4,
+          -0.4,
+          -0.4
+        ],
+        "pose_b": [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          -0.85,
+          -0.85,
+          -0.85,
+          -0.85
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      },
+      {
+        "id": "left_side",
+        "roll_rad": -1.5707963267948966
+      },
+      {
+        "id": "right_side",
+        "roll_rad": 1.5707963267948966
+      }
+    ]
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_righting_route_native_v1.json",
+    "sha256": "df5ce3c89a157bd77afdb14cf8ee9a724b60b88ab78d60e611f0641f392c31d3"
+  },
+  "body_selection": {
+    "source": "sdk/discovery/creature_breadth_v1.json",
+    "source_sha256": "a96c2e851b8d39de2a17b0b405e7d73536b821fc98c5a4d894bbf48e8f192544",
+    "method": "Start at body index zero; greedily maximize minimum squared distance over six descriptor fields normalized by this source population range. Tie-break by smaller source index. No behavior outcome is consulted.",
+    "source_indices": [
+      0,
+      1,
+      2,
+      6,
+      19,
+      12,
+      8,
+      17,
+      9,
+      21,
+      22,
+      16,
+      13,
+      15,
+      10,
+      4
+    ]
+  },
+  "coverage": [
+    "240 fresh worlds: 16 public recovery morphologies by five profiles by three fallen starts, nominal motors, six simulated seconds per world.",
+    "Profiles span braking, alternating side rocking, left and right held lever poses, and alternating fore/hind rocking. The active candidates use one-second half periods so the bounded motors can approach the declared poses.",
+    "Fresh initialization with collision clearance; no after-start pose or velocity writes, external impulses, physics parameter changes, or cached physical baseline.",
+    "Shared prepared readback retains complete fields, controller records and five internal solver samples per interval; the independent reader replays every cell.",
+    "Eligibility requires a terminal 0.5-second upright dwell with all four distal sites contacting ground, no torso contact, height ratio at least 0.75, up dot at least 0.95, angular speed at most 0.5 rad/s, and zero joint-limit violation samples.",
+    "Keep every body/start/profile outcome. Shortlist only candidates eligible at all three starts, with normalized pose diversity; do not drop empty groups."
+  ]
+}

@@ -192,6 +192,31 @@ class RightingControls(unittest.TestCase):
         self.assertEqual(result["failed_worlds"], 2)
         self.assertEqual(result["shortlists"][0]["candidates"], [])
         self.assertEqual(len(result["episodes"]), 4)
+        creature = batch.controllers[0].creature
+        base = dict(qpos=copy.deepcopy(creature["spec"]["initial_qpos"]), qvel=[0.]*14,
+                    contacts=[dict(geom=[0, k]) for k in (3, 5, 7, 9)])
+        cases = [("all_four_feet", base, True)]
+        for index in range(4):
+            row = copy.deepcopy(base); row["contacts"].pop(index)
+            cases.append((f"missing_foot_{index}", row, False))
+        for key in ("torso", "tilt", "height", "angular_speed", "joint_breach", "inverted"):
+            row = copy.deepcopy(base)
+            if key == "torso": row["contacts"].append(dict(geom=[0, 1]))
+            if key == "tilt": row["qpos"][3:7] = [math.cos(.2), math.sin(.2), 0., 0.]
+            if key == "height": row["qpos"][2] *= .7
+            if key == "angular_speed": row["qvel"][3] = .51
+            if key == "joint_breach": row["qpos"][7] = 1.60001
+            if key == "inverted": row["qpos"][3:7] = [0., 1., 0., 0.]
+            cases.append((key, row, False))
+        for name, row, expected in cases:
+            with self.subTest(measurement=name):
+                m = subject.initial_metrics()
+                for _ in range(300): subject.measure(m, row, creature)
+                self.assertEqual(m["terminal_upright_dwell_steps"] >= 300 and m["joint_limit_violation_steps"] == 0, expected)
+        m = subject.initial_metrics()
+        for _ in range(300): subject.measure(m, base, creature)
+        subject.measure(m, cases[1][1], creature)
+        self.assertEqual((m["terminal_upright_dwell_steps"], m["longest_upright_dwell_steps"]), (0, 300))
 
     def test_full_shared_reader_replays_righting_and_refuses_corruption(self):
         c = route.declaration(route.HERE / "creature_righting_route_v1.json")

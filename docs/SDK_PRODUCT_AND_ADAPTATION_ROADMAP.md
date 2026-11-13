@@ -54,12 +54,20 @@ while profile 27 passes both.
    now passes 134 complete applicable zero-world controls. It binds the public
    recovery morphology instead of the walking model's narrower joint ranges,
    supplies bounded rocking candidates and a zero-velocity-brake comparator,
-   and preserves full capture and scalar replay. Its eight-world native route
-   check covers two shapes, two starts and two controllers for two intervals;
-   it remains unrun. Run that check from the clean pushed freeze, then declare
-   broad factored discovery across recovery bodies, candidate behaviors and
-   fallen conditions, retaining inverted and unsafe outcomes. Check useful,
-   diverse candidates through fresh full
+   and preserves full capture and scalar replay. Its
+   [native route check](../sdk/discovery/creature_righting_route_native_v1.json)
+   completed eight worlds: two shapes, two starts and two controllers for two
+   intervals, with 16 decisions and 80 solver samples independently replayed.
+   The closure explicitly retains stale descriptive coverage copied into that
+   declaration; only the executed matrix is established. The short route does
+   not test self-righting performance.
+   The distinct [breadth cohort](../sdk/discovery/creature_righting_breadth_v1.json)
+   now declares 240 six-second worlds: 16 actual recovery bodies, five profiles
+   and inverted/left-side/right-side starts. It uses unchanged safety bounds,
+   complete capture and the 134-control prelaunch gate. All worlds remain
+   unrun. Execute from the clean pushed freeze; retain every failed body/start
+   and shortlist only all-start eligible, diverse candidates. Check useful
+   candidates through fresh full
    handoff runs requiring recovery completion and 120 resumed walking steps.
    Keep body identity, native clocks and measured work; no pose reset, invented
    history or relaxed entry/joint-limit gates. Installed interaction, useful

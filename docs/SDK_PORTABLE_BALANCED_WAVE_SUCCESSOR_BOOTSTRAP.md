@@ -6,9 +6,16 @@ The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
 The [righting candidate component](../sdk/discovery/creature_righting_component_v1.json)
 extends the shared creature runner with public recovery morphology, fresh fallen
 starts, bounded portable rocking commands, full capture and independent replay.
-All 134 applicable controls pass without physics. The eight-world minimal
-native check is declared but unrun; no recovery, learning or handoff benefit is
-established. Existing walking and recovery-entry gates remain unchanged.
+All 134 applicable controls passed before its
+[eight-world native check](../sdk/discovery/creature_righting_route_native_v1.json):
+16 controller decisions and 80 solver samples independently replayed. Its
+copied descriptive-coverage error remains explicit; the actual two-shape,
+two-profile, nominal-motor matrix is the only established scope. The
+[240-world breadth successor](../sdk/discovery/creature_righting_breadth_v1.json)
+declares 16 recovery bodies, five profiles, three fallen starts and six seconds,
+with full capture and the same complete gate. It is unrun. No recovery,
+learning or handoff benefit is established. Existing walking and recovery-entry
+gates remain unchanged.
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes
