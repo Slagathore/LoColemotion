@@ -67,6 +67,12 @@ def assignments(recipe):
 
 
 def validate(c):
+    if "trajectory_reference_by_body" in c:
+        refs=c["trajectory_reference_by_body"];spec=c.get("righting_spec",{})
+        assigned=spec.get("profiles_by_body",[list(range(len(spec.get("profiles",[]))))]*len(spec.get("descriptors",[])))
+        require("moment_handoff_search" in c and type(refs) is list and len(refs)==len(assigned)
+                and all(type(r) is int and r>=2 and r in a for r,a in zip(refs,assigned,strict=True)),
+                "Trajectory declared fresh references")
     if "trajectory_screen" not in c:
         require("trajectory_proposal" not in c, "Trajectory proposals require declared screening")
         return
@@ -123,12 +129,18 @@ def assess(c, metrics):
         comparators = {r["candidate_index"]: r for r in rows if r["candidate_index"] in (0, 1)}
         require(set(comparators) == {0, 1}, "Trajectory fresh comparators missing")
         timed = comparators[1]["peak_rotation_degrees"]
+        reference_index=c.get("trajectory_reference_by_body",[1]*len(c["righting_spec"]["descriptors"]))[key[0]]
+        reference=next(r for r in rows if r["candidate_index"]==reference_index)
+        score="peak_gain_against_timed_degrees" if reference_index==1 else "peak_gain_against_reference_degrees"
         for row in rows:
             row["peak_gain_against_timed_degrees"] = row["peak_rotation_degrees"]-timed
+            if reference_index!=1:
+                row["peak_gain_against_reference_degrees"]=row["peak_rotation_degrees"]-reference["peak_rotation_degrees"]
         candidates = sorted((r for r in rows if r["candidate_index"] >= 2
+            and r["candidate_index"] != reference_index
             and r["joint_limit_violation_steps"] == 0
-            and r["peak_gain_against_timed_degrees"] >= POLICY["minimum_peak_rotation_gain_degrees"]),
-            key=lambda r: (-r["peak_gain_against_timed_degrees"], -r["distal_supported_peak_degrees"], r["candidate_index"]))
+            and r[score] >= POLICY["minimum_peak_rotation_gain_degrees"]),
+            key=lambda r: (-r[score], -r["distal_supported_peak_degrees"], r["candidate_index"]))
         leads, families = [], set()
         for candidate in candidates:
             family = candidate["candidate_id"].split("_")[0]
@@ -138,6 +150,8 @@ def assess(c, metrics):
                 break
         reports.append(dict(body_index=key[0], condition_index=key[1], start_index=key[2],
                             observations=rows, progress_leads=leads))
+        if reference_index!=1:
+            reports[-1].update(reference_candidate_index=reference_index,reference_candidate_id=reference["candidate_id"])
     return dict(groups=reports, progress_lead_count=sum(len(v["progress_leads"]) for v in reports),
         diagnostic_only=True, recovery_qualified=False, trained=False, training_data_authority=False,
         physical_acceptance_authority=False, release_authority=False)

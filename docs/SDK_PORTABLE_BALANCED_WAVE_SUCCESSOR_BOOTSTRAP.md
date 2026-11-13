@@ -85,10 +85,17 @@ Batched geometry is 9.503 times faster on paired retained inputs, with 5,760
 exact geometry outputs, 68 passing controls and a byte-identical full replay
 of 7,200 decisions and 36,000 samples. No worlds or reduced capture accompany
 this change. Native throughput and Studio speed remain unmeasured.
-Use the clear leads and useful prefix for a distinct broad contact-handoff
-and momentum-timing successor with fresh comparators and path checks.
-Full-capture varied-start confirmation, collision-response qualification,
-actual recovery and the same-body Godot handoff remain unqualified.
+The [moment handoff component](../sdk/discovery/creature_moment_handoff_component_v1.json)
+adds measured upright steering and continuous, clock or measured-stall support
+release. All 248 controls pass with zero new worlds; the old full-route audit
+remains byte-identical. Thirty-six variants run on four bodies each, with two
+in each geometric stratum. Every body receives six variants and fresh brake,
+timed and selected prior-profile comparators. The twelve-world full route must
+cover steering, forces, release and reacquisition before the 216-world compact
+search. Leads must gain five degrees over their fresh selected reference and
+pass the declared retained-sample path screen. Full-capture varied-start
+confirmation, collision-response qualification, actual recovery and the
+same-body Godot handoff remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

@@ -154,16 +154,16 @@ class PathClearance:
 def diagnose_clearance(root, digest):
     archive, receipt = bound_archive(root, digest)
     require(receipt["contract"]["capture_mode"] == "compact_v1", "Clearance needs compact native samples")
-    audit, selected = receipt["audit"], {}
+    audit, selected, reference_ids = receipt["audit"], {}, set()
     for group in audit["trajectory_screen"]["groups"]:
         if not group["progress_leads"]:
             continue
-        timed = [r for r in group["observations"] if r["candidate_index"] == 1]
+        timed = [r for r in group["observations"] if r["candidate_index"] == group.get("reference_candidate_index",1)]
         require(len(timed) == 1, "Clearance fresh same-body comparator")
+        reference_ids.add(timed[0]["cell_id"])
         for row in [*group["progress_leads"], *timed]:
             require(row["cell_id"] not in selected, "Clearance duplicate selected cell")
             selected[row["cell_id"]] = row
-    require(selected, "Clearance empty selection")
     episodes = audit["assessment"]["episodes"]
     outcomes = []
     for group in receipt["worker"]["groups"]:
@@ -194,7 +194,8 @@ def diagnose_clearance(root, digest):
         for local, motion in motions.items():
             e = episodes[group["cell_indices"][local]]
             frozen = selected[e["cell_id"]]
-            outcomes.append(dict(frozen_observation=frozen, role="timed_comparator" if e["candidate_index"] == 1 else "raw_progress_lead",
+            role=("timed_comparator" if e["candidate_index"]==1 else "reference_comparator") if e["cell_id"] in reference_ids else "raw_progress_lead"
+            outcomes.append(dict(frozen_observation=frozen, role=role,
                 **motion.finish(e["metrics"]["trajectory_samples"], frozen["peak_rotation_degrees"])))
         print(json.dumps(dict(batch=group["batch_id"], trajectories_completed=len(outcomes))), flush=True)
     require(len(outcomes) == len(selected), "Clearance missing selected trajectory")

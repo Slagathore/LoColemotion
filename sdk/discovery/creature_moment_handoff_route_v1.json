@@ -1,0 +1,938 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "maximum_worlds_per_batch": 12,
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "seed": 1061137,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_body_moment_geometry_result_v1.json",
+    "sha256": "5b2fb4102ad19cfc8ef1fb6c42cc7b63ce4e8fb301851190cabfac1ee4aa3bc3"
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_capture.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py",
+    "sdk/discovery/creature_joint_braking.py",
+    "sdk/discovery/creature_body_moment.py",
+    "sdk/discovery/creature_body_moment_search.py",
+    "sdk/discovery/creature_contact_moment.py",
+    "sdk/discovery/actuation_recovery_mechanics.py",
+    "sdk/discovery/creature_moment_handoff.py",
+    "sdk/discovery/creature_moment_handoff_search.py",
+    "sdk/discovery/creature_body_moment_diagnosis.py"
+  ],
+  "not_covered": [
+    "Recovery qualification or learned adaptation",
+    "New initial orientations, weakened actuators, terrain or impacts",
+    "Robot self-collision response or continuous-time path clearance",
+    "Live Godot walking-fall-recovery-resume transfer",
+    "Native real-time or release qualification"
+  ],
+  "qualification_economy": "Reuse the native owner, capture, shared reader and retained-path diagnostic. Fourteen controls cover the optional handoff interface, balanced assignment, fresh reference comparison, complete inventory and required route branches. No new physical owner or native reader.",
+  "campaign_id": "creature_moment_handoff_route_v1",
+  "mode": "route_ghost",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "purpose": "Verify measured upright steering, bounded support release and reacquisition with exact full replay.",
+  "capture_mode": "full",
+  "outer_steps": 720,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_000",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "drive2_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "steady_b0_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": -0.65,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "continuous",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 180,
+          "release_steps": 24,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "pulse_b0_axis1",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": -0.65,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "clock",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 90,
+          "release_steps": 30,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "stall_b0_axis2",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": -0.65,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "stall",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 180,
+          "release_steps": 24,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "steady_b1_axis3",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": 0.0,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "continuous",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 180,
+          "release_steps": 24,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "pulse_b1_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": 0.0,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "clock",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 90,
+          "release_steps": 30,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "stall_b1_axis1",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": 0.0,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "stall",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 180,
+          "release_steps": 24,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "steady_b2_axis2",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": 0.65,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "continuous",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 180,
+          "release_steps": 24,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "pulse_b2_axis3",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": 0.65,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "clock",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 90,
+          "release_steps": 30,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      },
+      {
+        "id": "stall_b2_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "handoff": {
+          "schema_version": "locolemotion_moment_handoff_v1",
+          "steering_bias": 0.65,
+          "minimum_tilt_sine": 0.08715574274765817,
+          "axis_slew_rad_per_step": 0.05,
+          "schedule": "stall",
+          "minimum_push_steps": 45,
+          "maximum_push_steps": 180,
+          "release_steps": 24,
+          "stall_steps": 24,
+          "progress_deadband_rad_s": 0.05
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ]
+  },
+  "coverage": [
+    "canonical_observations_only",
+    "bounded_force_to_velocity_projection",
+    "clear_target_pose_filter",
+    "measured_contact_gating",
+    "rocking_memory_and_timeout",
+    "post_guard_torque_prediction",
+    "sampled_native_joint_work",
+    "finite_breadth_and_fresh_comparators"
+  ],
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    },
+    {
+      "name": "creature-body-moment",
+      "module": "test_creature_body_moment",
+      "count": 20
+    },
+    {
+      "name": "actuation-mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "creature-joint-braking",
+      "module": "test_creature_joint_braking",
+      "count": 10
+    },
+    {
+      "name": "creature-contact-moment",
+      "module": "test_creature_contact_moment",
+      "count": 13
+    },
+    {
+      "name": "creature-righting-geometry",
+      "module": "test_creature_righting_geometry",
+      "count": 7
+    },
+    {
+      "name": "creature-moment-handoff",
+      "module": "test_creature_moment_handoff",
+      "count": 14
+    }
+  ],
+  "selection_rationale": "Twenty-four configured profiles cross four signed axes, drive/rock strategies and three normal/friction/load settings. Each runs on four bodies inside and four outside the 31-body geometric pitch group. Each body receives eight proposals and two fresh unchanged comparators. Exposed geometry is proposal provenance, never held-out evidence.",
+  "braking_model_limit": "Constant-velocity lookahead and a stopping-speed envelope using a declared 6 rad/s^2 shaping estimate. This is not a validated physical deceleration bound or a guarantee that no joint crosses its limit.",
+  "route_coverage_required": [
+    "clear_targets",
+    "measured_contact_force",
+    "tangential_force_proposal",
+    "bounded_rocking_reversal",
+    "full_controller_replay",
+    "full_compact_projection"
+  ],
+  "route_coverage_not_required": [
+    "successful_righting",
+    "all_profile_contact_acquisition",
+    "upright_capture_in_native_world"
+  ],
+  "body_moment_limit": "Clear geometric targets are not collision-free transitions. Geometric capsule low points are not measured contact locations. Friction cones and normal load are configured proposals; static joint compensation omits inertial, Coriolis, passive and limit forces. Actual force, contact and sampled work are retained. Motors, native collision filtering and eligibility remain unchanged.",
+  "moment_handoff_search": {
+    "schema_version": "locolemotion_moment_handoff_search_v1",
+    "seed": 1061137,
+    "body_indices": [
+      10,
+      20,
+      21,
+      28,
+      31,
+      97,
+      127,
+      139,
+      186,
+      244,
+      292,
+      327,
+      0,
+      1,
+      2,
+      6,
+      16,
+      32,
+      78,
+      150,
+      200,
+      250,
+      300,
+      333
+    ],
+    "route_body_index": 16,
+    "route_proposal_indices": [
+      0,
+      5,
+      10,
+      15,
+      16,
+      21,
+      26,
+      31,
+      32
+    ],
+    "route_outer_steps": 720,
+    "steering_biases": [
+      -0.65,
+      0.0,
+      0.65
+    ],
+    "schedules": [
+      "continuous",
+      "clock",
+      "stall"
+    ]
+  },
+  "trajectory_reference_by_body": [
+    2
+  ],
+  "post_native_path_screen": {
+    "schema_version": "locolemotion_prospective_retained_path_screen_v1",
+    "population": "raw_progress_leads_and_fresh_reference",
+    "overlap_tolerance_m": 1e-09,
+    "native_joint_angles_unclipped": true,
+    "include_initial_state": true,
+    "required_before_lead_promotion": true,
+    "continuous_clearance_authority": false
+  },
+  "reference_selection": [
+    {
+      "body_index": 0,
+      "candidate_index": 20,
+      "candidate_id": "drive2_axis2",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 1,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 2,
+      "candidate_index": 10,
+      "candidate_id": "drive1_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 3,
+      "candidate_index": 11,
+      "candidate_id": "drive1_axis1",
+      "reason": "exposed_raw_reference_path_unexamined"
+    },
+    {
+      "body_index": 4,
+      "candidate_index": 21,
+      "candidate_id": "drive2_axis3",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 5,
+      "candidate_index": 10,
+      "candidate_id": "drive1_axis0",
+      "reason": "exposed_clear_prefix_only"
+    },
+    {
+      "body_index": 6,
+      "candidate_index": 20,
+      "candidate_id": "drive2_axis2",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 7,
+      "candidate_index": 21,
+      "candidate_id": "drive2_axis3",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 8,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 9,
+      "candidate_index": 11,
+      "candidate_id": "drive1_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 10,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 11,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 12,
+      "candidate_index": 23,
+      "candidate_id": "rock2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 13,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 14,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 15,
+      "candidate_index": 11,
+      "candidate_id": "drive1_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 16,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 17,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 18,
+      "candidate_index": 23,
+      "candidate_id": "rock2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 19,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 20,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 21,
+      "candidate_index": 2,
+      "candidate_id": "drive0_axis0",
+      "reason": "exposed_raw_reference_path_unexamined"
+    },
+    {
+      "body_index": 22,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 23,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    }
+  ],
+  "code_path_risks_covered": [
+    "Measured upright steering with bounded axis slew",
+    "Continuous, clock and measured-stall schedules; release, reacquisition and bounded fallback",
+    "Release toward a neutral pose without requested reaction forces",
+    "Exact full replay and same-run compact projection on the native route",
+    "Synthetic upright reset, atomic memory, guards and fresh-reference assessment controls",
+    "Prospectively required retained-sample path screen after broad native discovery"
+  ],
+  "route_horizon_rationale": "Six seconds covers repeated 180-step push plus 24-step release cycles and 90-step clock plus 30-step release cycles after contact acquisition; one or two steps cannot cover these late transitions. The twelve route roles cover three fresh comparators and nine variants spanning four seed axes, three biases and three schedules. Successful recovery and the upright-reset branch are not required native-route coverage."
+}

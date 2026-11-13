@@ -465,7 +465,7 @@ def assess(c, metrics, bindings):
             if body_moment.MODE in (a["mode"], b["mode"]):
                 # Dynamic targets have no fixed pose pair. Retain at most one
                 # per axis/strategy family, without inventing a pose distance.
-                return 0. if all(a.get(k) == b.get(k) for k in ("mode","axis_body","strategy")) else 1.
+                return 0. if all(a.get(k) == b.get(k) for k in ("mode","axis_body","strategy","handoff")) else 1.
             poses = lambda p: [r["pose"] for r in p["phases"]] if p["mode"] == sequence.MODE else [p["pose_a"], p["pose_b"]]
             aa, bb = poses(a), poses(b)
             n = math.lcm(len(aa), len(bb))

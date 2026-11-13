@@ -32,6 +32,11 @@ def finite(v):
 
 
 def profile(value):
+    if type(value) is dict and "handoff" in value:
+        from creature_moment_handoff import policy
+        base = profile({k:v for k,v in value.items() if k != "handoff"})
+        require(base["strategy"] == "drive", "Handoff requires a driven moment base")
+        return dict(base, handoff=policy(value["handoff"]))
     require(type(value) is dict and set(value) == FIELDS and identifier(value["id"])
             and value["mode"] == MODE and value["strategy"] in ("drive", "rock"), "Moment profile fields")
     axis = value["axis_body"]
@@ -135,8 +140,11 @@ class Geometry:
         return np.asarray(points), min(gaps.tolist())
 
 
-def plan(p, geometry, state, rotation, contacts, memory, previous, upright):
+def plan(p, geometry, state, rotation, contacts, memory, previous, upright, *, retract=False):
     """Pure proposal; callers atomically commit memory only after the whole batch."""
+    if "handoff" in p:
+        from creature_moment_handoff import plan as handoff_plan
+        return handoff_plan(p, geometry, state, rotation, contacts, memory, previous, upright)
     g = geometry
     q = np.asarray([v["position_rad"] for v in state["ordered_joint_observations"]])
     qd = np.asarray([v["velocity_rad_s"] for v in state["ordered_joint_observations"]])
@@ -154,9 +162,9 @@ def plan(p, geometry, state, rotation, contacts, memory, previous, upright):
             after.update(sign=-before["sign"],elapsed=0,switches=before["switches"]+1,target=None)
             reason = "measured_reversal" if reversing else "bounded_reversal"
     axis = np.asarray(p["axis_body"])*after["sign"]
-    if upright:
+    if upright or retract:
         after.update(sign=1,elapsed=0,target=None)
-        normalized = np.zeros(8);reason = "upright_stance"
+        normalized = np.zeros(8);reason = "upright_stance" if upright else "contact_release"
     else:
         if after["target"] is None or state["semantic_step"] % p["target_update_steps"] == 0:
             after["target"] = g.target(position,rotation,q,axis,p)
@@ -166,7 +174,7 @@ def plan(p, geometry, state, rotation, contacts, memory, previous, upright):
     speed = np.asarray([min(m["maximum_target_speed_rad_s"],p["maximum_speed_rad_s"]) for m in g.spec["actuators"]])
     proposal = p["position_gain_s_inv"]*(targets-q)
     direction, arms = force_direction(points,frame["whole_body_com"],rotation @ axis,np.array([0.,1.,0.]),p["friction_ratio"])
-    active = sorted((i for i,c in enumerate(contacts) if not upright and c["presence"] and arms[i]>1e-9),
+    active = sorted((i for i,c in enumerate(contacts) if not upright and not retract and c["presence"] and arms[i]>1e-9),
                     key=lambda i:(-arms[i],i))[:2]
     requested_moment = g.weight*g.length*p["moment_weight_length_ratio"] if active else 0.
     normal = min(g.weight*p["normal_load_ratio"]/len(active),requested_moment/sum(arms[i] for i in active)) if active else 0.
@@ -182,7 +190,7 @@ def plan(p, geometry, state, rotation, contacts, memory, previous, upright):
             proposal[2*i:2*i+2] = projection["target"][2*i:2*i+2]
         projection = {k:v.tolist() if isinstance(v,np.ndarray) else v for k,v in projection.items()}
     require(np.isfinite(proposal).all(), "Moment finite proposal")
-    return dict(phase="upright_stance" if upright else "contact_force" if active else "reach",
+    return dict(phase="upright_stance" if upright else "contact_release" if retract else "contact_force" if active else "reach",
         selection_reason=reason, state_before=before, state_after=after,
         normalized_targets=normalized.tolist(), proposed_velocities_rad_s=proposal.tolist(),
         axis_angular_rate_rad_s=rate, active_limbs=active, geometric_contact_points_m=points.tolist(),

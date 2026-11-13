@@ -159,12 +159,19 @@ Batching the same 28 geometric pairs makes that calculation 9.503 times faster
 on paired retained inputs. All 5,760 geometry outputs match exactly; the full
 7,200-decision, 36,000-sample replay produces the original audit bytes.
 Sixty-eight focused controls pass; no new worlds or capture changes occur.
-Native throughput and Studio startup gains remain unmeasured. Use these clear
-partial motions and the useful prefix in a distinct broad contact-handoff
-and momentum-timing successor, with fresh comparators and prospective path
-checks. Fresh full-capture varied-start confirmation, collision-response
-qualification, actual recovery completion and the complete Godot handoff
-remain ahead; no recovery controller has been adopted.
+Native throughput and Studio startup gains remain unmeasured.
+
+The [moment handoff component](../sdk/discovery/creature_moment_handoff_component_v1.json)
+passes all 248 controls in 194.453 seconds, with zero worlds and an exact
+7,200-decision, 36,000-sample legacy replay. Thirty-six variants combine measured
+upright steering with continuous, clock and measured-stall release schedules.
+Each of 24 bodies gets six variants and three fresh comparators, including its
+selected prior profile. A twelve-world full route must cover steering, forces,
+release and reacquisition before the 216-world compact search. Progress is
+measured against that fresh selected reference; prospective retained-path
+screening precedes lead promotion. Full-capture varied-start confirmation,
+collision-response qualification, actual recovery and the complete Godot
+handoff remain ahead. No recovery controller has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.
