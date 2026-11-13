@@ -36,29 +36,33 @@ both policies pass both starts. These results do not overturn the earlier
 finite positive at different starts: S169 profile 55 now fails one new start,
 while profile 27 passes both.
 
-1. **Complete the Studio recovery handoff.** Fast walking must detect a fall,
-   enter recovery and resume walking on the same native bodies. The
-   [fresh boundary](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json)
-   and [measured energy](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
-   routes passed their bounded native probes. The combined
-   [handoff v1 attempt](../sdk/explorer/studio/live_handoff_native_failure_v1.json)
-   detected the fall at step 552, closed walking and independently verified one
-   passive interval at 553, then refused its observation projection before
-   recovery control. Its exact comparison mixed portable binary64 time with the
-   native binary32 timestep. The [v2 component](../sdk/explorer/studio/live_handoff_component_v2.json)
-   checks that explicit representation mapping and retains rejected projections;
-   32 adapter checks, 486 exact compiled replays and eight reader corruption
-   controls pass with zero worlds. Next run a fresh 2,041-step native episode
-   and require recovery completion plus at least 120 resumed walking steps.
-   Preserve body identity, native clocks and measured work; no world reset or
-   invented pre-epoch history. Installed desktop interaction and useful recovery
-   remain separate gates.
-   The earlier short energy probe observed 19.226671 seconds through stand-up
-   and 0.987050 seconds for 119 walking steps; collection/projection took 43.769 ms
-   across three boundaries, excluding separate boundary capture and staging.
-   These are descriptive timings, not a matched speed comparison or a new
-   fifteen-second result; the earlier fifteen-second timings remain 43.852625
-   and 29.662299 seconds.
+1. **Complete the Studio recovery handoff.** The combined source detects a fall,
+   captures a fresh measured observation epoch, transfers motor ownership,
+   enters the compiled selector and implements same-body walking restart.
+   [Native v1](../sdk/explorer/studio/live_handoff_native_failure_v1.json) refused
+   a portable/native timestep comparison at step 553. The exact binary32
+   mapping in [v2](../sdk/explorer/studio/live_handoff_component_v2.json) passes
+   32 adapter checks, 486 exact compiled replays and eight reader controls.
+   Its [native attempt](../sdk/explorer/studio/live_handoff_native_failure_v2.json)
+   now verifies the corrected observation and all 240 passive entry intervals:
+   240 entry calls, 240 energy evaluations and 1,920 motor observations replay
+   independently. The fall occurs at 552; the selector times out at 792 after
+   the body settles almost upside down, with joint-limit and entry gates false.
+   No active recovery command or walking restart occurs. Preserve this valid
+   negative and the earlier integration refusal.
+   Next declare a bounded recovery-entry and self-righting discovery cohort
+   across candidate behaviors and perturbation conditions, retaining inverted
+   and unsafe outcomes. Check useful, diverse candidates through fresh full
+   handoff runs requiring recovery completion and 120 resumed walking steps.
+   Keep body identity, native clocks and measured work; no pose reset, invented
+   history or relaxed entry/joint-limit gates. Installed interaction, useful
+   recovery and real-time behavior remain separate gates.
+   The earlier short [energy probe](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
+   observed 19.226671 seconds through stand-up and 0.987050 seconds for 119
+   walking steps; collection/projection took 43.769 ms across three boundaries,
+   excluding separate boundary capture and staging. These are descriptive
+   timings, not a matched speed comparison or a new fifteen-second result;
+   the earlier fifteen-second timings remain 43.852625 and 29.662299 seconds.
 2. **Broaden candidates where confirmation exposed gaps.** Keep the four
    selection misses separate from the eleven groups with no passing tested
    candidate. Search factored creature/controller cohorts through the public

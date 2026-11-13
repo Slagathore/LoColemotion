@@ -181,6 +181,87 @@ def controls(core, fixture):
     return dict(ok=True,positive=positive,negative_controls_refused=refused)
 
 
+def _entry_timeout_shape(rows, retained, declaration):
+    terminal = rows[-1]
+    require(terminal['message_type'] == 'error' and terminal['error'] == 'LIVE_HANDOFF_TRANSITION' and
+        terminal['detail']['failure_code'] == 'LIVE_HANDOFF_RECOVERY_TERMINAL', 'Expected retained entry timeout')
+    state = terminal['detail']['controller']
+    require(state['terminal'] is True and state['terminal_phase'] == 'failed' and state['route'] == 'entry' and
+        state['selector_memory']['route'] == 'timeout', 'Timeout cannot become recovery completion')
+    transitions = retained['transitions']; origin = transitions[0]; steps = transitions[1:]
+    require(origin['kind'] == 'begin' and len(steps) == declaration['live_handoff']['passive_entry_maximum_steps'] and
+        all(row['kind'] == 'recovery_step' and row['global_step'] == origin['global_step']+index
+            for index,row in enumerate(steps,1)), 'Complete contiguous passive-entry horizon')
+    require(steps[-1]['controller']['state_after']['payload_sha256'] == state['payload_sha256'], 'Retained timeout state binding')
+    return origin, steps
+
+
+def audit_entry_timeout(core, folder, receipt):
+    """Verify a failed passive entry without treating it as a completed handoff."""
+    require(receipt['ok'] is False and receipt.get('physical_attempted') is True, 'Failed native attempt required')
+    directory = (folder/'physical').resolve()
+    rows = [json.loads(line) for line in (directory/'stream.jsonl').read_text().splitlines()]
+    binding = rows[-1]['retained_live_handoff']; path = Path(binding['path']).resolve()
+    require(path.is_relative_to(directory) and sha(path) == binding['sha256'], 'Failed handoff retention binding')
+    retained = json.loads(path.read_text()); declaration = receipt['declaration']
+    origin, steps = _entry_timeout_shape(rows,retained,declaration)
+    guard = StreamIdentity(rows[0]['session_id'],'godot_jolt',receipt['source_commit'],False)
+    frames = []; kicks = []
+    for row in rows:
+        kind = guard.accept(row)
+        if kind == 'frame':
+            require(row['frame_index'] == len(frames)+1 and len(row['ordered_bodies']) == 9 and
+                abs(row['simulation_time_s']-row['frame_index']/120) < 1e-10, 'Failed run native frame clock')
+            for body in row['ordered_bodies']: vec(body['position_m'])
+            frames.append(row); kicks.extend(row['applied_impulses'])
+    require(len(frames) == steps[-1]['global_step']-1 <= declaration['maximum_outer_steps'], 'Failure boundary publication')
+    require(origin['walking_completion']['ok'] is True and origin['walking_completion']['adapter_shutdown_receipt']['ok'] is True and
+        origin['motor_disable']['ok'] is True and origin['motor_disable']['motor_enabled'] is False, 'Failed run ownership transfer')
+    count = 0; previous_fall_step = None; triggers = []
+    for sample in retained['fall_samples']:
+        raw = sample['sample']; g = raw['global_step']; up = vec(raw['torso_up_world'])
+        require(sample['ok'] is True and raw['callback_sequence'] == g and raw['source_measurement'] is True and
+            (previous_fall_step is None or g == previous_fall_step+1), 'Failed run fall-source clock')
+        abnormal = up[1] < declaration['live_handoff']['fall_up_dot_min'] or raw['torso_nonfoot_contact']
+        count = count+1 if abnormal else 0
+        expected = dict(last_global_step=g,consecutive=count,triggered=count==declaration['live_handoff']['fall_consecutive_samples'])
+        require(sample['state_after'] == expected and sample['abnormal'] == abnormal, 'Failed run fall reconstruction')
+        if expected['triggered']: triggers.append(g)
+        previous_fall_step = g
+    require(triggers == [origin['global_step']], 'One measured fall before passive entry')
+    epochs = [dict(capture=origin['capture'],transition=origin['epoch'])]+[dict(capture=r['capture'],transition=r['epoch']) for r in steps]
+    energies = [dict(begin=origin['energy'])]+[dict(sources=r['sources'],transition=r['energy']) for r in steps]
+    energy = energy_rows(core,epochs,energies,start=origin['global_step'],expected_count=len(epochs))
+    before = origin['controller']['state']; application = origin['application']; calls = 0
+    for index,row in enumerate(steps):
+        require(row['application'] == application and application['no_actuation_requested'] is True, 'Passive application continuity')
+        c = row['bound']['source_component_receipts']
+        for name,key in [('epoch','epoch_transition'),('energy','energy_transition'),('sources','energy_sources'),('application','application')]:
+            require(c[key] == row[name], 'Passive collector source join')
+        calls += audit_transition(core,before,row['bound'],row['controller'])
+        require(row['controller']['control'] is None, 'Passive entry unexpectedly issued control')
+        before = row['controller']['state_after']
+        require(before['route'] == 'entry' and before['terminal'] is (index == len(steps)-1), 'Passive route continuity')
+        if index < len(steps)-1: application = row['next_application']
+    require(before['terminal_phase'] == 'failed' and before['selector_memory']['original_memory']['passive_memory']['status'] == 'descent_timeout', 'Exact timeout disposition')
+    sent = [json.loads(line) for line in (directory/'commands.jsonl').read_text().splitlines()]
+    kicks_valid(sent,kicks)
+    negative = 0
+    changed_rows = copy.deepcopy(rows); changed_rows[-1]['detail']['controller']['terminal_phase'] = 'complete'
+    changed_retained = dict(retained,transitions=retained['transitions'][:-1])
+    changed_declaration = copy.deepcopy(declaration); changed_declaration['live_handoff']['passive_entry_maximum_steps'] -= 1
+    for stream,live,decl in [(changed_rows,retained,declaration),(rows,changed_retained,declaration),(rows,retained,changed_declaration)]:
+        try: _entry_timeout_shape(stream,live,decl)
+        except (ValueError,KeyError,TypeError): negative += 1
+        else: raise ValueError('Entry timeout reader accepted a corruption control')
+    classification = steps[-1]['controller']['native_receipt']['original_entry_control']['original_control']['entry']['original_passive_receipt']['classification']
+    return dict(ok=True,native_worlds=1,last_measured_completed_step=steps[-1]['global_step'],published_native_frames=len(frames),
+        fall_at=origin['global_step'],passive_entry_steps=len(steps),compiled_entry_calls_replayed=calls,energy=energy,
+        active_recovery_commands=0,resumed_walking_steps=0,terminal_classification=classification,negative_controls_refused=negative,
+        live_recovery_handoff_complete=False,recovery_success_established=False,reader_world_build_count=0,
+        physical_acceptance_authority=False,release_authority=False)
+
+
 def audit_native(core, folder, physical, declaration):
     """Require the whole declared episode; a partial route remains a failure."""
     directory = (folder/'physical').resolve()

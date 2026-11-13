@@ -71,8 +71,14 @@ mixed portable binary64 and native binary32 timesteps. The
 [v2 component](../sdk/explorer/studio/live_handoff_component_v2.json) checks the
 exact mapping and retains rejected sources. Its zero-world gate passes 32
 adapter checks, 486 exact compiled-call replays and eight reader corruption
-controls. A fresh native episode must complete recovery and at least 120
-resumed walking steps; installed interaction and recovery benefit remain open.
+controls. The [v2 native attempt](../sdk/explorer/studio/live_handoff_native_failure_v2.json)
+verifies that correction and all 240 passive entry intervals: 240 entry calls,
+240 energy evaluations and 1,920 motor observations independently replayed.
+It times out at 792 with an almost inverted torso and joint-limit and entry
+checks false. No active recovery command or walking restart occurs. Next
+search a declared recovery-entry/self-righting cohort, retain unsafe and
+inverted failures, and rigorously check diverse useful candidates through the
+full handoff. Recovery benefit, installed interaction and real time remain open.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature
