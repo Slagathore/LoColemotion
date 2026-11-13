@@ -64,14 +64,15 @@ body instances and two independently reconstructed staging pairs. The
 also passes one 360-step world after 35 adapter checks and 19 reader controls:
 two fresh increments, 16 motor observations, five reconstructed work channels
 and two replayed compiled evaluations. The combined
-[live handoff component](../sdk/explorer/studio/live_handoff_component_v1.json)
-now implements current portable recovery observation, measured fall detection,
-motor ownership transfer and same-body walking restart. Its zero-world gate
-passes 28 adapter checks, 486 exact compiled-call replays and six reader
-corruption controls. Completion under native physics remains open; the next
-one-world development episode must retain recovery and at least 120 resumed
-walking steps. Installed desktop interaction and recovery benefit remain
-separate gates.
+[handoff v1 native attempt](../sdk/explorer/studio/live_handoff_native_failure_v1.json)
+detected a fall at 552 and independently verified passive interval 553, then
+refused the observation projection before recovery control. Its comparison
+mixed portable binary64 and native binary32 timesteps. The
+[v2 component](../sdk/explorer/studio/live_handoff_component_v2.json) checks the
+exact mapping and retains rejected sources. Its zero-world gate passes 32
+adapter checks, 486 exact compiled-call replays and eight reader corruption
+controls. A fresh native episode must complete recovery and at least 120
+resumed walking steps; installed interaction and recovery benefit remain open.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature

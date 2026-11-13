@@ -13,6 +13,7 @@ const Facade := preload("res://sdk/adapters/godot/gdscript/qsdk_r10f_recovery_na
 static func synthetic_frame(sdk: Object, step: int, height: float = 0.06) -> Dictionary:
 	var input := EpochChecks.fixture(step,600+step)
 	for snapshot in input.snapshots.values():
+		snapshot.solver_step_s = float(PackedFloat32Array([World.OUTER_STEP_DURATION_S])[0])
 		snapshot.transform = Transform3D(Basis.IDENTITY,Vector3(0,height,0))
 		snapshot.linear_velocity_world_m_s = Vector3.ZERO
 		snapshot.angular_velocity_world_rad_s = Vector3.ZERO
@@ -80,6 +81,13 @@ static func synthetic_bound(sdk: Object, context: Dictionary, epoch: Dictionary,
 
 static func run(sdk: Object, context: Dictionary) -> Dictionary:
 	var failures: Array = []; var checks := 0
+	var native_dt: float = PackedFloat32Array([World.OUTER_STEP_DURATION_S])[0]
+	checks += 1
+	if not Bound.step_duration_projection_valid_v1(World.OUTER_STEP_DURATION_S,native_dt): failures.append("native clock projection")
+	for pair in [[native_dt,native_dt],[World.OUTER_STEP_DURATION_S,World.OUTER_STEP_DURATION_S],
+		[World.OUTER_STEP_DURATION_S,native_dt+pow(2.0,-30.0)]]:
+		checks += 1
+		if Bound.step_duration_projection_valid_v1(pair[0],pair[1]): failures.append("crossed or adjacent clock")
 	var fall_state := {}
 	for step in range(1,7):
 		var contact := step in [1,2,4,5,6]

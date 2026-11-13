@@ -2,6 +2,7 @@
 import argparse
 import copy
 import json
+import struct
 from pathlib import Path
 
 from audit_live_recovery_energy import (LocomotionCore, audit_rows as energy_rows,
@@ -30,6 +31,9 @@ def audit_bound(core, value):
     for item in (epoch, energy, sources): bound(core, item)
     frame = epoch['state_after']['latest']; step = frame['completed_boundary']['boundary_sequence']
     app = c['application']; two, three = value['observation_v2'], value['observation_v3']
+    native_dt = struct.unpack('<f',struct.pack('<f',1/120))[0]
+    require(two['outer_step_duration_s'] == three['outer_step_duration_s'] == 1/120 and
+        all(row['solver_step_s'] == native_dt for row in frame['ordered_body_sources']), 'Exact native clock projection')
     require(two['schema_version'] == 'sporespore_recovery_observation_v2' and three['schema_version'] == 'sporespore_recovery_observation_v3', 'Observation versions')
     require(three['semantic_step'] == app['semantic_step'] == sources['global_step'] == step and app['source_control_semantic_step'] == step-1, 'Application clock')
     require(app['no_actuation_requested'] is sources['raw']['no_actuation_requested'], 'Motor ownership policy')
@@ -160,7 +164,9 @@ def controls(core, fixture):
         lambda x:x['bound']['observation_v3']['state']['base_pose_world']['position_m'].__setitem__('y',1),
         lambda x:x['bound']['source_component_receipts']['application'].__setitem__('source_control_semantic_step',0),
         lambda x:x['controller']['calls'][0]['response'].__setitem__('utf8_text','{}'),
-        lambda x:x['branches']['partial']['calls'].pop(),lambda x:x['branches']['upright']['calls'].reverse()]:
+        lambda x:x['branches']['partial']['calls'].pop(),lambda x:x['branches']['upright']['calls'].reverse(),
+        lambda x:x['bound']['observation_v3'].__setitem__('outer_step_duration_s',struct.unpack('<f',struct.pack('<f',1/120))[0]),
+        lambda x:x['bound']['source_component_receipts']['epoch_transition']['state_after']['latest']['ordered_body_sources'][0].__setitem__('solver_step_s',1/120)]:
         changed = copy.deepcopy(fixture); mutate(changed)
         def reseal(value):
             if isinstance(value,dict):

@@ -68,7 +68,7 @@ def execute(args,source,folder,owner,cfg):
     create=jobs.api('CreateMutexW',[C.c_void_p,W.BOOL,W.LPCWSTR],W.HANDLE);release=jobs.api('ReleaseMutex',[W.HANDLE])
     handle=jobs.checked(create(None,False,'Global\\SporeSpore.Locomotion.PhysicalConformance.Serial.v1'));acquired=False
     receipt=dict(ledger_scope=dict(subsystem='explorer',engine_scope='godot_jolt',authority_mode='development',question_class='development'),
-        source_commit=source,runtime=owner.identity,ok=False,physical_acceptance_authority=False,release_authority=False,
+        source_commit=source,runtime=owner.identity,ok=False,physical_attempted=False,physical_acceptance_authority=False,release_authority=False,
         declaration=dict(seed=74,maximum_outer_steps=360,maximum_worlds=1,physical_wall_limit_seconds=180,
             question='Measure stand-up and walking-prefix timing and retained native observations for the exact declared context-cache source and engine images.',
             coverage='Fresh production entry, preparation, native stepping, context predicates and stand-up/walking prefix. No scheduled kick, full recovery, paired effect or acceptance.'))
@@ -194,6 +194,7 @@ def execute(args,source,folder,owner,cfg):
         for row in owner.identity.values():
             if sha(Path(row['path']))!=row['sha256']:raise RuntimeError('Runtime drift')
         if args.run:
+            receipt['physical_attempted']=True
             timeout=threading.Timer(180,owner.stop.set);timeout.start()
             try:receipt['physical']=owner.stream_run('godot_jolt',folder/'physical',False,dict(phase=74),project)
             finally:timeout.cancel()
@@ -213,7 +214,8 @@ def execute(args,source,folder,owner,cfg):
         owner.close()
         if acquired:release(handle)
         jobs.close(handle)
-    print(json.dumps(dict(ok=receipt['ok'],error=receipt.get('error'),output=str(folder),physical_ran='physical' in receipt)))
+    print(json.dumps(dict(ok=receipt['ok'],error=receipt.get('error'),output=str(folder),
+        physical_attempted=receipt['physical_attempted'],physical_completed='physical' in receipt)))
     return 0 if receipt['ok'] else 1
 
 

@@ -39,7 +39,7 @@ func _reopen_handoff_qualification() -> Dictionary:
 	if (not (receipt is Dictionary) or receipt.get("schema_version") != "sporespore_live_handoff_preflight_qualification_v1"
 		or receipt.get("source_commit") != _diagnostic.source_commit or receipt.get("world_build_count") != 0
 		or receipt.get("zero_world",{}).get("ok") != true or receipt.zero_world.get("compiled_calls") != 486
-		or receipt.get("reader",{}).get("ok") != true or receipt.reader.get("negative_controls_refused") != 6
+		or receipt.get("reader",{}).get("ok") != true or receipt.reader.get("negative_controls_refused") != 8
 		or receipt.reader.get("positive",{}).get("compiled_calls_replayed") != 486
 		or not (receipt.get("dependency_binding") is Dictionary) or receipt.dependency_binding.is_empty()):
 		return {"ok":false,"failure_code":"LIVE_HANDOFF_QUALIFICATION_CONTENT"}

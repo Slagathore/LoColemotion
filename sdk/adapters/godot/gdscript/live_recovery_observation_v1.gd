@@ -49,7 +49,15 @@ static func compose_v1(sdk: Object, context: Dictionary, epoch_transition: Dicti
 		or not (contact_source.get("contact_source_receipt") is Dictionary)): return _failure("STATE_OR_CONTACT_SOURCE")
 	if (state_source.observation_base.get("semantic_step") != step or state_source.direct_state_source_receipt.get("semantic_step") != step
 		or contact_source.contact_source_sha256 != _sha(sdk,contact_source.contact_source_receipt)): return _failure("SOURCE_CLOCK_OR_DIGEST")
-	if not _source_projection_valid(sdk,context,frame,state_source,contact_source): return _failure("SOURCE_PROJECTION")
+	if not _source_projection_valid(sdk,context,frame,state_source,contact_source):
+		var refused := _failure("SOURCE_PROJECTION")
+		# Keep the measured projection on refusal, before any controller call.
+		refused.state_source = state_source
+		refused.contact_source = contact_source
+		refused.task_source = task_source
+		refused.portable_step_duration_s = state_source.observation_base.get("outer_step_duration_s")
+		refused.native_step_duration_s = frame.ordered_body_sources[0].solver_step_s
+		return refused
 	if (application.get("ok") != true or application.get("semantic_step") != step
 		or application.get("source_control_semantic_step") != step-1
 		or application.get("no_actuation_requested") != energy_sources.raw.no_actuation_requested
@@ -138,7 +146,15 @@ static func _source_projection_valid(sdk: Object, context: Dictionary, frame: Di
 		and state.get("base_twist_world") == {"linear_velocity_m_s":torso.linear_velocity_world_m_s,"angular_velocity_rad_s":torso.angular_velocity_world_rad_s}
 		and state.get("gravity_world_m_s2") == direct.get("gravity_world_m_s2")
 		and Epoch._from_vec(direct.get("gravity_world_m_s2")) == Epoch._from_vec(frame.ordered_body_sources[0].total_gravity_world_m_s2)
-		and base.get("outer_step_duration_s") == frame.ordered_body_sources[0].solver_step_s)
+		and step_duration_projection_valid_v1(base.get("outer_step_duration_s"),frame.ordered_body_sources[0].solver_step_s))
+
+
+static func step_duration_projection_valid_v1(portable: Variant, native: Variant) -> bool:
+	# The public clock is binary64; the pinned native solver stores binary32.
+	# Check the exact declared projection, without a numerical tolerance.
+	return (typeof(portable) == TYPE_FLOAT and typeof(native) == TYPE_FLOAT
+		and portable == World.OUTER_STEP_DURATION_S
+		and native == float(PackedFloat32Array([World.OUTER_STEP_DURATION_S])[0]))
 
 
 static func _energy_join(sdk: Object, epoch: Dictionary, energy: Dictionary, sources: Dictionary) -> bool:

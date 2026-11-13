@@ -37,34 +37,28 @@ finite positive at different starts: S169 profile 55 now fails one new start,
 while profile 27 passes both.
 
 1. **Complete the Studio recovery handoff.** Fast walking must detect a fall,
-   enter recovery and resume walking on the same native bodies. The current
-   fast worker stops advancing the recovery ledger, so a fresh observation
-   epoch must start at a measured completed boundary. Preserve body identity,
-   global callback sequence and per-step energy/contact measurements; do not
-   reset world state, invent missing cumulative history or reuse stale clocks.
-   Validate the actual production route with the smallest adequate development
-   ghost before testing useful recovery and the visible Studio interaction.
-   The [fresh observation route](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json)
-   now passes in one native world after 31 adapter checks and ten reader controls.
-   All 360 steps complete; boundaries 300-302 retain the same nine body instances
-   and two contiguous staging pairs, reconstructed exactly by the independent
-   reader. The [measured energy route](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
-   also passes one 360-step world after 35 adapter checks and 19 reader controls:
-   two fresh increments, 16 motor observations, all five work channels and both
-   compiled energy evaluations reconstruct independently. The combined
-   [live handoff component](../sdk/explorer/studio/live_handoff_component_v1.json)
-   now joins current contacts, body state and actual motor ownership, detects a
-   fall, enters the existing compiled recovery laws and restarts walking on the
-   same body instances. Its zero-world gate passes 28 adapter checks, 486 exact
-   compiled-call replays and six reader corruption controls. Native completion
-   is pending: next run one declared 2,041-step development episode with one
-   sideways impulse and require at least 120 resumed walking steps. Profile
-   startup and stepping on that route. The short probe observed
-   19.226671 seconds through stand-up and 0.987050 seconds for 119 walking steps.
-   Energy collection/projection took 43.769 ms across its origin and two increments,
-   excluding the separate boundary capture and staging processing.
-   This is not a matched speed comparison or a new fifteen-second result; the
-   earlier fifteen-second run retains its 43.852625 and 29.662299 second timings.
+   enter recovery and resume walking on the same native bodies. The
+   [fresh boundary](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json)
+   and [measured energy](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
+   routes passed their bounded native probes. The combined
+   [handoff v1 attempt](../sdk/explorer/studio/live_handoff_native_failure_v1.json)
+   detected the fall at step 552, closed walking and independently verified one
+   passive interval at 553, then refused its observation projection before
+   recovery control. Its exact comparison mixed portable binary64 time with the
+   native binary32 timestep. The [v2 component](../sdk/explorer/studio/live_handoff_component_v2.json)
+   checks that explicit representation mapping and retains rejected projections;
+   32 adapter checks, 486 exact compiled replays and eight reader corruption
+   controls pass with zero worlds. Next run a fresh 2,041-step native episode
+   and require recovery completion plus at least 120 resumed walking steps.
+   Preserve body identity, native clocks and measured work; no world reset or
+   invented pre-epoch history. Installed desktop interaction and useful recovery
+   remain separate gates.
+   The earlier short energy probe observed 19.226671 seconds through stand-up
+   and 0.987050 seconds for 119 walking steps; collection/projection took 43.769 ms
+   across three boundaries, excluding separate boundary capture and staging.
+   These are descriptive timings, not a matched speed comparison or a new
+   fifteen-second result; the earlier fifteen-second timings remain 43.852625
+   and 29.662299 seconds.
 2. **Broaden candidates where confirmation exposed gaps.** Keep the four
    selection misses separate from the eleven groups with no passing tested
    candidate. Search factored creature/controller cohorts through the public
