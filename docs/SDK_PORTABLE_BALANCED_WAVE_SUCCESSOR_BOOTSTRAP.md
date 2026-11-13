@@ -3,36 +3,37 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [latest feedback result](../sdk/discovery/creature_righting_feedback_native_result_v1.json)
-retains 256 valid six-second negatives across 16 bodies and 16 profiles at the
-inverted entry: twelve feedback variants, three matched timed comparators and
-a fresh brake. All 134 applicable controls passed before physics. Independent
-replay verifies 184,320 decisions and 921,600 native samples; zero worlds meet
-the upright criterion, none are invalid, no joint-limit breaches are measured
-and all 16 shortlists are empty. All 3,864 retained artifacts and 17 stage
-cleanups were verified. The shared measured-rotation component has native
-route evidence; useful righting remains unestablished.
-The preceding timed cohorts retain 496 valid negatives. Their original records
-and the earlier eight-world route's descriptive-coverage discrepancy remain
-preserved. The [geometry diagnostic](../sdk/discovery/creature_righting_geometry_result_v1.json)
-now checks 22,945 poses across all 16 retained bodies and eight directions,
-with 9,216 scalar witness checks and zero worlds. All 128 body/direction groups
-contain uphill fixed-pose intervals, first beginning 10-35 degrees from inverted;
-original native boundary progress peaks at 11.4-14.4 degrees per body. Static
-support geometry does not establish causation, dynamic feasibility or righting
-impossibility. The [four-phase component](../sdk/discovery/creature_righting_component_v3.json)
-now qualifies distinct wind-up, drive, follow-through and catch targets with
-independent limb timing and measured transition gates. All 143 controls pass;
-17,152 mixed decisions over 32 shapes match scalar planning, and the full reader
-reconstructs a complete cycle and rejects forged phase, energy and work records.
-Momentum and kinetic energy also agree with 64 retained native boundaries
-within the declared diagnostic tolerance. Sampled force-displacement work is
-an estimate, not an exact energy balance or eligibility criterion.
-The [four-world route](../sdk/discovery/creature_righting_sequence_route_v1.json)
-and [256-world cohort](../sdk/discovery/creature_righting_sequence_v1.json) are
-now declared but unexecuted. Run the two-interval route first, then the broad
-six-second cohort if valid. Physical limits, full capture and upright eligibility
-stay fixed; useful leads require varied-start confirmation and full Godot handoffs.
+The [latest four-phase result](../sdk/discovery/creature_righting_sequence_native_result_v1.json)
+retains 256 valid six-second negatives across 16 bodies: fourteen geometry-derived
+sequences and fresh timed/brake comparators. All 143 applicable controls pass
+before physics. Independent replay verifies 184,320 decisions and 921,600 native
+samples, including phase state, reconstructed mechanics and sampled work. Zero
+eligible or invalid worlds, no upright dwell or joint-limit breaches, and all
+16 shortlists empty. All 3,884 artifacts and 18 stage cleanups were verified.
+The preceding [four-world route](../sdk/discovery/creature_righting_sequence_route_native_v1.json)
+verifies the two-interval capture path only; it adds no performance evidence.
+
+Post-hoc review of all 64 pinned controller streams finds that all 224 sequence
+worlds reach wind-up twice. All 1,120 later phase transitions use the bounded
+timeout; none meets a measured rotation or contact gate. Best recorded rotation
+from inverted is 9.5716 degrees for a sequence and 14.3705 for timed. These are
+controller-boundary observations, not all-substep maxima or an eligibility score.
+The static [geometry proposal](../sdk/discovery/creature_righting_geometry_result_v1.json)
+did not produce useful dynamic transfer. Sampled force-displacement work remains
+an estimate, not an exact energy balance or a new criterion.
+
+The earlier [timed and feedback cohorts](../sdk/discovery/creature_righting_feedback_native_result_v1.json)
+retain 752 valid negatives; all four cohorts total 1,008. Original results and
+the first route's descriptive-coverage discrepancy remain preserved. The
+[component v3](../sdk/discovery/creature_righting_component_v3.json) and both
+native runs are complete at source `217d591b`. Native correctness does not
+establish useful righting, impossibility, training, adaptation or release.
+Next qualify and measure compact recording for the shared mixed-creature runner,
+using matched full/compact canaries and the earlier reduced-serialization pattern.
+Then declare a broad dynamic trajectory and phase-timing search with unchanged
+physical limits and upright eligibility. Useful diverse leads need fresh
+full-capture varied-start confirmation and complete Godot handoffs.
+
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes
