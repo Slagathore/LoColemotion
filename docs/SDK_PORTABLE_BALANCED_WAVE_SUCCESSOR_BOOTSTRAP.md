@@ -14,13 +14,17 @@ cleanups were verified. The shared measured-rotation component has native
 route evidence; useful righting remains unestablished.
 The preceding timed cohorts retain 496 valid negatives. Their original records
 and the earlier eight-world route's descriptive-coverage discrepancy remain
-preserved. These results do not establish righting impossibility. Before a new
-native cohort, use retained morphology, joint motion and contact evidence for
-zero-world reach and pose-sequence analysis, then declare a materially different
-coordination proposal. No next physical cohort is declared. Physical limits,
-full capture and upright eligibility stay fixed; useful leads still require
-varied-start confirmation and full Godot handoffs. No recovery, learning or
-handoff benefit is established.
+preserved. The [geometry diagnostic](../sdk/discovery/creature_righting_geometry_result_v1.json)
+now checks 22,945 poses across all 16 retained bodies and eight directions,
+with 9,216 scalar witness checks and zero worlds. All 128 body/direction groups
+contain uphill fixed-pose intervals, first beginning 10-35 degrees from inverted;
+original native boundary progress peaks at 11.4-14.4 degrees per body. Static
+support geometry does not establish causation, dynamic feasibility or righting
+impossibility. Next: derive distinct wind-up, drive and catch poses with
+independent limb timing and measured momentum/work accounting, then qualify
+the changed controller before broad native search. No next physical cohort is
+declared. Physical limits, full capture and upright eligibility stay fixed;
+useful leads require varied-start confirmation and full Godot handoffs.
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes

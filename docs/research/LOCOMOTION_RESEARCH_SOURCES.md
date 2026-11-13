@@ -3840,3 +3840,33 @@ establish that mechanism as the original incident's cause. The new helper
 holds verified member handles through cleanup, preserves the timeout failure,
 and retains membership and wait observations. Its 42-control diagnostic is
 finite infrastructure evidence; native integration remains a separate gate.
+
+## Righting coordination and fixed-pose geometry - 2026-11-13
+
+[Xuan and Li, Coordinated appendages accumulate more energy to self-right on the ground](https://arxiv.org/abs/2008.08981v2)
+models a winged robot's discontinuous contacts and actuation. Phase changes the
+balance between energy added by appendages and lost in collisions, affecting
+self-righting. Read on 2026-11-13. This motivates examining momentum and phase
+coordination after our two-pose timed and feedback motions failed. It does not
+transfer the winged robot's dynamics or outcomes to this quadruped.
+
+[Lee, Hwangbo and Hutter, Robust Recovery Controller for a Quadrupedal Robot using Deep Reinforcement Learning](https://arxiv.org/abs/1901.07517)
+uses three simulated learned behaviors and a selector on the 12-DOF ANYmal.
+Read on 2026-11-13. Separate righting/standing behaviors and their coordination
+are relevant architecture input; the published robot and training evidence do
+not qualify this eight-joint SDK or replace its held-out learning contract.
+
+The [local geometry diagnostic](../../sdk/discovery/creature_righting_geometry_result_v1.json)
+retains 22,945 poses, all sixteen feedback-cohort morphologies and all sampled
+height tables outside Git. Every one of 128 body/direction groups contains a
+five-degree interval with positive centre-of-mass rise for every sampled pose
+held fixed. Their first intervals begin 10-35 degrees from inverted; retained
+native boundary rotations peak at 11.4-14.4 degrees per body. The scalar checks
+verify the box/capsule support calculation, not a realizable trajectory.
+
+Local inference: test non-complementary wind-up, drive and catch poses with
+independent limb timing and measured momentum/work accounting. Free vertical
+placement at the lowest collision point and fixed-pose interval comparisons
+omit inter-pose work, dynamic contacts and collision loss. They neither bound
+a real trajectory's energy barrier nor prove the cause of the native failures
+or righting impossibility. No new worlds, training or recovery claim is made.

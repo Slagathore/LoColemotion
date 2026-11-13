@@ -1,0 +1,128 @@
+{
+  "schema_version": "locolemotion_righting_geometry_v1",
+  "campaign_id": "creature_righting_geometry_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "core",
+    "authority_mode": "zero_world_geometry_diagnostic",
+    "question_class": "development"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_righting_feedback_native_result_v1.json",
+    "sha256": "fc2e6e0a8c9459c4667e2941dd48d826406650c8deb5fc78664dd4a35a0ae269"
+  },
+  "runtime_numpy": "2.4.6",
+  "body_count": 16,
+  "pose_pool": {
+    "limb_states": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.9,
+        0.9
+      ],
+      [
+        -0.9,
+        -0.9
+      ],
+      [
+        0.9,
+        -0.9
+      ],
+      [
+        -0.9,
+        0.9
+      ],
+      [
+        0.6,
+        0.9
+      ],
+      [
+        -0.6,
+        -0.9
+      ],
+      [
+        0.9,
+        0.45
+      ],
+      [
+        -0.9,
+        -0.45
+      ]
+    ],
+    "uniform_count": 8192,
+    "edge_count": 8192,
+    "seed": 1061118
+  },
+  "progress_degrees": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100,
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150,
+    155,
+    160,
+    165,
+    170,
+    175,
+    180
+  ],
+  "azimuth_degrees": [
+    0,
+    45,
+    90,
+    135,
+    180,
+    225,
+    270,
+    315
+  ],
+  "numerical_tolerance_m": 1e-09,
+  "tie_tolerance_m": 1e-12,
+  "dynamic_feasibility_established": false,
+  "recovery_benefit_established": false,
+  "trained": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "method": "Rigid-tree geometry with whole-body center of mass and exact box/capsule support extents; vertically translate the fixed pose until its lowest geometry touches the floor. Compare the same pose at adjacent orientations and retain the entire sampled height population.",
+  "selection_provenance": "All sixteen bodies are inherited from the feedback cohort. A posthoc exploratory screen of 6,561 factored poses on S169 motivated this larger diagnostic; neither the pose bank nor these bodies are held out.",
+  "qualification_economy": "New observable: whole-body floor-supported center-of-mass height across joint poses and orientations. The existing fixed-base distal-reach screen cannot express this. One shared unversioned module consumes declarations and reuses RigidTree plus contained_stage_owner_v2; no native campaign gate or historical audit is duplicated.",
+  "limits": [
+    "Finite sampled geometry only; no continuous pose, orientation or morphology coverage.",
+    "Each five-degree comparison holds its joint pose fixed. Transitions between selected witness poses, their joint work and contact-force feasibility are not modeled.",
+    "The lowest collision point is placed at the floor by free vertical translation. This is a geometric support convention, not a dynamic contact solution, energy barrier bound or executable trajectory.",
+    "Momentum, collision losses, joint-speed limits, force caps and self-intersection during motion are not evaluated by this screen. Native models and physical limits remain unchanged.",
+    "Observed native angles summarize original controller boundaries, not every internal solver step; they are posthoc and do not relabel any original eligibility outcome.",
+    "Ascending intervals for every sampled pose do not prove righting impossibility. A descending sample does not establish feasible motion or recovery.",
+    "No new physics world, learning update, acceptance, Tier 2, Tier 3 or release authority."
+  ]
+}
