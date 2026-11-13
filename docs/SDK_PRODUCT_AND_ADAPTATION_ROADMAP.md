@@ -10,7 +10,7 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and useful self-righting remains unestablished after seven negative cohorts.
+and useful self-righting remains unestablished after eight negative cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -26,23 +26,22 @@ and useful self-righting remains unestablished after seven negative cohorts.
 | [Retained motion diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json) | Six controls pass; all 1,290,240 velocity commands match. 3,512/3,616 completed phases time out, with large pose errors despite close velocity tracking and rare force saturation. Zero new worlds; no causal or recovery claim |
 | [Paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json) | 224 fresh twelve-second worlds after 172 controls: zero eligible or progress leads, 32 joint-breach worlds. Longer holds increase measured pose completions 160 to 382 and contact worlds 23/96 to 33/96; all nonviolating proposals still trail their own fresh timed comparator. All 2,580,480 velocity commands match in the retained-motion diagnostic |
 | [Paired joint braking](../sdk/discovery/creature_joint_braking_native_result_v1.json) | 224 twelve-second worlds after 175 controls: braked joint-crossing worlds 0/96 versus 16/96 unbraked; zero recovery or progress leads. Contact worlds fall 33 to 25, and maximum nonviolating rotation falls 14.03 to 13.98 degrees. All 2,580,480 commands match. A historical test-input inventory omission is disclosed and corrected by a later exact-byte supplement and complete zero-world successor |
+| [Body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json) | 128 twelve-second worlds after 172 controls: all 96 new-controller worlds acquire distal contact, with zero joint violations, but zero recovery or progress leads. Best new rotation is 14.235 degrees; best gain over its own fresh timed comparator is 1.467 degrees. The eight-world full route replays 2,880 decisions and 14,400 samples; broad compact reading reconstructs 184,320 records and 921,600 samples |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Run the body-aware contact search from its clean prospective freeze.**
-   The [contact component](../sdk/discovery/creature_contact_reach_component_v1.json)
-   passes all 172 zero-world controls. Three strategies use each compiled limb:
-   continuously choose a floor target, retain a geometric world anchor after
-   measured contact, or sweep that anchor to encourage rotation. The finite
-   joint grid retains unreachable-target residuals; contact anchors are inferred
-   geometry, not measured force or guaranteed dynamic support. Every new
-   profile keeps anticipatory braking and the existing joint/force limits.
-   First run eight full-capture worlds for three seconds, requiring observed
-   contact, bounded push/reset cycles, retained anchors and anchor sweeps.
-   Then search 24 profiles on four bodies each across 16 exposed shapes, with
-   both fresh comparators on every body: 128 twelve-second worlds.
-   Eligibility and the five-degree progress screen stay fixed. Native benefit
-   is pending; useful leads need fresh full-capture varied-start checks before
-   Studio adoption. All 1,680 valid negative performance worlds remain.
+1. **Drive an explicit bounded torso-rotation target through contacted limbs.**
+   The [contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
+   establishes contact acquisition on all 96 new-controller worlds across
+   sixteen exposed shapes, with zero joint violations. It does not produce
+   upright dwell or a qualifying rotation gain. Keep that geometry-based
+   acquisition and anticipatory braking, and test a bounded torso-rotation
+   objective projected through measured contacts. Retain finite projection
+   residuals and measured progress; the target is a hypothesis, not guaranteed
+   dynamic support. Declare the complete zero-world gate, a small full route,
+   then a broad body/profile search with fresh comparators and unchanged
+   joint/force limits, eligibility and five-degree progress screen.
+   All 1,808 valid negative performance worlds remain. Useful leads still
+   need fresh full-capture varied-start confirmation before Studio adoption.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

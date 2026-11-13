@@ -510,7 +510,7 @@
       "title": "Geometry-guided floor targets and measured-contact anchors",
       "pillar": "locomotion",
       "classification": "zero_world_development_component",
-      "scope": "All 172 controls pass with zero worlds. Declares three contact strategies, 24 profiles and 128 twelve-second worlds across sixteen bodies, after an eight-world full route. Finite projection residuals are retained; neither inferred anchors nor braking estimates guarantee dynamic feasibility. Native benefit is pending.",
+      "scope": "All 172 controls pass with zero worlds. The native successor now verifies an eight-world full route and 128 twelve-second worlds across sixteen bodies: all 96 new-controller worlds acquire contact with zero joint violations, but zero recovery or progress leads. Inferred anchors and braking estimates do not guarantee dynamic feasibility.",
       "record": {
         "path": "sdk/discovery/creature_contact_reach_component_v1.json",
         "pointer": null
@@ -520,10 +520,32 @@
         "sdk/discovery/creature_contact_reach_search.py",
         "sdk/discovery/test_creature_contact_reach.py",
         "sdk/discovery/creature_contact_reach_route_v1.json",
-        "sdk/discovery/creature_contact_reach_v1.json"
+        "sdk/discovery/creature_contact_reach_v1.json",
+        "sdk/discovery/creature_contact_reach_native_result_v1.json"
       ],
       "source_commits": [
         "49c6a407a566b2873819f29a0bdd3f1b6cdd2361"
+      ],
+      "external_artifact_ids": [],
+      "dependency_closure_complete": false
+    },
+    {
+      "id": "body-aware-contact-native",
+      "title": "All tested contact profiles reach the ground but fail useful righting",
+      "pillar": "locomotion",
+      "classification": "finite_native_development_result",
+      "scope": "128 twelve-second worlds across sixteen exposed bodies after 172 controls and an eight-world full route. All 96 new-controller worlds acquire distal contact, zero joint violations, zero recovery and zero progress leads. Best gain 1.467 degrees is below the fixed five-degree requirement. Compact outcomes are reconstructed; useful leads still require fresh full-capture confirmation.",
+      "record": {
+        "path": "sdk/discovery/creature_contact_reach_native_result_v1.json",
+        "pointer": null
+      },
+      "related_documents": [
+        "sdk/discovery/creature_contact_reach_component_v1.json",
+        "sdk/discovery/creature_contact_reach_route_v1.json",
+        "sdk/discovery/creature_contact_reach_v1.json"
+      ],
+      "source_commits": [
+        "5d1264c6a9156948ce565ebc4119146b47c59903"
       ],
       "external_artifact_ids": [],
       "dependency_closure_complete": false
@@ -664,8 +686,8 @@
     },
     {
       "path": "sdk/release/quadruped_support_matrix.json",
-      "sha256": "85815e0b046fa66c98e1513bc3559ee087b84bcda0fba3c49b67ffda188db165",
-      "byte_length": 3541390
+      "sha256": "e495eb6cbbc4e18a4a9fa9e83921270ea8bf024f57ce84184e586e56df8c322f",
+      "byte_length": 3542608
     },
     {
       "path": "sdk/discovery/creature_righting_component_v1.json",
@@ -981,6 +1003,11 @@
       "path": "sdk/discovery/creature_contact_reach_v1.json",
       "sha256": "c06d9dde5b47d3247ce1b6b8d2e7bb04e7cb87af5aec11b217cc4cc9a4462cf3",
       "byte_length": 44935
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reach_native_result_v1.json",
+      "sha256": "2f3307767991ad3511f54e53872db5939f1784bee5a023f8ace256d49db20124",
+      "byte_length": 34570
     }
   ],
   "external_artifacts": [

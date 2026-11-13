@@ -3,60 +3,46 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [paired braking result](../sdk/discovery/creature_joint_braking_native_result_v1.json)
-is complete at source 8c81cf2e: 224 fresh twelve-second worlds across sixteen
-bodies. Twenty-four exposed slow trajectories each run with and without the
-braking option on four bodies; every body also has both fresh comparators.
-Poses, phase timing, gains, speed, slew, force and eligibility remain fixed.
+The [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
+is complete at source 5d1264c6: 128 fresh twelve-second worlds across sixteen
+exposed shapes. Twenty-four new profiles each run on four bodies, with both
+fresh comparators on every body. The three strategies continuously retarget
+the floor, retain an inferred world anchor after measured contact, or sweep
+that anchor during a bounded push. All new profiles keep anticipatory braking.
 
-Both the fourteen-world 0.75-second full canary and broad compact run pass
-175 controls. The canary replays 1,260 decisions and 6,300 samples with exact
-compact projection. Braking activates 410 times before observed bound breaches;
-two unbraked canary worlds violate limits and no braked world does.
-The broad reader reconstructs 322,560 controller records and 1,612,800 native
-samples. All 5,881 native artifacts and 44 stage cleanups verify.
+All 96 new-controller worlds acquire distal contact; none crosses a joint
+limit. Every world still fails recovery, with zero invalid worlds, upright
+dwell or qualifying progress leads. Maximum new-controller rotation is 14.235
+degrees. Best gain over its own fresh timed comparator is 1.467 degrees,
+below the unchanged five-degree requirement; the timed maximum is 14.371.
+Acquiring some contact does not establish continuous support or useful force.
 
-The intervention removes all sixteen observed unbraked crossing failures:
-zero of 96 braked worlds cross a joint bound, versus 16/96 unbraked.
-The read-only motion diagnostic matches all 2,580,480 velocity commands and
-counts 24,313 anticipatory changes. Violating samples fall from 4,488 to zero.
-This is finite development evidence for joint-bound handling, not a verified
-physical stopping model or broad morphology qualification.
+Both the eight-world three-second full route and broad compact run pass
+172 controls. The full route replays 2,880 decisions and 14,400 samples with
+exact compact projection, measured-contact transitions, bounded pushes,
+new cycles, retained anchors and sweeps. Broad reading reconstructs 184,320
+records and 921,600 native samples; it does not claim full controller replay.
+All 5,475 native artifacts, 42 cleanup reports and all six directly read
+declaration inputs verify. The [component](../sdk/discovery/creature_contact_reach_component_v1.json)
+retains the prospective zero-world evidence and source pins.
 
-Recovery still fails in all 224 worlds, with no invalid worlds or progress
-leads. Contact worlds fall from 33/96 to 25/96; maximum nonviolating rotation
-falls from 14.03 to 13.98 degrees, and mean paired rotation changes by -0.526
-degrees. Every nonviolating proposal remains below its own fresh timed
-comparator. Measured pose exits change only from 382 to 390 of 1,176 completed
-visits. No recovery or adaptation mechanism is adopted.
+Next test an explicit bounded torso-rotation target projected through
+contacted limbs. Keep geometry-based contact acquisition, braking, command
+bounds, fresh comparators and unchanged eligibility. Retain projection
+residuals and measured progress. This is a controller hypothesis requiring
+its own complete gate, small full route and broad native search.
+Useful leads need fresh full-capture varied-start confirmation before the
+Godot walk-fall-recover-resume handoff with 120 resumed steps.
+Eight performance cohorts retain 1,808 valid negative worlds.
 
-The original direct source inventories omit the historical trajectory
-declaration read by the legacy-compatibility control. Its transitive hash pin
-is retained in the archived retiming recipe. The
+The preceding [paired braking result](../sdk/discovery/creature_joint_braking_native_result_v1.json)
+retains 224 twelve-second worlds at source 8c81cf2e after 175 controls.
+Braking removes all sixteen observed unbraked crossing failures and 4,488
+violating samples, but leaves zero recovery or progress leads. All 2,580,480
+commands match in the retained-motion diagnostic. The original direct test-input
+inventory omission, exact-byte supplement and complete
 [inventory successor](../sdk/discovery/creature_joint_braking_component_v2.json)
-records an exact-byte supplement matching the published freeze, unchanged
-checkout and earlier archive. Original receipts and the
-[v1 component](../sdk/discovery/creature_joint_braking_component_v1.json) remain
-unchanged. The complete successor gate passes 175 controls and now retains all
-four declarations. Native physics was not repeated for this inventory-only fix.
-
-The [body-aware contact component](../sdk/discovery/creature_contact_reach_component_v1.json)
-passes 172 zero-world controls. Three strategies select floor-facing targets
-from compiled limb geometry, retain a geometric world anchor after measured
-contact, or sweep that anchor during a bounded push. Every new profile keeps
-anticipatory braking; all original command and eligibility limits remain.
-Targets come from a finite legal joint grid. Projection residuals remain
-visible, and inferred anchors are not measured contact points or force.
-
-The next gate is a clean pushed freeze and eight three-second full-capture
-worlds. Measured contact, bounded push/reset cycles, anchor retention and sweep
-coverage are required before the broad search: 24 profiles on four bodies
-each, two per family on every one of sixteen shapes, plus both fresh
-comparators, totaling 128 twelve-second worlds. All 2,375 zero-world artifacts,
-nineteen cleanup reports and six directly read declaration inputs verify.
-No native contact-controller benefit is established. Useful diverse leads
-still need fresh full-capture varied-start checks and the complete Godot
-walk-fall-recover-resume handoff with 120 resumed steps.
+remain explicit; original receipts and component records are unchanged.
 
 The preceding [paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json)
 retains 224 twelve-second negatives at source b8f369f2. Longer schedules improve

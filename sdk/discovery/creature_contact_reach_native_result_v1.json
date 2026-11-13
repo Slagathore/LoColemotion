@@ -1,0 +1,973 @@
+{
+  "schema_version": "locolemotion_contact_reach_native_result_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "status": "complete_native_contact_acquisition_without_qualifying_rotation_or_recovery",
+  "source_commit": "5d1264c6a9156948ce565ebc4119146b47c59903",
+  "source_status": [],
+  "component": {
+    "path": "sdk/discovery/creature_contact_reach_component_v1.json",
+    "sha256": "6e922652eddf2efe3bff5972115ac3433117fa18eccf3227df00f61b98f4f320"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_joint_braking_native_result_v1.json",
+    "sha256": "3422b1584c76fb1eaa481a2144801999c87a74c300ab1254b6621ed5603a594c"
+  },
+  "source_pins": [
+    {
+      "path": "sdk/discovery/.gitattributes",
+      "sha256": "e2ac868f3e59f357446f3d4f54f86f84261f37d70f16d057fa09930ae9476cf9"
+    },
+    {
+      "path": "sdk/discovery/creature_capture.py",
+      "sha256": "e90e14baf0352391c2cfb7a571512f7949fa8ea5dfef31d8ae161952175abe7a"
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reach.py",
+      "sha256": "1f512e2e7dd917f5312cc2a6554e456a599dec605de364a44ef5df382dc7a5ea"
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reach_route_v1.json",
+      "sha256": "dcc609e24796cffd5a76e252eb4fa059ea19a563fde8142357aaaec90c714e62"
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reach_search.py",
+      "sha256": "6ca0ba5901095a51bad6b23732fd232984db278e6b1ee1d9b1eeba0766db86c5"
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reach_v1.json",
+      "sha256": "c06d9dde5b47d3247ce1b6b8d2e7bb04e7cb87af5aec11b217cc4cc9a4462cf3"
+    },
+    {
+      "path": "sdk/discovery/creature_joint_braking_search.py",
+      "sha256": "a910ba987389eaa702bae567bff22357ddc4c7ed02ddb77197bfed5ee00278d3"
+    },
+    {
+      "path": "sdk/discovery/creature_native.py",
+      "sha256": "328b0a0da9ef55d61efefe0551efcebeb2d4f8e05353149559cc8add487cc13f"
+    },
+    {
+      "path": "sdk/discovery/creature_righting.py",
+      "sha256": "558eea4b08c164bd8929e68a4fb4c80392c5a63c13b1528f0e85fd533b5d72df"
+    },
+    {
+      "path": "sdk/discovery/run_creature_native.py",
+      "sha256": "5a13c1c58c4a801c602d307ca9608af9505a16bcd967b6e5c1523abf96f01c38"
+    },
+    {
+      "path": "sdk/discovery/test_creature_contact_reach.py",
+      "sha256": "c4b711cc3b65f6a4378240f172efead49ab6af031b0465ab46701d4b8bdd301a"
+    }
+  ],
+  "source_runtime_unchanged": true,
+  "full_canary": {
+    "archive_relative_path": "sdk2-creature-contact-reach-route-v1-39e77f50acb24dd7a578afa72b14baf2",
+    "receipt_sha256": "b67a7c0403b6f6591a72d1d8e2008e48961287b4bfed1b6a10227701611774fb",
+    "declaration_sha256": "6049d0b78fdc2fd65960f53c08b851a4e48cff736e467be7eb2d1b601cad84dc",
+    "gate_receipt_sha256": "164d2628778dff31f38a41e36a23a92aaeca9f7b924f8e3ed5d6b3a987348e12",
+    "independent_audit_sha256": "a5dd0e0079160467839b23443baec60ecf5d1e6da403ad31f4fde3b7523937b6",
+    "worker_result_sha256": "714f102943dfc73430aabc67fecf9882e0f4d8a263f0dd674872ae11b6ab578a",
+    "artifacts_verified": 2431,
+    "bytes_verified": 387665693,
+    "cleanup_reports_verified": 21,
+    "controls_passed": 172,
+    "controls_required": 172,
+    "source_binding_count": 1205,
+    "runtime_binding_count": 1359,
+    "owner_wall_s": 166.89000000001397,
+    "native_worker_wall_s": 42.312363800010644,
+    "capture": {
+      "profile": "locolemotion_creature_compact_capture_v1",
+      "full_capture": true,
+      "compact_controller_rows_verified": 2880,
+      "compact_native_samples_reconstructed": 14400,
+      "within_run_projection_verified": true,
+      "controller_replay_verified": true,
+      "detailed_native_capture_verified": true,
+      "qualification_requires_fresh_full_capture": true,
+      "training_data_authority": false,
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "equivalence_authority": false
+    },
+    "route_coverage": {
+      "strategy_counts": {
+        "ground": {
+          "rows": 720,
+          "measured_contact": 4,
+          "bounded_push": 2,
+          "new_cycle": 2,
+          "retained_anchor": 0,
+          "displaced_anchor": 0
+        },
+        "anchor": {
+          "rows": 720,
+          "measured_contact": 4,
+          "bounded_push": 2,
+          "new_cycle": 2,
+          "retained_anchor": 676,
+          "displaced_anchor": 0
+        },
+        "sweep": {
+          "rows": 720,
+          "measured_contact": 4,
+          "bounded_push": 2,
+          "new_cycle": 2,
+          "retained_anchor": 782,
+          "displaced_anchor": 752
+        }
+      },
+      "complete": true,
+      "recovery_qualified": false
+    },
+    "worlds": 8,
+    "bodies": 1,
+    "horizon_seconds": 3,
+    "new_controller_worlds": 6,
+    "new_controller_worlds_with_distal_contact": 6,
+    "joint_limit_violation_worlds": 0,
+    "recovery_qualified": false
+  },
+  "search": {
+    "archive_relative_path": "sdk2-creature-contact-reach-v1-c8fbde56b6c74056b8e4e3d09219be3e",
+    "receipt_sha256": "234b02a2bcd65d459066dd1b20ca42e579a105cb25b02d4a2fd614b4a83c187f",
+    "declaration_sha256": "2c61cbbac2380a6f239c9904c24fad30eca53f914030ab10bb7d86284416ac78",
+    "gate_receipt_sha256": "138ad4aef2cd325b765ae68970a8216dfa0466f184f03ff50443a4a2c3a2b98e",
+    "independent_audit_sha256": "cf0fd80d96a1229d3391d43d26d5e3cd45751440927b2e05f95ce2c1080288cc",
+    "worker_result_sha256": "10803767651b9305799d23f5ae6d43aa71384d615d63749fd946054689bb2da4",
+    "artifacts_verified": 3044,
+    "bytes_verified": 1968215276,
+    "cleanup_reports_verified": 21,
+    "controls_passed": 172,
+    "controls_required": 172,
+    "source_binding_count": 1205,
+    "runtime_binding_count": 1359,
+    "owner_wall_s": 1153.609999999986,
+    "native_worker_wall_s": 963.9479686000268,
+    "capture": {
+      "profile": "locolemotion_creature_compact_capture_v1",
+      "full_capture": false,
+      "compact_controller_rows_verified": 184320,
+      "compact_native_samples_reconstructed": 921600,
+      "within_run_projection_verified": false,
+      "controller_replay_verified": false,
+      "detailed_native_capture_verified": false,
+      "qualification_requires_fresh_full_capture": true,
+      "training_data_authority": false,
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "equivalence_authority": false
+    },
+    "route_coverage": null,
+    "worlds": 128,
+    "bodies": 16,
+    "profiles": 24,
+    "worlds_per_profile": 4,
+    "new_controller_worlds": 96,
+    "fresh_comparator_worlds": 32,
+    "horizon_seconds": 12,
+    "initial_condition": "nominal motors, fully inverted, flat ground",
+    "valid_performance_failures": 128,
+    "eligible_worlds": 0,
+    "invalid_worlds": 0,
+    "progress_leads": 0,
+    "joint_limit_violation_worlds": 0,
+    "new_controller_worlds_with_distal_contact": 96,
+    "full_controller_replay": false
+  },
+  "outcomes": {
+    "worlds": 128,
+    "all_outcomes": {
+      "worlds": 128,
+      "eligible_worlds": 0,
+      "contact_worlds": 112,
+      "contact_samples": 491485,
+      "joint_violation_worlds": 0,
+      "joint_violation_samples": 0,
+      "maximum_rotation_degrees": 14.370520980209923,
+      "maximum_nonviolating_rotation_degrees": 14.370520980209923,
+      "maximum_supported_rotation_degrees": 14.370520980209923,
+      "mean_rotation_degrees": 5.492066175214663,
+      "maximum_gain_over_fresh_timed_degrees": 1.4670394308436752,
+      "maximum_safe_gain_over_fresh_timed_degrees": 1.4670394308436752,
+      "maximum_longest_upright_dwell_samples": 0
+    },
+    "families": {
+      "ground": {
+        "worlds": 32,
+        "eligible_worlds": 0,
+        "contact_worlds": 32,
+        "contact_samples": 133763,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 13.534134809183216,
+        "maximum_nonviolating_rotation_degrees": 13.534134809183216,
+        "maximum_supported_rotation_degrees": 13.534134809183216,
+        "mean_rotation_degrees": 5.438545547683571,
+        "maximum_gain_over_fresh_timed_degrees": -0.06023576933310437,
+        "maximum_safe_gain_over_fresh_timed_degrees": -0.06023576933310437,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      "anchor": {
+        "worlds": 32,
+        "eligible_worlds": 0,
+        "contact_worlds": 32,
+        "contact_samples": 133705,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 13.24083821244386,
+        "maximum_nonviolating_rotation_degrees": 13.24083821244386,
+        "maximum_supported_rotation_degrees": 13.24083821244386,
+        "mean_rotation_degrees": 5.086561195275929,
+        "maximum_gain_over_fresh_timed_degrees": -0.06882632996939186,
+        "maximum_safe_gain_over_fresh_timed_degrees": -0.06882632996939186,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      "sweep": {
+        "worlds": 32,
+        "eligible_worlds": 0,
+        "contact_worlds": 32,
+        "contact_samples": 133147,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 14.234983409772164,
+        "maximum_nonviolating_rotation_degrees": 14.234983409772164,
+        "maximum_supported_rotation_degrees": 14.234983409772164,
+        "mean_rotation_degrees": 5.018096272071389,
+        "maximum_gain_over_fresh_timed_degrees": 1.4670394308436752,
+        "maximum_safe_gain_over_fresh_timed_degrees": 1.4670394308436752,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      "comparator": {
+        "worlds": 32,
+        "eligible_worlds": 0,
+        "contact_worlds": 16,
+        "contact_samples": 90870,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 14.370520980209923,
+        "maximum_nonviolating_rotation_degrees": 14.370520980209923,
+        "maximum_supported_rotation_degrees": 14.370520980209923,
+        "mean_rotation_degrees": 6.425061685827762,
+        "maximum_gain_over_fresh_timed_degrees": 0.0,
+        "maximum_safe_gain_over_fresh_timed_degrees": 0.0,
+        "maximum_longest_upright_dwell_samples": 0
+      }
+    },
+    "profiles": [
+      {
+        "candidate_id": "zero_velocity_brake",
+        "body_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "worlds": 16,
+        "eligible_worlds": 0,
+        "contact_worlds": 0,
+        "contact_samples": 0,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.0,
+        "maximum_nonviolating_rotation_degrees": 0.0,
+        "maximum_supported_rotation_degrees": 0.0,
+        "mean_rotation_degrees": 0.0,
+        "maximum_gain_over_fresh_timed_degrees": -11.398021175209607,
+        "maximum_safe_gain_over_fresh_timed_degrees": -11.398021175209607,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "side_timed",
+        "body_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "worlds": 16,
+        "eligible_worlds": 0,
+        "contact_worlds": 16,
+        "contact_samples": 90870,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 14.370520980209923,
+        "maximum_nonviolating_rotation_degrees": 14.370520980209923,
+        "maximum_supported_rotation_degrees": 14.370520980209923,
+        "mean_rotation_degrees": 12.850123371655524,
+        "maximum_gain_over_fresh_timed_degrees": 0.0,
+        "maximum_safe_gain_over_fresh_timed_degrees": 0.0,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_00",
+        "body_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14966,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 3.0803592701982976,
+        "maximum_nonviolating_rotation_degrees": 3.0803592701982976,
+        "maximum_supported_rotation_degrees": 3.0803592701982976,
+        "mean_rotation_degrees": 1.4242292922409885,
+        "maximum_gain_over_fresh_timed_degrees": -9.324664938269711,
+        "maximum_safe_gain_over_fresh_timed_degrees": -9.324664938269711,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_01",
+        "body_indices": [
+          1,
+          5,
+          9,
+          13
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18169,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 13.534134809183216,
+        "maximum_nonviolating_rotation_degrees": 13.534134809183216,
+        "maximum_supported_rotation_degrees": 13.534134809183216,
+        "mean_rotation_degrees": 12.713841810687942,
+        "maximum_gain_over_fresh_timed_degrees": -0.06023576933310437,
+        "maximum_safe_gain_over_fresh_timed_degrees": -0.06023576933310437,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_02",
+        "body_indices": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14757,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.5407327119026282,
+        "maximum_nonviolating_rotation_degrees": 0.5407327119026282,
+        "maximum_supported_rotation_degrees": 0.5407327119026282,
+        "mean_rotation_degrees": 0.23207775840810177,
+        "maximum_gain_over_fresh_timed_degrees": -11.297182164433329,
+        "maximum_safe_gain_over_fresh_timed_degrees": -11.297182164433329,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_03",
+        "body_indices": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18597,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 7.052397973646762,
+        "maximum_nonviolating_rotation_degrees": 7.052397973646762,
+        "maximum_supported_rotation_degrees": 7.052397973646762,
+        "mean_rotation_degrees": 6.278094125665945,
+        "maximum_gain_over_fresh_timed_degrees": -6.657313721389844,
+        "maximum_safe_gain_over_fresh_timed_degrees": -6.657313721389844,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_04",
+        "body_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14967,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 3.080821389608204,
+        "maximum_nonviolating_rotation_degrees": 3.080821389608204,
+        "maximum_supported_rotation_degrees": 3.080821389608204,
+        "mean_rotation_degrees": 1.677057414132144,
+        "maximum_gain_over_fresh_timed_degrees": -9.324202818859805,
+        "maximum_safe_gain_over_fresh_timed_degrees": -9.324202818859805,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_05",
+        "body_indices": [
+          1,
+          5,
+          9,
+          13
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18581,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 11.177098445902248,
+        "maximum_nonviolating_rotation_degrees": 11.177098445902248,
+        "maximum_supported_rotation_degrees": 11.177098445902248,
+        "mean_rotation_degrees": 9.226898125153657,
+        "maximum_gain_over_fresh_timed_degrees": -1.5887851794946428,
+        "maximum_safe_gain_over_fresh_timed_degrees": -1.5887851794946428,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_06",
+        "body_indices": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14957,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.2435559228344302,
+        "maximum_nonviolating_rotation_degrees": 0.2435559228344302,
+        "maximum_supported_rotation_degrees": 0.2435559228344302,
+        "mean_rotation_degrees": 0.15215881595805666,
+        "maximum_gain_over_fresh_timed_degrees": -11.297491679451575,
+        "maximum_safe_gain_over_fresh_timed_degrees": -11.297491679451575,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "ground_07",
+        "body_indices": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18769,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 13.42761127563453,
+        "maximum_nonviolating_rotation_degrees": 13.42761127563453,
+        "maximum_supported_rotation_degrees": 13.42761127563453,
+        "mean_rotation_degrees": 11.804007039221737,
+        "maximum_gain_over_fresh_timed_degrees": -0.8373133835846307,
+        "maximum_safe_gain_over_fresh_timed_degrees": -0.8373133835846307,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_00",
+        "body_indices": [
+          1,
+          5,
+          9,
+          13
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14966,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.8689978340448277,
+        "maximum_nonviolating_rotation_degrees": 0.8689978340448277,
+        "maximum_supported_rotation_degrees": 0.8689978340448277,
+        "mean_rotation_degrees": 0.5253777747234415,
+        "maximum_gain_over_fresh_timed_degrees": -10.529023341164779,
+        "maximum_safe_gain_over_fresh_timed_degrees": -10.529023341164779,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_01",
+        "body_indices": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18326,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 13.24083821244386,
+        "maximum_nonviolating_rotation_degrees": 13.24083821244386,
+        "maximum_supported_rotation_degrees": 13.24083821244386,
+        "mean_rotation_degrees": 12.469189756764417,
+        "maximum_gain_over_fresh_timed_degrees": -0.06882632996939186,
+        "maximum_safe_gain_over_fresh_timed_degrees": -0.06882632996939186,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_02",
+        "body_indices": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14702,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.13759240698423153,
+        "maximum_nonviolating_rotation_degrees": 0.13759240698423153,
+        "maximum_supported_rotation_degrees": 0.09278590444840723,
+        "mean_rotation_degrees": 0.11952436147878212,
+        "maximum_gain_over_fresh_timed_degrees": -12.505261548733134,
+        "maximum_safe_gain_over_fresh_timed_degrees": -12.505261548733134,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_03",
+        "body_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18508,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 6.281012282654595,
+        "maximum_nonviolating_rotation_degrees": 6.281012282654595,
+        "maximum_supported_rotation_degrees": 6.281012282654595,
+        "mean_rotation_degrees": 5.9939466958569065,
+        "maximum_gain_over_fresh_timed_degrees": -6.3309711745552715,
+        "maximum_safe_gain_over_fresh_timed_degrees": -6.3309711745552715,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_04",
+        "body_indices": [
+          1,
+          5,
+          9,
+          13
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14960,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.8680445250432699,
+        "maximum_nonviolating_rotation_degrees": 0.8680445250432699,
+        "maximum_supported_rotation_degrees": 0.8680445250432699,
+        "mean_rotation_degrees": 0.5337582530447241,
+        "maximum_gain_over_fresh_timed_degrees": -10.529976650166336,
+        "maximum_safe_gain_over_fresh_timed_degrees": -10.529976650166336,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_05",
+        "body_indices": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18582,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 11.250646304667566,
+        "maximum_nonviolating_rotation_degrees": 11.250646304667566,
+        "maximum_supported_rotation_degrees": 11.250646304667566,
+        "mean_rotation_degrees": 9.73762227182668,
+        "maximum_gain_over_fresh_timed_degrees": -1.78081372486659,
+        "maximum_safe_gain_over_fresh_timed_degrees": -1.78081372486659,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_06",
+        "body_indices": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14992,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.13733127578887627,
+        "maximum_nonviolating_rotation_degrees": 0.13733127578887627,
+        "maximum_supported_rotation_degrees": 0.03873175334165875,
+        "mean_rotation_degrees": 0.11970531181562259,
+        "maximum_gain_over_fresh_timed_degrees": -12.505743786192388,
+        "maximum_safe_gain_over_fresh_timed_degrees": -12.505743786192388,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "anchor_07",
+        "body_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18669,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 11.884886263549854,
+        "maximum_nonviolating_rotation_degrees": 11.884886263549854,
+        "maximum_supported_rotation_degrees": 11.884886263549854,
+        "mean_rotation_degrees": 11.19336513669686,
+        "maximum_gain_over_fresh_timed_degrees": -0.727097193660013,
+        "maximum_safe_gain_over_fresh_timed_degrees": -0.727097193660013,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_00",
+        "body_indices": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 15025,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 2.2274233047049896,
+        "maximum_nonviolating_rotation_degrees": 2.2274233047049896,
+        "maximum_supported_rotation_degrees": 2.2274233047049896,
+        "mean_rotation_degrees": 1.0480720371605667,
+        "maximum_gain_over_fresh_timed_degrees": -10.87827358638404,
+        "maximum_safe_gain_over_fresh_timed_degrees": -10.87827358638404,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_01",
+        "body_indices": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18373,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 14.234983409772164,
+        "maximum_nonviolating_rotation_degrees": 14.234983409772164,
+        "maximum_supported_rotation_degrees": 14.234983409772164,
+        "mean_rotation_degrees": 13.37334474966661,
+        "maximum_gain_over_fresh_timed_degrees": -0.08543998334208958,
+        "maximum_safe_gain_over_fresh_timed_degrees": -0.08543998334208958,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_02",
+        "body_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14041,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.12654930828413646,
+        "maximum_nonviolating_rotation_degrees": 0.12654930828413646,
+        "maximum_supported_rotation_degrees": 0.10240986306327021,
+        "mean_rotation_degrees": 0.12117289130127418,
+        "maximum_gain_over_fresh_timed_degrees": -12.282044383896233,
+        "maximum_safe_gain_over_fresh_timed_degrees": -12.282044383896233,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_03",
+        "body_indices": [
+          1,
+          5,
+          9,
+          13
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18549,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 6.7265119020576485,
+        "maximum_nonviolating_rotation_degrees": 6.7265119020576485,
+        "maximum_supported_rotation_degrees": 6.7265119020576485,
+        "mean_rotation_degrees": 6.021952103105154,
+        "maximum_gain_over_fresh_timed_degrees": -6.112245405247664,
+        "maximum_safe_gain_over_fresh_timed_degrees": -6.112245405247664,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_04",
+        "body_indices": [
+          2,
+          6,
+          10,
+          14
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 15014,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 3.054809753072797,
+        "maximum_nonviolating_rotation_degrees": 3.054809753072797,
+        "maximum_supported_rotation_degrees": 3.054809753072797,
+        "mean_rotation_degrees": 1.259329536313643,
+        "maximum_gain_over_fresh_timed_degrees": -10.172050321597723,
+        "maximum_safe_gain_over_fresh_timed_degrees": -10.172050321597723,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_05",
+        "body_indices": [
+          3,
+          7,
+          11,
+          15
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18618,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 10.885546860564347,
+        "maximum_nonviolating_rotation_degrees": 10.885546860564347,
+        "maximum_supported_rotation_degrees": 10.885546860564347,
+        "mean_rotation_degrees": 6.7803901876909185,
+        "maximum_gain_over_fresh_timed_degrees": -1.7166701411242293,
+        "maximum_safe_gain_over_fresh_timed_degrees": -1.7166701411242293,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_06",
+        "body_indices": [
+          0,
+          4,
+          8,
+          12
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 14805,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 0.19058834383314838,
+        "maximum_nonviolating_rotation_degrees": 0.19058834383314838,
+        "maximum_supported_rotation_degrees": 0.19058834383314838,
+        "mean_rotation_degrees": 0.1369042392449352,
+        "maximum_gain_over_fresh_timed_degrees": -12.282419238091926,
+        "maximum_safe_gain_over_fresh_timed_degrees": -12.282419238091926,
+        "maximum_longest_upright_dwell_samples": 0
+      },
+      {
+        "candidate_id": "sweep_07",
+        "body_indices": [
+          1,
+          5,
+          9,
+          13
+        ],
+        "worlds": 4,
+        "eligible_worlds": 0,
+        "contact_worlds": 4,
+        "contact_samples": 18722,
+        "joint_violation_worlds": 0,
+        "joint_violation_samples": 0,
+        "maximum_rotation_degrees": 14.232923056240566,
+        "maximum_nonviolating_rotation_degrees": 14.232923056240566,
+        "maximum_supported_rotation_degrees": 14.232923056240566,
+        "mean_rotation_degrees": 11.403604432088011,
+        "maximum_gain_over_fresh_timed_degrees": 1.4670394308436752,
+        "maximum_safe_gain_over_fresh_timed_degrees": 1.4670394308436752,
+        "maximum_longest_upright_dwell_samples": 0
+      }
+    ],
+    "progress_screen": {
+      "policy": {
+        "schema_version": "locolemotion_trajectory_screen_v1",
+        "leads_per_group": 2,
+        "minimum_peak_rotation_gain_degrees": 5.0,
+        "one_lead_per_family": true,
+        "require_zero_joint_limit_violations": true,
+        "qualification_authority": false
+      },
+      "progress_lead_count": 0,
+      "groups": [
+        {
+          "body_index": 0,
+          "progress_leads": []
+        },
+        {
+          "body_index": 1,
+          "progress_leads": []
+        },
+        {
+          "body_index": 2,
+          "progress_leads": []
+        },
+        {
+          "body_index": 3,
+          "progress_leads": []
+        },
+        {
+          "body_index": 4,
+          "progress_leads": []
+        },
+        {
+          "body_index": 5,
+          "progress_leads": []
+        },
+        {
+          "body_index": 6,
+          "progress_leads": []
+        },
+        {
+          "body_index": 7,
+          "progress_leads": []
+        },
+        {
+          "body_index": 8,
+          "progress_leads": []
+        },
+        {
+          "body_index": 9,
+          "progress_leads": []
+        },
+        {
+          "body_index": 10,
+          "progress_leads": []
+        },
+        {
+          "body_index": 11,
+          "progress_leads": []
+        },
+        {
+          "body_index": 12,
+          "progress_leads": []
+        },
+        {
+          "body_index": 13,
+          "progress_leads": []
+        },
+        {
+          "body_index": 14,
+          "progress_leads": []
+        },
+        {
+          "body_index": 15,
+          "progress_leads": []
+        }
+      ]
+    },
+    "assessment_totals": {
+      "eligible_worlds": 0,
+      "failed_worlds": 128,
+      "trained": false,
+      "recovery_qualified": false,
+      "training_data_authority": false,
+      "physical_acceptance_authority": false,
+      "release_authority": false
+    }
+  },
+  "direct_recipe_and_test_input_inventory": {
+    "all_six_declarations_archived_and_verified": true,
+    "paths": [
+      "creature_trajectory_search_v1.json",
+      "creature_trajectory_retiming_v1.json",
+      "creature_joint_braking_v1.json",
+      "creature_joint_braking_route_v1.json",
+      "creature_contact_reach_v1.json",
+      "creature_contact_reach_route_v1.json"
+    ]
+  },
+  "interpretation": [
+    "All 96 new-controller worlds acquire at least one distal contact; none crosses a joint limit. This does not mean continuous support, useful contact force or qualified recovery.",
+    "No world has upright dwell. All 128 are valid performance failures and the unchanged five-degree gain screen returns no leads.",
+    "The largest new-controller rotation is 14.234983409772164 degrees. The best gain over its own fresh timed comparator is 1.4670394308436752 degrees, from sweep_07. The fresh timed maximum across bodies is 14.370520980209923 degrees.",
+    "Contact acquisition is observed on the declared sixteen exposed shapes only. This is a new-profile search, not a matched causal comparison with earlier pose families.",
+    "The next torso-rotation intervention is a controller hypothesis, not a demonstrated cure. Force limits and qualification criteria remain unchanged."
+  ],
+  "next_gate": "Keep geometry-based contact acquisition and anticipatory braking. Test an explicit bounded torso-rotation target projected through contacted limbs, with finite projection residuals and measured progress retained. Declare its complete zero-world gate, a small full route and a broad body/profile search with fresh comparators and unchanged eligibility. Useful leads still need fresh full-capture varied-start confirmation before the same-body Studio handoff.",
+  "total_valid_righting_performance_worlds": 1808,
+  "trained": false,
+  "recovery_benefit_established": false,
+  "live_handoff_complete": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}
