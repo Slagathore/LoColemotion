@@ -57,14 +57,25 @@ pitch sample in both directions. These are disconnected single-contact
 possibilities; joint effort, force allocation and dynamic paths remain unproved.
 Exact body groups and all rejected pose outcomes are retained.
 
-Next implement and prospectively freeze broad body-moment and rocking
-controllers, using actual contact/work diagnostics, instantaneous wrench
-projection and unchanged braking/actuator bounds. Include diverse bodies
-inside and outside the 31-body pitch proposal group with fresh comparators.
-A small full route precedes broad compact native screening. Useful leads
-still require fresh full-capture varied-start confirmation before the
-same-body Godot walk-fall-recover-resume handoff.
-Nine performance cohorts still retain 2,032 valid recovery failures.
+The [body-moment component](../sdk/discovery/creature_body_moment_component_v1.json)
+passes all 230 controls and a zero-world preflight. Sixteen new controls cover
+force directions, clear targets, bounded commands, pure/atomic memory,
+prospective population and route refusals, including 240 exact legacy plans.
+All 2,418 artifacts and 23 stage cleanups verify; no physics has run.
+
+The frozen cohort has 24 bodies, half inside and half outside the 31-body pitch
+proposal group. Twenty-four profiles vary four signed axes, drive/rock strategy
+and three normal/friction/load settings. Each body receives eight proposals
+and two fresh comparators. Measured contacts gate force proposals, static
+wrench projection produces bounded velocity commands, and existing braking
+remains. Clear geometric target poses do not certify a continuous trajectory
+or actual force capability.
+
+Next run the ten-world six-second full route, requiring actual command branches,
+full replay and exact compact projection. Only then run the 240-world
+twelve-second compact screen. Useful leads require fresh full-capture
+varied-start confirmation before the same-body Godot walk-fall-recover-resume
+handoff. Nine performance cohorts still retain 2,032 valid recovery failures.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

@@ -132,12 +132,21 @@ bounds remain. Thirty-one bodies have a positive friction bound at every
 sampled pitch orientation in both directions; the poses need not connect and
 actuator force capability is unproved.
 
-Next implement broad controllers that target body turning moment and use
-contact switching or rocking to build momentum. Include diverse bodies inside
-and outside that 31-body group, unchanged limits and fresh comparators.
-Verify a small full route before broad native screening. Useful leads need
-fresh full-capture varied-start confirmation and the complete Godot handoff.
-No recovery controller has been adopted.
+The [body-moment component](../sdk/discovery/creature_body_moment_component_v1.json)
+now passes 230 controls and the 24-body zero-world preflight in 196.1 seconds.
+Its sixteen new controls include 240 exact legacy plan comparisons. All 2,418
+artifacts, 1,229 source bindings, 1,359 runtime bindings and 23 stage cleanups
+verify. Configured contact forces pass through the existing bounded velocity
+projection and joint braking; measured contacts gate their use. Targets avoid
+nonadjacent overlap, while actual contact and sampled work remain observable.
+
+Next run the ten-world six-second full route, then 240 fresh twelve-second
+compact worlds if its command branches and replay pass. Twenty-four profiles
+cover four signed axes, drive/rock behavior and three force settings. Each runs
+on four bodies inside and four outside the geometric pitch proposal group.
+Each body has two fresh comparators. Native benefit remains untested; useful
+leads need fresh full-capture varied-start confirmation and the complete Godot
+handoff. No recovery controller has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

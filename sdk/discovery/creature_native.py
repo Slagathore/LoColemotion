@@ -33,6 +33,7 @@ import creature_trajectory_retiming as retiming
 import creature_joint_braking_search as braking_search
 import creature_contact_reach_search as contact_search
 import creature_torso_target_search as torso_search
+import creature_body_moment_search as moment_search
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -48,7 +49,11 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_trajectory_diagnosis.py", "test_creature_trajectory_diagnosis.py",
                  "creature_joint_braking.py", "creature_joint_braking_search.py", "test_creature_joint_braking.py",
                  "creature_contact_reach.py", "creature_contact_reach_search.py", "test_creature_contact_reach.py",
-                 "creature_torso_target.py", "creature_torso_target_search.py", "test_creature_torso_target.py"]
+                 "creature_torso_target.py", "creature_torso_target_search.py", "test_creature_torso_target.py",
+                 "creature_body_moment.py", "creature_body_moment_search.py", "test_creature_body_moment.py",
+                 "creature_contact_moment.py", "test_creature_contact_moment.py",
+                 "creature_righting_geometry.py", "test_creature_righting_geometry.py",
+                 "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -72,7 +77,7 @@ def gates(c):
                if "readback" in c or "maximum_worlds_per_batch" in c else [])
             + ([("creature-confirmation", "test_creature_confirmation", 10)] if "confirmation_spec" in c else [])
             + ([("creature-righting", "test_creature_righting", 12)] if "righting_spec" in c else [])
-            + ([("creature-righting-sequence", "test_creature_righting_sequence", 9)] if sequence_enabled(c) else [])
+            + ([("creature-righting-sequence", "test_creature_righting_sequence", 9)] if work_enabled(c) else [])
             + ([("creature-capture", "test_creature_capture", 10)] if "compact_capture" in c else [])
             + ([("creature-trajectory", "test_creature_trajectory_search", 6)]
                if any(k in c for k in ("trajectory_screen", "capture_reference"))
@@ -86,11 +91,20 @@ def gates(c):
             + ([("creature-joint-braking", "test_creature_joint_braking", 10),
                 ("creature-contact-reach", "test_creature_contact_reach", 12)]
                if any(k in c for k in ("contact_reach_search", "torso_target_search")) else [])
-            + ([("creature-torso-target", "test_creature_torso_target", 10)] if "torso_target_search" in c else []))
+            + ([("creature-torso-target", "test_creature_torso_target", 10)] if "torso_target_search" in c else [])
+            + ([("creature-body-moment", "test_creature_body_moment", 16),
+                ("actuation-mechanics", "test_actuation_recovery_mechanics", 25),
+                ("creature-joint-braking", "test_creature_joint_braking", 10),
+                ("creature-contact-moment", "test_creature_contact_moment", 13),
+                ("creature-righting-geometry", "test_creature_righting_geometry", 7)] if "body_moment_search" in c else []))
 
 
 def sequence_enabled(c):
     return any(p["mode"] == righting.sequence.MODE for p in c.get("righting_spec", {}).get("profiles", []))
+
+
+def work_enabled(c):
+    return sequence_enabled(c) or "body_moment_search" in c
 
 
 def declaration(path):
@@ -130,6 +144,7 @@ def declaration(path):
     braking_search.validate(c)
     contact_search.validate(c)
     torso_search.validate(c)
+    moment_search.validate(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
@@ -508,7 +523,7 @@ class StreamValidator:
         if "righting_spec" in c:
             for metric in self.metrics:
                 metric.update(righting.initial_metrics())
-                if sequence_enabled(c):
+                if work_enabled(c):
                     metric.update(righting.sequence.initial_work())
                 if "trajectory_screen" in c:
                     metric.update(trajectory.initial_metrics())
@@ -578,7 +593,7 @@ class StreamValidator:
                 righting.measure(m, row, self.creatures[cell])
                 if "trajectory_screen" in self.c:
                     trajectory.measure(m, row, self.creatures[cell])
-                if sequence_enabled(self.c):
+                if work_enabled(self.c):
                     righting.sequence.measure_work(m, row)
             self.previous[cell] = row
             self.native_counts[cell] += 1

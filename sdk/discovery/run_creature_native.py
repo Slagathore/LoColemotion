@@ -10,7 +10,7 @@ import sys
 import time
 import uuid
 
-from creature_native import ROOT, HERE, FLAGS, gates, MODEL_SOURCES, declaration, require, sha, capture, retiming, braking_search, contact_search, torso_search
+from creature_native import ROOT, HERE, FLAGS, gates, MODEL_SOURCES, declaration, require, sha, capture, retiming, braking_search, contact_search, torso_search, moment_search
 from gpu_measurement_probe import write_new
 from run_gpu_measurement_probe import source_identity
 from run_gpu_motor_effectiveness import bindings as inherited_bindings
@@ -29,7 +29,7 @@ def inventory(folder):
 
 def source_paths(contract_path, c):
     paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES],
-             *retiming.source_dependencies(c), *braking_search.source_dependencies(c), *contact_search.source_dependencies(c), *torso_search.source_dependencies(c)]
+             *retiming.source_dependencies(c), *braking_search.source_dependencies(c), *contact_search.source_dependencies(c), *torso_search.source_dependencies(c), *moment_search.source_dependencies(c)]
     if "capture_reference" in c:
         reference = (ROOT / c["capture_reference"]["path"]).resolve(strict=True)
         require(reference.is_relative_to(ROOT) and sha(reference) == c["capture_reference"]["sha256"],
@@ -146,6 +146,8 @@ def main():
                 receipt["contact_route_coverage"] = contact_search.verify_route(folder, receipt)
             if "torso_target_search" in c and c["mode"] == "route_ghost":
                 receipt["torso_route_coverage"] = torso_search.verify_route(folder, receipt)
+            if "body_moment_search" in c and c["mode"] == "route_ghost":
+                receipt["moment_route_coverage"] = moment_search.verify_route(folder, receipt)
             unchanged()
         receipt.update(ok=True, source_runtime_unchanged=True)
     except BaseException as exc:

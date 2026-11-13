@@ -1,0 +1,591 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "maximum_worlds_per_batch": 10,
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "seed": 1061135,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_contact_moment_result_v1.json",
+    "sha256": "dbb39a0802b9a357778671b6b9b33848b85f2e15b899f548d79b9a2ef43a1cd5"
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_capture.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py",
+    "sdk/discovery/creature_joint_braking.py",
+    "sdk/discovery/creature_body_moment.py",
+    "sdk/discovery/creature_body_moment_search.py",
+    "sdk/discovery/creature_contact_moment.py",
+    "sdk/discovery/actuation_recovery_mechanics.py"
+  ],
+  "not_covered": [
+    "Recovery qualification or learned adaptation",
+    "New initial fallen orientations, weakened motors, terrain or impacts",
+    "Walking-to-fall entry and recovery-to-walking integration",
+    "Godot transfer, cross-engine equivalence, real time or release"
+  ],
+  "qualification_economy": "Reuse native ownership, full/compact capture and independent readers. Sixteen new controls cover the controller, numeric and state boundaries, population, inventory and 240 exact legacy plans. Shared mechanics, geometry, braking and sampled-work controls precede physics. No new campaign owner or reader.",
+  "campaign_id": "creature_body_moment_route_v1",
+  "mode": "route_ghost",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "purpose": "Verify the complete body-moment command path with full replay.",
+  "capture_mode": "full",
+  "outer_steps": 720,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_004",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "drive0_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive1_axis1",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive2_axis2",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive0_axis3",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "rock1_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "rock2_axis1",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "rock0_axis2",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "rock1_axis3",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ]
+  },
+  "coverage": [
+    "canonical_observations_only",
+    "bounded_force_to_velocity_projection",
+    "clear_target_pose_filter",
+    "measured_contact_gating",
+    "rocking_memory_and_timeout",
+    "post_guard_torque_prediction",
+    "sampled_native_joint_work",
+    "full_replay_and_compact_projection"
+  ],
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    },
+    {
+      "name": "creature-body-moment",
+      "module": "test_creature_body_moment",
+      "count": 16
+    },
+    {
+      "name": "actuation-mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "creature-joint-braking",
+      "module": "test_creature_joint_braking",
+      "count": 10
+    },
+    {
+      "name": "creature-contact-moment",
+      "module": "test_creature_contact_moment",
+      "count": 13
+    },
+    {
+      "name": "creature-righting-geometry",
+      "module": "test_creature_righting_geometry",
+      "count": 7
+    }
+  ],
+  "selection_rationale": "Twenty-four configured profiles cross four signed axes, drive/rock strategies and three normal/friction/load settings. Each runs on four bodies inside and four outside the 31-body geometric pitch group. Each body receives eight proposals and two fresh unchanged comparators. Exposed geometry is proposal provenance, never held-out evidence.",
+  "braking_model_limit": "Constant-velocity lookahead and a stopping-speed envelope using a declared 6 rad/s^2 shaping estimate. This is not a validated physical deceleration bound or a guarantee that no joint crosses its limit.",
+  "route_coverage_required": [
+    "clear_targets",
+    "measured_contact_force",
+    "tangential_force_proposal",
+    "bounded_rocking_reversal",
+    "full_controller_replay",
+    "full_compact_projection"
+  ],
+  "route_coverage_not_required": [
+    "successful_righting",
+    "all_profile_contact_acquisition",
+    "upright_capture_in_native_world"
+  ],
+  "body_moment_search": {
+    "schema_version": "locolemotion_body_moment_search_v1",
+    "seed": 1061135,
+    "body_indices": [
+      10,
+      20,
+      21,
+      28,
+      31,
+      97,
+      127,
+      139,
+      186,
+      244,
+      292,
+      327,
+      0,
+      1,
+      2,
+      6,
+      16,
+      32,
+      78,
+      150,
+      200,
+      250,
+      300,
+      333
+    ],
+    "route_body_index": 1,
+    "route_profile_indices": [
+      0,
+      1,
+      2,
+      11,
+      20,
+      5,
+      14,
+      23,
+      8,
+      17
+    ],
+    "route_outer_steps": 720
+  },
+  "body_moment_limit": "Clear geometric targets are not collision-free transitions. Geometric capsule low points are not measured contact locations. Friction cones and normal load are configured proposals; static joint compensation omits inertial, Coriolis, passive and limit forces. Actual force, contact and sampled work are retained. Motors, native collision filtering and eligibility remain unchanged."
+}

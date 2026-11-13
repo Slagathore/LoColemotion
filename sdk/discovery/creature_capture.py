@@ -106,7 +106,7 @@ class Reader:
         self.positions, self.velocities = positions.tolist(), velocities.tolist()
         self.previous = [None]*self.n
         self.outer = 0
-        self.sequence = any(p["mode"] == righting.sequence.MODE for p in c.get("righting_spec", {}).get("profiles", []))
+        self.sequence = "body_moment_search" in c or any(p["mode"] == righting.sequence.MODE for p in c.get("righting_spec", {}).get("profiles", []))
         self.metrics = [dict(minimum_height_m=math.inf, maximum_tilt_rad=0., torso_contact_steps=0,
             safe_no_actuation_steps=0, ground_contact_steps=0, nonzero_force_steps=0,
             forward_displacement_m=0., lateral_displacement_m=0.) for _ in creatures]
@@ -248,5 +248,9 @@ def canary_receipt(path, c, source_commit, bindings, evidence_root):
         import creature_torso_target_search as torso_search
         require(full.get("torso_route_coverage") == torso_search.verify_route(path.parent, full),
                 "Torso route required projection coverage")
+    if "body_moment_search" in c:
+        import creature_body_moment_search as moment_search
+        require(full.get("moment_route_coverage") == moment_search.verify_route(path.parent, full),
+                "Moment route required command coverage")
     return dict(receipt_path=str(path),receipt_sha256=digest(path),audit_sha256=digest(audit_path),
         full_controller_rows_replayed=n,full_native_rows_verified=5*n,within_run_projection_verified=True)
