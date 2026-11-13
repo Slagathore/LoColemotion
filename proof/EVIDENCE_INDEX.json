@@ -343,15 +343,16 @@
     },
     {
       "id": "creature-trajectory-search",
-      "title": "Balanced dynamic trajectory search component",
+      "title": "Balanced native dynamic trajectory search",
       "pillar": "locomotion",
-      "classification": "zero_world_trajectory_search_component",
-      "scope": "All 159 controls and preflight for 224 worlds across 16 bodies pass. Forty-eight bounded motion proposals are assigned to four bodies each with fresh comparators on every body. Native canary and search remain unexecuted; partial rotation cannot grant recovery eligibility.",
+      "classification": "valid_native_trajectory_discovery_negative",
+      "scope": "The five-world full route and 224-world compact search each pass 159 controls. All search worlds are valid failures: zero eligible or progress leads, sixteen joint-breach worlds, and only 32 of 192 new-profile worlds with distal contact. Compact reading reconstructs 806,400 samples; it does not provide full controller replay or recovery authority.",
       "record": {
-        "path": "sdk/discovery/creature_trajectory_component_v1.json",
+        "path": "sdk/discovery/creature_trajectory_native_result_v1.json",
         "pointer": null
       },
       "related_documents": [
+        "sdk/discovery/creature_trajectory_component_v1.json",
         "sdk/discovery/creature_capture.py",
         "sdk/discovery/creature_native.py",
         "sdk/discovery/creature_righting.py",
@@ -362,7 +363,8 @@
         "sdk/discovery/test_creature_trajectory_search.py"
       ],
       "source_commits": [
-        "1be1a7c3c3d9aaa1a4065615bd09de7d3f7aef0b"
+        "1be1a7c3c3d9aaa1a4065615bd09de7d3f7aef0b",
+        "aed3bc18c73fffc10b1cf0d14fef33571b36993a"
       ],
       "external_artifact_ids": [],
       "dependency_closure_complete": false
@@ -503,8 +505,8 @@
     },
     {
       "path": "sdk/release/quadruped_support_matrix.json",
-      "sha256": "9405082cb3d5825801dedcd08fe422f144e66f61d94a74215deff49fd87c1713",
-      "byte_length": 3534328
+      "sha256": "8785eeb53125b4103a9fcf9032b6c19adf44cecb3e1c096f5b6075ea9e92966d",
+      "byte_length": 3536099
     },
     {
       "path": "sdk/discovery/creature_righting_component_v1.json",
@@ -690,6 +692,11 @@
       "path": "sdk/discovery/test_creature_trajectory_search.py",
       "sha256": "6d8118ed3c8b82686b1b1c738f8197d59430317a75b4a0b0792aa7cba13fa03e",
       "byte_length": 9543
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_native_result_v1.json",
+      "sha256": "99eeee835fef31e2d326dbe525266b6abb7c7e523c33e2fc632e10a0b6663118",
+      "byte_length": 14530
     }
   ],
   "external_artifacts": [

@@ -10,7 +10,7 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and useful self-righting remains unestablished after four negative cohorts.
+and useful self-righting remains unestablished after five negative cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -22,28 +22,26 @@ and useful self-righting remains unestablished after four negative cohorts.
 | [Four-phase righting](../sdk/discovery/creature_righting_sequence_native_result_v1.json) | 256 fresh six-second worlds across 16 bodies and 16 profiles: zero eligible, 256 valid failures, zero invalid or joint-breach worlds, and 16 empty shortlists. All 184,320 decisions and 921,600 samples replay after 143 controls |
 | Righting diagnosis | All 224 sequence worlds reach wind-up, but none meets a later rotation/contact transition. Maximum recorded boundary rotation is 9.6 degrees for a sequence and 14.4 for the timed comparator. Static-pose proposals did not produce useful dynamic motion |
 | [Compact capture native result](../sdk/discovery/creature_capture_native_result_v1.json) | Both eight-world canaries pass 153 controls and independent reading. Same-run projection is exact; fresh compact streams are 75.7% smaller. Outer-loop time is 14.58 vs 13.86 seconds, descriptive only because full also writes projection. Retained 256-world reconstruction remains exact |
-| [Dynamic trajectory component](../sdk/discovery/creature_trajectory_component_v1.json) | 159 zero-world controls pass. The declared 224-world search assigns 48 wave/impulse/waypoint proposals to four bodies each, with both comparators on all 16 bodies. Partial rotation is a separate proposal signal; native execution is pending |
+| [Dynamic trajectory result](../sdk/discovery/creature_trajectory_native_result_v1.json) | 224 valid six-second failures across 16 bodies after 159 controls: zero eligible, zero progress leads, 16 joint-breach worlds. Compact reading reconstructs 161,280 records and 806,400 samples. Only 32 of 192 new-profile worlds make any distal contact; the timed comparator reaches 14.37 degrees without joint violations |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Make broad dynamic trajectory search cheaper and more informative.**
-   The [four-world sequence route](../sdk/discovery/creature_righting_sequence_route_native_v1.json)
-   and full cohort are complete at source `217d591b`. Preserve these negatives
-   and the 752 earlier [timed and feedback failures](../sdk/discovery/creature_righting_feedback_native_result_v1.json).
-   Do not repeat the same geometric proposal heuristic or treat timeout-driven
-   phase cycling as recovery. Compact recording now passes the complete gate,
-   exact retained-corpus reconstruction and matched native canaries at source
-   `670cffc2`. Storage is substantially lower; the one-pair timings do not
-   establish an ordinary full-capture speedup or real-time operation.
-   The [balanced trajectory component](../sdk/discovery/creature_trajectory_component_v1.json)
-   now passes 159 controls and preflight for all 224 planned worlds. From a clean
-   pushed freeze, run the five-world two-interval full canary, then the compact
-   cohort with a fresh complete gate: 48 new motion profiles on four bodies each,
-   plus fresh brake and timed comparators on every one of 16 bodies, six seconds.
-   The same-freeze canary binding covers the recording interface without a full
-   duplicate of the search. Preserve every failure. Peak rotation gains may
-   propose family-diverse follow-ups, but cannot change supported-upright
-   eligibility. Useful diverse leads need fresh full-capture checks at varied
-   starts before integration.
+1. **Use the failed population to diagnose contact and motion before searching again.**
+   The balanced search and five-world full canary are complete at source
+   `aed3bc18`. Forty-eight wave, impulse and waypoint proposals each ran on four
+   bodies, with fresh brake and timed comparators on all 16 bodies. Neither
+   supported-upright eligibility nor the separate five-degree progress screen
+   found a lead. Four profiles violate joint limits on all their assigned bodies.
+   Wave reaches 12.60 degrees only in a violating world; its best nonviolating
+   world reaches 0.13 degrees. Impulse reaches 11.61 degrees without a violation.
+   Diagnose the retained joint trajectories against declared ranges, target
+   rates, phase timing and distal-contact reach. Separate contact absence,
+   tracking errors and limit excursions before attributing a cause or changing
+   proposals. This is a read-only diagnostic, not a new recovery score.
+   Then declare a distinct broad body/controller successor with fresh comparators
+   and unchanged safety bounds. All 1,232 valid negative performance worlds stay
+   retained. The shared compact route avoids a full duplicate search; its reader
+   reconstructs outcomes, not full controller replay. Useful diverse leads still
+   need fresh full-capture varied-start checks before SDK and Studio integration.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

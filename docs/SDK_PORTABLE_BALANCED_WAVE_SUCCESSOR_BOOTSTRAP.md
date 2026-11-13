@@ -3,58 +3,50 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [latest four-phase result](../sdk/discovery/creature_righting_sequence_native_result_v1.json)
-retains 256 valid six-second negatives across 16 bodies: fourteen geometry-derived
-sequences and fresh timed/brake comparators. All 143 applicable controls pass
-before physics. Independent replay verifies 184,320 decisions and 921,600 native
-samples, including phase state, reconstructed mechanics and sampled work. Zero
-eligible or invalid worlds, no upright dwell or joint-limit breaches, and all
-16 shortlists empty. All 3,884 artifacts and 18 stage cleanups were verified.
-The preceding [four-world route](../sdk/discovery/creature_righting_sequence_route_native_v1.json)
-verifies the two-interval capture path only; it adds no performance evidence.
+The [dynamic trajectory result](../sdk/discovery/creature_trajectory_native_result_v1.json)
+is complete at source `aed3bc18`: 224 fresh six-second worlds, 16 bodies and
+48 bounded wave, impulse and waypoint proposals, each assigned to four bodies.
+Every body also receives fresh brake and timed comparators. The five-world
+two-interval full canary and the compact search each pass all 159 controls.
+The canary replays 10 decisions and 50 native samples and verifies exact compact
+projection. The broad compact reader reconstructs 161,280 controller records
+and 806,400 native samples; it does not claim full controller decision replay.
+All 6,251 artifacts and 40 top-level stage cleanups across both runs verify.
 
-Post-hoc review of all 64 pinned controller streams finds that all 224 sequence
-worlds reach wind-up twice. All 1,120 later phase transitions use the bounded
-timeout; none meets a measured rotation or contact gate. Best recorded rotation
-from inverted is 9.5716 degrees for a sequence and 14.3705 for timed. These are
-controller-boundary observations, not all-substep maxima or an eligibility score.
+All 224 search worlds are valid performance negatives, with zero eligible
+worlds, upright dwell or progress leads, and sixteen empty shortlists. Sixteen
+worlds also violate joint limits: all four assigned bodies for wave_05,
+impulse_05, waypoint_01 and waypoint_13. Only 32 of 192 new-profile worlds make
+any distal contact. Timed reaches 14.3705 degrees without joint violations;
+wave reaches 12.5995 in a violating world and only 0.1312 without a violation.
+The best nonviolating impulse reaches 11.6124 degrees. The separate five-degree
+progress screen is unchanged; no result qualifies for recovery or adoption.
+
+Next diagnose the retained joint motion against declared ranges, target rates,
+phase timing and contact reach. Contact absence, tracking and limit excursions
+must be separated before attributing a force deficit or declaring another broad
+body/controller successor. Keep physical bounds and eligibility unchanged.
+Useful diverse leads require fresh full-capture varied-start confirmation and
+the complete Godot recovery handoff with 120 resumed walking steps.
+
+The earlier [four-phase result](../sdk/discovery/creature_righting_sequence_native_result_v1.json)
+retains 256 valid negatives at source `217d591b`, with 184,320 decisions and
+921,600 native samples independently replayed. All sequence worlds reach wind-up,
+but later transitions use timeout rather than measured rotation/contact gates.
 The static [geometry proposal](../sdk/discovery/creature_righting_geometry_result_v1.json)
-did not produce useful dynamic transfer. Sampled force-displacement work remains
-an estimate, not an exact energy balance or a new criterion.
+did not yield useful dynamic transfer. Together with the 752 earlier
+[timed and feedback failures](../sdk/discovery/creature_righting_feedback_native_result_v1.json),
+the five cohorts now retain 1,232 valid negative performance worlds. All original
+records and route discrepancies remain preserved; this does not prove impossibility.
 
-The earlier [timed and feedback cohorts](../sdk/discovery/creature_righting_feedback_native_result_v1.json)
-retain 752 valid negatives; all four cohorts total 1,008. Original results and
-the first route's descriptive-coverage discrepancy remain preserved. The
-[component v3](../sdk/discovery/creature_righting_component_v3.json) and both
-native runs are complete at source `217d591b`. Native correctness does not
-establish useful righting, impossibility, training, adaptation or release.
-The [compact component](../sdk/discovery/creature_capture_component_v1.json)
-passes 153 zero-world controls and exact outcome reconstruction across all 256
-retained sequence worlds, with 76.1% smaller projected streams. Its
-[native canaries](../sdk/discovery/creature_capture_native_result_v1.json) now
-complete at source `670cffc2`: eight fresh worlds per format, two bodies, four
-profiles and two seconds after a fresh 153-control gate each. Full replay and
-same-run compact projection verify all 1,920 decisions and 9,600 samples. The
-compact reader reconstructs all 9,600 samples without claiming controller replay.
-Fresh compact streams are 75.7% smaller. Summed outer-loop time is 14.5752 seconds
-for full-plus-projection and 13.8561 for compact; owner time is 188.688 and 187.516
-seconds. One ordered pair per body, with full also writing projection, does not
-establish ordinary full-capture speedup, cross-run equivalence or real time.
-Readback counts, physical limits and every native substep are preserved. All
-4,742 retained artifacts and 38 stage cleanups verify; no recovery benefit results.
-The [balanced trajectory component](../sdk/discovery/creature_trajectory_component_v1.json)
-now passes all 159 applicable controls and zero-world preflight for 224 planned
-worlds across 16 body shapes. A separate assignment schema puts 48 bounded wave,
-impulse and waypoint proposals on four bodies each; every body also gets fresh
-brake and timed comparators. The existing controller, physical limits and
-supported-upright criterion remain unchanged. All-substep peak rotation and
-distal-supported rotation can suggest follow-ups, separately from eligibility.
-A same-freeze full canary binds the compact interface without duplicating the
-whole search. Next run the declared five-world two-interval full route, then
-six-second compact discovery with a fresh complete gate. The failed six-control
-fixture attempt remains retained; no new physical worlds have opened yet.
-Useful diverse leads need fresh full-capture varied-start confirmation and
-complete Godot handoffs.
+The [compact recording canaries](../sdk/discovery/creature_capture_native_result_v1.json)
+at source `670cffc2` retain exact same-run projection and 75.7% smaller fresh
+streams. Full-plus-projection outer-loop time is 14.5752 seconds versus 13.8561
+for compact; one ordered pair per body does not establish ordinary full-capture
+speedup or real time. The broad search reuses the same-freeze full interface
+check without duplicating its entire population. Native reads, solver inputs
+and every substep remain captured. Compact outcomes confer no full-replay,
+recovery, training or release authority.
 
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
