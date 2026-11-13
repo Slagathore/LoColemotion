@@ -3,45 +3,47 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [dynamic trajectory result](../sdk/discovery/creature_trajectory_native_result_v1.json)
-is complete at source `aed3bc18`: 224 fresh six-second worlds, 16 bodies and
-48 bounded wave, impulse and waypoint proposals, each assigned to four bodies.
-Every body also receives fresh brake and timed comparators. The five-world
-two-interval full canary and the compact search each pass all 159 controls.
-The canary replays 10 decisions and 50 native samples and verifies exact compact
-projection. The broad compact reader reconstructs 161,280 controller records
-and 806,400 native samples; it does not claim full controller decision replay.
-All 6,251 artifacts and 40 top-level stage cleanups across both runs verify.
+The [paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json)
+is complete at source b8f369f2: 224 fresh twelve-second worlds across sixteen
+bodies. Twenty-four base profiles each have original and three-times-longer
+phase holds and limb delays on four bodies; every body also has both fresh
+comparators. Both the fourteen-world full route and broad compact run pass
+all 172 controls. The route replays 28 decisions and 140 samples with exact
+compact projection; the broad reader reconstructs 322,560 controller records
+and 1,612,800 native samples. All 5,875 native artifacts and 44 stage cleanups
+verify. The component's earlier input-inventory gap and correction stay retained.
 
-All 224 search worlds are valid performance negatives, with zero eligible
-worlds, upright dwell or progress leads, and sixteen empty shortlists. Sixteen
-worlds also violate joint limits: all four assigned bodies for wave_05,
-impulse_05, waypoint_01 and waypoint_13. Only 32 of 192 new-profile worlds make
-any distal contact. Timed reaches 14.3705 degrees without joint violations;
-wave reaches 12.5995 in a violating world and only 0.1312 without a violation.
-The best nonviolating impulse reaches 11.6124 degrees. The separate five-degree
-progress screen is unchanged; no result qualifies for recovery or adoption.
+All 224 broad worlds are valid performance negatives: zero eligible worlds,
+zero progress leads and 32 joint-breach worlds. The original and slower halves
+each have sixteen violating worlds, covering the same four profiles on every
+assigned body. Longer schedules increase worlds with distal contact from 23/96
+to 33/96. Maximum nonviolating rotation rises from 11.71 to 14.03 degrees, but
+every nonviolating proposal still trails its own fresh timed comparator.
+The strongest overall rotation, 20.17 degrees, occurs in a violating world.
 
-The [retained-motion diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json)
-now passes six analytical/refusal controls and matches all 1,290,240 velocity
-commands. Of 3,616 completed phases, 3,512 time out; mean exit pose errors are
-0.86-1.17 radians despite mean velocity errors of only 0.028-0.035 radians per
-second. Force saturation is rare and roughly half of commands are slew-limited.
-No outward command occurs at an observed joint bound, but physical overshoot
-still reaches 0.008794 radians. Original contact and violation counts match.
-This read-only diagnosis opens zero worlds and does not prove a cause or benefit.
-The [paired retiming component](../sdk/discovery/creature_trajectory_retiming_component_v2.json)
-now passes all 172 zero-world controls and preflights both actual declarations.
-It binds 24 original/three-times-longer schedule pairs on four bodies each,
-with both fresh comparators on all 16 bodies: 224 twelve-second worlds in
-sixteen fourteen-world batches. The first gate's two missing input copies are
-retained in a supplemental snapshot; the successor inventories all inputs and
-adds a refusal control. Both gate identities remain. Next run the fourteen-world
-two-interval full route, then the compact comparison from the same clean pushed
-freeze. Poses, gains, limits, horizons and starts are paired; all failed and
-joint-breach outcomes remain. Useful leads still require fresh full-capture
-varied-start checks and the complete Godot recovery handoff with 120 resumed
-walking steps. No retiming world has opened or benefit been established.
+The retained-motion diagnostic opens no worlds and matches all 2,580,480 velocity
+commands. It reuses the six diagnostic controls already passed in the unchanged
+172-control native gate. Measured pose completions rise from 160 to 382;
+timeouts fall from 95.6% to 67.5% of completed exits, and mean exit pose error
+falls from 1.04 to 0.43 radians. Slower schedules have fewer phase visits in the
+same twelve seconds; both denominators remain explicit. Violating samples rise
+from 2,153 to 4,487 despite zero outward commands at observed bounds. All ten
+diagnostic artifacts and its stage cleanup verify. Partial motion reconstruction
+does not provide full controller replay or detailed contact-geometry proof.
+
+This narrows the next work to contact reach, supported rotation and joint
+boundary handling. Use the retained trajectories to propose mechanically
+distinct, contact-aware and joint-conservative families, with a small declared
+full-capture diagnostic if missing contact geometry or per-contact forces prevent a
+mechanical decision. Then search broadly with fresh comparators and unchanged
+eligibility. Useful diverse leads still require fresh full-capture varied-start
+checks and the complete Godot recovery handoff with 120 resumed walking steps.
+No timing-only retry, recovery adoption, learned provider or release claim follows.
+
+The preceding [trajectory cohort](../sdk/discovery/creature_trajectory_native_result_v1.json)
+retains 224 six-second negatives and sixteen joint-breach worlds; its
+[read-only diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json)
+motivated the timing intervention. Those original results remain immutable.
 
 The earlier [four-phase result](../sdk/discovery/creature_righting_sequence_native_result_v1.json)
 retains 256 valid negatives at source `217d591b`, with 184,320 decisions and
@@ -50,7 +52,7 @@ but later transitions use timeout rather than measured rotation/contact gates.
 The static [geometry proposal](../sdk/discovery/creature_righting_geometry_result_v1.json)
 did not yield useful dynamic transfer. Together with the 752 earlier
 [timed and feedback failures](../sdk/discovery/creature_righting_feedback_native_result_v1.json),
-the five cohorts now retain 1,232 valid negative performance worlds. All original
+the six cohorts now retain 1,456 valid negative performance worlds. All original
 records and route discrepancies remain preserved; this does not prove impossibility.
 
 The [compact recording canaries](../sdk/discovery/creature_capture_native_result_v1.json)

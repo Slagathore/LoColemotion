@@ -10,7 +10,7 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and useful self-righting remains unestablished after five negative cohorts.
+and useful self-righting remains unestablished after six negative cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -24,24 +24,24 @@ and useful self-righting remains unestablished after five negative cohorts.
 | [Compact capture native result](../sdk/discovery/creature_capture_native_result_v1.json) | Both eight-world canaries pass 153 controls and independent reading. Same-run projection is exact; fresh compact streams are 75.7% smaller. Outer-loop time is 14.58 vs 13.86 seconds, descriptive only because full also writes projection. Retained 256-world reconstruction remains exact |
 | [Dynamic trajectory result](../sdk/discovery/creature_trajectory_native_result_v1.json) | 224 valid six-second failures across 16 bodies after 159 controls: zero eligible, zero progress leads, 16 joint-breach worlds. Compact reading reconstructs 161,280 records and 806,400 samples. Only 32 of 192 new-profile worlds make any distal contact; the timed comparator reaches 14.37 degrees without joint violations |
 | [Retained motion diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json) | Six controls pass; all 1,290,240 velocity commands match. 3,512/3,616 completed phases time out, with large pose errors despite close velocity tracking and rare force saturation. Zero new worlds; no causal or recovery claim |
-| [Paired retiming component](../sdk/discovery/creature_trajectory_retiming_component_v2.json) | All 172 zero-world controls pass. Declares 224 fresh twelve-second worlds: 24 original/slow pairs, four bodies per pair, both comparators on every body. The first gate's missing-input inventory is retained and corrected; native execution is pending |
+| [Paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json) | 224 fresh twelve-second worlds after 172 controls: zero eligible or progress leads, 32 joint-breach worlds. Longer holds increase measured pose completions 160 to 382 and contact worlds 23/96 to 33/96; all nonviolating proposals still trail their own fresh timed comparator. All 2,580,480 velocity commands match in the retained-motion diagnostic |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Run the paired timing comparison.** The retained diagnosis finds 97.1%
-   phase timeouts despite close velocity tracking. The
-   [172-control component](../sdk/discovery/creature_trajectory_retiming_component_v2.json)
-   now binds 24 diverse exposed profiles and their three-times-longer phase holds
-   and limb delays: four bodies per pair, six pairs and both fresh comparators
-   per body, 224 twelve-second worlds. Poses, gains, speed, slew, force and
-   eligibility remain fixed. Publish the prospective freeze, verify the
-   fourteen-world two-interval full-capture route, then run sixteen bounded
-   compact batches under the same source. Retain every paired outcome, including
-   all four known joint-breach profiles. Reopen phase completion and contact
-   acquisition from retained streams. The initial 171-control gate's missing
-   input copies and corrective 172-control gate remain separately recorded.
-   The 1,232 previous valid negatives remain; no retiming benefit is established.
-   Useful diverse leads need fresh full-capture varied-start checks before SDK
-   and Studio integration.
+1. **Change contact mechanics and boundary handling using the paired result.**
+   The timing intervention worked at its immediate target: timeout exits fell
+   from 95.6% to 67.5% of completed phases, and mean exit pose error fell from
+   1.04 to 0.43 radians. It did not yield useful righting. The original and slower
+   halves each retain 16 joint-breach worlds; violating samples rose from 2,153
+   to 4,487, and every nonviolating proposal trails its own timed comparator.
+   Use the retained trajectories to identify contact reach, supported-rotation
+   and joint-excursion failures, then propose mechanically distinct,
+   contact-aware and joint-conservative motion families across varied bodies.
+   Compact data do not establish contact geometry or per-contact forces; if those are needed,
+   declare the smallest full-capture development diagnostic that supplies them.
+   Keep fresh comparators and unchanged eligibility in the next broad search.
+   A further timing-only sweep is not the next step. All 1,456 valid negative
+   performance worlds remain. Useful diverse leads still need fresh full-capture
+   varied-start confirmation before SDK and Studio integration.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

@@ -27,7 +27,7 @@ historical instructions.
 | Compact capture | [Native canaries complete](../sdk/discovery/creature_capture_native_result_v1.json): 153 controls before each eight-world run; exact same-run projection and 9,600 compact samples reconstructed. Fresh streams are 75.7% smaller. Outer-loop 14.58 vs 13.86 seconds is descriptive full-plus-projection/compact timing; ordinary full-capture speedup remains unestablished |
 | Dynamic trajectory result | [224 valid negatives](../sdk/discovery/creature_trajectory_native_result_v1.json): 48 proposals on four bodies each, plus both comparators on all 16 bodies. The five-world full canary and compact search each pass 159 controls. Compact reading reconstructs 161,280 controller records and 806,400 native samples; zero eligible or progress leads, 16 joint-breach worlds. Only 32 of 192 new-profile worlds make distal contact |
 | Retained motion diagnosis | [Six controls and 224-world reading pass](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json): 1,290,240 velocity commands match; 97.1% of completed phases time out with large pose error despite close velocity tracking. Contact and violation counts match the original reader. Zero new worlds, no full controller replay or causal benefit claim |
-| Paired retiming component | [All 172 zero-world controls pass](../sdk/discovery/creature_trajectory_retiming_component_v2.json); 224 fresh twelve-second worlds declared across 16 bodies, pairing 24 original/slow schedules on four bodies each. Initial input-retention gap preserved and corrected; no new physics or benefit yet |
+| Paired retiming native result | [224 valid negatives after 172 controls](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json): original/three-times-longer schedules on 16 bodies. Pose completions increase 160 to 382, but zero eligible worlds or progress leads and 32 joint-breach worlds remain. All 2,580,480 velocity commands match; fourteen-world full route and compact reconstruction pass |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
@@ -68,22 +68,23 @@ points to the active implementation and evidence. The
 [research program](LOCOMOTION_GROUND_UP_RESEARCH_PROGRAM.md) defines evidence
 and audit economy; the [architecture](LOCOMOTION_ARCHITECTURE.md) defines
 runtime ownership. New attempts preserve consumed identities and add declarations
-to shared machinery wherever the contract is unchanged. Five righting cohorts
-now retain 1,232 valid negative performance worlds. Compact recording passes
-retained-corpus reconstruction, matched native canaries and the balanced search
-at source `aed3bc18`. The search finds no recovery or partial-progress lead;
-sixteen worlds violate joint limits. The best new nonviolating rotation is
-11.61 degrees, against 14.37 for the timed comparator. Retained-motion diagnosis
-now finds 3,512 timeout exits among 3,616 completed phases, rare force saturation
-and large position errors despite close velocity tracking. The paired retiming
-component now passes 172 controls with both actual declarations preflighted and
-all JSON inputs archived. Next run its fourteen-world full route and 224 fresh
-twelve-second compact worlds from the clean pushed freeze. Original and slower
-schedules share poses, physical bounds and starts; fresh comparators remain on
-every body. The timing intervention has no established benefit yet. Compact outcome and partial command
-reconstruction do not provide full controller replay. Useful leads still need varied-start
-full-capture checks and the complete Godot handoff; no righting mechanism has
-been adopted.
+to shared machinery wherever the contract is unchanged. Six righting cohorts
+now retain 1,456 valid negative performance worlds. The paired retiming cohort
+at source b8f369f2 completes 224 fresh twelve-second worlds across sixteen
+bodies after the 172-control gate and a fourteen-world full route. Its compact
+reader reconstructs 322,560 controller records and 1,612,800 native samples;
+the separate retained-motion reader matches all 2,580,480 velocity commands.
+
+Longer holds and limb delays reduce phase timeouts from 95.6% to 67.5% and mean
+exit pose error from 1.04 to 0.43 radians, but no world meets recovery eligibility
+or the declared progress screen. Each timing half has sixteen joint-breach
+worlds; every nonviolating proposal remains below its own fresh timed comparator.
+The next controller work targets contact reach, supported rotation and boundary
+handling using these retained trajectories. Compact data omit detailed contact
+geometry and per-contact forces; a small full-capture diagnostic may be needed before
+declaring the next mechanically distinct broad search. Useful leads still need
+fresh varied-start full-capture checks and the complete Godot handoff. No
+righting mechanism has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.
