@@ -185,7 +185,7 @@ def diagnose(root, closure):
     receipt = json.loads(raw)
     require(receipt["ok"] and receipt["source_runtime_unchanged"] and receipt["source_status"] == [], "Diagnostic owner state")
     c = receipt["contract"]
-    require(c["capture_mode"] == "compact_v1" and c["outer_steps"] == 720, "Diagnostic retained discovery scope")
+    require(c["capture_mode"] == "compact_v1" and c["outer_steps"] in (720, 1440), "Diagnostic retained discovery scope")
     archive = Archive(root, receipt)
     audit = archive.document("independent-audit.json")
     require(audit == receipt["audit"], "Diagnostic retained audit binding")

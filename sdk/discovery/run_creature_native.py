@@ -10,7 +10,7 @@ import sys
 import time
 import uuid
 
-from creature_native import ROOT, HERE, FLAGS, gates, MODEL_SOURCES, declaration, require, sha, capture
+from creature_native import ROOT, HERE, FLAGS, gates, MODEL_SOURCES, declaration, require, sha, capture, retiming
 from gpu_measurement_probe import write_new
 from run_gpu_measurement_probe import source_identity
 from run_gpu_motor_effectiveness import bindings as inherited_bindings
@@ -27,6 +27,18 @@ def inventory(folder):
             for p in sorted(folder.rglob("*")) if p.is_file() and "warp-cache" not in p.parts]
 
 
+def source_paths(contract_path, c):
+    paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES],
+             *retiming.source_dependencies(c)]
+    if "capture_reference" in c:
+        reference = (ROOT / c["capture_reference"]["path"]).resolve(strict=True)
+        require(reference.is_relative_to(ROOT) and sha(reference) == c["capture_reference"]["sha256"],
+                "Creature capture reference source")
+        paths.append(reference)
+    # The selected contract may also be a declared test dependency.
+    return list(dict.fromkeys(paths))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--contract", type=Path, required=True)
@@ -41,12 +53,7 @@ def main():
     require(sha(core) == c["core_sha256"] and sha(baseline) == c["baseline_core_sha256"], "Creature frozen core images")
     evidence = ROOT.parent / "SporeSpore_Evidence"
     require(shutil.disk_usage(evidence).free >= c["minimum_free_storage_bytes"], "Creature evidence storage")
-    sources = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES]]
-    if "capture_reference" in c:
-        reference = (ROOT / c["capture_reference"]["path"]).resolve(strict=True)
-        require(reference.is_relative_to(ROOT) and sha(reference) == c["capture_reference"]["sha256"],
-                "Creature capture reference source")
-        sources.append(reference)
+    sources = source_paths(contract_path, c)
     def bindings():
         bound = inherited_bindings(core, baseline)
         bound["source"].update({p.relative_to(ROOT).as_posix(): sha(p) for p in sources})

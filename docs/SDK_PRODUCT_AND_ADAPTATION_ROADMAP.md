@@ -24,25 +24,24 @@ and useful self-righting remains unestablished after five negative cohorts.
 | [Compact capture native result](../sdk/discovery/creature_capture_native_result_v1.json) | Both eight-world canaries pass 153 controls and independent reading. Same-run projection is exact; fresh compact streams are 75.7% smaller. Outer-loop time is 14.58 vs 13.86 seconds, descriptive only because full also writes projection. Retained 256-world reconstruction remains exact |
 | [Dynamic trajectory result](../sdk/discovery/creature_trajectory_native_result_v1.json) | 224 valid six-second failures across 16 bodies after 159 controls: zero eligible, zero progress leads, 16 joint-breach worlds. Compact reading reconstructs 161,280 records and 806,400 samples. Only 32 of 192 new-profile worlds make any distal contact; the timed comparator reaches 14.37 degrees without joint violations |
 | [Retained motion diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json) | Six controls pass; all 1,290,240 velocity commands match. 3,512/3,616 completed phases time out, with large pose errors despite close velocity tracking and rare force saturation. Zero new worlds; no causal or recovery claim |
+| [Paired retiming component](../sdk/discovery/creature_trajectory_retiming_component_v2.json) | All 172 zero-world controls pass. Declares 224 fresh twelve-second worlds: 24 original/slow pairs, four bodies per pair, both comparators on every body. The first gate's missing-input inventory is retained and corrected; native execution is pending |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Test phase timing across diverse body/profile pairs.** The read-only
-   diagnosis of the `aed3bc18` population finds that 97.1% of completed phases
-   time out. Mean exit pose errors are 0.86-1.17 radians, while mean velocity
-   tracking errors are only 0.028-0.035 radians per second. About half of commands
-   are slew-limited. These observations support a timing intervention; they do
-   not prove that slowing the schedule will produce recovery.
-   Declare fresh original-timing and slower variants of the same diverse poses
-   on representative bodies, with identical gains, slew, speed/force limits,
-   horizons and starts. Keep fresh timed/brake comparators on every body.
-   Report contact acquisition, pose completion, rotation and joint excursions
-   separately from unchanged supported-upright eligibility. The 16 joint-breach
-   worlds remain failures despite zero outward commands at observed bounds.
-   No force increase or relaxed joint criterion is justified by the diagnosis.
-   All 1,232 valid negative performance worlds stay retained. Compact outcome
-   reconstruction and partial command reconstruction are not full controller
-   replay. Useful diverse leads need fresh full-capture varied-start checks
-   before SDK and Studio integration.
+1. **Run the paired timing comparison.** The retained diagnosis finds 97.1%
+   phase timeouts despite close velocity tracking. The
+   [172-control component](../sdk/discovery/creature_trajectory_retiming_component_v2.json)
+   now binds 24 diverse exposed profiles and their three-times-longer phase holds
+   and limb delays: four bodies per pair, six pairs and both fresh comparators
+   per body, 224 twelve-second worlds. Poses, gains, speed, slew, force and
+   eligibility remain fixed. Publish the prospective freeze, verify the
+   fourteen-world two-interval full-capture route, then run sixteen bounded
+   compact batches under the same source. Retain every paired outcome, including
+   all four known joint-breach profiles. Reopen phase completion and contact
+   acquisition from retained streams. The initial 171-control gate's missing
+   input copies and corrective 172-control gate remain separately recorded.
+   The 1,232 previous valid negatives remain; no retiming benefit is established.
+   Useful diverse leads need fresh full-capture varied-start checks before SDK
+   and Studio integration.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

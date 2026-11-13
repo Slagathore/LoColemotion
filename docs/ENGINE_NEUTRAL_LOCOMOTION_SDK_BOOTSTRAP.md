@@ -27,6 +27,7 @@ historical instructions.
 | Compact capture | [Native canaries complete](../sdk/discovery/creature_capture_native_result_v1.json): 153 controls before each eight-world run; exact same-run projection and 9,600 compact samples reconstructed. Fresh streams are 75.7% smaller. Outer-loop 14.58 vs 13.86 seconds is descriptive full-plus-projection/compact timing; ordinary full-capture speedup remains unestablished |
 | Dynamic trajectory result | [224 valid negatives](../sdk/discovery/creature_trajectory_native_result_v1.json): 48 proposals on four bodies each, plus both comparators on all 16 bodies. The five-world full canary and compact search each pass 159 controls. Compact reading reconstructs 161,280 controller records and 806,400 native samples; zero eligible or progress leads, 16 joint-breach worlds. Only 32 of 192 new-profile worlds make distal contact |
 | Retained motion diagnosis | [Six controls and 224-world reading pass](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json): 1,290,240 velocity commands match; 97.1% of completed phases time out with large pose error despite close velocity tracking. Contact and violation counts match the original reader. Zero new worlds, no full controller replay or causal benefit claim |
+| Paired retiming component | [All 172 zero-world controls pass](../sdk/discovery/creature_trajectory_retiming_component_v2.json); 224 fresh twelve-second worlds declared across 16 bodies, pairing 24 original/slow schedules on four bodies each. Initial input-retention gap preserved and corrected; no new physics or benefit yet |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
@@ -74,10 +75,12 @@ at source `aed3bc18`. The search finds no recovery or partial-progress lead;
 sixteen worlds violate joint limits. The best new nonviolating rotation is
 11.61 degrees, against 14.37 for the timed comparator. Retained-motion diagnosis
 now finds 3,512 timeout exits among 3,616 completed phases, rare force saturation
-and large position errors despite close velocity tracking. Next declare a broad
-paired retiming comparison with fresh original schedules, identical poses and
-physical bounds, and fresh comparators on every body. This tests a cause rather
-than assuming the diagnostic proves benefit. Compact outcome and partial command
+and large position errors despite close velocity tracking. The paired retiming
+component now passes 172 controls with both actual declarations preflighted and
+all JSON inputs archived. Next run its fourteen-world full route and 224 fresh
+twelve-second compact worlds from the clean pushed freeze. Original and slower
+schedules share poses, physical bounds and starts; fresh comparators remain on
+every body. The timing intervention has no established benefit yet. Compact outcome and partial command
 reconstruction do not provide full controller replay. Useful leads still need varied-start
 full-capture checks and the complete Godot handoff; no righting mechanism has
 been adopted.

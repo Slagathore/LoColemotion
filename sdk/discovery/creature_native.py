@@ -29,6 +29,7 @@ import creature_confirmation as confirmation
 import creature_righting as righting
 import creature_capture as capture
 import creature_trajectory_search as trajectory
+import creature_trajectory_retiming as retiming
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -39,7 +40,9 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_righting.py", "test_creature_righting.py",
                  "creature_righting_sequence.py", "test_creature_righting_sequence.py",
                  "creature_capture.py", "test_creature_capture.py",
-                 "creature_trajectory_search.py", "test_creature_trajectory_search.py"]
+                 "creature_trajectory_search.py", "test_creature_trajectory_search.py",
+                 "creature_trajectory_retiming.py", "test_creature_trajectory_retiming.py",
+                 "creature_trajectory_diagnosis.py", "test_creature_trajectory_diagnosis.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -67,7 +70,10 @@ def gates(c):
             + ([("creature-capture", "test_creature_capture", 10)] if "compact_capture" in c else [])
             + ([("creature-trajectory", "test_creature_trajectory_search", 6)]
                if any(k in c for k in ("trajectory_screen", "capture_reference"))
-               or c.get("righting_spec", {}).get("schema_version") == righting.ASSIGNED_SCHEMA else []))
+               or c.get("righting_spec", {}).get("schema_version") == righting.ASSIGNED_SCHEMA else [])
+            + ([("creature-retiming", "test_creature_trajectory_retiming", 7),
+                ("creature-motion-diagnosis", "test_creature_trajectory_diagnosis", 6)]
+               if "trajectory_retiming" in c else []))
 
 
 def sequence_enabled(c):
@@ -107,6 +113,7 @@ def declaration(path):
     readback.options(c)
     capture.options(c)
     trajectory.validate(c)
+    retiming.validate(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
@@ -606,6 +613,8 @@ def audit(folder, c, core_path, *, synthetic=False):
         result["assessment"] = righting.assess(c, metrics, pre["bindings"])
     if "trajectory_screen" in c:
         result["trajectory_screen"] = trajectory.assess(c, metrics)
+    if "trajectory_retiming" in c:
+        result["timing_pairs"] = retiming.assess(c, metrics, result["assessment"])
     if readback.options(c)["mode"] == "shared_snapshot":
         result["readback"] = {key: sum(g["audit"]["readback"][key] for g in reports)
                               for key in reports[0]["audit"]["readback"]}

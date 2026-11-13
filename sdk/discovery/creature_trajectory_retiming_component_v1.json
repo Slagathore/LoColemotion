@@ -1,0 +1,214 @@
+{
+  "schema_version": "locolemotion_trajectory_retiming_component_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "status": "complete_zero_world_paired_retiming_component",
+  "source_base_commit": "4c6f697129b1d3cea4447650a42006045e9e4d8d",
+  "source_scope": "Exact staged source and declarations are retained in the gate. Native work requires a clean pushed prospective freeze.",
+  "source_pins": [
+    {
+      "path": "sdk/discovery/creature_native.py",
+      "sha256": "f2a981d783db082c01c60159a11f62de2796f6dd91812707d14fad03f84811f4"
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_diagnosis.py",
+      "sha256": "d2dbff510fb5a103301567d96700c1e5c832d92f7cca92dc2055172c6153b5fe"
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_retiming.py",
+      "sha256": "b2f47a87b483ea5d604b43d10e6b0b3473f0c1ab0a045f7f7921f886afa54440"
+    },
+    {
+      "path": "sdk/discovery/test_creature_trajectory_retiming.py",
+      "sha256": "af40491fa726c16d36560b8716c08df4c2752a53a5c00b518ff4bfb64d6a6d53"
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_retiming_route_v1.json",
+      "sha256": "fd3e07d140959e84f36f21f4bc11afcfe3b5a751886909ef6d4e4425af9a9abb"
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_retiming_v1.json",
+      "sha256": "baf27cbb17c1cec449fffb24588f571aeb5e30c2c0cd113d72697556efef98d8"
+    }
+  ],
+  "predecessor": {
+    "path": "sdk/discovery/creature_trajectory_diagnosis_result_v1.json",
+    "sha256": "5eaf9205f1e6b54df0e9f5f0a02b056bff9e3168eb1d7f73a55143e89da88a53"
+  },
+  "zero_world_gate": {
+    "archive_relative_path": "sdk2-creature-trajectory-retiming-route-v1-7290cb6a0ed14675ba6649775515434a",
+    "receipt_sha256": "3308147ffc58bad46e3548b83ad98e52694409f3dbb2fc635868a57591bcbfa3",
+    "declaration_sha256": "edf587be651964b25b9643438d37d979792920dc36ddbf86c3154df008ec5ca2",
+    "gate_receipt_sha256": "bd65e0174f29a110193e6e7481dfc62298d21da71fc145c8f74f138e3d63eeec",
+    "controls_passed": 171,
+    "controls_required": 171,
+    "safety_controls": {
+      "measurement": 7,
+      "quadruped": 10,
+      "portable": 11,
+      "host-batch": 7,
+      "graph-execution": 7,
+      "motor-task": 7,
+      "motor-route": 5,
+      "stage-lifecycle": 17,
+      "containment": 1,
+      "provider": 2,
+      "creature-controller": 14,
+      "creature-native": 22,
+      "creature-readback": 12,
+      "creature-righting": 12,
+      "creature-righting-sequence": 9,
+      "creature-capture": 10,
+      "creature-trajectory": 6,
+      "creature-retiming": 6,
+      "creature-motion-diagnosis": 6
+    },
+    "artifacts_verified": 2369,
+    "retained_bytes_verified": 236570626,
+    "cleanup_reports_verified": 20,
+    "source_binding_count": 1188,
+    "runtime_binding_count": 1359,
+    "gpu_identity_sha256": "36a71e461b399feb5bb1972b55b063ca1e09cc5768db673f5debe60271f4397e",
+    "wall_s": 144.53100000001723,
+    "world_build_count": 0,
+    "solver_steps": 0,
+    "source_runtime_unchanged": true
+  },
+  "actual_search_preflight": {
+    "verified": true,
+    "control": "test_05_actual_declarations_preflight_all_worlds_without_physics",
+    "module": "test_creature_trajectory_retiming",
+    "planned_gpu_worlds": 224,
+    "distinct_body_shapes": 16,
+    "batches": 16,
+    "worlds_per_batch": 14,
+    "world_build_count": 0,
+    "solver_steps": 0,
+    "evidence_scope": "The retained six-control module preflights both actual declarations through the core interface with simulator constructors and steppers trapped. The owner receipt also retains the route preflight."
+  },
+  "retiming_recipe": {
+    "schema_version": "locolemotion_trajectory_retiming_v1",
+    "seed": 1061122,
+    "source_contract": {
+      "path": "sdk/discovery/creature_trajectory_search_v1.json",
+      "sha256": "2c4a028543b016be2cdf0c00c3f5994e6cac5dffc991f1d3f2a27fc1a1b062c8"
+    },
+    "body_count": 16,
+    "multiplier": 3,
+    "route_body_index": 1,
+    "selected_indices": {
+      "wave": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11
+      ],
+      "impulse": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        11
+      ],
+      "waypoint": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        6,
+        11,
+        13
+      ]
+    },
+    "assignment_offsets": [
+      0,
+      4,
+      8,
+      12
+    ]
+  },
+  "intervention": {
+    "selected_base_profiles": 24,
+    "profiles_per_family": 8,
+    "variants": [
+      "original",
+      "slow3"
+    ],
+    "phase_holds_and_limb_delays_multiplier": 3,
+    "poses_changed": false,
+    "gains_changed": false,
+    "slew_changed": false,
+    "speed_limits_changed": false,
+    "force_limits_changed": false,
+    "eligibility_changed": false,
+    "equal_pair_horizons_and_starts": true,
+    "exposed_development_data": true,
+    "retained_breach_profiles": [
+      "wave_05",
+      "impulse_05",
+      "waypoint_01",
+      "waypoint_13"
+    ]
+  },
+  "changes": [
+    "Bind the selected exposed source by hash and materialize only original and three-times-longer schedules.",
+    "Pair original and slower variants on the same four bodies, with both fresh comparators on all sixteen bodies.",
+    "Retain every paired rotation, contact, eligibility and joint-violation contrast in the shared independent reader; confer no new authority.",
+    "Use the existing fourteen-world batch capacity with a full-size native canary; extend the read-only motion diagnostic to the declared twelve-second horizon."
+  ],
+  "native_route_plan": {
+    "contract_path": "sdk/discovery/creature_trajectory_retiming_route_v1.json",
+    "worlds": 14,
+    "body_shapes": 1,
+    "profiles": 14,
+    "paired_groups": 6,
+    "outer_steps_per_world": 2,
+    "batches": 1,
+    "capture_mode": "full",
+    "executed": false,
+    "scope": "Construction, full-size transport, full/compact projection and paired joins. No phase-cycle performance claim."
+  },
+  "native_search_plan": {
+    "contract_path": "sdk/discovery/creature_trajectory_retiming_v1.json",
+    "worlds": 224,
+    "body_shapes": 16,
+    "base_profiles": 24,
+    "profile_variants": 48,
+    "comparators": 2,
+    "paired_groups": 96,
+    "body_replicates_per_pair": 4,
+    "pairs_per_body": 6,
+    "total_profiles_per_body": 14,
+    "seconds_per_world": 12,
+    "outer_steps_per_world": 1440,
+    "batches": 16,
+    "maximum_worlds_per_batch": 14,
+    "seed": 1061122,
+    "capture_mode": "compact_v1",
+    "executed": false
+  },
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "native_route_verified": false,
+  "recovery_benefit_established": false,
+  "trained": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "next_gate": "Publish the clean prospective freeze, run the fourteen-world two-interval full canary with the complete 171-control gate and independent reader, then run 224 fresh twelve-second compact worlds after another complete gate using that same-freeze canary. Retain every pair and failure, reopen phase completion with the bound motion diagnostic, and require fresh full-capture varied-start checks for any useful diverse leads before Godot recovery integration."
+}

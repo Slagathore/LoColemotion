@@ -30,11 +30,18 @@ second. Force saturation is rare and roughly half of commands are slew-limited.
 No outward command occurs at an observed joint bound, but physical overshoot
 still reaches 0.008794 radians. Original contact and violation counts match.
 This read-only diagnosis opens zero worlds and does not prove a cause or benefit.
-Next compare fresh original and slower schedules across diverse body/profile
-pairs with identical poses, gains, limits, horizons and starts. Preserve failed
-and joint-breach outcomes; do not increase force or relax eligibility. Useful
-leads still require full-capture varied-start checks and the complete Godot
-recovery handoff with 120 resumed walking steps.
+The [paired retiming component](../sdk/discovery/creature_trajectory_retiming_component_v2.json)
+now passes all 172 zero-world controls and preflights both actual declarations.
+It binds 24 original/three-times-longer schedule pairs on four bodies each,
+with both fresh comparators on all 16 bodies: 224 twelve-second worlds in
+sixteen fourteen-world batches. The first gate's two missing input copies are
+retained in a supplemental snapshot; the successor inventories all inputs and
+adds a refusal control. Both gate identities remain. Next run the fourteen-world
+two-interval full route, then the compact comparison from the same clean pushed
+freeze. Poses, gains, limits, horizons and starts are paired; all failed and
+joint-breach outcomes remain. Useful leads still require fresh full-capture
+varied-start checks and the complete Godot recovery handoff with 120 resumed
+walking steps. No retiming world has opened or benefit been established.
 
 The earlier [four-phase result](../sdk/discovery/creature_righting_sequence_native_result_v1.json)
 retains 256 valid negatives at source `217d591b`, with 184,320 decisions and
