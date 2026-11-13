@@ -37,7 +37,9 @@ def main():
     parser.add_argument('--live-walking',action='store_true',help='After original stand-up, measure the separate live walking path without recovery energy ledgers')
     parser.add_argument('--walking-steps',type=int,choices=[119,1800],default=119)
     parser.add_argument('--probe-impulses',action='store_true',help='Send two next-step commands after observed walking seconds 5 and 10')
+    parser.add_argument('--epoch-boundary-probe',action='store_true',help='Capture a fresh recovery observation epoch at completed steps 300 through 302; no recovery actuation')
     args=parser.parse_args()
+    if args.epoch_boundary_probe and (not args.live_walking or args.walking_steps!=119 or args.probe_impulses):raise ValueError('Epoch boundary probe requires the short live-walking route without impulses')
     if (args.walking_steps!=119 or args.probe_impulses) and not args.live_walking:raise ValueError('Live walking option required')
     if args.probe_impulses and args.walking_steps!=1800:raise ValueError('Two-command probe requires the 15-second walking horizon')
     def git(*words):return subprocess.check_output(['git',*words],cwd=ROOT,text=True).strip()
@@ -87,6 +89,11 @@ def execute(args,source,folder,owner,cfg):
             shutil.copy2(SDK/'explorer/studio/godot_live_walking_worker.gd',worker)
             for name in ['godot_live_walking.gd','test_godot_live_walking.gd','godot_live_commands.gd']:
                 shutil.copy2(SDK/'explorer/studio'/name,project/'sdk/explorer/studio'/name)
+            if getattr(args,'epoch_boundary_probe',False):
+                for name in ['godot_live_walking_worker.gd','godot_live_recovery_epoch_worker.gd','test_live_recovery_epoch.gd']:
+                    shutil.copy2(SDK/'explorer/studio'/name,project/'sdk/explorer/studio'/name)
+                shutil.copy2(SDK/'adapters/godot/gdscript/live_recovery_epoch_v1.gd',project/'sdk/adapters/godot/gdscript/live_recovery_epoch_v1.gd')
+                shutil.copy2(SDK/'explorer/studio/godot_live_recovery_epoch_worker.gd',worker)
             receipt['declaration']['question']='Measure the separate native live walking loop, retained inputs, body observations and next-step commands without recovery energy ledgers.'
             receipt['declaration']['maximum_outer_steps']=maximum
             receipt['declaration']['walking_commands']=args.walking_steps
@@ -98,6 +105,14 @@ def execute(args,source,folder,owner,cfg):
                 receipt['declaration']['uncovered_paths'].remove('desktop kick-button integration')
                 receipt['declaration']['desktop_entrypoints']=['studio_view.gd kick button','StudioOwner.command','GodotLiveOwner.stream_run','godot_live_commands.gd','RigidBody3D.apply_central_impulse']
                 receipt['declaration']['interactive_probe']['maximum_user_commands']=16
+            if getattr(args,'epoch_boundary_probe',False):
+                receipt['declaration']['question']='Commission fresh completed-boundary observation ownership after fast walking without changing native bodies, callbacks, motor commands or the stale setup ledger.'
+                receipt['declaration']['recovery_epoch_probe']=dict(start_global_step=300,final_global_step=302,frames=3,pairs=2,
+                    independent_staging_roundoff_multiplier=64,float32_epsilon=2**-23,
+                    entrypoints=['godot_live_walking_worker._observe_live_completed_step_v1','live_recovery_epoch_v1.capture_v1','live_recovery_epoch_v1.begin_v1','live_recovery_epoch_v1.advance_v1','audit_live_recovery_epoch.audit'],
+                    coverage=['measured boundary after an uncollected recovery interval','same native body instances','global and local clocks','current solver telemetry','contiguous staging observations','retention and independent reading'],
+                    not_covered=['complete recovery energy source mapping','fall detection','recovery command selection and application','resumed walking after recovery','recovery benefit','release qualification'])
+                receipt['declaration']['telemetry_profile']+=' Three full completed-boundary snapshots, exact body-instance identities, solver-energy receipts and fresh-epoch transitions are additionally retained; no reduced capture.'
         # Test the generic exact-key cache in a minimal zero-world project.
         pure=folder/'cache-pure';pure.mkdir()
         for name in ['immutable_context_cache.gd','test_immutable_context_cache.gd']:shutil.copy2(SDK/'explorer/studio'/name,pure/name)
@@ -111,6 +126,14 @@ def execute(args,source,folder,owner,cfg):
         if check.get('ok') is not True or check['summary']['world_build_count']!=0 or check['summary']['studio_context_cache_probe']['ok'] is not True:raise RuntimeError('Complete cached-route zero-world gate refused')
         if args.live_walking and check['summary']['studio_live_walking']['zero_world']['ok'] is not True:raise RuntimeError('Live walking safety gate refused')
         if args.live_walking and check['summary']['studio_live_walking']['command_zero_world']['ok'] is not True:raise RuntimeError('Live impulse safety gate refused')
+        if getattr(args,'epoch_boundary_probe',False) and check['summary']['live_recovery_epoch']['zero_world']['ok'] is not True:raise RuntimeError('Fresh recovery epoch safety gate refused')
+        if getattr(args,'epoch_boundary_probe',False):
+            from audit_live_recovery_epoch import LocomotionCore,audit_rows,controls
+            epoch_core=LocomotionCore(Path(cfg['core']))
+            retained=check['summary']['live_recovery_epoch']['zero_world']['positive_rows_retained']
+            control_path=Path(retained['path']).resolve()
+            if not control_path.is_relative_to((folder/'preflight').resolve()) or sha(control_path)!=retained['sha256']:raise RuntimeError('Epoch control retention binding')
+            receipt['epoch_reader_controls']=controls(epoch_core,json.loads(control_path.read_text()))
         if binding(project)!=receipt['dependency_binding']:raise RuntimeError('Qualification source drift')
         for row in owner.identity.values():
             if sha(Path(row['path']))!=row['sha256']:raise RuntimeError('Runtime drift')
@@ -119,6 +142,8 @@ def execute(args,source,folder,owner,cfg):
             try:receipt['physical']=owner.stream_run('godot_jolt',folder/'physical',False,dict(phase=74),project)
             finally:timeout.cancel()
             if receipt['physical']['last_frame']!=receipt['declaration']['maximum_outer_steps'] or receipt['physical']['completed']['ok'] is not True:raise RuntimeError('Native diagnostic incomplete')
+            if getattr(args,'epoch_boundary_probe',False):
+                receipt['epoch_independent_audit']=audit_rows(epoch_core,json.loads((folder/'physical/live-recovery-epoch.json').read_text()))
         if binding(project)!=receipt['dependency_binding']:raise RuntimeError('Execution source drift')
         receipt['ok']=True
     except BaseException as exc:receipt['error']=f'{type(exc).__name__}: {exc}'

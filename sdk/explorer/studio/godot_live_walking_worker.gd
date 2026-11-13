@@ -49,6 +49,9 @@ func _on_physics_frame() -> void:
 	_live_cost.contacts_us+=Time.get_ticks_usec()-started
 	if contacts.get("ok")!=true:_abort("LIVE_WALK_NATIVE_CONTACT_REFUSED",contacts);return
 	_live_contact_checks+=1
+	var observed := _observe_live_completed_step_v1(arm.model, _total_solver_step_count,
+		_live_native_start+_total_solver_step_count-_live_start_step)
+	if observed.get("ok")!=true:_abort("LIVE_WALK_OBSERVER_REFUSED",observed);return
 	# Parent publisher samples current bodies. Its diagnostic cutoff remains
 	# 360 steps, well before the original scheduled kick.
 	if _after_completed_process_isolated_step_v1():return
@@ -64,6 +67,9 @@ func _on_physics_frame() -> void:
 		"request":controlled.sample.request,"native_output":controlled.step.native_output,
 		"application":controlled.application})
 	_poll_live_commands(arm.model.body_nodes.torso)
+
+func _observe_live_completed_step_v1(_model: Dictionary, _completed_step: int, _native_sequence: int) -> Dictionary:
+	return {"ok":true}
 
 func _poll_live_commands(torso: RigidBody3D) -> void:
 	_peer.poll()

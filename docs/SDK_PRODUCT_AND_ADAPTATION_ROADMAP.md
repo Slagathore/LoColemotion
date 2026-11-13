@@ -44,6 +44,10 @@ while profile 27 passes both.
    reset world state, invent missing cumulative history or reuse stale clocks.
    Validate the actual production route with the smallest adequate development
    ghost before testing useful recovery and the visible Studio interaction.
+   The [fresh observation component](../sdk/explorer/studio/live_recovery_epoch_component_v1.json)
+   now passes 31 adapter checks and ten independent-reader controls, including
+   full-precision retained sources. Its one-world probe at completed steps
+   300-302 is pending; complete energy mapping and recovery actuation remain open.
    Profile startup and stepping on that route. Retained measurements remain
    43.852625 seconds to stand up and 29.662299 seconds for 15 walking seconds;
    the GPU confirmation did not rerun them.

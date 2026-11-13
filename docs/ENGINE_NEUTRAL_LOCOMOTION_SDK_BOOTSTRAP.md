@@ -14,6 +14,7 @@ historical instructions.
 | --- | --- |
 | SDK1 package | [20/20 bounded milestones](../sdk/release/sdk1_package_acceptance_closure_v1.json); full-program progress remains 19/25 with six deferred gates |
 | Studio | Live native routes and installed-package evidence exist; fast Godot recovery handoff and current startup/stepping performance remain product work |
+| Studio fresh observation | [Component gate](../sdk/explorer/studio/live_recovery_epoch_component_v1.json): 31 adapter checks and ten reader controls pass with zero worlds. Native boundary probe, complete energy mapping and recovery command integration remain open |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
