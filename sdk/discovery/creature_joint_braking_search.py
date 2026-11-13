@@ -24,7 +24,8 @@ def source():
 
 
 def source_dependencies(c):
-    return ([retiming.ROOT / SOURCE["path"], retiming.ROOT / "sdk/discovery/creature_joint_braking_v1.json",
+    return ([retiming.ROOT / retiming.SOURCE["path"], retiming.ROOT / SOURCE["path"],
+             retiming.ROOT / "sdk/discovery/creature_joint_braking_v1.json",
              retiming.ROOT / "sdk/discovery/creature_joint_braking_route_v1.json"]
             if "joint_braking_search" in c else [])
 

@@ -1,0 +1,102 @@
+{
+  "schema_version": "locolemotion_joint_braking_component_v2",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "core",
+    "authority_mode": "development_component_inventory_successor",
+    "question_class": "development"
+  },
+  "status": "complete_zero_world_inventory_successor_after_native_observation",
+  "source_base_commit": "8c81cf2e0c82abbe48ae9dace40b0ebb95a4e88a",
+  "predecessor": {
+    "path": "sdk/discovery/creature_joint_braking_component_v1.json",
+    "sha256": "5b928975e93689cb76fbec87e4cc31225c660f8c6b5d6f3ba34bd7dc45b00d44"
+  },
+  "source_pins": [
+    {
+      "path": "sdk/discovery/creature_joint_braking_search.py",
+      "sha256": "6680b6a60a0680f5df9e1b87206c9c9927fae2461d89986520f40bd17b15445d"
+    },
+    {
+      "path": "sdk/discovery/test_creature_joint_braking.py",
+      "sha256": "0fde4e09888a0f02d46cf3c03d125d3c3c533a77e6489e14df18f89c5905a12b"
+    }
+  ],
+  "controller_source_unchanged_by_inventory_fix": true,
+  "only_production_inventory_function_changed": true,
+  "unchanged_runtime_source_pins": [
+    {
+      "path": "sdk/discovery/creature_joint_braking.py",
+      "sha256": "d3595980a382fe81f187b995d1055fd0ac7b875abbd6262ec33672d59c4adf05"
+    },
+    {
+      "path": "sdk/discovery/creature_righting.py",
+      "sha256": "6d1c48b7baa98eec7eea809b8dd4f24419fd966fb44be6e7de859423904c13b5"
+    },
+    {
+      "path": "sdk/discovery/creature_righting_sequence.py",
+      "sha256": "34866a12e3333f230f48a21d945942544360fa67cdd2fa661053384db76f4bc0"
+    },
+    {
+      "path": "sdk/discovery/creature_native.py",
+      "sha256": "c60100882ed558089c1a36e69cabc6a4ab22ce64e71995c8b15406ddcfc5e72f"
+    },
+    {
+      "path": "sdk/discovery/run_creature_native.py",
+      "sha256": "9bd732c5da1d72f5aa32e396ab4733438b839253abb329709c56f90d891a1222"
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_diagnosis.py",
+      "sha256": "b96fe25e8e9429fd4f1a3cf62d00f46b5dc12c88f409ad3e880a25e993100657"
+    }
+  ],
+  "zero_world_gate": {
+    "archive_relative_path": "sdk2-creature-joint-braking-route-v1-ba27f128165441638506d37ce4ba0646",
+    "receipt_sha256": "46527d34ecf0de57c4d9ac0552f5ec28d60b766d5b22405d0294243088570637",
+    "declaration_sha256": "7d13c886165f3076a95187e96f2fb23fdfc0a09ea2ea6304580a4aa5034ce1c1",
+    "gate_receipt_sha256": "0d45a2c5ca1972732b6ec398ea35f3f0a8c90e4be0077ff1e3cc66045cf6fa80",
+    "controls_passed": 175,
+    "controls_required": 175,
+    "artifacts_verified": 2375,
+    "retained_bytes_verified": 237080043,
+    "cleanup_reports_verified": 20,
+    "source_binding_count": 1197,
+    "runtime_binding_count": 1359,
+    "owner_wall_s": 147.57800000003772,
+    "world_build_count": 0,
+    "solver_steps": 0,
+    "all_four_declaration_inputs_archived": true
+  },
+  "inventory_gap": {
+    "missing_direct_input": "sdk/discovery/creature_trajectory_search_v1.json",
+    "original_native_receipts_complete": false,
+    "retained_recipe_had_transitive_hash_pin": true,
+    "missing_copy_matches_native_freeze_and_prior_archive": true,
+    "supplement": {
+      "archive_relative_path": "sdk2-braking-input-inventory-v1-48f88d65e95e4b13b16b424069a39e42",
+      "receipt_sha256": "5e61d70730db645a8a21390d349449d65ffeca3cd4e21b70b01c2e3dc66753a3",
+      "input_sha256": "2c4a028543b016be2cdf0c00c3f5994e6cac5dffc991f1d3f2a27fc1a1b062c8",
+      "input_bytes": 156323,
+      "artifacts_verified": 1,
+      "original_receipts_unchanged": true,
+      "world_build_count": 0
+    },
+    "scope": "The original gates passed 175 controls, but their direct source inventories omitted the historical declaration read by the legacy-compatibility check. A later exact-byte supplement resolves availability; it does not rewrite the original receipts or claim their inventories were complete.",
+    "fix": "Retain the original trajectory declaration as a fourth explicit dependency and require all four files in control 9. The complete 175-control gate passes on the successor. Native physics was not repeated for this inventory-only change."
+  },
+  "native_source_commit": "8c81cf2e0c82abbe48ae9dace40b0ebb95a4e88a",
+  "native_source_component": {
+    "path": "sdk/discovery/creature_joint_braking_component_v1.json",
+    "sha256": "5b928975e93689cb76fbec87e4cc31225c660f8c6b5d6f3ba34bd7dc45b00d44"
+  },
+  "source_scope": "Native observations remain bound to the published v1 freeze and original archives. This v2 changes source inventory and its test expectation only; it does not replace the frozen controller or alter any measured outcome.",
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "physical_started": false,
+  "trained": false,
+  "recovery_benefit_established": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

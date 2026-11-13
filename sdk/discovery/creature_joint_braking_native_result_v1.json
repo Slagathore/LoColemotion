@@ -1,0 +1,637 @@
+{
+  "schema_version": "locolemotion_joint_braking_native_result_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "status": "finite_joint_excursion_improvement_without_recovery_or_progress_leads",
+  "source_commit": "8c81cf2e0c82abbe48ae9dace40b0ebb95a4e88a",
+  "source_status": [],
+  "native_source_component": {
+    "path": "sdk/discovery/creature_joint_braking_component_v1.json",
+    "sha256": "5b928975e93689cb76fbec87e4cc31225c660f8c6b5d6f3ba34bd7dc45b00d44"
+  },
+  "inventory_successor": {
+    "path": "sdk/discovery/creature_joint_braking_component_v2.json",
+    "sha256": "3104d800647b9581dbbca0c31b1d69d2cfe630410380fd92a5067e8e14cab411"
+  },
+  "contract": {
+    "path": "sdk/discovery/creature_joint_braking_v1.json",
+    "sha256": "b4e62a80bc9c13f0895f7606a8f21f960f18cd7b11bf7ad9e6d4a52bf318797c"
+  },
+  "full_canary_contract": {
+    "path": "sdk/discovery/creature_joint_braking_route_v1.json",
+    "sha256": "3c574d1494d12055656451cbfdfffe4de65a3c0233d469eb335055dbe9e8e83d"
+  },
+  "source_runtime_unchanged": true,
+  "all_native_worlds_started_from_clean_pushed_freeze": true,
+  "controls_passed_per_native_run": 175,
+  "controls_required_per_native_run": 175,
+  "full_canary": {
+    "archive_relative_path": "sdk2-creature-joint-braking-route-v1-63ae0a85f85a46cc8c82b7eb06ecc81c",
+    "receipt_sha256": "e307135f4fc967572f65555e557c81902f93739594a5747f7d269b1e734977c0",
+    "declaration_sha256": "11f81c10bf1865e62948e66d145dce8cde13372747996b4176e9e366313fec89",
+    "gate_receipt_sha256": "bdbad2c9b2c9bf961c256e9550a5f9ec06e5498c51ba11e3fa38b269afdde91f",
+    "independent_audit_sha256": "0caed7d20f8922b8c78b4054c6d884a1b4278b1e8c9e5d37548717eee5b04384",
+    "worker_result_sha256": "7dd44aafee1d3ef55787465e86ebde44b2b4110274b476a73c5a91218114c71c",
+    "artifacts_verified": 2454,
+    "retained_bytes_verified": 306994794,
+    "cleanup_reports_verified": 22,
+    "source_binding_count": 1196,
+    "runtime_binding_count": 1359,
+    "owner_wall_s": 190.40599999995902,
+    "worker_wall_s": 33.95463050005492,
+    "gpu_worlds": 14,
+    "horizon_seconds": 0.75,
+    "controller_rows_replayed": 1260,
+    "native_rows_verified": 6300,
+    "exact_full_to_compact_projection": true,
+    "braking_commands": 410,
+    "activation_profiles": {
+      "waypoint_01_slow3_braked": 37,
+      "wave_05_slow3_braked": 124,
+      "impulse_05_slow3_braked": 237,
+      "wave_01_slow3_braked": 4,
+      "impulse_01_slow3_braked": 8
+    },
+    "commands_before_observed_bound_breach": 410,
+    "joint_crossing_worlds": [
+      [
+        "wave_05_slow3_unbraked",
+        66
+      ],
+      [
+        "impulse_05_slow3_unbraked",
+        24
+      ]
+    ],
+    "qualification_authority": false
+  },
+  "native": {
+    "archive_relative_path": "sdk2-creature-joint-braking-v1-3644171c94144b93b7933b33f8f14b46",
+    "artifacts": 3427,
+    "bytes": 3140980956,
+    "cleanups": 22,
+    "receipt_sha256": "8e225164df19fbc950ee22c30b8a1fe4672f00cb88aa74f0c4d40c5d511c6da3",
+    "declaration_sha256": "8c4adbc5d7bb4dc7564ae50a57c26ed78bbfc196e852f64d4549371282d99f83",
+    "gate_receipt_sha256": "e5434fdfc7ae6be88f0acea0fd218f730658b5b33dc42d90cbfd320684b2dd0b",
+    "independent_audit_sha256": "5b06f275ad9c718cb51d364c06a18a38f684ace0a5526ce8c78ed6f890a75f55",
+    "worker_result_sha256": "d9aafae4c3dd8efc902b15d1197fad0b64e4dededc973a64422d305d35188927",
+    "owner_wall_s": 1933.6560000000172,
+    "native_worker_wall_s": 1629.140707899991,
+    "gpu_worlds": 224,
+    "distinct_body_shapes": 16,
+    "base_profiles": 24,
+    "variants_per_profile": 2,
+    "paired_groups": 96,
+    "bodies_per_pair": 4,
+    "fresh_comparator_worlds": 32,
+    "horizon_seconds": 12,
+    "gpu_batches": 16,
+    "worlds_per_batch": 14,
+    "capture_mode": "compact_v1",
+    "compact_controller_rows_verified": 322560,
+    "compact_native_samples_reconstructed": 1612800,
+    "full_controller_replay": false,
+    "eligible_worlds": 0,
+    "valid_performance_failures": 224,
+    "invalid_worlds": 0,
+    "progress_leads": 0
+  },
+  "variant_outcomes": {
+    "unbraked": {
+      "worlds": 96,
+      "eligible": 0,
+      "joint_violation_worlds": 16,
+      "joint_violation_samples": 4488,
+      "distal_contact_worlds": 33,
+      "distal_contact_samples": 37734,
+      "maximum_rotation_degrees": 20.170618741007058,
+      "maximum_nonviolating_rotation_degrees": 14.029749653855498,
+      "mean_rotation_degrees": 1.9185655991220878,
+      "best_nonviolating_gain_over_own_timed_degrees": -0.011789231376836184,
+      "maximum_terminal_upright_dwell_steps": 0
+    },
+    "braked": {
+      "worlds": 96,
+      "eligible": 0,
+      "joint_violation_worlds": 0,
+      "joint_violation_samples": 0,
+      "distal_contact_worlds": 25,
+      "distal_contact_samples": 30385,
+      "maximum_rotation_degrees": 13.981004840298528,
+      "maximum_nonviolating_rotation_degrees": 13.981004840298528,
+      "mean_rotation_degrees": 1.3929266703322853,
+      "best_nonviolating_gain_over_own_timed_degrees": -0.020219191457417907,
+      "maximum_terminal_upright_dwell_steps": 0
+    },
+    "brake": {
+      "worlds": 16,
+      "eligible": 0,
+      "joint_violation_worlds": 0,
+      "joint_violation_samples": 0,
+      "distal_contact_worlds": 0,
+      "distal_contact_samples": 0,
+      "maximum_rotation_degrees": 0,
+      "maximum_nonviolating_rotation_degrees": 0,
+      "mean_rotation_degrees": 0,
+      "best_nonviolating_gain_over_own_timed_degrees": -11.398021175350076,
+      "maximum_terminal_upright_dwell_steps": 0
+    },
+    "timed": {
+      "worlds": 16,
+      "eligible": 0,
+      "joint_violation_worlds": 0,
+      "joint_violation_samples": 0,
+      "distal_contact_worlds": 16,
+      "distal_contact_samples": 90870,
+      "maximum_rotation_degrees": 14.370520980249598,
+      "maximum_nonviolating_rotation_degrees": 14.370520980249598,
+      "mean_rotation_degrees": 12.850119482213703,
+      "best_nonviolating_gain_over_own_timed_degrees": 0,
+      "maximum_terminal_upright_dwell_steps": 0
+    }
+  },
+  "paired_summary": {
+    "paired_groups": 96,
+    "unbraked_only_joint_violation_pairs": 16,
+    "braked_only_joint_violation_pairs": 0,
+    "both_violating_pairs": 0,
+    "mean_rotation_delta_degrees": -0.5256389287898025,
+    "median_rotation_delta_degrees": 0,
+    "minimum_rotation_delta_degrees": -7.365569800883442,
+    "maximum_rotation_delta_degrees": 0.008477936986598308
+  },
+  "profile_outcomes": [
+    {
+      "base_profile_id": "wave_00_slow3",
+      "body_indices": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 1.3279991524853263e-08,
+      "maximum_braked_rotation_degrees": 0.04825968863423806
+    },
+    {
+      "base_profile_id": "wave_04_slow3",
+      "body_indices": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0,
+      "maximum_braked_rotation_degrees": 0
+    },
+    {
+      "base_profile_id": "impulse_00_slow3",
+      "body_indices": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0,
+      "maximum_braked_rotation_degrees": 0.077596928607065
+    },
+    {
+      "base_profile_id": "impulse_04_slow3",
+      "body_indices": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0,
+      "maximum_braked_rotation_degrees": 0.048342936040108274
+    },
+    {
+      "base_profile_id": "waypoint_00_slow3",
+      "body_indices": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": -2.189358332474467e-08,
+      "maximum_braked_rotation_degrees": 0.04844749750356628
+    },
+    {
+      "base_profile_id": "waypoint_04_slow3",
+      "body_indices": [
+        0,
+        4,
+        8,
+        12
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0,
+      "maximum_braked_rotation_degrees": 0.048442969706184835
+    },
+    {
+      "base_profile_id": "wave_01_slow3",
+      "body_indices": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": -0.007069314818190094,
+      "maximum_braked_rotation_degrees": 0.04836715530558534
+    },
+    {
+      "base_profile_id": "wave_05_slow3",
+      "body_indices": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "unbraked_joint_violation_worlds": 4,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 4,
+      "mean_rotation_delta_degrees": -6.004463049004153,
+      "maximum_braked_rotation_degrees": 0.3825099965122578
+    },
+    {
+      "base_profile_id": "impulse_01_slow3",
+      "body_indices": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 1,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0.00469347072466102,
+      "maximum_braked_rotation_degrees": 0.04834038884020365
+    },
+    {
+      "base_profile_id": "impulse_05_slow3",
+      "body_indices": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "unbraked_joint_violation_worlds": 4,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 4,
+      "mean_rotation_delta_degrees": -5.353496649326651,
+      "maximum_braked_rotation_degrees": 13.016102208593402
+    },
+    {
+      "base_profile_id": "waypoint_01_slow3",
+      "body_indices": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "unbraked_joint_violation_worlds": 4,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 1,
+      "mean_rotation_delta_degrees": -0.7636660826145735,
+      "maximum_braked_rotation_degrees": 0.04838925530090289
+    },
+    {
+      "base_profile_id": "waypoint_06_slow3",
+      "body_indices": [
+        1,
+        5,
+        9,
+        13
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0,
+      "maximum_braked_rotation_degrees": 0.07536958366002189
+    },
+    {
+      "base_profile_id": "wave_02_slow3",
+      "body_indices": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0,
+      "maximum_braked_rotation_degrees": 0.09464175967881566
+    },
+    {
+      "base_profile_id": "wave_06_slow3",
+      "body_indices": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0,
+      "maximum_braked_rotation_degrees": 0.09169978919581753
+    },
+    {
+      "base_profile_id": "impulse_02_slow3",
+      "body_indices": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 4,
+      "mean_rotation_delta_degrees": -0.014329532857106475,
+      "maximum_braked_rotation_degrees": 8.395110562845673
+    },
+    {
+      "base_profile_id": "impulse_06_slow3",
+      "body_indices": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": -5.423922832224759e-08,
+      "maximum_braked_rotation_degrees": 0.04775985953515389
+    },
+    {
+      "base_profile_id": "waypoint_02_slow3",
+      "body_indices": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 4,
+      "mean_rotation_delta_degrees": -0.00010690905128091753,
+      "maximum_braked_rotation_degrees": 0.06959294700835801
+    },
+    {
+      "base_profile_id": "waypoint_11_slow3",
+      "body_indices": [
+        2,
+        6,
+        10,
+        14
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": -0.0015935629504389773,
+      "maximum_braked_rotation_degrees": 0.07103339800874013
+    },
+    {
+      "base_profile_id": "wave_03_slow3",
+      "body_indices": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 1.8805556301418336e-08,
+      "maximum_braked_rotation_degrees": 0.06212217485365078
+    },
+    {
+      "base_profile_id": "wave_11_slow3",
+      "body_indices": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 0.0016740242122238978,
+      "maximum_braked_rotation_degrees": 0.06095598888437164
+    },
+    {
+      "base_profile_id": "impulse_03_slow3",
+      "body_indices": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 0,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": 1.6803062464001983e-08,
+      "maximum_braked_rotation_degrees": 0.048130980538116014
+    },
+    {
+      "base_profile_id": "impulse_11_slow3",
+      "body_indices": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 4,
+      "mean_rotation_delta_degrees": -0.039988994659903465,
+      "maximum_braked_rotation_degrees": 13.981004840298528
+    },
+    {
+      "base_profile_id": "waypoint_03_slow3",
+      "body_indices": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "unbraked_joint_violation_worlds": 0,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 4,
+      "mean_rotation_delta_degrees": -5.526830165273819e-05,
+      "maximum_braked_rotation_degrees": 0.4075250270410808
+    },
+    {
+      "base_profile_id": "waypoint_13_slow3",
+      "body_indices": [
+        3,
+        7,
+        11,
+        15
+      ],
+      "unbraked_joint_violation_worlds": 4,
+      "braked_joint_violation_worlds": 0,
+      "unbraked_distal_contact_worlds": 4,
+      "braked_distal_contact_worlds": 0,
+      "mean_rotation_delta_degrees": -0.43693239506399306,
+      "maximum_braked_rotation_degrees": 0.04798916818589591
+    }
+  ],
+  "retained_motion_diagnosis": {
+    "archive_relative_path": "sdk2-braking-motion-diagnosis-v1-e085b90d1a334941afe0a14a60acd001",
+    "receipt_sha256": "fdf7696e7dfacef70456b74b0f2cd62a26d198ffd9c1a6b76ace74328115a21b",
+    "declaration_sha256": "5b7b69ea65a06f32ebbd3ee95de9be59ba4c2b9e17846dc98ef7290478f520c9",
+    "diagnosis_sha256": "09310061b4027a49352a46f7d74add4c92b21817c7adbb6ae2561eaf818e67c9",
+    "artifacts_verified": 10,
+    "retained_bytes_verified": 1696032,
+    "cleanup_reports_verified": 1,
+    "owner_wall_s": 59.54699999996228,
+    "worlds_read": 224,
+    "controller_rows": 322560,
+    "velocity_commands_matched": 2580480,
+    "input_files_verified": 241,
+    "input_bytes_verified": 2616059881,
+    "variants": {
+      "unbraked": {
+        "worlds": 96,
+        "counts": {
+          "speed_limited_commands": 306305,
+          "slew_limited_commands": 288463,
+          "joint_guard_commands": 622,
+          "prepared_out_of_bounds_joint_observations": 1082,
+          "outward_commands_at_or_beyond_bound": 0,
+          "native_samples": 691200,
+          "distal_contact_samples": 37734,
+          "joint_samples": 5529600,
+          "force_saturated_joint_samples": 21141,
+          "joint_speed_above_target_cap_samples": 339605,
+          "joint_limit_violation_samples": 4488
+        },
+        "maximum_joint_limit_excess_rad": 0.009895825386047274,
+        "mean_absolute_position_error_rad": 0.31858598309943703,
+        "mean_absolute_velocity_error_rad_s": 0.03738788685520321,
+        "completed_phase_visits": 1176,
+        "measured_pose_exits": 382,
+        "timeout_exits": 794
+      },
+      "braked": {
+        "worlds": 96,
+        "counts": {
+          "anticipatory_braking_commands": 24313,
+          "speed_limited_commands": 308613,
+          "slew_limited_commands": 294666,
+          "joint_guard_commands": 24313,
+          "prepared_out_of_bounds_joint_observations": 0,
+          "outward_commands_at_or_beyond_bound": 0,
+          "native_samples": 691200,
+          "distal_contact_samples": 30385,
+          "joint_samples": 5529600,
+          "force_saturated_joint_samples": 15378,
+          "joint_speed_above_target_cap_samples": 292465,
+          "joint_limit_violation_samples": 0
+        },
+        "maximum_joint_limit_excess_rad": 0,
+        "mean_absolute_position_error_rad": 0.3183327546933358,
+        "mean_absolute_velocity_error_rad_s": 0.03429164338622675,
+        "completed_phase_visits": 1176,
+        "measured_pose_exits": 390,
+        "timeout_exits": 786
+      }
+    },
+    "controls_reused_from_unchanged_native_gate": {
+      "complete": 175,
+      "motion_diagnosis": 6,
+      "joint_braking": 10
+    },
+    "world_build_count": 0,
+    "solver_steps": 0,
+    "full_controller_replay": false,
+    "eligibility_changed": false
+  },
+  "inventory_disclosure": {
+    "missing_direct_input": "sdk/discovery/creature_trajectory_search_v1.json",
+    "original_native_receipts_complete": false,
+    "retained_recipe_had_transitive_hash_pin": true,
+    "missing_copy_matches_native_freeze_and_prior_archive": true,
+    "supplement": {
+      "archive_relative_path": "sdk2-braking-input-inventory-v1-48f88d65e95e4b13b16b424069a39e42",
+      "receipt_sha256": "5e61d70730db645a8a21390d349449d65ffeca3cd4e21b70b01c2e3dc66753a3",
+      "input_sha256": "2c4a028543b016be2cdf0c00c3f5994e6cac5dffc991f1d3f2a27fc1a1b062c8",
+      "input_bytes": 156323,
+      "artifacts_verified": 1,
+      "original_receipts_unchanged": true,
+      "world_build_count": 0
+    },
+    "scope": "The original gates passed 175 controls, but their direct source inventories omitted the historical declaration read by the legacy-compatibility check. A later exact-byte supplement resolves availability; it does not rewrite the original receipts or claim their inventories were complete.",
+    "fix": "Retain the original trajectory declaration as a fourth explicit dependency and require all four files in control 9. The complete 175-control gate passes on the successor. Native physics was not repeated for this inventory-only change."
+  },
+  "interpretation": [
+    "Within this exposed paired cohort, the braking option removes all 16 observed unbraked joint-crossing failures: zero of 96 braked worlds cross a bound across 691200 retained native samples. This finite intervention result is not a physical stopping guarantee or broad morphology qualification.",
+    "The 24313 anticipatory command changes occur before any observed braked joint violation. The old observed-bound guard and all pose, timing, gain, speed, slew and force settings remain; protection is explicitly allowed to override slew.",
+    "Contact worlds fall from 33 to 25 and the maximum nonviolating rotation falls from 14.03 to 13.98 degrees. Mean paired rotation change is negative. Neither variant reaches upright dwell or recovery eligibility, and every nonviolating proposal remains below its own fresh timed comparator.",
+    "The exact historical test input was omitted from original direct inventories, although its transitive pin was retained. The later supplement matches the frozen Git bytes and earlier archive. Original receipts remain unchanged; the successor inventory gate passes all 175 controls."
+  ],
+  "next_gate": "Develop body-aware contact-reaching trajectories from actual compiled limb geometry and measured contact, with anticipatory braking available. Declare a small route check and a diverse body/controller search with fresh comparators and unchanged eligibility. Useful leads need fresh full-capture varied-start confirmation before the same-body Godot walk-fall-recover-resume handoff.",
+  "total_valid_righting_performance_worlds_across_seven_cohorts": 1680,
+  "retained_native_artifacts_verified": 5881,
+  "retained_native_cleanup_reports_verified": 44,
+  "physical_started": true,
+  "trained": false,
+  "recovery_benefit_established": false,
+  "live_handoff_complete": false,
+  "qualification_requires_fresh_full_capture": true,
+  "complete_original_dependency_inventory": false,
+  "physical_acceptance_authority": false,
+  "training_data_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false
+}

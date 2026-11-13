@@ -178,8 +178,9 @@ class BrakingControls(unittest.TestCase):
         self.assertEqual(len({righting.behavior_key(p) for p in spec["profiles"]}), 50)
 
     def test_09_actual_declarations_preflight_and_archive_all_inputs(self):
-        expected = {native.HERE / n for n in ("creature_trajectory_retiming_v1.json",
-                    "creature_joint_braking_route_v1.json", "creature_joint_braking_v1.json")}
+        expected = {native.HERE / n for n in ("creature_trajectory_search_v1.json",
+                    "creature_trajectory_retiming_v1.json", "creature_joint_braking_route_v1.json",
+                    "creature_joint_braking_v1.json")}
         for name, count, bodies in (("creature_joint_braking_route_v1.json", 14, 1),
                                     ("creature_joint_braking_v1.json", 224, 16)):
             path = native.HERE / name

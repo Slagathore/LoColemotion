@@ -10,7 +10,7 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and useful self-righting remains unestablished after six negative cohorts.
+and useful self-righting remains unestablished after seven negative cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -25,23 +25,22 @@ and useful self-righting remains unestablished after six negative cohorts.
 | [Dynamic trajectory result](../sdk/discovery/creature_trajectory_native_result_v1.json) | 224 valid six-second failures across 16 bodies after 159 controls: zero eligible, zero progress leads, 16 joint-breach worlds. Compact reading reconstructs 161,280 records and 806,400 samples. Only 32 of 192 new-profile worlds make any distal contact; the timed comparator reaches 14.37 degrees without joint violations |
 | [Retained motion diagnosis](../sdk/discovery/creature_trajectory_diagnosis_result_v1.json) | Six controls pass; all 1,290,240 velocity commands match. 3,512/3,616 completed phases time out, with large pose errors despite close velocity tracking and rare force saturation. Zero new worlds; no causal or recovery claim |
 | [Paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json) | 224 fresh twelve-second worlds after 172 controls: zero eligible or progress leads, 32 joint-breach worlds. Longer holds increase measured pose completions 160 to 382 and contact worlds 23/96 to 33/96; all nonviolating proposals still trail their own fresh timed comparator. All 2,580,480 velocity commands match in the retained-motion diagnostic |
+| [Paired joint braking](../sdk/discovery/creature_joint_braking_native_result_v1.json) | 224 twelve-second worlds after 175 controls: braked joint-crossing worlds 0/96 versus 16/96 unbraked; zero recovery or progress leads. Contact worlds fall 33 to 25, and maximum nonviolating rotation falls 14.03 to 13.98 degrees. All 2,580,480 commands match. A historical test-input inventory omission is disclosed and corrected by a later exact-byte supplement and complete zero-world successor |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Test anticipatory joint braking across the diverse exposed population.**
-   The [onset read](../sdk/discovery/creature_contact_onset_diagnosis_result_v1.json)
-   finds outward velocity commands at all 32 first joint crossings despite
-   inward position targets; 24 crossings precede any distal contact and only
-   two have saturated actuators. The
-   [braking component](../sdk/discovery/creature_joint_braking_component_v1.json)
-   passes all 175 zero-world controls. It projects measured joint motion and
-   shapes speed before the original observed-bound guard; its deceleration
-   estimate is not a physical guarantee. After the clean pushed freeze, run
-   the fourteen-world 0.75-second full canary, then 224 fresh twelve-second
-   worlds: 24 braked/unbraked trajectory pairs on four bodies each, with fresh
-   timed/brake comparators on all 16 bodies. Poses, timing, gains, speed, slew,
-   force and eligibility stay fixed. No native braking benefit is established.
-   All 1,456 valid negative performance worlds remain. Useful diverse leads
-   still require fresh full-capture varied-start checks before SDK/Studio adoption.
+1. **Build body-aware contact-reaching and supported-rotation families.**
+   The braking intervention fixes the observed joint-excursion problem within
+   its finite cohort: 24,313 anticipatory command changes, zero braked violating
+   samples versus 4,488 unbraked. It does not produce useful righting.
+   Only 25/96 braked worlds make distal contact, and every braked proposal remains
+   below its own fresh timed comparator. Use the actual compiled limb geometry
+   and measured contact to choose reachable foot placements and push directions;
+   keep the braking option available and preserve the fixed joint/force limits.
+   Declare a small route check, then search diverse body/controller combinations
+   with fresh comparators and unchanged eligibility. Useful leads still require
+   fresh full-capture varied-start checks before the same-body Studio handoff.
+   All 1,680 valid negative performance worlds remain. More timing-only tuning
+   or a general force increase is not supported by these observations.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

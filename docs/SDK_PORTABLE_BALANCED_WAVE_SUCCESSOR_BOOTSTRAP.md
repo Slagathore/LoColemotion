@@ -3,55 +3,57 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json)
-is complete at source b8f369f2: 224 fresh twelve-second worlds across sixteen
-bodies. Twenty-four base profiles each have original and three-times-longer
-phase holds and limb delays on four bodies; every body also has both fresh
-comparators. Both the fourteen-world full route and broad compact run pass
-all 172 controls. The route replays 28 decisions and 140 samples with exact
-compact projection; the broad reader reconstructs 322,560 controller records
-and 1,612,800 native samples. All 5,875 native artifacts and 44 stage cleanups
-verify. The component's earlier input-inventory gap and correction stay retained.
-
-All 224 broad worlds are valid performance negatives: zero eligible worlds,
-zero progress leads and 32 joint-breach worlds. The original and slower halves
-each have sixteen violating worlds, covering the same four profiles on every
-assigned body. Longer schedules increase worlds with distal contact from 23/96
-to 33/96. Maximum nonviolating rotation rises from 11.71 to 14.03 degrees, but
-every nonviolating proposal still trails its own fresh timed comparator.
-The strongest overall rotation, 20.17 degrees, occurs in a violating world.
-
-The retained-motion diagnostic opens no worlds and matches all 2,580,480 velocity
-commands. It reuses the six diagnostic controls already passed in the unchanged
-172-control native gate. Measured pose completions rise from 160 to 382;
-timeouts fall from 95.6% to 67.5% of completed exits, and mean exit pose error
-falls from 1.04 to 0.43 radians. Slower schedules have fewer phase visits in the
-same twelve seconds; both denominators remain explicit. Violating samples rise
-from 2,153 to 4,487 despite zero outward commands at observed bounds. All ten
-diagnostic artifacts and its stage cleanup verify. Partial motion reconstruction
-does not provide full controller replay or detailed contact-geometry proof.
-
-The [onset diagnosis](../sdk/discovery/creature_contact_onset_diagnosis_result_v1.json)
-now confirms outward commands at all 32 first crossings despite inward position
-targets; 24 precede any distal contact and only two have saturated actuators.
-Six diagnostic controls and all retained command comparisons pass without
-opening worlds. The original trajectories and failures remain unchanged.
-
-The [braking component](../sdk/discovery/creature_joint_braking_component_v1.json)
-adds an opt-in measured-motion envelope before the original observed-bound guard.
-All 175 zero-world controls pass, including legacy behavior, late-observation
-rollback, analytical braking, independent command reconstruction and full
-224-world preflight. Its first fixture refusal remains retained. The declared
-6 rad/s^2 shaping estimate is not a physical deceleration guarantee.
-
-The next gate is the clean pushed freeze, fourteen fresh 0.75-second full worlds
-covering near-limit shaping, then 224 fresh twelve-second compact worlds.
-All 24 exposed slow trajectories retain their four-body assignments, with
-braked/unbraked pairs and both fresh comparators on all sixteen bodies.
+The [paired braking result](../sdk/discovery/creature_joint_braking_native_result_v1.json)
+is complete at source 8c81cf2e: 224 fresh twelve-second worlds across sixteen
+bodies. Twenty-four exposed slow trajectories each run with and without the
+braking option on four bodies; every body also has both fresh comparators.
 Poses, phase timing, gains, speed, slew, force and eligibility remain fixed.
-No native braking benefit is established. Useful diverse leads still require
-fresh full-capture varied-start checks and the complete Godot recovery handoff
-with 120 resumed walking steps.
+
+Both the fourteen-world 0.75-second full canary and broad compact run pass
+175 controls. The canary replays 1,260 decisions and 6,300 samples with exact
+compact projection. Braking activates 410 times before observed bound breaches;
+two unbraked canary worlds violate limits and no braked world does.
+The broad reader reconstructs 322,560 controller records and 1,612,800 native
+samples. All 5,881 native artifacts and 44 stage cleanups verify.
+
+The intervention removes all sixteen observed unbraked crossing failures:
+zero of 96 braked worlds cross a joint bound, versus 16/96 unbraked.
+The read-only motion diagnostic matches all 2,580,480 velocity commands and
+counts 24,313 anticipatory changes. Violating samples fall from 4,488 to zero.
+This is finite development evidence for joint-bound handling, not a verified
+physical stopping model or broad morphology qualification.
+
+Recovery still fails in all 224 worlds, with no invalid worlds or progress
+leads. Contact worlds fall from 33/96 to 25/96; maximum nonviolating rotation
+falls from 14.03 to 13.98 degrees, and mean paired rotation changes by -0.526
+degrees. Every nonviolating proposal remains below its own fresh timed
+comparator. Measured pose exits change only from 382 to 390 of 1,176 completed
+visits. No recovery or adaptation mechanism is adopted.
+
+The original direct source inventories omit the historical trajectory
+declaration read by the legacy-compatibility control. Its transitive hash pin
+is retained in the archived retiming recipe. The
+[inventory successor](../sdk/discovery/creature_joint_braking_component_v2.json)
+records an exact-byte supplement matching the published freeze, unchanged
+checkout and earlier archive. Original receipts and the
+[v1 component](../sdk/discovery/creature_joint_braking_component_v1.json) remain
+unchanged. The complete successor gate passes 175 controls and now retains all
+four declarations. Native physics was not repeated for this inventory-only fix.
+
+The next family should use compiled limb geometry and measured contact to
+choose reachable foot placements and supported push directions, with
+anticipatory braking available. Declare a small route check, then search
+broadly across varied bodies with fresh comparators and unchanged eligibility.
+Useful diverse leads still require fresh full-capture varied-start checks
+and the complete Godot walk-fall-recover-resume handoff with 120 resumed steps.
+
+The preceding [paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json)
+retains 224 twelve-second negatives at source b8f369f2. Longer schedules improve
+pose completion and contact but leave 32 joint-breach worlds and no recovery.
+The [onset diagnosis](../sdk/discovery/creature_contact_onset_diagnosis_result_v1.json)
+finds outward commands at all 32 first crossings despite inward position
+targets; 24 precede any distal contact. Those immutable observations motivated
+the braking intervention.
 
 The preceding [trajectory cohort](../sdk/discovery/creature_trajectory_native_result_v1.json)
 retains 224 six-second negatives and sixteen joint-breach worlds; its
@@ -65,7 +67,7 @@ but later transitions use timeout rather than measured rotation/contact gates.
 The static [geometry proposal](../sdk/discovery/creature_righting_geometry_result_v1.json)
 did not yield useful dynamic transfer. Together with the 752 earlier
 [timed and feedback failures](../sdk/discovery/creature_righting_feedback_native_result_v1.json),
-the six cohorts now retain 1,456 valid negative performance worlds. All original
+the seven cohorts now retain 1,680 valid negative performance worlds. All original
 records and route discrepancies remain preserved; this does not prove impossibility.
 
 The [compact recording canaries](../sdk/discovery/creature_capture_native_result_v1.json)
