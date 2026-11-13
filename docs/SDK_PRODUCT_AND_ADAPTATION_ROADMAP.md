@@ -10,7 +10,7 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and useful self-righting remains unestablished after eight negative cohorts.
+and self-righting still has no qualifying controller after nine cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -27,24 +27,25 @@ and useful self-righting remains unestablished after eight negative cohorts.
 | [Paired retiming result](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json) | 224 fresh twelve-second worlds after 172 controls: zero eligible or progress leads, 32 joint-breach worlds. Longer holds increase measured pose completions 160 to 382 and contact worlds 23/96 to 33/96; all nonviolating proposals still trail their own fresh timed comparator. All 2,580,480 velocity commands match in the retained-motion diagnostic |
 | [Paired joint braking](../sdk/discovery/creature_joint_braking_native_result_v1.json) | 224 twelve-second worlds after 175 controls: braked joint-crossing worlds 0/96 versus 16/96 unbraked; zero recovery or progress leads. Contact worlds fall 33 to 25, and maximum nonviolating rotation falls 14.03 to 13.98 degrees. All 2,580,480 commands match. A historical test-input inventory omission is disclosed and corrected by a later exact-byte supplement and complete zero-world successor |
 | [Body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json) | 128 twelve-second worlds after 172 controls: all 96 new-controller worlds acquire distal contact, with zero joint violations, but zero recovery or progress leads. Best new rotation is 14.235 degrees; best gain over its own fresh timed comparator is 1.467 degrees. The eight-world full route replays 2,880 decisions and 14,400 samples; broad compact reading reconstructs 184,320 records and 921,600 samples |
+| [Paired torso targets](../sdk/discovery/creature_torso_target_native_result_v1.json) | 224 twelve-second worlds after 182 controls: all 128 new-target worlds acquire contact with zero joint violations, but zero recovery or progress leads. Peak new rotation 14.272 degrees; mean change from each paired base is +2.711 degrees for root targets and +2.952 for torso-edge targets. Fourteen full route worlds replay 5,040 decisions and 25,200 samples; broad reading reconstructs 322,560 records and 1,612,800 samples |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
-1. **Run the paired torso-target search from its clean prospective freeze.**
-   The [torso-target component](../sdk/discovery/creature_torso_target_component_v1.json)
-   passes all 182 zero-world controls, including 4,800 exact legacy contact-plan
-   comparisons. New profiles project a bounded virtual torso rotation through
-   currently contacted limbs, using the root or a low torso edge as pivot.
-   Compiled box geometry keeps that virtual target above the floor; only
-   bounded joint commands reach physics. Actual and virtual projected endpoints
-   remain distinct. Geometry does not guarantee useful force or recovery.
-   First run fourteen three-second full worlds with measured-contact, anchor,
-   sweep, cycle and both pivot-projection coverage. Then compare all sixteen
-   exposed anchor/sweep profiles with their two torso-target variants on the
-   same four bodies each, alongside both fresh comparators on all sixteen
-   shapes: 224 twelve-second worlds. Braking, joint/force limits, eligibility
-   and the five-degree progress screen stay fixed. Native benefit is pending.
-   All 1,808 valid negative performance worlds remain. Useful leads still need
-   fresh full-capture varied-start confirmation before Studio adoption.
+1. **Check reachable contact paths before the next broad controller search.**
+   The [torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
+   preserves 64 matched body/profile groups with unchanged bases and both
+   pivot variants. Each variant improves peak rotation in 54 groups and
+   worsens it in ten; neither beats its own fresh timed comparator.
+   Contact acquisition and joint containment hold, but the
+   explicit torso objective still produces no useful recovery lead.
+   Quantify the contact envelope from compiled body and joint geometry,
+   measured poses and retained projection residuals. Separate an unreachable
+   virtual goal from actual contact loss; neither proves physical impossibility.
+   Search broad factored body/pose proposals within the existing limits, then
+   declare the complete gate, small full route and fresh native cohort for
+   useful diverse candidates. Geometry alone does not certify dynamic support.
+   All 2,032 valid negative performance worlds remain. Keep fresh comparators,
+   unchanged eligibility and the five-degree progress screen. Useful native
+   leads need fresh full-capture varied-start confirmation before Studio adoption.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

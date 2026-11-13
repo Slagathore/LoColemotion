@@ -30,6 +30,7 @@ historical instructions.
 | Paired retiming native result | [224 valid negatives after 172 controls](../sdk/discovery/creature_trajectory_retiming_native_result_v1.json): original/three-times-longer schedules on 16 bodies. Pose completions increase 160 to 382, but zero eligible worlds or progress leads and 32 joint-breach worlds remain. All 2,580,480 velocity commands match; fourteen-world full route and compact reconstruction pass |
 | Joint crossing onset and braking | [Native paired result](../sdk/discovery/creature_joint_braking_native_result_v1.json): 175 controls, 224 worlds; zero braked joint-crossing worlds versus 16 unbraked, but zero recovery or progress leads. All 2,580,480 commands match. The original legacy-input inventory omission and exact-byte supplement remain explicit; the complete inventory successor passes 175 controls |
 | Body-aware contact | [Native result](../sdk/discovery/creature_contact_reach_native_result_v1.json): 172 controls, 128 worlds; all 96 new-controller worlds acquire contact with zero joint violations, but zero recovery or progress leads. Best gain is 1.467 degrees; the full route and compact outcome reconstruction pass |
+| Paired torso targets | [Native result](../sdk/discovery/creature_torso_target_native_result_v1.json): 182 controls, 224 worlds and 64 matched groups. All 128 new-target worlds make contact without joint violations; zero recovery or progress leads. Mean changes from each base are +2.711 and +2.952 degrees; full route and compact reconstruction pass |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
@@ -70,8 +71,8 @@ points to the active implementation and evidence. The
 [research program](LOCOMOTION_GROUND_UP_RESEARCH_PROGRAM.md) defines evidence
 and audit economy; the [architecture](LOCOMOTION_ARCHITECTURE.md) defines
 runtime ownership. New attempts preserve consumed identities and add declarations
-to shared machinery wherever the contract is unchanged. Eight righting cohorts
-now retain 1,808 valid negative performance worlds. The paired braking cohort
+to shared machinery wherever the contract is unchanged. Nine righting cohorts
+now retain 2,032 valid negative performance worlds. The paired braking cohort
 at source 8c81cf2e completes 224 fresh twelve-second worlds across sixteen bodies
 after 175 controls and a fourteen-world full canary. Its compact reader
 reconstructs 322,560 controller records and 1,612,800 native samples; the
@@ -89,28 +90,33 @@ The original archives omit one historical declaration read by a compatibility
 test, while retaining its transitive hash pin. A later supplement matches its
 frozen Git bytes and earlier archive; original receipts remain unchanged.
 The inventory-only successor retains all four declaration inputs and passes
-all 175 controls without repeating physics. The
-[body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
-now completes 128 twelve-second worlds at source 5d1264c6 after 172 controls.
-All 96 new-controller worlds acquire distal contact and none crosses a joint
-limit; no world has upright dwell or a qualifying progress lead. The best
-new rotation is 14.235 degrees and the best gain over its own fresh timed
-comparator is 1.467 degrees. This is finite contact acquisition, not recovery.
+all 175 controls without repeating physics.
 
-The eight-world full route replays 2,880 decisions and 14,400 samples with
-required measured-contact, anchor, sweep and cycle coverage. The broad compact
-reader reconstructs 184,320 records and 921,600 samples without claiming full
-controller replay. All 5,475 native artifacts, 42 cleanups and six direct
-declaration inputs verify. The
-[torso-target component](../sdk/discovery/creature_torso_target_component_v1.json)
-now passes 182 controls, including 4,800 exact legacy plan comparisons.
-An opt-in virtual root or torso-edge rotation produces bounded joint targets
-under measured contact, with explicit torso-floor clearance and finite limb
-projection residuals. The native root is untouched. The next gate is fourteen
-full three-second worlds, then a paired 224-world search across sixteen bodies.
-No native benefit is established. Useful leads need fresh full-capture
-varied-start confirmation and the complete Godot handoff; no recovery
-controller has been adopted.
+The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
+completes 224 twelve-second worlds at source cbf4a77e after 182 controls:
+sixteen unchanged contact profiles and two pivot variants on four bodies each,
+plus both fresh comparators on all sixteen exposed shapes. All 192 active
+controller worlds acquire contact, with zero joint violations. All 224
+remain valid recovery failures; no upright dwell or progress lead qualifies.
+Peak new rotation is 14.272 degrees versus 14.235 for the unchanged
+bases and 14.371 for the fresh timed comparator. Mean peak changes
+from each paired base are +2.711 degrees for root targets
+and +2.952 degrees for torso-edge targets. These are finite descriptive comparisons.
+
+Fourteen three-second full route worlds replay 5,040 decisions and 25,200
+samples with required contact, anchor, sweep, cycle and both pivot-projection
+coverage. Broad compact reading reconstructs 322,560 records and 1,612,800
+samples without full controller replay. All 5,931 native artifacts,
+44 cleanups and eight direct declaration inputs verify.
+The [component](../sdk/discovery/creature_torso_target_component_v1.json)
+retains the zero-world gate and 4,800 exact legacy-plan comparisons.
+
+Next quantify reachable contact paths from compiled geometry and retained
+measurements before another broad body/pose proposal cohort. An unreachable
+virtual target does not prove recovery impossible. Preserve the existing
+limits and fresh comparators; useful native leads still need fresh
+full-capture varied-start confirmation and the complete Godot handoff.
+No recovery controller has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

@@ -3,46 +3,51 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
-is complete at source 5d1264c6: 128 fresh twelve-second worlds across sixteen
-exposed shapes. Twenty-four new profiles each run on four bodies, with both
-fresh comparators on every body. The three strategies continuously retarget
-the floor, retain an inferred world anchor after measured contact, or sweep
-that anchor during a bounded push. All new profiles keep anticipatory braking.
+The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
+is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
+exposed shapes. Sixteen unchanged anchor/sweep profiles each run on four
+bodies beside root-pivot and torso-edge-pivot variants; both comparators run
+fresh on every body. The 64 matched groups preserve all exposed assignments,
+braking, joint and force bounds, eligibility and the five-degree progress screen.
 
-All 96 new-controller worlds acquire distal contact; none crosses a joint
-limit. Every world still fails recovery, with zero invalid worlds, upright
-dwell or qualifying progress leads. Maximum new-controller rotation is 14.235
-degrees. Best gain over its own fresh timed comparator is 1.467 degrees,
-below the unchanged five-degree requirement; the timed maximum is 14.371.
-Acquiring some contact does not establish continuous support or useful force.
+All 128 new-target worlds and all 64 unchanged-base worlds acquire distal
+contact, with zero joint violations. Every world fails recovery; there are
+zero invalid worlds, upright dwell or progress leads. Peak new rotation is
+14.272 degrees, versus 14.235 for unchanged bases and 14.371
+for fresh timed comparators. Mean peak-rotation changes from each paired base
+are +2.711 degrees for root targets and +2.952 for torso-edge targets.
+Each variant improves peak rotation in 54 of 64 matched groups and worsens
+it in ten; neither beats its own fresh timed comparator. The result retains
+all fifty profiles and per-base matched comparisons.
+This finite comparison does not fit or qualify an adaptive selector.
 
-Both the eight-world three-second full route and broad compact run pass
-172 controls. The full route replays 2,880 decisions and 14,400 samples with
-exact compact projection, measured-contact transitions, bounded pushes,
-new cycles, retained anchors and sweeps. Broad reading reconstructs 184,320
-records and 921,600 native samples; it does not claim full controller replay.
-All 5,475 native artifacts, 42 cleanup reports and all six directly read
-declaration inputs verify. The [component](../sdk/discovery/creature_contact_reach_component_v1.json)
-retains the prospective zero-world evidence and source pins.
+Both the fourteen-world three-second full route and broad compact run pass
+182 controls. The full route replays 5,040 decisions and 25,200 samples with
+exact compact projection, measured contact, bounded pushes, new cycles,
+retained/swept anchors and both pivot-projection paths. Broad reading
+reconstructs 322,560 records and 1,612,800 samples without full controller
+replay. All 5,931 native artifacts, 44 cleanup reports and
+all eight directly read declarations verify. The
+[component](../sdk/discovery/creature_torso_target_component_v1.json)
+retains source pins and 4,800 exact legacy-plan comparisons. The native root
+is never directly actuated or positioned by the virtual torso goal.
 
-The [torso-target component](../sdk/discovery/creature_torso_target_component_v1.json)
-now passes 182 controls. Its optional virtual torso rotation uses the root
-or a low torso edge, bounded ramps and compiled box-floor clearance.
-Only joint targets reach physics; actual-root and virtual-root projections
-are separately recorded. Contact is required to activate the new objective.
-All 4,800 original contact plans match frozen published source, and all eight
-direct declaration inputs and 2,399 gate artifacts verify.
+Next quantify reachable contact paths from compiled geometry, measured poses
+and projection residuals. Distinguish unreachable virtual goals from actual
+contact loss; neither this result nor geometric feasibility establishes
+dynamic feasibility or physical impossibility. Search broad factored
+body/pose proposals inside unchanged limits before freezing the next native
+cohort. Useful leads still need fresh full-capture varied-start confirmation
+before the Godot walk-fall-recover-resume handoff with 120 resumed steps.
+Nine performance cohorts retain 2,032 valid negative worlds.
 
-After the clean pushed freeze, run fourteen full three-second worlds with
-required contact, anchor, sweep, cycle and both pivot-projection coverage.
-The broad search pairs all sixteen exposed anchor/sweep profiles with two
-torso-target variants on the same four bodies each, plus both fresh comparators
-on all sixteen bodies: 224 twelve-second worlds. Braking, command bounds,
-eligibility and the five-degree progress screen remain unchanged.
-Native benefit is pending. Useful leads need fresh full-capture varied-start
-confirmation before the Godot walk-fall-recover-resume handoff with 120 resumed
-steps. Eight performance cohorts retain 1,808 valid negative worlds.
+The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
+retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.
+All 96 new-profile worlds acquire contact without joint violations, but none
+recovers or qualifies as a progress lead. Best gain is 1.467 degrees.
+Its eight-world full route and 184,320-record compact reconstruction remain
+immutable; the torso-target population reuses only the declared profiles,
+with fresh worlds and comparators.
 
 The preceding [paired braking result](../sdk/discovery/creature_joint_braking_native_result_v1.json)
 retains 224 twelve-second worlds at source 8c81cf2e after 175 controls.
