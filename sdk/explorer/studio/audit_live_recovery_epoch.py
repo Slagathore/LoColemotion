@@ -72,8 +72,9 @@ def staging_reference(pairs, displacement):
     return values, allowance
 
 
-def audit_rows(core, rows, start=300):
-    require(type(rows) is list and len(rows) == 3, 'Epoch needs its origin and both successors')
+def audit_rows(core, rows, start=300, expected_count=3):
+    require(type(expected_count) is int and expected_count >= 2 and type(rows) is list and len(rows) == expected_count,
+        'Epoch needs its declared origin and contiguous successors')
     origin = rows[0]['capture']
     previous = None
     accumulated = 0.0
@@ -145,7 +146,7 @@ def audit_rows(core, rows, start=300):
             accumulated += observer['signed_discrete_staging_exchange_j']
         require(state['cumulative_signed_discrete_staging_exchange_j'] == accumulated, 'Observer accumulator')
         previous = state
-    return dict(ok=True, native_boundaries=3, contiguous_pairs=2, body_boundary_observations=27,
+    return dict(ok=True, native_boundaries=len(rows), contiguous_pairs=len(rows)-1, body_boundary_observations=9*len(rows),
         maximum_staging_reconstruction_difference_j=maximum_staging_difference,
         staging_roundoff_multiplier=STAGING_ROUNDING_MULTIPLIER, reader_world_build_count=0,
         complete_recovery_energy_partition=False, recovery_success_established=False,

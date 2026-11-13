@@ -14,11 +14,11 @@ def require(value, detail):
     if not value:raise ValueError(detail)
 
 
-def controls_valid(rows, handoff, count):
+def controls_valid(rows, handoff, count, first_local=2):
     # Command 1 belongs to the original full-route handoff. Every subsequent
     # live command has its exact portable input, output and motor readback.
-    require(len(rows)==count-1,'Controller population')
-    for local, row in enumerate(rows,2):
+    require(first_local in (1,2) and len(rows)==count-first_local+1,'Controller population')
+    for local, row in enumerate(rows,first_local):
         require(row['local_step']==local and row['global_step']==handoff+local,'Controller step join')
         request=row['request'];output=row['native_output'];application=row['application']
         actuation=output['actuation'];commands=actuation['ordered_commands']

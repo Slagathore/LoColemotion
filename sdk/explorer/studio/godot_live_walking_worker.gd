@@ -91,10 +91,10 @@ func _poll_live_commands(torso: RigidBody3D) -> void:
 
 func _send(value: Dictionary) -> void:
 	if value.get("message_type")=="hello":
-		value["policy"]="Fresh stand-up then native BW5R-B live walking; no recovery switch"
+		value["policy"]=_live_policy_description_v1()
 		value["command_capabilities"]={"next_native_step_torso_impulse":true,"maximum_impulse_magnitude_n_s":8.0,"maximum_commands":16}
 	if value.get("message_type")=="frame" and _live_walking:
-		value["telemetry_profile"]="live_walking_without_recovery_energy_ledger"
+		value["telemetry_profile"]=_live_telemetry_profile_v1()
 		value.applied_impulses=[]
 		for event in _live_events:
 			if event.apply_at_frame==value.frame_index:value.applied_impulses.append(event)
@@ -111,6 +111,7 @@ func _send(value: Dictionary) -> void:
 			"cost":_live_cost,"zero_world":LiveChecks.run(),"recovery_ledger_advanced_during_live_walking":false,
 			"source_controller_sampler_command_validation_and_motor_application_unchanged":true,
 			"controller_rows":retained,"impulses":_live_events,"command_zero_world":LiveCommands.zero_world()}
+		value.summary.studio_live_walking = _live_summary_scope_v1(value.summary.studio_live_walking)
 		if _live_walking:
 			value.summary.kicks=_live_events.size()
 			# The retained old orchestrator describes setup at the handoff,
@@ -118,3 +119,12 @@ func _send(value: Dictionary) -> void:
 			value.summary["setup_state_at_handoff"]=value.summary.get("terminal_state",{})
 			value.summary.erase("terminal_state")
 	super._send(value)
+
+func _live_policy_description_v1() -> String:
+	return "Fresh stand-up then native BW5R-B live walking; no recovery switch"
+
+func _live_telemetry_profile_v1() -> String:
+	return "live_walking_without_recovery_energy_ledger"
+
+func _live_summary_scope_v1(summary: Dictionary) -> Dictionary:
+	return summary

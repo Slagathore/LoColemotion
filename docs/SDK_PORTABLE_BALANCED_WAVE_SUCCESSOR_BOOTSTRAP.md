@@ -63,8 +63,15 @@ body instances and two independently reconstructed staging pairs. The
 [measured energy route](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
 also passes one 360-step world after 35 adapter checks and 19 reader controls:
 two fresh increments, 16 motor observations, five reconstructed work channels
-and two replayed compiled evaluations. Full portable recovery observation,
-motor ownership transfer and same-body walking resume remain open.
+and two replayed compiled evaluations. The combined
+[live handoff component](../sdk/explorer/studio/live_handoff_component_v1.json)
+now implements current portable recovery observation, measured fall detection,
+motor ownership transfer and same-body walking restart. Its zero-world gate
+passes 28 adapter checks, 486 exact compiled-call replays and six reader
+corruption controls. Completion under native physics remains open; the next
+one-world development episode must retain recovery and at least 120 resumed
+walking steps. Installed desktop interaction and recovery benefit remain
+separate gates.
 
 Every failed episode has null quality. No numeric gain is computed against
 a failed weak baseline. The result does not demonstrate general creature

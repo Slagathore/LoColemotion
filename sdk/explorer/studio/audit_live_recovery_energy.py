@@ -147,9 +147,9 @@ def transport_value(retained):
     return json.loads(raw)
 
 
-def audit_rows(core, epoch_rows, rows):
-    epoch_audit = audit_epoch_rows(core, epoch_rows)
-    require(type(rows) is list and len(rows) == 3, 'Energy needs origin and two increments')
+def audit_rows(core, epoch_rows, rows, start=300, expected_count=3):
+    epoch_audit = audit_epoch_rows(core, epoch_rows, start=start, expected_count=expected_count)
+    require(type(rows) is list and len(rows) == expected_count, 'Energy needs its declared origin and increments')
     previous = rows[0]['begin']['state']; bound(core, previous)
     origin = epoch_rows[0]['capture']; origin_epoch = epoch_rows[0]['transition']['state']
     initial = origin['mechanical_energy_j']; start = origin['completed_boundary']['boundary_sequence']
@@ -200,8 +200,8 @@ def audit_rows(core, epoch_rows, rows):
         source_profile_id=PROFILE, initial_mechanical_energy_j=initial, current_mechanical_energy_j=previous['ledger']['current_mechanical_energy_j'],
         ordered_increments=increments))['ledger']
     for channel in CHANNELS: require(batch['cumulative_' + channel] == accumulated[channel], 'Portable batch accumulation')
-    return dict(ok=True, increments=2, motor_source_observations=16, independently_reconstructed_channels=5,
-        portable_evaluations_replayed=2, portable_batch_accumulation_verified=True, boundary_audit=epoch_audit,
+    return dict(ok=True, increments=len(rows)-1, motor_source_observations=8*(len(rows)-1), independently_reconstructed_channels=5,
+        portable_evaluations_replayed=len(rows)-1, portable_batch_accumulation_verified=True, boundary_audit=epoch_audit,
         mechanical_energy_mapping_independently_reimplemented=False, complete_recovery_handoff=False,
         reader_world_build_count=0, physical_acceptance_authority=False, release_authority=False)
 

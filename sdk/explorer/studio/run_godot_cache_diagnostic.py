@@ -39,7 +39,9 @@ def main():
     parser.add_argument('--probe-impulses',action='store_true',help='Send two next-step commands after observed walking seconds 5 and 10')
     parser.add_argument('--epoch-boundary-probe',action='store_true',help='Capture a fresh recovery observation epoch at completed steps 300 through 302; no recovery actuation')
     parser.add_argument('--energy-epoch-probe',action='store_true',help='Add complete measured work and portable energy evaluation to the fresh observation probe')
+    parser.add_argument('--live-handoff',action='store_true',help='Check the integrated fall, fresh recovery, and walking restart development route')
     args=parser.parse_args()
+    if args.live_handoff and (not args.live_walking or args.walking_steps!=1800 or args.epoch_boundary_probe or args.probe_impulses):raise ValueError('Live handoff requires its own 1800-step live route')
     if args.energy_epoch_probe and not args.epoch_boundary_probe:raise ValueError('Energy probe requires the declared fresh boundary route')
     if args.epoch_boundary_probe and (not args.live_walking or args.walking_steps!=119 or args.probe_impulses):raise ValueError('Epoch boundary probe requires the short live-walking route without impulses')
     if (args.walking_steps!=119 or args.probe_impulses) and not args.live_walking:raise ValueError('Live walking option required')
@@ -55,6 +57,7 @@ def main():
     if args.live_walking:
         from godot_live_owner import GodotLiveOwner
         owner=GodotLiveOwner(cfg,folder);owner.walking_steps=args.walking_steps;owner.probe_impulses=args.probe_impulses
+        owner.handoff_probe=args.live_handoff
     else:owner=Owner(cfg,folder)
     return execute(args,source,folder,owner,cfg)
 
@@ -101,6 +104,12 @@ def execute(args,source,folder,owner,cfg):
                         shutil.copy2(SDK/'explorer/studio'/name,project/'sdk/explorer/studio'/name)
                     shutil.copy2(SDK/'adapters/godot/gdscript/live_recovery_energy_v1.gd',project/'sdk/adapters/godot/gdscript/live_recovery_energy_v1.gd')
                     shutil.copy2(SDK/'explorer/studio/godot_live_recovery_energy_worker.gd',worker)
+            if getattr(args,'live_handoff',False):
+                for name in ['godot_live_walking_worker.gd','godot_live_handoff_worker.gd','test_live_handoff.gd','test_live_recovery_epoch.gd','test_live_recovery_energy.gd']:
+                    shutil.copy2(SDK/'explorer/studio'/name,project/'sdk/explorer/studio'/name)
+                for name in ['live_recovery_epoch_v1.gd','live_recovery_energy_v1.gd','live_recovery_observation_v1.gd','live_recovery_controller_v1.gd','live_fall_detector_v1.gd']:
+                    shutil.copy2(SDK/'adapters/godot/gdscript'/name,project/'sdk/adapters/godot/gdscript'/name)
+                shutil.copy2(SDK/'explorer/studio/godot_live_handoff_worker.gd',worker)
             receipt['declaration']['question']='Measure the separate native live walking loop, retained inputs, body observations and next-step commands without recovery energy ledgers.'
             receipt['declaration']['maximum_outer_steps']=maximum
             receipt['declaration']['walking_commands']=args.walking_steps
@@ -108,8 +117,21 @@ def execute(args,source,folder,owner,cfg):
             receipt['declaration']['telemetry_profile']='Original stand-up; then native contact classification, original walking sampler/controller/command checks/motor application, complete controller rows and body stream. No recovery energy or orchestration ledger during live walking.'
             receipt['declaration']['presentation_profile']='All native frames and commands retained. Only the replaceable viewer snapshot is coalesced to 30 Hz; discrete impulse events remain cumulative. Desktop renders at most 60 FPS.'
             receipt['declaration']['uncovered_paths']=['post-kick recovery controller switch','other bodies','desktop kick-button integration','release acceptance','controlled maximum-throughput comparison']
+            if getattr(args,'live_handoff',False):
+                receipt['declaration']['question']='Exercise walk, measured fall, fresh recovery entry/control, and same-body walking restart in one bounded native development episode.'
+                receipt['declaration']['coverage']='Fresh native stand-up and walking, one declared fall probe, measured fall detection, fresh recovery entry/control, same-body walking restart and retained independent replay. No paired recovery-benefit or release claim.'
+                receipt['declaration']['live_handoff']=dict(fall_up_dot_min=0.7071067811865476,fall_consecutive_samples=3,
+                    fall_torso_nonfoot_contact=True,passive_entry_maximum_steps=240,maximum_recovery_episodes=1,
+                    minimum_resumed_walking_steps=120,probe_owner_observed_frame=361,probe_magnitude_n_s=2.0,probe_direction='right',
+                    probe_omitted_if_spontaneous_fall_already_detected=True,recovery_interval_external_commands='rejected_and_retained',
+                    entrypoints=['godot_live_handoff_worker._on_physics_frame','live_fall_detector_v1.advance_v1',
+                        'live_recovery_observation_v1.capture_v1','live_recovery_controller_v1.advance_v1','godot_live_handoff_worker._resume_live_walking','audit_live_handoff.audit_native'])
+                receipt['declaration']['interactive_probe']=dict(enabled=True,owner_observed_trigger_frames=[361],magnitude_n_s=2.0,application_policy='next_native_step_after_native_poll')
+                receipt['declaration']['telemetry_profile']='Full body stream and walking controller rows; full recovery epoch, motor, solver, contact, observation, compiled-call and ownership sources. No reduced capture.'
+                receipt['declaration']['uncovered_paths']=['other bodies','other recovery impulses','multiple recovery episodes','installed desktop integration','real-time guarantee','learned adaptation','release acceptance']
             if owner.presentation_owner is not None:
-                receipt['declaration']['uncovered_paths'].remove('desktop kick-button integration')
+                if 'desktop kick-button integration' in receipt['declaration']['uncovered_paths']:
+                    receipt['declaration']['uncovered_paths'].remove('desktop kick-button integration')
                 receipt['declaration']['desktop_entrypoints']=['studio_view.gd kick button','StudioOwner.command','GodotLiveOwner.stream_run','godot_live_commands.gd','RigidBody3D.apply_central_impulse']
                 receipt['declaration']['interactive_probe']['maximum_user_commands']=16
             if getattr(args,'epoch_boundary_probe',False):
@@ -142,6 +164,18 @@ def execute(args,source,folder,owner,cfg):
         if args.live_walking and check['summary']['studio_live_walking']['command_zero_world']['ok'] is not True:raise RuntimeError('Live impulse safety gate refused')
         if getattr(args,'epoch_boundary_probe',False) and check['summary']['live_recovery_epoch']['zero_world']['ok'] is not True:raise RuntimeError('Fresh recovery epoch safety gate refused')
         if getattr(args,'energy_epoch_probe',False) and check['summary']['live_recovery_energy']['zero_world']['ok'] is not True:raise RuntimeError('Fresh recovery energy safety gate refused')
+        if getattr(args,'live_handoff',False) and check['summary']['live_handoff']['zero_world']['ok'] is not True:raise RuntimeError('Integrated live handoff safety gate refused')
+        if getattr(args,'live_handoff',False):
+            from audit_live_handoff import LocomotionCore as HandoffCore,controls as handoff_controls
+            retained=check['summary']['live_handoff']['zero_world']['fixture_retained']
+            control_path=Path(retained['path']).resolve()
+            if not control_path.is_relative_to((folder/'preflight').resolve()) or sha(control_path)!=retained['sha256']:raise RuntimeError('Handoff control retention binding')
+            receipt['handoff_reader_controls']=handoff_controls(HandoffCore(Path(cfg['core'])),json.loads(control_path.read_text()))
+            qualification=folder/'handoff-qualification.json'
+            write(qualification,dict(schema_version='sporespore_live_handoff_preflight_qualification_v1',source_commit=source,
+                zero_world=check['summary']['live_handoff']['zero_world'],reader=receipt['handoff_reader_controls'],
+                dependency_binding=receipt['dependency_binding'],world_build_count=0))
+            owner.handoff_qualification=dict(path=str(qualification),sha256=sha(qualification))
         if getattr(args,'epoch_boundary_probe',False):
             from audit_live_recovery_epoch import LocomotionCore,audit_rows,controls
             epoch_core=LocomotionCore(Path(cfg['core']))
@@ -168,6 +202,9 @@ def execute(args,source,folder,owner,cfg):
                 receipt['epoch_independent_audit']=audit_rows(epoch_core,json.loads((folder/'physical/live-recovery-epoch.json').read_text()))
             if getattr(args,'energy_epoch_probe',False):
                 receipt['energy_independent_audit']=audit_energy_rows(epoch_core,json.loads((folder/'physical/live-recovery-epoch.json').read_text()),json.loads((folder/'physical/live-recovery-energy.json').read_text()))
+            if getattr(args,'live_handoff',False):
+                from audit_live_handoff import audit_native
+                receipt['handoff_independent_audit']=audit_native(HandoffCore(Path(cfg['core'])),folder,receipt['physical'],receipt['declaration'])
         if binding(project)!=receipt['dependency_binding']:raise RuntimeError('Execution source drift')
         receipt['ok']=True
     except BaseException as exc:receipt['error']=f'{type(exc).__name__}: {exc}'

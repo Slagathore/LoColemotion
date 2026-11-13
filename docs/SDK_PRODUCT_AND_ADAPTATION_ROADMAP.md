@@ -51,10 +51,15 @@ while profile 27 passes both.
    reader. The [measured energy route](../sdk/explorer/studio/live_recovery_energy_native_result_v1.json)
    also passes one 360-step world after 35 adapter checks and 19 reader controls:
    two fresh increments, 16 motor observations, all five work channels and both
-   compiled energy evaluations reconstruct independently. Next join current
-   contacts, body state and actual actuation ownership into the portable recovery
-   observation, then integrate fall detection, recovery and walking resume.
-   Profile startup and stepping on that route. The short probe observed
+   compiled energy evaluations reconstruct independently. The combined
+   [live handoff component](../sdk/explorer/studio/live_handoff_component_v1.json)
+   now joins current contacts, body state and actual motor ownership, detects a
+   fall, enters the existing compiled recovery laws and restarts walking on the
+   same body instances. Its zero-world gate passes 28 adapter checks, 486 exact
+   compiled-call replays and six reader corruption controls. Native completion
+   is pending: next run one declared 2,041-step development episode with one
+   sideways impulse and require at least 120 resumed walking steps. Profile
+   startup and stepping on that route. The short probe observed
    19.226671 seconds through stand-up and 0.987050 seconds for 119 walking steps.
    Energy collection/projection took 43.769 ms across its origin and two increments,
    excluding the separate boundary capture and staging processing.

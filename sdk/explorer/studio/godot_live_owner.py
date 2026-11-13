@@ -12,6 +12,8 @@ from showcase_model import PROTOCOL, StreamIdentity, impulse, sha
 class GodotLiveOwner(Owner):
     walking_steps = 119
     probe_impulses = False
+    handoff_probe = False
+    handoff_qualification = None
     presentation_owner = None
 
     def stream_run(self, engine, folder, validate, request=None, project=None):
@@ -26,6 +28,9 @@ class GodotLiveOwner(Owner):
                       connect=f'127.0.0.1:{listener.getsockname()[1]}', validate_only=False,
                       permit=str(folder/'contained.permit'), output=str(folder/'recovery.json'),
                       source_commit=self.config['source_commit'], images={})
+        if self.handoff_probe:
+            if self.handoff_qualification is None:raise RuntimeError('Live handoff preflight qualification missing')
+            config['live_handoff_qualification']=self.handoff_qualification
         for role, key in [('engine','recovery_engine'), ('console','recovery_console')]:
             config['images'][role] = dict(self.identity[key], length=Path(self.config[key]).stat().st_size)
         write(folder/'recovery_config.json', config)
@@ -34,7 +39,7 @@ class GodotLiveOwner(Owner):
         guard = StreamIdentity(session, engine, self.config['source_commit'], False)
         started = time.monotonic(); peer = None; child = None
         completed = None; hello = None; pending = b''; total = 0; sent = []; kicks = []
-        probe_frames = [841,1441] if self.probe_impulses else []
+        probe_frames = [361] if self.handoff_probe else [841,1441] if self.probe_impulses else []
         drops = 0; last_presentation = 0.0; presentation_writes = 0; presentation_cost_s = 0.0
         try:
             child = OwnedChild(command, SDK, dict(SPORESPORE_EXPLORER_CONFIG=str(folder/'recovery_config.json')), folder)
@@ -73,10 +78,11 @@ class GodotLiveOwner(Owner):
                                 presentation_cost_s+=time.perf_counter()-now
                                 presentation_writes+=1;last_presentation=now
                             if row.get('applied_impulses'):write(presentation.folder/'impulse-events.json',dict(session_id=session,impulses=kicks))
+                            if self.handoff_probe and row.get('phase','').startswith('recovery_'):probe_frames=[]
                             if probe_frames and guard.last_frame>=probe_frames[0]:
                                 frame=probe_frames.pop(0)
-                                self.commands.put(dict(command_id=f'live-probe-{frame}',magnitude=.25,
-                                    direction='right' if frame==841 else 'left',owner_received_perf_counter_ns=time.perf_counter_ns()))
+                                self.commands.put(dict(command_id=f'live-probe-{frame}',magnitude=2.0 if self.handoff_probe else .25,
+                                    direction='right' if frame in (361,841) else 'left',owner_received_perf_counter_ns=time.perf_counter_ns()))
                         elif kind=='completed':completed=row
                         elif kind=='error':raise RuntimeError(str(row.get('error')))
                         else:raise RuntimeError('Unexpected live Godot message')

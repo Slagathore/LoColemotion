@@ -63,7 +63,7 @@ static func prepare_contacts(model: Dictionary, binding: Dictionary, completed_s
 	for index in range(4):
 		limbs[index].native_qualified_contact=staged[index].observation
 		limbs[index].native_qualified_contact_samples=staged[index].samples
-	return {"ok":true,"contacts":measured.ordered_contact_observations}
+	return {"ok":true,"contacts":measured.ordered_contact_observations,"measured":measured}
 
 static func control_step(facade: Object, local_step: int, amplitude: float, phase_mode: String) -> Dictionary:
 	if local_step<1 or not is_finite(amplitude) or amplitude<0.0 or amplitude>1.0 or phase_mode not in ["clocked","contact_gated"]:
