@@ -3,25 +3,23 @@
 ## Current SDK2 native evidence - 2026-11-13
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-The [righting candidate component](../sdk/discovery/creature_righting_component_v1.json)
-extends the shared creature runner with public recovery morphology, fresh fallen
-starts, bounded portable rocking commands, full capture and independent replay.
-All 134 applicable controls passed before its
-[eight-world native check](../sdk/discovery/creature_righting_route_native_v1.json):
-16 controller decisions and 80 solver samples independently replayed. Its
-copied descriptive-coverage error remains explicit; the actual two-shape,
-two-profile, nominal-motor matrix is the only established scope. The
-[240-world breadth result](../sdk/discovery/creature_righting_breadth_native_result_v1.json)
-now verifies all 172,800 decisions and 864,000 native samples after 134 controls.
-All 240 worlds are valid negatives: zero eligible, no joint-limit breaches and
-16 empty shortlists across the 16 bodies and three fallen starts. The separate
-[v2 cohort](../sdk/discovery/creature_righting_breadth_v2.json) declares 256
-six-second inverted-entry worlds across eight descriptor-diverse bodies and
-32 profiles, varying five folding patterns, five cadences and held poses with
-two fresh comparators. It is unrun and reuses the existing component, complete
-gate, full capture and eligibility criterion. Useful diverse leads require
-fresh varied-start and full Godot handoff confirmation. No recovery, learning
-or handoff benefit is established; walking and recovery-entry gates are unchanged.
+The [latest righting breadth result](../sdk/discovery/creature_righting_breadth_native_result_v2.json)
+retains 256 valid six-second negatives across eight bodies and 32 timed profiles
+at the inverted entry: zero eligible, zero invalid, no measured joint-limit
+breaches and eight empty shortlists. All 184,320 decisions and 921,600 native
+samples replay. The preceding 240-world negative and the eight-world route,
+including its descriptive-coverage discrepancy, remain bound and preserved.
+The [feedback component](../sdk/discovery/creature_righting_component_v2.json)
+now passes 134 zero-world controls. It projects measured angular velocity into
+the body frame and selects a phase with polarity, minimum holds, optional
+distal-contact gating and bounded fallback; batch state commits atomically.
+Tests cover 6,912 exact mixed decisions across 32 shapes and full scalar-reader
+reconstruction. Its [prospective cohort](../sdk/discovery/creature_righting_feedback_v1.json)
+declares 256 fresh worlds across 16 bodies and 16 profiles: brake, three timed
+pose families and twelve matching feedback variants. All are unrun. Physical
+limits, full capture and upright eligibility are unchanged; useful leads still
+need varied-start and full Godot handoff confirmation. No recovery, learning
+or handoff benefit is established.
 The native route now constructs and steps actual bounded quadruped variants.
 Four fresh GPU worlds across three shapes passed the 0.2-second route check,
 including full model transport and independent replay. Different body shapes

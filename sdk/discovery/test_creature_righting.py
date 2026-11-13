@@ -37,6 +37,13 @@ def population(bodies=None):
         starts=[dict(id="inverted", roll_rad=math.pi), dict(id="side", roll_rad=math.pi/2)])
 
 
+def motion_profile(contact=False, polarity=1):
+    return dict(profiles()[1], id=f"motion_{int(contact)}_{'positive' if polarity == 1 else 'negative'}",
+        mode="motion_rock", feedback_axis_body=[1., 0., 0.], feedback_polarity=polarity,
+        feedback_minimum_hold_steps=12, feedback_rate_deadband_rad_s=.05,
+        feedback_requires_distal_contact=contact)
+
+
 class RightingControls(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -78,12 +85,16 @@ class RightingControls(unittest.TestCase):
 
     def test_32_shapes_match_scalar_and_batch_without_native_objects(self):
         spec = population([S169] + [generated(i) for i in range(12000, 12031)])
+        spec["profiles"].extend([motion_profile(), motion_profile(True)])
         batch = self.batch(spec)
         scalars = [subject.RightingController(self.core, row, seed=1061113) for row in subject.expand(spec)["cells"]]
         self.addCleanup(lambda: [c.close() for c in scalars])
         self.assertEqual(len({c.binding["body_shape_sha256"] for c in batch.controllers}), 32)
-        for step in range(3):
-            observations = self.observations(batch, step, inverted=step != 2)
+        self.assertEqual(len(batch.controllers), 256)
+        for step in range(27):
+            observations = self.observations(batch, step, inverted=step != 26)
+            for value in observations:
+                value["state"]["base_twist_world"]["angular_velocity_rad_s"]["x"] = -.2 if step < 18 else .2
             self.assertEqual(batch.step(observations), [c.step(o) for c, o in zip(scalars, observations, strict=True)])
 
     def test_phase_change_brake_and_observed_upright_stance(self):
@@ -95,6 +106,54 @@ class RightingControls(unittest.TestCase):
         rows = batch.step(self.observations(batch, 25, inverted=False))
         self.assertEqual(rows[1]["resolution"]["phase"], "upright_stance")
         self.assertEqual([r["target_position_rad"] for r in rows[1]["resolution"]["ordered_commands"]], [0.]*8)
+        for contact, polarity in ((False, 1), (True, 1), (False, -1)):
+            spec = population(); spec["profiles"][1] = motion_profile(contact, polarity)
+            trial = self.batch(spec)
+            for step in range(25):
+                obs = self.observations(trial, step)
+                for value in obs:
+                    value["state"]["base_twist_world"]["angular_velocity_rad_s"]["x"] = -.2
+                    for site in value["state"]["ordered_contact_observations"]:
+                        site.update(presence=False, bears_support=False)
+                feedback = trial.step(obs)[1]["resolution"]["motion_feedback"]
+                if step < 12:
+                    self.assertEqual((feedback["phase_after"], feedback["selection_reason"]), (0, "minimum_hold"))
+                if step == 12:
+                    expected = (0, "waiting_for_contact") if contact else (1, "measured_rotation") if polarity == 1 else (0, "measured_hold")
+                    self.assertEqual((feedback["phase_after"], feedback["selection_reason"]), expected)
+                if step == 24 and (contact or polarity == -1):
+                    self.assertEqual((feedback["phase_after"], feedback["selection_reason"]), (1, "bounded_fallback"))
+            feedback = trial.step(self.observations(trial, 25, inverted=False))[1]["resolution"]["motion_feedback"]
+            self.assertEqual((feedback["hold_steps_after"], feedback["selection_reason"]), (0, "upright_stance"))
+        # Rotating the entire observation about world up must preserve the
+        # body-frame phase response and the resulting joint commands.
+        spec = population(); spec["profiles"][1] = motion_profile()
+        plain, yawed = self.batch(spec), self.batch(spec)
+        yaw = .7
+        for step in range(13):
+            left, right = self.observations(plain, step), self.observations(yawed, step)
+            for value in left:
+                value["state"]["base_twist_world"]["angular_velocity_rad_s"] = dict(x=-.2, y=0., z=0.)
+            for value in right:
+                value["state"]["base_pose_world"]["orientation_xyzw"] = dict(x=math.cos(yaw/2), y=0., z=-math.sin(yaw/2), w=0.)
+                value["state"]["base_twist_world"]["angular_velocity_rad_s"] = dict(x=-.2*math.cos(yaw), y=0., z=.2*math.sin(yaw))
+            a, b = plain.step(left)[1], yawed.step(right)[1]
+            self.assertEqual(a["native_targets"], b["native_targets"])
+            self.assertAlmostEqual(a["resolution"]["motion_feedback"]["axis_angular_rate_rad_s"],
+                                   b["resolution"]["motion_feedback"]["axis_angular_rate_rad_s"], places=14)
+        self.assertEqual(a["resolution"]["motion_feedback"]["selection_reason"], "measured_rotation")
+        for axis in ([0., 0., 1.], [math.sqrt(.5), 0., math.sqrt(.5)]):
+            spec = population(); spec["profiles"][1] = motion_profile()
+            spec["profiles"][1]["feedback_axis_body"] = axis
+            trial = self.batch(spec)
+            for step in range(13):
+                obs = self.observations(trial, step)
+                for value in obs:
+                    # The inverted body maps its +Z direction to world -Z.
+                    value["state"]["base_twist_world"]["angular_velocity_rad_s"] = dict(x=-.2*axis[0], y=0., z=.2*axis[2])
+                feedback = trial.step(obs)[1]["resolution"]["motion_feedback"]
+            self.assertAlmostEqual(feedback["axis_angular_rate_rad_s"], -.2, places=14)
+            self.assertEqual((feedback["phase_after"], feedback["selection_reason"]), (1, "measured_rotation"))
 
     def test_speed_slew_and_joint_guard_preserve_caps_and_record_breaches(self):
         batch = self.batch()
@@ -123,6 +182,13 @@ class RightingControls(unittest.TestCase):
         for key, value in mutations:
             p = profiles()[1]; p[key] = value
             with self.assertRaises(ValueError): subject.profile(p)
+        for key, value in (("feedback_axis_body", [0., 0., 0.]), ("feedback_axis_body", [1., math.nan, 0.]),
+                ("feedback_axis_body", [2., 0., 0.]), ("feedback_polarity", True),
+                ("feedback_minimum_hold_steps", 24), ("feedback_minimum_hold_steps", 11),
+                ("feedback_rate_deadband_rad_s", 0.), ("feedback_requires_distal_contact", 1),
+                ("pose_b", profiles()[1]["pose_a"])):
+            p = motion_profile(); p[key] = value
+            with self.assertRaises(ValueError): subject.profile(p)
 
     def test_crossed_missing_stale_and_nonfinite_inputs_are_atomic(self):
         batch = self.batch()
@@ -136,14 +202,37 @@ class RightingControls(unittest.TestCase):
             if change == "quaternion": obs[-1]["state"]["base_pose_world"]["orientation_xyzw"]["x"] = 2.
             with self.assertRaises(ValueError): batch.step(obs)
             self.assertTrue(all(c.step_index == 0 and c.previous == [0.]*8 for c in batch.controllers))
+        spec = population(); spec["profiles"].append(motion_profile())
+        trial = self.batch(spec)
+        for step in range(12): trial.step(self.observations(trial, step))
+        before = [(copy.deepcopy(c.previous), c.step_index, c.motion_phase, c.motion_steps) for c in trial.controllers]
+        for change in ("nan_rate", "missing_rate", "contact_order", "contact_type", "phantom_contact"):
+            obs = self.observations(trial, 12)
+            for value in obs: value["state"]["base_twist_world"]["angular_velocity_rad_s"]["x"] = -.2
+            state = obs[-1]["state"]
+            if change == "nan_rate": state["base_twist_world"]["angular_velocity_rad_s"]["x"] = math.nan
+            if change == "missing_rate": state["base_twist_world"]["angular_velocity_rad_s"].pop("x")
+            if change == "contact_order": state["ordered_contact_observations"].reverse()
+            if change == "contact_type": state["ordered_contact_observations"][0]["presence"] = 1
+            if change == "phantom_contact": state["ordered_contact_observations"][0].update(presence=False, bears_support=True)
+            with self.assertRaises(ValueError): trial.step(obs)
+            self.assertEqual(before, [(c.previous, c.step_index, c.motion_phase, c.motion_steps) for c in trial.controllers])
+        obs = self.observations(trial, 12)
+        for value in obs: value["state"]["base_twist_world"]["angular_velocity_rad_s"]["x"] = -.2
+        rows = trial.step(obs)
+        self.assertEqual(rows[2]["resolution"]["motion_feedback"]["phase_after"], 1)
 
     def test_input_output_ownership_and_closed_calls(self):
-        spec = population(); batch = self.batch(spec)
+        spec = population(); spec["profiles"].append(motion_profile()); batch = self.batch(spec)
         spec["profiles"][1]["pose_a"][0] = -.9
         self.assertEqual(batch.controllers[1].candidate["pose_a"][0], .85)
         rows = batch.step(self.observations(batch))
         rows[1]["native_targets"][0] = 999.
         self.assertNotEqual(batch.controllers[1].previous[0], 999.)
+        rows[2]["resolution"]["motion_feedback"]["axis_body"][0] = 999.
+        rows[2]["resolution"]["motion_feedback"]["phase_after"] = 999
+        self.assertEqual(batch.controllers[2].candidate["feedback_axis_body"], [1., 0., 0.])
+        self.assertNotEqual(batch.controllers[2].motion_phase, 999)
         batch.close()
         with self.assertRaises(ValueError): batch.step(self.observations(batch, 1))
         with self.assertRaises(ValueError): batch.controllers[0].step(self.observations(batch, 1)[0])
@@ -166,6 +255,10 @@ class RightingControls(unittest.TestCase):
             if kind == "start": spec["starts"].append(dict(spec["starts"][0], id="alias"))
             if kind == "budget": spec["descriptors"] = [generated(i) for i in range(65)]
             with self.assertRaises(ValueError): subject.expand(spec)
+        spec = population(); spec["profiles"].extend([motion_profile(), motion_profile(polarity=-1)])
+        self.assertEqual(len(subject.expand(spec)["cells"]), 8)
+        spec["profiles"].append(dict(motion_profile(), id="feedback_alias"))
+        with self.assertRaises(ValueError): subject.expand(spec)
 
     def test_route_dispatch_initial_partition_and_expansion_binding(self):
         c = route.declaration(route.HERE / "creature_righting_route_v1.json")
@@ -219,7 +312,16 @@ class RightingControls(unittest.TestCase):
         self.assertEqual((m["terminal_upright_dwell_steps"], m["longest_upright_dwell_steps"]), (0, 300))
 
     def test_full_shared_reader_replays_righting_and_refuses_corruption(self):
+        for motion in (False, True):
+            with self.subTest(motion_feedback=motion):
+                self._reader_case(motion)
+
+    def _reader_case(self, motion):
         c = route.declaration(route.HERE / "creature_righting_route_v1.json")
+        if motion:
+            c["righting_spec"]["profiles"][1] = motion_profile(True)
+            c.update(subject.expand(c["righting_spec"]))
+            c["outer_steps"] = 26
         c = route.batch_contract(c, [0, 1])
         folder = self.root / uuid.uuid4().hex; folder.mkdir()
         batch = subject.RightingBatch(self.core, c["cells"], seed=c["seed"])
@@ -284,11 +386,17 @@ class RightingControls(unittest.TestCase):
             stream_sha256={k:sha(folder/(k+".jsonl")) for k in ("controller", "trace", "timing")}, **{k:False for k in FLAGS})
         write("worker-result.json", result)
         report = route.audit_batch(folder, c, self.core_path, synthetic=True)
-        self.assertEqual(report["controller_rows_replayed"], 4)
-        self.assertEqual(report["native_rows_verified"], 20)
+        self.assertEqual(report["controller_rows_replayed"], len(controls))
+        self.assertEqual(report["native_rows_verified"], len(trace))
         self.assertEqual(report["reader_world_build_count"], 0)
-        for key, value in (("native_targets", [99.]*8), ("binding", {}), ("resolution", {})):
-            changed = copy.deepcopy(controls); changed[0][key] = value
+        changes = [("native_targets", [99.]*8), ("binding", {}), ("resolution", {})]
+        index = 1 if motion else 0
+        if motion:
+            self.assertEqual(controls[49]["resolution"]["motion_feedback"]["selection_reason"], "bounded_fallback")
+            forged = copy.deepcopy(controls[index]["resolution"]); forged["motion_feedback"]["phase_after"] = 1
+            changes.append(("resolution", forged))
+        for key, value in changes:
+            changed = copy.deepcopy(controls); changed[index][key] = value
             (folder/"controller.jsonl").write_text("".join(json.dumps(r)+"\n" for r in changed), encoding="utf-8")
             result["stream_sha256"]["controller"] = sha(folder/"controller.jsonl"); write("worker-result.json", result)
             with self.assertRaises((ValueError, KeyError)): route.audit_batch(folder, c, self.core_path, synthetic=True)

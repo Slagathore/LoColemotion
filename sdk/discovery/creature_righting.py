@@ -21,6 +21,8 @@ SELECTION = dict(minimum_upright_dot=.95, minimum_height_ratio=.75,
     maximum_angular_speed_rad_s=.5, required_terminal_dwell_steps=300,
     maximum_joint_limit_violation_steps=0, shortlist_per_body_condition=2,
     minimum_mean_pose_distance=.15)
+MOTION_FIELDS = {"feedback_axis_body", "feedback_polarity", "feedback_minimum_hold_steps",
+                 "feedback_rate_deadband_rad_s", "feedback_requires_distal_contact"}
 
 
 def finite(value):
@@ -28,10 +30,13 @@ def finite(value):
 
 
 def profile(value):
-    require(type(value) is dict and set(value) == {"id", "mode", "pose_a", "pose_b",
-        "half_period_steps", "position_gain_s_inv", "maximum_speed_rad_s", "maximum_slew_rad_s_per_step"},
+    require(type(value) is dict, "Righting profile object")
+    motion = value.get("mode") == "motion_rock"
+    require(set(value) == {"id", "mode", "pose_a", "pose_b",
+        "half_period_steps", "position_gain_s_inv", "maximum_speed_rad_s", "maximum_slew_rad_s_per_step"}
+        | (MOTION_FIELDS if motion else set()),
         "Righting profile fields")
-    require(identifier(value["id"]) and value["mode"] in ("zero_velocity_brake", "rock"), "Righting profile identity")
+    require(identifier(value["id"]) and value["mode"] in ("zero_velocity_brake", "rock", "motion_rock"), "Righting profile identity")
     for key in ("pose_a", "pose_b"):
         require(type(value[key]) is list and len(value[key]) == 8
                 and all(finite(v) and -.9 <= v <= .9 for v in value[key]), "Righting normalized pose bounds")
@@ -43,7 +48,60 @@ def profile(value):
             "Righting command bounds")
     if value["mode"] == "zero_velocity_brake":
         require(value["pose_a"] == value["pose_b"] == [0.] * 8, "Righting brake carries a pose")
+    if motion:
+        axis = value["feedback_axis_body"]
+        require(type(axis) is list and len(axis) == 3 and all(finite(v) for v in axis)
+                and abs(sum(v*v for v in axis)-1.) <= 1e-12, "Righting feedback unit axis")
+        require(type(value["feedback_polarity"]) is int and value["feedback_polarity"] in (-1, 1)
+                and type(value["feedback_minimum_hold_steps"]) is int
+                and 12 <= value["feedback_minimum_hold_steps"] < value["half_period_steps"]
+                and finite(value["feedback_rate_deadband_rad_s"])
+                and .01 <= value["feedback_rate_deadband_rad_s"] <= .5
+                and type(value["feedback_requires_distal_contact"]) is bool, "Righting feedback bounds")
+        require(sum(abs(a-b) for a, b in zip(value["pose_a"], value["pose_b"], strict=True))/8 >= .1,
+                "Righting feedback poses do not differ")
     return copy.deepcopy(value)
+
+
+def behavior_key(candidate):
+    # Preserve the earlier duplicate rule; feedback variants must also bind
+    # every parameter that changes their response to the same observation.
+    key = tuple(candidate["pose_a"] + candidate["pose_b"] + [candidate["half_period_steps"],
+        candidate["position_gain_s_inv"], candidate["maximum_speed_rad_s"], candidate["maximum_slew_rad_s_per_step"]])
+    if candidate["mode"] == "motion_rock":
+        key += tuple(candidate["feedback_axis_body"]) + tuple(candidate[k] for k in
+            ("feedback_polarity", "feedback_minimum_hold_steps", "feedback_rate_deadband_rad_s",
+             "feedback_requires_distal_contact"))
+    return key
+
+
+def motion_phase(candidate, rotation, angular, bearing_contacts, phase, elapsed, upright):
+    """Choose a bounded phase from measured body-frame rotation, without mutation."""
+    require(type(angular) is dict and set(angular) == set("xyz")
+            and all(finite(angular[k]) for k in "xyz"), "Righting feedback angular observation")
+    body_velocity = rotation.T @ np.asarray([angular[k] for k in "xyz"])
+    rate = float(np.dot(body_velocity, candidate["feedback_axis_body"]))
+    signed = rate*candidate["feedback_polarity"]
+    require(finite(rate) and finite(signed) and np.isfinite(body_velocity).all(), "Righting feedback finite rate")
+    available = not candidate["feedback_requires_distal_contact"] or bearing_contacts > 0
+    threshold = candidate["feedback_rate_deadband_rad_s"]
+    desired = 0 if signed >= threshold else 1 if signed <= -threshold else phase
+    selected = phase
+    if upright:
+        reason = "upright_stance"
+    elif elapsed < candidate["feedback_minimum_hold_steps"]:
+        reason = "minimum_hold"
+    elif available and desired != phase:
+        selected, reason = desired, "measured_rotation"
+    elif elapsed >= candidate["half_period_steps"]:
+        selected, reason = 1-phase, "bounded_fallback"
+    else:
+        reason = "waiting_for_contact" if not available else "deadband" if abs(signed) < threshold else "measured_hold"
+    return dict(axis_body=copy.deepcopy(candidate["feedback_axis_body"]),
+        body_angular_velocity_rad_s=body_velocity.tolist(), axis_angular_rate_rad_s=rate,
+        signed_rate_rad_s=signed, bearing_distal_contacts=bearing_contacts, motion_available=available,
+        phase_before=phase, hold_steps_before=elapsed, phase_after=selected,
+        hold_steps_after=0 if upright else 1 if selected != phase else elapsed+1, selection_reason=reason)
 
 
 def recovery_descriptor(descriptor):
@@ -67,12 +125,11 @@ def expand(spec):
             and len({b["morphology_id"] for b in bodies}) == len(bodies), "Righting duplicate body")
     candidates = [profile(p) for p in candidates]
     require(candidates[0]["mode"] == "zero_velocity_brake"
-            and all(p["mode"] == "rock" for p in candidates[1:]), "Righting comparator population")
+            and all(p["mode"] in ("rock", "motion_rock") for p in candidates[1:]), "Righting comparator population")
     for rows in (candidates, conditions, starts):
         require(all(identifier(r["id"]) for r in rows) and len({r["id"] for r in rows}) == len(rows),
                 "Righting duplicate identity")
-    require(len({tuple(p["pose_a"] + p["pose_b"] + [p["half_period_steps"], p["position_gain_s_inv"],
-        p["maximum_speed_rad_s"], p["maximum_slew_rad_s_per_step"]]) for p in candidates}) == len(candidates),
+    require(len({behavior_key(p) for p in candidates}) == len(candidates),
         "Righting duplicated candidate behavior")
     for condition in conditions:
         require(set(condition) == {"id", "motor_effectiveness"} and type(condition["motor_effectiveness"]) is list
@@ -144,6 +201,7 @@ class RightingController:
         require([a["joint_id"] for a in self.spec["actuators"]] == self.creature["spec"]["ordered_joints"],
                 "Righting motor order")
         self.previous, self.step_index, self.closed = [0.] * 8, 0, False
+        self.motion_phase, self.motion_steps = 0, 0
 
     @property
     def binding(self):
@@ -173,6 +231,16 @@ class RightingController:
         up = float(rotation[1, 1])
         phase = (self.step_index // self.candidate["half_period_steps"]) % 2
         upright = up >= .9 and height >= .6*self.creature["compiled"]["geometry"]["initial_torso_center_y_m"]
+        feedback = None
+        if self.candidate["mode"] == "motion_rock":
+            contacts = state["ordered_contact_observations"]
+            require(type(contacts) is list and len(contacts) == 4
+                    and [v["contact_site_id"] for v in contacts] == [v["contact_site_id"] for v in self.spec["contact_sites"]]
+                    and all(type(v[k]) is bool for v in contacts for k in ("presence", "bears_support"))
+                    and all(not v["bears_support"] or v["presence"] for v in contacts), "Righting feedback contact population")
+            feedback = motion_phase(self.candidate, rotation, state["base_twist_world"]["angular_velocity_rad_s"],
+                sum(v["bears_support"] for v in contacts), self.motion_phase, self.motion_steps, upright)
+            phase = feedback["phase_after"]
         normalized = [0.] * 8 if upright else self.candidate["pose_a" if phase == 0 else "pose_b"]
         commands, targets, breaches = [], [], []
         for i, (joint, motor, observed, value) in enumerate(zip(self.spec["joints"], self.spec["actuators"], joints, normalized, strict=True)):
@@ -195,7 +263,7 @@ class RightingController:
                 canonical_velocity_rad_s=final, maximum_speed_rad_s=speed,
                 speed_limited=bounded != proposal, slew_limited=slewed != bounded,
                 joint_guard_applied=final != slewed, observed_joint_limit_breach=breaches[-1]))
-        return dict(binding=self.binding, request=dict(state=copy.deepcopy(state)),
+        record = dict(binding=self.binding, request=dict(state=copy.deepcopy(state)),
             stability=copy.deepcopy(observation["stability"]), kinematics=copy.deepcopy(observation["kinematics"]),
             resolution=dict(schema_version="locolemotion_righting_commands_v1", safe_no_actuation=False,
                 mode=self.candidate["mode"], phase="upright_stance" if upright else f"rock_{phase}",
@@ -203,9 +271,15 @@ class RightingController:
                 previous_canonical_velocities_rad_s=copy.deepcopy(self.previous),
                 trained=False, physical_acceptance_authority=False, release_authority=False),
             native_targets=targets)
+        if feedback is not None:
+            record["resolution"]["motion_feedback"] = feedback
+        return record
 
     def commit(self, record):
         self.previous = copy.deepcopy(record["native_targets"])
+        if self.candidate["mode"] == "motion_rock":
+            feedback = record["resolution"]["motion_feedback"]
+            self.motion_phase, self.motion_steps = feedback["phase_after"], feedback["hold_steps_after"]
         self.step_index += 1
 
     def step(self, observation):

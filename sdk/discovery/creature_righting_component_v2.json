@@ -1,0 +1,122 @@
+{
+  "schema_version": "locolemotion_creature_righting_component_v2",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "core",
+    "authority_mode": "development_component",
+    "question_class": "development"
+  },
+  "status": "complete_zero_world_measured_rotation_feedback_component",
+  "source_base_commit": "9c000eba336c407d747f36001e09004bda71f6ae",
+  "source_freeze": "The exact staged source overlay and complete applicable gate are retained. Native execution requires these source bytes on a clean pushed prospective freeze.",
+  "archive_relative_path": "sdk2-creature-righting-feedback-route-v1-9c64ff41a9c64cb3a872f7ed7098ea55",
+  "receipt_sha256": "45d6b63e2bdda647eddef007dac4b7de5d59ad6ca15dbb5f7559200e954d337d",
+  "declaration_sha256": "3f124488b612a25814089f9277386387ee0da7962c84c1519a940634cf42a800",
+  "gate_receipt_sha256": "555a34a4426b8a142a89ab222fea38a52d017767503a81afdc1880e51da2c510",
+  "contract_path": "sdk/discovery/creature_righting_feedback_route_v1.json",
+  "contract_sha256": "9dd3a7f82abb8eb4115fe1afdfc11c63392a835be79a92080fd35861f9f3980f",
+  "source_pins": [
+    {
+      "path": "sdk/discovery/.gitattributes",
+      "sha256": "5425fbc1ffb083009fc75d5e5e7d4684d16fa6a8ed94cf8f182543a242d6734f"
+    },
+    {
+      "path": "sdk/discovery/creature_righting.py",
+      "sha256": "1f2ae945cb6c511eba54e97ad6f2b25b1edca5ad312405b46a544ecca143124a"
+    },
+    {
+      "path": "sdk/discovery/test_creature_righting.py",
+      "sha256": "01356a0e6c34253a7da42bed474b4c24906d67b4f9e9555c9cea49700f61e187"
+    },
+    {
+      "path": "sdk/discovery/creature_native.py",
+      "sha256": "ee46453588ceaa925994a0025965179723fa8ed03ab92175f6a49dbb590f4eca"
+    },
+    {
+      "path": "sdk/discovery/creature_righting_feedback_route_v1.json",
+      "sha256": "9dd3a7f82abb8eb4115fe1afdfc11c63392a835be79a92080fd35861f9f3980f"
+    },
+    {
+      "path": "sdk/discovery/creature_righting_breadth_native_result_v2.json",
+      "sha256": "03968b81d0eba4557df6f4a1eb3c9c1e9218fbd2e8a1ddf2092f672fdf8e57f8"
+    }
+  ],
+  "controls_passed": 134,
+  "controls_required": 134,
+  "safety_controls": {
+    "measurement": 7,
+    "quadruped": 10,
+    "portable": 11,
+    "host-batch": 7,
+    "graph-execution": 7,
+    "motor-task": 7,
+    "motor-route": 5,
+    "stage-lifecycle": 17,
+    "containment": 1,
+    "provider": 2,
+    "creature-controller": 14,
+    "creature-native": 22,
+    "creature-readback": 12,
+    "creature-righting": 12
+  },
+  "source_runtime_unchanged": true,
+  "source_binding_count": 1166,
+  "runtime_binding_count": 1359,
+  "artifacts_verified": 2187,
+  "cleanup_reports_verified": 15,
+  "wall_s": 88.75,
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "predecessor": {
+    "path": "sdk/discovery/creature_righting_breadth_native_result_v2.json",
+    "sha256": "03968b81d0eba4557df6f4a1eb3c9c1e9218fbd2e8a1ddf2092f672fdf8e57f8"
+  },
+  "previous_component": {
+    "path": "sdk/discovery/creature_righting_component_v1.json",
+    "sha256": "48e5553b8cfd8fc7641bb38a0314cd4fd40723c5e47a49ffc301e9a6b5914d9b"
+  },
+  "synthetic_mixed_cohort": {
+    "distinct_body_shapes": 32,
+    "cells": 256,
+    "steps_per_cell": 27,
+    "decisions": 6912,
+    "scalar_batch_exact": true
+  },
+  "synthetic_shared_reader": {
+    "fixtures": 2,
+    "controller_rows_replayed": 56,
+    "native_rows_verified": 280,
+    "reader_world_build_count": 0,
+    "corruption_cases_refused": 7
+  },
+  "changes": [
+    "The shared motion_rock mode projects measured world angular velocity into the body frame and onto a declared unit axis, then applies an explicit phase polarity.",
+    "A minimum hold prevents rapid reversals; optional measured distal support gates the response. The declared maximum hold triggers a bounded fallback. Upright stance resets the phase hold counter.",
+    "The feedback receipt retains measured rates, contact count, decision reason and before/after phase state. Batch planning commits this state only after every cell validates.",
+    "Body-frame yaw covariance, inverted X/Z/diagonal axes, contact gating, both polarities, deadband parameter refusals and timeout behavior, malformed observations, ownership and full scalar-reader reconstruction are covered.",
+    "Existing timed and brake behavior, normalized target envelope, physical motor/joint limits, full capture and upright eligibility remain unchanged."
+  ],
+  "native_route_plan": {
+    "worlds": 3,
+    "body_shapes": 1,
+    "profiles": 3,
+    "starts": [
+      "inverted"
+    ],
+    "outer_steps_per_cell": 2,
+    "executed": false,
+    "scope": "Optional record-construction ghost only; no native feedback route or performance claim."
+  },
+  "feedback_influence_zero_world_verified": true,
+  "native_feedback_worlds": 0,
+  "trained": false,
+  "recovery_benefit_established": false,
+  "live_handoff_complete": false,
+  "tier2_qualified": false,
+  "tier3_benefit_established": false,
+  "training_data_authority": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "next_gate": "Run the distinct 16-body, 16-profile measured-rotation feedback discovery cohort after the complete gate from a clean pushed freeze. Retain every body/profile outcome and compare each feedback family with its fresh timed comparator."
+}

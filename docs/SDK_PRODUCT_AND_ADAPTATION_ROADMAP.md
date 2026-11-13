@@ -50,31 +50,31 @@ while profile 27 passes both.
    the body settles almost upside down, with joint-limit and entry gates false.
    No active recovery command or walking restart occurs. Preserve this valid
    negative and the earlier integration refusal.
-   The [shared righting component](../sdk/discovery/creature_righting_component_v1.json)
-   now passes 134 complete applicable zero-world controls. It binds the public
-   recovery morphology instead of the walking model's narrower joint ranges,
-   supplies bounded rocking candidates and a zero-velocity-brake comparator,
-   and preserves full capture and scalar replay. Its
-   [native route check](../sdk/discovery/creature_righting_route_native_v1.json)
-   completed eight worlds: two shapes, two starts and two controllers for two
-   intervals, with 16 decisions and 80 solver samples independently replayed.
-   The closure explicitly retains stale descriptive coverage copied into that
-   declaration; only the executed matrix is established. The short route does
-   not test self-righting performance.
-   The [six-second breadth result](../sdk/discovery/creature_righting_breadth_native_result_v1.json)
-   now retains 240 valid negatives across 16 bodies, five profiles and three
-   fallen starts. All 172,800 decisions and 864,000 solver samples replay; no
-   world meets the upright criterion, no joint-limit breach is measured and
-   all 16 shortlists are empty. This does not establish righting impossibility.
-   The distinct [v2 cohort](../sdk/discovery/creature_righting_breadth_v2.json)
-   declares 256 six-second worlds: eight descriptor-diverse bodies and 32
-   profiles at the fully inverted entry. Five coordination families each vary
-   five cadences and a held pose, alongside fresh brake and earlier-controller
-   comparators. It reuses the component, full capture, 134-control gate and
-   unchanged eligibility criterion; all v2 worlds remain unrun. Execute from
-   the clean pushed freeze. Only useful diverse leads advance to fresh
-   varied-start confirmation and full handoff runs requiring recovery
-   completion and 120 resumed walking steps.
+   The earlier [eight-world righting route](../sdk/discovery/creature_righting_route_native_v1.json)
+   established shared capture and replay with public recovery morphology; its
+   copied descriptive-coverage error remains explicit. Two full-horizon timed
+   searches now close valid negative: [v1](../sdk/discovery/creature_righting_breadth_native_result_v1.json)
+   tested 240 worlds across 16 bodies, five profiles and three fallen starts;
+   [v2](../sdk/discovery/creature_righting_breadth_native_result_v2.json) tested
+   256 worlds across eight bodies and 32 profiles at the inverted entry.
+   Every episode fails the upright criterion, with no invalid runs or measured
+   joint-limit breaches. The latest run independently replays 184,320 decisions
+   and 921,600 solver samples; all eight shortlists are empty. These results
+   do not establish righting impossibility.
+   The [measured-rotation component](../sdk/discovery/creature_righting_component_v2.json)
+   now passes the complete 134-control zero-world gate. It chooses a rocking
+   phase from measured body-frame angular velocity, with explicit polarity,
+   minimum holds, optional distal-contact gating and bounded fallback. Phase
+   state commits atomically across the batch. Tests include 6,912 exact mixed
+   scalar/batch decisions across 32 shapes and full reader reconstruction;
+   useful physical feedback remains untested.
+   The [feedback cohort](../sdk/discovery/creature_righting_feedback_v1.json)
+   declares 256 six-second inverted-entry worlds: 16 bodies, a fresh brake,
+   three timed pose families and twelve matching feedback variants. The
+   physical limits, full capture and upright criterion are unchanged. Execute
+   from a clean pushed freeze after the complete gate; all cohort worlds are
+   unrun. Useful diverse leads must pass fresh varied-start confirmation and
+   full handoff runs requiring recovery completion and 120 resumed walking steps.
    Keep body identity, native clocks and measured work; no pose reset, invented
    history or relaxed entry/joint-limit gates. Installed interaction, useful
    recovery and real-time behavior remain separate gates.
