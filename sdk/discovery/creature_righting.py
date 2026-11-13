@@ -1,0 +1,314 @@
+"""Portable, untrained righting candidates for the shared creature discovery route.
+
+This development controller owns no simulator and grants no recovery authority.
+It binds the public recovery morphology, proposes bounded joint velocities from
+canonical observations, and retains every measured limit breach. Native callers
+own motor application; the existing recovery selector's gates are unchanged.
+"""
+import copy
+import math
+
+import numpy as np
+
+from creature_batch import bridge, compile_creature, identifier, require
+from actuation_recovery_mechanics import RigidTree, quaternion_rotation, xyz
+from showcase_model import FIELDS, validate_descriptor
+from sporespore_locomotion import r24d22_recovery_s169_morphology
+
+SCHEMA = "locolemotion_creature_righting_population_v1"
+EXPANDED = ("cells", "initial_lateral_velocities_m_s", "initial_roll_angles_rad", "righting_metadata")
+SELECTION = dict(minimum_upright_dot=.95, minimum_height_ratio=.75,
+    maximum_angular_speed_rad_s=.5, required_terminal_dwell_steps=300,
+    maximum_joint_limit_violation_steps=0, shortlist_per_body_condition=2,
+    minimum_mean_pose_distance=.15)
+
+
+def finite(value):
+    return type(value) in (int, float) and math.isfinite(value)
+
+
+def profile(value):
+    require(type(value) is dict and set(value) == {"id", "mode", "pose_a", "pose_b",
+        "half_period_steps", "position_gain_s_inv", "maximum_speed_rad_s", "maximum_slew_rad_s_per_step"},
+        "Righting profile fields")
+    require(identifier(value["id"]) and value["mode"] in ("zero_velocity_brake", "rock"), "Righting profile identity")
+    for key in ("pose_a", "pose_b"):
+        require(type(value[key]) is list and len(value[key]) == 8
+                and all(finite(v) and -.9 <= v <= .9 for v in value[key]), "Righting normalized pose bounds")
+    require(type(value["half_period_steps"]) is int and 12 <= value["half_period_steps"] <= 240,
+            "Righting phase bound")
+    require(finite(value["position_gain_s_inv"]) and 1 <= value["position_gain_s_inv"] <= 12
+            and finite(value["maximum_speed_rad_s"]) and 0 < value["maximum_speed_rad_s"] <= 3.5
+            and finite(value["maximum_slew_rad_s_per_step"]) and 0 < value["maximum_slew_rad_s_per_step"] <= .2,
+            "Righting command bounds")
+    if value["mode"] == "zero_velocity_brake":
+        require(value["pose_a"] == value["pose_b"] == [0.] * 8, "Righting brake carries a pose")
+    return copy.deepcopy(value)
+
+
+def recovery_descriptor(descriptor):
+    result = r24d22_recovery_s169_morphology()
+    result["base_descriptor"] = copy.deepcopy(validate_descriptor(descriptor))
+    result["recovery_morphology_id"] = "righting_" + descriptor["morphology_id"]
+    return result
+
+
+def expand(spec):
+    require(type(spec) is dict and set(spec) == {"schema_version", "descriptors", "profiles", "conditions", "starts"}
+            and spec["schema_version"] == SCHEMA, "Righting population fields")
+    bodies, candidates, conditions, starts = [spec[k] for k in ("descriptors", "profiles", "conditions", "starts")]
+    require(all(type(v) is list and v for v in (bodies, candidates, conditions, starts))
+            and len(bodies) <= 64 and 2 <= len(candidates) <= 64 and len(conditions) <= 4
+            and len(starts) <= 4 and len(bodies)*len(candidates)*len(conditions)*len(starts) <= 256,
+            "Righting population budget")
+    for body in bodies:
+        validate_descriptor(body)
+    require(len({tuple(b[k] for k in FIELDS) for b in bodies}) == len(bodies)
+            and len({b["morphology_id"] for b in bodies}) == len(bodies), "Righting duplicate body")
+    candidates = [profile(p) for p in candidates]
+    require(candidates[0]["mode"] == "zero_velocity_brake"
+            and all(p["mode"] == "rock" for p in candidates[1:]), "Righting comparator population")
+    for rows in (candidates, conditions, starts):
+        require(all(identifier(r["id"]) for r in rows) and len({r["id"] for r in rows}) == len(rows),
+                "Righting duplicate identity")
+    require(len({tuple(p["pose_a"] + p["pose_b"] + [p["half_period_steps"], p["position_gain_s_inv"],
+        p["maximum_speed_rad_s"], p["maximum_slew_rad_s_per_step"]]) for p in candidates}) == len(candidates),
+        "Righting duplicated candidate behavior")
+    for condition in conditions:
+        require(set(condition) == {"id", "motor_effectiveness"} and type(condition["motor_effectiveness"]) is list
+                and len(condition["motor_effectiveness"]) == 8
+                and all(finite(v) and .5 <= v <= 1 for v in condition["motor_effectiveness"]), "Righting motor condition")
+    require(len({tuple(v["motor_effectiveness"]) for v in conditions}) == len(conditions), "Righting duplicate condition")
+    for start in starts:
+        require(set(start) == {"id", "roll_rad"} and finite(start["roll_rad"])
+                and -math.pi <= start["roll_rad"] <= math.pi, "Righting initial roll")
+    require(len({s["roll_rad"] for s in starts}) == len(starts), "Righting duplicate start")
+    cells, rolls, metadata = [], [], []
+    for bi, body in enumerate(bodies):
+        for ci, condition in enumerate(conditions):
+            for si, start in enumerate(starts):
+                for pi, candidate in enumerate(candidates):
+                    name = f"righting_body_{bi:02d}_condition_{ci}_start_{si}_candidate_{pi:02d}"
+                    cells.append(dict(cell_id=name, descriptor=copy.deepcopy(body), profile=copy.deepcopy(candidate),
+                                      motor_effectiveness=copy.deepcopy(condition["motor_effectiveness"])))
+                    rolls.append(start["roll_rad"])
+                    metadata.append(dict(cell_id=name, body_index=bi, body_id=body["morphology_id"],
+                        condition_index=ci, condition_id=condition["id"], start_index=si, start_id=start["id"],
+                        candidate_index=pi, candidate_id=candidate["id"]))
+    return dict(cells=cells, initial_lateral_velocities_m_s=[0.] * len(cells),
+                initial_roll_angles_rad=rolls, righting_metadata=metadata)
+
+
+def verify_expansion(c):
+    require(all(c[key] == value for key, value in expand(c["righting_spec"]).items()), "Righting expansion drift")
+    require(c["righting_selection"] == SELECTION, "Righting selection contract")
+
+
+def ground_clearance(creature, roll):
+    """Exact box/capsule lower support at zero joint angles, without a world."""
+    tree = RigidTree(creature["compiled"]["morphology"]["morphology_spec"])
+    frame = tree.kinematics([0., 0., 0.], [math.sin(roll/2), 0., 0., math.cos(roll/2)], [0.] * 8)
+    lows = []
+    for body, position, rotation in zip(tree.bodies, frame["positions"], frame["rotations"], strict=True):
+        shape = body["collision"]
+        if shape["kind"] == "box":
+            extent = float(np.abs(rotation[1]) @ (xyz(shape["size_m"])/2))
+        else:
+            require(shape["kind"] == "capsule", "Righting initializer collision shape")
+            extent = abs(float(rotation[1, 1])) * shape["length_m"]/2 + shape["radius_m"]
+        lows.append(float(position[1]) - extent)
+    return min(lows)
+
+
+def initial_arrays(creatures, rolls):
+    require(len(creatures) == len(rolls) and all(finite(v) and -math.pi <= v <= math.pi for v in rolls),
+            "Righting initial population")
+    positions = []
+    for creature, roll in zip(creatures, rolls, strict=True):
+        # This is fresh initialization only. No running world may be reset here.
+        height = .005 - ground_clearance(creature, roll)
+        positions.append([0., 0., height, math.cos(roll/2), math.sin(roll/2), 0., 0.] + [0.] * 8)
+    return np.asarray(positions, np.float32), np.zeros((len(creatures), 14), np.float32)
+
+
+class RightingController:
+    def __init__(self, core, declaration, *, seed):
+        require(type(declaration) is dict and set(declaration) == {"cell_id", "descriptor", "profile", "motor_effectiveness"}
+                and identifier(declaration["cell_id"]) and type(seed) is int and 0 <= seed <= 2147483647,
+                "Righting cell fields")
+        self.cell_id = declaration["cell_id"]
+        self.candidate = profile(declaration["profile"])
+        self.creature = compile_creature(core, declaration["descriptor"], declaration["motor_effectiveness"],
+            recovery_descriptor=recovery_descriptor(declaration["descriptor"]))
+        self.spec = self.creature["compiled"]["morphology"]["morphology_spec"]
+        require([a["joint_id"] for a in self.spec["actuators"]] == self.creature["spec"]["ordered_joints"],
+                "Righting motor order")
+        self.previous, self.step_index, self.closed = [0.] * 8, 0, False
+
+    @property
+    def binding(self):
+        return dict(copy.deepcopy(self.creature["binding"]), cell_id=self.cell_id, candidate_id=self.candidate["id"])
+
+    def close(self):
+        self.closed = True
+
+    def plan(self, observation):
+        require(not self.closed and type(observation) is dict and set(observation) == {
+            "cell_id", "descriptor_sha256", "model_xml_sha256", "state", "stability", "kinematics"},
+            "Righting observation fields or closed controller")
+        require(all(observation[k] == self.binding[k] for k in ("cell_id", "descriptor_sha256", "model_xml_sha256")),
+                "Crossed righting observation")
+        state = observation["state"]
+        require(type(state["semantic_step"]) is int and state["semantic_step"] == self.step_index
+                and state["sample_time_s"] == self.step_index*bridge.CONTROLLER_DT_S, "Righting observation clock")
+        joints = state["ordered_joint_observations"]
+        require(len(joints) == 8 and [j["joint_id"] for j in joints] == self.creature["spec"]["ordered_joints"]
+                and all(finite(j[k]) for j in joints for k in ("position_rad", "velocity_rad_s")),
+                "Righting joint observation")
+        q = state["base_pose_world"]["orientation_xyzw"]
+        require(type(q) is dict and set(q) == set("xyzw"), "Righting root quaternion fields")
+        rotation = quaternion_rotation([q[k] for k in "xyzw"])
+        height = state["base_pose_world"]["position_m"]["y"]
+        require(finite(height), "Righting root height")
+        up = float(rotation[1, 1])
+        phase = (self.step_index // self.candidate["half_period_steps"]) % 2
+        upright = up >= .9 and height >= .6*self.creature["compiled"]["geometry"]["initial_torso_center_y_m"]
+        normalized = [0.] * 8 if upright else self.candidate["pose_a" if phase == 0 else "pose_b"]
+        commands, targets, breaches = [], [], []
+        for i, (joint, motor, observed, value) in enumerate(zip(self.spec["joints"], self.spec["actuators"], joints, normalized, strict=True)):
+            lo, hi, actual = joint["lower_limit_rad"], joint["upper_limit_rad"], observed["position_rad"]
+            require(lo < 0 < hi, "Righting zero stance outside limits")
+            target = value*(hi if value >= 0 else -lo)
+            speed = min(motor["maximum_target_speed_rad_s"], self.candidate["maximum_speed_rad_s"])
+            proposal = 0. if self.candidate["mode"] == "zero_velocity_brake" else self.candidate["position_gain_s_inv"]*(target-actual)
+            bounded = max(-speed, min(speed, proposal))
+            slew = self.candidate["maximum_slew_rad_s_per_step"]
+            slewed = max(self.previous[i]-slew, min(self.previous[i]+slew, bounded))
+            # Joint protection overrides slew: never keep driving outward to
+            # preserve a smooth command after the observed bound is reached.
+            final = max(min(0., (lo-actual)/bridge.CONTROLLER_DT_S),
+                        min(max(0., (hi-actual)/bridge.CONTROLLER_DT_S), slewed))
+            breaches.append(not lo <= actual <= hi)
+            targets.append(final)
+            commands.append(dict(actuator_id=motor["actuator_id"], joint_id=joint["joint_id"],
+                target_position_rad=target, proposed_velocity_rad_s=proposal,
+                canonical_velocity_rad_s=final, maximum_speed_rad_s=speed,
+                speed_limited=bounded != proposal, slew_limited=slewed != bounded,
+                joint_guard_applied=final != slewed, observed_joint_limit_breach=breaches[-1]))
+        return dict(binding=self.binding, request=dict(state=copy.deepcopy(state)),
+            stability=copy.deepcopy(observation["stability"]), kinematics=copy.deepcopy(observation["kinematics"]),
+            resolution=dict(schema_version="locolemotion_righting_commands_v1", safe_no_actuation=False,
+                mode=self.candidate["mode"], phase="upright_stance" if upright else f"rock_{phase}",
+                observed_up_dot=up, observed_joint_limit_breaches=breaches, ordered_commands=commands,
+                previous_canonical_velocities_rad_s=copy.deepcopy(self.previous),
+                trained=False, physical_acceptance_authority=False, release_authority=False),
+            native_targets=targets)
+
+    def commit(self, record):
+        self.previous = copy.deepcopy(record["native_targets"])
+        self.step_index += 1
+
+    def step(self, observation):
+        record = self.plan(observation)
+        self.commit(record)
+        return record
+
+
+class RightingBatch:
+    """Atomic host planning for independent native GPU cells; no physics calls."""
+    def __init__(self, core, declarations, *, seed):
+        require(type(declarations) is list and 1 <= len(declarations) <= 256
+                and len({r["cell_id"] for r in declarations}) == len(declarations), "Righting batch population")
+        self.controllers, self.closed = [], False
+        try:
+            for row in declarations:
+                self.controllers.append(RightingController(core, row, seed=seed))
+        except BaseException:
+            self.close()
+            raise
+
+    @property
+    def bindings(self):
+        return [cell.binding for cell in self.controllers]
+
+    def close(self):
+        for cell in self.controllers:
+            cell.close()
+        self.closed = True
+
+    def step(self, observations):
+        require(not self.closed and type(observations) is list and len(observations) == len(self.controllers),
+                "Righting batch observation denominator or closed")
+        rows = [c.plan(o) for c, o in zip(self.controllers, observations, strict=True)]
+        for cell, row in zip(self.controllers, rows, strict=True):
+            cell.commit(row)
+        return rows
+
+
+def initial_metrics():
+    return dict(terminal_upright_dwell_steps=0, longest_upright_dwell_steps=0,
+                joint_limit_violation_steps=0, final_up_dot=0., final_height_ratio=0., final_angular_speed_rad_s=0.)
+
+
+def measure(metric, row, creature):
+    q, v = row["qpos"], row["qvel"]
+    up = 1-2*(q[4]**2+q[5]**2)
+    ratio = q[2]/creature["compiled"]["geometry"]["initial_torso_center_y_m"]
+    speed = math.sqrt(sum(x*x for x in v[3:6]))
+    safe = all(j["lower_limit_rad"] <= actual <= j["upper_limit_rad"]
+               for j, actual in zip(creature["compiled"]["morphology"]["morphology_spec"]["joints"], q[7:], strict=True))
+    distal_ids = [creature["spec"]["geom_names"].index(site["body_id"]+"_geom")
+                  for site in creature["compiled"]["morphology"]["morphology_spec"]["contact_sites"]]
+    supported = all(any(set(hit["geom"]) == {0, geom} for hit in row["contacts"]) for geom in distal_ids)
+    torso_clear = not any(1 in hit["geom"] for hit in row["contacts"])
+    upright = up >= SELECTION["minimum_upright_dot"] and ratio >= SELECTION["minimum_height_ratio"]
+    dwell = metric["terminal_upright_dwell_steps"]+1 if upright and safe and supported and torso_clear and speed <= SELECTION["maximum_angular_speed_rad_s"] else 0
+    metric.update(terminal_upright_dwell_steps=dwell,
+        longest_upright_dwell_steps=max(metric["longest_upright_dwell_steps"], dwell),
+        joint_limit_violation_steps=metric["joint_limit_violation_steps"]+int(not safe),
+        final_up_dot=up, final_height_ratio=ratio, final_angular_speed_rad_s=speed)
+
+
+def assess(c, metrics, bindings):
+    verify_expansion(c)
+    require(len(metrics) == len(bindings) == len(c["cells"])
+            and [b["cell_id"] for b in bindings] == [v["cell_id"] for v in c["cells"]], "Righting assessment population")
+    episodes, groups = [], {}
+    for meta, metric, binding in zip(c["righting_metadata"], metrics, bindings, strict=True):
+        require(all(k in metric and finite(metric[k]) for k in initial_metrics()), "Righting finite metrics")
+        for key in ("terminal_upright_dwell_steps", "longest_upright_dwell_steps", "joint_limit_violation_steps"):
+            require(type(metric[key]) is int and 0 <= metric[key] <= c["outer_steps"]*5, "Righting metric count")
+        require(metric["terminal_upright_dwell_steps"] <= metric["longest_upright_dwell_steps"], "Righting dwell summary")
+        failures = []
+        if metric["terminal_upright_dwell_steps"] < SELECTION["required_terminal_dwell_steps"]:
+            failures.append("no_terminal_supported_upright_dwell")
+        if metric["joint_limit_violation_steps"]:
+            failures.append("joint_limit_violation")
+        row = dict(meta, body_shape_sha256=binding["body_shape_sha256"], eligible=not failures,
+                   failure_codes=failures, metrics=copy.deepcopy(metric))
+        episodes.append(row)
+        groups.setdefault((meta["body_index"], meta["condition_index"]), []).append(row)
+    shortlists = []
+    for (body, condition), rows in groups.items():
+        candidates = []
+        for pi, profile_row in enumerate(c["righting_spec"]["profiles"]):
+            selected = [r for r in rows if r["candidate_index"] == pi]
+            require(len(selected) == len(c["righting_spec"]["starts"]), "Righting missing start")
+            if pi and all(r["eligible"] for r in selected):
+                candidates.append(dict(candidate_id=profile_row["id"], candidate_index=pi,
+                    minimum_terminal_dwell_steps=min(r["metrics"]["terminal_upright_dwell_steps"] for r in selected)))
+        candidates.sort(key=lambda r: (-r["minimum_terminal_dwell_steps"], r["candidate_index"]))
+        diverse = []
+        def distance(left, right):
+            a, b = [c["righting_spec"]["profiles"][r["candidate_index"]] for r in (left, right)]
+            return sum(abs(x-y) for x, y in zip(a["pose_a"]+a["pose_b"], b["pose_a"]+b["pose_b"], strict=True))/16
+        for candidate in candidates:
+            if all(distance(candidate, other) >= SELECTION["minimum_mean_pose_distance"] for other in diverse):
+                diverse.append(candidate)
+            if len(diverse) == SELECTION["shortlist_per_body_condition"]:
+                break
+        shortlists.append(dict(body_index=body, condition_index=condition,
+            candidates=diverse))
+    return dict(episodes=episodes, shortlists=shortlists, eligible_worlds=sum(r["eligible"] for r in episodes),
+        failed_worlds=sum(not r["eligible"] for r in episodes), trained=False,
+        recovery_qualified=False, training_data_authority=False, physical_acceptance_authority=False, release_authority=False)

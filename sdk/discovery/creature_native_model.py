@@ -190,6 +190,10 @@ def expected_native_fields(creature):
         geom_size=sizes, geom_pos=positions,
         jnt_pos=[[0.] * 3] + [vector(joint, "pos", "0 0 0") for joint in tree.findall(".//joint")])
     result.update({"actuator_" + key: value for key, value in expected_actuator_arrays(creature["spec"]).items()})
+    if "recovery_compilation" in creature:
+        # Recovery anchors and ranges have a different public compiler authority.
+        result["jnt_range"] = [[0., 0.]] + [vector(j, "range", "") for j in tree.findall(".//joint")]
+        result["jnt_axis"] = [[0., 0., 1.]] + [vector(j, "axis", "") for j in tree.findall(".//joint")]
     return result
 
 

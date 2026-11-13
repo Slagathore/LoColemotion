@@ -26,13 +26,15 @@ from actuation_measurement import named_force_samples
 import creature_population as population
 import creature_readback as readback
 import creature_confirmation as confirmation
+import creature_righting as righting
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
                  "run_creature_native.py", "test_creature_batch.py", "test_creature_native.py",
                  "gpu_batch_execution.py", "creature_population.py", "test_creature_population.py",
                  "creature_readback.py", "test_creature_readback.py",
-                 "creature_confirmation.py", "test_creature_confirmation.py"]
+                 "creature_confirmation.py", "test_creature_confirmation.py",
+                 "creature_righting.py", "test_creature_righting.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -54,12 +56,22 @@ def gates(c):
                      if "population_spec" in c or "confirmation_spec" in c else [])
             + ([("creature-readback", "test_creature_readback", 12)]
                if "readback" in c or "maximum_worlds_per_batch" in c else [])
-            + ([("creature-confirmation", "test_creature_confirmation", 10)] if "confirmation_spec" in c else []))
+            + ([("creature-confirmation", "test_creature_confirmation", 10)] if "confirmation_spec" in c else [])
+            + ([("creature-righting", "test_creature_righting", 12)] if "righting_spec" in c else []))
 
 
 def declaration(path):
     require(path.resolve().is_relative_to(ROOT), "Creature declaration outside repository")
     c = json.loads(path.read_text(encoding="utf-8"))
+    if "righting_spec" in c:
+        require(c["mode"] in ("route_ghost", "development_discovery") and c["batch_partition"] == "body_shape"
+                and "population_spec" not in c and "confirmation_spec" not in c
+                and not any(key in c for key in righting.EXPANDED), "Righting expansion scope")
+        c.update(righting.expand(c["righting_spec"]))
+        righting.verify_expansion(c)
+    else:
+        require(not any(k in c for k in ("initial_roll_angles_rad", "righting_metadata", "righting_selection")),
+                "Righting fields without righting declaration")
     confirming = "confirmation_spec" in c
     require((c["mode"] == "development_confirmation") is confirming, "Creature confirmation mode")
     if confirming:
@@ -114,10 +126,16 @@ def declaration(path):
 
 
 def initial_arrays(creatures, c):
+    if "righting_spec" in c:
+        return righting.initial_arrays(creatures, c["initial_roll_angles_rad"])
     positions = np.asarray([v["spec"]["initial_qpos"] for v in creatures], np.float32)
     velocities = np.zeros((len(creatures), 14), np.float32)
     velocities[:, 1] = c["initial_lateral_velocities_m_s"]
     return positions, velocities
+
+
+def controller_types(c):
+    return (righting.RightingBatch, righting.RightingController) if "righting_spec" in c else (CreatureBatch, CreatureController)
 
 
 def preflight(c, core_path):
@@ -127,6 +145,8 @@ def preflight(c, core_path):
         population.verify_expansion(c)
     if "confirmation_spec" in c:
         confirmation.verify_expansion(c)
+    if "righting_spec" in c:
+        righting.verify_expansion(c)
     require({name: importlib.metadata.version(name) for name in c["runtime"]} == c["runtime"],
             "Creature runtime versions")
     require(all(callable(getattr(mjw, name, None)) for name in ("put_model", "put_data", "step1", "step2", "get_data_into")),
@@ -138,7 +158,7 @@ def preflight(c, core_path):
         creatures, bindings = [], []
         # Keep the public host-batch limit; large cohorts are only sequential plans.
         for start in range(0, len(c["cells"]), 256):
-            batch = CreatureBatch(core, c["cells"][start:start+256], seed=c["seed"])
+            batch = controller_types(c)[0](core, c["cells"][start:start+256], seed=c["seed"])
             try:
                 creatures.extend(cell.creature for cell in batch.controllers)
                 bindings.extend(batch.bindings)
@@ -199,6 +219,9 @@ def batch_contract(c, indices):
     result.update(batch_partition="single", cells=[copy.deepcopy(c["cells"][i]) for i in indices],
                   initial_lateral_velocities_m_s=[c["initial_lateral_velocities_m_s"][i] for i in indices],
                   naconmax=len(indices)*c["naconmax_per_world"])
+    if "righting_spec" in c:
+        result["initial_roll_angles_rad"] = [c["initial_roll_angles_rad"][i] for i in indices]
+        result["righting_metadata"] = [copy.deepcopy(c["righting_metadata"][i]) for i in indices]
     batch_limit(result)
     return result
 
@@ -261,7 +284,7 @@ def run_batch(folder, c, core_path, *, cache=None):
         require(device.is_cuda, "Creature native GPU device")
         wp.set_device(device)
         core = bridge.LocomotionCore(core_path)
-        batch = CreatureBatch(core, c["cells"], seed=c["seed"])
+        batch = controller_types(c)[0](core, c["cells"], seed=c["seed"])
         creatures = [cell.creature for cell in batch.controllers]
         models, views, originals, metadatas = [], [], [], []
         for index, creature in enumerate(creatures):
@@ -429,6 +452,9 @@ class StreamValidator:
         self.metrics = [dict(minimum_height_m=math.inf, maximum_tilt_rad=0., torso_contact_steps=0,
                              safe_no_actuation_steps=0, ground_contact_steps=0, nonzero_force_steps=0,
                              forward_displacement_m=0., lateral_displacement_m=0.) for _ in creatures]
+        if "righting_spec" in c:
+            for metric in self.metrics:
+                metric.update(righting.initial_metrics())
 
     def control(self, row):
         cell, outer = row["cell"], row["outer_step"]
@@ -491,6 +517,8 @@ class StreamValidator:
             m["nonzero_force_steps"] += int(any(v != 0. for v in row["actuator_force_nm"]))
             m["forward_displacement_m"] = row["qpos"][0] - self.creatures[cell]["spec"]["initial_qpos"][0]
             m["lateral_displacement_m"] = row["qpos"][1] - self.creatures[cell]["spec"]["initial_qpos"][1]
+            if "righting_spec" in self.c:
+                righting.measure(m, row, self.creatures[cell])
             self.previous[cell] = row
             self.native_counts[cell] += 1
 
@@ -534,6 +562,8 @@ def audit(folder, c, core_path, *, synthetic=False):
         result["assessment"] = population.assess(c, metrics, pre["bindings"])
     if "confirmation_spec" in c:
         result["assessment"] = confirmation.assess(c, metrics, pre["bindings"])
+    if "righting_spec" in c:
+        result["assessment"] = righting.assess(c, metrics, pre["bindings"])
     if readback.options(c)["mode"] == "shared_snapshot":
         result["readback"] = {key: sum(g["audit"]["readback"][key] for g in reports)
                               for key in reports[0]["audit"]["readback"]}
@@ -557,7 +587,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
         core = bridge.LocomotionCore(core_path)
         controllers = []
         try:
-            controllers = [CreatureController(core, cell, seed=c["seed"]) for cell in c["cells"]]
+            controllers = [controller_types(c)[1](core, cell, seed=c["seed"]) for cell in c["cells"]]
             creatures = [controller.creature for controller in controllers]
             metadata = [json.loads((folder / ("cell_" + str(i)) / "native-model.json").read_text()) for i in range(nworld)]
             transport = json.loads((folder / "model-transport.json").read_text())

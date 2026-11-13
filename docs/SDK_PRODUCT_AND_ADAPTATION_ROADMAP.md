@@ -50,9 +50,16 @@ while profile 27 passes both.
    the body settles almost upside down, with joint-limit and entry gates false.
    No active recovery command or walking restart occurs. Preserve this valid
    negative and the earlier integration refusal.
-   Next declare a bounded recovery-entry and self-righting discovery cohort
-   across candidate behaviors and perturbation conditions, retaining inverted
-   and unsafe outcomes. Check useful, diverse candidates through fresh full
+   The [shared righting component](../sdk/discovery/creature_righting_component_v1.json)
+   now passes 134 complete applicable zero-world controls. It binds the public
+   recovery morphology instead of the walking model's narrower joint ranges,
+   supplies bounded rocking candidates and a zero-velocity-brake comparator,
+   and preserves full capture and scalar replay. Its eight-world native route
+   check covers two shapes, two starts and two controllers for two intervals;
+   it remains unrun. Run that check from the clean pushed freeze, then declare
+   broad factored discovery across recovery bodies, candidate behaviors and
+   fallen conditions, retaining inverted and unsafe outcomes. Check useful,
+   diverse candidates through fresh full
    handoff runs requiring recovery completion and 120 resumed walking steps.
    Keep body identity, native clocks and measured work; no pose reset, invented
    history or relaxed entry/joint-limit gates. Installed interaction, useful

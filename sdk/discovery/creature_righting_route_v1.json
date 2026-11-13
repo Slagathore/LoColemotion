@@ -1,0 +1,261 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "campaign_id": "creature_righting_route_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "mode": "route_ghost",
+  "purpose": "Development route ghost for portable righting candidates on public recovery morphologies, fresh inverted and side starts, unchanged native motor caps, full capture and independent scalar replay.",
+  "controller_component": {
+    "path": "sdk/discovery/creature_batch_component_v1.json",
+    "sha256": "48641c186f4e33e3386f71d24af522309d567ae2cbdd49fa30c26deb7835bdbc"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "seed": 1061113,
+  "outer_steps": 2,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "capture_mode": "full",
+  "native_reads_reduced": false,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 4294967296,
+  "maximum_worker_wall_seconds": 900,
+  "maximum_reader_wall_seconds": 900,
+  "coverage": [
+    "Six fresh worlds covering three shapes, nominal and weakened motors, all five selected profiles, and stable group splitting at two worlds per batch.",
+    "A single-use prepared-state lease shares owned host arrays across the unchanged pinned get_data_into conversion; no native data is modified.",
+    "Original and shared readback alternate measurement order on identical native states; every controller input, native observation and compatibility copy must match before integration.",
+    "Full retained controller, native, timing and readback streams; independent scalar replay verifies all original cell identities, chunks and reference comparisons.",
+    "Fresh host observation buffers are never stepped; native construction, graph capture, source and runtime binding, containment and cleanup retain the existing route checks."
+  ],
+  "not_covered": [
+    "Self-righting success over a useful horizon",
+    "Walking-to-fall transition or recovery-to-walking handoff",
+    "Godot transfer or engine equivalence",
+    "Learned selection, online memory, robustness or release qualification"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    }
+  ],
+  "batch_partition": "body_shape",
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py"
+  ],
+  "maximum_worlds_per_batch": 2,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_12031",
+        "torso_length_scale": 1.0563600772424508,
+        "torso_width_scale": 1.0505492491532464,
+        "upper_length_fraction": 0.5307994437498971,
+        "hip_span_scale": 1.0405259362283457,
+        "foot_radius_scale": 0.9760773374410526,
+        "front_limb_mass_scale": 1.0189899734964105
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 24,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 24,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "side_rock",
+        "mode": "rock",
+        "pose_a": [
+          0.85,
+          0.85,
+          -0.4,
+          -0.4,
+          -0.85,
+          -0.85,
+          0.4,
+          0.4
+        ],
+        "pose_b": [
+          -0.4,
+          -0.4,
+          0.85,
+          0.85,
+          0.4,
+          0.4,
+          -0.85,
+          -0.85
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      },
+      {
+        "id": "side",
+        "roll_rad": 1.5707963267948966
+      }
+    ]
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "covered_code_path_risks": [
+    "Two recovery body shapes bind different compiled geometry and the declared recovery joint authority.",
+    "Inverted and side initializers clear every box and capsule before the first native step.",
+    "Brake and rocking controllers use the same bounded application and full-capture route.",
+    "The second controller boundary joins the preceding five solver steps; independent replay uses the actual recovery morphology."
+  ]
+}

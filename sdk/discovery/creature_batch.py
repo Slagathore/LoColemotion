@@ -49,7 +49,7 @@ def profile(value):
     return copy.deepcopy(value)
 
 
-def compile_creature(core, descriptor, motor_effectiveness=None):
+def compile_creature(core, descriptor, motor_effectiveness=None, *, recovery_descriptor=None):
     """Use the real public compiler and existing native XML builder, zero worlds."""
     descriptor = copy.deepcopy(validate_descriptor(descriptor))
     factors = [1.] * 8 if motor_effectiveness is None else copy.deepcopy(motor_effectiveness)
@@ -59,6 +59,18 @@ def compile_creature(core, descriptor, motor_effectiveness=None):
     compiled = core.compile_bounded_quadruped(descriptor)
     require(compiled["descriptor"] == descriptor and compiled["world_build_count"] == 0
             and compiled["physical_acceptance_authority"] is False, "Creature compiler identity")
+    recovery = None
+    base_compiled = copy.deepcopy(compiled)
+    if recovery_descriptor is not None:
+        require(recovery_descriptor["base_descriptor"] == descriptor, "Recovery/base descriptor mismatch")
+        recovery = core.compile_recovery_morphology_v1(recovery_descriptor)
+        require(recovery["base_descriptor_sha256"] == compiled["descriptor_sha256"]
+                and recovery["support_status"] == "supported_exact"
+                and recovery["world_build_count"] == recovery["solver_step_count"] == 0
+                and recovery["physical_acceptance_authority"] is False, "Recovery compiler refused")
+        # Keep both original receipts. This composite is the XML builder's input,
+        # not a relabelled result from the walking morphology compiler.
+        compiled["morphology"] = copy.deepcopy(recovery["morphology"])
     morphology = compiled["morphology"]
     require(morphology["world_build_count"] == 0, "Morphology compiler constructed a world")
     tree = ET.fromstring(bridge.build_model_xml(compiled, bridge.PER_ACTUATOR_DEVELOPMENT_PROFILE_ID))
@@ -99,7 +111,12 @@ def compile_creature(core, descriptor, motor_effectiveness=None):
         model_xml_sha256=hashlib.sha256(xml.encode()).hexdigest(),
         inputs_sha256=core.canonicalize_json(spec)["sha256"],
         world_build_count=0, physical_acceptance_authority=False)
-    return dict(descriptor=descriptor, compiled=compiled, model_xml=xml, spec=spec, binding=binding)
+    result = dict(descriptor=descriptor, compiled=compiled, model_xml=xml, spec=spec, binding=binding)
+    if recovery is not None:
+        binding["recovery_descriptor_sha256"] = recovery["descriptor_sha256"]
+        binding["recovery_receipt_sha256"] = core.canonicalize_json(recovery)["sha256"]
+        result.update(base_compiled=base_compiled, recovery_compilation=recovery)
+    return result
 
 
 def provider_request(core, cell, request, baseline):

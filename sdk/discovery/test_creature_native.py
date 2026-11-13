@@ -61,7 +61,7 @@ def primary_snapshot(meta):
         annotation = annotations[name]
         batched = bool(getattr(annotation, "shape", ()) and annotation.shape[0] == "*")
         dtype = np.float32 if name in ("qpos0", "body_pos", "body_mass", "body_inertia", "body_ipos",
-            "geom_size", "geom_pos", "jnt_pos", "actuator_gainprm", "actuator_biasprm", "actuator_forcerange", "actuator_gear") else np.int32
+            "geom_size", "geom_pos", "jnt_pos", "jnt_range", "jnt_axis", "actuator_gainprm", "actuator_biasprm", "actuator_forcerange", "actuator_gear") else np.int32
         data = np.asarray(values, dtype=dtype)
         if batched:
             data = data[None]
