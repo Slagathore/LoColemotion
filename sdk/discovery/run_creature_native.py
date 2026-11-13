@@ -10,7 +10,7 @@ import sys
 import time
 import uuid
 
-from creature_native import ROOT, HERE, FLAGS, gates, MODEL_SOURCES, declaration, require, sha
+from creature_native import ROOT, HERE, FLAGS, gates, MODEL_SOURCES, declaration, require, sha, capture
 from gpu_measurement_probe import write_new
 from run_gpu_measurement_probe import source_identity
 from run_gpu_motor_effectiveness import bindings as inherited_bindings
@@ -33,6 +33,7 @@ def main():
     parser.add_argument("--core", type=Path, required=True)
     parser.add_argument("--baseline-core", type=Path, required=True)
     parser.add_argument("--run", action="store_true")
+    parser.add_argument("--full-canary", type=Path, help="Verified matched full-capture owner receipt for compact native execution")
     args = parser.parse_args()
     contract_path, core, baseline = [p.resolve(strict=True) for p in (args.contract, args.core, args.baseline_core)]
     c = declaration(contract_path)
@@ -60,6 +61,12 @@ def main():
         require(jobs.wait(handle, 0) == 0, "Another operation owns the physical mutex")
         acquired = True
         receipt["bindings"] = bindings()
+        if args.run and c["capture_mode"] == "compact_v1":
+            require(args.full_canary is not None, "Compact native launch requires a full canary receipt")
+            receipt["capture_prerequisite"] = capture.canary_receipt(
+                args.full_canary, c, source, receipt["bindings"], evidence)
+        else:
+            require(args.full_canary is None, "Full canary receipt outside compact native launch")
         for path in sources:
             target = folder / "source" / path.relative_to(ROOT)
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -91,6 +98,9 @@ def main():
         def unchanged():
             require(bindings() == receipt["bindings"] and source_identity(args.run) == source
                     and status() == original_status, "Creature source/runtime drift")
+            if "capture_prerequisite" in receipt:
+                require(capture.canary_receipt(args.full_canary, c, source, receipt["bindings"], evidence)
+                        == receipt["capture_prerequisite"], "Full canary evidence drift")
         unchanged()
         receipt.update(zero_world_gate_passed=True, preflight=preflight)
         write_new(folder / "gate-receipt.json", dict(ok=True, source_commit=source, ledger_scope=c["ledger_scope"],
@@ -108,9 +118,17 @@ def main():
             audit = json.loads((folder / "independent-audit.json").read_text())
             require(audit["ok"] is True and audit["synthetic"] is False and audit["reader_world_build_count"] == 0
                     and audit["gpu_worlds"] == len(c["cells"])
-                    and audit["controller_rows_replayed"] == len(c["cells"])*c["outer_steps"]
-                    and audit["native_rows_verified"] == len(c["cells"])*c["outer_steps"]*5,
+                    and audit["controller_rows_replayed"] == (len(c["cells"])*c["outer_steps"] if c["capture_mode"] == "full" else 0)
+                    and audit["native_rows_verified"] == (len(c["cells"])*c["outer_steps"]*5 if c["capture_mode"] == "full" else 0),
                     "Creature native reader refused")
+            if "compact_capture" in c:
+                captured = audit["capture"]
+                require(captured["compact_controller_rows_verified"] == len(c["cells"])*c["outer_steps"]
+                        and captured["compact_native_samples_reconstructed"] == len(c["cells"])*c["outer_steps"]*5
+                        and captured["within_run_projection_verified"] is (c["capture_mode"] == "full")
+                        and captured["full_capture"] is (c["capture_mode"] == "full")
+                        and captured["qualification_requires_fresh_full_capture"] is True,
+                        "Creature compact reader scope or denominator")
             receipt["audit"] = audit
             unchanged()
         receipt.update(ok=True, source_runtime_unchanged=True)

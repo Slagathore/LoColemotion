@@ -28,10 +28,17 @@ the first route's descriptive-coverage discrepancy remain preserved. The
 [component v3](../sdk/discovery/creature_righting_component_v3.json) and both
 native runs are complete at source `217d591b`. Native correctness does not
 establish useful righting, impossibility, training, adaptation or release.
-Next qualify and measure compact recording for the shared mixed-creature runner,
-using matched full/compact canaries and the earlier reduced-serialization pattern.
-Then declare a broad dynamic trajectory and phase-timing search with unchanged
-physical limits and upright eligibility. Useful diverse leads need fresh
+The [compact component](../sdk/discovery/creature_capture_component_v1.json) now
+passes 153 zero-world controls and exact outcome reconstruction across all 256
+retained sequence worlds. Projected streams are 76.1% smaller, including unchanged
+timing/readback logs. Every native substep and solver input remains retained;
+detailed body/contact geometry and independent controller replay remain full-only.
+Next run the declared full and compact canaries at the same pushed source: eight
+worlds each, two bodies, four profiles and two seconds. The full run also records
+compact projection; one pair per body gives descriptive timing only. No native
+throughput improvement is yet established. Then declare a broad dynamic trajectory
+and phase-timing search with unchanged physical limits and upright eligibility.
+Useful diverse leads need fresh
 full-capture varied-start confirmation and complete Godot handoffs.
 
 The native route now constructs and steps actual bounded quadruped variants.
@@ -50,7 +57,8 @@ independent replay. The
 [shared-readback route](../sdk/discovery/creature_readback_native_result_v1.json)
 now passes after 122 fresh controls: six worlds in four bounded chunks,
 144 exact original-path observation matches and 720 independently verified
-native samples. All capture remains full; no snapshot survives its prepared step.
+native samples. Those completed cohorts used full capture; no snapshot survives
+its prepared step.
 
 | Record | Status and scope |
 | --- | --- |

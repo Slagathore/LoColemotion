@@ -24,6 +24,7 @@ historical instructions.
 | Righting geometry | [Zero-world screen](../sdk/discovery/creature_righting_geometry_result_v1.json): 22,945 poses on each of 16 bodies; 108,667,520 configurations and 9,216 scalar witness checks. Every sampled direction has an uphill fixed-pose interval; dynamic feasibility and recovery remain unproved |
 | Four-phase righting component | [Component v3](../sdk/discovery/creature_righting_component_v3.json): all 143 controls pass; the [four-world native route](../sdk/discovery/creature_righting_sequence_route_native_v1.json) now verifies dispatch, mechanics/work capture and independent replay |
 | Sequence native result | [256 valid negatives](../sdk/discovery/creature_righting_sequence_native_result_v1.json): 16 bodies, 14 sequences and fresh timed/brake comparators, six seconds. All 184,320 decisions and 921,600 samples replay; zero eligible, invalid or joint-breach worlds, and 16 empty shortlists. All sequence worlds reach wind-up but no later rotation/contact gate; maximum boundary rotation 9.6 degrees versus 14.4 for timed |
+| Compact capture component | [Zero-world component](../sdk/discovery/creature_capture_component_v1.json): 153 controls pass; outcomes from all 256 retained worlds reconstruct exactly from every native substep. Projected streams are 76.1% smaller. Matched eight-world full/compact native canaries are declared, not yet executed |
 | SDK2 search | [Population v2](../sdk/discovery/population_discovery_native_result_v2.json) searched 64 controller profiles on the same S169 body |
 | SDK2 shortlist | [Twelve-second result](../sdk/discovery/population_shortlist_native_result_v1.json): 14 eligible, six failed, zero invalid episodes; 55/27 preserve weak-left eligibility with a nominal tracking tradeoff |
 | SDK2 creature route | [Native route verified](../sdk/discovery/creature_route_native_result_v2.json): four fresh worlds, three shapes, 0.2 seconds, 96 decisions and 480 samples independently replayed; v1 refusal retained |
@@ -65,8 +66,10 @@ points to the active implementation and evidence. The
 and audit economy; the [architecture](LOCOMOTION_ARCHITECTURE.md) defines
 runtime ownership. New attempts preserve consumed identities and add declarations
 to shared machinery wherever the contract is unchanged. The four righting cohorts
-now retain 1,008 valid negative performance worlds. Next qualify and measure
-compact mixed-creature screening, then declare a broad dynamic trajectory and
+now retain 1,008 valid negative performance worlds. The compact component passes
+its complete zero-world gate and retained-corpus reconstruction. Next execute
+the declared matched full/compact native canaries
+and measure recording cost, then declare a broad dynamic trajectory and
 phase-timing search. Useful leads still need varied-start full-capture checks
 and the complete Godot handoff; no righting mechanism has been adopted.
 

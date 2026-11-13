@@ -21,6 +21,7 @@ and useful self-righting remains unestablished after four negative cohorts.
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay correctly; the inverted body times out without active recovery or walking resume. The earlier timestep refusal stays retained |
 | [Four-phase righting](../sdk/discovery/creature_righting_sequence_native_result_v1.json) | 256 fresh six-second worlds across 16 bodies and 16 profiles: zero eligible, 256 valid failures, zero invalid or joint-breach worlds, and 16 empty shortlists. All 184,320 decisions and 921,600 samples replay after 143 controls |
 | Righting diagnosis | All 224 sequence worlds reach wind-up, but none meets a later rotation/contact transition. Maximum recorded boundary rotation is 9.6 degrees for a sequence and 14.4 for the timed comparator. Static-pose proposals did not produce useful dynamic motion |
+| [Compact capture component](../sdk/discovery/creature_capture_component_v1.json) | 153 zero-world controls pass; all 184,320 decisions and 921,600 retained native samples reconstruct identical outcomes. Projected total streams are 76.1% smaller; native recording cost remains unmeasured |
 | Scope | Finite exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 1. **Make broad dynamic trajectory search cheaper and more informative.**
@@ -28,12 +29,14 @@ and useful self-righting remains unestablished after four negative cohorts.
    and full cohort are complete at source `217d591b`. Preserve these negatives
    and the 752 earlier [timed and feedback failures](../sdk/discovery/creature_righting_feedback_native_result_v1.json).
    Do not repeat the same geometric proposal heuristic or treat timeout-driven
-   phase cycling as recovery. First qualify and measure compact recording for
-   the shared mixed-creature runner, reusing the earlier
-   [population discovery pattern](../sdk/discovery/population_discovery_task_v1.py).
-   Use matched full/compact canaries, preserve solver inputs, native timing,
-   validation and physical limits, and report recording cost. Then prospectively
-   declare a broad search over dynamic trajectories, phase timing and poses
+   phase cycling as recovery. The shared compact component now passes its
+   153-control gate and complete retained-corpus
+   reconstruction. From a clean pushed freeze, run the declared full canary
+   and then its matched compact canary: eight worlds each, two bodies, four
+   profiles and two seconds. The full run also records compact projection.
+   Preserve solver inputs, every native substep, validation and physical
+   limits; report storage and recording cost with the one-pair timing limit.
+   Then prospectively declare a broad search over dynamic trajectories, phase timing and poses
    across diverse bodies. Keep all failed bodies and conditions. Any discovery
    signal used to propose candidates must be declared separately from the
    unchanged supported-upright acceptance criterion. Useful diverse leads need

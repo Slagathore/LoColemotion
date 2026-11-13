@@ -1,4 +1,4 @@
-"""Shared full-capture mixed-creature GPU execution and independent scalar reader."""
+"""Shared mixed-creature GPU execution, full replay and compact discovery reader."""
 import argparse
 from contextlib import ExitStack
 import copy
@@ -27,6 +27,7 @@ import creature_population as population
 import creature_readback as readback
 import creature_confirmation as confirmation
 import creature_righting as righting
+import creature_capture as capture
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -35,7 +36,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_readback.py", "test_creature_readback.py",
                  "creature_confirmation.py", "test_creature_confirmation.py",
                  "creature_righting.py", "test_creature_righting.py",
-                 "creature_righting_sequence.py", "test_creature_righting_sequence.py"]
+                 "creature_righting_sequence.py", "test_creature_righting_sequence.py",
+                 "creature_capture.py", "test_creature_capture.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -59,7 +61,8 @@ def gates(c):
                if "readback" in c or "maximum_worlds_per_batch" in c else [])
             + ([("creature-confirmation", "test_creature_confirmation", 10)] if "confirmation_spec" in c else [])
             + ([("creature-righting", "test_creature_righting", 12)] if "righting_spec" in c else [])
-            + ([("creature-righting-sequence", "test_creature_righting_sequence", 9)] if sequence_enabled(c) else []))
+            + ([("creature-righting-sequence", "test_creature_righting_sequence", 9)] if sequence_enabled(c) else [])
+            + ([("creature-capture", "test_creature_capture", 10)] if "compact_capture" in c else []))
 
 
 def sequence_enabled(c):
@@ -94,9 +97,10 @@ def declaration(path):
             and identifier(c["campaign_id"])
             and c["mode"] in ("route_ghost", "development_discovery", "development_confirmation")
             and c.get("batch_partition") in ("single", "body_shape")
-            and c["capture_mode"] == "full"
+            and c["capture_mode"] in ("full", "compact_v1")
             and all(c[key] is False for key in FLAGS), "Creature declaration scope")
     readback.options(c)
+    capture.options(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
@@ -194,6 +198,11 @@ def validate_launch(folder, c, contract_path):
     require(claim["attempt_id"] == folder.parent.name and claim["contract_sha256"] == sha(contract_path)
             and claim["gate_receipt_sha256"] == sha(folder.parent / "gate-receipt.json"),
             "Creature single-use native claim")
+    if c["capture_mode"] == "compact_v1":
+        prerequisite = owner.get("capture_prerequisite")
+        require(type(prerequisite) is dict and "receipt_path" in prerequisite, "Compact worker requires full canary")
+        require(capture.canary_receipt(prerequisite["receipt_path"], c, owner["source_commit"],
+                    owner["bindings"], folder.parent.parent) == prerequisite, "Compact worker canary binding")
 
 
 def batch_limit(c):
@@ -278,7 +287,8 @@ def run_batch(folder, c, core_path, *, cache=None):
     import warp as wp
     import mujoco_warp as mjw
     read_options = readback.options(c)
-    stream_names = ["controller", "trace", "timing"] + (["readback"] if read_options["mode"] == "shared_snapshot" else [])
+    recording = capture.options(c)
+    stream_names = capture.streams(c, read_options["mode"] == "shared_snapshot")
     result = dict(schema_version="locolemotion_creature_worker_v1", ok=False, synthetic=False,
         ledger_scope=c["ledger_scope"], constructed_gpu_worlds=0, native_model_constructions=0,
         stepped_cpu_worlds=0, controller_rows=0, native_rows=0, **{k: False for k in FLAGS})
@@ -404,7 +414,8 @@ def run_batch(folder, c, core_path, *, cache=None):
                             native_observation=native[index],
                             contact_compatibility_copy=copies[index])
                         validator.control(row)
-                        append("controller", row)
+                        if recording["full"]:
+                            append("controller", row)
                         result["controller_rows"] += 1
                     if journal is not None:
                         # Refuse any mismatch before applying the controller or integrating.
@@ -418,6 +429,7 @@ def run_batch(folder, c, core_path, *, cache=None):
                     wp.synchronize_device(device)
                     timing["integration_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
+                    captured_blocks = []
                     for sub, snap in enumerate(history.read(c, nworld)):
                         block = []
                         for index, creature in enumerate(creatures):
@@ -425,9 +437,15 @@ def run_batch(folder, c, core_path, *, cache=None):
                             row = next(trace_rows(snap, c, creature["spec"], outer, sub, nworld, cell_indices=[index]))
                             block.append(row)
                         validator.native(block)
+                        if recording["active"]:
+                            captured_blocks.append(block)
                         for row in block:
-                            append("trace", row)
+                            if recording["full"]:
+                                append("trace", row)
                             result["native_rows"] += 1
+                    if recording["active"]:
+                        for row in capture.project(rows, captured_blocks):
+                            append("compact", row)
                     timing["capture_validation_write_s"] = time.perf_counter() - tick
                     timing["outer_total_s"] = time.perf_counter() - whole
                     append("timing", timing)
@@ -568,6 +586,8 @@ def audit(folder, c, core_path, *, synthetic=False):
         native_rows_verified=sum(g["audit"]["native_rows_verified"] for g in reports),
         differing_model_fields=sorted(differing), metrics=metrics, timing_seconds=timing,
         **{key: False for key in FLAGS})
+    if capture.options(c)["active"]:
+        result["capture"] = capture.report(len(c["cells"])*c["outer_steps"], capture.options(c)["full"])
     if "population_spec" in c:
         result["assessment"] = population.assess(c, metrics, pre["bindings"])
     if "confirmation_spec" in c:
@@ -585,6 +605,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
     result = json.loads((folder / "worker-result.json").read_text())
     nworld = len(c["cells"])
     shared = readback.options(c)["mode"] == "shared_snapshot"
+    recording = capture.options(c)
     read_totals = dict(device_arrays_read=0, numpy_requests=0, reference_observations_checked=0)
     require(result["schema_version"] == "locolemotion_creature_worker_v1" and result["ledger_scope"] == c["ledger_scope"]
             and result["ok"] is True and result["synthetic"] is synthetic and result["model_unchanged"] is True
@@ -611,43 +632,62 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                         and (directory / "model.xml").read_bytes() == creature["model_xml"].encode(), "Creature compile reconstruction")
                 validate_model_evidence(creature, m, snapshot)
             validator = StreamValidator(c, creatures, metadata)
-            require(set(result["stream_sha256"]) == {"controller", "trace", "timing"} | ({"readback"} if shared else set()),
+            require(set(result["stream_sha256"]) == set(capture.streams(c, shared))
+                    and {p.stem for p in folder.glob("*.jsonl")} == set(capture.streams(c, shared)),
                     "Creature stream binding population")
             for name, digest in result["stream_sha256"].items():
                 require(sha(folder / (name + ".jsonl")) == digest, "Creature original stream changed")
+            compact_reader = capture.Reader(c, creatures, *initial_arrays(creatures, c)) if recording["active"] else None
             with ExitStack() as inputs:
-                control = inputs.enter_context((folder / "controller.jsonl").open())
-                trace = inputs.enter_context((folder / "trace.jsonl").open())
+                control = inputs.enter_context((folder / "controller.jsonl").open()) if recording["full"] else None
+                trace = inputs.enter_context((folder / "trace.jsonl").open()) if recording["full"] else None
+                compact = inputs.enter_context((folder / "compact.jsonl").open()) if recording["active"] else None
                 journal = inputs.enter_context((folder / "readback.jsonl").open()) if shared else None
                 for outer in range(c["outer_steps"]):
-                    controls = []
-                    for cell, controller in enumerate(controllers):
-                        row = json.loads(next(control))
-                        controls.append(row)
-                        require(row["cell"] == cell and row["outer_step"] == outer, "Crossed creature controller stream")
-                        validator.control(row)
-                        observation = dict(cell_id=controller.cell_id,
-                            descriptor_sha256=controller.binding["descriptor_sha256"], model_xml_sha256=controller.binding["model_xml_sha256"],
-                            state=row["request"]["state"], stability=row["stability"], kinematics=row["kinematics"])
-                        replay = controller.step(observation)
-                        require(same_bits(replay, {key: row[key] for key in replay}), "Creature scalar replay differs")
+                    controls = [] if recording["full"] else [None]*nworld
+                    if recording["full"]:
+                        for cell, controller in enumerate(controllers):
+                            row = json.loads(next(control))
+                            controls.append(row)
+                            require(row["cell"] == cell and row["outer_step"] == outer, "Crossed creature controller stream")
+                            validator.control(row)
+                            observation = dict(cell_id=controller.cell_id,
+                                descriptor_sha256=controller.binding["descriptor_sha256"], model_xml_sha256=controller.binding["model_xml_sha256"],
+                                state=row["request"]["state"], stability=row["stability"], kinematics=row["kinematics"])
+                            replay = controller.step(observation)
+                            require(same_bits(replay, {key: row[key] for key in replay}), "Creature scalar replay differs")
                     if journal is not None:
                         counts = readback.validate_record(json.loads(next(journal)), c, outer, controls)
                         for key, value in counts.items():
                             read_totals[key] += value
-                    for _ in range(5):
-                        validator.native([json.loads(next(trace)) for _ in range(nworld)])
-                require(not control.read() and not trace.read(), "Extra creature stream rows")
+                    blocks = []
+                    if recording["full"]:
+                        for _ in range(5):
+                            block = [json.loads(next(trace)) for _ in range(nworld)]
+                            validator.native(block)
+                            if recording["active"]: blocks.append(block)
+                    if recording["active"]:
+                        reduced = [json.loads(next(compact)) for _ in range(nworld)]
+                        if recording["full"]: capture.verify_projection(reduced, controls, blocks)
+                        compact_reader.consume(reduced)
+                require(control is None or not control.read(), "Extra creature controller rows")
+                require(trace is None or not trace.read(), "Extra creature native rows")
+                require(compact is None or not compact.read(), "Extra compact creature rows")
                 require(journal is None or not journal.read(), "Extra creature readback rows")
-            metrics = validator.finish()
+            metrics = validator.finish() if recording["full"] else compact_reader.finish()
+            if recording["active"] and recording["full"]:
+                require(same_bits(compact_reader.finish(), metrics), "Full/compact outcome reconstruction differs")
             timing = validate_timing([json.loads(line) for line in (folder / "timing.jsonl").read_text().splitlines()], c)
             require(metrics == result["metrics"] and result["controller_rows"] == nworld*c["outer_steps"]
                     and result["native_rows"] == nworld*c["outer_steps"]*5, "Creature result summary")
             report = dict(schema_version="locolemotion_creature_native_audit_v1", ledger_scope=c["ledger_scope"],
                 ok=True, synthetic=synthetic, reader_world_build_count=0, gpu_worlds=nworld,
                 distinct_body_shapes=len({v["binding"]["body_shape_sha256"] for v in creatures}),
-                controller_rows_replayed=result["controller_rows"], native_rows_verified=result["native_rows"],
+                controller_rows_replayed=result["controller_rows"] if recording["full"] else 0,
+                native_rows_verified=result["native_rows"] if recording["full"] else 0,
                 differing_model_fields=differing, metrics=metrics, timing_seconds=timing, **{key: False for key in FLAGS})
+            if recording["active"]:
+                report["capture"] = capture.report(result["controller_rows"], recording["full"])
             if shared:
                 report["readback"] = read_totals
             return report

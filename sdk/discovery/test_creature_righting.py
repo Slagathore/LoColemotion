@@ -316,7 +316,7 @@ class RightingControls(unittest.TestCase):
             with self.subTest(motion_feedback=motion):
                 self._reader_case(motion)
 
-    def _reader_case(self, motion, sequence_profile=None):
+    def _reader_case(self, motion, sequence_profile=None, fixture_only=False):
         c = route.declaration(route.HERE / "creature_righting_route_v1.json")
         if motion:
             c["righting_spec"]["profiles"][1] = motion_profile(True)
@@ -389,6 +389,8 @@ class RightingControls(unittest.TestCase):
             stepped_cpu_worlds=0, controller_rows=len(controls), native_rows=len(trace), metrics=validator.finish(),
             stream_sha256={k:sha(folder/(k+".jsonl")) for k in ("controller", "trace", "timing")}, **{k:False for k in FLAGS})
         write("worker-result.json", result)
+        if fixture_only:
+            return folder, c, creatures, metas, controls, trace, result
         report = route.audit_batch(folder, c, self.core_path, synthetic=True)
         self.assertEqual(report["controller_rows_replayed"], len(controls))
         self.assertEqual(report["native_rows_verified"], len(trace))

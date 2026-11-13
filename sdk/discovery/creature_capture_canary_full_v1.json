@@ -1,0 +1,636 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "campaign_id": "creature_capture_canary_full_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "mode": "route_ghost",
+  "purpose": "Eight fresh two-second worlds on two bodies measure full capture; no locomotion performance claim.",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "seed": 1061120,
+  "outer_steps": 240,
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "capture_mode": "full",
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "not_covered": [
+    "Controller or physics changes",
+    "Useful righting, robustness, held-out confirmation or complete Godot handoff",
+    "Reduced native reads, changed file buffering, training or release",
+    "Cross-run bitwise equivalence or general throughput gains"
+  ],
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    }
+  ],
+  "batch_partition": "body_shape",
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py",
+    "sdk/discovery/creature_righting_sequence.py"
+  ],
+  "maximum_worlds_per_batch": 4,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "geometry_000_synchronous",
+        "mode": "pose_sequence",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.01,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "phases": [
+          {
+            "id": "windup",
+            "pose": [
+              0.8079994832902238,
+              -0.7917522561428219,
+              0.898229687584758,
+              0.10561970228930939,
+              -0.8983737274292258,
+              -0.8218864905647669,
+              0.8999987104390248,
+              -0.8979313595989932
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 96,
+            "advance_when": "pose",
+            "threshold": 0.1
+          },
+          {
+            "id": "drive",
+            "pose": [
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.45,
+              -0.9,
+              0.9,
+              -0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 25.0
+          },
+          {
+            "id": "follow_through",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 100.0
+          },
+          {
+            "id": "catch",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 60,
+            "advance_when": "contact",
+            "threshold": 2
+          }
+        ]
+      },
+      {
+        "id": "geometry_000_staggered",
+        "mode": "pose_sequence",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "minimum_progress_rate_rad_s": 0.01,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "phases": [
+          {
+            "id": "windup",
+            "pose": [
+              0.8079994832902238,
+              -0.7917522561428219,
+              0.898229687584758,
+              0.10561970228930939,
+              -0.8983737274292258,
+              -0.8218864905647669,
+              0.8999987104390248,
+              -0.8979313595989932
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              12,
+              12
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 96,
+            "advance_when": "pose",
+            "threshold": 0.1
+          },
+          {
+            "id": "drive",
+            "pose": [
+              -0.9,
+              -0.9,
+              -0.9,
+              -0.45,
+              -0.9,
+              0.9,
+              -0.9,
+              0.9
+            ],
+            "limb_delay_steps": [
+              0,
+              12,
+              12,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 25.0
+          },
+          {
+            "id": "follow_through",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              -0.9,
+              -0.9
+            ],
+            "limb_delay_steps": [
+              12,
+              0,
+              0,
+              12
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 120,
+            "advance_when": "progress",
+            "threshold": 100.0
+          },
+          {
+            "id": "catch",
+            "pose": [
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "limb_delay_steps": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "minimum_hold_steps": 36,
+            "maximum_hold_steps": 60,
+            "advance_when": "contact",
+            "threshold": 2
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ]
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_righting_sequence_native_result_v1.json",
+    "sha256": "0cbc8788c670e11d6ce17d3690e43ca40c235755ba9ccdcd8dc196ed0b735677"
+  },
+  "body_selection": {
+    "source": "sdk/discovery/creature_breadth_v1.json",
+    "source_sha256": "a96c2e851b8d39de2a17b0b405e7d73536b821fc98c5a4d894bbf48e8f192544",
+    "method": "Retain all 16 bodies from the first righting breadth declaration in its fixed farthest-point descriptor order; no outcome selects or removes a body.",
+    "source_indices": [
+      0,
+      1,
+      2,
+      6,
+      19,
+      12,
+      8,
+      17,
+      9,
+      21,
+      22,
+      16,
+      13,
+      15,
+      10,
+      4
+    ],
+    "selection_predecessor": {
+      "path": "sdk/discovery/creature_righting_breadth_v1.json",
+      "sha256": "82f7c2a82744faa9c9399b66bc41e840d5dd98648a27b1ba7798b761d99cbe39"
+    }
+  },
+  "coverage": [
+    "Two distinct compiled body shapes with fresh brake, timed, synchronous and staggered sequence controllers",
+    "All live observation, command, force, contact, capacity and timing checks remain active",
+    "Compact records retain every solver input, prepared state and five native state/force/contact-identity samples",
+    "Full canary replays every controller decision and checks every compact field against the same-run full capture",
+    "Compact reader reconstructs metrics and refuses incomplete streams without claiming controller replay",
+    "Compact native launch requires the successful matched full canary at the same frozen source and runtime",
+    "Two seconds per world measure recording cost; separate-run trajectory differences are retained and descriptive"
+  ],
+  "profile_factorization": {
+    "families": [
+      {
+        "id": "uniform",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9,
+          0.9
+        ],
+        "pose_b": [
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9,
+          -0.9
+        ],
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "id": "side",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "id": "corner",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "axis_body": [
+          0.7071067811865476,
+          0.0,
+          0.7071067811865476
+        ]
+      }
+    ],
+    "timed_profiles": 3,
+    "feedback_profiles": 12,
+    "brake_profiles": 1,
+    "feedback_polarities": [
+      1,
+      -1
+    ],
+    "feedback_requires_distal_contact": [
+      false,
+      true
+    ],
+    "feedback_minimum_hold_steps": 24,
+    "feedback_rate_deadband_rad_s": 0.05,
+    "maximum_hold_steps": 240,
+    "interpretation": "Within each family, the timed and feedback variants share poses, gain, speed and slew bounds. Feedback uses measured body-frame angular rate, a 0.2-second minimum hold and a two-second fallback. Opposite polarities and optional distal-contact gating are exposed development candidates, not learned policies."
+  },
+  "mechanics_scope": "Generalized measured state and compiled masses/inertias reconstruct body momentum and kinetic energy. Completed-step joint-actuator force multiplied by measured joint displacement is an explicitly sampled work estimate; it is not exact continuous work, a closed energy balance or an eligibility criterion.",
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "qualification_economy": "Shared worker, owner, live validators and full reader are extended with one optional compact profile and ten focused controls. No new native runner or containment implementation.",
+  "capture_comparison": {
+    "pair_id": "creature_capture_canary_v1",
+    "role": "full",
+    "order": [
+      "full",
+      "compact"
+    ],
+    "within_run_projection_is_gate": true,
+    "between_run_equivalence_authority": false,
+    "one_pair_per_body": true
+  }
+}
