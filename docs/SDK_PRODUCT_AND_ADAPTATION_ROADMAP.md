@@ -25,12 +25,15 @@ is the next bounded implementation task.
    failed: 1.38% fewer canonicalization calls did not improve startup.
    The previous cache is restored as the default and passes the full route
    preflight. Do not repeat a cache-size tuning grid.
-   Use retained full startup packets to locate repeated record construction,
-   copying and serialization in process-step and energy-observation composition
-   (6.79 and 3.72 seconds in the profiled old-cache run).
-   Require a useful zero-world CPU measurement before another fresh matched
-   native trial. Preserve full capture, controller decisions and solver inputs.
-   This bounded performance work precedes another large recovery cohort.
+   The [retained-packet CPU profile](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
+   verifies 288 exact replays and rejects two scalar-validator changes: observed
+   warm median reductions 4.7% and -1.0%, below the declared 10% threshold.
+   Original validation stays active. The input is one historical terminal
+   stand-up packet with the current DLL; recent timing archives do not contain
+   intermediate startup requests. Next retain representative exact inputs across
+   startup phases in one bounded capture diagnostic, then evaluate shared compiled
+   validation/retention. Require a useful CPU result before another matched timing
+   trial. Preserve full capture and solver inputs; no cache or scalar-loop grid.
 2. **Search recovery using the whole body's contact response.** The
    [36-world diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
    verifies solved reactions and empty-cone fallback, with no recovery.

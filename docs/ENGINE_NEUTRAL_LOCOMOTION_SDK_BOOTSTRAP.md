@@ -278,7 +278,13 @@ and 1,799 controller rows match. The [four-world cache comparison](../sdk/explor
 also preserves every compared frame and controller row, but LRU is 6.98%/2.04%
 slower through stand-up in the profiled/unprofiled pairs. The declared speedup
 criterion fails; the old default is restored and its full zero-world gate
-passes. Investigate repeated startup record work before another native trial.
+passes. The [retained startup CPU probe](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
+reopens 288 exact route replays with no worlds. Two scalar-validator candidates
+preserve checked outputs but fail their 10% CPU threshold (4.7% and -1.0%
+observed warm median reductions); original validation remains active.
+Its single historical terminal input does not represent the full startup.
+Capture declared phase-spanning inputs before evaluating shared compiled
+validation/retention; no further scalar-loop or cache tuning grid.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

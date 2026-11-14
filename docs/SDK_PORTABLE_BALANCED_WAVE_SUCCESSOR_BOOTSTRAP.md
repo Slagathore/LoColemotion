@@ -197,8 +197,13 @@ The [four-world serializer comparison](../sdk/explorer/studio/walking_performanc
 preserves the exact trajectories and controller rows, but LRU stand-up is
 21.326/20.673 seconds versus 19.934/20.260 for the old cache. Its speedup
 criterion fails despite 109 fewer native canonicalization calls. The old
-default is restored with a passing full preflight. Next inspect repeated
-startup record work; no further cache tuning or speedup claim is warranted.
+default is restored with a passing full preflight. The
+[startup CPU comparison](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
+retains 288 exact replays and rejects two scalar-validator changes: 4.7% and
+-1.0% observed warm median reductions, below their 10% threshold. Original
+validation stays active. The historical terminal packet is not a complete
+startup sample; next capture exact inputs across declared startup phases before
+testing shared compiled validation/retention. No speedup is qualified.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 
