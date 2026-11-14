@@ -19,6 +19,7 @@ broad recovery-discovery cohort with fresh controls; keep the failed screen.
 | [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
 | [Contact-force diagnosis](../sdk/discovery/creature_contact_reactions_result_v1.json) | Zero new worlds; all 12,960 decisions and 64,800 solved samples read. On bodies 0/16, requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, net 0.013/0.012 Nm. Body 21 makes no positive request. Foot-only moment misses the opposing torso reaction |
 | [Actuator-aware action probe](../sdk/discovery/creature_response_probe_native_result_v3.json) | 223 controls, 165 fresh worlds and full replay. Ordering accuracy is 75.9%/71.3%/66.7% on seed 6119/corner 000/seed 14172: two bodies pass, so the all-body screen fails. Predicted winners match all nine measured best means; eight gains against unchanged action exceed the fixed tie margin. No joint violations or recovery. The [retained model correction](../sdk/discovery/coupled_contact_response_result_v2.json) and earlier negatives remain preserved |
+| [Closed-loop recovery component](../sdk/discovery/creature_response_search_component_v1.json) | 216 controls and the 240-cell zero-world preflight pass. Eight direction/rate/cadence combinations are balanced across 24 bodies, with 168 model-selected runs and 72 fresh references planned. Ten native route worlds must pass on the same freeze before the broad launch. Native recovery benefit remains unobserved |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
@@ -26,13 +27,14 @@ broad recovery-discovery cohort with fresh controls; keep the failed screen.
    [v3 result](../sdk/discovery/creature_response_probe_native_result_v3.json)
    fails its unchanged all-body ordering criterion, while its best-action
    matches provide an exposed discovery lead. The next question is actual
-   closed-loop recovery benefit across many bodies and factored action/trajectory
-   settings, with fresh original-controller and unchanged-action controls.
-   Declare that separate campaign, policy, guards, population, telemetry,
-   recovery/withdrawal outcomes and budget before worlds. Prove its production
-   route and complete safety gate from a clean pushed freeze; then retain every
-   body and failure and confirm only useful, diverse leads with fresh full
-   capture. Do not change the v3 criterion or repeat a narrow ordering grid.
+   closed-loop recovery benefit. The [new component](../sdk/discovery/creature_response_search_component_v1.json)
+   passes all 216 controls and the full 240-cell preflight. From a clean pushed
+   freeze, run the ten-world [route check](../sdk/discovery/creature_response_search_route_v1.json),
+   then the [24-body search](../sdk/discovery/creature_response_search_v1.json)
+   using its verified same-freeze route receipt. Replan from fresh contacts;
+   rebuild held-pattern commands every frame and record model withdrawals.
+   Keep every body and failure, and confirm useful diverse leads with fresh
+   full capture. The v3 criterion and all prior outcomes remain unchanged.
 2. **Complete the Studio recovery handoff with a useful controller.** Preserve
    fresh observations, body identity, motor ownership, native clocks and
    measured work. The required run is walking, fall, active recovery, completed

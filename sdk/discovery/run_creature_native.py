@@ -18,6 +18,7 @@ from run_contact_sequence_native_v2 import invoke, jobs
 from run_residual_native import verify_tests
 from creature_native import torque_search
 from creature_native import response_probe
+from creature_native import response_search
 
 
 def status():
@@ -30,7 +31,7 @@ def inventory(folder):
 
 
 def source_paths(contract_path, c):
-    paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES], *torque_search.source_dependencies(c), *response_probe.source_dependencies(c),
+    paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES], *torque_search.source_dependencies(c), *response_probe.source_dependencies(c), *response_search.source_dependencies(c),
              *retiming.source_dependencies(c), *braking_search.source_dependencies(c), *contact_search.source_dependencies(c), *torso_search.source_dependencies(c), *moment_search.source_dependencies(c), *handoff_search.source_dependencies(c), *exchange_search.source_dependencies(c), *sharing_search.source_dependencies(c)]
     if "capture_reference" in c:
         reference = (ROOT / c["capture_reference"]["path"]).resolve(strict=True)
@@ -48,6 +49,7 @@ def main():
     parser.add_argument("--baseline-core", type=Path, required=True)
     parser.add_argument("--run", action="store_true")
     parser.add_argument("--full-canary", type=Path, help="Verified same-freeze full-capture owner receipt for compact native execution")
+    parser.add_argument("--response-route", type=Path, help="Completed same-freeze response route receipt for closed-loop discovery")
     args = parser.parse_args()
     contract_path, core, baseline = [p.resolve(strict=True) for p in (args.contract, args.core, args.baseline_core)]
     c = declaration(contract_path)
@@ -81,6 +83,11 @@ def main():
                 args.full_canary, c, source, receipt["bindings"], evidence)
         else:
             require(args.full_canary is None, "Full canary receipt outside compact native launch")
+        if args.run and 'response_search' in c and c['mode']=='development_discovery':
+            require(args.response_route is not None,'Response discovery requires its completed native route')
+            receipt['response_route_prerequisite']=response_search.route_receipt(args.response_route,c,source,receipt['bindings'],evidence)
+        else:
+            require(args.response_route is None,'Response route receipt outside broad native discovery')
         for path in sources:
             target = folder / "source" / path.relative_to(ROOT)
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -115,6 +122,9 @@ def main():
             if "capture_prerequisite" in receipt:
                 require(capture.canary_receipt(args.full_canary, c, source, receipt["bindings"], evidence)
                         == receipt["capture_prerequisite"], "Full canary evidence drift")
+            if 'response_route_prerequisite' in receipt:
+                require(response_search.route_receipt(args.response_route,c,source,receipt['bindings'],evidence)
+                    ==receipt['response_route_prerequisite'],'Response route evidence drift')
         unchanged()
         receipt.update(zero_world_gate_passed=True, preflight=preflight)
         write_new(folder / "gate-receipt.json", dict(ok=True, source_commit=source, ledger_scope=c["ledger_scope"],
@@ -146,6 +156,8 @@ def main():
             receipt["audit"] = audit
             if 'response_probe' in c:
                 receipt['response_probe_assessment']=response_probe.assess(folder,dict(receipt,worker=json.loads((target/'worker-result.json').read_bytes())))
+            if 'response_search' in c and c['mode']=='route_ghost':
+                receipt['response_search_route_coverage']=response_search.verify_route(folder,receipt)
             if "contact_reach_search" in c and c["mode"] == "route_ghost":
                 receipt["contact_route_coverage"] = contact_search.verify_route(folder, receipt)
             if "torso_target_search" in c and c["mode"] == "route_ghost":

@@ -36,6 +36,12 @@ def finite(value):
 
 def profile(value):
     require(type(value) is dict, "Righting profile object")
+    if 'response_search' in value:
+        from creature_response_search import policy
+        base=profile({k:v for k,v in value.items() if k!='response_search'})
+        require(base['mode']=='rock' and not any(k in base for k in ('response_probe','joint_braking')),
+            'Response search original guarded prefix')
+        return dict(base,response_search=policy(value['response_search']))
     if 'response_probe' in value:
         from creature_response_probe import policy
         base=profile({k:v for k,v in value.items() if k!='response_probe'})
@@ -88,6 +94,9 @@ def profile(value):
 def behavior_key(candidate):
     # Preserve the earlier duplicate rule; feedback variants must also bind
     # every parameter that changes their response to the same observation.
+    if 'response_search' in candidate:
+        from creature_response_search import behavior_key as search_key
+        return behavior_key({k:v for k,v in candidate.items() if k!='response_search'})+search_key(candidate['response_search'])
     if 'response_probe' in candidate:
         probe=candidate['response_probe']
         return behavior_key({k:v for k,v in candidate.items() if k!='response_probe'}) + (probe['schema_version'],probe['probe_step'],probe['action_index']) + ((probe['repeat_index'],) if 'repeat_index' in probe else ())
@@ -238,6 +247,7 @@ def initial_arrays(creatures, rolls):
 
 class RightingController:
     supports_response_probe=False
+    supports_response_search=False
     def __init__(self, core, declaration, *, seed):
         require(type(declaration) is dict and set(declaration) == {"cell_id", "descriptor", "profile", "motor_effectiveness"}
                 and identifier(declaration["cell_id"]) and type(seed) is int and 0 <= seed <= 2147483647,
@@ -245,6 +255,7 @@ class RightingController:
         self.cell_id = declaration["cell_id"]
         self.candidate = profile(declaration["profile"])
         require('response_probe' not in self.candidate or self.supports_response_probe, 'Response probe requires its prepared-contact controller')
+        require('response_search' not in self.candidate or self.supports_response_search, 'Response search requires its prepared-contact controller')
         self.creature = compile_creature(core, declaration["descriptor"], declaration["motor_effectiveness"],
             recovery_descriptor=recovery_descriptor(declaration["descriptor"]))
         self.spec = self.creature["compiled"]["morphology"]["morphology_spec"]
@@ -459,6 +470,10 @@ def assess(c, metrics, bindings):
             failures.append("no_terminal_supported_upright_dwell")
         if metric["joint_limit_violation_steps"]:
             failures.append("joint_limit_violation")
+        if 'response_search' in c:
+            from creature_response_search import validate_metrics
+            validate_metrics(c,meta,metric)
+            if metric['response_search_failures']:failures.append('response_model_withdrawal')
         row = dict(meta, body_shape_sha256=binding["body_shape_sha256"], eligible=not failures,
                    failure_codes=failures, metrics=copy.deepcopy(metric))
         episodes.append(row)

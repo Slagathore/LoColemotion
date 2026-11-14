@@ -59,6 +59,18 @@ budget; prove the production route and full gate before native discovery and
 fresh confirmation of useful diverse leads. Preserve all three probe outcomes
 and do not repeat a narrow grid solely to repair the pairwise-ordering score.
 
+The [closed-loop successor component](../sdk/discovery/creature_response_search_component_v1.json)
+passes all 216 applicable controls and the 240-cell zero-world preflight, plus
+64 focused new/legacy controls. Eight direction/rate/cadence combinations each
+receive 21 of 24 exposed bodies: 168 model-selected runs and 72 fresh references.
+Only an action pattern persists between decisions; each frame rebuilds guarded
+commands from current state. Upright state returns to the original stance
+controller; model nonconvergence returns to the unchanged guarded action and
+excludes that episode from recovery and progress leads. A ten-world native route
+must verify recurring selection, holds and withdrawal on the same source/runtime
+freeze before the 240-world twelve-second search can launch. Both native runs
+remain unobserved; the failed v3 ordering screen stays unchanged.
+
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
 exposed shapes. Sixteen unchanged anchor/sweep profiles each run on four

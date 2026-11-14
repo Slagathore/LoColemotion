@@ -70,7 +70,7 @@ def validate(c):
     if "trajectory_reference_by_body" in c:
         refs=c["trajectory_reference_by_body"];spec=c.get("righting_spec",{})
         assigned=spec.get("profiles_by_body",[list(range(len(spec.get("profiles",[]))))]*len(spec.get("descriptors",[])))
-        require(any(k in c for k in ("moment_handoff_search","support_exchange_search","support_sharing_search","torque_map_search"))
+        require(any(k in c for k in ("moment_handoff_search","support_exchange_search","support_sharing_search","torque_map_search","response_search"))
                 and type(refs) is list and len(refs)==len(assigned)
                 and all(type(r) is int and r>=2 and r in a for r,a in zip(refs,assigned,strict=True)),
                 "Trajectory declared fresh references")
@@ -124,6 +124,9 @@ def assess(c, metrics):
         row = dict(meta, peak_rotation_degrees=rotation_degrees(metric["trajectory_maximum_up_dot"]),
             distal_supported_peak_degrees=rotation_degrees(metric["trajectory_maximum_distal_supported_up_dot"]),
             joint_limit_violation_steps=metric["joint_limit_violation_steps"])
+        if 'response_search' in c:
+            from creature_response_search import validate_metrics
+            validate_metrics(c,meta,metric);row['response_model_withdrawals']=metric['response_search_failures']
         groups.setdefault((meta["body_index"], meta["condition_index"], meta["start_index"]), []).append(row)
     reports = []
     for key, rows in groups.items():
@@ -140,6 +143,8 @@ def assess(c, metrics):
         candidates = sorted((r for r in rows if r["candidate_index"] >= 2
             and r["candidate_index"] != reference_index
             and r["joint_limit_violation_steps"] == 0
+            and ('response_search' not in c or (r['response_model_withdrawals']==0 and
+                 r['peak_gain_against_timed_degrees']>=POLICY['minimum_peak_rotation_gain_degrees']))
             and r[score] >= POLICY["minimum_peak_rotation_gain_degrees"]),
             key=lambda r: (-r[score], -r["distal_supported_peak_degrees"], r["candidate_index"]))
         leads, families = [], set()

@@ -40,6 +40,7 @@ import creature_support_sharing_search as sharing_search
 import creature_torque_map_search as torque_search
 import creature_contact_reactions as reactions
 import creature_response_probe as response_probe
+import creature_response_search as response_search
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -66,7 +67,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_righting_geometry.py", "test_creature_righting_geometry.py",
                  "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py",
                  "creature_response_probe.py", "test_creature_response_probe.py", "coupled_contact_response.py",
-                 "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py", "test_creature_response_matching.py"]
+                 "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py", "test_creature_response_matching.py",
+                 "creature_response_search.py", "test_creature_response_search.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -124,7 +126,13 @@ def gates(c):
                 ("response-probe", "test_creature_response_probe", 16)] if 'response_probe' in c else [])
             + ([("response-numerical-matching", "test_creature_response_matching", 12)] if response_probe.numerical(c) else [])
             + ([("coupled-actuator", "test_coupled_actuator_response", 13),
-                ("response-actuator-route", "test_creature_response_actuator", 3)] if response_probe.actuator_aware(c) else []))
+                ("response-actuator-route", "test_creature_response_actuator", 3)] if response_probe.actuator_aware(c) else [])
+            + ([("coupled-response", "test_coupled_contact_response", 14),
+                ("actuation-mechanics", "test_actuation_recovery_mechanics", 25),
+                ("response-metric-reader", "test_check_coupled_contact_response", 6),
+                ("coupled-actuator", "test_coupled_actuator_response", 13),
+                ("response-actuator-route", "test_creature_response_actuator", 3),
+                ("response-search", "test_creature_response_search", 15)] if 'response_search' in c else []))
 
 
 def sequence_enabled(c):
@@ -178,6 +186,7 @@ def declaration(path):
     sharing_search.validate(c)
     torque_search.validate(c)
     response_probe.validate(c)
+    response_search.validate(c)
     reactions.enabled(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
@@ -223,8 +232,13 @@ def initial_arrays(creatures, c):
 
 
 def controller_types(c):
+    if 'response_search' in c:return response_search.SearchBatch,response_search.SearchController
     if 'response_probe' in c:return response_probe.ProbeBatch,response_probe.ProbeController
     return (righting.RightingBatch, righting.RightingController) if "righting_spec" in c else (CreatureBatch, CreatureController)
+
+
+def actuator_dynamics(c):
+    return response_probe.actuator_aware(c) or 'response_search' in c
 
 
 def preflight(c, core_path):
@@ -367,7 +381,8 @@ def planning_states(batch):
     names = ("previous", "step_index", "motion_phase", "motion_steps", "contact_state",
              "sequence_state", "moment_state", "closed")
     return [dict(binding=cell.binding, profile=copy.deepcopy(cell.candidate),
-                 state={name:copy.deepcopy(getattr(cell, name)) for name in names})
+                 state={name:copy.deepcopy(getattr(cell, name)) for name in names+
+                        (('response_state',) if hasattr(cell,'response_state') else ())})
             for cell in batch.controllers]
 
 
@@ -426,14 +441,14 @@ def run_batch(folder, c, core_path, *, cache=None):
                         "Creature named force order")
             models.append(model); views.append(view)
             originals.append(mjw.put_model(model))
-            metadatas.append(native_metadata(model, creature,actuator_dynamics=response_probe.actuator_aware(c)))
+            metadatas.append(native_metadata(model, creature,actuator_dynamics=actuator_dynamics(c)))
             write_new(directory / "native-model.json", metadatas[-1])
         stage = "model_transport"
         # Preserve all compiled fields even if complete-field packing refuses.
         write_new(folder / "source-models.json", [model_snapshot(m) for m in originals])
         packed, transport = pack_models(originals)
         for creature, metadata, snapshot in zip(creatures, metadatas, transport["source_models"], strict=True):
-            validate_model_evidence(creature, metadata, snapshot,actuator_dynamics=response_probe.actuator_aware(c))
+            validate_model_evidence(creature, metadata, snapshot,actuator_dynamics=actuator_dynamics(c))
         write_new(folder / "model-transport.json", transport)
         robots = [robot_view(core, v, m, d) for v, m, d in zip(creatures, models, views, strict=True)]
         # These are observation-only host buffers; no additional world is stepped.
@@ -515,6 +530,8 @@ def run_batch(folder, c, core_path, *, cache=None):
                     tick = time.perf_counter()
                     if 'response_probe' in c:
                         observations=[response_probe.observe(cell,o,n) for cell,o,n in zip(batch.controllers,observations,native,strict=True)]
+                    if 'response_search' in c:
+                        observations=[response_search.observe(cell,o,n) for cell,o,n in zip(batch.controllers,observations,native,strict=True)]
                     rows = prepared_step(batch, observations, folder, outer,
                         retain_planning_state=c.get("retain_planning_state", False), ledger_scope=c["ledger_scope"], native_observations=native,
                         contact_compatibility_copies=copies, readback_journal=journal)
@@ -600,6 +617,7 @@ class StreamValidator:
                     metric.update(righting.sequence.initial_work())
                 if "trajectory_screen" in c:
                     metric.update(trajectory.initial_metrics())
+                if 'response_search' in c:metric.update(response_search.initial_metrics())
 
     def control(self, row):
         cell, outer = row["cell"], row["outer_step"]
@@ -609,7 +627,7 @@ class StreamValidator:
                                 candidate_id=self.c["cells"][cell]["profile"]["id"])
         require(row["binding"] == expected_binding, "Crossed creature controller binding")
         validate_observation(row, self.metadata[cell], self.creatures[cell]["compiled"])
-        if 'response_probe' in self.c['cells'][cell]['profile']:
+        if any(k in self.c['cells'][cell]['profile'] for k in ('response_probe','response_search')):
             require(row['request'].get('whole_body_contacts')==response_probe.packet(self.creatures[cell],expected_binding,
                 row['request']['state'],row['native_observation']), 'Response prepared contact packet differs')
         contacts = row["native_observation"]["contacts"]
@@ -627,6 +645,7 @@ class StreamValidator:
         self.controls[cell] = row
         self.control_counts[cell] += 1
         self.metrics[cell]["safe_no_actuation_steps"] += int(row["resolution"]["safe_no_actuation"])
+        if 'response_search' in self.c:response_search.measure_control(self.metrics[cell],row)
 
     def native(self, rows):
         from gpu_quadruped_probe import check_capture
@@ -761,7 +780,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                 directory = folder / ("cell_" + str(index))
                 require(json.loads((directory / "creature.json").read_text()) == creature
                         and (directory / "model.xml").read_bytes() == creature["model_xml"].encode(), "Creature compile reconstruction")
-                validate_model_evidence(creature, m, snapshot,actuator_dynamics=response_probe.actuator_aware(c))
+                validate_model_evidence(creature, m, snapshot,actuator_dynamics=actuator_dynamics(c))
             validator = StreamValidator(c, creatures, metadata)
             cones = [s["$.opt.cone"]["value"]["value"] for s in transport["source_models"]] if reactions.enabled(c) else None
             reaction_reader = reactions.Reader(c, creatures, cones) if reactions.enabled(c) else None
@@ -789,6 +808,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                                 descriptor_sha256=controller.binding["descriptor_sha256"], model_xml_sha256=controller.binding["model_xml_sha256"],
                                 state=row["request"]["state"], stability=row["stability"], kinematics=row["kinematics"])
                             if 'response_probe' in c:observation=response_probe.observe(controller,observation,row['native_observation'])
+                            if 'response_search' in c:observation=response_search.observe(controller,observation,row['native_observation'])
                             replay = controller.step(observation)
                             require(same_bits(replay, {key: row[key] for key in replay}), "Creature scalar replay differs")
                     if journal is not None:
