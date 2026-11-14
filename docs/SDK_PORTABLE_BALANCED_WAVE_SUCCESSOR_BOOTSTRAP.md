@@ -108,12 +108,17 @@ six lose about ten degrees in 0.2 seconds. Continuous variants plateau near
 11.5 degrees and their active-joint torque error increases after protection.
 Recorded actuator forces are distinct from contact reactions. This descriptive
 diagnosis opens no worlds and does not isolate all controller factors.
-The next broad successor should preserve each useful reference until measured
-stall, retain support while unloaded limbs seek replacement contact, and use
-unchanged joint protection with a bounded fallback. Fresh comparators, full
-route coverage, the five-degree reference-gain rule, path screening and
-varied-start confirmation remain required. Recovery and the Godot handoff
-remain unqualified.
+The [support-exchange component](../sdk/discovery/creature_support_exchange_component_v1.json)
+now passes 254 controls with exact legacy replay of 8,640 full decisions and
+43,200 samples. It keeps the exposed reference until plateau, retains original
+support during unloaded-limb contact search, and requires measured contact dwell
+before transfer. Analytic floor-height targets, geometric mass-shift weighting,
+unchanged joint guards and bounded reference fallback are explicit. A twelve-world
+full route must cover seek, contact acquisition, transfer and no-replacement
+fallback before the declared 216-world search across 24 bodies and 18 recipes.
+Fresh comparators, five-degree reference gain, sampled-path screening and
+varied-start confirmation remain required. No exchange worlds have run;
+recovery and the Godot handoff remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

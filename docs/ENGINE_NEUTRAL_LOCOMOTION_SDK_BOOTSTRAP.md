@@ -188,10 +188,19 @@ near 11.5 degrees, versus a 23.48-degree reference peak. Active-joint mean
 torque error increases after joint guards; native actuator forces show similar
 error against the prepared request. Neither is a contact-force measurement
 or proof of an alternative action. Two diagnostic reader failures remain
-retained. No new worlds occur. Next, preserve useful reference behavior and
-existing support while other limbs seek replacement contact, with unchanged
-joint protection and a bounded fallback. Test that mechanism broadly before
-promoting any candidate.
+retained. No new worlds occur.
+
+The [support-exchange component](../sdk/discovery/creature_support_exchange_component_v1.json)
+passes 254 controls and exactly replays the previous full route's 8,640 decisions
+and 43,200 samples. It preserves each exposed reference until measured plateau,
+keeps old support during one unloaded limb's contact search, and requires six
+contact observations before the old primary limb retracts. Analytic targets
+solve floor height within existing joint margins; four of nine retained-state
+queries find clear endpoints, without proving dynamic feasibility. The declared
+cohort has 18 recipes, 24 bodies and 216 fresh worlds. First require the twelve-world
+full route's support, contact, transfer and fallback coverage from the pushed
+freeze. Existing guards, fresh references, five-degree progress, path screening
+and varied-start confirmation remain required. No native exchange result exists.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

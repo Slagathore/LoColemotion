@@ -26,22 +26,22 @@ The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Test support-preserving changeovers across many bodies.**
-   The [retained diagnosis](../sdk/discovery/creature_moment_handoff_diagnosis_v1.json)
-   identifies neutral retraction losing useful rotation and continuous variants
-   settling into different postures while joint protection reduces commands.
-   These one-body observations do not isolate steering, posture and guard
-   effects or predict other bodies.
-   Start from each useful exposed reference profile; keep its ordinary behavior
-   until measured progress stalls. Retain existing support while selected
-   unloaded limbs seek replacement contact. Release only after measured new
-   contact, with unchanged joint guards and a bounded reference fallback.
-   Factor limb choice, posture and transition conditions across many bodies,
-   with fresh comparators. A full route must cover support retention, contact
-   acquisition, changeover and no-replacement fallback before compact search.
+1. **Run the support-exchange broad search.**
+   The [component](../sdk/discovery/creature_support_exchange_component_v1.json)
+   passes 254 controls and exactly replays the previous 8,640 full decisions
+   and 43,200 native samples. It keeps each exposed reference until measured
+   progress stalls, retains old support while one unloaded limb seeks contact,
+   and releases only after six consecutive replacement-contact observations.
+   Analytic floor-height targets retain measured joint positions; endpoint
+   clearance does not prove feasible motion. Joint guards and fallback remain.
+   From the clean pushed freeze, run twelve six-second full route worlds.
+   Require support retention, measured acquisition, transfer and no-replacement
+   fallback before compact search. Then run 216 fresh twelve-second worlds:
+   24 bodies, six new recipes and three comparators per body. Eighteen recipes
+   vary limb relation, geometric mass-shift weighting and plateau duration.
    Keep the five-degree reference-gain rule, full retained-path screening and
-   fresh varied-start confirmation. The prior 26 sampled-clear leads and useful
-   prefix remain evidence; no recovery controller has been adopted.
+   fresh varied-start confirmation. Eleven prior cohorts remain 2,488 valid
+   recovery failures; this zero-world component adds no recovery result.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

@@ -1,0 +1,3357 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "controller_component": {
+    "path": "sdk/discovery/creature_righting_component_v3.json",
+    "sha256": "e63dddc29568fc2fdd18dfa6297808583b780d3770614206ff0bbbe1cd60bee1"
+  },
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "maximum_worker_wall_seconds": 3600,
+  "maximum_reader_wall_seconds": 3600,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "maximum_worlds_per_batch": 12,
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "seed": 1061139,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_moment_handoff_diagnosis_v1.json",
+    "sha256": "659d4c304f17bc8f8b316f222c2a3973c4df2158526feb7bba2376d1b6430707"
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_capture.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_batch.py",
+    "sdk/discovery/creature_native_model.py",
+    "sdk/discovery/creature_joint_braking.py",
+    "sdk/discovery/creature_body_moment.py",
+    "sdk/discovery/creature_body_moment_search.py",
+    "sdk/discovery/creature_contact_moment.py",
+    "sdk/discovery/actuation_recovery_mechanics.py",
+    "sdk/discovery/creature_body_moment_diagnosis.py",
+    "sdk/discovery/creature_support_exchange.py",
+    "sdk/discovery/creature_support_exchange_search.py"
+  ],
+  "not_covered": [
+    "Recovery qualification or learned adaptation",
+    "New initial orientations, weakened actuators, terrain or impacts",
+    "Robot self-collision response or continuous-time path clearance",
+    "Live Godot walking-fall-recovery-resume transfer",
+    "Native real-time or release qualification"
+  ],
+  "qualification_economy": "Reuse the native owner, capture, shared reader and retained-path diagnostic. Twenty controls cover the optional support-exchange interface, analytic hinge geometry, unchanged guards, atomic state, balanced assignment, fresh references and required route coverage. No new physical owner or native reader.",
+  "campaign_id": "creature_support_exchange_v1",
+  "mode": "development_discovery",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "purpose": "Search 18 factored support-exchange recipes across 24 exposed bodies with fresh comparators and retained failures.",
+  "capture_mode": "compact_v1",
+  "outer_steps": 1440,
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_assigned_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6119",
+        "torso_length_scale": 0.96862467989992,
+        "torso_width_scale": 0.9000615925062592,
+        "upper_length_fraction": 0.5442827379201266,
+        "hip_span_scale": 1.0212948075778072,
+        "foot_radius_scale": 0.9138043803660675,
+        "front_limb_mass_scale": 0.9144451240111248
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_004",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_005",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_012",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_015",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14019",
+        "torso_length_scale": 0.9251664965006445,
+        "torso_width_scale": 0.9221151246740751,
+        "upper_length_fraction": 0.49008007336642595,
+        "hip_span_scale": 1.088851560137433,
+        "foot_radius_scale": 1.004526430206496,
+        "front_limb_mass_scale": 0.9535620654592203
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14049",
+        "torso_length_scale": 0.9693842381400486,
+        "torso_width_scale": 0.9178160386201497,
+        "upper_length_fraction": 0.49726555123628713,
+        "hip_span_scale": 1.0527086605207783,
+        "foot_radius_scale": 1.0408573701374366,
+        "front_limb_mass_scale": 0.9778342627635772
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14061",
+        "torso_length_scale": 0.9436916801248891,
+        "torso_width_scale": 0.9933998511390295,
+        "upper_length_fraction": 0.523889570642237,
+        "hip_span_scale": 1.0979406103486988,
+        "foot_radius_scale": 0.9394665719567488,
+        "front_limb_mass_scale": 0.9323939778451794
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14108",
+        "torso_length_scale": 0.9144630578845886,
+        "torso_width_scale": 0.9608606229677938,
+        "upper_length_fraction": 0.5194070475081464,
+        "hip_span_scale": 1.0575703841069646,
+        "foot_radius_scale": 0.9153617214447264,
+        "front_limb_mass_scale": 0.9582556416881867
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14166",
+        "torso_length_scale": 0.9991690905995596,
+        "torso_width_scale": 0.9495579821638666,
+        "upper_length_fraction": 0.5204806867056714,
+        "hip_span_scale": 1.0710718018866778,
+        "foot_radius_scale": 0.973564072808615,
+        "front_limb_mass_scale": 1.0621416095090428
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14214",
+        "torso_length_scale": 0.9392117044514072,
+        "torso_width_scale": 0.9439217529361886,
+        "upper_length_fraction": 0.4905689577736354,
+        "hip_span_scale": 1.0862784758643897,
+        "foot_radius_scale": 0.9700710769905875,
+        "front_limb_mass_scale": 1.067554203366757
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14249",
+        "torso_length_scale": 0.9952853523416644,
+        "torso_width_scale": 0.9121303876424512,
+        "upper_length_fraction": 0.5039951891228546,
+        "hip_span_scale": 1.0960051357736824,
+        "foot_radius_scale": 0.9963643174377188,
+        "front_limb_mass_scale": 1.0549216676398465
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "qsdk_r05_generated_s169",
+        "torso_length_scale": 1.0041015625,
+        "torso_width_scale": 1.0031893004115227,
+        "upper_length_fraction": 0.5219571428571428,
+        "hip_span_scale": 0.9856413994169096,
+        "foot_radius_scale": 0.9987180691209617,
+        "front_limb_mass_scale": 0.975022758306782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_b",
+        "torso_length_scale": 1.1,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6105",
+        "torso_length_scale": 1.0052902267093982,
+        "torso_width_scale": 1.0935019718002301,
+        "upper_length_fraction": 0.48646168914541177,
+        "hip_span_scale": 0.9793139184078468,
+        "foot_radius_scale": 0.9242928356454458,
+        "front_limb_mass_scale": 1.038380685527432
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_000",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_016",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14000",
+        "torso_length_scale": 0.9600488017918656,
+        "torso_width_scale": 0.9096273033436452,
+        "upper_length_fraction": 0.5134573232250887,
+        "hip_span_scale": 0.933871520411659,
+        "foot_radius_scale": 1.0136335835591037,
+        "front_limb_mass_scale": 1.0484636412347816
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14072",
+        "torso_length_scale": 1.0397528460574692,
+        "torso_width_scale": 1.0680475577172004,
+        "upper_length_fraction": 0.4924863637733474,
+        "hip_span_scale": 0.9595049807474728,
+        "foot_radius_scale": 0.9771532730379033,
+        "front_limb_mass_scale": 1.0506624083385483
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14122",
+        "torso_length_scale": 1.0298753581312194,
+        "torso_width_scale": 1.0198527020681307,
+        "upper_length_fraction": 0.5151712452376195,
+        "hip_span_scale": 0.9434857404892067,
+        "foot_radius_scale": 1.091648784277879,
+        "front_limb_mass_scale": 0.9463566706623782
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14172",
+        "torso_length_scale": 0.9939835619400218,
+        "torso_width_scale": 1.062695368743198,
+        "upper_length_fraction": 0.516529003609095,
+        "hip_span_scale": 1.0180216283812238,
+        "foot_radius_scale": 1.0284376003612852,
+        "front_limb_mass_scale": 1.0019703288334354
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14222",
+        "torso_length_scale": 1.0010205868866808,
+        "torso_width_scale": 0.9522082339162492,
+        "upper_length_fraction": 0.4805027388246969,
+        "hip_span_scale": 1.0063895042302062,
+        "foot_radius_scale": 1.0637319471602635,
+        "front_limb_mass_scale": 0.9180863209576547
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14255",
+        "torso_length_scale": 1.0996389771810824,
+        "torso_width_scale": 0.9746564351196068,
+        "upper_length_fraction": 0.5232139943081918,
+        "hip_span_scale": 1.0390308316189403,
+        "foot_radius_scale": 1.0233871435568174,
+        "front_limb_mass_scale": 0.9106030148013037
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "id": "drive0_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive1_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive1_axis1",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive2_axis0",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive2_axis1",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive2_axis2",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "drive2_axis3",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "rock2_axis1",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        }
+      },
+      {
+        "id": "diagonal_drive0_axis0_r02",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive0_axis0_r03",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive0_axis0_r07",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive0_axis0_r11",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive0_axis0_r12",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive0_axis0_r16",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.0,
+        "normal_load_ratio": 0.75,
+        "moment_weight_length_ratio": 0.3,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive1_axis0_r00",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive1_axis0_r04",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive1_axis0_r08",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive1_axis0_r09",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive1_axis0_r13",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive1_axis0_r17",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive1_axis1_r02",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive1_axis1_r03",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive1_axis1_r07",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive1_axis1_r11",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive1_axis1_r12",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive1_axis1_r16",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.5,
+        "normal_load_ratio": 1.0,
+        "moment_weight_length_ratio": 0.5,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis0_r00",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis0_r04",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis0_r08",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis0_r09",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis0_r13",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis0_r17",
+        "mode": "body_moment",
+        "axis_body": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis1_r01",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis1_r05",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis1_r06",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis1_r10",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis1_r14",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis1_r15",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis2_r01",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis2_r05",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis2_r06",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis2_r10",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis2_r14",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis2_r15",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis3_r02",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis3_r03",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis3_r07",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_drive2_axis3_r11",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_drive2_axis3_r12",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_drive2_axis3_r16",
+        "mode": "body_moment",
+        "axis_body": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "strategy": "drive",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_rock2_axis1_r02",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_rock2_axis1_r03",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 0.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_rock2_axis1_r07",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "diagonal_rock2_axis1_r11",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "diagonal",
+          "mass_shift_weight": 0.5,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "opposite_rock2_axis1_r12",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "opposite_side",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 36,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      },
+      {
+        "id": "sameend_rock2_axis1_r16",
+        "mode": "body_moment",
+        "axis_body": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "strategy": "rock",
+        "friction_ratio": 0.9,
+        "normal_load_ratio": 2.0,
+        "moment_weight_length_ratio": 0.8,
+        "pose_distance_weight_m": 0.025,
+        "target_update_steps": 6,
+        "minimum_hold_steps": 30,
+        "maximum_hold_steps": 180,
+        "rate_deadband_rad_s": 0.05,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "joint_braking": {
+          "schema_version": "locolemotion_anticipatory_joint_braking_v1",
+          "margin_rad": 0.025,
+          "lookahead_steps": 2,
+          "braking_acceleration_rad_s2": 6.0
+        },
+        "support_exchange": {
+          "schema_version": "locolemotion_support_exchange_v1",
+          "limb_relation": "other_end",
+          "mass_shift_weight": 1.0,
+          "stall_steps": 72,
+          "progress_increment_degrees": 0.25,
+          "minimum_reference_steps": 120,
+          "maximum_seek_steps": 180,
+          "contact_dwell_steps": 6,
+          "transfer_steps": 36,
+          "retry_steps": 60,
+          "target_update_steps": 12,
+          "target_joint_margin_rad": 0.05,
+          "target_floor_height_m": -0.002
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ],
+    "profiles_by_body": [
+      [
+        0,
+        1,
+        7,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      [
+        0,
+        1,
+        5,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      [
+        0,
+        1,
+        3,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      [
+        0,
+        1,
+        4,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      [
+        0,
+        1,
+        8,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      [
+        0,
+        1,
+        3,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      [
+        0,
+        1,
+        7,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      [
+        0,
+        1,
+        8,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      [
+        0,
+        1,
+        6,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      [
+        0,
+        1,
+        4,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      [
+        0,
+        1,
+        5,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      [
+        0,
+        1,
+        6,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      [
+        0,
+        1,
+        9,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      [
+        0,
+        1,
+        5,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      [
+        0,
+        1,
+        6,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      [
+        0,
+        1,
+        4,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      [
+        0,
+        1,
+        5,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      [
+        0,
+        1,
+        6,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      [
+        0,
+        1,
+        9,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57
+      ],
+      [
+        0,
+        1,
+        5,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      [
+        0,
+        1,
+        6,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ],
+      [
+        0,
+        1,
+        2,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        0,
+        1,
+        5,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      [
+        0,
+        1,
+        6,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39
+      ]
+    ]
+  },
+  "coverage": [
+    "canonical_observations_only",
+    "bounded_force_to_velocity_projection",
+    "endpoint_clearance_filter",
+    "unclipped_measured_joint_geometry",
+    "measured_plateau_trigger",
+    "retained_contact_while_seeking",
+    "measured_replacement_dwell_before_release",
+    "bounded_reference_fallback",
+    "post_guard_torque_prediction",
+    "sampled_native_joint_work",
+    "finite_breadth_and_fresh_comparators"
+  ],
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    },
+    {
+      "name": "creature-body-moment",
+      "module": "test_creature_body_moment",
+      "count": 20
+    },
+    {
+      "name": "actuation-mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "creature-joint-braking",
+      "module": "test_creature_joint_braking",
+      "count": 10
+    },
+    {
+      "name": "creature-contact-moment",
+      "module": "test_creature_contact_moment",
+      "count": 13
+    },
+    {
+      "name": "creature-righting-geometry",
+      "module": "test_creature_righting_geometry",
+      "count": 7
+    },
+    {
+      "name": "creature-support-exchange",
+      "module": "test_creature_support_exchange",
+      "count": 20
+    }
+  ],
+  "selection_rationale": "Eighteen parameter recipes cross three replacement-limb relations, three geometric mass-shift weights and two plateau windows. Each body receives six recipes around its selected exposed reference plus three fresh comparators. Every recipe covers four bodies in each geometric stratum. Forty-eight instantiated exchange profiles reuse eight distinct references; all 58 concrete profiles are assigned. The body-specific reference is exposed design input, not learned or held-out selection. Reference-block assignment is a finite screening design, not an estimate of independent population-wide factor effects.",
+  "braking_model_limit": "Constant-velocity lookahead and a stopping-speed envelope using a declared 6 rad/s^2 shaping estimate. This is not a validated physical deceleration bound or a guarantee that no joint crosses its limit.",
+  "route_coverage_required": [
+    "supported_seek",
+    "measured_replacement_contact",
+    "transfer",
+    "no_replacement_fallback",
+    "full_controller_replay",
+    "full_compact_projection"
+  ],
+  "route_coverage_not_required": [
+    "successful_righting",
+    "all_profile_contact_acquisition",
+    "upright_capture_in_native_world"
+  ],
+  "body_moment_limit": "Clear geometric targets are not collision-free transitions. Geometric capsule low points are not measured contact locations. Friction cones and normal load are configured proposals; static joint compensation omits inertial, Coriolis, passive and limit forces. Actual force, contact and sampled work are retained. Motors, native collision filtering and eligibility remain unchanged.",
+  "trajectory_reference_by_body": [
+    7,
+    5,
+    3,
+    4,
+    8,
+    3,
+    7,
+    8,
+    6,
+    4,
+    5,
+    6,
+    9,
+    5,
+    6,
+    4,
+    5,
+    6,
+    9,
+    5,
+    6,
+    2,
+    5,
+    6
+  ],
+  "post_native_path_screen": {
+    "schema_version": "locolemotion_prospective_retained_path_screen_v1",
+    "population": "raw_progress_leads_and_fresh_reference",
+    "overlap_tolerance_m": 1e-09,
+    "native_joint_angles_unclipped": true,
+    "include_initial_state": true,
+    "required_before_lead_promotion": true,
+    "continuous_clearance_authority": false
+  },
+  "reference_selection": [
+    {
+      "body_index": 0,
+      "candidate_index": 20,
+      "candidate_id": "drive2_axis2",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 1,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 2,
+      "candidate_index": 10,
+      "candidate_id": "drive1_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 3,
+      "candidate_index": 11,
+      "candidate_id": "drive1_axis1",
+      "reason": "exposed_raw_reference_path_unexamined"
+    },
+    {
+      "body_index": 4,
+      "candidate_index": 21,
+      "candidate_id": "drive2_axis3",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 5,
+      "candidate_index": 10,
+      "candidate_id": "drive1_axis0",
+      "reason": "exposed_clear_prefix_only"
+    },
+    {
+      "body_index": 6,
+      "candidate_index": 20,
+      "candidate_id": "drive2_axis2",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 7,
+      "candidate_index": 21,
+      "candidate_id": "drive2_axis3",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 8,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 9,
+      "candidate_index": 11,
+      "candidate_id": "drive1_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 10,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 11,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 12,
+      "candidate_index": 23,
+      "candidate_id": "rock2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 13,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 14,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 15,
+      "candidate_index": 11,
+      "candidate_id": "drive1_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 16,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 17,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 18,
+      "candidate_index": 23,
+      "candidate_id": "rock2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 19,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 20,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 21,
+      "candidate_index": 2,
+      "candidate_id": "drive0_axis0",
+      "reason": "exposed_raw_reference_path_unexamined"
+    },
+    {
+      "body_index": 22,
+      "candidate_index": 18,
+      "candidate_id": "drive2_axis0",
+      "reason": "sampled_clear_lead"
+    },
+    {
+      "body_index": 23,
+      "candidate_index": 19,
+      "candidate_id": "drive2_axis1",
+      "reason": "sampled_clear_lead"
+    }
+  ],
+  "code_path_risks_covered": [
+    "Exact reference behavior until measured plateau",
+    "Retained original contact forces while only an unloaded limb seeks replacement",
+    "Nine declared knee samples and analytic hip-height roots with a 0.05 rad joint margin",
+    "Measured replacement contact dwell before only the old primary limb retracts",
+    "No-clear-target or bounded-timeout reference fallback, with cooldown",
+    "Full replay and same-run compact projection on one exposed route body",
+    "Synthetic atomic memory, upright reset, unchanged joint guards and fresh-reference screen",
+    "Prospectively required full retained-sample path screen before promoting broad-search leads"
+  ],
+  "route_horizon_rationale": "Six seconds permits reference acquisition and plateau detection, a 180-step search, six consecutive contact observations and a 36-step transfer, plus reference fallback. Twelve roles cover three fresh comparators and nine variants spanning all limb relations, mass-shift weights and both plateau windows. At least one supported seek, measured contact acquisition, transfer and no-clear-target or timeout fallback must be observed; failure consumes the route and blocks compact search.",
+  "support_exchange_search": {
+    "schema_version": "locolemotion_support_exchange_search_v1",
+    "seed": 1061139,
+    "body_indices": [
+      10,
+      20,
+      21,
+      28,
+      31,
+      97,
+      127,
+      139,
+      186,
+      244,
+      292,
+      327,
+      0,
+      1,
+      2,
+      6,
+      16,
+      32,
+      78,
+      150,
+      200,
+      250,
+      300,
+      333
+    ],
+    "route_body_index": 16,
+    "route_outer_steps": 720,
+    "limb_relations": [
+      "opposite_side",
+      "other_end",
+      "diagonal"
+    ],
+    "mass_shift_weights": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "stall_steps": [
+      36,
+      72
+    ],
+    "route_recipe_indices": [
+      0,
+      4,
+      2,
+      9,
+      7,
+      11,
+      12,
+      16,
+      14
+    ],
+    "body_blocks": [
+      [
+        1,
+        10,
+        2,
+        5,
+        13,
+        16,
+        19,
+        22
+      ],
+      [
+        8,
+        11,
+        0,
+        6,
+        14,
+        17,
+        20,
+        23
+      ],
+      [
+        3,
+        9,
+        4,
+        7,
+        12,
+        15,
+        18,
+        21
+      ]
+    ]
+  },
+  "support_exchange_limit": "Requested support forces are model proposals, not measured contact loads. Floor-intersection targets preserve other measured joints exactly and reject overlapping endpoints, but do not establish feasible or collision-free motion. Mass-shift weighting is a geometric score, not a learned value. Original native collision filtering, motor force bounds, joint protection, five-degree reference-gain rule and recovery eligibility are unchanged.",
+  "capture_reference": {
+    "path": "sdk/discovery/creature_support_exchange_route_v1.json",
+    "sha256": "18a04642a91316ca618f45f25b8f8a84e20285c90d50c65ffaddb27377b70546"
+  }
+}

@@ -35,6 +35,7 @@ import creature_contact_reach_search as contact_search
 import creature_torso_target_search as torso_search
 import creature_body_moment_search as moment_search
 import creature_moment_handoff_search as handoff_search
+import creature_support_exchange_search as exchange_search
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -53,6 +54,7 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_torso_target.py", "creature_torso_target_search.py", "test_creature_torso_target.py",
                  "creature_body_moment.py", "creature_body_moment_search.py", "creature_body_moment_diagnosis.py", "test_creature_body_moment.py",
                  "creature_moment_handoff.py", "creature_moment_handoff_search.py", "test_creature_moment_handoff.py",
+                 "creature_support_exchange.py", "creature_support_exchange_search.py", "test_creature_support_exchange.py",
                  "creature_contact_moment.py", "test_creature_contact_moment.py",
                  "creature_righting_geometry.py", "test_creature_righting_geometry.py",
                  "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py"]
@@ -99,8 +101,9 @@ def gates(c):
                 ("creature-joint-braking", "test_creature_joint_braking", 10),
                 ("creature-contact-moment", "test_creature_contact_moment", 13),
                 ("creature-righting-geometry", "test_creature_righting_geometry", 7)]
-               if "body_moment_search" in c or "moment_handoff_search" in c else [])
-            + ([("creature-moment-handoff", "test_creature_moment_handoff", 14)] if "moment_handoff_search" in c else []))
+               if any(k in c for k in ("body_moment_search", "moment_handoff_search", "support_exchange_search")) else [])
+            + ([("creature-moment-handoff", "test_creature_moment_handoff", 14)] if "moment_handoff_search" in c else [])
+            + ([("creature-support-exchange", "test_creature_support_exchange", 20)] if "support_exchange_search" in c else []))
 
 
 def sequence_enabled(c):
@@ -108,7 +111,7 @@ def sequence_enabled(c):
 
 
 def work_enabled(c):
-    return sequence_enabled(c) or "body_moment_search" in c or "moment_handoff_search" in c
+    return sequence_enabled(c) or any(k in c for k in ("body_moment_search", "moment_handoff_search", "support_exchange_search"))
 
 
 def declaration(path):
@@ -150,6 +153,7 @@ def declaration(path):
     torso_search.validate(c)
     moment_search.validate(c)
     handoff_search.validate(c)
+    exchange_search.validate(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440

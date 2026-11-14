@@ -32,6 +32,14 @@ def finite(v):
 
 
 def profile(value):
+    if type(value) is dict and "support_exchange" in value:
+        from creature_support_exchange import policy
+        require("handoff" not in value, "Exchange and handoff policies are distinct")
+        base = profile({k:v for k,v in value.items() if k != "support_exchange"})
+        exchange = policy(value["support_exchange"])
+        require(exchange["target_joint_margin_rad"] >= base["joint_braking"]["margin_rad"],
+                "Exchange target margin must retain joint protection")
+        return dict(base, support_exchange=exchange)
     if type(value) is dict and "handoff" in value:
         from creature_moment_handoff import policy
         base = profile({k:v for k,v in value.items() if k != "handoff"})
@@ -142,6 +150,9 @@ class Geometry:
 
 def plan(p, geometry, state, rotation, contacts, memory, previous, upright, *, retract=False):
     """Pure proposal; callers atomically commit memory only after the whole batch."""
+    if "support_exchange" in p:
+        from creature_support_exchange import plan as exchange_plan
+        return exchange_plan(p, geometry, state, rotation, contacts, memory, previous, upright)
     if "handoff" in p:
         from creature_moment_handoff import plan as handoff_plan
         return handoff_plan(p, geometry, state, rotation, contacts, memory, previous, upright)
