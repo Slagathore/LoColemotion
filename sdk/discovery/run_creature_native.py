@@ -17,6 +17,7 @@ from run_gpu_motor_effectiveness import bindings as inherited_bindings
 from run_contact_sequence_native_v2 import invoke, jobs
 from run_residual_native import verify_tests
 from creature_native import torque_search
+from creature_native import response_probe
 
 
 def status():
@@ -29,7 +30,7 @@ def inventory(folder):
 
 
 def source_paths(contract_path, c):
-    paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES], *torque_search.source_dependencies(c),
+    paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES], *torque_search.source_dependencies(c), *response_probe.source_dependencies(c),
              *retiming.source_dependencies(c), *braking_search.source_dependencies(c), *contact_search.source_dependencies(c), *torso_search.source_dependencies(c), *moment_search.source_dependencies(c), *handoff_search.source_dependencies(c), *exchange_search.source_dependencies(c), *sharing_search.source_dependencies(c)]
     if "capture_reference" in c:
         reference = (ROOT / c["capture_reference"]["path"]).resolve(strict=True)
@@ -143,6 +144,8 @@ def main():
                         and captured["qualification_requires_fresh_full_capture"] is True,
                         "Creature compact reader scope or denominator")
             receipt["audit"] = audit
+            if 'response_probe' in c:
+                receipt['response_probe_assessment']=response_probe.assess(folder,dict(receipt,worker=json.loads((target/'worker-result.json').read_bytes())))
             if "contact_reach_search" in c and c["mode"] == "route_ghost":
                 receipt["contact_route_coverage"] = contact_search.verify_route(folder, receipt)
             if "torso_target_search" in c and c["mode"] == "route_ghost":

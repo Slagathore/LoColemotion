@@ -36,6 +36,11 @@ def finite(value):
 
 def profile(value):
     require(type(value) is dict, "Righting profile object")
+    if 'response_probe' in value:
+        from creature_response_probe import policy
+        base=profile({k:v for k,v in value.items() if k!='response_probe'})
+        require(base['mode']=='rock' and 'joint_braking' not in base, 'Response probe prefix mode')
+        return dict(base,response_probe=policy(value['response_probe']))
     if value.get("mode") == body_moment.MODE:
         return body_moment.profile(value)
     if value.get("mode") == contact_reach.MODE:
@@ -83,6 +88,9 @@ def profile(value):
 def behavior_key(candidate):
     # Preserve the earlier duplicate rule; feedback variants must also bind
     # every parameter that changes their response to the same observation.
+    if 'response_probe' in candidate:
+        probe=candidate['response_probe']
+        return behavior_key({k:v for k,v in candidate.items() if k!='response_probe'}) + (probe['schema_version'],probe['probe_step'],probe['action_index'])
     if candidate["mode"] == body_moment.MODE:
         return body_moment.behavior_key(candidate)
     if candidate["mode"] == contact_reach.MODE:
@@ -229,12 +237,14 @@ def initial_arrays(creatures, rolls):
 
 
 class RightingController:
+    supports_response_probe=False
     def __init__(self, core, declaration, *, seed):
         require(type(declaration) is dict and set(declaration) == {"cell_id", "descriptor", "profile", "motor_effectiveness"}
                 and identifier(declaration["cell_id"]) and type(seed) is int and 0 <= seed <= 2147483647,
                 "Righting cell fields")
         self.cell_id = declaration["cell_id"]
         self.candidate = profile(declaration["profile"])
+        require('response_probe' not in self.candidate or self.supports_response_probe, 'Response probe requires its prepared-contact controller')
         self.creature = compile_creature(core, declaration["descriptor"], declaration["motor_effectiveness"],
             recovery_descriptor=recovery_descriptor(declaration["descriptor"]))
         self.spec = self.creature["compiled"]["morphology"]["morphology_spec"]
@@ -380,13 +390,14 @@ class RightingController:
 
 class RightingBatch:
     """Atomic host planning for independent native GPU cells; no physics calls."""
+    Controller=RightingController
     def __init__(self, core, declarations, *, seed):
         require(type(declarations) is list and 1 <= len(declarations) <= 256
                 and len({r["cell_id"] for r in declarations}) == len(declarations), "Righting batch population")
         self.controllers, self.closed = [], False
         try:
             for row in declarations:
-                self.controllers.append(RightingController(core, row, seed=seed))
+                self.controllers.append(self.Controller(core, row, seed=seed))
         except BaseException:
             self.close()
             raise

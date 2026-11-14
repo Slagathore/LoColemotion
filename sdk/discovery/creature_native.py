@@ -39,6 +39,7 @@ import creature_support_exchange_search as exchange_search
 import creature_support_sharing_search as sharing_search
 import creature_torque_map_search as torque_search
 import creature_contact_reactions as reactions
+import creature_response_probe as response_probe
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -63,7 +64,9 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "test_creature_torque_map_v3.py", "creature_contact_reactions.py", "test_creature_contact_reactions.py",
                  "creature_contact_moment.py", "test_creature_contact_moment.py",
                  "creature_righting_geometry.py", "test_creature_righting_geometry.py",
-                 "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py"]
+                 "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py",
+                 "creature_response_probe.py", "test_creature_response_probe.py", "coupled_contact_response.py",
+                 "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -114,7 +117,11 @@ def gates(c):
             + ([("creature-torque-map", "test_creature_torque_map", 26)] if "torque_map_search" in c else [])
             + ([("creature-torque-map-v2", "test_creature_torque_map_v2", 8)] if torque_search.stable(c) else [])
             + ([("creature-torque-map-v3", "test_creature_torque_map_v3", 10)] if torque_search.geometric(c) else [])
-            + ([("creature-contact-reactions", "test_creature_contact_reactions", 8)] if reactions.enabled(c) else []))
+            + ([("creature-contact-reactions", "test_creature_contact_reactions", 8)] if reactions.enabled(c) else [])
+            + ([("coupled-response", "test_coupled_contact_response", 14),
+                ("actuation-mechanics", "test_actuation_recovery_mechanics", 25),
+                ("response-metric-reader", "test_check_coupled_contact_response", 6),
+                ("response-probe", "test_creature_response_probe", 16)] if 'response_probe' in c else []))
 
 
 def sequence_enabled(c):
@@ -167,6 +174,7 @@ def declaration(path):
     exchange_search.validate(c)
     sharing_search.validate(c)
     torque_search.validate(c)
+    response_probe.validate(c)
     reactions.enabled(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
@@ -212,6 +220,7 @@ def initial_arrays(creatures, c):
 
 
 def controller_types(c):
+    if 'response_probe' in c:return response_probe.ProbeBatch,response_probe.ProbeController
     return (righting.RightingBatch, righting.RightingController) if "righting_spec" in c else (CreatureBatch, CreatureController)
 
 
@@ -501,6 +510,8 @@ def run_batch(folder, c, core_path, *, cache=None):
                         observations, copies, native = observe(wd, views, robots)
                         timing["observation_readback_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
+                    if 'response_probe' in c:
+                        observations=[response_probe.observe(cell,o,n) for cell,o,n in zip(batch.controllers,observations,native,strict=True)]
                     rows = prepared_step(batch, observations, folder, outer,
                         retain_planning_state=c.get("retain_planning_state", False), ledger_scope=c["ledger_scope"], native_observations=native,
                         contact_compatibility_copies=copies, readback_journal=journal)
@@ -595,6 +606,9 @@ class StreamValidator:
                                 candidate_id=self.c["cells"][cell]["profile"]["id"])
         require(row["binding"] == expected_binding, "Crossed creature controller binding")
         validate_observation(row, self.metadata[cell], self.creatures[cell]["compiled"])
+        if 'response_probe' in self.c['cells'][cell]['profile']:
+            require(row['request'].get('whole_body_contacts')==response_probe.packet(self.creatures[cell],expected_binding,
+                row['request']['state'],row['native_observation']), 'Response prepared contact packet differs')
         contacts = row["native_observation"]["contacts"]
         require(all(contact["world"] == cell for contact in contacts), "Crossed prepared contact world")
         compatibility = row["contact_compatibility_copy"]
@@ -771,6 +785,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                             observation = dict(cell_id=controller.cell_id,
                                 descriptor_sha256=controller.binding["descriptor_sha256"], model_xml_sha256=controller.binding["model_xml_sha256"],
                                 state=row["request"]["state"], stability=row["stability"], kinematics=row["kinematics"])
+                            if 'response_probe' in c:observation=response_probe.observe(controller,observation,row['native_observation'])
                             replay = controller.step(observation)
                             require(same_bits(replay, {key: row[key] for key in replay}), "Creature scalar replay differs")
                     if journal is not None:
