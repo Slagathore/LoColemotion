@@ -12,7 +12,7 @@ historical instructions.
 
 | Area | Verified boundary |
 | --- | --- |
-| Coupled contact response | [Retained-state screen](../sdk/discovery/coupled_contact_response_result_v1.json): mean angular-velocity error falls 63%/56%/36%; 66 states worsen. The [84-world v1 probe](../sdk/discovery/creature_response_probe_native_failure_v1.json) replays, then refuses exact prefix matching. The [v2 numerical-matching component](../sdk/discovery/creature_response_probe_component_v2.json) passes 207 controls and a 165-cell zero-world preflight with two repeats per action. Native ordering, recovery and adoption remain unverified |
+| Coupled contact response | [Native v2 negative](../sdk/discovery/creature_response_probe_native_result_v2.json): 207 controls, 165 worlds, 19,965 decisions and 99,825 samples replay. Numerical matching passes; ordering accuracy 38%/47%/52% and maximum regret fail on all three bodies. Predicted choices lose to unchanged action in all nine groups. Retained contact-free diagnosis isolates missing joint armature and implicit actuator feedback; a repaired model, contact response, recovery and adoption remain unqualified. The v1 prefix refusal stays preserved |
 | SDK1 package | [20/20 bounded milestones](../sdk/release/sdk1_package_acceptance_closure_v1.json); full-program progress remains 19/25 with six deferred gates |
 | Studio | Live native routes and installed-package evidence exist; fast Godot recovery handoff and current startup/stepping performance remain product work |
 | Studio fresh observation | [Native boundary route](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json): one 360-step world; three measured boundaries on the same nine body instances and two staging pairs independently reconstructed exactly |

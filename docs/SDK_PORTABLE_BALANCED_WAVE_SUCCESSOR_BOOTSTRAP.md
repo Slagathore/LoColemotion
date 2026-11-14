@@ -3,27 +3,40 @@
 ## Current SDK2 native evidence - 2026-11-14
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
-Latest: the [coupled contact response screen](../sdk/discovery/coupled_contact_response_result_v1.json)
+The [coupled contact response screen](../sdk/discovery/coupled_contact_response_result_v1.json)
 passes 20 controls and its declared 20% per-body reduction in mean rotation
 prediction error on 432 retained states. The observed reductions are 63%, 56%
 and 36%; all 1,296 predictions converge. Sixty-six states worsen, with a third-body
 maximum of 0.810 rad/s; joint-velocity errors remain substantial. That screen
-opens no new worlds and adopts no native controller. Fresh action ranking is the
-next prerequisite for broad discovery; this exposed screen proves no recovery.
+opens no new worlds and adopts no native controller. Its positive mean-error
+screen does not establish useful action ranking or recovery.
 The [first native action probe](../sdk/discovery/creature_response_probe_native_failure_v1.json)
 now completes all 84 worlds after 195 controls. Full replay verifies 10,164
 decisions and 50,820 samples, with no joint violations. Its exact-prefix rule
 then refuses the action comparison: all three initial groups match, but all
 six later groups first differ at step four. Maximum prefix qpos/qvel component
 differences are 1.19e-7/6.66e-6; prediction-score differences reach 1.94e-6 rad/s.
-No ordering score is accepted. The successor requires numerical matching
+No ordering score is accepted. Its successor declares numerical matching
 bounds and fresh repeated identical-action controls before physics.
 The original refusal and all 2,646 retained artifacts remain immutable.
-The [v2 component](../sdk/discovery/creature_response_probe_component_v2.json)
-passes the complete 207-control gate and 165-cell preflight without physics.
-It declares two repeats of every action, bounded state/command/contact matches,
-1e-5 rad/s repeat and prediction ranges, conservative interval ordering and
-the unchanged per-body criterion. The fresh native comparison is next.
+The [v2 native comparison](../sdk/discovery/creature_response_probe_native_result_v2.json)
+now completes all 165 fresh worlds after 207 controls. Independent replay
+verifies 19,965 decisions and 99,825 samples. Numerical matching passes; maximum
+measured repeat spread is 4.17e-6 rad/s. Action ordering is correct for 33/87,
+41/87 and 34/66 distinguishable pairs on seed 6119, corner 000 and seed 14172.
+Every body fails the unchanged 70% accuracy and .01 rad/s maximum-regret limits.
+The predicted choice loses to unchanged action in all nine body/time groups.
+There is no upright dwell or joint violation; these short diagnostic worlds
+do not increase the full-horizon recovery-cohort total.
+
+Exposed diagnosis of all 54 contact-free initial samples isolates omitted
+.01 kg m2 joint armature and implicit velocity-actuator feedback. Either
+correction alone leaves residual error; both together reduce maximum joint-speed
+error from 10.12 to 7.48e-8 rad/s without parameter fitting or new worlds.
+This does not validate contact response or revise the v2 negative. The next
+model successor must bind both actuator terms, cover saturation and damping,
+preserve historical replay, then pass retained contact checks and a fresh
+declared ordering comparison before broad factored recovery search.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
