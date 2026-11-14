@@ -19,23 +19,25 @@ and self-righting still has no qualifying controller after 13 cohorts.
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay correctly. The inverted body times out without active recovery or resumed walking |
 | [Latest righting cohort](../sdk/discovery/creature_support_sharing_native_result_v1.json) | 192 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Of 96 new-controller worlds, 47 beat their fresh selected reference; best gain is 2.962 degrees, below five. Thirteen cohorts retain 2,896 valid recovery failures |
 | [Earlier path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
-| [Support-transfer route](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Twelve full-capture worlds pass all named route paths. One transfer retains required contact for 36 intervals but loses 0.534 degrees. The broad run verifies 276,480 compact controller records and 1,382,400 native samples. Its empty shortlist selects no paths for clearance checking |
+| [Support-transfer diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json) | 52 controls. On one exposed body, the old foot withdraws and replacement torque has 0.040 Nm mean tracking error, yet a 36-interval transfer loses 0.534 degrees. About 74.4% of its proposed moment comes from force that joint torques cannot identify; ground reaction remains unmeasured |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Diagnose why sustained support transfer does not produce useful rotation.**
-   The [support-sharing result](../sdk/discovery/creature_support_sharing_native_result_v1.json)
-   retains all 192 failures after 278 safety controls and a passing full route.
-   Use that retained route to compare prepared requests, applied native torque,
-   contact continuity and body rotation through loading, unloading and transfer
-   with the fresh reference. Requested contact force is not measured reaction.
-   Identify a testable mechanical gap before declaring a distinct broad search;
-   retain unchanged limits and the five-degree progress threshold. Useful leads
-   still require retained-path screening and fresh full-capture varied-start
-   confirmation. No candidate from this cohort advances.
+1. **Search poses and force directions using the joint-torque map.**
+   The [retained diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json)
+   separates delivered joint torque from an unverified ground-force model.
+   Compare multiple pose-ranking and request-normalization variants across
+   the broad body cohort, with fresh selected-reference and sharing comparators.
+   Account for other measured contacts. Removing a force null component alone
+   leaves joint torques unchanged; zero-world controls must show the actual
+   change in pose selection, load normalization or coordinated commands.
+   Keep positive normal force, friction, actuator and joint bounds. Require
+   the complete safety gate, full route, five-degree gain, retained-path
+   screening and fresh full-capture varied-start confirmation. No benefit is
+   established until that distinct native comparison passes.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

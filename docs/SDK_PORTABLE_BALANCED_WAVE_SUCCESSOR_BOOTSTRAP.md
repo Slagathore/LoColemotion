@@ -131,21 +131,23 @@ and later affects 29 joint commands; no native transfer joint sample reaches
 a force cap. The old force request is removed immediately in all four events.
 Earlier command-diagnosis bytes remain exact.
 The [support-sharing native result](../sdk/discovery/creature_support_sharing_native_result_v1.json)
-uses source 1950653d after 278 controls before each native run. Twelve full
-route worlds cover seeking, acquisition, loading, staged unloading and fallback.
-One transfer retains required contact through all 36 intervals but loses
-0.534 degrees. The 192-world, 24-body broad cohort has zero recoveries, progress
-leads or joint violations. Of 96 new-controller worlds, 47 beat their fresh
-selected reference and 43 beat their fresh failed-exchange comparator; best
-selected-reference gain is 2.962 degrees, below five. Compact verification
-checks 276,480 records and 1,382,400 samples without full controller replay.
-No raw leads select paths for clearance checking. All 24 predecessor body and
-model bindings match, while every world and comparator is fresh. Thirteen
-performance cohorts retain 2,896 valid recovery failures. Diagnose torque
-response and useful body moment through the retained full-route transfer before
-a distinct broad successor. Keep limits, progress thresholds, path screening
-and fresh full-capture varied-start confirmation unchanged. No controller,
-recovery benefit, learned selection, real-time or Godot handoff is qualified.
+closes twelve full route worlds and 192 broad worlds on 24 bodies at source
+1950653d after 278 controls per run. All broad worlds fail recovery; best
+selected-reference gain is 2.962 degrees, with no progress leads or joint
+violations. The [sharing diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json)
+passes 52 controls and leaves three earlier diagnoses byte-identical. Eight
+sharing profiles contribute 5,760 decisions and 28,800 native samples on one
+exposed route body. The completed transfer retains replacement contact in
+180/180 native samples and old-foot contact in 5/180; torso and another foot
+remain in contact throughout. Mean active-joint request error is 0.040 Nm,
+but rotation falls 0.534 degrees. The 8.858 Nm mean proposed moment includes
+6.588 Nm from force invisible to the joint-torque map. Actual ground reaction
+and causal attribution remain unmeasured. Next factor target ranking, request
+normalization and other-contact handling across many bodies; projection alone
+cannot change joint torques. Preserve force/joint limits, five-degree gain,
+route coverage, path screening and fresh full-capture varied-start confirmation.
+Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
+selection, real-time or Godot handoff is qualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

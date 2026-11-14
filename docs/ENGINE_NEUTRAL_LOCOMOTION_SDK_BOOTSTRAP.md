@@ -217,20 +217,22 @@ observed force remain distinct. All four entries remove the old force request
 and request neutral old-joint positions. These observations do not isolate
 contact-loss causality. The earlier command diagnosis remains byte-identical.
 The [support-sharing native result](../sdk/discovery/creature_support_sharing_native_result_v1.json)
-closes twelve full-capture route worlds and 192 fresh twelve-second worlds on
-24 bodies at source 1950653d, after 278 controls before each run. The route
-covers all named paths; one 36-interval transfer retains required contact but
-loses 0.534 degrees. All 192 broad worlds fail recovery, with zero progress
-leads or joint violations. Of 96 new-controller worlds, 47 exceed their fresh
-selected reference; best gain is 2.962 degrees, below five. Full-route replay
-checks 8,640 decisions and 43,200 native samples; compact broad verification
-checks 276,480 records and 1,382,400 samples without full controller replay.
-The empty shortlist selects zero paths for clearance checking. Thirteen
-performance cohorts retain 2,896 valid recovery failures, excluding routes.
-Next diagnose applied torque and body motion through the retained transfer
-before a mechanically distinct broad successor. No controller is adopted;
-recovery, learned adaptation, Studio recovery handoff and release remain
-unqualified.
+retains twelve route worlds and 192 broad worlds at source 1950653d: zero
+recoveries or progress leads, with best selected-reference gain 2.962 degrees.
+The [retained sharing diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json)
+passes 52 controls and preserves three earlier diagnostic outputs exactly.
+It reads all 8,640 route decisions and 43,200 native samples; eight sharing
+profiles contribute 5,760 decisions and 28,800 samples on one exposed body.
+The completed 36-interval transfer loses 0.534 degrees despite mean native
+joint-torque error of only 0.040 Nm. The old foot withdraws; the torso and
+another foot remain in contact. Of 8.858 Nm mean proposed turning moment,
+6.588 Nm belongs to a force component that leaves modeled joint torques
+unchanged. This verifies an ambiguity, not the actual ground force or the
+cause of lost rotation. Next compare broad pose-ranking and force-request
+variants using the joint-torque map and other contacts. Projection alone
+leaves commands unchanged; require an actual policy change before native work.
+Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
+recovery benefit, learned adaptation, Studio handoff or release is qualified.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

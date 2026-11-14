@@ -501,8 +501,195 @@ class ExchangeCommands(MomentCommands):
                     transfers=self.transfers)
 
 
-def diagnose_commands(root, digest, *, exchange=False):
+def force_identifiability(linear, force, lever, axis):
+    """Split a proposed force by the joint-torque map, not by physical authority.
+
+    The null component leaves every modeled joint torque unchanged. Neither
+    component is a measured reaction or a dynamically feasible alternative.
+    """
+    raw = np.asarray(linear)
+    require(raw.dtype.kind in "fiu" and raw.ndim == 2 and raw.shape[0] == 3
+            and raw.shape[1] > 0 and np.isfinite(raw).all(), "Force diagnostic Jacobian")
+    force = moment.mechanics.array(force, (3,), "Force diagnostic force")
+    lever = moment.mechanics.array(lever, (3,), "Force diagnostic lever")
+    axis = moment.mechanics.array(axis, (3,), "Force diagnostic axis")
+    require(abs(float(axis @ axis)-1.) <= 1e-10, "Force diagnostic unit axis")
+    matrix = np.asarray(raw, dtype=float).T
+    _, singular, vectors = np.linalg.svd(matrix, full_matrices=False)
+    tolerance = max(float(singular[0]), 1.)*1e-10
+    rank = int(np.count_nonzero(singular > tolerance))
+    visible = vectors[:rank].T @ (vectors[:rank] @ force)
+    hidden = force-visible
+    residual = float(np.max(np.abs(matrix @ hidden)))
+    require(residual <= 1e-8, "Force diagnostic null torque residual")
+    signed = lambda value: float(np.cross(lever, value) @ axis)
+    return dict(rank=rank, singular_values_m=singular.tolist(), rank_tolerance_m=tolerance,
+        requested_force_n=force.tolist(), torque_visible_force_n=visible.tolist(),
+        torque_null_force_n=hidden.tolist(), null_joint_torque_residual_nm=residual,
+        requested_moment_nm=signed(force), torque_visible_moment_nm=signed(visible),
+        torque_null_moment_nm=signed(hidden), measured_ground_reaction=False)
+
+
+class SharingCommands(MomentCommands):
+    """Add phase-specific response, actual contact inventory and force ambiguity."""
+    def __init__(self, profile, creature, identity, steps):
+        super().__init__(profile, creature, identity, steps)
+        spec = creature["compiled"]["morphology"]["morphology_spec"]
+        self.tree = moment.mechanics.RigidTree(spec)
+        names = creature["spec"]["geom_names"]
+        self.ground = names.index("ground")
+        self.torso = names.index(spec["bodies"][0]["body_id"]+"_geom")
+        self.distal = [names.index(c["body_id"]+"_geom") for c in spec["contact_sites"]]
+        require(len(self.distal) == len(set(self.distal)) == 4, "Sharing diagnostic distal mapping")
+        self.geom_count = len(names)
+        self.previous_sharing = self.open_segment = None
+        self.sharing_phases, self.segments = {}, []
+
+    def point(self, row, roles):
+        state, d = row["request"]["state"], row["resolution"]["body_moment"]
+        points = moment.mechanics.array(d["geometric_contact_points_m"], (4,3), "Sharing diagnostic points")
+        old, replacement = roles.get("support_limbs"), roles.get("replacement_limb")
+        return dict(outer_step=row["outer_step"], rotation_degrees=self.last["rotation_degrees"],
+            touching_limbs=[i for i,c in enumerate(state["ordered_contact_observations"]) if c["presence"]],
+            old_primary_limb=old[0] if old else None, replacement_limb=replacement,
+            geometric_foot_heights_m=points[:,1].tolist(),
+            active_force_limbs=d["active_limbs"][:], axis_angular_rate_rad_s=d["axis_angular_rate_rad_s"])
+
+    def consume(self, row):
+        d, state = row["resolution"]["body_moment"], row["request"]["state"]
+        before, after, event = d["state_before"], d["state_after"], d["support_sharing"]
+        phase = event["phase"]
+        require(phase in ("reference","seek","load","unload","transfer") and phase == after["phase"]
+                and (self.previous_sharing is None or before == self.previous_sharing),
+                "Sharing diagnostic state continuity")
+        super().consume(row)
+        self.previous_sharing = after
+        if self.open_segment is not None and phase != self.open_segment["phase"]:
+            segment = self.open_segment
+            point = self.point(row, before)
+            require(row["outer_step"]-segment["entry"]["outer_step"] == segment["counts"]["controller_rows"],
+                    "Sharing diagnostic phase intervals")
+            segment.update(exit=point, complete=True,
+                observed_duration_s=segment["counts"]["controller_rows"]*DT,
+                observed_rotation_change_degrees=point["rotation_degrees"]-segment["entry"]["rotation_degrees"])
+            self.open_segment = None
+        if phase != "reference":
+            old, replacement = after["support_limbs"], after["replacement_limb"]
+            require(type(old) is list and old and len(set(old)) == len(old)
+                    and all(type(i) is int and 0 <= i < 4 for i in old)
+                    and type(replacement) is int and 0 <= replacement < 4 and replacement not in old,
+                    "Sharing diagnostic support identities")
+            expected = old if phase == "seek" else old[1:]+[replacement] if phase == "transfer" else old+[replacement]
+            require(d["active_limbs"] == expected, "Sharing diagnostic active support mapping")
+            if self.open_segment is None:
+                self.open_segment = dict(phase=phase, entry=self.point(row, after), exit=None,
+                    complete=False, counts=collections.Counter())
+                self.segments.append(self.open_segment)
+            self.open_segment["last_prepared"] = self.point(row, after)
+        frame = self.frames[-1]
+        frame.update(sharing_phase=phase, sharing_segment=self.open_segment,
+            old_primary=after["support_limbs"][0] if phase != "reference" else None,
+            replacement=after["replacement_limb"] if phase != "reference" else None)
+        counts = self.sharing_phases.setdefault(phase, collections.Counter())
+        targets = [counts] + ([self.open_segment["counts"]] if self.open_segment is not None else [])
+        values = collections.Counter(controller_rows=1, active_force_rows=bool(frame["joints"]))
+        if frame["joints"]:
+            pose = state["base_pose_world"]
+            kinematics = self.tree.kinematics(moment.mechanics.xyz(pose["position_m"]),
+                [pose["orientation_xyzw"][k] for k in "xyzw"],
+                [j["position_rad"] for j in state["ordered_joint_observations"]])
+            body_axis = after["axis_body"] if phase != "reference" else (
+                np.asarray(self.profile["axis_body"])*after["base"]["sign"])
+            axis = kinematics["rotations"][0] @ body_axis
+            requested_moment = 0.
+            reconstructed_contact = np.zeros(self.tree.n)
+            for wrench in d["requested_wrenches"]:
+                require(wrench["torque"] == [0.,0.,0.], "Sharing diagnostic force-only wrench")
+                linear = self.tree.jacobian(kinematics, wrench["body_id"], wrench["point"])[0]
+                split = force_identifiability(linear, wrench["force"],
+                    np.asarray(wrench["point"])-kinematics["whole_body_com"], axis)
+                reconstructed_contact += linear.T @ np.asarray(wrench["force"])
+                values["wrenches"] += 1;values["rank_"+str(split["rank"])+"_wrenches"] += 1
+                requested_moment += split["requested_moment_nm"]
+                for key in ("requested_moment_nm","torque_visible_moment_nm","torque_null_moment_nm"):
+                    values[key+"_sum"] += split[key]
+                for target in targets:
+                    target["maximum_null_torque_residual_nm"] = max(target["maximum_null_torque_residual_nm"],
+                                                                   split["null_joint_torque_residual_nm"])
+            projection = d["force_projection"]
+            require(np.allclose(reconstructed_contact, projection["contact_torque"], rtol=0., atol=1e-8)
+                    and abs(requested_moment-d["proposed_moment_nm"]) <= 1e-8,
+                    "Sharing diagnostic wrench reconstruction")
+            for j in frame["joints"]:
+                request = frame["requested"][j]
+                values["active_joint_commands"] += 1
+                values["prepared_request_abs_nm_sum"] += abs(request)
+                values["post_guard_error_nm_sum"] += abs(d["post_guard_predicted_torque_nm"][j]-request)
+        for target in targets:
+            target.update(values)
+
+    def native(self, row):
+        super().native(row)
+        frame = self.frames[(row["step"]-1)//5]
+        targets = [self.sharing_phases[frame["sharing_phase"]]]
+        if frame["sharing_segment"] is not None:targets.append(frame["sharing_segment"]["counts"])
+        ground = set()
+        for contact in row["contacts"]:
+            geoms = contact["geom"]
+            require(len(geoms) == 2 and all(type(i) is int and 0 <= i < self.geom_count for i in geoms),
+                    "Sharing diagnostic native contact geometry")
+            if self.ground in geoms:ground.update(i for i in geoms if i != self.ground)
+        touching = {i for i,g in enumerate(self.distal) if g in ground}
+        active = {j//2 for j in frame["joints"]}
+        values = collections.Counter(native_samples=1, torso_contact_samples=self.torso in ground,
+            unrequested_distal_contact_samples=bool(touching-active),
+            old_primary_contact_samples=frame["old_primary"] in touching,
+            replacement_contact_samples=frame["replacement"] in touching)
+        for limb in touching:values["distal_"+str(limb)+"_contact_samples"] += 1
+        for j in frame["joints"]:
+            force = row["actuator_force_nm"][j]
+            values["active_joint_native_samples"] += 1
+            values["native_active_force_abs_nm_sum"] += abs(force)
+            values["native_prepared_request_error_nm_sum"] += abs(force-frame["requested"][j])
+            lo,hi = self.creature["spec"]["force_ranges"][j]
+            values["active_force_cap_samples"] += int(min(abs(force-lo),abs(force-hi)) <= 1e-5)
+        for limb in touching-active:
+            for j in (2*limb,2*limb+1):
+                values["unrequested_contact_joint_samples"] += 1
+                values["unrequested_contact_joint_force_abs_nm_sum"] += abs(row["actuator_force_nm"][j])
+        for target in targets:target.update(values)
+
+    @staticmethod
+    def summarize(counts):
+        result = dict(counts)
+        require(counts["native_samples"] == 5*counts["controller_rows"],
+                "Sharing diagnostic native phase population")
+        for key, denominator in (
+                ("prepared_request_abs_nm","active_joint_commands"),("post_guard_error_nm","active_joint_commands"),
+                ("native_active_force_abs_nm","active_joint_native_samples"),
+                ("native_prepared_request_error_nm","active_joint_native_samples"),
+                ("unrequested_contact_joint_force_abs_nm","unrequested_contact_joint_samples"),
+                ("requested_moment_nm","active_force_rows"),("torque_visible_moment_nm","active_force_rows"),
+                ("torque_null_moment_nm","active_force_rows")):
+            total = result.pop(key+"_sum", 0.)
+            result["mean_"+key] = total/counts[denominator] if counts[denominator] else None
+        return result
+
+    def finish(self, expected):
+        result = super().finish(expected)
+        if self.open_segment is not None:
+            segment = self.open_segment
+            point = segment["last_prepared"]
+            segment.update(observed_duration_s=(point["outer_step"]-segment["entry"]["outer_step"])*DT,
+                observed_rotation_change_degrees=point["rotation_degrees"]-segment["entry"]["rotation_degrees"])
+        return dict(result, sharing_phases={k:self.summarize(v) for k,v in self.sharing_phases.items()},
+            sharing_segments=[dict(s, counts=self.summarize(s["counts"])) for s in self.segments],
+            measured_ground_reaction=False, causal_failure_isolated=False)
+
+
+def diagnose_commands(root, digest, *, exchange=False, sharing=False):
     """Read every moment-controller row and native sample from a full archive."""
+    require(not (exchange and sharing), "Select one support diagnostic")
     archive, receipt = bound_archive(root, digest)
     audit, contract = receipt["audit"], receipt["contract"]
     require(contract["capture_mode"] == "full" and audit["capture"]["controller_replay_verified"]
@@ -518,7 +705,7 @@ def diagnose_commands(root, digest, *, exchange=False):
             p = profiles[e["candidate_id"]]
             if p["mode"] == moment.MODE and (not exchange or "support_exchange" in p):
                 identity = {k:e[k] for k in ("cell_id", "body_index", "body_id", "candidate_index", "candidate_id")}
-                collector = ExchangeCommands if exchange else MomentCommands
+                collector = SharingCommands if sharing and "support_sharing" in p else (ExchangeCommands if exchange else MomentCommands)
                 motions[cell] = collector(p, archive.document(prefix+f"/cell_{cell}/creature.json"), identity, contract["outer_steps"])
         for line in archive.lines(prefix+"/controller.jsonl"):
             row = json.loads(line)
@@ -535,13 +722,14 @@ def diagnose_commands(root, digest, *, exchange=False):
         results.extend(m.finish(episodes[group["cell_indices"][cell]]["metrics"]) for cell,m in motions.items())
     require(controller_rows == audit["controller_rows_replayed"] and native_rows == audit["native_rows_verified"],
             "Moment diagnostic full archive population")
-    return dict(ok=True, schema_version=("locolemotion_support_exchange_diagnosis_v1" if exchange
+    return dict(ok=True, schema_version=("locolemotion_support_sharing_diagnosis_v1" if sharing else "locolemotion_support_exchange_diagnosis_v1" if exchange
         else "locolemotion_moment_command_diagnosis_v1"),
         ledger_scope=dict(subsystem="discovery", engine_scope="mujoco_warp", authority_mode="retained_motion_diagnostic", question_class="development"),
         source_receipt_sha256=digest, native_source_commit=receipt["source_commit"], world_build_count=0, solver_steps=0,
         full_controller_rows_read=controller_rows, full_native_samples_read=native_rows, outcomes=results,
         input_files=list(archive.verified.values()),
-        scope=("Posthoc descriptions of recorded support exchanges. Affine load scales bound static force requests at measured postures; they do not measure ground reaction, certify contact persistence or guarantee dynamic feasibility. Pre-guard envelopes include speed, slew and force caps; post-guard predictions and native actuator forces remain distinct. Prepared contact and posture observations delimit transfers. No counterfactual trajectories, causal isolation or new eligibility decisions." if exchange else
+        scope=("Posthoc sharing phases and native actuator response. Requested forces split into the joint-torque row space and its null space; equal joint torques do not identify a unique ground force or body moment. Neither split force is a measured reaction, a dynamically feasible alternative, or proof that its moment was absent. Native contact presence and actuator torque do not measure contact load. Prepared observations delimit phase motion; terminal phases remain incomplete. No causal isolation, new worlds or changed eligibility." if sharing else
+               "Posthoc descriptions of recorded support exchanges. Affine load scales bound static force requests at measured postures; they do not measure ground reaction, certify contact persistence or guarantee dynamic feasibility. Pre-guard envelopes include speed, slew and force caps; post-guard predictions and native actuator forces remain distinct. Prepared contact and posture observations delimit transfers. No counterfactual trajectories, causal isolation or new eligibility decisions." if exchange else
                "Posthoc descriptions of recorded worlds only. Torque errors concern active joints. Predictions use prepared velocity; observed actuator force evolves during the held interval and is not measured contact reaction. Release motion is sampled at controller observations. No counterfactual trajectories, causal isolation or new eligibility decisions."),
         controller_adopted=False, recovery_benefit_established=False, physical_acceptance_authority=False,
         training_data_authority=False, release_authority=False)
@@ -556,11 +744,12 @@ def main():
     parser.add_argument("--clearance", action="store_true")
     parser.add_argument("--commands", action="store_true")
     parser.add_argument("--exchange", action="store_true")
+    parser.add_argument("--sharing", action="store_true")
     args = parser.parse_args()
     require(not args.output.exists(), "Geometry diagnostic output already exists")
-    require(sum((args.clearance, args.commands, args.exchange, args.reference_commit is not None)) <= 1,
+    require(sum((args.clearance, args.commands, args.exchange, args.sharing, args.reference_commit is not None)) <= 1,
             "Select one diagnostic mode")
-    result = (diagnose_commands(args.archive, args.receipt_sha256, exchange=args.exchange) if args.commands or args.exchange else
+    result = (diagnose_commands(args.archive, args.receipt_sha256, exchange=args.exchange, sharing=args.sharing) if args.commands or args.exchange or args.sharing else
               diagnose_clearance(args.archive, args.receipt_sha256) if args.clearance
               else profile_geometry(args.archive, args.receipt_sha256, args.reference_commit))
     with args.output.open("x", encoding="utf-8", newline="\n") as stream:

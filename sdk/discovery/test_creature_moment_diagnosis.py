@@ -238,5 +238,168 @@ class ExchangeDiagnosisTests(unittest.TestCase):
 
 
 
+class ForceIdentifiabilityTests(unittest.TestCase):
+    def test_same_joint_torque_can_hide_a_different_body_moment(self):
+        linear = diagnosis.np.array([[1.,0.],[0.,1.],[0.,0.]])
+        first = diagnosis.force_identifiability(linear, [2.,3.,4.], [0.,1.,0.], [1.,0.,0.])
+        second = diagnosis.force_identifiability(linear, [2.,3.,0.], [0.,1.,0.], [1.,0.,0.])
+        self.assertEqual(first["rank"], 2)
+        self.assertEqual(first["torque_visible_force_n"], second["torque_visible_force_n"])
+        self.assertEqual(first["torque_null_force_n"], [0.,0.,4.])
+        self.assertEqual(first["requested_moment_nm"], 4.)
+        self.assertEqual(second["requested_moment_nm"], 0.)
+        self.assertEqual(first["null_joint_torque_residual_nm"], 0.)
+        self.assertFalse(first["measured_ground_reaction"])
+
+    def test_split_is_invariant_under_a_rigid_frame_rotation(self):
+        np = diagnosis.np
+        linear=np.array([[1.,0.],[0.,1.],[0.,0.]])
+        rotation=diagnosis.moment.mechanics.rotation([0.,1.,0.], .37)
+        force=np.array([2.,3.,4.]);lever=np.array([0.,1.,0.]);axis=np.array([1.,0.,0.])
+        a=diagnosis.force_identifiability(linear,force,lever,axis)
+        b=diagnosis.force_identifiability(rotation@linear,rotation@force,rotation@lever,rotation@axis)
+        np.testing.assert_allclose(b["torque_visible_force_n"],rotation@a["torque_visible_force_n"],atol=1e-12)
+        for key in ("requested_moment_nm","torque_visible_moment_nm","torque_null_moment_nm"):
+            self.assertAlmostEqual(a[key],b[key])
+
+    def test_rank_zero_one_and_full_rank_do_not_invent_observability(self):
+        np=diagnosis.np
+        for linear,rank in ((np.zeros((3,2)),0),(np.array([[1.,2.],[0.,0.],[0.,0.]]),1),(np.eye(3),3)):
+            r=diagnosis.force_identifiability(linear,[2.,3.,4.],[1.,1.,0.],[0.,0.,1.])
+            self.assertEqual(r["rank"],rank)
+            np.testing.assert_allclose(linear.T@r["torque_null_force_n"],0.,atol=1e-12)
+            self.assertAlmostEqual(r["requested_moment_nm"],r["torque_visible_moment_nm"]+r["torque_null_moment_nm"])
+        self.assertEqual(r["torque_null_force_n"],[0.,0.,0.])
+
+    def test_invalid_jacobian_force_and_axis_are_refused(self):
+        for args in (([[True],[False],[False]],[1.,2.,3.],[0.,1.,0.],[1.,0.,0.]),
+                     ([[1.],[math.nan],[0.]],[1.,2.,3.],[0.,1.,0.],[1.,0.,0.]),
+                     ([[1.],[0.],[0.]],[1.,math.inf,3.],[0.,1.,0.],[1.,0.,0.]),
+                     ([[1.],[0.],[0.]],[1.,2.,3.],[0.,1.,0.],[2.,0.,0.])):
+            with self.assertRaises(ValueError):diagnosis.force_identifiability(*args)
+
+
+class SharingDiagnosisTests(unittest.TestCase):
+    def motion(self,steps):
+        # Isolate phase accounting with an analytic force map. Separate controls
+        # above verify the decomposition; retained readers exercise real geometry.
+        np=diagnosis.np
+        tree=mock.Mock(n=8)
+        tree.kinematics.return_value=dict(rotations=np.array([np.eye(3)]),whole_body_com=np.zeros(3))
+        def jacobian(frame,body,point):
+            limb=(int(body[1:])-2)//2
+            linear=np.zeros((3,8));linear[1,2*limb:2*limb+2]=-3.
+            return linear,np.zeros((3,8))
+        tree.jacobian.side_effect=jacobian
+        creature=dict(spec=dict(velocity_gains=[10.]*8,force_ranges=[[-20.,20.]]*8,
+            geom_names=["ground"]+[f"b{i}_geom" for i in range(9)]),
+            compiled=dict(morphology=dict(morphology_spec=dict(bodies=[dict(body_id=f"b{i}") for i in range(9)],
+                contact_sites=[dict(body_id=f"b{2+2*i}") for i in range(4)]))))
+        with mock.patch.object(diagnosis.moment.mechanics,"RigidTree",return_value=tree):
+            return diagnosis.SharingCommands(dict(id="fixture",axis_body=[1.,0.,0.]),
+                creature,dict(cell_id="fixture_cell",candidate_id="fixture"),steps)
+
+    def row(self,step,phase,degrees=10.):
+        row=ExchangeDiagnosisTests().row(step,"transfer" if phase=="transfer" else "seek",degrees)
+        d=row["resolution"]["body_moment"]
+        active=[0,1] if phase in ("load","unload") else [1] if phase=="transfer" else [0]
+        js=[j for i in active for j in (2*i,2*i+1)]
+        targets=[.1 if j in js else 0. for j in range(8)]
+        projection=d["force_projection"]
+        projection.update(target=[.2 if j in js else 0. for j in range(8)],
+            predicted_torque=[2. if j in js else 0. for j in range(8)],
+            requested_torque=[30. if j in js else 0. for j in range(8)],
+            contact_torque=[-30. if j in js else 0. for j in range(8)])
+        d.update(active_limbs=active,axis_angular_rate_rad_s=0.,proposed_moment_nm=2.*len(active),
+            requested_wrenches=[dict(body_id=f"b{2+2*i}",point=[0.,0.,-.2],
+                                    force=[0.,10.,0.],torque=[0.,0.,0.]) for i in active],
+            post_guard_predicted_torque_nm=[10.*v for v in targets],
+            support_sharing=dict(phase=phase,reason="fixture"))
+        d.pop("support_exchange")
+        d["state_after"].update(phase=phase,axis_body=[1.,0.,0.])
+        d["state_after"]["base"]["sign"]=1
+        row["request"]["state"]["base_pose_world"]["orientation_xyzw"]=dict(x=0.,y=0.,z=0.,w=1.)
+        row["request"]["state"]["ordered_contact_observations"]=[dict(presence=i in (0,1,2)) for i in range(4)]
+        row["native_targets"]=targets
+        row["resolution"]["ordered_commands"]=[dict(canonical_velocity_rad_s=v,joint_guard_applied=False) for v in targets]
+        return row
+
+    def consume(self,motion,row):
+        if motion.previous_sharing is not None:
+            row["resolution"]["body_moment"]["state_before"]=copy.deepcopy(motion.previous_sharing)
+        motion.consume(row)
+
+    def native_rows(self,motion,*,bad_geometry=False):
+        for step,frame in enumerate(motion.frames):
+            for sub in range(5):
+                touching=[1,2]+([0] if frame["sharing_phase"]!="transfer" or sub==0 else [])
+                geoms=[1]+[3+2*i for i in touching]
+                if bad_geometry:geoms.append(99)
+                motion.native(dict(step=5*step+sub+1,ctrl=[diagnosis.f32(v) for v in frame["targets"]],
+                    actuator_force_nm=[.8]*8,contacts=[dict(geom=[0,g]) for g in geoms]))
+
+    def finish(self,motion):
+        self.native_rows(motion)
+        return json.loads(json.dumps(motion.finish(dict(trajectory_maximum_up_dot=-.9)),allow_nan=False))
+
+    def test_phase_response_and_contacts_preserve_their_denominators(self):
+        m=self.motion(5)
+        for i,phase in enumerate(("seek","load","unload","transfer","reference")):self.consume(m,self.row(i,phase,10.-i))
+        r=self.finish(m);phase=r["sharing_phases"]["transfer"]
+        self.assertEqual(phase["native_samples"],5)
+        self.assertEqual(phase["old_primary_contact_samples"],1)
+        self.assertEqual(phase["replacement_contact_samples"],5)
+        self.assertEqual(phase["torso_contact_samples"],5)
+        self.assertEqual(phase["unrequested_distal_contact_samples"],5)
+        self.assertEqual(phase["unrequested_contact_joint_samples"],12)
+        self.assertAlmostEqual(phase["mean_native_prepared_request_error_nm"],29.2)
+        self.assertEqual(phase["mean_torque_null_moment_nm"],0.)
+        transfer=next(x for x in r["sharing_segments"] if x["phase"]=="transfer")
+        self.assertTrue(transfer["complete"])
+        self.assertAlmostEqual(transfer["observed_rotation_change_degrees"],-1.)
+        self.assertFalse(r["measured_ground_reaction"])
+
+    def test_terminal_phase_keeps_an_unobserved_exit_missing(self):
+        m=self.motion(2)
+        for i in range(2):self.consume(m,self.row(i,"transfer",10.-i))
+        event=self.finish(m)["sharing_segments"][0]
+        self.assertFalse(event["complete"]);self.assertIsNone(event["exit"])
+        self.assertEqual(event["counts"]["controller_rows"],2)
+        self.assertAlmostEqual(event["observed_duration_s"],diagnosis.DT)
+        self.assertAlmostEqual(event["observed_rotation_change_degrees"],-1.)
+
+    def test_changed_state_roles_and_active_limbs_are_refused(self):
+        m=self.motion(2);self.consume(m,self.row(0,"seek"))
+        with self.assertRaisesRegex(ValueError,"state continuity"):m.consume(self.row(1,"load"))
+        for key in ("roles","active"):
+            m=self.motion(1);row=self.row(0,"transfer");d=row["resolution"]["body_moment"]
+            if key=="roles":d["state_after"]["replacement_limb"]=0
+            else:d["active_limbs"]=[0]
+            with self.assertRaises(ValueError):m.consume(row)
+
+    def test_changed_wrench_model_or_proposed_moment_is_refused(self):
+        for key in ("contact","moment","free_torque"):
+            m=self.motion(1);row=self.row(0,"seek");d=row["resolution"]["body_moment"]
+            if key=="contact":d["force_projection"]["contact_torque"][0]+=1.
+            elif key=="moment":d["proposed_moment_nm"]+=1.
+            else:d["requested_wrenches"][0]["torque"]=[1.,0.,0.]
+            with self.assertRaises(ValueError):m.consume(row)
+
+    def test_unknown_native_contact_and_missing_native_samples_are_refused(self):
+        m=self.motion(1);self.consume(m,self.row(0,"transfer"))
+        with self.assertRaisesRegex(ValueError,"contact geometry"):self.native_rows(m,bad_geometry=True)
+        m=self.motion(1);self.consume(m,self.row(0,"seek"))
+        with self.assertRaisesRegex(ValueError,"incomplete capture"):m.finish({})
+
+    def test_sharing_mode_refuses_compact_and_conflicting_modes(self):
+        receipt=dict(contract=dict(capture_mode="compact_v1"),audit=dict(capture=dict(
+            controller_replay_verified=False,detailed_native_capture_verified=False)))
+        with mock.patch.object(diagnosis,"bound_archive",return_value=(None,receipt)):
+            with self.assertRaisesRegex(ValueError,"replayed full capture"):
+                diagnosis.diagnose_commands(Path("unused"),"unused",sharing=True)
+        with self.assertRaisesRegex(ValueError,"Select one support"):
+            diagnosis.diagnose_commands(Path("unused"),"unused",sharing=True,exchange=True)
+
+
 if __name__ == "__main__":
     unittest.main()
