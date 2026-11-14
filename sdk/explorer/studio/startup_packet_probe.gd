@@ -33,51 +33,71 @@ func _run_probe() -> Dictionary:
 	var application: Dictionary = native.decode_exact_json_v1(packet.sources.source_application.utf8_text)
 	var expected_step := Transport.stringify(packet.expected_step)
 	var input_identity := Transport.stringify([context,bound,memory,application])
+	var native_validation: Variant = null
+	var policies: Array = ["original"]
+	var collection_validation: Variant = Collection
+	if OS.get_environment("STUDIO_STARTUP_NATIVE_VALIDATOR") == "1":
+		var helper_status := GDExtensionManager.load_extension("res://sdk/explorer/studio/native_validation/validator.gdextension")
+		if helper_status != GDExtensionManager.LOAD_STATUS_OK:
+			return {"ok":false,"failure":"native validator load","status":helper_status}
+		var helper: Object = ClassDB.instantiate("SporeFiniteSourceValidator")
+		if not is_instance_valid(helper) or helper.validation_version() != "sporespore_finite_source_validation_v1":
+			return {"ok":false,"failure":"native validator identity"}
+		var controls: Dictionary = load("res://sdk/explorer/studio/test_native_source_validation.gd").run(Collection,helper,[context,bound,memory,application])
+		if controls.get("ok") != true or controls.checks != 2424:
+			return {"ok":false,"failure":"native validator controls","controls":controls}
+		collection_validation.studio_native_validator = helper
+		policies = ["original_first","native_first","native_second","original_second"]
+		native_validation = {"version":helper.validation_version(),"controls":controls,"policy_order":policies}
 	var rows: Array = []
 	var sdk: Object
-	for mode in ["fresh_cache","reused_cache"]:
-		for repeat in 16:
-			if mode == "fresh_cache" or repeat == 0:
-				sdk = Memo.new(native)
-				Cache.reset()
-				Cache.enabled = true
-			Runtime.startup_probe_profile = {}
-			for module in [Runtime,Collection,Route,Cache]:module.startup_function_profile = {}
-			Transport.profile = {"calls":0,"total_us":0,"maximum_us":0,"characters":0}
-			sdk.bridge_profile.clear()
-			var started := Time.get_ticks_usec()
-			var result := Route.advance_behavior_solver_coupled_complete_energy_l15_v1(
-				sdk,context,bound,memory,String(packet.get("arm_kind","candidate_command")),String(memory.phase),application)
-			var elapsed := Time.get_ticks_usec()-started
-			var costs: Dictionary = Runtime.startup_probe_profile.duplicate(true)
-			var json_costs: Dictionary = Transport.profile.duplicate(true)
-			var bridge_costs: Dictionary = sdk.bridge_profile.duplicate(true)
-			var function_costs: Dictionary = {}
-			for module in [Runtime,Collection,Route,Cache]:
-				function_costs[module.resource_path] = module.startup_function_profile.duplicate(true)
-			if result.get("ok") != true:
-				return {"ok":false,"failure":"retained route refused","mode":mode,"repeat":repeat,"result":result,"rows":rows}
-			var capture: Dictionary = result.collection_transport_retention
-			if capture.request != packet.request or capture.response != packet.response:
-				return {"ok":false,"failure":"native collection transport differs","mode":mode,"repeat":repeat,
-					"actual_request":capture.request,"actual_response":capture.response,"rows":rows}
-			if Transport.stringify(result.step_receipt) != expected_step:
-				return {"ok":false,"failure":"retained step differs","mode":mode,"repeat":repeat,"actual_step":result.step_receipt,"rows":rows}
-			if Transport.stringify([context,bound,memory,application]) != input_identity:
-				return {"ok":false,"failure":"replay mutated source inputs","rows":rows}
-			var route_text := Transport.stringify(result)
-			if packet.has("expected_route") and route_text != packet.expected_route.utf8_text:
-				return {"ok":false,"failure":"full retained route differs","mode":mode,"repeat":repeat,
-					"actual_route":route_text,"rows":rows}
-			rows.append({"mode":mode,"repeat":repeat,"elapsed_us":elapsed,
-				"full_route_output_sha256":route_text.sha256_text(),
-				"canonicalization":costs,"all_authoritative_stringify":json_costs,
-				"native_bridge":bridge_costs,"cache":sdk.cache_summary(),
-				"inclusive_function_costs":function_costs})
+	for policy in policies:
+		if native_validation != null:
+			collection_validation.studio_native_validation_enabled = policy.begins_with("native")
+		for mode in ["fresh_cache","reused_cache"]:
+			for repeat in 16:
+				if mode == "fresh_cache" or repeat == 0:
+					sdk = Memo.new(native)
+					Cache.reset()
+					Cache.enabled = true
+				Runtime.startup_probe_profile = {}
+				for module in [Runtime,Collection,Route,Cache]:module.startup_function_profile = {}
+				Transport.profile = {"calls":0,"total_us":0,"maximum_us":0,"characters":0}
+				sdk.bridge_profile.clear()
+				var started := Time.get_ticks_usec()
+				var result := Route.advance_behavior_solver_coupled_complete_energy_l15_v1(
+					sdk,context,bound,memory,String(packet.get("arm_kind","candidate_command")),String(memory.phase),application)
+				var elapsed := Time.get_ticks_usec()-started
+				var costs: Dictionary = Runtime.startup_probe_profile.duplicate(true)
+				var json_costs: Dictionary = Transport.profile.duplicate(true)
+				var bridge_costs: Dictionary = sdk.bridge_profile.duplicate(true)
+				var function_costs: Dictionary = {}
+				for module in [Runtime,Collection,Route,Cache]:
+					function_costs[module.resource_path] = module.startup_function_profile.duplicate(true)
+				if result.get("ok") != true:
+					return {"ok":false,"failure":"retained route refused","mode":mode,"repeat":repeat,"result":result,"rows":rows}
+				var capture: Dictionary = result.collection_transport_retention
+				if capture.request != packet.request or capture.response != packet.response:
+					return {"ok":false,"failure":"native collection transport differs","mode":mode,"repeat":repeat,
+						"actual_request":capture.request,"actual_response":capture.response,"rows":rows}
+				if Transport.stringify(result.step_receipt) != expected_step:
+					return {"ok":false,"failure":"retained step differs","mode":mode,"repeat":repeat,"actual_step":result.step_receipt,"rows":rows}
+				if Transport.stringify([context,bound,memory,application]) != input_identity:
+					return {"ok":false,"failure":"replay mutated source inputs","rows":rows}
+				var route_text := Transport.stringify(result)
+				if packet.has("expected_route") and route_text != packet.expected_route.utf8_text:
+					return {"ok":false,"failure":"full retained route differs","mode":mode,"repeat":repeat,
+						"actual_route":route_text,"rows":rows}
+				rows.append({"validation_policy":policy,"mode":mode,"repeat":repeat,"elapsed_us":elapsed,
+					"full_route_output_sha256":route_text.sha256_text(),
+					"canonicalization":costs,"all_authoritative_stringify":json_costs,
+					"native_bridge":bridge_costs,"cache":sdk.cache_summary(),
+					"inclusive_function_costs":function_costs})
 	Cache.enabled = false
 	Cache.reset()
 	return {"ok":true,"rows":rows,"global_step":packet.global_step,
 		"full_retained_route_compared":packet.has("expected_route"),
+		"native_validation":native_validation,
 		"collection_request_and_response_exact":true,"step_receipt_exact":true,"source_inputs_unchanged":true,
 		"world_build_count":0,"solver_steps":0,"native_physics_reads":0,
 		"scope":"Repeated computational replay of one retained startup packet. Fresh and reused cache modes are diagnostic bounds, not the live startup distribution or a speedup qualification.",

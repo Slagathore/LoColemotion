@@ -1,0 +1,17 @@
+[package]
+name = "sporespore-finite-source-validation"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license = "AGPL-3.0-only"
+description = "Pure finite-source validation for the Godot locomotion adapter"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+godot = { version = "=0.5.4", default-features = false, features = ["api-4-7"] }
+
+# Build this pure helper independently of the pinned controller DLL. Loading
+# it adds no controller, world, physics read, serialization or source mutation.
+[workspace]

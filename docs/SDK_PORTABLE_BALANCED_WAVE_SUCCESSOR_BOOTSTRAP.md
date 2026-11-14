@@ -206,9 +206,12 @@ adds ten exact inputs across five startup phases from one 360-step native world.
 All 320 offline production-route replays match the retained full outputs. The
 first post-run reader wrongly required an initial memory clock of zero; its
 failure stays intact, while the corrected reader follows the existing null-clock
-contract and verifies the completed world. Next evaluate compiled finite-source
-validation against the original oracle and these inputs before a fresh matched
-timing trial. No speedup, additional recovery or adaptation claim is added.
+contract and verifies the completed world. The [compiled validator comparison](../sdk/explorer/studio/startup_native_validation_result_v1.json)
+passes its CPU criterion: 1,280 exact replays, 2,424 oracle checks per packet,
+12.45% median warm route reduction and no slower packet (gains 9.05-16.56%).
+A separate 32-replay check preserves the original default. Qualify the helper in
+the full short native route before a fresh matched timing trial. Native startup
+benefit, additional recovery and adaptation remain unproved.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

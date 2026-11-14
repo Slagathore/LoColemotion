@@ -20,23 +20,18 @@ is the next bounded implementation task.
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio performance comparison](../sdk/explorer/studio/walking_performance_cache_result_v1.json) | Four fresh matched worlds: old cache stand-up 19.934/20.260 seconds, LRU 21.326/20.673 seconds. All 2,041 frames and 1,799 full controller rows match. LRU fails the speedup criterion; previous default restored. Fifteen-second walking intervals take 14.974-15.124 seconds; no general real-time qualification |
 
-1. **Reduce measured Studio stand-up processing cost.** The
-   [matched cache comparison](../sdk/explorer/studio/walking_performance_cache_result_v1.json)
-   failed: 1.38% fewer canonicalization calls did not improve startup.
-   The previous cache is restored as the default and passes the full route
-   preflight. Do not repeat a cache-size tuning grid.
-   The [retained-packet CPU profile](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
-   verifies 288 exact replays and rejects two scalar-validator changes: observed
-   warm median reductions 4.7% and -1.0%, below the declared 10% threshold.
-   Original validation stays active. The [startup capture result](../sdk/explorer/studio/startup_packet_capture_result_v1.json)
-   now retains ten exact packets across all five observed startup phases from
-   one seed-74, 360-step world. All 320 offline production-route replays match.
-   The original post-run reader failure is preserved; the corrected reader
-   respects the core's initial null memory clocks and verifies the completed
-   native stream without another world. Next evaluate shared compiled finite-source
-   validation against the original oracle and all ten inputs. Require a useful
-   CPU result before another matched timing trial. Preserve full capture and
-   solver inputs; no speedup claim or further cache/scalar-loop tuning grid.
+1. **Reduce measured Studio stand-up processing cost.** Earlier cache and
+   [scalar-validator changes](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
+   failed their benefit criteria; original defaults remain active.
+   The [startup capture](../sdk/explorer/studio/startup_packet_capture_result_v1.json)
+   retains ten exact inputs across five phases from one bounded native world.
+   The [compiled validator comparison](../sdk/explorer/studio/startup_native_validation_result_v1.json)
+   now passes: all 1,280 outputs match, 2,424 oracle checks pass per packet,
+   and the median warm route reduction is 12.45% (individual gains 9.05-16.56%).
+   A separate 32-replay check verifies the original default.
+   Next qualify the helper in the full short native Studio route, then run a
+   prospectively declared fresh matched timing comparison. Native startup benefit
+   remains unproved. Preserve full capture and solver inputs; no cache/scalar grid.
 2. **Search recovery using the whole body's contact response.** The
    [36-world diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
    verifies solved reactions and empty-cone fallback, with no recovery.

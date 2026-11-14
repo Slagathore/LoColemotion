@@ -288,10 +288,13 @@ one seed-74 world completed 360 frames and retained ten exact packets across
 all five observed startup phases. All 320 offline production-route replays match
 the retained full outputs. The original post-run reader failure remains intact;
 the successor reader respects initial null memory clocks and verifies the
-completed stream without another world. No speedup is established. Next evaluate
-compiled finite-source validation against the original oracle and these inputs;
-require useful CPU benefit before fresh matched native timing. No further
-scalar-loop or cache tuning grid.
+completed stream without another world. The [compiled validator result](../sdk/explorer/studio/startup_native_validation_result_v1.json)
+then verifies 1,280 exact outputs with 2,424 oracle checks per packet. Its median
+warm route reduction is 12.45%, with all ten packets improving 9.05-16.56%;
+the prospective CPU criterion passes. A separate 32-replay check preserves the
+original default. Native startup benefit remains unproved. Next qualify the
+optional helper through the full short native route and run fresh matched timing
+before a default change. No further scalar-loop or cache tuning grid.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

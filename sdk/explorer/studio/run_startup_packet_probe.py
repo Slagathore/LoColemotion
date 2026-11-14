@@ -140,6 +140,44 @@ def profile_functions(project):
         path.write_text(source,encoding="utf-8",newline="\n")
 
 
+def materialize_native_validation(project, library, expected_sha256):
+    """Install an opt-in pure helper beside the unchanged controller image."""
+    library=library.resolve()
+    assert library.is_relative_to(EVIDENCE.resolve()) and sha(library)==expected_sha256
+    destination=project/"sdk/explorer/studio/native_validation"
+    destination.mkdir(exist_ok=False)
+    shutil.copy2(library,destination/"validator.dll")
+    (destination/"validator.gdextension").write_text(
+        '[configuration]\nentry_symbol="gdext_rust_init"\ncompatibility_minimum="4.7"\n'
+        '[libraries]\nwindows.x86_64="res://sdk/explorer/studio/native_validation/validator.dll"\n',
+        encoding="utf-8",newline="\n")
+    collection=project/"sdk/adapters/godot/gdscript/qsdk_r10f_l15_collection_transport_v1.gd"
+    source=collection.read_text(encoding="utf-8-sig")
+    begin=source.index("static func _json_source_v1(")
+    # Rename only the original recursive validator. Its body stays the oracle;
+    # both timing policies enter through the same outer dispatch boundary.
+    source=source[:begin]+source[begin:].replace("_json_source_v1(","_studio_reference_json_source_v1(")
+    source+='''\nstatic var studio_native_validator: Object
+static var studio_native_validation_enabled: bool = false
+
+static func _json_source_v1(value: Variant, depth: int = 0, source_link: bool = false) -> bool:
+\tif studio_native_validation_enabled:
+\t\treturn studio_native_validator.validate_source_v1(value,depth,source_link)
+\treturn _studio_reference_json_source_v1(value,depth,source_link)
+'''
+    collection.write_text(source,encoding="utf-8",newline="\n")
+    shutil.copy2(ROOT/"sdk/explorer/studio/test_native_source_validation.gd",destination.parent/"test_native_source_validation.gd")
+
+
+def probe_binding(project, native_validation=False):
+    result=binding(project)
+    if native_validation:
+        package=ROOT/"sdk/adapters/godot_validation"
+        for relative in ("Cargo.toml","Cargo.lock","src/lib.rs",".gitattributes"):
+            path=package/relative;result[str(path)]=sha(path)
+    return result
+
+
 def validate_probe(value):
     assert value["ok"] is True
     for key in ("world_build_count","solver_steps","native_physics_reads"):
@@ -148,9 +186,21 @@ def validate_probe(value):
         assert value[key] is True,key
     assert value["physical_acceptance_authority"] is value["release_authority"] is False
     rows=value["rows"]
-    assert len(rows)==32
-    assert [(r["mode"],r["repeat"]) for r in rows]==[
-        (mode,repeat) for mode in ("fresh_cache","reused_cache") for repeat in range(16)]
+    native=value.get("native_validation")
+    policies=["original_first","native_first","native_second","original_second"]
+    expected=[(mode,repeat) for mode in ("fresh_cache","reused_cache") for repeat in range(16)]
+    if native:
+        assert value["full_retained_route_compared"] is True
+        assert native["version"]=="sporespore_finite_source_validation_v1"
+        assert native["policy_order"]==policies
+        controls=native["controls"]
+        assert controls["ok"] is True and controls["checks"]==2424 and not controls["failures"]
+        assert controls["world_build_count"]==controls["solver_steps"]==0
+        assert [(r["validation_policy"],r["mode"],r["repeat"]) for r in rows]==[
+            (policy,mode,repeat) for policy in policies for mode,repeat in expected]
+    else:
+        assert len(rows)==32
+        assert [(r["mode"],r["repeat"]) for r in rows]==expected
     assert all(type(r["elapsed_us"]) is int and r["elapsed_us"]>=0 for r in rows)
     hashes=[r.get("full_route_output_sha256") for r in rows]
     assert len(set(hashes))==1
@@ -166,6 +216,11 @@ def reader_controls(value):
         lambda x:x.update(collection_request_and_response_exact=False),
         lambda x:x["rows"][1].update(repeat=0),
         lambda x:x["rows"][0].update(full_route_output_sha256="0"*64)]
+    if value.get("native_validation"):
+        edits += [lambda x:x.update(full_retained_route_compared=False),
+            lambda x:x["native_validation"].update(version="crossed"),
+            lambda x:x["native_validation"]["controls"].update(checks=2423),
+            lambda x:x["rows"][32].update(validation_policy="original_first")]
     for edit in edits:
         mutant=copy.deepcopy(value);edit(mutant)
         try:validate_probe(mutant)
@@ -211,11 +266,15 @@ def main():
     parser.add_argument("--audit",type=Path,help="Reopen a completed retained CPU probe without invoking Godot")
     parser.add_argument("--packet",type=Path,help="A retained native startup packet; requires its recorded digest")
     parser.add_argument("--packet-sha256",help="Exact digest from the native capture manifest")
+    parser.add_argument("--native-validator",type=Path,help="Opt-in separately retained pure validator DLL for an ABBA CPU comparison")
+    parser.add_argument("--native-validator-sha256",help="Recorded digest of the pure validator image")
     args=parser.parse_args()
     if args.audit:
         print(json.dumps(audit(args.audit)));return 0
     if args.config is None or args.output is None:parser.error("--config and --output are required for a new probe")
     if bool(args.packet)!=bool(args.packet_sha256):parser.error("--packet and --packet-sha256 must be supplied together")
+    if bool(args.native_validator)!=bool(args.native_validator_sha256):parser.error("--native-validator and its digest must be supplied together")
+    if args.native_validator and not args.packet:parser.error("Native validation comparison requires a captured native packet")
     git=lambda *a:subprocess.check_output(["git",*a],cwd=ROOT,text=True).strip()
     assert git("rev-parse","--show-toplevel")=="C:/Users/Cole/CodeStuff/games/LoColemotion"
     assert git("remote","get-url","origin")=="https://github.com/Slagathore/LoColemotion.git"
@@ -242,8 +301,11 @@ def main():
         receipt["runtime"]=owner.identity
         project=owner.prepare_recovery(folder);materialize(project);instrument(project);profile_canonicalization(project)
         profile_functions(project)
+        if args.native_validator:
+            materialize_native_validation(project,args.native_validator,args.native_validator_sha256)
+            receipt["native_validation_input"]={"archive_relative_path":args.native_validator.resolve().relative_to(EVIDENCE.resolve()).as_posix(),"sha256":args.native_validator_sha256}
         shutil.copy2(ROOT/"sdk/explorer/studio/startup_packet_probe.gd",project/"sdk/explorer/studio/startup_packet_probe.gd")
-        receipt["dependency_binding"]=binding(project)
+        receipt["dependency_binding"]=probe_binding(project,bool(args.native_validator))
         # Preserve any uncommitted diagnostic source by its exact bound bytes.
         # The isolated runtime is already retained under recovery_app.
         receipt["repository_source_snapshots"]={}
@@ -256,10 +318,10 @@ def main():
                 receipt["repository_source_snapshots"][source_name]=str(target.relative_to(folder))
         write(folder/"declaration.json",receipt)
         invoke([cfg["recovery_console"],"--headless","--path",str(project),"--script","res://sdk/explorer/studio/startup_packet_probe.gd"],
-            folder/"owned",60,dict(STUDIO_STARTUP_PROBE_INPUT=str(folder/"packet.json"),STUDIO_STARTUP_PROBE_OUTPUT=str(folder/"probe.json")))
+            folder/"owned",120 if args.native_validator else 60,dict(STUDIO_STARTUP_PROBE_INPUT=str(folder/"packet.json"),STUDIO_STARTUP_PROBE_OUTPUT=str(folder/"probe.json"),STUDIO_STARTUP_NATIVE_VALIDATOR="1" if args.native_validator else "0"))
         result=json.loads((folder/"probe.json").read_bytes())
         validate_probe(result)
-        assert receipt["dependency_binding"]==binding(project)
+        assert receipt["dependency_binding"]==probe_binding(project,bool(args.native_validator))
         for row in owner.identity.values():assert sha(row["path"])==row["sha256"]
         receipt.update(ok=True,probe_sha256=sha(folder/"probe.json"),source_runtime_unchanged=True)
     except BaseException as exc:

@@ -1,0 +1,65 @@
+{
+  "schema_version": "locolemotion_studio_startup_native_validation_plan_v1",
+  "ledger_scope": {
+    "subsystem": "explorer",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "retained_packet_cpu_comparison",
+    "question_class": "development"
+  },
+  "source_parent_commit": "6e758fdf5aa1abdaf354d199bb431e6af9558a21",
+  "input_result": {
+    "path": "sdk/explorer/studio/startup_packet_capture_result_v1.json",
+    "sha256": "912eafa20f47b29e6b4de15375c5c16a46b18a74db281253ba1344a6573b3108"
+  },
+  "question": "Does a separately compiled pure finite-source validator reduce exact production-route CPU cost on all ten retained startup inputs?",
+  "candidate": "sporespore_finite_source_validation_v1",
+  "baseline": "Unchanged original recursive GDScript validator, with the same outer policy dispatch",
+  "packet_steps": [
+    1,
+    29,
+    30,
+    38,
+    60,
+    61,
+    120,
+    180,
+    239,
+    240
+  ],
+  "policy_order": [
+    "original_first",
+    "native_first",
+    "native_second",
+    "original_second"
+  ],
+  "replays_per_policy": {
+    "fresh_cache": 16,
+    "reused_cache": 16
+  },
+  "expected_route_replays_per_packet": 128,
+  "expected_total_route_replays": 1280,
+  "premeasurement_oracle_checks_per_packet": 2424,
+  "expected_helper_build": "Release build with godot 0.5.4, minimal bindings and API 4.7; independently retained image, original controller DLL unchanged",
+  "required_correctness": [
+    "All malformed/type/depth/cycle controls match the original oracle",
+    "Exact retained request and response",
+    "Exact full route output for every repetition",
+    "Unchanged source inputs",
+    "No physics construction, solver step or native physics read",
+    "Unchanged source/runtime bindings and owned cleanup"
+  ],
+  "timing": {
+    "sample": "Thirty warm route timings per policy family per packet, excluding repeat zero in each reused-cache block",
+    "packet_reduction_fraction": "1 - median(native_first + native_second warm samples) / median(original_first + original_second warm samples)",
+    "cohort_statistic": "Unweighted median of the ten packet reduction fractions",
+    "minimum_cohort_reduction_fraction": 0.1,
+    "maximum_individual_packet_regression_fraction": 0.05,
+    "fresh_cache": "Retained secondary diagnostic only; not used to choose a different outcome",
+    "function_timers": "Inclusive and overlapping; never sum nested costs"
+  },
+  "promotion": "Passing this CPU diagnostic permits a separately qualified, clean pushed matched native timing successor; it does not adopt a default or establish native speedup",
+  "worlds_opened": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "performance_comparison_scope": "Exact retained one-body one-seed startup corpus; no startup distribution, robustness or real-time claim"
+}
