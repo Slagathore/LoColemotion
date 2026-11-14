@@ -1,6 +1,6 @@
 # Portable Balanced-Wave Successor Bootstrap
 
-## Current SDK2 native evidence - 2026-11-13
+## Current SDK2 native evidence - 2026-11-14
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
@@ -149,11 +149,15 @@ sharing-route replay byte-identical. Eight recipes cross two pose scores,
 two load normalizations and primary-versus-all eligible contacts. The checks
 prove changes in selected poses and guarded commands. Each of 24 bodies
 receives six recipes plus four fresh comparators; each recipe covers nine
-bodies in each geometric stratum. First require 24 full route worlds on two
-bodies, then 240 compact worlds on the same freeze. Both stages are unrun.
-Row-space force requests remain model hypotheses; quiet torque does not prove
-contact release. Preserve five-degree gain, path screening and fresh full-capture
-varied-start confirmation.
+bodies in each geometric stratum. The [native route](../sdk/discovery/creature_torque_map_native_failure_v1.json)
+at source 8b224a91 passes 304 controls and opens 24 worlds. Twelve complete;
+twelve stop at interval 203 on numerical force-cone construction. All 6,756
+recorded decisions and 33,780 samples replay, with no complete route verdict.
+Six derived scalar cases reproduce cancellation; the failed prepared input
+is unavailable. A stable basis passes the unchanged constraints on those cases.
+Preserve v1, implement a numerical successor and require a fresh full route
+before the unrun 240-world search. Row-space forces remain hypotheses. Keep
+five-degree gain, path screening and fresh full-capture varied-start confirmation.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

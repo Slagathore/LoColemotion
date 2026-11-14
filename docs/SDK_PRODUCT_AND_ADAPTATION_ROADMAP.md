@@ -5,7 +5,7 @@ self-correcting locomotion in the SDK and live Studio. Search the
 [dated history](SDK_PRODUCT_AND_ADAPTATION_ROADMAP_HISTORY_2026-11-01.md)
 for earlier decisions; individual result records retain the detailed evidence.
 
-## Current execution order - 2026-11-13
+## Current execution order - 2026-11-14
 
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
@@ -20,23 +20,23 @@ and self-righting still has no qualifying controller after 13 cohorts.
 | [Latest righting cohort](../sdk/discovery/creature_support_sharing_native_result_v1.json) | 192 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Of 96 new-controller worlds, 47 beat their fresh selected reference; best gain is 2.962 degrees, below five. Thirteen cohorts retain 2,896 valid recovery failures |
 | [Earlier path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
 | [Support-transfer diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json) | 52 controls. On one exposed body, the old foot withdraws and replacement torque has 0.040 Nm mean tracking error, yet a 36-interval transfer loses 0.534 degrees. About 74.4% of its proposed moment comes from force that joint torques cannot identify; ground reaction remains unmeasured |
-| [Prospective torque-map cohort](../sdk/discovery/creature_torque_map_component_v1.json) | 304 controls; actual pose and guarded-command differences verified. Eight recipes across 24 bodies; 24 full route worlds precede 240 compact worlds (144 new, 96 fresh comparators). Both native stages remain unrun |
+| [Torque-map route failure](../sdk/discovery/creature_torque_map_native_failure_v1.json) | 304 controls passed; 24 worlds opened. Twelve completed three seconds; twelve stopped at interval 203 on numerical cone construction. All 6,756 recorded decisions and 33,780 samples replay. Six derived scalar cases reproduce cancellation; broad search remains unrun |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Run the broad torque-map comparison from its prospective freeze.**
-   The [component](../sdk/discovery/creature_torque_map_component_v1.json)
-   passes 304 controls. Two pose scores, two load rules and primary-versus-all
-   eligible contacts change actual poses or guarded commands. Requests lie
-   within the joint-torque row space and declared friction cone; that model
-   choice remains unproved in native dynamics. First require all declared
-   command paths in 24 full route worlds on two bodies, then run 240 compact
-   worlds on 24 bodies from the same clean pushed freeze. Keep the five-degree
-   fresh-reference gain, retained-path screen and fresh full-capture varied-start
-   confirmation. Failed route coverage consumes the attempt and blocks search.
+1. **Repair force-cone cancellation in a distinct numerical successor.**
+   The [failed route](../sdk/discovery/creature_torque_map_native_failure_v1.json)
+   is consumed. Its recorded prefix replays, but the failed prepared input was
+   not written. Six derived scalar cases expose cancellation when a tiny
+   tangent is normalized; a stable basis satisfies the original checks.
+   Preserve v1 and the 1e-9 constraints, caps, guards and population. Add the
+   witnesses and near-cancellation controls, then run the complete gate and
+   publish a fresh freeze. Require all coverage in a fresh 24-world full route
+   before 240 compact worlds on 24 bodies. Keep five-degree fresh-reference
+   gain, retained-path screening and fresh full-capture varied-start confirmation.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

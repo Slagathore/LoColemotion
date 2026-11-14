@@ -1,6 +1,6 @@
 # Engine-Neutral Locomotion SDK Bootstrap
 
-## Active - SDK2 discovery and Studio completion, 2026-11-13
+## Active - SDK2 discovery and Studio completion, 2026-11-14
 
 Start with the [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md).
 It owns the next work order: actual creature/controller populations, rigorous
@@ -232,11 +232,15 @@ cause of lost rotation. The [torque-map component](../sdk/discovery/creature_tor
 now passes 304 controls and preserves the full sharing-route replay exactly.
 Its eight recipes vary pose scoring, normal-load requests and primary-versus-all
 eligible contacts, with verified pose and guarded-command differences.
-The prospective freeze declares 24 full route worlds on two bodies before
-240 compact worlds on 24 bodies: 144 new-controller worlds and 96 fresh
-comparators. Neither native stage has run. The row-space force model is a
-hypothesis; quiet motors do not establish zero contact force or foot release.
-Keep full route coverage, five-degree gain, path screening and fresh confirmation.
+The [native route failure](../sdk/discovery/creature_torque_map_native_failure_v1.json)
+at source 8b224a91 follows all 304 controls. Twelve worlds complete three seconds;
+twelve stop at interval 203 on force-cone construction. All 6,756 retained
+decisions and 33,780 samples replay; the incomplete route remains failed.
+Six derived scalar cases expose cancellation, but the failed prepared input
+was not written. A stable basis satisfies the same checks on those cases.
+Declare a numerical successor, preserve v1 and every constraint, then require
+a fresh full route before the unrun 240-world broad comparison. Row-space
+forces remain hypotheses. Keep five-degree gain, path screening and confirmation.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 
