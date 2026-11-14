@@ -28,16 +28,17 @@ The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Measure the actual contact forces before another recovery search.**
-   The [v3 diagnostic component](../sdk/discovery/creature_torque_map_component_v3.json)
-   passes 330 controls, repairs empty zero/narrow-cone classification and
-   retains exact failed planning memory. All 8,640 earlier route decisions
-   and 43,200 samples replay with byte-identical audit output. From a clean
-   pushed freeze, run the declared 36-world three-second full route on bodies
-   0, 16 and failed body 21. Require fallback coverage and every solved contact
-   force to reconcile against the free-root constraint force. Compare proposed
-   turning moments with measured foot and torso reactions before choosing
-   another force-model family. The [v2 broad failure](../sdk/discovery/creature_torque_map_native_failure_v2.json)
+1. **Explain the measured contact forces before another recovery search.**
+   The [v3 native diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
+   passes all 330 controls and completes 36 three-second full worlds on bodies
+   0, 16 and formerly failing body 21. All 12,960 decisions and 64,800 native
+   samples replay; every solved contact sample passes independent decoding
+   and free-root balance. All eight new profiles on body 21 exercise the
+   empty-cone fallback. No world recovers, and the route does not add to the
+   full-horizon recovery cohort rollup. Compare proposed turning moments
+   with measured foot, torso and upper-link reactions, preserving frames,
+   centers of mass and the five solved substeps, before choosing another
+   force-model family. The [v2 broad failure](../sdk/discovery/creature_torque_map_native_failure_v2.json)
    remains negative: all 126 completed new-controller worlds underperform.
    Do not repeat that unchanged grid. Return to broad factored discovery and
    fresh full-capture confirmation for useful, diverse leads after diagnosis.

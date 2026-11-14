@@ -251,9 +251,14 @@ observations are retained, but planning memory is not. The
 [v3 component](../sdk/discovery/creature_torque_map_component_v3.json) passes
 330 controls, fixes empty zero/narrow cones and retains exact failed planning
 memory. Its reader reproduces all 8,640 v2 route decisions and 43,200 samples
-with byte-identical audit output. A fresh 36-world three-second full route
-must cover failed body 21 and reconcile solved foot/torso reactions before
-another force-model family. The unchanged broad grid has no qualifying leads.
+with byte-identical audit output. The
+[v3 native route](../sdk/discovery/creature_torque_map_route_native_v3.json)
+now passes at source 94b2067b: 330 controls, 36 three-second worlds, 12,960
+decisions and 64,800 samples fully replayed. Every solved contact sample
+passes independent decoding and free-root balance; all eight new profiles
+on body 21 reach empty-cone fallback. No world recovers. Compare requested
+turning moments with the measured reactions before another force-model family.
+The unchanged broad grid has no qualifying leads.
 The current roadmap also schedules a bounded matched Studio performance
 task before another large recovery cohort; recovery success is not its gate.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,

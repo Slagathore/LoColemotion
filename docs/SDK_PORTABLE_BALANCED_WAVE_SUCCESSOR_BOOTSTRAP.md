@@ -169,10 +169,15 @@ original planning memory is unavailable. The
 [v3 component](../sdk/discovery/creature_torque_map_component_v3.json) passes
 330 controls: ten new numerical/memory controls and eight solved-reaction
 controls. Legacy arithmetic and the entire v2 route audit remain exact.
-The declared 36-world three-second full route adds failed body 21, exact
-planning-state retention and every-substep foot/torso reaction capture.
-Native force reconciliation remains unrun. Use it to diagnose modeled turning
-moments before another force family; do not repeat the unchanged broad grid.
+The [v3 native route](../sdk/discovery/creature_torque_map_route_native_v3.json)
+at source 94b2067b now completes all 36 three-second worlds after 330 controls.
+All 12,960 decisions and 64,800 samples replay, including every solved reaction.
+Free-root balance and independent force decoding pass; maximum absolute force
+and moment residuals are 1.9074e-5 N and 8.4768e-6 Nm, within declared
+float32-scaled tolerances. All eight new body-21 profiles exercise empty-cone
+fallback. Zero worlds recover; this route is outside the full-horizon cohort
+rollup. Compare modeled turning moments with these measured foot/torso/upper-link
+reactions before another force family; do not repeat the unchanged broad grid.
 Keep fresh confirmation for leads and the roadmap's bounded Studio profile.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
