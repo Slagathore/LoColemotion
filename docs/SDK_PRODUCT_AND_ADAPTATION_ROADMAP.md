@@ -10,35 +10,32 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and self-righting still has no qualifying controller after twelve cohorts.
+and self-righting still has no qualifying controller after 13 cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
 | [Walking confirmation](../sdk/discovery/creature_confirmation_native_result_v1.json) | 284 fresh twelve-second worlds; 221 eligible and 63 failed. Both-start eligible groups: baseline 30/48, frozen choice 33/48, fixed profile 27 36/48. Neither declared choice comparison passes |
 | Adaptation gaps | Four groups have a passing alternative to the failed choice; eleven weakened-body groups have no tested candidate passing both starts. No refitted or learned selector is qualified |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay correctly. The inverted body times out without active recovery or resumed walking |
-| [Latest righting cohort](../sdk/discovery/creature_support_exchange_native_result_v1.json) | 216 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Of 144 new-controller worlds, 62 beat their fresh selected reference; best gain is 3.303 degrees, below the five-degree threshold. Twelve cohorts retain 2,704 valid recovery failures |
+| [Latest righting cohort](../sdk/discovery/creature_support_sharing_native_result_v1.json) | 192 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Of 96 new-controller worlds, 47 beat their fresh selected reference; best gain is 2.962 degrees, below five. Thirteen cohorts retain 2,896 valid recovery failures |
 | [Earlier path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
-| [Transfer diagnosis](../sdk/discovery/creature_support_exchange_diagnosis_v1.json) | 43 controls; 6,480 exchange decisions and 32,400 native samples on one body. All 68 replacement-joint transfer requests exceed force caps. At entry, only 18-32% of the static request fits instantaneous command bounds while the old force request is removed. All four transfers lose contact and rotation; the cause is not isolated |
+| [Support-transfer route](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Twelve full-capture worlds pass all named route paths. One transfer retains required contact for 36 intervals but loses 0.534 degrees. The broad run verifies 276,480 compact controller records and 1,382,400 native samples. Its empty shortlist selects no paths for clearance checking |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Run the force-bounded support-sharing search.**
-   The [component](../sdk/discovery/creature_support_sharing_component_v1.json)
-   passes 278 safety controls and 17 additional diagnostic controls. Legacy
-   full replay and both command diagnoses remain byte-identical. No new
-   physics has run. Torque-aware target ranking and guarded requests keep
-   old support during loading, then stage unloading under measured contact
-   and prepared motor response; release requires a committed zero old request.
-   From the clean pushed freeze, require all named paths in twelve fresh
-   six-second full-capture route worlds. Only then run 192 twelve-second
-   worlds on 24 bodies: four new variants and four fresh comparators each.
-   Preserve five-degree reference gain, unchanged limits, retained-path
-   screening and fresh full-capture varied-start confirmation. Model requests
-   are not measured ground reaction, and successor benefit is unproved.
+1. **Diagnose why sustained support transfer does not produce useful rotation.**
+   The [support-sharing result](../sdk/discovery/creature_support_sharing_native_result_v1.json)
+   retains all 192 failures after 278 safety controls and a passing full route.
+   Use that retained route to compare prepared requests, applied native torque,
+   contact continuity and body rotation through loading, unloading and transfer
+   with the fresh reference. Requested contact force is not measured reaction.
+   Identify a testable mechanical gap before declaring a distinct broad search;
+   retain unchanged limits and the five-degree progress threshold. Useful leads
+   still require retained-path screening and fresh full-capture varied-start
+   confirmation. No candidate from this cohort advances.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

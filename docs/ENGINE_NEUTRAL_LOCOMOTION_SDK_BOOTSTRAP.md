@@ -216,17 +216,21 @@ all four entries and affects 29 of 68 transfer joint commands later. None of
 observed force remain distinct. All four entries remove the old force request
 and request neutral old-joint positions. These observations do not isolate
 contact-loss causality. The earlier command diagnosis remains byte-identical.
-The [support-sharing component](../sdk/discovery/creature_support_sharing_component_v1.json)
-passes 278 safety controls plus 17 diagnostic controls without new worlds.
-It ranks targets by bounded static torque requests, keeps old support during
-loading, and stages unloading using measured contact and prepared motor
-response. Release requires a committed zero old-support request. Historical
-full replay and both command diagnoses remain byte-identical; mechanics
-component bytes remain unchanged. Twelve fresh full-capture route worlds must
-cover seeking, acquisition, loading, positive unloading and fallback before
-192 twelve-second worlds across 24 bodies. Each body receives four variants
-and four fresh comparators, including an exposed failed exchange. No native
-benefit, recovery, learned adaptation or Studio handoff is qualified.
+The [support-sharing native result](../sdk/discovery/creature_support_sharing_native_result_v1.json)
+closes twelve full-capture route worlds and 192 fresh twelve-second worlds on
+24 bodies at source 1950653d, after 278 controls before each run. The route
+covers all named paths; one 36-interval transfer retains required contact but
+loses 0.534 degrees. All 192 broad worlds fail recovery, with zero progress
+leads or joint violations. Of 96 new-controller worlds, 47 exceed their fresh
+selected reference; best gain is 2.962 degrees, below five. Full-route replay
+checks 8,640 decisions and 43,200 native samples; compact broad verification
+checks 276,480 records and 1,382,400 samples without full controller replay.
+The empty shortlist selects zero paths for clearance checking. Thirteen
+performance cohorts retain 2,896 valid recovery failures, excluding routes.
+Next diagnose applied torque and body motion through the retained transfer
+before a mechanically distinct broad successor. No controller is adopted;
+recovery, learned adaptation, Studio recovery handoff and release remain
+unqualified.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.
