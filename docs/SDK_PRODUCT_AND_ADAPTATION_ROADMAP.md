@@ -22,6 +22,10 @@ is the next bounded implementation task.
 
 1. **Profile and improve Studio startup and stepping.** Use the current installed
    build, the same body, capture and bounded fifteen-second walking schedule.
+   The [walking profiler](../sdk/explorer/studio/walking_performance_component_v1.json)
+   passes its complete zero-world gate and now separates sampling, controller,
+   motor application and readback time. Two fresh baseline runs, with and
+   without profiling, are declared; native timing remains pending.
    Separate initial loading from stand-up processing and steady-state walking.
    Fix a measured bottleneck, then repeat the matched run. This task comes
    before another large recovery cohort; useful recovery is not its prerequisite.

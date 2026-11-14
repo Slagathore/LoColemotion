@@ -268,7 +268,12 @@ This is a retained diagnostic, not causal isolation or a recovery result.
 The next recovery family must account for coupled whole-body contact and
 measured trajectory progress. Do not repeat the unchanged negative grid.
 The next task is the bounded matched Studio performance profile before
-another large recovery cohort; recovery success is not its gate.
+another large recovery cohort; recovery success is not its gate. The
+[walking-stage profiler](../sdk/explorer/studio/walking_performance_component_v1.json)
+passes the complete zero-world route gate and three timing controls. It
+separates the walking instance's sampler, controller, motor application and
+readbacks. Two fresh fifteen-second baseline worlds are declared, with and
+without profiling; no new timing or speed improvement is established yet.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

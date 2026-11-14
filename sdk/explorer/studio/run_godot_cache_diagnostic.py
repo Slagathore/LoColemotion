@@ -79,6 +79,8 @@ def execute(args,source,folder,owner,cfg):
             dict(EXPLORER_TEST_CORE=cfg['core'],EXPLORER_TEST_OUTPUT=str(folder)),90)
         if args.live_walking:
             invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_live_godot.py')],folder/'live-audit-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
+        if args.bridge_profile and args.live_walking and not (getattr(args,'epoch_boundary_probe',False) or getattr(args,'live_handoff',False)):
+            invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_walking_profile.py')],folder/'walking-profile-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
         project=owner.prepare_recovery(folder,'godot_jolt');receipt['wrapped_predicates']=materialize(project)
         if args.bridge_profile:
             from materialize_godot_bridge_profile import instrument
@@ -149,6 +151,10 @@ def execute(args,source,folder,owner,cfg):
                         coverage=['signed current-step actuator work','rotation-aware disjoint solver exchange','measured staging','explicit zero-external and zero-passive profile','fresh five-channel accumulation','portable energy evaluation'],
                         not_covered=['native passive motor-disable interval','fall detection','recovery commands','resumed walking','recovery benefit','release qualification'])
                     receipt['declaration']['telemetry_profile']+=' Full motor sources, damping/CCD/motor readbacks, solver telemetry, energy increments and exact portable evaluation calls are additionally retained.'
+        if args.bridge_profile and args.live_walking and not (getattr(args,'epoch_boundary_probe',False) or getattr(args,'live_handoff',False)):
+            from materialize_godot_bridge_profile import instrument_walking
+            receipt['walking_profile_stages']=instrument_walking(project)
+            receipt['declaration']['telemetry_profile']+=' Four walking control-stage wall timers; original calls and outputs retained. Preflight and first-command handoff are excluded from stage totals.'
         # Test the generic exact-key cache in a minimal zero-world project.
         pure=folder/'cache-pure';pure.mkdir()
         for name in ['immutable_context_cache.gd','test_immutable_context_cache.gd']:shutil.copy2(SDK/'explorer/studio'/name,pure/name)
@@ -199,6 +205,9 @@ def execute(args,source,folder,owner,cfg):
             try:receipt['physical']=owner.stream_run('godot_jolt',folder/'physical',False,dict(phase=74),project)
             finally:timeout.cancel()
             if receipt['physical']['last_frame']!=receipt['declaration']['maximum_outer_steps'] or receipt['physical']['completed']['ok'] is not True:raise RuntimeError('Native diagnostic incomplete')
+            if 'walking_profile_stages' in receipt:
+                from materialize_godot_bridge_profile import validate_walking_profile
+                receipt['walking_profile']=validate_walking_profile(receipt['physical']['completed']['summary'],args.walking_steps)
             if getattr(args,'epoch_boundary_probe',False):
                 receipt['epoch_independent_audit']=audit_rows(epoch_core,json.loads((folder/'physical/live-recovery-epoch.json').read_text()))
             if getattr(args,'energy_epoch_probe',False):

@@ -189,6 +189,9 @@ The next recovery search must model coupled whole-body contact and rank
 observed trajectory progress. Do not repeat the unchanged foot-only grid.
 Complete the bounded matched Studio profile first, then return to broad
 factored search and fresh full-capture confirmation of useful diverse leads.
+The [walking profiler component](../sdk/explorer/studio/walking_performance_component_v1.json)
+now passes the full zero-world gate and three timing controls. Its two fresh
+fifteen-second baselines are declared but unrun; performance remains open.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 
