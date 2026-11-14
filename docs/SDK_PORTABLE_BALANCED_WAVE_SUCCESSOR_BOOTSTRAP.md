@@ -154,10 +154,12 @@ at source 8b224a91 passes 304 controls and opens 24 worlds. Twelve complete;
 twelve stop at interval 203 on numerical force-cone construction. All 6,756
 recorded decisions and 33,780 samples replay, with no complete route verdict.
 Six derived scalar cases reproduce cancellation; the failed prepared input
-is unavailable. A stable basis passes the unchanged constraints on those cases.
-Preserve v1, implement a numerical successor and require a fresh full route
-before the unrun 240-world search. Row-space forces remain hypotheses. Keep
-five-degree gain, path screening and fresh full-capture varied-start confirmation.
+is unavailable. The [v2 numerical component](../sdk/discovery/creature_torque_map_component_v2.json)
+passes all 312 controls, including eight new stable-basis and retention controls.
+It fixes the six scalar cases while preserving the unchanged constraints and
+byte-identical v1 replay. Require a fresh 24-world full route before the unrun
+240-world search. Row-space forces remain hypotheses. Keep five-degree gain,
+path screening and fresh full-capture varied-start confirmation.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

@@ -237,9 +237,11 @@ at source 8b224a91 follows all 304 controls. Twelve worlds complete three second
 twelve stop at interval 203 on force-cone construction. All 6,756 retained
 decisions and 33,780 samples replay; the incomplete route remains failed.
 Six derived scalar cases expose cancellation, but the failed prepared input
-was not written. A stable basis satisfies the same checks on those cases.
-Declare a numerical successor, preserve v1 and every constraint, then require
-a fresh full route before the unrun 240-world broad comparison. Row-space
+was not written. The [numerical successor](../sdk/discovery/creature_torque_map_component_v2.json)
+passes 312 zero-world controls and fixes all six witnesses with a stable basis.
+The v1 audits remain byte-identical, and failed prepared-input retention is
+tested through the shared worker. Preserve every constraint; require a fresh
+24-world full route before the unrun 240-world broad comparison. Row-space
 forces remain hypotheses. Keep five-degree gain, path screening and confirmation.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.

@@ -21,11 +21,20 @@ RECIPE = dict(schema_version="locolemotion_torque_map_search_v1", seed=1061141,
     pose_scores=["visible_arm","bounded_moment"], normalizations=["moment","load"],
     contact_sets=["primary","all"], assignment="omit_complementary_pair_by_body_modulo_four",
     sharing_reference_rule="highest_exposed_reference_gain_per_body_then_lowest_index")
+RECIPE_V2 = dict(RECIPE, schema_version="locolemotion_torque_map_search_v2")
+V2_SOURCES = {
+    "creature_torque_map_native_failure_v1.json":"cc988e71fe8c49ba4b0b96d0c8154efcc57c90c4fbbb2c2417a08e081d25759c",
+    "creature_torque_map_numerical_witnesses_v1.json":"0559cfa995bd3d6bf50de43118431668554d6ed5accec82fef0ca146e4d37c40"}
 PATH_SCREEN = copy.deepcopy(parent.PATH_SCREEN)
 
 
-def recipes():
-    return [dict(controller.DEFAULT_POLICY, pose_score=s, normalization=n, contact_set=c)
+def stable(c):
+    return c.get("torque_map_search", {}).get("schema_version") == RECIPE_V2["schema_version"]
+
+
+def recipes(*, stable_basis=False):
+    return [dict(controller.STABLE_POLICY if stable_basis else controller.DEFAULT_POLICY,
+                 pose_score=s, normalization=n, contact_set=c)
             for s,n,c in itertools.product(RECIPE["pose_scores"], RECIPE["normalizations"], RECIPE["contact_sets"])]
 
 
@@ -49,7 +58,7 @@ def sharing_references():
     return result
 
 
-def population(*, route=False):
+def population(*, route=False, stable_basis=False):
     old=parent.spec();old_refs=parent.reference_indices();sharing=sharing_references()
     bodies=RECIPE["route_body_indices"] if route else list(range(24))
     refs=sorted({old_refs[b] for b in bodies});failed=sorted({sharing[b]["candidate_index"] for b in bodies})
@@ -59,7 +68,7 @@ def population(*, route=False):
     offset=len(profiles);indices={pair:offset+i for i,pair in enumerate(pairs)}
     for ref,index in pairs:
         p=copy.deepcopy(old["profiles"][ref])
-        p.update(id=f"cone{index}_{p['id']}",torque_map=recipes()[index]);profiles.append(moment.profile(p))
+        p.update(id=f"cone{index}_{p['id']}",torque_map=recipes(stable_basis=stable_basis)[index]);profiles.append(moment.profile(p))
     references=[2+refs.index(old_refs[b]) for b in bodies]
     spec=dict(schema_version=righting.ASSIGNED_SCHEMA,descriptors=[old["descriptors"][b] for b in bodies],
         profiles=profiles,conditions=old["conditions"],starts=old["starts"],
@@ -71,8 +80,9 @@ def population(*, route=False):
 
 def source_dependencies(c):
     if "torque_map_search" not in c:return []
+    extra = [*V2_SOURCES, "creature_torque_map_v2.json", "creature_torque_map_route_v2.json"] if stable(c) else []
     return list(dict.fromkeys(parent.source_dependencies({"support_sharing_search":parent.RECIPE})
-        +[ROOT/"sdk/discovery"/name for name in SOURCES]
+        +[ROOT/"sdk/discovery"/name for name in [*SOURCES, *extra]]
         +[ROOT/"sdk/discovery"/name for name in ("creature_torque_map_v1.json","creature_torque_map_route_v1.json")]))
 
 
@@ -80,10 +90,11 @@ def validate(c):
     opted=any("torque_map" in p for p in c.get("righting_spec",{}).get("profiles",[]))
     require(not opted or "torque_map_search" in c,"Torque-map requires declared search")
     if "torque_map_search" not in c:return
-    for name,digest in SOURCES.items():
+    sources = dict(SOURCES, **V2_SOURCES) if stable(c) else SOURCES
+    for name,digest in sources.items():
         require(hashlib.sha256((ROOT/"sdk/discovery"/name).read_bytes()).hexdigest()==digest,"Torque-map predecessor binding")
-    route=c["mode"]=="route_ghost";spec,refs=population(route=route)
-    require(c["mode"] in ("route_ghost","development_discovery") and c["torque_map_search"]==RECIPE
+    route=c["mode"]=="route_ghost";spec,refs=population(route=route, stable_basis=stable(c))
+    require(c["mode"] in ("route_ghost","development_discovery") and c["torque_map_search"]==(RECIPE_V2 if stable(c) else RECIPE)
         and c["righting_spec"]==spec and c["trajectory_reference_by_body"]==refs
         and all(type(x) is int for x in c["trajectory_reference_by_body"])
         and c["reference_selection"]==parent.parent.parent.references()
@@ -94,11 +105,14 @@ def validate(c):
         and not any(k in c for k in ("support_sharing_search","support_exchange_search","moment_handoff_search",
             "body_moment_search","trajectory_proposal","trajectory_retiming","joint_braking_search",
             "contact_reach_search","torso_target_search")),"Torque-map population, references, bounds or scope")
+    if stable(c):
+        require(c["predecessor"] == dict(path="sdk/discovery/creature_torque_map_native_failure_v1.json",
+            sha256=V2_SOURCES["creature_torque_map_native_failure_v1.json"]), "Torque-map numerical predecessor")
 
 
 def verify_route(folder,receipt):
     c=receipt["contract"]
-    require(c["mode"]=="route_ghost" and c["torque_map_search"]==RECIPE
+    require(c["mode"]=="route_ghost" and c["torque_map_search"]==(RECIPE_V2 if stable(c) else RECIPE)
         and receipt["audit"]["capture"]["controller_replay_verified"]
         and receipt["audit"]["capture"]["within_run_projection_verified"],"Torque-map full route required")
     expected={m["cell_id"] for m in c["righting_metadata"]

@@ -58,7 +58,7 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_moment_handoff.py", "creature_moment_handoff_search.py", "test_creature_moment_handoff.py",
                  "creature_support_exchange.py", "creature_support_exchange_search.py", "test_creature_support_exchange.py",
                  "creature_support_sharing.py", "creature_support_sharing_bounds.py", "creature_support_sharing_search.py", "test_creature_support_sharing.py",
-                 "creature_torque_map.py", "creature_torque_map_search.py", "test_creature_torque_map.py",
+                 "creature_torque_map.py", "creature_torque_map_search.py", "test_creature_torque_map.py", "test_creature_torque_map_v2.py",
                  "creature_contact_moment.py", "test_creature_contact_moment.py",
                  "creature_righting_geometry.py", "test_creature_righting_geometry.py",
                  "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py"]
@@ -109,7 +109,8 @@ def gates(c):
             + ([("creature-moment-handoff", "test_creature_moment_handoff", 14)] if "moment_handoff_search" in c else [])
             + ([("creature-support-exchange", "test_creature_support_exchange", 20)] if any(k in c for k in ("support_exchange_search", "support_sharing_search", "torque_map_search")) else [])
             + ([("creature-support-sharing", "test_creature_support_sharing", 24)] if any(k in c for k in ("support_sharing_search", "torque_map_search")) else [])
-            + ([("creature-torque-map", "test_creature_torque_map", 26)] if "torque_map_search" in c else []))
+            + ([("creature-torque-map", "test_creature_torque_map", 26)] if "torque_map_search" in c else [])
+            + ([("creature-torque-map-v2", "test_creature_torque_map_v2", 8)] if torque_search.stable(c) else []))
 
 
 def sequence_enabled(c):
@@ -342,6 +343,18 @@ def run(folder, permit, c, contract_path, core_path):
     return result
 
 
+def prepared_step(batch, observations, folder, outer, **prepared):
+    """Keep the exact failed planning input without applying a partial batch."""
+    try:
+        return batch.step(observations)
+    except BaseException as exc:
+        write_new(folder / "failed-prepared-observations.json", dict(
+            schema_version="locolemotion_failed_prepared_observations_v1",
+            outer_step=outer, error=type(exc).__name__+": "+str(exc),
+            observations=observations, **prepared))
+        raise
+
+
 def run_batch(folder, c, core_path, *, cache=None):
     from contained_stage_owner_v2 import jobs
     require(jobs.current_in_job(), "Creature batch requires job containment")
@@ -467,7 +480,9 @@ def run_batch(folder, c, core_path, *, cache=None):
                         observations, copies, native = observe(wd, views, robots)
                         timing["observation_readback_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
-                    rows = batch.step(observations)
+                    rows = prepared_step(batch, observations, folder, outer,
+                        ledger_scope=c["ledger_scope"], native_observations=native,
+                        contact_compatibility_copies=copies, readback_journal=journal)
                     timing["controller_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
                     for index, row in enumerate(rows):
