@@ -263,3 +263,188 @@ def route_receipt(path,c,source_commit,bindings,evidence_root):
     return dict(archive_relative_path=path.parent.relative_to(evidence_root).as_posix(),
         receipt_sha256=hashlib.sha256(raw).hexdigest(),source_commit=source_commit,
         artifacts_verified=len(archive.verified),route_worlds=10,coverage_complete=True,recovery_benefit_established=False)
+
+
+class JointLimitTrace:
+    """Join command, native motion and one-step forecast at the first crossing.
+
+    This adds a retained physical observable, not a new acceptance criterion.
+    Held action patterns never turn an old one-step prediction into a forecast
+    for the current frame. Native outcomes remain those of the existing reader.
+    """
+    def __init__(self, creature, binding, cell, outer_steps):
+        from collections import deque
+        self.joints = creature['compiled']['morphology']['morphology_spec']['joints']
+        self.binding, self.cell, self.outer_steps = binding, cell, outer_steps
+        self.distal = {creature['spec']['geom_names'].index(s['body_id']+'_geom')
+                       for s in creature['compiled']['morphology']['morphology_spec']['contact_sites']}
+        require(len(self.joints)==8, 'Joint diagnosis requires eight ordered joints')
+        self.controls, self.samples, self.violations = 0, 0, 0
+        self.guard_commands, self.outward_beyond_bound = 0, 0
+        self.maximum_excess = [0.]*8
+        self.joint_violations, self.runs, self.longest_runs = [0]*8, [0]*8, [0]*8
+        self.first = self.current = self.previous_native = self.last_selection = None
+        self.history = deque(maxlen=3)
+        self.prediction_count, self.prediction_error_sum, self.prediction_error_max = 0, 0., 0.
+
+    def control(self, row):
+        from creature_trajectory_diagnosis import f32
+        require(self.controls<self.outer_steps and self.samples==5*self.controls and row['outer_step']==self.controls
+                and row['cell']==self.cell and row['binding']==self.binding,
+                'Joint diagnosis crossed control or incomplete interval')
+        prepared = row['native_observation']
+        observed = row['request']['state']['ordered_joint_observations']
+        require(prepared['sampling_stage']=='prepared_before_control'
+                and [v['position_rad'] for v in observed]==prepared['qpos'][7:]
+                and [v['velocity_rad_s'] for v in observed]==prepared['qvel'][6:],
+                'Joint diagnosis prepared state join')
+        if self.previous_native is not None:
+            require(prepared['qpos'][7:]==self.previous_native['qpos'][7:]
+                    and prepared['qvel'][6:]==self.previous_native['qvel'][6:],
+                    'Joint diagnosis prepared state continuity')
+        commands = row['resolution']['ordered_commands']
+        require([v['joint_id'] for v in commands]==[j['joint_id'] for j in self.joints]
+                and len(row['native_targets'])==8
+                and all(math.isfinite(v) for v in prepared['qpos']+prepared['qvel']+row['native_targets'])
+                and [f32(v['canonical_velocity_rad_s']) for v in commands]==[f32(v) for v in row['native_targets']],
+                'Joint diagnosis command order or values')
+        self.guard_commands += sum(v['joint_guard_applied'] for v in commands)
+        self.outward_beyond_bound += sum((q>=j['upper_limit_rad'] and u>0) or
+            (q<=j['lower_limit_rad'] and u<0) for q,j,u in zip(prepared['qpos'][7:],self.joints,row['native_targets'],strict=True))
+        decision = row['resolution'].get('response_search')
+        if decision and decision['selection_reason']=='replanned':
+            selected = next(v for v in decision['predictions'] if v['action_index']==decision['applied_action'])
+            require(len(decision['predictions'])==9 and {v['action_index'] for v in decision['predictions']}==set(range(9))
+                    and all(math.isfinite(v) for v in selected['velocity']+[selected['score']])
+                    and selected['converged'] and selected['native_targets']==[f32(v) for v in row['native_targets']]
+                    and len(selected['velocity'])==14, 'Joint diagnosis selected prediction binding')
+            self.last_selection = dict(outer_step=row['outer_step'],predicted_native_step=5*row['outer_step']+1,
+                action_index=decision['applied_action'],prepared_joint_positions_rad=prepared['qpos'][7:],
+                predicted_joint_velocities_rad_s=selected['velocity'][6:],score=selected['score'],
+                predicted_native_targets=selected['native_targets'])
+        self.current = row
+        self.history.append(dict(outer_step=row['outer_step'],prepared_joint_positions_rad=prepared['qpos'][7:],
+            prepared_joint_velocities_rad_s=prepared['qvel'][6:],native_targets=row['native_targets'],
+            joint_guards=[v['joint_guard_applied'] for v in commands],
+            selection_reason=None if decision is None else decision['selection_reason'],
+            action_index=None if decision is None else decision['applied_action']))
+        self.controls += 1
+
+    def native(self, row):
+        from creature_trajectory_diagnosis import f32
+        require(self.current is not None and row['cell']==self.cell and row['step']==self.samples+1
+                and (row['step']-1)//5==self.current['outer_step'], 'Joint diagnosis native order')
+        before = self.current['native_observation'] if self.samples%5==0 else self.previous_native
+        require(row['before_qpos'][7:]==before['qpos'][7:] and row['before_qvel'][6:]==before['qvel'][6:]
+                and row['ctrl']==[f32(v) for v in self.current['native_targets']]
+                and len(row['qpos'])==15 and len(row['qvel'])==14 and len(row['actuator_force_nm'])==8
+                and all(math.isfinite(v) for v in row['qpos']+row['qvel']+row['actuator_force_nm']),
+                'Joint diagnosis native state or motor join')
+        excess = [max(j['lower_limit_rad']-q,q-j['upper_limit_rad'],0.)
+                  for j,q in zip(self.joints,row['qpos'][7:],strict=True)]
+        for i, value in enumerate(excess):
+            self.maximum_excess[i] = max(self.maximum_excess[i],value)
+            self.joint_violations[i] += int(value>0)
+            self.runs[i] = self.runs[i]+1 if value>0 else 0
+            self.longest_runs[i] = max(self.longest_runs[i],self.runs[i])
+        self.violations += int(any(excess))
+        if self.last_selection and row['step']==self.last_selection['predicted_native_step']:
+            errors = [abs(p-v) for p,v in zip(self.last_selection['predicted_joint_velocities_rad_s'],row['qvel'][6:],strict=True)]
+            self.prediction_count += 1;self.prediction_error_sum += sum(errors)/8
+            self.prediction_error_max = max(self.prediction_error_max,max(errors))
+            self.last_selection.update(observed_next_joint_velocities_rad_s=row['qvel'][6:],
+                maximum_one_step_joint_velocity_error_rad_s=max(errors))
+        if any(excess) and self.first is None:
+            prepared = self.current['native_observation']
+            crossed = []
+            for i, value in enumerate(excess):
+                if not value:continue
+                joint=self.joints[i];q=row['qpos'][7+i];v=row['qvel'][6+i]
+                direction=1 if q>joint['upper_limit_rad'] else -1
+                bound=joint['upper_limit_rad' if direction>0 else 'lower_limit_rad']
+                distance=(bound-prepared['qpos'][7+i])*direction
+                speed=prepared['qvel'][6+i]*direction;force=row['actuator_force_nm'][i]
+                command=self.current['resolution']['ordered_commands'][i]
+                crossed.append(dict(joint_index=i,joint_id=joint['joint_id'],bound_rad=bound,direction=direction,
+                    prepared_position_rad=prepared['qpos'][7+i],prepared_velocity_rad_s=prepared['qvel'][6+i],
+                    before_position_rad=row['before_qpos'][7+i],before_velocity_rad_s=row['before_qvel'][6+i],
+                    position_rad=q,velocity_rad_s=v,excess_rad=value,prepared_distance_to_bound_rad=distance,
+                    required_constant_deceleration_rad_s2=(max(speed,0.)**2/(2*distance) if distance>0 else None),
+                    native_command_velocity_rad_s=row['ctrl'][i],command_points_outward=row['ctrl'][i]*direction>0,
+                    velocity_points_outward=v*direction>0,joint_guard_applied=command['joint_guard_applied'],
+                    actuator_force_nm=force,actuator_opposes_motion=force*v<0,force_at_cap=row['on_force_cap'][i]))
+            contacts=row['contacts']
+            self.first=dict(native_step=row['step'],outer_step=self.current['outer_step'],substep=(row['step']-1)%5,
+                nominal_time_s=row['step']/600.,native_time_s=row['time_s'],joints=crossed,
+                torso_contact=any(set(h['geom'])=={0,1} for h in contacts),
+                distal_contact=any(0 in h['geom'] and any(g in self.distal for g in h['geom']) for h in contacts),
+                contact_geoms=[h['geom'] for h in contacts],recent_controls=copy.deepcopy(list(self.history)),
+                last_selection=copy.deepcopy(self.last_selection),
+                selection_age_intervals=None if self.last_selection is None else self.current['outer_step']-self.last_selection['outer_step'])
+        self.samples += 1
+        self.previous_native = row
+
+    def finish(self, expected):
+        require(self.controls==self.outer_steps and self.samples==5*self.outer_steps
+                and self.violations==expected['joint_limit_violation_steps'], 'Joint diagnosis population or retained count')
+        return dict(binding=self.binding,controller_rows=self.controls,native_samples=self.samples,
+            joint_limit_violation_samples=self.violations,maximum_excess_rad=max(self.maximum_excess),
+            joint_violation_samples=self.joint_violations,joint_maximum_excess_rad=self.maximum_excess,
+            joint_longest_violation_seconds=[v/600. for v in self.longest_runs],joint_guard_commands=self.guard_commands,
+            outward_commands_at_or_beyond_bound=self.outward_beyond_bound,first_crossing=self.first,
+            selected_one_step_predictions_compared=self.prediction_count,
+            mean_selected_joint_velocity_error_rad_s=self.prediction_error_sum/self.prediction_count if self.prediction_count else None,
+            maximum_selected_joint_velocity_error_rad_s=self.prediction_error_max)
+
+
+def diagnose_limits(folder, receipt_sha256):
+    from creature_body_moment_diagnosis import bound_archive
+    archive, receipt = bound_archive(Path(folder),receipt_sha256)
+    c=receipt['contract'];audit=receipt['audit']
+    require(c['capture_mode']=='full' and 'response_search' in c and audit['ok']
+            and audit['controller_rows_replayed']==len(c['cells'])*c['outer_steps']
+            and audit['native_rows_verified']==len(c['cells'])*c['outer_steps']*5
+            and audit['reader_world_build_count']==0, 'Joint diagnosis needs complete full response capture')
+    outcomes=[None]*len(c['cells'])
+    for group in receipt['worker']['groups']:
+        prefix='native/'+group['batch_id'];indices=group['cell_indices']
+        traces=[JointLimitTrace(archive.document(prefix+f'/cell_{local}/creature.json'),
+            receipt['preflight']['bindings'][index],local,c['outer_steps']) for local,index in enumerate(indices)]
+        controls=iter(archive.lines(prefix+'/controller.jsonl'));native=iter(archive.lines(prefix+'/trace.jsonl'))
+        for outer in range(c['outer_steps']):
+            for trace in traces:trace.control(json.loads(next(controls)))
+            for _ in range(5):
+                for trace in traces:trace.native(json.loads(next(native)))
+        require(next(controls,None) is None and next(native,None) is None,'Joint diagnosis extra retained rows')
+        for index,trace in zip(indices,traces,strict=True):
+            outcomes[index]=dict(c['righting_metadata'][index],**trace.finish(audit['metrics'][index]))
+        print(json.dumps(dict(batch=group['batch_id'],worlds_read=sum(v is not None for v in outcomes))),flush=True)
+    require(all(v is not None for v in outcomes),'Joint diagnosis missing episode')
+    return dict(schema_version='locolemotion_response_joint_limit_diagnosis_v1',
+        ledger_scope=dict(subsystem='discovery',engine_scope='mujoco_warp',authority_mode='retained_motion_diagnostic',question_class='development'),
+        ok=True,source_commit=receipt['source_commit'],source_receipt_sha256=receipt_sha256,
+        input_files=list(archive.verified.values()),worlds_read=len(outcomes),
+        controller_rows=sum(v['controller_rows'] for v in outcomes),native_samples=sum(v['native_samples'] for v in outcomes),
+        outcomes=outcomes,world_build_count=0,solver_steps=0,eligibility_changed=False,full_controller_replay=False,
+        causal_intervention=False,physical_acceptance_authority=False,training_data_authority=False,release_authority=False,
+        scope='Retained prepared-command/native-sample joins, first crossings, excursions, duration and correctly timed selected one-step forecasts. Required constant deceleration is a descriptive kinematic calculation, not an actuator capability or a stopping guarantee.')
+
+
+if __name__=='__main__':
+    import argparse
+    from contextlib import ExitStack
+    from unittest.mock import patch
+    import mujoco
+    parser=argparse.ArgumentParser(description='Diagnose retained response-search joint limits without opening worlds.')
+    parser.add_argument('--archive',type=Path,required=True)
+    parser.add_argument('--receipt-sha256',required=True)
+    parser.add_argument('--output',type=Path,required=True)
+    args=parser.parse_args()
+    require(not args.output.exists(),'Joint diagnosis output already exists')
+    with ExitStack() as traps:
+        for name in ('MjModel','MjData','mj_step','mj_step1','mj_step2','mj_forward'):
+            traps.enter_context(patch.object(mujoco,name,side_effect=AssertionError('Physics in retained joint diagnosis')))
+        result=diagnose_limits(args.archive,args.receipt_sha256)
+    with args.output.open('x',encoding='utf-8',newline='\n') as stream:
+        json.dump(result,stream,indent=2,allow_nan=False);stream.write('\n')
+    print(json.dumps(dict(ok=True,worlds_read=result['worlds_read'],world_build_count=0,output=str(args.output))))

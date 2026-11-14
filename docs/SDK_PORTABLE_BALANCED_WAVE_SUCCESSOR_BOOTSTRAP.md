@@ -69,13 +69,32 @@ versus 15.710 for references; these gains are disqualified and remain diagnostic
 The native worker takes 3,252.052 seconds with full capture. No real-time,
 recovery, learning, held-out or adoption authority follows.
 
-Next, read the retained first joint crossings, their magnitude and duration,
-and the associated commands, measured velocity, action guard, contacts and
-predictions against the fresh references. The command guard bounds requested
-velocity by remaining travel but does not use measured stopping distance; its
-causal role remains unproved. Use the diagnosis to declare a distinct broad
-constraint-aware action or trajectory successor. Preserve the failed ordering
-screen, every raw gain and every joint failure. Do not repeat this factor grid.
+The [retained joint-limit diagnosis](../sdk/discovery/creature_response_joint_limit_result_v1.json)
+now reads all 240 worlds after 22 controls, with an independent scalar recount
+of all 345,600 decisions and 1,728,000 native samples. It opens no new worlds.
+All 168 model runs first cross at 0.385-1.495 seconds. Their maximum overshoots
+range from .005989 to .022174 rad; each episode spends 2.22-5.952 seconds with
+at least one joint outside its limit. All 72 references remain within bounds.
+
+The 168 first events involve 230 joints: all still receive an outward target,
+229 have a reduced target from the guard, and 223 have opposing motor force,
+including 148 braking at their force caps. No command points outward when
+the observed joint is already at or beyond its bound. The boundary guard is
+active, but limiting a requested speed by remaining travel does not establish
+that measured motion can stop. Four first events coincide with a fresh model
+step; all four selected velocity projections already cross the bound. The
+other events are not at the exact step of the retained forecast and cannot
+be assigned its one-step accuracy. Neither observation proves a remedy.
+
+The distinct successor should compare measured-velocity braking reserve and
+joint-feasibility rejection before rotation scoring across actual bodies,
+with fresh feasibility checks during held patterns and bounded braking
+withdrawal. Compare feasible-action or trajectory alternatives broadly with
+fresh controls and unchanged eligibility. Reuse the existing owner, capture
+and readers; finish synthetic checks and a native route from a clean pushed
+freeze before discovery. The old fixed-envelope braking result remains
+negative for recovery. Preserve the failed ordering screen and disqualified
+gains; do not repeat the same direction/rate/cadence grid.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
