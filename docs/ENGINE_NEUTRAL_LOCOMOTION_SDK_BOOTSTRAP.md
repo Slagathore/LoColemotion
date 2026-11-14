@@ -216,10 +216,17 @@ all four entries and affects 29 of 68 transfer joint commands later. None of
 observed force remain distinct. All four entries remove the old force request
 and request neutral old-joint positions. These observations do not isolate
 contact-loss causality. The earlier command diagnosis remains byte-identical.
-Next rank replacement poses by static torque bounds and compare gradual
-support sharing broadly, with fresh references, unchanged limits and
-full-capture confirmation. No recovery, learned adaptation or Studio handoff
-is qualified.
+The [support-sharing component](../sdk/discovery/creature_support_sharing_component_v1.json)
+passes 278 safety controls plus 17 diagnostic controls without new worlds.
+It ranks targets by bounded static torque requests, keeps old support during
+loading, and stages unloading using measured contact and prepared motor
+response. Release requires a committed zero old-support request. Historical
+full replay and both command diagnoses remain byte-identical; mechanics
+component bytes remain unchanged. Twelve fresh full-capture route worlds must
+cover seeking, acquisition, loading, positive unloading and fallback before
+192 twelve-second worlds across 24 bodies. Each body receives four variants
+and four fresh comparators, including an exposed failed exchange. No native
+benefit, recovery, learned adaptation or Studio handoff is qualified.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

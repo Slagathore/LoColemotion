@@ -91,7 +91,7 @@ def source_dependencies(c):
 
 def validate(c):
     opted=any("support_exchange" in p for p in c.get("righting_spec",{}).get("profiles",[]))
-    require(not opted or "support_exchange_search" in c,"Exchange requires declared search")
+    require(not opted or any(k in c for k in ("support_exchange_search","support_sharing_search")),"Exchange requires declared search")
     if "support_exchange_search" not in c:return
     for name,digest in SOURCES.items():
         require(hashlib.sha256((ROOT/"sdk/discovery"/name).read_bytes()).hexdigest()==digest,

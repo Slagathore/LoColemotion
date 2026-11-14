@@ -75,7 +75,7 @@ def source_dependencies(c):
 
 def validate(c):
     opted=any(p["mode"]==moment.MODE for p in c.get("righting_spec",{}).get("profiles",[]))
-    require(not opted or any(k in c for k in ("body_moment_search","moment_handoff_search","support_exchange_search")),"Moment requires declared search gate")
+    require(not opted or any(k in c for k in ("body_moment_search","moment_handoff_search","support_exchange_search","support_sharing_search")),"Moment requires declared search gate")
     if "body_moment_search" not in c:return
     require(c["body_moment_search"]==RECIPE and c["mode"] in ("route_ghost","development_discovery")
             and c["trajectory_screen"]==trajectory.POLICY

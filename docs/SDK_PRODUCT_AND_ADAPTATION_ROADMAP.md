@@ -26,19 +26,19 @@ The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Test achievable support sharing across many bodies.**
-   The retained diagnosis separates force requests, command limits, joint
-   protection and native actuator force. Replacement requests exceed hard
-   force caps before protection; none of the 340 native joint samples reaches
-   a cap. Static request mismatch is not measured ground reaction or an
-   isolated cause of contact loss. The earlier diagnosis remains byte-identical.
-   Rank replacement poses using their static torque-request bounds, retain
-   original support while introducing the new force request, and stage
-   unloading under measured contact and existing command protection.
-   Compare diverse target and sharing variants broadly against fresh selected
-   references and failed exchanges. Keep nominal motors, joint bounds,
-   five-degree gain, complete route coverage, retained-path screening and
-   fresh full-capture varied-start confirmation. No successor benefit is proved.
+1. **Run the force-bounded support-sharing search.**
+   The [component](../sdk/discovery/creature_support_sharing_component_v1.json)
+   passes 278 safety controls and 17 additional diagnostic controls. Legacy
+   full replay and both command diagnoses remain byte-identical. No new
+   physics has run. Torque-aware target ranking and guarded requests keep
+   old support during loading, then stage unloading under measured contact
+   and prepared motor response; release requires a committed zero old request.
+   From the clean pushed freeze, require all named paths in twelve fresh
+   six-second full-capture route worlds. Only then run 192 twelve-second
+   worlds on 24 bodies: four new variants and four fresh comparators each.
+   Preserve five-degree reference gain, unchanged limits, retained-path
+   screening and fresh full-capture varied-start confirmation. Model requests
+   are not measured ground reaction, and successor benefit is unproved.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

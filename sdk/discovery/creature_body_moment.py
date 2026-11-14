@@ -32,6 +32,14 @@ def finite(v):
 
 
 def profile(value):
+    if type(value) is dict and "support_sharing" in value:
+        from creature_support_sharing import policy
+        require(not any(k in value for k in ("handoff", "support_exchange")), "Sharing policies are distinct")
+        base = profile({k:v for k,v in value.items() if k != "support_sharing"})
+        sharing = policy(value["support_sharing"])
+        require(sharing["target_joint_margin_rad"] >= base["joint_braking"]["margin_rad"],
+                "Sharing target margin must retain joint protection")
+        return dict(base, support_sharing=sharing)
     if type(value) is dict and "support_exchange" in value:
         from creature_support_exchange import policy
         require("handoff" not in value, "Exchange and handoff policies are distinct")
@@ -150,6 +158,9 @@ class Geometry:
 
 def plan(p, geometry, state, rotation, contacts, memory, previous, upright, *, retract=False):
     """Pure proposal; callers atomically commit memory only after the whole batch."""
+    if "support_sharing" in p:
+        from creature_support_sharing import plan as sharing_plan
+        return sharing_plan(p, geometry, state, rotation, contacts, memory, previous, upright)
     if "support_exchange" in p:
         from creature_support_exchange import plan as exchange_plan
         return exchange_plan(p, geometry, state, rotation, contacts, memory, previous, upright)

@@ -129,11 +129,17 @@ transfer requests exceed force caps; only 18-32% of the static request fits
 the instantaneous command envelope at entry. Protection is inactive at entry
 and later affects 29 joint commands; no native transfer joint sample reaches
 a force cap. The old force request is removed immediately in all four events.
-Earlier command-diagnosis bytes remain exact. Compare force-aware pose
-selection and gradual support sharing across many bodies, retaining fresh
-comparators, unchanged motor/joint bounds, path screening and full-capture
-varied-start confirmation. Neither causality nor recovery benefit is proved;
-recovery and the Godot handoff remain unqualified.
+Earlier command-diagnosis bytes remain exact.
+The [support-sharing component](../sdk/discovery/creature_support_sharing_component_v1.json)
+passes 278 safety controls and 17 diagnostic controls. Bounded target scoring
+and guarded static requests retain old support during loading, stage unloading
+under prepared motor response, and require a committed zero old request before
+release. Legacy replay and both diagnoses stay byte-identical; the old mechanics
+component stays unchanged. No new worlds have run. Require twelve full-capture
+route roles before 192 twelve-second worlds across 24 bodies, with four variants
+and four fresh comparators per body. Keep motor/joint bounds, five-degree gain,
+retained-path screening and full-capture varied-start confirmation. Causality,
+native benefit, recovery and the Godot handoff remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

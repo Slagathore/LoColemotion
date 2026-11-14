@@ -73,7 +73,7 @@ def hinge_height_roots(anchor, axis, point_at_zero, height, lower, upper):
                    if lower <= phase+sign*delta+turn*2*math.pi <= upper})
 
 
-def replacement_target(g, state, rotation, axis, support, limb, p):
+def replacement_target(g, state, rotation, axis, support, limb, p, *, score=None):
     """Solve hip heights at nine knee samples; keep other measured joints exact.
 
     The measured posture is never clipped into a pose bank. Endpoint clearance
@@ -121,11 +121,16 @@ def replacement_target(g, state, rotation, axis, support, limb, p):
                 continue
             gravity_arm = float(np.cross(proposed["whole_body_com"]-pivot,[0.,-1.,0.]) @ world_axis)
             distance = float(np.mean(np.abs(candidate[hip:knee+1]-q[hip:knee+1])))
-            score = float(arms[0])-.025*distance+p["support_exchange"]["mass_shift_weight"]*gravity_arm
-            if best is None or score > best["score_m"]:
+            score_m = float(arms[0])-.025*distance+p["support_exchange"]["mass_shift_weight"]*gravity_arm
+            extra = {} if score is None else score(proposed, candidate, foot, float(arms[0]), gravity_arm, distance)
+            if extra is None:
+                continue
+            score_m = extra.get("score_m", score_m)
+            if best is None or score_m > best["score_m"]:
                 best = dict(knee_sample_index=index,limb=limb,joint_targets_rad=candidate[hip:knee+1].tolist(),
                     endpoint_nonadjacent_gap_m=float(gap),predicted_foot_height_m=float(foot[1]),
-                    proposed_moment_arm_m=float(arms[0]),gravity_moment_arm_m=gravity_arm,score_m=score)
+                    proposed_moment_arm_m=float(arms[0]),gravity_moment_arm_m=gravity_arm,score_m=score_m)
+                best.update(extra)
     return best
 
 
