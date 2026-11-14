@@ -209,9 +209,11 @@ failure stays intact, while the corrected reader follows the existing null-clock
 contract and verifies the completed world. The [compiled validator comparison](../sdk/explorer/studio/startup_native_validation_result_v1.json)
 passes its CPU criterion: 1,280 exact replays, 2,424 oracle checks per packet,
 12.45% median warm route reduction and no slower packet (gains 9.05-16.56%).
-A separate 32-replay check preserves the original default. Qualify the helper in
-the full short native route before a fresh matched timing trial. Native startup
-benefit, additional recovery and adaptation remain unproved.
+A separate 32-replay check preserves the original default. Both policies now
+pass the [complete native-route safety gate](../sdk/explorer/studio/startup_native_runtime_component_v1.json).
+The next four fresh ABBA worlds must preserve exact body/controller outputs and
+reduce startup in both pairs by at least 5% on average. Native startup benefit,
+additional recovery and adaptation remain unproved.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

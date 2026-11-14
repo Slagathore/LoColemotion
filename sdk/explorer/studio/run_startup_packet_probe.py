@@ -140,33 +140,7 @@ def profile_functions(project):
         path.write_text(source,encoding="utf-8",newline="\n")
 
 
-def materialize_native_validation(project, library, expected_sha256):
-    """Install an opt-in pure helper beside the unchanged controller image."""
-    library=library.resolve()
-    assert library.is_relative_to(EVIDENCE.resolve()) and sha(library)==expected_sha256
-    destination=project/"sdk/explorer/studio/native_validation"
-    destination.mkdir(exist_ok=False)
-    shutil.copy2(library,destination/"validator.dll")
-    (destination/"validator.gdextension").write_text(
-        '[configuration]\nentry_symbol="gdext_rust_init"\ncompatibility_minimum="4.7"\n'
-        '[libraries]\nwindows.x86_64="res://sdk/explorer/studio/native_validation/validator.dll"\n',
-        encoding="utf-8",newline="\n")
-    collection=project/"sdk/adapters/godot/gdscript/qsdk_r10f_l15_collection_transport_v1.gd"
-    source=collection.read_text(encoding="utf-8-sig")
-    begin=source.index("static func _json_source_v1(")
-    # Rename only the original recursive validator. Its body stays the oracle;
-    # both timing policies enter through the same outer dispatch boundary.
-    source=source[:begin]+source[begin:].replace("_json_source_v1(","_studio_reference_json_source_v1(")
-    source+='''\nstatic var studio_native_validator: Object
-static var studio_native_validation_enabled: bool = false
-
-static func _json_source_v1(value: Variant, depth: int = 0, source_link: bool = false) -> bool:
-\tif studio_native_validation_enabled:
-\t\treturn studio_native_validator.validate_source_v1(value,depth,source_link)
-\treturn _studio_reference_json_source_v1(value,depth,source_link)
-'''
-    collection.write_text(source,encoding="utf-8",newline="\n")
-    shutil.copy2(ROOT/"sdk/explorer/studio/test_native_source_validation.gd",destination.parent/"test_native_source_validation.gd")
+from materialize_native_source_validation import install_image as materialize_native_validation
 
 
 def probe_binding(project, native_validation=False):

@@ -22,6 +22,8 @@ def binding(project):
     paths=[p for p in project.rglob('*') if p.suffix in ['.gd','.json','.gdextension','.dll','.godot'] and '.godot' not in p.relative_to(project).parts]
     paths+=list((SDK/'explorer/studio').glob('*.py'))+list((SDK/'explorer/studio').glob('*.gd'))
     paths+=[SDK/'explorer/showcase_owner.py',SDK/'explorer/showcase_model.py',SDK/'conformance/r10v_windows_job.py']
+    if (project/'sdk/explorer/studio/native_validation/validator.dll').is_file():
+        paths+=[SDK/'adapters/godot_validation'/p for p in ['Cargo.toml','Cargo.lock','src/lib.rs','.gitattributes']]
     return {str(p.resolve()):sha(p) for p in sorted(set(paths))}
 
 
@@ -33,6 +35,9 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--run',action='store_true')
+    parser.add_argument('--native-validator',type=Path,help='Opt-in retained pure validator image for the short native comparison')
+    parser.add_argument('--native-validator-sha256')
+    parser.add_argument('--source-validation-policy',choices=['original','native'],default='original')
     parser.add_argument('--startup-packets',action='store_true',help='Retain selected exact startup inputs for offline CPU replay; short live route only')
     parser.add_argument('--serializer-cache-policy',choices=['lru','clear_all'],default='clear_all',help='Development serializer comparison; the current default remains clear_all')
     parser.add_argument('--bridge-profile',action='store_true',help='Time unchanged native calls and exact JSON stringify in the isolated project')
@@ -43,6 +48,8 @@ def main():
     parser.add_argument('--energy-epoch-probe',action='store_true',help='Add complete measured work and portable energy evaluation to the fresh observation probe')
     parser.add_argument('--live-handoff',action='store_true',help='Check the integrated fall, fresh recovery, and walking restart development route')
     args=parser.parse_args()
+    from materialize_native_source_validation import requested
+    requested(args)
     if args.startup_packets and (not args.live_walking or args.walking_steps!=119 or args.bridge_profile or args.probe_impulses or args.epoch_boundary_probe or args.live_handoff):
         raise ValueError('Startup packet capture requires the unprofiled short live route without other probes')
     if args.live_handoff and (not args.live_walking or args.walking_steps!=1800 or args.epoch_boundary_probe or args.probe_impulses):raise ValueError('Live handoff requires its own 1800-step live route')
@@ -69,6 +76,8 @@ def main():
 def execute(args,source,folder,owner,cfg):
     """Same qualified route for the CLI and the interactive desktop owner."""
     verify_source(source,args.run)
+    from materialize_native_source_validation import requested,materialize as install_validator,validate_summary
+    validator=requested(args)
     create=jobs.api('CreateMutexW',[C.c_void_p,W.BOOL,W.LPCWSTR],W.HANDLE);release=jobs.api('ReleaseMutex',[W.HANDLE])
     handle=jobs.checked(create(None,False,'Global\\SporeSpore.Locomotion.PhysicalConformance.Serial.v1'));acquired=False
     receipt=dict(ledger_scope=dict(subsystem='explorer',engine_scope='godot_jolt',authority_mode='development',question_class='development'),
@@ -83,6 +92,8 @@ def execute(args,source,folder,owner,cfg):
             dict(EXPLORER_TEST_CORE=cfg['core'],EXPLORER_TEST_OUTPUT=str(folder)),90)
         if args.live_walking:
             invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_live_godot.py')],folder/'live-audit-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
+        if validator:
+            invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_native_source_validation.py')],folder/'native-validation-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
         if getattr(args,'startup_packets',False):
             invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_startup_capture.py')],folder/'startup-capture-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
         if args.bridge_profile and args.live_walking and not (getattr(args,'epoch_boundary_probe',False) or getattr(args,'live_handoff',False)):
@@ -173,6 +184,10 @@ def execute(args,source,folder,owner,cfg):
             receipt['declaration']['startup_packet_capture']=capture_startup(project)
             receipt['declaration']['question']='Capture exact pure-route inputs across startup phases for offline optimization. No timing comparison or locomotion benefit claim.'
             receipt['declaration']['telemetry_profile']+=' Add exact inputs and full route outputs at declared startup steps and the first call in each phase; original telemetry remains complete.'
+        if validator:
+            receipt['declaration']['native_source_validation']=install_validator(project,validator['library'],validator['sha256'],validator['policy'])
+            receipt['declaration']['question']='Measure the declared original or compiled pure source validator in an otherwise unchanged short native startup route.'
+            receipt['declaration']['telemetry_profile']+=' Full original capture plus validator backend call counters; no extra controller calls or solver steps.'
         # Test the generic exact-key cache in a minimal zero-world project.
         pure=folder/'cache-pure';pure.mkdir()
         for name in ['immutable_context_cache.gd','test_immutable_context_cache.gd']:shutil.copy2(SDK/'explorer/studio'/name,pure/name)
@@ -185,6 +200,8 @@ def execute(args,source,folder,owner,cfg):
         check=receipt['preflight']['completed']
         if check.get('ok') is not True or check['summary']['world_build_count']!=0 or check['summary']['studio_context_cache_probe']['ok'] is not True:raise RuntimeError('Complete cached-route zero-world gate refused')
         if check['summary']['serializer_cache_controls']['ok'] is not True:raise RuntimeError('Serializer cache controls refused')
+        if validator:
+            receipt['validator_preflight']=validate_summary(check['summary']['studio_source_validation'],validator['policy'],False)
         if args.live_walking and check['summary']['studio_live_walking']['zero_world']['ok'] is not True:raise RuntimeError('Live walking safety gate refused')
         if args.live_walking and check['summary']['studio_live_walking']['command_zero_world']['ok'] is not True:raise RuntimeError('Live impulse safety gate refused')
         if getattr(args,'startup_packets',False) and check['summary']['startup_packet_capture_controls']['ok'] is not True:raise RuntimeError('Startup packet capture safety gate refused')
@@ -225,6 +242,8 @@ def execute(args,source,folder,owner,cfg):
             try:receipt['physical']=owner.stream_run('godot_jolt',folder/'physical',False,dict(phase=74),project)
             finally:timeout.cancel()
             if receipt['physical']['last_frame']!=receipt['declaration']['maximum_outer_steps'] or receipt['physical']['completed']['ok'] is not True:raise RuntimeError('Native diagnostic incomplete')
+            if validator:
+                receipt['validator_execution']=validate_summary(receipt['physical']['completed']['summary']['studio_source_validation'],validator['policy'],True)
             if getattr(args,'startup_packets',False):
                 from audit_live_godot import audit_startup_packets
                 receipt['startup_packet_audit']=audit_startup_packets(folder,receipt)

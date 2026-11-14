@@ -292,9 +292,11 @@ completed stream without another world. The [compiled validator result](../sdk/e
 then verifies 1,280 exact outputs with 2,424 oracle checks per packet. Its median
 warm route reduction is 12.45%, with all ten packets improving 9.05-16.56%;
 the prospective CPU criterion passes. A separate 32-replay check preserves the
-original default. Native startup benefit remains unproved. Next qualify the
-optional helper through the full short native route and run fresh matched timing
-before a default change. No further scalar-loop or cache tuning grid.
+original default. The [native runtime component](../sdk/explorer/studio/startup_native_runtime_component_v1.json)
+passes both complete zero-world gates with 2,424 oracle checks each. Four fresh
+ABBA worlds are prospectively declared: exact body/controller outputs, positive
+reduction in both pairs and at least 5% mean startup reduction. Native benefit
+remains unproved; original stays default pending this comparison.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

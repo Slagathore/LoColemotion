@@ -29,9 +29,11 @@ is the next bounded implementation task.
    now passes: all 1,280 outputs match, 2,424 oracle checks pass per packet,
    and the median warm route reduction is 12.45% (individual gains 9.05-16.56%).
    A separate 32-replay check verifies the original default.
-   Next qualify the helper in the full short native Studio route, then run a
-   prospectively declared fresh matched timing comparison. Native startup benefit
-   remains unproved. Preserve full capture and solver inputs; no cache/scalar grid.
+   Both policies now pass the [complete short-route gate](../sdk/explorer/studio/startup_native_runtime_component_v1.json).
+   Next run four fresh native worlds in original/native/native/original order.
+   Require exact body/controller outputs, both paired startup reductions positive,
+   and a mean reduction of at least 5%. Native benefit remains unproved; keep the
+   original default until measured. Preserve full capture; no cache/scalar grid.
 2. **Search recovery using the whole body's contact response.** The
    [36-world diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
    verifies solved reactions and empty-cone fallback, with no recovery.

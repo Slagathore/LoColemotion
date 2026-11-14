@@ -154,13 +154,17 @@ def audit_completed_native(folder,receipt):
     elapsed=frames[-1]['physics_wall_time_s']-frames[handoff-1]['physics_wall_time_s']
     torso=lambda frame:next(b for b in frame['ordered_bodies'] if b['body_id']=='torso')
     tilts=[math.acos(max(-1,min(1,1-2*(torso(f)['orientation_xyzw']['x']**2+torso(f)['orientation_xyzw']['z']**2)))) for f in live_frames]
+    validation={}
+    if 'native_source_validation' in receipt['declaration']:
+        from materialize_native_source_validation import validate_summary
+        validation['native_source_validation']=validate_summary(summary['studio_source_validation'],receipt['declaration']['native_source_validation']['policy'],True)
     return dict(ok=True,source_commit=receipt['source_commit'],native_frames=len(frames),walking_steps=count,
         walking_simulated_s=count/120,walking_interval_wall_s=elapsed,walking_interval_realtime_factor=(count/120)/elapsed,
         startup_through_handoff_wall_s=frames[handoff-1]['physics_wall_time_s'],total_prefix_wall_s=frames[-1]['physics_wall_time_s'],
         controller_rows=len(controls),impulses=kicks,delta_world_x_m=torso(frames[-1])['position_m']['x']-torso(frames[handoff-1])['position_m']['x'],
         maximum_walking_torso_tilt_rad=max(tilts),final_torso_tilt_rad=tilts[-1],
         physical_acceptance_authority=False,release_authority=False,
-        limits='Bounded development observation. Walking interval includes first-command handoff. No general recovery, real-time guarantee or controlled solver comparison.')
+        limits='Bounded development observation. Walking interval includes first-command handoff. No general recovery, real-time guarantee or controlled solver comparison.',**validation)
 
 
 if __name__=='__main__':
