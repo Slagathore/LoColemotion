@@ -157,9 +157,18 @@ Six derived scalar cases reproduce cancellation; the failed prepared input
 is unavailable. The [v2 numerical component](../sdk/discovery/creature_torque_map_component_v2.json)
 passes all 312 controls, including eight new stable-basis and retention controls.
 It fixes the six scalar cases while preserving the unchanged constraints and
-byte-identical v1 replay. Require a fresh 24-world full route before the unrun
-240-world search. Row-space forces remain hypotheses. Keep five-degree gain,
-path screening and fresh full-capture varied-start confirmation.
+byte-identical v1 replay. The [v2 native closeout](../sdk/discovery/creature_torque_map_native_failure_v2.json)
+at source 17682a15 passes the complete 24-world route after 312 controls. Broad
+search completes 210 worlds, interrupts ten at interval one on zero-friction
+cone classification and leaves twenty unopened. All 126 completed new-controller
+worlds lose to their fresh selected references; there are zero recoveries or
+progress leads and five joint-violation worlds. The complete compact results
+and interrupted prefix reconstruct, but no full cohort verdict is claimed.
+Retained failed observations reproduce the numerical refusal with fresh memory;
+original planning memory is unavailable. A distinct successor must preserve
+v1/v2 and all checks, retain that memory and cover failed body 21. Reconcile
+modeled turning moments with measured contact reactions before another force
+family; do not repeat the unchanged broad grid. Keep fresh confirmation for leads.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

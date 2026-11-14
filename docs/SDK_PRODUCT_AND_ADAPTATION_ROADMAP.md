@@ -21,23 +21,26 @@ and self-righting still has no qualifying controller after 13 cohorts.
 | [Earlier path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
 | [Support-transfer diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json) | 52 controls. On one exposed body, the old foot withdraws and replacement torque has 0.040 Nm mean tracking error, yet a 36-interval transfer loses 0.534 degrees. About 74.4% of its proposed moment comes from force that joint torques cannot identify; ground reaction remains unmeasured |
 | [Torque-map route failure](../sdk/discovery/creature_torque_map_native_failure_v1.json) | 304 controls passed; 24 worlds opened. Twelve completed three seconds; twelve stopped at interval 203 on numerical cone construction. All 6,756 recorded decisions and 33,780 samples replay. Six derived scalar cases reproduce cancellation; broad search remains unrun |
-| [Numerical successor](../sdk/discovery/creature_torque_map_component_v2.json) | 312 zero-world controls; six scalar refusals fixed without relaxing constraints. All retained v1 replay remains byte-identical; failed prepared inputs are now retained. Fresh native route and broad search are unrun |
+| [Torque-map v2 closeout](../sdk/discovery/creature_torque_map_native_failure_v2.json) | 312 controls before each run; all 24 full route worlds pass replay and coverage. Broad search completes 210 worlds, interrupts ten on a zero-friction cone error and leaves twenty unopened. All 126 completed new-controller worlds lose to their fresh selected references; zero recoveries or progress leads, five joint-violation worlds |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Run the broad torque-map comparison with the numerical successor.**
-   The [v2 component](../sdk/discovery/creature_torque_map_component_v2.json)
-   passes all 312 controls and preserves the complete retained v1 replay.
-   Its stable basis fixes the six scalar cases and near-cancellation controls;
-   the shared worker now retains failed prepared inputs. The v1 route remains
-   consumed. Keep the 1e-9 constraints, caps, guards and declared population.
-   From the fresh clean pushed freeze, require all coverage and replay in
-   24 full route worlds before 240 compact worlds on 24 bodies. Keep
-   five-degree fresh-reference gain, retained-path screening and fresh
-   full-capture varied-start confirmation for useful diverse leads.
+1. **Repair empty-cone classification, then test the contact-force model.**
+   The [v2 closeout](../sdk/discovery/creature_torque_map_native_failure_v2.json)
+   preserves the failed attempt and all completed outcomes. A fresh successor
+   must retain failed planning memory and classify empty zero/narrow cones
+   into the existing no-force fallback, preserving v1/v2 and all 1e-9 checks,
+   caps and guards. Require the full gate and a fresh bounded route including
+   failed body 21 from a clean pushed freeze. All 126 completed new-controller
+   worlds underperform; do not repeat the unchanged broad grid. Reconcile
+   modeled turning moments with measured foot and torso contact reactions
+   before another force-model family, then resume broad factored discovery
+   and fresh full-capture confirmation of useful diverse leads. Controller
+   work used 53.6% of measured completed intervals; this identifies profiling
+   work, not a demonstrated throughput improvement.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

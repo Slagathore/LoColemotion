@@ -239,10 +239,18 @@ decisions and 33,780 samples replay; the incomplete route remains failed.
 Six derived scalar cases expose cancellation, but the failed prepared input
 was not written. The [numerical successor](../sdk/discovery/creature_torque_map_component_v2.json)
 passes 312 zero-world controls and fixes all six witnesses with a stable basis.
-The v1 audits remain byte-identical, and failed prepared-input retention is
-tested through the shared worker. Preserve every constraint; require a fresh
-24-world full route before the unrun 240-world broad comparison. Row-space
-forces remain hypotheses. Keep five-degree gain, path screening and confirmation.
+The v1 audits remain byte-identical. The [v2 native closeout](../sdk/discovery/creature_torque_map_native_failure_v2.json)
+at source 17682a15 records 312 controls before each attempt and complete replay
+and coverage in all 24 route worlds. The broad cohort completes 210 worlds;
+ten stop at interval one on empty zero-friction cone classification, and twenty
+never open. All 126 completed new-controller worlds lose to their fresh selected
+references; zero recoveries or progress leads and five joint-violation worlds.
+Compact reconstruction verifies 302,410 decisions and 1,512,050 samples including
+the interrupted prefix; it is not full controller-history replay. Exact failed
+observations are retained, but planning memory is not. Preserve v1/v2 and all
+constraints in a fresh numerical successor, explicitly cover the failed body,
+and reconcile modeled moments with measured contact reactions before another
+force-model family. The unchanged broad grid has no qualifying leads.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 
