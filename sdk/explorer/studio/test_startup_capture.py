@@ -46,7 +46,7 @@ class StartupCaptureControls(unittest.TestCase):
         fixed=[1,30,60,120,180,239,240];rows=[]
         for step in sorted(set(fixed)|{101}):
             phase=calls[step-1]['phase']
-            sources={key:snapshot(value) for key,value in dict(bound_observation={'observation_v3':{'semantic_step':step}},source_memory={'last_semantic_step':step-1,'phase':phase},source_application={'semantic_step':step}).items()}
+            sources={key:snapshot(value) for key,value in dict(bound_observation={'observation_v3':{'semantic_step':step}},source_memory={'last_semantic_step':None if step==1 else step-1,'start_semantic_step':None if step==1 else 1,'total_steps_observed':step-1,'phase':phase},source_application={'semantic_step':step}).items()}
             capture=dict(request=snapshot({'request':step}),response=snapshot({'ok':True}),source_links=sources)
             route=dict(ok=True,step_receipt={'step':step},collection_transport_retention=capture)
             selection=dict(fixed_step=step in fixed,first_phase_call=step in [1,101])
@@ -79,6 +79,15 @@ class StartupCaptureControls(unittest.TestCase):
         packet['sources']['source_memory']=snapshot({'last_semantic_step':400,'phase':'first'})
         path.write_text(json.dumps(packet),encoding='utf-8');row['sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
         with self.assertRaisesRegex(ValueError,'memory clock'):audit_startup_packets(folder,receipt)
+
+    def test_initialized_memory_refuses_invented_prior_history(self):
+        for key,value in [('last_semantic_step',0),('start_semantic_step',1),('total_steps_observed',1)]:
+            folder,receipt=self.fixture();row=receipt['physical']['completed']['summary']['startup_packet_capture']['packets'][0]
+            path=Path(row['path']);packet=json.loads(path.read_bytes())
+            memory=json.loads(packet['sources']['source_memory']['utf8_text']);memory[key]=value
+            packet['sources']['source_memory']=snapshot(memory)
+            path.write_text(json.dumps(packet),encoding='utf-8');row['sha256']=hashlib.sha256(path.read_bytes()).hexdigest()
+            with self.assertRaisesRegex(ValueError,'initial memory clock'):audit_startup_packets(folder,receipt)
 
 
 if __name__=='__main__':unittest.main()

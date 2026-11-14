@@ -59,6 +59,15 @@ def extract():
         expected_step=report["precondition_terminal_receipt"]["recovery_step_receipt"])
 
 
+def read_captured_packet(path,expected_sha256):
+    path=path.resolve()
+    assert path.is_relative_to(EVIDENCE.resolve()) and sha(path)==expected_sha256
+    packet=json.loads(path.read_bytes())
+    assert packet["schema_version"]=="locolemotion_studio_startup_replay_packet_v1" and packet["route_ok"] is True
+    for value in [packet["context"],packet["request"],packet["response"],packet["expected_route"],*packet["sources"].values()]:snapshot(value)
+    return packet
+
+
 def profile_canonicalization(project):
     path=project/"sdk/adapters/godot/gdscript/recovery_runtime.gd"
     source=path.read_text(encoding="utf-8-sig")
@@ -200,10 +209,13 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config",type=Path);parser.add_argument("--output",type=Path)
     parser.add_argument("--audit",type=Path,help="Reopen a completed retained CPU probe without invoking Godot")
+    parser.add_argument("--packet",type=Path,help="A retained native startup packet; requires its recorded digest")
+    parser.add_argument("--packet-sha256",help="Exact digest from the native capture manifest")
     args=parser.parse_args()
     if args.audit:
         print(json.dumps(audit(args.audit)));return 0
     if args.config is None or args.output is None:parser.error("--config and --output are required for a new probe")
+    if bool(args.packet)!=bool(args.packet_sha256):parser.error("--packet and --packet-sha256 must be supplied together")
     git=lambda *a:subprocess.check_output(["git",*a],cwd=ROOT,text=True).strip()
     assert git("rev-parse","--show-toplevel")=="C:/Users/Cole/CodeStuff/games/LoColemotion"
     assert git("remote","get-url","origin")=="https://github.com/Slagathore/LoColemotion.git"
@@ -220,7 +232,10 @@ def main():
     try:
         if jobs.wait(handle,0) not in (0,128):raise RuntimeError("Native operation occupied")
         acquired=True
-        packet=extract();write(folder/"packet.json",packet)
+        packet=read_captured_packet(args.packet,args.packet_sha256) if args.packet else extract()
+        if args.packet:
+            receipt["retained_packet_input"]={"archive_relative_path":args.packet.resolve().relative_to(EVIDENCE.resolve()).as_posix(),"sha256":args.packet_sha256}
+        write(folder/"packet.json",packet)
         receipt["packet_sha256"]=sha(folder/"packet.json")
         owner=Owner(cfg,folder)
         assert owner.identity["recovery_dll"]["sha256"]=="76d05482da331ee4ed423f82672e2bf429222cd0efdeafa2f4f20c50a6023b81"

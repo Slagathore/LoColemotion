@@ -201,12 +201,14 @@ default is restored with a passing full preflight. The
 [startup CPU comparison](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
 retains 288 exact replays and rejects two scalar-validator changes: 4.7% and
 -1.0% observed warm median reductions, below their 10% threshold. Original
-validation stays active. The historical terminal packet is not a complete
-startup sample; next capture exact inputs across declared startup phases before
-testing shared compiled validation/retention. No speedup is qualified.
-The [startup capture successor](../sdk/explorer/studio/startup_packet_capture_component_v1.json)
-passes the full zero-world gate. Its single 360-step native input capture and
-subsequent offline compiled replay are pending; no performance claim is added.
+validation stays active. The [startup capture closeout](../sdk/explorer/studio/startup_packet_capture_result_v1.json)
+adds ten exact inputs across five startup phases from one 360-step native world.
+All 320 offline production-route replays match the retained full outputs. The
+first post-run reader wrongly required an initial memory clock of zero; its
+failure stays intact, while the corrected reader follows the existing null-clock
+contract and verifies the completed world. Next evaluate compiled finite-source
+validation against the original oracle and these inputs before a fresh matched
+timing trial. No speedup, additional recovery or adaptation claim is added.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

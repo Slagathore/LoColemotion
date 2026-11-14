@@ -282,12 +282,16 @@ passes. The [retained startup CPU probe](../sdk/explorer/studio/startup_packet_p
 reopens 288 exact route replays with no worlds. Two scalar-validator candidates
 preserve checked outputs but fail their 10% CPU threshold (4.7% and -1.0%
 observed warm median reductions); original validation remains active.
-Its single historical terminal input does not represent the full startup.
-Capture declared phase-spanning inputs before evaluating shared compiled
-validation/retention; no further scalar-loop or cache tuning grid.
-The [startup capture component](../sdk/explorer/studio/startup_packet_capture_component_v1.json)
-passes the full zero-world route gate, nine capture checks and three reader/
-materializer tests. One bounded native capture and offline replay are pending.
+Its historical terminal input is now supplemented by the
+[startup capture result](../sdk/explorer/studio/startup_packet_capture_result_v1.json):
+one seed-74 world completed 360 frames and retained ten exact packets across
+all five observed startup phases. All 320 offline production-route replays match
+the retained full outputs. The original post-run reader failure remains intact;
+the successor reader respects initial null memory clocks and verifies the
+completed stream without another world. No speedup is established. Next evaluate
+compiled finite-source validation against the original oracle and these inputs;
+require useful CPU benefit before fresh matched native timing. No further
+scalar-loop or cache tuning grid.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

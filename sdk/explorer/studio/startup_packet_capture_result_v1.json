@@ -1,0 +1,440 @@
+{
+  "schema_version": "locolemotion_studio_startup_packet_capture_result_v1",
+  "ledger_scope": {
+    "subsystem": "explorer",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "native_input_capture_and_exact_computational_replay",
+    "question_class": "development"
+  },
+  "status": "completed_native_capture_reopened_and_exact_replays_verified_original_reader_failure_preserved",
+  "native_source_commit": "ae0318c5122b2247a74b6b44706acd366dd1a3ce",
+  "prospective_component": {
+    "path": "sdk/explorer/studio/startup_packet_capture_component_v1.json",
+    "sha256": "148a03b2f772ff9064d9b39b36d265b25c675ecd7c3b41152cd490be8bb9bf98",
+    "byte_length": 6401
+  },
+  "source_pins": [
+    {
+      "path": "sdk/explorer/studio/audit_live_godot.py",
+      "sha256": "9d5081d3d798a587fed2c5a8cb0252a1bd3f1819afffdaa484dfd33951a1536b",
+      "byte_length": 12314
+    },
+    {
+      "path": "sdk/explorer/studio/test_startup_capture.py",
+      "sha256": "de42a6af671ab91ee740f94532cc01b2b5f1f36e2a6a07203b8dd5523e9dac78",
+      "byte_length": 6307
+    },
+    {
+      "path": "sdk/explorer/studio/run_startup_packet_probe.py",
+      "sha256": "a99baaf5e48b9614d7ecc9c7d77146e7b83d62db7d2c8b202aa8355be42dbcee",
+      "byte_length": 15601
+    },
+    {
+      "path": "sdk/explorer/studio/startup_packet_probe.gd",
+      "sha256": "19607f0256d8bba115920e480ecefad42adf1c5a8c4bd53f7da10c4c4e68bb54",
+      "byte_length": 5504
+    }
+  ],
+  "native": {
+    "archive_relative_path": "studio-startup-packet-native-v1-9157cfdc408d41c184054338c4d0b218",
+    "original_owner_receipt": {
+      "path": "receipt.json",
+      "sha256": "36f9d8bfc217a01fb7a186f9900bbae0414e44d631d3242d01934f836fe0d125",
+      "byte_length": 269882
+    },
+    "original_child_receipt": {
+      "path": "native/receipt.json",
+      "sha256": "99b0de4abd2120c9f0f43639a88cf2e207ff60ea89b582a1f0a73bbaab8e9a97",
+      "byte_length": 332671
+    },
+    "original_owner_ok": false,
+    "original_child_ok": false,
+    "original_postrun_reader_error": "ValueError: Startup memory clock/phase",
+    "original_failed_receipt_still_refused_by_ordinary_audit": true,
+    "native_completion_ok": true,
+    "outcome": {
+      "ok": true,
+      "source_commit": "ae0318c5122b2247a74b6b44706acd366dd1a3ce",
+      "native_frames": 360,
+      "walking_steps": 119,
+      "walking_simulated_s": 0.9916666666666667,
+      "walking_interval_wall_s": 0.9666759999999996,
+      "walking_interval_realtime_factor": 1.0258521641860014,
+      "startup_through_handoff_wall_s": 20.642557,
+      "total_prefix_wall_s": 21.609233,
+      "controller_rows": 118,
+      "impulses": [],
+      "delta_world_x_m": -0.07149621751159434,
+      "maximum_walking_torso_tilt_rad": 0.06990842840331399,
+      "final_torso_tilt_rad": 0.0016138089002969514,
+      "physical_acceptance_authority": false,
+      "release_authority": false,
+      "limits": "Bounded development observation. Walking interval includes first-command handoff. No general recovery, real-time guarantee or controlled solver comparison."
+    },
+    "retained_artifact_count": 1234,
+    "retained_artifact_bytes": 70562719,
+    "source_runtime_bindings_verified": 1050,
+    "source_snapshot_archive_relative_path": "studio-startup-native-source-ae0318c5122b",
+    "owned_cleanup": {
+      "path": "owned/cleanup.json",
+      "sha256": "8a10905db0aee1360a4c7b80c65f60cd3c0af6b8d03c1515892aee948d5970c4",
+      "byte_length": 506
+    }
+  },
+  "reader_correction": {
+    "diagnosis": "The initial memory has null last/start semantic steps and zero observed steps. The first capture reader and its synthetic fixture incorrectly required a prior step zero. Later startup memory must retain start step one and the exact previous step.",
+    "existing_core_contract": {
+      "path": "sdk/core/src/recovery.rs",
+      "sha256": "59c20d394f99e4d2729a856759f87a2ff22a0ff3bc4695b3a5f02a7be25f7bc8",
+      "byte_length": 248090
+    },
+    "corrected_readers": [
+      "audit_live_godot.audit_completed_native",
+      "audit_live_godot.audit_startup_packets"
+    ],
+    "original_receipts_edited": false,
+    "controller_or_physics_changed": false,
+    "recovery_thresholds_changed": false,
+    "new_worlds_for_correction": 0,
+    "capture_and_live_reader_tests_passed": 10,
+    "capture_reader_refusal_controls": 13,
+    "completed_native_reader_refusal_controls": 3,
+    "initial_clock_corruption_controls": 3
+  },
+  "capture": {
+    "observed_route_calls": 240,
+    "selected_packets": 10,
+    "phase_call_counts": {
+      "confirm_prone": 28,
+      "establish_distal_support": 9,
+      "raise_body": 22,
+      "stance_handoff": 1,
+      "stance_dwell": 180
+    },
+    "fixed_steps": [
+      1,
+      30,
+      60,
+      120,
+      180,
+      239,
+      240
+    ],
+    "first_observed_phase_calls_also_selected": true,
+    "selected_packet_capture_wall_us": 361860,
+    "additional_controller_calls": 0,
+    "additional_physics_reads": 0,
+    "additional_solver_steps": 0
+  },
+  "offline_replay": {
+    "archive_relative_path": "studio-startup-capture-replay-v1-a2acc5dc7be043ceb0c368014334e41b",
+    "declaration": {
+      "path": "declaration.json",
+      "sha256": "e998b4e17637fbc38fafb455d30000d358c253e50bd7de1d52ed77cc632a9a69",
+      "byte_length": 4994
+    },
+    "receipt": {
+      "path": "receipt.json",
+      "sha256": "47b72747671f86702250a854d1400acc2b48d18f0911c47bf88175ee77659b2f",
+      "byte_length": 1089
+    },
+    "exact_full_route_replays": 320,
+    "replays_per_packet": 32,
+    "cache_modes": {
+      "fresh_cache": 16,
+      "reused_cache": 16
+    },
+    "original_native_packet_file_digests_bound": true,
+    "all_exact_source_request_response_step_and_full_route_outputs_preserved": true,
+    "source_runtime_bindings_verified": 10460,
+    "distinct_reader_refusal_controls": 4,
+    "new_worlds": 0,
+    "solver_steps": 0,
+    "native_physics_reads": 0,
+    "packet_identity_basis": "Original native file digest bound by each replay receipt; all parsed packet values including exact UTF-8 source and full route strings unchanged. Outer JSON indentation may differ.",
+    "timer_semantics": "Warm medians exclude the first reused-cache repetition. Function costs are inclusive and overlap; do not add nested totals. This is a one-body, one-seed diagnostic corpus, not the live startup distribution or a controlled performance comparison.",
+    "packets": [
+      {
+        "global_step": 1,
+        "phase": "confirm_prone",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-001.json",
+          "sha256": "c4dce91c41d2808e0498346008691d85633c64231a1017773a77332e53f31c86",
+          "byte_length": 536308
+        },
+        "full_route_output_sha256": "e82c56ba1eed639d1bbe40d16cee10a08f36d5b79831432a2ad87e7d7de0889b",
+        "replay_receipt": {
+          "path": "step-001/receipt.json",
+          "sha256": "c30ff9a60c883ea96fadcd015ab674ae69b0bc9bcbe3cc4b59d0156de39ae829",
+          "byte_length": 287007
+        },
+        "replay_probe": {
+          "path": "step-001/probe.json",
+          "sha256": "257c1402925780b6bc624802dc0761631cbf4ee6a6b7ca9e03a9d14c75265871",
+          "byte_length": 53792
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 17957,
+        "warm_median_source_retention_inclusive_us": 7477
+      },
+      {
+        "global_step": 29,
+        "phase": "establish_distal_support",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-029.json",
+          "sha256": "a68016348a6604063cf27af333f8a7ff407848a968a826604ef4e9a2d686c92e",
+          "byte_length": 741557
+        },
+        "full_route_output_sha256": "5771b6a7f8a21a51709df54df738f82c819435365cd13263088351d9c23c169d",
+        "replay_receipt": {
+          "path": "step-029/receipt.json",
+          "sha256": "d7ddc6d87086896e4f90c0910bb96527104cb35e2eca242a34430c6c8ec9ad8d",
+          "byte_length": 287006
+        },
+        "replay_probe": {
+          "path": "step-029/probe.json",
+          "sha256": "c5ba8b66c96987e0e9576efb443654633cecf45a33a0e1eb4ad8082ef399238e",
+          "byte_length": 53924
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 22595,
+        "warm_median_source_retention_inclusive_us": 11570
+      },
+      {
+        "global_step": 30,
+        "phase": "establish_distal_support",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-030.json",
+          "sha256": "04d582b1baa8b4f314e8d6c3d659958fc36897a496213e6b821b201f0ef4d8be",
+          "byte_length": 742177
+        },
+        "full_route_output_sha256": "e0da985f0355a9d5cd6257a1a4ed6dd7d02048937d1abc07c9841702a664c61a",
+        "replay_receipt": {
+          "path": "step-030/receipt.json",
+          "sha256": "40c89800874b7232b367b75abfeadd7510def2132e6b8fc0951464ef9f71b32d",
+          "byte_length": 287006
+        },
+        "replay_probe": {
+          "path": "step-030/probe.json",
+          "sha256": "8864c0b19c89742605cfa18633d2fd1f5a5c85584d6173dab5510d4130acfa2a",
+          "byte_length": 53888
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 21864,
+        "warm_median_source_retention_inclusive_us": 11137
+      },
+      {
+        "global_step": 38,
+        "phase": "raise_body",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-038.json",
+          "sha256": "5b08ef4918ffcd02e0992450370e9b702253d7b38ce6f4c460ca50269acd3cc7",
+          "byte_length": 715084
+        },
+        "full_route_output_sha256": "2cdda1ebde785d4613f3a1b730f70993e68b73612a5f7e465f1d309ebc5e7f8a",
+        "replay_receipt": {
+          "path": "step-038/receipt.json",
+          "sha256": "7b710647f0fd1617c5041a73a987a6aa8cd51fba34ac65613d5d556825d3b7f7",
+          "byte_length": 287007
+        },
+        "replay_probe": {
+          "path": "step-038/probe.json",
+          "sha256": "c9f0304179520740a05b5a0f0b06bdbef7bf1460e62938feabd8f26193919227",
+          "byte_length": 53888
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 21899,
+        "warm_median_source_retention_inclusive_us": 10509
+      },
+      {
+        "global_step": 60,
+        "phase": "stance_handoff",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-060.json",
+          "sha256": "4220c8269a53b26285abe795a1919ef1ed57a0a057d243e19c61b394b4c8434d",
+          "byte_length": 666535
+        },
+        "full_route_output_sha256": "77251f06fd806e5591cdca09bb39a07c1d1fdf8baeb0c0185c653d57fb845825",
+        "replay_receipt": {
+          "path": "step-060/receipt.json",
+          "sha256": "510263d7e83be20ca203be1fb25274acb3b32086a077b8fae69cf0e35a87296d",
+          "byte_length": 287007
+        },
+        "replay_probe": {
+          "path": "step-060/probe.json",
+          "sha256": "0c9611afcf4d208e6b4ef2c9b9f037b3c9ad6dda4bb2f83a1f8b73ec4f2e5c8e",
+          "byte_length": 56075
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 22662,
+        "warm_median_source_retention_inclusive_us": 9301
+      },
+      {
+        "global_step": 61,
+        "phase": "stance_dwell",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-061.json",
+          "sha256": "8d5dc89261ff1db34c487c0930fd5b1f1ec784bf0901a806f9f6f619916b5fd3",
+          "byte_length": 660056
+        },
+        "full_route_output_sha256": "35badfaaa776391ea90f2aaf844853526baf5bd834c39352c59ac9807e58b133",
+        "replay_receipt": {
+          "path": "step-061/receipt.json",
+          "sha256": "82d4b93ef8726305722fee1e7bb403c135fcc324882feac7f9cb9b8fabc45050",
+          "byte_length": 287007
+        },
+        "replay_probe": {
+          "path": "step-061/probe.json",
+          "sha256": "723b5054e8eea656415cd37494848cf32daa4d09e4fceb606f213c83562afc70",
+          "byte_length": 56060
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 22436,
+        "warm_median_source_retention_inclusive_us": 8915
+      },
+      {
+        "global_step": 120,
+        "phase": "stance_dwell",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-120.json",
+          "sha256": "d58c412fa8213be32a46bc804c20b348c4fc308fcf04e8c569459aef3c9dcea8",
+          "byte_length": 678559
+        },
+        "full_route_output_sha256": "eb1d5f152df62f5433bcfec5ec0dd600bd1369dceba4112fff5e2605663cc7db",
+        "replay_receipt": {
+          "path": "step-120/receipt.json",
+          "sha256": "451781e7e6fed38be7e894ae7d7e4ece405e4837d1b0912a9f3223b3154310b5",
+          "byte_length": 287006
+        },
+        "replay_probe": {
+          "path": "step-120/probe.json",
+          "sha256": "3334e2f6236b438cf76eedd477c12b8730980ebdad026d7f76cfe2b481772bb0",
+          "byte_length": 56078
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 22838,
+        "warm_median_source_retention_inclusive_us": 9497
+      },
+      {
+        "global_step": 180,
+        "phase": "stance_dwell",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-180.json",
+          "sha256": "f51fb19176284fdd38a876bbef7f5e0d2dd81d57e219aaf6d40475c9e97ab97f",
+          "byte_length": 690136
+        },
+        "full_route_output_sha256": "89c898522718fb8e19b0aee4c49f221664f736e9823ffc9163aff7e9eabe16bb",
+        "replay_receipt": {
+          "path": "step-180/receipt.json",
+          "sha256": "ce26b6a0f8f87acf5e7a68db1db528b365c46335d6e071b97747eef7f161f959",
+          "byte_length": 287007
+        },
+        "replay_probe": {
+          "path": "step-180/probe.json",
+          "sha256": "930663eebff34460a775eafd229a647fc3d29569bc38d881d8cfe83c2afd3070",
+          "byte_length": 56094
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 22840,
+        "warm_median_source_retention_inclusive_us": 9720
+      },
+      {
+        "global_step": 239,
+        "phase": "stance_dwell",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-239.json",
+          "sha256": "2c2fec186127dc333640cf0cccc7789360e434fd8b64f08308ab90065eeb40fa",
+          "byte_length": 691295
+        },
+        "full_route_output_sha256": "ff5c8fc7aea0943509b1626997f7526c41ae7bc5b8cda20fa2bd550260e969a5",
+        "replay_receipt": {
+          "path": "step-239/receipt.json",
+          "sha256": "df0792bf1f460c376f30e58c525d24bf1e07b365ac4a17bcc2d489edad8faadc",
+          "byte_length": 287007
+        },
+        "replay_probe": {
+          "path": "step-239/probe.json",
+          "sha256": "858c84b58ff54bc8566c3cdc04675e2ddadeba68b71cdd9e7db36c279b63744e",
+          "byte_length": 56096
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 23514,
+        "warm_median_source_retention_inclusive_us": 9966
+      },
+      {
+        "global_step": 240,
+        "phase": "stance_dwell",
+        "native_packet": {
+          "path": "native/physical/startup-packets/step-240.json",
+          "sha256": "3b0abe9f9a1431b58a08602339aa73a8ad6a6684415ca0eb29103df5d9a1376c",
+          "byte_length": 686246
+        },
+        "full_route_output_sha256": "a31276b0e9a632cac75d7b3df71ade9e271f54f04e47200d97698ce487aed8cf",
+        "replay_receipt": {
+          "path": "step-240/receipt.json",
+          "sha256": "7f5b73000d12228c8375da762b27a26104d29647ebb2f3cec2480712441882cd",
+          "byte_length": 287007
+        },
+        "replay_probe": {
+          "path": "step-240/probe.json",
+          "sha256": "28c84dadd482f86a9972bdca69a6160da12325f2898007d20802fe858c33645e",
+          "byte_length": 51375
+        },
+        "exact_route_replays": 32,
+        "warm_median_route_us": 18041,
+        "warm_median_source_retention_inclusive_us": 10019
+      }
+    ]
+  },
+  "closure": {
+    "archive_relative_path": "studio-startup-capture-closeout-v1-d18498933da54996be28778147d897c4",
+    "verification": {
+      "path": "verification.json",
+      "sha256": "a5a3fa9a81129d024998e5bd2d6907dfb584cb92d8c0a962aa9294d818bfd173",
+      "byte_length": 15177
+    },
+    "verification_program": {
+      "path": "verify.py",
+      "sha256": "9af81dd9e46c42e3d911fb7c91f06950150c8e56befb7c88d88c545a7c168c60",
+      "byte_length": 5828
+    },
+    "reader_tests": {
+      "path": "reader-tests.log",
+      "sha256": "d6e34d348fb256503897282ea86164e5f57996042db3bf99251ccb49ec35fb48",
+      "byte_length": 1611
+    },
+    "launcher_receipt": {
+      "path": "launcher-receipt.json",
+      "sha256": "d8da9d54b2235435960556246768ce169c1b7b7356fa6f999f432280e491b25b",
+      "byte_length": 58
+    },
+    "stdout": {
+      "path": "stdout.log",
+      "sha256": "dadb5a4b667c47120b7113f1efa5ff642760e5b510dbf8ad693345f3edc2d62d",
+      "byte_length": 1415
+    },
+    "stderr": {
+      "path": "stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_length": 0
+    },
+    "incomplete_verification_predecessor": "studio-startup-capture-closeout-v1-70b9b78c34b84455b496142df735ef75",
+    "incomplete_verification_note": "The earlier closeout directory has no terminal verification receipt. Its draft assumed equal outer JSON serialization. The successor binds both file digests and requires every packet value and embedded exact UTF-8 source/result string to match. No native or CPU route was rerun for this reader correction."
+  },
+  "decision": {
+    "controller_adopted": false,
+    "source_validator": "original",
+    "performance_improvement_established": false,
+    "next_gate": "Evaluate opt-in compiled finite-source validation against the original oracle, malformed/depth/type controls and all ten retained packets. Require exact outputs and a prospectively declared useful CPU benefit before a fresh matched native timing comparison. Do not repeat a cache-size or scalar-loop tuning grid."
+  },
+  "worlds_opened": 1,
+  "solver_steps": 360,
+  "new_worlds_in_replay_or_closeout": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "recovery_qualified": false,
+  "learned_adaptation_qualified": false,
+  "real_time_qualified": false,
+  "performance_comparison_authority": false,
+  "performance_improvement_established": false
+}

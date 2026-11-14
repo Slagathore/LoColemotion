@@ -47,7 +47,7 @@ func _run_probe() -> Dictionary:
 			sdk.bridge_profile.clear()
 			var started := Time.get_ticks_usec()
 			var result := Route.advance_behavior_solver_coupled_complete_energy_l15_v1(
-				sdk,context,bound,memory,"candidate_command",String(memory.phase),application)
+				sdk,context,bound,memory,String(packet.get("arm_kind","candidate_command")),String(memory.phase),application)
 			var elapsed := Time.get_ticks_usec()-started
 			var costs: Dictionary = Runtime.startup_probe_profile.duplicate(true)
 			var json_costs: Dictionary = Transport.profile.duplicate(true)
@@ -65,15 +65,20 @@ func _run_probe() -> Dictionary:
 				return {"ok":false,"failure":"retained step differs","mode":mode,"repeat":repeat,"actual_step":result.step_receipt,"rows":rows}
 			if Transport.stringify([context,bound,memory,application]) != input_identity:
 				return {"ok":false,"failure":"replay mutated source inputs","rows":rows}
+			var route_text := Transport.stringify(result)
+			if packet.has("expected_route") and route_text != packet.expected_route.utf8_text:
+				return {"ok":false,"failure":"full retained route differs","mode":mode,"repeat":repeat,
+					"actual_route":route_text,"rows":rows}
 			rows.append({"mode":mode,"repeat":repeat,"elapsed_us":elapsed,
-				"full_route_output_sha256":Transport.stringify(result).sha256_text(),
+				"full_route_output_sha256":route_text.sha256_text(),
 				"canonicalization":costs,"all_authoritative_stringify":json_costs,
 				"native_bridge":bridge_costs,"cache":sdk.cache_summary(),
 				"inclusive_function_costs":function_costs})
 	Cache.enabled = false
 	Cache.reset()
 	return {"ok":true,"rows":rows,"global_step":packet.global_step,
+		"full_retained_route_compared":packet.has("expected_route"),
 		"collection_request_and_response_exact":true,"step_receipt_exact":true,"source_inputs_unchanged":true,
 		"world_build_count":0,"solver_steps":0,"native_physics_reads":0,
-		"scope":"Repeated computational replay of one historical terminal startup packet. Fresh and reused cache modes are diagnostic bounds, not the live startup distribution or a speedup qualification.",
+		"scope":"Repeated computational replay of one retained startup packet. Fresh and reused cache modes are diagnostic bounds, not the live startup distribution or a speedup qualification.",
 		"physical_acceptance_authority":false,"release_authority":false}

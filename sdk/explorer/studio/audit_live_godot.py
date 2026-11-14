@@ -84,7 +84,16 @@ def audit_startup_packets(folder,receipt):
             require(len(raw)==snapshot['utf8_byte_length'] and 'sha256:'+hashlib.sha256(raw).hexdigest()==snapshot['raw_sha256'],'Startup exact UTF-8 snapshot')
         sources={k:json.loads(v['utf8_text']) for k,v in packet['sources'].items()}
         require(sources['bound_observation']['observation_v3']['semantic_step']==step,'Startup observation clock')
-        require(sources['source_memory']['last_semantic_step']==step-1 and sources['source_memory']['phase']==phase,'Startup memory clock/phase')
+        memory=sources['source_memory']
+        # The existing core starts with no observation history. A fabricated
+        # prior step zero is not the initialized recovery memory contract.
+        if step==1:
+            require(memory['last_semantic_step'] is None and memory['start_semantic_step'] is None
+                and memory['total_steps_observed']==0,'Startup initial memory clock')
+        else:
+            require(memory['last_semantic_step']==step-1 and memory['start_semantic_step']==1
+                and memory['total_steps_observed']==step-1,'Startup memory clock')
+        require(memory['phase']==phase,'Startup memory phase')
         require(sources['source_application']['semantic_step']==step,'Startup application clock')
         route=json.loads(packet['expected_route']['utf8_text']);capture=route['collection_transport_retention']
         require(route['ok'] is True and route['step_receipt']==packet['expected_step'],'Startup expected route')
@@ -98,6 +107,18 @@ def audit_startup_packets(folder,receipt):
 def audit(folder):
     receipt=json.loads((folder/'receipt.json').read_text())
     require(receipt['ok'] is True and receipt['physical_acceptance_authority'] is False and receipt['release_authority'] is False,'Receipt outcome/authority')
+    return audit_completed_native(folder,receipt)
+
+
+def audit_completed_native(folder,receipt):
+    """Read completed physical output separately from a later reader failure.
+
+    The ordinary audit still requires a successful outer receipt. A successor
+    closeout can use this reader while preserving an original post-run error.
+    Every physical stream, command and completion check below still applies.
+    """
+    require(receipt['physical_attempted'] is True and receipt['physical_acceptance_authority'] is False
+        and receipt['release_authority'] is False,'Native execution/authority')
     physical=receipt['physical'];stream=folder/'physical/stream.jsonl'
     require(sha(stream)==physical['stream_sha256'],'Stream digest')
     rows=[json.loads(line) for line in stream.read_text().splitlines()]

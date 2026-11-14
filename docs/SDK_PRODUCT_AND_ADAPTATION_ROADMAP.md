@@ -28,16 +28,15 @@ is the next bounded implementation task.
    The [retained-packet CPU profile](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
    verifies 288 exact replays and rejects two scalar-validator changes: observed
    warm median reductions 4.7% and -1.0%, below the declared 10% threshold.
-   Original validation stays active. The input is one historical terminal
-   stand-up packet with the current DLL; recent timing archives do not contain
-   intermediate startup requests. Next retain representative exact inputs across
-   startup phases in one bounded capture diagnostic, then evaluate shared compiled
-   validation/retention. Require a useful CPU result before another matched timing
-   trial. Preserve full capture and solver inputs; no cache or scalar-loop grid.
-   The [capture component](../sdk/explorer/studio/startup_packet_capture_component_v1.json)
-   passes the complete zero-world gate. Its next run is one seed-74, 360-step
-   world, retaining fixed startup steps and each phase's first call (at most
-   sixteen packets). Native capture and offline compiled replay remain pending.
+   Original validation stays active. The [startup capture result](../sdk/explorer/studio/startup_packet_capture_result_v1.json)
+   now retains ten exact packets across all five observed startup phases from
+   one seed-74, 360-step world. All 320 offline production-route replays match.
+   The original post-run reader failure is preserved; the corrected reader
+   respects the core's initial null memory clocks and verifies the completed
+   native stream without another world. Next evaluate shared compiled finite-source
+   validation against the original oracle and all ten inputs. Require a useful
+   CPU result before another matched timing trial. Preserve full capture and
+   solver inputs; no speedup claim or further cache/scalar-loop tuning grid.
 2. **Search recovery using the whole body's contact response.** The
    [36-world diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
    verifies solved reactions and empty-cone fallback, with no recovery.
