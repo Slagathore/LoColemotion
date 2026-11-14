@@ -177,9 +177,21 @@ stall-release worlds never beat their own reference in this finite assignment.
 The 9.478-degree largest gain over the old timed comparator does not change
 that result. The prospectively declared path screen selects zero paths and
 provides no new clearance evidence. Eleven cohorts retain 2,488 valid recovery
-failures. Diagnose the retained losses before another broad successor, keeping
-the previous useful body-specific behavior as the starting point. No recovery
-controller, learned adaptation or Studio handoff has been adopted.
+failures. No recovery controller, learned adaptation or Studio handoff has
+been adopted.
+
+The [retained command diagnosis](../sdk/discovery/creature_moment_handoff_diagnosis_v1.json)
+passes 28 controls and checks 7,200 decisions against 36,000 native samples
+on one exposed route body. Nineteen of 24 completed releases lose rotation;
+six lose 9.96 to 10.61 degrees in 0.2 seconds. Three continuous variants plateau
+near 11.5 degrees, versus a 23.48-degree reference peak. Active-joint mean
+torque error increases after joint guards; native actuator forces show similar
+error against the prepared request. Neither is a contact-force measurement
+or proof of an alternative action. Two diagnostic reader failures remain
+retained. No new worlds occur. Next, preserve useful reference behavior and
+existing support while other limbs seek replacement contact, with unchanged
+joint protection and a bounded fallback. Test that mechanism broadly before
+promoting any candidate.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

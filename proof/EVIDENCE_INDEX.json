@@ -600,7 +600,7 @@
       "title": "Continuous joint reach exposes torso-target constraints",
       "pillar": "locomotion",
       "classification": "zero_world_geometry_diagnostic",
-      "scope": "334 distinct bounded descriptors, 302 kinematic shapes, ten controls, 2.9 million continuous-joint reach minima, 16032 scalar checks and zero new worlds. First excluded side-roll samples are 11\u201319 degrees. Inward pitch reaches farther geometrically but useful torque is unproved. Retained projections have 294 bend-domain floor exclusions and zero finite-grid floor-reach misses. No dynamic or recovery qualification.",
+      "scope": "334 distinct bounded descriptors, 302 kinematic shapes, ten controls, 2.9 million continuous-joint reach minima, 16032 scalar checks and zero new worlds. First excluded side-roll samples are 11–19 degrees. Inward pitch reaches farther geometrically but useful torque is unproved. Retained projections have 294 bend-domain floor exclusions and zero finite-grid floor-reach misses. No dynamic or recovery qualification.",
       "record": {
         "path": "sdk/discovery/creature_contact_envelope_result_v1.json",
         "pointer": null
@@ -754,6 +754,28 @@
       ],
       "external_artifact_ids": [],
       "dependency_closure_complete": false
+    },
+    {
+      "id": "moment-handoff-diagnosis",
+      "title": "Retained support-release losses and guarded actuator commands",
+      "pillar": "locomotion",
+      "classification": "development_discovery",
+      "scope": "28 controls and zero new worlds. One full-route body, 7200 moment-controller decisions and 36000 native samples. Nineteen of 24 completed releases lose rotation; six lose about ten degrees. Separate requested torque, post-guard predictions and observed actuator force. Support-preserving changeover remains untested.",
+      "record": {
+        "path": "sdk/discovery/creature_moment_handoff_diagnosis_v1.json",
+        "pointer": null
+      },
+      "related_documents": [
+        "sdk/discovery/creature_moment_handoff_native_result_v1.json",
+        "sdk/discovery/creature_body_moment_diagnosis.py",
+        "sdk/discovery/test_creature_moment_diagnosis.py"
+      ],
+      "source_commits": [
+        "e08054a743d5d89336cf29e851e845c086ec8dbc",
+        "96b3e9cbdf06e0361f50b3a5eaa2e33033a34391"
+      ],
+      "external_artifact_ids": [],
+      "dependency_closure_complete": false
     }
   ],
   "local_files": [
@@ -891,8 +913,8 @@
     },
     {
       "path": "sdk/release/quadruped_support_matrix.json",
-      "sha256": "dbb481f160ced44d8cc12cdc5fe514f33666f9cae0a7d959405be5d1652d7c78",
-      "byte_length": 3553604
+      "sha256": "4b8baaa286c3fadd3424352fe3a5338aceb4e8a37a8379b6b1f90086e26db3b3",
+      "byte_length": 3554531
     },
     {
       "path": "sdk/discovery/creature_righting_component_v1.json",
@@ -1336,8 +1358,8 @@
     },
     {
       "path": "sdk/discovery/creature_body_moment_diagnosis.py",
-      "sha256": "7fc5ca1f748038a2f0cb63199e579d8d27325004c1ab4d10a8b4c02523f41ff2",
-      "byte_length": 12827
+      "sha256": "1ed9acd93b166ba342f27bd08c2ffb3ad1d520a3d0374aab7fb6ea020b1617d6",
+      "byte_length": 24692
     },
     {
       "path": "sdk/discovery/creature_moment_handoff.py",
@@ -1373,6 +1395,16 @@
       "path": "sdk/discovery/creature_moment_handoff_native_result_v1.json",
       "sha256": "19124d130d1819de2a40fc317740f54eb0cad145d0177438acbc6fd2544507fa",
       "byte_length": 209380
+    },
+    {
+      "path": "sdk/discovery/creature_moment_handoff_diagnosis_v1.json",
+      "sha256": "659d4c304f17bc8f8b316f222c2a3973c4df2158526feb7bba2376d1b6430707",
+      "byte_length": 66858
+    },
+    {
+      "path": "sdk/discovery/test_creature_moment_diagnosis.py",
+      "sha256": "b69c611ae12f2bdb9643619089eda4fffadb3317e8333d4e21c9a6e17ffcabf1",
+      "byte_length": 7121
     }
   ],
   "external_artifacts": [

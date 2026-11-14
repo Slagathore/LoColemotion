@@ -19,30 +19,29 @@ and self-righting still has no qualifying controller after eleven cohorts.
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay correctly. The inverted body times out without active recovery or resumed walking |
 | [Latest righting cohort](../sdk/discovery/creature_moment_handoff_native_result_v1.json) | 216 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Only five of 144 new-controller worlds beat their selected reference; best gain is 3.300 degrees, below the frozen five-degree threshold. Eleven cohorts retain 2,488 valid recovery failures |
 | [Path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
-| [Handoff route and capture](../sdk/discovery/creature_moment_handoff_native_result_v1.json) | 248 controls before each native run. Twelve full route worlds replay 8,640 decisions and 43,200 samples with required handoff branches. Broad compact reading reconstructs 311,040 records and 1,555,200 samples. The empty progress shortlist selects no paths; no new clearance claim follows |
+| [Handoff diagnosis](../sdk/discovery/creature_moment_handoff_diagnosis_v1.json) | 28 controls; 7,200 decisions and 36,000 native samples on one exposed route body. Nineteen of 24 completed releases lose rotation; six lose about ten degrees in 0.2 seconds. Continuous variants plateau near 11.5 degrees, with increased torque error after joint protection. No new worlds or recovery claim |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Diagnose the handoff losses before another broad successor.**
-   The [completed cohort](../sdk/discovery/creature_moment_handoff_native_result_v1.json)
-   rejects promotion of this steering/release family. Its largest gain over
-   the old timed baseline is 9.478 degrees, but no new profile gains five
-   degrees over the stronger fresh selected reference. Five small gains occur
-   with continuous steering; clock-release and stall-release worlds never
-   beat their own reference in this finite assignment.
-   Use retained full-route orientation, contact state, resolved velocities
-   and post-guard torque predictions to locate the observed losses. Command
-   differences are not outcomes for unobserved alternative actions.
-   Identify the mechanism to change before adding more timing variants.
-   Then declare a distinct broad search starting from useful body-specific
-   reference behavior, with fresh comparators and unchanged criteria.
-   Preserve the earlier 26 sampled-clear leads and useful prefix; this cohort
-   does not supersede them with a better controller. Fresh full-capture
-   varied-start confirmation, collision response and actual recovery remain
-   necessary. Never rerun either consumed handoff identity.
+1. **Test support-preserving changeovers across many bodies.**
+   The [retained diagnosis](../sdk/discovery/creature_moment_handoff_diagnosis_v1.json)
+   identifies neutral retraction losing useful rotation and continuous variants
+   settling into different postures while joint protection reduces commands.
+   These one-body observations do not isolate steering, posture and guard
+   effects or predict other bodies.
+   Start from each useful exposed reference profile; keep its ordinary behavior
+   until measured progress stalls. Retain existing support while selected
+   unloaded limbs seek replacement contact. Release only after measured new
+   contact, with unchanged joint guards and a bounded reference fallback.
+   Factor limb choice, posture and transition conditions across many bodies,
+   with fresh comparators. A full route must cover support retention, contact
+   acquisition, changeover and no-replacement fallback before compact search.
+   Keep the five-degree reference-gain rule, full retained-path screening and
+   fresh varied-start confirmation. The prior 26 sampled-clear leads and useful
+   prefix remain evidence; no recovery controller has been adopted.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

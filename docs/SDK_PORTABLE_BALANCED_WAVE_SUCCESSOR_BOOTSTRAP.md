@@ -101,10 +101,19 @@ is 23.940 degrees. Clock-release and stall-release never beat their reference
 in this finite assignment. These factored comparisons are descriptive.
 The declared path-screen population is empty, so it grants no clearance
 conclusion. Eleven cohorts retain 2,488 valid performance failures.
-Diagnose the retained losses before a distinct broad successor based on useful
-body-specific reference behavior. Full-capture varied-start confirmation,
-collision-response qualification, actual recovery and the same-body Godot
-handoff remain unqualified.
+The [retained command diagnosis](../sdk/discovery/creature_moment_handoff_diagnosis_v1.json)
+passes 28 controls and checks 7,200 decisions plus 36,000 native samples.
+On its one exposed route body, 19 of 24 completed neutral releases lose rotation;
+six lose about ten degrees in 0.2 seconds. Continuous variants plateau near
+11.5 degrees and their active-joint torque error increases after protection.
+Recorded actuator forces are distinct from contact reactions. This descriptive
+diagnosis opens no worlds and does not isolate all controller factors.
+The next broad successor should preserve each useful reference until measured
+stall, retain support while unloaded limbs seek replacement contact, and use
+unchanged joint protection with a bounded fallback. Fresh comparators, full
+route coverage, the five-degree reference-gain rule, path screening and
+varied-start confirmation remain required. Recovery and the Godot handoff
+remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.
