@@ -19,25 +19,26 @@ and self-righting still has no qualifying controller after twelve cohorts.
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay correctly. The inverted body times out without active recovery or resumed walking |
 | [Latest righting cohort](../sdk/discovery/creature_support_exchange_native_result_v1.json) | 216 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Of 144 new-controller worlds, 62 beat their fresh selected reference; best gain is 3.303 degrees, below the five-degree threshold. Twelve cohorts retain 2,704 valid recovery failures |
 | [Earlier path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
-| [Transfer observation](../sdk/discovery/creature_support_exchange_native_result_v1.json) | The twelve-world full route exactly replays 8,640 decisions and 43,200 samples. All four transfers lose replacement-foot contact after 5-14 controller intervals (42-117 ms) and lose rotation. This one-body observation does not isolate the cause or measure contact load |
+| [Transfer diagnosis](../sdk/discovery/creature_support_exchange_diagnosis_v1.json) | 43 controls; 6,480 exchange decisions and 32,400 native samples on one body. All 68 replacement-joint transfer requests exceed force caps. At entry, only 18-32% of the static request fits instantaneous command bounds while the old force request is removed. All four transfers lose contact and rotation; the cause is not isolated |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Diagnose short-lived replacement contact before the next broad search.**
-   The support-exchange controller retains old support until measured contact
-   dwell, but all four exposed full-route transfers lose their replacement
-   contact before the planned duration. Reconstruct resolved motor commands,
-   joint protection, posture and requested versus observed actuator response.
-   Use that evidence to declare a distinct test of sustained replacement
-   support and staged unloading across many bodies. Contact presence alone
-   does not establish load transfer; the cause remains unisolated.
-   The completed cohort passed 254 controls before each run and retained all
-   failures. Its empty progress shortlist yields no new path-clearance result.
-   Keep fresh selected references, motor and joint bounds, five-degree gain,
-   full retained-path screening and fresh full-capture varied-start confirmation.
+1. **Test achievable support sharing across many bodies.**
+   The retained diagnosis separates force requests, command limits, joint
+   protection and native actuator force. Replacement requests exceed hard
+   force caps before protection; none of the 340 native joint samples reaches
+   a cap. Static request mismatch is not measured ground reaction or an
+   isolated cause of contact loss. The earlier diagnosis remains byte-identical.
+   Rank replacement poses using their static torque-request bounds, retain
+   original support while introducing the new force request, and stage
+   unloading under measured contact and existing command protection.
+   Compare diverse target and sharing variants broadly against fresh selected
+   references and failed exchanges. Keep nominal motors, joint bounds,
+   five-degree gain, complete route coverage, retained-path screening and
+   fresh full-capture varied-start confirmation. No successor benefit is proved.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

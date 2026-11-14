@@ -206,10 +206,20 @@ below five. There are no progress leads or newly screened paths. All 3,532
 artifacts, 1,252 source bindings, 1,359 runtime bindings and 26 cleanups verify;
 compact reading reconstructs 311,040 records and 1,555,200 samples without full
 controller replay. Twelve cohorts retain 2,704 valid recovery failures.
-Next diagnose the retained contact losses alongside resolved commands and
-posture before declaring a broad sustained-support and staged-unloading test.
-Fresh comparators, unchanged guards and full-capture confirmation remain required.
-No recovery controller, learned adaptation or Studio handoff is qualified.
+The [exchange diagnosis](../sdk/discovery/creature_support_exchange_diagnosis_v1.json)
+passes 43 controls and reads 6,480 exchange decisions plus 32,400 native samples
+on that exposed body. All 68 replacement-joint transfer requests exceed force
+caps; at entry only 18-32% of the fixed-direction static request fits the
+instantaneous command envelope. Replacement joint protection is inactive at
+all four entries and affects 29 of 68 transfer joint commands later. None of
+340 native joint samples reaches a force cap: requested, predicted and
+observed force remain distinct. All four entries remove the old force request
+and request neutral old-joint positions. These observations do not isolate
+contact-loss causality. The earlier command diagnosis remains byte-identical.
+Next rank replacement poses by static torque bounds and compare gradual
+support sharing broadly, with fresh references, unchanged limits and
+full-capture confirmation. No recovery, learned adaptation or Studio handoff
+is qualified.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.

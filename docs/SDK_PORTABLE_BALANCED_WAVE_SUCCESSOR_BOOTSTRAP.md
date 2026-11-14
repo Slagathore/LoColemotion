@@ -121,10 +121,19 @@ largest gain is 3.303 degrees, below five. All 216 fail recovery without joint
 violations; zero progress leads mean zero newly screened paths. All 3,532
 artifacts and 26 cleanups verify. Compact reading reconstructs 311,040 records
 and 1,555,200 samples, without full controller replay. Twelve cohorts retain
-2,704 valid recovery failures. Diagnose the retained contact losses and resolved
-commands before a distinct broad test of sustained support and staged unloading.
-Keep fresh references, motor and joint bounds, path screening and full-capture
-varied-start confirmation. Recovery and the Godot handoff remain unqualified.
+2,704 valid recovery failures.
+The [exchange diagnosis](../sdk/discovery/creature_support_exchange_diagnosis_v1.json)
+adds no worlds. Its 43 controls and retained reading cover 6,480 exchange
+decisions and 32,400 native samples on one body. All 68 replacement-joint
+transfer requests exceed force caps; only 18-32% of the static request fits
+the instantaneous command envelope at entry. Protection is inactive at entry
+and later affects 29 joint commands; no native transfer joint sample reaches
+a force cap. The old force request is removed immediately in all four events.
+Earlier command-diagnosis bytes remain exact. Compare force-aware pose
+selection and gradual support sharing across many bodies, retaining fresh
+comparators, unchanged motor/joint bounds, path screening and full-capture
+varied-start confirmation. Neither causality nor recovery benefit is proved;
+recovery and the Godot handoff remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

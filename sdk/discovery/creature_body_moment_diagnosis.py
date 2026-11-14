@@ -285,6 +285,7 @@ class MomentCommands:
         elif self.open_release is not None:
             self.close_release(point, complete=True)
         inner = d["state_after"].get("inner", d["state_after"])
+        inner = inner.get("base", inner)
         target = inner.get("target")
         bank = None if target is None else target["bank_index"]
         self.banks[bank] += 1
@@ -338,7 +339,190 @@ class MomentCommands:
             mean_observed_force_to_prepared_request_error_nm=self.sums["observed_force_to_prepared_request_error_nm"]/m if m else None)
 
 
-def diagnose_commands(root, digest):
+
+
+def bounded_load_scale(gravity, contact, ranges):
+    """Static request -gravity-scale*contact inside bounds, with scale in [0,1].
+
+    This intersects affine inequalities. It is a request bound at one measured
+    posture, not an estimate of ground reaction or held-interval feasibility.
+    """
+    n = len(gravity)
+    g = moment.mechanics.array(gravity, (n,), "Load scale gravity")
+    c = moment.mechanics.array(contact, (n,), "Load scale contact")
+    bounds = moment.mechanics.array(ranges, (n, 2), "Load scale ranges")
+    require(n > 0 and np.all(bounds[:, 0] <= bounds[:, 1]), "Load scale ordered ranges")
+    low, high = 0., 1.
+    for offset, slope, (lo, hi) in zip(-g, -c, bounds, strict=True):
+        if slope == 0.:
+            if not lo <= offset <= hi:
+                return None
+            continue
+        a, b = (lo-offset)/slope, (hi-offset)/slope
+        low, high = max(low, min(a, b)), min(high, max(a, b))
+        if low > high:
+            return None
+    return [float(low), float(high)]
+
+
+class ExchangeCommands(MomentCommands):
+    """Describe every exposed exchange and each transfer's realized commands."""
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.transfers, self.exchange_counts, self.phase_metrics = [], collections.Counter(), {}
+        self.open_transfer = self.last_exchange = None
+        self.previous_exchange_state = None
+
+    def snapshot(self, row, old, replacement):
+        d, state = row["resolution"]["body_moment"], row["request"]["state"]
+        e, commands = d["support_exchange"], row["resolution"]["ordered_commands"]
+        points = moment.mechanics.array(d["geometric_contact_points_m"], (4, 3), "Exchange points")
+        q = moment.mechanics.array([x["position_rad"] for x in state["ordered_joint_observations"]], (8,), "Exchange positions")
+        qd = moment.mechanics.array([x["velocity_rad_s"] for x in state["ordered_joint_observations"]], (8,), "Exchange velocity")
+        position = moment.mechanics.xyz(state["base_pose_world"]["position_m"])
+        projection = d["force_projection"]
+        requested = self.frames[-1]["requested"]
+        pre = None if projection is None else projection["predicted_torque"]
+        active = d["active_limbs"]
+        require(len(d["requested_wrenches"]) == len(active), "Exchange wrench population")
+        normals = {}
+        spec = self.creature["compiled"]["morphology"]["morphology_spec"]
+        for limb, wrench in zip(active, d["requested_wrenches"], strict=True):
+            require(wrench["body_id"] == spec["bodies"][2+2*limb]["body_id"], "Exchange wrench body")
+            force = moment.mechanics.array(wrench["force"], (3,), "Exchange requested force")
+            require(force[1] > 0., "Exchange positive requested normal")
+            normals[limb] = float(force[1])
+        limbs = {}
+        for role, limb in (("old_primary", old[0]), ("replacement", replacement)):
+            js = [2*limb, 2*limb+1]
+            limits = [self.creature["spec"]["force_ranges"][j] for j in js]
+            selected = lambda v: None if v is None else [float(v[j]) for j in js]
+            loads = None
+            if limb in active:
+                gravity = selected(projection["gravity_torque"])
+                contact = selected(projection["contact_torque"])
+                require(np.allclose(-np.asarray(gravity)-contact, requested[js], rtol=0., atol=1e-9),
+                        "Exchange static request identity")
+                envelope = [[projection["lower_torque"][j], projection["upper_torque"][j]] for j in js]
+                loads = dict(requested_normal_n=normals[limb],
+                    force_cap_scale_interval=bounded_load_scale(gravity, contact, limits),
+                    pre_guard_command_scale_interval=bounded_load_scale(gravity, contact, envelope))
+            limbs[role] = dict(limb=limb, contact_present=state["ordered_contact_observations"][limb]["presence"],
+                geometric_foot_height_m=float(points[limb, 1]), position_rad=selected(q), velocity_rad_s=selected(qd),
+                target_position_rad=[commands[j]["target_position_rad"] for j in js],
+                resolved_velocity_rad_s=selected(row["native_targets"]), requested_torque_nm=selected(requested),
+                pre_guard_predicted_torque_nm=selected(pre), post_guard_predicted_torque_nm=selected(d["post_guard_predicted_torque_nm"]),
+                force_requested=limb in active, actuator_force_ranges_nm=limits,
+                requested_torque_outside_force_cap=[bool(requested is not None and not limits[k][0] <= requested[j] <= limits[k][1]) for k,j in enumerate(js)],
+                guard_applied=[commands[j]["joint_guard_applied"] for j in js],
+                slew_limited=[commands[j]["slew_limited"] for j in js], static_request_bounds=loads)
+        return dict(outer_step=row["outer_step"], phase=e["phase"], reason=e["reason"],
+            rotation_degrees=self.last["rotation_degrees"], base_height_m=float(position[1]),
+            touching_limbs=[i for i,c in enumerate(state["ordered_contact_observations"]) if c["presence"]],
+            active_force_limbs=active[:], limbs=limbs)
+
+    def consume(self, row):
+        d = row["resolution"]["body_moment"]
+        before, after, e = d["state_before"], d["state_after"], d["support_exchange"]
+        require(e["phase"] in ("reference", "seek", "transfer") and e["phase"] == after["phase"]
+                and (self.previous_exchange_state is None or before == self.previous_exchange_state),
+                "Exchange state continuity")
+        super().consume(row)
+        self.previous_exchange_state = after
+        phase = e["phase"]
+        self.exchange_counts[phase+"_rows"] += 1
+        self.exchange_counts["reason_"+e["reason"]] += 1
+        frame = self.frames[-1]
+        frame.update(exchange_phase=phase, transfer=None)
+        stats = self.phase_metrics.setdefault(phase, collections.Counter())
+        for j in frame["joints"]:
+            stats["active_joint_commands"] += 1
+            req = frame["requested"][j]
+            lo, hi = self.creature["spec"]["force_ranges"][j]
+            stats["requests_outside_force_cap"] += int(not lo <= req <= hi)
+            stats["guard_commands"] += int(row["resolution"]["ordered_commands"][j]["joint_guard_applied"])
+            stats["pre_guard_error_sum_nm"] += abs(d["force_projection"]["predicted_torque"][j]-req)
+            stats["post_guard_error_sum_nm"] += abs(d["post_guard_predicted_torque_nm"][j]-req)
+        if phase in ("seek", "transfer") or before["phase"] == "transfer":
+            roles = after if phase in ("seek", "transfer") else before
+            old, replacement = roles["support_limbs"], roles["replacement_limb"]
+            require(type(old) is list and old and len(set(old)) == len(old)
+                    and all(type(i) is int and 0 <= i < 4 for i in old)
+                    and type(replacement) is int and 0 <= replacement < 4 and replacement not in old,
+                    "Exchange support identities")
+            point = self.snapshot(row, old, replacement)
+            if phase == "transfer":
+                require(d["active_limbs"] == old[1:]+[replacement], "Exchange transfer active limbs")
+                if self.open_transfer is None:
+                    require(e["reason"] == "measured_replacement_contact" and before["phase"] == "seek"
+                            and self.last_exchange is not None and self.last_exchange["phase"] == "seek"
+                            and self.last_exchange["outer_step"]+1 == row["outer_step"]
+                            and after["contact_count"] >= self.profile["support_exchange"]["contact_dwell_steps"],
+                            "Exchange transfer entry")
+                    self.open_transfer = dict(before=self.last_exchange, entry=point, last=point,
+                        command_intervals=0, complete=False, native={})
+                    self.transfers.append(self.open_transfer)
+                self.open_transfer["last"] = point
+                self.open_transfer["command_intervals"] += 1
+                frame["transfer"] = self.open_transfer
+            elif self.open_transfer is not None:
+                event = self.open_transfer
+                require(before["phase"] == "transfer" and row["outer_step"]-event["entry"]["outer_step"] == event["command_intervals"],
+                        "Exchange transfer exit")
+                event.update(exit=point, complete=True,
+                    observed_duration_s=event["command_intervals"]*DT,
+                    observed_rotation_change_degrees=point["rotation_degrees"]-event["entry"]["rotation_degrees"])
+                self.open_transfer = None
+            self.last_exchange = point
+        else:
+            require(self.open_transfer is None, "Exchange missing transfer exit")
+            self.last_exchange = None
+
+    def native(self, row):
+        super().native(row)
+        frame = self.frames[(row["step"]-1)//5]
+        stats = self.phase_metrics[frame["exchange_phase"]]
+        forces = row["actuator_force_nm"]
+        for j in frame["joints"]:
+            stats["active_joint_native_samples"] += 1
+            stats["observed_error_sum_nm"] += abs(forces[j]-frame["requested"][j])
+        event = frame["transfer"]
+        if event is not None:
+            for role, data in event["entry"]["limbs"].items():
+                stats = event["native"].setdefault(role, collections.Counter())
+                for j in (2*data["limb"], 2*data["limb"]+1):
+                    stats["joint_samples"] += 1
+                    stats["force_sum_nm"] += forces[j]
+                    stats["absolute_force_sum_nm"] += abs(forces[j])
+                    stats["prepared_request_error_sum_nm"] += abs(forces[j]-frame["requested"][j])
+                    lo, hi = self.creature["spec"]["force_ranges"][j]
+                    stats["at_force_cap_samples"] += int(min(abs(forces[j]-lo),abs(forces[j]-hi)) <= 1e-5)
+
+    def finish(self, expected):
+        result = super().finish(expected)
+        if self.open_transfer is not None:
+            event = self.open_transfer
+            event.update(exit=None, observed_duration_s=(event["last"]["outer_step"]-event["entry"]["outer_step"])*DT,
+                         observed_rotation_change_degrees=event["last"]["rotation_degrees"]-event["entry"]["rotation_degrees"])
+        for event in self.transfers:
+            for stats in event["native"].values():
+                n = stats["joint_samples"]
+                require(n == event["command_intervals"]*10, "Exchange native transfer population")
+                for key in ("force", "absolute_force", "prepared_request_error"):
+                    stats["mean_"+key+"_nm"] = stats.pop(key+"_sum_nm")/n
+        phases = {}
+        for phase, stats in self.phase_metrics.items():
+            n, m = stats["active_joint_commands"], stats["active_joint_native_samples"]
+            phases[phase] = dict(stats)
+            for key in ("pre_guard", "post_guard", "observed"):
+                count = m if key == "observed" else n
+                phases[phase]["mean_"+key+"_torque_error_nm"] = stats[key+"_error_sum_nm"]/count if count else None
+                phases[phase].pop(key+"_error_sum_nm", None)
+        return dict(result, exchange_counts=dict(self.exchange_counts), exchange_phases=phases,
+                    transfers=self.transfers)
+
+
+def diagnose_commands(root, digest, *, exchange=False):
     """Read every moment-controller row and native sample from a full archive."""
     archive, receipt = bound_archive(root, digest)
     audit, contract = receipt["audit"], receipt["contract"]
@@ -353,9 +537,10 @@ def diagnose_commands(root, digest):
         for cell, index in enumerate(group["cell_indices"]):
             e = episodes[index]
             p = profiles[e["candidate_id"]]
-            if p["mode"] == moment.MODE:
+            if p["mode"] == moment.MODE and (not exchange or "support_exchange" in p):
                 identity = {k:e[k] for k in ("cell_id", "body_index", "body_id", "candidate_index", "candidate_id")}
-                motions[cell] = MomentCommands(p, archive.document(prefix+f"/cell_{cell}/creature.json"), identity, contract["outer_steps"])
+                collector = ExchangeCommands if exchange else MomentCommands
+                motions[cell] = collector(p, archive.document(prefix+f"/cell_{cell}/creature.json"), identity, contract["outer_steps"])
         for line in archive.lines(prefix+"/controller.jsonl"):
             row = json.loads(line)
             require(0 <= row["cell"] < len(group["cell_indices"]), "Moment diagnostic controller cell")
@@ -371,12 +556,14 @@ def diagnose_commands(root, digest):
         results.extend(m.finish(episodes[group["cell_indices"][cell]]["metrics"]) for cell,m in motions.items())
     require(controller_rows == audit["controller_rows_replayed"] and native_rows == audit["native_rows_verified"],
             "Moment diagnostic full archive population")
-    return dict(ok=True, schema_version="locolemotion_moment_command_diagnosis_v1",
+    return dict(ok=True, schema_version=("locolemotion_support_exchange_diagnosis_v1" if exchange
+        else "locolemotion_moment_command_diagnosis_v1"),
         ledger_scope=dict(subsystem="discovery", engine_scope="mujoco_warp", authority_mode="retained_motion_diagnostic", question_class="development"),
         source_receipt_sha256=digest, native_source_commit=receipt["source_commit"], world_build_count=0, solver_steps=0,
         full_controller_rows_read=controller_rows, full_native_samples_read=native_rows, outcomes=results,
         input_files=list(archive.verified.values()),
-        scope="Posthoc descriptions of recorded worlds only. Torque errors concern active joints. Predictions use prepared velocity; observed actuator force evolves during the held interval and is not measured contact reaction. Release motion is sampled at controller observations. No counterfactual trajectories, causal isolation or new eligibility decisions.",
+        scope=("Posthoc descriptions of recorded support exchanges. Affine load scales bound static force requests at measured postures; they do not measure ground reaction, certify contact persistence or guarantee dynamic feasibility. Pre-guard envelopes include speed, slew and force caps; post-guard predictions and native actuator forces remain distinct. Prepared contact and posture observations delimit transfers. No counterfactual trajectories, causal isolation or new eligibility decisions." if exchange else
+               "Posthoc descriptions of recorded worlds only. Torque errors concern active joints. Predictions use prepared velocity; observed actuator force evolves during the held interval and is not measured contact reaction. Release motion is sampled at controller observations. No counterfactual trajectories, causal isolation or new eligibility decisions."),
         controller_adopted=False, recovery_benefit_established=False, physical_acceptance_authority=False,
         training_data_authority=False, release_authority=False)
 
@@ -389,11 +576,12 @@ def main():
     parser.add_argument("--reference-commit")
     parser.add_argument("--clearance", action="store_true")
     parser.add_argument("--commands", action="store_true")
+    parser.add_argument("--exchange", action="store_true")
     args = parser.parse_args()
     require(not args.output.exists(), "Geometry diagnostic output already exists")
-    require(sum((args.clearance, args.commands, args.reference_commit is not None)) <= 1,
+    require(sum((args.clearance, args.commands, args.exchange, args.reference_commit is not None)) <= 1,
             "Select one diagnostic mode")
-    result = (diagnose_commands(args.archive, args.receipt_sha256) if args.commands else
+    result = (diagnose_commands(args.archive, args.receipt_sha256, exchange=args.exchange) if args.commands or args.exchange else
               diagnose_clearance(args.archive, args.receipt_sha256) if args.clearance
               else profile_geometry(args.archive, args.receipt_sha256, args.reference_commit))
     with args.output.open("x", encoding="utf-8", newline="\n") as stream:
