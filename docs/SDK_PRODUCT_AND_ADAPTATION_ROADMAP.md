@@ -25,9 +25,9 @@ is the next bounded implementation task.
    The [walking profiler](../sdk/explorer/studio/walking_performance_component_v1.json)
    passes its complete zero-world gate and now separates sampling, controller,
    motor application and readback time. Both fresh baseline runs completed.
-   The [serializer cache change](../sdk/explorer/studio/walking_performance_cache_component_v1.json)
+   The [serializer cache change](../sdk/explorer/studio/walking_performance_cache_component_v2.json)
    replaces full-cache clearing with bounded least-recently-used eviction;
-   ten cache controls and the full zero-world route gate pass. Four fresh
+   ten cache controls and the full zero-world route gate pass under both policies. Four fresh
    old/new runs, reversing order and covering both profiling modes, are
    declared. Measure startup benefit and require unchanged native trajectories
    and controller rows before closing this task. This task comes

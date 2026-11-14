@@ -274,8 +274,8 @@ passes the complete zero-world route gate and three timing controls. It
 separates the walking instance's sampler, controller, motor application and
 readbacks. Two fresh baselines completed: stand-up 19.200/18.611 seconds,
 walking 14.967/14.963 seconds for fifteen simulated seconds. All 2,041 frames
-and 1,799 controller rows match. The [serializer successor](../sdk/explorer/studio/walking_performance_cache_component_v1.json)
-passes ten cache controls and the full zero-world gate; its four matched
+and 1,799 controller rows match. The [serializer successor](../sdk/explorer/studio/walking_performance_cache_component_v2.json)
+passes ten cache controls and the full zero-world gate under both policies; its four matched
 old/new runs are pending. Performance improvement is not yet established.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.

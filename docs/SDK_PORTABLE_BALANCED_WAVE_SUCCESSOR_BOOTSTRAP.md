@@ -193,9 +193,9 @@ The [walking profiler component](../sdk/explorer/studio/walking_performance_comp
 passes the full zero-world gate and three timing controls. Its two fresh
 baselines completed: 19.200/18.611-second stand-up, then 14.967/14.963-second
 walking intervals. Exact body/contact frames and full controller rows match.
-The [serializer cache successor](../sdk/explorer/studio/walking_performance_cache_component_v1.json)
+The [serializer cache successor](../sdk/explorer/studio/walking_performance_cache_component_v2.json)
 retains recently used exact requests; ten cache controls and the complete
-zero-world route pass. Four fresh matched runs remain pending; no speed
+zero-world route pass under both policies. Four fresh matched runs remain pending; no speed
 improvement or real-time guarantee is established.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.

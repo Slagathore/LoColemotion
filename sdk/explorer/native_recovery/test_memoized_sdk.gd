@@ -18,6 +18,7 @@ static func run(native: Object) -> Dictionary:
 	var checks := 0
 	var echo := Echo.new()
 	var memo := Memo.new(echo)
+	memo.eviction_policy = "lru"
 	memo.max_cache_characters = 4
 	memo.canonicalize_json("a"); memo.canonicalize_json("b"); memo.canonicalize_json("a")
 	memo.canonicalize_json("c")

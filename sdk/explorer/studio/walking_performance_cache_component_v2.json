@@ -1,0 +1,194 @@
+{
+  "schema_version": "locolemotion_studio_walking_performance_cache_component_v2",
+  "ledger_scope": {
+    "subsystem": "explorer",
+    "engine_scope": "godot_jolt",
+    "authority_mode": "development",
+    "question_class": "development"
+  },
+  "status": "both_serializer_policies_zero_world_verified_matched_native_comparison_pending",
+  "source_parent_commit": "b3f1b575bcc6d5c4bda4e57ebf313399379f3510",
+  "predecessor": {
+    "path": "sdk/explorer/studio/walking_performance_component_v1.json",
+    "sha256": "4646f35d6d4b778f9e1271e8d58bea7b092b6ab86119ecade00d3f864de4d348",
+    "byte_length": 7245
+  },
+  "supersedes_cache_component": {
+    "path": "sdk/explorer/studio/walking_performance_cache_component_v1.json",
+    "sha256": "f31eaac9b09edd665846fe19f7034b0a84826ad97af697f768a087c46c065c08",
+    "byte_length": 8942
+  },
+  "correction": "Final review before native launch found that the LRU-specific test inherited the selected cache default. It now explicitly selects LRU; the complete preflight passes under both production and predecessor policies. No physical attempt used the earlier cache component.",
+  "completed_baselines_reference": {
+    "path": "sdk/explorer/studio/walking_performance_cache_component_v1.json",
+    "sha256": "f31eaac9b09edd665846fe19f7034b0a84826ad97af697f768a087c46c065c08",
+    "byte_length": 8942
+  },
+  "source_pins": [
+    {
+      "path": "sdk/explorer/native_recovery/memoized_sdk.gd",
+      "sha256": "a2cb519a1bb1200cb7cc015f15ae8ac12849ba765a1d270bf4124416a69f9416",
+      "byte_length": 11738
+    },
+    {
+      "path": "sdk/explorer/native_recovery/worker.gd",
+      "sha256": "faf0dcf548b090b6b14c470f88b63d07cff549d70151c6ed7165780885252efb",
+      "byte_length": 13123
+    },
+    {
+      "path": "sdk/explorer/native_recovery/test_memoized_sdk.gd",
+      "sha256": "e3c1eed3b4b0e3ead0aff6127a2b5452a736f2a57ce663501a5dd5772e03eed2",
+      "byte_length": 3364
+    },
+    {
+      "path": "sdk/explorer/studio/run_godot_cache_diagnostic.py",
+      "sha256": "4d8b829e1a08ce5e8deee7877b1697d95ae12357e2655f52569c657a319496e6",
+      "byte_length": 24041
+    }
+  ],
+  "qualification": {
+    "archive_relative_path": "studio-serializer-lru-gate-v2-a93894394a9d4b899ec6958c83e5406c",
+    "launch": {
+      "path": "launch.json",
+      "sha256": "a7c54705a9d286617bbe18a9be6ab451696bcee7e7e2744aede2bc2467f622c4",
+      "byte_length": 153
+    },
+    "policies": [
+      {
+        "policy": "lru",
+        "receipt": {
+          "path": "qualification_lru/receipt.json",
+          "sha256": "8d1ef66f1acec15fc658c742367c990e32da5f2c9ce98aa6a7f24f5326f8bbdc",
+          "byte_length": 321524
+        },
+        "cleanup": {
+          "path": "owned_lru/cleanup.json",
+          "sha256": "8a10905db0aee1360a4c7b80c65f60cd3c0af6b8d03c1515892aee948d5970c4",
+          "byte_length": 506
+        },
+        "complete_applicable_gate_passed": true,
+        "serializer_controls": 10,
+        "walking_timing_controls": 3,
+        "live_walking_controls": 22,
+        "command_controls": 12,
+        "dependency_files_verified": 1044,
+        "world_build_count": 0,
+        "solver_steps": 0
+      },
+      {
+        "policy": "clear_all",
+        "receipt": {
+          "path": "qualification_clear_all/receipt.json",
+          "sha256": "44d98d147c02a695bc7afc5ab51f3e17754068dd385fc99d2c75b3f293ea7301",
+          "byte_length": 327509
+        },
+        "cleanup": {
+          "path": "owned_clear_all/cleanup.json",
+          "sha256": "8a10905db0aee1360a4c7b80c65f60cd3c0af6b8d03c1515892aee948d5970c4",
+          "byte_length": 506
+        },
+        "complete_applicable_gate_passed": true,
+        "serializer_controls": 10,
+        "walking_timing_controls": 3,
+        "live_walking_controls": 22,
+        "command_controls": 12,
+        "dependency_files_verified": 1044,
+        "world_build_count": 0,
+        "solver_steps": 0
+      }
+    ]
+  },
+  "prospective_comparison": {
+    "roles": [
+      {
+        "id": "clear_profiled",
+        "policy": "clear_all",
+        "profiled": true
+      },
+      {
+        "id": "lru_profiled",
+        "policy": "lru",
+        "profiled": true
+      },
+      {
+        "id": "lru_unprofiled",
+        "policy": "lru",
+        "profiled": false
+      },
+      {
+        "id": "clear_unprofiled",
+        "policy": "clear_all",
+        "profiled": false
+      }
+    ],
+    "maximum_fresh_worlds": 4,
+    "maximum_concurrent_native_children": 1,
+    "seed_or_phase": 74,
+    "setup_steps": 241,
+    "walking_commands": 1800,
+    "total_native_steps_per_world": 2041,
+    "walking_simulated_seconds": 15.0,
+    "maximum_physical_wall_seconds_per_world": 180,
+    "maximum_child_wall_seconds": 360,
+    "native_configuration_sha256": "sha256:8d77992bc4927f470dc546b460eeb2d1ab1d71a86bbc97b9a6ee19540698417a",
+    "runtime": {
+      "mujoco_python": {
+        "archive_relative_path": "studio-portable-development-20261022-01/python-runtime/Scripts/python.exe",
+        "sha256": "21bb438c0d4a6f1f164b9a646f6ee000340185e5871180aec06db8d3f07c0082"
+      },
+      "core": {
+        "archive_relative_path": "studio-portable-development-20261022-01/relocated-installation/runtimes/core/sporespore_locomotion_core.dll",
+        "sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977"
+      },
+      "godot": {
+        "archive_relative_path": "studio-portable-development-20261022-01/relocated-installation/runtimes/godot/Godot_v4.7-stable_win64.exe",
+        "sha256": "b2ca888d5115a6cedee564764a2ee494a625f2ec2edbabd010fe33c9a88a6bf8"
+      },
+      "rapier": {
+        "archive_relative_path": "studio-portable-development-20261022-01/relocated-installation/runtimes/rapier/locomotion_live_explorer.exe",
+        "sha256": "8cc3aaddc1d71fab84653a5a0347744276b67493fadfd021272d859af2f1115c"
+      },
+      "recovery_console": {
+        "archive_relative_path": "studio-portable-development-20261022-01/relocated-installation/runtimes/recovery/godot.windows.editor.dev.x86_64.stsp_ced57575.console.exe",
+        "sha256": "679cb73f4cf9c5658933753b9c13e0e72b0853fb0b9a152f38c29853ea6e05b8"
+      },
+      "recovery_dll": {
+        "archive_relative_path": "studio-portable-development-20261022-01/relocated-installation/runtimes/recovery_dll/sporespore_godot_adapter.dll",
+        "sha256": "76d05482da331ee4ed423f82672e2bf429222cd0efdeafa2f4f20c50a6023b81"
+      },
+      "recovery_engine": {
+        "archive_relative_path": "studio-portable-development-20261022-01/relocated-installation/runtimes/recovery/godot.windows.editor.dev.x86_64.stsp_ced57575.exe",
+        "sha256": "caf58a3c09a918be7328072a7c73b6d7b14642c01f643c5bc52a1dfbc9c39e97"
+      }
+    },
+    "body_source": "Exact frozen canonical quadruped in recovery_sources.zip; preview descriptor is not the native recovery model.",
+    "capture": "Full original stand-up, body/contact stream and walking control/application rows; no impulses. Same native images and body in every role.",
+    "production_entrypoints": [
+      "run_godot_cache_diagnostic.execute",
+      "GodotLiveOwner.stream_run",
+      "godot_live_walking_worker._on_physics_frame",
+      "LiveWalk.control_step"
+    ],
+    "code_risks_covered": [
+      "exact canonical output and refusals",
+      "LRU hit promotion and eviction",
+      "oversized admission bound",
+      "controller calls always execute",
+      "same full-capture native route",
+      "fresh old/new timing with reversed order"
+    ],
+    "not_covered": [
+      "desktop UI rendering latency",
+      "arbitrary bodies",
+      "recovery handoff",
+      "maximum solver throughput",
+      "general real-time guarantee",
+      "learned adaptation"
+    ],
+    "required_comparison": "Independent audit of every role, exact listed body/contact/clock frame values and full walking controller rows across all four worlds.",
+    "benefit_criterion": "All native audits and exact comparisons pass; both profiled and unprofiled startup times improve, mean of the two paired fractional startup reductions is at least 0.05, and profiled canonicalization misses decrease. This is a bounded development measurement, not a statistical or general real-time guarantee."
+  },
+  "performance_improvement_established": false,
+  "physical_acceptance_authority": false,
+  "release_authority": false
+}
