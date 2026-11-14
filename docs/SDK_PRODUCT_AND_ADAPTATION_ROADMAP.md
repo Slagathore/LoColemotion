@@ -9,8 +9,8 @@ earlier decisions stay in the [dated history](SDK_PRODUCT_AND_ADAPTATION_ROADMAP
 
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** The latest contact
-diagnosis changes what the recovery search should optimize; Studio performance
-is the next bounded implementation task.
+diagnosis changes what the recovery search should optimize. The bounded startup
+comparison is closed; coupled contact recovery is next.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -18,23 +18,9 @@ is the next bounded implementation task.
 | [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
 | [Contact-force diagnosis](../sdk/discovery/creature_contact_reactions_result_v1.json) | Zero new worlds; all 12,960 decisions and 64,800 solved samples read. On bodies 0/16, requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, net 0.013/0.012 Nm. Body 21 makes no positive request. Foot-only moment misses the opposing torso reaction |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
-| [Studio performance comparison](../sdk/explorer/studio/walking_performance_cache_result_v1.json) | Four fresh matched worlds: old cache stand-up 19.934/20.260 seconds, LRU 21.326/20.673 seconds. All 2,041 frames and 1,799 full controller rows match. LRU fails the speedup criterion; previous default restored. Fifteen-second walking intervals take 14.974-15.124 seconds; no general real-time qualification |
+| [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
-1. **Reduce measured Studio stand-up processing cost.** Earlier cache and
-   [scalar-validator changes](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
-   failed their benefit criteria; original defaults remain active.
-   The [startup capture](../sdk/explorer/studio/startup_packet_capture_result_v1.json)
-   retains ten exact inputs across five phases from one bounded native world.
-   The [compiled validator comparison](../sdk/explorer/studio/startup_native_validation_result_v1.json)
-   now passes: all 1,280 outputs match, 2,424 oracle checks pass per packet,
-   and the median warm route reduction is 12.45% (individual gains 9.05-16.56%).
-   A separate 32-replay check verifies the original default.
-   Both policies now pass the [complete short-route gate](../sdk/explorer/studio/startup_native_runtime_component_v1.json).
-   Next run four fresh native worlds in original/native/native/original order.
-   Require exact body/controller outputs, both paired startup reductions positive,
-   and a mean reduction of at least 5%. Native benefit remains unproved; keep the
-   original default until measured. Preserve full capture; no cache/scalar grid.
-2. **Search recovery using the whole body's contact response.** The
+1. **Search recovery using the whole body's contact response.** The
    [36-world diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
    verifies solved reactions and empty-cone fallback, with no recovery.
    Its [force comparison](../sdk/discovery/creature_contact_reactions_result_v1.json)
@@ -43,12 +29,12 @@ is the next bounded implementation task.
    trajectory family and rank measured motion, including torso support.
    Do not repeat the unchanged foot-only force grid. Keep failures and diverse
    body outcomes; confirm useful leads in fresh full-capture worlds.
-3. **Complete the Studio recovery handoff with a useful controller.** Preserve
+2. **Complete the Studio recovery handoff with a useful controller.** Preserve
    fresh observations, body identity, motor ownership, native clocks and
    measured work. The required run is walking, fall, active recovery, completed
    recovery, then 120 resumed walking steps on the same body. No pose reset,
    invented history or relaxed entry/joint-limit gate is allowed.
-4. **Build learned adaptation with separate training and evaluation.** Keep the
+3. **Build learned adaptation with separate training and evaluation.** Keep the
    four walking-selection misses distinct from eleven weakened-body groups
    with no candidate passing both starts. Retain fixed profile 27 as comparator.
    Declare morphology features, training data and untouched evaluation groups

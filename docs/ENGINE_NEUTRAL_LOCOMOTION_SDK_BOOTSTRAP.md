@@ -267,36 +267,18 @@ on average; opposing torso reaction is missing from the foot-only score.
 This is a retained diagnostic, not causal isolation or a recovery result.
 The next recovery family must account for coupled whole-body contact and
 measured trajectory progress. Do not repeat the unchanged negative grid.
-The next task is the bounded matched Studio performance profile before
-another large recovery cohort; recovery success is not its gate. The
-[walking-stage profiler](../sdk/explorer/studio/walking_performance_component_v1.json)
-passes the complete zero-world route gate and three timing controls. It
-separates the walking instance's sampler, controller, motor application and
-readbacks. Two fresh baselines completed: stand-up 19.200/18.611 seconds,
-walking 14.967/14.963 seconds for fifteen simulated seconds. All 2,041 frames
-and 1,799 controller rows match. The [four-world cache comparison](../sdk/explorer/studio/walking_performance_cache_result_v1.json)
-also preserves every compared frame and controller row, but LRU is 6.98%/2.04%
-slower through stand-up in the profiled/unprofiled pairs. The declared speedup
-criterion fails; the old default is restored and its full zero-world gate
-passes. The [retained startup CPU probe](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
-reopens 288 exact route replays with no worlds. Two scalar-validator candidates
-preserve checked outputs but fail their 10% CPU threshold (4.7% and -1.0%
-observed warm median reductions); original validation remains active.
-Its historical terminal input is now supplemented by the
-[startup capture result](../sdk/explorer/studio/startup_packet_capture_result_v1.json):
-one seed-74 world completed 360 frames and retained ten exact packets across
-all five observed startup phases. All 320 offline production-route replays match
-the retained full outputs. The original post-run reader failure remains intact;
-the successor reader respects initial null memory clocks and verifies the
-completed stream without another world. The [compiled validator result](../sdk/explorer/studio/startup_native_validation_result_v1.json)
-then verifies 1,280 exact outputs with 2,424 oracle checks per packet. Its median
-warm route reduction is 12.45%, with all ten packets improving 9.05-16.56%;
-the prospective CPU criterion passes. A separate 32-replay check preserves the
-original default. The [native runtime component](../sdk/explorer/studio/startup_native_runtime_component_v1.json)
-passes both complete zero-world gates with 2,424 oracle checks each. Four fresh
-ABBA worlds are prospectively declared: exact body/controller outputs, positive
-reduction in both pairs and at least 5% mean startup reduction. Native benefit
-remains unproved; original stays default pending this comparison.
+The bounded Studio startup work is now closed. Earlier
+[cache](../sdk/explorer/studio/walking_performance_cache_result_v1.json) and
+[scalar-validator](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
+changes missed their criteria. The [compiled pure validator](../sdk/explorer/studio/startup_native_validation_result_v1.json)
+preserves 1,280 retained CPU outputs and improves median warm route time 12.45%.
+Its [fresh native comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json)
+completes four seed-74 worlds from the frozen f00d95f6 source. Original startup
+takes 18.440/18.452 seconds, compiled 17.634/17.620. All 360 body/contact/clock
+frames and 118 full controller rows match; each world executes 960 calls only
+through its selected validator. The 4.37%/4.51% reductions average 4.44%, below
+the declared 5% minimum. The original default remains active. Return to broad
+coupled-contact recovery search; no further cache or scalar-validator grid.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

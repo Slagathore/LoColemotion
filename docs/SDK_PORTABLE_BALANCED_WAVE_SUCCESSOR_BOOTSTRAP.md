@@ -187,33 +187,18 @@ error is at most 5.33e-15 Nm and prepared COM difference 3.14e-8 m.
 This identifies an omitted reaction in the score, not a proven replacement.
 The next recovery search must model coupled whole-body contact and rank
 observed trajectory progress. Do not repeat the unchanged foot-only grid.
-Complete the bounded matched Studio profile first, then return to broad
-factored search and fresh full-capture confirmation of useful diverse leads.
-The [walking profiler component](../sdk/explorer/studio/walking_performance_component_v1.json)
-passes the full zero-world gate and three timing controls. Its two fresh
-baselines completed: 19.200/18.611-second stand-up, then 14.967/14.963-second
-walking intervals. Exact body/contact frames and full controller rows match.
-The [four-world serializer comparison](../sdk/explorer/studio/walking_performance_cache_result_v1.json)
-preserves the exact trajectories and controller rows, but LRU stand-up is
-21.326/20.673 seconds versus 19.934/20.260 for the old cache. Its speedup
-criterion fails despite 109 fewer native canonicalization calls. The old
-default is restored with a passing full preflight. The
-[startup CPU comparison](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
-retains 288 exact replays and rejects two scalar-validator changes: 4.7% and
--1.0% observed warm median reductions, below their 10% threshold. Original
-validation stays active. The [startup capture closeout](../sdk/explorer/studio/startup_packet_capture_result_v1.json)
-adds ten exact inputs across five startup phases from one 360-step native world.
-All 320 offline production-route replays match the retained full outputs. The
-first post-run reader wrongly required an initial memory clock of zero; its
-failure stays intact, while the corrected reader follows the existing null-clock
-contract and verifies the completed world. The [compiled validator comparison](../sdk/explorer/studio/startup_native_validation_result_v1.json)
-passes its CPU criterion: 1,280 exact replays, 2,424 oracle checks per packet,
-12.45% median warm route reduction and no slower packet (gains 9.05-16.56%).
-A separate 32-replay check preserves the original default. Both policies now
-pass the [complete native-route safety gate](../sdk/explorer/studio/startup_native_runtime_component_v1.json).
-The next four fresh ABBA worlds must preserve exact body/controller outputs and
-reduce startup in both pairs by at least 5% on average. Native startup benefit,
-additional recovery and adaptation remain unproved.
+The bounded Studio startup work is now closed. Earlier
+[cache](../sdk/explorer/studio/walking_performance_cache_result_v1.json) and
+[scalar-validator](../sdk/explorer/studio/startup_packet_profile_result_v1.json)
+changes missed their criteria. The [compiled pure validator](../sdk/explorer/studio/startup_native_validation_result_v1.json)
+preserves 1,280 retained CPU outputs and improves median warm route time 12.45%.
+Its [fresh native comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json)
+completes four seed-74 worlds from the frozen f00d95f6 source. Original startup
+takes 18.440/18.452 seconds, compiled 17.634/17.620. All 360 body/contact/clock
+frames and 118 full controller rows match; each world executes 960 calls only
+through its selected validator. The 4.37%/4.51% reductions average 4.44%, below
+the declared 5% minimum. The original default remains active. Return to broad
+coupled-contact recovery search; no further cache or scalar-validator grid.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 
