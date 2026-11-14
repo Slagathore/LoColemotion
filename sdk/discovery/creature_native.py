@@ -38,6 +38,7 @@ import creature_moment_handoff_search as handoff_search
 import creature_support_exchange_search as exchange_search
 import creature_support_sharing_search as sharing_search
 import creature_torque_map_search as torque_search
+import creature_contact_reactions as reactions
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -59,6 +60,7 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_support_exchange.py", "creature_support_exchange_search.py", "test_creature_support_exchange.py",
                  "creature_support_sharing.py", "creature_support_sharing_bounds.py", "creature_support_sharing_search.py", "test_creature_support_sharing.py",
                  "creature_torque_map.py", "creature_torque_map_search.py", "test_creature_torque_map.py", "test_creature_torque_map_v2.py",
+                 "test_creature_torque_map_v3.py", "creature_contact_reactions.py", "test_creature_contact_reactions.py",
                  "creature_contact_moment.py", "test_creature_contact_moment.py",
                  "creature_righting_geometry.py", "test_creature_righting_geometry.py",
                  "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py"]
@@ -110,7 +112,9 @@ def gates(c):
             + ([("creature-support-exchange", "test_creature_support_exchange", 20)] if any(k in c for k in ("support_exchange_search", "support_sharing_search", "torque_map_search")) else [])
             + ([("creature-support-sharing", "test_creature_support_sharing", 24)] if any(k in c for k in ("support_sharing_search", "torque_map_search")) else [])
             + ([("creature-torque-map", "test_creature_torque_map", 26)] if "torque_map_search" in c else [])
-            + ([("creature-torque-map-v2", "test_creature_torque_map_v2", 8)] if torque_search.stable(c) else []))
+            + ([("creature-torque-map-v2", "test_creature_torque_map_v2", 8)] if torque_search.stable(c) else [])
+            + ([("creature-torque-map-v3", "test_creature_torque_map_v3", 10)] if torque_search.geometric(c) else [])
+            + ([("creature-contact-reactions", "test_creature_contact_reactions", 8)] if reactions.enabled(c) else []))
 
 
 def sequence_enabled(c):
@@ -163,6 +167,7 @@ def declaration(path):
     exchange_search.validate(c)
     sharing_search.validate(c)
     torque_search.validate(c)
+    reactions.enabled(c)
     batch_limit(c)
     require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
@@ -223,6 +228,7 @@ def preflight(c, core_path):
             "Creature runtime versions")
     require(all(callable(getattr(mjw, name, None)) for name in ("put_model", "put_data", "step1", "step2", "get_data_into")),
             "Creature native interfaces")
+    require(not reactions.enabled(c) or callable(getattr(mjw, "contact_force", None)), "Contact reaction extraction interface")
     with ExitStack() as trap:
         for name in ("MjModel", "MjData", "mj_step", "mj_step1", "mj_step2", "mj_forward"):
             trap.enter_context(patch.object(mujoco, name, side_effect=AssertionError("Physics in creature preflight")))
@@ -343,15 +349,28 @@ def run(folder, permit, c, contract_path, core_path):
     return result
 
 
-def prepared_step(batch, observations, folder, outer, **prepared):
+def planning_states(batch):
+    """Own exact host planning inputs, including targets before float32 transfer."""
+    require(isinstance(batch, righting.RightingBatch), "Planning-state capture requires righting batch")
+    names = ("previous", "step_index", "motion_phase", "motion_steps", "contact_state",
+             "sequence_state", "moment_state", "closed")
+    return [dict(binding=cell.binding, profile=copy.deepcopy(cell.candidate),
+                 state={name:copy.deepcopy(getattr(cell, name)) for name in names})
+            for cell in batch.controllers]
+
+
+def prepared_step(batch, observations, folder, outer, *, retain_planning_state=False, **prepared):
     """Keep the exact failed planning input without applying a partial batch."""
+    require(type(retain_planning_state) is bool, "Planning-state capture option")
+    before = planning_states(batch) if retain_planning_state else None
     try:
         return batch.step(observations)
     except BaseException as exc:
+        memory = dict(planning_states_before=before, planning_states_after=planning_states(batch)) if retain_planning_state else {}
         write_new(folder / "failed-prepared-observations.json", dict(
-            schema_version="locolemotion_failed_prepared_observations_v1",
+            schema_version="locolemotion_failed_prepared_observations_v2" if retain_planning_state else "locolemotion_failed_prepared_observations_v1",
             outer_step=outer, error=type(exc).__name__+": "+str(exc),
-            observations=observations, **prepared))
+            observations=observations, **memory, **prepared))
         raise
 
 
@@ -418,7 +437,7 @@ def run_batch(folder, c, core_path, *, cache=None):
         positions, velocities = initial_arrays(creatures, c)
         wp.copy(wd.qpos, wp.array(positions, dtype=wp.float32, device=device))
         wp.copy(wd.qvel, wp.array(velocities, dtype=wp.float32, device=device))
-        history = SubstepHistory(wp, wd)
+        history = reactions.History(wp, mjw, packed, wd) if reactions.enabled(c) else SubstepHistory(wp, wd)
         stage = "graph"
         with ExitStack() as trap:
             for name in ("mj_step", "mj_step1", "mj_step2", "mj_forward"):
@@ -431,6 +450,8 @@ def run_batch(folder, c, core_path, *, cache=None):
             require(np.array_equal(wd.qpos.numpy(), positions) and np.array_equal(wd.qvel.numpy(), velocities)
                     and not any(wd.time.numpy()), "Creature graph mutated fresh world")
             validator = StreamValidator(c, creatures, metadatas)
+            cones = [int(model.opt.cone) for model in models] if reactions.enabled(c) else None
+            reaction_reader = reactions.Reader(c, creatures, cones) if reactions.enabled(c) else None
             with ExitStack() as output:
                 streams = {name: output.enter_context((folder / (name + ".jsonl")).open("x", encoding="utf-8", newline="\n"))
                            for name in stream_names}
@@ -481,7 +502,7 @@ def run_batch(folder, c, core_path, *, cache=None):
                         timing["observation_readback_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
                     rows = prepared_step(batch, observations, folder, outer,
-                        ledger_scope=c["ledger_scope"], native_observations=native,
+                        retain_planning_state=c.get("retain_planning_state", False), ledger_scope=c["ledger_scope"], native_observations=native,
                         contact_compatibility_copies=copies, readback_journal=journal)
                     timing["controller_s"] = time.perf_counter() - tick
                     tick = time.perf_counter()
@@ -518,6 +539,11 @@ def run_batch(folder, c, core_path, *, cache=None):
                         for row in block:
                             if recording["full"]:
                                 append("trace", row)
+                            if reaction_reader is not None:
+                                i = row["cell"]
+                                extra = reactions.project(snap, row, creatures[i]["binding"], cones[i])
+                                reaction_reader.consume(extra, row)
+                                append("reactions", extra)
                             result["native_rows"] += 1
                     if recording["active"]:
                         for row in capture.project(rows, captured_blocks):
@@ -526,6 +552,7 @@ def run_batch(folder, c, core_path, *, cache=None):
                     timing["outer_total_s"] = time.perf_counter() - whole
                     append("timing", timing)
             result["metrics"] = validator.finish()
+            if reaction_reader is not None:result["contact_reactions"] = reaction_reader.finish()
         require(model_snapshot(packed) == transport["packed_model"], "Native model changed during execution")
         write_new(folder / "model-after.json", model_snapshot(packed))
         result.update(ok=True, model_unchanged=True, stream_sha256={name: sha(folder / (name + ".jsonl"))
@@ -666,6 +693,9 @@ def audit(folder, c, core_path, *, synthetic=False):
         native_rows_verified=sum(g["audit"]["native_rows_verified"] for g in reports),
         differing_model_fields=sorted(differing), metrics=metrics, timing_seconds=timing,
         **{key: False for key in FLAGS})
+    if reactions.enabled(c):
+        result["contact_reactions"] = dict(samples_verified=sum(g["audit"]["contact_reactions"]["samples_verified"] for g in reports),
+            cells=[row for g in reports for row in g["audit"]["contact_reactions"]["cells"]], controller_input=False, recovery_authority=False)
     if capture.options(c)["active"]:
         result["capture"] = capture.report(len(c["cells"])*c["outer_steps"], capture.options(c)["full"])
     if "population_spec" in c:
@@ -716,6 +746,8 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                         and (directory / "model.xml").read_bytes() == creature["model_xml"].encode(), "Creature compile reconstruction")
                 validate_model_evidence(creature, m, snapshot)
             validator = StreamValidator(c, creatures, metadata)
+            cones = [s["$.opt.cone"]["value"]["value"] for s in transport["source_models"]] if reactions.enabled(c) else None
+            reaction_reader = reactions.Reader(c, creatures, cones) if reactions.enabled(c) else None
             require(set(result["stream_sha256"]) == set(capture.streams(c, shared))
                     and {p.stem for p in folder.glob("*.jsonl")} == set(capture.streams(c, shared)),
                     "Creature stream binding population")
@@ -727,6 +759,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                 trace = inputs.enter_context((folder / "trace.jsonl").open()) if recording["full"] else None
                 compact = inputs.enter_context((folder / "compact.jsonl").open()) if recording["active"] else None
                 journal = inputs.enter_context((folder / "readback.jsonl").open()) if shared else None
+                reaction_stream = inputs.enter_context((folder / "reactions.jsonl").open()) if reaction_reader is not None else None
                 for outer in range(c["outer_steps"]):
                     controls = [] if recording["full"] else [None]*nworld
                     if recording["full"]:
@@ -749,6 +782,8 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                         for _ in range(5):
                             block = [json.loads(next(trace)) for _ in range(nworld)]
                             validator.native(block)
+                            if reaction_reader is not None:
+                                for row in block:reaction_reader.consume(json.loads(next(reaction_stream)), row)
                             if recording["active"]: blocks.append(block)
                     if recording["active"]:
                         reduced = [json.loads(next(compact)) for _ in range(nworld)]
@@ -758,6 +793,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                 require(trace is None or not trace.read(), "Extra creature native rows")
                 require(compact is None or not compact.read(), "Extra compact creature rows")
                 require(journal is None or not journal.read(), "Extra creature readback rows")
+                require(reaction_stream is None or not reaction_stream.read(), "Extra contact reaction rows")
             metrics = validator.finish() if recording["full"] else compact_reader.finish()
             if recording["active"] and recording["full"]:
                 require(same_bits(compact_reader.finish(), metrics), "Full/compact outcome reconstruction differs")
@@ -770,6 +806,9 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                 controller_rows_replayed=result["controller_rows"] if recording["full"] else 0,
                 native_rows_verified=result["native_rows"] if recording["full"] else 0,
                 differing_model_fields=differing, metrics=metrics, timing_seconds=timing, **{key: False for key in FLAGS})
+            if reaction_reader is not None:
+                report["contact_reactions"] = reaction_reader.finish()
+                require(same_bits(report["contact_reactions"], result["contact_reactions"]), "Contact reaction summary differs")
             if recording["active"]:
                 report["capture"] = capture.report(result["controller_rows"], recording["full"])
             if shared:

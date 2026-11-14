@@ -165,10 +165,15 @@ worlds lose to their fresh selected references; there are zero recoveries or
 progress leads and five joint-violation worlds. The complete compact results
 and interrupted prefix reconstruct, but no full cohort verdict is claimed.
 Retained failed observations reproduce the numerical refusal with fresh memory;
-original planning memory is unavailable. A distinct successor must preserve
-v1/v2 and all checks, retain that memory and cover failed body 21. Reconcile
-modeled turning moments with measured contact reactions before another force
-family; do not repeat the unchanged broad grid. Keep fresh confirmation for leads.
+original planning memory is unavailable. The
+[v3 component](../sdk/discovery/creature_torque_map_component_v3.json) passes
+330 controls: ten new numerical/memory controls and eight solved-reaction
+controls. Legacy arithmetic and the entire v2 route audit remain exact.
+The declared 36-world three-second full route adds failed body 21, exact
+planning-state retention and every-substep foot/torso reaction capture.
+Native force reconciliation remains unrun. Use it to diagnose modeled turning
+moments before another force family; do not repeat the unchanged broad grid.
+Keep fresh confirmation for leads and the roadmap's bounded Studio profile.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

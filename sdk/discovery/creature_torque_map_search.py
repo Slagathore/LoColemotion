@@ -22,6 +22,8 @@ RECIPE = dict(schema_version="locolemotion_torque_map_search_v1", seed=1061141,
     contact_sets=["primary","all"], assignment="omit_complementary_pair_by_body_modulo_four",
     sharing_reference_rule="highest_exposed_reference_gain_per_body_then_lowest_index")
 RECIPE_V2 = dict(RECIPE, schema_version="locolemotion_torque_map_search_v2")
+RECIPE_V3 = dict(RECIPE, schema_version="locolemotion_torque_map_search_v3", route_body_indices=[0,16,21])
+V3_SOURCES = {"creature_torque_map_native_failure_v2.json":"1796e46931eb29f54ca94ccb8c1d41d1ca923a2102ef5be5ebf13095a8e4993f"}
 V2_SOURCES = {
     "creature_torque_map_native_failure_v1.json":"cc988e71fe8c49ba4b0b96d0c8154efcc57c90c4fbbb2c2417a08e081d25759c",
     "creature_torque_map_numerical_witnesses_v1.json":"0559cfa995bd3d6bf50de43118431668554d6ed5accec82fef0ca146e4d37c40"}
@@ -29,11 +31,21 @@ PATH_SCREEN = copy.deepcopy(parent.PATH_SCREEN)
 
 
 def stable(c):
-    return c.get("torque_map_search", {}).get("schema_version") == RECIPE_V2["schema_version"]
+    return c.get("torque_map_search", {}).get("schema_version") in (RECIPE_V2["schema_version"], RECIPE_V3["schema_version"])
 
 
-def recipes(*, stable_basis=False):
-    return [dict(controller.STABLE_POLICY if stable_basis else controller.DEFAULT_POLICY,
+def geometric(c):
+    return c.get("torque_map_search", {}).get("schema_version") == RECIPE_V3["schema_version"]
+
+
+def recipe(c):
+    return RECIPE_V3 if geometric(c) else RECIPE_V2 if stable(c) else RECIPE
+
+
+def recipes(*, stable_basis=False, geometric_cone=False):
+    require(not geometric_cone or stable_basis, "Torque-map recipe numerical version")
+    selected = controller.GEOMETRIC_POLICY if geometric_cone else controller.STABLE_POLICY if stable_basis else controller.DEFAULT_POLICY
+    return [dict(selected,
                  pose_score=s, normalization=n, contact_set=c)
             for s,n,c in itertools.product(RECIPE["pose_scores"], RECIPE["normalizations"], RECIPE["contact_sets"])]
 
@@ -58,9 +70,10 @@ def sharing_references():
     return result
 
 
-def population(*, route=False, stable_basis=False):
+def population(*, route=False, stable_basis=False, geometric_cone=False):
+    require(not geometric_cone or (route and stable_basis), "Torque-map v3 is a diagnostic route only")
     old=parent.spec();old_refs=parent.reference_indices();sharing=sharing_references()
-    bodies=RECIPE["route_body_indices"] if route else list(range(24))
+    bodies=(RECIPE_V3 if geometric_cone else RECIPE)["route_body_indices"] if route else list(range(24))
     refs=sorted({old_refs[b] for b in bodies});failed=sorted({sharing[b]["candidate_index"] for b in bodies})
     rows=[list(range(8)) if route else assignments()[b] for b in bodies]
     pairs=sorted({(old_refs[b],i) for b,row in zip(bodies,rows,strict=True) for i in row})
@@ -68,7 +81,7 @@ def population(*, route=False, stable_basis=False):
     offset=len(profiles);indices={pair:offset+i for i,pair in enumerate(pairs)}
     for ref,index in pairs:
         p=copy.deepcopy(old["profiles"][ref])
-        p.update(id=f"cone{index}_{p['id']}",torque_map=recipes(stable_basis=stable_basis)[index]);profiles.append(moment.profile(p))
+        p.update(id=f"cone{index}_{p['id']}",torque_map=recipes(stable_basis=stable_basis, geometric_cone=geometric_cone)[index]);profiles.append(moment.profile(p))
     references=[2+refs.index(old_refs[b]) for b in bodies]
     spec=dict(schema_version=righting.ASSIGNED_SCHEMA,descriptors=[old["descriptors"][b] for b in bodies],
         profiles=profiles,conditions=old["conditions"],starts=old["starts"],
@@ -81,6 +94,7 @@ def population(*, route=False, stable_basis=False):
 def source_dependencies(c):
     if "torque_map_search" not in c:return []
     extra = [*V2_SOURCES, "creature_torque_map_v2.json", "creature_torque_map_route_v2.json"] if stable(c) else []
+    if geometric(c):extra += [*V3_SOURCES, "creature_torque_map_route_v3.json"]
     return list(dict.fromkeys(parent.source_dependencies({"support_sharing_search":parent.RECIPE})
         +[ROOT/"sdk/discovery"/name for name in [*SOURCES, *extra]]
         +[ROOT/"sdk/discovery"/name for name in ("creature_torque_map_v1.json","creature_torque_map_route_v1.json")]))
@@ -91,10 +105,15 @@ def validate(c):
     require(not opted or "torque_map_search" in c,"Torque-map requires declared search")
     if "torque_map_search" not in c:return
     sources = dict(SOURCES, **V2_SOURCES) if stable(c) else SOURCES
+    if geometric(c):sources = dict(sources, **V3_SOURCES)
     for name,digest in sources.items():
         require(hashlib.sha256((ROOT/"sdk/discovery"/name).read_bytes()).hexdigest()==digest,"Torque-map predecessor binding")
-    route=c["mode"]=="route_ghost";spec,refs=population(route=route, stable_basis=stable(c))
-    require(c["mode"] in ("route_ghost","development_discovery") and c["torque_map_search"]==(RECIPE_V2 if stable(c) else RECIPE)
+    route=c["mode"]=="route_ghost";spec,refs=population(route=route, stable_basis=stable(c), geometric_cone=geometric(c))
+    require(c.get("retain_planning_state", False) is geometric(c), "Torque-map planning-state declaration")
+    if geometric(c):
+        import creature_contact_reactions as reactions
+        require(reactions.enabled(c), "Torque-map v3 requires solved contact capture")
+    require(c["mode"] in ("route_ghost","development_discovery") and c["torque_map_search"]==recipe(c)
         and c["righting_spec"]==spec and c["trajectory_reference_by_body"]==refs
         and all(type(x) is int for x in c["trajectory_reference_by_body"])
         and c["reference_selection"]==parent.parent.parent.references()
@@ -106,18 +125,20 @@ def validate(c):
             "body_moment_search","trajectory_proposal","trajectory_retiming","joint_braking_search",
             "contact_reach_search","torso_target_search")),"Torque-map population, references, bounds or scope")
     if stable(c):
-        require(c["predecessor"] == dict(path="sdk/discovery/creature_torque_map_native_failure_v1.json",
-            sha256=V2_SOURCES["creature_torque_map_native_failure_v1.json"]), "Torque-map numerical predecessor")
+        name = "creature_torque_map_native_failure_v2.json" if geometric(c) else "creature_torque_map_native_failure_v1.json"
+        require(c["predecessor"] == dict(path="sdk/discovery/"+name,
+            sha256=(V3_SOURCES if geometric(c) else V2_SOURCES)[name]), "Torque-map numerical predecessor")
 
 
 def verify_route(folder,receipt):
     c=receipt["contract"]
-    require(c["mode"]=="route_ghost" and c["torque_map_search"]==(RECIPE_V2 if stable(c) else RECIPE)
+    require(c["mode"]=="route_ghost" and c["torque_map_search"]==recipe(c)
         and receipt["audit"]["capture"]["controller_replay_verified"]
         and receipt["audit"]["capture"]["within_run_projection_verified"],"Torque-map full route required")
     expected={m["cell_id"] for m in c["righting_metadata"]
               if "torque_map" in c["righting_spec"]["profiles"][m["candidate_index"]]}
-    seen={name:dict(rows=0,force=0,target=0) for name in expected}
+    fallback_cells = {m["cell_id"] for m in c["righting_metadata"] if geometric(c) and m["body_index"]==2 and m["cell_id"] in expected}
+    seen={name:dict(rows=0,force=0,target=0,**({"empty_target":0} if geometric(c) else {})) for name in expected}
     counts=dict(quiet_contact_rows=0,coordinated_contact_rows=0,no_force_rows=0)
     inventory={r["path"]:r for r in receipt.get("artifacts",[])}
     for batch in receipt["audit"]["batches"]:
@@ -138,6 +159,7 @@ def verify_route(folder,receipt):
                 if target is not None and target.get("torque_map_target"):
                     require(target["target_nonadjacent_gap_m"]>=-1e-9,"Torque-map target clearance")
                     seen[cell]["target"]+=1
+                if geometric(c):seen[cell]["empty_target"] += bool(target and target.get("torque_map_fallback")=="no_positive_cone_pose")
                 if info["reason"]=="upright_stance":continue
                 present=[i for i,v in enumerate(row["request"]["state"]["ordered_contact_observations"]) if v["presence"]]
                 require(info["measured_contact_limbs"]==present and info["active_limbs"]==d["active_limbs"]
@@ -155,6 +177,8 @@ def verify_route(folder,receipt):
                 counts["quiet_contact_rows"]+=bool(info["quiet_limbs"])
                 counts["coordinated_contact_rows"]+=len(d["active_limbs"])>1
                 counts["no_force_rows"]+=not d["active_limbs"]
-    require(expected and all(v["rows"]==c["outer_steps"] and v["force"] and v["target"] for v in seen.values())
+    require(expected and all(v["rows"]==c["outer_steps"] and
+            (v["empty_target"] if name in fallback_cells else v["force"] and v["target"]) for name,v in seen.items())
+            and (not geometric(c) or len(fallback_cells)==8)
             and all(counts.values()),"Torque-map route coverage incomplete")
     return dict(cells=seen,counts=counts,complete=True,recovery_qualified=False)

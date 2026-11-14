@@ -28,20 +28,28 @@ The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Repair empty-cone classification, then test the contact-force model.**
-   The [v2 closeout](../sdk/discovery/creature_torque_map_native_failure_v2.json)
-   preserves the failed attempt and all completed outcomes. A fresh successor
-   must retain failed planning memory and classify empty zero/narrow cones
-   into the existing no-force fallback, preserving v1/v2 and all 1e-9 checks,
-   caps and guards. Require the full gate and a fresh bounded route including
-   failed body 21 from a clean pushed freeze. All 126 completed new-controller
-   worlds underperform; do not repeat the unchanged broad grid. Reconcile
-   modeled turning moments with measured foot and torso contact reactions
-   before another force-model family, then resume broad factored discovery
-   and fresh full-capture confirmation of useful diverse leads. Controller
-   work used 53.6% of measured completed intervals; this identifies profiling
-   work, not a demonstrated throughput improvement.
-2. **Complete the Studio behavior with a useful controller.** Keep the existing
+1. **Measure the actual contact forces before another recovery search.**
+   The [v3 diagnostic component](../sdk/discovery/creature_torque_map_component_v3.json)
+   passes 330 controls, repairs empty zero/narrow-cone classification and
+   retains exact failed planning memory. All 8,640 earlier route decisions
+   and 43,200 samples replay with byte-identical audit output. From a clean
+   pushed freeze, run the declared 36-world three-second full route on bodies
+   0, 16 and failed body 21. Require fallback coverage and every solved contact
+   force to reconcile against the free-root constraint force. Compare proposed
+   turning moments with measured foot and torso reactions before choosing
+   another force-model family. The [v2 broad failure](../sdk/discovery/creature_torque_map_native_failure_v2.json)
+   remains negative: all 126 completed new-controller worlds underperform.
+   Do not repeat that unchanged grid. Return to broad factored discovery and
+   fresh full-capture confirmation for useful, diverse leads after diagnosis.
+2. **Give Studio performance a bounded, independent task.** After the contact
+   diagnostic and before another large recovery cohort, profile startup and
+   stepping on the current installed build. Separate one-time loading and
+   compilation from steady-state simulation, retain the same body and capture
+   settings, fix a measured bottleneck, then repeat the matched run. Useful
+   recovery is not a prerequisite for this task. The discovery controller's
+   53.6% interval share identifies a separate profiling target; it is not a
+   measured Studio speed improvement.
+3. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,
    recovery completion, then 120 resumed walking steps on the same body.
@@ -50,7 +58,7 @@ declarations, failed outcomes and detailed result records remain authoritative.
    the earlier fifteen-second run took 43.852625 seconds through stand-up and
    29.662299 seconds for walking. The shorter energy probe is descriptive and
    does not establish a matched speed improvement.
-3. **Build useful adaptation with separate training and evaluation.** Keep the
+4. **Build useful adaptation with separate training and evaluation.** Keep the
    four walking-selection misses distinct from the eleven controller gaps, and
    keep fixed profile 27 as a finite comparator. Declare morphology features,
    training data and untouched evaluation groups before fitting a provider.

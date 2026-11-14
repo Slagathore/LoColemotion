@@ -16,18 +16,19 @@ from creature_support_sharing_bounds import bounded_load_scale
 DEFAULT_POLICY = dict(schema_version="locolemotion_torque_map_v1", pose_score="bounded_moment",
                       normalization="moment", contact_set="all")
 STABLE_POLICY = dict(DEFAULT_POLICY, schema_version="locolemotion_torque_map_v2")
+GEOMETRIC_POLICY = dict(DEFAULT_POLICY, schema_version="locolemotion_torque_map_v3")
 
 
 def policy(value):
     require(type(value) is dict and set(value) == set(DEFAULT_POLICY)
-            and value["schema_version"] in (DEFAULT_POLICY["schema_version"], STABLE_POLICY["schema_version"])
+            and value["schema_version"] in (DEFAULT_POLICY["schema_version"], STABLE_POLICY["schema_version"], GEOMETRIC_POLICY["schema_version"])
             and value["pose_score"] in ("visible_arm", "bounded_moment")
             and value["normalization"] in ("moment", "load")
             and value["contact_set"] in ("primary", "all"), "Torque-map policy fields")
     return copy.deepcopy(value)
 
 
-def cone_force(linear, lever, up, friction, *, stable_basis=False):
+def cone_force(linear, lever, up, friction, *, stable_basis=False, geometric_cone=False):
     """Maximize lever.F with F.up=1, |F-up|<=mu and F in range(J).
 
     Supports a batch of 3-by-2 linear Jacobians, including rank zero and one.
@@ -35,7 +36,8 @@ def cone_force(linear, lever, up, friction, *, stable_basis=False):
     lies in the row-space plane perpendicular to up; its radius follows from
     the friction cone. An empty intersection is reported, never clipped valid.
     """
-    require(type(stable_basis) is bool, "Torque-map numerical version")
+    require(type(stable_basis) is bool and type(geometric_cone) is bool
+            and (not geometric_cone or stable_basis), "Torque-map numerical version")
     raw = np.asarray(linear)
     require(raw.ndim >= 2 and raw.shape[-2:] == (3, 2), "Torque-map Jacobian shape")
     linear = moment.mechanics.array(raw, raw.shape, "Torque-map finite Jacobian")
@@ -52,6 +54,15 @@ def cone_force(linear, lever, up, friction, *, stable_basis=False):
     feasible = (length2>1e-14) & (inverse <= 1.+friction*friction+1e-12)
     minimum = projected_up*inverse[..., None]
     radius = np.sqrt(np.maximum(0., 1.+friction*friction-inverse))
+    if geometric_cone:
+        # Measure the actual transverse distance. Subtracting squared lengths
+        # near one can admit an empty narrow cone and erase its small radius.
+        # The allowance covers floating-point projection error, not friction.
+        transverse = minimum-(minimum @ up)[..., None]*up
+        distance = np.linalg.norm(transverse, axis=-1)
+        roundoff = 32.*np.finfo(minimum.dtype).eps
+        feasible = (length2>1e-14) & (distance<=friction+roundoff)
+        radius = np.sqrt(np.maximum(0., (friction-distance)*(friction+distance)))
     if stable_basis:
         # Construct the one-dimensional tangent from the orthonormal basis.
         # Its norm is bounded below on a feasible rank-two cone; normalizing a
@@ -132,7 +143,8 @@ class Geometry(moment.Geometry):
         linear = np.stack([np.cross(self.axes[:, j::2], points-self.anchors[:, j::2])
                            for j in (0, 1)], axis=-1)
         forces = cone_force(linear, np.cross(axis, points-bank.geometry.com[:, None]), up, p["friction_ratio"],
-                            stable_basis=self.configuration["schema_version"] == STABLE_POLICY["schema_version"])
+                            stable_basis=self.configuration["schema_version"] != DEFAULT_POLICY["schema_version"],
+                            geometric_cone=self.configuration["schema_version"] == GEOMETRIC_POLICY["schema_version"])
         arms = forces["moment_arm"]
         normal = normal_request(p, self.weight, self.length, arms, 1)
         contact = np.einsum("...ij,...i->...j", linear, forces["direction"])*normal[..., None]
@@ -184,7 +196,8 @@ def plan(p, g, state, rotation, contacts, memory, previous, upright):
     linear = np.stack([g.tree.jacobian(frame, g.tree.body_ids[g.bank.distal[i]], points[i])[0][:, 2*i:2*i+2]
                        for i in range(4)])
     forces = cone_force(linear, np.cross(axis, points-frame["whole_body_com"]), np.array([0., 1., 0.]), p["friction_ratio"],
-                        stable_basis=p["torque_map"]["schema_version"] == STABLE_POLICY["schema_version"])
+                        stable_basis=p["torque_map"]["schema_version"] != DEFAULT_POLICY["schema_version"],
+                        geometric_cone=p["torque_map"]["schema_version"] == GEOMETRIC_POLICY["schema_version"])
     eligible = sorted((i for i in present if forces["feasible"][i] and forces["moment_arm"][i]>1e-9),
                       key=lambda i:(-forces["moment_arm"][i], i))
     selected = eligible[:1] if p["torque_map"]["contact_set"] == "primary" else eligible

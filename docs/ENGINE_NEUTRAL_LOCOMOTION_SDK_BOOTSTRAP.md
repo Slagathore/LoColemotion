@@ -247,10 +247,15 @@ never open. All 126 completed new-controller worlds lose to their fresh selected
 references; zero recoveries or progress leads and five joint-violation worlds.
 Compact reconstruction verifies 302,410 decisions and 1,512,050 samples including
 the interrupted prefix; it is not full controller-history replay. Exact failed
-observations are retained, but planning memory is not. Preserve v1/v2 and all
-constraints in a fresh numerical successor, explicitly cover the failed body,
-and reconcile modeled moments with measured contact reactions before another
-force-model family. The unchanged broad grid has no qualifying leads.
+observations are retained, but planning memory is not. The
+[v3 component](../sdk/discovery/creature_torque_map_component_v3.json) passes
+330 controls, fixes empty zero/narrow cones and retains exact failed planning
+memory. Its reader reproduces all 8,640 v2 route decisions and 43,200 samples
+with byte-identical audit output. A fresh 36-world three-second full route
+must cover failed body 21 and reconcile solved foot/torso reactions before
+another force-model family. The unchanged broad grid has no qualifying leads.
+The current roadmap also schedules a bounded matched Studio performance
+task before another large recovery cohort; recovery success is not its gate.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

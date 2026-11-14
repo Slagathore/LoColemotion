@@ -45,8 +45,10 @@ def options(c):
 
 def streams(c, shared):
     opt = options(c)
+    from creature_contact_reactions import enabled
     return ((["controller", "trace", "timing"] if opt["full"] else ["timing"])
-            + (["readback"] if shared else []) + (["compact"] if opt["active"] else []))
+            + (["readback"] if shared else []) + (["compact"] if opt["active"] else [])
+            + (["reactions"] if enabled(c) else []))
 
 
 def project(controls, samples):
