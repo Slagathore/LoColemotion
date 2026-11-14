@@ -20,24 +20,23 @@ and self-righting still has no qualifying controller after 13 cohorts.
 | [Latest righting cohort](../sdk/discovery/creature_support_sharing_native_result_v1.json) | 192 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Of 96 new-controller worlds, 47 beat their fresh selected reference; best gain is 2.962 degrees, below five. Thirteen cohorts retain 2,896 valid recovery failures |
 | [Earlier path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
 | [Support-transfer diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json) | 52 controls. On one exposed body, the old foot withdraws and replacement torque has 0.040 Nm mean tracking error, yet a 36-interval transfer loses 0.534 degrees. About 74.4% of its proposed moment comes from force that joint torques cannot identify; ground reaction remains unmeasured |
+| [Prospective torque-map cohort](../sdk/discovery/creature_torque_map_component_v1.json) | 304 controls; actual pose and guarded-command differences verified. Eight recipes across 24 bodies; 24 full route worlds precede 240 compact worlds (144 new, 96 fresh comparators). Both native stages remain unrun |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Search poses and force directions using the joint-torque map.**
-   The [retained diagnosis](../sdk/discovery/creature_support_sharing_diagnosis_v1.json)
-   separates delivered joint torque from an unverified ground-force model.
-   Compare multiple pose-ranking and request-normalization variants across
-   the broad body cohort, with fresh selected-reference and sharing comparators.
-   Account for other measured contacts. Removing a force null component alone
-   leaves joint torques unchanged; zero-world controls must show the actual
-   change in pose selection, load normalization or coordinated commands.
-   Keep positive normal force, friction, actuator and joint bounds. Require
-   the complete safety gate, full route, five-degree gain, retained-path
-   screening and fresh full-capture varied-start confirmation. No benefit is
-   established until that distinct native comparison passes.
+1. **Run the broad torque-map comparison from its prospective freeze.**
+   The [component](../sdk/discovery/creature_torque_map_component_v1.json)
+   passes 304 controls. Two pose scores, two load rules and primary-versus-all
+   eligible contacts change actual poses or guarded commands. Requests lie
+   within the joint-torque row space and declared friction cone; that model
+   choice remains unproved in native dynamics. First require all declared
+   command paths in 24 full route worlds on two bodies, then run 240 compact
+   worlds on 24 bodies from the same clean pushed freeze. Keep the five-degree
+   fresh-reference gain, retained-path screen and fresh full-capture varied-start
+   confirmation. Failed route coverage consumes the attempt and blocks search.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

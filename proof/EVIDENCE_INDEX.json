@@ -600,7 +600,7 @@
       "title": "Continuous joint reach exposes torso-target constraints",
       "pillar": "locomotion",
       "classification": "zero_world_geometry_diagnostic",
-      "scope": "334 distinct bounded descriptors, 302 kinematic shapes, ten controls, 2.9 million continuous-joint reach minima, 16032 scalar checks and zero new worlds. First excluded side-roll samples are 11–19 degrees. Inward pitch reaches farther geometrically but useful torque is unproved. Retained projections have 294 bend-domain floor exclusions and zero finite-grid floor-reach misses. No dynamic or recovery qualification.",
+      "scope": "334 distinct bounded descriptors, 302 kinematic shapes, ten controls, 2.9 million continuous-joint reach minima, 16032 scalar checks and zero new worlds. First excluded side-roll samples are 11\u201319 degrees. Inward pitch reaches farther geometrically but useful torque is unproved. Retained projections have 294 bend-domain floor exclusions and zero finite-grid floor-reach misses. No dynamic or recovery qualification.",
       "record": {
         "path": "sdk/discovery/creature_contact_envelope_result_v1.json",
         "pointer": null
@@ -917,6 +917,30 @@
       ],
       "external_artifact_ids": [],
       "dependency_closure_complete": false
+    },
+    {
+      "id": "torque-map-component",
+      "title": "Torque-map force proposals and explicit contact requests",
+      "pillar": "locomotion",
+      "classification": "zero_world_development_component",
+      "scope": "304 safety controls, including 26 new controls; zero new worlds. All 240 planned controller roles construct without physics. The full sharing-route replay remains byte-identical for 8640 decisions and 43200 samples. Eight recipes change pose scores, normal-load requests and primary-versus-all contact commands across 24 bodies. Twenty-four full route worlds must pass before 240 compact worlds. Native recovery benefit remains untested.",
+      "record": {
+        "path": "sdk/discovery/creature_torque_map_component_v1.json",
+        "pointer": null
+      },
+      "related_documents": [
+        "sdk/discovery/creature_torque_map.py",
+        "sdk/discovery/creature_torque_map_search.py",
+        "sdk/discovery/test_creature_torque_map.py",
+        "sdk/discovery/creature_torque_map_route_v1.json",
+        "sdk/discovery/creature_torque_map_v1.json",
+        "sdk/discovery/creature_support_sharing_diagnosis_v1.json"
+      ],
+      "source_commits": [
+        "364ea7ee30393a60cc89c3f9984bfd8cf88f7eb4"
+      ],
+      "external_artifact_ids": [],
+      "dependency_closure_complete": false
     }
   ],
   "local_files": [
@@ -1054,8 +1078,8 @@
     },
     {
       "path": "sdk/release/quadruped_support_matrix.json",
-      "sha256": "7e928ccc1948e228c3d78ec261a0a5ec27c214acbc3cf54e27b5189b0e8b68a9",
-      "byte_length": 3562482
+      "sha256": "9e826753094a8feab2e49a69d39a3893f7c20a46407e61d2d9ee4ebde79a9744",
+      "byte_length": 3563261
     },
     {
       "path": "sdk/discovery/creature_righting_component_v1.json",
@@ -1159,13 +1183,13 @@
     },
     {
       "path": "sdk/discovery/creature_righting.py",
-      "sha256": "36bb7d7593aaadbb0e7192ed9b9f8f520d691ae55046ea3bc12b9fea205f2212",
-      "byte_length": 30170
+      "sha256": "bff2f2617a9e92d15fc4e2351aed420b0b326a23e1cccdd177c65d1e69a23fe5",
+      "byte_length": 30663
     },
     {
       "path": "sdk/discovery/creature_native.py",
-      "sha256": "005726b6d6518a5f45854c498a68e9ba763161fb6114e8caa8b9e43767e20c00",
-      "byte_length": 51506
+      "sha256": "cfa14b8519a88ea6bf7484676847d19b1d55c555f3934aae96123165edc6f94c",
+      "byte_length": 51906
     },
     {
       "path": "sdk/discovery/test_creature_righting.py",
@@ -1189,8 +1213,8 @@
     },
     {
       "path": "sdk/discovery/creature_capture.py",
-      "sha256": "e28e5e3d9c64f53a122613774d6e131b49b6589afab4a50bda4181fa56ae670a",
-      "byte_length": 17194
+      "sha256": "960bc72335eee24c3814f7f100bf50c187c15f6b35306300740bccd2d0be9d44",
+      "byte_length": 17558
     },
     {
       "path": "sdk/discovery/creature_capture_canary_compact_v1.json",
@@ -1204,8 +1228,8 @@
     },
     {
       "path": "sdk/discovery/run_creature_native.py",
-      "sha256": "116b2be47b157e37fa377764eb6bd61ef9ed0e8d724fa818e5cb1f715f5efd8d",
-      "byte_length": 11506
+      "sha256": "90a428a60c4acb719dc2e64746a3010e9d44d39596aa700ac0941f55c17b7a1c",
+      "byte_length": 11758
     },
     {
       "path": "sdk/discovery/test_creature_capture.py",
@@ -1229,8 +1253,8 @@
     },
     {
       "path": "sdk/discovery/creature_trajectory_search.py",
-      "sha256": "9cd6eaf82b156cdc2ead62d0eef04bcfe1ac58d1a2ea85add6cab1f25e75529a",
-      "byte_length": 9013
+      "sha256": "5285558b4ffb38bd795548d8f5b5f48a6a68dbf6544d2adce0e6b759db1670ee",
+      "byte_length": 9033
     },
     {
       "path": "sdk/discovery/creature_trajectory_search_v1.json",
@@ -1314,8 +1338,8 @@
     },
     {
       "path": "sdk/discovery/creature_joint_braking_search.py",
-      "sha256": "ff859f0ba0b6d921af328c4d462e708246a422b900689531ad97f96cbae7a417",
-      "byte_length": 3419
+      "sha256": "9e5675a85e5d08f13eb317f43952113d3ac19f73fbb2de0055903a13af81f22e",
+      "byte_length": 3439
     },
     {
       "path": "sdk/discovery/test_creature_joint_braking.py",
@@ -1474,13 +1498,13 @@
     },
     {
       "path": "sdk/discovery/creature_body_moment.py",
-      "sha256": "a844221a3c1031189d5c3b31396f9d067a195699797b4b6064002e322b18bfde",
-      "byte_length": 13532
+      "sha256": "e793a360e8ffecd606d18283fc5b1b1c9bfc4072e024975ebc0e96ecf12ff2eb",
+      "byte_length": 14174
     },
     {
       "path": "sdk/discovery/creature_body_moment_search.py",
-      "sha256": "9ca653f580baefa4a0215349a574be24f55f40ca440f881072f265bb35aa4194",
-      "byte_length": 6782
+      "sha256": "aa25e718853417ba1584407d1bcc219171a62ab55fe2b28bd2291f18a4bd8ba9",
+      "byte_length": 6802
     },
     {
       "path": "sdk/discovery/test_creature_body_moment.py",
@@ -1599,8 +1623,8 @@
     },
     {
       "path": "sdk/discovery/creature_support_sharing_search.py",
-      "sha256": "3914845b42aa7ea81a603b0163ff13e2828389048311de691a6edfcd5b1879fa",
-      "byte_length": 11083
+      "sha256": "4025a8cbb82c9152d66f236940a79bed6ebc526627c2e212d8b7cc3fd3cda660",
+      "byte_length": 11122
     },
     {
       "path": "sdk/discovery/test_creature_support_sharing.py",
@@ -1636,6 +1660,36 @@
       "path": "sdk/discovery/actuation_recovery_mechanics.py",
       "sha256": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
       "byte_length": 10269
+    },
+    {
+      "path": "sdk/discovery/creature_torque_map_component_v1.json",
+      "sha256": "b5c46195604028b4f2aa9e2dd296fb5c6da0203d1c97ea7dc536ed89c4d42ec6",
+      "byte_length": 12749
+    },
+    {
+      "path": "sdk/discovery/creature_torque_map.py",
+      "sha256": "81f8b869217cec3a75f127ff3039682fc3b387d17652123b25464c693eb21004",
+      "byte_length": 13732
+    },
+    {
+      "path": "sdk/discovery/creature_torque_map_search.py",
+      "sha256": "2b963a02491685b56e2d3f31f234ec6fc3ceb3b4de1d3d8a529fddfbe5aea251",
+      "byte_length": 9240
+    },
+    {
+      "path": "sdk/discovery/test_creature_torque_map.py",
+      "sha256": "d124a8d0cdf1a75b0491e5912aeaa7dd6299e47089f351798c5fd183274a0dc1",
+      "byte_length": 24140
+    },
+    {
+      "path": "sdk/discovery/creature_torque_map_route_v1.json",
+      "sha256": "a3540852c2c17e0042d28f3460b1533d638bb6ee3b345e29f2c2548caf131558",
+      "byte_length": 44249
+    },
+    {
+      "path": "sdk/discovery/creature_torque_map_v1.json",
+      "sha256": "e08cf138d0c41245d285fb78eb7002e6c9c928a8fd3855c6a87f20f820869b67",
+      "byte_length": 130689
     }
   ],
   "external_artifacts": [

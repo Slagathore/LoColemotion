@@ -70,7 +70,7 @@ def validate(c):
     if "trajectory_reference_by_body" in c:
         refs=c["trajectory_reference_by_body"];spec=c.get("righting_spec",{})
         assigned=spec.get("profiles_by_body",[list(range(len(spec.get("profiles",[]))))]*len(spec.get("descriptors",[])))
-        require(any(k in c for k in ("moment_handoff_search","support_exchange_search","support_sharing_search"))
+        require(any(k in c for k in ("moment_handoff_search","support_exchange_search","support_sharing_search","torque_map_search"))
                 and type(refs) is list and len(refs)==len(assigned)
                 and all(type(r) is int and r>=2 and r in a for r,a in zip(refs,assigned,strict=True)),
                 "Trajectory declared fresh references")

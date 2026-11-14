@@ -228,9 +228,15 @@ joint-torque error of only 0.040 Nm. The old foot withdraws; the torso and
 another foot remain in contact. Of 8.858 Nm mean proposed turning moment,
 6.588 Nm belongs to a force component that leaves modeled joint torques
 unchanged. This verifies an ambiguity, not the actual ground force or the
-cause of lost rotation. Next compare broad pose-ranking and force-request
-variants using the joint-torque map and other contacts. Projection alone
-leaves commands unchanged; require an actual policy change before native work.
+cause of lost rotation. The [torque-map component](../sdk/discovery/creature_torque_map_component_v1.json)
+now passes 304 controls and preserves the full sharing-route replay exactly.
+Its eight recipes vary pose scoring, normal-load requests and primary-versus-all
+eligible contacts, with verified pose and guarded-command differences.
+The prospective freeze declares 24 full route worlds on two bodies before
+240 compact worlds on 24 bodies: 144 new-controller worlds and 96 fresh
+comparators. Neither native stage has run. The row-space force model is a
+hypothesis; quiet motors do not establish zero contact force or foot release.
+Keep full route coverage, five-degree gain, path screening and fresh confirmation.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 

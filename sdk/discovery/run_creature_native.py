@@ -16,6 +16,7 @@ from run_gpu_measurement_probe import source_identity
 from run_gpu_motor_effectiveness import bindings as inherited_bindings
 from run_contact_sequence_native_v2 import invoke, jobs
 from run_residual_native import verify_tests
+from creature_native import torque_search
 
 
 def status():
@@ -28,7 +29,7 @@ def inventory(folder):
 
 
 def source_paths(contract_path, c):
-    paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES],
+    paths = [contract_path, HERE / ".gitattributes", *[HERE / name for name in MODEL_SOURCES], *torque_search.source_dependencies(c),
              *retiming.source_dependencies(c), *braking_search.source_dependencies(c), *contact_search.source_dependencies(c), *torso_search.source_dependencies(c), *moment_search.source_dependencies(c), *handoff_search.source_dependencies(c), *exchange_search.source_dependencies(c), *sharing_search.source_dependencies(c)]
     if "capture_reference" in c:
         reference = (ROOT / c["capture_reference"]["path"]).resolve(strict=True)
@@ -154,6 +155,8 @@ def main():
                 receipt["exchange_route_coverage"] = exchange_search.verify_route(folder, receipt)
             if "support_sharing_search" in c and c["mode"] == "route_ghost":
                 receipt["sharing_route_coverage"] = sharing_search.verify_route(folder, receipt)
+            if "torque_map_search" in c and c["mode"] == "route_ghost":
+                receipt["torque_map_route_coverage"] = torque_search.verify_route(folder, receipt)
             unchanged()
         receipt.update(ok=True, source_runtime_unchanged=True)
     except BaseException as exc:

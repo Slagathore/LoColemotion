@@ -142,10 +142,18 @@ exposed route body. The completed transfer retains replacement contact in
 remain in contact throughout. Mean active-joint request error is 0.040 Nm,
 but rotation falls 0.534 degrees. The 8.858 Nm mean proposed moment includes
 6.588 Nm from force invisible to the joint-torque map. Actual ground reaction
-and causal attribution remain unmeasured. Next factor target ranking, request
-normalization and other-contact handling across many bodies; projection alone
-cannot change joint torques. Preserve force/joint limits, five-degree gain,
-route coverage, path screening and fresh full-capture varied-start confirmation.
+and causal attribution remain unmeasured.
+The [torque-map component](../sdk/discovery/creature_torque_map_component_v1.json)
+passes 304 controls, including 26 new controls, and leaves the complete
+sharing-route replay byte-identical. Eight recipes cross two pose scores,
+two load normalizations and primary-versus-all eligible contacts. The checks
+prove changes in selected poses and guarded commands. Each of 24 bodies
+receives six recipes plus four fresh comparators; each recipe covers nine
+bodies in each geometric stratum. First require 24 full route worlds on two
+bodies, then 240 compact worlds on the same freeze. Both stages are unrun.
+Row-space force requests remain model hypotheses; quiet torque does not prove
+contact release. Preserve five-degree gain, path screening and fresh full-capture
+varied-start confirmation.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

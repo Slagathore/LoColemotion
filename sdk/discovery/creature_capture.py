@@ -106,7 +106,7 @@ class Reader:
         self.positions, self.velocities = positions.tolist(), velocities.tolist()
         self.previous = [None]*self.n
         self.outer = 0
-        self.sequence = any(k in c for k in ("body_moment_search", "moment_handoff_search", "support_exchange_search", "support_sharing_search")) or any(p["mode"] == righting.sequence.MODE for p in c.get("righting_spec", {}).get("profiles", []))
+        self.sequence = any(k in c for k in ("body_moment_search", "moment_handoff_search", "support_exchange_search", "support_sharing_search", "torque_map_search")) or any(p["mode"] == righting.sequence.MODE for p in c.get("righting_spec", {}).get("profiles", []))
         self.metrics = [dict(minimum_height_m=math.inf, maximum_tilt_rad=0., torso_contact_steps=0,
             safe_no_actuation_steps=0, ground_contact_steps=0, nonzero_force_steps=0,
             forward_displacement_m=0., lateral_displacement_m=0.) for _ in creatures]
@@ -266,5 +266,10 @@ def canary_receipt(path, c, source_commit, bindings, evidence_root):
         require(full["contract"].get("support_sharing_search")==c["support_sharing_search"]
             and full.get("sharing_route_coverage")==sharing_search.verify_route(path.parent,full),
             "Sharing route required force and support coverage")
+    if "torque_map_search" in c:
+        import creature_torque_map_search as torque_search
+        require(full["contract"].get("torque_map_search")==c["torque_map_search"]
+            and full.get("torque_map_route_coverage")==torque_search.verify_route(path.parent,full),
+            "Torque-map route required force and contact coverage")
     return dict(receipt_path=str(path),receipt_sha256=digest(path),audit_sha256=digest(audit_path),
         full_controller_rows_replayed=n,full_native_rows_verified=5*n,within_run_projection_verified=True)

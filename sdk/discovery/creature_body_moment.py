@@ -32,6 +32,12 @@ def finite(v):
 
 
 def profile(value):
+    if type(value) is dict and "torque_map" in value:
+        from creature_torque_map import policy
+        require(not any(k in value for k in ("handoff", "support_exchange", "support_sharing")),
+                "Torque-map policies are distinct")
+        base = profile({k:v for k,v in value.items() if k != "torque_map"})
+        return dict(base, torque_map=policy(value["torque_map"]))
     if type(value) is dict and "support_sharing" in value:
         from creature_support_sharing import policy
         require(not any(k in value for k in ("handoff", "support_exchange")), "Sharing policies are distinct")
@@ -158,6 +164,10 @@ class Geometry:
 
 def plan(p, geometry, state, rotation, contacts, memory, previous, upright, *, retract=False):
     """Pure proposal; callers atomically commit memory only after the whole batch."""
+    if "torque_map" in p:
+        from creature_torque_map import plan as torque_plan
+        require(not retract, "Torque-map retraction is not declared")
+        return torque_plan(p, geometry, state, rotation, contacts, memory, previous, upright)
     if "support_sharing" in p:
         from creature_support_sharing import plan as sharing_plan
         return sharing_plan(p, geometry, state, rotation, contacts, memory, previous, upright)

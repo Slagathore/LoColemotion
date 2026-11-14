@@ -115,7 +115,7 @@ def source_dependencies(c):
 
 def validate(c):
     opted = any("support_sharing" in p for p in c.get("righting_spec",{}).get("profiles",[]))
-    require(not opted or "support_sharing_search" in c, "Sharing requires declared search")
+    require(not opted or any(k in c for k in ("support_sharing_search", "torque_map_search")), "Sharing requires declared search")
     if "support_sharing_search" not in c:return
     for name,digest in SOURCES.items():
         require(hashlib.sha256((ROOT/"sdk/discovery"/name).read_bytes()).hexdigest()==digest, "Sharing predecessor binding")

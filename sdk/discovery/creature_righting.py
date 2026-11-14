@@ -143,8 +143,11 @@ def expand(spec):
             | ({"profiles_by_body"} if assigned else set())
             and spec["schema_version"] in (SCHEMA, ASSIGNED_SCHEMA), "Righting population fields")
     bodies, candidates, conditions, starts = [spec[k] for k in ("descriptors", "profiles", "conditions", "starts")]
+    # A factored torque-map declaration may name more profiles while retaining
+    # the existing 256-world budget and per-native-batch limit.
+    profile_limit = 128 if type(candidates) is list and any(type(p) is dict and "torque_map" in p for p in candidates) else 64
     require(all(type(v) is list and v for v in (bodies, candidates, conditions, starts))
-            and len(bodies) <= 64 and 2 <= len(candidates) <= 64 and len(conditions) <= 4
+            and len(bodies) <= 64 and 2 <= len(candidates) <= profile_limit and len(conditions) <= 4
             and len(starts) <= 4,
             "Righting population budget")
     assignments = spec["profiles_by_body"] if assigned else [list(range(len(candidates))) for _ in bodies]
@@ -245,6 +248,9 @@ class RightingController:
         self.sequence_tree = RigidTree(self.spec) if self.candidate["mode"] == sequence.MODE else None
         self.moment_state = None
         self.moment_geometry = body_moment.Geometry(self.creature) if self.candidate["mode"] == body_moment.MODE else None
+        if "torque_map" in self.candidate:
+            from creature_torque_map import Geometry
+            self.moment_geometry = Geometry(self.creature, self.candidate["torque_map"], base=self.moment_geometry)
 
     @property
     def binding(self):
