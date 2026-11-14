@@ -108,17 +108,23 @@ six lose about ten degrees in 0.2 seconds. Continuous variants plateau near
 11.5 degrees and their active-joint torque error increases after protection.
 Recorded actuator forces are distinct from contact reactions. This descriptive
 diagnosis opens no worlds and does not isolate all controller factors.
-The [support-exchange component](../sdk/discovery/creature_support_exchange_component_v1.json)
-now passes 254 controls with exact legacy replay of 8,640 full decisions and
-43,200 samples. It keeps the exposed reference until plateau, retains original
-support during unloaded-limb contact search, and requires measured contact dwell
-before transfer. Analytic floor-height targets, geometric mass-shift weighting,
-unchanged joint guards and bounded reference fallback are explicit. A twelve-world
-full route must cover seek, contact acquisition, transfer and no-replacement
-fallback before the declared 216-world search across 24 bodies and 18 recipes.
-Fresh comparators, five-degree reference gain, sampled-path screening and
-varied-start confirmation remain required. No exchange worlds have run;
-recovery and the Godot handoff remain unqualified.
+The [support-exchange native result](../sdk/discovery/creature_support_exchange_native_result_v1.json)
+at source 167eb646 completes 254 controls before each run, twelve full route
+worlds and 216 fresh twelve-second search worlds on 24 bodies. Full replay
+checks 8,640 decisions and 43,200 samples with seek, measured acquisition,
+transfer and fallback. Each of four transfers loses replacement-foot contact
+after 5-14 intervals and loses rotation. Contact presence does not measure load;
+this one-body observation leaves the cause unisolated.
+
+Of 144 new-controller worlds, 62 beat their fresh selected reference, but the
+largest gain is 3.303 degrees, below five. All 216 fail recovery without joint
+violations; zero progress leads mean zero newly screened paths. All 3,532
+artifacts and 26 cleanups verify. Compact reading reconstructs 311,040 records
+and 1,555,200 samples, without full controller replay. Twelve cohorts retain
+2,704 valid recovery failures. Diagnose the retained contact losses and resolved
+commands before a distinct broad test of sustained support and staged unloading.
+Keep fresh references, motor and joint bounds, path screening and full-capture
+varied-start confirmation. Recovery and the Godot handoff remain unqualified.
 
 The preceding [body-aware contact result](../sdk/discovery/creature_contact_reach_native_result_v1.json)
 retains 128 twelve-second worlds at source 5d1264c6 after 172 controls.

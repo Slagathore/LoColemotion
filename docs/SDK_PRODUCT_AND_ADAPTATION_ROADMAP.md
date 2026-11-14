@@ -10,38 +10,34 @@ for earlier decisions; individual result records retain the detailed evidence.
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** Walking discovery found
 finite useful profiles. The frozen condition-known selector failed confirmation,
-and self-righting still has no qualifying controller after eleven cohorts.
+and self-righting still has no qualifying controller after twelve cohorts.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
 | [Walking confirmation](../sdk/discovery/creature_confirmation_native_result_v1.json) | 284 fresh twelve-second worlds; 221 eligible and 63 failed. Both-start eligible groups: baseline 30/48, frozen choice 33/48, fixed profile 27 36/48. Neither declared choice comparison passes |
 | Adaptation gaps | Four groups have a passing alternative to the failed choice; eleven weakened-body groups have no tested candidate passing both starts. No refitted or learned selector is qualified |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay correctly. The inverted body times out without active recovery or resumed walking |
-| [Latest righting cohort](../sdk/discovery/creature_moment_handoff_native_result_v1.json) | 216 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Only five of 144 new-controller worlds beat their selected reference; best gain is 3.300 degrees, below the frozen five-degree threshold. Eleven cohorts retain 2,488 valid recovery failures |
-| [Path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
-| [Handoff diagnosis](../sdk/discovery/creature_moment_handoff_diagnosis_v1.json) | 28 controls; 7,200 decisions and 36,000 native samples on one exposed route body. Nineteen of 24 completed releases lose rotation; six lose about ten degrees in 0.2 seconds. Continuous variants plateau near 11.5 degrees, with increased torque error after joint protection. No new worlds or recovery claim |
+| [Latest righting cohort](../sdk/discovery/creature_support_exchange_native_result_v1.json) | 216 fresh twelve-second worlds on 24 bodies; zero recoveries, progress leads or joint violations. Of 144 new-controller worlds, 62 beat their fresh selected reference; best gain is 3.303 degrees, below the five-degree threshold. Twelve cohorts retain 2,704 valid recovery failures |
+| [Earlier path and geometry checks](../sdk/discovery/creature_body_moment_geometry_result_v1.json) | 26 leads across 21 bodies are clear at every retained sample. Best rotation is 24.485 degrees. Three leads overlap; one retains a useful pre-overlap peak. Geometry is 9.503 times faster on retained inputs; native throughput remains unmeasured |
+| [Transfer observation](../sdk/discovery/creature_support_exchange_native_result_v1.json) | The twelve-world full route exactly replays 8,640 decisions and 43,200 samples. All four transfers lose replacement-foot contact after 5-14 controller intervals (42-117 ms) and lose rotation. This one-body observation does not isolate the cause or measure contact load |
 | Scope | Exposed development evidence. No learned selection, useful online correction, broad morphology qualification, recovery, real-time or release authority |
 
 The [portable lineage](SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md)
 links the earlier controller cohorts and capture diagnostics. Their original
 declarations, failed outcomes and detailed result records remain authoritative.
 
-1. **Run the support-exchange broad search.**
-   The [component](../sdk/discovery/creature_support_exchange_component_v1.json)
-   passes 254 controls and exactly replays the previous 8,640 full decisions
-   and 43,200 native samples. It keeps each exposed reference until measured
-   progress stalls, retains old support while one unloaded limb seeks contact,
-   and releases only after six consecutive replacement-contact observations.
-   Analytic floor-height targets retain measured joint positions; endpoint
-   clearance does not prove feasible motion. Joint guards and fallback remain.
-   From the clean pushed freeze, run twelve six-second full route worlds.
-   Require support retention, measured acquisition, transfer and no-replacement
-   fallback before compact search. Then run 216 fresh twelve-second worlds:
-   24 bodies, six new recipes and three comparators per body. Eighteen recipes
-   vary limb relation, geometric mass-shift weighting and plateau duration.
-   Keep the five-degree reference-gain rule, full retained-path screening and
-   fresh varied-start confirmation. Eleven prior cohorts remain 2,488 valid
-   recovery failures; this zero-world component adds no recovery result.
+1. **Diagnose short-lived replacement contact before the next broad search.**
+   The support-exchange controller retains old support until measured contact
+   dwell, but all four exposed full-route transfers lose their replacement
+   contact before the planned duration. Reconstruct resolved motor commands,
+   joint protection, posture and requested versus observed actuator response.
+   Use that evidence to declare a distinct test of sustained replacement
+   support and staged unloading across many bodies. Contact presence alone
+   does not establish load transfer; the cause remains unisolated.
+   The completed cohort passed 254 controls before each run and retained all
+   failures. Its empty progress shortlist yields no new path-clearance result.
+   Keep fresh selected references, motor and joint bounds, five-degree gain,
+   full retained-path screening and fresh full-capture varied-start confirmation.
 2. **Complete the Studio behavior with a useful controller.** Keep the existing
    fresh observation epoch, body identity, motor ownership, native clocks and
    measured work. The required end-to-end run is walking, fall, active recovery,

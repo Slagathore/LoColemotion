@@ -190,17 +190,26 @@ error against the prepared request. Neither is a contact-force measurement
 or proof of an alternative action. Two diagnostic reader failures remain
 retained. No new worlds occur.
 
-The [support-exchange component](../sdk/discovery/creature_support_exchange_component_v1.json)
-passes 254 controls and exactly replays the previous full route's 8,640 decisions
-and 43,200 samples. It preserves each exposed reference until measured plateau,
-keeps old support during one unloaded limb's contact search, and requires six
-contact observations before the old primary limb retracts. Analytic targets
-solve floor height within existing joint margins; four of nine retained-state
-queries find clear endpoints, without proving dynamic feasibility. The declared
-cohort has 18 recipes, 24 bodies and 216 fresh worlds. First require the twelve-world
-full route's support, contact, transfer and fallback coverage from the pushed
-freeze. Existing guards, fresh references, five-degree progress, path screening
-and varied-start confirmation remain required. No native exchange result exists.
+The [support-exchange native result](../sdk/discovery/creature_support_exchange_native_result_v1.json)
+closes source 167eb646 after 254 controls before each run. Its controller retains
+old support while an unloaded limb seeks contact, then waits for six contact
+observations before retracting the old primary limb. Twelve full-route worlds
+exactly replay 8,640 decisions and 43,200 samples, covering seek, acquisition,
+transfer and fallback. All four transfers lose replacement-foot contact after
+5-14 intervals and lose rotation; this one-body observation does not measure
+contact load or isolate the cause.
+
+The 216 fresh twelve-second search worlds cover 24 bodies and 18 recipes.
+All fail recovery without joint violations; 62 of 144 new-controller worlds
+beat their fresh selected reference, but the largest gain is 3.303 degrees,
+below five. There are no progress leads or newly screened paths. All 3,532
+artifacts, 1,252 source bindings, 1,359 runtime bindings and 26 cleanups verify;
+compact reading reconstructs 311,040 records and 1,555,200 samples without full
+controller replay. Twelve cohorts retain 2,704 valid recovery failures.
+Next diagnose the retained contact losses alongside resolved commands and
+posture before declaring a broad sustained-support and staged-unloading test.
+Fresh comparators, unchanged guards and full-capture confirmation remain required.
+No recovery controller, learned adaptation or Studio handoff is qualified.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.
