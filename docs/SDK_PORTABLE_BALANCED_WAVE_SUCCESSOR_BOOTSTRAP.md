@@ -176,9 +176,19 @@ Free-root balance and independent force decoding pass; maximum absolute force
 and moment residuals are 1.9074e-5 N and 8.4768e-6 Nm, within declared
 float32-scaled tolerances. All eight new body-21 profiles exercise empty-cone
 fallback. Zero worlds recover; this route is outside the full-horizon cohort
-rollup. Compare modeled turning moments with these measured foot/torso/upper-link
-reactions before another force family; do not repeat the unchanged broad grid.
-Keep fresh confirmation for leads and the roadmap's bounded Studio profile.
+rollup. The [retained reaction comparison](../sdk/discovery/creature_contact_reactions_result_v1.json)
+now passes 16 controls and reads every decision and solved sample. Its 8,640
+new-profile intervals are independently aggregated. In positive-request
+intervals on bodies 0/16, requested feet average 8.190/2.052 Nm and torso
+reaction -8.309/-2.066 Nm; total contact moment is 0.013/0.012 Nm about
+the same prepared COM along the chosen axis. Upper-link contribution is
+zero; body 21 makes no positive request. The scalar moment reconstruction
+error is at most 5.33e-15 Nm and prepared COM difference 3.14e-8 m.
+This identifies an omitted reaction in the score, not a proven replacement.
+The next recovery search must model coupled whole-body contact and rank
+observed trajectory progress. Do not repeat the unchanged foot-only grid.
+Complete the bounded matched Studio profile first, then return to broad
+factored search and fresh full-capture confirmation of useful diverse leads.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

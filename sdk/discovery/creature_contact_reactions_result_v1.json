@@ -1,0 +1,693 @@
+{
+  "schema_version": "locolemotion_contact_reactions_result_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "retained_motion_diagnostic",
+    "question_class": "development"
+  },
+  "status": "complete_retained_torso_countermoment_diagnosis_no_new_recovery",
+  "date": "2026-11-14",
+  "analysis_source_parent_commit": "e163493bcd70a6d01284d981b0cfd886f76974c3",
+  "native_predecessor": {
+    "path": "sdk/discovery/creature_torque_map_route_native_v3.json",
+    "sha256": "ad40a79f6c1d59e9dfd618bdd1605b6c433d31ef2ac83293fb429fe39438a99c",
+    "byte_length": 12062
+  },
+  "source_pins": [
+    {
+      "path": "sdk/discovery/creature_contact_reactions_diagnosis.py",
+      "sha256": "5febcac654bc8afa1d6aafcbf2ebbb65343a593314d88c96924d6e1d3acfafbc",
+      "byte_length": 15391
+    },
+    {
+      "path": "sdk/discovery/test_creature_contact_reactions_diagnosis.py",
+      "sha256": "ed40446a8b69eba3dbaee5ca3152a3b13e568428be01100e8b510b025346e495",
+      "byte_length": 10264
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reactions.py",
+      "sha256": "a3d7fb2bd579e7b1ed1244312f7b6da6fcedf92e7d98771fd95722422b37d37e",
+      "byte_length": 10411
+    },
+    {
+      "path": "sdk/discovery/test_creature_contact_reactions.py",
+      "sha256": "a1884bc54b4f60643050290dd5bb6fe4081b0804412d2e580f1dabbe332150b2",
+      "byte_length": 11139
+    },
+    {
+      "path": "sdk/discovery/creature_body_moment_diagnosis.py",
+      "sha256": "eefc8a3eef4de0136129d3e4a19cc38130c9ccdeffeff0897722f9d18cdf7a81",
+      "byte_length": 48812
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_diagnosis.py",
+      "sha256": "b96fe25e8e9429fd4f1a3cf62d00f46b5dc12c88f409ad3e880a25e993100657",
+      "byte_length": 18391
+    },
+    {
+      "path": "sdk/discovery/actuation_recovery_mechanics.py",
+      "sha256": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+      "byte_length": 10269
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_development.py",
+      "sha256": "306669481601cc91c8146e84a202a57228672e23c3f9daa0c531d2eb9d077e46",
+      "byte_length": 49444
+    }
+  ],
+  "evidence": {
+    "archive_relative_path": "sdk2-contact-reactions-diagnosis-fa390a1566264b1494e9f685ec97a353",
+    "owner_receipt_sha256": "58edd003835cb54d7c0e443c6f47c92f87d1fea4ac6ed0f49015711a1e8fa772",
+    "result": {
+      "path": "computation/result.json",
+      "sha256": "bc760671cf6828b12782160b0b99ffb0219544e36c77431682493398db7b327f",
+      "byte_length": 120933
+    },
+    "intervals": {
+      "path": "computation/intervals.jsonl",
+      "sha256": "70ff8e61bf831d3e5c7833415a29752f61f5faf10a000f9a53fb07d2809661af",
+      "byte_length": 16156424
+    },
+    "verification_archive_relative_path": "sdk2-contact-reactions-verification-07f0852fd85f4bf9b27358d4fd3efc91",
+    "verification": {
+      "path": "verification.json",
+      "sha256": "b4402384a886496bfeef28682272b7b6a2dd8e3042b347d93248fc319bb3eb32",
+      "byte_length": 2804
+    },
+    "verification_program": {
+      "path": "verify.py",
+      "sha256": "dcc30b0faf1d298d07fd82e20aeb82e425ed715ae24c1ea30df9b508c57af062",
+      "byte_length": 5017
+    }
+  },
+  "validation": {
+    "controls_passed": 16,
+    "new_comparison_controls": 8,
+    "existing_decoder_and_capture_controls": 8,
+    "controls_coverage": [
+      "tilted and signed canonical/native axes",
+      "independent wrench moment reconstruction",
+      "shifted center and translation invariance",
+      "equal foot moment with opposing torso reaction",
+      "first versus five-substep measurement",
+      "zero request separated",
+      "crossed stale missing and extra rows",
+      "zero-world traps"
+    ],
+    "counts": {
+      "controller": 12960,
+      "native": 64800,
+      "modeled": 8640
+    },
+    "maxima": {
+      "proposal_reconstruction_error_nm": 5.329070518200751e-15,
+      "prepared_com_error_m": 3.13291460702911e-08,
+      "force_balance_error_n": 1.9073486328125e-05,
+      "moment_balance_error_nm": 8.476785133382236e-06
+    },
+    "artifacts_verified": 25,
+    "source_bindings_verified": 1207,
+    "runtime_bindings_verified": 1358,
+    "intervals_independently_aggregated": 8640
+  },
+  "population": {
+    "retained_worlds": 36,
+    "compared_new_profile_worlds": 24,
+    "reference_worlds_retained": 12,
+    "seconds_per_world": 3,
+    "body_indices": [
+      0,
+      16,
+      21
+    ],
+    "recovered_worlds": 0,
+    "joint_violation_worlds": 0,
+    "new_worlds_opened": 0,
+    "new_solver_steps": 0,
+    "positive_request_intervals": 3787,
+    "no_request_intervals": 4853,
+    "added_full_horizon_recovery_cohorts": 0
+  },
+  "body_summary": [
+    {
+      "original_body_index": 0,
+      "local_body_index": 0,
+      "profiles": 8,
+      "positive_request_intervals": 2111,
+      "no_request_intervals": 769,
+      "proposed_moment_mean_nm": 8.109092096035877,
+      "first_active_torque_error_mean_nm": 1.4600424894282005e-07,
+      "held_active_torque_error_mean_nm": 0.06381967293600734,
+      "first_active_force_error_mean_n": 3.684455110176084,
+      "held_active_force_error_mean_n": 3.8665133959571465,
+      "held_net_moment_about_solved_com_mean_nm": 0.011955715657298012,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 8.190474429951491,
+        "unrequested_feet": 0.13190697118857328,
+        "torso": -8.309380787770774,
+        "upper_legs": 0.0,
+        "net": 0.013000613369294159
+      },
+      "held_net_nonpositive_intervals": 1110
+    },
+    {
+      "original_body_index": 16,
+      "local_body_index": 1,
+      "profiles": 8,
+      "positive_request_intervals": 1676,
+      "no_request_intervals": 1204,
+      "proposed_moment_mean_nm": 2.352258646532849,
+      "first_active_torque_error_mean_nm": 1.7967945096179037e-07,
+      "held_active_torque_error_mean_nm": 0.13814396552758862,
+      "first_active_force_error_mean_n": 3.8022843405098854,
+      "held_active_force_error_mean_n": 4.739417485068276,
+      "held_net_moment_about_solved_com_mean_nm": 0.012240299418293056,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 2.0519255384049235,
+        "unrequested_feet": 0.02665887182630372,
+        "torso": -2.0664181094964853,
+        "upper_legs": 0.0,
+        "net": 0.012166300734742527
+      },
+      "held_net_nonpositive_intervals": 832
+    },
+    {
+      "original_body_index": 21,
+      "local_body_index": 2,
+      "profiles": 8,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 2880
+    }
+  ],
+  "profile_outcomes": [
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_24",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone0_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 222,
+      "no_request_intervals": 138,
+      "proposed_moment_mean_nm": 9.019299531512065,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 9.182782130582252,
+        "unrequested_feet": 0.05660515422392982,
+        "torso": -9.137827946445444,
+        "upper_legs": 0.0,
+        "net": 0.10155933836073582
+      },
+      "held_net_nonpositive_intervals": 81,
+      "first_active_torque_error_mean_nm": 1.7871481551016415e-07,
+      "held_active_torque_error_mean_nm": 0.13049467118950558,
+      "held_active_force_error_mean_n": 4.964615486062125
+    },
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_25",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone1_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 282,
+      "no_request_intervals": 78,
+      "proposed_moment_mean_nm": 9.282921454875181,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 9.35234424667985,
+        "unrequested_feet": 0.051979503195194926,
+        "torso": -9.398885265278054,
+        "upper_legs": 0.0,
+        "net": 0.005438484597001539
+      },
+      "held_net_nonpositive_intervals": 121,
+      "first_active_torque_error_mean_nm": 1.262402877932259e-07,
+      "held_active_torque_error_mean_nm": 0.05916769064169213,
+      "held_active_force_error_mean_n": 2.369042446192163
+    },
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_26",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone2_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 282,
+      "no_request_intervals": 78,
+      "proposed_moment_mean_nm": 8.579747595377835,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 8.613563332942162,
+        "unrequested_feet": 0.5598688575096804,
+        "torso": -9.180145393909147,
+        "upper_legs": 0.0,
+        "net": -0.006713203457299557
+      },
+      "held_net_nonpositive_intervals": 156,
+      "first_active_torque_error_mean_nm": 1.498179936329522e-07,
+      "held_active_torque_error_mean_nm": 0.03623574042225715,
+      "held_active_force_error_mean_n": 3.1241985101928695
+    },
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_27",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone3_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 279,
+      "no_request_intervals": 81,
+      "proposed_moment_mean_nm": 9.074453999460161,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 9.127710824153448,
+        "unrequested_feet": 0.017671821864706058,
+        "torso": -9.206462821779748,
+        "upper_legs": 0.0,
+        "net": -0.06108017576158223
+      },
+      "held_net_nonpositive_intervals": 158,
+      "first_active_torque_error_mean_nm": 1.6226412791496633e-07,
+      "held_active_torque_error_mean_nm": 0.07178477869963731,
+      "held_active_force_error_mean_n": 4.528913778536788
+    },
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_28",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone4_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 269,
+      "no_request_intervals": 91,
+      "proposed_moment_mean_nm": 6.005478037101353,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 6.023348978818106,
+        "unrequested_feet": 0.0,
+        "torso": -6.019667763172876,
+        "upper_legs": 0.0,
+        "net": 0.0036812156452256206
+      },
+      "held_net_nonpositive_intervals": 174,
+      "first_active_torque_error_mean_nm": 1.0591287948386123e-07,
+      "held_active_torque_error_mean_nm": 0.0199225958069244,
+      "held_active_force_error_mean_n": 2.9834430543480916
+    },
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_29",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone5_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 269,
+      "no_request_intervals": 91,
+      "proposed_moment_mean_nm": 6.005766862831892,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 6.023639075499277,
+        "unrequested_feet": 0.0,
+        "torso": -6.019954932328573,
+        "upper_legs": 0.0,
+        "net": 0.0036841431707031833
+      },
+      "held_net_nonpositive_intervals": 174,
+      "first_active_torque_error_mean_nm": 1.0500914387457612e-07,
+      "held_active_torque_error_mean_nm": 0.01992492687220991,
+      "held_active_force_error_mean_n": 2.9834944751486594
+    },
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_30",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone6_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 231,
+      "no_request_intervals": 129,
+      "proposed_moment_mean_nm": 8.995994834903266,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 9.216731641709908,
+        "unrequested_feet": 0.030562168310503374,
+        "torso": -9.203234317383638,
+        "upper_legs": 0.0,
+        "net": 0.044059492636774236
+      },
+      "held_net_nonpositive_intervals": 110,
+      "first_active_torque_error_mean_nm": 1.8097797686453195e-07,
+      "held_active_torque_error_mean_nm": 0.0906244970155661,
+      "held_active_force_error_mean_n": 5.1839932336972145
+    },
+    {
+      "cell_id": "righting_body_00_condition_0_start_0_candidate_31",
+      "body_id": "explorer_seed_6119",
+      "candidate_id": "cone7_drive2_axis2",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 0,
+      "positive_request_intervals": 277,
+      "no_request_intervals": 83,
+      "proposed_moment_mean_nm": 8.078931031662902,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 8.190584243320414,
+        "unrequested_feet": 0.29371023481087266,
+        "torso": -8.447688206860514,
+        "upper_legs": 0.0,
+        "net": 0.03660627127076679
+      },
+      "held_net_nonpositive_intervals": 136,
+      "first_active_torque_error_mean_nm": 1.6922821835903374e-07,
+      "held_active_torque_error_mean_nm": 0.09808140554269255,
+      "held_active_force_error_mean_n": 5.21586864486902
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_16",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone0_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 199,
+      "no_request_intervals": 161,
+      "proposed_moment_mean_nm": 2.3426895551404803,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 2.027503516639999,
+        "unrequested_feet": 0.054564603502490525,
+        "torso": -2.075500305113475,
+        "upper_legs": 0.0,
+        "net": 0.006567815029014992
+      },
+      "held_net_nonpositive_intervals": 110,
+      "first_active_torque_error_mean_nm": 1.771748026335673e-07,
+      "held_active_torque_error_mean_nm": 0.15634003433057445,
+      "held_active_force_error_mean_n": 5.399430238747533
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_17",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone1_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 199,
+      "no_request_intervals": 161,
+      "proposed_moment_mean_nm": 2.644817343986632,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 2.2415676398987836,
+        "unrequested_feet": 0.04283881659061064,
+        "torso": -2.2811967281416887,
+        "upper_legs": 0.0,
+        "net": 0.0032097283477043994
+      },
+      "held_net_nonpositive_intervals": 109,
+      "first_active_torque_error_mean_nm": 1.9470137093813903e-07,
+      "held_active_torque_error_mean_nm": 0.18651493843067646,
+      "held_active_force_error_mean_n": 6.151576931150363
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_18",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone2_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 187,
+      "no_request_intervals": 173,
+      "proposed_moment_mean_nm": 2.353160644621362,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 2.0012827769109607,
+        "unrequested_feet": 0.08968983360642413,
+        "torso": -2.0941497800184714,
+        "upper_legs": 0.0,
+        "net": -0.0031771695010840025
+      },
+      "held_net_nonpositive_intervals": 104,
+      "first_active_torque_error_mean_nm": 1.8893224523218417e-07,
+      "held_active_torque_error_mean_nm": 0.166515713905269,
+      "held_active_force_error_mean_n": 5.704025946355284
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_19",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone3_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 199,
+      "no_request_intervals": 161,
+      "proposed_moment_mean_nm": 2.6448178823743285,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 2.2415691468726213,
+        "unrequested_feet": 0.042839144210837135,
+        "torso": -2.28118798683115,
+        "upper_legs": 0.0,
+        "net": 0.0032203042523087175
+      },
+      "held_net_nonpositive_intervals": 109,
+      "first_active_torque_error_mean_nm": 1.8478965611079117e-07,
+      "held_active_torque_error_mean_nm": 0.186514750087302,
+      "held_active_force_error_mean_n": 6.151588670120054
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_20",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone4_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 223,
+      "no_request_intervals": 137,
+      "proposed_moment_mean_nm": 2.223668157163908,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 1.9833752238746027,
+        "unrequested_feet": 0.0,
+        "torso": -1.962747780738068,
+        "upper_legs": 0.0,
+        "net": 0.02062744313653615
+      },
+      "held_net_nonpositive_intervals": 100,
+      "first_active_torque_error_mean_nm": 1.7126833970096363e-07,
+      "held_active_torque_error_mean_nm": 0.10655405063754517,
+      "held_active_force_error_mean_n": 3.7598541367750316
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_21",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone5_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 223,
+      "no_request_intervals": 137,
+      "proposed_moment_mean_nm": 2.2236671363027667,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 1.9833719160576904,
+        "unrequested_feet": 0.0,
+        "torso": -1.9627477592345968,
+        "upper_legs": 0.0,
+        "net": 0.02062415682309295
+      },
+      "held_net_nonpositive_intervals": 100,
+      "first_active_torque_error_mean_nm": 1.7753035449431156e-07,
+      "held_active_torque_error_mean_nm": 0.10655406012806612,
+      "held_active_force_error_mean_n": 3.7598499756462296
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_22",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone6_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 223,
+      "no_request_intervals": 137,
+      "proposed_moment_mean_nm": 2.2236677176317556,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 1.9833735202196385,
+        "unrequested_feet": 0.0,
+        "torso": -1.962748830330826,
+        "upper_legs": 0.0,
+        "net": 0.020624689888813018
+      },
+      "held_net_nonpositive_intervals": 100,
+      "first_active_torque_error_mean_nm": 1.7326571593174258e-07,
+      "held_active_torque_error_mean_nm": 0.10655417661302612,
+      "held_active_force_error_mean_n": 3.7598604254879064
+    },
+    {
+      "cell_id": "righting_body_01_condition_0_start_0_candidate_23",
+      "body_id": "contact_envelope_corner_000",
+      "candidate_id": "cone7_drive2_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 16,
+      "positive_request_intervals": 223,
+      "no_request_intervals": 137,
+      "proposed_moment_mean_nm": 2.2236688253413637,
+      "held_moment_mean_by_role_nm": {
+        "requested_feet": 1.9833766613970931,
+        "unrequested_feet": 0.0,
+        "torso": -1.9627494577479827,
+        "upper_legs": 0.0,
+        "net": 0.020627203649112105
+      },
+      "held_net_nonpositive_intervals": 100,
+      "first_active_torque_error_mean_nm": 1.7316397483587555e-07,
+      "held_active_torque_error_mean_nm": 0.1065541829222199,
+      "held_active_force_error_mean_n": 3.7598716990523604
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_08",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone0_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_09",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone1_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_10",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone2_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_11",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone3_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_12",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone4_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_13",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone5_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_14",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone6_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    },
+    {
+      "cell_id": "righting_body_02_condition_0_start_0_candidate_15",
+      "body_id": "explorer_seed_14172",
+      "candidate_id": "cone7_drive0_axis0",
+      "eligible": false,
+      "failure_codes": [
+        "no_terminal_supported_upright_dwell"
+      ],
+      "original_body_index": 21,
+      "positive_request_intervals": 0,
+      "no_request_intervals": 360
+    }
+  ],
+  "interpretation": [
+    "On bodies 0 and 16, measured requested-foot turning moments are substantial, but simultaneous torso reactions almost cancel total foot moment about the same prepared COM and chosen signed axis. Upper-leg moment is zero in these samples.",
+    "First-step active-joint torque errors average 1.46e-7 and 1.80e-7 Nm; held-interval errors rise to 0.0638 and 0.1381 Nm. Accurate initial actuator torque does not imply useful whole-body turning.",
+    "For body 21 all eight profiles make no positive force request across 2880 intervals; the numerical fallback is a safe route result, not a recovery lead.",
+    "The discrepancy is not explained by a frame or COM bookkeeping mismatch: proposed scalar reconstruction differs by at most 5.33e-15 Nm and prepared modeled/native COM by at most 3.14e-8 m.",
+    "These correlated retained measurements identify an omitted reaction in the proposal score. They do not isolate a counterfactual cause or prove a successful replacement controller."
+  ],
+  "reference": "Native world z-up; chosen signed axis and modeled COM held at preparation for five solved substeps. First sample and equal-weight five-sample mean are separate. Forces act on the robot. Net contains feet, torso and upper links; gravity has zero moment about instantaneous whole-body COM. No inertial/gravity balance is claimed about the held reference.",
+  "model_limits": "Requested forces are static proposals; native constraint forces solve coupled contact and motion. Model gravity is 9.81 m/s2, native gravity is 9.8 m/s2. Errors average each active limb/joint within an interval, then equally across intervals. Nonpositive counts are descriptive signs, not qualification thresholds. Reference profiles are retained but not interpreted through torque-map semantics.",
+  "decision": "Retire foot-only proposed moment as the next recovery search ranking. Require coupled whole-body contact/support transitions and observed trajectory progress, including torso reaction. Preserve broad factored search and independent fresh confirmation; do not repeat the unchanged negative grid.",
+  "next_gate": "Complete the bounded matched Studio startup/stepping profile before another large recovery cohort. For the recovery successor, use coupled whole-body contact and measured trajectory progress, explicitly including torso support; foot-only proposed turning moment cannot rank useful recovery. Return to broad factored native discovery and fresh full-capture confirmation of useful diverse leads. No useful recovery, learned adaptation, beneficial memory, real-time improvement or full Studio handoff is qualified.",
+  "qualification_economy": "One reusable reader for a newly available physical observable: requested versus solved reactions at a common reference, with five-step temporal joins. It reuses archive hashes, rigid-tree geometry, frame conversion, native decoding, containment and test runners. Full interval records remain outside Git; no new native campaign or bespoke physical gate.",
+  "retained_prior_analysis": {
+    "archive_relative_path": "sdk2-contact-reactions-diagnosis-ecfeea802522438aafeb3970a026aa25",
+    "receipt_sha256": "bfaf55b5364de187242b2685788c1581d90e0113b57f7044e4adf84c97144613",
+    "reason": "Strengthened tilted-axis synthetic control; production reader unchanged.",
+    "result_byte_identical": true
+  },
+  "development_setup_failure": "Initial combined test invocation omitted EXPLORER_TEST_OUTPUT: the eight new comparison controls passed; existing extractor control 07 raised KeyError before Warp initialization. Corrected environment in this retained run.",
+  "scope": {
+    "eligibility_changed": false,
+    "controller_adopted": false,
+    "recovery_benefit_established": false,
+    "training_data_authority": false,
+    "physical_acceptance_authority": false,
+    "release_authority": false,
+    "real_time_improvement_established": false
+  }
+}

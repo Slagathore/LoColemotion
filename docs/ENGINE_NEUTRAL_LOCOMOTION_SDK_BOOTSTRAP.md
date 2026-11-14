@@ -256,11 +256,19 @@ with byte-identical audit output. The
 now passes at source 94b2067b: 330 controls, 36 three-second worlds, 12,960
 decisions and 64,800 samples fully replayed. Every solved contact sample
 passes independent decoding and free-root balance; all eight new profiles
-on body 21 reach empty-cone fallback. No world recovers. Compare requested
-turning moments with the measured reactions before another force-model family.
-The unchanged broad grid has no qualifying leads.
-The current roadmap also schedules a bounded matched Studio performance
-task before another large recovery cohort; recovery success is not its gate.
+on body 21 reach empty-cone fallback. No world recovers. The
+[retained force comparison](../sdk/discovery/creature_contact_reactions_result_v1.json)
+now reads all 12,960 decisions and 64,800 solved samples, with 16 controls
+and independent aggregation of 8,640 new-profile intervals. On bodies 0/16,
+requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, and net
+0.013/0.012 Nm at the same prepared COM and chosen axis. Body 21 makes no
+positive request. Initial active-joint torque errors are below 1.8e-7 Nm
+on average; opposing torso reaction is missing from the foot-only score.
+This is a retained diagnostic, not causal isolation or a recovery result.
+The next recovery family must account for coupled whole-body contact and
+measured trajectory progress. Do not repeat the unchanged negative grid.
+The next task is the bounded matched Studio performance profile before
+another large recovery cohort; recovery success is not its gate.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 
