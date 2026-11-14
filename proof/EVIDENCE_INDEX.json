@@ -1409,6 +1409,50 @@
       ],
       "external_artifact_ids": [],
       "dependency_closure_complete": false
+    },
+    {
+      "id": "coupled-contact-response-v2",
+      "title": "Actuator-aware response improves retained contact predictions while preserving legacy behavior",
+      "pillar": "locomotion",
+      "classification": "retained_response_model_development",
+      "scope": "33 controls and 432 retained states. Rotor inertia and implicit actuator feedback reduce mean rotation error 50/65/58 percent; 92 states worsen. All 1,296 original predictions reproduce exactly. No new worlds, fresh action ranking, controller adoption, recovery or release authority.",
+      "record": {
+        "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+        "pointer": null
+      },
+      "related_documents": [
+        "sdk/discovery/coupled_contact_response_plan_v2.json",
+        "sdk/discovery/coupled_contact_response.py",
+        "sdk/discovery/test_coupled_actuator_response.py",
+        "sdk/discovery/creature_response_probe_native_result_v2.json"
+      ],
+      "source_commits": [
+        "ded7f3159e46e801aad03a38252646863c626edd"
+      ],
+      "external_artifact_ids": [],
+      "dependency_closure_complete": false
+    },
+    {
+      "id": "coupled-response-probe-component-v3",
+      "title": "Actuator-aware action probe passes the complete zero-world gate",
+      "pillar": "locomotion",
+      "classification": "development_component",
+      "scope": "223 controls and 165 planned fresh worlds. The corrected predictor and native/GPU armature/damping bindings are wired into the repeated-action route with unchanged matching, action patterns and per-body criteria. Fresh ordering, recovery and adoption remain unobserved.",
+      "record": {
+        "path": "sdk/discovery/creature_response_probe_component_v3.json",
+        "pointer": null
+      },
+      "related_documents": [
+        "sdk/discovery/creature_response_probe_v3.json",
+        "sdk/discovery/creature_response_probe.py",
+        "sdk/discovery/test_creature_response_actuator.py",
+        "sdk/discovery/coupled_contact_response_result_v2.json"
+      ],
+      "source_commits": [
+        "ded7f3159e46e801aad03a38252646863c626edd"
+      ],
+      "external_artifact_ids": [],
+      "dependency_closure_complete": false
     }
   ],
   "local_files": [
@@ -1546,8 +1590,8 @@
     },
     {
       "path": "sdk/release/quadruped_support_matrix.json",
-      "sha256": "9eb9543f28e54f17b12e924fc2853426bd0a6a6084ce9f11159579842781ff4f",
-      "byte_length": 3581127
+      "sha256": "c666e9063d2120a78d067e316c02712d67af3109a6419e2cb1fc7e6db7155bba",
+      "byte_length": 3582681
     },
     {
       "path": "sdk/discovery/creature_righting_component_v1.json",
@@ -1656,8 +1700,8 @@
     },
     {
       "path": "sdk/discovery/creature_native.py",
-      "sha256": "18ae554e80c8e3d9413fee4776ab68f6ee73682e0afaa4440e2eccbff2ff0540",
-      "byte_length": 57778
+      "sha256": "afde44c6cf95a48222710b2b2f2427d3ef72e1c0f55e356d8c93a99b7cce1e9b",
+      "byte_length": 58135
     },
     {
       "path": "sdk/discovery/test_creature_righting.py",
@@ -2341,18 +2385,18 @@
     },
     {
       "path": "docs/SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md",
-      "sha256": "ff8e8b816063d600ddb76e37fddc8c34c5af8ead0dee1cf24ad66323fa208fec",
-      "byte_length": 6119
+      "sha256": "12ddb788c92e4b1ab2a7c1fd7dfbc393ae99ff87bf3e4a85c2a838512a6f999d",
+      "byte_length": 6216
     },
     {
       "path": "docs/ENGINE_NEUTRAL_LOCOMOTION_SDK_BOOTSTRAP.md",
-      "sha256": "cba95f64ff4771bba497c349f81f2c34eda3768d025acd448ba4522d7af0030c",
-      "byte_length": 37483
+      "sha256": "1e04de2d991191fb8d7f821f284c2ceb4aa527a538ad1a6ccff51d3ffbde0442",
+      "byte_length": 37553
     },
     {
       "path": "docs/SDK_PORTABLE_BALANCED_WAVE_SUCCESSOR_BOOTSTRAP.md",
-      "sha256": "f1a575a454f6064dddbae1992513d180ca95468a2b059eaca7b59ecd31725e72",
-      "byte_length": 28235
+      "sha256": "afddad35c6a114ad177d86693e6fd5af485098abe7cc1d6eb17f6228373fd2b6",
+      "byte_length": 28889
     },
     {
       "path": "sdk/explorer/studio/startup_native_validation_result_v1.json",
@@ -2421,8 +2465,8 @@
     },
     {
       "path": "sdk/discovery/coupled_contact_response.py",
-      "sha256": "3c00d0c4d6611458fb2f1193b3e55046ce3947678472f262ecd6501a54d86162",
-      "byte_length": 9290
+      "sha256": "37bd3816b24e8883d0e9b07bdf9e7cd6aee2499632d479e7420a1d3dce35b54a",
+      "byte_length": 11451
     },
     {
       "path": "sdk/discovery/test_coupled_contact_response.py",
@@ -2431,8 +2475,8 @@
     },
     {
       "path": "sdk/discovery/evaluate_coupled_contact_response.py",
-      "sha256": "8c41496e465aeeca8c0a8efb45ebfd90f946891499cb5ae95cfbc6835b069df6",
-      "byte_length": 9904
+      "sha256": "83979205b2e3331366d05966dce55cc18dfec9de4b6a153b87b44bdb9c6d65d1",
+      "byte_length": 13719
     },
     {
       "path": "sdk/discovery/coupled_contact_response_plan_v1.json",
@@ -2441,8 +2485,8 @@
     },
     {
       "path": "sdk/discovery/check_coupled_contact_response.py",
-      "sha256": "dc9ef70f8e0f1f34a40c33a0cb120e98a0363a9eb47af0694c6b1279c8bec0ad",
-      "byte_length": 9895
+      "sha256": "5e8b890df72139443973be450e46f27484430f90e2daada3f402ebe44a84d9ad",
+      "byte_length": 12151
     },
     {
       "path": "sdk/discovery/test_check_coupled_contact_response.py",
@@ -2456,8 +2500,8 @@
     },
     {
       "path": "sdk/discovery/creature_response_probe.py",
-      "sha256": "55ddcb7c8dcc0ade4225585c72368e07c0966f65106ae4cced9bc6a5fbfb9614",
-      "byte_length": 27074
+      "sha256": "a8dca6511cd09d6642af5118c60888797d198b426f9e4b4d91e356e744c5b516",
+      "byte_length": 29309
     },
     {
       "path": "sdk/discovery/test_creature_response_probe.py",
@@ -2498,6 +2542,36 @@
       "path": "sdk/discovery/creature_response_probe_native_result_v2.json",
       "sha256": "b4dfebab80b38b3a53aa256627a5f7673f0145de05d2f9edd2f69fcaf349363b",
       "byte_length": 19295
+    },
+    {
+      "path": "sdk/discovery/coupled_contact_response_plan_v2.json",
+      "sha256": "25b46c9fe83e38e93779583be593c5db5d07de1e9addf441981740915d2d9c35",
+      "byte_length": 6580
+    },
+    {
+      "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+      "sha256": "ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d",
+      "byte_length": 15124
+    },
+    {
+      "path": "sdk/discovery/test_coupled_actuator_response.py",
+      "sha256": "bac79e80108fb507e0049b010f3485a71b44d08f02f23fbe643904fd23d60af7",
+      "byte_length": 10936
+    },
+    {
+      "path": "sdk/discovery/creature_response_probe_v3.json",
+      "sha256": "921d2dfc8603d18c7d78cd81a82fba8e891ffd179c99ff3c0031b96d33b4eff9",
+      "byte_length": 53099
+    },
+    {
+      "path": "sdk/discovery/test_creature_response_actuator.py",
+      "sha256": "6f310d9f7eb838fac6feed81347a4ac75cbd530d05b0326c2611e95a7e2b4bf9",
+      "byte_length": 6344
+    },
+    {
+      "path": "sdk/discovery/creature_response_probe_component_v3.json",
+      "sha256": "18d6a7e1662f0826af04fd61eaedefccf8a0871b42c2d09a9e3df362b65428f1",
+      "byte_length": 23091
     }
   ],
   "external_artifacts": [

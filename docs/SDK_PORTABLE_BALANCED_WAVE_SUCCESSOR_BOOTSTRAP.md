@@ -33,10 +33,18 @@ Exposed diagnosis of all 54 contact-free initial samples isolates omitted
 .01 kg m2 joint armature and implicit velocity-actuator feedback. Either
 correction alone leaves residual error; both together reduce maximum joint-speed
 error from 10.12 to 7.48e-8 rad/s without parameter fitting or new worlds.
-This does not validate contact response or revise the v2 negative. The next
-model successor must bind both actuator terms, cover saturation and damping,
-preserve historical replay, then pass retained contact checks and a fresh
-declared ordering comparison before broad factored recovery search.
+The [actuator-aware successor](../sdk/discovery/coupled_contact_response_result_v2.json)
+now binds both terms and passes 33 controls plus the complete 432-state retained
+screen. Mean rotation error falls 50.21%/65.16%/57.72% against the original
+whole-body model; mean joint-velocity errors fall from 4.191/5.374/2.920 to
+0.0862/0.0880/0.0357 rad/s. Ninety-two states worsen, and the third body's
+maximum rotation error remains 0.678 rad/s. All 1,296 original predictions
+reproduce exactly. This exposed screen does not revise the native v2 negative.
+The [v3 probe component](../sdk/discovery/creature_response_probe_component_v3.json)
+passes all 223 controls and the 165-cell zero-world preflight. The fresh declared
+comparison adds native/GPU armature and damping bindings, uses a new seed and
+keeps the action family, repeats, numerical bounds and per-body criteria.
+Useful native ordering remains required before broad factored recovery search.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen

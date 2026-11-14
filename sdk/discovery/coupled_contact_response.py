@@ -104,20 +104,52 @@ def nonnegative_quadratic(matrix,linear,*,tolerance=1e-9,maximum_iterations=1024
     return dict(solution=x,iterations=iterations,kkt_residual=residual,converged=residual<=tolerance*10)
 
 
-def response(model,prepared,applied,contacts,dt,*,penetration_recovery_time=.02,regularization=1e-8,tolerance=1e-9):
+def velocity_actuation(velocity,targets,gains,force_ranges,damping):
+    """Clipped joint torque and its local velocity derivative, in joint order.
+
+    A saturated motor contributes no feedback derivative, including exactly
+    on either force bound. Passive joint damping still acts there. Targets
+    must already use the caller's transport precision; no engine is invoked.
+    """
+    raw=np.asarray(velocity);require(raw.ndim==1,'Coupled actuator velocity shape')
+    n=len(raw);v=array(raw,(n,),'Coupled actuator velocity')
+    target=array(targets,(n,),'Coupled actuator targets');gain=array(gains,(n,),'Coupled actuator gains')
+    limits=array(force_ranges,(n,2),'Coupled actuator force ranges');passive=array(damping,(n,),'Coupled actuator damping')
+    require(np.all(gain>=0.) and np.all(passive>=0.) and np.all(limits[:,0]<=0.) and
+            np.all(limits[:,1]>=0.),'Coupled dissipative actuator parameters')
+    demand=gain*(target-v);require(np.isfinite(demand).all(),'Coupled finite actuator demand')
+    motor=np.clip(demand,limits[:,0],limits[:,1])
+    active=(demand>limits[:,0]) & (demand<limits[:,1])
+    return dict(applied=np.r_[np.zeros(6),motor-passive*v],motor=motor,
+                velocity_derivative=-passive-gain*active)
+
+
+def response(model,prepared,applied,contacts,dt,*,penetration_recovery_time=.02,regularization=1e-8,tolerance=1e-9,
+             joint_armature=None,joint_velocity_derivative=None):
     """Predict one interval, including unilateral torso/limb reactions.
 
     Contact point, normal, gap, and friction are explicit prepared inputs.
     Four nonnegative rays make an L1 friction pyramid. Positive gaps require
     closing motion before an impulse; penetrations request separation over the
     explicit recovery time instead of being corrected in one short step. This
-    finite projection does not imitate native contact softness or integration.
+    finite projection does not imitate native contact softness. Supplying both
+    actuator terms opts into M + armature - dt*d(force)/d(velocity), including
+    that metric in the contact impulse solve. Omitting both preserves v1.
+    Neither mode claims equivalence with a native soft-contact integrator.
     """
     require(type(dt) in (int,float) and math.isfinite(dt) and 0<dt<=1/30,'Coupled interval')
     require(type(penetration_recovery_time) in (int,float) and math.isfinite(penetration_recovery_time)
             and dt<=penetration_recovery_time<=1.,'Coupled penetration recovery time')
     require(type(regularization) in (int,float) and math.isfinite(regularization) and 0<regularization<=1e-4,'Coupled regularization')
     applied=array(applied,(model.width,),'Coupled applied generalized force')
+    actuator_aware=joint_armature is not None
+    require(actuator_aware==(joint_velocity_derivative is not None),'Coupled complete actuator dynamics')
+    mass=prepared['mass']
+    if actuator_aware:
+        armature=array(joint_armature,(model.tree.n,),'Coupled joint armature')
+        derivative=array(joint_velocity_derivative,(model.tree.n,),'Coupled joint velocity derivative')
+        require(np.all(armature>=0.) and np.all(derivative<=0.),'Coupled passive actuator metric')
+        mass=mass+np.diag(np.r_[np.zeros(6),armature-dt*derivative])
     require(type(contacts) is list and len(contacts)<=64,'Coupled contact population')
     rows=[];offset=[];slices=[];rays=[]
     for contact in contacts:
@@ -133,7 +165,7 @@ def response(model,prepared,applied,contacts,dt,*,penetration_recovery_time=.02,
         speed_offset=max(0.,gap)/dt+min(0.,gap)/penetration_recovery_time
         start=len(rows);rows.extend(directions @ linear);offset.extend([speed_offset]*len(directions))
         slices.append(slice(start,len(rows)));rays.append(directions)
-    mass=prepared['mass'];free=prepared['velocity']+dt*np.linalg.solve(mass,applied+prepared['gravity']-prepared['bias'])
+    free=prepared['velocity']+dt*np.linalg.solve(mass,applied+prepared['gravity']-prepared['bias'])
     jacobian=np.asarray(rows).reshape(-1,model.width)
     inverse=np.linalg.solve(mass,jacobian.T)
     metric=jacobian @ inverse+regularization*np.eye(len(rows))
@@ -143,5 +175,6 @@ def response(model,prepared,applied,contacts,dt,*,penetration_recovery_time=.02,
     residual=mass @ (after-prepared['velocity'])-dt*(applied+prepared['gravity']-prepared['bias'])-impulse
     require(np.isfinite(after).all() and np.max(np.abs(residual),initial=0.)<=1e-8,'Coupled impulse balance')
     return dict(velocity=after,free_velocity=free,generalized_contact_impulse=impulse,contact_impulses=contact_impulses,
-        solver=solved,balance_residual=residual,model='inelastic_coupled_friction_pyramid_v1',
+        solver=solved,balance_residual=residual,
+        model='inelastic_coupled_friction_pyramid_actuator_v2' if actuator_aware else 'inelastic_coupled_friction_pyramid_v1',
         native_solver_equivalence=False,physical_observation=False,dynamic_recovery_qualified=False)

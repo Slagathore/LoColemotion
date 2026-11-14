@@ -1,0 +1,169 @@
+{
+  "schema_version": "locolemotion_coupled_contact_response_plan_v2",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "retained_response_model_development",
+    "question_class": "development"
+  },
+  "source_parent_commit": "ded7f3159e46e801aad03a38252646863c626edd",
+  "question": "Does XML-bound rotor inertia and implicit actuator feedback improve whole-body contact predictions over the original coupled model on all 432 exposed retained states?",
+  "source_pins": [
+    {
+      "path": "sdk/discovery/coupled_contact_response.py",
+      "sha256": "37bd3816b24e8883d0e9b07bdf9e7cd6aee2499632d479e7420a1d3dce35b54a",
+      "byte_length": 11451
+    },
+    {
+      "path": "sdk/discovery/evaluate_coupled_contact_response.py",
+      "sha256": "83979205b2e3331366d05966dce55cc18dfec9de4b6a153b87b44bdb9c6d65d1",
+      "byte_length": 13719
+    },
+    {
+      "path": "sdk/discovery/test_coupled_contact_response.py",
+      "sha256": "aab0c41fd0ee7aa834b23a97413b866c597ab4d184bf541978044db93a514314",
+      "byte_length": 8438
+    },
+    {
+      "path": "sdk/discovery/actuation_recovery_mechanics.py",
+      "sha256": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+      "byte_length": 10269
+    },
+    {
+      "path": "sdk/discovery/test_actuation_recovery_mechanics.py",
+      "sha256": "03080471ae7f82a43f944cb9711dcc5c22c93f7b425692607a8b7e21b647909b",
+      "byte_length": 14479
+    },
+    {
+      "path": "sdk/discovery/creature_righting_sequence.py",
+      "sha256": "34866a12e3333f230f48a21d945942544360fa67cdd2fa661053384db76f4bc0",
+      "byte_length": 12311
+    },
+    {
+      "path": "sdk/discovery/creature_body_moment_diagnosis.py",
+      "sha256": "eefc8a3eef4de0136129d3e4a19cc38130c9ccdeffeff0897722f9d18cdf7a81",
+      "byte_length": 48812
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_diagnosis.py",
+      "sha256": "b96fe25e8e9429fd4f1a3cf62d00f46b5dc12c88f409ad3e880a25e993100657",
+      "byte_length": 18391
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reactions_diagnosis.py",
+      "sha256": "5febcac654bc8afa1d6aafcbf2ebbb65343a593314d88c96924d6e1d3acfafbc",
+      "byte_length": 15391
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_development.py",
+      "sha256": "306669481601cc91c8146e84a202a57228672e23c3f9daa0c531d2eb9d077e46",
+      "byte_length": 49444
+    },
+    {
+      "path": "sdk/discovery/creature_torque_map_route_native_v3.json",
+      "sha256": "ad40a79f6c1d59e9dfd618bdd1605b6c433d31ef2ac83293fb429fe39438a99c",
+      "byte_length": 12062
+    },
+    {
+      "path": "sdk/discovery/check_coupled_contact_response.py",
+      "sha256": "5e8b890df72139443973be450e46f27484430f90e2daada3f402ebe44a84d9ad",
+      "byte_length": 12151
+    },
+    {
+      "path": "sdk/discovery/test_check_coupled_contact_response.py",
+      "sha256": "a5e8fe5770c7c5d445e22723347a7a67103f8328906c5c585e2e8f1b66bd71d2",
+      "byte_length": 3935
+    },
+    {
+      "path": "sdk/discovery/test_coupled_actuator_response.py",
+      "sha256": "bac79e80108fb507e0049b010f3485a71b44d08f02f23fbe643904fd23d60af7",
+      "byte_length": 10936
+    }
+  ],
+  "input": {
+    "archive_relative_path": "sdk2-creature-torque-map-route-v3-42b47fe7e44847d18967d04fee9b1731",
+    "receipt_sha256": "731524a2040e467a1de49aaae193a4205d8298c57a4f08f19bcaa3cdcf5ac493",
+    "native_worlds": 36,
+    "bodies": 3,
+    "outer_steps": 360
+  },
+  "sample_outer_steps": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330
+  ],
+  "expected_samples": 432,
+  "variants": [
+    "free",
+    "feet",
+    "all",
+    "actuator"
+  ],
+  "validation": {
+    "unit_controls": 33,
+    "maximum_geometry_error_m": 2e-06,
+    "maximum_kinetic_error_j": 1e-08,
+    "all_predictions_must_converge": true,
+    "maximum_motor_force_error_nm": 1e-05
+  },
+  "criterion": {
+    "metric": "Mean Euclidean root angular velocity prediction error at the first subsequent native substep",
+    "minimum_relative_error_reduction_per_body": 0.2,
+    "all_three_bodies_required": true,
+    "purpose": "Exposed retained-state component screen only; a fresh native action-ordering comparison remains required."
+  },
+  "parameters": {
+    "interval": "Original model timestep",
+    "friction": "Original ground sliding coefficient",
+    "penetration_recovery_time": "Original ground solref time constant",
+    "impulse_regularization": 1e-08,
+    "kkt_tolerance": 1e-09,
+    "maximum_iterations": 1024
+  },
+  "physics_limits": [
+    "Inelastic instantaneous impulse projection, not native implicitfast integration",
+    "L1 friction pyramid, not the native elliptic cone",
+    "Supplied measured contact manifold is held for one interval",
+    "No future contact generation, self-contact, joint-limit force, actuator derivative or Coriolis derivative integration",
+    "No evidence yet that unobserved candidate actions are ranked correctly"
+  ],
+  "reference": "https://mujoco.readthedocs.io/en/stable/computation/index.html",
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "training_data_authority": false,
+  "predecessor": {
+    "path": "sdk/discovery/creature_response_probe_native_result_v2.json",
+    "sha256": "b4dfebab80b38b3a53aa256627a5f7673f0145de05d2f9edd2f69fcaf349363b",
+    "byte_length": 19295
+  },
+  "actuator_aware": true,
+  "comparison_variants": {
+    "reference": "all",
+    "candidate": "actuator"
+  },
+  "actuator_model": {
+    "armature": "Ordered explicit native XML hinge armature; no hardcoded inertia",
+    "motor_force": "Clipped velocity feedback at binary32 transport targets, minus passive damping",
+    "velocity_derivative": "Negative passive damping plus negative feedback gain only strictly inside force bounds",
+    "integration": "Generalized metric M + diag(armature) - dt diag(velocity derivative) for the free step and contact impulse projection",
+    "unsupported": "Alternate transmissions, implicit XML defaults, disabled forces and additional joint force terms refuse"
+  },
+  "historical_compatibility": "Recompute all original free, feet and all predictions at the exact same exposed states and compare with the immutable v1 evaluation.",
+  "limits": [
+    "No new worlds or solver steps",
+    "Exposed development corpus, not held-out evidence",
+    "No native soft-contact equivalence",
+    "No model-selected controller, action-ranking validation, recovery, training or release authority"
+  ]
+}

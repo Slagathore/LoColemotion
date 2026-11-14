@@ -22,16 +22,25 @@ def native_velocity(row):
 
 
 def aggregate(rows, plan, result, expected):
+    actuator_aware=plan.get('actuator_aware',False)
+    comparison=plan.get('comparison_variants',dict(reference='feet',candidate='all'))
+    require(set(comparison)=={'reference','candidate'} and comparison['reference'] in plan['variants'] and
+        comparison['candidate'] in plan['variants'] and comparison['reference']!=comparison['candidate'], 'Response comparison variants')
+    reference,candidate=comparison['reference'],comparison['candidate']
     require(len(rows) == plan['expected_samples'] and
             [(r['batch'], r['cell_id'], r['outer_step']) for r in rows] == expected,
             'Response sample identity, order or denominator')
-    groups = {}; maximum_geometry = maximum_kinetic = 0.
+    groups = {}; maximum_geometry = maximum_kinetic = maximum_force = 0.
     for row in rows:
         require(set(row['predictions']) == set(plan['variants']), 'Response variant population')
         actual = row['native_velocity']; require(len(actual) == 14, 'Response velocity width')
         require(all(math.isfinite(v) and v >= 0 for v in row['checks'].values()), 'Response finite validation error')
         maximum_geometry = max(maximum_geometry, row['checks']['geometry_error_m'])
         maximum_kinetic = max(maximum_kinetic, row['checks']['kinetic_error_j'])
+        if actuator_aware:
+            predicted=row['predictions']['actuator']['motor_force_nm'];observed=row['native_motor_force_nm']
+            require(len(predicted)==len(observed)==8 and all(math.isfinite(x) for x in predicted+observed), 'Response finite motor forces')
+            maximum_force=max(maximum_force,max(abs(a-b) for a,b in zip(predicted,observed,strict=True)))
         for name, prediction in row['predictions'].items():
             require(len(prediction['velocity']) == 14, 'Response predicted velocity width')
             difference = [a-b for a,b in zip(prediction['velocity'], actual, strict=True)]
@@ -53,24 +62,32 @@ def aggregate(rows, plan, result, expected):
         require(all(near(value, result['summaries'][batch][name][key]) for key,value in summary.items()), 'Response aggregate mismatch')
         summaries.setdefault(batch, {})[name] = summary
         all_converged &= summary['converged'] == len(values)
-    reductions = {batch: 1-v['all']['mean_root_angular_error_rad_s']/v['feet']['mean_root_angular_error_rad_s']
+    require(all(v[reference]['mean_root_angular_error_rad_s']>0 for v in summaries.values()), 'Response nonzero reference error')
+    reductions = {batch: 1-v[candidate]['mean_root_angular_error_rad_s']/v[reference]['mean_root_angular_error_rad_s']
                   for batch,v in summaries.items()}
     require(near(maximum_geometry, result['maximum_geometry_error_m']) and near(maximum_kinetic, result['maximum_kinetic_error_j']), 'Response validation maxima')
     limits = plan['validation']; validation = (maximum_geometry <= limits['maximum_geometry_error_m'] and
         maximum_kinetic <= limits['maximum_kinetic_error_j'] and (all_converged or not limits['all_predictions_must_converge']))
+    if actuator_aware:
+        require(near(maximum_force,result['maximum_motor_force_error_nm']),'Response motor force maximum')
+        validation &= maximum_force<=limits['maximum_motor_force_error_nm']
     descriptive = {}
     for batch in summaries:
         selected = [r for r in rows if r['batch'] == batch]
-        worst = max(selected, key=lambda r: r['predictions']['all']['root_angular_error_rad_s'])
-        descriptive[batch] = dict(worse_than_feet_samples=sum(r['predictions']['all']['root_angular_error_rad_s'] >
-            r['predictions']['feet']['root_angular_error_rad_s'] for r in selected),
-            worst_all_contact_sample=dict(cell_id=worst['cell_id'], outer_step=worst['outer_step'],
-                all_error_rad_s=worst['predictions']['all']['root_angular_error_rad_s'],
-                feet_error_rad_s=worst['predictions']['feet']['root_angular_error_rad_s']))
+        worst = max(selected, key=lambda r: r['predictions'][candidate]['root_angular_error_rad_s'])
+        descriptive[batch] = {
+            'worse_than_reference_samples' if actuator_aware else 'worse_than_feet_samples':sum(
+                r['predictions'][candidate]['root_angular_error_rad_s'] > r['predictions'][reference]['root_angular_error_rad_s'] for r in selected),
+            'worst_candidate_sample' if actuator_aware else 'worst_all_contact_sample':dict(
+                cell_id=worst['cell_id'],outer_step=worst['outer_step'],**{
+                    candidate+'_error_rad_s':worst['predictions'][candidate]['root_angular_error_rad_s'],
+                    reference+'_error_rad_s':worst['predictions'][reference]['root_angular_error_rad_s']})}
+    threshold=plan['criterion']['minimum_relative_error_reduction_per_body' if actuator_aware else
+                                'minimum_relative_error_reduction_against_feet_per_body']
     return dict(samples=len(rows), predictions=sum(len(v) for v in groups.values()), all_predictions_converged=all_converged,
         validation_passed=validation, relative_error_reduction_by_batch=reductions, descriptive=descriptive,
         retained_state_screen_passed=validation and len(summaries)==plan['input']['bodies'] and
-            min(reductions.values()) >= plan['criterion']['minimum_relative_error_reduction_against_feet_per_body'])
+            min(reductions.values()) >= threshold)
 
 
 def verify(root, receipt_sha256):
@@ -81,8 +98,9 @@ def verify(root, receipt_sha256):
     archive = Archive(root, owner)
     for name in archive.inventory:
         for _ in archive.lines(name): pass
-    plan = archive.document('coupled_contact_response_plan_v1.json')
-    require(archive.verified['coupled_contact_response_plan_v1.json']['sha256'] == owner['plan_sha256'], 'Response owner plan')
+    plan_name=owner.get('plan_file','coupled_contact_response_plan_v1.json')
+    plan = archive.document(plan_name)
+    require(archive.verified[plan_name]['sha256'] == owner['plan_sha256'], 'Response owner plan')
     source_root = Path(__file__).resolve().parents[2]
     for pin in plan['source_pins']:
         data = (source_root/pin['path']).read_bytes()
@@ -106,11 +124,18 @@ def verify(root, receipt_sha256):
                 for step in plan['sample_outer_steps'] for i in g['cell_indices']]
     answer = aggregate(rows, plan, result, expected); by_key = dict(zip(expected, rows, strict=True)); checked = 0
     for group in original['worker']['groups']:
+        creatures=[native.document('native/'+group['batch_id']+f'/cell_{i}/creature.json') for i in range(len(group['cell_indices']))]
         for line in native.lines('native/'+group['batch_id']+'/trace.jsonl'):
             row = json.loads(line); step, sub = divmod(row['step']-1, 5)
             if sub or step not in plan['sample_outer_steps']: continue
             key = (group['batch_id'], contract['cells'][group['cell_indices'][row['cell']]]['cell_id'], step)
             require(all(near(a,b) for a,b in zip(native_velocity(row), by_key[key]['native_velocity'], strict=True)), 'Response native velocity binding')
+            if plan.get('actuator_aware',False):
+                predicted=by_key[key]['predictions']['actuator']['motor_force_nm'];spec=creatures[row['cell']]['spec']
+                demand=[g*(u-v) for g,u,v in zip(spec['velocity_gains'],row['ctrl'],row['before_qvel'][6:],strict=True)]
+                motor=[min(hi,max(lo,v)) for v,(lo,hi) in zip(demand,spec['force_ranges'],strict=True)]
+                require(all(near(a,b) for a,b in zip(motor,predicted,strict=True)) and
+                    by_key[key]['native_motor_force_nm']==row['actuator_force_nm'],'Response scalar motor force binding')
             checked += 1
     require(checked == len(rows), 'Response native sample denominator')
     for pin in result['input_files']:

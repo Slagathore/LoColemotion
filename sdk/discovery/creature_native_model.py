@@ -164,7 +164,7 @@ def robot_view(core, creature, model, data):
     return robot
 
 
-def expected_native_fields(creature):
+def expected_native_fields(creature,*,actuator_dynamics=False):
     """Independent primary-geometry reconstruction from the compiler's XML."""
     import xml.etree.ElementTree as ET
     from motor_effectiveness_task import expected_actuator_arrays
@@ -194,20 +194,25 @@ def expected_native_fields(creature):
         # Recovery anchors and ranges have a different public compiler authority.
         result["jnt_range"] = [[0., 0.]] + [vector(j, "range", "") for j in tree.findall(".//joint")]
         result["jnt_axis"] = [[0., 0., 1.]] + [vector(j, "axis", "") for j in tree.findall(".//joint")]
+    if actuator_dynamics:
+        # Free-root coordinates have no reflected joint inertia or damping.
+        # These exact CPU/GPU fields are required only by the new probe lane.
+        for field in ('armature','damping'):
+            result['dof_'+field]=[0.]*6+[float(j.attrib[field]) for j in tree.findall('.//joint')]
     return result
 
 
-def native_metadata(model, creature):
+def native_metadata(model, creature,*,actuator_dynamics=False):
     validate_native_profile(model, creature["spec"])
     return dict(binding=creature["binding"],
         ordered_bodies=[model.body(i).name for i in range(model.nbody)],
         ordered_geoms=[model.geom(i).name for i in range(model.ngeom)],
         body_rootid=model.body_rootid.tolist(), force_ranges=model.actuator_forcerange.tolist(),
-        native_fields={name: getattr(model, name).tolist() for name in expected_native_fields(creature)},
+        native_fields={name: getattr(model, name).tolist() for name in expected_native_fields(creature,actuator_dynamics=actuator_dynamics)},
         observation_stage="prepared_before_control", force_stage="completed_step_before_next_prepare")
 
 
-def validate_model_evidence(creature, metadata, source_snapshot):
+def validate_model_evidence(creature, metadata, source_snapshot,*,actuator_dynamics=False):
     import xml.etree.ElementTree as ET
     tree = ET.fromstring(creature["model_xml"])
     require(metadata["binding"] == creature["binding"]
@@ -216,7 +221,7 @@ def validate_model_evidence(creature, metadata, source_snapshot):
             and metadata["body_rootid"] == [0] + [1] * 9
             and metadata["force_ranges"] == creature["spec"]["force_ranges"],
             "Native creature names or model binding")
-    expected = expected_native_fields(creature)
+    expected = expected_native_fields(creature,actuator_dynamics=actuator_dynamics)
     require(set(metadata["native_fields"]) == set(expected), "Native geometry field population")
     for name, values in expected.items():
         actual = np.asarray(metadata["native_fields"][name])

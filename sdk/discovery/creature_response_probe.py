@@ -14,9 +14,9 @@ import numpy as np
 
 import creature_righting as righting
 from creature_batch import bridge, require
-from coupled_contact_response import CoupledBody, response
+from coupled_contact_response import CoupledBody, response, velocity_actuation
 from actuation_recovery_mechanics import xyz
-from evaluate_coupled_contact_response import settings
+from evaluate_coupled_contact_response import settings, actuator_parameters
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = dict(path='sdk/discovery/creature_torque_map_route_v3.json',
@@ -43,17 +43,26 @@ NUMERICAL_RECIPE = dict(RECIPE, schema_version=NUMERICAL_SCHEMA, seed=1061143,
     score_axis='primary_action_zero_repeat_zero_prepared_axis',
     selection='primary_action_zero_repeat_zero_prediction',
     regret='maximum_observed_score_minus_minimum_selected_score')
+ACTUATOR_SCHEMA = 'locolemotion_coupled_response_probe_v3'
+ACTUATOR_COMPONENT = dict(path='sdk/discovery/coupled_contact_response_result_v2.json',
+    sha256='ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d')
+ACTUATOR_RECIPE = dict(NUMERICAL_RECIPE, schema_version=ACTUATOR_SCHEMA, seed=1061144,
+    predictor='inelastic_coupled_friction_pyramid_actuator_v2',native_actuator_dynamics_binding=True)
+
+
+def actuator_aware(c):
+    return c.get('response_probe',{}).get('schema_version')==ACTUATOR_SCHEMA
 
 
 def numerical(c):
-    return c.get('response_probe',{}).get('schema_version')==NUMERICAL_SCHEMA
+    return c.get('response_probe',{}).get('schema_version') in (NUMERICAL_SCHEMA,ACTUATOR_SCHEMA)
 
 
 def policy(value):
     require(type(value) is dict, 'Response probe policy')
-    repeated=value.get('schema_version')==NUMERICAL_SCHEMA
+    repeated=value.get('schema_version') in (NUMERICAL_SCHEMA,ACTUATOR_SCHEMA)
     require(set(value)=={'schema_version','probe_step','action_index'} | ({'repeat_index'} if repeated else set()) and
-        value['schema_version'] in (SCHEMA,NUMERICAL_SCHEMA) and type(value['probe_step']) is int and value['probe_step'] in STEPS and
+        value['schema_version'] in (SCHEMA,NUMERICAL_SCHEMA,ACTUATOR_SCHEMA) and type(value['probe_step']) is int and value['probe_step'] in STEPS and
         type(value['action_index']) is int and 0<=value['action_index']<len(PATTERNS), 'Response probe policy')
     if repeated:require(type(value['repeat_index']) is int and 0<=value['repeat_index']<2, 'Response repeat identity')
     return copy.deepcopy(value)
@@ -115,6 +124,7 @@ class ProbeController(righting.RightingController):
     def __init__(self,core,declaration,*,seed):
         super().__init__(core,declaration,seed=seed)
         self.response_model=CoupledBody(self.spec) if 'response_probe' in self.candidate else None
+        self.actuator_parameters=actuator_parameters(self.creature) if actuator_aware(self.candidate) else None
 
     def plan(self,observation):
         if self.response_model is None:return super().plan(observation)
@@ -139,8 +149,12 @@ class ProbeController(righting.RightingController):
             # The native transport uses binary32 targets; predict the same values.
             targets=np.asarray(action['targets'],np.float32).astype(float)
             motor=np.clip(gains*(targets-qd),bounds[:,0],bounds[:,1])
-            answer=response(model,prepared,np.r_[np.zeros(6),motor-damping*qd],supplied['contacts'],config['dt'],
-                            penetration_recovery_time=config['penetration_recovery_time'])
+            force=np.r_[np.zeros(6),motor-damping*qd];extra={}
+            if self.actuator_parameters is not None:
+                a=self.actuator_parameters;actuation=velocity_actuation(qd,targets,a['gains'],a['force_ranges'],a['damping'])
+                force=actuation['applied'];extra=dict(joint_armature=a['armature'],joint_velocity_derivative=actuation['velocity_derivative'])
+            answer=response(model,prepared,force,supplied['contacts'],config['dt'],
+                            penetration_recovery_time=config['penetration_recovery_time'],**extra)
             require(answer['solver']['converged'], 'Response candidate solver did not converge')
             predictions.append(dict(action_index=index,native_targets=targets.tolist(),velocity=answer['velocity'].tolist(),
                 score_rad_s=float(axis @ answer['velocity'][3:6]),kkt_residual=answer['solver']['kkt_residual'],converged=True))
@@ -157,14 +171,16 @@ class ProbeBatch(righting.RightingBatch):
     Controller=ProbeController
 
 
-def spec(*, repeated=False):
+def spec(*, repeated=False, actuator_aware=False):
+    require(not actuator_aware or repeated,'Response actuator probe requires repeats')
     data=(ROOT/SOURCE['path']).read_bytes();require(hashlib.sha256(data).hexdigest()==SOURCE['sha256'], 'Response exposed source')
     original=json.loads(data)['righting_spec'];profiles=[copy.deepcopy(original['profiles'][0])]
     for step in STEPS:
         for index in range(len(PATTERNS)):
             for repeat in range(2 if repeated else 1):
                 p=copy.deepcopy(original['profiles'][1]);p.update(id=f'response_t{step}_a{index}'+(f'_r{repeat}' if repeated else ''),
-                    response_probe=dict(schema_version=NUMERICAL_SCHEMA if repeated else SCHEMA,probe_step=step,action_index=index))
+                    response_probe=dict(schema_version=ACTUATOR_SCHEMA if actuator_aware else NUMERICAL_SCHEMA if repeated else SCHEMA,
+                        probe_step=step,action_index=index))
                 if repeated:p['response_probe']['repeat_index']=repeat
                 profiles.append(p)
     return dict(schema_version=righting.SCHEMA,descriptors=copy.deepcopy(original['descriptors']),profiles=profiles,
@@ -175,20 +191,28 @@ def validate(c):
     opted=any('response_probe' in p for p in c.get('righting_spec',{}).get('profiles',[]))
     require(opted==('response_probe' in c), 'Response probe declaration required')
     if not opted:return
-    repeated=numerical(c);recipe=NUMERICAL_RECIPE if repeated else RECIPE
-    require(c['response_probe']==recipe and c['righting_spec']==spec(repeated=repeated) and c['mode']=='development_discovery' and
+    repeated=numerical(c);aware=actuator_aware(c);recipe=ACTUATOR_RECIPE if aware else NUMERICAL_RECIPE if repeated else RECIPE
+    require(c['response_probe']==recipe and c['righting_spec']==spec(repeated=repeated,actuator_aware=aware) and c['mode']=='development_discovery' and
         c['capture_mode']=='full' and c['outer_steps']==max(STEPS)+1 and c['seed']==recipe['seed'] and
         c['maximum_worlds_per_batch']==(55 if repeated else 28) and c['readback']==dict(mode='shared_snapshot',reference_check=False) and
         not any(k in c for k in ('compact_capture','trajectory_screen','post_native_path_screen','contact_reactions')),
         'Response fixed native comparison population or scope')
+    if aware:
+        require(c.get('predictor_component')==ACTUATOR_COMPONENT,'Response actuator component identity')
+        raw=(ROOT/ACTUATOR_COMPONENT['path']).read_bytes()
+        require(hashlib.sha256(raw).hexdigest()==ACTUATOR_COMPONENT['sha256'],'Response actuator component digest')
+        for pin in json.loads(raw)['source_pins']:
+            require(hashlib.sha256((ROOT/pin['path']).read_bytes()).hexdigest()==pin['sha256'],'Response actuator component source')
 
 
 def source_dependencies(c):
     if 'response_probe' not in c:return []
-    plan=ROOT/'sdk/discovery/coupled_contact_response_plan_v1.json'
-    result=ROOT/'sdk/discovery/coupled_contact_response_result_v1.json'
+    version='v2' if actuator_aware(c) else 'v1'
+    plan=ROOT/f'sdk/discovery/coupled_contact_response_plan_{version}.json'
+    result=ROOT/f'sdk/discovery/coupled_contact_response_result_{version}.json'
     return [ROOT/SOURCE['path'],result,plan,*[ROOT/p['path'] for p in json.loads(result.read_bytes())['source_pins']],
-        *([ROOT/'sdk/discovery/creature_response_probe_native_failure_v1.json'] if numerical(c) else [])]
+        *([ROOT/'sdk/discovery/creature_response_probe_native_failure_v1.json'] if numerical(c) else []),
+        *([ROOT/'sdk/discovery/creature_response_probe_native_result_v2.json',ROOT/'sdk/discovery/test_creature_response_actuator.py'] if actuator_aware(c) else [])]
 
 
 class MatchedGroup:
@@ -296,7 +320,9 @@ def contact_pairs(a,b):
 
 class NumericalMatchedGroup:
     """Bound prefix differences and measure every action twice, without reset."""
-    def __init__(self,body,step):
+    def __init__(self,body,step,*,schema=NUMERICAL_SCHEMA):
+        require(schema in (NUMERICAL_SCHEMA,ACTUATOR_SCHEMA),'Response numerical comparison schema')
+        self.schema=schema
         self.body,self.step=body,step;self.prefix={};self.visits=set();self.predictions={};self.axes={};self.actual={};self.maximums={};self.model=None
 
     def check(self,a,b,field):
@@ -326,7 +352,7 @@ class NumericalMatchedGroup:
             self.check([a['distance_m']],[b['distance_m']],'contact_gap_m')
         if outer<self.step:self.check(row['native_targets'],ref['native_targets'],'command_rad_s');return
         p=row['resolution']['response_probe'];action,repeat=trial
-        require(p['policy']==dict(schema_version=NUMERICAL_SCHEMA,probe_step=self.step,action_index=action,repeat_index=repeat) and
+        require(p['policy']==dict(schema_version=self.schema,probe_step=self.step,action_index=action,repeat_index=repeat) and
                 p['applied_action']==action and p['selection']=='prospectively_assigned', 'Response numerical action assignment')
         require(len(p['axis_world'])==3 and abs(sum(v*v for v in p['axis_world'])-1.)<=1e-12 and
                 [v['action_index'] for v in p['predictions']]==list(range(9)), 'Response numerical predictions')
@@ -380,8 +406,8 @@ def assess(folder,receipt):
         for i,cell in enumerate(cells):
             if 'response_probe' not in cell['profile']:continue
             p=cell['profile']['response_probe'];key=cell['descriptor']['morphology_id'],p['probe_step']
-            group_type=NumericalMatchedGroup if repeated else MatchedGroup
-            local[i]=(groups.setdefault(key,group_type(*key)),(p['action_index'],p['repeat_index']) if repeated else p['action_index'])
+            group=NumericalMatchedGroup(*key,schema=c['response_probe']['schema_version']) if repeated else MatchedGroup(*key)
+            local[i]=(groups.setdefault(key,group),(p['action_index'],p['repeat_index']) if repeated else p['action_index'])
         for name,method in (('controller','control'),('trace','native')):
             path=Path(folder)/'native'/batch['batch_id']/(name+'.jsonl');digest=hashlib.sha256()
             with path.open('rb') as stream:

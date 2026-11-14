@@ -122,7 +122,9 @@ def gates(c):
                 ("actuation-mechanics", "test_actuation_recovery_mechanics", 25),
                 ("response-metric-reader", "test_check_coupled_contact_response", 6),
                 ("response-probe", "test_creature_response_probe", 16)] if 'response_probe' in c else [])
-            + ([("response-numerical-matching", "test_creature_response_matching", 12)] if response_probe.numerical(c) else []))
+            + ([("response-numerical-matching", "test_creature_response_matching", 12)] if response_probe.numerical(c) else [])
+            + ([("coupled-actuator", "test_coupled_actuator_response", 13),
+                ("response-actuator-route", "test_creature_response_actuator", 3)] if response_probe.actuator_aware(c) else []))
 
 
 def sequence_enabled(c):
@@ -424,14 +426,14 @@ def run_batch(folder, c, core_path, *, cache=None):
                         "Creature named force order")
             models.append(model); views.append(view)
             originals.append(mjw.put_model(model))
-            metadatas.append(native_metadata(model, creature))
+            metadatas.append(native_metadata(model, creature,actuator_dynamics=response_probe.actuator_aware(c)))
             write_new(directory / "native-model.json", metadatas[-1])
         stage = "model_transport"
         # Preserve all compiled fields even if complete-field packing refuses.
         write_new(folder / "source-models.json", [model_snapshot(m) for m in originals])
         packed, transport = pack_models(originals)
         for creature, metadata, snapshot in zip(creatures, metadatas, transport["source_models"], strict=True):
-            validate_model_evidence(creature, metadata, snapshot)
+            validate_model_evidence(creature, metadata, snapshot,actuator_dynamics=response_probe.actuator_aware(c))
         write_new(folder / "model-transport.json", transport)
         robots = [robot_view(core, v, m, d) for v, m, d in zip(creatures, models, views, strict=True)]
         # These are observation-only host buffers; no additional world is stepped.
@@ -759,7 +761,7 @@ def audit_batch(folder, c, core_path, *, synthetic=False):
                 directory = folder / ("cell_" + str(index))
                 require(json.loads((directory / "creature.json").read_text()) == creature
                         and (directory / "model.xml").read_bytes() == creature["model_xml"].encode(), "Creature compile reconstruction")
-                validate_model_evidence(creature, m, snapshot)
+                validate_model_evidence(creature, m, snapshot,actuator_dynamics=response_probe.actuator_aware(c))
             validator = StreamValidator(c, creatures, metadata)
             cones = [s["$.opt.cone"]["value"]["value"] for s in transport["source_models"]] if reactions.enabled(c) else None
             reaction_reader = reactions.Reader(c, creatures, cones) if reactions.enabled(c) else None

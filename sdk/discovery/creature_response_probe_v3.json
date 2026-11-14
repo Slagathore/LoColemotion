@@ -1,0 +1,2280 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "retain_planning_state": true,
+  "controller_component": {
+    "path": "sdk/discovery/coupled_contact_response_result_v1.json",
+    "sha256": "a87afd7c8821a31cc447de60fdb382dedcf22dc3ece9bc953df9439ec56e050e"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_response_probe_native_result_v2.json",
+    "sha256": "b4dfebab80b38b3a53aa256627a5f7673f0145de05d2f9edd2f69fcaf349363b"
+  },
+  "campaign_id": "creature_response_probe_v3",
+  "mode": "development_discovery",
+  "capture_mode": "full",
+  "outer_steps": 121,
+  "maximum_worlds_per_batch": 55,
+  "maximum_worker_wall_seconds": 600,
+  "maximum_reader_wall_seconds": 600,
+  "seed": 1061144,
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "development"
+  },
+  "purpose": "Test actuator-aware whole-body action ordering in 165 fresh worlds with the unchanged repeated-action comparisons.",
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6119",
+        "torso_length_scale": 0.96862467989992,
+        "torso_width_scale": 0.9000615925062592,
+        "upper_length_fraction": 0.5442827379201266,
+        "hip_span_scale": 1.0212948075778072,
+        "foot_radius_scale": 0.9138043803660675,
+        "front_limb_mass_scale": 0.9144451240111248
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_000",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14172",
+        "torso_length_scale": 0.9939835619400218,
+        "torso_width_scale": 1.062695368743198,
+        "upper_length_fraction": 0.516529003609095,
+        "hip_span_scale": 1.0180216283812238,
+        "foot_radius_scale": 1.0284376003612852,
+        "front_limb_mass_scale": 1.0019703288334354
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a0_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 0,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a0_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 0,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a1_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 1,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a1_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 1,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a2_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 2,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a2_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 2,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a3_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 3,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a3_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 3,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a4_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 4,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a4_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 4,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a5_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 5,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a5_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 5,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a6_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 6,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a6_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 6,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a7_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 7,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a7_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 7,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a8_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 8,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t0_a8_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 0,
+          "action_index": 8,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a0_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 0,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a0_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 0,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a1_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 1,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a1_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 1,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a2_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 2,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a2_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 2,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a3_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 3,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a3_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 3,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a4_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 4,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a4_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 4,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a5_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 5,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a5_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 5,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a6_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 6,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a6_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 6,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a7_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 7,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a7_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 7,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a8_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 8,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t60_a8_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 60,
+          "action_index": 8,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a0_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 0,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a0_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 0,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a1_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 1,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a1_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 1,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a2_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 2,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a2_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 2,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a3_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 3,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a3_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 3,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a4_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 4,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a4_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 4,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a5_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 5,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a5_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 5,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a6_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 6,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a6_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 6,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a7_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 7,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a7_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 7,
+          "repeat_index": 1
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a8_r0",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 8,
+          "repeat_index": 0
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_t120_a8_r1",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_probe": {
+          "schema_version": "locolemotion_coupled_response_probe_v3",
+          "probe_step": 120,
+          "action_index": 8,
+          "repeat_index": 1
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted",
+        "roll_rad": 3.141592653589793
+      }
+    ]
+  },
+  "response_probe": {
+    "schema_version": "locolemotion_coupled_response_probe_v3",
+    "source": {
+      "path": "sdk/discovery/creature_torque_map_route_v3.json",
+      "sha256": "55a97076f80a5b5a9ab31bb23198729ff9224d5d3674542d7ee78dd68f8c0d18"
+    },
+    "seed": 1061144,
+    "probe_steps": [
+      0,
+      60,
+      120
+    ],
+    "patterns": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      [
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0
+      ],
+      [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        -1.0,
+        -1.0,
+        -0.0,
+        -0.0,
+        -1.0,
+        -1.0,
+        -0.0,
+        -0.0
+      ],
+      [
+        1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        -1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        -1.0,
+        -1.0
+      ]
+    ],
+    "offset_in_slew_units": 2.0,
+    "axis_body": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "native_substep": 1,
+    "minimum_distinguishable_pairs_per_body": 10,
+    "measured_tie_tolerance_rad_s": 0.0001,
+    "minimum_ordering_accuracy_per_body": 0.7,
+    "maximum_selected_regret_rad_s": 0.01,
+    "all_bodies_required": true,
+    "recovery_authority": false,
+    "repeats_per_action": 2,
+    "matching_bounds": {
+      "position_m": 1e-06,
+      "quaternion_component": 1e-06,
+      "joint_angle_rad": 1e-06,
+      "linear_velocity_m_s": 1e-05,
+      "angular_velocity_rad_s": 1e-05,
+      "joint_velocity_rad_s": 1e-05,
+      "command_rad_s": 1e-05,
+      "contact_position_m": 1e-06,
+      "contact_gap_m": 1e-06,
+      "contact_frame_component": 1e-05,
+      "axis_component": 1e-06,
+      "prediction_score_rad_s": 1e-05
+    },
+    "maximum_repeat_spread_rad_s": 1e-05,
+    "action_comparison": "disjoint_measured_intervals_with_fixed_tie_margin",
+    "prediction_comparison": "disjoint_prediction_intervals",
+    "score_axis": "primary_action_zero_repeat_zero_prepared_axis",
+    "selection": "primary_action_zero_repeat_zero_prediction",
+    "regret": "maximum_observed_score_minus_minimum_selected_score",
+    "predictor": "inelastic_coupled_friction_pyramid_actuator_v2",
+    "native_actuator_dynamics_binding": true
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_response_probe.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_readback.py",
+    "sdk/discovery/coupled_contact_response.py",
+    "sdk/discovery/check_coupled_contact_response.py"
+  ],
+  "code_path_risks_covered": [
+    "Fresh prepared torso and limb contacts remain bound to cell, morphology, model and canonical state",
+    "Exact model identities and schedules plus declared unit-specific bounds match every prepared prefix without state restoration",
+    "Contact multisets match exact geometry pairs with bounded positions, gaps and frames, independently of enumeration",
+    "Each of nine bounded alternatives has two fresh worlds at each of three intervention times on all three exposed shapes",
+    "All measured and predicted scores project onto the primary action-zero repeat-zero prepared axis",
+    "Each repeated-action spread and prediction interval must stay at or below 1e-5 rad/s; ambiguous measured pairs need the unchanged 1e-4 rad/s separation",
+    "Only disjoint prediction intervals earn correct ordering; selected regret uses the maximum observed score minus the minimum score for the primary prediction choice",
+    "Full shared native capture, exact independent per-world controller replay and scalar observed-velocity conversion remain unchanged",
+    "Missing, crossed, duplicate or unmatched trials, excessive dispersion, nonconvergent predictions or source/runtime drift refuse the comparison",
+    "Explicit actuator-aware mode uses ordered XML-bound joint armature, clipped motor forces and saturation-aware velocity derivatives",
+    "Native CPU and packed GPU armature/damping arrays match explicit XML before stepping and during independent replay",
+    "The original predictor remains selected by v1/v2 schemas; the new schema and component digest are required for the corrected model"
+  ],
+  "not_covered": [
+    "Useful self-righting or full-horizon recovery",
+    "Learned selection, beneficial memory or untouched body generalization",
+    "Future contact generation or multistep prediction accuracy",
+    "Weakened actuators, impacts, new initial orientations or terrain",
+    "Live Godot recovery handoff, real time, cross-engine equivalence or release"
+  ],
+  "route_horizon_rationale": "165 fresh worlds in three 55-world batches: three bodies, three intervention times, nine actions and two repeats per action, plus one plain comparator per body. Every world runs 121 controller intervals and 605 native substeps. Both repeats of every action bound observed numerical dispersion at each intervention. No state reset, cached baseline, recovery cohort or statistical generalization.",
+  "qualification_economy": "Reuse the same native owner, population shape, bounded nine-action family and numerical/interval reader. Thirteen focused actuator controls cover reflected inertia, implicit feedback, saturation, damping, force binding and metric reading; three route controls cover explicit dispatch, native/GPU parameter readback and versioned comparison. Existing 207 controls remain applicable.",
+  "recovery_benefit_established": false,
+  "controller_adopted": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "coupled-response",
+      "module": "test_coupled_contact_response",
+      "count": 14
+    },
+    {
+      "name": "actuation-mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "response-metric-reader",
+      "module": "test_check_coupled_contact_response",
+      "count": 6
+    },
+    {
+      "name": "response-probe",
+      "module": "test_creature_response_probe",
+      "count": 16
+    },
+    {
+      "name": "response-numerical-matching",
+      "module": "test_creature_response_matching",
+      "count": 12
+    },
+    {
+      "name": "coupled-actuator",
+      "module": "test_coupled_actuator_response",
+      "count": 13
+    },
+    {
+      "name": "response-actuator-route",
+      "module": "test_creature_response_actuator",
+      "count": 3
+    }
+  ],
+  "comparison_limits": [
+    "Two repeats measure finite observed dispersion only; they do not bound all stochastic variation or establish statistical confidence.",
+    "Numerically matched independently evolved worlds are not identical-state causal branches.",
+    "Prediction matching concerns the declared angular response score. Full joint predictions remain retained and replayed, with no joint-velocity accuracy claim.",
+    "The consumed v1 exact-prefix rule and refusal remain unchanged; this successor does not rescore that attempt.",
+    "The v2 valid negative remains unchanged. The actuator correction passed an exposed retained mean-error screen only; useful action ranking is the question of this new native run.",
+    "The finite inelastic friction-pyramid response model remains distinct from native elliptic soft contacts; no solver equivalence is claimed."
+  ],
+  "predictor_component": {
+    "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+    "sha256": "ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d"
+  }
+}

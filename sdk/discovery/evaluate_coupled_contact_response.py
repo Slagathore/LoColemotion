@@ -16,7 +16,7 @@ from creature_body_moment_diagnosis import bound_archive
 from creature_contact_reactions_diagnosis import joined
 from creature_righting_sequence import mechanics
 from sporespore_mujoco_adapter.selected_policy_development import _CANONICAL_TO_MUJOCO as TRANSFORM
-from coupled_contact_response import CoupledBody,response,require
+from coupled_contact_response import CoupledBody,response,velocity_actuation,require,array
 
 
 def native_velocity(row):
@@ -59,7 +59,40 @@ def settings(creature):
         penetration_recovery_time=float(ground.attrib['solref'].split()[0]))
 
 
-def evaluate(archive_path,receipt_sha256,output,selection):
+def actuator_parameters(creature):
+    """Bind the supported direct velocity motors and hinge inertia to XML.
+
+    This reader constructs no native model. It refuses alternate transmission,
+    implicit defaults, disabled forces or additional joint force terms instead
+    of silently predicting a different actuator lane.
+    """
+    settings(creature);root=ET.fromstring(creature['model_xml']);spec=creature['spec']
+    require(not any(root.find(name) is not None for name in ('default','tendon','equality','option/flag')),
+            'Coupled unsupported native dynamics')
+    joints=root.findall('.//body/joint');motors=list(root.find('actuator'))
+    morphology=creature['compiled']['morphology']['morphology_spec'];n=len(joints)
+    require([j.attrib['name'] for j in joints]==spec['ordered_joints']==[j['joint_id'] for j in morphology['joints']] and
+            [m.attrib['name'] for m in motors]==spec['ordered_actuators'] and len(motors)==n,
+            'Coupled ordered native actuator binding')
+    armature=[];damping=[];gains=[];limits=[]
+    for joint,motor,compiled in zip(joints,motors,morphology['joints'],strict=True):
+        require(set(joint.attrib)<= {'name','type','pos','axis','limited','range','damping','armature'} and
+                joint.attrib['type']=='hinge' and motor.tag=='velocity' and
+                set(motor.attrib)=={'name','joint','gear','ctrllimited','kv','forcelimited','forcerange'} and
+                motor.attrib['joint']==joint.attrib['name'] and motor.attrib['ctrllimited']=='false' and
+                motor.attrib['forcelimited']=='true' and [float(x) for x in motor.attrib['gear'].split()]==[1.,0.,0.,0.,0.,0.],
+                'Coupled direct bounded velocity actuator')
+        armature.append(float(joint.attrib['armature']));damping.append(float(joint.attrib['damping']))
+        require(damping[-1]==compiled['passive_damping_nms_per_rad'],'Coupled passive damping binding')
+        gains.append(float(motor.attrib['kv']));limits.append([float(x) for x in motor.attrib['forcerange'].split()])
+    require(gains==spec['velocity_gains'] and limits==spec['force_ranges'],'Coupled native motor parameters')
+    inertia=array(armature,(n,),'Coupled XML armature');require(np.all(inertia>=0.),'Coupled nonnegative XML armature')
+    # Reuse the portable parameter checks, including finite nonnegative gains.
+    velocity_actuation(np.zeros(n),np.zeros(n),gains,limits,damping)
+    return dict(armature=armature,damping=damping,gains=gains,force_ranges=limits)
+
+
+def evaluate(archive_path,receipt_sha256,output,selection,*,actuator_aware=False):
     archive,receipt=bound_archive(archive_path,receipt_sha256);contract=receipt['contract']
     require(contract['capture_mode']=='full' and contract['outer_steps']==360 and contract['internal_steps_per_outer']==5,'Coupled retained population')
     selected=set(selection);require(selected==set(range(0,360,30)),'Coupled prospective sample steps')
@@ -69,6 +102,7 @@ def evaluate(archive_path,receipt_sha256,output,selection):
         creatures=[archive.document(prefix+f'/cell_{i}/creature.json') for i in range(len(indices))]
         models=[CoupledBody(v['compiled']['morphology']['morphology_spec']) for v in creatures]
         configuration=[settings(v) for v in creatures];previous=[None]*len(indices)
+        actuators=[actuator_parameters(v) for v in creatures] if actuator_aware else None
         streams=[iter(archive.lines(prefix+'/'+name+'.jsonl')) for name in ('controller','trace','reactions')]
         for outer in range(contract['outer_steps']):
             controllers=[json.loads(next(streams[0])) for _ in indices];read_counts['controller']+=len(indices)
@@ -79,11 +113,20 @@ def evaluate(archive_path,receipt_sha256,output,selection):
                     require(row['binding']==dict(creatures[local]['binding'],cell_id=cell['cell_id'],candidate_id=cell['profile']['id']),'Coupled source binding')
                     p,applied,contacts,checks=prepare(models[local],creatures[local],row,configuration[local])
                     variants=dict(free=[],feet=[v for v in contacts if v['body_id'].endswith('_distal')],all=contacts)
+                    if actuator_aware:variants['actuator']=contacts
                     prediction={}
                     for name,hits in variants.items():
-                        r=response(models[local],p,applied,hits,configuration[local]['dt'],penetration_recovery_time=configuration[local]['penetration_recovery_time'])
+                        force=applied;extra={}
+                        if name=='actuator':
+                            a=actuators[local]
+                            motor=velocity_actuation(p['velocity'][6:],np.asarray(row['native_targets'],np.float32).astype(float),
+                                a['gains'],a['force_ranges'],a['damping'])
+                            force=motor['applied'];extra=dict(joint_armature=a['armature'],joint_velocity_derivative=motor['velocity_derivative'])
+                        r=response(models[local],p,force,hits,configuration[local]['dt'],
+                            penetration_recovery_time=configuration[local]['penetration_recovery_time'],**extra)
                         prediction[name]=dict(velocity=r['velocity'].tolist(),converged=r['solver']['converged'],
                             kkt_residual=r['solver']['kkt_residual'],iterations=r['solver']['iterations'],contact_count=len(hits))
+                        if name=='actuator':prediction[name]['motor_force_nm']=motor['motor'].tolist()
                     staged[local]=dict(cell_id=cell['cell_id'],batch=group['batch_id'],outer_step=outer,
                         contacts=[v['body_id'] for v in contacts],checks=checks,predictions=prediction)
             for sub in range(5):
@@ -93,6 +136,7 @@ def evaluate(archive_path,receipt_sha256,output,selection):
                     read_counts['native']+=1;read_counts['reactions']+=1
                     if sub==0 and local in staged:
                         row=staged[local];actual=native_velocity(native);row['native_velocity']=actual.tolist()
+                        if actuator_aware:row['native_motor_force_nm']=native['actuator_force_nm']
                         for prediction in row['predictions'].values():
                             difference=np.asarray(prediction['velocity'])-actual
                             prediction['root_angular_error_rad_s']=float(np.linalg.norm(difference[3:6]))
@@ -105,7 +149,7 @@ def evaluate(archive_path,receipt_sha256,output,selection):
     summaries={}
     for batch in sorted({r['batch'] for r in rows}):
         group=[r for r in rows if r['batch']==batch];by_variant={}
-        for name in ('free','feet','all'):
+        for name in (('free','feet','all','actuator') if actuator_aware else ('free','feet','all')):
             values=[r['predictions'][name] for r in group]
             by_variant[name]=dict(samples=len(values),converged=sum(v['converged'] for v in values),
                 mean_root_angular_error_rad_s=float(np.mean([v['root_angular_error_rad_s'] for v in values])),
@@ -113,7 +157,11 @@ def evaluate(archive_path,receipt_sha256,output,selection):
                 mean_root_linear_error_m_s=float(np.mean([v['root_linear_error_m_s'] for v in values])),
                 mean_joint_velocity_error_rad_s=float(np.mean([v['joint_velocity_error_rad_s'] for v in values])))
         summaries[batch]=by_variant
-    return dict(ok=True,samples=len(rows),read_counts=read_counts,summaries=summaries,
+    extra={}
+    if actuator_aware:
+        extra['maximum_motor_force_error_nm']=max(float(np.max(np.abs(np.asarray(r['predictions']['actuator']['motor_force_nm'])-
+            r['native_motor_force_nm']))) for r in rows)
+    return dict(ok=True,samples=len(rows),read_counts=read_counts,summaries=summaries,**extra,
         maximum_geometry_error_m=max(r['checks']['geometry_error_m'] for r in rows),
         maximum_kinetic_error_j=max(r['checks']['kinetic_error_j'] for r in rows),
         input_files=list(archive.verified.values()),wall_s=time.monotonic()-start,world_build_count=0,solver_steps=0,
@@ -130,7 +178,8 @@ if __name__=='__main__':
         for name in ('MjModel','MjData','mj_step','mj_step1','mj_step2','mj_forward'):
             stack.enter_context(patch.object(mujoco,name,side_effect=AssertionError('Physics in retained coupled-response evaluation')))
         with (args.output/'predictions.jsonl').open('x',encoding='utf-8',newline='\n') as stream:
-            result=evaluate(base/plan['input']['archive_relative_path'],plan['input']['receipt_sha256'],stream,plan['sample_outer_steps'])
+            result=evaluate(base/plan['input']['archive_relative_path'],plan['input']['receipt_sha256'],stream,plan['sample_outer_steps'],
+                            actuator_aware=plan.get('actuator_aware',False))
     result['predictions_sha256']=hashlib.sha256((args.output/'predictions.jsonl').read_bytes()).hexdigest()
     with (args.output/'result.json').open('x',encoding='utf-8',newline='\n') as stream:json.dump(result,stream,indent=2,allow_nan=False);stream.write('\n')
     print(json.dumps({k:v for k,v in result.items() if k!='input_files'}),flush=True)
