@@ -7,8 +7,8 @@ Latest: the [coupled contact response screen](../sdk/discovery/coupled_contact_r
 passes 20 controls and its declared 20% per-body reduction in mean rotation
 prediction error on 432 retained states. The observed reductions are 63%, 56%
 and 36%; all 1,296 predictions converge. Sixty-six states worsen, with a third-body
-maximum of 0.810 rad/s; joint-velocity errors remain substantial. No new worlds
-or native controller adoption occurs. Fresh alternative-action ranking is the
+maximum of 0.810 rad/s; joint-velocity errors remain substantial. That screen
+opens no new worlds and adopts no native controller. Fresh action ranking is the
 next prerequisite for broad discovery; this exposed screen proves no recovery.
 The [first native action probe](../sdk/discovery/creature_response_probe_native_failure_v1.json)
 now completes all 84 worlds after 195 controls. Full replay verifies 10,164
@@ -16,9 +16,14 @@ decisions and 50,820 samples, with no joint violations. Its exact-prefix rule
 then refuses the action comparison: all three initial groups match, but all
 six later groups first differ at step four. Maximum prefix qpos/qvel component
 differences are 1.19e-7/6.66e-6; prediction-score differences reach 1.94e-6 rad/s.
-No ordering score is accepted. The next successor must declare numerical
-matching bounds and fresh repeated identical-action controls before physics.
+No ordering score is accepted. The successor requires numerical matching
+bounds and fresh repeated identical-action controls before physics.
 The original refusal and all 2,646 retained artifacts remain immutable.
+The [v2 component](../sdk/discovery/creature_response_probe_component_v2.json)
+passes the complete 207-control gate and 165-cell preflight without physics.
+It declares two repeats of every action, bounded state/command/contact matches,
+1e-5 rad/s repeat and prediction ranges, conservative interval ordering and
+the unchanged per-body criterion. The fresh native comparison is next.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen

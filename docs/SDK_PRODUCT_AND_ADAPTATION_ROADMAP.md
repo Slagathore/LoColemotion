@@ -17,7 +17,7 @@ comparison is closed; coupled contact recovery is next.
 | [Walking confirmation](../sdk/discovery/creature_confirmation_native_result_v1.json) | 284 fresh twelve-second worlds; 221 eligible, 63 failed. Both-start groups: baseline 30/48, frozen choice 33/48, fixed profile 27 36/48. Both declared choice comparisons fail; no learned Tier 2 |
 | [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
 | [Contact-force diagnosis](../sdk/discovery/creature_contact_reactions_result_v1.json) | Zero new worlds; all 12,960 decisions and 64,800 solved samples read. On bodies 0/16, requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, net 0.013/0.012 Nm. Body 21 makes no positive request. Foot-only moment misses the opposing torso reaction |
-| [Coupled response model](../sdk/discovery/coupled_contact_response_result_v1.json) | Retained mean rotation error falls 63%/56%/36%; 66 states worsen. The [84-world action probe](../sdk/discovery/creature_response_probe_native_failure_v1.json) completes full replay after 195 controls, but exact prefix matching refuses all six later groups. Action ordering remains unassessed; numerical matching and repeated identical-action controls are next |
+| [Coupled response model](../sdk/discovery/coupled_contact_response_result_v1.json) | Retained mean rotation error falls 63%/56%/36%; 66 states worsen. The [84-world v1 probe](../sdk/discovery/creature_response_probe_native_failure_v1.json) refuses exact prefix matching. The [repeated-action v2 component](../sdk/discovery/creature_response_probe_component_v2.json) passes 207 controls and a 165-cell zero-world preflight; fresh action ordering remains unobserved |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
@@ -29,11 +29,12 @@ comparison is closed; coupled contact recovery is next.
    error and worse individual states preserved. The [first action comparison](../sdk/discovery/creature_response_probe_native_failure_v1.json)
    retains 84 complete worlds and full replay, but small state differences
    begin before the later interventions; its exact-prefix rule refuses a score.
-   Declare a fresh numerical-matching successor with unit-specific bounds and
-   repeated identical-action controls that bound background dispersion before
-   physics. Keep the failed comparison immutable. Useful action ordering is
-   required before broad factored recovery search and fresh full-capture
-   confirmation of diverse leads. Do not repeat the foot-only force grid.
+   Run the [declared v2 comparison](../sdk/discovery/creature_response_probe_v2.json)
+   from a clean pushed freeze after repeating all 207 controls: 165 fresh worlds,
+   two repeats of every action, unit-specific prefix bounds, full replay and
+   conservative interval ordering. Keep the v1 refusal immutable. Useful action
+   ordering is required before broad factored recovery search and fresh
+   full-capture confirmation of diverse leads. Do not repeat the foot-only grid.
 2. **Complete the Studio recovery handoff with a useful controller.** Preserve
    fresh observations, body identity, motor ownership, native clocks and
    measured work. The required run is walking, fall, active recovery, completed

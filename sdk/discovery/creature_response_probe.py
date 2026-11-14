@@ -31,12 +31,31 @@ RECIPE = dict(schema_version=SCHEMA, source=SOURCE, seed=1061142, probe_steps=li
     minimum_distinguishable_pairs_per_body=10, measured_tie_tolerance_rad_s=1e-4,
     minimum_ordering_accuracy_per_body=.7, maximum_selected_regret_rad_s=.01,
     all_bodies_required=True, recovery_authority=False)
+NUMERICAL_SCHEMA = 'locolemotion_coupled_response_probe_v2'
+MATCH_BOUNDS = dict(position_m=1e-6, quaternion_component=1e-6, joint_angle_rad=1e-6,
+    linear_velocity_m_s=1e-5, angular_velocity_rad_s=1e-5, joint_velocity_rad_s=1e-5,
+    command_rad_s=1e-5, contact_position_m=1e-6, contact_gap_m=1e-6,
+    contact_frame_component=1e-5, axis_component=1e-6, prediction_score_rad_s=1e-5)
+NUMERICAL_RECIPE = dict(RECIPE, schema_version=NUMERICAL_SCHEMA, seed=1061143,
+    repeats_per_action=2, matching_bounds=MATCH_BOUNDS, maximum_repeat_spread_rad_s=1e-5,
+    action_comparison='disjoint_measured_intervals_with_fixed_tie_margin',
+    prediction_comparison='disjoint_prediction_intervals',
+    score_axis='primary_action_zero_repeat_zero_prepared_axis',
+    selection='primary_action_zero_repeat_zero_prediction',
+    regret='maximum_observed_score_minus_minimum_selected_score')
+
+
+def numerical(c):
+    return c.get('response_probe',{}).get('schema_version')==NUMERICAL_SCHEMA
 
 
 def policy(value):
-    require(type(value) is dict and set(value)=={'schema_version','probe_step','action_index'} and
-        value['schema_version']==SCHEMA and type(value['probe_step']) is int and value['probe_step'] in STEPS and
+    require(type(value) is dict, 'Response probe policy')
+    repeated=value.get('schema_version')==NUMERICAL_SCHEMA
+    require(set(value)=={'schema_version','probe_step','action_index'} | ({'repeat_index'} if repeated else set()) and
+        value['schema_version'] in (SCHEMA,NUMERICAL_SCHEMA) and type(value['probe_step']) is int and value['probe_step'] in STEPS and
         type(value['action_index']) is int and 0<=value['action_index']<len(PATTERNS), 'Response probe policy')
+    if repeated:require(type(value['repeat_index']) is int and 0<=value['repeat_index']<2, 'Response repeat identity')
     return copy.deepcopy(value)
 
 
@@ -138,13 +157,16 @@ class ProbeBatch(righting.RightingBatch):
     Controller=ProbeController
 
 
-def spec():
+def spec(*, repeated=False):
     data=(ROOT/SOURCE['path']).read_bytes();require(hashlib.sha256(data).hexdigest()==SOURCE['sha256'], 'Response exposed source')
     original=json.loads(data)['righting_spec'];profiles=[copy.deepcopy(original['profiles'][0])]
     for step in STEPS:
         for index in range(len(PATTERNS)):
-            p=copy.deepcopy(original['profiles'][1]);p.update(id=f'response_t{step}_a{index}',
-                response_probe=dict(schema_version=SCHEMA,probe_step=step,action_index=index));profiles.append(p)
+            for repeat in range(2 if repeated else 1):
+                p=copy.deepcopy(original['profiles'][1]);p.update(id=f'response_t{step}_a{index}'+(f'_r{repeat}' if repeated else ''),
+                    response_probe=dict(schema_version=NUMERICAL_SCHEMA if repeated else SCHEMA,probe_step=step,action_index=index))
+                if repeated:p['response_probe']['repeat_index']=repeat
+                profiles.append(p)
     return dict(schema_version=righting.SCHEMA,descriptors=copy.deepcopy(original['descriptors']),profiles=profiles,
                 conditions=copy.deepcopy(original['conditions']),starts=copy.deepcopy(original['starts']))
 
@@ -153,9 +175,10 @@ def validate(c):
     opted=any('response_probe' in p for p in c.get('righting_spec',{}).get('profiles',[]))
     require(opted==('response_probe' in c), 'Response probe declaration required')
     if not opted:return
-    require(c['response_probe']==RECIPE and c['righting_spec']==spec() and c['mode']=='development_discovery' and
-        c['capture_mode']=='full' and c['outer_steps']==max(STEPS)+1 and c['seed']==RECIPE['seed'] and
-        c['maximum_worlds_per_batch']==28 and c['readback']==dict(mode='shared_snapshot',reference_check=False) and
+    repeated=numerical(c);recipe=NUMERICAL_RECIPE if repeated else RECIPE
+    require(c['response_probe']==recipe and c['righting_spec']==spec(repeated=repeated) and c['mode']=='development_discovery' and
+        c['capture_mode']=='full' and c['outer_steps']==max(STEPS)+1 and c['seed']==recipe['seed'] and
+        c['maximum_worlds_per_batch']==(55 if repeated else 28) and c['readback']==dict(mode='shared_snapshot',reference_check=False) and
         not any(k in c for k in ('compact_capture','trajectory_screen','post_native_path_screen','contact_reactions')),
         'Response fixed native comparison population or scope')
 
@@ -164,7 +187,8 @@ def source_dependencies(c):
     if 'response_probe' not in c:return []
     plan=ROOT/'sdk/discovery/coupled_contact_response_plan_v1.json'
     result=ROOT/'sdk/discovery/coupled_contact_response_result_v1.json'
-    return [ROOT/SOURCE['path'],result,plan,*[ROOT/p['path'] for p in json.loads(result.read_bytes())['source_pins']]]
+    return [ROOT/SOURCE['path'],result,plan,*[ROOT/p['path'] for p in json.loads(result.read_bytes())['source_pins']],
+        *([ROOT/'sdk/discovery/creature_response_probe_native_failure_v1.json'] if numerical(c) else [])]
 
 
 class MatchedGroup:
@@ -204,7 +228,7 @@ class MatchedGroup:
             native_targets=[v['native_targets'] for v in self.predictions])
 
 
-def summarize(groups):
+def summarize(groups, *, repeated=False):
     require(len(groups)==9 and len({(g['body_id'],g['probe_step']) for g in groups})==9 and
         len({g['body_id'] for g in groups})==3 and all({g['probe_step'] for g in groups if g['body_id']==b}==set(STEPS)
         for b in {g['body_id'] for g in groups}), 'Response comparison group population')
@@ -215,30 +239,149 @@ def summarize(groups):
         best=max(range(9),key=lambda i:(predicted[i],-i));regret=max(actual)-actual[best]
         pairs=[(i,j) for i in range(9) for j in range(i) if abs(actual[i]-actual[j])>RECIPE['measured_tie_tolerance_rad_s']]
         correct=sum((predicted[i]-predicted[j])*(actual[i]-actual[j])>0 for i,j in pairs)
+        gain=actual[best]-actual[0]
+        if repeated:
+            pi,ai=g['prediction_intervals_rad_s'],g['measured_intervals_rad_s']
+            for intervals,values,limit in ((pi,predicted,MATCH_BOUNDS['prediction_score_rad_s']),
+                    (ai,actual,NUMERICAL_RECIPE['maximum_repeat_spread_rad_s'])):
+                require(len(intervals)==9 and all(len(v)==2 and all(math.isfinite(x) for x in v) and
+                    v[0]<=score<=v[1] and 0<=v[1]-v[0]<=limit for v,score in zip(intervals,values,strict=True)),
+                    'Response numerical score interval or dispersion')
+            margin=RECIPE['measured_tie_tolerance_rad_s']
+            pairs=[(i,j) for i in range(9) for j in range(i) if ai[i][0]-ai[j][1]>margin or ai[j][0]-ai[i][1]>margin]
+            correct=sum((ai[i][0]>ai[j][1] and pi[i][0]>pi[j][1]) or
+                        (ai[j][0]>ai[i][1] and pi[j][0]>pi[i][1]) for i,j in pairs)
+            regret=max(v[1] for v in ai)-ai[best][0];gain=ai[best][0]-ai[0][1]
         b=bodies.setdefault(g['body_id'],dict(distinguishable_pairs=0,correct_pairs=0,maximum_selected_regret_rad_s=0.))
         b['distinguishable_pairs']+=len(pairs);b['correct_pairs']+=correct;b['maximum_selected_regret_rad_s']=max(b['maximum_selected_regret_rad_s'],regret)
         outcomes.append(dict(g,predicted_best_action=best,measured_best_action=max(range(9),key=lambda i:(actual[i],-i)),
-            selected_regret_rad_s=regret,selected_gain_against_unchanged_rad_s=actual[best]-actual[0]))
+            selected_regret_rad_s=regret,selected_gain_against_unchanged_rad_s=gain))
     for b in bodies.values():
         b['ordering_accuracy']=b['correct_pairs']/b['distinguishable_pairs'] if b['distinguishable_pairs'] else None
         b['passed']=(b['distinguishable_pairs']>=RECIPE['minimum_distinguishable_pairs_per_body'] and
             b['ordering_accuracy']>=RECIPE['minimum_ordering_accuracy_per_body'] and b['maximum_selected_regret_rad_s']<=RECIPE['maximum_selected_regret_rad_s'])
     return dict(comparison_completed=True,groups=outcomes,bodies=bodies,ordering_screen_passed=all(b['passed'] for b in bodies.values()),
-        observed_action_worlds=81,plain_comparator_worlds=3,recovery_benefit_established=False,controller_adopted=False,
+        observed_action_worlds=162 if repeated else 81,plain_comparator_worlds=3,recovery_benefit_established=False,controller_adopted=False,
         training_data_authority=False,physical_acceptance_authority=False,release_authority=False)
+
+
+def vector_gap(a,b):
+    require(len(a)==len(b) and len(a)>0 and all(type(v) in (int,float) and math.isfinite(v) for v in [*a,*b]),
+            'Response finite numerical vector')
+    return max(abs(x-y) for x,y in zip(a,b,strict=True))
+
+
+def contact_pairs(a,b):
+    """Match a contact multiset without relying on GPU contact enumeration."""
+    require(len(a)==len(b)<=64, 'Response numerical contact count')
+    fields=(('position_m','contact_position_m',3),('frame','contact_frame_component',9),('distance_m','contact_gap_m',1))
+    def values(h,key):return [h[key]] if key=='distance_m' else h[key]
+    for h in a+b:
+        require(type(h['geom']) is list and len(h['geom'])==2 and h['geom'].count(0)==1 and
+                all(type(i) is int and 0<=i<=9 for i in h['geom']), 'Response numerical contact identity')
+        for key,_,size in fields:
+            v=values(h,key);require(len(v)==size, 'Response numerical contact shape');vector_gap(v,v)
+    edges=[[j for j,y in enumerate(b) if x['geom']==y['geom'] and
+            all(vector_gap(values(x,key),values(y,key))<=MATCH_BOUNDS[bound] for key,bound,_ in fields)] for x in a]
+    assigned={}
+    def match(i,seen):
+        for j in edges[i]:
+            if j in seen:continue
+            seen.add(j)
+            if j not in assigned or match(assigned[j],seen):assigned[j]=i;return True
+        return False
+    require(all(match(i,set()) for i in range(len(a))), 'Response numerical contact geometry')
+    return [(a[i],b[j]) for j,i in sorted(assigned.items())]
+
+
+class NumericalMatchedGroup:
+    """Bound prefix differences and measure every action twice, without reset."""
+    def __init__(self,body,step):
+        self.body,self.step=body,step;self.prefix={};self.visits=set();self.predictions={};self.axes={};self.actual={};self.maximums={};self.model=None
+
+    def check(self,a,b,field):
+        gap=vector_gap(a,b);require(gap<=MATCH_BOUNDS[field], 'Response numerical '+field)
+        self.maximums[field]=max(self.maximums.get(field,0.),gap)
+
+    def control(self,row,trial):
+        outer=row['outer_step']
+        if outer>self.step:return
+        require(type(trial) is tuple and len(trial)==2 and all(type(v) is int for v in trial) and
+                0<=trial[0]<9 and 0<=trial[1]<2 and type(outer) is int and 0<=outer<=self.step,
+                'Response numerical trial identity')
+        require((outer,trial) not in self.visits, 'Response duplicate numerical prefix');self.visits.add((outer,trial))
+        n=row['native_observation'];model=tuple(row['binding'][k] for k in ('descriptor_sha256','model_xml_sha256','body_shape_sha256'))
+        if self.model is None:self.model=model
+        require(model==self.model, 'Response numerical model identity')
+        if outer not in self.prefix:
+            require(trial==(0,0), 'Response primary prefix must arrive first');self.prefix[outer]=copy.deepcopy(row)
+        ref=self.prefix[outer];rn=ref['native_observation']
+        require(len(n['qpos'])==15 and len(n['qvel'])==14 and type(n['time_s']) in (int,float) and
+                math.isfinite(n['time_s']) and n['time_s']==rn['time_s'], 'Response numerical native state or clock')
+        for key,start,end,field in (('qpos',0,3,'position_m'),('qpos',3,7,'quaternion_component'),('qpos',7,15,'joint_angle_rad'),
+                ('qvel',0,3,'linear_velocity_m_s'),('qvel',3,6,'angular_velocity_rad_s'),('qvel',6,14,'joint_velocity_rad_s')):
+            self.check(n[key][start:end],rn[key][start:end],field)
+        for a,b in contact_pairs(n['contacts'],rn['contacts']):
+            for key,field in (('position_m','contact_position_m'),('frame','contact_frame_component')):self.check(a[key],b[key],field)
+            self.check([a['distance_m']],[b['distance_m']],'contact_gap_m')
+        if outer<self.step:self.check(row['native_targets'],ref['native_targets'],'command_rad_s');return
+        p=row['resolution']['response_probe'];action,repeat=trial
+        require(p['policy']==dict(schema_version=NUMERICAL_SCHEMA,probe_step=self.step,action_index=action,repeat_index=repeat) and
+                p['applied_action']==action and p['selection']=='prospectively_assigned', 'Response numerical action assignment')
+        require(len(p['axis_world'])==3 and abs(sum(v*v for v in p['axis_world'])-1.)<=1e-12 and
+                [v['action_index'] for v in p['predictions']]==list(range(9)), 'Response numerical predictions')
+        for prediction in p['predictions']:
+            require(prediction['converged'] is True and len(prediction['velocity'])==14 and len(prediction['native_targets'])==8,
+                    'Response numerical prediction shape or convergence')
+            vector_gap(prediction['velocity'],prediction['velocity']);vector_gap(prediction['native_targets'],prediction['native_targets'])
+            require(abs(prediction['score_rad_s']-math.fsum(a*v for a,v in zip(p['axis_world'],prediction['velocity'][3:6],strict=True)))<=1e-12,
+                    'Response numerical score projection')
+        require(np.asarray(row['native_targets'],np.float32).astype(float).tolist()==p['predictions'][action]['native_targets'],
+                'Response numerical applied prediction differs')
+        self.predictions[trial]=p['predictions'];self.axes[trial]=p['axis_world']
+
+    def native(self,row,trial):
+        if row['step']!=self.step*5+1:return
+        from check_coupled_contact_response import native_velocity
+        require(trial in self.predictions and trial not in self.actual and (0,0) in self.axes, 'Response numerical missing or duplicate action')
+        self.actual[trial]=math.fsum(a*v for a,v in zip(self.axes[0,0],native_velocity(row)[3:6],strict=True))
+
+    def finish(self):
+        trials={(a,r) for a in range(9) for r in range(2)}
+        require(self.visits=={(s,t) for s in range(self.step+1) for t in trials} and set(self.predictions)==set(self.actual)==trials,
+                'Response incomplete numerical alternatives')
+        primary=self.predictions[0,0];axis=self.axes[0,0];scores=[]
+        for trial,predictions in sorted(self.predictions.items()):
+            self.check(self.axes[trial],axis,'axis_component');values=[]
+            for p,ref in zip(predictions,primary,strict=True):
+                self.check(p['native_targets'],ref['native_targets'],'command_rad_s')
+                values.append(p['score_rad_s'] if trial==(0,0) else math.fsum(a*v for a,v in zip(axis,p['velocity'][3:6],strict=True)))
+            self.check(values,[p['score_rad_s'] for p in primary],'prediction_score_rad_s');scores.append(values)
+        actual=[[self.actual[a,r] for r in range(2)] for a in range(9)]
+        pi=[[min(v[i] for v in scores),max(v[i] for v in scores)] for i in range(9)]
+        ai=[[min(v),max(v)] for v in actual]
+        require(all(hi-lo<=MATCH_BOUNDS['prediction_score_rad_s'] for lo,hi in pi), 'Response prediction dispersion')
+        require(all(hi-lo<=NUMERICAL_RECIPE['maximum_repeat_spread_rad_s'] for lo,hi in ai), 'Response repeated action dispersion')
+        return dict(body_id=self.body,probe_step=self.step,prefix_rows_verified=len(self.visits),matching_maximums=self.maximums,
+            predicted_scores_rad_s=scores[0],measured_scores_rad_s=[math.fsum(v)/2 for v in actual],
+            prediction_intervals_rad_s=pi,measured_intervals_rad_s=ai,measured_repeats_rad_s=actual,
+            native_targets=[v['native_targets'] for v in primary],common_axis_world=axis,
+            repeats_per_action=2,maximum_repeat_spread_rad_s=max(hi-lo for lo,hi in ai))
 
 
 def assess(folder,receipt):
     c=receipt['contract'];validate(c)
-    require(receipt['audit']['ok'] and receipt['audit']['controller_rows_replayed']==84*121 and
-        receipt['audit']['native_rows_verified']==84*121*5, 'Response full shared replay required')
+    repeated=numerical(c);worlds=165 if repeated else 84
+    require(receipt['audit']['ok'] and receipt['audit']['controller_rows_replayed']==worlds*121 and
+        receipt['audit']['native_rows_verified']==worlds*121*5, 'Response full shared replay required')
     groups={}
     for batch in receipt['worker']['groups']:
         cells=[c['cells'][i] for i in batch['cell_indices']];local={}
         for i,cell in enumerate(cells):
             if 'response_probe' not in cell['profile']:continue
             p=cell['profile']['response_probe'];key=cell['descriptor']['morphology_id'],p['probe_step']
-            local[i]=(groups.setdefault(key,MatchedGroup(*key)),p['action_index'])
+            group_type=NumericalMatchedGroup if repeated else MatchedGroup
+            local[i]=(groups.setdefault(key,group_type(*key)),(p['action_index'],p['repeat_index']) if repeated else p['action_index'])
         for name,method in (('controller','control'),('trace','native')):
             path=Path(folder)/'native'/batch['batch_id']/(name+'.jsonl');digest=hashlib.sha256()
             with path.open('rb') as stream:
@@ -247,4 +390,4 @@ def assess(folder,receipt):
                     if row['cell'] in local:
                         group,action=local[row['cell']];getattr(group,method)(row,action)
             require(digest.hexdigest()==batch['result']['stream_sha256'][name], 'Response stream binding')
-    return summarize([group.finish() for _,group in sorted(groups.items())])
+    return summarize([group.finish() for _,group in sorted(groups.items())],repeated=repeated)

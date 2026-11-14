@@ -90,7 +90,7 @@ def behavior_key(candidate):
     # every parameter that changes their response to the same observation.
     if 'response_probe' in candidate:
         probe=candidate['response_probe']
-        return behavior_key({k:v for k,v in candidate.items() if k!='response_probe'}) + (probe['schema_version'],probe['probe_step'],probe['action_index'])
+        return behavior_key({k:v for k,v in candidate.items() if k!='response_probe'}) + (probe['schema_version'],probe['probe_step'],probe['action_index']) + ((probe['repeat_index'],) if 'repeat_index' in probe else ())
     if candidate["mode"] == body_moment.MODE:
         return body_moment.behavior_key(candidate)
     if candidate["mode"] == contact_reach.MODE:

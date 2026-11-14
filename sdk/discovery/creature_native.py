@@ -66,7 +66,7 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_righting_geometry.py", "test_creature_righting_geometry.py",
                  "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py",
                  "creature_response_probe.py", "test_creature_response_probe.py", "coupled_contact_response.py",
-                 "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py"]
+                 "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py", "test_creature_response_matching.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -121,7 +121,8 @@ def gates(c):
             + ([("coupled-response", "test_coupled_contact_response", 14),
                 ("actuation-mechanics", "test_actuation_recovery_mechanics", 25),
                 ("response-metric-reader", "test_check_coupled_contact_response", 6),
-                ("response-probe", "test_creature_response_probe", 16)] if 'response_probe' in c else []))
+                ("response-probe", "test_creature_response_probe", 16)] if 'response_probe' in c else [])
+            + ([("response-numerical-matching", "test_creature_response_matching", 12)] if response_probe.numerical(c) else []))
 
 
 def sequence_enabled(c):
