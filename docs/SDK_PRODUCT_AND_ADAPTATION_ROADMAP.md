@@ -8,33 +8,33 @@ earlier decisions stay in the [dated history](SDK_PRODUCT_AND_ADAPTATION_ROADMAP
 ## Current execution order - 2026-11-14
 
 **Search many actual bodies and controller trajectories cheaply, then apply
-fresh full-capture scrutiny to useful, diverse leads.** The corrected model
-matches the best measured mean action in all nine probe groups, but the
-all-body ordering screen still fails. Test that exposed lead in a separate
-broad recovery-discovery cohort with fresh controls; keep the failed screen.
+fresh full-capture scrutiny to useful, diverse leads.** The 24-body feedback
+search now completes: raw gains clear five degrees in 164 of 168 model-selected
+runs, but every model-selected run violates joint limits. Diagnose the retained first
+crossings before declaring a distinct constraint-aware recovery successor.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
 | [Walking confirmation](../sdk/discovery/creature_confirmation_native_result_v1.json) | 284 fresh twelve-second worlds; 221 eligible, 63 failed. Both-start groups: baseline 30/48, frozen choice 33/48, fixed profile 27 36/48. Both declared choice comparisons fail; no learned Tier 2 |
-| [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
+| [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | The earlier thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
 | [Contact-force diagnosis](../sdk/discovery/creature_contact_reactions_result_v1.json) | Zero new worlds; all 12,960 decisions and 64,800 solved samples read. On bodies 0/16, requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, net 0.013/0.012 Nm. Body 21 makes no positive request. Foot-only moment misses the opposing torso reaction |
 | [Actuator-aware action probe](../sdk/discovery/creature_response_probe_native_result_v3.json) | 223 controls, 165 fresh worlds and full replay. Ordering accuracy is 75.9%/71.3%/66.7% on seed 6119/corner 000/seed 14172: two bodies pass, so the all-body screen fails. Predicted winners match all nine measured best means; eight gains against unchanged action exceed the fixed tie margin. No joint violations or recovery. The [retained model correction](../sdk/discovery/coupled_contact_response_result_v2.json) and earlier negatives remain preserved |
-| [Closed-loop recovery component](../sdk/discovery/creature_response_search_component_v1.json) | 216 controls and the 240-cell zero-world preflight pass. Eight direction/rate/cadence combinations are balanced across 24 bodies, with 168 model-selected runs and 72 fresh references planned. Ten native route worlds must pass on the same freeze before the broad launch. Native recovery benefit remains unobserved |
+| [Closed-loop recovery search](../sdk/discovery/creature_response_search_native_result_v1.json) | 216 controls per launch; ten route worlds and 240 twelve-second worlds fully replay. All 168 model-selected worlds violate joint limits; all 72 fresh references avoid them. Raw peak gains clear five degrees against both controls in 164 model worlds, but all are disqualified. Zero recovery, upright dwell, progress leads or model withdrawals |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
-1. **Search recovery trajectories with the corrected response model.** The
-   [v3 result](../sdk/discovery/creature_response_probe_native_result_v3.json)
-   fails its unchanged all-body ordering criterion, while its best-action
-   matches provide an exposed discovery lead. The next question is actual
-   closed-loop recovery benefit. The [new component](../sdk/discovery/creature_response_search_component_v1.json)
-   passes all 216 controls and the full 240-cell preflight. From a clean pushed
-   freeze, run the ten-world [route check](../sdk/discovery/creature_response_search_route_v1.json),
-   then the [24-body search](../sdk/discovery/creature_response_search_v1.json)
-   using its verified same-freeze route receipt. Replan from fresh contacts;
-   rebuild held-pattern commands every frame and record model withdrawals.
-   Keep every body and failure, and confirm useful diverse leads with fresh
-   full capture. The v3 criterion and all prior outcomes remain unchanged.
+1. **Diagnose the joint-limit failures, then search a distinct successor.**
+   The [full result](../sdk/discovery/creature_response_search_native_result_v1.json)
+   retains all 240 outcomes, including larger but disqualified rotations.
+   Use the retained traces to locate every model run's first joint crossing,
+   measure its size and duration, and bind it to action, command, measured
+   velocity, guard decision, contact support and prediction. Compare all fresh
+   references. The command guard's lack of stopping-distance state is a
+   hypothesis to test. Use the finding to declare broad feasible-action or
+   trajectory alternatives across actual bodies, with fresh controls, complete
+   safety checks and a native route. Preserve the earlier ordering failure,
+   this cohort's criteria and every outcome; do not repeat the same eight-factor
+   search or adopt its raw rotation gains.
 2. **Complete the Studio recovery handoff with a useful controller.** Preserve
    fresh observations, body identity, motor ownership, native clocks and
    measured work. The required run is walking, fall, active recovery, completed

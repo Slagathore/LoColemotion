@@ -52,24 +52,30 @@ margin. Maximum selected regret is 1.073e-6 rad/s. No joint violation, upright
 dwell or recovery occurs in these short trials, which apply assigned actions
 and never a predictor-selected sequence. The best-action matches are a useful
 exposed lead, not a revised pass or evidence of closed-loop recovery.
-The next distinct campaign should search actual recovery trajectories across
-many bodies and factored action/trajectory settings, with fresh original and
-unchanged-action controls. Freeze its policy, guards, outcomes, capture and
-budget; prove the production route and full gate before native discovery and
-fresh confirmation of useful diverse leads. Preserve all three probe outcomes
-and do not repeat a narrow grid solely to repair the pairwise-ordering score.
+The [closed-loop search](../sdk/discovery/creature_response_search_native_result_v1.json)
+tests that exposed lead at e92c6c0b. Its [component](../sdk/discovery/creature_response_search_component_v1.json)
+passes 216 applicable controls and 64 focused controls. The ten-world native
+route passes recurring selection, held-action and upright-withdrawal coverage.
+The same-freeze 240-world search spans 24 bodies and eight balanced settings:
+168 model-selected episodes and 72 fresh timed, unchanged-action and brake
+controls. All 345,600 controller rows and 1,728,000 native samples replay.
 
-The [closed-loop successor component](../sdk/discovery/creature_response_search_component_v1.json)
-passes all 216 applicable controls and the 240-cell zero-world preflight, plus
-64 focused new/legacy controls. Eight direction/rate/cadence combinations each
-receive 21 of 24 exposed bodies: 168 model-selected runs and 72 fresh references.
-Only an action pattern persists between decisions; each frame rebuilds guarded
-commands from current state. Upright state returns to the original stance
-controller; model nonconvergence returns to the unchanged guarded action and
-excludes that episode from recovery and progress leads. A ten-world native route
-must verify recurring selection, holds and withdrawal on the same source/runtime
-freeze before the 240-world twelve-second search can launch. Both native runs
-remain unobserved; the failed v3 ordering screen stays unchanged.
+Every model-selected episode violates the unchanged joint-limit gate; every
+fresh reference avoids joint violations. All 240 worlds fail recovery, with
+zero upright dwell, qualifying progress leads or model convergence withdrawal.
+Raw gains against both controls exceed five degrees in 164 of 168 model runs,
+with at least one on every body. Maximum model rotation is 35.659 degrees,
+versus 15.710 for references; these gains are disqualified and remain diagnostic.
+The native worker takes 3,252.052 seconds with full capture. No real-time,
+recovery, learning, held-out or adoption authority follows.
+
+Next, read the retained first joint crossings, their magnitude and duration,
+and the associated commands, measured velocity, action guard, contacts and
+predictions against the fresh references. The command guard bounds requested
+velocity by remaining travel but does not use measured stopping distance; its
+causal role remains unproved. Use the diagnosis to declare a distinct broad
+constraint-aware action or trajectory successor. Preserve the failed ordering
+screen, every raw gain and every joint failure. Do not repeat this factor grid.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
