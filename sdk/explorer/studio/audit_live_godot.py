@@ -1,5 +1,6 @@
 """Audit bounded live Godot observations, commands and the native step join."""
 import argparse
+import hashlib
 import json
 import math
 import struct
@@ -52,6 +53,46 @@ def kicks_valid(sent, kicks):
         require(kick['apply_at_frame']==kick['native_polled_after_frame']+1,'Not the next native step')
         require(packet['owner_observed_frame']<=kick['native_polled_after_frame'],'Native application preceded request')
         require(packet['impulse_n_s']==kick['impulse_n_s'],'Impulse vector changed')
+
+
+def audit_startup_packets(folder,receipt):
+    """Join selected exact packets to the complete startup call/phase sequence."""
+    summary=receipt['physical']['completed']['summary']['startup_packet_capture']
+    require(summary['ok'] is True and not summary['failure'],'Startup capture failed')
+    calls=summary['observed_calls']
+    require([r['global_step'] for r in calls]==list(range(1,241)),'Startup call population')
+    fixed=[1,30,60,120,180,239,240]
+    require(summary['fixed_steps']==fixed and summary['maximum_packets']==16,'Startup capture policy')
+    first={}
+    for row in calls:first.setdefault(row['phase'],row['global_step'])
+    expected=sorted(set(fixed)|set(first.values()))
+    rows=summary['packets']
+    require([r['global_step'] for r in rows]==expected and len(rows)<=16,'Selected startup packet population')
+    require(all(summary[k]==0 for k in ['additional_controller_calls','additional_physics_reads','additional_solver_steps']),'Startup capture added execution')
+    require(all(summary[k] is False for k in ['performance_comparison_authority','physical_acceptance_authority','release_authority']),'Startup capture overclaim')
+    packets=[]
+    for row in rows:
+        path=Path(row['path']).resolve()
+        require(path.is_relative_to((folder/'physical/startup-packets').resolve()) and sha(path)==row['sha256'],'Startup packet path/digest')
+        packet=json.loads(path.read_bytes());step=row['global_step'];phase=calls[step-1]['phase']
+        require(packet['schema_version']=='locolemotion_studio_startup_replay_packet_v1' and packet['route_ok'] is True,'Startup packet schema/outcome')
+        require(packet['global_step']==step and packet['phase']==row['phase']==phase,'Startup packet identity')
+        require(packet['selection']==row['selection']==dict(fixed_step=step in fixed,first_phase_call=first[phase]==step),'Startup selection reason')
+        snapshots=[packet['context'],packet['request'],packet['response'],packet['expected_route'],*packet['sources'].values()]
+        for snapshot in snapshots:
+            raw=snapshot['utf8_text'].encode('utf-8')
+            require(len(raw)==snapshot['utf8_byte_length'] and 'sha256:'+hashlib.sha256(raw).hexdigest()==snapshot['raw_sha256'],'Startup exact UTF-8 snapshot')
+        sources={k:json.loads(v['utf8_text']) for k,v in packet['sources'].items()}
+        require(sources['bound_observation']['observation_v3']['semantic_step']==step,'Startup observation clock')
+        require(sources['source_memory']['last_semantic_step']==step-1 and sources['source_memory']['phase']==phase,'Startup memory clock/phase')
+        require(sources['source_application']['semantic_step']==step,'Startup application clock')
+        route=json.loads(packet['expected_route']['utf8_text']);capture=route['collection_transport_retention']
+        require(route['ok'] is True and route['step_receipt']==packet['expected_step'],'Startup expected route')
+        require(capture['request']==packet['request'] and capture['response']==packet['response'] and capture['source_links']==packet['sources'],'Startup original collection transport')
+        packets.append(dict(global_step=step,phase=phase,path=str(path),sha256=row['sha256'],byte_length=path.stat().st_size))
+    return dict(ok=True,packets=packets,observed_route_calls=240,phases=list(first),
+        selected_packet_capture_wall_us=summary['selected_packet_capture_wall_us'],
+        offline_compiled_replay_pending=True,performance_comparison_authority=False,physical_acceptance_authority=False,release_authority=False)
 
 
 def audit(folder):

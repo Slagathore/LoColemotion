@@ -204,6 +204,9 @@ retains 288 exact replays and rejects two scalar-validator changes: 4.7% and
 validation stays active. The historical terminal packet is not a complete
 startup sample; next capture exact inputs across declared startup phases before
 testing shared compiled validation/retention. No speedup is qualified.
+The [startup capture successor](../sdk/explorer/studio/startup_packet_capture_component_v1.json)
+passes the full zero-world gate. Its single 360-step native input capture and
+subsequent offline compiled replay are pending; no performance claim is added.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

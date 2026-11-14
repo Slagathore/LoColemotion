@@ -33,6 +33,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--run',action='store_true')
+    parser.add_argument('--startup-packets',action='store_true',help='Retain selected exact startup inputs for offline CPU replay; short live route only')
     parser.add_argument('--serializer-cache-policy',choices=['lru','clear_all'],default='clear_all',help='Development serializer comparison; the current default remains clear_all')
     parser.add_argument('--bridge-profile',action='store_true',help='Time unchanged native calls and exact JSON stringify in the isolated project')
     parser.add_argument('--live-walking',action='store_true',help='After original stand-up, measure the separate live walking path without recovery energy ledgers')
@@ -42,6 +43,8 @@ def main():
     parser.add_argument('--energy-epoch-probe',action='store_true',help='Add complete measured work and portable energy evaluation to the fresh observation probe')
     parser.add_argument('--live-handoff',action='store_true',help='Check the integrated fall, fresh recovery, and walking restart development route')
     args=parser.parse_args()
+    if args.startup_packets and (not args.live_walking or args.walking_steps!=119 or args.bridge_profile or args.probe_impulses or args.epoch_boundary_probe or args.live_handoff):
+        raise ValueError('Startup packet capture requires the unprofiled short live route without other probes')
     if args.live_handoff and (not args.live_walking or args.walking_steps!=1800 or args.epoch_boundary_probe or args.probe_impulses):raise ValueError('Live handoff requires its own 1800-step live route')
     if args.energy_epoch_probe and not args.epoch_boundary_probe:raise ValueError('Energy probe requires the declared fresh boundary route')
     if args.epoch_boundary_probe and (not args.live_walking or args.walking_steps!=119 or args.probe_impulses):raise ValueError('Epoch boundary probe requires the short live-walking route without impulses')
@@ -80,6 +83,8 @@ def execute(args,source,folder,owner,cfg):
             dict(EXPLORER_TEST_CORE=cfg['core'],EXPLORER_TEST_OUTPUT=str(folder)),90)
         if args.live_walking:
             invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_live_godot.py')],folder/'live-audit-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
+        if getattr(args,'startup_packets',False):
+            invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_startup_capture.py')],folder/'startup-capture-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
         if args.bridge_profile and args.live_walking and not (getattr(args,'epoch_boundary_probe',False) or getattr(args,'live_handoff',False)):
             invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_walking_profile.py')],folder/'walking-profile-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
         project=owner.prepare_recovery(folder,'godot_jolt');receipt['wrapped_predicates']=materialize(project)
@@ -163,6 +168,11 @@ def execute(args,source,folder,owner,cfg):
             from materialize_godot_bridge_profile import instrument_walking
             receipt['walking_profile_stages']=instrument_walking(project)
             receipt['declaration']['telemetry_profile']+=' Four walking control-stage wall timers; original calls and outputs retained. Preflight and first-command handoff are excluded from stage totals.'
+        if getattr(args,'startup_packets',False):
+            from materialize_startup_capture import materialize as capture_startup
+            receipt['declaration']['startup_packet_capture']=capture_startup(project)
+            receipt['declaration']['question']='Capture exact pure-route inputs across startup phases for offline optimization. No timing comparison or locomotion benefit claim.'
+            receipt['declaration']['telemetry_profile']+=' Add exact inputs and full route outputs at declared startup steps and the first call in each phase; original telemetry remains complete.'
         # Test the generic exact-key cache in a minimal zero-world project.
         pure=folder/'cache-pure';pure.mkdir()
         for name in ['immutable_context_cache.gd','test_immutable_context_cache.gd']:shutil.copy2(SDK/'explorer/studio'/name,pure/name)
@@ -177,6 +187,7 @@ def execute(args,source,folder,owner,cfg):
         if check['summary']['serializer_cache_controls']['ok'] is not True:raise RuntimeError('Serializer cache controls refused')
         if args.live_walking and check['summary']['studio_live_walking']['zero_world']['ok'] is not True:raise RuntimeError('Live walking safety gate refused')
         if args.live_walking and check['summary']['studio_live_walking']['command_zero_world']['ok'] is not True:raise RuntimeError('Live impulse safety gate refused')
+        if getattr(args,'startup_packets',False) and check['summary']['startup_packet_capture_controls']['ok'] is not True:raise RuntimeError('Startup packet capture safety gate refused')
         if getattr(args,'epoch_boundary_probe',False) and check['summary']['live_recovery_epoch']['zero_world']['ok'] is not True:raise RuntimeError('Fresh recovery epoch safety gate refused')
         if getattr(args,'energy_epoch_probe',False) and check['summary']['live_recovery_energy']['zero_world']['ok'] is not True:raise RuntimeError('Fresh recovery energy safety gate refused')
         if getattr(args,'live_handoff',False) and check['summary']['live_handoff']['zero_world']['ok'] is not True:raise RuntimeError('Integrated live handoff safety gate refused')
@@ -214,6 +225,9 @@ def execute(args,source,folder,owner,cfg):
             try:receipt['physical']=owner.stream_run('godot_jolt',folder/'physical',False,dict(phase=74),project)
             finally:timeout.cancel()
             if receipt['physical']['last_frame']!=receipt['declaration']['maximum_outer_steps'] or receipt['physical']['completed']['ok'] is not True:raise RuntimeError('Native diagnostic incomplete')
+            if getattr(args,'startup_packets',False):
+                from audit_live_godot import audit_startup_packets
+                receipt['startup_packet_audit']=audit_startup_packets(folder,receipt)
             if 'walking_profile_stages' in receipt:
                 from materialize_godot_bridge_profile import validate_walking_profile
                 receipt['walking_profile']=validate_walking_profile(receipt['physical']['completed']['summary'],args.walking_steps)

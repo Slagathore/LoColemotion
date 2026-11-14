@@ -285,6 +285,9 @@ observed warm median reductions); original validation remains active.
 Its single historical terminal input does not represent the full startup.
 Capture declared phase-spanning inputs before evaluating shared compiled
 validation/retention; no further scalar-loop or cache tuning grid.
+The [startup capture component](../sdk/explorer/studio/startup_packet_capture_component_v1.json)
+passes the full zero-world route gate, nine capture checks and three reader/
+materializer tests. One bounded native capture and offline replay are pending.
 Thirteen performance cohorts retain 2,896 valid recovery failures. No controller,
 recovery benefit, learned adaptation, Studio handoff or release is qualified.
 
