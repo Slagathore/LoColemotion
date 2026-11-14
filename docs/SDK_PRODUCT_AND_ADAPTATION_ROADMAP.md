@@ -18,20 +18,19 @@ is the next bounded implementation task.
 | [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
 | [Contact-force diagnosis](../sdk/discovery/creature_contact_reactions_result_v1.json) | Zero new worlds; all 12,960 decisions and 64,800 solved samples read. On bodies 0/16, requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, net 0.013/0.012 Nm. Body 21 makes no positive request. Foot-only moment misses the opposing torso reaction |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
-| [Fresh Studio timing](../sdk/explorer/studio/walking_performance_cache_component_v1.json) | Profiled/unprofiled stand-up: 19.200/18.611 seconds; fifteen simulated walking seconds: 14.967/14.963 seconds. All 2,041 body/contact frames and 1,799 controller rows match. No optimization benefit or general real-time qualification yet |
+| [Studio performance comparison](../sdk/explorer/studio/walking_performance_cache_result_v1.json) | Four fresh matched worlds: old cache stand-up 19.934/20.260 seconds, LRU 21.326/20.673 seconds. All 2,041 frames and 1,799 full controller rows match. LRU fails the speedup criterion; previous default restored. Fifteen-second walking intervals take 14.974-15.124 seconds; no general real-time qualification |
 
-1. **Profile and improve Studio startup and stepping.** Use the current installed
-   build, the same body, capture and bounded fifteen-second walking schedule.
-   The [walking profiler](../sdk/explorer/studio/walking_performance_component_v1.json)
-   passes its complete zero-world gate and now separates sampling, controller,
-   motor application and readback time. Both fresh baseline runs completed.
-   The [serializer cache change](../sdk/explorer/studio/walking_performance_cache_component_v2.json)
-   replaces full-cache clearing with bounded least-recently-used eviction;
-   ten cache controls and the full zero-world route gate pass under both policies. Four fresh
-   old/new runs, reversing order and covering both profiling modes, are
-   declared. Measure startup benefit and require unchanged native trajectories
-   and controller rows before closing this task. This task comes
-   before another large recovery cohort; useful recovery is not its prerequisite.
+1. **Reduce measured Studio stand-up processing cost.** The
+   [matched cache comparison](../sdk/explorer/studio/walking_performance_cache_result_v1.json)
+   failed: 1.38% fewer canonicalization calls did not improve startup.
+   The previous cache is restored as the default and passes the full route
+   preflight. Do not repeat a cache-size tuning grid.
+   Use retained full startup packets to locate repeated record construction,
+   copying and serialization in process-step and energy-observation composition
+   (6.79 and 3.72 seconds in the profiled old-cache run).
+   Require a useful zero-world CPU measurement before another fresh matched
+   native trial. Preserve full capture, controller decisions and solver inputs.
+   This bounded performance work precedes another large recovery cohort.
 2. **Search recovery using the whole body's contact response.** The
    [36-world diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
    verifies solved reactions and empty-cone fallback, with no recovery.

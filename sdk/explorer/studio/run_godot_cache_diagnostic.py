@@ -33,7 +33,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--run',action='store_true')
-    parser.add_argument('--serializer-cache-policy',choices=['lru','clear_all'],default='lru',help='Exact serializer eviction policy; clear_all is the predecessor timing control')
+    parser.add_argument('--serializer-cache-policy',choices=['lru','clear_all'],default='clear_all',help='Development serializer comparison; the current default remains clear_all')
     parser.add_argument('--bridge-profile',action='store_true',help='Time unchanged native calls and exact JSON stringify in the isolated project')
     parser.add_argument('--live-walking',action='store_true',help='After original stand-up, measure the separate live walking path without recovery energy ledgers')
     parser.add_argument('--walking-steps',type=int,choices=[119,1800],default=119)
@@ -83,12 +83,12 @@ def execute(args,source,folder,owner,cfg):
         if args.bridge_profile and args.live_walking and not (getattr(args,'epoch_boundary_probe',False) or getattr(args,'live_handoff',False)):
             invoke([sys.executable,'-B',str(SDK/'explorer/studio/test_walking_profile.py')],folder/'walking-profile-boundary',dict(EXPLORER_TEST_OUTPUT=str(folder)),30)
         project=owner.prepare_recovery(folder,'godot_jolt');receipt['wrapped_predicates']=materialize(project)
-        policy=getattr(args,'serializer_cache_policy','lru')
+        policy=getattr(args,'serializer_cache_policy','clear_all')
         if policy not in ('lru','clear_all'):raise ValueError('Serializer cache policy')
         wrapper=project/'sdk/explorer/native_recovery/memoized_sdk.gd'
         wrapper_source=wrapper.read_text(encoding='utf-8-sig')
-        if wrapper_source.count('var eviction_policy := "lru"')!=1:raise ValueError('Serializer cache policy source changed')
-        wrapper.write_text(wrapper_source.replace('var eviction_policy := "lru"',f'var eviction_policy := "{policy}"'),encoding='utf-8',newline='\n')
+        if wrapper_source.count('var eviction_policy := "clear_all"')!=1:raise ValueError('Serializer cache policy source changed')
+        wrapper.write_text(wrapper_source.replace('var eviction_policy := "clear_all"',f'var eviction_policy := "{policy}"'),encoding='utf-8',newline='\n')
         receipt['declaration']['serializer_cache_policy']=policy
         if args.bridge_profile:
             from materialize_godot_bridge_profile import instrument

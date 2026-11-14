@@ -8,7 +8,7 @@ var saved_us := 0
 # Historical byte_count counts String characters, not allocated bytes.
 var byte_count := 0
 var max_cache_characters := 16000000
-var eviction_policy := "lru"
+var eviction_policy := "clear_all"
 var evictions := 0
 var clears := 0
 var oversized_skips := 0
