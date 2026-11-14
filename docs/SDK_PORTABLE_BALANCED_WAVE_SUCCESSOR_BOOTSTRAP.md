@@ -40,11 +40,24 @@ whole-body model; mean joint-velocity errors fall from 4.191/5.374/2.920 to
 0.0862/0.0880/0.0357 rad/s. Ninety-two states worsen, and the third body's
 maximum rotation error remains 0.678 rad/s. All 1,296 original predictions
 reproduce exactly. This exposed screen does not revise the native v2 negative.
-The [v3 probe component](../sdk/discovery/creature_response_probe_component_v3.json)
-passes all 223 controls and the 165-cell zero-world preflight. The fresh declared
-comparison adds native/GPU armature and damping bindings, uses a new seed and
-keeps the action family, repeats, numerical bounds and per-body criteria.
-Useful native ordering remains required before broad factored recovery search.
+The [native v3 comparison](../sdk/discovery/creature_response_probe_native_result_v3.json)
+is complete at d9410dd7: all 223 controls, 165 fresh worlds, 19,965 controller
+decisions and 99,825 native samples replay. Native/GPU armature and damping
+bindings, numerical matching and repeat dispersion pass. Ordering accuracy is
+66/87 (75.86%) on seed 6119, 62/87 (71.26%) on corner 000 and 44/66 (66.67%) on
+seed 14172. The unchanged all-body 70% requirement therefore fails.
+The predicted winner matches the best measured mean in all nine groups; eight
+conservative gains against unchanged action exceed the fixed .0001 rad/s tie
+margin. Maximum selected regret is 1.073e-6 rad/s. No joint violation, upright
+dwell or recovery occurs in these short trials, which apply assigned actions
+and never a predictor-selected sequence. The best-action matches are a useful
+exposed lead, not a revised pass or evidence of closed-loop recovery.
+The next distinct campaign should search actual recovery trajectories across
+many bodies and factored action/trajectory settings, with fresh original and
+unchanged-action controls. Freeze its policy, guards, outcomes, capture and
+budget; prove the production route and full gate before native discovery and
+fresh confirmation of useful diverse leads. Preserve all three probe outcomes
+and do not repeat a narrow grid solely to repair the pairwise-ordering score.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
