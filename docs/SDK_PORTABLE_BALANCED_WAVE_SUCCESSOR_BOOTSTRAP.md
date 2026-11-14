@@ -86,15 +86,36 @@ step; all four selected velocity projections already cross the bound. The
 other events are not at the exact step of the retained forecast and cannot
 be assigned its one-step accuracy. Neither observation proves a remedy.
 
-The distinct successor should compare measured-velocity braking reserve and
-joint-feasibility rejection before rotation scoring across actual bodies,
-with fresh feasibility checks during held patterns and bounded braking
-withdrawal. Compare feasible-action or trajectory alternatives broadly with
-fresh controls and unchanged eligibility. Reuse the existing owner, capture
-and readers; finish synthetic checks and a native route from a clean pushed
-freeze before discovery. The old fixed-envelope braking result remains
-negative for recovery. Preserve the failed ordering screen and disqualified
-gains; do not repeat the same direction/rate/cadence grid.
+The [constraint-aware v2 component](../sdk/discovery/creature_response_search_component_v2.json)
+now passes 47 focused controls and the complete 248-control synthetic gate.
+Its preflight binds 288 cells across 24 bodies with zero worlds. It compares
+a fixed 20 rad/s2 braking estimate against a bounded, quarter-scaled estimate
+from the current coupled zero-target prediction, and interval-only against
+interval-plus-stopping-reserve feasibility. The .04 rad margin, .75 rad/s
+rotation target and six-interval scheduled cadence stay fixed.
+
+Every held pattern is rebuilt, protected and checked from fresh state. An
+infeasible held pattern immediately triggers reselection; no feasible action
+or any model nonconvergence requests zero velocity and a next-interval retry.
+Upright stance also receives protection. Coupled forecasts that cannot
+decelerate nontrivial measured motion cannot authorize a rotating action
+through the numerical acceleration floor. These remain heuristic projections,
+not stopping guarantees. Original joint-limit and recovery criteria remain.
+
+Each body receives five fresh references (brake, timed, unchanged and both
+signed unprotected feedback controllers) plus seven of eight new combinations.
+Each new combination covers 21 bodies. The shared envelope is extracted
+without widening its legacy policy; all predictor component pins stay intact.
+The retained per-stage timing profile reviews the synthetic owner's 25.6%
+duration growth; it does not establish native performance.
+
+Next, publish the clean prospective freeze and require ten native route worlds
+with full replay before the 288 twelve-second discovery worlds. The route
+covers recurring selection, fresh held checks, reserve activity and upright
+stance. Zero-world controls cover all-infeasible and nonconvergent withdrawal;
+native observed fallback is reported separately. The same-source route receipt
+is mandatory. Both native stages remain unobserved; no recovery, learning,
+held-out benefit or adoption follows from this component.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen

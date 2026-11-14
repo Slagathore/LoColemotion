@@ -32,16 +32,25 @@ def policy(value):
 def shape(position, velocity, command, speed, lower, upper, dt, settings):
     """Pure command envelope; measured velocity determines the projected reserve."""
     p = policy(settings)
+    return envelope(position,velocity,command,speed,lower,upper,dt,
+        margin_rad=p["margin_rad"],lookahead_steps=p["lookahead_steps"],
+        acceleration=p["braking_acceleration_rad_s2"])
+
+
+def envelope(position,velocity,command,speed,lower,upper,dt,*,margin_rad,lookahead_steps,acceleration):
+    """Shared measured-velocity envelope; acceleration is a declared estimate."""
+    require(finite(margin_rad) and .01<=margin_rad<=.08
+            and type(lookahead_steps) is int and 1<=lookahead_steps<=4
+            and finite(acceleration) and 1.<=acceleration<=200., "Joint envelope policy bounds")
     require(all(finite(v) for v in (position, velocity, command, speed, lower, upper, dt))
             and lower < 0 < upper and 0 < speed <= 3.5 and 0 < dt <= .1
             and abs(command) <= speed, "Joint braking finite input or bounds")
-    predicted = position + velocity * dt * p["lookahead_steps"]
+    predicted = position + velocity * dt * lookahead_steps
     require(math.isfinite(predicted), "Joint braking projected position overflow")
-    acceleration = p["braking_acceleration_rad_s2"]
     # Clip the distance first: a distant boundary cannot increase the speed cap.
     distance_cap = speed * speed / (2 * acceleration)
-    low_distance = max(0., min(distance_cap, predicted - lower - p["margin_rad"]))
-    high_distance = max(0., min(distance_cap, upper - predicted - p["margin_rad"]))
+    low_distance = max(0., min(distance_cap, predicted - lower - margin_rad))
+    high_distance = max(0., min(distance_cap, upper - predicted - margin_rad))
     low = -min(speed, math.sqrt(2 * acceleration * low_distance))
     high = min(speed, math.sqrt(2 * acceleration * high_distance))
     shaped = max(low, min(high, command))

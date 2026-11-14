@@ -15,6 +15,7 @@ import numpy as np
 
 import creature_righting as righting
 import creature_response_probe as probe
+import creature_response_constraints as constraints
 import creature_trajectory_search as trajectory
 from coupled_contact_response import CoupledBody, response, velocity_actuation
 from evaluate_coupled_contact_response import actuator_parameters, settings
@@ -42,21 +43,53 @@ RECIPE = dict(schema_version='locolemotion_response_search_v1', seed=1061145,
 REASONS = dict(replanned='replans', held_pattern='holds', upright_stance='upright',
     unchanged_comparator='unchanged', model_nonconvergence='failures')
 
+CONSTRAINED_SCHEMA = 'locolemotion_response_search_policy_v2'
+CONSTRAINED_PREDECESSOR = dict(path='sdk/discovery/creature_response_joint_limit_result_v1.json',
+    sha256='71fb112c68416d954e0adfa9d7d5e1dd53765743f6a56bb2a2c725771ed0b62c')
+CONSTRAINED_DEFAULT = dict(DEFAULT,schema_version=CONSTRAINED_SCHEMA,reserve_method='fixed',feasibility='interval')
+CONSTRAINED_RECIPE = dict(RECIPE,schema_version='locolemotion_response_search_v2',seed=1061146,
+    maximum_rates_rad_s=[.75],replan_steps=[6],reserve_methods=['fixed','coupled'],
+    feasibility_checks=['interval','stopping'],route_profile_indices=[0,1,2,5,12],route_outer_steps=181,
+    margin_rad=constraints.MARGIN_RAD,fixed_deceleration_rad_s2=constraints.FIXED_DECELERATION,
+    coupled_braking_fraction=constraints.BRAKING_FRACTION,
+    coupled_deceleration_bounds_rad_s2=[1.,constraints.MAXIMUM_DECELERATION],
+    low_speed_fallback_rad_s=constraints.LOW_SPEED_RAD_S,
+    fresh_references=['brake','timed','unchanged','unprotected_rollneg','unprotected_rollpos'],
+    upright_withdrawal='protected_stance_with_feasibility_check',
+    nonconvergence_withdrawal='zero_velocity_brake_and_retry_next_interval',
+    infeasibility_withdrawal='zero_velocity_brake_and_retry_next_interval',
+    held_pattern_check='fresh_prediction_every_interval_replan_if_infeasible',
+    stopping_guaranteed=False)
+CONSTRAINT_METRICS = ('brakes','constraint_rows','constraint_guarded_rows','constraint_infeasible_rows','constraint_forced_replans')
+
+
+def constrained(c):
+    return c.get('response_search',{}).get('schema_version')==CONSTRAINED_RECIPE['schema_version']
+
 
 def policy(value):
-    require(type(value) is dict and set(value)==set(DEFAULT) and value['schema_version']==SCHEMA,
+    require(type(value) is dict,'Response search policy object')
+    modern=value.get('schema_version')==CONSTRAINED_SCHEMA
+    default=CONSTRAINED_DEFAULT if modern else DEFAULT
+    require(set(value)==set(default) and value['schema_version']==default['schema_version'],
         'Response search policy fields')
     require(value['selection'] in ('model','unchanged') and type(value['direction']) is int and
         value['direction'] in (-1,1) and type(value['replan_steps']) is int and value['replan_steps'] in (6,24) and
         type(value['maximum_rate_rad_s']) in (int,float) and value['maximum_rate_rad_s'] in (.75,2.),
         'Response search policy bounds')
-    require(value['selection']!='unchanged' or value==dict(DEFAULT,selection='unchanged'),
-        'Response unchanged comparator aliases')
+    if modern:
+        require(value['selection']=='model' and value['maximum_rate_rad_s']==.75 and value['replan_steps']==6
+            and value['reserve_method'] in ('fixed','coupled') and value['feasibility'] in ('interval','stopping'),
+            'Response constraint methods or fixed rate/cadence')
+    else:
+        require(value['selection']!='unchanged' or value==dict(DEFAULT,selection='unchanged'),
+            'Response unchanged comparator aliases')
     return copy.deepcopy(value)
 
 
 def behavior_key(value):
-    return tuple(policy(value)[k] for k in DEFAULT)
+    p=policy(value)
+    return tuple(p[k] for k in (CONSTRAINED_DEFAULT if p["schema_version"]==CONSTRAINED_SCHEMA else DEFAULT))
 
 
 def source_document(pin):
@@ -65,17 +98,29 @@ def source_document(pin):
     return json.loads(data)
 
 
-def spec(*, route=False):
+def spec(*, route=False, protected=False):
     original=source_document(POPULATION)['righting_spec']
     profiles=copy.deepcopy(original['profiles'][:2])
     profiles.append(dict(profiles[1],id='response_unchanged',response_search=dict(DEFAULT,selection='unchanged')))
-    for direction,rate,cadence in itertools.product(RECIPE['directions'],RECIPE['maximum_rates_rad_s'],RECIPE['replan_steps']):
-        name=f"roll{'pos' if direction==1 else 'neg'}_rate{round(rate*100):03d}_every{cadence:02d}"
-        profiles.append(dict(profiles[1],id=name,response_search=dict(DEFAULT,direction=direction,
-            maximum_rate_rad_s=rate,replan_steps=cadence)))
-    bodies=RECIPE['route_body_indices'] if route else list(range(RECIPE['body_count']))
-    if route:profiles=[profiles[i] for i in RECIPE['route_profile_indices']]
-    assignments=[list(range(len(profiles))) if route else [0,1,2]+[3+i for i in range(8) if i!=b%8] for b in bodies]
+    recipe=CONSTRAINED_RECIPE if protected else RECIPE
+    if protected:
+        for direction in (-1,1):
+            profiles.append(dict(profiles[1],id='unprotected_rollneg' if direction<0 else 'unprotected_rollpos',
+                response_search=dict(DEFAULT,direction=direction)))
+        for direction,reserve,feasibility in itertools.product((-1,1),recipe['reserve_methods'],recipe['feasibility_checks']):
+            name=f"roll{'pos' if direction>0 else 'neg'}_{reserve}_{feasibility}"
+            profiles.append(dict(profiles[1],id=name,response_search=dict(CONSTRAINED_DEFAULT,direction=direction,
+                reserve_method=reserve,feasibility=feasibility)))
+    else:
+        for direction,rate,cadence in itertools.product(RECIPE['directions'],RECIPE['maximum_rates_rad_s'],RECIPE['replan_steps']):
+            name=f"roll{'pos' if direction==1 else 'neg'}_rate{round(rate*100):03d}_every{cadence:02d}"
+            profiles.append(dict(profiles[1],id=name,response_search=dict(DEFAULT,direction=direction,
+                maximum_rate_rad_s=rate,replan_steps=cadence)))
+    bodies=recipe['route_body_indices'] if route else list(range(recipe['body_count']))
+    if route:profiles=[profiles[i] for i in recipe['route_profile_indices']]
+    references=5 if protected else 3
+    assignments=[list(range(len(profiles))) if route else list(range(references))+
+        [references+i for i in range(8) if i!=b%8] for b in bodies]
     return dict(schema_version=righting.ASSIGNED_SCHEMA,
         descriptors=[copy.deepcopy(original['descriptors'][b]) for b in bodies],profiles=profiles,
         profiles_by_body=assignments,conditions=copy.deepcopy(original['conditions']),
@@ -86,17 +131,18 @@ def validate(c):
     opted=any('response_search' in p for p in c.get('righting_spec',{}).get('profiles',[]))
     require(opted==('response_search' in c),'Response search declaration required')
     if not opted:return
-    route=c['mode']=='route_ghost'
-    require(c['mode'] in ('route_ghost','development_discovery') and c['response_search']==RECIPE and
-        c['righting_spec']==spec(route=route) and c['predecessor']==PREDECESSOR and
-        c['predictor_component']==probe.ACTUATOR_COMPONENT and c['seed']==RECIPE['seed'] and
-        c['outer_steps']==RECIPE['route_outer_steps' if route else 'search_outer_steps'] and
+    route=c['mode']=='route_ghost';modern=constrained(c)
+    recipe=CONSTRAINED_RECIPE if modern else RECIPE;predecessor=CONSTRAINED_PREDECESSOR if modern else PREDECESSOR
+    require(c['mode'] in ('route_ghost','development_discovery') and c['response_search']==recipe and
+        c['righting_spec']==spec(route=route,protected=modern) and c['predecessor']==predecessor and
+        c['predictor_component']==probe.ACTUATOR_COMPONENT and c['seed']==recipe['seed'] and
+        c['outer_steps']==recipe['route_outer_steps' if route else 'search_outer_steps'] and
         c['capture_mode']=='full' and c['maximum_worlds_per_batch']==4 and
         c['readback']==dict(mode='shared_snapshot',reference_check=False) and c.get('retain_planning_state') is True and
         c['trajectory_screen']==trajectory.POLICY and c['trajectory_reference_by_body']==[2]*len(c['righting_spec']['descriptors']) and
         not any(k in c for k in ('compact_capture','response_probe','post_native_path_screen','contact_reactions')),
         'Response search frozen population or scope')
-    source_document(PREDECESSOR)
+    source_document(predecessor)
     component=source_document(probe.ACTUATOR_COMPONENT)
     for pin in component['source_pins']:source_document_bytes(pin)
 
@@ -108,11 +154,12 @@ def source_document_bytes(pin):
 
 def source_dependencies(c):
     if 'response_search' not in c:return []
-    component=source_document(probe.ACTUATOR_COMPONENT)
-    return [ROOT/p['path'] for p in (POPULATION,PREDECESSOR,probe.ACTUATOR_COMPONENT,*component['source_pins'])]+[
+    component=source_document(probe.ACTUATOR_COMPONENT);modern=constrained(c);version='v2' if modern else 'v1'
+    predecessor=CONSTRAINED_PREDECESSOR if modern else PREDECESSOR
+    return [ROOT/p['path'] for p in (POPULATION,predecessor,probe.ACTUATOR_COMPONENT,*component['source_pins'])]+[
         ROOT/'sdk/discovery/coupled_contact_response_plan_v2.json',
         ROOT/'sdk/discovery/creature_response_search.py',ROOT/'sdk/discovery/test_creature_response_search.py',
-        ROOT/'sdk/discovery/creature_response_search_route_v1.json',ROOT/'sdk/discovery/creature_response_search_v1.json']
+        ROOT/f'sdk/discovery/creature_response_search_route_{version}.json',ROOT/f'sdk/discovery/creature_response_search_{version}.json']
 
 
 def observe(controller,observation,native):
@@ -129,6 +176,7 @@ class SearchController(righting.RightingController):
         self.response_state=dict(action_index=0,next_replan_step=0) if active else None
         self.response_model=CoupledBody(self.spec) if active else None
         self.actuators=actuator_parameters(self.creature) if active else None
+        self.response_config=settings(self.creature) if active else None
 
     def plan(self,observation):
         if self.response_model is None:return super().plan(observation)
@@ -142,6 +190,8 @@ class SearchController(righting.RightingController):
         p=self.candidate['response_search'];before=copy.deepcopy(self.response_state);after=copy.deepcopy(before)
         actions=probe.candidates(self.creature,self.candidate,state,self.previous,base)
         actions[0]=dict(commands=copy.deepcopy(base['resolution']['ordered_commands']),targets=base['native_targets'][:])
+        if p['schema_version']==CONSTRAINED_SCHEMA:
+            return constraints.plan(self,base,observation,supplied,actions)
         predictions=[];desired=None;selected=0
         if base['resolution']['phase']=='upright_stance':
             reason='upright_stance';after=dict(action_index=0,next_replan_step=self.step_index+1)
@@ -194,34 +244,52 @@ class SearchBatch(righting.RightingBatch):
     Controller=SearchController
 
 
-def initial_metrics():
-    return {'response_search_'+name:0 for name in ('rows','replans','holds','upright','unchanged','failures','nonzero_actions')}
+def initial_metrics(c=None):
+    names=('rows','replans','holds','upright','unchanged','failures','nonzero_actions')
+    return {'response_search_'+name:0 for name in names+(CONSTRAINT_METRICS if c and constrained(c) else ())}
 
 
 def measure_control(metric,row):
     decision=row['resolution'].get('response_search')
     if decision is None:return
-    require(decision['selection_reason'] in REASONS and type(decision['applied_action']) is int and
-        0<=decision['applied_action']<9 and decision['model_ordering_qualified'] is False and
+    modern=decision['schema_version']==CONSTRAINED_SCHEMA
+    reasons=dict(REASONS,braking_withdrawal='brakes') if modern else REASONS
+    require(decision['selection_reason'] in reasons and type(decision['applied_action']) is int and
+        0<=decision['applied_action']<(10 if modern else 9) and decision['model_ordering_qualified'] is False and
         decision['recovery_benefit_established'] is False,'Response search control accounting')
     metric['response_search_rows']+=1
-    metric['response_search_'+REASONS[decision['selection_reason']]]+=1
-    metric['response_search_nonzero_actions']+=int(decision['applied_action']!=0)
+    metric['response_search_'+reasons[decision['selection_reason']]]+=1
+    metric['response_search_nonzero_actions']+=int(0<decision['applied_action']<9)
+    if modern:
+        protection=decision['constraints']
+        require(protection['stopping_guaranteed'] is False,'Response constraint safety overclaim')
+        metric['response_search_constraint_rows']+=1
+        metric['response_search_constraint_guarded_rows']+=int(protection['guarded_joint_count']>0)
+        metric['response_search_constraint_infeasible_rows']+=int(any(not p['feasible'] for p in decision['predictions']))
+        metric['response_search_constraint_forced_replans']+=int(protection['replan_trigger']=='held_became_infeasible')
+        if decision['applied_action']==9:require(row['native_targets']==[0.]*8,'Response braking withdrawal must be zero target')
 
 
 def validate_metrics(c,meta,metric):
-    require(all(type(metric[k]) is int and 0<=metric[k]<=c['outer_steps'] for k in initial_metrics()),
+    require(all(type(metric[k]) is int and 0<=metric[k]<=c['outer_steps'] for k in initial_metrics(c)),
         'Response search finite control counts')
-    active='response_search' in c['righting_spec']['profiles'][meta['candidate_index']]
-    require(metric['response_search_rows']==(c['outer_steps'] if active else 0) and
-        sum(metric['response_search_'+k] for k in REASONS.values())==metric['response_search_rows'] and
+    p=c['righting_spec']['profiles'][meta['candidate_index']].get('response_search')
+    reasons=list(REASONS.values())+(['brakes'] if constrained(c) else [])
+    require(metric['response_search_rows']==(c['outer_steps'] if p else 0) and
+        sum(metric['response_search_'+k] for k in reasons)==metric['response_search_rows'] and
         metric['response_search_nonzero_actions']<=metric['response_search_rows'], 'Response search control denominator')
+    if constrained(c):
+        modern=p is not None and p['schema_version']==CONSTRAINED_SCHEMA
+        require(metric['response_search_constraint_rows']==(c['outer_steps'] if modern else 0)
+            and all(metric['response_search_'+k]<=metric['response_search_constraint_rows'] for k in CONSTRAINT_METRICS),
+            'Response constraint denominator')
 
 
 def verify_route(folder,receipt):
     c=receipt['contract'];audit=receipt['audit']
+    modern=constrained(c);steps=181 if modern else 61;total=10*steps
     require(c['mode']=='route_ghost' and audit['ok'] and not audit['synthetic'] and
-        audit['controller_rows_replayed']==610 and audit['native_rows_verified']==3050,'Response search route replay')
+        audit['controller_rows_replayed']==total and audit['native_rows_verified']==5*total,'Response search route replay')
     rows=[]
     for meta,metric in zip(c['righting_metadata'],audit['metrics'],strict=True):
         validate_metrics(c,meta,metric)
@@ -229,10 +297,12 @@ def verify_route(folder,receipt):
         if p is None:continue
         require(metric['response_search_failures']==0,'Response search route model withdrawal')
         if meta['start_id']=='upright':require(metric['response_search_upright']>0,'Response search stance withdrawal missing')
-        elif p['selection']=='unchanged':require(metric['response_search_unchanged']==61,'Response search unchanged route missing')
+        elif p['selection']=='unchanged':require(metric['response_search_unchanged']==steps,'Response search unchanged route missing')
         else:require(metric['response_search_replans']>=3 and metric['response_search_holds']>0 and
             metric['response_search_nonzero_actions']>0,'Response search recurring native action coverage')
-        rows.append(dict(cell_id=meta['cell_id'],**{k:metric[k] for k in initial_metrics()}))
+        if modern and meta['start_id']=='inverted' and p['schema_version']==CONSTRAINED_SCHEMA:
+            require(metric['response_search_constraint_guarded_rows']>0,'Response native braking reserve coverage missing')
+        rows.append(dict(cell_id=meta['cell_id'],**{k:metric[k] for k in initial_metrics(c)}))
     require(len(rows)==6,'Response search route population')
     return dict(complete=True,cells=rows,worlds=10,recovery_benefit_established=False,physical_acceptance_authority=False)
 
@@ -245,7 +315,7 @@ def route_receipt(path,c,source_commit,bindings,evidence_root):
     path=Path(path).resolve(strict=True);evidence_root=Path(evidence_root).resolve(strict=True)
     require(path.is_relative_to(evidence_root) and path.name=='receipt.json','Response route evidence boundary')
     raw=path.read_bytes();receipt=json.loads(raw)
-    require(c['mode']=='development_discovery' and receipt['contract']==declaration(ROOT/'sdk/discovery/creature_response_search_route_v1.json') and
+    require(c['mode']=='development_discovery' and receipt['contract']==declaration(ROOT/('sdk/discovery/creature_response_search_route_v2.json' if constrained(c) else 'sdk/discovery/creature_response_search_route_v1.json')) and
         receipt['source_commit']==source_commit and receipt['source_status']==[] and receipt['bindings']==bindings and
         receipt['ok'] is True and receipt['synthetic'] is False and receipt['physical_started'] is True and
         receipt['source_runtime_unchanged'] is True and receipt['zero_world_gate_passed'] is True and

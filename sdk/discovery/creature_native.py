@@ -68,7 +68,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_contact_envelope.py", "actuation_recovery_mechanics.py", "test_actuation_recovery_mechanics.py",
                  "creature_response_probe.py", "test_creature_response_probe.py", "coupled_contact_response.py",
                  "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py", "test_creature_response_matching.py",
-                 "creature_response_search.py", "test_creature_response_search.py"]
+                 "creature_response_search.py", "test_creature_response_search.py",
+                 "creature_response_constraints.py", "test_creature_response_constraints.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -132,7 +133,9 @@ def gates(c):
                 ("response-metric-reader", "test_check_coupled_contact_response", 6),
                 ("coupled-actuator", "test_coupled_actuator_response", 13),
                 ("response-actuator-route", "test_creature_response_actuator", 3),
-                ("response-search", "test_creature_response_search", 15)] if 'response_search' in c else []))
+                ("response-search", "test_creature_response_search", 15)] if 'response_search' in c else [])
+            + ([("creature-joint-braking", "test_creature_joint_braking", 10),
+                ("response-constraints", "test_creature_response_constraints", 22)] if response_search.constrained(c) else []))
 
 
 def sequence_enabled(c):
@@ -189,7 +192,7 @@ def declaration(path):
     response_search.validate(c)
     reactions.enabled(c)
     batch_limit(c)
-    require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 256)
+    require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 288 if response_search.constrained(c) else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
             and type(c["seed"]) is int and 0 <= c["seed"] <= 2147483647
             and c["internal_steps_per_outer"] == 5 and c["timestep_s"] == bridge.INTERNAL_DT_S,
@@ -207,7 +210,7 @@ def declaration(path):
                     for v in c["initial_lateral_velocities_m_s"]), "Creature initial velocities")
     require(type(c["maximum_trace_bytes_per_stream"]) is int
             and c["maximum_trace_bytes_per_stream"] in ((268435456, 536870912) if confirming else (268435456,))
-            and all(type(c[k]) is int and 60 <= c[k] <= (14400 if confirming else 3600)
+            and all(type(c[k]) is int and 60 <= c[k] <= (14400 if confirming else 7200 if response_search.constrained(c) else 3600)
                     for k in ("maximum_worker_wall_seconds", "maximum_reader_wall_seconds"))
             and c["minimum_free_storage_bytes"] >= 2**30, "Creature resource bounds")
     if confirming:
@@ -617,7 +620,7 @@ class StreamValidator:
                     metric.update(righting.sequence.initial_work())
                 if "trajectory_screen" in c:
                     metric.update(trajectory.initial_metrics())
-                if 'response_search' in c:metric.update(response_search.initial_metrics())
+                if 'response_search' in c:metric.update(response_search.initial_metrics(c))
 
     def control(self, row):
         cell, outer = row["cell"], row["outer_step"]

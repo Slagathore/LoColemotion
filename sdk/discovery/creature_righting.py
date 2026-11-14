@@ -167,13 +167,17 @@ def expand(spec):
             and len(bodies) <= 64 and 2 <= len(candidates) <= profile_limit and len(conditions) <= 4
             and len(starts) <= 4,
             "Righting population budget")
+    # The constrained feedback cohort adds fresh signed comparators; native
+    # declaration validation still requires its exact 288-world population.
+    world_limit = 288 if any(p.get("response_search", {}).get("schema_version") ==
+        "locolemotion_response_search_policy_v2" for p in candidates if type(p) is dict) else 256
     assignments = spec["profiles_by_body"] if assigned else [list(range(len(candidates))) for _ in bodies]
     require(type(assignments) is list and len(assignments) == len(bodies)
             and all(type(row) is list and len(row) >= 2 and row[:2] == [0, 1]
                     and all(type(i) is int and 0 <= i < len(candidates) for i in row)
                     and row == sorted(set(row)) for row in assignments)
             and set(i for row in assignments for i in row) == set(range(len(candidates)))
-            and sum(map(len, assignments))*len(conditions)*len(starts) <= 256,
+            and sum(map(len, assignments))*len(conditions)*len(starts) <= world_limit,
             "Righting assigned profiles or world budget")
     for body in bodies:
         validate_descriptor(body)
