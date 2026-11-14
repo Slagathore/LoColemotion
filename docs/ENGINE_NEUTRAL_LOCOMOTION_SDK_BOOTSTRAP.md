@@ -161,17 +161,25 @@ on paired retained inputs. All 5,760 geometry outputs match exactly; the full
 Sixty-eight focused controls pass; no new worlds or capture changes occur.
 Native throughput and Studio startup gains remain unmeasured.
 
-The [moment handoff component](../sdk/discovery/creature_moment_handoff_component_v1.json)
-passes all 248 controls in 194.453 seconds, with zero worlds and an exact
-7,200-decision, 36,000-sample legacy replay. Thirty-six variants combine measured
-upright steering with continuous, clock and measured-stall release schedules.
-Each of 24 bodies gets six variants and three fresh comparators, including its
-selected prior profile. A twelve-world full route must cover steering, forces,
-release and reacquisition before the 216-world compact search. Progress is
-measured against that fresh selected reference; prospective retained-path
-screening precedes lead promotion. Full-capture varied-start confirmation,
-collision-response qualification, actual recovery and the complete Godot
-handoff remain ahead. No recovery controller has been adopted.
+The [moment handoff native result](../sdk/discovery/creature_moment_handoff_native_result_v1.json)
+closes source 96b3e9cb after 248 controls before each run. Twelve full-route
+worlds replay 8,640 decisions and 43,200 samples with steering, force, release,
+reacquisition and both release triggers. The 216 twelve-second search worlds
+reconstruct 311,040 compact records and 1,555,200 samples; all 3,525 artifacts,
+1,241 source bindings, 1,359 runtime bindings and 26 stage cleanups verify.
+All 24 body shapes and model XML files match the preceding cohort.
+
+All 216 worlds fail recovery with zero joint violations or progress leads.
+Only five of 144 new-controller worlds beat their fresh selected reference,
+all with continuous steering. Best new rotation is 23.940 degrees and the
+largest reference gain is 3.300, below the five-degree rule. Clock-release and
+stall-release worlds never beat their own reference in this finite assignment.
+The 9.478-degree largest gain over the old timed comparator does not change
+that result. The prospectively declared path screen selects zero paths and
+provides no new clearance evidence. Eleven cohorts retain 2,488 valid recovery
+failures. Diagnose the retained losses before another broad successor, keeping
+the previous useful body-specific behavior as the starting point. No recovery
+controller, learned adaptation or Studio handoff has been adopted.
 
 Current licensing was deliberately changed on 2026-11-01:
 the covered paths use AGPL-3.0-only or the commercial agreement.
