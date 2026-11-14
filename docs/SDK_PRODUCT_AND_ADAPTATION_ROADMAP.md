@@ -17,18 +17,20 @@ comparison is closed; coupled contact recovery is next.
 | [Walking confirmation](../sdk/discovery/creature_confirmation_native_result_v1.json) | 284 fresh twelve-second worlds; 221 eligible, 63 failed. Both-start groups: baseline 30/48, frozen choice 33/48, fixed profile 27 36/48. Both declared choice comparisons fail; no learned Tier 2 |
 | [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | Thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
 | [Contact-force diagnosis](../sdk/discovery/creature_contact_reactions_result_v1.json) | Zero new worlds; all 12,960 decisions and 64,800 solved samples read. On bodies 0/16, requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, net 0.013/0.012 Nm. Body 21 makes no positive request. Foot-only moment misses the opposing torso reaction |
+| [Coupled response model](../sdk/discovery/coupled_contact_response_result_v1.json) | 20 controls; 432 retained states and 1,296 converged predictions. All-contact mean rotation error falls 63%/56%/36% against feet-only, passing the declared 20% per-body screen. 66 samples get worse, including a third-body 0.810 rad/s outlier. No new worlds or alternative-action ranking proof |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
 1. **Search recovery using the whole body's contact response.** The
    [36-world diagnostic](../sdk/discovery/creature_torque_map_route_native_v3.json)
    verifies solved reactions and empty-cone fallback, with no recovery.
-   Its [force comparison](../sdk/discovery/creature_contact_reactions_result_v1.json)
-   shows that accurate initial joint torque and a strong foot moment can coexist
-   with almost cancelling torso reaction. Choose a coupled contact/support
-   trajectory family and rank measured motion, including torso support.
-   Do not repeat the unchanged foot-only force grid. Keep failures and diverse
-   body outcomes; confirm useful leads in fresh full-capture worlds.
+   The [coupled predictor](../sdk/discovery/coupled_contact_response_result_v1.json)
+   passes its retained-state mean-error screen, with substantial joint-velocity
+   error and worse individual states preserved. Bind fresh whole-body contacts
+   at the decision boundary and test alternative-action ordering in a small
+   fresh native cohort before using it to rank broad factored body/controller
+   populations. Keep failures and diverse outcomes; confirm useful leads in
+   fresh full-capture worlds. Do not repeat the unchanged foot-only force grid.
 2. **Complete the Studio recovery handoff with a useful controller.** Preserve
    fresh observations, body identity, motor ownership, native clocks and
    measured work. The required run is walking, fall, active recovery, completed

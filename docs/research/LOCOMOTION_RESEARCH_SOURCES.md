@@ -3870,3 +3870,21 @@ placement at the lowest collision point and fixed-pose interval comparisons
 omit inter-pose work, dynamic contacts and collision loss. They neither bound
 a real trajectory's energy barrier nor prove the cause of the native failures
 or righting impossibility. No new worlds, training or recovery claim is made.
+
+## Coupled contact response - 2026-11-14
+
+[MuJoCo computation](https://mujoco.readthedocs.io/en/stable/computation/index.html)
+describes whole-system inertia, velocity-dependent bias, actuation and contact
+forces in one constrained dynamics problem. Its soft-contact formulation and
+implicit integration differ from a rigid inelastic impulse projection. Read
+on 2026-11-14. This motivates including torso and limb contacts together after
+the retained native force diagnosis found opposing torso moments.
+
+The [portable response screen](../../sdk/discovery/coupled_contact_response_result_v1.json)
+uses a floating-body mass matrix, velocity bias and a unilateral friction
+pyramid. It passes the prospective per-body mean rotation-error screen on saved
+states, while retaining 66 worsened samples and substantial joint-velocity
+error. The single-interval model holds the supplied contact manifold and omits
+native softness, future contact generation and implicit actuator derivatives.
+Inference: it warrants testing alternative-action ordering, not assuming that
+ordering, rollout accuracy, recovery benefit or native solver equivalence.

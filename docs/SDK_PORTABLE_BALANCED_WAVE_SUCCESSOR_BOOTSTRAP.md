@@ -3,6 +3,14 @@
 ## Current SDK2 native evidence - 2026-11-14
 
 The [current roadmap](SDK_PRODUCT_AND_ADAPTATION_ROADMAP.md) owns work order.
+Latest: the [coupled contact response screen](../sdk/discovery/coupled_contact_response_result_v1.json)
+passes 20 controls and its declared 20% per-body reduction in mean rotation
+prediction error on 432 retained states. The observed reductions are 63%, 56%
+and 36%; all 1,296 predictions converge. Sixty-six states worsen, with a third-body
+maximum of 0.810 rad/s; joint-velocity errors remain substantial. No new worlds
+or native controller adoption occurs. Fresh alternative-action ranking is the
+next prerequisite for broad discovery; this exposed screen proves no recovery.
+
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
 exposed shapes. Sixteen unchanged anchor/sweep profiles each run on four

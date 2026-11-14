@@ -1,0 +1,128 @@
+{
+  "schema_version": "locolemotion_coupled_contact_response_plan_v1",
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "retained_response_model_development",
+    "question_class": "development"
+  },
+  "source_parent_commit": "94a60771bc4f0357d3431ae282e886c741d6c0a6",
+  "question": "Does a portable floating-body impulse predictor account for opposing torso support better than a feet-only predictor on fixed retained native states?",
+  "source_pins": [
+    {
+      "path": "sdk/discovery/coupled_contact_response.py",
+      "sha256": "3c00d0c4d6611458fb2f1193b3e55046ce3947678472f262ecd6501a54d86162",
+      "byte_length": 9290
+    },
+    {
+      "path": "sdk/discovery/evaluate_coupled_contact_response.py",
+      "sha256": "8c41496e465aeeca8c0a8efb45ebfd90f946891499cb5ae95cfbc6835b069df6",
+      "byte_length": 9904
+    },
+    {
+      "path": "sdk/discovery/test_coupled_contact_response.py",
+      "sha256": "aab0c41fd0ee7aa834b23a97413b866c597ab4d184bf541978044db93a514314",
+      "byte_length": 8438
+    },
+    {
+      "path": "sdk/discovery/actuation_recovery_mechanics.py",
+      "sha256": "1da330ed9e39fd249f8ee21fc9316e82b14fe7259d6c124099a76e6ece1b976e",
+      "byte_length": 10269
+    },
+    {
+      "path": "sdk/discovery/test_actuation_recovery_mechanics.py",
+      "sha256": "03080471ae7f82a43f944cb9711dcc5c22c93f7b425692607a8b7e21b647909b",
+      "byte_length": 14479
+    },
+    {
+      "path": "sdk/discovery/creature_righting_sequence.py",
+      "sha256": "34866a12e3333f230f48a21d945942544360fa67cdd2fa661053384db76f4bc0",
+      "byte_length": 12311
+    },
+    {
+      "path": "sdk/discovery/creature_body_moment_diagnosis.py",
+      "sha256": "eefc8a3eef4de0136129d3e4a19cc38130c9ccdeffeff0897722f9d18cdf7a81",
+      "byte_length": 48812
+    },
+    {
+      "path": "sdk/discovery/creature_trajectory_diagnosis.py",
+      "sha256": "b96fe25e8e9429fd4f1a3cf62d00f46b5dc12c88f409ad3e880a25e993100657",
+      "byte_length": 18391
+    },
+    {
+      "path": "sdk/discovery/creature_contact_reactions_diagnosis.py",
+      "sha256": "5febcac654bc8afa1d6aafcbf2ebbb65343a593314d88c96924d6e1d3acfafbc",
+      "byte_length": 15391
+    },
+    {
+      "path": "sdk/adapters/mujoco/sporespore_mujoco_adapter/selected_policy_development.py",
+      "sha256": "306669481601cc91c8146e84a202a57228672e23c3f9daa0c531d2eb9d077e46",
+      "byte_length": 49444
+    },
+    {
+      "path": "sdk/discovery/creature_torque_map_route_native_v3.json",
+      "sha256": "ad40a79f6c1d59e9dfd618bdd1605b6c433d31ef2ac83293fb429fe39438a99c",
+      "byte_length": 12062
+    }
+  ],
+  "input": {
+    "archive_relative_path": "sdk2-creature-torque-map-route-v3-42b47fe7e44847d18967d04fee9b1731",
+    "receipt_sha256": "731524a2040e467a1de49aaae193a4205d8298c57a4f08f19bcaa3cdcf5ac493",
+    "native_worlds": 36,
+    "bodies": 3,
+    "outer_steps": 360
+  },
+  "sample_outer_steps": [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330
+  ],
+  "expected_samples": 432,
+  "variants": [
+    "free",
+    "feet",
+    "all"
+  ],
+  "validation": {
+    "unit_controls": 14,
+    "maximum_geometry_error_m": 2e-06,
+    "maximum_kinetic_error_j": 1e-08,
+    "all_predictions_must_converge": true
+  },
+  "criterion": {
+    "metric": "Mean Euclidean root angular velocity prediction error at the first subsequent native substep",
+    "minimum_relative_error_reduction_against_feet_per_body": 0.2,
+    "all_three_bodies_required": true,
+    "purpose": "Necessary retained-state screen before integrating a candidate ranker; never a recovery or counterfactual validation"
+  },
+  "parameters": {
+    "interval": "Original model timestep",
+    "friction": "Original ground sliding coefficient",
+    "penetration_recovery_time": "Original ground solref time constant",
+    "impulse_regularization": 1e-08,
+    "kkt_tolerance": 1e-09,
+    "maximum_iterations": 1024
+  },
+  "physics_limits": [
+    "Inelastic instantaneous impulse projection, not native implicitfast integration",
+    "L1 friction pyramid, not the native elliptic cone",
+    "Supplied measured contact manifold is held for one interval",
+    "No future contact generation, self-contact, joint-limit force, actuator derivative or Coriolis derivative integration",
+    "No evidence yet that unobserved candidate actions are ranked correctly"
+  ],
+  "reference": "https://mujoco.readthedocs.io/en/stable/computation/index.html",
+  "world_build_count": 0,
+  "solver_steps": 0,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "training_data_authority": false
+}

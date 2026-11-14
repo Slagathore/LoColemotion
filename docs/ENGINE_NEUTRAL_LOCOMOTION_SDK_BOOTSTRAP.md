@@ -12,6 +12,7 @@ historical instructions.
 
 | Area | Verified boundary |
 | --- | --- |
+| Coupled contact response | [Retained-state screen](../sdk/discovery/coupled_contact_response_result_v1.json): 20 controls, 432 states, 1,296 converged predictions. Whole-body contacts reduce mean angular-velocity error by 63%/56%/36% on three bodies; 66 states worsen and joint-velocity errors remain substantial. Zero new worlds; alternative-action ranking, recovery and native adoption remain unverified |
 | SDK1 package | [20/20 bounded milestones](../sdk/release/sdk1_package_acceptance_closure_v1.json); full-program progress remains 19/25 with six deferred gates |
 | Studio | Live native routes and installed-package evidence exist; fast Godot recovery handoff and current startup/stepping performance remain product work |
 | Studio fresh observation | [Native boundary route](../sdk/explorer/studio/live_recovery_epoch_native_result_v1.json): one 360-step world; three measured boundaries on the same nine body instances and two staging pairs independently reconstructed exactly |
