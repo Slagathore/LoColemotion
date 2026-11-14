@@ -51,6 +51,8 @@ func _connect_and_run() -> void:
 	await _run()
 
 func _send(value: Dictionary) -> void:
+	if value.get("message_type") == "completed" and is_instance_valid(_sdk):
+		value.summary["serializer_cache"] = _sdk.cache_summary()
 	value.merge({"schema_version":PROTOCOL,"session_id":_diagnostic.id,"engine_id":"godot_jolt","scientific_evidence_authority":false})
 	if _peer.put_data((JSON.stringify(value)+"\n").to_utf8_buffer()) != OK:
 		PhysicsServer3D.set_active(false); quit(8)
@@ -62,8 +64,12 @@ func _verify_l15_prepared_context_before_world_v1() -> bool:
 		var expected: String = _sdk.native.canonicalize_json(wire)
 		if _sdk.canonicalize_json(wire) != expected or _sdk.canonicalize_json(wire) != expected:
 			_abort("EXPLORER_CANONICAL_CACHE_MISMATCH"); return false
+	var serializer_check: Dictionary = preload("res://sdk/explorer/native_recovery/test_memoized_sdk.gd").run(_sdk.native)
+	if serializer_check.ok != true:
+		_abort("EXPLORER_SERIALIZER_CACHE_CONTROL_FAILED"); return false
 	if _check_only:
 		var check: Dictionary = zero_world_contract_v12(_sdk,_context)
+		check["serializer_cache_controls"] = serializer_check
 		var schedule := _check_diagnostic_schedule()
 		check["explorer_schedule"] = schedule
 		check.ok = check.get("ok") == true and schedule.get("ok") == true

@@ -190,8 +190,13 @@ observed trajectory progress. Do not repeat the unchanged foot-only grid.
 Complete the bounded matched Studio profile first, then return to broad
 factored search and fresh full-capture confirmation of useful diverse leads.
 The [walking profiler component](../sdk/explorer/studio/walking_performance_component_v1.json)
-now passes the full zero-world gate and three timing controls. Its two fresh
-fifteen-second baselines are declared but unrun; performance remains open.
+passes the full zero-world gate and three timing controls. Its two fresh
+baselines completed: 19.200/18.611-second stand-up, then 14.967/14.963-second
+walking intervals. Exact body/contact frames and full controller rows match.
+The [serializer cache successor](../sdk/explorer/studio/walking_performance_cache_component_v1.json)
+retains recently used exact requests; ten cache controls and the complete
+zero-world route pass. Four fresh matched runs remain pending; no speed
+improvement or real-time guarantee is established.
 Thirteen cohorts retain 2,896 valid recovery failures. No recovery, learned
 selection, real-time or Godot handoff is qualified.
 

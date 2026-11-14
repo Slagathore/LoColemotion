@@ -5,23 +5,53 @@ var cache: Dictionary = {}
 var hits := 0
 var misses := 0
 var saved_us := 0
+# Historical byte_count counts String characters, not allocated bytes.
 var byte_count := 0
+var max_cache_characters := 16000000
+var eviction_policy := "lru"
+var evictions := 0
+var clears := 0
+var oversized_skips := 0
 func _init(value: Object) -> void:
 	native = value
 func canonicalize_json(input: String) -> String:
 	if cache.has(input):
 		hits += 1
-		saved_us += cache[input][1]
-		return cache[input][0]
+		var cached: Array = cache[input]
+		saved_us += cached[1]
+		if eviction_policy == "lru":
+			# Dictionary insertion order is the recency queue. Strings are exact keys.
+			cache.erase(input)
+			cache[input] = cached
+		return cached[0]
 	var start := Time.get_ticks_usec()
 	var result: String = native.canonicalize_json(input)
 	var duration := Time.get_ticks_usec()-start
 	misses += 1
-	if byte_count+input.length()+result.length() > 16000000:
-		cache.clear(); byte_count=0
+	var size := input.length()+result.length()
+	if eviction_policy == "clear_all":
+		# Retain the predecessor policy only for fresh matched diagnostics.
+		if byte_count+size > max_cache_characters:
+			cache.clear(); byte_count=0; clears+=1
+	else:
+		# One large request must not evict the working set or exceed its bound.
+		if size > max_cache_characters:
+			oversized_skips += 1
+			return result
+		while byte_count+size > max_cache_characters and not cache.is_empty():
+			var oldest: String = cache.keys()[0]
+			byte_count -= oldest.length()+String(cache[oldest][0]).length()
+			cache.erase(oldest)
+			evictions += 1
 	cache[input] = [result,duration]
-	byte_count += input.length()+result.length()
+	byte_count += size
 	return result
+
+func cache_summary() -> Dictionary:
+	return {"policy":eviction_policy,"hits":hits,"misses":misses,"evictions":evictions,
+		"clears":clears,"oversized_skips":oversized_skips,"entries":cache.size(),
+		"retained_characters":byte_count,"maximum_characters":max_cache_characters,
+		"scope":"Exact-request pure serialization only; controller calls always execute."}
 
 func version():
 	return native.version()
