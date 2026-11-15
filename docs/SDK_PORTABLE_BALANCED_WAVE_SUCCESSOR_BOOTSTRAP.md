@@ -145,12 +145,28 @@ model withdrawal, upright dwell or recovery. Maximum candidate rotation is
 22.893 degrees from inversion. Original discovery leads remain recorded, but
 none earns advancement through this confirmation; no controller is adopted.
 
-Next, reuse the retained joint-limit reader to measure these crossings without
-new worlds. Use that diagnosis to declare distinct broad trajectory proposals
-across actual bodies and both starting-roll signs, reusing existing pose,
-progress and contact transitions. Useful joint-clean discovery leads still
-need fresh full-horizon confirmation. Preserve original criteria and all
-negative outcomes; no stopping guarantee, training or release authority.
+The [confirmation joint-limit diagnosis](../sdk/discovery/creature_response_joint_limit_result_v2.json)
+reuses the unchanged reader after 22 controls. Independent scalar recount
+covers all 92 episodes, 132,480 decisions and 662,400 samples with no new worlds.
+All twenty first crossings occur during zero-target braking withdrawal; the
+affected joints are guarded, moving outward and receiving opposing motor
+force, with none at its force cap. Maximum excursions per failing episode are
+0.000551-0.001194 rad. First crossings occur at 1.913-11.813 seconds; the
+original joint-limit refusals remain failures. All 66 references stay clean.
+
+Two crossings coincide with the current forecast's exact next native step.
+Both zero-target forecasts already project a joint outside a limit; their
+maximum joint-speed errors are .03144 and .08693 rad/s. The other eighteen
+crossings cannot be assigned that one-step timing. All twenty have torso and
+distal contact, which does not isolate a cause. Zero velocity is damping, not
+a position-restoring command; no remedy has been demonstrated.
+
+Next, declare a broad staged-trajectory successor to test bounded inward
+repositioning against the existing withdrawal across bodies and both starts.
+Reuse the existing pose, progress and contact transitions, runner and reader.
+Compact discovery requires its same-freeze full-capture canary; useful,
+joint-clean leads require fresh twelve-second confirmation. Keep original
+criteria and all negatives; no stopping, recovery, training or release authority.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
