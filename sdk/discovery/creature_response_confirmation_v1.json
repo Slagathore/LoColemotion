@@ -1,0 +1,891 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "retain_planning_state": true,
+  "controller_component": {
+    "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+    "sha256": "ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d"
+  },
+  "predecessor": {
+    "path": "sdk/discovery/creature_response_search_native_result_v2.json",
+    "sha256": "1166c3d4f31d62016ef47125c400f4664f9e8feaf50f383ed74e0357ad389765"
+  },
+  "campaign_id": "creature_response_confirmation_v1",
+  "mode": "development_discovery",
+  "capture_mode": "full",
+  "outer_steps": 1440,
+  "maximum_worlds_per_batch": 4,
+  "maximum_worker_wall_seconds": 7200,
+  "maximum_reader_wall_seconds": 7200,
+  "seed": 1061147,
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_discovery",
+    "question_class": "finite decision"
+  },
+  "purpose": "Confirm all thirteen retained constrained-feedback body/profile leads at both fresh initial rolls against fresh brake, timed and unchanged references.",
+  "righting_spec": {
+    "schema_version": "locolemotion_creature_righting_assigned_population_v1",
+    "descriptors": [
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6119",
+        "torso_length_scale": 0.96862467989992,
+        "torso_width_scale": 0.9000615925062592,
+        "upper_length_fraction": 0.5442827379201266,
+        "hip_span_scale": 1.0212948075778072,
+        "foot_radius_scale": 0.9138043803660675,
+        "front_limb_mass_scale": 0.9144451240111248
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_004",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_012",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_015",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14049",
+        "torso_length_scale": 0.9693842381400486,
+        "torso_width_scale": 0.9178160386201497,
+        "upper_length_fraction": 0.49726555123628713,
+        "hip_span_scale": 1.0527086605207783,
+        "foot_radius_scale": 1.0408573701374366,
+        "front_limb_mass_scale": 0.9778342627635772
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_a",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 1.1,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 1.1
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "route_shape_b",
+        "torso_length_scale": 1.1,
+        "torso_width_scale": 0.9,
+        "upper_length_fraction": 0.55,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 1.1,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_6105",
+        "torso_length_scale": 1.0052902267093982,
+        "torso_width_scale": 1.0935019718002301,
+        "upper_length_fraction": 0.48646168914541177,
+        "hip_span_scale": 0.9793139184078468,
+        "foot_radius_scale": 0.9242928356454458,
+        "front_limb_mass_scale": 1.038380685527432
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "contact_envelope_corner_016",
+        "torso_length_scale": 0.9,
+        "torso_width_scale": 1.1,
+        "upper_length_fraction": 0.48,
+        "hip_span_scale": 0.9,
+        "foot_radius_scale": 0.9,
+        "front_limb_mass_scale": 0.9
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14222",
+        "torso_length_scale": 1.0010205868866808,
+        "torso_width_scale": 0.9522082339162492,
+        "upper_length_fraction": 0.4805027388246969,
+        "hip_span_scale": 1.0063895042302062,
+        "foot_radius_scale": 1.0637319471602635,
+        "front_limb_mass_scale": 0.9180863209576547
+      },
+      {
+        "schema_version": "sporespore_bounded_quadruped_descriptor_v1",
+        "morphology_id": "explorer_seed_14255",
+        "torso_length_scale": 1.0996389771810824,
+        "torso_width_scale": 0.9746564351196068,
+        "upper_length_fraction": 0.5232139943081918,
+        "hip_span_scale": 1.0390308316189403,
+        "foot_radius_scale": 1.0233871435568174,
+        "front_limb_mass_scale": 0.9106030148013037
+      }
+    ],
+    "profiles": [
+      {
+        "half_period_steps": 120,
+        "position_gain_s_inv": 6.0,
+        "maximum_speed_rad_s": 2.5,
+        "maximum_slew_rad_s_per_step": 0.1,
+        "id": "zero_velocity_brake",
+        "mode": "zero_velocity_brake",
+        "pose_a": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "side_timed",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ]
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "response_unchanged",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_search": {
+          "schema_version": "locolemotion_response_search_policy_v1",
+          "selection": "unchanged",
+          "direction": 1,
+          "maximum_rate_rad_s": 0.75,
+          "replan_steps": 6
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "rollneg_fixed_interval",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_search": {
+          "schema_version": "locolemotion_response_search_policy_v2",
+          "selection": "model",
+          "direction": -1,
+          "maximum_rate_rad_s": 0.75,
+          "replan_steps": 6,
+          "reserve_method": "fixed",
+          "feasibility": "interval"
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "rollneg_fixed_stopping",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_search": {
+          "schema_version": "locolemotion_response_search_policy_v2",
+          "selection": "model",
+          "direction": -1,
+          "maximum_rate_rad_s": 0.75,
+          "replan_steps": 6,
+          "reserve_method": "fixed",
+          "feasibility": "stopping"
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "rollneg_coupled_interval",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_search": {
+          "schema_version": "locolemotion_response_search_policy_v2",
+          "selection": "model",
+          "direction": -1,
+          "maximum_rate_rad_s": 0.75,
+          "replan_steps": 6,
+          "reserve_method": "coupled",
+          "feasibility": "interval"
+        }
+      },
+      {
+        "half_period_steps": 240,
+        "position_gain_s_inv": 10.0,
+        "maximum_speed_rad_s": 3.5,
+        "maximum_slew_rad_s_per_step": 0.2,
+        "id": "rollpos_fixed_stopping",
+        "mode": "rock",
+        "pose_a": [
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9,
+          0.0,
+          0.0
+        ],
+        "pose_b": [
+          0.0,
+          0.0,
+          0.9,
+          0.9,
+          0.0,
+          0.0,
+          -0.9,
+          -0.9
+        ],
+        "response_search": {
+          "schema_version": "locolemotion_response_search_policy_v2",
+          "selection": "model",
+          "direction": 1,
+          "maximum_rate_rad_s": 0.75,
+          "replan_steps": 6,
+          "reserve_method": "fixed",
+          "feasibility": "stopping"
+        }
+      }
+    ],
+    "profiles_by_body": [
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        6
+      ],
+      [
+        0,
+        1,
+        2,
+        5
+      ],
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        6
+      ],
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      [
+        0,
+        1,
+        2,
+        4
+      ],
+      [
+        0,
+        1,
+        2,
+        3,
+        6
+      ],
+      [
+        0,
+        1,
+        2,
+        6
+      ],
+      [
+        0,
+        1,
+        2,
+        5
+      ]
+    ],
+    "conditions": [
+      {
+        "id": "nominal",
+        "motor_effectiveness": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "starts": [
+      {
+        "id": "inverted_positive_roll",
+        "roll_rad": 3.0915926535897933
+      },
+      {
+        "id": "inverted_negative_roll",
+        "roll_rad": -3.0915926535897933
+      }
+    ]
+  },
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_response_search.py",
+    "sdk/discovery/creature_response_probe.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/coupled_contact_response.py",
+    "sdk/discovery/creature_trajectory_search.py",
+    "sdk/discovery/creature_response_constraints.py",
+    "sdk/discovery/creature_joint_braking.py",
+    "sdk/discovery/creature_response_confirmation.py"
+  ],
+  "code_path_risks_covered": [
+    "Every selected body and unchanged controller recipe is read from the exact published native result and its bound original declaration.",
+    "Two signed initial rolls are built by the existing initializer; the shared reader checks the first prepared and solver-input arrays and all subsequent continuity.",
+    "Sparse body/profile assignments retain every selected pair and fresh brake, timed and unchanged references at each start.",
+    "Existing full native capture and independent controller replay retain all joint failures, model withdrawals and original recovery outcomes.",
+    "The same body/profile pair must meet the unchanged five-degree gain against both timed and unchanged references with zero joint violations and zero model withdrawals at both starts.",
+    "Missing, duplicate or crossed observations refuse the pair assessment; different winning profiles at different starts never form a confirmed pair.",
+    "The full confirmation requires a completed same-freeze ten-world route with identical source/runtime bindings and complete safety controls."
+  ],
+  "not_covered": [
+    "Successful recovery, controller adoption, learning, held-out generalization, continuous initial-condition coverage or release.",
+    "Native soft-contact equivalence, multistep prediction accuracy, universal action ordering or guaranteed stopping.",
+    "Weakened actuators, impacts, different terrain, different roll offsets, new bodies or tuned controller recipes.",
+    "Live Godot handoff, cross-engine equivalence or real-time performance.",
+    "The two-interval route does not establish recurring controller branches or recovery benefit; those unchanged mechanisms retain their existing zero-world controls and predecessor native observations."
+  ],
+  "route_horizon_rationale": "Thirteen fixed body/profile pairs across eleven bodies each receive two fresh initial rolls at pi minus 0.05 rad and negative pi plus 0.05 rad. Twenty-six candidate episodes and sixty-six fresh reference episodes total ninety-two worlds. Every world runs twelve seconds with full capture and at most four simultaneous worlds; worker and reader caps remain two hours each.",
+  "qualification_economy": "Reuse the native owner, initializer, full capture, controller replay, trajectory metrics and recovery screen. Eight focused zero-world controls add the fixed-pair/both-start invariant. A short route covers only new wiring. Shared replay emits one compact completed-batch progress record; no capture is reduced and no campaign-specific executable auditor is added.",
+  "recovery_benefit_established": false,
+  "controller_adopted": false,
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    },
+    {
+      "name": "coupled-response",
+      "module": "test_coupled_contact_response",
+      "count": 14
+    },
+    {
+      "name": "actuation-mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "response-metric-reader",
+      "module": "test_check_coupled_contact_response",
+      "count": 6
+    },
+    {
+      "name": "coupled-actuator",
+      "module": "test_coupled_actuator_response",
+      "count": 13
+    },
+    {
+      "name": "response-actuator-route",
+      "module": "test_creature_response_actuator",
+      "count": 3
+    },
+    {
+      "name": "response-search",
+      "module": "test_creature_response_search",
+      "count": 15
+    },
+    {
+      "name": "creature-joint-braking",
+      "module": "test_creature_joint_braking",
+      "count": 10
+    },
+    {
+      "name": "response-constraints",
+      "module": "test_creature_response_constraints",
+      "count": 22
+    },
+    {
+      "name": "response-confirmation",
+      "module": "test_creature_response_confirmation",
+      "count": 8
+    }
+  ],
+  "predictor_component": {
+    "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+    "sha256": "ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d"
+  },
+  "response_search": {
+    "schema_version": "locolemotion_response_search_v2",
+    "seed": 1061146,
+    "body_count": 24,
+    "directions": [
+      -1,
+      1
+    ],
+    "maximum_rates_rad_s": [
+      0.75
+    ],
+    "replan_steps": [
+      6
+    ],
+    "assignment": "omit_body_index_modulo_eight",
+    "route_body_indices": [
+      0
+    ],
+    "route_profile_indices": [
+      0,
+      1,
+      2,
+      5,
+      12
+    ],
+    "route_outer_steps": 181,
+    "search_outer_steps": 1440,
+    "tilt_gain_s_inv": 2.0,
+    "action_patterns": [
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      [
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0,
+        -0.0,
+        -1.0
+      ],
+      [
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        -1.0,
+        -1.0,
+        -0.0,
+        -0.0,
+        -1.0,
+        -1.0,
+        -0.0,
+        -0.0
+      ],
+      [
+        1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0,
+        1.0
+      ],
+      [
+        -1.0,
+        -1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        -1.0,
+        -1.0
+      ]
+    ],
+    "score": "negative_squared_root_angular_velocity_error",
+    "upright_withdrawal": "protected_stance_with_feasibility_check",
+    "nonconvergence_withdrawal": "zero_velocity_brake_and_retry_next_interval",
+    "source": {
+      "path": "sdk/discovery/creature_torque_map_v2.json",
+      "sha256": "06a30a7461f28f911b97ef7bb13657a9f1b7db2f01443941e2ea72bda49265b5"
+    },
+    "predictor": {
+      "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+      "sha256": "ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d"
+    },
+    "model_ordering_qualified": false,
+    "recovery_authority": false,
+    "reserve_methods": [
+      "fixed",
+      "coupled"
+    ],
+    "feasibility_checks": [
+      "interval",
+      "stopping"
+    ],
+    "margin_rad": 0.04,
+    "fixed_deceleration_rad_s2": 20.0,
+    "coupled_braking_fraction": 0.25,
+    "coupled_deceleration_bounds_rad_s2": [
+      1.0,
+      200.0
+    ],
+    "low_speed_fallback_rad_s": 0.05,
+    "fresh_references": [
+      "brake",
+      "timed",
+      "unchanged",
+      "unprotected_rollneg",
+      "unprotected_rollpos"
+    ],
+    "infeasibility_withdrawal": "zero_velocity_brake_and_retry_next_interval",
+    "held_pattern_check": "fresh_prediction_every_interval_replan_if_infeasible",
+    "stopping_guaranteed": false
+  },
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "trajectory_reference_by_body": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "discovery_limits": [
+    "All selected bodies and predecessor evidence are exposed development material. A confirmed pair is a finite progress result, not recovery, training or generalization authority.",
+    "The original twelve-second horizon, five-degree gain and zero joint-limit/model-withdrawal criteria are unchanged. Recovery eligibility is evaluated separately with its unchanged supported-upright dwell criterion.",
+    "All thirteen original pairs are retained; no new candidate is selected or tuned. The same pair must pass both starts; results from different profiles cannot be combined.",
+    "Every reference is a fresh world. Reference outcomes, including any failures, are retained; the comparison never reuses a physical baseline.",
+    "The coupled predictor and reserve estimates remain heuristics. Native joint observations determine compliance, and no stopping guarantee follows from a passing filter."
+  ],
+  "response_confirmation": {
+    "schema_version": "locolemotion_response_confirmation_v1",
+    "source": {
+      "path": "sdk/discovery/creature_response_search_native_result_v2.json",
+      "sha256": "1166c3d4f31d62016ef47125c400f4664f9e8feaf50f383ed74e0357ad389765"
+    },
+    "selection": "all_retained_progress_leads",
+    "source_pair_count": 13,
+    "source_body_count": 11,
+    "seed": 1061147,
+    "initial_roll_offset_rad": 0.05,
+    "outer_steps": 1440,
+    "route_body_index": 14,
+    "route_profile_indices": [
+      5,
+      10
+    ],
+    "route_outer_steps": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "require_same_pair_at_both_starts": true,
+    "fresh_reference_source_indices": [
+      0,
+      1,
+      2
+    ],
+    "recovery_qualified": false,
+    "controller_adopted": false,
+    "training_data_authority": false,
+    "release_authority": false
+  }
+}

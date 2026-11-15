@@ -16,6 +16,7 @@ import numpy as np
 import creature_righting as righting
 import creature_response_probe as probe
 import creature_response_constraints as constraints
+import creature_response_confirmation as confirmation
 import creature_trajectory_search as trajectory
 from coupled_contact_response import CoupledBody, response, velocity_actuation
 from evaluate_coupled_contact_response import actuator_parameters, settings
@@ -130,13 +131,19 @@ def spec(*, route=False, protected=False):
 def validate(c):
     opted=any('response_search' in p for p in c.get('righting_spec',{}).get('profiles',[]))
     require(opted==('response_search' in c),'Response search declaration required')
+    require(not confirmation.enabled(c) or opted,'Response confirmation requires response search')
     if not opted:return
     route=c['mode']=='route_ghost';modern=constrained(c)
     recipe=CONSTRAINED_RECIPE if modern else RECIPE;predecessor=CONSTRAINED_PREDECESSOR if modern else PREDECESSOR
+    expected_spec=spec(route=route,protected=modern)
+    seed=recipe['seed'];steps=recipe['route_outer_steps' if route else 'search_outer_steps']
+    if confirmation.enabled(c):
+        confirmation.validate(c)
+        predecessor=confirmation.SOURCE;expected_spec=confirmation.spec(route=route)
+        seed=confirmation.POLICY['seed'];steps=confirmation.POLICY['route_outer_steps' if route else 'outer_steps']
     require(c['mode'] in ('route_ghost','development_discovery') and c['response_search']==recipe and
-        c['righting_spec']==spec(route=route,protected=modern) and c['predecessor']==predecessor and
-        c['predictor_component']==probe.ACTUATOR_COMPONENT and c['seed']==recipe['seed'] and
-        c['outer_steps']==recipe['route_outer_steps' if route else 'search_outer_steps'] and
+        c['righting_spec']==expected_spec and c['predecessor']==predecessor and
+        c['predictor_component']==probe.ACTUATOR_COMPONENT and c['seed']==seed and c['outer_steps']==steps and
         c['capture_mode']=='full' and c['maximum_worlds_per_batch']==4 and
         c['readback']==dict(mode='shared_snapshot',reference_check=False) and c.get('retain_planning_state') is True and
         c['trajectory_screen']==trajectory.POLICY and c['trajectory_reference_by_body']==[2]*len(c['righting_spec']['descriptors']) and
@@ -159,7 +166,8 @@ def source_dependencies(c):
     return [ROOT/p['path'] for p in (POPULATION,predecessor,probe.ACTUATOR_COMPONENT,*component['source_pins'])]+[
         ROOT/'sdk/discovery/coupled_contact_response_plan_v2.json',
         ROOT/'sdk/discovery/creature_response_search.py',ROOT/'sdk/discovery/test_creature_response_search.py',
-        ROOT/f'sdk/discovery/creature_response_search_route_{version}.json',ROOT/f'sdk/discovery/creature_response_search_{version}.json']
+        ROOT/f'sdk/discovery/creature_response_search_route_{version}.json',ROOT/f'sdk/discovery/creature_response_search_{version}.json'] + (
+        confirmation.source_dependencies() if confirmation.enabled(c) else [])
 
 
 def observe(controller,observation,native):
@@ -286,6 +294,7 @@ def validate_metrics(c,meta,metric):
 
 
 def verify_route(folder,receipt):
+    if confirmation.enabled(receipt['contract']):return confirmation.verify_route(receipt)
     c=receipt['contract'];audit=receipt['audit']
     modern=constrained(c);steps=181 if modern else 61;total=10*steps
     require(c['mode']=='route_ghost' and audit['ok'] and not audit['synthetic'] and
@@ -315,7 +324,9 @@ def route_receipt(path,c,source_commit,bindings,evidence_root):
     path=Path(path).resolve(strict=True);evidence_root=Path(evidence_root).resolve(strict=True)
     require(path.is_relative_to(evidence_root) and path.name=='receipt.json','Response route evidence boundary')
     raw=path.read_bytes();receipt=json.loads(raw)
-    require(c['mode']=='development_discovery' and receipt['contract']==declaration(ROOT/('sdk/discovery/creature_response_search_route_v2.json' if constrained(c) else 'sdk/discovery/creature_response_search_route_v1.json')) and
+    route_path=confirmation.ROUTE_DECLARATION if confirmation.enabled(c) else (
+        'sdk/discovery/creature_response_search_route_v2.json' if constrained(c) else 'sdk/discovery/creature_response_search_route_v1.json')
+    require(c['mode']=='development_discovery' and receipt['contract']==declaration(ROOT/route_path) and
         receipt['source_commit']==source_commit and receipt['source_status']==[] and receipt['bindings']==bindings and
         receipt['ok'] is True and receipt['synthetic'] is False and receipt['physical_started'] is True and
         receipt['source_runtime_unchanged'] is True and receipt['zero_world_gate_passed'] is True and

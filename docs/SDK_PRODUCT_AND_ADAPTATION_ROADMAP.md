@@ -25,17 +25,17 @@ pairs on fresh, prospectively declared starting-roll perturbations.
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
-1. **Confirm the surviving feedback leads on fresh starts.** The
-   [v2 result](../sdk/discovery/creature_response_search_native_result_v2.json)
-   retains all thirteen selected body/profile pairs across eleven bodies.
-   Freeze fresh initial-roll perturbations and full twelve-second capture,
-   with fresh brake, timed and unchanged references. Keep each controller
-   recipe and the original five-degree progress, joint-limit, model-failure
-   and recovery criteria. Require a pair to pass the progress screen at both
-   declared starts before carrying it into a broader staged-trajectory search.
-   Reuse the runner and reader and add compact completed-batch replay logs.
-   Preserve every failure; finite rotation gains grant no recovery or training
-   authority.
+1. **Run the fixed-pair confirmation on fresh starts.** The
+   [confirmation component](../sdk/discovery/creature_response_confirmation_component_v1.json)
+   passes all 256 controls and its 92-world zero-world preflight. All thirteen
+   source-selected pairs across eleven bodies retain their controller recipes.
+   Each gets both starts, 0.05 rad either side of inversion, with fresh brake,
+   timed and unchanged references and full twelve-second capture. Publish the
+   clean freeze, complete the ten-world two-interval route, then run the full
+   cohort on that same freeze. A pair must clear the original five-degree
+   progress and joint/model refusals at both starts; recovery remains separate.
+   The shared reader now reports completed batches. Native confirmation is
+   unobserved; finite progress grants no recovery, training or release authority.
 
 2. **Complete the Studio recovery handoff with a useful controller.** Preserve
    fresh observations, body identity, motor ownership, native clocks and

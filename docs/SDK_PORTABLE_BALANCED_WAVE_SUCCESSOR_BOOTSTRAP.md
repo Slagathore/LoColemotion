@@ -127,12 +127,20 @@ is insufficient: the twelve joint-clean negative/coupled/stopping episodes
 produce no five-degree lead. No stopping guarantee, controller adoption,
 training, Tier 2, Tier 3 or release authority follows.
 
-Next, freeze fresh starting-roll perturbations for all thirteen selected pairs
-with fresh references and full capture. Preserve the controller recipes and
-original progress, joint-limit, model-failure and recovery criteria; require a
-pair to pass the progress screen at both declared starts before a broader
-staged-trajectory search. Reuse the existing runner and reader, with compact
-completed-batch replay logs in that source successor.
+The [fixed-pair confirmation component](../sdk/discovery/creature_response_confirmation_component_v1.json)
+passes all 256 controls and the 92-world preflight with zero worlds. All
+thirteen selected pairs retain their recipes across eleven bodies. Each runs
+from 0.05 rad either side of inversion, with fresh brake, timed and unchanged
+references: 26 candidate episodes and 66 references, all twelve seconds.
+The new evaluator requires the same pair to clear both fresh references and
+the original joint/model refusals at both starts; recovery stays separate.
+
+The ten-world, two-interval route covers signed initialization, sparse pair
+mapping, first selection, state continuity, capture and replay. Existing
+controller controls remain in the complete gate. The shared reader adds
+completed-batch progress logs. Publish the prospective freeze, complete that
+route, then run the full cohort on the same freeze. Both new native outcomes
+remain unobserved; no adoption, stopping guarantee or learning authority.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen

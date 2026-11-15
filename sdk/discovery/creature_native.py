@@ -26,6 +26,7 @@ from actuation_measurement import named_force_samples
 import creature_population as population
 import creature_readback as readback
 import creature_confirmation as confirmation
+import creature_response_confirmation as response_confirmation
 import creature_righting as righting
 import creature_capture as capture
 import creature_trajectory_search as trajectory
@@ -69,7 +70,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "creature_response_probe.py", "test_creature_response_probe.py", "coupled_contact_response.py",
                  "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py", "test_creature_response_matching.py",
                  "creature_response_search.py", "test_creature_response_search.py",
-                 "creature_response_constraints.py", "test_creature_response_constraints.py"]
+                 "creature_response_constraints.py", "test_creature_response_constraints.py",
+                 "creature_response_confirmation.py", "test_creature_response_confirmation.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -135,7 +137,8 @@ def gates(c):
                 ("response-actuator-route", "test_creature_response_actuator", 3),
                 ("response-search", "test_creature_response_search", 15)] if 'response_search' in c else [])
             + ([("creature-joint-braking", "test_creature_joint_braking", 10),
-                ("response-constraints", "test_creature_response_constraints", 22)] if response_search.constrained(c) else []))
+                ("response-constraints", "test_creature_response_constraints", 22)] if response_search.constrained(c) else [])
+            + ([("response-confirmation", "test_creature_response_confirmation", 8)] if response_confirmation.enabled(c) else []))
 
 
 def sequence_enabled(c):
@@ -204,7 +207,8 @@ def declaration(path):
     require(c["runtime"] == {"mujoco": "3.11.0", "mujoco-warp": "3.11.0", "warp-lang": "1.16.0", "numpy": "2.4.6"}
             and c["ledger_scope"] == dict(subsystem="discovery", engine_scope="mujoco_warp",
                 authority_mode="development_route_ghost" if c["mode"] == "route_ghost" else c["mode"],
-                question_class="finite decision" if confirming else "development"), "Creature runtime or ledger scope")
+                question_class="finite decision" if confirming or (response_confirmation.enabled(c)
+                    and c["mode"] != "route_ghost") else "development"), "Creature runtime or ledger scope")
     require(len(c["initial_lateral_velocities_m_s"]) == len(c["cells"])
             and all(type(v) in (int, float) and math.isfinite(v) and abs(v) <= .005
                     for v in c["initial_lateral_velocities_m_s"]), "Creature initial velocities")
@@ -724,6 +728,12 @@ def audit(folder, c, core_path, *, synthetic=False):
         for key, value in report["timing_seconds"].items():
             timing[key] = timing.get(key, 0.) + value
         differing.update(report["differing_model_fields"])
+        if not synthetic:
+            print(json.dumps(dict(stage="reader_batch_complete", batch=group["batch_id"],
+                completed_batches=len(reports), total_batches=len(result["groups"]),
+                worlds_verified=sum(m is not None for m in metrics),
+                controller_rows_replayed=sum(g["audit"]["controller_rows_replayed"] for g in reports),
+                native_rows_verified=sum(g["audit"]["native_rows_verified"] for g in reports))), flush=True)
     require(all(m is not None for m in metrics), "Creature grouped metric denominator")
     result = dict(schema_version="locolemotion_creature_native_audit_v1", ledger_scope=c["ledger_scope"],
         ok=True, synthetic=synthetic, reader_world_build_count=0, gpu_worlds=len(c["cells"]),
@@ -745,6 +755,8 @@ def audit(folder, c, core_path, *, synthetic=False):
         result["assessment"] = righting.assess(c, metrics, pre["bindings"])
     if "trajectory_screen" in c:
         result["trajectory_screen"] = trajectory.assess(c, metrics)
+    if response_confirmation.enabled(c):
+        result["response_confirmation"] = response_confirmation.assess(c, result["trajectory_screen"])
     if "trajectory_retiming" in c:
         result["timing_pairs"] = retiming.assess(c, metrics, result["assessment"])
     if readback.options(c)["mode"] == "shared_snapshot":
