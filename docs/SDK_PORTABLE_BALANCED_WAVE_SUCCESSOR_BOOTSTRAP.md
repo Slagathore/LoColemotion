@@ -109,13 +109,30 @@ without widening its legacy policy; all predictor component pins stay intact.
 The retained per-stage timing profile reviews the synthetic owner's 25.6%
 duration growth; it does not establish native performance.
 
-Next, publish the clean prospective freeze and require ten native route worlds
-with full replay before the 288 twelve-second discovery worlds. The route
-covers recurring selection, fresh held checks, reserve activity and upright
-stance. Zero-world controls cover all-infeasible and nonconvergent withdrawal;
-native observed fallback is reported separately. The same-source route receipt
-is mandatory. Both native stages remain unobserved; no recovery, learning,
-held-out benefit or adoption follows from this component.
+The [constrained feedback result](../sdk/discovery/creature_response_search_native_result_v2.json)
+now closes on the published `82bcac93` freeze. All 248 controls, ten route
+worlds and 288 fresh twelve-second comparison worlds pass execution and full
+independent replay: 414,720 controller rows and 2,073,600 native samples.
+The retained verification rechecks 4,253 artifacts, 1,299 source bindings,
+1,359 runtime bindings, 85 source snapshots and 26 cleanup reports.
+
+The original screen selects thirteen body/profile leads across eleven bodies.
+Each exceeds both fresh timed and unchanged references by 6.53-8.09 degrees
+without joint-limit or model failures. Forty-six of 168 protected episodes
+avoid joint violations; 122 do not. All 48 signed unprotected references
+violate joint limits; all 72 brake, timed and unchanged references avoid them.
+No world achieves upright dwell or recovery eligibility. The selected peaks
+are only 18.45-22.20 degrees from an inverted start. Joint-clean behavior alone
+is insufficient: the twelve joint-clean negative/coupled/stopping episodes
+produce no five-degree lead. No stopping guarantee, controller adoption,
+training, Tier 2, Tier 3 or release authority follows.
+
+Next, freeze fresh starting-roll perturbations for all thirteen selected pairs
+with fresh references and full capture. Preserve the controller recipes and
+original progress, joint-limit, model-failure and recovery criteria; require a
+pair to pass the progress screen at both declared starts before a broader
+staged-trajectory search. Reuse the existing runner and reader, with compact
+completed-batch replay logs in that source successor.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen
