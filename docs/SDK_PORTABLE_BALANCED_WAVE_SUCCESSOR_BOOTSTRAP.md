@@ -127,20 +127,30 @@ is insufficient: the twelve joint-clean negative/coupled/stopping episodes
 produce no five-degree lead. No stopping guarantee, controller adoption,
 training, Tier 2, Tier 3 or release authority follows.
 
-The [fixed-pair confirmation component](../sdk/discovery/creature_response_confirmation_component_v1.json)
-passes all 256 controls and the 92-world preflight with zero worlds. All
-thirteen selected pairs retain their recipes across eleven bodies. Each runs
-from 0.05 rad either side of inversion, with fresh brake, timed and unchanged
-references: 26 candidate episodes and 66 references, all twelve seconds.
-The new evaluator requires the same pair to clear both fresh references and
-the original joint/model refusals at both starts; recovery stays separate.
+The [fixed-pair confirmation](../sdk/discovery/creature_response_confirmation_native_result_v1.json)
+now closes on the published `4f897e16` freeze. Its
+[component](../sdk/discovery/creature_response_confirmation_component_v1.json)
+passes all 256 controls; the ten-world, two-interval route and all 92 fresh
+twelve-second worlds pass execution and full replay. All thirteen selected
+pairs keep their recipes at 0.05 rad either side of inversion, with fresh
+brake, timed and unchanged references. The reader verifies 132,480 controller
+rows and 662,400 native samples. Retained verification reopens 2,999 artifacts,
+1,306 source bindings, 1,359 runtime bindings, 90 snapshots and 27 cleanups.
 
-The ten-world, two-interval route covers signed initialization, sparse pair
-mapping, first selection, state continuity, capture and replay. Existing
-controller controls remain in the complete gate. The shared reader adds
-completed-batch progress logs. Publish the prospective freeze, complete that
-route, then run the full cohort on the same freeze. Both new native outcomes
-remain unobserved; no adoption, stopping guarantee or learning authority.
+No pair passes both starts. Three of 26 candidate starts pass individually;
+twenty violate joint limits, six avoid them, and all 66 fresh references
+remain joint-clean. Nineteen candidate starts clear both raw five-degree gains,
+but sixteen of those gains are disqualified by joint violations. There is no
+model withdrawal, upright dwell or recovery. Maximum candidate rotation is
+22.893 degrees from inversion. Original discovery leads remain recorded, but
+none earns advancement through this confirmation; no controller is adopted.
+
+Next, reuse the retained joint-limit reader to measure these crossings without
+new worlds. Use that diagnosis to declare distinct broad trajectory proposals
+across actual bodies and both starting-roll signs, reusing existing pose,
+progress and contact transitions. Useful joint-clean discovery leads still
+need fresh full-horizon confirmation. Preserve original criteria and all
+negative outcomes; no stopping guarantee, training or release authority.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen

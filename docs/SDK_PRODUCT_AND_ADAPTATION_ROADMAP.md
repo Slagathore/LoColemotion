@@ -9,10 +9,10 @@ earlier decisions stay in the [dated history](SDK_PRODUCT_AND_ADAPTATION_ROADMAP
 
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** The constrained
-24-body feedback search now retains thirteen qualifying rotation-progress
-leads across eleven bodies. Forty-six of 168 protected episodes avoid joint
-violations; none completes recovery. Next: confirm the selected body/profile
-pairs on fresh, prospectively declared starting-roll perturbations.
+24-body feedback search found thirteen rotation-progress leads, but none
+passes the same-pair confirmation at both fresh starting rolls. Preserve all
+failures. Next: diagnose the retained crossings, then declare new broad
+trajectory proposals spanning bodies and both starting-roll signs.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -20,22 +20,22 @@ pairs on fresh, prospectively declared starting-roll perturbations.
 | [Recovery cohorts](../sdk/discovery/creature_support_sharing_native_result_v1.json) | The earlier thirteen complete cohorts retain 2,896 valid recovery failures. The later [torque-map v2 search](../sdk/discovery/creature_torque_map_native_failure_v2.json) is separately retained: all 126 completed new-controller worlds lose to fresh references; five joint-violation worlds |
 | [Contact-force diagnosis](../sdk/discovery/creature_contact_reactions_result_v1.json) | Zero new worlds; all 12,960 decisions and 64,800 solved samples read. On bodies 0/16, requested feet average 8.190/2.052 Nm, torso -8.309/-2.066 Nm, net 0.013/0.012 Nm. Body 21 makes no positive request. Foot-only moment misses the opposing torso reaction |
 | [Actuator-aware action probe](../sdk/discovery/creature_response_probe_native_result_v3.json) | 223 controls, 165 fresh worlds and full replay. Ordering accuracy is 75.9%/71.3%/66.7% on seed 6119/corner 000/seed 14172: two bodies pass, so the all-body screen fails. Predicted winners match all nine measured best means; eight gains against unchanged action exceed the fixed tie margin. No joint violations or recovery. The [retained model correction](../sdk/discovery/coupled_contact_response_result_v2.json) and earlier negatives remain preserved |
-| Closed-loop recovery search | [Constrained v2](../sdk/discovery/creature_response_search_native_result_v2.json): 248 controls, ten route worlds and 288 twelve-second worlds independently replay. Thirteen progress leads across eleven bodies; 46/168 protected episodes joint-clean, 122 joint-failed. All 48 signed unprotected references joint-fail; all 72 brake/timed/unchanged references avoid them. Zero recovery or upright dwell. [Native v1](../sdk/discovery/creature_response_search_native_result_v1.json) and its disqualified gains remain retained |
+| Closed-loop recovery search | [Constrained v2](../sdk/discovery/creature_response_search_native_result_v2.json) found thirteen leads across eleven bodies. Their [fresh-start confirmation](../sdk/discovery/creature_response_confirmation_native_result_v1.json) passes execution and replay of all 92 twelve-second worlds, but confirms 0/13 pairs. Only 3/26 candidate starts pass; 20 violate joint limits, while all 66 fresh references avoid them. Zero recovery or upright dwell. The original discovery leads and earlier negatives remain retained |
 | [Joint-limit diagnosis](../sdk/discovery/creature_response_joint_limit_result_v1.json) | Zero new worlds; all 240 retained worlds independently recounted after 22 controls. First model crossings occur at 0.385-1.495 seconds. All 230 crossing joints still have outward targets; 229 are guarded, 223 have opposing motor force. Four exact-step forecasts already project past a joint limit. The [constrained v2 comparison](../sdk/discovery/creature_response_search_native_result_v2.json) now retains finite progress leads; recovery benefit remains unproved |
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
-1. **Run the fixed-pair confirmation on fresh starts.** The
-   [confirmation component](../sdk/discovery/creature_response_confirmation_component_v1.json)
-   passes all 256 controls and its 92-world zero-world preflight. All thirteen
-   source-selected pairs across eleven bodies retain their controller recipes.
-   Each gets both starts, 0.05 rad either side of inversion, with fresh brake,
-   timed and unchanged references and full twelve-second capture. Publish the
-   clean freeze, complete the ten-world two-interval route, then run the full
-   cohort on that same freeze. A pair must clear the original five-degree
-   progress and joint/model refusals at both starts; recovery remains separate.
-   The shared reader now reports completed batches. Native confirmation is
-   unobserved; finite progress grants no recovery, training or release authority.
+1. **Diagnose the failed confirmation, then broaden trajectory discovery.**
+   The [confirmation result](../sdk/discovery/creature_response_confirmation_native_result_v1.json)
+   retains all thirteen failed pairs without adopting a controller. Reuse the
+   retained joint-limit reader to inspect crossing magnitude, command direction,
+   braking and correctly timed forecasts; open no new worlds for this diagnosis.
+   Then declare new proposals across actual bodies and both starting-roll signs,
+   using the existing pose, progress and contact phase transitions. Screen
+   broadly under a prospective development contract and give useful, joint-clean
+   leads fresh twelve-second confirmation. Keep the original criteria; avoid
+   another narrow direction, rate or cadence grid. Neither single-start gains
+   nor the completed route establish recovery, training or release authority.
 
 2. **Complete the Studio recovery handoff with a useful controller.** Preserve
    fresh observations, body identity, motor ownership, native clocks and
