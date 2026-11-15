@@ -64,6 +64,9 @@ def project(controls, samples):
             prepared_qpos=native["qpos"], prepared_qvel=native["qvel"],
             native_targets=[f32(v) for v in control["native_targets"]],
             safe_no_actuation=control["resolution"]["safe_no_actuation"], samples=[])
+        if "response_search" in control["resolution"]:
+            row["response_control"]=dict(decision=control["resolution"]["response_search"],
+                sequence=control["resolution"].get("sequence"))
         for block in samples:
             sample = block[cell]
             row["samples"].append(dict({k:sample[k] for k in SAMPLE_FIELDS},
@@ -85,6 +88,11 @@ def verify_projection(rows, controls, samples):
             and same_bits(row["prepared_qvel"], native["qvel"])
             and row["safe_no_actuation"] is control["resolution"]["safe_no_actuation"]
             and len(row["samples"]) == 5, "Full/compact prepared observation or solver input")
+        require(("response_control" in row)==("response_search" in control["resolution"]),
+            "Full/compact response presence")
+        if "response_control" in row:
+            require(same_bits(row["response_control"],dict(decision=control["resolution"]["response_search"],
+                sequence=control["resolution"].get("sequence"))), "Full/compact response decision or phase state")
         for sub, actual in enumerate(row["samples"]):
             raw = samples[sub][i]
             require(raw["cell"] == i and raw["step"] == 5*row["outer_step"]+sub+1
@@ -107,6 +115,8 @@ class Reader:
         self.n = len(creatures)
         self.positions, self.velocities = positions.tolist(), velocities.tolist()
         self.previous = [None]*self.n
+        self.response_states = [dict(action_index=0,next_replan_step=0) for _ in creatures]
+        self.sequence_states = [None]*self.n
         self.outer = 0
         self.sequence = any(k in c for k in ("body_moment_search", "moment_handoff_search", "support_exchange_search", "support_sharing_search", "torque_map_search")) or any(p["mode"] == righting.sequence.MODE for p in c.get("righting_spec", {}).get("profiles", []))
         self.metrics = [dict(minimum_height_m=math.inf, maximum_tilt_rad=0., torso_contact_steps=0,
@@ -117,6 +127,9 @@ class Reader:
                 m.update(righting.initial_metrics())
                 if self.sequence: m.update(righting.sequence.initial_work())
                 if "trajectory_screen" in c: m.update(trajectory.initial_metrics())
+                if "response_search" in c:
+                    from creature_response_search import initial_metrics
+                    m.update(initial_metrics(c))
 
     def consume(self, rows):
         require(type(rows) is list and len(rows) == self.n and self.outer < self.c["outer_steps"],
@@ -125,7 +138,10 @@ class Reader:
             creature, previous = self.creatures[i], self.previous[i]
             expected = dict(creature["binding"], cell_id=self.c["cells"][i]["cell_id"],
                             candidate_id=self.c["cells"][i]["profile"]["id"])
-            require(type(row) is dict and set(row) == ROOT_FIELDS and row["schema_version"] == SCHEMA
+            selected_profile=self.c["cells"][i]["profile"]
+            response_policy=selected_profile.get("response_search")
+            fields=ROOT_FIELDS|({"response_control"} if response_policy is not None else set())
+            require(type(row) is dict and set(row) == fields and row["schema_version"] == SCHEMA
                 and type(row["cell"]) is int and row["cell"] == i
                 and type(row["outer_step"]) is int and row["outer_step"] == self.outer
                 and row["binding"] == expected and type(row["safe_no_actuation"]) is bool,
@@ -140,6 +156,21 @@ class Reader:
             motors=creature["compiled"]["morphology"]["morphology_spec"]["actuators"]
             require(all(v == f32(v) and abs(v) <= f32(m["maximum_target_speed_rad_s"])
                         for v,m in zip(row["native_targets"],motors,strict=True)), "Compact bounded native input")
+            if response_policy is not None:
+                from creature_response_search import measure_control, policy
+                import creature_restoring_search as restoring
+                control=row["response_control"]
+                require(type(control) is dict and set(control)=={"decision","sequence"}, "Compact response fields")
+                decision=control["decision"]
+                require(decision["schema_version"]==response_policy["schema_version"]
+                    and policy(decision["policy"])==response_policy
+                    and decision["state_before"]==self.response_states[i], "Compact response policy or state continuity")
+                measure_control(self.metrics[i],dict(resolution={"response_search":decision},native_targets=row["native_targets"]))
+                self.response_states[i]=copy.deepcopy(decision["state_after"])
+                if response_policy["schema_version"]==restoring.SCHEMA:
+                    self.sequence_states[i]=restoring.validate_capture(row,selected_profile,
+                        creature["compiled"]["morphology"]["morphology_spec"],self.sequence_states[i])
+                else:require(control["sequence"] is None,"Compact legacy response cannot carry sequence state")
             require(type(row["samples"]) is list and len(row["samples"]) == 5, "Compact native denominator")
             self.metrics[i]["safe_no_actuation_steps"] += int(row["safe_no_actuation"])
         for sub in range(5):
@@ -273,5 +304,10 @@ def canary_receipt(path, c, source_commit, bindings, evidence_root):
         require(full["contract"].get("torque_map_search")==c["torque_map_search"]
             and full.get("torque_map_route_coverage")==torque_search.verify_route(path.parent,full),
             "Torque-map route required force and contact coverage")
+    import creature_restoring_search as restoring
+    if restoring.enabled(c):
+        require(full["contract"].get("response_search")==c["response_search"]
+            and full.get("response_search_route_coverage")==restoring.verify_route(full),
+            "Restoring full-canary withdrawal coverage")
     return dict(receipt_path=str(path),receipt_sha256=digest(path),audit_sha256=digest(audit_path),
         full_controller_rows_replayed=n,full_native_rows_verified=5*n,within_run_projection_verified=True)

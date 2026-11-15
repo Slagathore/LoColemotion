@@ -9,6 +9,7 @@ import numpy as np
 
 from creature_batch import bridge, require
 from creature_joint_braking import envelope
+import creature_restoring_search as restoring
 from actuation_recovery_mechanics import xyz
 from coupled_contact_response import response, velocity_actuation
 
@@ -71,6 +72,7 @@ def protect(actions, controller, state, acceleration):
 
 def plan(controller, base, observation, supplied, actions):
     p=controller.candidate['response_search'];state=observation['state']
+    staged=p['schema_version']==restoring.SCHEMA
     before=copy.deepcopy(controller.response_state);after=copy.deepcopy(before)
     pose=state['base_pose_world'];twist=state['base_twist_world'];joints=state['ordered_joint_observations']
     positions=[j['position_rad'] for j in joints];qd=np.asarray([j['velocity_rad_s'] for j in joints])
@@ -78,7 +80,7 @@ def plan(controller, base, observation, supplied, actions):
     prepared=controller.response_model.prepare(xyz(pose['position_m']),[pose['orientation_xyzw'][k] for k in 'xyzw'],positions,velocity)
     rotation=prepared['frame']['rotations'][0];config=controller.response_config;a=controller.actuators
     tilt=math.acos(max(-1.,min(1.,float(rotation[1,1]))))
-    desired=rotation[:,0]*(p['direction']*min(p['maximum_rate_rad_s'],2.*tilt))
+    desired=np.zeros(3) if staged else rotation[:,0]*(p['direction']*min(p['maximum_rate_rad_s'],2.*tilt))
 
     def predict(targets):
         targets=np.asarray(targets,np.float32).astype(float)
@@ -106,8 +108,9 @@ def plan(controller, base, observation, supplied, actions):
         return predictions[index]
 
     upright=base['resolution']['phase']=='upright_stance';trigger='upright' if upright else 'scheduled'
-    holding=not upright and controller.step_index<before['next_replan_step']
-    indices=[0] if upright else [before['action_index']] if holding else list(range(9))
+    holding=not staged and not upright and controller.step_index<before['next_replan_step']
+    indices=[0] if staged or upright else [before['action_index']] if holding else list(range(9))
+    if staged:trigger='trajectory_current_state'
     if brake['converged']:
         for index in indices:evaluate(index)
         if holding and predictions[indices[0]]['converged'] and not predictions[indices[0]]['feasible']:
@@ -116,17 +119,31 @@ def plan(controller, base, observation, supplied, actions):
         elif holding:trigger='held_check'
     converged=brake['converged'] and all(v['converged'] for v in predictions.values())
     feasible=[i for i in indices if i in predictions and predictions[i]['feasible']] if converged else []
+    withdrawal_prediction=None
     if feasible:
         selected=max(feasible,key=lambda i:(predictions[i]['score'],-i));chosen=actions[selected]
         reason='upright_stance' if upright else 'held_pattern' if trigger=='held_check' else 'replanned'
-        if reason!='held_pattern':after=dict(action_index=selected,next_replan_step=controller.step_index+(1 if upright else p['replan_steps']))
+        if reason!='held_pattern':after=dict(action_index=selected,next_replan_step=controller.step_index+(1 if staged or upright else p['replan_steps']))
     else:
-        selected=9;chosen=copy.deepcopy(actions[0]);chosen['targets']=[0.]*8
-        for command in chosen['commands']:
-            command['joint_guard_applied']=command['joint_guard_applied'] or command['canonical_velocity_rad_s']!=0.
-            command['canonical_velocity_rad_s']=0.;command['response_braking_withdrawal']=True
-        reason='braking_withdrawal' if converged else 'model_nonconvergence'
+        selected=9
+        if staged and p['withdrawal']=='restore_position':
+            chosen=restoring.withdrawal(actions[0],controller,state)
+            withdrawal_prediction=predict(chosen['targets'])
+            converged=converged and withdrawal_prediction['converged']
+            reason='position_restoration' if converged else 'model_nonconvergence'
+        else:
+            chosen=copy.deepcopy(actions[0]);chosen['targets']=[0.]*8
+            for command in chosen['commands']:
+                command['joint_guard_applied']=command['joint_guard_applied'] or command['canonical_velocity_rad_s']!=0.
+                command['canonical_velocity_rad_s']=0.;command['response_braking_withdrawal']=True
+            withdrawal_prediction=brake
+            reason='braking_withdrawal' if converged else 'model_nonconvergence'
         after=dict(action_index=0,next_replan_step=controller.step_index+1)
+    if staged:
+        sequence=base['resolution']['sequence']
+        sequence['proposed_state_after']=copy.deepcopy(sequence['state_after'])
+        sequence['withdrawal_paused']=selected==9
+        if selected==9:sequence['state_after']=copy.deepcopy(sequence['state_before'])
     base['native_targets']=chosen['targets'];base['resolution']['ordered_commands']=chosen['commands']
     base['resolution']['response_search']=dict(schema_version=p['schema_version'],policy=copy.deepcopy(p),
         state_before=before,state_after=after,selection_reason=reason,applied_action=selected,
@@ -136,4 +153,7 @@ def plan(controller, base, observation, supplied, actions):
             brake_prediction=brake,**estimates,replan_trigger=trigger,
             guarded_joint_count=sum(c['joint_guard_applied'] for c in chosen['commands']),
             stopping_guaranteed=False))
+    if staged:
+        base['resolution']['response_search']['constraints']['withdrawal_prediction']=withdrawal_prediction
+        base['resolution']['response_search']['held_value']='none_current_trajectory_each_interval'
     return base

@@ -10,9 +10,10 @@ earlier decisions stay in the [dated history](SDK_PRODUCT_AND_ADAPTATION_ROADMAP
 **Search many actual bodies and controller trajectories cheaply, then apply
 fresh full-capture scrutiny to useful, diverse leads.** None of the thirteen
 feedback leads passes both fresh starts. The retained diagnosis now locates
-all twenty first joint crossings during zero-target withdrawal. Next: test
-position-restoring withdrawal within a broad staged-trajectory successor
-across actual bodies and both starting-roll signs.
+all twenty first joint crossings during zero-target withdrawal. The
+[paired trajectory component](../sdk/discovery/creature_restoring_trajectory_component_v1.json)
+now passes all 291 controls and the 528-world zero-world preflight. Next: its
+small full-capture native route, then broad paired discovery on the same freeze.
 
 | Current evidence | Verified result and boundary |
 | --- | --- |
@@ -25,15 +26,16 @@ across actual bodies and both starting-roll signs.
 | [Studio handoff](../sdk/explorer/studio/live_handoff_native_failure_v2.json) | Fresh measured entry and 240 passive intervals replay. The inverted body times out without active recovery or resumed walking |
 | [Studio startup comparison](../sdk/explorer/studio/startup_native_runtime_result_v1.json) | Four fresh ABBA worlds: original 18.440/18.452 seconds, compiled 17.634/17.620. All 360 frames and 118 full controller rows match. Reductions 4.37%/4.51%, mean 4.44%, miss the frozen 5% threshold. Original default remains active; no further startup tuning grid |
 
-1. **Declare broad trajectory discovery with position-restoring withdrawal.**
-   The [retained diagnosis](../sdk/discovery/creature_response_joint_limit_result_v2.json)
-   confirms that every first crossing occurred while the controller requested
-   zero velocity. Test bounded inward repositioning against that unchanged
-   withdrawal, using existing pose, progress and contact phase transitions
-   across actual bodies and both starting-roll signs. Reuse the runner and
-   reader; add only the intervention and required refusal controls. A compact
-   discovery run first needs its same-freeze full-capture canary. Useful,
-   joint-clean leads then need fresh twelve-second confirmation. Preserve the
+1. **Run paired trajectory discovery from the prospective freeze.**
+   The [component](../sdk/discovery/creature_restoring_trajectory_component_v1.json)
+   passes 291 controls, including 24 new controls, with zero worlds opened.
+   First run the fifteen-world, two-interval full-capture route to verify both
+   withdrawals and phase-state continuity. Then compare zero velocity with
+   bounded inward repositioning across 48 staged trajectories, 24 bodies and
+   both starting signs: 384 candidate and 144 fresh reference episodes, six
+   seconds each, in batches of at most four. The shared compact reader retains
+   response decisions and all native outcome samples. Useful joint-clean leads
+   still require fresh twelve-second full-capture confirmation. Preserve the
    original criteria and all failures; the proposed remedy remains unproved.
 
 2. **Complete the Studio recovery handoff with a useful controller.** Preserve

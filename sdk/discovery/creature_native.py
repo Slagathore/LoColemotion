@@ -42,6 +42,7 @@ import creature_torque_map_search as torque_search
 import creature_contact_reactions as reactions
 import creature_response_probe as response_probe
 import creature_response_search as response_search
+import creature_restoring_search as restoring_search
 
 HERE = Path(__file__).resolve().parent
 MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_native.py",
@@ -71,7 +72,8 @@ MODEL_SOURCES = ["creature_batch.py", "creature_native_model.py", "creature_nati
                  "evaluate_coupled_contact_response.py", "test_coupled_contact_response.py", "test_creature_response_matching.py",
                  "creature_response_search.py", "test_creature_response_search.py",
                  "creature_response_constraints.py", "test_creature_response_constraints.py",
-                 "creature_response_confirmation.py", "test_creature_response_confirmation.py"]
+                 "creature_response_confirmation.py", "test_creature_response_confirmation.py",
+                 "creature_restoring_search.py", "test_creature_restoring_search.py"]
 GATES = [
     ("measurement", "test_actuation_measurement", 7),
     ("quadruped", "test_gpu_quadruped_probe", 10),
@@ -138,7 +140,8 @@ def gates(c):
                 ("response-search", "test_creature_response_search", 15)] if 'response_search' in c else [])
             + ([("creature-joint-braking", "test_creature_joint_braking", 10),
                 ("response-constraints", "test_creature_response_constraints", 22)] if response_search.constrained(c) else [])
-            + ([("response-confirmation", "test_creature_response_confirmation", 8)] if response_confirmation.enabled(c) else []))
+            + ([("response-confirmation", "test_creature_response_confirmation", 8)] if response_confirmation.enabled(c) else [])
+            + ([("restoring-trajectory", "test_creature_restoring_search", 24)] if restoring_search.enabled(c) else []))
 
 
 def sequence_enabled(c):
@@ -152,6 +155,7 @@ def work_enabled(c):
 def declaration(path):
     require(path.resolve().is_relative_to(ROOT), "Creature declaration outside repository")
     c = json.loads(path.read_text(encoding="utf-8"))
+    if restoring_search.enabled(c):restoring_search.expand(c)
     if "righting_spec" in c:
         require(c["mode"] in ("route_ghost", "development_discovery") and c["batch_partition"] == "body_shape"
                 and "population_spec" not in c and "confirmation_spec" not in c
@@ -195,7 +199,7 @@ def declaration(path):
     response_search.validate(c)
     reactions.enabled(c)
     batch_limit(c)
-    require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (512 if confirming else 288 if response_search.constrained(c) else 256)
+    require(type(c["cells"]) is list and 1 <= len(c["cells"]) <= (528 if restoring_search.enabled(c) else 512 if confirming else 288 if response_search.constrained(c) else 256)
             and type(c["outer_steps"]) is int and 1 <= c["outer_steps"] <= 1440
             and type(c["seed"]) is int and 0 <= c["seed"] <= 2147483647
             and c["internal_steps_per_outer"] == 5 and c["timestep_s"] == bridge.INTERNAL_DT_S,
@@ -230,6 +234,7 @@ def declaration(path):
 
 
 def initial_arrays(creatures, c):
+    if restoring_search.enabled(c):return restoring_search.initial_arrays(creatures,c)
     if "righting_spec" in c:
         return righting.initial_arrays(creatures, c["initial_roll_angles_rad"])
     positions = np.asarray([v["spec"]["initial_qpos"] for v in creatures], np.float32)
@@ -757,6 +762,8 @@ def audit(folder, c, core_path, *, synthetic=False):
         result["trajectory_screen"] = trajectory.assess(c, metrics)
     if response_confirmation.enabled(c):
         result["response_confirmation"] = response_confirmation.assess(c, result["trajectory_screen"])
+    if restoring_search.enabled(c):
+        result["restoring_trajectory"] = restoring_search.assess(c,result["trajectory_screen"])
     if "trajectory_retiming" in c:
         result["timing_pairs"] = retiming.assess(c, metrics, result["assessment"])
     if readback.options(c)["mode"] == "shared_snapshot":

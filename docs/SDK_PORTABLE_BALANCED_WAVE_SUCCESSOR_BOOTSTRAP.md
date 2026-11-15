@@ -161,12 +161,25 @@ crossings cannot be assigned that one-step timing. All twenty have torso and
 distal contact, which does not isolate a cause. Zero velocity is damping, not
 a position-restoring command; no remedy has been demonstrated.
 
-Next, declare a broad staged-trajectory successor to test bounded inward
-repositioning against the existing withdrawal across bodies and both starts.
-Reuse the existing pose, progress and contact transitions, runner and reader.
-Compact discovery requires its same-freeze full-capture canary; useful,
-joint-clean leads require fresh twelve-second confirmation. Keep original
-criteria and all negatives; no stopping, recovery, training or release authority.
+The [paired trajectory component](../sdk/discovery/creature_restoring_trajectory_component_v1.json)
+now passes all 291 controls and the 528-world zero-world preflight across
+24 actual bodies. Its 48 staged recipes pair zero-velocity and bounded inward
+withdrawal at both starts, with 144 fresh reference episodes. Withdrawal pauses
+phase memory and retains the actual applied-command forecast. The compact
+reader keeps response decisions and phase state alongside every native sample.
+
+The first development attempt retains three synthetic fixture errors after
+267 existing and 21 new controls passed. Correcting the fixture's canonical
+quaternion conversion leaves the mechanics tolerance unchanged. All 24 new
+controls now pass. Gate duration is 176.843 seconds against 129.016 for the
+prior constrained search; the newly applicable existing sequence gate accounts
+for 49.354 seconds, capture for 3.206 and new controls for 0.715.
+
+Next run the fifteen-world, two-interval full-capture route, then the declared
+six-second compact cohort on that same clean pushed freeze. Both withdrawals,
+phase continuity and full/compact projection must pass first. Useful joint-clean
+leads require fresh twelve-second full-capture confirmation. Native outcomes
+remain unobserved; original criteria and all negatives stay unchanged.
 
 The [paired torso-target result](../sdk/discovery/creature_torso_target_native_result_v1.json)
 is complete at source cbf4a77e: 224 fresh twelve-second worlds across sixteen

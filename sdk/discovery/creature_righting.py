@@ -39,9 +39,12 @@ def profile(value):
     if 'response_search' in value:
         from creature_response_search import policy
         base=profile({k:v for k,v in value.items() if k!='response_search'})
-        require(base['mode']=='rock' and not any(k in base for k in ('response_probe','joint_braking')),
+        from creature_restoring_search import SCHEMA as restoring_schema
+        selected=policy(value['response_search'])
+        staged=selected['schema_version']==restoring_schema
+        require(base['mode']==(sequence.MODE if staged else 'rock') and not any(k in base for k in ('response_probe','joint_braking')),
             'Response search original guarded prefix')
-        return dict(base,response_search=policy(value['response_search']))
+        return dict(base,response_search=selected)
     if 'response_probe' in value:
         from creature_response_probe import policy
         base=profile({k:v for k,v in value.items() if k!='response_probe'})
@@ -162,14 +165,16 @@ def expand(spec):
     bodies, candidates, conditions, starts = [spec[k] for k in ("descriptors", "profiles", "conditions", "starts")]
     # A factored torque-map declaration may name more profiles while retaining
     # the existing 256-world budget and per-native-batch limit.
-    profile_limit = 128 if type(candidates) is list and any(type(p) is dict and "torque_map" in p for p in candidates) else 64
+    staged = type(candidates) is list and any(type(p) is dict and p.get("response_search", {}).get("schema_version") ==
+        "locolemotion_restoring_trajectory_policy_v1" for p in candidates)
+    profile_limit = 128 if staged or (type(candidates) is list and any(type(p) is dict and "torque_map" in p for p in candidates)) else 64
     require(all(type(v) is list and v for v in (bodies, candidates, conditions, starts))
             and len(bodies) <= 64 and 2 <= len(candidates) <= profile_limit and len(conditions) <= 4
             and len(starts) <= 4,
             "Righting population budget")
     # The constrained feedback cohort adds fresh signed comparators; native
     # declaration validation still requires its exact 288-world population.
-    world_limit = 288 if any(p.get("response_search", {}).get("schema_version") ==
+    world_limit = 528 if staged else 288 if any(p.get("response_search", {}).get("schema_version") ==
         "locolemotion_response_search_policy_v2" for p in candidates if type(p) is dict) else 256
     assignments = spec["profiles_by_body"] if assigned else [list(range(len(candidates))) for _ in bodies]
     require(type(assignments) is list and len(assignments) == len(bodies)
@@ -222,10 +227,13 @@ def verify_expansion(c):
     require(c["righting_selection"] == SELECTION, "Righting selection contract")
 
 
-def ground_clearance(creature, roll):
-    """Exact box/capsule lower support at zero joint angles, without a world."""
+def ground_clearance(creature, roll, positions=None):
+    """Exact box/capsule lower support at the fresh initial pose, without a world."""
     tree = RigidTree(creature["compiled"]["morphology"]["morphology_spec"])
-    frame = tree.kinematics([0., 0., 0.], [math.sin(roll/2), 0., 0., math.cos(roll/2)], [0.] * 8)
+    positions = [0.] * 8 if positions is None else positions
+    require(len(positions)==8 and all(finite(q) and j["lower_limit_rad"]<=q<=j["upper_limit_rad"]
+        for q,j in zip(positions,tree.spec["joints"],strict=True)), "Righting initial joint pose")
+    frame = tree.kinematics([0., 0., 0.], [math.sin(roll/2), 0., 0., math.cos(roll/2)], positions)
     lows = []
     for body, position, rotation in zip(tree.bodies, frame["positions"], frame["rotations"], strict=True):
         shape = body["collision"]

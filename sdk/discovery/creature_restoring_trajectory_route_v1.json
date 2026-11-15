@@ -1,0 +1,293 @@
+{
+  "schema_version": "locolemotion_creature_native_v1",
+  "core_sha256": "f88cb47a720802ac95d3f4553bd238f5812a6e9b291b17f5e2717708aa3d5b99",
+  "baseline_core_sha256": "5fafe9a27578e4fbd642d7dd83599ff221853b095ab628e54a9c4f1e09d5f977",
+  "runtime": {
+    "mujoco": "3.11.0",
+    "mujoco-warp": "3.11.0",
+    "warp-lang": "1.16.0",
+    "numpy": "2.4.6"
+  },
+  "device": "cuda:0",
+  "internal_steps_per_outer": 5,
+  "timestep_s": 0.0016666666666666668,
+  "naconmax_per_world": 64,
+  "njmax": 128,
+  "njmax_nnz": 1792,
+  "nvmax": 14,
+  "cpu_warning_count": 7,
+  "native_reads_reduced": true,
+  "maximum_trace_bytes_per_stream": 268435456,
+  "minimum_free_storage_bytes": 137438953472,
+  "physical_acceptance_authority": false,
+  "release_authority": false,
+  "equivalence_authority": false,
+  "training_data_authority": false,
+  "batch_partition": "body_shape",
+  "readback": {
+    "mode": "shared_snapshot",
+    "reference_check": false
+  },
+  "righting_selection": {
+    "minimum_upright_dot": 0.95,
+    "minimum_height_ratio": 0.75,
+    "maximum_angular_speed_rad_s": 0.5,
+    "required_terminal_dwell_steps": 300,
+    "maximum_joint_limit_violation_steps": 0,
+    "shortlist_per_body_condition": 2,
+    "minimum_mean_pose_distance": 0.15
+  },
+  "retain_planning_state": true,
+  "controller_component": {
+    "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+    "sha256": "ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d"
+  },
+  "predictor_component": {
+    "path": "sdk/discovery/coupled_contact_response_result_v2.json",
+    "sha256": "ad6ee45268ba59a3604474d3f60074f5b29245120d822ed5c9b3b2c102b9c15d"
+  },
+  "maximum_worlds_per_batch": 4,
+  "trajectory_screen": {
+    "schema_version": "locolemotion_trajectory_screen_v1",
+    "leads_per_group": 2,
+    "minimum_peak_rotation_gain_degrees": 5.0,
+    "one_lead_per_family": true,
+    "require_zero_joint_limit_violations": true,
+    "qualification_authority": false
+  },
+  "recovery_benefit_established": false,
+  "controller_adopted": false,
+  "predecessor": {
+    "path": "sdk/discovery/creature_response_joint_limit_result_v2.json",
+    "sha256": "1593e1febe6b2a2588f1801612fe900c5342b24b6e151182e58b249e31e665d4"
+  },
+  "response_search": {
+    "schema_version": "locolemotion_restoring_trajectory_search_v1",
+    "seed": 1061148,
+    "bodies": 24,
+    "trajectories": 48,
+    "assignment_offsets": [
+      0,
+      7
+    ],
+    "withdrawals": [
+      "zero_velocity",
+      "restore_position"
+    ],
+    "starts_rad": [
+      3.0915926535897933,
+      -3.0915926535897933
+    ],
+    "outer_steps": 720,
+    "route_outer_steps": 2,
+    "route_normalized_joint_positions": [
+      0.98,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "restoration_margin_rad": 0.08,
+    "restoration_gain_s_inv": 8.0,
+    "restoration_maximum_speed_rad_s": 0.75,
+    "phase_state_during_withdrawal": "pause_until_a_feasible_trajectory_command",
+    "references": [
+      "zero_velocity_brake",
+      "timed_rock",
+      "unchanged_rollneg_fixed_stopping"
+    ],
+    "paired_effects": "descriptive_by_body_trajectory_and_start",
+    "qualification_requires_fresh_twelve_second_confirmation": true
+  },
+  "seed": 1061148,
+  "compact_capture": {
+    "schema_version": "locolemotion_creature_compact_capture_v1",
+    "native_reads_changed": false,
+    "file_buffering_changed": false,
+    "substeps_discarded": false,
+    "qualification_requires_fresh_full_capture": true
+  },
+  "purpose": "Compare zero-velocity and bounded position-restoring withdrawal for staged trajectories across actual bodies and both initial-roll signs.",
+  "production_entrypoints": [
+    "sdk/discovery/run_creature_native.py",
+    "sdk/discovery/creature_native.py",
+    "sdk/discovery/creature_response_search.py",
+    "sdk/discovery/creature_response_constraints.py",
+    "sdk/discovery/creature_restoring_search.py",
+    "sdk/discovery/creature_righting.py",
+    "sdk/discovery/creature_righting_sequence.py",
+    "sdk/discovery/creature_capture.py"
+  ],
+  "code_path_risks_covered": [
+    "Exact recipe expansion binds 24 exposed bodies, 48 exposed pose templates with new measured phase gates, paired withdrawals, both starts and fresh references.",
+    "The current staged command is protected and predicted every interval; no held action or rotation-pattern score can replace a phase command.",
+    "An infeasible command withdraws to zero velocity or an inward target inside the fixed 0.08 rad interior band, capped at 0.75 rad/s and existing actuator limits.",
+    "Withdrawal pauses phase memory; a feasible command resumes from fresh observations. Planning and batch commit remain atomic.",
+    "The applied withdrawal has its own current forecast. Nonconvergence remains a disqualifying model failure, including during the restoring fallback.",
+    "The near-limit route computes ground clearance at its actual initial joint pose and exercises both withdrawals for two intervals from both inverted signs and upright.",
+    "Full canary replay independently compares compact projection, phase continuity, commands, every native sample and outcome accounting before broader compact use.",
+    "Original zero joint-limit/model-failure and five-degree progress criteria remain unchanged. All outcomes stay retained."
+  ],
+  "not_covered": [
+    "A stopping guarantee, native contact-solver equivalence, useful recovery or comparative superiority.",
+    "Full trajectory execution or recovery from the two-interval route alone.",
+    "Weakened actuators, other terrain, impacts, arbitrary morphology or untouched evaluation groups.",
+    "Learned adaptation, beneficial online memory, live Studio recovery, real time or release."
+  ],
+  "route_horizon_rationale": "Fifteen fresh roles cover five profiles at two inverted signs and upright. A near-limit joint pose makes both withdrawal paths observable immediately; two intervals cover committed phase and current-state continuity. The route does not prove complete trajectories.",
+  "audit_growth_justification": "Reuse the shared owner, evaluator, full replay and compact reader. The new policy and paired assessment add controller/phase invariants, recipe expansion and optional response capture fields. Focused controls cover those changed semantics; no new executable campaign auditor.",
+  "discovery_limits": [
+    "Development material is exposed. No fitting, training authority or held-out generalization.",
+    "Each trajectory is assigned to two of 24 bodies. Each body gets four paired recipes and three fresh references per start: 528 six-second episodes.",
+    "Preserve every per-start outcome and every paired both-start decision, including joint and model failures; do not pool opposite winners into a candidate.",
+    "The six-second screen retains the original progress and joint criteria; useful leads still require distinct fresh twelve-second full-capture confirmation.",
+    "Restoration overrides slew as an explicit protection intervention, while retaining actuator speed and force caps and the observed-bound guard. It is not a verified invariant set."
+  ],
+  "campaign_id": "creature_restoring_trajectory_route_v1",
+  "mode": "route_ghost",
+  "capture_mode": "full",
+  "outer_steps": 2,
+  "maximum_worker_wall_seconds": 600,
+  "maximum_reader_wall_seconds": 600,
+  "ledger_scope": {
+    "subsystem": "discovery",
+    "engine_scope": "mujoco_warp",
+    "authority_mode": "development_route_ghost",
+    "question_class": "development"
+  },
+  "safety_controls": [
+    {
+      "name": "measurement",
+      "module": "test_actuation_measurement",
+      "count": 7
+    },
+    {
+      "name": "quadruped",
+      "module": "test_gpu_quadruped_probe",
+      "count": 10
+    },
+    {
+      "name": "portable",
+      "module": "test_portable_search",
+      "count": 11
+    },
+    {
+      "name": "host-batch",
+      "module": "test_portable_batch",
+      "count": 7
+    },
+    {
+      "name": "graph-execution",
+      "module": "test_gpu_batch_execution",
+      "count": 7
+    },
+    {
+      "name": "motor-task",
+      "module": "test_motor_effectiveness_task",
+      "count": 7
+    },
+    {
+      "name": "motor-route",
+      "module": "test_gpu_motor_effectiveness",
+      "count": 5
+    },
+    {
+      "name": "stage-lifecycle",
+      "module": "test_contained_stage_owner_v2",
+      "count": 17
+    },
+    {
+      "name": "containment",
+      "module": "test_contact_sequence_containment_v2",
+      "count": 1
+    },
+    {
+      "name": "provider",
+      "module": "adaptation_provider.test_conformance",
+      "count": 2
+    },
+    {
+      "name": "creature-controller",
+      "module": "test_creature_batch",
+      "count": 14
+    },
+    {
+      "name": "creature-native",
+      "module": "test_creature_native",
+      "count": 22
+    },
+    {
+      "name": "creature-readback",
+      "module": "test_creature_readback",
+      "count": 12
+    },
+    {
+      "name": "creature-righting",
+      "module": "test_creature_righting",
+      "count": 12
+    },
+    {
+      "name": "creature-righting-sequence",
+      "module": "test_creature_righting_sequence",
+      "count": 9
+    },
+    {
+      "name": "creature-capture",
+      "module": "test_creature_capture",
+      "count": 10
+    },
+    {
+      "name": "creature-trajectory",
+      "module": "test_creature_trajectory_search",
+      "count": 6
+    },
+    {
+      "name": "coupled-response",
+      "module": "test_coupled_contact_response",
+      "count": 14
+    },
+    {
+      "name": "actuation-mechanics",
+      "module": "test_actuation_recovery_mechanics",
+      "count": 25
+    },
+    {
+      "name": "response-metric-reader",
+      "module": "test_check_coupled_contact_response",
+      "count": 6
+    },
+    {
+      "name": "coupled-actuator",
+      "module": "test_coupled_actuator_response",
+      "count": 13
+    },
+    {
+      "name": "response-actuator-route",
+      "module": "test_creature_response_actuator",
+      "count": 3
+    },
+    {
+      "name": "response-search",
+      "module": "test_creature_response_search",
+      "count": 15
+    },
+    {
+      "name": "creature-joint-braking",
+      "module": "test_creature_joint_braking",
+      "count": 10
+    },
+    {
+      "name": "response-constraints",
+      "module": "test_creature_response_constraints",
+      "count": 22
+    },
+    {
+      "name": "restoring-trajectory",
+      "module": "test_creature_restoring_search",
+      "count": 24
+    }
+  ]
+}
